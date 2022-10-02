@@ -13,7 +13,7 @@ public static partial class ServiceCollectionExtensions
                     select errorMessage).ToArray(),
     });
 
-    public static IServiceCollection ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory(this IServiceCollection services, Action<ApiBehaviorOptions>? action) => services.Configure<ApiBehaviorOptions>(options =>
+    public static IServiceCollection ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory(this IServiceCollection services, Action<ApiBehaviorOptions>? action = null) => services.Configure<ApiBehaviorOptions>(options =>
     {
         options.InvalidModelStateResponseFactory = InvalidModelStateResponseFactory;
         action?.Invoke(options);
