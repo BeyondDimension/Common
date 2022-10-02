@@ -14,5 +14,8 @@ public partial class BackManageDbContext : IdentityDbContext<BMUser, IdentityRol
         base.OnModelCreating(b);
         this.ReNameAspNetIdentityByBackManageDbContext(b);
         b.BuildEntities();
+#if !LIB_TEMPLATE
+        OnModelCreatingPartial(b);
+#endif
     }
 }

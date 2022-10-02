@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>LIB_TEMPLATE;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
