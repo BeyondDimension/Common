@@ -4,7 +4,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static partial class ServiceCollectionExtensions
 {
 #if !BLAZOR_TEMPLATE
-    public static IHttpClientBuilder AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(IServiceCollection services)
+    public static IHttpClientBuilder AddHttpClientW<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this IServiceCollection services)
         where TClient : class
         where TImplementation : HttpClientWrapper, TClient => services.AddHttpClient<TClient, TImplementation>((s, client) =>
         {
