@@ -1,0 +1,11 @@
+<Project>
+	<ItemGroup>
+		<PackageVersion Include="gfoidl.Base64" Version="1.1.1" />
+		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.435" />
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
+		<PackageVersion Include="NUnit" Version="3.13.3" />
+		<PackageVersion Include="NUnit3TestAdapter" Version="4.2.1" />
+		<PackageVersion Include="NUnit.Analyzers" Version="3.3.0" />
+		<PackageVersion Include="coverlet.collector" Version="3.1.2" />
+	</ItemGroup>
+</Project>
