@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>BLAZOR;BLAZOR_TEMPLATE;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -11,6 +12,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.Blazor.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.AspNetCore.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -23,15 +27,35 @@
 		<Compile Include="..\ImplicitUsings.Models.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<Compile Include="..\ImplicitUsings.Common.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Services.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\BeyondDimension.Common.AspNetCore.BackManage\Models\*.cs">
+			<LinkBase>Models</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\BeyondDimension.Common.AspNetCore\BD.Common.AspNetCore.csproj" />
+		<ProjectReference Include="..\BeyondDimension.Common.Columns\BD.Common.Columns.csproj" />
+		<ProjectReference Include="..\BeyondDimension.Common.Enums\BD.Common.Enums.csproj" />
+		<ProjectReference Include="..\BeyondDimension.Common.Models\BD.Common.Models.csproj" />
 		<ProjectReference Include="..\BeyondDimension.Common\BD.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AntDesign" />
+		<PackageReference Include="AntDesign.Charts" />
+		<PackageReference Include="AntDesign.ProLayout" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+		<PackageReference Include="System.Net.Http.Json" />
+		<PackageReference Include="Blazored.LocalStorage" />
+		<PackageReference Include="Microsoft.Extensions.Http" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />

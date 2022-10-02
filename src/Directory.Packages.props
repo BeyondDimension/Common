@@ -11,6 +11,10 @@
 		<PackageVersion Include="NLog.Extensions.Logging" Version="5.0.4" />
 		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.1.4" />
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="6.15.0" />
+		<PackageVersion Include="AntDesign" Version="0.12.4" />
+		<PackageVersion Include="AntDesign.Charts" Version="0.2.3" />
+		<PackageVersion Include="AntDesign.ProLayout" Version="0.12.4" />
+		<PackageVersion Include="Blazored.LocalStorage" Version="4.2.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0')) ">
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
@@ -19,6 +23,12 @@
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
 		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.9" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.9" />
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<PackageVersion Include="System.Text.Json" Version="6.0.6" />
+		<PackageVersion Include="System.Net.Http.Json" Version="6.0.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net7.0')) ">
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.1.22427.2" />
@@ -27,5 +37,11 @@
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0-rc.1.22426.7" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0-rc.1.22426.7" />
 		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0-rc.1.22427.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-rc.1.22427.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0-rc.1.22427.2" />
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0-rc.1.22426.10" />
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0-rc.1.22426.10" />
+		<PackageVersion Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
+		<PackageVersion Include="System.Net.Http.Json" Version="7.0.0-rc.1.22426.10" />
 	</ItemGroup>
 </Project>
