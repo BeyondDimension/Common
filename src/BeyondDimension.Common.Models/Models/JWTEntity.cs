@@ -69,19 +69,6 @@ public sealed class JWTEntity : IExplicitHasValue
             value = await ServerSecurity.Encrypt(js, value);
             return value;
         }
-#else
-        /// <summary>
-        /// 将 QueryString 的 JWT 值 解密并反序列化
-        /// </summary>
-        /// <param name="authorization"></param>
-        /// <returns></returns>
-        public static QueryString? Parse(string? authorization)
-        {
-            if (string.IsNullOrWhiteSpace(authorization)) return null;
-            var value = ServerSecurity.Decrypt(authorization);
-            var token = JsonSerializer.Deserialize<QueryString>(value);
-            return token;
-        }
 #endif
     }
 }
