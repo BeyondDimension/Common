@@ -7,6 +7,7 @@ static partial class Sizes
     public const string Width_State_4 = "110px";
 
     public const string Width_Action_1 = "98px";
+    public const string Width_Action_1_4 = "130px";
     public const string Width_Action_2 = "200px";
     public const string Width_Action_3 = "282px";
     public const string Width_Action_4 = "372px";
