@@ -19,6 +19,7 @@ static partial class Sizes
     public const string Height_Max_Modal_Body = "calc(100vh - 306px)";
 
     public const string Width_Guid = "300px";
+    public const string Width_ShortGuid = "240px";
     public const string Width_Int64 = "180px";
 
     public const string Width_WXOpenId = "280px";
