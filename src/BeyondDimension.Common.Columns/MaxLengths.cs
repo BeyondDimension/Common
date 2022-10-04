@@ -12,6 +12,6 @@ public static partial class MaxLengths
     public const int WeChatId = 128;
     public const int WeChatUnionId = 192;
     public const int Email = 256;
-    public const int DisableReason = 600;
-    public const int Remarks = 600;
+    public const int DisableReason = 1000;
+    public const int Remarks = 1000;
 }

@@ -23,6 +23,7 @@ static partial class Strings
     public const string Add = "添加";
     public const string AddSuccess = "添加成功";
     public const string Edit = "修改";
+    public const string Save = "保存";
     public const string EditSuccess = "修改成功";
     public const string PleaseEnter = "请输入";
     public const string PleaseSelect = "请选择";
@@ -155,8 +156,10 @@ static partial class Strings
 
     public static string ToDisableActionButtonString(this IDisable m) => m.Disable ? DisableFalse : DisableTrue;
 
-    public const string IsTopABSTrue = "取消置顶";
-    public const string IsTopABSFalse = "置于顶部";
+    public const string IsTopABSTrue = "优先";
+    public const string IsTopABSFalse = "取消";
 
     public static string ToIsTopActionButtonString(this IIsTop m) => m.IsTop ? IsTopABSTrue : IsTopABSFalse;
+
+    public static string ToIsTopActionButtonType(this IIsTop m) => m.IsTop ? ButtonType.Primary : ButtonType.Default;
 }

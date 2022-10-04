@@ -12,5 +12,11 @@ public static partial class ServiceCollectionExtensions
             client.BaseAddress = new Uri(settings.ApiBaseAddress);
             client.Timeout = TimeSpan.FromSeconds(45);
         });
+
+    public static IHttpClientBuilder AddAuthService(this IServiceCollection services)
+        => services.AddHttpClientW<IAuthService, AuthService>();
+
+    public static IHttpClientBuilder AddApiConnection(this IServiceCollection services)
+        => services.AddHttpClientW<IApiConnection, ApiConnection>();
 #endif
 }
