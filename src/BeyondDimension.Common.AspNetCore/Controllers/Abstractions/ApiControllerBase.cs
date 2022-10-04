@@ -44,7 +44,9 @@ public abstract class ApiControllerBase<T> : ControllerBase where T : ApiControl
     [NonAction]
     public ActionResult Ok<TData>(TData data)
     {
-        var rsp = new ApiResponse<TData>
+        if (data is IApiResponse rsp)
+            return base.Ok(rsp);
+        rsp = new ApiResponse<TData>
         {
             IsSuccess = true,
             Data = data,
