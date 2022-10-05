@@ -106,7 +106,7 @@ public struct ShortGuid
                 return underlyingGuid.Equals(guid);
 
             // Try a guid string.
-            if (Guid.TryParse(str, out guid))
+            if (Parse(str, out guid))
                 return underlyingGuid.Equals(guid);
         }
 
