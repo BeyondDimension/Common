@@ -159,7 +159,7 @@ static partial class Strings
     public const string IsTopABSTrue = "优先";
     public const string IsTopABSFalse = "取消";
 
-    public static string ToIsTopActionButtonString(this IIsTop m) => m.IsTop ? IsTopABSTrue : IsTopABSFalse;
+    public static string ToIsTopActionButtonString(this IIsTop m) => !m.IsTop ? IsTopABSTrue : IsTopABSFalse;
 
-    public static string ToIsTopActionButtonType(this IIsTop m) => m.IsTop ? ButtonType.Primary : ButtonType.Default;
+    public static string ToIsTopActionButtonType(this IIsTop m) => !m.IsTop ? ButtonType.Primary : ButtonType.Default;
 }
