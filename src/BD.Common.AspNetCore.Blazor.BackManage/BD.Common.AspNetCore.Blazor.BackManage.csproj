@@ -51,6 +51,18 @@
 		<Compile Include="..\BD.Common\_\ConvertibleHelper\ConvertibleHelper.Convert.cs">
 			<LinkBase>System\_\ConvertibleHelper</LinkBase>
 		</Compile>
+		<Compile Include="..\BD.Common\ShortGuid.cs">
+			<LinkBase>System</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common\IO\_\FileEx\FileEx.cs">
+			<LinkBase>System\IO\_\FileEx</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common\Extensions\StringExtensions.IsEmail.cs">
+			<LinkBase>System\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common\Text\RegularExpressions\Regexps.cs">
+			<LinkBase>System\Text\RegularExpressions</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -58,6 +70,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="gfoidl.Base64" />
 		<PackageReference Include="AntDesign" />
 		<PackageReference Include="AntDesign.Charts" />
 		<PackageReference Include="AntDesign.ProLayout" />

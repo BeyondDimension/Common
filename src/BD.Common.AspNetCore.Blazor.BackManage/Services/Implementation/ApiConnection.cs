@@ -1,6 +1,6 @@
 namespace BD.Common.Services.Implementation;
 
-sealed class ApiConnection : HttpClientWrapper, IApiConnection
+public sealed class ApiConnection : HttpClientWrapper, IApiConnection
 {
     readonly IAuthService auth;
     readonly MessageService message;

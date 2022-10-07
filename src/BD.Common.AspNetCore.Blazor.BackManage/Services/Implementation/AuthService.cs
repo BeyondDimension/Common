@@ -1,6 +1,6 @@
 namespace BD.Common.Services.Implementation;
 
-sealed class AuthService : HttpClientWrapper, IAuthService
+public sealed class AuthService : HttpClientWrapper, IAuthService
 {
     readonly ILocalStorageService storage;
     readonly NavigationManager nav;
