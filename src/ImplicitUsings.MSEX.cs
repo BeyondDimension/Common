@@ -3,7 +3,7 @@
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Options;
-#if !BLAZOR
+#if !BLAZOR && !__NOT_IMPORT_WEBENCODERS__
 global using Microsoft.Extensions.WebEncoders;
 #endif
 global using Microsoft.Extensions.Primitives;

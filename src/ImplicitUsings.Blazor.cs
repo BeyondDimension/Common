@@ -12,3 +12,6 @@ global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Components.WebAssembly.Http;
 global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 #endif
+global using BD.Common.Pages;
+global using BD.Common.Pages.Utils;
+global using BD.Common.Pages.Abstractions;
