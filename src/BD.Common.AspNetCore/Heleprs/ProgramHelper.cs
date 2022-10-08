@@ -131,6 +131,24 @@ public static partial class ProgramHelper
     [SupportedOSPlatform("MacOS")]
     static extern int Chmod(string path, int mode);
 
+    [Flags]
+    [SupportedOSPlatform("FreeBSD")]
+    [SupportedOSPlatform("Linux")]
+    [SupportedOSPlatform("MacOS")]
+    enum EUnixPermission : ushort
+    {
+        OtherExecute = 0x1,
+        OtherWrite = 0x2,
+        OtherRead = 0x4,
+        GroupExecute = 0x8,
+        GroupWrite = 0x10,
+        GroupRead = 0x20,
+        UserExecute = 0x40,
+        UserWrite = 0x80,
+        UserRead = 0x100,
+        Combined777 = UserRead | UserWrite | UserExecute | GroupRead | GroupWrite | GroupExecute | OtherRead | OtherWrite | OtherExecute
+    }
+
     /// <summary>
     /// 初始化 NLog 配置
     /// </summary>
@@ -163,7 +181,7 @@ public static partial class ProgramHelper
             var logsPath = Path.Combine(AppContext.BaseDirectory, "logs");
             if (!Directory.Exists(logsPath))
                 Directory.CreateDirectory(logsPath);
-            _ = Chmod(logsPath, 666);
+            _ = Chmod(logsPath, (int)(EUnixPermission.UserRead | EUnixPermission.UserWrite | EUnixPermission.GroupRead | EUnixPermission.GroupWrite | EUnixPermission.OtherRead | EUnixPermission.OtherWrite));
         }
 
         InternalLogger.LogFile = $"logs{Path.DirectorySeparatorChar}internal-nlog.txt";
