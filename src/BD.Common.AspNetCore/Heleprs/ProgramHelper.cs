@@ -1,3 +1,6 @@
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+
 // ReSharper disable once CheckNamespace
 namespace BD.Common;
 
@@ -121,6 +124,13 @@ public static partial class ProgramHelper
         return string.Empty;
     });
 
+    [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
+    [DllImport("libc", EntryPoint = "chmod", SetLastError = true)]
+    [SupportedOSPlatform("FreeBSD")]
+    [SupportedOSPlatform("Linux")]
+    [SupportedOSPlatform("MacOS")]
+    static extern int Chmod(string path, int mode);
+
     /// <summary>
     /// 初始化 NLog 配置
     /// </summary>
@@ -147,6 +157,14 @@ public static partial class ProgramHelper
         const int maxArchiveDays = 15;
 
         #endregion
+
+        if (OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() || OperatingSystem.IsFreeBSD())
+        {
+            var logsPath = Path.Combine(AppContext.BaseDirectory, "logs");
+            if (!Directory.Exists(logsPath))
+                Directory.CreateDirectory(logsPath);
+            _ = Chmod(logsPath, 666);
+        }
 
         InternalLogger.LogFile = $"logs{Path.DirectorySeparatorChar}internal-nlog.txt";
         InternalLogger.LogLevel =
