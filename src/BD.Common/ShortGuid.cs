@@ -2,7 +2,6 @@
 // Copyright(c) 2007 Dave Transom
 // https://github.com/AigioL/CSharpVitamins.ShortGuid/blob/master/CSharpVitamins.ShortGuid/ShortGuid.cs
 // https://github.com/csharpvitamins/CSharpVitamins.ShortGuid/blob/master/CSharpVitamins.ShortGuid/ShortGuid.cs
-using System.Diagnostics;
 #if !NET40
 using gfoidl.Base64;
 #endif

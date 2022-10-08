@@ -2,10 +2,43 @@
 
 	<PropertyGroup>
 		<RootNamespace>System</RootNamespace>
+		<DefineConstants>BASE_CLASS_LIB_EX;HEXMATE;$(DefineConstants)</DefineConstants>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.Resources.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="gfoidl.Base64" />
+		<PackageReference Include="Crc32.NET" />
+		<PackageReference Include="MessagePack" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Resources\Strings.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Strings.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\Strings.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Strings.Designer.cs</LastGenOutput>
+			<CustomToolNamespace></CustomToolNamespace>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Text\Encodings\Web\" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />

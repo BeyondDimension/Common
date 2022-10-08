@@ -12,12 +12,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\ImplicitUsings.MSEX.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-		<Compile Include="..\ImplicitUsings.NLog.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="..\ImplicitUsings.Primitives.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

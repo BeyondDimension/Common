@@ -63,6 +63,9 @@
 		<Compile Include="..\BD.Common\Text\RegularExpressions\Regexps.cs">
 			<LinkBase>System\Text\RegularExpressions</LinkBase>
 		</Compile>
+		<Compile Include="..\BD.Common\Text\Json\JsonSerializerCompatOptions.cs">
+			<LinkBase>System\Text\Json</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
