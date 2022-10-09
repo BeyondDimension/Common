@@ -331,4 +331,88 @@ public sealed class ApiConnection : HttpClientWrapper, IApiConnection
             };
         }
     }
+
+    async Task<ApiResponse<TResponseModel>> ApiPutCoreAsync<TResponseModel>(bool isFirst, bool allowNull, string apiRelativeUrl, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await SetAuthorizationAsync(cancellationToken);
+            var rsp = await client.PutAsync(apiRelativeUrl, null, cancellationToken: cancellationToken);
+            var isRepeat = isFirst && await HandleUnauthorized(rsp, cancellationToken);
+            if (isRepeat) // 重试一次
+            {
+                return await ApiPutCoreAsync<TResponseModel>(false, allowNull, apiRelativeUrl, cancellationToken);
+            }
+            var apiRsp = await ReadFromJsonAsync<TResponseModel>(allowNull, rsp, cancellationToken: cancellationToken);
+            HandleErrorMessage(apiRsp);
+            return apiRsp;
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<TResponseModel>
+            {
+                IsSuccess = false,
+                Messages = GetMessages(ex),
+            };
+        }
+    }
+
+    public Task<ApiResponse<TResponseModel>> ApiPutAsync<TResponseModel>(string apiRelativeUrl, bool allowNull = false, CancellationToken cancellationToken = default)
+        => ApiPutCoreAsync<TResponseModel>(true, allowNull, apiRelativeUrl, cancellationToken);
+
+    async Task<ApiResponse<TResponseModel>> ApiDeleteCoreAsync<TResponseModel>(bool isFirst, bool allowNull, string apiRelativeUrl, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await SetAuthorizationAsync(cancellationToken);
+            var rsp = await client.DeleteAsync(apiRelativeUrl, cancellationToken: cancellationToken);
+            var isRepeat = isFirst && await HandleUnauthorized(rsp, cancellationToken);
+            if (isRepeat) // 重试一次
+            {
+                return await ApiDeleteCoreAsync<TResponseModel>(false, allowNull, apiRelativeUrl, cancellationToken);
+            }
+            var apiRsp = await ReadFromJsonAsync<TResponseModel>(allowNull, rsp, cancellationToken: cancellationToken);
+            HandleErrorMessage(apiRsp);
+            return apiRsp;
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<TResponseModel>
+            {
+                IsSuccess = false,
+                Messages = GetMessages(ex),
+            };
+        }
+    }
+
+    public Task<ApiResponse<TResponseModel>> ApiDeleteAsync<TResponseModel>(string apiRelativeUrl, bool allowNull = false, CancellationToken cancellationToken = default)
+        => ApiDeleteCoreAsync<TResponseModel>(true, allowNull, apiRelativeUrl, cancellationToken);
+
+    async Task<ApiResponse<TResponseModel>> ApiPostCoreAsync<TResponseModel>(bool isFirst, bool allowNull, string apiRelativeUrl, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await SetAuthorizationAsync(cancellationToken);
+            var rsp = await client.PostAsync(apiRelativeUrl, null, cancellationToken: cancellationToken);
+            var isRepeat = isFirst && await HandleUnauthorized(rsp, cancellationToken);
+            if (isRepeat) // 重试一次
+            {
+                return await ApiDeleteCoreAsync<TResponseModel>(false, allowNull, apiRelativeUrl, cancellationToken);
+            }
+            var apiRsp = await ReadFromJsonAsync<TResponseModel>(allowNull, rsp, cancellationToken: cancellationToken);
+            HandleErrorMessage(apiRsp);
+            return apiRsp;
+        }
+        catch (Exception ex)
+        {
+            return new ApiResponse<TResponseModel>
+            {
+                IsSuccess = false,
+                Messages = GetMessages(ex),
+            };
+        }
+    }
+
+    public Task<ApiResponse<TResponseModel>> ApiPostAsync<TResponseModel>(string apiRelativeUrl, bool allowNull = false, CancellationToken cancellationToken = default)
+        => ApiPostCoreAsync<TResponseModel>(true, allowNull, apiRelativeUrl, cancellationToken);
 }

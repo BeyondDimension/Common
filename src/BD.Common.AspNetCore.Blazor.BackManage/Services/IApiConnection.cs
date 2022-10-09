@@ -70,4 +70,34 @@ public interface IApiConnection
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiResponse> ApiPostAsync(string apiRelativeUrl, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 使用 PUT 调用 API
+    /// </summary>
+    /// <typeparam name="TResponseModel"></typeparam>
+    /// <param name="apiRelativeUrl"></param>
+    /// <param name="allowNull"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiResponse<TResponseModel>> ApiPutAsync<TResponseModel>(string apiRelativeUrl, bool allowNull = false, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 使用 DELETE 调用 API
+    /// </summary>
+    /// <typeparam name="TResponseModel"></typeparam>
+    /// <param name="apiRelativeUrl"></param>
+    /// <param name="allowNull"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiResponse<TResponseModel>> ApiDeleteAsync<TResponseModel>(string apiRelativeUrl, bool allowNull = false, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 使用 POST 调用 API
+    /// </summary>
+    /// <typeparam name="TResponseModel"></typeparam>
+    /// <param name="apiRelativeUrl"></param>
+    /// <param name="allowNull"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiResponse<TResponseModel>> ApiPostAsync<TResponseModel>(string apiRelativeUrl, bool allowNull = false, CancellationToken cancellationToken = default);
 }

@@ -39,7 +39,7 @@ public sealed class AuthService : HttpClientWrapper, IAuthService
                 url = loginUrl;
             }
         }
-        nav.NavigateTo(url);
+        nav.NavigateTo(url, forceLoad: true);
 
         static bool GetRedirectUrl(string redirectUrl, [NotNullWhen(true)] out string? value)
         {
@@ -50,7 +50,7 @@ public sealed class AuthService : HttpClientWrapper, IAuthService
         }
     }
 
-    public void NavigateToRoot() => nav.NavigateTo("/");
+    public void NavigateToRoot() => nav.NavigateTo("/", forceLoad: true);
 
     public AuthService(HttpClient client, ILocalStorageService storage, NavigationManager nav) : base(client)
     {
