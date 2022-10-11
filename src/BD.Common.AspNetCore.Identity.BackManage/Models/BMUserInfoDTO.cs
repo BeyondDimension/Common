@@ -101,7 +101,7 @@ public partial class EditBMUserDTO : IAddOrEditBMUserDTO
         IAddOrEditBMUserDTO result = new EditBMUserDTO
         {
             UserName = value.UserName,
-            Roles = value.Roles,
+            Roles = value.Roles == null ? null : new List<string>(value.Roles),
         };
         result.AnalysisRoles();
         return result;
