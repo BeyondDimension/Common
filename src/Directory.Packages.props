@@ -21,11 +21,10 @@
 		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.1.4" />
 
 		<!-- EFCore -->
-		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="6.15.0" />
 		<PackageVersion Include="EFCore.BulkExtensions" Version="6.5.6" />
 
 		<!-- AntDesign -->
-		<PackageVersion Include="AntDesign" Version="0.12.4" />
+		<PackageVersion Include="AntDesign" Version="0.12.6" />
 		<PackageVersion Include="AntDesign.Charts" Version="0.2.3" />
 		<PackageVersion Include="AntDesign.ProLayout" Version="0.12.4" />
 
@@ -33,7 +32,7 @@
 		<PackageVersion Include="Blazored.LocalStorage" Version="4.2.0" />
 
 		<!-- Test -->
-		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
 		<PackageVersion Include="NUnit" Version="3.13.3" />
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.2.1" />
 		<PackageVersion Include="NUnit.Analyzers" Version="3.3.0" />
@@ -51,24 +50,25 @@
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0')) ">
 		<!-- Microsoft.Extensions.* 6.0 -->
-		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
 		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="6.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="6.0.0" />
 
 		<!-- AspNetCore 6.0 -->
-		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.9" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.9" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.9" />
+		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" />
 
 		<!-- EFCore 6.0 -->
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="6.15.2" />
 
 		<!-- BCL 6.0 -->
 		<PackageVersion Include="System.Text.Json" Version="6.0.6" />
@@ -76,27 +76,28 @@
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net7.0')) ">
 		<!-- Microsoft.Extensions.* 7.0 -->
-		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0-rc.1.22426.10" />
-		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0-rc.1.22426.10" />
-		<PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0-rc.1.22426.10" />
-		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.0-rc.1.22426.10" />
-		<PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0-rc.1.22426.10" />
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0-rc.2.22472.3" />
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0-rc.2.22472.3" />
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0-rc.2.22472.3" />
+		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.0-rc.2.22472.3" />
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0-rc.2.22472.3" />
 
 		<!-- AspNetCore 7.0 -->
-		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.1.22427.2" />
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0-rc.1.22427.2" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-rc.1.22427.2" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-rc.1.22427.2" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0-rc.1.22427.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.2.22476.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0-rc.2.22476.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-rc.2.22476.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-rc.2.22476.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0-rc.2.22476.2" />
 
 		<!-- EFCore 7.0 -->
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0-rc.1.22426.7" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.1.22426.7" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0-rc.1.22426.7" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0-rc.1.22426.7" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0-rc.2.22472.11" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.2.22472.11" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0-rc.2.22472.11" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0-rc.2.22472.11" />
+		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="7.0.0-rc.1.22426.7-02" />
 
 		<!-- BCL 7.0 -->
-		<PackageVersion Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
-		<PackageVersion Include="System.Net.Http.Json" Version="7.0.0-rc.1.22426.10" />
+		<PackageVersion Include="System.Text.Json" Version="7.0.0-rc.2.22472.3" />
+		<PackageVersion Include="System.Net.Http.Json" Version="7.0.0-rc.2.22472.3" />
 	</ItemGroup>
 </Project>
