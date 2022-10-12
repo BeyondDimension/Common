@@ -47,6 +47,15 @@
 		<!-- Serialize -->
 		<PackageVersion Include="MessagePack" Version="2.4.35" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
+
+		<!-- Common -->
+		<!--<PackageVersion Include="BD.Common" Version="1.22.1012.1545" />
+		<PackageVersion Include="BD.Common.AspNetCore" Version="1.22.1012.1545" />
+		<PackageVersion Include="BD.Common.AspNetCore.Blazor.BackManage" Version="1.22.1012.1545" />
+		<PackageVersion Include="BD.Common.AspNetCore.Identity" Version="1.22.1012.1545" />
+		<PackageVersion Include="BD.Common.AspNetCore.Identity.BackManage" Version="1.22.1012.1545" />
+		<PackageVersion Include="BD.Common.EFCore" Version="1.22.1012.1545" />
+		<PackageVersion Include="BD.Common.Primitives" Version="1.22.1012.1545" />-->
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0')) ">
 		<!-- Microsoft.Extensions.* 6.0 -->
@@ -62,6 +71,7 @@
 		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
 		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
 		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.541" />
 
 		<!-- EFCore 6.0 -->
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10" />
@@ -73,6 +83,7 @@
 		<!-- BCL 6.0 -->
 		<PackageVersion Include="System.Text.Json" Version="6.0.6" />
 		<PackageVersion Include="System.Net.Http.Json" Version="6.0.0" />
+		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="6.0.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net7.0')) ">
 		<!-- Microsoft.Extensions.* 7.0 -->
@@ -88,6 +99,7 @@
 		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-rc.2.22476.2" />
 		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-rc.2.22476.2" />
 		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0-rc.2.22476.2" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="7.0.0-rc.1.6683" />
 
 		<!-- EFCore 7.0 -->
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0-rc.2.22472.11" />
@@ -99,5 +111,6 @@
 		<!-- BCL 7.0 -->
 		<PackageVersion Include="System.Text.Json" Version="7.0.0-rc.2.22472.3" />
 		<PackageVersion Include="System.Net.Http.Json" Version="7.0.0-rc.2.22472.3" />
+		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="7.0.0-rc.2.22472.3" />
 	</ItemGroup>
 </Project>
