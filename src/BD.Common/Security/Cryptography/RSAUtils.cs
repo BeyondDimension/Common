@@ -412,6 +412,12 @@ public static partial class RSAUtils
     /// </summary>
     internal sealed class Parameters
     {
+        [JsonConstructor]
+        public Parameters()
+        {
+
+        }
+
         /// <summary>
         /// Represents the D parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
         /// </summary>
