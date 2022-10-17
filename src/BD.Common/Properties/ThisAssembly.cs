@@ -1,8 +1,5 @@
 namespace System.Properties;
 
-#if !LINK_THISASSEMBLY
-public
-#endif
 static partial class ThisAssembly
 {
     public const string AssemblyTitle = "BeyondDimension.Common";
