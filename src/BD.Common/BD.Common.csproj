@@ -37,10 +37,6 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Text\Encodings\Web\" />
-	</ItemGroup>
-
 	<Import Project="..\TFM_NET7.props" />
 	<Import Project="..\GeneratePackage.props" />
 
