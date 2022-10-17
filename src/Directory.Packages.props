@@ -48,14 +48,12 @@
 		<PackageVersion Include="MessagePack" Version="2.4.35" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
 
-		<!-- Common -->
-		<!--<PackageVersion Include="BD.Common" Version="1.22.1012.1545" />
-		<PackageVersion Include="BD.Common.AspNetCore" Version="1.22.1012.1545" />
-		<PackageVersion Include="BD.Common.AspNetCore.Blazor.BackManage" Version="1.22.1012.1545" />
-		<PackageVersion Include="BD.Common.AspNetCore.Identity" Version="1.22.1012.1545" />
-		<PackageVersion Include="BD.Common.AspNetCore.Identity.BackManage" Version="1.22.1012.1545" />
-		<PackageVersion Include="BD.Common.EFCore" Version="1.22.1012.1545" />
-		<PackageVersion Include="BD.Common.Primitives" Version="1.22.1012.1545" />-->
+		<!-- Resilience & Transient Fault Handling -->
+		<PackageVersion Include="Polly" Version="7.2.3" />
+
+		<!-- ORM -->
+		<PackageVersion Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.2" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0')) ">
 		<!-- Microsoft.Extensions.* 6.0 -->

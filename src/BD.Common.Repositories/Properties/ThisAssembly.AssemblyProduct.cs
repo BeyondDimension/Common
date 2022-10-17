@@ -8,5 +8,5 @@ static partial class ThisAssembly
     /// <summary>
     /// 定义程序集清单的产品名自定义属性
     /// </summary>
-    public const string AssemblyProduct = "次元超越通用对象关系映射库";
+    public const string AssemblyProduct = "次元超越通用仓储基类库";
 }

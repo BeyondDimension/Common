@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 // ReSharper disable once CheckNamespace
-namespace System;
+namespace BD.Common;
 
 public static class ModelBuilderExtensions
 {
@@ -71,6 +71,7 @@ public static class ModelBuilderExtensions
                 {
                     p.HasIndex(nameof(ISoftDeleted.SoftDeleted));
                     p.HasQueryFilter(SoftDeletedQueryFilter(type));
+                    softDeleted.Add(type);
                 };
             }
 
@@ -133,5 +134,9 @@ public static class ModelBuilderExtensions
     /// https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types
     /// </summary>
     public static readonly Type SharedType = typeof(Dictionary<string, object>);
+
+    static readonly HashSet<Type> softDeleted = new();
+
+    public static bool IsSoftDeleted(Type type) => softDeleted.Contains(type);
 
 }

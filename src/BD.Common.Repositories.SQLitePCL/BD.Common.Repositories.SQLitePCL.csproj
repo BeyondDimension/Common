@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<RootNamespace>BD.Common</RootNamespace>
-		<DefineConstants>__NOT_IMPORT_WEBENCODERS__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>__NOT_IMPORT_WEBENCODERS__;__NOT_IMPORT_DATA_ABSTRACTIONS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -15,30 +15,39 @@
 		<Compile Include="..\ImplicitUsings.Data.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.EntityFrameworkCore.cs">
+		<Compile Include="..\ImplicitUsings.Enums.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.MSEX.cs">
+		<Compile Include="..\ImplicitUsings.Entities.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 		<Compile Include="..\ImplicitUsings.Primitives.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="..\ImplicitUsings.Repositories.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.SQLitePCL.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-		<PackageReference Include="Z.EntityFramework.Plus.EFCore" />
-		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+		<Compile Include="..\BD.Common.Repositories.EFCore\Data\SQLStrings.shared.cs">
+			<LinkBase>Data</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
+		<ProjectReference Include="..\BD.Common.Repositories\BD.Common.Repositories.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="sqlite-net-pcl" />
+		<PackageReference Include="Polly" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />

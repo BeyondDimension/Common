@@ -41,9 +41,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web UI", "Web UI", "{077B6A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server Lib", "Server Lib", "{085CC21B-59CB-4353-8212-D3F155762F64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.SmsSender", "src\BD.Common.SmsSender\BD.Common.SmsSender.csproj", "{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.SmsSender", "src\BD.Common.SmsSender\BD.Common.SmsSender.csproj", "{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Business.PhoneNumber", "src\BD.Common.Business.PhoneNumber\BD.Common.Business.PhoneNumber.csproj", "{49BB5CAE-6CD1-401E-959E-C00A35A35832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Business.PhoneNumber", "src\BD.Common.Business.PhoneNumber\BD.Common.Business.PhoneNumber.csproj", "{49BB5CAE-6CD1-401E-959E-C00A35A35832}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories", "src\BD.Common.Repositories\BD.Common.Repositories.csproj", "{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories.EFCore", "src\BD.Common.Repositories.EFCore\BD.Common.Repositories.EFCore.csproj", "{CC46F775-49E8-4A8E-B5C8-6E3C5FC12FBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories.SQLitePCL", "src\BD.Common.Repositories.SQLitePCL\BD.Common.Repositories.SQLitePCL.csproj", "{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +101,18 @@ Global
 		{49BB5CAE-6CD1-401E-959E-C00A35A35832}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49BB5CAE-6CD1-401E-959E-C00A35A35832}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49BB5CAE-6CD1-401E-959E-C00A35A35832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC46F775-49E8-4A8E-B5C8-6E3C5FC12FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC46F775-49E8-4A8E-B5C8-6E3C5FC12FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC46F775-49E8-4A8E-B5C8-6E3C5FC12FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC46F775-49E8-4A8E-B5C8-6E3C5FC12FBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
