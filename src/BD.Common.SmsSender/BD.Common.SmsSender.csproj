@@ -29,7 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common.Business.PhoneNumber\BD.Common.Business.PhoneNumber.csproj" />
+		<ProjectReference Include="..\BD.Common.PhoneNumber\BD.Common.PhoneNumber.csproj" />
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
 	</ItemGroup>
 

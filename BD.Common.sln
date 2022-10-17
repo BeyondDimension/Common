@@ -31,10 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.UnitTest", "src\B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.AspNetCore.Blazor.BackManage", "src\BD.Common.AspNetCore.Blazor.BackManage\BD.Common.AspNetCore.Blazor.BackManage.csproj", "{7F0897D9-914C-4297-B816-F6DD9EEFE44B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Business.Order", "src\BD.Common.Business.Order\BD.Common.Business.Order.csproj", "{C9E89047-8215-4E68-9FC5-B81A45CDA108}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{093166F3-FEAF-4F9E-A0B1-8F2952AD47A8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web API", "Web API", "{AEF20BA0-D8EC-49EB-8050-440DE5933957}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web UI", "Web UI", "{077B6AFD-F6C1-4E28-8DFC-194A5FF6634C}"
@@ -43,13 +39,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server Lib", "Server Lib", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.SmsSender", "src\BD.Common.SmsSender\BD.Common.SmsSender.csproj", "{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Business.PhoneNumber", "src\BD.Common.Business.PhoneNumber\BD.Common.Business.PhoneNumber.csproj", "{49BB5CAE-6CD1-401E-959E-C00A35A35832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories", "src\BD.Common.Repositories\BD.Common.Repositories.csproj", "{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories", "src\BD.Common.Repositories\BD.Common.Repositories.csproj", "{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.EFCore", "src\BD.Common.Repositories.EFCore\BD.Common.Repositories.EFCore.csproj", "{CC46F775-49E8-4A8E-B5C8-6E3C5FC12FBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories.EFCore", "src\BD.Common.Repositories.EFCore\BD.Common.Repositories.EFCore.csproj", "{CC46F775-49E8-4A8E-B5C8-6E3C5FC12FBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SQLitePCL", "src\BD.Common.Repositories.SQLitePCL\BD.Common.Repositories.SQLitePCL.csproj", "{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories.SQLitePCL", "src\BD.Common.Repositories.SQLitePCL\BD.Common.Repositories.SQLitePCL.csproj", "{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.PhoneNumber", "src\BD.Common.PhoneNumber\BD.Common.PhoneNumber.csproj", "{D21B153D-4136-4E25-B7D4-F09CAA452761}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,18 +85,10 @@ Global
 		{7F0897D9-914C-4297-B816-F6DD9EEFE44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F0897D9-914C-4297-B816-F6DD9EEFE44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F0897D9-914C-4297-B816-F6DD9EEFE44B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9E89047-8215-4E68-9FC5-B81A45CDA108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9E89047-8215-4E68-9FC5-B81A45CDA108}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9E89047-8215-4E68-9FC5-B81A45CDA108}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9E89047-8215-4E68-9FC5-B81A45CDA108}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49BB5CAE-6CD1-401E-959E-C00A35A35832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49BB5CAE-6CD1-401E-959E-C00A35A35832}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49BB5CAE-6CD1-401E-959E-C00A35A35832}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49BB5CAE-6CD1-401E-959E-C00A35A35832}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BE188AE-311C-44F8-A670-0CE5BEC26E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -113,6 +101,10 @@ Global
 		{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9A26E3F-3BCC-418D-B3A0-62BE1EA43C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21B153D-4136-4E25-B7D4-F09CAA452761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21B153D-4136-4E25-B7D4-F09CAA452761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21B153D-4136-4E25-B7D4-F09CAA452761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21B153D-4136-4E25-B7D4-F09CAA452761}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,9 +115,7 @@ Global
 		{7BC53796-1663-4C45-BB1D-702750A82A1E} = {AEF20BA0-D8EC-49EB-8050-440DE5933957}
 		{F0D8EF68-0FBB-4818-A26F-D01BF382C948} = {72184E2D-34EE-4E81-9008-1B2E4FC03972}
 		{7F0897D9-914C-4297-B816-F6DD9EEFE44B} = {077B6AFD-F6C1-4E28-8DFC-194A5FF6634C}
-		{C9E89047-8215-4E68-9FC5-B81A45CDA108} = {093166F3-FEAF-4F9E-A0B1-8F2952AD47A8}
 		{EFD2A48D-AF9C-47AA-847B-B890AA8E7C00} = {085CC21B-59CB-4353-8212-D3F155762F64}
-		{49BB5CAE-6CD1-401E-959E-C00A35A35832} = {093166F3-FEAF-4F9E-A0B1-8F2952AD47A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}
