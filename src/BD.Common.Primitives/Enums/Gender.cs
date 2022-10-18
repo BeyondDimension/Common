@@ -9,7 +9,7 @@ public enum Gender : byte
     /// <summary>
     /// 未知
     /// </summary>
-    Unkown,
+    Unknown,
 
     /// <summary>
     /// 男性

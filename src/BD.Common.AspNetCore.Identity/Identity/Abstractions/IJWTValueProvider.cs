@@ -1,5 +1,8 @@
 namespace BD.Common.Identity.Abstractions;
 
+/// <summary>
+/// 适用于 To B 服务端(后台管理系统)的 JWT 值提供程序
+/// </summary>
 public interface IJWTValueProvider
 {
     Task<JWTEntity?> GenerateTokenAsync(Guid userId, IEnumerable<string>? roles, CancellationToken cancellationToken = default);

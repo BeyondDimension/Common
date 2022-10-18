@@ -13,10 +13,10 @@ public class GenderModel : ITitle
         Title = SharedStrings.None,
     };
 
-    public static readonly GenderModel Unkown = new()
+    public static readonly GenderModel Unknown = new()
     {
-        Id = Gender.Unkown,
-        Title = SharedStrings.GenderUnkown,
+        Id = Gender.Unknown,
+        Title = SharedStrings.GenderUnknown,
     };
 
     public static readonly GenderModel Male = new()
@@ -31,5 +31,5 @@ public class GenderModel : ITitle
         Title = SharedStrings.GenderFemale,
     };
 
-    public static readonly GenderModel[] Items = new[] { Null, Male, Female, Unkown, };
+    public static readonly GenderModel[] Items = new[] { Null, Male, Female, Unknown, };
 }

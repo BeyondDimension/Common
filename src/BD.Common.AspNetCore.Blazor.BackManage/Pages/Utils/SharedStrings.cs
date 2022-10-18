@@ -51,7 +51,7 @@ public abstract class SharedStrings
     public const string Unlock = "解锁";
     public const string UnlockSuccess = "解锁成功";
     public const string Gender = "性别";
-    public const string GenderUnkown = "未知";
+    public const string GenderUnknown = "未知";
     public const string GenderMale = "男";
     public const string GenderFemale = "女";
     public const string UserName = "用户名";
@@ -151,7 +151,7 @@ public static partial class Extensions
     {
         EGender.Male => GenderMale,
         EGender.Female => GenderFemale,
-        _ => GenderUnkown,
+        _ => GenderUnknown,
     };
 
     public static string ToStatus<TPrimaryKey>(this IDisableKeyModel<TPrimaryKey> m)
