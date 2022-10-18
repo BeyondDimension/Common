@@ -3,10 +3,15 @@ namespace System;
 
 public static partial class Browser2
 {
-
     public const string Prefix_HTTPS = "https://";
 
     public const string Prefix_HTTP = "http://";
+
+    public const string Prefix_MSStore = "ms-windows-store://";
+
+    public const string Prefix_Email = "mailto:";
+
+    public const string Prefix_File = "file:///";
 
     /// <summary>
     /// 判断字符串是否为 Http Url

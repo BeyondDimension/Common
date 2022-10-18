@@ -102,6 +102,20 @@ public static class ModelBuilderExtensions
 
             #endregion
 
+            #region  继承自 主键为GUID(INEWSEQUENTIALID) 接口的要设置默认值使用 NEWSEQUENTIALID
+
+            if (PNEWSEQUENTIALID.IsAssignableFrom(type))
+            {
+                buildAction += p =>
+                {
+                    p.Property(nameof(IEntity<Guid>.Id)).HasDefaultValueSql(SqlConstants.NEWSEQUENTIALID);
+                };
+            }
+
+            #endregion
+
+            #region 继承自 禁用或启用(IDisable) 接口的要设置默认值为 false
+
             if (PDisable.IsAssignableFrom(type))
             {
                 buildAction += p =>
@@ -109,6 +123,8 @@ public static class ModelBuilderExtensions
                     p.Property(nameof(IDisable.Disable)).HasDefaultValue(false);
                 };
             }
+
+            #endregion
 
             if (action != null)
                 action.Invoke(modelBuilder, entityType, type, buildAction);
@@ -129,6 +145,7 @@ public static class ModelBuilderExtensions
     public static readonly Type PCreationTime = typeof(ICreationTime);
     public static readonly Type PUpdateTime = typeof(IUpdateTime);
     public static readonly Type PDisable = typeof(IDisable);
+    public static readonly Type PNEWSEQUENTIALID = typeof(INEWSEQUENTIALID);
 
     /// <summary>
     /// https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types

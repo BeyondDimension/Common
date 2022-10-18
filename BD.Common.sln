@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SQLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.PhoneNumber", "src\BD.Common.PhoneNumber\BD.Common.PhoneNumber.csproj", "{D21B153D-4136-4E25-B7D4-F09CAA452761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Area", "src\BD.Common.Area\BD.Common.Area.csproj", "{D59DFC1C-344D-4E2D-92EF-A7766ED9C03E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Area", "src\BD.Common.Area\BD.Common.Area.csproj", "{D59DFC1C-344D-4E2D-92EF-A7766ED9C03E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.BirthDate", "src\BD.Common.BirthDate\BD.Common.BirthDate.csproj", "{19101AD8-3D63-483D-975D-5E787C10E4B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{D59DFC1C-344D-4E2D-92EF-A7766ED9C03E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D59DFC1C-344D-4E2D-92EF-A7766ED9C03E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D59DFC1C-344D-4E2D-92EF-A7766ED9C03E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19101AD8-3D63-483D-975D-5E787C10E4B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19101AD8-3D63-483D-975D-5E787C10E4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19101AD8-3D63-483D-975D-5E787C10E4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19101AD8-3D63-483D-975D-5E787C10E4B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
