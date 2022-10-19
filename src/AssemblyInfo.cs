@@ -1,5 +1,6 @@
 // GenerateAssemblyInfo 设为 false
 // 还原 .Net Framework 项目行为，使用此类定义程序集 Attribute
+using System.Resources;
 using static System.Properties.ThisAssembly;
 
 #pragma warning disable IDE0079 // 请删除不必要的忽略
@@ -13,3 +14,4 @@ using static System.Properties.ThisAssembly;
 [assembly: AssemblyCompany(AssemblyCompany)]
 [assembly: AssemblyFileVersion(AssemblyVersion)]
 [assembly: AssemblyVersion(AssemblyVersion)]
+[assembly: NeutralResourcesLanguage("zh-Hans")]
