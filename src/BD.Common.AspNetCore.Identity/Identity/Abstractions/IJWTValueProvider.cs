@@ -5,7 +5,7 @@ namespace BD.Common.Identity.Abstractions;
 /// </summary>
 public interface IJWTValueProvider
 {
-    Task<JWTEntity?> GenerateTokenAsync(Guid userId, IEnumerable<string>? roles, CancellationToken cancellationToken = default);
+    Task<JWTEntity?> GenerateTokenAsync(Guid userId, IEnumerable<string>? roles, Action<List<Claim>>? aciton, CancellationToken cancellationToken = default);
 
     const int secretKeyMinLength = 16;
 

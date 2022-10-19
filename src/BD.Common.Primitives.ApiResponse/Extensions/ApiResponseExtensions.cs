@@ -1,3 +1,6 @@
+// ReSharper disable once CheckNamespace
+namespace BD.Common.Models;
+
 public static class ApiResponseExtensions
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -58,6 +58,7 @@
 		<ProjectReference Include="..\BD.Common.AspNetCore.Identity\BD.Common.AspNetCore.Identity.csproj" />
 		<ProjectReference Include="..\BD.Common.AspNetCore\BD.Common.AspNetCore.csproj" />
 		<ProjectReference Include="..\BD.Common.EFCore\BD.Common.EFCore.csproj" />
+		<ProjectReference Include="..\BD.Common.Primitives.ApiResponse\BD.Common.Primitives.ApiResponse.csproj" />
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>

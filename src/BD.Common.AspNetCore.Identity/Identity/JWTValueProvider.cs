@@ -23,7 +23,7 @@ public class JWTValueProvider<TAppSettings, TAppDbContext, TUser> : IJWTValuePro
         this.db = db;
     }
 
-    public async Task<JWTEntity?> GenerateTokenAsync(Guid userId, IEnumerable<string>? roles, CancellationToken cancellationToken)
+    public async Task<JWTEntity?> GenerateTokenAsync(Guid userId, IEnumerable<string>? roles, Action<List<Claim>>? aciton, CancellationToken cancellationToken)
     {
         var now = DateTimeOffset.UtcNow;
 
@@ -56,6 +56,8 @@ public class JWTValueProvider<TAppSettings, TAppDbContext, TUser> : IJWTValuePro
         {
             AddRolesToClaims(claims, roles);
         }
+
+        aciton?.Invoke(claims);
 
         var jwt = new JwtSecurityToken(
             issuer: options.Issuer,
