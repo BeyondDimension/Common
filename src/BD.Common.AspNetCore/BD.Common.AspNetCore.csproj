@@ -14,9 +14,9 @@
 		<Compile Include="..\ImplicitUsings.AspNetCore.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.Controllers.cs">
+		<!--<Compile Include="..\ImplicitUsings.Controllers.cs">
 			<LinkBase>Properties</LinkBase>
-		</Compile>
+		</Compile>-->
 		<Compile Include="..\ImplicitUsings.MSEX.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

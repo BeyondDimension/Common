@@ -15,9 +15,9 @@
 		<Compile Include="..\ImplicitUsings.AspNetCore.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.Controllers.cs">
+		<!--<Compile Include="..\ImplicitUsings.Controllers.cs">
 			<LinkBase>Properties</LinkBase>
-		</Compile>
+		</Compile>-->
 		<Compile Include="..\ImplicitUsings.Data.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -58,6 +58,10 @@
 		<ProjectReference Include="..\BD.Common.AspNetCore\BD.Common.AspNetCore.csproj" />
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Controllers\" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />
