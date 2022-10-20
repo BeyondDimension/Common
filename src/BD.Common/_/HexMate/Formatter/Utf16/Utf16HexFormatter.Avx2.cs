@@ -1,6 +1,5 @@
 #if NETCOREAPP3_0_OR_GREATER
 
-using System.Diagnostics;
 using System.Runtime.Intrinsics;
 using static HexMate.VectorConstants;
 using static HexMate.VectorUtils;

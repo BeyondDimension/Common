@@ -7,4 +7,3 @@ global using Microsoft.Extensions.Options;
 global using Microsoft.Extensions.WebEncoders;
 #endif
 global using Microsoft.Extensions.Primitives;
-global using ILogger = Microsoft.Extensions.Logging.ILogger;

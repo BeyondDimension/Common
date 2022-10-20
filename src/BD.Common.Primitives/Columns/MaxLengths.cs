@@ -31,4 +31,5 @@ public static class MaxLengths
     public const int RealityAddress = 150;
     public const int Title = 30;
     public const int LongTitle = 200;
+    public const int Describe = 500;
 }

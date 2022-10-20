@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using static HexMate.ScalarConstants;
 
 namespace HexMate;

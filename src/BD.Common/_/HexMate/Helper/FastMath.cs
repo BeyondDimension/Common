@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-
 namespace HexMate;
 
 static class FastMath

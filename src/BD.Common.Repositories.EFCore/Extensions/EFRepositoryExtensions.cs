@@ -1,5 +1,3 @@
-using BD.Common.Repositories.Abstractions;
-
 // ReSharper disable once CheckNamespace
 namespace BD.Common;
 

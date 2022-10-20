@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using static HexMate.ScalarConstants;
 
 namespace HexMate;

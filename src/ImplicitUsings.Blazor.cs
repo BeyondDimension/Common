@@ -2,16 +2,13 @@
 
 global using Microsoft.JSInterop;
 global using AntDesign;
-global using AntDesign.ProLayout;
 global using System.Net.Http.Headers;
 global using Microsoft.AspNetCore.Components;
-global using Microsoft.AspNetCore.Components.Web;
 global using Blazored.LocalStorage;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 #if BLAZOR_WEBASSEMBLY
 global using Microsoft.AspNetCore.Components.WebAssembly.Http;
 global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 #endif
-global using BD.Common.Pages;
 global using BD.Common.Pages.Utils;
 global using BD.Common.Pages.Abstractions;

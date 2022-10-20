@@ -1,5 +1,3 @@
-using BD.Common.Models.SmsSender;
-using BD.Common.Services.Implementation.SmsSender;
 using Microsoft.Extensions.Hosting;
 
 namespace BD.Common.Models.SmsSender.Abstractions;

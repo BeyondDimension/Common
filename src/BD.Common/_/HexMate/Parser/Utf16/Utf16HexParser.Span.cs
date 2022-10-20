@@ -1,6 +1,5 @@
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
 
-using System.Runtime.CompilerServices;
 using static HexMate.ScalarConstants;
 
 namespace HexMate;
