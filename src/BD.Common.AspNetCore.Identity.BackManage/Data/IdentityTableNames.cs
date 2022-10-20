@@ -24,7 +24,7 @@ public static class IdentityTableNames
         where TRole : IdentityRole<TKey>
         where TKey : IEquatable<TKey>
     {
-        builder.Entity<TUser>().ToTable(users).Property(x => x.PhoneNumber).HasMaxLength(SharedMaxLengths.PhoneNumber);
+        builder.Entity<TUser>().ToTable(users).Property(x => x.PhoneNumber).HasMaxLength(PhoneNumberHelper.ChineseMainlandPhoneNumberLength);
         builder.Entity<TRole>().ToTable(roles);
         builder.Entity<IdentityRoleClaim<TKey>>().ToTable(roleClaims);
         builder.Entity<IdentityUserClaim<TKey>>().ToTable(userClaims);

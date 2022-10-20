@@ -7,6 +7,4 @@ public interface IPhoneNumber
 {
     /// <inheritdoc cref="IPhoneNumber"/>
     string? PhoneNumber { get; set; }
-
-    public const int Db_MaxLength_PhoneNumber = 20;
 }

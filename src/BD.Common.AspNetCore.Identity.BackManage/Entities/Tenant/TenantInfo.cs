@@ -8,13 +8,11 @@ namespace BD.Common.Entities;
 
 public class TenantInfo : TenantEntity<Guid>
 {
-    public const int MaxLength_Address = 150;
-
     /// <summary>
     /// 按钮多语言名称
     /// </summary>
     [Required]
-    [MaxLength(SharedMaxLengths.NickName)]
+    [MaxLength(MaxLengths.NickName)]
     public string Name { get; set; }
 
     /// <summary>
@@ -26,27 +24,27 @@ public class TenantInfo : TenantEntity<Guid>
     /// 联系人名称
     /// </summary>
     [Required]
-    [MaxLength(SharedMaxLengths.NickName)]
+    [MaxLength(MaxLengths.NickName)]
     public string ContactName { get; set; }
 
     /// <summary>
     /// 联系人电话
     /// </summary>
     [Required]
-    [MaxLength(SharedMaxLengths.PhoneNumber)]
+    [MaxLength(PhoneNumberHelper.ChineseMainlandPhoneNumberLength)]
     public string ContactPhone { get; set; }
 
     /// <summary>
     /// 地址
     /// </summary>
     [Required]
-    [MaxLength(MaxLength_Address)]
+    [MaxLength(MaxLengths.RealityAddress)]
     public string Address { get; set; }
 
     /// <summary>
     /// 按钮多语言名称
     /// </summary>
     [Required]
-    [MaxLength(SharedMaxLengths.Email)]
+    [MaxLength(MaxLengths.Email)]
     public string Email { get; set; }
 }

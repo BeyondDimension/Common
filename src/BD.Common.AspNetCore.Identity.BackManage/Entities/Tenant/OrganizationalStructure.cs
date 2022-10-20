@@ -9,7 +9,7 @@ public class OrganizationalStructure : TenantEntity<Guid>, IOrder
     /// 名称
     /// </summary>
     [Required]
-    [MaxLength(SharedMaxLengths.NickName)]
+    [MaxLength(MaxLengths.NickName)]
     public string Name { get; set; } = string.Empty;
 
     /// <summary>
@@ -21,6 +21,5 @@ public class OrganizationalStructure : TenantEntity<Guid>, IOrder
     /// 排序
     /// </summary>
     public long Order { get; set; }
-
 }
 

@@ -10,7 +10,7 @@ public class SystemMenu : TenantEntity<Guid>, IOrder
     /// <summary>
     /// 按钮多语言名称
     /// </summary>
-    [MaxLength(SharedMaxLengths.NickName)]
+    [MaxLength(MaxLengths.NickName)]
     [Required]
     public string Name { get; set; } = string.Empty;
 
@@ -30,13 +30,13 @@ public class SystemMenu : TenantEntity<Guid>, IOrder
     /// 菜单Url路径
     /// </summary>
     [Required]
-    [MaxLength(SharedMaxLengths.Url)]
+    [MaxLength(MaxLengths.Url)]
     public string Url { get; set; } = string.Empty;
 
     /// <summary>
     /// 图标
     /// </summary>
-    [MaxLength(SharedMaxLengths.Url)]
+    [MaxLength(MaxLengths.Url)]
     public string? Icon { get; set; }
 
     /// <summary>
@@ -47,6 +47,6 @@ public class SystemMenu : TenantEntity<Guid>, IOrder
     /// <summary>
     /// 备注
     /// </summary>
-    [MaxLength(SharedMaxLengths.Remarks)]
+    [MaxLength(MaxLengths.Remarks)]
     public string? Remark { get; set; }
 }
