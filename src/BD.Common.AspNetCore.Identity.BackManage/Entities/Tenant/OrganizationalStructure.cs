@@ -3,7 +3,11 @@ namespace BD.Common.Entities;
 /// <summary>
 /// 组织架构
 /// </summary>
-public class OrganizationalStructure : TenantEntity<Guid>, IOrder
+/// <typeparam name="TBMUser"></typeparam>
+public class OrganizationalStructure<TBMUser> :
+    TenantEntity<Guid, TBMUser>,
+    IOrder
+    where TBMUser : BMUser
 {
     /// <summary>
     /// 名称

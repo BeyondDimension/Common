@@ -1,9 +1,17 @@
 namespace BD.Common.Entities;
 
-public class TenantInfo : TenantEntity<Guid>
+public class TenantInfo<TBMUser> :
+    OperatorEntity<Guid, TBMUser>,
+    ISoftDeleted
+    where TBMUser : BMUser
 {
     /// <summary>
-    /// 按钮多语言名称
+    /// 是否删除
+    /// </summary>
+    public bool SoftDeleted { get; set; }
+
+    /// <summary>
+    /// 名称
     /// </summary>
     [Required]
     [MaxLength(MaxLengths.NickName)]

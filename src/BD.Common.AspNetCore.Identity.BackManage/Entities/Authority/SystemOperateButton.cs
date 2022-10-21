@@ -1,9 +1,12 @@
 namespace BD.Common.Entities;
 
 /// <summary>
-/// 权限控制 - 系统按钮
+///  权限控制 - 系统按钮
 /// </summary>
-public class SystemOperateButton : TenantEntity<Guid>
+/// <typeparam name="TBMUser"></typeparam>
+public class SystemOperateButton<TBMUser> :
+    TenantEntity<Guid, TBMUser>
+    where TBMUser : BMUser
 {
     public const int MaxLength_Name = 20;
 

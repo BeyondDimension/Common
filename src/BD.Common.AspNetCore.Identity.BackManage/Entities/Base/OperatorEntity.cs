@@ -1,11 +1,12 @@
 namespace BD.Common.Entities;
 
-public abstract class OperatorEntity<TPrimaryKey> :
-    CreationEntity<TPrimaryKey>,
+public abstract class OperatorEntity<TPrimaryKey, TBMUser> :
+    CreationEntity<TPrimaryKey, TBMUser>,
     IUpdateTime,
-    IOperatorUser,
+    IOperatorUser<TBMUser>,
     IOperatorUserId
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
+    where TBMUser : BMUser
 {
     /// <summary>
     /// 更新时间
@@ -20,6 +21,6 @@ public abstract class OperatorEntity<TPrimaryKey> :
     /// <summary>
     /// 操作人详情
     /// </summary>
-    public virtual BMUser? OperatorUser { get; set; }
+    public virtual TBMUser? OperatorUser { get; set; }
 }
 

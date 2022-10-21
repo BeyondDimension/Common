@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BD.Common.Columns
 {
-    public interface ITenantId
+    public interface ITenant
     {
         Guid TenantId { get; set; }
     }

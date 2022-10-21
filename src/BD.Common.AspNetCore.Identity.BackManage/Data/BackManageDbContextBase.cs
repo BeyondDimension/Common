@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BD.Common.Data;
 
-public partial class BackManageDbContextBase : IdentityDbContext<BMUser, IdentityRole<Guid>, Guid>, IApplicationDbContext<BMUser>
+public partial class BackManageDbContextBase<TBMUser, TBMRole> : IdentityDbContext<TBMUser, TBMRole, Guid>, IApplicationDbContext<TBMUser>
+    where TBMUser : BMUser
+    where TBMRole : IdentityRole<Guid>
 {
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
     public BackManageDbContextBase(DbContextOptions options) : base(options)
@@ -25,7 +27,7 @@ public partial class BackManageDbContextBase : IdentityDbContext<BMUser, Identit
         {
             buildAction += p =>
             {
-                p.HasOne(nameof(ICreateUser.CreateUser)).WithMany().HasForeignKey(nameof(ICreateUserId.CreateUserId));
+                p.HasOne(nameof(ICreateUser<TBMUser>.CreateUser)).WithMany().HasForeignKey(nameof(ICreateUserId.CreateUserId));
             };
         }
 
@@ -33,11 +35,11 @@ public partial class BackManageDbContextBase : IdentityDbContext<BMUser, Identit
         {
             buildAction += p =>
             {
-                p.HasOne(nameof(IOperatorUser.OperatorUser)).WithMany().HasForeignKey(nameof(IOperatorUserId.OperatorUserId));
+                p.HasOne(nameof(IOperatorUser<TBMUser>.OperatorUser)).WithMany().HasForeignKey(nameof(IOperatorUserId.OperatorUserId));
             };
         }
     }
 
-    public static readonly Type PCreateUser = typeof(ICreateUser);
-    public static readonly Type POperatorUser = typeof(IOperatorUser);
+    public static readonly Type PCreateUser = typeof(ICreateUser<TBMUser>);
+    public static readonly Type POperatorUser = typeof(IOperatorUser<TBMUser>);
 }

@@ -1,11 +1,12 @@
 namespace BD.Common.Entities;
 
-public abstract class CreationEntity<TPrimaryKey> :
+public abstract class CreationEntity<TPrimaryKey, TBMUser> :
     Entity<TPrimaryKey>,
     ICreationTime,
-    ICreateUser,
+    ICreateUser<TBMUser>,
     ICreateUserId
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
+    where TBMUser : BMUser
 {
     /// <summary>
     /// 创建时间
@@ -20,6 +21,6 @@ public abstract class CreationEntity<TPrimaryKey> :
     /// <summary>
     /// 创建人关联
     /// </summary>
-    public virtual BMUser? CreateUser { get; set; }
+    public virtual TBMUser? CreateUser { get; set; }
 
 }

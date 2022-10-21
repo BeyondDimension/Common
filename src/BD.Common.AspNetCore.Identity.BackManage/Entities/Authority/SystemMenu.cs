@@ -3,7 +3,11 @@ namespace BD.Common.Entities;
 /// <summary>
 /// 权限控制 - 系统菜单
 /// </summary>
-public class SystemMenu : TenantEntity<Guid>, IOrder
+/// <typeparam name="TBMUser"></typeparam>
+public class SystemMenu<TBMUser> :
+    TenantEntity<Guid, TBMUser>,
+    IOrder
+    where TBMUser : BMUser
 {
     public const int MaxLength_Title = 50;
 

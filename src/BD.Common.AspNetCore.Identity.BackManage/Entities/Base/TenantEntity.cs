@@ -4,8 +4,12 @@ namespace BD.Common.Entities;
 /// 租户相关类
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
-public class TenantEntity<TPrimaryKey> : OperatorEntity<TPrimaryKey>, ISoftDeleted, ITenantId
+/// <typeparam name="TBMUser"></typeparam>
+public class TenantEntity<TPrimaryKey, TBMUser> :
+    OperatorEntity<TPrimaryKey, TBMUser>,
+    ISoftDeleted, ITenant
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
+    where TBMUser : BMUser
 {
     /// <summary>
     /// 是否删除

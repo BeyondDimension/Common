@@ -1,6 +1,6 @@
 namespace BD.Common.Entities;
 
-public class BMUserAuthority
+public class BMUserAuthority : Entity<Guid>
 {
     public Guid UserId { get; set; }
 

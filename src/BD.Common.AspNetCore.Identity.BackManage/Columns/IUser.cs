@@ -1,17 +1,26 @@
 namespace BD.Common.Columns;
 
 #if !BLAZOR
-public interface IOperatorUser
+public interface IOperatorUser<TBMUser> where TBMUser : BMUser
 {
     /// <inheritdoc cref="IOperatorUserId.OperatorUserId"/>
-    BMUser? OperatorUser { get; set; }
+    TBMUser? OperatorUser { get; set; }
+}
+
+public interface IOperatorUser : IOperatorUser<BMUser>
+{
+
 }
 #endif
 
 #if !BLAZOR
-public interface ICreateUser
+public interface ICreateUser<TBMUser> where TBMUser : BMUser
 {
     /// <inheritdoc cref="ICreateUserId.CreateUserId"/>
-    BMUser? CreateUser { get; set; }
+    TBMUser? CreateUser { get; set; }
+}
+public interface ICreateUser : ICreateUser<BMUser>
+{
+
 }
 #endif
