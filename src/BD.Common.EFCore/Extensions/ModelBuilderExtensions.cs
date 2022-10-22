@@ -28,7 +28,7 @@ public static class ModelBuilderExtensions
     /// </summary>
     /// <param name="modelBuilder"></param>
     /// <param name="action"></param>
-    public static IEnumerable<IMutableEntityType> BuildEntities(this ModelBuilder modelBuilder, Action<ModelBuilder, IMutableEntityType, Type, Action<EntityTypeBuilder>?>? action = null)
+    public static IEnumerable<IMutableEntityType> BuildEntities(this ModelBuilder modelBuilder, Func<ModelBuilder, IMutableEntityType, Type, Action<EntityTypeBuilder>?, Action<EntityTypeBuilder>?>? action = null)
     {
         var entityTypes = modelBuilder.Model.GetEntityTypes();
         if (entityTypes == null) throw new NullReferenceException(nameof(entityTypes));
@@ -127,7 +127,7 @@ public static class ModelBuilderExtensions
             #endregion
 
             if (action != null)
-                action.Invoke(modelBuilder, entityType, type, buildAction);
+                buildAction = action.Invoke(modelBuilder, entityType, type, buildAction);
 
             if (buildAction != null)
             {

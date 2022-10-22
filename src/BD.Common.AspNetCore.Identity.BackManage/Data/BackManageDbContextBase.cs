@@ -18,10 +18,10 @@ public partial class BackManageDbContextBase<TBMUser, TBMRole> : IdentityDbConte
     {
         base.OnModelCreating(b);
         this.ReNameAspNetIdentityByBackManageDbContext(b);
-        b.BuildEntities(AppendBuildEntities);
+        b.BuildEntities(AppendBuildEntities_);
     }
 
-    protected virtual void AppendBuildEntities(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
+    Action<EntityTypeBuilder>? AppendBuildEntities_(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
     {
         if (PCreateUser.IsAssignableFrom(type))
         {
@@ -38,6 +38,15 @@ public partial class BackManageDbContextBase<TBMUser, TBMRole> : IdentityDbConte
                 p.HasOne(nameof(IOperatorUser<TBMUser>.OperatorUser)).WithMany().HasForeignKey(nameof(IOperatorUserId.OperatorUserId));
             };
         }
+
+        buildAction = AppendBuildEntities(modelBuilder, entityType, type, buildAction);
+
+        return buildAction;
+    }
+
+    protected virtual Action<EntityTypeBuilder>? AppendBuildEntities(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
+    {
+        return buildAction;
     }
 
     public static readonly Type PCreateUser = typeof(ICreateUser<TBMUser>);

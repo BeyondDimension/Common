@@ -1,4 +1,4 @@
-namespace BD.Common.Entities;
+namespace BD.Common.Entities.Abstractions;
 
 public abstract class CreationEntity<TPrimaryKey, TBMUser> :
     Entity<TPrimaryKey>,

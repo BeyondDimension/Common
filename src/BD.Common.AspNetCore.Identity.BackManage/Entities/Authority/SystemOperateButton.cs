@@ -29,6 +29,6 @@ public class SystemOperateButton<TBMUser> :
     /// 按钮名称_前端UI用来判断显示
     /// </summary>
     [Required]
-    [MaxLength(MaxLength_Name)]
-    public string ButtonId { get; set; }
+    [MaxLength(128)]
+    public string ButtonId { get; set; } = string.Empty;
 }

@@ -5,7 +5,7 @@ namespace BD.Common.Entities;
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
 /// <typeparam name="TBMUser"></typeparam>
-public class TenantEntity<TPrimaryKey, TBMUser> :
+public abstract class TenantEntity<TPrimaryKey, TBMUser> :
     OperatorEntity<TPrimaryKey, TBMUser>,
     ISoftDeleted, ITenant
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>

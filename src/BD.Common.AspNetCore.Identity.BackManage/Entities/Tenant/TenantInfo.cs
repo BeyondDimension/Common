@@ -44,7 +44,7 @@ public class TenantInfo<TBMUser> :
     public string Address { get; set; }
 
     /// <summary>
-    /// 按钮多语言名称
+    /// 邮箱
     /// </summary>
     [Required]
     [MaxLength(MaxLengths.Email)]
