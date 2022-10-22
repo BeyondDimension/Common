@@ -10,8 +10,6 @@ public class SystemOperateButton<TBMUser> :
 {
     public const int MaxLength_Name = 20;
 
-    public Guid RoleId { get; set; }
-
     /// <summary>
     /// 按钮名称
     /// </summary>

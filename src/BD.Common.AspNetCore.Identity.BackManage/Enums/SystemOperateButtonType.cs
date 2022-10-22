@@ -26,6 +26,11 @@ namespace BD.Common.Enums
         Add = 4,
 
         /// <summary>
+        /// 查询
+        /// </summary>
+        Query = 5,
+
+        /// <summary>
         /// 其他自定义按钮
         /// </summary>
         Other = 10

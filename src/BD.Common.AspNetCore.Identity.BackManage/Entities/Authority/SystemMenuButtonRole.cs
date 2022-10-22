@@ -4,10 +4,9 @@ namespace BD.Common.Entities;
 /// 角色菜单按钮关系
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
-public class SystemMenuButtonRole<TPrimaryKey> :
-    Entity<TPrimaryKey>,
+public class SystemMenuButtonRole :
+    Entity<Guid>,
     ITenant
-    where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
 {
 
     public Guid RoleId { get; set; }
@@ -17,4 +16,10 @@ public class SystemMenuButtonRole<TPrimaryKey> :
     public Guid MenuId { get; set; }
 
     public Guid ButtonId { get; set; }
+
+    /// <summary>
+    /// 调用ApiKey 后台鉴权
+    /// </summary>
+    [MaxLength(200)]
+    public string? ApiKey { get; set; }
 }

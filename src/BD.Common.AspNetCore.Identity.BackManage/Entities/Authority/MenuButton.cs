@@ -1,15 +1,15 @@
 namespace BD.Common.Entities;
 
-public class MenuButton : Entity<Guid>, IOrder
+public class MenuButton : Entity<Guid>, IOrder, ITenant
 {
     /// <summary>
     /// 租户
     /// </summary>
-    public Guid TenanId { get; set; }
+    public Guid TenantId { get; set; }
 
     public Guid MenuId { get; set; }
 
-    public Guid BottonId { get; set; }
+    public Guid ButtonId { get; set; }
 
     public long Order { get; set; }
 }
