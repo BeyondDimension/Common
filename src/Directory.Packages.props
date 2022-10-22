@@ -62,6 +62,7 @@
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="6.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 
 		<!-- AspNetCore 6.0 -->
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
@@ -90,6 +91,7 @@
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="7.0.0-rc.2.22472.3" />
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="7.0.0-rc.2.22472.3" />
 		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="7.0.0-rc.2.22472.3" />
+		<PackageVersion Include="Microsoft.Extensions.Logging" Version="7.0.0-rc.2.22472.3" />
 
 		<!-- AspNetCore 7.0 -->
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.2.22476.2" />

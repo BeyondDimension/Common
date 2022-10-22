@@ -19,6 +19,8 @@
 		<PackageReference Include="gfoidl.Base64" />
 		<PackageReference Include="Crc32.NET" />
 		<PackageReference Include="MessagePack" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+		<PackageReference Include="Microsoft.Extensions.Logging" />
 	</ItemGroup>
 
 	<ItemGroup>
