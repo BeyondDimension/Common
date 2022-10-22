@@ -18,11 +18,6 @@ public class TenantInfo<TBMUser> :
     public string Name { get; set; }
 
     /// <summary>
-    /// 唯一编码
-    /// </summary>
-    public Guid OnlyCode { get; set; }
-
-    /// <summary>
     /// 联系人名称
     /// </summary>
     [Required]
