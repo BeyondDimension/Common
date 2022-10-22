@@ -1,4 +1,4 @@
-namespace BD.Common.Entities;
+namespace BD.Common.Entities.Abstractions;
 
 /// <summary>
 /// 租户相关类
