@@ -12,6 +12,7 @@ public static partial class ConvertibleHelper
         return dynamicMethod.Compile()(value);
     }
 
+#if !BLAZOR
     public static T? Convert<T>(IConvertible? value) where T : notnull
     {
         if (value == default) return default;
@@ -57,4 +58,5 @@ public static partial class ConvertibleHelper
                 return default;
         }
     }
+#endif
 }
