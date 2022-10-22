@@ -11,8 +11,6 @@ public class SystemMenu<TBMUser> :
 {
     public const int MaxLength_Title = 50;
 
-    public Guid RoleId { get; set; }
-
     /// <summary>
     /// 按钮多语言名称
     /// </summary>
