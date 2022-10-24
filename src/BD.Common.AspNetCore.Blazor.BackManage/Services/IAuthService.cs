@@ -4,7 +4,7 @@ namespace BD.Common.Services;
 /// 授权服务
 /// </summary>
 /// <typeparam name="TBMMeInfoDTO"></typeparam>
-public interface IAuthService<TBMMeInfoDTO> where TBMMeInfoDTO : BMMeInfoDTO
+public interface IAuthService<TBMMeInfoDTO> : IAuthService where TBMMeInfoDTO : BMMeInfoDTO
 {
     static event Action<TBMMeInfoDTO>? OnUserInfoChanged;
 
@@ -16,7 +16,13 @@ public interface IAuthService<TBMMeInfoDTO> where TBMMeInfoDTO : BMMeInfoDTO
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<TBMMeInfoDTO> GetUserInfoAsync(CancellationToken cancellationToken = default);
+}
 
+/// <summary>
+/// 授权服务
+/// </summary>
+public interface IAuthService
+{
     /// <summary>
     /// 登录
     /// </summary>
