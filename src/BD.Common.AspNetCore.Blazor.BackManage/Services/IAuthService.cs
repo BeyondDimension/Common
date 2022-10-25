@@ -4,24 +4,21 @@ namespace BD.Common.Services;
 /// 授权服务
 /// </summary>
 /// <typeparam name="TBMMeInfoDTO"></typeparam>
-public interface IAuthService<TBMMeInfoDTO> : IAuthService where TBMMeInfoDTO : BMMeInfoDTO
+public partial interface IAuthService
 {
-    static event Action<TBMMeInfoDTO>? OnUserInfoChanged;
+    static event Action<CurrentUserInfoDTO>? OnUserInfoChanged;
 
-    static void UserInfoChanged(TBMMeInfoDTO userInfo) => OnUserInfoChanged?.Invoke(userInfo);
+    static void UserInfoChanged(CurrentUserInfoDTO userInfo) => OnUserInfoChanged?.Invoke(userInfo);
 
     /// <summary>
     /// 获取当前登录的后台用户资料
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<TBMMeInfoDTO> GetUserInfoAsync(CancellationToken cancellationToken = default);
+    Task<CurrentUserInfoDTO> GetUserInfoAsync(CancellationToken cancellationToken = default);
 }
 
-/// <summary>
-/// 授权服务
-/// </summary>
-public interface IAuthService
+public partial interface IAuthService
 {
     /// <summary>
     /// 登录

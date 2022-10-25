@@ -1,15 +1,14 @@
+// ReSharper disable once CheckNamespace
 namespace BD.Common.Entities.Abstractions;
 
 /// <summary>
-/// 租户相关类
+/// 基类实体 - 包含租户与软删除与修改时间与操作人与创建时间与创建人
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
-/// <typeparam name="TBMUser"></typeparam>
-public abstract class TenantEntity<TPrimaryKey, TBMUser> :
-    OperatorEntity<TPrimaryKey, TBMUser>,
+public abstract class TenantBaseEntity<TPrimaryKey> :
+    OperatorBaseEntity<TPrimaryKey>,
     ISoftDeleted, ITenant
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
-    where TBMUser : BMUser
 {
     /// <summary>
     /// 是否删除
@@ -20,4 +19,10 @@ public abstract class TenantEntity<TPrimaryKey, TBMUser> :
     /// 租户
     /// </summary>
     public Guid TenantId { get; set; }
+}
+
+/// <inheritdoc cref="TenantBaseEntity{TPrimaryKey}"/>
+public abstract class TenantBaseEntity : TenantBaseEntity<Guid>
+{
+
 }

@@ -1,12 +1,16 @@
+// ReSharper disable once CheckNamespace
 namespace BD.Common.Entities.Abstractions;
 
-public abstract class CreationEntity<TPrimaryKey, TBMUser> :
+/// <summary>
+/// 基类实体 - 包含创建时间与创建人
+/// </summary>
+/// <typeparam name="TPrimaryKey"></typeparam>
+public abstract class CreationBaseEntity<TPrimaryKey> :
     Entity<TPrimaryKey>,
     ICreationTime,
-    ICreateUser<TBMUser>,
+    ICreateUser,
     ICreateUserId
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
-    where TBMUser : BMUser
 {
     /// <summary>
     /// 创建时间
@@ -21,6 +25,12 @@ public abstract class CreationEntity<TPrimaryKey, TBMUser> :
     /// <summary>
     /// 创建人关联
     /// </summary>
-    public virtual TBMUser? CreateUser { get; set; }
+    public virtual SysUser? CreateUser { get; set; }
+
+}
+
+/// <inheritdoc cref="CreationBaseEntity{TPrimaryKey}"/>
+public abstract class CreationBaseEntity : CreationBaseEntity<Guid>
+{
 
 }

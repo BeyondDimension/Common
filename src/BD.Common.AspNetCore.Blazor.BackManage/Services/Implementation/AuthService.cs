@@ -1,6 +1,6 @@
 namespace BD.Common.Services.Implementation;
 
-public sealed class AuthService<TBMMeInfoDTO> : HttpClientWrapper, IAuthService<TBMMeInfoDTO> where TBMMeInfoDTO : BMMeInfoDTO, new()
+public sealed class AuthService : HttpClientWrapper, IAuthService
 {
     readonly ILocalStorageService storage;
     readonly NavigationManager nav;
@@ -65,10 +65,10 @@ public sealed class AuthService<TBMMeInfoDTO> : HttpClientWrapper, IAuthService<
         return token != null;
     }
 
-    static Task<TBMMeInfoDTO>? mUserInfo;
+    static Task<CurrentUserInfoDTO>? mUserInfo;
     static readonly object lock_userInfo = new();
 
-    public Task<TBMMeInfoDTO> GetUserInfoAsync(CancellationToken cancellationToken)
+    public Task<CurrentUserInfoDTO> GetUserInfoAsync(CancellationToken cancellationToken)
     {
         lock (lock_userInfo)
         {
@@ -77,7 +77,7 @@ public sealed class AuthService<TBMMeInfoDTO> : HttpClientWrapper, IAuthService<
         return mUserInfo;
     }
 
-    async Task<TBMMeInfoDTO> GetUserInfoCoreAsync(CancellationToken cancellationToken)
+    async Task<CurrentUserInfoDTO> GetUserInfoCoreAsync(CancellationToken cancellationToken)
     {
         var isAuthenticated = await SetAuthorizationReturnIsAuthenticatedAsync(cancellationToken);
         if (isAuthenticated)
@@ -86,7 +86,7 @@ public sealed class AuthService<TBMMeInfoDTO> : HttpClientWrapper, IAuthService<
             var rsp = await client.GetAsync(apiRelativeUrl, cancellationToken);
             if (rsp.IsSuccessStatusCode)
             {
-                var data = await rsp.Content.ReadFromJsonAsync<ApiResponse<TBMMeInfoDTO>>(cancellationToken: cancellationToken);
+                var data = await rsp.Content.ReadFromJsonAsync<ApiResponse<CurrentUserInfoDTO>>(cancellationToken: cancellationToken);
                 if (data != null && data.IsSuccess && data.Data != null) return data.Data;
             }
         }

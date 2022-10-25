@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<NoWarn>$(NoWarn);NU1507;1591;SA1612;Il2026</NoWarn>
+		<NoWarn>$(NoWarn);NU1507;1591;SA1612;IL2026</NoWarn>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -8,7 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsTrimmable>true</IsTrimmable>
 		<RepositoryType>git</RepositoryType>
-		<Version>1.22.1024.1930</Version>
+		<Version>1.22.1025.1617</Version>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<AllowedReferenceRelatedFileExtensions>

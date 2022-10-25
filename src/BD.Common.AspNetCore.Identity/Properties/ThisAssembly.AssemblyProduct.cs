@@ -1,3 +1,5 @@
+global using System.ComponentModel.DataAnnotations.Schema;
+
 namespace System.Properties;
 
 static partial class ThisAssembly

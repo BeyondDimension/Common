@@ -1,41 +1,38 @@
 namespace BD.Common.Entities;
 
 /// <summary>
-/// 权限控制 - 系统菜单
+/// 权限控制相关实体类 - 系统菜单
 /// </summary>
-/// <typeparam name="TBMUser"></typeparam>
-public class SystemMenu<TBMUser> :
-    TenantEntity<Guid, TBMUser>,
-    IOrder
-    where TBMUser : BMUser
+[Table(nameof(SysMenu) + "s")]
+public sealed class SysMenu : TenantBaseEntity, IOrder
 {
     public const int MaxLength_Title = 200;
 
     /// <summary>
     /// 按钮多语言名称
     /// </summary>
-    [MaxLength(MaxLengths.UserName)]
     [Required]
-    public string Name { get; set; } = string.Empty;
+    [MaxLength(MaxLengths.NickName)]
+    public string Key { get; set; } = null!;
 
     /// <summary>
     /// 按钮名称
     /// </summary>
     [Required]
     [MaxLength(MaxLength_Title)]
-    public string Title { get; set; } = string.Empty;
+    public string Name { get; set; } = null!;
 
     /// <summary>
-    /// 父菜单ID
+    /// 父菜单 Id
     /// </summary>
     public Guid? ParentId { get; set; }
 
     /// <summary>
-    /// 菜单Url路径
+    /// 菜单相对 Url 路径
     /// </summary>
     [Required]
     [MaxLength(MaxLengths.Url)]
-    public string Url { get; set; } = string.Empty;
+    public string Path { get; set; } = null!;
 
     /// <summary>
     /// 图标

@@ -9,7 +9,7 @@ namespace BD.Common.Identity;
 public class JWTValueProvider<TAppSettings, TAppDbContext, TUser> : IJWTValueProvider
     where TAppSettings : class, IJWTAppSettings
     where TAppDbContext : DbContext, IApplicationDbContext<TUser>
-    where TUser : IdentityUser<Guid>, IJWTUser
+    where TUser : class, IEntity<Guid>, IJWTUser
 {
     readonly TAppSettings options;
     readonly TAppDbContext db;

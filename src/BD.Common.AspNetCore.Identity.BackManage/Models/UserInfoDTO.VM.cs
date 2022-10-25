@@ -2,7 +2,7 @@
 namespace BD.Common.Models;
 
 #if BLAZOR
-partial class BMUserInfoDTO : IDeleteLoading
+partial class UserInfoDTO : IDeleteLoading
 {
     [JsonIgnore]
     public bool DeleteLoading { get; set; }
@@ -10,8 +10,8 @@ partial class BMUserInfoDTO : IDeleteLoading
     [JsonIgnore]
     public string RolesString
     {
-        get => BMRoleEnumHelper.ToDisplayString(Roles);
-        set => Roles = BMRoleEnumHelper.Parse(value);
+        get => RoleEnumHelper.ToDisplayString(Roles);
+        set => Roles = RoleEnumHelper.Parse(value);
     }
 }
 #endif

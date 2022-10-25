@@ -4,7 +4,7 @@ namespace BD.Common.Models;
 /// <summary>
 /// 后台用户，查询表格
 /// </summary>
-public partial class BMUserInfoDTO : KeyModel<Guid>
+public partial class UserInfoDTO : KeyModel<Guid>
 {
     [Required]
     public string UserName { get; set; } = "";
@@ -12,7 +12,7 @@ public partial class BMUserInfoDTO : KeyModel<Guid>
     public IList<string>? Roles { get; set; }
 
 #if !BLAZOR
-    public static readonly Expression<Func<BMUser, BMUserInfoDTO>> Expression = x => new()
+    public static readonly Expression<Func<SysUser, UserInfoDTO>> Expression = x => new()
     {
         Id = x.Id,
         UserName = x.UserName,
@@ -23,7 +23,7 @@ public partial class BMUserInfoDTO : KeyModel<Guid>
 /// <summary>
 /// 当前登录的后台用户信息
 /// </summary>
-public partial class BMMeInfoDTO
+public partial class CurrentUserInfoDTO
 {
     [Required]
     public string UserName { get; set; } = "";
@@ -38,13 +38,13 @@ public partial class BMMeInfoDTO
 /// <summary>
 /// 编辑当前登录的后台用户信息
 /// </summary>
-public partial class EditBMMeInfoDTO
+public partial class EditCurrentUserInfoDTO
 {
     [Required]
     public string UserName { get; set; } = "";
 }
 
-public partial interface IAddOrEditBMUserDTO
+public partial interface IAddOrEditUserDTO
 {
     [Required]
     string UserName { get; set; }
@@ -57,19 +57,19 @@ public partial interface IAddOrEditBMUserDTO
 
     void CalcRoles()
     {
-        Roles = BMRoleEnumHelper.SetRole(Roles, nameof(BMRole.Administrator), IsAdministrator);
+        Roles = RoleEnumHelper.SetRole(Roles, RoleEnumHelper.Administrator, IsAdministrator);
     }
 
     void AnalysisRoles()
     {
-        IsAdministrator = BMRoleEnumHelper.IsRole(Roles, nameof(BMRole.Administrator));
+        IsAdministrator = RoleEnumHelper.IsRole(Roles, RoleEnumHelper.Administrator);
     }
 }
 
 /// <summary>
 /// 新增后台用户表单提交
 /// </summary>
-public partial class AddBMUserDTO : IAddOrEditBMUserDTO
+public partial class AddBMUserDTO : IAddOrEditUserDTO
 {
     [Required]
     public string UserName { get; set; } = "";
@@ -83,10 +83,13 @@ public partial class AddBMUserDTO : IAddOrEditBMUserDTO
     public IList<string>? Roles { get; set; }
 
     [JsonIgnore]
-    public bool IsAdministrator { get; set; } = IAddOrEditBMUserDTO.DefaultIsAdministrator;
+    public bool IsAdministrator { get; set; } = IAddOrEditUserDTO.DefaultIsAdministrator;
 }
 
-public partial class EditBMUserDTO : IAddOrEditBMUserDTO
+/// <summary>
+/// 编辑后台用户表单提交
+/// </summary>
+public partial class EditUserDTO : IAddOrEditUserDTO
 {
     [Required]
     public string UserName { get; set; } = "";
@@ -94,11 +97,11 @@ public partial class EditBMUserDTO : IAddOrEditBMUserDTO
     public IList<string>? Roles { get; set; }
 
     [JsonIgnore]
-    public bool IsAdministrator { get; set; } = IAddOrEditBMUserDTO.DefaultIsAdministrator;
+    public bool IsAdministrator { get; set; } = IAddOrEditUserDTO.DefaultIsAdministrator;
 
-    public static IAddOrEditBMUserDTO Parse(BMUserInfoDTO value)
+    public static IAddOrEditUserDTO Parse(UserInfoDTO value)
     {
-        IAddOrEditBMUserDTO result = new EditBMUserDTO
+        IAddOrEditUserDTO result = new EditUserDTO
         {
             UserName = value.UserName,
             Roles = value.Roles == null ? null : new List<string>(value.Roles),
