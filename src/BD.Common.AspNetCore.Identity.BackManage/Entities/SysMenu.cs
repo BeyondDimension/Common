@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统菜单
 /// </summary>
 [Table(nameof(SysMenu) + "s")]
-public sealed class SysMenu : TenantBaseEntity, IOrder
+public class SysMenu : TenantBaseEntity, IOrder
 {
     public const int MaxLength_Title = 200;
 
@@ -50,4 +50,10 @@ public sealed class SysMenu : TenantBaseEntity, IOrder
     /// </summary>
     [MaxLength(MaxLengths.Remarks)]
     public string? Remark { get; set; }
+
+    public virtual ICollection<SysMenu>? Children { get; set; }
+
+    public virtual ICollection<SysButton>? Buttons { get; set; }
+
+    public virtual ICollection<SysMenuButton>? MenuButtons { get; set; }
 }

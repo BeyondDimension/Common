@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统用户(多租户)实体类
 /// </summary>
 [Table(nameof(SysUser) + "s")]
-public sealed class SysUser : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullable, IUpdateTime, IOperatorUserId, IJWTUser, ISoftDeleted
+public class SysUser : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullable, IUpdateTime, IOperatorUserId, IJWTUser, ISoftDeleted
 {
     [Required]
     [StringLength(256)]

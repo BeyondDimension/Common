@@ -33,6 +33,8 @@ public partial class CurrentUserInfoDTO
     public string Avatar { get; set; } = "";
 
     public bool IsAdministrator { get; set; }
+
+    public SysMenuDTO[]? Menus { get; set; }
 }
 
 /// <summary>

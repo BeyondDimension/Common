@@ -43,9 +43,27 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
         base.OnModelCreating(b);
         b.BuildEntities(AppendBuildEntities_);
 
-        b.Entity<SysMenuButton>(p =>
+        b.Entity<SysMenu>(p =>
         {
-            p.HasKey(x => new { x.MenuId, x.ButtonId, x.TenantId });
+            p.HasMany(x => x.Children)
+                .WithOne()
+                .HasForeignKey(x => x.ParentId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            p.HasMany(x => x.Buttons)
+                .WithMany(x => x.Menus)
+                .UsingEntity<SysMenuButton>(
+                    x => x.HasOne(y => y.Button)
+                            .WithMany(y => y.MenuButtons)
+                            .HasForeignKey(y => y.ButtonId)
+                            .OnDelete(DeleteBehavior.Cascade),
+                    x => x.HasOne(y => y.Menu)
+                            .WithMany(y => y.MenuButtons)
+                            .HasForeignKey(y => y.MenuId)
+                            .OnDelete(DeleteBehavior.NoAction),
+                    x => x.HasKey(y => new { y.MenuId, y.ButtonId, y.TenantId })
+                );
         });
         b.Entity<SysUserRole>(p =>
         {
@@ -53,7 +71,7 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
         });
         b.Entity<SysMenuButtonRole>(p =>
         {
-            p.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId });
+            p.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId, x.ControllerName });
         });
     }
 

@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统按钮
 /// </summary>
 [Table(nameof(SysButton) + "s")]
-public sealed class SysButton : TenantBaseEntity
+public class SysButton : TenantBaseEntity
 {
     public const int MaxLength_Name = 20;
 
@@ -20,4 +20,8 @@ public sealed class SysButton : TenantBaseEntity
     /// </summary>
     [Required]
     public SysButtonType Type { get; set; }
+
+    public virtual ICollection<SysMenu>? Menus { get; set; }
+
+    public virtual ICollection<SysMenuButton>? MenuButtons { get; set; }
 }
