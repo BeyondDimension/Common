@@ -9,12 +9,12 @@ public class SystemMenu<TBMUser> :
     IOrder
     where TBMUser : BMUser
 {
-    public const int MaxLength_Title = 50;
+    public const int MaxLength_Title = 200;
 
     /// <summary>
     /// 按钮多语言名称
     /// </summary>
-    [MaxLength(MaxLengths.NickName)]
+    [MaxLength(MaxLengths.UserName)]
     [Required]
     public string Name { get; set; } = string.Empty;
 

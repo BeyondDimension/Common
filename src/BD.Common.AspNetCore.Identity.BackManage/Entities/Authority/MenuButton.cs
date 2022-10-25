@@ -1,6 +1,6 @@
 namespace BD.Common.Entities;
 
-public class MenuButton : Entity<Guid>, IOrder, ITenant
+public class MenuButton : ITenant
 {
     /// <summary>
     /// 租户
@@ -10,6 +10,4 @@ public class MenuButton : Entity<Guid>, IOrder, ITenant
     public Guid MenuId { get; set; }
 
     public Guid ButtonId { get; set; }
-
-    public long Order { get; set; }
 }
