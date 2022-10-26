@@ -68,7 +68,9 @@ public class UserManager<TDbContext> : IUserManager, IDisposable where TDbContex
         ThrowIfDisposed();
         var query = from userRole in db.UserRoles
                     join role in db.Roles on userRole.RoleId equals role.Id
-                    where userRole.UserId == user.Id && userRole.TenantId == user.TenantId
+                    where userRole.UserId == user.Id &&
+                        userRole.TenantId == user.TenantId &&
+                        role.TenantId == user.TenantId
                     select role.Name;
         return await query.ToListAsync(CancellationToken);
     }
