@@ -6,20 +6,18 @@ namespace BD.Common.Entities;
 [Table("BM_Menus")]
 public class SysMenu : TenantBaseEntity, IOrder
 {
-    public const int MaxLength_Title = 200;
-
     /// <summary>
     /// 按钮多语言名称
     /// </summary>
     [Required]
-    [MaxLength(MaxLengths.NickName)]
+    [MaxLength(128)]
     public string Key { get; set; } = null!;
 
     /// <summary>
     /// 按钮名称
     /// </summary>
     [Required]
-    [MaxLength(MaxLength_Title)]
+    [MaxLength(200)]
     public string Name { get; set; } = null!;
 
     /// <summary>
@@ -37,7 +35,7 @@ public class SysMenu : TenantBaseEntity, IOrder
     /// <summary>
     /// 图标
     /// </summary>
-    [MaxLength(MaxLengths.Url)]
+    [MaxLength(128)]
     public string? Icon { get; set; }
 
     /// <summary>

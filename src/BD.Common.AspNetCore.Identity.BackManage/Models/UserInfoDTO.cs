@@ -35,6 +35,8 @@ public partial class CurrentUserInfoDTO
     public bool IsAdministrator { get; set; }
 
     public SysMenuDTO[]? Menus { get; set; }
+
+    public Guid TenantId { get; set; }
 }
 
 /// <summary>
