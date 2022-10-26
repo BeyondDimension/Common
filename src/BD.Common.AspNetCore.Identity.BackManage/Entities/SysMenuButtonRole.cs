@@ -14,6 +14,14 @@ public class SysMenuButtonRole
 
     public Guid ButtonId { get; set; }
 
+    public virtual SysButton? Button { get; set; }
+
+    public virtual SysMenu? Menu { get; set; }
+
+    public virtual SysRole? Role { get; set; }
+
+    public virtual SysTenant? Tenant { get; set; }
+
     [Required]
     public string ControllerName { get; set; } = "";
 }

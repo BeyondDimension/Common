@@ -18,9 +18,9 @@ public static class IdentityServiceCollectionExtensions
         services.AddScoped<ILookupNormalizer, UpperInvariantLookupNormalizer>();
         // No interface for the error describer so we can add errors without rev'ing the interface
         services.AddScoped<IdentityErrorDescriber>();
-        services.AddScoped<IUserManager, Impl.AspNetUserManager<TDbContext>>();
+        services.AddScoped<IUserManager, Impl.UserManager<TDbContext>>();
         // https://github.com/dotnet/aspnetcore/blob/v7.0.0-rc.2.22476.2/src/Identity/Extensions.Core/src/IdentityBuilder.cs#L165
-        services.AddScoped<IRoleManager, Impl.AspNetRoleManager<TDbContext>>();
+        services.AddScoped<IRoleManager, Impl.RoleManager<TDbContext>>();
 
         if (setupAction != null)
         {
