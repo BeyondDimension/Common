@@ -3,7 +3,7 @@ namespace BD.Common.Entities;
 /// <summary>
 /// 系统角色(权限)实体类
 /// </summary>
-[Table(nameof(SysRole) + "s")]
+[Table("BM_Roles")]
 public class SysRole : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullable, IOrder, IUpdateTime, IOperatorUserId
 {
     [Required]

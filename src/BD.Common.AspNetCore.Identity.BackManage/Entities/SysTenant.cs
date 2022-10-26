@@ -3,7 +3,7 @@ namespace BD.Common.Entities;
 /// <summary>
 /// 租户信息实体类
 /// </summary>
-[Table(nameof(SysTenant) + "s")]
+[Table("BM_Tenants")]
 public class SysTenant : OperatorBaseEntity, ISoftDeleted
 {
     public bool SoftDeleted { get; set; }

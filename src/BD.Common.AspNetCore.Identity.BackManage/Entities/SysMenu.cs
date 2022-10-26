@@ -3,7 +3,7 @@ namespace BD.Common.Entities;
 /// <summary>
 /// 权限控制相关实体类 - 系统菜单
 /// </summary>
-[Table(nameof(SysMenu) + "s")]
+[Table("BM_Menus")]
 public class SysMenu : TenantBaseEntity, IOrder
 {
     public const int MaxLength_Title = 200;

@@ -3,7 +3,7 @@ namespace BD.Common.Entities;
 /// <summary>
 /// 系统用户(多租户)实体类
 /// </summary>
-[Table(nameof(SysUser) + "s")]
+[Table("BM_Users")]
 public class SysUser : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullable, IUpdateTime, IOperatorUserId, IJWTUser, ISoftDeleted
 {
     [Required]
