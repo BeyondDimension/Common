@@ -30,4 +30,10 @@ public class SysRole : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullab
     public DateTimeOffset UpdateTime { get; set; }
 
     public Guid? OperatorUserId { get; set; }
+
+    /// <summary>
+    /// https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
+    /// </summary>
+    [Timestamp]
+    public byte[]? Timestamp { get; set; }
 }

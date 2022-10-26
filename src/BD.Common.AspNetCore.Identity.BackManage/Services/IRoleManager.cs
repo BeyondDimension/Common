@@ -2,11 +2,12 @@ namespace BD.Common.Services;
 
 public interface IRoleManager
 {
-    Task<SysRole> FindByNameAsync(string roleName);
+    Task<SysRole?> FindByIdAsync(Guid roleId);
+
+    Task<SysRole?> FindByNameAsync(string roleName, Guid tenantId);
 
     Task<IdentityResult> CreateAsync(SysRole role);
 
-    Task<IdentityResult> AddToRoleAsync(SysUser user, string role);
-
-    Task<IdentityResult> AddToRolesAsync(SysUser user, IEnumerable<string> roles);
+    [return: NotNullIfNotNull("key")]
+    internal string? NormalizeKey(string? key);
 }

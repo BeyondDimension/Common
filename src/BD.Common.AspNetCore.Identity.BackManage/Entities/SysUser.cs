@@ -14,8 +14,7 @@ public class SysUser : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullab
     [StringLength(256)]
     public string NormalizedUserName { get; set; } = "";
 
-    [Required]
-    public string PasswordHash { get; set; } = "";
+    public string? PasswordHash { get; set; }
 
     public DateTimeOffset? LockoutEnd { get; set; }
 
@@ -41,4 +40,10 @@ public class SysUser : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullab
     public DateTimeOffset NotBefore { get; set; }
 
     public bool SoftDeleted { get; set; }
+
+    /// <summary>
+    /// https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
+    /// </summary>
+    [Timestamp]
+    public byte[]? Timestamp { get; set; }
 }

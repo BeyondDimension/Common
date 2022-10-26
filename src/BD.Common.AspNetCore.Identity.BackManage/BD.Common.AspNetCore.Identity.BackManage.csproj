@@ -64,10 +64,6 @@
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Services\Implementation\" />
-	</ItemGroup>
-
 	<Import Project="..\TFM_NET7.props" />
 	<Import Project="..\GeneratePackage.props" />
 
