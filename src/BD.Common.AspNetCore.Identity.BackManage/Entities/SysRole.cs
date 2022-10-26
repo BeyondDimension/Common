@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统角色(权限)实体类
 /// </summary>
 [Table("BM_Roles")]
-public class SysRole : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullable, IOrder, IUpdateTime, IOperatorUserId
+public class SysRole : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullable, IOrder, IUpdateTime, IOperatorUserId, ISoftDeleted
 {
     [Required]
     [StringLength(256)]
@@ -36,4 +36,6 @@ public class SysRole : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullab
     /// </summary>
     [Timestamp]
     public byte[]? Timestamp { get; set; }
+
+    public bool SoftDeleted { get; set; }
 }
