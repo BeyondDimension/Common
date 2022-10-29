@@ -54,20 +54,6 @@ public partial interface IAddOrEditUserDTO
     string UserName { get; set; }
 
     IList<string>? Roles { get; set; }
-
-    bool IsAdministrator { get; set; }
-
-    const bool DefaultIsAdministrator = true;
-
-    void CalcRoles()
-    {
-        Roles = RoleEnumHelper.SetRole(Roles, RoleEnumHelper.Administrator, IsAdministrator);
-    }
-
-    void AnalysisRoles()
-    {
-        IsAdministrator = RoleEnumHelper.IsRole(Roles, RoleEnumHelper.Administrator);
-    }
 }
 
 /// <summary>
@@ -85,9 +71,6 @@ public partial class AddBMUserDTO : IAddOrEditUserDTO
     public string Password2 { get; set; } = "";
 
     public IList<string>? Roles { get; set; }
-
-    [JsonIgnore]
-    public bool IsAdministrator { get; set; } = IAddOrEditUserDTO.DefaultIsAdministrator;
 }
 
 /// <summary>
@@ -100,9 +83,6 @@ public partial class EditUserDTO : IAddOrEditUserDTO
 
     public IList<string>? Roles { get; set; }
 
-    [JsonIgnore]
-    public bool IsAdministrator { get; set; } = IAddOrEditUserDTO.DefaultIsAdministrator;
-
     public static IAddOrEditUserDTO Parse(UserInfoDTO value)
     {
         IAddOrEditUserDTO result = new EditUserDTO
@@ -110,7 +90,6 @@ public partial class EditUserDTO : IAddOrEditUserDTO
             UserName = value.UserName,
             Roles = value.Roles == null ? null : new List<string>(value.Roles),
         };
-        result.AnalysisRoles();
         return result;
     }
 }
