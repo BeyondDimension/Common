@@ -13,7 +13,9 @@ public static partial class ServiceCollectionExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <param name="cfgName"></param>
+    /// <param name="migrationsHistoryTableNameSuffix"></param>
     /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
     public static (TAppSettings appSettings, string connectionString) AddDbContextWithAppSettings<TContext, TAppSettings>(
         this IServiceCollection services,
         IConfiguration configuration,

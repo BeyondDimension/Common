@@ -77,7 +77,7 @@
 		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
-		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="6.15.2" />
+		<!--<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="6.15.2" />-->
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
 
 		<!-- BCL 6.0 -->
@@ -107,7 +107,7 @@
 		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.2.22472.11" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0-rc.2.22472.11" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0-rc.2.22472.11" />
-		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="7.0.0-rc.1.22426.7-02" />
+		<!--<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="7.0.0-rc.1.22426.7-02" />-->
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0-rc.2" />
 
 		<!-- BCL 7.0 -->

@@ -20,16 +20,40 @@ public static partial class QueryableExtensions
         int pageSize = IPagedModel.DefaultPageSize,
         CancellationToken cancellationToken = default)
     {
-        var skipCount = (current - 1) * pageSize;
-        var futureTotal = source.DeferredCount().FutureValue();
-        var query = source.Skip(skipCount).Take(pageSize);
+        int skipCount, total;
+        IQueryable<TEntity> query;
+        TEntity[] dataSource;
+        PagedModel<TEntity> pagedModel;
+#if !__NOT_IMPORT_Z_EF_PLUS__
+        if (SqlConstants.ZPlusEnable)
+        {
+            skipCount = (current - 1) * pageSize;
+            var futureTotal = source.DeferredCount().FutureValue();
+            query = source.Skip(skipCount).Take(pageSize);
 #if DEBUG
         var sqlString = query.ToQueryString();
 #endif
-        var futureDataSource = query.Future();
-        var total = await futureTotal.ValueAsync(cancellationToken);
-        var dataSource = await futureDataSource.ToArrayAsync(cancellationToken);
-        var pagedModel = new PagedModel<TEntity>
+            var futureDataSource = query.Future();
+            total = await futureTotal.ValueAsync(cancellationToken);
+            dataSource = await futureDataSource.ToArrayAsync(cancellationToken);
+            pagedModel = new PagedModel<TEntity>
+            {
+                Current = current,
+                PageSize = pageSize,
+                Total = total,
+                DataSource = dataSource,
+            };
+            return pagedModel;
+        }
+#endif
+        skipCount = (current - 1) * pageSize;
+        total = await source.CountAsync(cancellationToken);
+        query = source.Skip(skipCount).Take(pageSize);
+#if DEBUG
+        var sqlString = query.ToQueryString();
+#endif
+        dataSource = await query.ToArrayAsync(cancellationToken);
+        pagedModel = new PagedModel<TEntity>
         {
             Current = current,
             PageSize = pageSize,

@@ -12,6 +12,25 @@ public static partial class SqlConstants
     /// </summary>
     public static string DatabaseProvider { get; set; } = SqlServer;
 
+    static bool? _ZPlusEnable;
+
+    /// <summary>
+    /// 使用启用 Z.EntityFramework.Plus.EFCore
+    /// </summary>
+    public static bool ZPlusEnable
+    {
+        get
+        {
+            if (_ZPlusEnable.HasValue) return _ZPlusEnable.Value;
+            return DatabaseProvider switch
+            {
+                SqlServer => true,
+                _ => false,
+            };
+        }
+        set => _ZPlusEnable = value;
+    }
+
     public static string DateTimeOffsetDefaultValueSql => DatabaseProvider switch
     {
         SqlServer => SYSDATETIMEOFFSET,

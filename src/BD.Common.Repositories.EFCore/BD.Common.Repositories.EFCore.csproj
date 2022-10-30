@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<RootNamespace>BD.Common</RootNamespace>
-		<DefineConstants>__NOT_IMPORT_WEBENCODERS__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>__NOT_IMPORT_WEBENCODERS__;__NOT_IMPORT_Z_EF_PLUS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
