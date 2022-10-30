@@ -26,6 +26,13 @@ public static partial class SqlConstants
         _ => throw new ArgumentOutOfRangeException(nameof(DatabaseProvider), DatabaseProvider),
     };
 
+    public static string NextValueSequenceDefaultValueSql(string sequenceName) => DatabaseProvider switch
+    {
+        SqlServer => $"NEXT VALUE FOR {sequenceName}",
+        PostgreSQL => $"nextval('{sequenceName}')",
+        _ => throw new ArgumentOutOfRangeException(nameof(DatabaseProvider), DatabaseProvider),
+    };
+
     /// <summary>
     /// 返回包含计算机的日期和时间的 datetimeoffset(7) 值，SQL Server 的实例正在该计算机上运行。 时区偏移量包含在内。
     /// <para>https://docs.microsoft.com/zh-cn/sql/t-sql/functions/sysdatetimeoffset-transact-sql?view=azuresqldb-current</para>

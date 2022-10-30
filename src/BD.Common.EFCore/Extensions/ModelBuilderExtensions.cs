@@ -54,7 +54,9 @@ public static class ModelBuilderExtensions
 
                 buildAction += p =>
                 {
-                    p.Property(nameof(IOrder.Order)).HasDefaultValueSql($"NEXT VALUE FOR {sequenceOrderNumbers}");
+                    p.Property(nameof(IOrder.Order))
+                        .HasDefaultValueSql(SqlConstants
+                        .NextValueSequenceDefaultValueSql(sequenceOrderNumbers));
                     p.HasIndex(nameof(IOrder.Order));
                 };
 
