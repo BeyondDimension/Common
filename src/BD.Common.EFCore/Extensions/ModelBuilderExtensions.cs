@@ -83,7 +83,7 @@ public static class ModelBuilderExtensions
             {
                 buildAction += p =>
                 {
-                    p.Property(nameof(ICreationTime.CreationTime)).HasDefaultValueSql(SqlConstants.SYSDATETIMEOFFSET).IsRequired();
+                    p.Property(nameof(ICreationTime.CreationTime)).HasDefaultValueSql(SqlConstants.DateTimeOffsetDefaultValueSql).IsRequired();
                 };
             }
 
@@ -95,7 +95,7 @@ public static class ModelBuilderExtensions
             {
                 buildAction += p =>
                 {
-                    p.Property(nameof(IUpdateTime.UpdateTime)).HasDefaultValueSql(SqlConstants.SYSDATETIMEOFFSET).IsRequired();
+                    p.Property(nameof(IUpdateTime.UpdateTime)).HasDefaultValueSql(SqlConstants.DateTimeOffsetDefaultValueSql).IsRequired();
                     p.Property(nameof(IUpdateTime.UpdateTime)).ValueGeneratedOnAddOrUpdate().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Save);
                 };
             }
@@ -108,7 +108,7 @@ public static class ModelBuilderExtensions
             {
                 buildAction += p =>
                 {
-                    p.Property(nameof(IEntity<Guid>.Id)).HasDefaultValueSql(SqlConstants.NEWSEQUENTIALID);
+                    p.Property(nameof(IEntity<Guid>.Id)).HasDefaultValueSql(SqlConstants.GuidDefaultValueSql);
                 };
             }
 

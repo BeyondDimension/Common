@@ -5,6 +5,27 @@ public static partial class SqlConstants
 {
     public const string SqlServer = "Microsoft.EntityFrameworkCore.SqlServer";
 
+    public const string PostgreSQL = "Npgsql.EntityFrameworkCore.PostgreSQL";
+
+    /// <summary>
+    /// 当前数据库提供程序
+    /// </summary>
+    public static string DatabaseProvider { get; set; } = SqlServer;
+
+    public static string DateTimeOffsetDefaultValueSql => DatabaseProvider switch
+    {
+        SqlServer => SYSDATETIMEOFFSET,
+        PostgreSQL => now,
+        _ => throw new ArgumentOutOfRangeException(nameof(DatabaseProvider), DatabaseProvider),
+    };
+
+    public static string GuidDefaultValueSql => DatabaseProvider switch
+    {
+        SqlServer => NEWSEQUENTIALID,
+        PostgreSQL => gen_random_uuid,
+        _ => throw new ArgumentOutOfRangeException(nameof(DatabaseProvider), DatabaseProvider),
+    };
+
     /// <summary>
     /// 返回包含计算机的日期和时间的 datetimeoffset(7) 值，SQL Server 的实例正在该计算机上运行。 时区偏移量包含在内。
     /// <para>https://docs.microsoft.com/zh-cn/sql/t-sql/functions/sysdatetimeoffset-transact-sql?view=azuresqldb-current</para>
@@ -34,4 +55,16 @@ public static partial class SqlConstants
     public const string ON = "ON";
 
     public const string OFF = "OFF";
+
+    #region PostgreSQL Functions
+
+    // https://www.postgresql.org/docs/15/functions-uuid.html
+
+    public const string gen_random_uuid = "gen_random_uuid()";
+
+    // https://www.postgresql.org/docs/15/functions-datetime.html#FUNCTIONS-DATETIME-CURRENT
+
+    public const string now = "now()";
+
+    #endregion
 }

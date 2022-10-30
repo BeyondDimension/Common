@@ -23,6 +23,7 @@ public static class EFCoreHelper
         return databaseProviderName switch
         {
             SqlConstants.SqlServer => $"[{(string.IsNullOrEmpty(schema) ? "dbo" : schema)}].[{tableName}]",
+            SqlConstants.PostgreSQL => string.IsNullOrEmpty(schema) ? $"\"{tableName}\"" : $"\"{schema}\".\"{tableName}\"",
             _ => throw new ArgumentOutOfRangeException(nameof(databaseProviderName), databaseProviderName, "Currently only sqlserver is supported."),
         };
     }
