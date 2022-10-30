@@ -29,7 +29,7 @@ public static partial class SqlConstants
     public static string NextValueSequenceDefaultValueSql(string sequenceName) => DatabaseProvider switch
     {
         SqlServer => $"NEXT VALUE FOR {sequenceName}",
-        PostgreSQL => $"nextval('{sequenceName}')",
+        PostgreSQL => $"nextval('\"{sequenceName}\"')",
         _ => throw new ArgumentOutOfRangeException(nameof(DatabaseProvider), DatabaseProvider),
     };
 
