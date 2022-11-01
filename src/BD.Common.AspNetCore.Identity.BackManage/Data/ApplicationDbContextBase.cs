@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BD.Common.Data;
 
-public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContext<SysUser>
+public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContext
 {
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
@@ -43,6 +43,11 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
         base.OnModelCreating(b);
         b.BuildEntities(AppendBuildEntities_);
 
+        OnModelCreatingCore(b);
+    }
+
+    public static void OnModelCreatingCore(ModelBuilder b)
+    {
         b.Entity<SysMenu>(p =>
         {
             p.HasMany(x => x.Children)
@@ -75,7 +80,7 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
         });
     }
 
-    Action<EntityTypeBuilder>? AppendBuildEntities_(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
+    public static Action<EntityTypeBuilder>? AppendBuildEntitiesCore(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
     {
         if (PCreateUser.IsAssignableFrom(type))
         {
@@ -93,8 +98,13 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
             };
         }
 
-        buildAction = AppendBuildEntities(modelBuilder, entityType, type, buildAction);
+        return buildAction;
+    }
 
+    Action<EntityTypeBuilder>? AppendBuildEntities_(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
+    {
+        buildAction = AppendBuildEntitiesCore(modelBuilder, entityType, type, buildAction);
+        buildAction = AppendBuildEntities(modelBuilder, entityType, type, buildAction);
         return buildAction;
     }
 
