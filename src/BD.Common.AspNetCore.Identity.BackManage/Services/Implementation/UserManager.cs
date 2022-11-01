@@ -1,6 +1,6 @@
 namespace BD.Common.Services.Implementation;
 
-public class UserManager<TDbContext> : IUserManager, IDisposable where TDbContext : ApplicationDbContextBase
+public class UserManager<TDbContext> : IUserManager, IDisposable where TDbContext : DbContext, IApplicationDbContext
 {
     private bool _disposed;
 

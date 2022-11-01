@@ -1,6 +1,6 @@
 namespace BD.Common.Services.Implementation;
 
-public class RoleManager<TDbContext> : IRoleManager, IDisposable where TDbContext : ApplicationDbContextBase
+public class RoleManager<TDbContext> : IRoleManager, IDisposable where TDbContext : DbContext, IApplicationDbContext
 {
     private bool _disposed;
 
