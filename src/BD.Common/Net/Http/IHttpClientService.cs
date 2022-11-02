@@ -25,7 +25,7 @@ public abstract class HttpClientServiceImpl : IHttpClientService
 public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
 {
     protected readonly CookieContainer cookieContainer = new();
-    protected readonly HttpClientHandler handler;
+    protected readonly SocketsHttpHandler handler;
     readonly Lazy<HttpClient> _client;
 
 #pragma warning disable IDE1006 // 命名样式
@@ -34,7 +34,7 @@ public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
 
     public HttpClientUseCookiesServiceImpl()
     {
-        handler = new HttpClientHandler
+        handler = new SocketsHttpHandler
         {
             UseCookies = true,
             CookieContainer = cookieContainer,
@@ -47,8 +47,10 @@ public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
 #if !NETFRAMEWORK
         handler.Compatibility();
 #endif
-        _client = new(() => new(handler));
+        _client = new(() => GetHttpClient(handler));
     }
+
+    protected virtual HttpClient GetHttpClient(SocketsHttpHandler handler) => new(handler);
 
     HttpClient IHttpClientService.HttpClient => client;
 }
