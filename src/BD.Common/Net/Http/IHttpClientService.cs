@@ -47,10 +47,10 @@ public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
 #if !NETFRAMEWORK
         handler.Compatibility();
 #endif
-        _client = new(() => GetHttpClient(handler));
+        _client = new(() => GetHttpClient());
     }
 
-    protected virtual HttpClient GetHttpClient(SocketsHttpHandler handler) => new(handler);
+    protected virtual HttpClient GetHttpClient() => new(handler);
 
     HttpClient IHttpClientService.HttpClient => client;
 }
