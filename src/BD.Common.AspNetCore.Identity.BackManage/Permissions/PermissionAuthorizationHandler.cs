@@ -19,32 +19,22 @@ public sealed class PermissionAuthorizationHandler<TDbContext> : AuthorizationHa
             var userIdClaim = context.User.FindFirst(_ => _.Type == ClaimTypes.NameIdentifier);
             if (userIdClaim != null && Guid.TryParse(userIdClaim.Value, out Guid userId))
             {
-                //var user = await db.Users.FirstOrDefaultAsync(x => x.Id == userId);
-                var tenant = await (from role in db.UserRoles
+                var result = await (from role in db.UserRoles
                                     join user in db.Users on role.UserId equals user.Id
                                     join buttonRole in db.MenuButtonRoles on role.RoleId equals buttonRole.RoleId
+                                    join tenant in db.Tenants on user.TenantId equals tenant.Id
                                     where role.UserId == userId &&
-                                    buttonRole.TenantId == user.TenantId &&
-                                    buttonRole.ControllerName == requirement.ControllerName
-                                    select role)
-                                    .AnyAsync();
-                if (tenant)
+                                        buttonRole.TenantId == user.TenantId &&
+                                        buttonRole.ControllerName == requirement.ControllerName &&
+                                        !tenant.SoftDeleted
+                                    select role).AnyAsync();
+                if (result)
                 {
                     context.Succeed(requirement);
-                }
-                else
-                {
-                    context.Fail();
+                    return;
                 }
             }
-            else
-            {
-                context.Fail();
-            }
         }
-        else
-        {
-            context.Fail();
-        }
+        context.Fail();
     }
 }
