@@ -19,10 +19,11 @@ public sealed class SysButtonDTO : KeyModel<Guid>
 #endif
 }
 
+#if !BLAZOR
 public static partial class EntitiesExtensions
 {
-    public static SysButtonDTO SetValue(
-       this SysButtonDTO entity,
+    public static SysButton SetValue(
+       this SysButton entity,
        SysButtonDTO model)
     {
         entity.Name = model.Name;
@@ -30,3 +31,4 @@ public static partial class EntitiesExtensions
         return entity;
     }
 }
+#endif
