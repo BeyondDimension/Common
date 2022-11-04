@@ -21,7 +21,7 @@ partial class Base64Extensions
         switch (options)
         {
             case Base64FormattingOptions.InsertLineBreaks:
-                return Convert.ToBase64String(inArray, Base64FormattingOptions.InsertLineBreaks); ;
+                return Convert.ToBase64String(inArray, Base64FormattingOptions.InsertLineBreaks);
             case Base64FormattingOptions.None:
                 return Base64.Default.Encode(inArray);
 
