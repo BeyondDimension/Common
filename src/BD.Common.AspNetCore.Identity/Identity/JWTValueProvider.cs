@@ -1,5 +1,3 @@
-using System.Security.Claims;
-
 namespace BD.Common.Identity;
 
 /// <summary>
@@ -56,7 +54,7 @@ public class JWTValueProvider<TAppSettings, TAppDbContext, TUser> : IJWTValuePro
 
         var claims = new List<Claim>
         {
-            new Claim(Options?.ClaimsIdentity?.UserIdClaimType ?? ClaimTypes.NameIdentifier, idString),
+            new Claim(Options?.ClaimsIdentity?.UserIdClaimType ?? ClaimTypes.Name, idString),
             new Claim(JwtRegisteredClaimNames.Iat, now.ToUnixTimeMilliseconds().ToString(), ClaimValueTypes.Integer64),
         };
 
