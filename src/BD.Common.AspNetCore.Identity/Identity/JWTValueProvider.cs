@@ -1,3 +1,5 @@
+using System.Security.Claims;
+
 namespace BD.Common.Identity;
 
 /// <summary>
@@ -15,11 +17,17 @@ public class JWTValueProvider<TAppSettings, TAppDbContext, TUser> : IJWTValuePro
     readonly TAppDbContext db;
     static readonly RandomNumberGenerator _rng = RandomNumberGenerator.Create();
 
+    readonly IdentityOptions? Options;
+
 #pragma warning disable IL2091 // Target generic argument does not satisfy 'DynamicallyAccessedMembersAttribute' in target method or type. The generic parameter of the source method or type does not have matching annotations.
-    public JWTValueProvider(IOptions<TAppSettings> options, TAppDbContext db)
+    public JWTValueProvider(
+        IOptions<IdentityOptions> optionsAccessor,
+        IOptions<TAppSettings> options,
+        TAppDbContext db)
 #pragma warning restore IL2091 // Target generic argument does not satisfy 'DynamicallyAccessedMembersAttribute' in target method or type. The generic parameter of the source method or type does not have matching annotations.
     {
         this.options = options.Value;
+        Options = optionsAccessor?.Value;
         this.db = db;
     }
 
@@ -48,7 +56,7 @@ public class JWTValueProvider<TAppSettings, TAppDbContext, TUser> : IJWTValuePro
 
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, idString),
+            new Claim(Options?.ClaimsIdentity?.UserIdClaimType ?? ClaimTypes.NameIdentifier, idString),
             new Claim(JwtRegisteredClaimNames.Iat, now.ToUnixTimeMilliseconds().ToString(), ClaimValueTypes.Integer64),
         };
 
