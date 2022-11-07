@@ -3,7 +3,7 @@ using System.Data;
 // ReSharper disable once CheckNamespace
 namespace BD.Common;
 
-public sealed class PermissionAuthorizationHandler<TDbContext> : AuthorizationHandler<PermissionAuthorizationRequirement> where TDbContext : ApplicationDbContextBase
+public sealed class PermissionAuthorizationHandler<TDbContext> : AuthorizationHandler<PermissionAuthorizationRequirement> where TDbContext : IApplicationDbContext
 {
     readonly TDbContext db;
 
