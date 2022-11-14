@@ -8,7 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsTrimmable>true</IsTrimmable>
 		<RepositoryType>git</RepositoryType>
-		<Version>1.22.11110.1855</Version>
+		<Version>1.22.11114.11133</Version>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<AllowedReferenceRelatedFileExtensions>

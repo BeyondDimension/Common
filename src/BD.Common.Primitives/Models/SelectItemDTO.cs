@@ -1,5 +1,8 @@
 namespace BD.Common.Models;
 
+/// <summary>
+/// 用于 Select/ComboBox 的数据源模型
+/// </summary>
 public class SelectItemDTO : ITitle, IDisable
 {
     public string Title { get; set; } = "";
@@ -9,6 +12,10 @@ public class SelectItemDTO : ITitle, IDisable
     public const int Count = 100;
 }
 
+/// <summary>
+/// 用于 Select/ComboBox 的数据源模型
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class SelectItemDTO<T> : SelectItemDTO
 {
     public T? Id { get; set; }
