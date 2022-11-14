@@ -130,7 +130,7 @@ public static partial class DTOExtensions
 {
     public static void SetValue(
        this AddOrEditSysTenantDTOBase entity,
-       TenantDTO? model)
+       SysTenantDTO? model)
     {
         entity.TenantId = model?.Id ?? default;
         entity.TenantName = model?.Name ?? "";
