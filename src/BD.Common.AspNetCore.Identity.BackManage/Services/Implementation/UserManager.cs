@@ -75,8 +75,9 @@ public class UserManager<TDbContext> : IUserManager, IDisposable where TDbContex
         return await query.ToListAsync(CancellationToken);
     }
 
-    public async Task<SysUser?> FindByNameAsync(string userName)
+    public async Task<SysUser?> FindByNameAsync(string? userName)
     {
+        if (userName == null) return null;
         ThrowIfDisposed();
         var normalizedUserName = NormalizeName(userName);
         var user = await db.Users.FirstOrDefaultAsync(x =>
@@ -84,8 +85,9 @@ public class UserManager<TDbContext> : IUserManager, IDisposable where TDbContex
         return user;
     }
 
-    public async Task<SysUser?> FindByNameAsync(string userName, Guid tenantId)
+    public async Task<SysUser?> FindByNameAsync(string? userName, Guid tenantId)
     {
+        if (userName == null) return null;
         ThrowIfDisposed();
         var normalizedUserName = NormalizeName(userName);
         var user = await db.Users.FirstOrDefaultAsync(x =>

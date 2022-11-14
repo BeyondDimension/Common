@@ -5,8 +5,9 @@ public interface IUserManager
     internal IdentityOptions Options { get; }
 
     [Obsolete("use Guid userId", true)]
-    Task<SysUser?> FindByIdAsync(string userId)
+    Task<SysUser?> FindByIdAsync(string? userId)
     {
+        if (userId == null) return Task.FromResult<SysUser?>(null);
         if (ShortGuid.TryParse(userId, out Guid useIdG))
         {
             return FindByIdAsync(useIdG);
@@ -18,9 +19,9 @@ public interface IUserManager
 
     Task<IList<string>> GetRolesAsync(SysUser user);
 
-    Task<SysUser?> FindByNameAsync(string userName);
+    Task<SysUser?> FindByNameAsync(string? userName);
 
-    Task<SysUser?> FindByNameAsync(string userName, Guid tenantId);
+    Task<SysUser?> FindByNameAsync(string? userName, Guid tenantId);
 
     Task<IdentityResult> CreateAsync(SysUser user, string password);
 

@@ -14,12 +14,21 @@ public class RoleManager<TDbContext> : IRoleManager, IDisposable where TDbContex
     /// </value>
     public ILookupNormalizer KeyNormalizer { get; set; }
 
+    /// <summary>
+    /// The <see cref="IdentityErrorDescriber"/> used to generate error messages.
+    /// </summary>
+    public IdentityErrorDescriber ErrorDescriber { get; set; }
+
     protected virtual CancellationToken CancellationToken => CancellationToken.None;
 
-    public RoleManager(TDbContext db, ILookupNormalizer lookupNormalizer)
+    public RoleManager(
+        TDbContext db,
+        ILookupNormalizer lookupNormalizer,
+        IdentityErrorDescriber errors)
     {
         this.db = db;
         KeyNormalizer = lookupNormalizer;
+        ErrorDescriber = errors;
     }
 
     public async Task<SysRole?> FindByIdAsync(Guid roleId)
@@ -43,8 +52,9 @@ public class RoleManager<TDbContext> : IRoleManager, IDisposable where TDbContex
         return IdentityResult.Success;
     }
 
-    public async Task<SysRole?> FindByNameAsync(string roleName, Guid tenantId)
+    public async Task<SysRole?> FindByNameAsync(string? roleName, Guid tenantId)
     {
+        if (roleName == null) return null;
         ThrowIfDisposed();
         var normalizedName = NormalizeKey(roleName);
         var role = await db.Roles.FirstOrDefaultAsync(x =>
@@ -92,6 +102,40 @@ public class RoleManager<TDbContext> : IRoleManager, IDisposable where TDbContex
         return ValueTask.CompletedTask;
     }
 
+    public Task<IdentityResult> UpdateAsync(SysRole role)
+    {
+        ThrowIfDisposed();
+        return UpdateRoleAsync(role);
+    }
+
+    public Task<IdentityResult> DeleteAsync(SysRole role)
+    {
+        ThrowIfDisposed();
+        role.SoftDeleted = true;
+        return UpdateRoleAsync(role);
+    }
+
+    protected virtual async Task<IdentityResult> UpdateRoleAsync(SysRole role)
+    {
+        var result = await ValidateRoleAsync(role);
+        if (!result.Succeeded)
+        {
+            return result;
+        }
+        await UpdateNormalizedRoleNameAsync(role);
+        db.Roles.Attach(role);
+        db.Roles.Update(role);
+        try
+        {
+            await db.SaveChangesAsync(CancellationToken);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            return IdentityResult.Failed(ErrorDescriber.ConcurrencyFailure());
+        }
+        return IdentityResult.Success;
+    }
+
     /// <summary>
     /// Releases all resources used by the role manager.
     /// </summary>
@@ -130,7 +174,7 @@ public class AspNetRoleManager<TDbContext> : RoleManager<TDbContext> where TDbCo
 {
     protected readonly IHttpContextAccessor contextAccessor;
 
-    public AspNetRoleManager(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer lookupNormalizer) : base(db, lookupNormalizer)
+    public AspNetRoleManager(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer lookupNormalizer, IdentityErrorDescriber errors) : base(db, lookupNormalizer, errors)
     {
         this.contextAccessor = contextAccessor;
     }
