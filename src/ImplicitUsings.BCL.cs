@@ -23,7 +23,7 @@ global using System.Text;
 global using System.Text.Encodings.Web;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
-#if !BLAZOR
+#if !BLAZOR && !__API_RSP__
 global using System.Runtime;
 global using System.Runtime.Devices;
 #endif
