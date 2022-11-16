@@ -35,7 +35,7 @@
 		<PackageVersion Include="AntDesign.ProLayout" Version="0.12.4" />
 
 		<!-- Blazor -->
-		<PackageVersion Include="Blazored.LocalStorage" Version="4.3.0" />
+		<!--<PackageVersion Include="Blazored.LocalStorage" Version="4.3.0" />-->
 
 		<!-- Test -->
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />

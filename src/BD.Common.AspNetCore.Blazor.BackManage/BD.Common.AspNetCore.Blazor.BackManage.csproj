@@ -81,7 +81,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
 		<PackageReference Include="System.Net.Http.Json" />
-		<PackageReference Include="Blazored.LocalStorage" />
+		<!--<PackageReference Include="Blazored.LocalStorage" />-->
 		<PackageReference Include="Microsoft.Extensions.Http" />
 	</ItemGroup>
 
@@ -91,6 +91,10 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BD.Common.Primitives.ApiResponse\BD.Common.Primitives.ApiResponse.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="LocalStorage\" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />
