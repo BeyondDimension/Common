@@ -24,14 +24,49 @@ public static partial class FileEx
     public const string Tif = ".tif";
     public const string Tiff = ".tiff";
 
-    static readonly string[] Images = new[] { WebP, Png, Jpg, Jpeg, Gif, Svg, Jfif, Pjg, Pjpeg, Ico, Cur, Bmp, Avif, Apng, Heic, Heif, Tif, Tiff };
+    static IEnumerable<string>? _Images;
 
-    public static bool IsImage(string value)
+    public static IEnumerable<string> Images
     {
-        foreach (var item in Images)
+        get
         {
-            if (string.Equals(item, value, StringComparison.OrdinalIgnoreCase)) return true;
+            if (_Images == null) return GetImages();
+            return _Images;
         }
-        return false;
+
+        set
+        {
+            _Images = value;
+        }
     }
+
+    static IEnumerable<string> GetImages()
+    {
+        yield return WebP;
+        yield return Png;
+        yield return Jpg;
+        yield return Jpeg;
+        yield return Gif;
+        yield return Svg;
+        yield return Jfif;
+        yield return Pjg;
+        yield return Pjpeg;
+        yield return Ico;
+        yield return Cur;
+        yield return Bmp;
+        yield return Avif;
+        yield return Apng;
+        yield return Heic;
+        yield return Heif;
+        yield return Tif;
+        yield return Tiff;
+    }
+
+    [Obsolete("use Images/IsImage", true)]
+    public static string[] ImageFileExtensions => Images.ToArray();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsImage(string value)
+        => Images.Any(x
+            => string.Equals(x, value, StringComparison.OrdinalIgnoreCase));
 }

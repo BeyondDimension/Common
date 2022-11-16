@@ -10,14 +10,34 @@ public static partial class FileEx
     public const string Pcm = ".pcm";
     public const string Mp3 = ".mp3";
 
-    static readonly string[] Audios = new[] { M4a, Amr, Aac, Wav, Pcm, Mp3 };
+    static IEnumerable<string>? _Audios;
 
-    public static bool IsAudio(string value)
+    public static IEnumerable<string> Audios
     {
-        foreach (var item in Audios)
+        get
         {
-            if (string.Equals(item, value, StringComparison.OrdinalIgnoreCase)) return true;
+            if (_Audios == null) return GetAudios();
+            return _Audios;
         }
-        return false;
+
+        set
+        {
+            _Audios = value;
+        }
     }
+
+    static IEnumerable<string> GetAudios()
+    {
+        yield return M4a;
+        yield return Amr;
+        yield return Aac;
+        yield return Wav;
+        yield return Pcm;
+        yield return Mp3;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAudio(string value)
+        => Audios.Any(x
+            => string.Equals(x, value, StringComparison.OrdinalIgnoreCase));
 }

@@ -16,11 +16,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Nito.Comparers" />
 		<PackageReference Include="gfoidl.Base64" />
 		<PackageReference Include="Crc32.NET" />
 		<PackageReference Include="MessagePack" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
 		<PackageReference Include="Microsoft.Extensions.Logging" />
+		<PackageReference Include="Microsoft.Extensions.Http" />
 	</ItemGroup>
 
 	<ItemGroup>

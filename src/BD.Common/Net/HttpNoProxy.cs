@@ -23,6 +23,7 @@ public sealed class HttpNoProxy : IWebProxy
     /// </summary>
     /// <param name="proxy"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsNoProxy([NotNullWhen(false)] IWebProxy? proxy)
         => proxy == null || proxy.GetType().Name == nameof(HttpNoProxy);
 }

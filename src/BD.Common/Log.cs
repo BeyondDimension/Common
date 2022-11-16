@@ -184,3 +184,90 @@ public static class Log
 
     #endregion
 }
+
+public static partial class ExceptionExtensions
+{
+    /// <summary>
+    /// 通过 <see cref="Exception"/> 纪录日志并在 UI 上显示，传入 <see cref="LogLevel.None"/> 可不写日志
+    /// </summary>
+    /// <param name="e"></param>
+    /// <param name="show"></param>
+    /// <param name="tag"></param>
+    /// <param name="level"></param>
+    /// <param name="memberName"></param>
+    /// <param name="msg"></param>
+    /// <param name="args"></param>
+    public static void LogAndShow(Exception? e,
+        Action<string>? show,
+        string tag, LogLevel level = LogLevel.Error,
+        string memberName = "",
+        string? msg = null,
+        params object?[] args) => LogAndShowCore(e, show, tag, logger: null, level, memberName, msg, args);
+
+    /// <inheritdoc cref="LogAndShow(Exception?, Action{string}?, string, LogLevel, string, string?, object?[])"/>
+    public static void LogAndShow(Exception? e,
+        Action<string>? show,
+        ILogger? logger, LogLevel level = LogLevel.Error,
+        string memberName = "",
+        string? msg = null, params object?[] args) => LogAndShowCore(e, show, tag: null, logger, level, memberName, msg, args);
+
+    static void LogAndShowCore(Exception? e,
+        Action<string>? show,
+        string? tag = null, ILogger? logger = null, LogLevel level = LogLevel.Error,
+        string memberName = "",
+        string? msg = null, params object?[] args)
+    {
+        bool has_msg = !string.IsNullOrWhiteSpace(msg);
+        if (!has_msg)
+        {
+            if (!string.IsNullOrWhiteSpace(memberName))
+            {
+                msg = $"{memberName} Error";
+                has_msg = true;
+            }
+        }
+        var has_args = args.Any_Nullable();
+        var has_e = e != null;
+        if (has_e)
+        {
+            var knownType = e!.GetKnownType();
+            if (knownType != ExceptionKnownType.Unknown) level = LogLevel.None;
+        }
+        var has_log_level = level < LogLevel.None;
+        if (has_log_level)
+        {
+            if (logger == null && tag != null)
+            {
+                logger = Log.CreateLogger(tag);
+            }
+            if (logger != null)
+            {
+                if (has_args)
+                {
+                    logger.Log(level, e, msg!, args);
+                }
+                else
+                {
+                    logger.Log(level, e, msg!);
+                }
+            }
+        }
+        show?.Invoke(GetShowMsg());
+        string GetShowMsg()
+        {
+            if (has_e) return GetAllMessageCore(e!, has_msg, has_args, msg, args);
+            if (has_msg)
+            {
+                if (has_args)
+                {
+                    return msg!.Format(args);
+                }
+                else
+                {
+                    return msg!;
+                }
+            }
+            return "";
+        }
+    }
+}

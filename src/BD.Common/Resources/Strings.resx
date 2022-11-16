@@ -117,8 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DayOfWeek_L0" xml:space="preserve">
+    <value>星期日</value>
+  </data>
+  <data name="DayOfWeek_L1" xml:space="preserve">
+    <value>星期一</value>
+  </data>
+  <data name="DayOfWeek_L2" xml:space="preserve">
+    <value>星期二</value>
+  </data>
+  <data name="DayOfWeek_L3" xml:space="preserve">
+    <value>星期三</value>
+  </data>
+  <data name="DayOfWeek_L4" xml:space="preserve">
+    <value>星期四</value>
+  </data>
+  <data name="DayOfWeek_L5" xml:space="preserve">
+    <value>星期五</value>
+  </data>
+  <data name="DayOfWeek_L6" xml:space="preserve">
+    <value>星期六</value>
+  </data>
+  <data name="DayOfWeek_S0" xml:space="preserve">
+    <value>周日</value>
+  </data>
+  <data name="DayOfWeek_S1" xml:space="preserve">
+    <value>周一</value>
+  </data>
+  <data name="DayOfWeek_S2" xml:space="preserve">
+    <value>周二</value>
+  </data>
+  <data name="DayOfWeek_S3" xml:space="preserve">
+    <value>周三</value>
+  </data>
+  <data name="DayOfWeek_S4" xml:space="preserve">
+    <value>周四</value>
+  </data>
+  <data name="DayOfWeek_S5" xml:space="preserve">
+    <value>周五</value>
+  </data>
+  <data name="DayOfWeek_S6" xml:space="preserve">
+    <value>周六</value>
+  </data>
   <data name="NotSupported_FixedSizeCollection" xml:space="preserve">
     <value>Collection was of a fixed size.</value>
     <comment>https://github.com/dotnet/runtime/blob/v7.0.0-rc.1.22426.10/src/libraries/System.Private.CoreLib/src/Resources/Strings.resx#L2849</comment>
+  </data>
+  <data name="OpenCoreByProcess_Win32Exception_" xml:space="preserve">
+    <value>打开 Web 链接失败 0x{0}，请设置系统默认浏览器后再尝试</value>
   </data>
 </root>

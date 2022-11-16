@@ -1,7 +1,7 @@
 // ReSharper disable once CheckNamespace
 namespace System;
 
-public static class ExceptionExtensions
+public static partial class ExceptionExtensions
 {
     public const string see_inner_exception = "see inner exception";
     public const byte each_inner_exception_cycle = 12;

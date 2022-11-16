@@ -61,11 +61,146 @@ namespace System.Resources {
         }
         
         /// <summary>
+        ///   查找类似 星期日 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_L0 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_L0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 星期一 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_L1 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_L1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 星期二 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_L2 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_L2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 星期三 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_L3 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_L3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 星期四 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_L4 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_L4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 星期五 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_L5 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_L5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 星期六 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_L6 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_L6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 周日 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_S0 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_S0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 周一 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_S1 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_S1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 周二 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_S2 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_S2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 周三 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_S3 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_S3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 周四 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_S4 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_S4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 周五 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_S5 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_S5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 周六 的本地化字符串。
+        /// </summary>
+        internal static string DayOfWeek_S6 {
+            get {
+                return ResourceManager.GetString("DayOfWeek_S6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Collection was of a fixed size. 的本地化字符串。
         /// </summary>
         internal static string NotSupported_FixedSizeCollection {
             get {
                 return ResourceManager.GetString("NotSupported_FixedSizeCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 打开 Web 链接失败 0x{0}，请设置系统默认浏览器后再尝试 的本地化字符串。
+        /// </summary>
+        internal static string OpenCoreByProcess_Win32Exception_ {
+            get {
+                return ResourceManager.GetString("OpenCoreByProcess_Win32Exception_", resourceCulture);
             }
         }
     }

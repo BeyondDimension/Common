@@ -13,7 +13,7 @@ public static partial class MatchExtensions
 
     public static IEnumerable<string> GetValues(this MatchCollection match, Func<Match, bool> action)
     {
-        foreach (Match item in match)
+        foreach (Match item in match.Cast<Match>())
         {
             if (action.Invoke(item))
                 yield return item.Value.Trim();

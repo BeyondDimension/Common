@@ -108,3 +108,40 @@ public static partial class Ioc
 
 #endif
 }
+
+[Obsolete("use Ioc", true)]
+public static partial class DI
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Dispose() => Ioc.Dispose();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ValueTask DisposeAsync() => Ioc.DisposeAsync();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void ConfigureServices(Action<IServiceCollection> configureServices) => Ioc.ConfigureServices(configureServices);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void ConfigureServices(IServiceProvider serviceProvider)
+        => Ioc.ConfigureServices(serviceProvider);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T Get<T>() where T : notnull
+        => Ioc.Get<T>();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T? Get_Nullable<T>() where T : notnull
+        => Ioc.Get_Nullable<T>();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static object Get(Type serviceType)
+        => Ioc.Get(serviceType);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static object? Get_Nullable(Type serviceType)
+        => Ioc.Get_Nullable(serviceType);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceScope CreateScope()
+        => Ioc.CreateScope();
+}
