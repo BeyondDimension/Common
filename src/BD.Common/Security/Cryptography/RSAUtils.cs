@@ -45,7 +45,7 @@ public static partial class RSAUtils
 
     static RSAParameters GetRSAParametersFromXmlString(string xmlString)
     {
-        var rsaParams = new RSAParameters();
+        var rsaParams = default(RSAParameters);
         var modulusString = SearchForTextOfLocalName(xmlString, "Modulus");
         if (modulusString == null)
             throw new CryptographicException("Cryptography_InvalidFromXmlString_RSA_Modulus");

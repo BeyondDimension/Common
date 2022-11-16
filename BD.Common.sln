@@ -55,6 +55,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.ModelValidator", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.AspNetCore.Identity.BackManage", "src\BD.Common.AspNetCore.Identity.BackManage\BD.Common.AspNetCore.Identity.BackManage.csproj", "{9CB44BE0-46EF-4D64-A695-418DECDDFD52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Mvvm", "src\BD.Common.Mvvm\BD.Common.Mvvm.csproj", "{7E1264DC-34DB-4807-ABCA-BBF848FD54C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Settings", "src\BD.Common.Settings\BD.Common.Settings.csproj", "{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +133,14 @@ Global
 		{9CB44BE0-46EF-4D64-A695-418DECDDFD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB44BE0-46EF-4D64-A695-418DECDDFD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CB44BE0-46EF-4D64-A695-418DECDDFD52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1264DC-34DB-4807-ABCA-BBF848FD54C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1264DC-34DB-4807-ABCA-BBF848FD54C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1264DC-34DB-4807-ABCA-BBF848FD54C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1264DC-34DB-4807-ABCA-BBF848FD54C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

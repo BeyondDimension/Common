@@ -5,6 +5,7 @@ using MessagePack;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using NJsonConverter = Newtonsoft.Json.JsonConverter;
 #endif
 #if !__NOT_HAVE_S_JSON__
 using SJsonIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition;
@@ -373,7 +374,7 @@ namespace System
         static JsonSerializerSettings GetIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings() => new()
         {
             ContractResolver = new IgnoreJsonPropertyContractResolver(),
-            Converters = new List<JsonConverter>
+            Converters = new List<NJsonConverter>
             {
                 new StringEnumConverter(),
             },
