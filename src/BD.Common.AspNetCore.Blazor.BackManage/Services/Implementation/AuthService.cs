@@ -126,7 +126,8 @@ public sealed class AuthService : HttpClientWrapper, IAuthService
         NavigateToLogin(false, false);
     }
 
-    public ValueTask<JWTEntity?> GetTokenAsync(CancellationToken cancellationToken) => storage.GetItemAsync<JWTEntity?>(key_token, cancellationToken);
+    public async ValueTask<JWTEntity?> GetTokenAsync(CancellationToken cancellationToken)
+        => await storage.GetItemAsync<JWTEntity?>(key_token, cancellationToken);
 
     public async ValueTask<NullableBoolean> IsAuthenticatedAsync(JWTEntity? token, CancellationToken cancellationToken)
     {
