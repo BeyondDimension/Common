@@ -22,7 +22,7 @@ public abstract class ApiControllerBase<T> : ControllerBase where T : ApiControl
     }
 
     [NonAction]
-    public ActionResult Fail(params string[] errorMessages)
+    public virtual ActionResult Fail(params string[] errorMessages)
     {
         var rsp = new ApiResponse
         {
@@ -33,7 +33,7 @@ public abstract class ApiControllerBase<T> : ControllerBase where T : ApiControl
     }
 
     [NonAction]
-    public ActionResult Fail(IdentityResult identityResult)
+    public virtual ActionResult Fail(IdentityResult identityResult)
     {
         if (identityResult.Succeeded) throw new ArgumentOutOfRangeException(nameof(identityResult));
         var errorMessages = GetErrors(identityResult).ToArray();
@@ -42,9 +42,9 @@ public abstract class ApiControllerBase<T> : ControllerBase where T : ApiControl
     }
 
     [NonAction]
-    public ActionResult Ok<TData>(TData data)
+    public virtual ActionResult Ok<TData>(TData data)
     {
-        if (data is IApiResponse rsp)
+        if (data is IApiResponse rsp) // 确保兼容，不可更改此次
             return base.Ok(rsp);
         rsp = new ApiResponse<TData>
         {
@@ -55,7 +55,7 @@ public abstract class ApiControllerBase<T> : ControllerBase where T : ApiControl
     }
 
     [NonAction]
-    public new ActionResult Ok() => base.Ok(ApiResponse.Ok);
+    public virtual new ActionResult Ok() => base.Ok(ApiResponse.Ok);
 
     static IEnumerable<string> GetErrors(IdentityResult identityResult)
     {

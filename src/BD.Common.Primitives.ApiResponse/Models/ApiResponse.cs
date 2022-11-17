@@ -9,6 +9,16 @@ public partial class ApiResponse : IApiResponse
     public bool IsSuccess { get; set; }
 
     public string[] Messages { get; set; } = Array.Empty<string>();
+
+    public static implicit operator ApiResponse(string message) => new()
+    {
+        Messages = new[] { message },
+    };
+
+    public static implicit operator ApiResponse(string[] messages) => new()
+    {
+        Messages = messages,
+    };
 }
 
 /// <summary>
@@ -18,6 +28,22 @@ public partial class ApiResponse : IApiResponse
 public class ApiResponse<T> : ApiResponse, IApiResponse<T>
 {
     public T? Data { get; set; }
+
+    public static implicit operator ApiResponse<T>(string message) => new()
+    {
+        Messages = new[] { message },
+    };
+
+    public static implicit operator ApiResponse<T>(string[] messages) => new()
+    {
+        Messages = messages,
+    };
+
+    public static implicit operator ApiResponse<T>(T? data) => new()
+    {
+        IsSuccess = true,
+        Data = data,
+    };
 }
 
 public interface IApiResponse
