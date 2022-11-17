@@ -12,6 +12,7 @@ public static class SystemWebExtensions
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? UserAgent(this HttpRequest request)
     {
         return request.Headers.TryGetValue("User-Agent", out var value) ? value.ToString() : null;
@@ -107,7 +108,7 @@ public static class SystemWebExtensions
             .ToString();
     }
 
-    public static string Action(this IUrlHelper helper, string action, QueryString values)
+    public static string? Action(this IUrlHelper helper, string action, QueryString values)
     {
         var url = helper.Action(action);
         if (values.HasValue)

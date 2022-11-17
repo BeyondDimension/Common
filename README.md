@@ -13,9 +13,15 @@
 - Web UI
 	- BD.Common.AspNetCore.Blazor.BackManage 用于 ASP.NET Core 后台管理系统 Blazor UI 的通用类库
 - BD.Common 对 .NET BCL 的扩展或增强通用类库
+- BD.Common.Area 地区区域省市区数据类库
+- BD.Common.BirthDate 出生日期生日类库
 - BD.Common.EFCore 对 EF Core 的扩展或增强通用类库
+- BD.Common.ModelValidator 模型验证类库
+- BD.Common.Mvvm 客户端 MVVM 类库
 - BD.Common.PhoneNumber 用于中国大陆的手机号相关的通用类库
 - BD.Common.Primitives 通用模型，枚举，列接口的通用类库
+- BD.Common.Primitives.ApiResponse 通用 API 响应模型类库
 - BD.Common.Repositories 通用仓储层基类库
 - BD.Common.Repositories.EFCore 使用 EF Core 实现的仓储层类库
 - BD.Common.Repositories.SQLitePCL 使用 SQLitePCL 实现的仓储层类库
+- BD.Common.Settings 文件键值对设置存储类库

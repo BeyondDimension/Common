@@ -17,6 +17,15 @@
 		<!--<Compile Include="..\ImplicitUsings.Controllers.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>-->
+		<Compile Include="..\ImplicitUsings.Data.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Entities.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.EntityFrameworkCore.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.MSEX.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -39,7 +48,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\BD.Common.EFCore\BD.Common.EFCore.csproj" />
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
+		<ProjectReference Include="..\BD.Common.Repositories.EFCore\BD.Common.Repositories.EFCore.csproj" />
+		<ProjectReference Include="..\BD.Common.Repositories\BD.Common.Repositories.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
