@@ -64,6 +64,9 @@
 		<!-- ORM -->
 		<PackageVersion Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.2" />
+
+		<!-- DBreeze(key value store embedded) -->
+		<PackageVersion Include="DBreeze" Version="1.107.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0')) ">
 		<!-- Microsoft.Extensions.* 6.0 -->
