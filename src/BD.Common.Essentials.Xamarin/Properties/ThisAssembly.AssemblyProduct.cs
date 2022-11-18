@@ -1,4 +1,10 @@
 #if MAUI
+global using Microsoft.Maui.ApplicationModel;
+global using Microsoft.Maui.ApplicationModel.DataTransfer;
+global using Microsoft.Maui.ApplicationModel.Communication;
+global using Microsoft.Maui.Devices;
+global using Microsoft.Maui.Storage;
+global using Microsoft.Maui.Networking;
 global using E_FilePickerFileType = Microsoft.Maui.Storage.FilePickerFileType;
 global using XEBrowserLaunchFlags = Microsoft.Maui.ApplicationModel.BrowserLaunchFlags;
 global using XEBrowserLaunchMode = Microsoft.Maui.ApplicationModel.BrowserLaunchMode;

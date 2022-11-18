@@ -3,4 +3,8 @@
 		<!--<TargetFrameworks>net6.0;net7.0</TargetFrameworks>-->
 		<TargetFrameworks>net7.0</TargetFrameworks>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
+	</ItemGroup>
 </Project>

@@ -24,10 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ReactiveUI.Maui" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Include="..\BD.Common.Essentials.Xamarin\Properties\ThisAssembly.AssemblyProduct.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

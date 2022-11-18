@@ -1,6 +1,11 @@
 using BD.Common;
 using BD.Common.Services.Implementation.Essentials;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+#if ANDROID
+using DeviceInfoPlatformServiceImpl_ = BD.Common.Services.Implementation.Essentials.AndroidDeviceInfoPlatformServiceImpl;
+#else
+using DeviceInfoPlatformServiceImpl_ = BD.Common.Services.Implementation.Essentials.DefaultDeviceInfoPlatformServiceImpl;
+#endif
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
@@ -18,7 +23,7 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<IBrowserPlatformService, BrowserPlatformServiceImpl>();
         services.TryAddSingleton<IClipboardPlatformService, ClipboardPlatformServiceImpl>();
         services.TryAddSingleton<IConnectivityPlatformService, ConnectivityPlatformServiceImpl>();
-        services.TryAddSingleton<IDeviceInfoPlatformService, DeviceInfoPlatformServiceImpl>();
+        services.TryAddSingleton<IDeviceInfoPlatformService, DeviceInfoPlatformServiceImpl_>();
         services.TryAddSingleton<IEmailPlatformService, EmailPlatformServiceImpl>();
         services.TryAddSingleton<IFilePickerPlatformService, FilePickerPlatformServiceImpl>();
         services.TryAddSingleton<IMainThreadPlatformService, MainThreadPlatformServiceImpl>();
