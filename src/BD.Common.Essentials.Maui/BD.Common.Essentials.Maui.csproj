@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>__NOT_IMPORT_COLUMNS__;MAUI;$(DefineConstants)</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\BD.Common\Properties\ThisAssembly.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.Color.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Primitives.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Services.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ReactiveUI.Maui" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\BD.Common.Essentials.Xamarin\Properties\ThisAssembly.AssemblyProduct.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common.Essentials.Xamarin\*.cs" />
+		<Compile Include="..\BD.Common.Essentials.Xamarin\Extensions\*.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common.Essentials.Xamarin\Services\**\*.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common.Essentials.Primitives\BD.Common.Essentials.Primitives.csproj" />
+		<ProjectReference Include="..\BD.Common.Essentials\BD.Common.Essentials.csproj" />
+		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NET7_MAUI.props" />
+	<Import Project="..\GeneratePackage.props" />
+
+</Project>

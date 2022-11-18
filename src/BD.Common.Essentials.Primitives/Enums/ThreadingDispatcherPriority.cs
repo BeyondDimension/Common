@@ -9,7 +9,7 @@ namespace BD.Common.Enums;
 /// <summary>
 ///     An enunmeration describing the priorities at which
 ///     operations can be invoked via the Dispatcher.
-///     <see cref="https://github.com/dotnet/wpf/blob/master/src/Microsoft.DotNet.Wpf/src/WindowsBase/System/Windows/Threading/DispatcherPriority.cs"/>
+///     https://github.com/dotnet/wpf/blob/master/src/Microsoft.DotNet.Wpf/src/WindowsBase/System/Windows/Threading/DispatcherPriority.cs
 /// </summary>
 ///
 public enum ThreadingDispatcherPriority : sbyte

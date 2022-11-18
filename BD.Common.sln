@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{F221D7EA
 		src\GeneratePackage.props = src\GeneratePackage.props
 		README.md = README.md
 		src\TFM_NET7.props = src\TFM_NET7.props
+		src\TFM_NET7_MAUI.props = src\TFM_NET7_MAUI.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.UnitTest", "src\BD.Common.UnitTest\BD.Common.UnitTest.csproj", "{F0D8EF68-0FBB-4818-A26F-D01BF382C948}"
@@ -55,9 +56,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.ModelValidator", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.AspNetCore.Identity.BackManage", "src\BD.Common.AspNetCore.Identity.BackManage\BD.Common.AspNetCore.Identity.BackManage.csproj", "{9CB44BE0-46EF-4D64-A695-418DECDDFD52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Mvvm", "src\BD.Common.Mvvm\BD.Common.Mvvm.csproj", "{7E1264DC-34DB-4807-ABCA-BBF848FD54C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Mvvm", "src\BD.Common.Mvvm\BD.Common.Mvvm.csproj", "{7E1264DC-34DB-4807-ABCA-BBF848FD54C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Settings", "src\BD.Common.Settings\BD.Common.Settings.csproj", "{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Settings", "src\BD.Common.Settings\BD.Common.Settings.csproj", "{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials", "src\BD.Common.Essentials\BD.Common.Essentials.csproj", "{F674E2CC-5E1A-4273-B54D-337044EF237D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Primitives", "src\BD.Common.Essentials.Primitives\BD.Common.Essentials.Primitives.csproj", "{4068DF3F-4895-485F-AD20-1DDE23C19844}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Xamarin", "src\BD.Common.Essentials.Xamarin\BD.Common.Essentials.Xamarin.csproj", "{8A2813C0-0CE0-4634-9E6B-D57F69A88B48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Maui", "src\BD.Common.Essentials.Maui\BD.Common.Essentials.Maui.csproj", "{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +150,22 @@ Global
 		{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F674E2CC-5E1A-4273-B54D-337044EF237D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F674E2CC-5E1A-4273-B54D-337044EF237D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F674E2CC-5E1A-4273-B54D-337044EF237D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F674E2CC-5E1A-4273-B54D-337044EF237D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4068DF3F-4895-485F-AD20-1DDE23C19844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4068DF3F-4895-485F-AD20-1DDE23C19844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4068DF3F-4895-485F-AD20-1DDE23C19844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4068DF3F-4895-485F-AD20-1DDE23C19844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A2813C0-0CE0-4634-9E6B-D57F69A88B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2813C0-0CE0-4634-9E6B-D57F69A88B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2813C0-0CE0-4634-9E6B-D57F69A88B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2813C0-0CE0-4634-9E6B-D57F69A88B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
