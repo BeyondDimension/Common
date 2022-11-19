@@ -67,7 +67,7 @@ public static class Random2
     }
 
     /// <summary>
-    /// 生成随机字符串
+    /// 生成随机字符串，长度为固定传入字符串
     /// </summary>
     /// <param name="length">要生成的字符串长度</param>
     /// <param name="randomChars">随机字符串字符集</param>
@@ -92,13 +92,14 @@ public static class Random2
     }
 
     /// <summary>
-    /// 生成随机数字
+    /// 生成随机数字，长度为固定传入参数
     /// </summary>
     /// <param name="length">要生成的字符串长度</param>
     /// <param name="endIsZero">生成的数字最后一位是否能够为0，默认不能为0(<see langword="false"/>)</param>
     /// <returns></returns>
     public static int GenerateRandomNum(int length = 6, bool endIsZero = false)
     {
+        if (length > 11) length = 11;
         var random = Shared();
         var result = 0;
         var lastNum = 0;
