@@ -16,6 +16,10 @@
 - BD.Common.Area 地区区域省市区数据类库
 - BD.Common.BirthDate 出生日期生日类库
 - BD.Common.EFCore 对 EF Core 的扩展或增强通用类库
+- BD.Common.Essentials Essentials 抽象层类库
+- BD.Common.Essentials.Maui 使用 Maui.Essentials 的实现库
+- BD.Common.Essentials.Primitives Essentials 模型类库
+- BD.Common.Essentials.Xamarin 使用 Xamarin.Essentials 的实现库
 - BD.Common.ModelValidator 模型验证类库
 - BD.Common.Mvvm 客户端 MVVM 类库
 - BD.Common.PhoneNumber 用于中国大陆的手机号相关的通用类库

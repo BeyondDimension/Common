@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>__NOT_IMPORT_COLUMNS__;__NOT_IMPORT_MODELS__;$(DefineConstants)</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\BD.Common\Properties\ThisAssembly.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.Primitives.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Services.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common.Pinyin\BD.Common.Pinyin.csproj" />
+		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="ChnCharInfo">
+			<HintPath>..\..\ref\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<Import Project="..\TFM_NET7.props" />
+	<Import Project="..\GeneratePackage.props" />
+
+</Project>

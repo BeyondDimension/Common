@@ -23,7 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{F221D7EA
 		src\GeneratePackage.props = src\GeneratePackage.props
 		README.md = README.md
 		src\TFM_NET7.props = src\TFM_NET7.props
+		src\TFM_NET7_ANDROID.props = src\TFM_NET7_ANDROID.props
+		src\TFM_NET7_IOS.props = src\TFM_NET7_IOS.props
 		src\TFM_NET7_MAUI.props = src\TFM_NET7_MAUI.props
+		src\TFM_NET7_WITH_ANDROID.props = src\TFM_NET7_WITH_ANDROID.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.UnitTest", "src\BD.Common.UnitTest\BD.Common.UnitTest.csproj", "{F0D8EF68-0FBB-4818-A26F-D01BF382C948}"
@@ -60,13 +63,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Mvvm", "src\BD.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Settings", "src\BD.Common.Settings\BD.Common.Settings.csproj", "{18BB1E3B-1BC0-4F05-BB2B-CA8FD14EB86E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials", "src\BD.Common.Essentials\BD.Common.Essentials.csproj", "{F674E2CC-5E1A-4273-B54D-337044EF237D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials", "src\BD.Common.Essentials\BD.Common.Essentials.csproj", "{F674E2CC-5E1A-4273-B54D-337044EF237D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Primitives", "src\BD.Common.Essentials.Primitives\BD.Common.Essentials.Primitives.csproj", "{4068DF3F-4895-485F-AD20-1DDE23C19844}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials.Primitives", "src\BD.Common.Essentials.Primitives\BD.Common.Essentials.Primitives.csproj", "{4068DF3F-4895-485F-AD20-1DDE23C19844}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Xamarin", "src\BD.Common.Essentials.Xamarin\BD.Common.Essentials.Xamarin.csproj", "{8A2813C0-0CE0-4634-9E6B-D57F69A88B48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials.Xamarin", "src\BD.Common.Essentials.Xamarin\BD.Common.Essentials.Xamarin.csproj", "{8A2813C0-0CE0-4634-9E6B-D57F69A88B48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Maui", "src\BD.Common.Essentials.Maui\BD.Common.Essentials.Maui.csproj", "{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials.Maui", "src\BD.Common.Essentials.Maui\BD.Common.Essentials.Maui.csproj", "{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin", "src\BD.Common.Pinyin\BD.Common.Pinyin.csproj", "{703BAC62-E0DC-4394-B371-B100D5A0A129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin.ChnCharInfo", "src\BD.Common.Pinyin.ChnCharInfo\BD.Common.Pinyin.ChnCharInfo.csproj", "{7E6D126E-5B2A-4E3C-AB56-26DF26249AD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin.CFStringTransform", "src\BD.Common.Pinyin.CFStringTransform\BD.Common.Pinyin.CFStringTransform.csproj", "{BF9BD853-209F-4795-B204-D6699CB6A7BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin.TinyPinyin", "src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj", "{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -166,6 +177,22 @@ Global
 		{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703BAC62-E0DC-4394-B371-B100D5A0A129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703BAC62-E0DC-4394-B371-B100D5A0A129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703BAC62-E0DC-4394-B371-B100D5A0A129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703BAC62-E0DC-4394-B371-B100D5A0A129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E6D126E-5B2A-4E3C-AB56-26DF26249AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E6D126E-5B2A-4E3C-AB56-26DF26249AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E6D126E-5B2A-4E3C-AB56-26DF26249AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E6D126E-5B2A-4E3C-AB56-26DF26249AD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF9BD853-209F-4795-B204-D6699CB6A7BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF9BD853-209F-4795-B204-D6699CB6A7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF9BD853-209F-4795-B204-D6699CB6A7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF9BD853-209F-4795-B204-D6699CB6A7BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
