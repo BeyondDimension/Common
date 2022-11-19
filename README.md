@@ -23,6 +23,10 @@
 - BD.Common.ModelValidator 模型验证类库
 - BD.Common.Mvvm 客户端 MVVM 类库
 - BD.Common.PhoneNumber 用于中国大陆的手机号相关的通用类库
+- BD.Common.Pinyin 汉语拼音类库
+- BD.Common.Pinyin.CFStringTransform 使用 CFStringTransform 实现的汉语拼音类库
+- BD.Common.Pinyin.ChnCharInfo 使用 ChnCharInfo 实现的汉语拼音类库
+- BD.Common.Pinyin.TinyPinyin 使用 TinyPinyin 实现的汉语拼音类库
 - BD.Common.Primitives 通用模型，枚举，列接口的通用类库
 - BD.Common.Primitives.ApiResponse 通用 API 响应模型类库
 - BD.Common.Repositories 通用仓储层基类库
