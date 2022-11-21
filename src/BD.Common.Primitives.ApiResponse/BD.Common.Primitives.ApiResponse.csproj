@@ -5,13 +5,10 @@
 		<DefineConstants>__API_RSP__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Include="..\BD.Common\Properties\ThisAssembly.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
-
 	<Import Project="..\TFM_NET7.props" />
 	<Import Project="..\GeneratePackage.props" />
+	<ItemGroup>
+	  <ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -53,7 +53,20 @@ global using PermissionStatus = BD.Common.Enums.PermissionStatus;
 global using PickOptions = BD.Common.Models.PickOptions;
 global using Platform = System.Runtime.Devices.Platform;
 
-namespace System.Properties;
+#if MAUI
+using _ThisAssembly_ = BD.Common.Essentials_.Maui.ThisAssembly;
+#else
+using _ThisAssembly_ = BD.Common.Essentials_.Xamarin.ThisAssembly;
+#endif
+
+[assembly: AssemblyProduct(_ThisAssembly_.AssemblyProduct)]
+
+// ReSharper disable once CheckNamespace
+#if MAUI
+namespace BD.Common.Essentials_.Maui;
+#else
+namespace BD.Common.Essentials_.Xamarin;
+#endif
 
 static partial class ThisAssembly
 {

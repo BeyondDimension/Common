@@ -19,6 +19,7 @@
 - BD.Common.Essentials Essentials 抽象层类库
 - BD.Common.Essentials.Maui 使用 Maui.Essentials 的实现库
 - BD.Common.Essentials.Primitives Essentials 模型类库
+- BD.Common.Essentials.Utils Essentials 静态工具类库
 - BD.Common.Essentials.Xamarin 使用 Xamarin.Essentials 的实现库
 - BD.Common.ModelValidator 模型验证类库
 - BD.Common.Mvvm 客户端 MVVM 类库
@@ -33,3 +34,4 @@
 - BD.Common.Repositories.EFCore 使用 EF Core 实现的仓储层类库
 - BD.Common.Repositories.SQLitePCL 使用 SQLitePCL 实现的仓储层类库
 - BD.Common.Settings 文件键值对设置存储类库
+- BD.Common.Toast Toast UI 提示抽象层类库

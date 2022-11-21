@@ -6,9 +6,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\BD.Common\Properties\ThisAssembly.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>

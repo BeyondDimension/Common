@@ -12,7 +12,7 @@ public static partial class Compat
 #if NETCOREAPP2_1_OR_GREATER && !BLAZOR && !TARGET_BROWSER
     public static void Compatibility(this SocketsHttpHandler handler)
     {
-        if (IsWindows7())
+        if (OperatingSystem2.IsWindows7())
         {
             handler.SslOptions.EnabledSslProtocols = EnabledSslProtocols;
         }
@@ -21,7 +21,7 @@ public static partial class Compat
 
     public static void Compatibility(this HttpClientHandler handler)
     {
-        if (IsWindows7())
+        if (OperatingSystem2.IsWindows7())
         {
             handler.SslProtocols = EnabledSslProtocols;
         }

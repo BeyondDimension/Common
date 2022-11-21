@@ -6,12 +6,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\BD.Common\Properties\ThisAssembly.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\BD.Common\Properties\ThisAssembly.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.Blazor.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -90,11 +90,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.Common.Primitives.ApiResponse\BD.Common.Primitives.ApiResponse.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="LocalStorage\" />
+		<Compile Include="..\BD.Common.Primitives.ApiResponse\Extensions\**\*.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common.Primitives.ApiResponse\Models\**\*.cs">
+			<LinkBase>Models</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />

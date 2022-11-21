@@ -71,13 +71,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials.Xamari
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials.Maui", "src\BD.Common.Essentials.Maui\BD.Common.Essentials.Maui.csproj", "{84FAD65E-3F2E-4FD0-ACB8-6F20951BC288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin", "src\BD.Common.Pinyin\BD.Common.Pinyin.csproj", "{703BAC62-E0DC-4394-B371-B100D5A0A129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Pinyin", "src\BD.Common.Pinyin\BD.Common.Pinyin.csproj", "{703BAC62-E0DC-4394-B371-B100D5A0A129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin.ChnCharInfo", "src\BD.Common.Pinyin.ChnCharInfo\BD.Common.Pinyin.ChnCharInfo.csproj", "{7E6D126E-5B2A-4E3C-AB56-26DF26249AD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Pinyin.ChnCharInfo", "src\BD.Common.Pinyin.ChnCharInfo\BD.Common.Pinyin.ChnCharInfo.csproj", "{7E6D126E-5B2A-4E3C-AB56-26DF26249AD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin.CFStringTransform", "src\BD.Common.Pinyin.CFStringTransform\BD.Common.Pinyin.CFStringTransform.csproj", "{BF9BD853-209F-4795-B204-D6699CB6A7BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Pinyin.CFStringTransform", "src\BD.Common.Pinyin.CFStringTransform\BD.Common.Pinyin.CFStringTransform.csproj", "{BF9BD853-209F-4795-B204-D6699CB6A7BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin.TinyPinyin", "src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj", "{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Pinyin.TinyPinyin", "src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj", "{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Toast", "src\BD.Common.Toast\BD.Common.Toast.csproj", "{A8C72564-40C7-49A7-BDE5-62207464802A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Utils", "src\BD.Common.Essentials.Utils\BD.Common.Essentials.Utils.csproj", "{3572010B-D83F-4100-A2B0-333D575A426F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Mvvm.ReactiveUI", "src\BD.Common.Mvvm.ReactiveUI\BD.Common.Mvvm.ReactiveUI.csproj", "{7219CAA0-3096-4C71-8063-CE3CAB51186F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -193,6 +199,18 @@ Global
 		{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C68C91A-9C06-4593-9DAA-A751FE1E7EB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C72564-40C7-49A7-BDE5-62207464802A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C72564-40C7-49A7-BDE5-62207464802A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C72564-40C7-49A7-BDE5-62207464802A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C72564-40C7-49A7-BDE5-62207464802A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3572010B-D83F-4100-A2B0-333D575A426F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3572010B-D83F-4100-A2B0-333D575A426F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3572010B-D83F-4100-A2B0-333D575A426F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3572010B-D83F-4100-A2B0-333D575A426F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7219CAA0-3096-4C71-8063-CE3CAB51186F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7219CAA0-3096-4C71-8063-CE3CAB51186F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7219CAA0-3096-4C71-8063-CE3CAB51186F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7219CAA0-3096-4C71-8063-CE3CAB51186F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

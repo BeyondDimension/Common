@@ -84,6 +84,10 @@
 		<!-- Pinyin -->
 		<PackageVersion Include="TinyPinyin.Net" Version="1.0.2" />
 		<PackageVersion Include="XAB.TinyPinyin" Version="2.0.4.4" />
+
+		<!-- .NET Compat -->
+		<PackageVersion Include="OperatingSystem2" Version="2.0.0" />
+		<PackageVersion Include="JustArchiNET.Madness" Version="3.7.0" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0')) ">
 		<!-- Microsoft.Extensions.* 6.0 -->

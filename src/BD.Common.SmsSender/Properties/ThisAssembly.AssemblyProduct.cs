@@ -1,4 +1,9 @@
-namespace System.Properties;
+using _ThisAssembly_ = BD.Common.SmsSender.ThisAssembly;
+
+[assembly: AssemblyProduct(_ThisAssembly_.AssemblyProduct)]
+
+// ReSharper disable once CheckNamespace
+namespace BD.Common.SmsSender;
 
 static partial class ThisAssembly
 {

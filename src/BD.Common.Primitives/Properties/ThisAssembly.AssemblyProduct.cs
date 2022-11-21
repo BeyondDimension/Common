@@ -1,4 +1,9 @@
-namespace System.Properties;
+using _ThisAssembly_ = BD.Common.Primitives.ThisAssembly;
+
+[assembly: AssemblyProduct(_ThisAssembly_.AssemblyProduct)]
+
+// ReSharper disable once CheckNamespace
+namespace BD.Common.Primitives;
 
 static partial class ThisAssembly
 {

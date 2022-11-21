@@ -1,4 +1,4 @@
-namespace BD.Common.ViewModels.Abstractions;
+namespace BD.Common.UI.ViewModels.Abstractions;
 
 public interface IReadOnlyItemViewType
 {

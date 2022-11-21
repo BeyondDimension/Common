@@ -1,6 +1,7 @@
-namespace System.Properties;
+// ReSharper disable once CheckNamespace
+namespace BD.Common;
 
-static partial class ThisAssembly
+public static partial class ThisAssembly
 {
     public const string AssemblyTitle = "BeyondDimension.Common";
 
@@ -14,5 +15,5 @@ static partial class ThisAssembly
     /// </summary>
     public const string AssemblyCompany = "长沙次元超越科技有限公司";
 
-    public const string AssemblyVersion = "1.22.11119.11632";
+    public const string AssemblyVersion = "1.22.11121.12023";
 }

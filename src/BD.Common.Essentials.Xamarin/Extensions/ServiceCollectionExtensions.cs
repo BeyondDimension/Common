@@ -15,11 +15,13 @@ public static class ServiceCollectionExtensions
     /// <summary>
     /// 添加 Essentials
     /// </summary>
+    /// <typeparam name="TApplicationVersionServiceImpl"></typeparam>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection TryAddEssentials(this IServiceCollection services)
+    public static IServiceCollection TryAddEssentials<TApplicationVersionServiceImpl>(this IServiceCollection services) where TApplicationVersionServiceImpl : class, IApplicationVersionService
     {
         Essentials.IsSupported = true;
+        services.TryAddSingleton<IApplicationVersionService, TApplicationVersionServiceImpl>();
         services.TryAddSingleton<IBrowserPlatformService, BrowserPlatformServiceImpl>();
         services.TryAddSingleton<IClipboardPlatformService, ClipboardPlatformServiceImpl>();
         services.TryAddSingleton<IConnectivityPlatformService, ConnectivityPlatformServiceImpl>();

@@ -29,7 +29,7 @@ partial class IOPath
         {
             var value = AppContext.BaseDirectory;
             // 启用将发布 Host 入口点重定向到 Bin 目录中时重定向基目录
-            if (Compat.IsWindows() && !DesktopBridge.IsRunningAsUwp)
+            if (OperatingSystem.IsWindows() && !DesktopBridge.IsRunningAsUwp)
             {
                 var value2 = new DirectoryInfo(value);
                 if (value2.Parent != null && string.Equals(value2.Name, "Bin", StringComparison.OrdinalIgnoreCase))

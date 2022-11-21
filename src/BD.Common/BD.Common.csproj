@@ -24,6 +24,7 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
 		<PackageReference Include="Microsoft.Extensions.Logging" />
 		<PackageReference Include="Microsoft.Extensions.Http" />
+		<PackageReference Include="OperatingSystem2" />
 	</ItemGroup>
 
 	<ItemGroup>

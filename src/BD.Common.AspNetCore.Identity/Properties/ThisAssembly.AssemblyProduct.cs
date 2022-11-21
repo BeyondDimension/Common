@@ -1,6 +1,9 @@
-global using System.ComponentModel.DataAnnotations.Schema;
+using _ThisAssembly_ = BD.Common.AspNetCore.Identity.ThisAssembly;
 
-namespace System.Properties;
+[assembly: AssemblyProduct(_ThisAssembly_.AssemblyProduct)]
+
+// ReSharper disable once CheckNamespace
+namespace BD.Common.AspNetCore.Identity;
 
 static partial class ThisAssembly
 {

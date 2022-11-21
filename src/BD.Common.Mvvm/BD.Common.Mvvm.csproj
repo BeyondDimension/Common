@@ -5,21 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\BD.Common\Properties\ThisAssembly.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<!--<Compile Include="..\ImplicitUsings.Columns.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>-->
-		<!--<Compile Include="..\ImplicitUsings.Resources.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>-->
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
