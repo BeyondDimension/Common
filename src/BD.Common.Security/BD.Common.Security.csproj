@@ -14,10 +14,6 @@
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Enums\" />
-	</ItemGroup>
-
 	<Import Project="..\TFM_NET7.props" />
 	<Import Project="..\GeneratePackage.props" />
 
