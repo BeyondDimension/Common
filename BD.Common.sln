@@ -107,6 +107,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{D4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client Lib", "Client Lib", "{2396192B-A608-4B23-B05C-ED66885398A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Navigation", "src\BD.Common.Navigation\BD.Common.Navigation.csproj", "{41FCFFCC-CC2D-42E9-8289-D1FCE1864553}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -249,6 +251,10 @@ Global
 		{6637D2AF-1A00-41DC-B90D-E36DADBB78F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6637D2AF-1A00-41DC-B90D-E36DADBB78F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6637D2AF-1A00-41DC-B90D-E36DADBB78F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FCFFCC-CC2D-42E9-8289-D1FCE1864553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FCFFCC-CC2D-42E9-8289-D1FCE1864553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FCFFCC-CC2D-42E9-8289-D1FCE1864553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FCFFCC-CC2D-42E9-8289-D1FCE1864553}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -282,6 +288,7 @@ Global
 		{277CE14C-8CFD-452B-9F8F-C049D81DAC02} = {1B734FEC-BE69-4F1B-9A44-A17E6F8ED88D}
 		{7BF4E91A-5A47-401E-9E1C-B94429E9DFAE} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
 		{6637D2AF-1A00-41DC-B90D-E36DADBB78F8} = {2396192B-A608-4B23-B05C-ED66885398A9}
+		{41FCFFCC-CC2D-42E9-8289-D1FCE1864553} = {2396192B-A608-4B23-B05C-ED66885398A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}
