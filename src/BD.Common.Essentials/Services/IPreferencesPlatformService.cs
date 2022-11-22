@@ -1,6 +1,6 @@
 namespace BD.Common.Services;
 
-interface IPreferencesPlatformService
+public interface IPreferencesPlatformService
 {
     static IPreferencesPlatformService Instance => Ioc.Get<IPreferencesPlatformService>();
 
@@ -39,7 +39,7 @@ interface IPreferencesPlatformService
     void PlatformSet(string key, float value, string? sharedName);
 }
 
-interface IPreferencesGenericPlatformService : IPreferencesPlatformService
+public interface IPreferencesGenericPlatformService : IPreferencesPlatformService
 {
     T? PlatformGet<T>(string key, T? defaultValue, string? sharedName) where T : notnull, IConvertible;
 

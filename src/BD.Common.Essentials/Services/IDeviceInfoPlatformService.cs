@@ -2,7 +2,7 @@ using EPlatform = System.Runtime.Devices.Platform;
 
 namespace BD.Common.Services;
 
-interface IDeviceInfoPlatformService
+public interface IDeviceInfoPlatformService
 {
     static IDeviceInfoPlatformService? Interface => Ioc.Get_Nullable<IDeviceInfoPlatformService>();
 

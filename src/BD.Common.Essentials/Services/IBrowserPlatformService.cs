@@ -1,6 +1,6 @@
 namespace BD.Common.Services;
 
-interface IBrowserPlatformService
+public interface IBrowserPlatformService
 {
     static IBrowserPlatformService Instance => Ioc.Get<IBrowserPlatformService>();
 

@@ -1,6 +1,6 @@
 namespace BD.Common.Services;
 
-interface IClipboardPlatformService
+public interface IClipboardPlatformService
 {
     static IClipboardPlatformService Instance => Ioc.Get<IClipboardPlatformService>();
 

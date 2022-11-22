@@ -1,6 +1,6 @@
 namespace BD.Common.Services;
 
-interface IConnectivityPlatformService
+public interface IConnectivityPlatformService
 {
     static IConnectivityPlatformService? Interface => Ioc.Get_Nullable<IConnectivityPlatformService>();
 

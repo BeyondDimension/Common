@@ -1,5 +1,3 @@
-#if DBREEZE
-
 namespace BD.Common.Settings;
 
 public static class SettingsHost
@@ -24,4 +22,3 @@ public abstract class SettingsHost2<TSettings> where TSettings : SettingsHost2<T
     [Obsolete("autoSave N/A")]
     public static SerializableProperty<T> GetProperty<T>(T? defaultValue, bool autoSave, [CallerMemberName] string propertyName = "") => new(GetKey(propertyName), SettingsProviderV3.Provider, defaultValue);
 }
-#endif

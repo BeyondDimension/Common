@@ -1,6 +1,6 @@
 namespace BD.Common.Services;
 
-interface IPermissionsPlatformService
+public interface IPermissionsPlatformService
 {
     static IPermissionsPlatformService Instance => Ioc.Get<IPermissionsPlatformService>();
 

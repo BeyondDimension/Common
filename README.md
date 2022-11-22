@@ -2,6 +2,21 @@
 次元超越通用类库
 
 ## 🏗️ 项目结构
+- Essentials
+	- Implementation Essentials 的实现库
+		- Preferences
+			- BD.Common.Essentials.Preferences.SQLite SQLite 实现库
+			- BD.Common.Essentials.Preferences.DBreeze DBreeze 实现库
+		- BD.Common.Essentials.Maui 使用 Maui.Essentials 的实现库
+		- BD.Common.Essentials.Xamarin 使用 Xamarin.Essentials 的实现库
+	- BD.Common.Essentials Essentials 抽象层类库
+	- BD.Common.Essentials.Primitives 基本模型类库
+	- BD.Common.Essentials.Utils 静态工具类库
+- Pinyin 汉语拼音库
+	- BD.Common.Pinyin 汉语拼音类库
+	- BD.Common.Pinyin.CFStringTransform 使用 CFStringTransform 实现的汉语拼音类库
+	- BD.Common.Pinyin.ChnCharInfo 使用 ChnCharInfo 实现的汉语拼音类库
+	- BD.Common.Pinyin.TinyPinyin 使用 TinyPinyin 实现的汉语拼音类库
 - Server Lib 仅用于服务端的通用类库
 	- BD.Common.SmsSender 短信服务库，支持阿里云，网易云信，世纪互联蓝云
 - Test
@@ -16,18 +31,9 @@
 - BD.Common.Area 地区区域省市区数据类库
 - BD.Common.BirthDate 出生日期生日类库
 - BD.Common.EFCore 对 EF Core 的扩展或增强通用类库
-- BD.Common.Essentials Essentials 抽象层类库
-- BD.Common.Essentials.Maui 使用 Maui.Essentials 的实现库
-- BD.Common.Essentials.Primitives Essentials 模型类库
-- BD.Common.Essentials.Utils Essentials 静态工具类库
-- BD.Common.Essentials.Xamarin 使用 Xamarin.Essentials 的实现库
 - BD.Common.ModelValidator 模型验证类库
 - BD.Common.Mvvm 客户端 MVVM 类库
 - BD.Common.PhoneNumber 用于中国大陆的手机号相关的通用类库
-- BD.Common.Pinyin 汉语拼音类库
-- BD.Common.Pinyin.CFStringTransform 使用 CFStringTransform 实现的汉语拼音类库
-- BD.Common.Pinyin.ChnCharInfo 使用 ChnCharInfo 实现的汉语拼音类库
-- BD.Common.Pinyin.TinyPinyin 使用 TinyPinyin 实现的汉语拼音类库
 - BD.Common.Primitives 通用模型，枚举，列接口的通用类库
 - BD.Common.Primitives.ApiResponse 通用 API 响应模型类库
 - BD.Common.Repositories 通用仓储层基类库

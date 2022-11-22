@@ -2,7 +2,16 @@
 
 	<PropertyGroup>
 		<RootNamespace>BD.Common.Settings</RootNamespace>
+		<DefineConstants>DBREEZE;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\BD.Common.Settings\ValueChangedEventArgs.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DBreeze" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />

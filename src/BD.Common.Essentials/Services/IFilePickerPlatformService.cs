@@ -1,6 +1,6 @@
 namespace BD.Common.Services;
 
-interface IFilePickerPlatformService : IInternalFilePickerPlatformService
+public interface IFilePickerPlatformService : IInternalFilePickerPlatformService
 {
     static new IFilePickerPlatformService? Instance => Ioc.Get_Nullable<IFilePickerPlatformService>();
 

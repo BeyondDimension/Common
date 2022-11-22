@@ -1,4 +1,3 @@
-#if DBREEZE
 using DBreeze;
 using System.ComponentModel;
 using static BD.Common.Settings.ISerializableProperty;
@@ -164,4 +163,3 @@ public sealed class SerializableProperty<T> : ISerializableProperty, INotifyProp
 
     #endregion
 }
-#endif
