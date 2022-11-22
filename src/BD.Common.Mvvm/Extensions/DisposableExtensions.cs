@@ -1,5 +1,3 @@
-using BD.Common;
-
 // ReSharper disable once CheckNamespace
 namespace System;
 

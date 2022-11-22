@@ -1,5 +1,4 @@
 using System.Security;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using BD.Common.Repositories;
 
 // ReSharper disable once CheckNamespace

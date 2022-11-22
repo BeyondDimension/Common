@@ -8,6 +8,9 @@
 		<Compile Include="..\ImplicitUsings.Enums.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="..\ImplicitUsings.Services.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>

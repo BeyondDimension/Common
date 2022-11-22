@@ -1,6 +1,4 @@
-using BD.Common;
 using BD.Common.Services.Implementation.Essentials;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 #if ANDROID
 using DeviceInfoPlatformServiceImpl_ = BD.Common.Services.Implementation.Essentials.AndroidDeviceInfoPlatformServiceImpl;
 #else

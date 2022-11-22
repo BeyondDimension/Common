@@ -1,6 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
 namespace BD.Common.Services.Implementation;
 
 public abstract class ToastBaseImpl : IToast

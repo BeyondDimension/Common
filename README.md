@@ -39,5 +39,7 @@
 - BD.Common.Repositories 通用仓储层基类库
 - BD.Common.Repositories.EFCore 使用 EF Core 实现的仓储层类库
 - BD.Common.Repositories.SQLitePCL 使用 SQLitePCL 实现的仓储层类库
+- BD.Common.Security 安全相关类库
 - BD.Common.Settings 文件键值对设置存储类库
+- BD.Common.Settings.V3 文件键值对设置存储 DBreeze 实现类库
 - BD.Common.Toast Toast UI 提示抽象层类库

@@ -35,6 +35,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
 		<ProjectReference Include="..\BD.Common.Repositories\BD.Common.Repositories.csproj" />
+		<ProjectReference Include="..\BD.Common.Security\BD.Common.Security.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 

@@ -27,3 +27,8 @@ global using System.Text.Json.Serialization;
 global using System.Runtime;
 global using System.Runtime.Devices;
 #endif
+
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+
+global using BD.Common;

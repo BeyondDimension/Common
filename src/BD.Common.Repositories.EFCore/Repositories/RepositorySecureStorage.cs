@@ -1,5 +1,4 @@
 using System.Security;
-using BD.Common.Repositories.Abstractions;
 using KeyValuePair = BD.Common.Entities.KeyValuePair;
 
 namespace BD.Common.Repositories;
