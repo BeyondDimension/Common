@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<RootNamespace>BD.Common</RootNamespace>
 		<AssemblyName>ReactiveUI.Tests</AssemblyName>
+		<PackageId>BD.Common.Mvvm.ReactiveUI</PackageId>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -15,5 +15,5 @@ public static partial class ThisAssembly
     /// </summary>
     public const string AssemblyCompany = "长沙次元超越科技有限公司";
 
-    public const string AssemblyVersion = "1.22.11122.12106";
+    public const string AssemblyVersion = "1.22.11123.11535";
 }
