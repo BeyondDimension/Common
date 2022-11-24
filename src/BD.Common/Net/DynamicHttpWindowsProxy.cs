@@ -29,27 +29,13 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         {
             _innerProxy = HttpNoProxy.Instance;
         }
-    }
 
-    /// <summary>
-    /// 开始根据注册表变更动态修改代理，需要开启一个线程监听注册表
-    /// </summary>
-    public void Start()
-    {
         RegistryMonitor = new RegistryMonitor_(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections");
         RegistryMonitor.RegChanged += RegistryMonitor_RegChanged;
         RegistryMonitor.Start();
-
-        // 启动完成之后，更新一次吧
-        UpdateProxy();
     }
 
-    private void RegistryMonitor_RegChanged(object? sender, EventArgs e)
-    {
-        UpdateProxy();
-    }
-
-    private void UpdateProxy()
+    void RegistryMonitor_RegChanged(object? sender, EventArgs e)
     {
         if (HttpWindowsProxy.TryCreate(out var proxy))
         {
@@ -61,9 +47,9 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         }
     }
 
-    private RegistryMonitor_? RegistryMonitor { get; set; }
+    RegistryMonitor_? RegistryMonitor { get; set; }
 
-    private IWebProxy InnerProxy
+    IWebProxy InnerProxy
     {
         get => _innerProxy;
         set
