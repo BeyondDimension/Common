@@ -33,14 +33,7 @@ partial class Browser2
         {
             try
             {
-                if (Ioc.Get_Nullable<IToast>() == null)
-                {
-                    Console.WriteLine(e);
-                }
-                else
-                {
-                    e.LogAndShowT(TAG);
-                }
+                e.LogAndShowT(TAG);
             }
             catch
             {

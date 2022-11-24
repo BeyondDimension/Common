@@ -252,7 +252,14 @@ public static partial class ExceptionExtensions
                 }
             }
         }
-        show?.Invoke(GetShowMsg());
+        try
+        {
+            show?.Invoke(GetShowMsg());
+        }
+        catch
+        {
+
+        }
         string GetShowMsg()
         {
             if (has_e) return GetAllMessageCore(e!, has_msg, has_args, msg, args);
