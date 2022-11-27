@@ -1,19 +1,22 @@
 // ReSharper disable once CheckNamespace
-namespace BD.Common;
+namespace System;
 
 public static class AsyncTableQueryExtensions
 {
     #region WhereOr
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static AsyncTableQuery<T> WhereOr<T>(this AsyncTableQuery<T> source, IReadOnlyList<Expression<Func<T, bool>>> predicates) where T : new()
     {
         var predicate = ExpressionHelper.WhereOr(predicates);
         return source.Where(predicate);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static AsyncTableQuery<T> WhereOr<T>(this AsyncTableQuery<T> source, IEnumerable<Expression<Func<T, bool>>> predicates) where T : new()
         => source.WhereOr(predicates.ToArray());
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static AsyncTableQuery<T> WhereOr<T>(this AsyncTableQuery<T> source, params Expression<Func<T, bool>>[] predicates) where T : new()
     {
         IReadOnlyList<Expression<Func<T, bool>>> predicates_ = predicates;

@@ -5,6 +5,7 @@ namespace System;
 
 public static class CommandExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Invoke(this ICommand command, object? parameter = null)
     {
         if (command.CanExecute(parameter))
