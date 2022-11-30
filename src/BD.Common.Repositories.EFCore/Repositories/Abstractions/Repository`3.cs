@@ -117,5 +117,52 @@ public abstract class Repository<TDbContext, TEntity, TPrimaryKey> : Repository<
 
     public virtual Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync(TEntity entity) => InsertOrUpdateAsync(entity, default);
 
+    /// <inheritdoc cref="InsertOrUpdateAsync(TEntity)"/>
+    public virtual async Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync<TDTO>(
+        TDTO dto,
+        Func<TEntity>? create = null,
+        Action<TEntity>? onAdd = null,
+        Action<TEntity>? onUpdate = null,
+        CancellationToken cancellationToken = default) where TDTO : notnull
+    {
+        TPrimaryKey primaryKey;
+        if (dto is IEntity<TPrimaryKey> entity_id)
+        {
+            primaryKey = entity_id.Id;
+        }
+        else if (dto is IKeyModel<TPrimaryKey> km_id)
+        {
+            primaryKey = km_id.Id;
+        }
+        else if (dto is TEntity entity)
+        {
+            primaryKey = GetPrimaryKey(entity);
+        }
+        else
+        {
+            throw new InvalidOperationException($"Type {dto.GetType()} must inherit from {typeof(IKeyModel<TPrimaryKey>)}.");
+        }
+        var existingEntity = await FindAsync(primaryKey, cancellationToken);
+        DbRowExecResult result;
+        if (existingEntity == null)
+        {
+#pragma warning disable IL2091 // Target generic argument does not satisfy 'DynamicallyAccessedMembersAttribute' in target method or type. The generic parameter of the source method or type does not have matching annotations.
+            var entity = create == null ? Activator.CreateInstance<TEntity>() : create();
+#pragma warning restore IL2091 // Target generic argument does not satisfy 'DynamicallyAccessedMembersAttribute' in target method or type. The generic parameter of the source method or type does not have matching annotations.
+            await Entity.AddAsync(entity, cancellationToken);
+            db.Entry(entity).CurrentValues.SetValues(dto);
+            onAdd?.Invoke(entity);
+            result = DbRowExecResult.Insert;
+        }
+        else
+        {
+            db.Entry(existingEntity).CurrentValues.SetValues(dto);
+            onUpdate?.Invoke(existingEntity);
+            result = DbRowExecResult.Update;
+        }
+        var rowCount = await db.SaveChangesAsync(cancellationToken);
+        return (rowCount, result);
+    }
+
     #endregion
 }
