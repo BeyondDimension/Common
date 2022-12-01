@@ -10,7 +10,7 @@ public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetP
     /// </summary>
     /// <param name="primaryKey"></param>
     /// <returns></returns>
-    protected static bool IsDefault(TPrimaryKey primaryKey)
+    public static bool IsDefault(TPrimaryKey primaryKey)
     {
         if (primaryKey == null) return true; // null is default
         var defPrimaryKey = default(TPrimaryKey);
@@ -23,12 +23,10 @@ public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetP
     /// </summary>
     /// <param name="primaryKey"></param>
     /// <returns></returns>
-    protected static Expression<Func<TEntity, bool>> LambdaEqualId(TPrimaryKey primaryKey)
+    public static Expression<Func<TEntity, bool>> LambdaEqualId(TPrimaryKey primaryKey)
     {
         var parameter = Expression.Parameter(typeof(TEntity));
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         var left = Expression.PropertyOrField(parameter, nameof(IEntity<TPrimaryKey>.Id));
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         var right = Expression.Constant(primaryKey, typeof(TPrimaryKey));
         var body = Expression.Equal(left, right);
         return Expression.Lambda<Func<TEntity, bool>>(body, parameter);

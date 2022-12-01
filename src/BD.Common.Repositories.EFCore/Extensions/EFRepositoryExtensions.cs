@@ -114,4 +114,23 @@ public static class EFRepositoryExtensions
         var result = await IdentityInsertSaveChangesAsync(repository, cancellationToken);
         return result;
     }
+
+    /// <summary>
+    /// 根据主键设置禁用状态
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TPrimaryKey"></typeparam>
+    /// <param name="query"></param>
+    /// <param name="id"></param>
+    /// <param name="disable"></param>
+    /// <returns></returns>
+    public static async Task<int> SetDisableByIdAsync<TEntity, TPrimaryKey>(this IQueryable<TEntity> query, TPrimaryKey id, bool disable)
+        where TEntity : class, IDisable, IEntity<TPrimaryKey>
+        where TPrimaryKey : IEquatable<TPrimaryKey>
+    {
+        var r = await query
+            .Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(id))
+            .ExecuteUpdateAsync(x => x.SetProperty(y => y.Disable, y => disable));
+        return r;
+    }
 }
