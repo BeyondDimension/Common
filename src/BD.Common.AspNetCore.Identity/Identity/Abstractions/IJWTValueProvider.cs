@@ -9,7 +9,7 @@ public interface IJWTValueProvider
 
     const int secretKeyMinLength = 16;
 
-    public static SymmetricSecurityKey GetSecurityKey(string secretKey)
+    static SymmetricSecurityKey GetSecurityKey(string secretKey)
     {
         var data = Encoding.UTF8.GetBytes(secretKey);
         var temp = data.Length - secretKeyMinLength;

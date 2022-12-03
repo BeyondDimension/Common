@@ -306,4 +306,28 @@ public static partial class ProgramHelper
 
         //        return xmlConfig;
     }
+
+    public static IActionResult GetEnv(ControllerBase controller, IWebHostEnvironment environment)
+    {
+        var content = $"<h1>{environment.EnvironmentName}</h1>";
+        return controller.Content(content, MediaTypeNames.HTML);
+    }
+
+    /// <inheritdoc cref="IOPath.InitFileSystem(Func{string}, Func{string})"/>
+    public static void InitFileSystem(IWebHostEnvironment environment)
+    {
+        IOPath.InitFileSystem(GetAppDataDirectory, GetCacheDirectory);
+        string GetAppDataDirectory()
+        {
+            var pathAppData = Path.Combine(environment.ContentRootPath, "AppData");
+            IOPath.DirCreateByNotExists(pathAppData);
+            return pathAppData;
+        }
+        string GetCacheDirectory()
+        {
+            var pathCache = Path.Combine(environment.ContentRootPath, "Cache");
+            IOPath.DirCreateByNotExists(pathCache);
+            return pathCache;
+        }
+    }
 }
