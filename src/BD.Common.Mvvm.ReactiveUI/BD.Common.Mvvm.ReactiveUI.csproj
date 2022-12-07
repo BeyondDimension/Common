@@ -14,8 +14,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="ReactiveUI" />
-		<PackageReference Include="Splat" />
-		<PackageReference Include="DynamicData" />
 	</ItemGroup>
 
 	<ItemGroup>
