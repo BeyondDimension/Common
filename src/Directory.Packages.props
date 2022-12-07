@@ -33,7 +33,7 @@
 		<PackageVersion Include="EFCore.BulkExtensions" Version="6.5.6" />
 
 		<!-- AntDesign -->
-		<PackageVersion Include="AntDesign" Version="0.12.7" />
+		<PackageVersion Include="AntDesign" Version="0.13.1" />
 		<PackageVersion Include="AntDesign.Charts" Version="0.2.3" />
 		<PackageVersion Include="AntDesign.ProLayout" Version="0.12.4" />
 
