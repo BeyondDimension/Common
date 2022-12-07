@@ -1,7 +1,22 @@
 <Project>
 	<PropertyGroup>
 		<Version_ReactiveUI>18.4.1</Version_ReactiveUI>
+		<Version_BDCommon>1.22.11205.10727</Version_BDCommon>
+		<Version_BDSteamClient>1.22.11110.1855</Version_BDSteamClient>
 	</PropertyGroup>
+	<!-- BD Common -->
+	<!--<ItemGroup>
+		<PackageVersion Include="BD.Common" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.AspNetCore" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.AspNetCore.Blazor.BackManage" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.AspNetCore.Identity" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.AspNetCore.Identity.BackManage" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.EFCore" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Primitives" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Primitives.ApiResponse" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials.Utils" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.SteamClient.Models" Version="$(Version_BDSteamClient)" />
+	</ItemGroup>-->
 	<!-- Visual Studio -->
 	<ItemGroup>
 		<PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
@@ -49,9 +64,10 @@
 		<PackageVersion Include="AntDesign.ProLayout" Version="0.13.1" />
 	</ItemGroup>
 	<!-- Blazor -->
-	<!--<ItemGroup>
-		<PackageVersion Include="Blazored.LocalStorage" Version="4.3.0" />
-	</ItemGroup>-->
+	<ItemGroup>
+		<!--<PackageVersion Include="Blazored.LocalStorage" Version="4.3.0" />-->
+		<PackageVersion Include="Blazor.QRCode" Version="0.2.1" />
+	</ItemGroup>
 	<!-- Test(MS) -->
 	<ItemGroup>
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
@@ -75,15 +91,21 @@
 	<!-- Html Parser -->
 	<ItemGroup>
 		<PackageVersion Include="AngleSharp" Version="0.17.1" />
-
-		<!-- Serialize -->
+	</ItemGroup>
+	<!-- Serialize -->
+	<ItemGroup>
 		<PackageVersion Include="MessagePack" Version="2.4.35" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageVersion Include="Google.Protobuf" Version="3.21.9" />
 		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.28" />
-
-		<!-- Resilience & Transient Fault Handling -->
+	</ItemGroup>
+	<!-- Resilience & Transient Fault Handling -->
+	<ItemGroup>
 		<PackageVersion Include="Polly" Version="7.2.3" />
+	</ItemGroup>
+	<!-- QrCode -->
+	<ItemGroup>
+		<PackageVersion Include="Net.Codecrete.QrCodeGenerator" Version="2.0.3" />
 	</ItemGroup>
 	<!-- Nito.* -->
 	<ItemGroup>
@@ -117,13 +139,17 @@
 	<!-- DynamicData -->
 	<!--<ItemGroup>
 		<PackageVersion Include="DynamicData" Version="7.12.1" />
-		<PackageVersion Include="ReactiveUI" Version="18.3.1" />
-		<PackageVersion Include="ReactiveUI.Fody" Version="18.3.1" />
-		<PackageVersion Include="ReactiveUI.XamForms" Version="18.3.1" />
-		<PackageVersion Include="ReactiveUI.AndroidX" Version="18.3.1" />
-		<PackageVersion Include="ReactiveUI.Maui" Version="18.3.1" />
-
-		<!-- Pinyin -->
+	</ItemGroup>-->
+	<!-- ReactiveUI -->
+	<ItemGroup>
+		<PackageVersion Include="ReactiveUI" Version="$(Version_ReactiveUI)" />
+		<PackageVersion Include="ReactiveUI.Fody" Version="$(Version_ReactiveUI)" />
+		<PackageVersion Include="ReactiveUI.XamForms" Version="$(Version_ReactiveUI)" />
+		<PackageVersion Include="ReactiveUI.AndroidX" Version="$(Version_ReactiveUI)" />
+		<PackageVersion Include="ReactiveUI.Maui" Version="$(Version_ReactiveUI)" />
+	</ItemGroup>
+	<!-- Pinyin(TinyPinyin.Net) -->
+	<ItemGroup>
 		<PackageVersion Include="TinyPinyin.Net" Version="1.0.2" />
 	</ItemGroup>
 	<!-- Pinyin(XAB.TinyPinyin) -->
@@ -133,12 +159,19 @@
 	<!-- .NET Compat(OperatingSystem2) -->
 	<ItemGroup>
 		<PackageVersion Include="OperatingSystem2" Version="2.0.0" />
+	</ItemGroup>
+	<!-- .NET Compat(Madness) -->
+	<ItemGroup>
 		<PackageVersion Include="JustArchiNET.Madness" Version="3.7.0" />
-
-		<!-- AspNetCore 7 OpenId/OAuth -->
+	</ItemGroup>
+	<!-- AspNetCore 7 OpenId/OAuth -->
+	<ItemGroup>
 		<PackageVersion Include="AspNet.Security.OpenId.Steam" Version="7.0.0" />
 		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="7.0.0" />
 		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="7.0.0" />
+	</ItemGroup>
+	<!-- MicrosoftAccount -->
+	<ItemGroup>
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="7.0.0" />
 	</ItemGroup>
 	<!-- Microsoft.Extensions.* 7.0 -->
@@ -181,6 +214,7 @@
 		<PackageVersion Include="System.Net.Http.Json" Version="7.0.0" />
 		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="7.0.0" />
 		<PackageVersion Include="System.Security.Cryptography.Xml" Version="7.0.0" />
+		<PackageVersion Include="System.Drawing.Common" Version="7.0.0" />
 	</ItemGroup>
 	<!-- Edge WebView2 -->
 	<ItemGroup>
