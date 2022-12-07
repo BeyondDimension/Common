@@ -10,11 +10,13 @@ public partial class ApiResponse : IApiResponse
 
     public string[] Messages { get; set; } = Array.Empty<string>();
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiResponse(string message) => new()
     {
         Messages = new[] { message },
     };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiResponse(string[] messages) => new()
     {
         Messages = messages,
@@ -29,16 +31,19 @@ public class ApiResponse<T> : ApiResponse, IApiResponse<T>
 {
     public T? Data { get; set; }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiResponse<T>(string message) => new()
     {
         Messages = new[] { message },
     };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiResponse<T>(string[] messages) => new()
     {
         Messages = messages,
     };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiResponse<T>(T? data) => new()
     {
         IsSuccess = true,

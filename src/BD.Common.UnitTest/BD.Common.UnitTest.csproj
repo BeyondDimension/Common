@@ -19,7 +19,6 @@
 		<PackageReference Include="NUnit" />
 		<PackageReference Include="NUnit3TestAdapter" />
 		<PackageReference Include="NUnit.Analyzers" />
-		<PackageReference Include="coverlet.collector" />
 	</ItemGroup>
 
 	<ItemGroup>
