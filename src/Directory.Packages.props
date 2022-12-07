@@ -123,7 +123,7 @@
 		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.0" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
-		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="7.17.0" />
+		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="7.18.0" />
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
 
 		<!-- BCL 7.0 -->
