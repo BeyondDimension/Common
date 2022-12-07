@@ -6,15 +6,40 @@
 	</PropertyGroup>
 	<!-- BD Common -->
 	<!--<ItemGroup>
-		<PackageVersion Include="BD.Common" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Mvvm" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Mvvm.ReactiveUI" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Navigation" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Security" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Toast" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials.Preferences.DBreeze" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials.Preferences.SQLite" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials.Maui" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials.Xamarin" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials.Primitives" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Essentials.Utils" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Pinyin" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Pinyin.CFStringTransform" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Pinyin.ChnCharInfo" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Pinyin.TinyPinyin" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Repositories" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Repositories.EFCore" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Repositories.SQLitePCL" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.SmsSender" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Settings" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Settings.V3" Version="$(Version_BDCommon)" />
 		<PackageVersion Include="BD.Common.AspNetCore" Version="$(Version_BDCommon)" />
-		<PackageVersion Include="BD.Common.AspNetCore.Blazor.BackManage" Version="$(Version_BDCommon)" />
 		<PackageVersion Include="BD.Common.AspNetCore.Identity" Version="$(Version_BDCommon)" />
 		<PackageVersion Include="BD.Common.AspNetCore.Identity.BackManage" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.AspNetCore.Blazor.BackManage" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.Area" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.BirthDate" Version="$(Version_BDCommon)" />
 		<PackageVersion Include="BD.Common.EFCore" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.ModelValidator" Version="$(Version_BDCommon)" />
+		<PackageVersion Include="BD.Common.PhoneNumber" Version="$(Version_BDCommon)" />
 		<PackageVersion Include="BD.Common.Primitives" Version="$(Version_BDCommon)" />
 		<PackageVersion Include="BD.Common.Primitives.ApiResponse" Version="$(Version_BDCommon)" />
-		<PackageVersion Include="BD.Common.Essentials.Utils" Version="$(Version_BDCommon)" />
 		<PackageVersion Include="BD.SteamClient.Models" Version="$(Version_BDSteamClient)" />
 	</ItemGroup>-->
 	<!-- Visual Studio -->
@@ -196,6 +221,8 @@
 	</ItemGroup>
 	<!-- AspNetCore 7.0 -->
 	<ItemGroup>
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
 		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0" />
 		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
