@@ -196,7 +196,7 @@
 	</ItemGroup>
 	<!-- .NET Compat(Madness) -->
 	<ItemGroup>
-		<PackageVersion Include="JustArchiNET.Madness" Version="3.7.0" />
+		<PackageVersion Include="JustArchiNET.Madness" Version="3.8.0" />
 	</ItemGroup>
 	<!-- AspNetCore 7 OpenId/OAuth -->
 	<ItemGroup>
