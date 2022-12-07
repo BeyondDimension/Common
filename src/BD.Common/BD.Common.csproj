@@ -7,6 +7,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ThisAssembly.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.Resources.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

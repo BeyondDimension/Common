@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{F221D7EA
 		src\TFM_NET7_IOS.props = src\TFM_NET7_IOS.props
 		src\TFM_NET7_MAUI.props = src\TFM_NET7_MAUI.props
 		src\TFM_NET7_WITH_ANDROID.props = src\TFM_NET7_WITH_ANDROID.props
+		src\ThisAssembly.cs = src\ThisAssembly.cs
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.UnitTest", "src\BD.Common.UnitTest\BD.Common.UnitTest.csproj", "{F0D8EF68-0FBB-4818-A26F-D01BF382C948}"
@@ -109,7 +110,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client Lib", "Client Lib", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Navigation", "src\BD.Common.Navigation\BD.Common.Navigation.csproj", "{41FCFFCC-CC2D-42E9-8289-D1FCE1864553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.DynamicHttpWindowsProxy.ConsoleTest", "src\BD.Common.DynamicHttpWindowsProxy.ConsoleTest\BD.Common.DynamicHttpWindowsProxy.ConsoleTest.csproj", "{34A24725-D4B5-45B2-950B-DA1414715705}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.DynamicHttpWindowsProxy.ConsoleTest", "src\BD.Common.DynamicHttpWindowsProxy.ConsoleTest\BD.Common.DynamicHttpWindowsProxy.ConsoleTest.csproj", "{34A24725-D4B5-45B2-950B-DA1414715705}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

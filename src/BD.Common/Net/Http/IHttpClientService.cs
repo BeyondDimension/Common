@@ -25,8 +25,10 @@ public abstract class HttpClientServiceImpl : IHttpClientService
 public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
 {
     protected readonly CookieContainer cookieContainer = new();
-    protected readonly SocketsHttpHandler handler;
-    readonly Lazy<HttpClient> _client;
+
+    protected SocketsHttpHandler Handler { get; private set; }
+
+    Lazy<HttpClient> _client;
 
 #pragma warning disable IDE1006 // 命名样式
     protected HttpClient client => _client.Value;
@@ -34,7 +36,13 @@ public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
 
     public HttpClientUseCookiesServiceImpl()
     {
-        handler = new SocketsHttpHandler
+        Handler = GetSocketsHttpHandler(cookieContainer);
+        _client = GetLazyHttpClient();
+    }
+
+    static SocketsHttpHandler GetSocketsHttpHandler(CookieContainer cookieContainer)
+    {
+        var handler = new SocketsHttpHandler
         {
             UseCookies = true,
             CookieContainer = cookieContainer,
@@ -47,11 +55,24 @@ public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
 #if !NETFRAMEWORK
         handler.Compatibility();
 #endif
-        _client = new(() => GetHttpClient());
+        return handler;
     }
 
-    protected virtual HttpClient GetHttpClient() => new(handler);
+    Lazy<HttpClient> GetLazyHttpClient() => new(GetHttpClient);
+
+    protected virtual HttpClient GetHttpClient() => new(Handler);
 
     HttpClient IHttpClientService.HttpClient => client;
+
+    public virtual void Reset()
+    {
+        if (_client.IsValueCreated)
+        {
+            _client.Value.Dispose();
+        }
+        Handler.Dispose();
+        Handler = GetSocketsHttpHandler(cookieContainer);
+        _client = GetLazyHttpClient();
+    }
 }
 #endif
