@@ -30,7 +30,7 @@
 	<ItemGroup>
 		<PackageVersion Include="AutoMapper" Version="12.0.0" />
 		<PackageVersion Include="AutoMapper.Collection" Version="9.0.0" />
-		<PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="6.0.0" />
+		<PackageVersion Include="AutoMapper.Extensions.ExpressionMapping" Version="6.0.2" />
 		<PackageVersion Include="AutoMapper.Extensions.Microsoft.DependencyInjection"  Version="12.0.0" />
 	</ItemGroup>
 	<!-- Quartz -->
@@ -92,12 +92,21 @@
 	<ItemGroup>
 		<PackageVersion Include="AngleSharp" Version="0.17.1" />
 	</ItemGroup>
-	<!-- Serialize -->
+	<!-- Serialize MessagePack -->
 	<ItemGroup>
-		<PackageVersion Include="MessagePack" Version="2.4.35" />
+		<PackageVersion Include="MessagePack" Version="2.4.59" />
+	</ItemGroup>
+	<!-- Serialize NJson -->
+	<ItemGroup>
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageVersion Include="Google.Protobuf" Version="3.21.9" />
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.28" />
+	</ItemGroup>
+	<!-- Serialize NJson & AspNetCore -->
+	<ItemGroup>
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.0" />
+	</ItemGroup>
+	<!-- Serialize Protobuf -->
+	<ItemGroup>
+		<PackageVersion Include="Google.Protobuf" Version="3.21.10" />
 	</ItemGroup>
 	<!-- Resilience & Transient Fault Handling -->
 	<ItemGroup>
