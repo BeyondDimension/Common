@@ -116,7 +116,7 @@
 		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
 		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0" />
 		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="7.0.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="7.0.49" />
 
 		<!-- EFCore 7.0 -->
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0" />
