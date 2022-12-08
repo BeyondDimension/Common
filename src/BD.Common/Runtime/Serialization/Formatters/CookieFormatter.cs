@@ -1,7 +1,3 @@
-using MessagePack;
-using MessagePack.Formatters;
-using KeyAttribute = MessagePack.KeyAttribute;
-
 namespace System.Runtime.Serialization.Formatters;
 
 /// <summary>
@@ -165,55 +161,55 @@ public sealed class CookieFormatter : IMessagePackFormatter<Cookie?>, IMessagePa
             => new(cookie);
 
         /// <inheritdoc cref="Cookie.Comment"/>
-        [Key(0)]
+        [MPKey(0)]
         public string Comment { get; set; } = "";
 
         /// <inheritdoc cref="Cookie.CommentUri"/>
-        [Key(1)]
+        [MPKey(1)]
         public Uri? CommentUri { get; set; }
 
         /// <inheritdoc cref="Cookie.Discard"/>
-        [Key(2)]
+        [MPKey(2)]
         public bool Discard { get; set; }
 
         /// <inheritdoc cref="Cookie.Domain"/>
-        [Key(3)]
+        [MPKey(3)]
         public string Domain { get; set; } = null!;
 
         /// <inheritdoc cref="Cookie.Expired"/>
-        [Key(4)]
+        [MPKey(4)]
         public bool Expired { get; set; }
 
         /// <inheritdoc cref="Cookie.Expires"/>
-        [Key(5)]
+        [MPKey(5)]
         public DateTime Expires { get; set; }
 
         /// <inheritdoc cref="Cookie.HttpOnly"/>
-        [Key(6)]
+        [MPKey(6)]
         public bool HttpOnly { get; set; }
 
         /// <inheritdoc cref="Cookie.Name"/>
-        [Key(7)]
+        [MPKey(7)]
         public string Name { get; set; } = null!;
 
         /// <inheritdoc cref="Cookie.Path"/>
-        [Key(8)]
+        [MPKey(8)]
         public string Path { get; set; } = "/";
 
         /// <inheritdoc cref="Cookie.Port"/>
-        [Key(9)]
+        [MPKey(9)]
         public string Port { get; set; } = "";
 
         /// <inheritdoc cref="Cookie.Secure"/>
-        [Key(10)]
+        [MPKey(10)]
         public bool Secure { get; set; }
 
         /// <inheritdoc cref="Cookie.Value"/>
-        [Key(11)]
+        [MPKey(11)]
         public string Value { get; set; } = null!;
 
         /// <inheritdoc cref="Cookie.Version"/>
-        [Key(12)]
+        [MPKey(12)]
         public int Version { get; set; }
     }
 }

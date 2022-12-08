@@ -1,6 +1,3 @@
-using MessagePack;
-using MessagePack.Formatters;
-
 namespace System.Runtime.Serialization.Formatters;
 
 /// <summary>
