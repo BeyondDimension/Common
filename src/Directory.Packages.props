@@ -131,7 +131,11 @@
 	</ItemGroup>
 	<!-- Serialize Protobuf -->
 	<ItemGroup>
-		<PackageVersion Include="Google.Protobuf" Version="3.21.10" />
+		<PackageVersion Include="Google.Protobuf" Version="3.21.11" />
+	</ItemGroup>
+	<!-- Serialize Protobuf Tools -->
+	<ItemGroup>
+		<PackageVersion Include="Google.Protobuf.Tools" Version="3.21.11" />
 	</ItemGroup>
 	<!-- Resilience & Transient Fault Handling -->
 	<ItemGroup>
