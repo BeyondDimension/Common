@@ -6,9 +6,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Include="..\ImplicitUsings.Data.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -38,6 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\BD.Common.PhoneNumber\BD.Common.PhoneNumber.csproj" />
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>

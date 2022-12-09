@@ -38,6 +38,8 @@ public static class PhoneNumberHelper
 
     public const int ChineseMainlandPhoneNumberLength = 11;
 
+    public const int DatabaseMaxLength = 20;
+
     /// <summary>
     /// 获取中国大陆地区11位手机号码
     /// </summary>

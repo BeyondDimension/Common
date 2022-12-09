@@ -62,6 +62,14 @@ public static class ModelBuilderExtensions
 
             }
 
+            if (POrderInt32.IsAssignableFrom(type))
+            {
+                buildAction += p =>
+                {
+                    p.HasIndex(nameof(IOrderInt32.Order));
+                };
+            }
+
             #endregion
 
             #region 继承自 软删除(IsSoftDeleted) 接口的要设置索引
@@ -104,7 +112,19 @@ public static class ModelBuilderExtensions
 
             #endregion
 
-            #region  继承自 主键为GUID(INEWSEQUENTIALID) 接口的要设置默认值使用 NEWSEQUENTIALID
+            #region 继承自 手机号码(IPhoneNumber) 接口的要设置最大长度
+
+            if (PPhoneNumber.IsAssignableFrom(type))
+            {
+                buildAction += p =>
+                {
+                    p.Property(nameof(IPhoneNumber.PhoneNumber)).HasMaxLength(PhoneNumberHelper.DatabaseMaxLength);
+                };
+            }
+
+            #endregion
+
+            #region 继承自 主键为GUID(INEWSEQUENTIALID) 接口的要设置默认值使用 NEWSEQUENTIALID
 
             if (PNEWSEQUENTIALID.IsAssignableFrom(type))
             {
@@ -148,6 +168,8 @@ public static class ModelBuilderExtensions
     public static readonly Type PUpdateTime = typeof(IUpdateTime);
     public static readonly Type PDisable = typeof(IDisable);
     public static readonly Type PNEWSEQUENTIALID = typeof(INEWSEQUENTIALID);
+    public static readonly Type PPhoneNumber = typeof(IPhoneNumber);
+    public static readonly Type POrderInt32 = typeof(IOrderInt32);
 
     /// <summary>
     /// https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types
