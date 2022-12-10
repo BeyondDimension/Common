@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 租户信息实体类
 /// </summary>
 [Table("BM_Tenants")]
-public class SysTenant : OperatorBaseEntity, ISoftDeleted
+public class SysTenant : OperatorBaseEntity, ISoftDeleted, INEWSEQUENTIALID
 {
     public bool SoftDeleted { get; set; }
 

@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统菜单
 /// </summary>
 [Table("BM_Menus")]
-public class SysMenu : TenantBaseEntity, IOrder
+public class SysMenu : TenantBaseEntity, IOrder, INEWSEQUENTIALID
 {
     /// <summary>
     /// 按钮多语言名称

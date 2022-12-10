@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统按钮
 /// </summary>
 [Table("BM_Buttons")]
-public class SysButton : TenantBaseEntity
+public class SysButton : TenantBaseEntity, INEWSEQUENTIALID
 {
     public const int MaxLength_Name = 20;
 
