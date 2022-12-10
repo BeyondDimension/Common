@@ -1,6 +1,3 @@
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Memory;
-
 // ReSharper disable once CheckNamespace
 namespace System;
 
@@ -9,16 +6,10 @@ public static partial class CacheExtensions
     #region IMemoryCache
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Get<T>(this IMemoryCache cache, string key, out T? value) where T : notnull => cache.TryGetValue(key, out value);
+    public static bool Get<T>(this IMemoryCache cache, object key, out T? value) where T : notnull => cache.TryGetValue(key, out value);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Get<T>(this IMemoryCache cache, Guid key, out T? value) where T : notnull => cache.TryGetValue(key, out value);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void Set<T>(this IMemoryCache cache, string key, T value, int minutes) where T : notnull => cache.Set(key, value, TimeSpan.FromMinutes(minutes));
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void Set<T>(this IMemoryCache cache, Guid key, T value, int minutes) where T : notnull => cache.Set(key, value, TimeSpan.FromMinutes(minutes));
+    public static void Set<T>(this IMemoryCache cache, object key, T value, int minutes) where T : notnull => cache.Set(key, value, TimeSpan.FromMinutes(minutes));
 
     #endregion
 
@@ -34,17 +25,19 @@ public static partial class CacheExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Task<T?> GetAsync<T>(this IDistributedCache cache, Guid key, CancellationToken cancellationToken = default) where T : notnull => cache.GetAsync<T>(key.ToString(), cancellationToken);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static async Task SetAsync<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
+    public static async Task SetAsync<T>(this IDistributedCache cache, string key, T value, DistributedCacheEntryOptions options, CancellationToken cancellationToken = default) where T : notnull
     {
         var buffer = Serializable.SMP(value, cancellationToken);
-        await cache.SetAsync(key, buffer, new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(minutes) }, cancellationToken);
+        await cache.SetAsync(key, buffer, options, cancellationToken);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Task SetAsync<T>(this IDistributedCache cache, Guid key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull => cache.SetAsync<T>(key.ToString(), value, minutes, cancellationToken);
+    public static Task SetAsync<T>(this IDistributedCache cache, string key, T value, TimeSpan absoluteExpirationRelativeToNow, CancellationToken cancellationToken = default) where T : notnull
+        => cache.SetAsync(key, value, new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow }, cancellationToken);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Task SetAsync<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
+        => cache.SetAsync(key, value, TimeSpan.FromMinutes(minutes), cancellationToken);
 
     #endregion
 }

@@ -19,6 +19,7 @@ global using Microsoft.Extensions.FileProviders;
 global using Microsoft.AspNetCore.Authorization.Policy;
 global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.Extensions.Caching.Distributed;
 global using IOFile = System.IO.File;
 
 #if NET7_0_OR_GREATER && OPENAPI && DEBUG
