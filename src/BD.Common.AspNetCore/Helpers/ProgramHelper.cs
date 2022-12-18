@@ -146,8 +146,27 @@ public static partial class ProgramHelper
         UserExecute = 0x40,
         UserWrite = 0x80,
         UserRead = 0x100,
-        Combined777 = UserRead | UserWrite | UserExecute | GroupRead | GroupWrite | GroupExecute | OtherRead | OtherWrite | OtherExecute
+        Combined777 = UserRead | UserWrite | UserExecute | GroupRead | GroupWrite | GroupExecute | OtherRead | OtherWrite | OtherExecute,
     }
+
+    #region https://github.com/NLog/NLog/wiki/File-target
+
+    /// <summary>
+    /// 日志文件自动存档的字节大小
+    /// </summary>
+    const long archiveAboveSize = 10485760;
+
+    /// <summary>
+    /// 应保留的最大存档文件数。如果值小于或等于0，则不会删除旧文件
+    /// </summary>
+    const int maxArchiveFiles = 10;
+
+    /// <summary>
+    /// 应保留的存档文件的最长期限。当 archiveNumbering 无效时。如果值小于或等于 0，则不会删除旧文件
+    /// </summary>
+    const int maxArchiveDays = 31;
+
+    #endregion
 
     /// <summary>
     /// 初始化 NLog 配置
@@ -156,25 +175,6 @@ public static partial class ProgramHelper
     static LoggingConfiguration InitNLogConfig()
     {
         // https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-6
-
-        #region https://github.com/NLog/NLog/wiki/File-target
-
-        /// <summary>
-        /// 日志文件自动存档的字节大小
-        /// </summary>
-        const long archiveAboveSize = 10485760;
-
-        /// <summary>
-        /// 应保留的最大存档文件数。如果值小于或等于0，则不会删除旧文件
-        /// </summary>
-        const int maxArchiveFiles = 10;
-
-        /// <summary>
-        /// 应保留的存档文件的最长期限。当 archiveNumbering 无效时。如果值小于或等于 0，则不会删除旧文件
-        /// </summary>
-        const int maxArchiveDays = 15;
-
-        #endregion
 
         if (OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() || OperatingSystem.IsFreeBSD())
         {
