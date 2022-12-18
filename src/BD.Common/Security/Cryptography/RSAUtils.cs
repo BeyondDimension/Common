@@ -145,17 +145,46 @@ public static partial class RSAUtils
     {
         if (!string.IsNullOrWhiteSpace(oaepHashAlgorithmName))
         {
-            if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA1), StringComparison.OrdinalIgnoreCase))
-                return RSAEncryptionPadding.OaepSHA1;
-            if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA256), StringComparison.OrdinalIgnoreCase))
-                return RSAEncryptionPadding.OaepSHA256;
-            if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA384), StringComparison.OrdinalIgnoreCase))
-                return RSAEncryptionPadding.OaepSHA384;
-            if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA512), StringComparison.OrdinalIgnoreCase))
-                return RSAEncryptionPadding.OaepSHA512;
+            switch (oaepHashAlgorithmName)
+            {
+                case "0":
+                    return RSAEncryptionPadding.Pkcs1;
+                case "1":
+                    return RSAEncryptionPadding.OaepSHA1;
+                case "2" or "":
+                    return RSAEncryptionPadding.OaepSHA256;
+                case "3":
+                    return RSAEncryptionPadding.OaepSHA384;
+                case "5":
+                    return RSAEncryptionPadding.OaepSHA512;
+                default:
+                    if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA1), StringComparison.OrdinalIgnoreCase))
+                        return RSAEncryptionPadding.OaepSHA1;
+                    if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA256), StringComparison.OrdinalIgnoreCase))
+                        return RSAEncryptionPadding.OaepSHA256;
+                    if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA384), StringComparison.OrdinalIgnoreCase))
+                        return RSAEncryptionPadding.OaepSHA384;
+                    if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA512), StringComparison.OrdinalIgnoreCase))
+                        return RSAEncryptionPadding.OaepSHA512;
+                    break;
+            }
         }
         return RSAEncryptionPadding.OaepSHA256;
     }
+
+    public static string ToString(RSAEncryptionPadding rSAEncryptionPadding) => rSAEncryptionPadding.Mode switch
+    {
+        RSAEncryptionPaddingMode.Pkcs1 => "0",
+        RSAEncryptionPaddingMode.Oaep => rSAEncryptionPadding.OaepHashAlgorithm.Name switch
+        {
+            nameof(HashAlgorithmName.SHA1) => "1",
+            nameof(HashAlgorithmName.SHA256) => "",
+            nameof(HashAlgorithmName.SHA384) => "3",
+            nameof(HashAlgorithmName.SHA512) => "5",
+            _ => throw new ArgumentOutOfRangeException(nameof(rSAEncryptionPadding)),
+        },
+        _ => throw new ArgumentOutOfRangeException(nameof(rSAEncryptionPadding)),
+    };
 
     public static RSAEncryptionPadding DefaultPadding
         => OperatingSystem.IsAndroid() ?
