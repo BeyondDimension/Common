@@ -2,7 +2,9 @@
 namespace BD.Common.Models;
 
 /// <inheritdoc cref="IPagedModel"/>
+#if !BLAZOR
 [MPObj]
+#endif
 [Serializable]
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
 public class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
@@ -11,7 +13,9 @@ public class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
 
     T[]? mDataSource;
 
+#if !BLAZOR
     [MPKey(0)]
+#endif
     public T[] DataSource
     {
         get
@@ -23,13 +27,19 @@ public class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
         set => mDataSource = value;
     }
 
+#if !BLAZOR
     [MPKey(1)]
+#endif
     public int Current { get; set; } = IPagedModel.DefaultCurrent;
 
+#if !BLAZOR
     [MPKey(2)]
+#endif
     public int PageSize { get; set; } = IPagedModel.DefaultPageSize;
 
+#if !BLAZOR
     [MPKey(3)]
+#endif
     public int Total { get; set; }
 
     bool IExplicitHasValue.ExplicitHasValue()
