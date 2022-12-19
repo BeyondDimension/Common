@@ -3,21 +3,31 @@ namespace BD.Common.Models;
 /// <summary>
 /// 用于 Select/ComboBox 的数据源模型
 /// </summary>
+[MPObj]
 public class SelectItemDTO : ITitle, IDisable
 {
+    [MPKey(0)]
     public string Title { get; set; } = "";
 
+    [MPKey(LastMKeyIndex)]
     public bool Disable { get; set; }
 
     public const int Count = 100;
+
+    /// <summary>
+    /// 最后一个 MessagePack 序列化 下标，继承自此类，新增需要序列化的字段/属性，标记此值+1，+2
+    /// </summary>
+    protected const int LastMKeyIndex = 1;
 }
 
 /// <summary>
 /// 用于 Select/ComboBox 的数据源模型
 /// </summary>
 /// <typeparam name="T"></typeparam>
+[MPObj]
 public class SelectItemDTO<T> : SelectItemDTO
 {
+    [MPKey(LastMKeyIndex + 1)]
     public T? Id { get; set; }
 
 #if BLAZOR
