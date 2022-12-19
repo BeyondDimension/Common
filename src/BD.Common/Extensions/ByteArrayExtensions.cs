@@ -87,14 +87,20 @@ public static class ByteArrayExtensions
     public static byte[]? DecompressByteArrayByBrotli(this byte[]? value) => value.DecompressByteArray(s => new BrotliStream(s, CompressionMode.Decompress));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string ToHexString(this byte[] inArray, bool isLower = false)
+    public static string ToHexString(this byte[] inArray/*, bool isLower = false*/)
     {
 #if HEXMATE
         return HexMate.Convert.ToHexString(inArray, isLower ? HexMate.HexFormattingOptions.Lowercase : HexMate.HexFormattingOptions.None);
 #elif NET5_0_OR_GREATER
-        return isLower ? Convert.ToHexString(inArray).ToLowerInvariant() : Convert.ToHexString(inArray);
+        return /*isLower ? Convert.ToHexString(inArray).ToLowerInvariant() :*/ Convert.ToHexString(inArray);
 #else
         return string.Concat(Array.ConvertAll(inArray, x => x.ToString(isLower ? "x2" : "X2")));
 #endif
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string ToHexString(this ReadOnlySpan<byte> bytes) => Convert.ToHexString(bytes);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string ToHexString(this byte[] inArray, int offset, int length) => Convert.ToHexString(inArray, offset, length);
 }

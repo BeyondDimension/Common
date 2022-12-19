@@ -14,6 +14,12 @@
 		<Compile Include="..\ImplicitUsings.Primitives.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.MessagePack.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>

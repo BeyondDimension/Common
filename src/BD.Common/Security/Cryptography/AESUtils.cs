@@ -170,7 +170,7 @@ public static class AESUtils
     public static string EncryptHex(this Aes aes, string text)
     {
         var result = EncryptToByteArray(aes, text);
-        return result.ToHexString(true);
+        return result.ToHexString();
     }
 
     /// <summary>

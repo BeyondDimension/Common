@@ -4,22 +4,34 @@ namespace BD.Common.Models;
 /// <summary>
 /// JWT 值
 /// </summary>
+#if !BLAZOR
+[MPObj]
+#endif
 [Serializable]
 public sealed class JWTEntity : IExplicitHasValue
 {
     /// <summary>
     /// 凭证有效期
     /// </summary>
+#if !BLAZOR
+    [MPKey(0)]
+#endif
     public DateTimeOffset ExpiresIn { get; set; }
 
     /// <summary>
     /// 当前凭证
     /// </summary>
+#if !BLAZOR
+    [MPKey(1)]
+#endif
     public string? AccessToken { get; set; }
 
     /// <summary>
     /// 刷新凭证
     /// </summary>
+#if !BLAZOR
+    [MPKey(2)]
+#endif
     public string? RefreshToken { get; set; }
 
     bool IExplicitHasValue.ExplicitHasValue()

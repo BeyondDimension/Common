@@ -2,9 +2,15 @@
 
 	<PropertyGroup>
 		<RootNamespace>System</RootNamespace>
-		<DefineConstants>BASE_CLASS_LIB_EX;HEXMATE;__HAVE_N_JSON__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>BASE_CLASS_LIB_EX;__HAVE_N_JSON__;$(DefineConstants)</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="_\HexMate\**" />
+	  <EmbeddedResource Remove="_\HexMate\**" />
+	  <None Remove="_\HexMate\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include="..\ThisAssembly.cs">
