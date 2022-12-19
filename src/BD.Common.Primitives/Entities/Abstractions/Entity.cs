@@ -1,5 +1,6 @@
-// ReSharper disable once CheckNamespace
+using KeyAttribute = System.ComponentModel.DataAnnotations.KeyAttribute;
 
+// ReSharper disable once CheckNamespace
 namespace BD.Common.Entities.Abstractions;
 
 public abstract class Entity<TPrimaryKey> : IEntity<TPrimaryKey> where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
