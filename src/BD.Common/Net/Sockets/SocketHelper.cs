@@ -1,13 +1,11 @@
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 
-using System.ComponentModel;
 using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
 
 namespace System.Net.Sockets;
 
-public static class SocketHelper
+public static partial class SocketHelper
 {
     /// <summary>
     /// 获取一个随机的未使用的端口
@@ -66,7 +64,79 @@ public static class SocketHelper
     /// <returns></returns>
     [SupportedOSPlatform("Windows7.0")]
     public static Process? GetProcessByTcpPort(ushort port)
-        => GetAllTcpConnections().FirstOrDefault(x => x.LocalPort == port)?.Process;
+    {
+#if WINDOWS7_0_OR_GREATER
+        int bufferSize = 0;
+
+        // Getting the size of TCP table, that is returned in 'bufferSize' variable.
+        _ = PInvoke.IPHlpApi.GetExtendedTcpTable(IntPtr.Zero, ref bufferSize, true, AddressFamily.InterNetwork,
+            PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+
+        // Allocating memory from the unmanaged memory of the process by using the
+        // specified number of bytes in 'bufferSize' variable.
+        IntPtr tcpTableRecordsPtr = Marshal.AllocHGlobal(bufferSize);
+
+        try
+        {
+            // The size of the table returned in 'bufferSize' variable in previous
+            // call must be used in this subsequent call to 'GetExtendedTcpTable'
+            // function in order to successfully retrieve the table.
+            var result = PInvoke.IPHlpApi.GetExtendedTcpTable(tcpTableRecordsPtr, ref bufferSize, true,
+                AddressFamily.InterNetwork, PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+
+            // Non-zero value represent the function 'GetExtendedTcpTable' failed,
+            // hence empty list is returned to the caller function.
+            if (result != 0)
+                return null;
+
+            // Marshals data from an unmanaged block of memory to a newly allocated
+            // managed object 'tcpRecordsTable' of type 'MIB_TCPTABLE_OWNER_PID'
+            // to get number of entries of the specified TCP table structure.
+            MIB_TCPTABLE_OWNER_PID tcpRecordsTable =
+                                    Marshal.PtrToStructure<MIB_TCPTABLE_OWNER_PID>(tcpTableRecordsPtr);
+            IntPtr tableRowPtr = tcpTableRecordsPtr +
+                                    Marshal.SizeOf(tcpRecordsTable.dwNumEntries);
+
+            // Reading and parsing the TCP records one by one from the table and
+            // storing them in a list of 'TcpProcessRecord' structure type objects.
+            for (int row = 0; row < tcpRecordsTable.dwNumEntries; row++)
+            {
+                MIB_TCPROW_OWNER_PID tcpRow = Marshal.
+                    PtrToStructure<MIB_TCPROW_OWNER_PID>(tableRowPtr);
+                var localPort = BitConverter.ToUInt16(new byte[2]
+                {
+                    tcpRow.localPort[1],
+                    tcpRow.localPort[0],
+                }, 0);
+                if (localPort == port)
+                {
+                    try
+                    {
+                        return Process.GetProcessById(tcpRow.owningPid);
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+                tableRowPtr += Marshal.SizeOf(tcpRow);
+            }
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(tcpTableRecordsPtr);
+        }
+        return null;
+#else
+        throw new PlatformNotSupportedException();
+#endif
+    }
+
+#if WINDOWS7_0_OR_GREATER
 
     // https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/master/OneCodeTeam/C%23%20Sample%20to%20list%20all%20the%20active%20TCP%20and%20UDP%20connections%20using%20Windows%20Form%20appl/%5BC%23%5D-C%23%20Sample%20to%20list%20all%20the%20active%20TCP%20and%20UDP%20connections%20using%20Windows%20Form%20appl/C%23/SocketConnection/SocketConnection.cs
 
@@ -88,8 +158,8 @@ public static class SocketHelper
         List<TcpProcessRecord> tcpTableRecords = new List<TcpProcessRecord>();
 
         // Getting the size of TCP table, that is returned in 'bufferSize' variable.
-        _ = GetExtendedTcpTable(IntPtr.Zero, ref bufferSize, true, AF_INET,
-            TcpTableClass.TCP_TABLE_OWNER_PID_ALL);
+        _ = PInvoke.IPHlpApi.GetExtendedTcpTable(IntPtr.Zero, ref bufferSize, true, AddressFamily.InterNetwork,
+            PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
         // Allocating memory from the unmanaged memory of the process by using the
         // specified number of bytes in 'bufferSize' variable.
@@ -100,8 +170,8 @@ public static class SocketHelper
             // The size of the table returned in 'bufferSize' variable in previous
             // call must be used in this subsequent call to 'GetExtendedTcpTable'
             // function in order to successfully retrieve the table.
-            var result = GetExtendedTcpTable(tcpTableRecordsPtr, ref bufferSize, true,
-                AF_INET, TcpTableClass.TCP_TABLE_OWNER_PID_ALL);
+            var result = PInvoke.IPHlpApi.GetExtendedTcpTable(tcpTableRecordsPtr, ref bufferSize, true,
+                AddressFamily.InterNetwork, PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
             // Non-zero value represent the function 'GetExtendedTcpTable' failed,
             // hence empty list is returned to the caller function.
@@ -150,17 +220,6 @@ public static class SocketHelper
         return tcpTableRecords;
     }
 
-    // The GetExtendedTcpTable function retrieves a table that contains a list of
-    // TCP endpoints available to the application. Decorating the function with
-    // DllImport attribute indicates that the attributed method is exposed by an
-    // unmanaged dynamic-link library 'iphlpapi.dll' as a static entry point.
-    [DllImport("iphlpapi.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    static extern uint GetExtendedTcpTable(IntPtr pTcpTable, ref int pdwSize,
-        bool bOrder, int ulAf, TcpTableClass tableClass, uint reserved = 0);
-
-    // The version of IP used by the TCP/UDP endpoint. AF_INET is used for IPv4.
-    const int AF_INET = 2;
-
     /// <summary>
     /// The structure contains information that describes an IPv4 TCP connection with 
     /// IPv4 addresses, ports used by the TCP connection, and the specific process ID
@@ -189,21 +248,6 @@ public static class SocketHelper
         public uint dwNumEntries;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
         public MIB_TCPROW_OWNER_PID[] table;
-    }
-
-    // Enum to define the set of values used to indicate the type of table returned by 
-    // calls made to the function 'GetExtendedTcpTable'.
-    enum TcpTableClass
-    {
-        TCP_TABLE_BASIC_LISTENER,
-        TCP_TABLE_BASIC_CONNECTIONS,
-        TCP_TABLE_BASIC_ALL,
-        TCP_TABLE_OWNER_PID_LISTENER,
-        TCP_TABLE_OWNER_PID_CONNECTIONS,
-        TCP_TABLE_OWNER_PID_ALL,
-        TCP_TABLE_OWNER_MODULE_LISTENER,
-        TCP_TABLE_OWNER_MODULE_CONNECTIONS,
-        TCP_TABLE_OWNER_MODULE_ALL,
     }
 
     /// <summary>
@@ -289,4 +333,5 @@ public static class SocketHelper
         DELETE_TCB = 12,
         NONE = 0,
     }
+#endif
 }

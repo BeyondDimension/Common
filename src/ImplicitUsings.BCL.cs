@@ -3,6 +3,7 @@
 global using Microsoft.Win32;
 #if !NETFRAMEWORK
 global using System.Collections.Immutable;
+global using System.ComponentModel;
 global using System.ComponentModel.DataAnnotations;
 #endif
 global using System.Diagnostics;
@@ -27,6 +28,8 @@ global using System.Text.Json.Serialization;
 global using System.Runtime;
 global using System.Runtime.Devices;
 #endif
+global using System.Runtime.InteropServices;
+global using System.Runtime.Versioning;
 
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;

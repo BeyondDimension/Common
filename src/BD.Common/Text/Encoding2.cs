@@ -1,6 +1,6 @@
-using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
+#if WINDOWS7_0_OR_GREATER
 using static System.Text.Encoding2_ActiveCodePages;
+#endif
 using static System.Text.Encoding2_GB2312;
 
 namespace System.Text;
@@ -28,11 +28,11 @@ public static partial class Encoding2
     {
         get
         {
-            if (OperatingSystem.IsWindows())
-            {
-                return ACP ?? Encoding.Default;
-            }
+#if WINDOWS7_0_OR_GREATER
+            return ACP ?? Encoding.Default;
+#else
             return Encoding.Default;
+#endif
         }
     }
 }
@@ -42,6 +42,8 @@ public static partial class EncodingCodePages
     public const int GB2312 = 936;
 }
 
+#if WINDOWS7_0_OR_GREATER
+
 /// <summary>
 /// Windows 代码页(活动代码页)
 /// </summary>
@@ -50,17 +52,19 @@ static partial class Encoding2_ActiveCodePages
 {
     internal static readonly Encoding? ACP = GetACP_();
 
-    [DllImport("kernel32.dll")]
+    [LibraryImport("kernel32.dll")]
     [ResourceExposure(ResourceScope.None)]
-    internal static extern int GetACP();
+    private static partial int GetACP();
 
-    internal static Encoding? GetACP_()
+    static Encoding? GetACP_()
     {
         int codePage = GetACP();
         var encoding = CodePagesEncodingProvider.Instance.GetEncoding(codePage);
         return encoding;
     }
 }
+
+#endif
 
 static partial class Encoding2_GB2312
 {

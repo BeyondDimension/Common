@@ -1,6 +1,9 @@
 using _ThisAssembly_ = BD.Common.ThisAssembly;
 
 [assembly: AssemblyProduct(_ThisAssembly_.AssemblyProduct)]
+#if WINDOWS7_0_OR_GREATER
+[assembly: SupportedOSPlatform("Windows10.0.14393")]
+#endif
 
 // ReSharper disable once CheckNamespace
 namespace BD.Common;

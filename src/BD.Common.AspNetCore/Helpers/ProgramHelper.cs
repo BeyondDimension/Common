@@ -47,7 +47,7 @@ public static partial class ProgramHelper
             Console.WriteLine($"LocalTime: {DateTimeOffset.Now.ToLocalTime()}");
             // 输出当前系统设置区域
             Console.WriteLine($"CurrentCulture: {CultureInfo.CurrentCulture.Name} {CultureInfo.CurrentCulture.EnglishName}");
-            Console.WriteLine(string.Empty);
+            Console.WriteLine();
 
             app.Run();
         }

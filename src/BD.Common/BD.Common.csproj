@@ -39,6 +39,13 @@
 		<PackageReference Include="OperatingSystem2" />
 	</ItemGroup>
 
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<PackageReference Include="PInvoke.IPHlpApi" />
+		<PackageReference Include="PInvoke.AdvApi32" />
+		<PackageReference Include="PInvoke.Kernel32" />
+		<PackageReference Include="Vanara.PInvoke.WinHTTP" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<Compile Update="Resources\Strings.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -55,7 +62,7 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7.props" />
+	<Import Project="..\TFM_NET7_WITH_WINDOWS.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>

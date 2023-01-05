@@ -28,10 +28,6 @@ public static class DeviceInfo2
             var value = i.Idiom;
             if (value != DeviceIdiom.Unknown) return value;
         }
-        if (OperatingSystem2.IsDesktop())
-        {
-            return DeviceIdiom.Desktop;
-        }
         return DeviceIdiom.Unknown;
     }
 
