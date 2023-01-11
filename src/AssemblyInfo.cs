@@ -14,3 +14,6 @@ using _ThisAssembly_ = BD.Common.ThisAssembly;
 [assembly: AssemblyFileVersion(_ThisAssembly_.AssemblyVersion)]
 [assembly: AssemblyVersion(_ThisAssembly_.AssemblyVersion)]
 [assembly: NeutralResourcesLanguage("zh-Hans")]
+#if WINDOWS7_0_OR_GREATER
+[assembly: SupportedOSPlatform("Windows10.0.14393")]
+#endif
