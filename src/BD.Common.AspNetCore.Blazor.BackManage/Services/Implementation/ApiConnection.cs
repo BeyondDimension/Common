@@ -122,7 +122,6 @@ public sealed class ApiConnection : HttpClientWrapper, IApiConnection
     /// <summary>
     /// 处理错误消息
     /// </summary>
-    /// <param name="rsp"></param>
     public static async void HandleErrorMessage(IApiResponse rsp, MessageService message)
     {
         if (!rsp.IsSuccess)

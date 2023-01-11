@@ -4,6 +4,7 @@ public sealed class AuthService : HttpClientWrapper, IAuthService
 {
     readonly ILocalStorageService storage;
     readonly NavigationManager nav;
+    readonly MessageService message;
 
     /// <summary>
     /// 用于存储 Token 的键
@@ -52,10 +53,11 @@ public sealed class AuthService : HttpClientWrapper, IAuthService
 
     public void NavigateToRoot() => nav.NavigateTo("/", forceLoad: true);
 
-    public AuthService(HttpClient client, ILocalStorageService storage, NavigationManager nav) : base(client)
+    public AuthService(HttpClient client, ILocalStorageService storage, NavigationManager nav, MessageService message) : base(client)
     {
         this.storage = storage;
         this.nav = nav;
+        this.message = message;
     }
 
     async ValueTask<bool> SetAuthorizationReturnIsAuthenticatedAsync(CancellationToken cancellationToken)
@@ -77,6 +79,12 @@ public sealed class AuthService : HttpClientWrapper, IAuthService
         return mUserInfo;
     }
 
+    async void ShowErrorMessage(string errorMessage)
+    {
+        // https://antblazor.com/zh-CN/components/message
+        await message.Error(errorMessage);
+    }
+
     async Task<CurrentUserInfoDTO> GetUserInfoCoreAsync(CancellationToken cancellationToken)
     {
         var isAuthenticated = await SetAuthorizationReturnIsAuthenticatedAsync(cancellationToken);
@@ -87,7 +95,18 @@ public sealed class AuthService : HttpClientWrapper, IAuthService
             if (rsp.IsSuccessStatusCode)
             {
                 var data = await rsp.Content.ReadFromJsonAsync<ApiResponse<CurrentUserInfoDTO>>(cancellationToken: cancellationToken);
-                if (data != null && data.IsSuccess && data.Data != null) return data.Data;
+                if (data != null && data.IsSuccess && data.Data != null)
+                {
+                    return data.Data;
+                }
+                else
+                {
+                    ShowErrorMessage($"获取当前登录用户信息失败，错误：{data?.GetErrorMessage()}");
+                }
+            }
+            else
+            {
+                ShowErrorMessage($"获取当前登录用户信息失败，状态码：{rsp.StatusCode}");
             }
         }
         return new();

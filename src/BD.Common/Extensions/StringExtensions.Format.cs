@@ -11,9 +11,7 @@ public static partial class StringExtensions
         }
         catch
         {
-            var args_ = args.ToList();
-            args_.Insert(0, format);
-            return string.Join(' ', args_);
+            return string.Join(' ', new[] { format }.Concat(args));
         }
     }
 }
