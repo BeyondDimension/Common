@@ -47,3 +47,10 @@
 - BD.Common.PhoneNumber 用于中国大陆的手机号相关的通用类库
 - BD.Common.Primitives 通用模型，枚举，列接口的通用类库
 - BD.Common.Primitives.ApiResponse 通用 API 响应模型类库
+
+## Resx 资源文件
+- src\BD.Common\Resources\Strings.resx 通用类库字符串资源
+- src\BD.Common.BirthDate\Strings.resx 生日类库字符串资源
+- src\BD.Common.ModelValidator\Resources\Strings.resx 模型验证类库字符串资源
+- src\BD.Common.PhoneNumber\Resources\Strings.resx 手机号类库字符串资源
+- src\BD.Common.Primitives\Resources\Strings.resx 模型类库字符串资源

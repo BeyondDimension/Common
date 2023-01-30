@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越模型验证库</Product>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

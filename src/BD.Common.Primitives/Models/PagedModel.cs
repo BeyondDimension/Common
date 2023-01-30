@@ -4,10 +4,11 @@ namespace BD.Common.Models;
 /// <inheritdoc cref="IPagedModel"/>
 #if !BLAZOR
 [MPObj]
+[MP2Obj(SerializeLayout.Explicit)]
 #endif
 [Serializable]
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
-public class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
+public partial class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
 {
     string DebuggerDisplay() => $"Current: {Current}, Total: {Total}, Count: {mDataSource?.Length ?? 0}, PageSize: {PageSize}";
 
@@ -15,6 +16,7 @@ public class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
 
 #if !BLAZOR
     [MPKey(0)]
+    [MP2Key(0)]
 #endif
     public T[] DataSource
     {
@@ -29,16 +31,19 @@ public class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
 
 #if !BLAZOR
     [MPKey(1)]
+    [MP2Key(1)]
 #endif
     public int Current { get; set; } = IPagedModel.DefaultCurrent;
 
 #if !BLAZOR
     [MPKey(2)]
+    [MP2Key(2)]
 #endif
     public int PageSize { get; set; } = IPagedModel.DefaultPageSize;
 
 #if !BLAZOR
     [MPKey(3)]
+    [MP2Key(3)]
 #endif
     public int Total { get; set; }
 

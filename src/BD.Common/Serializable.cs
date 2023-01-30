@@ -1,6 +1,3 @@
-#if !__NOT_HAVE_MESSAGEPACK__
-using MessagePack;
-#endif
 #if __HAVE_N_JSON__
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -53,6 +50,12 @@ namespace System
             /// <para>https://github.com/dotnet/runtime/tree/v5.0.0-preview.6.20305.6/src/libraries/System.Text.Json</para>
             /// </summary>
             SystemTextJson,
+
+            /// <summary>
+            /// MemoryPack is Zero encoding extreme performance binary serializer for C# and Unity.
+            /// <para>https://github.com/Cysharp/MemoryPack</para>
+            /// </summary>
+            MemoryPack,
         }
 
         /// <summary>
@@ -103,6 +106,7 @@ namespace System
         /// <param name="writeIndented"></param>
         /// <param name="ignoreNullValues"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SJSON(JsonImplType implType, object? value, Type? inputType = null, bool writeIndented = false, bool ignoreNullValues = false)
         {
             switch (implType)
@@ -144,6 +148,7 @@ namespace System
         /// <param name="writeIndented"></param>
         /// <param name="ignoreNullValues"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SJSON(object? value, Type? inputType = null, bool writeIndented = false, bool ignoreNullValues = false)
             => SJSON(DefaultJsonImplType, value, inputType, writeIndented, ignoreNullValues);
 
@@ -160,26 +165,32 @@ namespace System
         /// <param name="value"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SMP<T>(T value, CancellationToken cancellationToken = default)
             => MessagePackSerializer.Serialize(value, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="SMP{T}(T, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SMP(Type type, object value, CancellationToken cancellationToken = default)
             => MessagePackSerializer.Serialize(type, value, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="SMP{T}(T, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SMP<T>(Stream stream, T value, CancellationToken cancellationToken = default)
             => MessagePackSerializer.Serialize(stream, value, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="SMP{T}(T, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SMP(Type type, Stream stream, object value, CancellationToken cancellationToken = default)
             => MessagePackSerializer.Serialize(type, stream, value, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="SMP{T}(T, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Task SMPAsync<T>(Stream stream, T value, CancellationToken cancellationToken = default)
             => MessagePackSerializer.SerializeAsync(stream, value, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="SMP{T}(T, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Task SMPAsync(Type type, Stream stream, object value, CancellationToken cancellationToken = default)
             => MessagePackSerializer.SerializeAsync(type, stream, value, options: lz4Options, cancellationToken: cancellationToken);
 
@@ -190,6 +201,7 @@ namespace System
         /// <param name="value"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string? SMPB64U<T>(T value, CancellationToken cancellationToken = default)
         {
             if (value == null) return null;
@@ -198,6 +210,45 @@ namespace System
         }
 
 #endif
+
+        /// <summary>
+        /// (Serialize)MemoryPack 序列化
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte[] SMP2<T>(T value)
+            => MemoryPackSerializer.Serialize(value);
+
+        /// <inheritdoc cref="SMP2{T}(T)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte[] SMP2(Type type, object value)
+            => MemoryPackSerializer.Serialize(type, value);
+
+        /// <inheritdoc cref="SMP2{T}(T)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ValueTask SMP2Async<T>(Stream stream, T value, CancellationToken cancellationToken = default)
+            => MemoryPackSerializer.SerializeAsync(stream, value, cancellationToken: cancellationToken);
+
+        /// <inheritdoc cref="SMP2{T}(T)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ValueTask SMP2Async(Type type, Stream stream, object value, CancellationToken cancellationToken = default)
+            => MemoryPackSerializer.SerializeAsync(type, stream, value, cancellationToken: cancellationToken);
+
+        /// <summary>
+        /// (Serialize)MemoryPack 序列化 + Base64Url Encode
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string? SMP2B64U<T>(T value)
+        {
+            if (value == null) return null;
+            var byteArray = SMP2(value);
+            return byteArray.Base64UrlEncode_Nullable();
+        }
 
         #endregion
 
@@ -211,6 +262,7 @@ namespace System
         /// <param name="value"></param>
         /// <returns></returns>
         [return: MaybeNull]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T DJSON<T>(JsonImplType implType, string value)
         {
             return implType switch
@@ -234,6 +286,7 @@ namespace System
         /// <param name="value"></param>
         /// <returns></returns>
         [return: MaybeNull]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T DJSON<T>(string value) => DJSON<T>(DefaultJsonImplType, value);
 
 #if !__NOT_HAVE_MESSAGEPACK__
@@ -246,10 +299,12 @@ namespace System
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [return: MaybeNull]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T DMP<T>(byte[] buffer, CancellationToken cancellationToken = default)
             => MessagePackSerializer.Deserialize<T>(buffer, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="DMP{T}(byte[], CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static object? DMP(Type type, byte[] buffer, CancellationToken cancellationToken = default)
          => MessagePackSerializer.Deserialize(type, buffer, options: lz4Options, cancellationToken: cancellationToken);
 
@@ -261,21 +316,25 @@ namespace System
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [return: MaybeNull]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T DMP<T>(Stream buffer, CancellationToken cancellationToken = default)
             => MessagePackSerializer.Deserialize<T>(buffer, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="DMP{T}(Stream, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static object? DMP(Type type, Stream buffer, CancellationToken cancellationToken = default)
             => MessagePackSerializer.Deserialize(type, buffer, options: lz4Options, cancellationToken: cancellationToken);
 
         /// <inheritdoc cref="DMP{T}(Stream, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static async ValueTask<T?> DMPAsync<T>(Stream buffer, CancellationToken cancellationToken = default)
         {
-            var r = await MessagePackSerializer.DeserializeAsync<T>(buffer, options: lz4Options, cancellationToken: cancellationToken);
+            T? r = await MessagePackSerializer.DeserializeAsync<T>(buffer, options: lz4Options, cancellationToken: cancellationToken);
             return r;
         }
 
         /// <inheritdoc cref="DMP{T}(Stream, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask<object?> DMPAsync(Type type, Stream buffer, CancellationToken cancellationToken = default)
             => MessagePackSerializer.DeserializeAsync(type, buffer, options: lz4Options, cancellationToken: cancellationToken);
 
@@ -287,6 +346,7 @@ namespace System
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [return: MaybeNull]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T DMPB64U<T>(string? value, CancellationToken cancellationToken = default)
         {
             if (!string.IsNullOrWhiteSpace(value))
@@ -298,6 +358,7 @@ namespace System
         }
 
         /// <inheritdoc cref="DMPB64U{T}(string?, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static object? DMPB64U(Type type, string? value, CancellationToken cancellationToken = default)
         {
             if (!string.IsNullOrWhiteSpace(value))
@@ -309,6 +370,71 @@ namespace System
         }
 
 #endif
+
+        /// <summary>
+        /// (Deserialize)MemoryPack 反序列化
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        [return: MaybeNull]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T DMP2<T>(byte[] buffer)
+            => MemoryPackSerializer.Deserialize<T>(buffer);
+
+        /// <inheritdoc cref="DMP2{T}(byte[])"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static object? DMP2(Type type, byte[] buffer)
+         => MemoryPackSerializer.Deserialize(type, buffer);
+
+        /// <summary>
+        /// (Deserialize)MemoryPack 反序列化
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="buffer"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static async ValueTask<T?> DMP2Async<T>(Stream buffer, CancellationToken cancellationToken = default)
+        {
+            T? r = await MemoryPackSerializer.DeserializeAsync<T>(buffer, cancellationToken: cancellationToken);
+            return r;
+        }
+
+        /// <inheritdoc cref="DMP2Async{T}(Stream, CancellationToken)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ValueTask<object?> DMP2Async(Type type, Stream buffer, CancellationToken cancellationToken = default)
+            => MemoryPackSerializer.DeserializeAsync(type, buffer, cancellationToken: cancellationToken);
+
+        /// <summary>
+        /// (Deserialize)MessagePack 反序列化 + Base64Url Decode
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [return: MaybeNull]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static T DMP2B64U<T>(string? value)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                var buffer = value.Base64UrlDecodeToByteArray();
+                return DMP2<T>(buffer);
+            }
+            return default;
+        }
+
+        /// <inheritdoc cref="DMP2B64U{T}(string?)"/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static object? DMP2B64U(Type type, string? value)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                var buffer = value.Base64UrlDecodeToByteArray();
+                return DMP(type, buffer);
+            }
+            return default;
+        }
 
         #endregion
 
@@ -350,7 +476,7 @@ namespace System
         }
 
         /// <summary>
-        /// 使用 MessagePack 序列化将对象克隆一份新的对象
+        /// 使用序列化将对象克隆一份新的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -363,8 +489,24 @@ namespace System
             var jsonStr = SJSON(obj);
             return DJSON<T>(jsonStr);
 #else
-            var bytes = MessagePackSerializer.Serialize(obj);
-            return MessagePackSerializer.Deserialize<T>(bytes);
+            try
+            {
+                var bytes = MessagePackSerializer.Serialize(obj);
+                return MessagePackSerializer.Deserialize<T>(bytes);
+            }
+            catch
+            {
+                try
+                {
+                    var bytes = MemoryPackSerializer.Serialize(obj);
+                    return MemoryPackSerializer.Deserialize<T>(bytes);
+                }
+                catch
+                {
+                    var jsonStr = SJSON(obj);
+                    return DJSON<T>(jsonStr);
+                }
+            }
 #endif
         }
 
@@ -455,7 +597,7 @@ namespace System
 namespace Newtonsoft.Json.Serialization
 {
     /// <summary>
-    /// 将忽略 <see cref="JsonPropertyAttribute"/> 属性
+    /// 将忽略 <see cref="N_JsonProperty"/> 属性
     /// </summary>
     public sealed class IgnoreJsonPropertyContractResolver : DefaultContractResolver
     {

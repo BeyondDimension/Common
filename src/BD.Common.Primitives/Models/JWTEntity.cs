@@ -6,15 +6,17 @@ namespace BD.Common.Models;
 /// </summary>
 #if !BLAZOR
 [MPObj]
+[MP2Obj(SerializeLayout.Explicit)]
 #endif
 [Serializable]
-public sealed class JWTEntity : IExplicitHasValue
+public sealed partial class JWTEntity : IExplicitHasValue
 {
     /// <summary>
     /// 凭证有效期
     /// </summary>
 #if !BLAZOR
     [MPKey(0)]
+    [MP2Key(0)]
 #endif
     public DateTimeOffset ExpiresIn { get; set; }
 
@@ -23,6 +25,7 @@ public sealed class JWTEntity : IExplicitHasValue
     /// </summary>
 #if !BLAZOR
     [MPKey(1)]
+    [MP2Key(1)]
 #endif
     public string? AccessToken { get; set; }
 
@@ -31,6 +34,7 @@ public sealed class JWTEntity : IExplicitHasValue
     /// </summary>
 #if !BLAZOR
     [MPKey(2)]
+    [MP2Key(2)]
 #endif
     public string? RefreshToken { get; set; }
 

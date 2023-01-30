@@ -130,7 +130,7 @@ public static class AESUtils
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="text"></param>
-    /// <returns></retu
+    /// <returns></returns>
     public static byte[] EncryptToByteArray(this Aes aes, string text)
     {
         var data = Encoding.UTF8.GetBytes(text);

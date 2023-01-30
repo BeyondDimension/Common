@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越通用 Web API 库</Product>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

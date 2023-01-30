@@ -12,7 +12,7 @@ if (OperatingSystem.IsWindows())
         try
         {
             const string api_tool = "https://ip.tool.lu";
-            const string api_sohu = "https://pv.sohu.com/cityjson";
+            //const string api_sohu = "https://pv.sohu.com/cityjson";
             var str = await client.GetStringAsync(api_tool);
             Console.WriteLine(str.TrimEnd());
         }

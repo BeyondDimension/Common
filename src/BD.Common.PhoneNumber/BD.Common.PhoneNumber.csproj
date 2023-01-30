@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越手机号库</Product>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

@@ -52,26 +52,3 @@ global using NetworkAccess = BD.Common.Enums.NetworkAccess;
 global using PermissionStatus = BD.Common.Enums.PermissionStatus;
 global using PickOptions = BD.Common.Models.PickOptions;
 global using Platform = System.Runtime.Devices.Platform;
-
-#if MAUI
-using _ThisAssembly_ = BD.Common.Essentials_.Maui.ThisAssembly;
-#else
-using _ThisAssembly_ = BD.Common.Essentials_.Xamarin.ThisAssembly;
-#endif
-
-[assembly: AssemblyProduct(_ThisAssembly_.AssemblyProduct)]
-
-// ReSharper disable once CheckNamespace
-#if MAUI
-namespace BD.Common.Essentials_.Maui;
-#else
-namespace BD.Common.Essentials_.Xamarin;
-#endif
-
-static partial class ThisAssembly
-{
-    /// <summary>
-    /// 定义程序集清单的产品名自定义属性
-    /// </summary>
-    public const string AssemblyProduct = "次元超越 Essentials 实现库";
-}

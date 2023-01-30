@@ -63,9 +63,9 @@ namespace BD.Common.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        internal static byte[] AMap_adcode_citycode_20210406_xlsx {
+        internal static byte[] AMap_adcode_citycode_20210406 {
             get {
-                object obj = ResourceManager.GetObject("AMap_adcode_citycode_20210406.xlsx", resourceCulture);
+                object obj = ResourceManager.GetObject("AMap_adcode_citycode_20210406", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -5,16 +5,19 @@ namespace BD.Common.Models;
 /// </summary>
 #if !BLAZOR
 [MPObj]
+[MP2Obj(SerializeLayout.Explicit)]
 #endif
-public class SelectItemDTO : ITitle, IDisable
+public partial class SelectItemDTO : ITitle, IDisable
 {
 #if !BLAZOR
     [MPKey(0)]
+    [MP2Key(0)]
 #endif
     public string Title { get; set; } = "";
 
 #if !BLAZOR
     [MPKey(LastMKeyIndex)]
+    [MP2Key(LastMKeyIndex)]
 #endif
     public bool Disable { get; set; }
 
@@ -34,11 +37,13 @@ public class SelectItemDTO : ITitle, IDisable
 /// <typeparam name="T"></typeparam>
 #if !BLAZOR
 [MPObj]
+[MP2Obj(SerializeLayout.Explicit)]
 #endif
-public class SelectItemDTO<T> : SelectItemDTO
+public partial class SelectItemDTO<T> : SelectItemDTO
 {
 #if !BLAZOR
     [MPKey(LastMKeyIndex + 1)]
+    [MP2Key(LastMKeyIndex + 1)]
 #endif
     public T? Id { get; set; }
 

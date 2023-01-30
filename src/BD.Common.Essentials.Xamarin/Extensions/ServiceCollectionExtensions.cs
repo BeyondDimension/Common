@@ -1,4 +1,5 @@
 using BD.Common.Services.Implementation.Essentials;
+using Essentials = BD.Common.Essentials;
 #if ANDROID
 using DeviceInfoPlatformServiceImpl_ = BD.Common.Services.Implementation.Essentials.AndroidDeviceInfoPlatformServiceImpl;
 #else

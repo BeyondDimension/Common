@@ -19,10 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{F221D7EA
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		src\Directory.Build.props = src\Directory.Build.props
-		src\Directory.Packages.props = src\Directory.Packages.props
+		ref\DirectoryPackages\Directory.Packages.props = ref\DirectoryPackages\Directory.Packages.props
 		src\GeneratePackage.props = src\GeneratePackage.props
 		README.md = README.md
-		src\ThisAssembly.cs = src\ThisAssembly.cs
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.UnitTest", "src\BD.Common.UnitTest\BD.Common.UnitTest.csproj", "{F0D8EF68-0FBB-4818-A26F-D01BF382C948}"
@@ -117,6 +116,36 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TFM", "TFM", "{149E7C8E-7B1
 		src\TFM_NET7_WITH_ANDROID.props = src\TFM_NET7_WITH_ANDROID.props
 		src\TFM_NET7_WITH_WINDOWS.props = src\TFM_NET7_WITH_WINDOWS.props
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImplicitUsings", "ImplicitUsings", "{78E65096-FE22-4E82-AB15-EB4CB986194B}"
+	ProjectSection(SolutionItems) = preProject
+		src\ImplicitUsings.AspNetCore.cs = src\ImplicitUsings.AspNetCore.cs
+		src\ImplicitUsings.BCL.cs = src\ImplicitUsings.BCL.cs
+		src\ImplicitUsings.Blazor.cs = src\ImplicitUsings.Blazor.cs
+		src\ImplicitUsings.Color.cs = src\ImplicitUsings.Color.cs
+		src\ImplicitUsings.Columns.cs = src\ImplicitUsings.Columns.cs
+		src\ImplicitUsings.Controllers.cs = src\ImplicitUsings.Controllers.cs
+		src\ImplicitUsings.Data.cs = src\ImplicitUsings.Data.cs
+		src\ImplicitUsings.Entities.cs = src\ImplicitUsings.Entities.cs
+		src\ImplicitUsings.EntityFrameworkCore.cs = src\ImplicitUsings.EntityFrameworkCore.cs
+		src\ImplicitUsings.Enums.cs = src\ImplicitUsings.Enums.cs
+		src\ImplicitUsings.Identity.cs = src\ImplicitUsings.Identity.cs
+		src\ImplicitUsings.JsonProperty.cs = src\ImplicitUsings.JsonProperty.cs
+		src\ImplicitUsings.JWT.cs = src\ImplicitUsings.JWT.cs
+		src\ImplicitUsings.MessagePack.cs = src\ImplicitUsings.MessagePack.cs
+		src\ImplicitUsings.Models.cs = src\ImplicitUsings.Models.cs
+		src\ImplicitUsings.MSEX.cs = src\ImplicitUsings.MSEX.cs
+		src\ImplicitUsings.NLog.cs = src\ImplicitUsings.NLog.cs
+		src\ImplicitUsings.Primitives.cs = src\ImplicitUsings.Primitives.cs
+		src\ImplicitUsings.ReactiveUI.cs = src\ImplicitUsings.ReactiveUI.cs
+		src\ImplicitUsings.Repositories.cs = src\ImplicitUsings.Repositories.cs
+		src\ImplicitUsings.Resources.cs = src\ImplicitUsings.Resources.cs
+		src\ImplicitUsings.Services.cs = src\ImplicitUsings.Services.cs
+		src\ImplicitUsings.SQLitePCL.cs = src\ImplicitUsings.SQLitePCL.cs
+		src\ImplicitUsings.UnitTest.cs = src\ImplicitUsings.UnitTest.cs
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Area.ConsoleTest", "src\BD.Common.Area.ConsoleTest\BD.Common.Area.ConsoleTest.csproj", "{B3A960DC-6E46-48D3-A3AE-A77E1989504B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -268,6 +297,10 @@ Global
 		{34A24725-D4B5-45B2-950B-DA1414715705}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A24725-D4B5-45B2-950B-DA1414715705}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A24725-D4B5-45B2-950B-DA1414715705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3A960DC-6E46-48D3-A3AE-A77E1989504B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3A960DC-6E46-48D3-A3AE-A77E1989504B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3A960DC-6E46-48D3-A3AE-A77E1989504B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3A960DC-6E46-48D3-A3AE-A77E1989504B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -304,6 +337,8 @@ Global
 		{41FCFFCC-CC2D-42E9-8289-D1FCE1864553} = {2396192B-A608-4B23-B05C-ED66885398A9}
 		{34A24725-D4B5-45B2-950B-DA1414715705} = {72184E2D-34EE-4E81-9008-1B2E4FC03972}
 		{149E7C8E-7B18-4363-A327-B80B65DB74A9} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
+		{78E65096-FE22-4E82-AB15-EB4CB986194B} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
+		{B3A960DC-6E46-48D3-A3AE-A77E1989504B} = {72184E2D-34EE-4E81-9008-1B2E4FC03972}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}

@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越 API 响应模型基类库</Product>
 		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__API_RSP__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>

@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越拼音 CFStringTransform 实现库</Product>
 		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__NOT_IMPORT_COLUMNS__;__NOT_IMPORT_MODELS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>

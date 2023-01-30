@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越通用仓储 EFCore 实现库</Product>
 		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__NOT_IMPORT_WEBENCODERS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>

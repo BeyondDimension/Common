@@ -1,11 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Product>次元超越动态 Windows 系统代理测试</Product>
+		<Product>次元超越地区库测试</Product>
 		<OutputType>Exe</OutputType>
 	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Include="..\Utils.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\BD.Common.Area\BD.Common.Area.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 

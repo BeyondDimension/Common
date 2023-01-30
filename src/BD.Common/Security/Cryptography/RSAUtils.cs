@@ -7,7 +7,7 @@ public static partial class RSAUtils
 {
     #region FromJsonString
 
-    static RSAParameters GetRSAParametersFromJsonString(string jsonString)
+    public static RSAParameters GetRSAParametersFromJsonString(string jsonString)
     {
         var rsaParams = Serializable.DJSON<Parameters>(jsonString);
         if (rsaParams == null) throw new NullReferenceException(nameof(rsaParams));
@@ -28,79 +28,86 @@ public static partial class RSAUtils
 
     #endregion
 
-    #region FromXmlString
+    //#region FromXmlString
 
-    static string? SearchForTextOfLocalName(string str, string name)
-    {
-        if (name == null) return null;
-        var leftStr = $"<{name}>";
-        var rightStr = $"</{name}>";
-        var leftIndex = str.IndexOf(leftStr, StringComparison.OrdinalIgnoreCase);
-        if (leftIndex < 0) return null;
-        var rightIndex = str.IndexOf(rightStr, StringComparison.OrdinalIgnoreCase);
-        var startIndex = leftIndex + leftStr.Length;
-        var length = rightIndex - (leftIndex + leftStr.Length);
-        return str.Substring(startIndex, length);
-    }
+    //static string? SearchForTextOfLocalName(string str, string name)
+    //{
+    //    if (name == null) return null;
+    //    var leftStr = $"<{name}>";
+    //    var rightStr = $"</{name}>";
+    //    var leftIndex = str.IndexOf(leftStr, StringComparison.OrdinalIgnoreCase);
+    //    if (leftIndex < 0) return null;
+    //    var rightIndex = str.IndexOf(rightStr, StringComparison.OrdinalIgnoreCase);
+    //    var startIndex = leftIndex + leftStr.Length;
+    //    var length = rightIndex - (leftIndex + leftStr.Length);
+    //    return str.Substring(startIndex, length);
+    //}
 
-    static RSAParameters GetRSAParametersFromXmlString(string xmlString)
-    {
-        var rsaParams = default(RSAParameters);
-        var modulusString = SearchForTextOfLocalName(xmlString, "Modulus");
-        if (modulusString == null)
-            throw new CryptographicException("Cryptography_InvalidFromXmlString_RSA_Modulus");
-        rsaParams.Modulus = modulusString.Base64DecodeToByteArray_Nullable();
-        var exponentString = SearchForTextOfLocalName(xmlString, "Exponent");
-        if (exponentString == null)
-            throw new CryptographicException("Cryptography_InvalidFromXmlString_RSA_Exponent");
-        rsaParams.Exponent = exponentString.Base64DecodeToByteArray_Nullable();
-        var pString = SearchForTextOfLocalName(xmlString, "P");
-        if (pString != null)
-            rsaParams.P = pString.Base64DecodeToByteArray_Nullable();
-        var qString = SearchForTextOfLocalName(xmlString, "Q");
-        if (qString != null)
-            rsaParams.Q = qString.Base64DecodeToByteArray_Nullable();
-        var dpString = SearchForTextOfLocalName(xmlString, "DP");
-        if (dpString != null)
-            rsaParams.DP = dpString.Base64DecodeToByteArray_Nullable();
-        var dqString = SearchForTextOfLocalName(xmlString, "DQ");
-        if (dqString != null)
-            rsaParams.DQ = dqString.Base64DecodeToByteArray_Nullable();
-        var inverseQString = SearchForTextOfLocalName(xmlString, "InverseQ");
-        if (inverseQString != null)
-            rsaParams.InverseQ = inverseQString.Base64DecodeToByteArray_Nullable();
-        var dString = SearchForTextOfLocalName(xmlString, "D");
-        if (dString != null) rsaParams.D = dString.Base64DecodeToByteArray_Nullable();
-        return rsaParams;
-    }
+    //static RSAParameters GetRSAParametersFromXmlString(string xmlString)
+    //{
+    //    var rsaParams = default(RSAParameters);
+    //    var modulusString = SearchForTextOfLocalName(xmlString, "Modulus");
+    //    if (modulusString == null)
+    //        throw new CryptographicException("Cryptography_InvalidFromXmlString_RSA_Modulus");
+    //    rsaParams.Modulus = modulusString.Base64DecodeToByteArray_Nullable();
+    //    var exponentString = SearchForTextOfLocalName(xmlString, "Exponent");
+    //    if (exponentString == null)
+    //        throw new CryptographicException("Cryptography_InvalidFromXmlString_RSA_Exponent");
+    //    rsaParams.Exponent = exponentString.Base64DecodeToByteArray_Nullable();
+    //    var pString = SearchForTextOfLocalName(xmlString, "P");
+    //    if (pString != null)
+    //        rsaParams.P = pString.Base64DecodeToByteArray_Nullable();
+    //    var qString = SearchForTextOfLocalName(xmlString, "Q");
+    //    if (qString != null)
+    //        rsaParams.Q = qString.Base64DecodeToByteArray_Nullable();
+    //    var dpString = SearchForTextOfLocalName(xmlString, "DP");
+    //    if (dpString != null)
+    //        rsaParams.DP = dpString.Base64DecodeToByteArray_Nullable();
+    //    var dqString = SearchForTextOfLocalName(xmlString, "DQ");
+    //    if (dqString != null)
+    //        rsaParams.DQ = dqString.Base64DecodeToByteArray_Nullable();
+    //    var inverseQString = SearchForTextOfLocalName(xmlString, "InverseQ");
+    //    if (inverseQString != null)
+    //        rsaParams.InverseQ = inverseQString.Base64DecodeToByteArray_Nullable();
+    //    var dString = SearchForTextOfLocalName(xmlString, "D");
+    //    if (dString != null) rsaParams.D = dString.Base64DecodeToByteArray_Nullable();
+    //    return rsaParams;
+    //}
 
-    /// <summary>
-    /// 通过 XML 字符串中的密钥信息初始化 RSA 对象。
-    /// </summary>
-    /// <param name="rsa"></param>
-    /// <param name="xmlString"></param>
-    public static void FromXmlString(RSA rsa, string xmlString)
-    {
-        if (rsa == null) throw new ArgumentNullException(nameof(rsa));
-        var rsaParams = GetRSAParametersFromXmlString(xmlString);
-        rsa.ImportParameters(rsaParams);
-    }
+    ///// <summary>
+    ///// 通过 XML 字符串中的密钥信息初始化 RSA 对象。
+    ///// </summary>
+    ///// <param name="rsa"></param>
+    ///// <param name="xmlString"></param>
+    //public static void FromXmlString(RSA rsa, string xmlString)
+    //{
+    //    if (rsa == null) throw new ArgumentNullException(nameof(rsa));
+    //    try
+    //    {
+    //        rsa.FromXmlString(xmlString);
+    //    }
+    //    catch
+    //    {
+    //        var rsaParams = GetRSAParametersFromXmlString(xmlString);
+    //        rsa.ImportParameters(rsaParams);
+    //    }
+    //}
 
-    #endregion
+    //#endregion
 
     #region 创建 RSA 实例
 
-    /// <summary>
-    /// 创建 <see cref="RSA" /> 对象。
-    /// </summary>
-    /// <param name="xmlString"></param>
-    /// <returns></returns>
-    public static RSA CreateFromXmlString(string xmlString)
-    {
-        var rsaParams = GetRSAParametersFromXmlString(xmlString);
-        var rsa = RSA.Create(rsaParams);
-        return rsa;
-    }
+    ///// <summary>
+    ///// 创建 <see cref="RSA" /> 对象。
+    ///// </summary>
+    ///// <param name="xmlString"></param>
+    ///// <returns></returns>
+    //public static RSA CreateFromXmlString(string xmlString)
+    //{
+    //    var rsaParams = GetRSAParametersFromXmlString(xmlString);
+    //    var rsa = RSA.Create(rsaParams);
+    //    return rsa;
+    //}
 
     /// <summary>
     /// 创建 <see cref="RSA" /> 对象。
@@ -548,6 +555,7 @@ public static partial class RSAUtils
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static RSAParameters ToStruct(this Parameters parms) => new()
     {
         D = parms.D.Base64UrlDecodeToByteArray_Nullable(),
@@ -560,6 +568,7 @@ public static partial class RSAUtils
         Q = parms.Q.Base64UrlDecodeToByteArray_Nullable(),
     };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static Parameters ToObject(this RSAParameters parms) => new()
     {
         D = parms.D.Base64UrlEncode_Nullable(),
@@ -571,4 +580,7 @@ public static partial class RSAUtils
         P = parms.P.Base64UrlEncode_Nullable(),
         Q = parms.Q.Base64UrlEncode_Nullable(),
     };
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static RSA Create(this RSAParameters parms) => RSA.Create(parms);
 }

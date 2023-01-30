@@ -1,3 +1,5 @@
+using IDisposableHolder = BD.Common.IDisposableHolder;
+
 // ReSharper disable once CheckNamespace
 namespace System;
 

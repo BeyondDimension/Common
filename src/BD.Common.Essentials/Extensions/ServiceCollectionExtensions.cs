@@ -1,3 +1,5 @@
+using Essentials = BD.Common.Essentials;
+
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
 
