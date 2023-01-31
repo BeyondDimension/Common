@@ -85,10 +85,10 @@ public class SerializationTest
     }
 }
 
-[MPObj, MP2Obj]
+[MPObj, MP2Obj(SerializeLayout.Explicit)]
 public sealed partial class CookiesModel
 {
-    [MPKey(0), MP2Key(1)]
+    [MPKey(0), MP2Key(0)]
     [MessagePackFormatter(typeof(CookieFormatter))]
     [CookieCollectionFormatter]
     public CookieCollection? Cookies { get; set; }
