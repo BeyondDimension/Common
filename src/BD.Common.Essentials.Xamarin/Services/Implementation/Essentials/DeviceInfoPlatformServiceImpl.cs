@@ -37,7 +37,7 @@ public abstract class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
 #if ANDROID
 public sealed class AndroidDeviceInfoPlatformServiceImpl : DeviceInfoPlatformServiceImpl
 {
-#region Emulator
+    #region Emulator
 
     static int rating = -1;
     static readonly Lazy<bool> mIsEmulator = new(GetIsEmulator);
@@ -200,7 +200,7 @@ public sealed class AndroidDeviceInfoPlatformServiceImpl : DeviceInfoPlatformSer
     /// </summary>
     public static bool IsEmulator => mIsEmulator.Value;
 
-#endregion
+    #endregion
 
     public override DeviceType DeviceType
     {

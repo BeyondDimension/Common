@@ -2,8 +2,10 @@
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/BeyondDimension/Common</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/BeyondDimension/Common.git</RepositoryUrl>
+		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
+		<RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<RepositoryBranch>main</RepositoryBranch>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
