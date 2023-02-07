@@ -6,7 +6,7 @@ on:
     tags:
       - "*"
   pull_request:
-  workflow_dispatch:
+  # workflow_dispatch:
 
 jobs:
   check_format:
@@ -21,30 +21,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install macOS SDK(macOS)
-        if: matrix.os == 'macOS-latest'
-        run: sudo dotnet workload install macos
-
-      - name: Install macOS SDK(Windows)
-        if: matrix.os == 'windows-latest'
-        run: dotnet workload install macos
-
-      - name: Install Android SDK(Unix)
-        if: ${{ matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest' }}
-        run: sudo dotnet workload install android
-
-      - name: Install Android SDK(Windows)
-        if: matrix.os == 'windows-latest'
+      - name: Install Android SDK
         run: dotnet workload install android
 
-      - name: Install Maui(Windows)
-        if: matrix.os == 'windows-latest'
+      - name: Install Maui
         run: dotnet workload install maui
 
-      - name: Install Maui(Unix)
-#        if: ${{ matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest' }}
-        if: matrix.os == 'macOS-latest'
-        run: sudo dotnet workload install maui
+      - name: Install wasm-tools
+        run: dotnet workload install wasm-tools
+      
+      - name: Restore Workload
+        run: dotnet workload restore
 
       - name: Verify dotnet info
         run: dotnet --info
@@ -68,30 +55,20 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
-      - name: Install macOS SDK(macOS)
-        if: matrix.os == 'macOS-latest'
-        run: sudo dotnet workload install macos
-        
-      - name: Install macOS SDK(Windows)
-        if: matrix.os == 'windows-latest'
-        run: dotnet workload install macos
-  
-      - name: Install Android SDK(Unix)
-        if: ${{ matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest' }}
-        run: sudo dotnet workload install android
-        
-      - name: Install Android SDK(Windows)
-        if: matrix.os == 'windows-latest'
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Android SDK
         run: dotnet workload install android
-  
-      - name: Install Maui(Windows)
-        if: matrix.os == 'windows-latest'
+
+      - name: Install Maui
         run: dotnet workload install maui
-  
-      - name: Install Maui(Unix)
-#        if: ${{ matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest' }}
-        if: matrix.os == 'macOS-latest'
-        run: sudo dotnet workload install maui
+
+      - name: Install wasm-tools
+        run: dotnet workload install wasm-tools
+      
+      - name: Restore Workload
+        run: dotnet workload restore
   
       - name: Verify dotnet info
         run: dotnet --info
@@ -164,31 +141,21 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 7.0.x
+  
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Install macOS SDK(macOS)
-        if: matrix.os == 'macOS-latest'
-        run: sudo dotnet workload install macos
-        
-      - name: Install macOS SDK(Windows)
-        if: matrix.os == 'windows-latest'
-        run: dotnet workload install macos
-  
-      - name: Install Android SDK(Unix)
-        if: ${{ matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest' }}
-        run: sudo dotnet workload install android
-        
-      - name: Install Android SDK(Windows)
-        if: matrix.os == 'windows-latest'
+      - name: Install Android SDK
         run: dotnet workload install android
-  
-      - name: Install Maui(Windows)
-        if: matrix.os == 'windows-latest'
+
+      - name: Install Maui
         run: dotnet workload install maui
-  
-      - name: Install Maui(Unix)
-#        if: ${{ matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest' }}
-        if: matrix.os == 'macOS-latest'
-        run: sudo dotnet workload install maui
+
+      - name: Install wasm-tools
+        run: dotnet workload install wasm-tools
+      
+      - name: Restore Workload
+        run: dotnet workload restore
   
       - name: Verify dotnet info
         run: dotnet --info
