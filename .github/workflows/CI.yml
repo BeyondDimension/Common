@@ -61,7 +61,7 @@ jobs:
 
   build:
     name: Build
-    needs: [test, check_format]
+    needs: [ test ]
     if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
     runs-on: windows-latest
     strategy:
