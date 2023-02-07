@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{F221D7EA
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		src\Directory.Build.props = src\Directory.Build.props
-		src\Directory.Packages.props = src\Directory.Packages.props
+		ref\DirectoryPackages\Directory.Packages.props = ref\DirectoryPackages\Directory.Packages.props
 		src\GeneratePackage.props = src\GeneratePackage.props
 		README.md = README.md
 	EndProjectSection
