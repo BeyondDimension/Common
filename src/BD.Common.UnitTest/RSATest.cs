@@ -2,7 +2,7 @@ using System.Runtime.Serialization.Formatters;
 
 namespace BD.Common.UnitTest;
 
-public class RSATest
+public sealed class RSATest
 {
     const int keySizeInBits = 4096;
     const string text = "a你好，Здравствыйте，こんにちは 안녕하세요.😋✅☺️📄💜😂❌😁🔫🛀";

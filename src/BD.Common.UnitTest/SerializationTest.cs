@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters;
 
 namespace BD.Common.UnitTest;
 
-public class SerializationTest
+public sealed class SerializationTest
 {
     [SetUp]
     public void Setup()

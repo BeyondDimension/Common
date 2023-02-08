@@ -7,7 +7,7 @@
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsTrimmable>true</IsTrimmable>
-		<Version>1.23.10207.11121</Version>
+		<Version>1.23.10208.11502</Version>
 		<Copyright>©️ 长沙次元超越科技有限公司. All rights reserved.</Copyright>
 		<Company>长沙次元超越科技有限公司</Company>
 		<FileVersion>$(Version)</FileVersion>
