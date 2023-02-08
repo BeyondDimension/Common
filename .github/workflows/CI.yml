@@ -161,8 +161,8 @@ jobs:
       - name: Push nuget packages
         shell: pwsh
         run: |
-          dotnet nuget push ${{ matrix.ProjectName }}\bin\Release\*.nupkg -s https://nuget.pkg.github.com/BeyondDimension -k ${{ secrets.RMBADMIN_TOKEN }} --skip-duplicate
-          dotnet nuget push ${{ matrix.ProjectName }}\bin\Release\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+          dotnet nuget push src\${{ matrix.ProjectName }}\bin\Release\*.nupkg -s https://nuget.pkg.github.com/BeyondDimension -k ${{ secrets.RMBADMIN_TOKEN }} --skip-duplicate
+          dotnet nuget push src\${{ matrix.ProjectName }}\bin\Release\*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
   release:
     name: Release
     needs: build
