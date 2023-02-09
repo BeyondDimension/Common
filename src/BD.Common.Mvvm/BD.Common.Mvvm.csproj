@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越 Mvvm 库</Product>
+		<PackageTags>BeyondDimension Common CommonMvvm Mvvm</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

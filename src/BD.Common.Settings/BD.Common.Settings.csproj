@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越设置库</Product>
+		<PackageTags>BeyondDimension Common CommonSettings Settings</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common.Settings</RootNamespace>
 	</PropertyGroup>
 

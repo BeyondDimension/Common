@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越通用仓储 SQLitePCL 实现库</Product>
+		<PackageTags>BeyondDimension Common CommonRepositoriesSQLitePCL Repositories SQLitePCL</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__NOT_IMPORT_WEBENCODERS__;__NOT_IMPORT_DATA_ABSTRACTIONS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>

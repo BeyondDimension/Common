@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越通用身份库</Product>
+		<PackageTags>BeyondDimension Common CommonAspNetCoreIdentity AspNetCore Identity</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__NOT_IMPORT_Z_EF_PLUS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>

@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越 Essentials.Preferences DBreeze 实现库</Product>
+		<PackageTags>BeyondDimension Common CommonEssentialsPreferencesDBreeze EssentialsPreferencesDBreeze EssentialsPreferences Essentials DBreeze</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__NOT_IMPORT_COLUMNS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>

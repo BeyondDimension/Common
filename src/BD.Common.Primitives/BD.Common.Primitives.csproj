@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越通用模型库</Product>
+		<PackageTags>BeyondDimension Common CommonPrimitives Primitives</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

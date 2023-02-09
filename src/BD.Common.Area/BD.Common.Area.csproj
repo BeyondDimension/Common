@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越地区库</Product>
+		<PackageTags>BeyondDimension Common CommonArea Area</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

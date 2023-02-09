@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越出生日期库</Product>
+		<PackageTags>BeyondDimension Common CommonBirthDate BirthDate</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

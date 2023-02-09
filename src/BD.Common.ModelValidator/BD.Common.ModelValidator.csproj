@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越模型验证库</Product>
+		<PackageTags>BeyondDimension Common CommonModelValidator ModelValidator</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

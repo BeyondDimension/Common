@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越通用仓储基类库</Product>
+		<PackageTags>BeyondDimension Common CommonRepositories Repositories</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 	</PropertyGroup>
 

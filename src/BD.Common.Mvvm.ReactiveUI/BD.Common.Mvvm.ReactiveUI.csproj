@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越 Mvvm RxUI 库</Product>
+		<PackageTags>BeyondDimension Common CommonMvvmReactiveUI RxUI</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 		<AssemblyName>ReactiveUI.Tests</AssemblyName>
 		<PackageId>BD.Common.Mvvm.ReactiveUI</PackageId>

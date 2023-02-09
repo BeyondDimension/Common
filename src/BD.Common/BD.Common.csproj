@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越通用基类库</Product>
+		<PackageTags>BeyondDimension Common CommonBase</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>System</RootNamespace>
 		<DefineConstants>BASE_CLASS_LIB_EX;__HAVE_N_JSON__;$(DefineConstants)</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
