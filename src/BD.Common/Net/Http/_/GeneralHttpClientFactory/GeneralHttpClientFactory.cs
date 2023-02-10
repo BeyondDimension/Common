@@ -6,7 +6,7 @@ namespace System.Net.Http;
 /// <summary>
 /// 通用 <see cref="HttpClient"/> 工厂
 /// </summary>
-public abstract partial class GeneralHttpClientFactory
+public abstract partial class GeneralHttpClientFactory : IHttpClientFactory
 {
     protected readonly ILogger logger;
     protected readonly IHttpPlatformHelperService http_helper;
@@ -51,4 +51,6 @@ public abstract partial class GeneralHttpClientFactory
             return _clientFactory.CreateClient(clientName);
         }
     }
+
+    HttpClient IHttpClientFactory.CreateClient(string name) => CreateClient(name);
 }

@@ -83,9 +83,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         var checkSum = Hashs.String.SHA1(options.AppSecret + nonce + curTime);
         // ↑ SHA1(AppSecret + Nonce + CurTime),三个参数拼接的字符串，
         // 进行SHA1哈希计算，转化成16进制字符(String，小写)。
-#pragma warning disable CS8620 // 由于引用类型的可为 null 性差异，实参不能用于形参。
         var content = new FormUrlEncodedContent(args);
-#pragma warning restore CS8620 // 由于引用类型的可为 null 性差异，实参不能用于形参。
         content.Headers.ContentType.ThrowIsNull(nameof(content.Headers.ContentType)).CharSet = "utf-8";
         // ↑ application/x-www-form-urlencoded;charset=utf-8
 

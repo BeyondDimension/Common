@@ -4,25 +4,18 @@ using SocketsHttpHandler = System.Net.Http.HttpClientHandler;
 
 namespace System.Net.Http;
 
-public interface IHttpClientService
-{
-    HttpClient HttpClient { get; }
-}
-
-public abstract class HttpClientServiceImpl : IHttpClientService
+public abstract class HttpClientServiceBaseImpl
 {
     protected readonly HttpClient client;
 
-    public HttpClientServiceImpl(HttpClient client)
+    public HttpClientServiceBaseImpl(HttpClient client)
     {
         this.client = client;
     }
-
-    HttpClient IHttpClientService.HttpClient => client;
 }
 
 #if !(TARGET_BROWSER || BLAZOR)
-public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
+public abstract class HttpClientUseCookiesServiceBaseImpl
 {
     protected readonly CookieContainer cookieContainer = new();
 
@@ -34,7 +27,7 @@ public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
     protected HttpClient client => _client.Value;
 #pragma warning restore IDE1006 // 命名样式
 
-    public HttpClientUseCookiesServiceImpl()
+    public HttpClientUseCookiesServiceBaseImpl()
     {
         Handler = GetSocketsHttpHandler(cookieContainer);
         _client = GetLazyHttpClient();
@@ -61,8 +54,6 @@ public abstract class HttpClientUseCookiesServiceImpl : IHttpClientService
     Lazy<HttpClient> GetLazyHttpClient() => new(GetHttpClient);
 
     protected virtual HttpClient GetHttpClient() => new(Handler);
-
-    HttpClient IHttpClientService.HttpClient => client;
 
     public virtual void Reset()
     {
