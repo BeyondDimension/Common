@@ -24,7 +24,7 @@ partial class ImageFileFormat
 
         static BMP()
         {
-            MagicNumber = new byte[] { 0x42, 0x4D };
+            MagicNumber = "BM"u8.ToArray();
         }
     }
 }
