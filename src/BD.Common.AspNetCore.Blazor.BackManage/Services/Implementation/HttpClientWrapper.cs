@@ -1,6 +1,6 @@
 namespace BD.Common.Services.Implementation;
 
-public abstract class HttpClientWrapper : HttpClientServiceImpl
+public abstract class HttpClientWrapper : HttpClientServiceBaseImpl
 {
     protected HttpClientWrapper(HttpClient client) : base(client)
     {

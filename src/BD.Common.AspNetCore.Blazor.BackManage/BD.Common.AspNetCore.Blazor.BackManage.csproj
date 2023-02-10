@@ -45,7 +45,7 @@
 		<Compile Include="..\BD.Common.Primitives\Columns\**\*.cs">
 			<LinkBase>Columns</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common\Net\Http\IHttpClientService.cs">
+		<Compile Include="..\BD.Common\Net\Http\HttpClientServiceBaseImpl.cs">
 			<LinkBase>System\Net\Http</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common\_\ConvertibleHelper\ConvertibleHelper.Convert.cs">
