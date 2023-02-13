@@ -7,20 +7,23 @@ public static class AESUtils
 {
     #region 创建 Aes 实例
 
+    public const int AesKeySize = 256;
+
     /// <summary>
     /// 创建 <see cref="Aes"/> 实例
     /// </summary>
-    /// <param name="keySize">密钥大小，默认192</param>
+    /// <param name="keySize">密钥大小，默认值为 <see cref="AesKeySize"/></param>
     /// <param name="padding">填充</param>
     /// <param name="mode">模式</param>
     /// <returns></returns>
-    public static Aes Create(int keySize = 192, PaddingMode padding = PaddingMode.PKCS7, CipherMode mode = CipherMode.CBC)
-        => new AesCryptoServiceProvider
-        {
-            KeySize = keySize,
-            Padding = padding,
-            Mode = mode,
-        };
+    public static Aes Create(int keySize = AesKeySize, PaddingMode padding = PaddingMode.PKCS7, CipherMode mode = CipherMode.CBC)
+    {
+        var aes = Aes.Create();
+        aes.KeySize = keySize;
+        aes.Padding = padding;
+        aes.Mode = mode;
+        return aes;
+    }
 
     /// <summary>
     /// 通过 ByteArray 创建 <see cref="Aes"/> 实例

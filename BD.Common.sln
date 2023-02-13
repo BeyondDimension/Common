@@ -148,6 +148,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImplicitUsings", "ImplicitU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Area.ConsoleTest", "src\BD.Common.Area.ConsoleTest\BD.Common.Area.ConsoleTest.csproj", "{B3A960DC-6E46-48D3-A3AE-A77E1989504B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6A660134-CEF5-4066-8A4E-B7543A2695C5}"
+	ProjectSection(SolutionItems) = preProject
+		src\aes.html = src\aes.html
+		src\rsa.html = src\rsa.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -340,6 +346,7 @@ Global
 		{149E7C8E-7B18-4363-A327-B80B65DB74A9} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 		{78E65096-FE22-4E82-AB15-EB4CB986194B} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 		{B3A960DC-6E46-48D3-A3AE-A77E1989504B} = {72184E2D-34EE-4E81-9008-1B2E4FC03972}
+		{6A660134-CEF5-4066-8A4E-B7543A2695C5} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}
