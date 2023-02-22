@@ -112,6 +112,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TFM", "TFM", "{149E7C8E-7B1
 		src\TFM_NET7.props = src\TFM_NET7.props
 		src\TFM_NET7_ANDROID.props = src\TFM_NET7_ANDROID.props
 		src\TFM_NET7_IOS.props = src\TFM_NET7_IOS.props
+		src\TFM_NET7_IOS_MACOS_MACCATALYST.props = src\TFM_NET7_IOS_MACOS_MACCATALYST.props
 		src\TFM_NET7_MAUI.props = src\TFM_NET7_MAUI.props
 		src\TFM_NET7_WINDOWS.props = src\TFM_NET7_WINDOWS.props
 		src\TFM_NET7_WITH_ANDROID.props = src\TFM_NET7_WITH_ANDROID.props

@@ -24,6 +24,7 @@ public static class SystemWebExtensions
     /// </summary>
     /// <param name="response"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Encoding? ContentTextEncoding(this HttpResponse response)
     {
         if (MediaTypeHeaderValue.TryParse(response.ContentType, out var contentType))
@@ -94,6 +95,7 @@ public static class SystemWebExtensions
     /// <remarks>原始 URL 定义为后面包含域信息的 URL 部分。 在 URL 字符串 http://www.contoso.com/articles/recent.aspx中，原始 URL 为/articles/recent.aspx。 原始 URL 包括查询字符串（如果存在）</remarks>
     /// <param name="request"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string RawUrl(this HttpRequest request)
     {
         // 实现参考：https://github.com/dotnet/aspnetcore/blob/v3.1.5/src/Http/Http.Extensions/src/UriHelper.cs#L196
@@ -108,6 +110,7 @@ public static class SystemWebExtensions
             .ToString();
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Action(this IUrlHelper helper, string action, QueryString values)
     {
         var url = helper.Action(action);
@@ -131,6 +134,7 @@ public static class SystemWebExtensions
     /// <param name="request"></param>
     /// <param name="ipv4"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string UserHostAddress(this HttpRequest request, bool ipv4 = true)
     {
         var remoteIpAddress = request.HttpContext.Connection.RemoteIpAddress;
