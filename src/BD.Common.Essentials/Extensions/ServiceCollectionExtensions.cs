@@ -3,7 +3,7 @@ using Essentials = BD.Common.Essentials;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
 
-static class ServiceCollectionExtensions
+public static partial class ServiceCollectionExtensions
 {
     /// <summary>
     /// 添加保存文件框服务
@@ -11,7 +11,10 @@ static class ServiceCollectionExtensions
     /// <typeparam name="T"></typeparam>
     /// <param name="services"></param>
     /// <returns></returns>
-    internal static IServiceCollection AddSaveFileDialogService<T>(this IServiceCollection services) where T : class, IFilePickerPlatformService.ISaveFileDialogService
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection AddSaveFileDialogService<T>(
+        this IServiceCollection services)
+        where T : class, IFilePickerPlatformService.ISaveFileDialogService
     {
         Essentials.IsSupportedSaveFileDialog = true;
         services.AddSingleton<IFilePickerPlatformService.ISaveFileDialogService, T>();
@@ -24,7 +27,10 @@ static class ServiceCollectionExtensions
     /// <param name="services"></param>
     /// <param name="implementationFactory"></param>
     /// <returns></returns>
-    internal static IServiceCollection TryAddSaveFileDialogService(this IServiceCollection services, Func<IServiceProvider, IFilePickerPlatformService.ISaveFileDialogService> implementationFactory)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection TryAddSaveFileDialogService(
+        this IServiceCollection services,
+        Func<IServiceProvider, IFilePickerPlatformService.ISaveFileDialogService> implementationFactory)
     {
         Essentials.IsSupportedSaveFileDialog = true;
         services.TryAddSingleton(implementationFactory);

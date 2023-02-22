@@ -29,7 +29,7 @@ public abstract partial class GeneralHttpClientFactory : IHttpClientFactory
     /// </summary>
     protected virtual string? DefaultClientName { get; }
 
-    protected HttpClient CreateClient(string? clientName = null)
+    protected virtual HttpClient CreateClient(string? clientName = null)
     {
         var client = CreateClientCore(clientName);
         client.Timeout = DefaultTimeout;
