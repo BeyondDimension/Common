@@ -29,10 +29,24 @@ public abstract partial class GeneralHttpClientFactory : IHttpClientFactory
     /// </summary>
     protected virtual string? DefaultClientName { get; }
 
+    /// <inheritdoc cref="HttpClient.Timeout"/>
+    protected virtual TimeSpan? Timeout => DefaultTimeout;
+
     protected virtual HttpClient CreateClient(string? clientName = null)
     {
         var client = CreateClientCore(clientName);
-        client.Timeout = DefaultTimeout;
+        var timeout = Timeout;
+        if (timeout.HasValue)
+        {
+            try
+            {
+                client.Timeout = timeout.Value;
+            }
+            catch
+            {
+
+            }
+        }
         return client;
     }
 
