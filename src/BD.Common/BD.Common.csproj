@@ -5,7 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonBase</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>System</RootNamespace>
-		<DefineConstants>BASE_CLASS_LIB_EX;__HAVE_N_JSON__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>BASE_CLASS_LIB_EX;__NOT_IMPORT_CONFIG__;__NOT_IMPORT_WEBENCODERS__;__HAVE_N_JSON__;$(DefineConstants)</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
@@ -16,6 +16,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.MSEX.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.Resources.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

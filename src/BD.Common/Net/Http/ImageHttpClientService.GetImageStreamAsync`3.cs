@@ -1,8 +1,5 @@
-using Microsoft.Extensions.Logging;
 using Nito.AsyncEx;
 using Polly;
-using System.Collections.Concurrent;
-using System.IO.FileFormats;
 using static System.Net.Http.IImageHttpClientService;
 
 namespace System.Net.Http;

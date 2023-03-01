@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using BD.Common.Models.SmsSender.Channels.AlibabaCloud;
 using SmsOptions = BD.Common.Models.SmsSender.Channels.AlibabaCloud.SmsAlibabaCloudOptions;
 

@@ -1,6 +1,3 @@
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-
 namespace BD.Common.Services.Implementation.SmsSender.Channels.AlibabaCloud;
 
 internal sealed class SenderProviderInvoker<TSmsSettings> : SmsSenderProvider

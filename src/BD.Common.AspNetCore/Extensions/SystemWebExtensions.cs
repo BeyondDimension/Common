@@ -1,3 +1,5 @@
+using MediaTypeHeaderValue = Microsoft.Net.Http.Headers.MediaTypeHeaderValue;
+
 // ReSharper disable once CheckNamespace
 namespace System;
 

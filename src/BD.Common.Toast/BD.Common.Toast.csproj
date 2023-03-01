@@ -5,13 +5,16 @@
 		<PackageTags>BeyondDimension Common CommonToast Toast</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
-		<DefineConstants>__NOT_IMPORT_COLUMNS__;__NOT_IMPORT_MODELS__;__NOT_IMPORT_SERVICES_IMPL__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>__NOT_IMPORT_CONFIG__;__NOT_IMPORT_WEBENCODERS__;__NOT_IMPORT_COLUMNS__;__NOT_IMPORT_MODELS__;__NOT_IMPORT_SERVICES_IMPL__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.MSEX.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.Primitives.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

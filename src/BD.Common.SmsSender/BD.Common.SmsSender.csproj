@@ -5,6 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonSmsSender SmsSender</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>__NOT_IMPORT_CONFIG__;__NOT_IMPORT_WEBENCODERS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -14,6 +15,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.MSEX.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

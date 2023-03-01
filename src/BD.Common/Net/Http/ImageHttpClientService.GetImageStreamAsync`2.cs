@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Logging;
-
 namespace System.Net.Http;
 
 partial class ImageHttpClientService

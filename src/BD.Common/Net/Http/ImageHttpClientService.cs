@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using static System.Net.Http.IImageHttpClientService;
 
 namespace System.Net.Http;

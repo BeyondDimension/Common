@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using BD.Common.Models.SmsSender.Channels.NetEaseCloud;
 using CSR = BD.Common.Models.SmsSender.CheckSmsResult<BD.Common.Models.SmsSender.Channels.NetEaseCloud.NetEaseCloudResult>;
 using SmsOptions = BD.Common.Models.SmsSender.Channels.NetEaseCloud.SmsNetEaseCloudOptions;

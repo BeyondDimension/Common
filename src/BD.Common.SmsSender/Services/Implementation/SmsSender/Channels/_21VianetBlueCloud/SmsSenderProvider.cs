@@ -1,8 +1,5 @@
 // https://bcssstorage.blob.core.chinacloudapi.cn/docs/CCS/DEMO.zip
 
-using System.Web;
-using System.Net.Http.Headers;
-using Microsoft.Extensions.Logging;
 using BD.Common.Models.SmsSender.Channels._21VianetBlueCloud;
 using SmsOptions = BD.Common.Models.SmsSender.Channels._21VianetBlueCloud.Sms21VianetBlueCloudOptions;
 
