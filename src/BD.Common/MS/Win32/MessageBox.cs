@@ -5,26 +5,22 @@
 
 #if !NETFRAMEWORK && WINDOWS
 
-using SR_ = MS.Internal.PresentationCore.SR;
-using SRID = MS.Internal.PresentationCore.SRID;
-
 namespace MS.Win32;
 
-public static class MessageBox
+public static partial class MessageBox
 {
     const uint DEFAULT_BUTTON1 = 0x00000000;
     const uint DEFAULT_BUTTON2 = 0x00000100;
     const uint DEFAULT_BUTTON3 = 0x00000200;
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static MessageBoxResult Win32ToMessageBoxResult(PInvoke.User32.MessageBoxResult value) => value switch
+    sealed partial class User32
     {
-        PInvoke.User32.MessageBoxResult.IDOK => MessageBoxResult.OK,
-        PInvoke.User32.MessageBoxResult.IDCANCEL => MessageBoxResult.Cancel,
-        PInvoke.User32.MessageBoxResult.IDYES => MessageBoxResult.Yes,
-        PInvoke.User32.MessageBoxResult.IDNO => MessageBoxResult.No,
-        _ => MessageBoxResult.No,
-    };
+        [LibraryImport(nameof(User32), SetLastError = true)]
+        public static partial IntPtr GetActiveWindow();
+
+        [LibraryImport(nameof(User32), EntryPoint = "MessageBoxW", StringMarshalling = StringMarshalling.Utf16)]
+        public static partial MessageBoxResult MessageBox(IntPtr hWnd, string text, string caption, uint options);
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static MessageBoxResult Show(
@@ -122,14 +118,15 @@ public static class MessageBox
         {
             if (owner != IntPtr.Zero)
             {
-                throw new ArgumentException(SR_.Get(SRID.CantShowMBServiceWithOwner));
+                // https://github.com/dotnet/winforms/blob/v7.0.3/src/System.Windows.Forms/src/Resources/SR.resx#L504
+                throw new ArgumentException("Showing a service notification message box with an owner window is not a valid operation. Use the Show method that does not take an owner.");
             }
         }
         else
         {
             if (owner == IntPtr.Zero)
             {
-                owner = PInvoke.User32.GetActiveWindow();
+                owner = User32.GetActiveWindow();
             }
         }
 
@@ -139,11 +136,10 @@ public static class MessageBox
         //
         //Application.BeginModalMessageLoop();
         //MessageBoxResult result = Win32ToMessageBoxResult(SafeNativeMethods.MessageBox(new HandleRef(owner, handle), messageBoxText, caption, style));
-        MessageBoxResult result = Win32ToMessageBoxResult(
-            PInvoke.User32.MessageBox(new HandleRef(null, owner).Handle,
+        MessageBoxResult result = User32.MessageBox(new HandleRef(null, owner).Handle,
             messageBoxText,
             caption,
-            (PInvoke.User32.MessageBoxOptions)style));
+            style);
         // modal dialog notification?
         //
         //Application.EndModalMessageLoop();
