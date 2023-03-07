@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{72184E2D-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{F221D7EA-7ADF-4F89-B2C9-6373E52D8731}"
 	ProjectSection(SolutionItems) = preProject
+		src\.editorconfig = src\.editorconfig
 		.gitignore = .gitignore
 		.github\workflows\CI.yml = .github\workflows\CI.yml
 		src\Directory.Build.props = src\Directory.Build.props
