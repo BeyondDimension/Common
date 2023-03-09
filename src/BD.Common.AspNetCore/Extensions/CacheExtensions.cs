@@ -39,5 +39,29 @@ public static partial class CacheExtensions
     public static Task SetAsync<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
         => cache.SetAsync(key, value, TimeSpan.FromMinutes(minutes), cancellationToken);
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static async Task<T?> GetV2Async<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default) where T : notnull
+    {
+        var buffer = await cache.GetAsync(key, cancellationToken);
+        if (buffer == null) return default;
+        var r = Serializable.DMP2<T>(buffer);
+        return r;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static async Task SetV2Async<T>(this IDistributedCache cache, string key, T value, DistributedCacheEntryOptions options, CancellationToken cancellationToken = default) where T : notnull
+    {
+        var buffer = Serializable.SMP2(value);
+        await cache.SetAsync(key, buffer, options, cancellationToken);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Task SetV2Async<T>(this IDistributedCache cache, string key, T value, TimeSpan absoluteExpirationRelativeToNow, CancellationToken cancellationToken = default) where T : notnull
+        => cache.SetV2Async(key, value, new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow }, cancellationToken);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Task SetV2Async<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
+        => cache.SetV2Async(key, value, TimeSpan.FromMinutes(minutes), cancellationToken);
+
     #endregion
 }

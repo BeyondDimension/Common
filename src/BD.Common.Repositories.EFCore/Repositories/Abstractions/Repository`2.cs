@@ -15,9 +15,9 @@ public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, 
     public DbSet<TEntity> Entity { get; }
 
     /// <summary>
-    /// <see cref="EntityFrameworkQueryableExtensions.AsNoTracking{TEntity}(IQueryable{TEntity})"/>
+    /// <see cref="EntityFrameworkQueryableExtensions.AsNoTrackingWithIdentityResolution{TEntity}(IQueryable{TEntity})"/>
     /// </summary>
-    public IQueryable<TEntity> EntityNoTracking => Entity.AsNoTracking();
+    public IQueryable<TEntity> EntityNoTracking => Entity.AsNoTrackingWithIdentityResolution();
 
     DbContext IEFRepository.DbContext => db;
 
