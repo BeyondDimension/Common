@@ -156,6 +156,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6A660134-CEF
 		src\rsa.html = src\rsa.html
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{1DDE0DE2-D729-4DAA-B61E-E6A200B11C00}"
+	ProjectSection(SolutionItems) = preProject
+		doc\Compression-And-Packaging.md = doc\Compression-And-Packaging.md
+		doc\Entity-Framework-Core.md = doc\Entity-Framework-Core.md
+		doc\Project-Structure.md = doc\Project-Structure.md
+		doc\Redis.md = doc\Redis.md
+		doc\Serializable-And-Deserialize.md = doc\Serializable-And-Deserialize.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -349,6 +358,7 @@ Global
 		{78E65096-FE22-4E82-AB15-EB4CB986194B} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 		{B3A960DC-6E46-48D3-A3AE-A77E1989504B} = {72184E2D-34EE-4E81-9008-1B2E4FC03972}
 		{6A660134-CEF5-4066-8A4E-B7543A2695C5} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
+		{1DDE0DE2-D729-4DAA-B61E-E6A200B11C00} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}
