@@ -5,6 +5,7 @@ namespace BD.Common.Entities.Abstractions;
 /// 基类实体 - 包含创建时间与创建人
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
+[Obsolete("use V2")]
 public abstract class CreationBaseEntity<TPrimaryKey> :
     Entity<TPrimaryKey>,
     ICreationTime,
@@ -30,6 +31,7 @@ public abstract class CreationBaseEntity<TPrimaryKey> :
 }
 
 /// <inheritdoc cref="CreationBaseEntity{TPrimaryKey}"/>
+[Obsolete("use V2")]
 public abstract class CreationBaseEntity : CreationBaseEntity<Guid>
 {
 

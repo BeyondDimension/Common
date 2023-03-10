@@ -1,12 +1,10 @@
-// ReSharper disable once CheckNamespace
-namespace BD.Common.Entities.Abstractions;
+namespace BD.SteamPointShop.Entities.Abstractions;
 
 /// <summary>
 /// 基类实体 - 包含租户与软删除与修改时间与操作人与创建时间与创建人
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
-[Obsolete("use V2")]
-public abstract class TenantBaseEntity<TPrimaryKey> :
+public abstract class TenantBaseEntityV2<TPrimaryKey> :
     OperatorBaseEntity<TPrimaryKey>,
     ISoftDeleted, ITenant
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
@@ -22,9 +20,8 @@ public abstract class TenantBaseEntity<TPrimaryKey> :
     public Guid TenantId { get; set; }
 }
 
-/// <inheritdoc cref="TenantBaseEntity{TPrimaryKey}"/>
-[Obsolete("use V2")]
-public abstract class TenantBaseEntity : TenantBaseEntity<Guid>
+/// <inheritdoc cref="TenantBaseEntityV2{TPrimaryKey}"/>
+public abstract class TenantBaseEntityV2 : TenantBaseEntityV2<Guid>
 {
 
 }

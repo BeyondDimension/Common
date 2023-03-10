@@ -5,6 +5,7 @@ namespace BD.Common.Entities.Abstractions;
 /// 基类实体 - 包含修改时间与操作人与创建时间与创建人
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
+[Obsolete("use V2")]
 public abstract class OperatorBaseEntity<TPrimaryKey> :
     CreationBaseEntity<TPrimaryKey>,
     IUpdateTime,
@@ -29,6 +30,7 @@ public abstract class OperatorBaseEntity<TPrimaryKey> :
 }
 
 /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}"/>
+[Obsolete("use V2")]
 public abstract class OperatorBaseEntity : OperatorBaseEntity<Guid>
 {
 
