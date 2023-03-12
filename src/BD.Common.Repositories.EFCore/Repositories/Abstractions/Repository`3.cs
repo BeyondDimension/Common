@@ -31,16 +31,33 @@ public abstract class Repository<TDbContext, TEntity, TPrimaryKey> : Repository<
 
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
+    protected virtual async Task<int> ExecuteDeleteAsync(IQueryable<TEntity> query)
+    {
+        if (IsSoftDeleted)
+        {
+            if (query is not IQueryable<ISoftDeleted> entity)
+                throw new InvalidCastException($"{typeof(TEntity)} not impl ISoftDeleted.");
+            var r = await entity.ExecuteUpdateAsync(s => s.SetProperty(b => b.SoftDeleted, true));
+            return r;
+        }
+        else
+        {
+            var r = await query.ExecuteDeleteAsync();
+            return r;
+        }
+    }
+
     public virtual async Task<int> DeleteAsync(TPrimaryKey primaryKey)
     {
-        var r = await Entity.Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey)).ExecuteDeleteAsync(CancellationToken.None);
+        var query = Entity.Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey));
+        var r = await ExecuteDeleteAsync(query);
         return r;
     }
 
     public virtual async Task<int> DeleteRangeAsync(IEnumerable<TPrimaryKey> primaryKeys)
     {
-        var r = await Entity.Where(x => Enumerable.Contains(primaryKeys, x.Id))
-            .ExecuteDeleteAsync(CancellationToken.None);
+        var query = Entity.Where(x => Enumerable.Contains(primaryKeys, x.Id));
+        var r = await ExecuteDeleteAsync(query);
         return r;
     }
 
