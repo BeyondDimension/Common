@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository{TDbContext}"/>
@@ -33,27 +31,17 @@ public abstract class Repository<TDbContext, TEntity, TPrimaryKey> : Repository<
 
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
-    public virtual Task<int> DeleteAsync(TPrimaryKey primaryKey) => DeleteAsync(primaryKey, default);
-
-    protected virtual FormattableString GetSql_DeleteByKey(TPrimaryKey primaryKey)
+    public virtual async Task<int> DeleteAsync(TPrimaryKey primaryKey)
     {
-        FormattableString sql;
-        if (IsSoftDeleted)
-        {
-            sql = SQLStrings.SoftDeleteFromTableNameWhereIdEqual(TableName, primaryKey);
-        }
-        else
-        {
-            sql = SQLStrings.DeleteFromTableNameWhereIdEqual(TableName, primaryKey);
-        }
-        return sql;
+        var r = await Entity.Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey)).ExecuteDeleteAsync(CancellationToken.None);
+        return r;
     }
 
-    /// <inheritdoc cref="DeleteAsync(TPrimaryKey)"/>
-    public virtual async Task<int> DeleteAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken)
+    public virtual async Task<int> DeleteRangeAsync(IEnumerable<TPrimaryKey> primaryKeys)
     {
-        var sql = GetSql_DeleteByKey(primaryKey);
-        return await db.Database.ExecuteSqlInterpolatedAsync(sql, cancellationToken);
+        var r = await Entity.Where(x => Enumerable.Contains(primaryKeys, x.Id))
+            .ExecuteDeleteAsync(CancellationToken.None);
+        return r;
     }
 
     #endregion

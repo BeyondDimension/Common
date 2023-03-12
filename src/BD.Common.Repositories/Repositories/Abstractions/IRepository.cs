@@ -23,6 +23,20 @@ public interface IRepository
     /// <typeparam name="T"></typeparam>
     /// <param name="entities"></param>
     /// <param name="operate"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    protected static async Task<int> OperateRangeAsync<T>(
+      IEnumerable<T> entities,
+      Func<T, CancellationToken, Task<int>> operate,
+      CancellationToken cancellationToken)
+        => (await Task.WhenAll(entities.Select(async x => await operate(x, cancellationToken)))).Sum();
+
+    /// <summary>
+    /// 批量操作返回统计受影响的行数
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="entities"></param>
+    /// <param name="operate"></param>
     /// <returns></returns>
     protected static async IAsyncEnumerable<(int rowCount, T entity)> OperateRangeAsyncEnumerable<T>(
       IEnumerable<T> entities,

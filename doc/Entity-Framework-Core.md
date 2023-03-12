@@ -99,6 +99,36 @@ FROM [Blogs] AS [b]
 ### [多租户](https://learn.microsoft.com/zh-cn/ef/core/miscellaneous/multitenancy)
 许多业务线应用程序旨在与多个客户合作。 保护数据非常重要，这样客户数据就不会被其他客户和潜在竞争对手“泄露”或看到。 这些应用程序被归类为“多租户”，因为每个客户都被视为具有其自己的数据集的应用程序租户。
 
+### [Code First 的自包含类型配置](https://learn.microsoft.com/zh-cn/ef/core/what-is-new/ef-core-2.0/#self-contained-type-configuration-for-code-first)
+在 EF6 中可以通过从 EntityTypeConfiguration 派生来封装特定实体类型的 Code First 配置。 在 EF Core 2.0 中重新添加了此模式：
+```
+class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+{
+    public void Configure(EntityTypeBuilder<Customer> builder)
+    {
+        builder.HasKey(c => c.AlternateKey);
+        builder.Property(c => c.Name).HasMaxLength(200);
+    }
+}
+
+...
+// OnModelCreating
+builder.ApplyConfiguration(new CustomerConfiguration());
+```
+
+### 表实体接口
+- ```IEntity<TPrimaryKey>``` / ```Entity<TPrimaryKey>```
+    - 实体基类接口与抽象类，定义主键类型
+- ```CreationBaseEntityV2 : Entity```
+    - 包含**创建时间**与**创建人**
+    - 需要继承自嵌套类 ```EntityTypeConfiguration``` 配置数据库关系
+- ```OperatorBaseEntityV2 : CreationBaseEntityV2``` 
+    - 包含**修改时间**与**操作人**与**创建时间**与**创建人**
+    - 需要继承自嵌套类 ```EntityTypeConfiguration``` 配置数据库关系
+- ```TenantBaseEntityV2 : OperatorBaseEntityV2``` 
+    - 包含**租户**与**软删除**与**修改时间**与**操作人**与**创建时间**与**创建人**
+    - 需要继承自嵌套类 ```EntityTypeConfiguration``` 配置数据库关系
+
 ### 列接口，用于统一字段命名与接口注释以及根据类型附加默认值或设置索引等一些额外操作
 - 头像 Avatar
     - Guid 关联到图片表，由 Get api/Image/Guid 获取图片
@@ -170,6 +200,9 @@ FROM [Blogs] AS [b]
 - 操作用户 OperatorUserId
     - Guid? OperatorUserId { get; set; }
     - 记录当前行数据是由某个后台管理员用户或用户侧用户**更新**的数据，需要相关业务部分手动赋值
+- INEWSEQUENTIALID 用于主键类型为 Guid 的主键自增
+    - SQL Server 中使用 [NEWSEQUENTIALID (Transact-SQL)](https://learn.microsoft.com/zh-cn/sql/t-sql/functions/newsequentialid-transact-sql?view=sql-server-ver16)
+    - PostgreSQL 中使用 [gen_random_uuid()](https://www.postgresql.org/docs/15/functions-uuid.html)
 
 ### [常用最大长度常量](https://github.com/BeyondDimension/Common/blob/1.23.10304.11805/src/BD.Common.Primitives/Columns/MaxLengths.cs)
 - ColorHex
@@ -219,3 +252,32 @@ FROM [Blogs] AS [b]
 - Describe
     - MaxLengths.Describe = 500
     - 描述
+
+### Repository 仓储层
+- 增(Insert Funs) 立即执行并返回受影响的行数
+    - ```InsertAsync``` 将实体插入到数据库中
+    - ```InsertRangeAsync``` 将多个实体插入到数据库中
+- 删(Delete Funs) 立即执行并返回受影响的行数
+    - ```DeleteAsync``` 将实体从数据库中删除
+    - ```DeleteRangeAsync``` 将多个实体从数据库中删除
+- 改(Update Funs) 立即执行并返回受影响的行数
+    - ```UpdateAsync``` 将实体更新到数据库中
+    - ```UpdateRangeAsync``` 将多个实体更新到数据库中
+- 增或改(InsertOrUpdate Funs) 立即执行并返回受影响的行数
+    - ```InsertOrUpdateAsync``` 新增或更新实体
+        - ```InsertOrUpdateAsync<TDTO>``` 版本支持直接使用 DTO 进行新增或更新
+- 查(通用查询)
+    - ```FirstOrDefaultAsync``` 返回序列中满足指定的条件或默认值，如果找到这样的元素的第一个元素
+    - ```FindAsync``` 根据主键查询实体
+    - ```ExistAsync``` 判断实体是否已经存在
+- Expression 表达式
+    - ```LambdaEqualId``` 返回主键匹配表达式
+- 其他函数
+    - ```IsDefault``` 判断主键是否为默认值
+- ```IEFRepository``` EF Core 实现的额外内容
+    - ```DbContext``` 获取当前数据库上下文
+    - ```TableName``` 当前仓储层表名称，用于一些特殊场景下拼接 SQL 语句，应当尽可能避免拼接 SQL 语句执行
+    - ```SaveChangesAsync``` 保存并更改已跟踪的实体
+    - ```Entity``` 当前表的实体 ```DbSet<TEntity>```
+    - ```EntityNoTracking``` 调用 ```AsNoTrackingWithIdentityResolution``` 的不跟踪的表实体 ```IQueryable<TEntity>```
+    - ```RequestAborted``` 取消标记，实现通常为 ```HttpContext.RequestAborted```，传递此取消标记到数据库异步操作中可在中断 Http 连接时取消该请求的数据库操作，提高服务的吞吐量

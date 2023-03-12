@@ -55,21 +55,21 @@ public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetP
     /// <returns>受影响的行数</returns>
     Task<int> DeleteRangeAsync(params TPrimaryKey[] primaryKeys) => DeleteRangeAsync(primaryKeys.AsEnumerable());
 
-    /// <summary>
-    /// 根据主键将多个实体从数据库中删除
-    /// </summary>
-    /// <param name="primaryKeys">要删除的多个实体主键</param>
-    /// <returns>受影响的行数</returns>
-    IAsyncEnumerable<(int rowCount, TPrimaryKey entity)> DeleteRangeAsyncEnumerable(IEnumerable<TPrimaryKey> primaryKeys)
-        => OperateRangeAsyncEnumerable(primaryKeys, DeleteAsync);
+    ///// <summary>
+    ///// 根据主键将多个实体从数据库中删除
+    ///// </summary>
+    ///// <param name="primaryKeys">要删除的多个实体主键</param>
+    ///// <returns>受影响的行数</returns>
+    //IAsyncEnumerable<(int rowCount, TPrimaryKey entity)> DeleteRangeAsyncEnumerable(IEnumerable<TPrimaryKey> primaryKeys)
+    //    => OperateRangeAsyncEnumerable(primaryKeys, DeleteAsync);
 
-    /// <summary>
-    /// 根据主键将多个实体从数据库中删除
-    /// </summary>
-    /// <param name="primaryKeys">要删除的多个实体主键</param>
-    /// <returns>受影响的行数</returns>
-    IAsyncEnumerable<(int rowCount, TPrimaryKey entity)> DeleteRangeAsyncEnumerable(params TPrimaryKey[] primaryKeys)
-        => DeleteRangeAsyncEnumerable(primaryKeys.AsEnumerable());
+    ///// <summary>
+    ///// 根据主键将多个实体从数据库中删除
+    ///// </summary>
+    ///// <param name="primaryKeys">要删除的多个实体主键</param>
+    ///// <returns>受影响的行数</returns>
+    //IAsyncEnumerable<(int rowCount, TPrimaryKey entity)> DeleteRangeAsyncEnumerable(params TPrimaryKey[] primaryKeys)
+    //    => DeleteRangeAsyncEnumerable(primaryKeys.AsEnumerable());
 
     #endregion
 
