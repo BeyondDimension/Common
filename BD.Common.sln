@@ -158,7 +158,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6A660134-CEF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{1DDE0DE2-D729-4DAA-B61E-E6A200B11C00}"
 	ProjectSection(SolutionItems) = preProject
+		doc\Code-Style.md = doc\Code-Style.md
 		doc\Compression-And-Packaging.md = doc\Compression-And-Packaging.md
+		doc\Copywriting-Guide.md = doc\Copywriting-Guide.md
+		doc\CSharp.md = doc\CSharp.md
 		doc\Entity-Framework-Core.md = doc\Entity-Framework-Core.md
 		doc\Project-Structure.md = doc\Project-Structure.md
 		doc\Redis.md = doc\Redis.md
