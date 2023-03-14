@@ -5,7 +5,7 @@ namespace BD.SteamPointShop.Entities.Abstractions;
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
 public abstract class TenantBaseEntityV2<TPrimaryKey> :
-    OperatorBaseEntity<TPrimaryKey>,
+    OperatorBaseEntityV2<TPrimaryKey>,
     ISoftDeleted, ITenant
     where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
 {
