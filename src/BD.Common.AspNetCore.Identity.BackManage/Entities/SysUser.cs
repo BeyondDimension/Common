@@ -1,49 +1,130 @@
+using BD.SteamPointShop.Entities.Abstractions;
+
 namespace BD.Common.Entities;
 
 /// <summary>
 /// 系统用户(多租户)实体类
 /// </summary>
 [Table("BM_Users")]
-public class SysUser : Entity<Guid>, ITenant, ICreationTime, ICreateUserIdNullable, IUpdateTime, IOperatorUserId, IJWTUser, ISoftDeleted
+public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks
 {
-    [Required]
-    [StringLength(256)]
-    public string UserName { get; set; } = "";
-
-    [Required]
-    [StringLength(256)]
-    public string NormalizedUserName { get; set; } = "";
-
-    public string? PasswordHash { get; set; }
-
-    public DateTimeOffset? LockoutEnd { get; set; }
-
-    public bool LockoutEnabled { get; set; }
-
-    public int AccessFailedCount { get; set; }
-
-    public Guid TenantId { get; set; }
-
-    public DateTimeOffset CreationTime { get; set; }
-
-    public Guid? CreateUserId { get; set; }
-
-    public DateTimeOffset UpdateTime { get; set; }
-
-    public Guid? OperatorUserId { get; set; }
-
-    [StringLength(MaxLengths.Url)]
-    public string? RefreshToken { get; set; }
-
-    public DateTimeOffset RefreshExpiration { get; set; }
-
-    public DateTimeOffset NotBefore { get; set; }
-
-    public bool SoftDeleted { get; set; }
+    /// <summary>
+    /// 组织架构Id
+    /// </summary>
+    [Comment("组织架构Id")]
+    public Guid? OrganizationalId { get; set; }
 
     /// <summary>
-    /// https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
+    /// 用户名称
     /// </summary>
+    [Required]
+    [StringLength(256)]
+    [Comment("用户名称")]
+    public string UserName { get; set; } = "";
+
+    /// <summary>
+    /// 规范化用户名
+    /// </summary>
+    [Required]
+    [StringLength(256)]
+    [Comment("规范化用户名")]
+    public string? NormalizedUserName { get; set; }
+
+    /// <summary>
+    /// 账号
+    /// </summary>
+    [Comment("账号")]
+    [MaxLength(50)]
+    public string? Account { get; set; }
+
+    /// <summary>
+    /// 密码
+    /// </summary>
+    [Comment("密码")]
+    public string Password { get; set; } = null!;
+
+    /// <summary>
+    /// 密码哈希
+    /// </summary>
+    [Comment("密码哈希")]
+    public string? PasswordHash { get; set; }
+
+    /// <summary>
+    /// 用户锁定结束时的时间
+    /// </summary>
+    [Comment("用户锁定结束时的时间")]
+    public DateTimeOffset? LockoutEnd { get; set; }
+
+    /// <summary>
+    /// 用户是否被锁定
+    /// </summary>
+    [Comment("用户是否被锁定")]
+    public bool LockoutEnabled { get; set; }
+
+    /// <summary>
+    /// 用户的登录尝试失败次数
+    /// </summary>
+    [Comment("用户的登录尝试失败次数")]
+    public int AccessFailedCount { get; set; }
+
+    /// <summary>
+    /// 刷新 Token 值
+    /// </summary>
+    [StringLength(MaxLengths.Url)]
+    [Comment("刷新 Token 值")]
+    public string? RefreshToken { get; set; }
+
+    /// <summary>
+    /// 刷新 Token 值有效期
+    /// </summary>
+    [Comment("刷新 Token 值有效期")]
+    public DateTimeOffset RefreshExpiration { get; set; }
+
+    /// <summary>
+    /// 禁止在此时间之前刷新
+    /// </summary>
+    [Comment("禁止在此时间之前刷新")]
+    public DateTimeOffset NotBefore { get; set; }
+
+    /// <summary>
+    /// 手机号
+    /// </summary>
+    [MaxLength(PhoneNumberHelper.ChineseMainlandPhoneNumberLength)]
+    [Comment("手机号")]
+    public string? PhoneNumber { get; set; } = null!;
+
+    /// <summary>
+    /// 邮箱
+    /// </summary>
+    [Comment("邮箱")]
+    [MaxLength(MaxLengths.Email)]
+    public string? Email { get; set; } = null!;
+
+    /// <summary>
+    /// 性别
+    /// </summary>
+    [Comment("性别")]
+    public Gender Gender { get; set; }
+
+    /// <summary>
+    /// 备注
+    /// </summary>
+    [MaxLength(MaxLengths.Remarks)]
+    [Column("Remark")]
+    [Comment("备注")]
+    public string? Remarks { get; set; }
+
+    /// <summary>
+    /// 用户状态
+    /// </summary>
+    [Comment("用户状态")]
+    public SysUserStatus UserStatus { get; set; }
+
+    /// <summary>
+    /// 并发令牌
+    /// </summary>
+    /// <seealso cref="https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion"/>
     [Timestamp]
+    [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
 }

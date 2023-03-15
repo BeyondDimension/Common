@@ -15,4 +15,10 @@ public interface IApplicationDbContext : IApplicationDbContext<SysUser>
     DbSet<SysMenu> Menus { get; }
 
     DbSet<SysMenuButton> MenuButtons { get; }
+
+    DbSet<SysInfo> SysInfos { get; }
+
+    DbSet<SysOrganization> Organizations { get; }
+
+    DbSet<SysUserOrganization> UserOrganizations { get; }
 }
