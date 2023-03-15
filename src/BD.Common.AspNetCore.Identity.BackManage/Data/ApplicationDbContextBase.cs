@@ -38,6 +38,15 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
     /// <inheritdoc cref="SysMenuButton"/>
     public DbSet<SysMenuButton> MenuButtons { get; set; } = null!;
 
+    /// <inheritdoc cref="SysInfo"/>
+    public DbSet<SysInfo> SysInfos { get; set; } = null!;
+
+    /// <inheritdoc cref="SysOrganization"/>
+    public DbSet<SysOrganization> Organizations { get; set; } = null!;
+
+    /// <inheritdoc cref="SysUserOrganization"/>
+    public DbSet<SysUserOrganization> UserOrganizations { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder b)
     {
         base.OnModelCreating(b);
@@ -77,6 +86,18 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
         b.Entity<SysMenuButtonRole>(p =>
         {
             p.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId, x.ControllerName });
+        });
+        b.Entity<SysOrganization>(p =>
+        {
+            p.HasMany(x => x.ChildrenSysOrganization)
+                .WithOne(x => x.ParentSysOrganization)
+                .HasForeignKey(x => x.ParentId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+        b.Entity<SysUserOrganization>(p =>
+        {
+            p.HasOne(x => x.User).WithOne().HasForeignKey<SysUserOrganization>(x => x.UserId);
+            p.HasOne(x => x.Organization).WithOne().HasForeignKey<SysUserOrganization>(x => x.OrganizationId);
         });
     }
 

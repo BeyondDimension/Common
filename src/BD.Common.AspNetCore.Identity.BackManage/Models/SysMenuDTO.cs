@@ -55,7 +55,7 @@ public sealed class SysMenuDTO2 : KeyModel<Guid>
         Order = item.Order,
         ParentId = item.ParentId,
         Path = item.Path,
-        Remark = item.Remark,
+        Remark = item.Remarks,
     };
 #endif
 }

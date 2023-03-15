@@ -1,41 +1,59 @@
+using BD.SteamPointShop.Entities.Abstractions;
+
 namespace BD.Common.Entities;
 
 /// <summary>
 /// 系统角色(权限)实体类
 /// </summary>
 [Table("BM_Roles")]
-public class SysRole : Entity<Guid>,INEWSEQUENTIALID, ITenant, ICreationTime, ICreateUserIdNullable, IOrder, IUpdateTime, IOperatorUserId, ISoftDeleted
+public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
 {
+    /// <summary>
+    /// 角色名称
+    /// </summary>
     [Required]
     [StringLength(256)]
+    [Comment("角色名称")]
     public string Name { get; set; } = "";
 
+    /// <summary>
+    /// 规范化名称
+    /// </summary>
     [Required]
     [StringLength(256)]
+    [Comment("规范化名称")]
     public string NormalizedName { get; set; } = "";
 
+    /// <summary>
+    /// 描述
+    /// </summary>
     [MaxLength(MaxLengths.Describe)]
+    [Comment("描述")]
     public string? Describe { get; set; }
 
+    /// <summary>
+    /// 用户Id
+    /// </summary>
+    [Comment("用户Id")]
     public Guid UserId { get; set; }
 
-    public Guid TenantId { get; set; }
-
-    public DateTimeOffset CreationTime { get; set; }
-
-    public Guid? CreateUserId { get; set; }
-
+    /// <summary>
+    /// 排序
+    /// </summary>
+    [Comment("排序")]
     public long Order { get; set; }
 
-    public DateTimeOffset UpdateTime { get; set; }
-
-    public Guid? OperatorUserId { get; set; }
+    /// <summary>
+    /// 状态
+    /// </summary>
+    [Comment("状态")]
+    public SysRoleStatus Status { get; set; }
 
     /// <summary>
-    /// https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
+    /// 并发令牌
     /// </summary>
+    /// <seealso cref="https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion"/>
     [Timestamp]
+    [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
-
-    public bool SoftDeleted { get; set; }
 }
