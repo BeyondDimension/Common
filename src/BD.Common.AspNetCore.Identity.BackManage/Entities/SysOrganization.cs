@@ -1,5 +1,3 @@
-using BD.SteamPointShop.Entities.Abstractions;
-
 namespace BD.Common.Entities;
 
 /// <summary>

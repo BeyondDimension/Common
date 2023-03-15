@@ -1,5 +1,3 @@
-using BD.SteamPointShop.Entities.Abstractions;
-
 namespace BD.Common.Entities;
 
 /// <summary>
@@ -18,7 +16,7 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
 
     /// <summary>
     /// 租户唯一编码
-    /// </sumary>
+    /// </summary>
     [MaxLength(100)]
     [Comment("租户唯一编码")]
     public string UniqueCode { get; set; } = null!;
@@ -53,78 +51,78 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
 
     /// <summary>
     /// 注册手机号
-    /// </sumary>
+    /// </summary>
     [MaxLength(50)]
     [Comment("注册手机号")]
     public string? RegisterPhoneNumber { get; set; }
 
     /// <summary>
     /// 注册邮箱
-    /// </sumary>
+    /// </summary>
     [MaxLength(100)]
     [Comment("注册邮箱")]
     public string RegisterEmail { get; set; } = null!;
 
     /// <summary>
     /// 审核人Id
-    /// </sumary>
+    /// </summary>
     [Comment("审核人Id")]
     public Guid? AuditorId { get; set; }
 
     /// <summary>
     /// 审核人
-    /// </sumary>
+    /// </summary>
     [MaxLength(50)]
     [Comment("审核人")]
     public string? Auditor { get; set; }
 
     /// <summary>
     /// 审核时间
-    /// </sumary>
+    /// </summary>
     [Comment("审核时间")]
     public DateTimeOffset? ReviewTime { get; set; }
 
     /// <summary>
     /// 审核状态
-    /// </sumary>
+    /// </summary>
     [Comment("审核状态")]
     public SysTenantApprovalStatus? ApprovalStatus { get; set; }
 
     /// <summary>
     /// 审核备注
-    /// </sumary>
+    /// </summary>
     [MaxLength(MaxLengths.Remarks)]
     [Comment("审核备注")]
     public string? ReviewRemarks { get; set; }
 
     /// <summary>
     /// 授权开始时间
-    /// </sumary>
+    /// </summary>
     [Comment("授权开始时间")]
     public DateTimeOffset AuthorizationStartTime { get; set; }
 
     /// <summary>
     /// 授权结束时间
-    /// </sumary>
+    /// </summary>
     [Comment("授权结束时间")]
     public DateTimeOffset AuthorizationEndTime { get; set; }
 
     /// <summary>
     /// 状态
-    /// </sumary>
+    /// </summary>
     [Comment("状态")]
     public SysTenantStatus Status { get; set; }
 
     /// <summary>
     /// 备注
-    /// </sumary>
+    /// </summary>
     [MaxLength(MaxLengths.Remarks)]
     [Comment("备注")]
     public string? Remarks { get; set; }
 
     /// <summary>
     /// 是否为平台管理员
-    /// </sumary>
+    /// </summary>
     [Comment("是否为平台管理员")]
     public bool IsPlatformAdministrator { get; set; }
 
