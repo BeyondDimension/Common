@@ -1,4 +1,5 @@
-namespace BD.SteamPointShop.Entities.Abstractions;
+// ReSharper disable once CheckNamespace
+namespace BD.Common.Entities.Abstractions;
 
 /// <summary>
 /// 基类实体 - 包含创建时间与创建人
