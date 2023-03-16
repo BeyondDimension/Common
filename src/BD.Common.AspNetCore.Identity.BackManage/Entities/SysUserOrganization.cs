@@ -4,24 +4,24 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 用户组织架构关系
 /// </summary>
 [Table("BM_UserOrganizations")]
-public class SysUserOrganization : Entity<Guid>, INEWSEQUENTIALID, ITenant
+public class SysUserOrganization : ITenant
 {
     /// <summary>
-    /// 租户Id
+    /// 租户 Id
     /// </summary>
-    [Comment("租户Id")]
+    [Comment("租户 Id")]
     public Guid TenantId { get; set; }
 
     /// <summary>
-    /// 组织架构Id
+    /// 组织架构 Id
     /// </summary>
-    [Comment("组织架构Id")]
+    [Comment("组织架构 Id")]
     public Guid OrganizationId { get; set; }
 
     /// <summary>
-    /// 用户Id
+    /// 用户 Id
     /// </summary>
-    [Comment("用户Id")]
+    [Comment("用户 Id")]
     public Guid UserId { get; set; }
 
     /// <inheritdoc cref="SysOrganization"/>

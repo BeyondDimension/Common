@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统用户(多租户)实体类
 /// </summary>
 [Table("BM_Users")]
-public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks, INickName
+public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks, INickName, IPhoneNumber
 {
     /// <summary>
     /// 组织架构 Id
@@ -77,11 +77,8 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     [Comment("禁止在此时间之前刷新")]
     public DateTimeOffset NotBefore { get; set; }
 
-    /// <summary>
-    /// 手机号
-    /// </summary>
     [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]
-    [Comment("手机号")]
+    [Comment("手机号码")]
     public string? PhoneNumber { get; set; }
 
     /// <summary>

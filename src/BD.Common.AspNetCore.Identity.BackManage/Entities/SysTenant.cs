@@ -61,7 +61,7 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     /// </summary>
     [MaxLength(MaxLengths.Email)]
     [Comment("注册邮箱")]
-    public string RegisterEmail { get; set; } = null!;
+    public string? RegisterEmail { get; set; }
 
     /// <summary>
     /// 审核人 Id
