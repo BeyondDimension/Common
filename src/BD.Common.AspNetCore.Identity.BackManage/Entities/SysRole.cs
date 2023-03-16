@@ -48,9 +48,8 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
     public SysRoleStatus Status { get; set; }
 
     /// <summary>
-    /// 并发令牌
+    /// 并发令牌 https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
     /// </summary>
-    /// <seealso cref="https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion"/>
     [Timestamp]
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }

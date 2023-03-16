@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统用户(多租户)实体类
 /// </summary>
 [Table("BM_Users")]
-public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks
+public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks, INickName
 {
     /// <summary>
     /// 组织架构Id
@@ -13,12 +13,12 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks
     public Guid? OrganizationalId { get; set; }
 
     /// <summary>
-    /// 用户名称
+    /// 用户名
     /// </summary>
     [Required]
     [StringLength(256)]
-    [Comment("用户名称")]
-    public string UserName { get; set; } = "";
+    [Comment("用户名")]
+    public string UserName { get; set; } = string.Empty;
 
     /// <summary>
     /// 规范化用户名
@@ -26,20 +26,13 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks
     [Required]
     [StringLength(256)]
     [Comment("规范化用户名")]
-    public string? NormalizedUserName { get; set; }
+    public string NormalizedUserName { get; set; } = string.Empty;
 
     /// <summary>
-    /// 账号
+    /// 昵称
     /// </summary>
-    [Comment("账号")]
-    [MaxLength(50)]
-    public string? Account { get; set; }
-
-    /// <summary>
-    /// 密码
-    /// </summary>
-    [Comment("密码")]
-    public string Password { get; set; } = null!;
+    [Comment("昵称")]
+    public string? NickName { get; set; }
 
     /// <summary>
     /// 密码哈希
@@ -87,16 +80,16 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks
     /// <summary>
     /// 手机号
     /// </summary>
-    [MaxLength(PhoneNumberHelper.ChineseMainlandPhoneNumberLength)]
+    [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]
     [Comment("手机号")]
-    public string? PhoneNumber { get; set; } = null!;
+    public string? PhoneNumber { get; set; }
 
     /// <summary>
     /// 邮箱
     /// </summary>
     [Comment("邮箱")]
     [MaxLength(MaxLengths.Email)]
-    public string? Email { get; set; } = null!;
+    public string? Email { get; set; }
 
     /// <summary>
     /// 性别
@@ -119,9 +112,8 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks
     public SysUserStatus UserStatus { get; set; }
 
     /// <summary>
-    /// 并发令牌
+    /// 并发令牌 https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
     /// </summary>
-    /// <seealso cref="https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion"/>
     [Timestamp]
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
