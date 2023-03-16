@@ -1,10 +1,12 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-// https://github.com/dotnet/aspnetcore/blob/v6.0.8/src/Http/WebUtilities/src/QueryHelpers.cs
+// https://github.com/dotnet/aspnetcore/blob/v8.0.0-preview.2.23153.2/src/Http/WebUtilities/src/QueryHelpers.cs
 
-// ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.WebUtilities;
 
+/// <summary>
+/// Provides methods for parsing and manipulating query strings.
+/// </summary>
 public static class QueryHelpers
 {
     /// <summary>
@@ -19,20 +21,9 @@ public static class QueryHelpers
     /// <exception cref="ArgumentNullException"><paramref name="value"/> is <c>null</c>.</exception>
     public static string AddQueryString(string uri, string name, string value)
     {
-        if (uri == null)
-        {
-            throw new ArgumentNullException(nameof(uri));
-        }
-
-        if (name == null)
-        {
-            throw new ArgumentNullException(nameof(name));
-        }
-
-        if (value == null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(uri);
+        ArgumentNullException.ThrowIfNull(name);
+        ArgumentNullException.ThrowIfNull(value);
 
         return AddQueryString(
             uri, new[] { new KeyValuePair<string, string?>(name, value) });
@@ -48,15 +39,8 @@ public static class QueryHelpers
     /// <exception cref="ArgumentNullException"><paramref name="queryString"/> is <c>null</c>.</exception>
     public static string AddQueryString(string uri, IDictionary<string, string?> queryString)
     {
-        if (uri == null)
-        {
-            throw new ArgumentNullException(nameof(uri));
-        }
-
-        if (queryString == null)
-        {
-            throw new ArgumentNullException(nameof(queryString));
-        }
+        ArgumentNullException.ThrowIfNull(uri);
+        ArgumentNullException.ThrowIfNull(queryString);
 
         return AddQueryString(uri, (IEnumerable<KeyValuePair<string, string?>>)queryString);
     }
@@ -71,15 +55,8 @@ public static class QueryHelpers
     /// <exception cref="ArgumentNullException"><paramref name="queryString"/> is <c>null</c>.</exception>
     public static string AddQueryString(string uri, IEnumerable<KeyValuePair<string, StringValues>> queryString)
     {
-        if (uri == null)
-        {
-            throw new ArgumentNullException(nameof(uri));
-        }
-
-        if (queryString == null)
-        {
-            throw new ArgumentNullException(nameof(queryString));
-        }
+        ArgumentNullException.ThrowIfNull(uri);
+        ArgumentNullException.ThrowIfNull(queryString);
 
         return AddQueryString(uri, queryString.SelectMany(kvp => kvp.Value, (kvp, v) => KeyValuePair.Create<string, string?>(kvp.Key, v)));
     }
@@ -96,24 +73,17 @@ public static class QueryHelpers
         string uri,
         IEnumerable<KeyValuePair<string, string?>> queryString)
     {
-        if (uri == null)
-        {
-            throw new ArgumentNullException(nameof(uri));
-        }
-
-        if (queryString == null)
-        {
-            throw new ArgumentNullException(nameof(queryString));
-        }
+        ArgumentNullException.ThrowIfNull(uri);
+        ArgumentNullException.ThrowIfNull(queryString);
 
         var anchorIndex = uri.IndexOf('#');
-        var uriToBeAppended = uri;
-        var anchorText = "";
+        var uriToBeAppended = uri.AsSpan();
+        var anchorText = ReadOnlySpan<char>.Empty;
         // If there is an anchor, then the query string must be inserted before its first occurrence.
         if (anchorIndex != -1)
         {
-            anchorText = uri.Substring(anchorIndex);
-            uriToBeAppended = uri.Substring(0, anchorIndex);
+            anchorText = uriToBeAppended.Slice(anchorIndex);
+            uriToBeAppended = uriToBeAppended.Slice(0, anchorIndex);
         }
 
         var queryIndex = uriToBeAppended.IndexOf('?');
@@ -139,4 +109,43 @@ public static class QueryHelpers
         return sb.ToString();
     }
 
+    /// <summary>
+    /// Parse a query string into its component key and value parts.
+    /// </summary>
+    /// <param name="queryString">The raw query string value, with or without the leading '?'.</param>
+    /// <returns>A collection of parsed keys and values.</returns>
+    public static Dictionary<string, StringValues> ParseQuery(string? queryString)
+    {
+        var result = ParseNullableQuery(queryString);
+
+        if (result == null)
+        {
+            return new Dictionary<string, StringValues>();
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Parse a query string into its component key and value parts.
+    /// </summary>
+    /// <param name="queryString">The raw query string value, with or without the leading '?'.</param>
+    /// <returns>A collection of parsed keys and values, null if there are no entries.</returns>
+    public static Dictionary<string, StringValues>? ParseNullableQuery(string? queryString)
+    {
+        var accumulator = new KeyValueAccumulator();
+        var enumerable = new QueryStringEnumerable(queryString);
+
+        foreach (var pair in enumerable)
+        {
+            accumulator.Append(pair.DecodeName().ToString(), pair.DecodeValue().ToString());
+        }
+
+        if (!accumulator.HasValues)
+        {
+            return null;
+        }
+
+        return accumulator.GetResults();
+    }
 }
