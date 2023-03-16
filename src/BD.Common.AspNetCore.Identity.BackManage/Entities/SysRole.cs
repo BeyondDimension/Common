@@ -25,14 +25,13 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
     /// <summary>
     /// 描述
     /// </summary>
-    [MaxLength(MaxLengths.Describe)]
     [Comment("描述")]
     public string? Describe { get; set; }
 
     /// <summary>
-    /// 用户Id
+    /// 用户 Id
     /// </summary>
-    [Comment("用户Id")]
+    [Comment("用户 Id")]
     public Guid UserId { get; set; }
 
     /// <summary>

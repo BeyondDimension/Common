@@ -54,11 +54,13 @@ public static class MaxLengths
     /// <summary>
     /// 禁用原因
     /// </summary>
+    [Obsolete("禁用原因不设置最大长度")]
     public const int DisableReason = 1000;
 
     /// <summary>
     /// 备注
     /// </summary>
+    [Obsolete("备注不设置最大长度")]
     public const int Remarks = 1000;
 
     /// <summary>
@@ -79,5 +81,6 @@ public static class MaxLengths
     /// <summary>
     /// 描述
     /// </summary>
+    [Obsolete("描述不设置最大长度")]
     public const int Describe = 500;
 }

@@ -17,9 +17,9 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     /// <summary>
     /// 租户唯一编码
     /// </summary>
-    [MaxLength(100)]
+    [MaxLength(256)]
     [Comment("租户唯一编码")]
-    public string UniqueCode { get; set; } = null!;
+    public string? UniqueCode { get; set; }
 
     /// <summary>
     /// 联系人名称
@@ -31,7 +31,7 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     /// <summary>
     /// 联系人电话
     /// </summary>
-    [MaxLength(PhoneNumberHelper.ChineseMainlandPhoneNumberLength)]
+    [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]
     [Comment("联系人电话")]
     public string? ContactPhone { get; set; }
 
@@ -52,28 +52,28 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     /// <summary>
     /// 注册手机号
     /// </summary>
-    [MaxLength(50)]
+    [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]
     [Comment("注册手机号")]
     public string? RegisterPhoneNumber { get; set; }
 
     /// <summary>
     /// 注册邮箱
     /// </summary>
-    [MaxLength(100)]
+    [MaxLength(MaxLengths.Email)]
     [Comment("注册邮箱")]
     public string RegisterEmail { get; set; } = null!;
 
     /// <summary>
-    /// 审核人Id
+    /// 审核人 Id
     /// </summary>
-    [Comment("审核人Id")]
+    [Comment("审核人 Id")]
     public Guid? AuditorId { get; set; }
 
     /// <summary>
     /// 审核人
     /// </summary>
-    [MaxLength(50)]
     [Comment("审核人")]
+    [MaxLength(MaxLengths.NickName)]
     public string? Auditor { get; set; }
 
     /// <summary>
@@ -91,7 +91,6 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     /// <summary>
     /// 审核备注
     /// </summary>
-    [MaxLength(MaxLengths.Remarks)]
     [Comment("审核备注")]
     public string? ReviewRemarks { get; set; }
 
@@ -116,7 +115,6 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     /// <summary>
     /// 备注
     /// </summary>
-    [MaxLength(MaxLengths.Remarks)]
     [Comment("备注")]
     public string? Remarks { get; set; }
 
@@ -127,7 +125,7 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     public bool IsPlatformAdministrator { get; set; }
 
     /// <summary>
-    /// 管理员TenantId
+    /// 管理员 TenantId
     /// </summary>
     public static Guid AdministratorTenantId => Guid.ParseExact("00000000000000000000000000000001", "N");
 }

@@ -7,21 +7,21 @@ namespace BD.Common.Entities;
 public class SysMenuButton : ITenant
 {
     /// <summary>
-    /// 系统租户ID
+    /// 系统租户 Id
     /// </summary>
-    [Comment("系统租户ID")]
+    [Comment("系统租户 Id")]
     public Guid TenantId { get; set; }
 
     /// <summary>
-    /// 系统菜单ID
+    /// 系统菜单 Id
     /// </summary>
-    [Comment("系统菜单ID")]
+    [Comment("系统菜单 Id")]
     public Guid MenuId { get; set; }
 
     /// <summary>
-    /// 系统按钮ID
+    /// 系统按钮 Id
     /// </summary>
-    [Comment("系统按钮ID")]
+    [Comment("系统按钮 Id")]
     public Guid ButtonId { get; set; }
 
     /// <inheritdoc cref="SysButton"/>

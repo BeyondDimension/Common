@@ -7,20 +7,20 @@ namespace BD.Common.Entities;
 public class SysUserRole : ITenant
 {
     /// <summary>
-    /// 租户Id
+    /// 租户 Id
     /// </summary>
-    [Comment("租户Id")]
+    [Comment("租户 Id")]
     public Guid TenantId { get; set; }
 
     /// <summary>
-    /// 用户Id
+    /// 用户 Id
     /// </summary>
-    [Comment("用户Id")]
+    [Comment("用户 Id")]
     public Guid UserId { get; set; }
 
     /// <summary>
-    /// 角色Id
+    /// 角色 Id
     /// </summary>
-    [Comment("角色Id")]
+    [Comment("角色 Id")]
     public Guid RoleId { get; set; }
 }

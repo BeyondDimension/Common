@@ -7,25 +7,25 @@ namespace BD.Common.Entities;
 public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks, INickName
 {
     /// <summary>
-    /// 组织架构Id
+    /// 组织架构 Id
     /// </summary>
-    [Comment("组织架构Id")]
+    [Comment("组织架构 Id")]
     public Guid? OrganizationalId { get; set; }
 
     /// <summary>
     /// 用户名
     /// </summary>
     [Required]
-    [StringLength(256)]
     [Comment("用户名")]
+    [MaxLength(256)]
     public string UserName { get; set; } = string.Empty;
 
     /// <summary>
     /// 规范化用户名
     /// </summary>
     [Required]
-    [StringLength(256)]
     [Comment("规范化用户名")]
+    [MaxLength(256)]
     public string NormalizedUserName { get; set; } = string.Empty;
 
     /// <summary>
@@ -100,8 +100,6 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     /// <summary>
     /// 备注
     /// </summary>
-    [MaxLength(MaxLengths.Remarks)]
-    [Column("Remark")]
     [Comment("备注")]
     public string? Remarks { get; set; }
 

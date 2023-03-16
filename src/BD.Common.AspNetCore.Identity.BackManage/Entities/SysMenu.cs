@@ -23,17 +23,17 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks
     public string Name { get; set; } = null!;
 
     /// <summary>
-    /// 父菜单Id
+    /// 父菜单 Id
     /// </summary>
-    [Comment("父菜单Id")]
+    [Comment("父菜单 Id")]
     public Guid? ParentId { get; set; }
 
     /// <summary>
-    /// 菜单Url地址
+    /// 菜单 Url 地址
     /// </summary>
     [Required]
     [MaxLength(MaxLengths.Url)]
-    [Comment("菜单Url地址")]
+    [Comment("菜单 Url 地址")]
     public string Path { get; set; } = null!;
 
     /// <summary>
@@ -44,9 +44,9 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks
     public string? Icon { get; set; }
 
     /// <summary>
-    /// 图标Url地址
+    /// 图标 Url 地址
     /// </summary>
-    [Comment("图标Url地址")]
+    [Comment("图标 Url 地址")]
     [MaxLength(MaxLengths.Url)]
     public string? IconUrlAddress { get; set; }
 
@@ -77,8 +77,6 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks
     /// <summary>
     /// 备注
     /// </summary>
-    [MaxLength(MaxLengths.Remarks)]
-    [Column("Remark")]
     [Comment("备注")]
     public string? Remarks { get; set; }
 

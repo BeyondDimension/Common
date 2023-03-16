@@ -7,21 +7,21 @@ namespace BD.Common.Entities;
 public class SysMenuButtonRole : ITenant
 {
     /// <summary>
-    /// 系统租户ID
+    /// 系统租户 Id
     /// </summary>
-    [Comment("系统租户ID")]
+    [Comment("系统租户 Id")]
     public Guid TenantId { get; set; }
 
     /// <summary>
-    /// 系统角色ID
+    /// 系统角色 Id
     /// </summary>
-    [Comment("系统角色ID")]
+    [Comment("系统角色 Id")]
     public Guid RoleId { get; set; }
 
     /// <summary>
-    /// 系统菜单ID
+    /// 系统菜单 Id
     /// </summary>
-    [Comment("系统菜单ID")]
+    [Comment("系统菜单 Id")]
     public Guid MenuId { get; set; }
 
     /// <summary>

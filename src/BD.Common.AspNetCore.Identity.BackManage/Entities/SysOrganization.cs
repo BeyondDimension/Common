@@ -10,7 +10,7 @@ public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
     /// 组织架构名称
     /// </summary>
     [Comment("组织架构名称")]
-    [MaxLength(100)]
+    [MaxLength(256)]
     public string OrganizationName { get; set; } = string.Empty;
 
     /// <summary>
@@ -20,9 +20,9 @@ public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
     public SysOrganizationStatus Status { get; set; }
 
     /// <summary>
-    /// 父级Id
+    /// 父级 Id
     /// </summary>
-    [Comment("父级Id")]
+    [Comment("父级 Id")]
     public Guid ParentId { get; set; }
 
     /// <summary>
