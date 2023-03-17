@@ -14,6 +14,7 @@ public static partial class QueryableExtensions
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<PagedModel<TEntity>> PagingAsync<TEntity>(
         this IQueryable<TEntity> source,
         int current = IPagedModel.DefaultCurrent,
@@ -72,6 +73,7 @@ public static partial class QueryableExtensions
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<PagedModel<TEntity>> PagingOffsetAsync<TEntity>(
         this IQueryable<TEntity> source,
         int offset = 0,
@@ -97,6 +99,7 @@ public static partial class QueryableExtensions
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task<PagedModel<TEntity>> PagingSortAsync<TEntity>(
       this IQueryable<TEntity> source,
       int current = IPagedModel.DefaultCurrent,
@@ -116,6 +119,7 @@ public static partial class QueryableExtensions
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task<PagedModel<TEntity>> PagingSortAsync<TEntity>(
         this IQueryable<TEntity> source,
         ICreationTime? anchor = null,
@@ -135,6 +139,7 @@ public static partial class QueryableExtensions
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<PagedModel<TEntity>> PagingSortAsync<TEntity>(
        this IQueryable<TEntity> source,
        DateTimeOffset anchor = default,
@@ -155,6 +160,7 @@ public static partial class QueryableExtensions
     /// <param name="pageSize"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<PagedModel<TEntity>> PagingAnchorAsync<TEntity>(
         this IQueryable<TEntity> source,
         int pageSize = IPagedModel.DefaultPageSize,

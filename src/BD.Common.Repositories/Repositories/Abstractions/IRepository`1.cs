@@ -1,7 +1,7 @@
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="IRepository"/>
-public interface IRepository<TEntity> : IRepository where TEntity : class
+public interface IRepository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : IRepository where TEntity : class
 {
     #region 增(Insert Funs) 立即执行并返回受影响的行数
 
@@ -9,23 +9,9 @@ public interface IRepository<TEntity> : IRepository where TEntity : class
     /// 将实体插入到数据库中
     /// </summary>
     /// <param name="entity">要添加的实体</param>
-    /// <returns>受影响的行数</returns>
-    Task<int> InsertAsync(TEntity entity);
-
-    /// <summary>
-    /// 将实体插入到数据库中
-    /// </summary>
-    /// <param name="entity">要添加的实体</param>
     /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> InsertAsync(TEntity entity, CancellationToken cancellationToken) => InsertAsync(entity);
-
-    /// <summary>
-    /// 将多个实体插入到数据库中
-    /// </summary>
-    /// <param name="entities">要添加的多个实体</param>
-    /// <returns>受影响的行数</returns>
-    Task<int> InsertRangeAsync(IEnumerable<TEntity> entities) => OperateRangeAsync(entities, InsertAsync);
+    Task<int> InsertAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 将多个实体插入到数据库中
@@ -33,7 +19,7 @@ public interface IRepository<TEntity> : IRepository where TEntity : class
     /// <param name="entities">要添加的多个实体</param>
     /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> InsertRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken) => OperateRangeAsync(entities, InsertAsync, cancellationToken);
+    Task<int> InsertRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default) => OperateRangeAsync(entities, InsertAsync, cancellationToken);
 
     /// <summary>
     /// 将多个实体插入到数据库中
@@ -50,23 +36,9 @@ public interface IRepository<TEntity> : IRepository where TEntity : class
     /// 将实体从数据库中删除
     /// </summary>
     /// <param name="entity">要删除的实体</param>
-    /// <returns>受影响的行数</returns>
-    Task<int> DeleteAsync(TEntity entity);
-
-    /// <summary>
-    /// 将实体从数据库中删除
-    /// </summary>
-    /// <param name="entity">要删除的实体</param>
     /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken) => DeleteAsync(entity);
-
-    /// <summary>
-    /// 将多个实体从数据库中删除
-    /// </summary>
-    /// <param name="entities">要删除的多个实体</param>
-    /// <returns>受影响的行数</returns>
-    Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities) => OperateRangeAsync(entities, DeleteAsync);
+    Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 将多个实体从数据库中删除
@@ -74,7 +46,7 @@ public interface IRepository<TEntity> : IRepository where TEntity : class
     /// <param name="entities">要删除的多个实体</param>
     /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken) => OperateRangeAsync(entities, DeleteAsync, cancellationToken);
+    Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default) => OperateRangeAsync(entities, DeleteAsync, cancellationToken);
 
     /// <summary>
     /// 将多个实体从数据库中删除
@@ -91,23 +63,9 @@ public interface IRepository<TEntity> : IRepository where TEntity : class
     /// 将实体更新到数据库中
     /// </summary>
     /// <param name="entity">要更新的实体</param>
-    /// <returns>受影响的行数</returns>
-    Task<int> UpdateAsync(TEntity entity);
-
-    /// <summary>
-    /// 将实体更新到数据库中
-    /// </summary>
-    /// <param name="entity">要更新的实体</param>
     /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken) => UpdateAsync(entity);
-
-    /// <summary>
-    /// 将多个实体更新到数据库中
-    /// </summary>
-    /// <param name="entities">要更新的多个实体</param>
-    /// <returns>受影响的行数</returns>
-    Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities) => OperateRangeAsync(entities, UpdateAsync);
+    Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 将多个实体更新到数据库中
@@ -115,7 +73,7 @@ public interface IRepository<TEntity> : IRepository where TEntity : class
     /// <param name="entities">要更新的多个实体</param>
     /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken) => OperateRangeAsync(entities, UpdateAsync, cancellationToken);
+    Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default) => OperateRangeAsync(entities, UpdateAsync, cancellationToken);
 
     /// <summary>
     /// 将多个实体更新到数据库中

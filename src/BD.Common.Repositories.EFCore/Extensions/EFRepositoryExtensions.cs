@@ -90,7 +90,7 @@ public static class EFRepositoryExtensions
     /// <param name="repository"></param>
     /// <param name="entities"></param>
     /// <returns></returns>
-    public static int IdentityInsertRange<TEntity>(this IEFRepository<TEntity> repository,
+    public static int IdentityInsertRange<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity>(this IEFRepository<TEntity> repository,
         IEnumerable<TEntity> entities) where TEntity : class
     {
         repository.Entity.AddRange(entities);
@@ -106,7 +106,7 @@ public static class EFRepositoryExtensions
     /// <param name="entities"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<int> IdentityInsertRangeAsync<TEntity>(this IEFRepository<TEntity> repository,
+    public static async Task<int> IdentityInsertRangeAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity>(this IEFRepository<TEntity> repository,
         IEnumerable<TEntity> entities,
         CancellationToken cancellationToken = default) where TEntity : class
     {
@@ -124,7 +124,7 @@ public static class EFRepositoryExtensions
     /// <param name="id"></param>
     /// <param name="disable"></param>
     /// <returns></returns>
-    public static async Task<int> SetDisableByIdAsync<TEntity, TPrimaryKey>(this IQueryable<TEntity> query, TPrimaryKey id, bool disable)
+    public static async Task<int> SetDisableByIdAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(this IQueryable<TEntity> query, TPrimaryKey id, bool disable)
         where TEntity : class, IDisable, IEntity<TPrimaryKey>
         where TPrimaryKey : IEquatable<TPrimaryKey>
     {

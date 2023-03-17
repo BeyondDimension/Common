@@ -1,5 +1,8 @@
 namespace BD.Common.Repositories.Abstractions;
 
+/// <summary>
+/// 由 EFCore 实现的 仓储接口
+/// </summary>
 public interface IEFRepository
 {
     DbContext DbContext { get; }

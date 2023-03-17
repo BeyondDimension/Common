@@ -1,6 +1,10 @@
 namespace BD.Common.Repositories.Abstractions;
 
-public interface IGetPrimaryKey<TEntity> where TEntity : class
+/// <summary>
+/// 根据实体获取主键
+/// </summary>
+/// <typeparam name="TEntity">实体类型</typeparam>
+public interface IGetPrimaryKey<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> where TEntity : class
 {
     /// <summary>
     /// 根据实体获取主键
@@ -10,7 +14,12 @@ public interface IGetPrimaryKey<TEntity> where TEntity : class
     object GetPrimaryKey(TEntity entity);
 }
 
-public interface IGetPrimaryKey<TEntity, TPrimaryKey> : IGetPrimaryKey<TEntity>
+/// <summary>
+/// 根据实体获取主键
+/// </summary>
+/// <typeparam name="TEntity">实体类型</typeparam>
+/// <typeparam name="TPrimaryKey">主键类型</typeparam>
+public interface IGetPrimaryKey<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey> : IGetPrimaryKey<TEntity>
   where TEntity : class, IEntity<TPrimaryKey>
   where TPrimaryKey : IEquatable<TPrimaryKey>
 {
@@ -26,5 +35,5 @@ public interface IGetPrimaryKey<TEntity, TPrimaryKey> : IGetPrimaryKey<TEntity>
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
-    protected static TPrimaryKey DefaultGetPrimaryKey(TEntity entity) => entity.Id;
+    public static TPrimaryKey DefaultGetPrimaryKey(TEntity entity) => entity.Id;
 }

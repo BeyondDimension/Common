@@ -79,9 +79,9 @@ public abstract class Repository : IRepository
         return conn;
     }
 
-    protected static Task<T> AttemptAndRetry<T>(Func<Task<T>> action, int numRetries = 10)
+    protected static Task<T> AttemptAndRetry<T>(Func<CancellationToken, Task<T>> @delegate, int numRetries = 10, CancellationToken cancellationToken = default)
     {
-        return Policy.Handle<SQLiteException>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(action);
+        return Policy.Handle<SQLiteException>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(@delegate, cancellationToken);
         static TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromMilliseconds(Math.Pow(2, attemptNumber));
     }
 

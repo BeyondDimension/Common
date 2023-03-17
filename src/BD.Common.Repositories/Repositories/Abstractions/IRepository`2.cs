@@ -1,36 +1,17 @@
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="IRepository"/>
-public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetPrimaryKey<TEntity, TPrimaryKey>
+public interface IRepository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey> : IRepository<TEntity>, IGetPrimaryKey<TEntity, TPrimaryKey>
     where TEntity : class, IEntity<TPrimaryKey>
     where TPrimaryKey : IEquatable<TPrimaryKey>
 {
-    /// <summary>
-    /// 判断主键是否为默认值
-    /// </summary>
-    /// <param name="primaryKey"></param>
-    /// <returns></returns>
+    /// <inheritdoc cref="IEntity{TPrimaryKey}.IsDefault(TPrimaryKey)"/>
     public static bool IsDefault(TPrimaryKey primaryKey)
-    {
-        if (primaryKey == null) return true; // null is default
-        var defPrimaryKey = default(TPrimaryKey);
-        if (defPrimaryKey == null) return false; // primaryKey not null
-        return EqualityComparer<TPrimaryKey>.Default.Equals(primaryKey, defPrimaryKey);
-    }
+        => IEntity<TPrimaryKey>.IsDefault(primaryKey);
 
-    /// <summary>
-    /// 返回主键匹配表达式
-    /// </summary>
-    /// <param name="primaryKey"></param>
-    /// <returns></returns>
+    /// <inheritdoc cref="IEntity{TPrimaryKey}.LambdaEqualId{TEntity}(TPrimaryKey)"/>
     public static Expression<Func<TEntity, bool>> LambdaEqualId(TPrimaryKey primaryKey)
-    {
-        var parameter = Expression.Parameter(typeof(TEntity));
-        var left = Expression.PropertyOrField(parameter, nameof(IEntity<TPrimaryKey>.Id));
-        var right = Expression.Constant(primaryKey, typeof(TPrimaryKey));
-        var body = Expression.Equal(left, right);
-        return Expression.Lambda<Func<TEntity, bool>>(body, parameter);
-    }
+        => IEntity<TPrimaryKey>.LambdaEqualId<TEntity>(primaryKey);
 
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
@@ -38,15 +19,17 @@ public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetP
     /// 根据主键将实体从数据库中删除
     /// </summary>
     /// <param name="primaryKey">要删除的实体主键</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> DeleteAsync(TPrimaryKey primaryKey);
+    Task<int> DeleteAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 根据主键将多个实体从数据库中删除
     /// </summary>
     /// <param name="primaryKeys">要删除的多个实体主键</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数</returns>
-    Task<int> DeleteRangeAsync(IEnumerable<TPrimaryKey> primaryKeys) => OperateRangeAsync(primaryKeys, DeleteAsync);
+    Task<int> DeleteRangeAsync(IEnumerable<TPrimaryKey> primaryKeys, CancellationToken cancellationToken = default) => OperateRangeAsync(primaryKeys, DeleteAsync, cancellationToken);
 
     /// <summary>
     /// 根据主键将多个实体从数据库中删除
@@ -54,22 +37,6 @@ public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetP
     /// <param name="primaryKeys">要删除的多个实体主键</param>
     /// <returns>受影响的行数</returns>
     Task<int> DeleteRangeAsync(params TPrimaryKey[] primaryKeys) => DeleteRangeAsync(primaryKeys.AsEnumerable());
-
-    ///// <summary>
-    ///// 根据主键将多个实体从数据库中删除
-    ///// </summary>
-    ///// <param name="primaryKeys">要删除的多个实体主键</param>
-    ///// <returns>受影响的行数</returns>
-    //IAsyncEnumerable<(int rowCount, TPrimaryKey entity)> DeleteRangeAsyncEnumerable(IEnumerable<TPrimaryKey> primaryKeys)
-    //    => OperateRangeAsyncEnumerable(primaryKeys, DeleteAsync);
-
-    ///// <summary>
-    ///// 根据主键将多个实体从数据库中删除
-    ///// </summary>
-    ///// <param name="primaryKeys">要删除的多个实体主键</param>
-    ///// <returns>受影响的行数</returns>
-    //IAsyncEnumerable<(int rowCount, TPrimaryKey entity)> DeleteRangeAsyncEnumerable(params TPrimaryKey[] primaryKeys)
-    //    => DeleteRangeAsyncEnumerable(primaryKeys.AsEnumerable());
 
     #endregion
 
@@ -115,20 +82,21 @@ public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetP
     /// 新增或更新实体
     /// </summary>
     /// <param name="entity">要新增或更新的实体</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数与数据库逻辑</returns>
-    async Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync(TEntity entity)
+    async Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        var exist = await ExistAsync(entity);
+        var exist = await ExistAsync(entity, cancellationToken);
         int rowCount;
         DbRowExecResult result;
         if (exist)
         {
-            rowCount = await UpdateAsync(entity);
+            rowCount = await UpdateAsync(entity, cancellationToken);
             result = DbRowExecResult.Update;
         }
         else
         {
-            rowCount = await InsertAsync(entity);
+            rowCount = await InsertAsync(entity, cancellationToken);
             result = DbRowExecResult.Insert;
         }
         return (rowCount, result);
@@ -138,9 +106,10 @@ public interface IRepository<TEntity, TPrimaryKey> : IRepository<TEntity>, IGetP
     /// 批量新增或更新实体
     /// </summary>
     /// <param name="entities">要新增或更新的多个实体</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>受影响的行数与数据库逻辑</returns>
-    IAsyncEnumerable<(int rowCount, DbRowExecResult result, TEntity entity)> InsertOrUpdateAsync(IEnumerable<TEntity> entities)
-        => OperateRangeAsyncEnumerable(entities, InsertOrUpdateAsync);
+    IAsyncEnumerable<(int rowCount, DbRowExecResult result, TEntity entity)> InsertOrUpdateAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
+        => OperateRangeAsyncEnumerable(entities, InsertOrUpdateAsync, cancellationToken);
 
     /// <summary>
     /// 批量新增或更新实体

@@ -1,48 +1,68 @@
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository"/>
-public abstract class Repository<TEntity> : Repository, IRepository<TEntity> where TEntity : class, new()
+public abstract class Repository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : Repository, IRepository<TEntity> where TEntity : class, new()
 {
     protected static ValueTask<SQLiteAsyncConnection> GetDbConnection() => GetDbConnection<TEntity>();
 
     #region 增(Insert Funs) 立即执行并返回受影响的行数
 
-    public virtual async Task<int> InsertAsync(TEntity entity)
+    public virtual async Task<int> InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
-        return await AttemptAndRetry(() => dbConnection.InsertAsync(entity)).ConfigureAwait(false);
+        return await AttemptAndRetry(t =>
+        {
+            t.ThrowIfCancellationRequested();
+            return dbConnection.InsertAsync(entity);
+        }, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
-    public virtual async Task<int> InsertRangeAsync(IEnumerable<TEntity> entities)
+    public virtual async Task<int> InsertRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
-        return await AttemptAndRetry(() => dbConnection.InsertAllAsync(entities)).ConfigureAwait(false);
+        return await AttemptAndRetry(t =>
+        {
+            t.ThrowIfCancellationRequested();
+            return dbConnection.InsertAllAsync(entities);
+        }, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
     #endregion
 
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
-    public virtual async Task<int> DeleteAsync(TEntity entity)
+    public virtual async Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
-        return await AttemptAndRetry(() => dbConnection.DeleteAsync(entity)).ConfigureAwait(false);
+        return await AttemptAndRetry(t =>
+        {
+            t.ThrowIfCancellationRequested();
+            return dbConnection.DeleteAsync(entity);
+        }, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
     #endregion
 
     #region 改(Update Funs) 立即执行并返回受影响的行数
 
-    public virtual async Task<int> UpdateAsync(TEntity entity)
+    public virtual async Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
-        return await AttemptAndRetry(() => dbConnection.UpdateAsync(entity)).ConfigureAwait(false);
+        return await AttemptAndRetry(t =>
+        {
+            t.ThrowIfCancellationRequested();
+            return dbConnection.UpdateAsync(entity);
+        }, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
-    public virtual async Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities)
+    public virtual async Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
-        return await AttemptAndRetry(() => dbConnection.UpdateAllAsync(entities)).ConfigureAwait(false);
+        return await AttemptAndRetry(t =>
+        {
+            t.ThrowIfCancellationRequested();
+            return dbConnection.UpdateAllAsync(entities);
+        }, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
     #endregion
@@ -52,7 +72,11 @@ public abstract class Repository<TEntity> : Repository, IRepository<TEntity> whe
     public virtual async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
-        return await AttemptAndRetry(() => dbConnection.FindAsync(predicate)).ConfigureAwait(false);
+        return await AttemptAndRetry(t =>
+        {
+            t.ThrowIfCancellationRequested();
+            return dbConnection.FindAsync(predicate);
+        }, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
     #endregion

@@ -1,12 +1,7 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-
 // ReSharper disable once CheckNamespace
-namespace BD.Common;
+namespace System;
 
-/// <summary>
-/// EFCore 工具类
-/// </summary>
-public static class EFCoreHelper
+public static class DbContextExtensions
 {
     /// <summary>
     /// 根据类型获取表名称，仅支持 SqlServer
@@ -14,7 +9,8 @@ public static class EFCoreHelper
     /// <param name="database"></param>
     /// <param name="entityType"></param>
     /// <returns></returns>
-    public static string GetTableNameByClrType(DatabaseFacade database, IEntityType entityType)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetTableNameByClrType(this DatabaseFacade database, IEntityType entityType)
     {
         var tableName = entityType.GetTableName();
         if (tableName == null) throw new NullReferenceException(nameof(tableName));
@@ -34,9 +30,10 @@ public static class EFCoreHelper
     /// <param name="context"></param>
     /// <param name="entityType"></param>
     /// <returns></returns>
-    public static string GetTableNameByClrType(DbContext context, Type entityType)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetTableNameByClrType(this DbContext context, [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] Type entityType)
     {
         var entityType_ = context.Model.FindEntityType(entityType);
-        return GetTableNameByClrType(context.Database, entityType_.ThrowIsNull(nameof(entityType)));
+        return context.Database.GetTableNameByClrType(entityType_.ThrowIsNull(nameof(entityType)));
     }
 }

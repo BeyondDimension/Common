@@ -1,22 +1,14 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-using static BD.Common.EFCoreHelper;
 using static BD.Common.ModelBuilderExtensions;
 
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository{TDbContext}"/>
-public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, IRepository<TEntity>, IEFRepository<TEntity>
+public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : Repository<TDbContext>, IRepository<TEntity>, IEFRepository<TEntity>
     where TDbContext : DbContext
     where TEntity : class
 {
-    /// <summary>
-    /// <see cref="DbSet{TEntity}"/>
-    /// </summary>
     public DbSet<TEntity> Entity { get; }
 
-    /// <summary>
-    /// <see cref="EntityFrameworkQueryableExtensions.AsNoTrackingWithIdentityResolution{TEntity}(IQueryable{TEntity})"/>
-    /// </summary>
     public IQueryable<TEntity> EntityNoTracking => Entity.AsNoTrackingWithIdentityResolution();
 
     DbContext IEFRepository.DbContext => db;
@@ -29,7 +21,9 @@ public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, 
 
     public IEntityType EntityType => mEntityType.Value;
 
+    [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)]
     static readonly Type entityType = typeof(TEntity);
+
     static readonly Lazy<bool> mIsSoftDeleted = new(() => IsSoftDeleted(entityType));
 
     public static bool IsSoftDeleted => mIsSoftDeleted.Value;
@@ -42,25 +36,19 @@ public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, 
     {
         Entity = dbContext.Set<TEntity>();
         mEntityType = new Lazy<IEntityType>(() => dbContext.Model.FindEntityType(entityType).ThrowIsNull(nameof(entityType)));
-        mTableName = new Lazy<string>(() => GetTableNameByClrType(dbContext.Database, EntityType));
+        mTableName = new Lazy<string>(() => dbContext.Database.GetTableNameByClrType(EntityType));
         this.requestAbortedProvider = requestAbortedProvider;
     }
 
     #region 增(Insert Funs) 立即执行并返回受影响的行数
 
-    public virtual Task<int> InsertAsync(TEntity entity) => InsertAsync(entity, default);
-
-    /// <inheritdoc cref="InsertAsync(TEntity)"/>
-    public virtual async Task<int> InsertAsync(TEntity entity, CancellationToken cancellationToken)
+    public virtual async Task<int> InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await Entity.AddAsync(entity, cancellationToken);
         return await db.SaveChangesAsync(cancellationToken);
     }
 
-    public virtual Task<int> InsertRangeAsync(IEnumerable<TEntity> entities) => InsertRangeAsync(entities, default);
-
-    /// <inheritdoc cref="InsertRangeAsync(IEnumerable{TEntity})"/>
-    public virtual async Task<int> InsertRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
+    public virtual async Task<int> InsertRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
     {
         await Entity.AddRangeAsync(entities, cancellationToken);
         return await db.SaveChangesAsync(cancellationToken);
@@ -70,10 +58,7 @@ public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, 
 
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
-    public virtual Task<int> DeleteAsync(TEntity entity) => DeleteAsync(entity, default);
-
-    /// <inheritdoc cref="DeleteAsync(TEntity)"/>
-    public virtual async Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken)
+    public virtual async Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         if (IsSoftDeleted && entity is ISoftDeleted softDeleted)
         {
@@ -87,10 +72,7 @@ public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, 
         return await db.SaveChangesAsync(cancellationToken);
     }
 
-    public virtual Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities) => DeleteRangeAsync(entities, default);
-
-    /// <inheritdoc cref="DeleteRangeAsync(IEnumerable{TEntity})"/>
-    public virtual async Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
+    public virtual async Task<int> DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
     {
         if (IsSoftDeleted && entities is IEnumerable<ISoftDeleted> softDeleted)
         {
@@ -111,19 +93,13 @@ public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, 
 
     #region 改(Update Funs) 立即执行并返回受影响的行数
 
-    public virtual Task<int> UpdateAsync(TEntity entity) => UpdateAsync(entity, default);
-
-    /// <inheritdoc cref="UpdateAsync(TEntity)"/>
-    public virtual async Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken)
+    public virtual async Task<int> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         Entity.Update(entity);
         return await db.SaveChangesAsync(cancellationToken);
     }
 
-    public virtual Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities) => UpdateRangeAsync(entities, default);
-
-    /// <inheritdoc cref="UpdateRangeAsync(IEnumerable{TEntity})"/>
-    public virtual async Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
+    public virtual async Task<int> UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
     {
         Entity.UpdateRange(entities);
         return await db.SaveChangesAsync(cancellationToken);
@@ -133,7 +109,7 @@ public abstract class Repository<TDbContext, TEntity> : Repository<TDbContext>, 
 
     #region 查(通用查询)
 
-    public virtual async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+    public virtual async Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
         => await Entity.FirstOrDefaultAsync(predicate, cancellationToken);
 
     #endregion

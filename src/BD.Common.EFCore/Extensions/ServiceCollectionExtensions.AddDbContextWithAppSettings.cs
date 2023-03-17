@@ -16,7 +16,8 @@ public static partial class ServiceCollectionExtensions
     /// <param name="migrationsHistoryTableNameSuffix"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
-    public static (TAppSettings appSettings, string connectionString) AddDbContextWithAppSettings<TContext, TAppSettings>(
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static (TAppSettings? appSettings, string? connectionString) AddDbContextWithAppSettings<TContext, TAppSettings>(
         this IServiceCollection services,
         IConfiguration configuration,
         string cfgName = "DefaultConnection",

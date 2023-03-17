@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 // ReSharper disable once CheckNamespace
 namespace BD.Common;
 
@@ -12,12 +9,11 @@ public static class ModelBuilderExtensions
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    static LambdaExpression SoftDeletedQueryFilter(Type type)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static LambdaExpression SoftDeletedQueryFilter([DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] Type type)
     {
         var parameter = Expression.Parameter(type);
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         var left = Expression.PropertyOrField(parameter, nameof(ISoftDeleted.SoftDeleted));
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         var body = Expression.Not(left);
         return Expression.Lambda(body, parameter);
     }

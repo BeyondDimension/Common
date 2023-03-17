@@ -281,3 +281,21 @@ builder.ApplyConfiguration(new CustomerConfiguration());
     - ```Entity``` 当前表的实体 ```DbSet<TEntity>```
     - ```EntityNoTracking``` 调用 ```AsNoTrackingWithIdentityResolution``` 的不跟踪的表实体 ```IQueryable<TEntity>```
     - ```RequestAborted``` 取消标记，实现通常为 ```HttpContext.RequestAborted```，传递此取消标记到数据库异步操作中可在中断 Http 连接时取消该请求的数据库操作，提高服务的吞吐量
+
+### 扩展函数
+- 删(Delete Funs) 立即执行并返回受影响的行数
+    - 根据条件执行删除
+        - ```GeneralDeleteAsync(IQueryable<TEntity> ...```
+            - 根据条件常规删除（批量删除或软删除），根据实体是否继承了 ```ISoftDeleted``` 自动检测
+        - ```SoftDeleteAsync(IQueryable<TEntity> ...```
+            - 根据条件批量软删除
+    - 根据主键进行删除/根据多个主键进行删除
+        - ```GeneralDeleteByIdAsync(IQueryable<TEntity> ...```
+            - 根据主键常规删除（批量删除或软删除），根据实体是否继承了 ```ISoftDeleted``` 自动检测
+        - SoftDeleteByIdAsync
+        - HardDeleteByIdAsync
+            - 根据主键硬删除（从数据库中删除数据）
+    - 根据实体进行删除/根据多个实体进行删除
+        - GeneralDeleteAsync
+        - SoftDeleteAsync
+        - HardDeleteAsync
