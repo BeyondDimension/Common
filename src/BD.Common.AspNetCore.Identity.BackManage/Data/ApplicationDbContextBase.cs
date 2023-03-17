@@ -96,6 +96,7 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
         });
         b.Entity<SysUserOrganization>(p =>
         {
+            p.HasKey(x => new { x.UserId, x.OrganizationId, x.TenantId });
             p.HasOne(x => x.User).WithOne().HasForeignKey<SysUserOrganization>(x => x.UserId);
             p.HasOne(x => x.Organization).WithOne().HasForeignKey<SysUserOrganization>(x => x.OrganizationId);
         });
