@@ -93,4 +93,22 @@ public static partial class SqlConstants
     public const string now = "now()";
 
     #endregion
+
+    public static readonly Type POrder = typeof(IOrder);
+    public static readonly Type PSoftDeleted = typeof(ISoftDeleted);
+    public static readonly Type PCreationTime = typeof(ICreationTime);
+    public static readonly Type PUpdateTime = typeof(IUpdateTime);
+    public static readonly Type PDisable = typeof(IDisable);
+    public static readonly Type PNEWSEQUENTIALID = typeof(INEWSEQUENTIALID);
+    public static readonly Type PPhoneNumber = typeof(IPhoneNumber);
+    public static readonly Type POrderInt32 = typeof(IOrderInt32);
+
+    /// <summary>
+    /// https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types
+    /// </summary>
+    public static readonly Type SharedType = typeof(Dictionary<string, object>);
+
+    internal static readonly HashSet<Type> SoftDeleted = new();
+
+    public static bool IsSoftDeleted(Type type) => SoftDeleted.Contains(type);
 }

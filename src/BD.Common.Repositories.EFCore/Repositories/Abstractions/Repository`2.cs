@@ -1,4 +1,4 @@
-using static BD.Common.ModelBuilderExtensions;
+using static BD.Common.Data.SqlConstants;
 
 namespace BD.Common.Repositories.Abstractions;
 
