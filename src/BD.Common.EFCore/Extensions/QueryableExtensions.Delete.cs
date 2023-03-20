@@ -1,5 +1,5 @@
 // ReSharper disable once CheckNamespace
-namespace System;
+namespace System.Linq;
 
 public static partial class QueryableExtensions
 {

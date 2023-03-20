@@ -1,4 +1,3 @@
-using System.Security;
 using BD.Common.Repositories;
 
 // ReSharper disable once CheckNamespace

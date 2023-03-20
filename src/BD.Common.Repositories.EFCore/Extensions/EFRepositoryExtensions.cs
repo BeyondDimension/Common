@@ -1,5 +1,5 @@
 // ReSharper disable once CheckNamespace
-namespace BD.Common;
+namespace Microsoft.EntityFrameworkCore;
 
 public static class EFRepositoryExtensions
 {

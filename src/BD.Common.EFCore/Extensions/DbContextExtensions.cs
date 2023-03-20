@@ -1,5 +1,5 @@
 // ReSharper disable once CheckNamespace
-namespace System;
+namespace Microsoft.EntityFrameworkCore;
 
 public static class DbContextExtensions
 {
