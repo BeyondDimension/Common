@@ -13,21 +13,21 @@ namespace Microsoft.Maui.ApplicationModel
 
         const string SettingsUri = "ms-settings:appsfeatures-app";
 
-        ApplicationTheme? _applicationTheme;
+        //ApplicationTheme? _applicationTheme;
 
-        readonly ActiveWindowTracker _activeWindowTracker;
+        //readonly ActiveWindowTracker _activeWindowTracker;
 
         /// <summary>
         /// Intializes a new <see cref="AppInfoImplementation"/> object with default values.
         /// </summary>
         public AppInfoImplementation()
         {
-            _activeWindowTracker = new(WindowStateManager.Default);
-            _activeWindowTracker.Start();
-            _activeWindowTracker.WindowMessage += OnWindowMessage;
+            //_activeWindowTracker = new(WindowStateManager.Default);
+            //_activeWindowTracker.Start();
+            //_activeWindowTracker.WindowMessage += OnWindowMessage;
 
-            if (IMainThreadPlatformService.Instance.PlatformIsMainThread)
-                OnActiveWindowThemeChanged();
+            //if (IMainThreadPlatformService.Instance.PlatformIsMainThread)
+            //    OnActiveWindowThemeChanged();
         }
 
         public string PackageName => AppInfoUtils.IsPackagedApp
@@ -59,18 +59,18 @@ namespace Microsoft.Maui.ApplicationModel
                 Process.Start(new ProcessStartInfo { FileName = SettingsUri, UseShellExecute = true });
         }
 
-        public AppTheme RequestedTheme
-        {
-            get
-            {
-                if (IMainThreadPlatformService.Instance.PlatformIsMainThread && Application.Current != null)
-                    _applicationTheme = Application.Current.RequestedTheme;
-                else if (_applicationTheme == null)
-                    return AppTheme.Unspecified;
+        //public AppTheme RequestedTheme
+        //{
+        //    get
+        //    {
+        //        if (IMainThreadPlatformService.Instance.PlatformIsMainThread && Application.Current != null)
+        //            _applicationTheme = Application.Current.RequestedTheme;
+        //        else if (_applicationTheme == null)
+        //            return AppTheme.Unspecified;
 
-                return _applicationTheme == ApplicationTheme.Dark ? AppTheme.Dark : AppTheme.Light;
-            }
-        }
+        //        return _applicationTheme == ApplicationTheme.Dark ? AppTheme.Dark : AppTheme.Light;
+        //    }
+        //}
 
         public AppPackagingModel PackagingModel => AppInfoUtils.IsPackagedApp
             ? AppPackagingModel.Packaged
@@ -79,18 +79,18 @@ namespace Microsoft.Maui.ApplicationModel
         public LayoutDirection RequestedLayoutDirection =>
             CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? LayoutDirection.RightToLeft : LayoutDirection.LeftToRight;
 
-        void OnWindowMessage(object sender, WindowMessageEventArgs e)
-        {
-            if (e.MessageId == PlatformMethods.MessageIds.WM_SETTINGCHANGE ||
-                e.MessageId == PlatformMethods.MessageIds.WM_THEMECHANGE)
-                OnActiveWindowThemeChanged();
-        }
+        //void OnWindowMessage(object sender, WindowMessageEventArgs e)
+        //{
+        //    if (e.MessageId == PlatformMethods.MessageIds.WM_SETTINGCHANGE ||
+        //        e.MessageId == PlatformMethods.MessageIds.WM_THEMECHANGE)
+        //        OnActiveWindowThemeChanged();
+        //}
 
-        void OnActiveWindowThemeChanged()
-        {
-            if (Application.Current is Application app)
-                _applicationTheme = app.RequestedTheme;
-        }
+        //void OnActiveWindowThemeChanged()
+        //{
+        //    if (Application.Current is Application app)
+        //        _applicationTheme = app.RequestedTheme;
+        //}
     }
 
     static class AppInfoUtils
