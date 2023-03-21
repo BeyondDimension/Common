@@ -39,11 +39,11 @@ namespace Microsoft.Maui.ApplicationModel
         /// </summary>
         void ShowSettingsUI();
 
-        ///// <summary>
-        ///// Gets the detected theme of the system or application.
-        ///// </summary>
-        ///// <remarks>For platforms or platform versions which do not support themes, <see cref="AppTheme.Unspecified"/> is returned.</remarks>
-        //AppTheme RequestedTheme { get; }
+        /// <summary>
+        /// Gets the detected theme of the system or application.
+        /// </summary>
+        /// <remarks>For platforms or platform versions which do not support themes, <see cref="AppTheme.Unspecified"/> is returned.</remarks>
+        AppTheme RequestedTheme => default;
 
         /// <summary>
         /// Gets the packaging model of this application.
