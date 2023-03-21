@@ -1,5 +1,4 @@
 using MessagePack.Resolvers;
-using System.Runtime.Serialization.Formatters;
 
 namespace BD.Common.UnitTest;
 
@@ -14,34 +13,28 @@ public sealed class SerializationTest
     static CookieCollection GetCookieCollection()
     {
         var cookie = new CookieContainer();
-        cookie.Add(new Cookie("c1", "v1", "/", "httpbin.org"));
-        cookie.Add(new Cookie("c2", "v2", "/", "httpbin.org"));
-        cookie.Add(new Cookie("c3", "v3", "/", "httpbin.org"));
-        cookie.Add(new Cookie("c4", "v4", "/", "httpbin.org"));
+        cookie.Add(new Cookie("c1", "v1", "/", "steampp.net"));
+        cookie.Add(new Cookie("c2", "v2", "/", "steampp.net"));
+        cookie.Add(new Cookie("c3", "v3", "/", "steampp.net"));
+        cookie.Add(new Cookie("c4", "v4", "/", "steampp.net"));
         return cookie.GetAllCookies();
     }
 
-    static async Task TestCookieCollection(CookieCollection cookies)
+    static void TestCookieCollection(CookieCollection cookies)
     {
-        cookies.Add(new Cookie("c5", "v5", "/", "httpbin.org"));
+        cookies.Add(new Cookie("c5", "v5", "/", "steampp.net"));
         var cookie = new CookieContainer();
         cookie.Add(cookies);
-        var client = new HttpClient(new HttpClientHandler
-        {
-            UseCookies = true,
-            CookieContainer = cookie,
-        });
-        var rsp = await client.GetStringAsync("https://httpbin.org/cookies");
-        Assert.IsTrue(rsp.Contains("c1") && rsp.Contains("c3"));
-        TestContext.WriteLine(rsp);
+        var cookieHeader = cookie.GetCookieHeader(new("https://steampp.net"));
+        Assert.IsTrue(cookieHeader.Contains("c1") && cookieHeader.Contains("c3"));
+        TestContext.WriteLine(cookieHeader);
     }
 
     /// <summary>
     /// 使用 MessagePack 测试对 <see cref="CookieCollection"/> 序列化与反序列化
     /// </summary>
-    /// <returns></returns>
     [Test]
-    public async Task CookieCollection_MessagePack()
+    public void CookieCollection_MessagePack()
     {
         // 1. 在模型类上使用 [MessagePackFormatter(typeof(CookieFormatter))]
         var bytes = Serializable.SMP(new CookiesModel
@@ -49,7 +42,7 @@ public sealed class SerializationTest
             Cookies = GetCookieCollection(),
         });
         var m = Serializable.DMP<CookiesModel>(bytes)!;
-        await TestCookieCollection(m.Cookies!);
+        TestCookieCollection(m.Cookies!);
 
         // 2. 通过自定义 Options 直接反序列化 CookieCollection
         var options = MessagePackSerializerOptions.Standard
@@ -59,15 +52,14 @@ public sealed class SerializationTest
                 new IFormatterResolver[] { StandardResolver.Instance }));
         bytes = MessagePackSerializer.Serialize(GetCookieCollection(), options);
         m.Cookies = MessagePackSerializer.Deserialize<CookieCollection>(bytes, options);
-        await TestCookieCollection(m.Cookies!);
+        TestCookieCollection(m.Cookies!);
     }
 
     /// <summary>
     /// 使用 MemoryPack 测试对 <see cref="CookieCollection"/> 序列化与反序列化
     /// </summary>
-    /// <returns></returns>
     [Test]
-    public async Task CookieCollection_MemoryPack()
+    public void CookieCollection_MemoryPack()
     {
         // 1. 在模型类上使用 [CookieCollectionFormatter]
         var bytes = Serializable.SMP2(new CookiesModel
@@ -75,13 +67,13 @@ public sealed class SerializationTest
             Cookies = GetCookieCollection(),
         });
         var m = Serializable.DMP2<CookiesModel>(bytes)!;
-        await TestCookieCollection(m.Cookies!);
+        TestCookieCollection(m.Cookies!);
 
         // 2. 通过 MemoryPackFormatterProvider.Register 注册全局格式化
         MemoryPackFormatterProvider.Register(CookieCollectionFormatterAttribute.Formatter.Default);
         bytes = Serializable.SMP2(GetCookieCollection());
         m.Cookies = Serializable.DMP2<CookieCollection>(bytes);
-        await TestCookieCollection(m.Cookies!);
+        TestCookieCollection(m.Cookies!);
     }
 }
 
