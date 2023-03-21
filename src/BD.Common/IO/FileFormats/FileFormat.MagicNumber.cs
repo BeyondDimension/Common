@@ -8,7 +8,7 @@ partial class FileFormat
     public static class MagicNumber
     {
         /// <summary>
-        /// 对 MagicNumber 进行比较，以确定两个序列是否相等，如果某一个序列为 <see cref="" langword="null"/> 则返回 <see langword="false"/>
+        /// 对 MagicNumber 进行比较，以确定两个序列是否相等，如果某一个序列为 <see langword="null"/> 则返回 <see langword="false"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="first"></param>

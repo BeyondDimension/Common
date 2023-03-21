@@ -22,6 +22,6 @@ public interface IEmbeddedAesDataProtectionProvider
     /// <returns></returns>
     string? D(byte[]? value);
 
-    /// <inheritdoc cref="D(byte[]?)"/>
+    /// <inheritdoc cref="D(byte[])"/>
     byte[]? DB(byte[]? value);
 }

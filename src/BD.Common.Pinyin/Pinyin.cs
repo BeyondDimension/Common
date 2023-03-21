@@ -86,7 +86,7 @@ public static class Pinyin
     /// </summary>
     /// <param name="inputText">输入的搜索文本内容</param>
     /// <param name="name">名称</param>
-    /// <param name="pinyinArray">名称对应的拼音数组，可使用 <see cref="GetPinyinArray(string)"/> 获取，最好在模型类中定义一个属性存放 <see cref="string[]"/> 拼音数组，且当 Name 发生改变时重新赋值</param>
+    /// <param name="pinyinArray">名称对应的拼音数组，可使用 <see cref="GetPinyinArray(string)"/> 获取，最好在模型类中定义一个属性存放 <see cref="Array"/> 拼音数组，且当 Name 发生改变时重新赋值</param>
     /// <param name="ignoreOtherChar">比较时是否忽略其他字符</param>
     /// <param name="comparisonType"></param>
     /// <returns></returns>

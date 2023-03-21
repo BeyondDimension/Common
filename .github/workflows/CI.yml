@@ -54,7 +54,7 @@ jobs:
 
       - name: Test
         shell: pwsh
-        run: dotnet test -c Release
+        run: dotnet test src/BD.Common.UnitTest/BD.Common.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false
 
   build:
     name: Build
