@@ -101,6 +101,7 @@ jobs:
             BD.Common.Essentials.Primitives,
             BD.Common.Essentials.Utils,
             BD.Common.Essentials.Maui,
+            BD.Common.Essentials.Maui.Runtime,
             BD.Common.Essentials.Xamarin,
             BD.Common.Essentials.Preferences.DBreeze,
             BD.Common.Essentials.Preferences.SQLite,
