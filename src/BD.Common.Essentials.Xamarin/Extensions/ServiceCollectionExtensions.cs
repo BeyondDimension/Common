@@ -27,7 +27,9 @@ public static class ServiceCollectionExtensions
         services.TryAddSingleton<IDeviceInfoPlatformService, DeviceInfoPlatformServiceImpl_>();
         services.TryAddSingleton<IEmailPlatformService, EmailPlatformServiceImpl>();
         services.TryAddSingleton<IFilePickerPlatformService, FilePickerPlatformServiceImpl>();
+#if !MAUI_RUNTIME
         services.TryAddSingleton<IMainThreadPlatformService, MainThreadPlatformServiceImpl>();
+#endif
         services.TryAddSingleton<IPermissionsPlatformService, PermissionsPlatformServiceImpl>();
         services.TryAddSingleton<IPreferencesPlatformService, PreferencesPlatformServiceImpl>();
         services.TryAddSingleton(s => s.GetRequiredService<IFilePickerPlatformService>().OpenFileDialogService);

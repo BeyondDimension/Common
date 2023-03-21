@@ -31,7 +31,9 @@
 		<Compile Include="..\BD.Common.Essentials.Xamarin\Extensions\*.cs">
 			<LinkBase>Extensions</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common.Essentials.Xamarin\Services\**\*.cs" />
+		<Compile Include="..\BD.Common.Essentials.Xamarin\Services\**\*.cs">
+			<LinkBase>Services</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
