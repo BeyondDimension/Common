@@ -6,4 +6,13 @@ namespace BD.Common.Enums;
 /// </summary>
 public enum SysMenuStatus : byte
 {
+    /// <summary>
+    /// 禁用
+    /// </summary>
+    Disable = 0,
+
+    /// <summary>
+    /// 启用
+    /// </summary>
+    Enable = 1,
 }

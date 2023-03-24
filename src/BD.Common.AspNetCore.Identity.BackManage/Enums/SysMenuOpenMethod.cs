@@ -1,4 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace BD.Common.Enums;
 
 /// <summary>
@@ -6,4 +6,13 @@ namespace BD.Common.Enums;
 /// </summary>
 public enum SysMenuOpenMethod : byte
 {
+    /// <summary>
+    /// 正常，在页面中打开。
+    /// </summary>
+    Normal = 0,
+
+    /// <summary>
+    /// 打开链接
+    /// </summary>
+    OpenLink = 1,
 }

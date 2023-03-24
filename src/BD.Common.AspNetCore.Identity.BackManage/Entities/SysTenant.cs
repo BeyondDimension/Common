@@ -80,19 +80,19 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     /// 审核时间
     /// </summary>
     [Comment("审核时间")]
-    public DateTimeOffset? ReviewTime { get; set; }
+    public DateTimeOffset? AuditTime { get; set; }
 
     /// <summary>
     /// 审核状态
     /// </summary>
     [Comment("审核状态")]
-    public SysTenantApprovalStatus? ApprovalStatus { get; set; }
+    public SysTenantAuditStatus? AuditStatus { get; set; }
 
     /// <summary>
     /// 审核备注
     /// </summary>
     [Comment("审核备注")]
-    public string? ReviewRemarks { get; set; }
+    public string? AuditRemarks { get; set; }
 
     /// <summary>
     /// 授权开始时间

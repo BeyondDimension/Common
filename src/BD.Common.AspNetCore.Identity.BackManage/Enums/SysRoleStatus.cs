@@ -1,4 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace BD.Common.Enums;
 
 /// <summary>
@@ -6,4 +6,13 @@ namespace BD.Common.Enums;
 /// </summary>
 public enum SysRoleStatus : byte
 {
+    /// <summary>
+    /// 禁用
+    /// </summary>
+    Disable = 0,
+
+    /// <summary>
+    /// 启用
+    /// </summary>
+    Enable = 1,
 }
