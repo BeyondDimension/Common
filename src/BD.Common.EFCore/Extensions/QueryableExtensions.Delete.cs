@@ -16,6 +16,7 @@ public static partial class QueryableExtensions
     public static async Task<int> GeneralDeleteAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity>(
         this IQueryable<TEntity> query,
         CancellationToken cancellationToken = default)
+        where TEntity : class, IEntity
     {
         if (query is not IQueryable<ISoftDeleted> query2)
         {
@@ -32,14 +33,13 @@ public static partial class QueryableExtensions
     /// <summary>
     /// 根据条件批量软删除
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static async Task<int> SoftDeleteAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity>(
-        this IQueryable<TEntity> query,
-        CancellationToken cancellationToken = default) where TEntity : ISoftDeleted
+    public static async Task<int> SoftDeleteAsync(
+        this IQueryable<ISoftDeleted> query,
+        CancellationToken cancellationToken = default)
     {
         var r = await query.ExecuteUpdateAsync(s => s.SetProperty(b => b.SoftDeleted, true), cancellationToken);
         return r;
@@ -64,6 +64,7 @@ public static partial class QueryableExtensions
         TPrimaryKey primaryKey,
         CancellationToken cancellationToken = default)
         where TPrimaryKey : IEquatable<TPrimaryKey>
+        where TEntity : class, IEntity
     {
         query = query.Where(IEntity<TPrimaryKey>.LambdaEqualId<TEntity>(primaryKey));
         var r = await query.GeneralDeleteAsync(cancellationToken);
@@ -85,7 +86,7 @@ public static partial class QueryableExtensions
         TPrimaryKey primaryKey,
         CancellationToken cancellationToken = default)
         where TPrimaryKey : IEquatable<TPrimaryKey>
-        where TEntity : ISoftDeleted
+        where TEntity : class, IEntity, ISoftDeleted
     {
         query = query.Where(IEntity<TPrimaryKey>.LambdaEqualId<TEntity>(primaryKey));
         var r = await query.SoftDeleteAsync(cancellationToken);
@@ -107,7 +108,7 @@ public static partial class QueryableExtensions
         TPrimaryKey primaryKey,
         CancellationToken cancellationToken = default)
         where TPrimaryKey : IEquatable<TPrimaryKey>
-        where TEntity : ISoftDeleted
+        where TEntity : class, IEntity, ISoftDeleted
     {
         query = query.Where(IEntity<TPrimaryKey>.LambdaEqualId<TEntity>(primaryKey));
         var r = await query.ExecuteDeleteAsync(cancellationToken);
@@ -202,8 +203,8 @@ public static partial class QueryableExtensions
         this IQueryable<TEntity> query,
         TEntity entity,
         CancellationToken cancellationToken = default)
-        where TEntity : class, IEntity<TPrimaryKey>
         where TPrimaryKey : IEquatable<TPrimaryKey>
+        where TEntity : class, IEntity<TPrimaryKey>
     {
         var r = await query.GeneralDeleteByIdAsync(entity.Id, cancellationToken);
         return r;
@@ -290,8 +291,8 @@ public static partial class QueryableExtensions
         this IQueryable<TEntity> query,
         IEnumerable<TEntity> entities,
         CancellationToken cancellationToken = default)
-        where TPrimaryKey : IEquatable<TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>, ISoftDeleted
+        where TPrimaryKey : IEquatable<TPrimaryKey>
     {
         var r = await query.SoftDeleteByIdAsync(entities.Select(x => x.Id), cancellationToken);
         return r;
