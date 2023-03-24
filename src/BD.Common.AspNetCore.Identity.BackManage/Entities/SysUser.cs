@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统用户(多租户)实体类
 /// </summary>
 [Table("BM_Users")]
-public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks, INickName, IPhoneNumber
+public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks, INickName, IPhoneNumber, IDisable
 {
     /// <summary>
     /// 组织架构 Id
@@ -100,11 +100,8 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     [Comment("备注")]
     public string? Remarks { get; set; }
 
-    /// <summary>
-    /// 用户状态
-    /// </summary>
-    [Comment("用户状态")]
-    public SysUserStatus UserStatus { get; set; }
+    [Comment("是否禁用")]
+    public bool Disable { get; set; }
 
     /// <summary>
     /// 并发令牌 https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion

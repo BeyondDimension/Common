@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统菜单
 /// </summary>
 [Table("BM_Menus")]
-public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks
+public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, IDisable
 {
     /// <summary>
     /// 按钮多语言名称
@@ -56,11 +56,8 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks
     [Comment("排序")]
     public long Order { get; set; }
 
-    /// <summary>
-    /// 状态
-    /// </summary>
-    [Comment("状态")]
-    public SysMenuStatus Status { get; set; }
+    [Comment("是否禁用")]
+    public bool Disable { get; set; }
 
     /// <summary>
     /// 是否绝对路径

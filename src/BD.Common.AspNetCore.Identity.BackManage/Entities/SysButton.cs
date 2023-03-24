@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统按钮
 /// </summary>
 [Table("BM_Buttons")]
-public class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID
+public class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
 {
     public const int MaxLength_Name = 20;
 
@@ -29,11 +29,8 @@ public class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID
     [Comment("按钮类型")]
     public SysButtonType Type { get; set; }
 
-    /// <summary>
-    /// 按钮状态
-    /// </summary>
-    [Comment("按钮状态")]
-    public SysButtonStatus Status { get; set; }
+    [Comment("是否禁用")]
+    public bool Disable { get; set; }
 
     /// <inheritdoc cref="SysMenu"/>
     public virtual ICollection<SysMenu>? Menus { get; set; }

@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统角色(权限)实体类
 /// </summary>
 [Table("BM_Roles")]
-public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
+public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable
 {
     /// <summary>
     /// 角色名称
@@ -40,11 +40,8 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
     [Comment("排序")]
     public long Order { get; set; }
 
-    /// <summary>
-    /// 状态
-    /// </summary>
-    [Comment("状态")]
-    public SysRoleStatus Status { get; set; }
+    [Comment("是否禁用")]
+    public bool Disable { get; set; }
 
     /// <summary>
     /// 并发令牌 https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion

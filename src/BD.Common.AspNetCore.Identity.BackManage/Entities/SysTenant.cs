@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 租户信息实体类
 /// </summary>
 [Table("BM_Tenants")]
-public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
+public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
 {
     /// <summary>
     /// 租户名称
@@ -106,11 +106,8 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID
     [Comment("授权结束时间")]
     public DateTimeOffset AuthorizationEndTime { get; set; }
 
-    /// <summary>
-    /// 状态
-    /// </summary>
-    [Comment("状态")]
-    public SysTenantStatus Status { get; set; }
+    [Comment("是否禁用")]
+    public bool Disable { get; set; }
 
     /// <summary>
     /// 备注

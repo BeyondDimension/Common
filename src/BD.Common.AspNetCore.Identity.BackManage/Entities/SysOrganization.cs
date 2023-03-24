@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统组织架构实体类
 /// </summary>
 [Table("BM_Organizations")]
-public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
+public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable
 {
     /// <summary>
     /// 组织架构名称
@@ -13,11 +13,8 @@ public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder
     [MaxLength(256)]
     public string OrganizationName { get; set; } = string.Empty;
 
-    /// <summary>
-    /// 状态
-    /// </summary>
-    [Comment("状态")]
-    public SysOrganizationStatus Status { get; set; }
+    [Comment("是否禁用")]
+    public bool Disable { get; set; }
 
     /// <summary>
     /// 父级 Id
