@@ -163,12 +163,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{1D
 		doc\Copywriting-Guide.md = doc\Copywriting-Guide.md
 		doc\CSharp.md = doc\CSharp.md
 		doc\Entity-Framework-Core.md = doc\Entity-Framework-Core.md
+		doc\Git-Commit-Message-Standard.md = doc\Git-Commit-Message-Standard.md
 		doc\Project-Structure.md = doc\Project-Structure.md
 		doc\Redis.md = doc\Redis.md
 		doc\Serializable-And-Deserialize.md = doc\Serializable-And-Deserialize.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Maui.Runtime", "src\BD.Common.Essentials.Maui.Runtime\BD.Common.Essentials.Maui.Runtime.csproj", "{D2BF9E7F-DB72-415B-961B-208FFA585337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials.Maui.Runtime", "src\BD.Common.Essentials.Maui.Runtime\BD.Common.Essentials.Maui.Runtime.csproj", "{D2BF9E7F-DB72-415B-961B-208FFA585337}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
