@@ -74,7 +74,7 @@ public abstract partial class AddOrEditSysTenantDTOBase : IKeyModel<Guid>, IVali
 }
 
 /// <summary>
-/// 添加租户的 DTO 模型
+/// 添加租户模型类
 /// </summary>
 public sealed partial class AddSysTenantDTO : AddOrEditSysTenantDTOBase
 {
@@ -103,7 +103,7 @@ public sealed partial class AddSysTenantDTO : AddOrEditSysTenantDTOBase
 }
 
 /// <summary>
-/// 编辑租户的 DTO 模型
+/// 编辑租户模型类
 /// </summary>
 public sealed partial class EditSysTenantDTO : AddOrEditSysTenantDTOBase
 {
@@ -113,7 +113,7 @@ public sealed partial class EditSysTenantDTO : AddOrEditSysTenantDTOBase
 #region 新租户实体
 
 /// <summary>
-/// 租户添加或编辑模型
+/// 租户添加或编辑模型类
 /// </summary>
 public sealed class AddOrEditSysTenantDTO : KeyModel<Guid>, IValidatableObject
 {
@@ -179,7 +179,7 @@ public sealed class AddOrEditSysTenantDTO : KeyModel<Guid>, IValidatableObject
 }
 
 /// <summary>
-/// 租户查询表格项模型
+/// 租户查询表格项模型类
 /// </summary>
 public sealed class SysTenantTableItem : KeyModel<Guid>
 {

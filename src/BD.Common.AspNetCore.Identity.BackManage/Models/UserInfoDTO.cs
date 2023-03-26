@@ -2,7 +2,7 @@
 namespace BD.Common.Models;
 
 /// <summary>
-/// 后台用户，查询表格
+/// 后台用户，查询表格模型类
 /// </summary>
 public partial class UserInfoDTO : KeyModel<Guid>
 {
@@ -21,7 +21,7 @@ public partial class UserInfoDTO : KeyModel<Guid>
 }
 
 /// <summary>
-/// 当前登录的后台用户信息
+/// 当前登录的后台用户信息模型类
 /// </summary>
 public partial class CurrentUserInfoDTO
 {
@@ -40,7 +40,7 @@ public partial class CurrentUserInfoDTO
 }
 
 /// <summary>
-/// 编辑当前登录的后台用户信息
+/// 编辑当前登录的后台用户信息模型类
 /// </summary>
 public partial class EditCurrentUserInfoDTO
 {
@@ -57,7 +57,7 @@ public partial interface IAddOrEditUserDTO
 }
 
 /// <summary>
-/// 新增后台用户表单提交
+/// 新增后台用户表单提交模型类
 /// </summary>
 public partial class AddBMUserDTO : IAddOrEditUserDTO
 {
@@ -74,7 +74,7 @@ public partial class AddBMUserDTO : IAddOrEditUserDTO
 }
 
 /// <summary>
-/// 编辑后台用户表单提交
+/// 编辑后台用户表单提交模型类
 /// </summary>
 public partial class EditUserDTO : IAddOrEditUserDTO
 {
