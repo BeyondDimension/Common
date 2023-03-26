@@ -6,13 +6,11 @@ namespace BD.Common.Entities;
 [Table("BM_Buttons")]
 public class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
 {
-    public const int MaxLength_Name = 20;
-
     /// <summary>
     /// 按钮名称
     /// </summary>
     [Required]
-    [MaxLength(MaxLength_Name)]
+    [MaxLength(MaxLengths.Name)]
     [Comment("按钮名称")]
     public string Name { get; set; } = string.Empty;
 

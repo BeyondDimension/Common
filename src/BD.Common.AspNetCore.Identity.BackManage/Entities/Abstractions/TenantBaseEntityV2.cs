@@ -13,11 +13,13 @@ public abstract class TenantBaseEntityV2<TPrimaryKey> :
     /// <summary>
     /// 是否删除
     /// </summary>
+    [Comment("是否软删除")]
     public bool SoftDeleted { get; set; }
 
     /// <summary>
-    /// 租户
+    /// 租户 Id
     /// </summary>
+    [Comment("租户 Id")]
     public Guid TenantId { get; set; }
 }
 

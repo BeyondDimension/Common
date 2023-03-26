@@ -1,17 +1,11 @@
 namespace BD.Common.Entities;
 
 /// <summary>
-/// 系统信息实体类
+/// 后台系统信息实体类
 /// </summary>
 [Table("BM_SystemInfos")]
-public class SysInfo : INEWSEQUENTIALID, ITenant
+public class SysInfo : Entity<Guid>, INEWSEQUENTIALID, ITenant
 {
-    /// <summary>
-    /// Id
-    /// </summary>
-    [Comment("Id")]
-    public Guid Id { get; set; }
-
     /// <summary>
     /// 租户 Id
     /// </summary>
@@ -19,16 +13,18 @@ public class SysInfo : INEWSEQUENTIALID, ITenant
     public Guid TenantId { get; set; }
 
     /// <summary>
-    /// 网站名称
+    /// 后台网站名称
     /// </summary>
+    [Required]
     [Comment("网站名称")]
-    [MaxLength(1000)]
-    public string? WebsiteName { get; set; }
+    [MaxLength(MaxLengths.LongName)]
+    public string WebsiteName { get; set; } = "";
 
     /// <summary>
-    /// 网站域名
+    /// 后台网站域名
     /// </summary>
+    [Required]
     [Comment("网站域名")]
     [MaxLength(MaxLengths.Url)]
-    public string? WebsiteDomainName { get; set; }
+    public string WebsiteDomainName { get; set; } = "";
 }

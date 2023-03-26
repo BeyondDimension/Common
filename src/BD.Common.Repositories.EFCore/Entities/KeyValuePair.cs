@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace BD.Common.Entities;
 
 /// <summary>
@@ -11,11 +9,14 @@ namespace BD.Common.Entities;
 public sealed class KeyValuePair : IEntity<string>, ISoftDeleted
 {
     [Key] // EF 主键
+    [Comment("键")]
     public string Id { get; set; } = string.Empty;
 
     [Required] // EF not null
+    [Comment("值")]
     public string Value { get; set; } = string.Empty;
 
+    [Comment("是否软删除")]
     public bool SoftDeleted { get; set; }
 
     string DebuggerDisplay() => $"{Id}, {Value}";

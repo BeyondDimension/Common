@@ -10,9 +10,9 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     /// 按钮多语言名称
     /// </summary>
     [Required]
-    [MaxLength(128)]
+    [MaxLength(192)]
     [Comment("按钮多语言名称")]
-    public string Key { get; set; } = null!;
+    public string Key { get; set; } = "";
 
     /// <summary>
     /// 菜单名称
@@ -20,7 +20,7 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     [Required]
     [MaxLength(200)]
     [Comment("菜单名称")]
-    public string Name { get; set; } = null!;
+    public string Name { get; set; } = "";
 
     /// <summary>
     /// 父菜单 Id
@@ -34,12 +34,12 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     [Required]
     [MaxLength(MaxLengths.Url)]
     [Comment("菜单 Url 地址")]
-    public string Path { get; set; } = null!;
+    public string Path { get; set; } = "";
 
     /// <summary>
     /// 图标
     /// </summary>
-    [MaxLength(128)]
+    [MaxLength(32)]
     [Comment("图标")]
     public string? Icon { get; set; }
 
@@ -50,9 +50,6 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     [MaxLength(MaxLengths.Url)]
     public string? IconUrlAddress { get; set; }
 
-    /// <summary>
-    /// 排序
-    /// </summary>
     [Comment("排序")]
     public long Order { get; set; }
 
@@ -71,9 +68,6 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     [Comment("打开方式")]
     public SysMenuOpenMethod OpenMethod { get; set; }
 
-    /// <summary>
-    /// 备注
-    /// </summary>
     [Comment("备注")]
     public string? Remarks { get; set; }
 

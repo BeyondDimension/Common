@@ -1,10 +1,15 @@
 ### Code Style 代码风格 与 编码规范
+普通的工程师堆砌代码，优秀的工程师优雅代码，卓越的工程师简化代码。如何写出优雅整洁易懂的代码是一门学问，也是软件工程实践里重要的一环  
 在我们所有的项目源码中 src 目录下有一个 .editorconfig 文件， 也在 VS 解决方案中 顶部的 Root 文件夹下  
 其中配置了一些代码样式规则， 相对于其他项目， 一些样式不规范也将被视为错误 阻止编译的执行  
 还使用了 StyleCop.Analyzers 加入了一些样式规则，关于 StyleCop.Analyzers 以下有一些博客园的文章介绍  
 https://www.cnblogs.com/mondol/p/6475957.html  
 https://www.cnblogs.com/liangqihui/p/9241603.html  
-好的代码质量有助于提高项目的维护性，降低其他人接手的成本。  
+好的代码质量有助于提高项目的维护性，降低其他人接手的成本。
+
+- [C# Coding Style](https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md)
+
+- [C# at Google Style Guide](https://google.github.io/styleguide/csharp-style.html)
 
 - [SA1413](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/1.2.0-beta.435/documentation/SA1413.md)  
 多行 C# 初始值设定项或列表中的最后一条语句缺少尾随逗号。  

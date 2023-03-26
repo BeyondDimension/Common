@@ -2,12 +2,25 @@
 
 namespace BD.Common.Columns;
 
+/// <summary>
+/// 最大长度
+/// </summary>
 public static class MaxLengths
 {
     /// <summary>
-    /// 颜色16进制值，#AARRGGBB
+    /// 颜色 16 进制值，#AARRGGBB
     /// </summary>
     public const int ColorHex = 9;
+
+    /// <summary>
+    /// 一般名称
+    /// </summary>
+    public const int Name = 20;
+
+    /// <summary>
+    /// 一般长名称
+    /// </summary>
+    public const int LongName = 400;
 
     /// <summary>
     /// 昵称
@@ -66,7 +79,7 @@ public static class MaxLengths
     /// <summary>
     /// 现实地址/收货地址
     /// </summary>
-    public const int RealityAddress = 150;
+    public const int RealityAddress = 600;
 
     /// <summary>
     /// 标题

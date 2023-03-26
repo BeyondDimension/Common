@@ -15,11 +15,13 @@ public abstract class CreationBaseEntityV2<TPrimaryKey> :
     /// <summary>
     /// 创建时间
     /// </summary>
+    [Comment("创建时间")]
     public DateTimeOffset CreationTime { get; set; }
 
     /// <summary>
     /// 创建人
     /// </summary>
+    [Comment("创建人")]
     public Guid? CreateUserId { get; set; }
 
     /// <summary>
@@ -27,7 +29,7 @@ public abstract class CreationBaseEntityV2<TPrimaryKey> :
     /// </summary>
     public virtual SysUser? CreateUser { get; set; }
 
-    public abstract class EntityTypeConfiguration<TEntity> : IEntityTypeConfiguration<TEntity>
+    public abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : IEntityTypeConfiguration<TEntity>
         where TEntity : CreationBaseEntityV2<TPrimaryKey>
     {
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)
@@ -43,7 +45,7 @@ public abstract class CreationBaseEntityV2<TPrimaryKey> :
 /// <inheritdoc cref="CreationBaseEntityV2{TPrimaryKey}"/>
 public abstract class CreationBaseEntityV2 : CreationBaseEntityV2<Guid>
 {
-    public new abstract class EntityTypeConfiguration<TEntity> : CreationBaseEntityV2<Guid>.EntityTypeConfiguration<TEntity>
+    public new abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : CreationBaseEntityV2<Guid>.EntityTypeConfiguration<TEntity>
         where TEntity : OperatorBaseEntityV2<Guid>
     {
 

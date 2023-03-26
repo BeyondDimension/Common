@@ -32,12 +32,14 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     /// 昵称
     /// </summary>
     [Comment("昵称")]
+    [MaxLength(MaxLengths.NickName)]
     public string? NickName { get; set; }
 
     /// <summary>
     /// 密码哈希
     /// </summary>
     [Comment("密码哈希")]
+    [MaxLength(256)]
     public string? PasswordHash { get; set; }
 
     /// <summary>
@@ -72,9 +74,9 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     public DateTimeOffset RefreshExpiration { get; set; }
 
     /// <summary>
-    /// 禁止在此时间之前刷新
+    /// 禁止在此时间之前刷新 Token
     /// </summary>
-    [Comment("禁止在此时间之前刷新")]
+    [Comment("禁止在此时间之前刷新 Token")]
     public DateTimeOffset NotBefore { get; set; }
 
     [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]

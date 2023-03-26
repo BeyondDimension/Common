@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统角色(权限)实体类
 /// </summary>
 [Table("BM_Roles")]
-public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable
+public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, IDescribe
 {
     /// <summary>
     /// 角色名称
@@ -22,9 +22,6 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable
     [Comment("规范化名称")]
     public string NormalizedName { get; set; } = "";
 
-    /// <summary>
-    /// 描述
-    /// </summary>
     [Comment("描述")]
     public string? Describe { get; set; }
 

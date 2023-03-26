@@ -25,9 +25,9 @@ public class SysMenuButtonRole : ITenant
     public Guid MenuId { get; set; }
 
     /// <summary>
-    /// 系统按钮
+    /// 系统按钮 Id
     /// </summary>
-    [Comment("系统按钮")]
+    [Comment("系统按钮 Id")]
     public Guid ButtonId { get; set; }
 
     /// <summary>

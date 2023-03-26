@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 租户信息实体类
 /// </summary>
 [Table("BM_Tenants")]
-public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
+public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemarks
 {
     /// <summary>
     /// 租户名称
@@ -86,7 +86,7 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
     /// 审核状态
     /// </summary>
     [Comment("审核状态")]
-    public SysTenantAuditStatus? AuditStatus { get; set; }
+    public SysTenantAuditStatus AuditStatus { get; set; }
 
     /// <summary>
     /// 审核备注
@@ -109,9 +109,6 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
     [Comment("是否禁用")]
     public bool Disable { get; set; }
 
-    /// <summary>
-    /// 备注
-    /// </summary>
     [Comment("备注")]
     public string? Remarks { get; set; }
 

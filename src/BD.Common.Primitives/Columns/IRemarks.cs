@@ -1,5 +1,6 @@
 namespace BD.Common.Columns;
 
+/// <inheritdoc cref="Remarks"/>
 public interface IRemarks
 {
     /// <summary>

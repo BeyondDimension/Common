@@ -1,6 +1,7 @@
 // ReSharper disable once CheckNamespace
 namespace BD.Common.Columns;
 
+/// <inheritdoc cref="Disable"/>
 public interface IDisable
 {
     /// <summary>
@@ -9,6 +10,7 @@ public interface IDisable
     bool Disable { get; set; }
 }
 
+/// <inheritdoc cref="DisableReason"/>
 public interface IDisableReason
 {
     /// <summary>

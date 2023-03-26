@@ -1,5 +1,6 @@
 namespace BD.Common.Columns;
 
+/// <inheritdoc cref="OperatorUserId"/>
 public interface IOperatorUserId
 {
     /// <summary>
@@ -8,6 +9,7 @@ public interface IOperatorUserId
     Guid? OperatorUserId { get; set; }
 }
 
+/// <inheritdoc cref="CreateUserId"/>
 public interface ICreateUserId
 {
     /// <summary>
@@ -16,6 +18,7 @@ public interface ICreateUserId
     Guid CreateUserId { get; set; }
 }
 
+/// <inheritdoc cref="ICreateUserId.CreateUserId"/>
 public interface ICreateUserIdNullable
 {
     /// <inheritdoc cref="ICreateUserId.CreateUserId"/>

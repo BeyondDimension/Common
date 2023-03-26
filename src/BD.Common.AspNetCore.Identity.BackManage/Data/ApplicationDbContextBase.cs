@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace BD.Common.Data;
 
 public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContext
