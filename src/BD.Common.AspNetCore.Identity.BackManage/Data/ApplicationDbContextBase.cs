@@ -54,49 +54,11 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
 
     public static void OnModelCreatingCore(ModelBuilder b)
     {
-        b.Entity<SysMenu>(p =>
-        {
-            p.HasMany(x => x.Children)
-                .WithOne()
-                .HasForeignKey(x => x.ParentId)
-                .IsRequired(false)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            p.HasMany(x => x.Buttons)
-                .WithMany(x => x.Menus)
-                .UsingEntity<SysMenuButton>(
-                    x => x.HasOne(y => y.Button)
-                            .WithMany(y => y.MenuButtons)
-                            .HasForeignKey(y => y.ButtonId)
-                            .OnDelete(DeleteBehavior.Cascade),
-                    x => x.HasOne(y => y.Menu)
-                            .WithMany(y => y.MenuButtons)
-                            .HasForeignKey(y => y.MenuId)
-                            .OnDelete(DeleteBehavior.NoAction),
-                    x => x.HasKey(y => new { y.MenuId, y.ButtonId, y.TenantId })
-                );
-        });
-        b.Entity<SysUserRole>(p =>
-        {
-            p.HasKey(x => new { x.UserId, x.RoleId, x.TenantId });
-        });
-        b.Entity<SysMenuButtonRole>(p =>
-        {
-            p.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId, x.ControllerName });
-        });
-        b.Entity<SysOrganization>(p =>
-        {
-            p.HasMany(x => x.ChildrenSysOrganization)
-                .WithOne(x => x.ParentSysOrganization)
-                .HasForeignKey(x => x.ParentId)
-                .OnDelete(DeleteBehavior.Cascade);
-        });
-        b.Entity<SysUserOrganization>(p =>
-        {
-            p.HasKey(x => new { x.UserId, x.OrganizationId, x.TenantId });
-            p.HasOne(x => x.User).WithOne().HasForeignKey<SysUserOrganization>(x => x.UserId);
-            p.HasOne(x => x.Organization).WithOne().HasForeignKey<SysUserOrganization>(x => x.OrganizationId);
-        });
+        b.ApplyConfiguration(new SysMenu.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysUserRole.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysMenuButtonRole.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysOrganization.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysUserOrganization.EntityTypeConfiguration());
     }
 
     public static Action<EntityTypeBuilder>? AppendBuildEntitiesCore(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)

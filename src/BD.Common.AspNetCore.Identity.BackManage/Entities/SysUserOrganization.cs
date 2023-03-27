@@ -6,9 +6,6 @@ namespace BD.Common.Entities;
 [Table("BM_UserOrganizations")]
 public class SysUserOrganization : ITenant
 {
-    /// <summary>
-    /// 租户 Id
-    /// </summary>
     [Comment("租户 Id")]
     public Guid TenantId { get; set; }
 
@@ -29,4 +26,14 @@ public class SysUserOrganization : ITenant
 
     /// <inheritdoc cref="SysUser"/>
     public virtual SysUser? User { get; set; }
+
+    public class EntityTypeConfiguration : IEntityTypeConfiguration<SysUserOrganization>
+    {
+        public void Configure(EntityTypeBuilder<SysUserOrganization> builder)
+        {
+            builder.HasKey(x => new { x.UserId, x.OrganizationId, x.TenantId });
+            builder.HasOne(x => x.User).WithOne().HasForeignKey<SysUserOrganization>(x => x.UserId);
+            builder.HasOne(x => x.Organization).WithOne().HasForeignKey<SysUserOrganization>(x => x.OrganizationId);
+        }
+    }
 }

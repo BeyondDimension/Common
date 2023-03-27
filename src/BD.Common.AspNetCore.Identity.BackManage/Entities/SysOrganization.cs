@@ -10,7 +10,7 @@ public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDi
     /// 组织架构名称
     /// </summary>
     [Comment("组织架构名称")]
-    [MaxLength(256)]
+    [MaxLength(MaxLengths.Name)]
     public string OrganizationName { get; set; } = string.Empty;
 
     [Comment("是否禁用")]
@@ -22,9 +22,6 @@ public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDi
     [Comment("父级 Id")]
     public Guid ParentId { get; set; }
 
-    /// <summary>
-    /// 排序
-    /// </summary>
     [Comment("排序")]
     public long Order { get; set; }
 
@@ -37,4 +34,17 @@ public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDi
     /// 子级系统组织架构
     /// </summary>
     public virtual List<SysOrganization>? ChildrenSysOrganization { get; set; }
+
+    public class EntityTypeConfiguration : EntityTypeConfiguration<SysOrganization>
+    {
+        public override void Configure(EntityTypeBuilder<SysOrganization> builder)
+        {
+            base.Configure(builder);
+
+            builder.HasMany(x => x.ChildrenSysOrganization)
+                   .WithOne(x => x.ParentSysOrganization)
+                   .HasForeignKey(x => x.ParentId)
+                   .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
 }

@@ -6,9 +6,6 @@ namespace BD.Common.Entities;
 [Table("BM_SystemInfos")]
 public class SysInfo : Entity<Guid>, INEWSEQUENTIALID, ITenant
 {
-    /// <summary>
-    /// 租户 Id
-    /// </summary>
     [Comment("租户 Id")]
     public Guid TenantId { get; set; }
 

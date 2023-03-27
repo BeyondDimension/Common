@@ -10,7 +10,7 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     /// 按钮多语言名称
     /// </summary>
     [Required]
-    [MaxLength(192)]
+    [MaxLength(MaxLengths.Name)]
     [Comment("按钮多语言名称")]
     public string Key { get; set; } = "";
 
@@ -18,7 +18,7 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     /// 菜单名称
     /// </summary>
     [Required]
-    [MaxLength(200)]
+    [MaxLength(MaxLengths.Name)]
     [Comment("菜单名称")]
     public string Name { get; set; } = "";
 
@@ -39,7 +39,7 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
     /// <summary>
     /// 图标
     /// </summary>
-    [MaxLength(32)]
+    [MaxLength(MaxLengths.IconName)]
     [Comment("图标")]
     public string? Icon { get; set; }
 
@@ -81,4 +81,32 @@ public class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, I
 
     /// <inheritdoc cref="SysMenuButton"/>
     public virtual ICollection<SysMenuButton>? MenuButtons { get; set; }
+
+    public class EntityTypeConfiguration : EntityTypeConfiguration<SysMenu>
+    {
+        public override void Configure(EntityTypeBuilder<SysMenu> builder)
+        {
+            base.Configure(builder);
+
+            builder.HasMany(x => x.Children)
+                   .WithOne()
+                   .HasForeignKey(x => x.ParentId)
+                   .IsRequired(false)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.Buttons)
+                   .WithMany(x => x.Menus)
+                   .UsingEntity<SysMenuButton>(
+                       x => x.HasOne(y => y.Button)
+                             .WithMany(y => y.MenuButtons)
+                             .HasForeignKey(y => y.ButtonId)
+                             .OnDelete(DeleteBehavior.Cascade),
+                       x => x.HasOne(y => y.Menu)
+                             .WithMany(y => y.MenuButtons)
+                             .HasForeignKey(y => y.MenuId)
+                             .OnDelete(DeleteBehavior.Cascade),
+                       x => x.HasKey(y => new { y.MenuId, y.ButtonId, y.TenantId })
+                   );
+        }
+    }
 }

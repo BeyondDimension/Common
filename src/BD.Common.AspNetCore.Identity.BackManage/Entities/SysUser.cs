@@ -17,7 +17,7 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     /// </summary>
     [Required]
     [Comment("用户名")]
-    [MaxLength(256)]
+    [MaxLength(MaxLengths.Name)]
     public string UserName { get; set; } = string.Empty;
 
     /// <summary>
@@ -25,12 +25,9 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     /// </summary>
     [Required]
     [Comment("规范化用户名")]
-    [MaxLength(256)]
+    [MaxLength(MaxLengths.Name)]
     public string NormalizedUserName { get; set; } = string.Empty;
 
-    /// <summary>
-    /// 昵称
-    /// </summary>
     [Comment("昵称")]
     [MaxLength(MaxLengths.NickName)]
     public string? NickName { get; set; }
@@ -39,7 +36,7 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     /// 密码哈希
     /// </summary>
     [Comment("密码哈希")]
-    [MaxLength(256)]
+    [MaxLength(MaxLengths.Max_PasswordHash)]
     public string? PasswordHash { get; set; }
 
     /// <summary>
@@ -60,22 +57,13 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     [Comment("用户的登录尝试失败次数")]
     public int AccessFailedCount { get; set; }
 
-    /// <summary>
-    /// 刷新 Token 值
-    /// </summary>
-    [StringLength(MaxLengths.Url)]
+    [StringLength(MaxLengths.NormalToken)]
     [Comment("刷新 Token 值")]
     public string? RefreshToken { get; set; }
 
-    /// <summary>
-    /// 刷新 Token 值有效期
-    /// </summary>
     [Comment("刷新 Token 值有效期")]
     public DateTimeOffset RefreshExpiration { get; set; }
 
-    /// <summary>
-    /// 禁止在此时间之前刷新 Token
-    /// </summary>
     [Comment("禁止在此时间之前刷新 Token")]
     public DateTimeOffset NotBefore { get; set; }
 
@@ -96,9 +84,6 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     [Comment("性别")]
     public Gender Gender { get; set; }
 
-    /// <summary>
-    /// 备注
-    /// </summary>
     [Comment("备注")]
     public string? Remarks { get; set; }
 

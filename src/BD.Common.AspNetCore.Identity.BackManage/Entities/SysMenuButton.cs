@@ -6,9 +6,6 @@ namespace BD.Common.Entities;
 [Table("BM_MenuButtons")]
 public class SysMenuButton : ITenant, IOrder
 {
-    /// <summary>
-    /// 系统租户 Id
-    /// </summary>
     [Comment("系统租户 Id")]
     public Guid TenantId { get; set; }
 
@@ -24,6 +21,7 @@ public class SysMenuButton : ITenant, IOrder
     [Comment("系统按钮 Id")]
     public Guid ButtonId { get; set; }
 
+    [Comment("排序")]
     public long Order { get; set; }
 
     /// <inheritdoc cref="SysButton"/>

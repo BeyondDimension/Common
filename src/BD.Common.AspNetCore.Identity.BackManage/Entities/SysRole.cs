@@ -10,7 +10,7 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, I
     /// 角色名称
     /// </summary>
     [Required]
-    [StringLength(256)]
+    [MaxLength(MaxLengths.Name)]
     [Comment("角色名称")]
     public string Name { get; set; } = "";
 
@@ -18,7 +18,7 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, I
     /// 规范化名称
     /// </summary>
     [Required]
-    [StringLength(256)]
+    [MaxLength(MaxLengths.Name)]
     [Comment("规范化名称")]
     public string NormalizedName { get; set; } = "";
 
@@ -31,9 +31,6 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, I
     [Comment("用户 Id")]
     public Guid UserId { get; set; }
 
-    /// <summary>
-    /// 排序
-    /// </summary>
     [Comment("排序")]
     public long Order { get; set; }
 

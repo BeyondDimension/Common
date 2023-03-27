@@ -6,9 +6,6 @@ namespace BD.Common.Entities;
 [Table("BM_MenuButtonRoles")]
 public class SysMenuButtonRole : ITenant
 {
-    /// <summary>
-    /// 系统租户 Id
-    /// </summary>
     [Comment("系统租户 Id")]
     public Guid TenantId { get; set; }
 
@@ -34,6 +31,15 @@ public class SysMenuButtonRole : ITenant
     /// 控制器名称
     /// </summary>
     [Required]
+    [MaxLength(MaxLengths.LongName)]
     [Comment("控制器名称")]
     public string ControllerName { get; set; } = "";
+
+    public class EntityTypeConfiguration : IEntityTypeConfiguration<SysMenuButtonRole>
+    {
+        public void Configure(EntityTypeBuilder<SysMenuButtonRole> builder)
+        {
+            builder.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId, x.ControllerName });
+        }
+    }
 }

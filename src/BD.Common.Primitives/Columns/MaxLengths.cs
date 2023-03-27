@@ -28,6 +28,11 @@ public static class MaxLengths
     public const int NickName = 20;
 
     /// <summary>
+    /// 图标名称
+    /// </summary>
+    public const int IconName = 20;
+
+    /// <summary>
     /// 短信验证码
     /// </summary>
     public const int SMS_CAPTCHA = 6;
@@ -43,6 +48,11 @@ public static class MaxLengths
     /// 一般文本字符串
     /// </summary>
     public const int Text = 1000;
+
+    /// <summary>
+    /// 一般 Token 字符串
+    /// </summary>
+    public const int NormalToken = 1000;
 
     /// <summary>
     /// 文件扩展名，例如 .exe/.dll
@@ -96,4 +106,9 @@ public static class MaxLengths
     /// </summary>
     [Obsolete("描述不设置最大长度")]
     public const int Describe = 500;
+
+    /// <summary>
+    /// 哈希密码最大长度
+    /// </summary>
+    public const int Max_PasswordHash = 256;
 }

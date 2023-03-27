@@ -6,9 +6,6 @@ namespace BD.Common.Entities;
 [Table("BM_UserRoles")]
 public class SysUserRole : ITenant
 {
-    /// <summary>
-    /// 租户 Id
-    /// </summary>
     [Comment("租户 Id")]
     public Guid TenantId { get; set; }
 
@@ -23,4 +20,12 @@ public class SysUserRole : ITenant
     /// </summary>
     [Comment("角色 Id")]
     public Guid RoleId { get; set; }
+
+    public class EntityTypeConfiguration : IEntityTypeConfiguration<SysUserRole>
+    {
+        public void Configure(EntityTypeBuilder<SysUserRole> builder)
+        {
+            builder.HasKey(x => new { x.UserId, x.RoleId, x.TenantId });
+        }
+    }
 }
