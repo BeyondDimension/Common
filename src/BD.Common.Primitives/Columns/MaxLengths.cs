@@ -50,11 +50,6 @@ public static class MaxLengths
     public const int Text = 1000;
 
     /// <summary>
-    /// 一般 Token 字符串
-    /// </summary>
-    public const int NormalToken = 1000;
-
-    /// <summary>
     /// 文件扩展名，例如 .exe/.dll
     /// </summary>
     public const int FileExtension = 16;

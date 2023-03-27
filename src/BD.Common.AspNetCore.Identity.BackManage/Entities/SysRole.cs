@@ -7,19 +7,19 @@ namespace BD.Common.Entities;
 public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, IDescribe
 {
     /// <summary>
-    /// 角色名称
+    /// 角色名
     /// </summary>
     [Required]
     [MaxLength(MaxLengths.Name)]
-    [Comment("角色名称")]
+    [Comment("角色名")]
     public string Name { get; set; } = "";
 
     /// <summary>
-    /// 规范化名称
+    /// 规范化角色名
     /// </summary>
     [Required]
     [MaxLength(MaxLengths.Name)]
-    [Comment("规范化名称")]
+    [Comment("规范化角色名")]
     public string NormalizedName { get; set; } = "";
 
     [Comment("描述")]

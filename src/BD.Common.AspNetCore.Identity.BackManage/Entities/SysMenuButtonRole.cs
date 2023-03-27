@@ -6,25 +6,25 @@ namespace BD.Common.Entities;
 [Table("BM_MenuButtonRoles")]
 public class SysMenuButtonRole : ITenant
 {
-    [Comment("系统租户 Id")]
+    [Comment("租户 Id")]
     public Guid TenantId { get; set; }
 
     /// <summary>
-    /// 系统角色 Id
+    /// 角色 Id
     /// </summary>
-    [Comment("系统角色 Id")]
+    [Comment("角色 Id")]
     public Guid RoleId { get; set; }
 
     /// <summary>
-    /// 系统菜单 Id
+    /// 菜单 Id
     /// </summary>
-    [Comment("系统菜单 Id")]
+    [Comment("菜单 Id")]
     public Guid MenuId { get; set; }
 
     /// <summary>
-    /// 系统按钮 Id
+    /// 按钮 Id
     /// </summary>
-    [Comment("系统按钮 Id")]
+    [Comment("按钮 Id")]
     public Guid ButtonId { get; set; }
 
     /// <summary>

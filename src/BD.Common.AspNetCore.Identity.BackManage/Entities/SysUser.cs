@@ -57,7 +57,6 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     [Comment("用户的登录尝试失败次数")]
     public int AccessFailedCount { get; set; }
 
-    [StringLength(MaxLengths.NormalToken)]
     [Comment("刷新 Token 值")]
     public string? RefreshToken { get; set; }
 
