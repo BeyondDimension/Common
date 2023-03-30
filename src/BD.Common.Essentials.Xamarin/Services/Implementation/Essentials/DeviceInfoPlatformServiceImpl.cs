@@ -6,11 +6,11 @@ namespace BD.Common.Services.Implementation.Essentials;
 
 public abstract class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
 {
-    public virtual string Model => DeviceInfo.Model;
+    public virtual string Model => DeviceInfo.Model ?? "";
 
     public virtual string Manufacturer => DeviceInfo.Manufacturer;
 
-    public virtual string Name => DeviceInfo.Name;
+    public virtual string Name => DeviceInfo.Name ?? "";
 
     public virtual string VersionString => DeviceInfo.VersionString;
 

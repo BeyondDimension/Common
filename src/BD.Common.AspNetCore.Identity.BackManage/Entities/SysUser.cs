@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统用户(多租户)实体类
 /// </summary>
 [Table("BM_Users")]
-public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks, INickName, IPhoneNumber, IDisable
+public sealed class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IRefreshJWTUser, IRemarks, INickName, IPhoneNumber, IDisable
 {
     /// <summary>
     /// 组织架构 Id
@@ -95,4 +95,19 @@ public class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IJWTUser, IRemarks,
     [Timestamp]
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
+
+    /// <summary>
+    /// 由此用户审核的租户列表
+    /// </summary>
+    public List<SysTenant>? AuditorTenants { get; set; }
+
+    public List<SysUserOrganization>? Organizations { get; set; }
+
+    public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysUser>
+    {
+        public sealed override void Configure(EntityTypeBuilder<SysUser> builder)
+        {
+            base.Configure(builder);
+        }
+    }
 }

@@ -1,110 +1,103 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Devices;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 
-namespace Microsoft.Maui.Storage
+namespace Microsoft.Maui.Storage;
+
+partial class FilePickerImplementation : IFilePicker
 {
-    partial class FilePickerImplementation : IFilePicker
+    [LibraryImport("User32", SetLastError = true)]
+    private static partial IntPtr GetActiveWindow();
+
+    async Task<IEnumerable<FileResult>> PlatformPickAsync(PickOptions? options, bool allowMultiple = false)
     {
-        [LibraryImport("User32", SetLastError = true)]
-        private static partial IntPtr GetActiveWindow();
-
-        async Task<IEnumerable<FileResult>> PlatformPickAsync(PickOptions options, bool allowMultiple = false)
+        var picker = new FileOpenPicker
         {
-            var picker = new FileOpenPicker
-            {
-                ViewMode = PickerViewMode.List,
-                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
-            };
+            ViewMode = PickerViewMode.List,
+            SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+        };
 
-            //var hwnd = WindowStateManager.Default.GetActiveWindowHandle(true);
-            var hwnd = GetActiveWindow();
-            WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
+        //var hwnd = WindowStateManager.Default.GetActiveWindowHandle(true);
+        var hwnd = GetActiveWindow();
+        WinRT.Interop.InitializeWithWindow.Initialize(picker, hwnd);
 
-            SetFileTypes(options, picker);
+        SetFileTypes(options, picker);
 
-            var resultList = new List<StorageFile>();
+        var resultList = new List<StorageFile>();
 
-            if (allowMultiple)
-            {
-                var fileList = await picker.PickMultipleFilesAsync();
-                if (fileList != null)
-                    resultList.AddRange(fileList);
-            }
-            else
-            {
-                var file = await picker.PickSingleFileAsync();
-                if (file != null)
-                    resultList.Add(file);
-            }
-
-            if (AppInfoUtils.IsPackagedApp)
-            {
-                foreach (var file in resultList)
-                    StorageApplicationPermissions.FutureAccessList.Add(file);
-            }
-
-            return resultList.Select(storageFile => new FileResult(storageFile));
+        if (allowMultiple)
+        {
+            var fileList = await picker.PickMultipleFilesAsync();
+            if (fileList != null)
+                resultList.AddRange(fileList);
+        }
+        else
+        {
+            var file = await picker.PickSingleFileAsync();
+            if (file != null)
+                resultList.Add(file);
         }
 
-        static void SetFileTypes(PickOptions options, FileOpenPicker picker)
+        if (AppInfoUtils.IsPackagedApp)
         {
-            var hasAtLeastOneType = false;
+            foreach (var file in resultList)
+                StorageApplicationPermissions.FutureAccessList.Add(file);
+        }
 
-            if (options?.FileTypes?.Value != null)
+        return resultList.Select(storageFile => new FileResult(storageFile));
+    }
+
+    static void SetFileTypes(PickOptions? options, FileOpenPicker picker)
+    {
+        var hasAtLeastOneType = false;
+
+        if (options?.FileTypes?.Value != null)
+        {
+            foreach (var type in options.FileTypes.Value)
             {
-                foreach (var type in options.FileTypes.Value)
+                var ext = FileExtensions.Clean(type);
+                if (!string.IsNullOrWhiteSpace(ext))
                 {
-                    var ext = FileExtensions.Clean(type);
-                    if (!string.IsNullOrWhiteSpace(ext))
-                    {
-                        picker.FileTypeFilter.Add(ext);
-                        hasAtLeastOneType = true;
-                    }
+                    picker.FileTypeFilter.Add(ext);
+                    hasAtLeastOneType = true;
                 }
             }
-
-            if (!hasAtLeastOneType)
-                picker.FileTypeFilter.Add("*");
         }
+
+        if (!hasAtLeastOneType)
+            picker.FileTypeFilter.Add("*");
     }
+}
 
-    public partial class FilePickerFileType
-    {
-        static FilePickerFileType PlatformImageFileType() =>
-            new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-            {
-                { DevicePlatform.WinUI, FileExtensions.AllImage }
-            });
+public partial class FilePickerFileType
+{
+    static FilePickerFileType PlatformImageFileType() =>
+        new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        {
+            { DevicePlatform.WinUI, FileExtensions.AllImage }
+        });
 
-        static FilePickerFileType PlatformPngFileType() =>
-            new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-            {
-                { DevicePlatform.WinUI, new[] { FileExtensions.Png } }
-            });
+    static FilePickerFileType PlatformPngFileType() =>
+        new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        {
+            { DevicePlatform.WinUI, new[] { FileExtensions.Png } }
+        });
 
-        static FilePickerFileType PlatformJpegFileType() =>
-            new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-            {
-                { DevicePlatform.WinUI, FileExtensions.AllJpeg }
-            });
+    static FilePickerFileType PlatformJpegFileType() =>
+        new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        {
+            { DevicePlatform.WinUI, FileExtensions.AllJpeg }
+        });
 
-        static FilePickerFileType PlatformVideoFileType() =>
-            new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-            {
-                { DevicePlatform.WinUI, FileExtensions.AllVideo }
-            });
+    static FilePickerFileType PlatformVideoFileType() =>
+        new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        {
+            { DevicePlatform.WinUI, FileExtensions.AllVideo }
+        });
 
-        static FilePickerFileType PlatformPdfFileType() =>
-            new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-            {
-                { DevicePlatform.WinUI, new[] { FileExtensions.Pdf } }
-            });
-    }
+    static FilePickerFileType PlatformPdfFileType() =>
+        new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        {
+            { DevicePlatform.WinUI, new[] { FileExtensions.Pdf } }
+        });
 }

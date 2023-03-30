@@ -46,7 +46,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         var values = new Dictionary<string, string>
         {
             { KeyNameKey, keyName },
-            { ExpiryKey, (DateTimeOffset.UtcNow + timeout).ToUnixTimeSeconds().ToString() }
+            { ExpiryKey, (DateTimeOffset.UtcNow + timeout).ToUnixTimeSeconds().ToString() },
         };
 
         var signContent = string.Join("&", values

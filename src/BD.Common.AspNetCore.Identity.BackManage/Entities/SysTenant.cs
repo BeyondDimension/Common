@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 租户信息实体类
 /// </summary>
 [Table("BM_Tenants")]
-public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemarks
+public sealed class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemarks
 {
     /// <summary>
     /// 租户名称
@@ -17,37 +17,22 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemark
     /// <summary>
     /// 租户唯一编码
     /// </summary>
-    [MaxLength(256)]
     [Comment("租户唯一编码")]
     public string? UniqueCode { get; set; }
 
     /// <summary>
-    /// 联系人名称
+    /// 联系人
     /// </summary>
     [MaxLength(MaxLengths.NickName)]
-    [Comment("联系人名称")]
-    public string? ContactName { get; set; }
+    [Comment("联系人")]
+    public string? Contact { get; set; }
 
     /// <summary>
     /// 联系人电话
     /// </summary>
     [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]
     [Comment("联系人电话")]
-    public string? ContactPhone { get; set; }
-
-    /// <summary>
-    /// 地址
-    /// </summary>
-    [MaxLength(MaxLengths.RealityAddress)]
-    [Comment("地址")]
-    public string? Address { get; set; }
-
-    /// <summary>
-    /// 邮箱
-    /// </summary>
-    [MaxLength(MaxLengths.Email)]
-    [Comment("邮箱")]
-    public string? Email { get; set; }
+    public string? ContactPhoneNumber { get; set; }
 
     /// <summary>
     /// 注册手机号
@@ -55,6 +40,13 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemark
     [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]
     [Comment("注册手机号")]
     public string? RegisterPhoneNumber { get; set; }
+
+    /// <summary>
+    /// 地址
+    /// </summary>
+    [MaxLength(MaxLengths.RealityAddress)]
+    [Comment("地址")]
+    public string? Address { get; set; }
 
     /// <summary>
     /// 注册邮箱
@@ -72,9 +64,7 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemark
     /// <summary>
     /// 审核人
     /// </summary>
-    [Comment("审核人")]
-    [MaxLength(MaxLengths.NickName)]
-    public string? Auditor { get; set; }
+    public SysUser? Auditor { get; set; }
 
     /// <summary>
     /// 审核时间
@@ -117,6 +107,26 @@ public class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemark
     /// </summary>
     [Comment("是否为平台管理员")]
     public bool IsPlatformAdministrator { get; set; }
+
+    /// <summary>
+    /// 并发令牌 https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
+    /// </summary>
+    [Timestamp]
+    [Comment("并发令牌")]
+    public byte[]? Timestamp { get; set; }
+
+    public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysTenant>
+    {
+        public sealed override void Configure(EntityTypeBuilder<SysTenant> builder)
+        {
+            base.Configure(builder);
+
+            builder.HasOne(x => x.Auditor)
+                .WithMany(x => x.AuditorTenants)
+                .HasForeignKey(x => x.AuditorId)
+                .OnDelete(DeleteBehavior.SetNull);
+        }
+    }
 
     /// <summary>
     /// 管理员 TenantId

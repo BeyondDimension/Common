@@ -1,108 +1,103 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.Maui.ApplicationModel;
 using Windows.Storage;
 using Package = Windows.ApplicationModel.Package;
 
-namespace Microsoft.Maui.Storage
+namespace Microsoft.Maui.Storage;
+
+partial class FileSystemImplementation : IFileSystem
 {
-	partial class FileSystemImplementation : IFileSystem
-	{
-		static string CleanPath(string path) =>
-			string.Join("_", path.Split(Path.GetInvalidFileNameChars()));
+    static string CleanPath(string path) =>
+        string.Join("_", path.Split(Path.GetInvalidFileNameChars()));
 
-		static string AppSpecificPath =>
-			Path.Combine(CleanPath(AppInfoImplementation.PublisherName), CleanPath(AppInfo.PackageName));
+    static string AppSpecificPath =>
+        Path.Combine(CleanPath(AppInfoImplementation.PublisherName), CleanPath(AppInfo.PackageName));
 
-		string PlatformCacheDirectory
-			=> AppInfoUtils.IsPackagedApp
-				? ApplicationData.Current.LocalCacheFolder.Path
-				: Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), AppSpecificPath, "Cache");
+    string PlatformCacheDirectory
+        => AppInfoUtils.IsPackagedApp
+            ? ApplicationData.Current.LocalCacheFolder.Path
+            : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), AppSpecificPath, "Cache");
 
-		string PlatformAppDataDirectory
-			=> AppInfoUtils.IsPackagedApp
-				? ApplicationData.Current.LocalFolder.Path
-				: Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), AppSpecificPath, "Data");
+    string PlatformAppDataDirectory
+        => AppInfoUtils.IsPackagedApp
+            ? ApplicationData.Current.LocalFolder.Path
+            : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), AppSpecificPath, "Data");
 
-		Task<Stream> PlatformOpenAppPackageFileAsync(string filename)
-		{
-			if (filename == null)
-				throw new ArgumentNullException(nameof(filename));
+    Task<Stream> PlatformOpenAppPackageFileAsync(string filename)
+    {
+        if (filename == null)
+            throw new ArgumentNullException(nameof(filename));
 
-			if (AppInfoUtils.IsPackagedApp)
-			{
-				filename = FileSystemUtils.NormalizePath(filename);
+        if (AppInfoUtils.IsPackagedApp)
+        {
+            filename = FileSystemUtils.NormalizePath(filename);
 
-				return Package.Current.InstalledLocation.OpenStreamForReadAsync(filename);
-			}
-			else
-			{
-				var file = FileSystemUtils.PlatformGetFullAppPackageFilePath(filename);
-				return Task.FromResult((Stream)File.OpenRead(file));
-			}
-		}
+            return Package.Current.InstalledLocation.OpenStreamForReadAsync(filename);
+        }
+        else
+        {
+            var file = FileSystemUtils.PlatformGetFullAppPackageFilePath(filename);
+            return Task.FromResult((Stream)File.OpenRead(file));
+        }
+    }
 
-		Task<bool> PlatformAppPackageFileExistsAsync(string filename)
-		{
-			var file = FileSystemUtils.PlatformGetFullAppPackageFilePath(filename);
-			return Task.FromResult(File.Exists(file));
-		}
-	}
+    Task<bool> PlatformAppPackageFileExistsAsync(string filename)
+    {
+        var file = FileSystemUtils.PlatformGetFullAppPackageFilePath(filename);
+        return Task.FromResult(File.Exists(file));
+    }
+}
 
-	static partial class FileSystemUtils
-	{
-		public static bool AppPackageFileExists(string filename)
-		{
-			var file = PlatformGetFullAppPackageFilePath(filename);
-			return File.Exists(file);
-		}
+static partial class FileSystemUtils
+{
+    public static bool AppPackageFileExists(string filename)
+    {
+        var file = PlatformGetFullAppPackageFilePath(filename);
+        return File.Exists(file);
+    }
 
-		public static string PlatformGetFullAppPackageFilePath(string filename)
-		{
-			if (filename == null)
-				throw new ArgumentNullException(nameof(filename));
+    public static string PlatformGetFullAppPackageFilePath(string filename)
+    {
+        if (filename == null)
+            throw new ArgumentNullException(nameof(filename));
 
-			filename = NormalizePath(filename);
+        filename = NormalizePath(filename);
 
-			string root;
-			if (AppInfoUtils.IsPackagedApp)
-				root = Package.Current.InstalledLocation.Path;
-			else
-				root = AppContext.BaseDirectory;
+        string root;
+        if (AppInfoUtils.IsPackagedApp)
+            root = Package.Current.InstalledLocation.Path;
+        else
+            root = AppContext.BaseDirectory;
 
-			return Path.Combine(root, filename);
-		}
-	}
+        return Path.Combine(root, filename);
+    }
+}
 
-	public partial class FileBase
-	{
-		internal FileBase(IStorageFile file)
-			: this(file?.Path)
-		{
-			File = file;
-			ContentType = file?.ContentType;
-		}
+public partial class FileBase
+{
+    internal FileBase(IStorageFile file)
+        : this(file?.Path)
+    {
+        File = file;
+        ContentType = file?.ContentType;
+    }
 
-		void PlatformInit(FileBase file)
-		{
-			File = file.File;
-		}
+    void PlatformInit(FileBase file)
+    {
+        File = file.File;
+    }
 
-		internal IStorageFile File { get; set; }
+    internal IStorageFile? File { get; set; }
 
-		// we can't do anything here, but Windows will take care of it
-		string PlatformGetContentType(string extension) => null;
+    // we can't do anything here, but Windows will take care of it
+    string? PlatformGetContentType(string extension) => null;
 
-		internal virtual Task<Stream> PlatformOpenReadAsync() =>
-			File.OpenStreamForReadAsync();
-	}
+    internal virtual Task<Stream> PlatformOpenReadAsync() =>
+        File.OpenStreamForReadAsync();
+}
 
-	public partial class FileResult
-	{
-		internal FileResult(IStorageFile file)
-			: base(file)
-		{
-		}
-	}
+public partial class FileResult
+{
+    internal FileResult(IStorageFile file)
+        : base(file)
+    {
+    }
 }

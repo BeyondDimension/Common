@@ -1,27 +1,34 @@
 namespace BD.Common.Models;
 
-/// <summary>
-/// 租户表数据 DTO 模型
-/// </summary>
+/// <inheritdoc cref="SysTenant"/>
 public sealed partial class SysTenantDTO : KeyModel<Guid>
 {
+    /// <inheritdoc cref="SysTenant.Name"/>
     public string Name { get; set; } = "";
 
-    public string? ContactName { get; set; }
+    /// <inheritdoc cref="SysTenant.Contact"/>
+    public string? Contact { get; set; }
 
-    public string? ContactPhone { get; set; }
+    /// <inheritdoc cref="SysTenant.ContactPhoneNumber"/>
+    public string? ContactPhoneNumber { get; set; }
 
+    /// <inheritdoc cref="SysTenant.Address"/>
     public string? Address { get; set; }
 
-    public string? Email { get; set; }
+    /// <inheritdoc cref="SysTenant.RegisterEmail"/>
+    public string? RegisterEmail { get; set; }
 
+    /// <inheritdoc cref="ICreationTime.CreationTime"/>
     public DateTimeOffset CreationTime { get; set; }
 
+    /// <inheritdoc cref="IUpdateTime.UpdateTime"/>
     public DateTimeOffset UpdateTime { get; set; }
 
+    /// <inheritdoc cref="IOperatorUser.OperatorUser"/>
     public string? OperatorUser { get; set; }
 
-    public string CreateUser { get; set; } = "";
+    /// <inheritdoc cref="ICreateUser.CreateUser"/>
+    public string? CreateUser { get; set; }
 
 #if !BLAZOR
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -39,10 +46,10 @@ public sealed partial class SysTenantDTO : KeyModel<Guid>
         UpdateTime = x.UpdateTime,
 
         Name = x.Name,
-        ContactName = x.ContactName,
-        ContactPhone = x.ContactPhone,
+        Contact = x.Contact,
+        ContactPhoneNumber = x.ContactPhoneNumber,
         Address = x.Address,
-        Email = x.Email,
+        RegisterEmail = x.RegisterEmail,
     };
 #endif
 }
@@ -56,13 +63,13 @@ public abstract partial class AddOrEditSysTenantDTOBase : IKeyModel<Guid>, IVali
 
     public string TenantName { get; set; } = "";
 
-    public string? ContactName { get; set; }
+    public string? Contact { get; set; }
 
-    public string? ContactPhone { get; set; }
+    public string? ContactPhoneNumber { get; set; }
 
     public string? Address { get; set; }
 
-    public string? Email { get; set; }
+    public string? RegisterEmail { get; set; }
 
     Guid IKeyModel<Guid>.Id { get => TenantId; set => TenantId = value; }
 
@@ -259,10 +266,10 @@ public static partial class EntitiesExtensions
         AddOrEditSysTenantDTOBase model)
     {
         entity.Name = model.TenantName;
-        entity.ContactName = model.ContactName;
-        entity.ContactPhone = model.ContactPhone;
+        entity.Contact = model.Contact;
+        entity.ContactPhoneNumber = model.ContactPhoneNumber;
         entity.Address = model.Address;
-        entity.Email = model.Email;
+        entity.RegisterEmail = model.RegisterEmail;
         return entity;
     }
 }
@@ -275,10 +282,10 @@ public static partial class DTOExtensions
     {
         entity.TenantId = model?.Id ?? default;
         entity.TenantName = model?.Name ?? "";
-        entity.ContactName = model?.ContactName ?? "";
-        entity.ContactPhone = model?.ContactPhone ?? "";
+        entity.Contact = model?.Contact ?? "";
+        entity.ContactPhoneNumber = model?.ContactPhoneNumber ?? "";
         entity.Address = model?.Address ?? "";
-        entity.Email = model?.Email ?? "";
+        entity.RegisterEmail = model?.RegisterEmail ?? "";
     }
 }
 

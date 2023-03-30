@@ -91,9 +91,9 @@ public static partial class TaskExtensions
 
         public int CallerLineNumber { get; }
 
-        public Exception Exception { get; }
+        public Exception? Exception { get; }
 
-        public TaskLog(string callerMemberName, string callerFilePath, int callerLineNumber, Exception exception)
+        public TaskLog(string callerMemberName, string callerFilePath, int callerLineNumber, Exception? exception)
         {
             CallerMemberName = callerMemberName;
             CallerFilePath = callerFilePath;
@@ -111,7 +111,7 @@ Caller member: {0}
 Exception: {3}
 
 ";
-            System.Diagnostics.Debug.WriteLine(format, e.CallerMemberName, e.CallerFilePath, e.CallerLineNumber, e.Exception);
+            Debug.WriteLine(format, e.CallerMemberName, e.CallerFilePath, e.CallerLineNumber, e.Exception);
         };
 
         internal static void Raise(TaskLog log)

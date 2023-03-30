@@ -1,5 +1,3 @@
-using System.Runtime.Versioning;
-
 // ReSharper disable once CheckNamespace
 namespace System;
 
@@ -100,7 +98,7 @@ partial class IOPath
             RedirectStandardInput = true,
         };
         using var p = Process.Start(psi);
-        p.Start();
+        p!.Start();
         p.StandardInput.WriteLine($"xcopy \"{sourceDirName}\" \"{destDirName}\" /y &exit");
         p.WaitForExit(timeoutMilliseconds);
         p.Kill();

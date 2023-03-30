@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统按钮
 /// </summary>
 [Table("BM_Buttons")]
-public class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
+public sealed class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
 {
     /// <summary>
     /// 按钮名称
@@ -23,7 +23,6 @@ public class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
     /// <summary>
     /// 按钮类型
     /// </summary>
-    [Required]
     [Comment("按钮类型")]
     public SysButtonType Type { get; set; }
 
@@ -31,8 +30,16 @@ public class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
     public bool Disable { get; set; }
 
     /// <inheritdoc cref="SysMenu"/>
-    public virtual ICollection<SysMenu>? Menus { get; set; }
+    public List<SysMenu>? Menus { get; set; }
 
     /// <inheritdoc cref="SysMenuButton"/>
-    public virtual ICollection<SysMenuButton>? MenuButtons { get; set; }
+    public List<SysMenuButton>? MenuButtons { get; set; }
+
+    public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysButton>
+    {
+        public sealed override void Configure(EntityTypeBuilder<SysButton> builder)
+        {
+            base.Configure(builder);
+        }
+    }
 }

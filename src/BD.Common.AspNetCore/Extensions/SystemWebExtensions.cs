@@ -115,7 +115,7 @@ public static class SystemWebExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Action(this IUrlHelper helper, string action, QueryString values)
     {
-        var url = helper.Action(action);
+        var url = helper.Action(action)!;
         if (values.HasValue)
         {
             var length = url.Length + values.Value!.Length;

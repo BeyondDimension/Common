@@ -54,10 +54,15 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
 
     public static void OnModelCreatingCore(ModelBuilder b)
     {
-        b.ApplyConfiguration(new SysMenu.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysUserRole.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysMenuButtonRole.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysUser.EntityTypeConfiguration());
         b.ApplyConfiguration(new SysOrganization.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysRole.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysTenant.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysMenu.EntityTypeConfiguration());
+        // SysMenuButton
+        b.ApplyConfiguration(new SysUserRole.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysButton.EntityTypeConfiguration());
+        b.ApplyConfiguration(new SysMenuButtonRole.EntityTypeConfiguration());
         b.ApplyConfiguration(new SysUserOrganization.EntityTypeConfiguration());
     }
 

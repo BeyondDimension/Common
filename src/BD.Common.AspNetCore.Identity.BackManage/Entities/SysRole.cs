@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统角色(权限)实体类
 /// </summary>
 [Table("BM_Roles")]
-public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, IDescribe
+public sealed class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, IDescribe
 {
     /// <summary>
     /// 角色名
@@ -43,4 +43,12 @@ public class SysRole : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable, I
     [Timestamp]
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
+
+    public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysRole>
+    {
+        public sealed override void Configure(EntityTypeBuilder<SysRole> builder)
+        {
+            base.Configure(builder);
+        }
+    }
 }

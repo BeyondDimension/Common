@@ -1,4 +1,6 @@
 // ReSharper disable once CheckNamespace
+using Microsoft.IdentityModel.Tokens;
+
 namespace Microsoft.AspNetCore.Mvc;
 
 public static class HttpRequestExtensions
@@ -26,21 +28,24 @@ public static class HttpRequestExtensions
 
     static ClientOSPlatform GetOSPlatformCore(this HttpRequest request, string customUrlScheme = CUSTOM_URL_SCHEME)
     {
-        string referrer = request.Headers.Referer;
-        if (referrer != null && referrer.StartsWith(customUrlScheme))
+        if (!request.Headers.Referer.IsNullOrEmpty())
         {
-            try
+            string referrer = request.Headers.Referer!;
+            if (referrer.StartsWith(customUrlScheme))
             {
-                var uri = new Uri(request.Headers.Referer);
-                return ClientOSPlatformEnumExtensions.Parse(uri.Host);
-            }
-            catch
-            {
+                try
+                {
+                    var uri = new Uri(referrer);
+                    return ClientOSPlatformEnumExtensions.Parse(uri.Host);
+                }
+                catch
+                {
 
+                }
             }
         }
-        string userAgent = request.Headers.UserAgent;
-        if (!string.IsNullOrEmpty(userAgent))
+        var userAgent = request.Headers.UserAgent;
+        if (!userAgent.IsNullOrEmpty())
         {
             if (userAgent.Contains("Android"))
                 return ClientOSPlatform.AndroidPhone;

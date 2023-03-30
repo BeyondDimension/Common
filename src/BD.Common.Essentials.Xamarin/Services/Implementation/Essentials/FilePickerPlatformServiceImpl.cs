@@ -24,8 +24,17 @@ sealed class FilePickerPlatformServiceImpl : BaseService, IOpenFileDialogService
     async Task<IEnumerable<IFileResult>> IOpenFileDialogService.PlatformPickAsync(PickOptions? options, bool allowMultiple)
     {
         if (allowMultiple)
+        {
             return (await FilePicker.PickMultipleAsync(options.Convert())).Convert();
+        }
         else
-            return new[] { (await FilePicker.PickAsync(options.Convert())).Convert() };
+        {
+            var r = await FilePicker.PickAsync(options.Convert());
+            if (r != null)
+            {
+                return new[] { r.Convert() };
+            }
+            return Array.Empty<IFileResult>();
+        }
     }
 }

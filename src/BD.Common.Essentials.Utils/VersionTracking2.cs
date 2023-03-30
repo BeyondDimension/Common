@@ -126,5 +126,5 @@ public static class VersionTracking2
         return (trail.Count >= 2) ? trail[^2] : null;
     }
 
-    static string LastInstalledVersion() => versionTrail.LastOrDefault();
+    static string? LastInstalledVersion() => versionTrail?.LastOrDefault();
 }

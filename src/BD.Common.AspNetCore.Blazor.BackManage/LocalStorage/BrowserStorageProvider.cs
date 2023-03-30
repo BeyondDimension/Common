@@ -1,353 +1,347 @@
-using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Blazored.LocalStorage.Exceptions;
 
-namespace Blazored.LocalStorage
+namespace Blazored.LocalStorage;
+
+internal class BrowserStorageProvider : IStorageProvider
 {
-    internal class BrowserStorageProvider : IStorageProvider
+    private const string StorageNotAvailableMessage = "Unable to access the browser storage. This is most likely due to the browser settings.";
+
+    private readonly IJSRuntime _jSRuntime;
+    private readonly IJSInProcessRuntime _jSInProcessRuntime;
+
+    public BrowserStorageProvider(IJSRuntime jSRuntime)
     {
-        private const string StorageNotAvailableMessage = "Unable to access the browser storage. This is most likely due to the browser settings.";
+        _jSRuntime = jSRuntime;
+        _jSInProcessRuntime = ((IJSInProcessRuntime)jSRuntime)!;
+    }
 
-        private readonly IJSRuntime _jSRuntime;
-        private readonly IJSInProcessRuntime _jSInProcessRuntime;
-
-        public BrowserStorageProvider(IJSRuntime jSRuntime)
+    public async ValueTask ClearAsync(CancellationToken cancellationToken = default)
+    {
+        try
         {
-            _jSRuntime = jSRuntime;
-            _jSInProcessRuntime = jSRuntime as IJSInProcessRuntime;
+            await _jSRuntime.InvokeVoidAsync("localStorage.clear", cancellationToken);
         }
-
-        public async ValueTask ClearAsync(CancellationToken cancellationToken = default)
+        catch (Exception exception)
         {
-            try
+            if (IsStorageDisabledException(exception))
             {
-                await _jSRuntime.InvokeVoidAsync("localStorage.clear", cancellationToken);
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        public async ValueTask<string> GetItemAsync(string key, CancellationToken cancellationToken = default)
+    public async ValueTask<string> GetItemAsync(string key, CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
-            {
-                return await _jSRuntime.InvokeAsync<string>("localStorage.getItem", cancellationToken, key);
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
+            return await _jSRuntime.InvokeAsync<string>("localStorage.getItem", cancellationToken, key);
         }
-
-        public async ValueTask<string> KeyAsync(int index, CancellationToken cancellationToken = default)
+        catch (Exception exception)
         {
-            try
+            if (IsStorageDisabledException(exception))
             {
-                return await _jSRuntime.InvokeAsync<string>("localStorage.key", cancellationToken, index);
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        public async ValueTask<bool> ContainKeyAsync(string key, CancellationToken cancellationToken = default)
+    public async ValueTask<string> KeyAsync(int index, CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
-            {
-                return await _jSRuntime.InvokeAsync<bool>("localStorage.hasOwnProperty", cancellationToken, key);
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
+            return await _jSRuntime.InvokeAsync<string>("localStorage.key", cancellationToken, index);
         }
-
-        public async ValueTask<int> LengthAsync(CancellationToken cancellationToken = default)
+        catch (Exception exception)
         {
-            try
+            if (IsStorageDisabledException(exception))
             {
-                return await _jSRuntime.InvokeAsync<int>("eval", cancellationToken, "localStorage.length");
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        public async ValueTask RemoveItemAsync(string key, CancellationToken cancellationToken = default)
+    public async ValueTask<bool> ContainKeyAsync(string key, CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
+            return await _jSRuntime.InvokeAsync<bool>("localStorage.hasOwnProperty", cancellationToken, key);
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public async ValueTask<int> LengthAsync(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            return await _jSRuntime.InvokeAsync<int>("eval", cancellationToken, "localStorage.length");
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public async ValueTask RemoveItemAsync(string key, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            await _jSRuntime.InvokeVoidAsync("localStorage.removeItem", cancellationToken, key);
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public async ValueTask SetItemAsync(string key, string data, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            await _jSRuntime.InvokeVoidAsync("localStorage.setItem", cancellationToken, key, data);
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public async ValueTask<IEnumerable<string>> KeysAsync(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            return await _jSRuntime.InvokeAsync<IEnumerable<string>>("eval", cancellationToken, "Object.keys(localStorage)");
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public async ValueTask RemoveItemsAsync(IEnumerable<string> keys, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            foreach (var key in keys)
             {
                 await _jSRuntime.InvokeVoidAsync("localStorage.removeItem", cancellationToken, key);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
         }
-
-        public async ValueTask SetItemAsync(string key, string data, CancellationToken cancellationToken = default)
+        catch (Exception exception)
         {
-            try
+            if (IsStorageDisabledException(exception))
             {
-                await _jSRuntime.InvokeVoidAsync("localStorage.setItem", cancellationToken, key, data);
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        public async ValueTask<IEnumerable<string>> KeysAsync(CancellationToken cancellationToken = default)
+    public void Clear()
+    {
+        CheckForInProcessRuntime();
+        try
         {
-            try
-            {
-                return await _jSRuntime.InvokeAsync<IEnumerable<string>>("eval", cancellationToken, "Object.keys(localStorage)");
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
+            _jSInProcessRuntime.InvokeVoid("localStorage.clear");
         }
-
-        public async ValueTask RemoveItemsAsync(IEnumerable<string> keys, CancellationToken cancellationToken = default)
+        catch (Exception exception)
         {
-            try
+            if (IsStorageDisabledException(exception))
             {
-                foreach (var key in keys)
-                {
-                    await _jSRuntime.InvokeVoidAsync("localStorage.removeItem", cancellationToken, key);
-                }
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        public void Clear()
+    public string GetItem(string key)
+    {
+        CheckForInProcessRuntime();
+        try
         {
-            CheckForInProcessRuntime();
-            try
-            {
-                _jSInProcessRuntime.InvokeVoid("localStorage.clear");
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
+            return _jSInProcessRuntime.Invoke<string>("localStorage.getItem", key);
         }
-
-        public string GetItem(string key)
+        catch (Exception exception)
         {
-            CheckForInProcessRuntime();
-            try
+            if (IsStorageDisabledException(exception))
             {
-                return _jSInProcessRuntime.Invoke<string>("localStorage.getItem", key);
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        public string Key(int index)
+    public string Key(int index)
+    {
+        CheckForInProcessRuntime();
+        try
         {
-            CheckForInProcessRuntime();
-            try
-            {
-                return _jSInProcessRuntime.Invoke<string>("localStorage.key", index);
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
+            return _jSInProcessRuntime.Invoke<string>("localStorage.key", index);
         }
-
-        public bool ContainKey(string key)
+        catch (Exception exception)
         {
-            CheckForInProcessRuntime();
-            try
+            if (IsStorageDisabledException(exception))
             {
-                return _jSInProcessRuntime.Invoke<bool>("localStorage.hasOwnProperty", key);
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        public int Length()
+    public bool ContainKey(string key)
+    {
+        CheckForInProcessRuntime();
+        try
         {
-            CheckForInProcessRuntime();
-            try
-            {
-                return _jSInProcessRuntime.Invoke<int>("eval", "localStorage.length");
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
+            return _jSInProcessRuntime.Invoke<bool>("localStorage.hasOwnProperty", key);
         }
-
-        public void RemoveItem(string key)
+        catch (Exception exception)
         {
-            CheckForInProcessRuntime();
-            try
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public int Length()
+    {
+        CheckForInProcessRuntime();
+        try
+        {
+            return _jSInProcessRuntime.Invoke<int>("eval", "localStorage.length");
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public void RemoveItem(string key)
+    {
+        CheckForInProcessRuntime();
+        try
+        {
+            _jSInProcessRuntime.InvokeVoid("localStorage.removeItem", key);
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public void RemoveItems(IEnumerable<string> keys)
+    {
+        CheckForInProcessRuntime();
+        try
+        {
+            foreach (var key in keys)
             {
                 _jSInProcessRuntime.InvokeVoid("localStorage.removeItem", key);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
         }
-
-        public void RemoveItems(IEnumerable<string> keys)
+        catch (Exception exception)
         {
-            CheckForInProcessRuntime();
-            try
+            if (IsStorageDisabledException(exception))
             {
-                foreach (var key in keys)
-                {
-                    _jSInProcessRuntime.InvokeVoid("localStorage.removeItem", key);
-                }
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
             }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
 
-                throw;
-            }
+            throw;
         }
-
-        public void SetItem(string key, string data)
-        {
-            CheckForInProcessRuntime();
-            try
-            {
-                _jSInProcessRuntime.InvokeVoid("localStorage.setItem", key, data);
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
-        }
-
-        public IEnumerable<string> Keys()
-        {
-            CheckForInProcessRuntime();
-            try
-            {
-                return _jSInProcessRuntime.Invoke<IEnumerable<string>>("eval", "Object.keys(localStorage)");
-            }
-            catch (Exception exception)
-            {
-                if (IsStorageDisabledException(exception))
-                {
-                    throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
-                }
-
-                throw;
-            }
-        }
-
-        private void CheckForInProcessRuntime()
-        {
-            if (_jSInProcessRuntime == null)
-                throw new InvalidOperationException("IJSInProcessRuntime not available");
-        }
-
-        private static bool IsStorageDisabledException(Exception exception)
-            => exception.Message.Contains("Failed to read the 'localStorage' property from 'Window'");
     }
+
+    public void SetItem(string key, string data)
+    {
+        CheckForInProcessRuntime();
+        try
+        {
+            _jSInProcessRuntime.InvokeVoid("localStorage.setItem", key, data);
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    public IEnumerable<string> Keys()
+    {
+        CheckForInProcessRuntime();
+        try
+        {
+            return _jSInProcessRuntime.Invoke<IEnumerable<string>>("eval", "Object.keys(localStorage)");
+        }
+        catch (Exception exception)
+        {
+            if (IsStorageDisabledException(exception))
+            {
+                throw new BrowserStorageDisabledException(StorageNotAvailableMessage, exception);
+            }
+
+            throw;
+        }
+    }
+
+    private void CheckForInProcessRuntime()
+    {
+        if (_jSInProcessRuntime == null)
+            throw new InvalidOperationException("IJSInProcessRuntime not available");
+    }
+
+    private static bool IsStorageDisabledException(Exception exception)
+        => exception.Message.Contains("Failed to read the 'localStorage' property from 'Window'");
 }

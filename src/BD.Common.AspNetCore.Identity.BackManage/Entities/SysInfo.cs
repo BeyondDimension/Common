@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 后台系统信息实体类
 /// </summary>
 [Table("BM_SystemInfos")]
-public class SysInfo : Entity<Guid>, INEWSEQUENTIALID, ITenant
+public sealed class SysInfo : Entity<Guid>, INEWSEQUENTIALID, ITenant
 {
     [Comment("租户 Id")]
     public Guid TenantId { get; set; }

@@ -1,46 +1,40 @@
-using System;
-using System.Diagnostics;
-using Microsoft.Maui.ApplicationModel;
 #if __WATCHOS__
 using WatchKit;
 using UIDevice = WatchKit.WKInterfaceDevice;
 #else
-using UIKit;
 #endif
 
-using ObjCRuntime;
+namespace Microsoft.Maui.Devices;
 
-namespace Microsoft.Maui.Devices
+class DeviceInfoImplementation : IDeviceInfo
 {
-	class DeviceInfoImplementation : IDeviceInfo
-	{
-		public string Model
-		{
-			get
-			{
-				try
-				{
-					return PlatformUtils.GetSystemLibraryProperty("hw.machine");
-				}
-				catch (Exception)
-				{
-					Debug.WriteLine("Unable to query hardware model, returning current device model.");
-				}
-				return UIDevice.CurrentDevice.Model;
-			}
-		}
+    public string? Model
+    {
+        get
+        {
+            try
+            {
+                return PlatformUtils.GetSystemLibraryProperty("hw.machine");
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Unable to query hardware model, returning current device model.");
+            }
+            return UIDevice.CurrentDevice.Model;
+        }
+    }
 
-		public string Manufacturer => "Apple";
+    public string Manufacturer => "Apple";
 
-		public string Name => UIDevice.CurrentDevice.Name;
+    public string Name => UIDevice.CurrentDevice.Name;
 
-		public string VersionString => UIDevice.CurrentDevice.SystemVersion;
+    public string VersionString => UIDevice.CurrentDevice.SystemVersion;
 
-		public Version Version => Utils.ParseVersion(VersionString);
+    public Version Version => Utils.ParseVersion(VersionString);
 
-		public DevicePlatform Platform =>
+    public DevicePlatform Platform =>
 #if MACCATALYST
-			DevicePlatform.MacCatalyst;
+        DevicePlatform.MacCatalyst;
 #elif IOS
 			DevicePlatform.iOS;
 #elif __TVOS__
@@ -49,14 +43,14 @@ namespace Microsoft.Maui.Devices
 			DevicePlatform.watchOS;
 #endif
 
-		public DeviceIdiom Idiom
-		{
-			get
-			{
+    public DeviceIdiom Idiom
+    {
+        get
+        {
 #if __WATCHOS__
 			return DeviceIdiom.Watch;
 #elif MACCATALYST
-			return DeviceIdiom.Desktop;
+            return DeviceIdiom.Desktop;
 #else
 				switch (UIDevice.CurrentDevice.UserInterfaceIdiom)
 				{
@@ -72,14 +66,13 @@ namespace Microsoft.Maui.Devices
 						return DeviceIdiom.Unknown;
 				}
 #endif
-			}
-		}
+        }
+    }
 
-		public DeviceType DeviceType =>
+    public DeviceType DeviceType =>
 #if MACCATALYST || MACOS
-			DeviceType.Physical;
+        DeviceType.Physical;
 #else
-			Runtime.Arch == Arch.DEVICE ? DeviceType.Physical : DeviceType.Virtual;
+        Runtime.Arch == Arch.DEVICE ? DeviceType.Physical : DeviceType.Virtual;
 #endif
-	}
 }

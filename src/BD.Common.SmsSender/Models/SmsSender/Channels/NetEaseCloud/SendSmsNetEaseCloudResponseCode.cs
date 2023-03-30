@@ -21,5 +21,5 @@ public enum SendSmsNetEaseCloudResponseCode
 
     参数错误 = 414,
     频率控制 = 416,
-    服务器内部错误 = 500
+    服务器内部错误 = 500,
 }

@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 菜单按钮关系
 /// </summary>
 [Table("BM_MenuButtons")]
-public class SysMenuButton : ITenant, IOrder
+public sealed class SysMenuButton : ITenant, IOrder
 {
     [Comment("租户 Id")]
     public Guid TenantId { get; set; }
@@ -25,8 +25,8 @@ public class SysMenuButton : ITenant, IOrder
     public long Order { get; set; }
 
     /// <inheritdoc cref="SysButton"/>
-    public virtual SysButton? Button { get; set; }
+    public SysButton? Button { get; set; }
 
     /// <inheritdoc cref="SysMenu"/>
-    public virtual SysMenu? Menu { get; set; }
+    public SysMenu? Menu { get; set; }
 }

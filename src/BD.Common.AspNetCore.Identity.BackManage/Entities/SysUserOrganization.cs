@@ -32,8 +32,14 @@ public class SysUserOrganization : ITenant
         public void Configure(EntityTypeBuilder<SysUserOrganization> builder)
         {
             builder.HasKey(x => new { x.UserId, x.OrganizationId, x.TenantId });
-            builder.HasOne(x => x.User).WithOne().HasForeignKey<SysUserOrganization>(x => x.UserId);
-            builder.HasOne(x => x.Organization).WithOne().HasForeignKey<SysUserOrganization>(x => x.OrganizationId);
+            builder.HasOne(x => x.User)
+                .WithMany(x => x.Organizations)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Organization)
+                .WithMany(x => x.UserOrganizations)
+                .HasForeignKey(x => x.OrganizationId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

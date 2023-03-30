@@ -22,7 +22,7 @@ namespace Blazored.LocalStorage
         /// (<see cref="JSRuntime.DefaultAsyncTimeout"/>) from being applied.
         /// </param>
         /// <returns>A <see cref="ValueTask"/> representing the completion of the operation.</returns>
-        ValueTask<T> GetItemAsync<T>(string key, CancellationToken cancellationToken = default);
+        ValueTask<T?> GetItemAsync<T>(string key, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve the specified data from local storage as a <see cref="string"/>.

@@ -50,11 +50,11 @@ public sealed class SysMenuDTO2 : KeyModel<Guid>
     {
         Id = item.Id,
         Name = item.Name,
-        Icon = item.Icon,
+        Icon = item.IconUrl,
         Key = item.Key,
         Order = item.Order,
         ParentId = item.ParentId,
-        Path = item.Path,
+        Path = item.Url,
         Remark = item.Remarks,
     };
 #endif

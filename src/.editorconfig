@@ -122,7 +122,7 @@ csharp_prefer_static_local_function = true
 csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async
 
 # 代码块首选项
-csharp_style_namespace_declarations=file_scoped:suggestion
+csharp_style_namespace_declarations=file_scoped:error
 csharp_prefer_braces = false
 csharp_prefer_simple_using_statement = true
 
@@ -282,7 +282,7 @@ dotnet_diagnostic.SA1633.severity = silent
 dotnet_diagnostic.SA1128.severity = silent
 
 # SA1413: Use trailing comma in multi-line initializers
-dotnet_diagnostic.SA1413.severity = suggestion
+dotnet_diagnostic.SA1413.severity = error
 
 # SA1005: Single line comments should begin with single space
 dotnet_diagnostic.SA1005.severity = none
@@ -472,3 +472,45 @@ dotnet_diagnostic.SA1112.severity = silent
 
 # SA1111: Closing parenthesis should be on line of last parameter
 dotnet_diagnostic.SA1111.severity = silent
+
+# CS8618: 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑声明为可以为 null。
+dotnet_diagnostic.CS8618.severity = error
+
+# CS8604: 引用类型参数可能为 null。
+dotnet_diagnostic.CS8604.severity = error
+
+# CA1829: 在可用时使用 Length/Count 属性而不是 Count()
+dotnet_diagnostic.CA1829.severity = error
+
+# CS8601: 引用类型赋值可能为 null。
+dotnet_diagnostic.CS8601.severity = error
+
+# CS8603: 可能返回 null 引用。
+dotnet_diagnostic.CS8603.severity = error
+
+# IDE0005: Using 指令是不需要的。
+dotnet_diagnostic.IDE0005.severity = error
+
+# CS8602: 解引用可能出现空引用。
+dotnet_diagnostic.CS8602.severity = error
+
+# CS8766: 返回类型中引用类型的为 Null 性与隐式实现的成员不匹配(可能是由于为 Null 性特性)。
+dotnet_diagnostic.CS8766.severity = error
+
+# CS8600: 将 null 字面量或可能为 null 的值转换为非 null 类型。
+dotnet_diagnostic.CS8600.severity = error
+
+# CS8767: 参数类型中引用类型的为 Null 性与隐式实现的成员不匹配(可能是由于为 Null 性特性)。
+dotnet_diagnostic.CS8767.severity = error
+
+# CS8625: 无法将 null 字面量转换为非 null 的引用类型。
+dotnet_diagnostic.CS8625.severity = error
+
+# CS8765: 参数类型的为 Null 性与重写成员不匹配(可能是由于为 Null 性特性)。
+dotnet_diagnostic.CS8765.severity = error
+
+# CS8619: 值中的引用类型的为 Null 性与目标类型不匹配。
+dotnet_diagnostic.CS8619.severity = error
+
+# CS8622: Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+dotnet_diagnostic.CS8622.severity = error

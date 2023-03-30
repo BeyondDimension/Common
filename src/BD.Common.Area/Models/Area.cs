@@ -64,8 +64,9 @@ public sealed partial class Area : IArea
         //var lz4Options = MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4BlockArray);
         //var result = MessagePackSerializer.Deserialize<Area[]>(Properties.Resources.AMap_adcode_citycode_20210406_xlsx, lz4Options);
         //return result;
-        var result = MemoryPackSerializer.Deserialize<Area[]>(Properties.Resources.AMap_adcode_citycode_20210406);
-        return result;
+        var areas = MemoryPackSerializer.Deserialize<Area[]>(Properties.Resources.AMap_adcode_citycode_20210406);
+        ArgumentNullException.ThrowIfNull(areas);
+        return areas;
     });
 
     public static Area[] Values => values.Value;

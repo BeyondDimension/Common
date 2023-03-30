@@ -14,7 +14,7 @@ public static partial class Browser2
     /// <inheritdoc cref="OpenAsync(string?, BrowserLaunchMode)"/>
     public static bool Open(string? url, BrowserLaunchMode launchMode = DefaultBrowserLaunchMode) => OpenAnalysis(url) switch
     {
-        OpenResultCode.HttpUrl => OpenCore(url, launchMode),
+        OpenResultCode.HttpUrl => OpenCore(url!, launchMode),
         OpenResultCode.StartedByProcess2 => true,
         _ => false,
     };
@@ -27,7 +27,7 @@ public static partial class Browser2
     /// <returns></returns>
     public static Task<bool> OpenAsync(string? url, BrowserLaunchMode launchMode = DefaultBrowserLaunchMode) => OpenAnalysis(url) switch
     {
-        OpenResultCode.HttpUrl => OpenCoreAsync(url, launchMode),
+        OpenResultCode.HttpUrl => OpenCoreAsync(url!, launchMode),
         OpenResultCode.StartedByProcess2 => Task.FromResult(true),
         _ => Task.FromResult(false),
     };
@@ -35,7 +35,7 @@ public static partial class Browser2
     /// <inheritdoc cref="OpenAsync(string?, BrowserLaunchMode)"/>
     public static Task<bool> OpenAsync(string? url, BrowserLaunchOptions options) => OpenAnalysis(url) switch
     {
-        OpenResultCode.HttpUrl => OpenCoreAsync(url, options),
+        OpenResultCode.HttpUrl => OpenCoreAsync(url!, options),
         OpenResultCode.StartedByProcess2 => Task.FromResult(true),
         _ => Task.FromResult(false),
     };

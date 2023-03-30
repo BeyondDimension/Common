@@ -623,13 +623,12 @@ public static class AESUtils
         {
             if (IVByteArray == null) throw new NullReferenceException(nameof(IVByteArray));
             if (KeyByteArray == null) throw new NullReferenceException(nameof(KeyByteArray));
-            return new AesCryptoServiceProvider
-            {
-                Key = KeyByteArray,
-                IV = IVByteArray,
-                Mode = Mode,
-                Padding = Padding
-            };
+            var aes = Aes.Create();
+            aes.Key = KeyByteArray;
+            aes.IV = IVByteArray;
+            aes.Mode = Mode;
+            aes.Padding = Padding;
+            return aes;
         }
 
         public bool Equals(Parameters? other)

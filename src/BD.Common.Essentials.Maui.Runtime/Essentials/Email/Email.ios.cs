@@ -1,37 +1,33 @@
-using System.IO;
-using System.Threading.Tasks;
-using Foundation;
-using UIKit;
 #if !(MACCATALYST || MACOS)
 using MessageUI;
 #endif
 
-namespace Microsoft.Maui.ApplicationModel.Communication
+namespace Microsoft.Maui.ApplicationModel.Communication;
+
+partial class EmailImplementation : IEmail
 {
-	partial class EmailImplementation : IEmail
-	{
-		public bool IsComposeSupported =>
+    public bool IsComposeSupported =>
 #if !(MACCATALYST || MACOS)
 			MFMailComposeViewController.CanSendMail ||
 			MainThread.InvokeOnMainThread(() => UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString("mailto:")));
 #else
-			false;
+        false;
 #endif
 
-		Task PlatformComposeAsync(EmailMessage message)
-		{
+    Task PlatformComposeAsync(EmailMessage? message)
+    {
 #if !(MACCATALYST || MACOS)
 			if (MFMailComposeViewController.CanSendMail)
 				return ComposeWithMailCompose(message);
 			else
 				return ComposeWithUrl(message);
 #else
-			return Task.CompletedTask;
+        return Task.CompletedTask;
 #endif
-		}
+    }
 
-		Task ComposeWithMailCompose(EmailMessage message)
-		{
+    Task ComposeWithMailCompose(EmailMessage message)
+    {
 #if !(MACCATALYST || MACOS)
 			// do this first so we can throw as early as possible
 			var parentController = WindowStateManager.Default.GetCurrentUIViewController(true);
@@ -79,15 +75,15 @@ namespace Microsoft.Maui.ApplicationModel.Communication
 
 			return tcs.Task;
 #else
-			return Task.CompletedTask;
+        return Task.CompletedTask;
 #endif
-		}
+    }
 
-		Task ComposeWithUrl(EmailMessage message)
-		{
-			var url = GetMailToUri(message);
-			var nsurl = NSUrl.FromString(url);
-			return Launcher.Default.OpenAsync(nsurl);
-		}
-	}
+    Task ComposeWithUrl(EmailMessage? message)
+    {
+        if (message == null) return Task.CompletedTask;
+        var url = GetMailToUri(message);
+        var nsurl = NSUrl.FromString(url)!;
+        return Launcher.Default.OpenAsync(nsurl!);
+    }
 }

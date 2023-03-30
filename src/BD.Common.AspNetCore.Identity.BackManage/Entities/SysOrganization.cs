@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 系统组织架构实体类
 /// </summary>
 [Table("BM_Organizations")]
-public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable
+public sealed class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable
 {
     /// <summary>
     /// 组织架构名称
@@ -29,14 +29,23 @@ public class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDi
     /// <summary>
     /// 父级系统组织架构
     /// </summary>
-    public virtual SysOrganization? Parent { get; set; }
+    public SysOrganization? Parent { get; set; }
 
     /// <summary>
     /// 子级系统组织架构
     /// </summary>
-    public virtual List<SysOrganization>? Children { get; set; }
+    public List<SysOrganization>? Children { get; set; }
 
-    public class EntityTypeConfiguration : EntityTypeConfiguration<SysOrganization>
+    public List<SysUserOrganization>? UserOrganizations { get; set; }
+
+    /// <summary>
+    /// 并发令牌 https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
+    /// </summary>
+    [Timestamp]
+    [Comment("并发令牌")]
+    public byte[]? Timestamp { get; set; }
+
+    public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysOrganization>
     {
         public override void Configure(EntityTypeBuilder<SysOrganization> builder)
         {

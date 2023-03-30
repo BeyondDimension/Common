@@ -412,7 +412,7 @@ public class UserManager<TDbContext> : IUserManager, IDisposable where TDbContex
     /// </summary>
     /// <param name="name">The name to normalize.</param>
     /// <returns>A normalized value representing the specified <paramref name="name"/>.</returns>
-    [return: NotNullIfNotNull("name")]
+    [return: NotNullIfNotNull(nameof(name))]
     public virtual string? NormalizeName(string? name)
         => KeyNormalizer == null ? name : KeyNormalizer.NormalizeName(name);
 

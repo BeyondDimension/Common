@@ -4,7 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 角色菜单按钮关系
 /// </summary>
 [Table("BM_MenuButtonRoles")]
-public class SysMenuButtonRole : ITenant
+public sealed class SysMenuButtonRole : ITenant
 {
     [Comment("租户 Id")]
     public Guid TenantId { get; set; }
@@ -31,15 +31,15 @@ public class SysMenuButtonRole : ITenant
     /// 控制器名称
     /// </summary>
     [Required]
-    [MaxLength(MaxLengths.LongName)]
+    [MaxLength(128)] // 此处硬编码
     [Comment("控制器名称")]
     public string ControllerName { get; set; } = "";
 
-    public class EntityTypeConfiguration : IEntityTypeConfiguration<SysMenuButtonRole>
+    public sealed class EntityTypeConfiguration : IEntityTypeConfiguration<SysMenuButtonRole>
     {
         public void Configure(EntityTypeBuilder<SysMenuButtonRole> builder)
         {
-            builder.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId, x.ControllerName });
+            builder.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId, x.ControllerName, });
         }
     }
 }
