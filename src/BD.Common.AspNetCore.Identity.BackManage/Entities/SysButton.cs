@@ -4,6 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统按钮
 /// </summary>
 [Table("BM_Buttons")]
+[EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
 public sealed class SysButton : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable
 {
     /// <summary>

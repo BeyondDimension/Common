@@ -48,48 +48,10 @@ public abstract class ApplicationDbContextBase : DbContext, IApplicationDbContex
     {
         base.OnModelCreating(b);
         b.BuildEntities(AppendBuildEntities_);
-
-        OnModelCreatingCore(b);
-    }
-
-    public static void OnModelCreatingCore(ModelBuilder b)
-    {
-        b.ApplyConfiguration(new SysUser.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysOrganization.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysRole.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysTenant.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysMenu.EntityTypeConfiguration());
-        // SysMenuButton
-        b.ApplyConfiguration(new SysUserRole.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysButton.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysMenuButtonRole.EntityTypeConfiguration());
-        b.ApplyConfiguration(new SysUserOrganization.EntityTypeConfiguration());
-    }
-
-    public static Action<EntityTypeBuilder>? AppendBuildEntitiesCore(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
-    {
-        if (PCreateUser.IsAssignableFrom(type))
-        {
-            buildAction += p =>
-            {
-                p.HasOne(nameof(ICreateUser.CreateUser)).WithMany().HasForeignKey(nameof(ICreateUserId.CreateUserId));
-            };
-        }
-
-        if (POperatorUser.IsAssignableFrom(type))
-        {
-            buildAction += p =>
-            {
-                p.HasOne(nameof(IOperatorUser.OperatorUser)).WithMany().HasForeignKey(nameof(IOperatorUserId.OperatorUserId));
-            };
-        }
-
-        return buildAction;
     }
 
     Action<EntityTypeBuilder>? AppendBuildEntities_(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
     {
-        buildAction = AppendBuildEntitiesCore(modelBuilder, entityType, type, buildAction);
         buildAction = AppendBuildEntities(modelBuilder, entityType, type, buildAction);
         return buildAction;
     }

@@ -4,6 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 角色菜单按钮关系
 /// </summary>
 [Table("BM_MenuButtonRoles")]
+[EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
 public sealed class SysMenuButtonRole : ITenant
 {
     [Comment("租户 Id")]

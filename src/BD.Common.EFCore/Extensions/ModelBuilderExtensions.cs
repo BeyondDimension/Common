@@ -60,14 +60,6 @@ public static class ModelBuilderExtensions
 
             }
 
-            if (POrderInt32.IsAssignableFrom(type))
-            {
-                buildAction += p =>
-                {
-                    p.HasIndex(nameof(IOrderInt32.Order));
-                };
-            }
-
             #endregion
 
             #region 继承自 软删除(IsSoftDeleted) 接口的要设置索引

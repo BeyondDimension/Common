@@ -4,6 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 系统菜单
 /// </summary>
 [Table("BM_Menus")]
+[EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
 public sealed class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRemarks, IDisable
 {
     /// <summary>

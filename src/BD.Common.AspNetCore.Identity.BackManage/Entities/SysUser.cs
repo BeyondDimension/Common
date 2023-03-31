@@ -4,6 +4,7 @@ namespace BD.Common.Entities;
 /// 系统用户(多租户)实体类
 /// </summary>
 [Table("BM_Users")]
+[EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
 public sealed class SysUser : TenantBaseEntityV2, INEWSEQUENTIALID, IRefreshJWTUser, IRemarks, INickName, IPhoneNumber, IDisable
 {
     /// <summary>

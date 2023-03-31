@@ -4,6 +4,7 @@ namespace BD.Common.Entities;
 /// 系统组织架构实体类
 /// </summary>
 [Table("BM_Organizations")]
+[EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
 public sealed class SysOrganization : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IDisable
 {
     /// <summary>

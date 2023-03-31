@@ -4,6 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 用户组织架构关系
 /// </summary>
 [Table("BM_UserOrganizations")]
+[EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
 public class SysUserOrganization : ITenant
 {
     [Comment("租户 Id")]

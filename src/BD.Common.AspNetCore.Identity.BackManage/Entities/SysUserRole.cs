@@ -4,6 +4,7 @@ namespace BD.Common.Entities;
 /// 权限控制相关实体类 - 角色用户关系
 /// </summary>
 [Table("BM_UserRoles")]
+[EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
 public class SysUserRole : ITenant
 {
     [Comment("租户 Id")]

@@ -101,7 +101,6 @@ public static partial class SqlConstants
     public static readonly Type PDisable = typeof(IDisable);
     public static readonly Type PNEWSEQUENTIALID = typeof(INEWSEQUENTIALID);
     public static readonly Type PPhoneNumber = typeof(IPhoneNumber);
-    public static readonly Type POrderInt32 = typeof(IOrderInt32);
 
     /// <summary>
     /// https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types
