@@ -46,7 +46,7 @@ public abstract class CreationBaseEntityV2<TPrimaryKey> :
 public abstract class CreationBaseEntityV2 : CreationBaseEntityV2<Guid>
 {
     public new abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : CreationBaseEntityV2<Guid>.EntityTypeConfiguration<TEntity>
-        where TEntity : OperatorBaseEntityV2<Guid>
+        where TEntity : CreationBaseEntityV2<Guid>
     {
 
     }
