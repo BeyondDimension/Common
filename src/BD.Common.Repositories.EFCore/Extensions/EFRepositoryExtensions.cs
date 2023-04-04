@@ -116,6 +116,18 @@ public static class EFRepositoryExtensions
     }
 
     /// <summary>
+    /// 设置禁用状态
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="disable"></param>
+    /// <returns></returns>
+    public static async Task<int> SetDisableAsync(this IQueryable<IDisable> query, bool disable)
+    {
+        var r = await query.ExecuteUpdateAsync(x => x.SetProperty(y => y.Disable, y => disable));
+        return r;
+    }
+
+    /// <summary>
     /// 根据主键设置禁用状态
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
@@ -130,7 +142,7 @@ public static class EFRepositoryExtensions
     {
         var r = await query
             .Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(id))
-            .ExecuteUpdateAsync(x => x.SetProperty(y => y.Disable, y => disable));
+            .SetDisableAsync(disable);
         return r;
     }
 }

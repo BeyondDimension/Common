@@ -1,3 +1,5 @@
+using BD.Common.Models.Abstractions;
+
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="IRepository"/>
@@ -12,6 +14,17 @@ public interface IRepository<[DynamicallyAccessedMembers(IEntity.DynamicallyAcce
     /// <inheritdoc cref="IEntity{TPrimaryKey}.LambdaEqualId{TEntity}(TPrimaryKey)"/>
     public static Expression<Func<TEntity, bool>> LambdaEqualId(TPrimaryKey primaryKey)
         => IEntity<TPrimaryKey>.LambdaEqualId<TEntity>(primaryKey);
+
+    /// <summary>
+    /// 根据主键设置禁用状态
+    /// </summary>
+    /// <param name="primaryKey"></param>
+    /// <param name="disable"></param>
+    /// <returns></returns>
+    Task<int> SetDisableByIdAsync(TPrimaryKey primaryKey, bool disable)
+    {
+        throw new NotSupportedException();
+    }
 
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
@@ -74,6 +87,19 @@ public interface IRepository<[DynamicallyAccessedMembers(IEntity.DynamicallyAcce
         return ExistAsync(primaryKey, cancellationToken);
     }
 
+    /// <summary>
+    /// 根据主键获取编辑视图模型
+    /// </summary>
+    /// <typeparam name="TEditViewModel"></typeparam>
+    /// <param name="primaryKey"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    Task<TEditViewModel?> GetEditByIdAsync<TEditViewModel>(TPrimaryKey primaryKey, CancellationToken cancellationToken = default) where TEditViewModel : notnull, IKeyModel<TPrimaryKey>
+    {
+        throw new NotImplementedException();
+    }
+
     #endregion
 
     #region 增或改(InsertOrUpdate Funs) 立即执行并返回受影响的行数
@@ -103,6 +129,26 @@ public interface IRepository<[DynamicallyAccessedMembers(IEntity.DynamicallyAcce
     }
 
     /// <summary>
+    /// 根据编辑模型添加或更新一行数据
+    /// </summary>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="viewModel"></param>
+    /// <param name="create"></param>
+    /// <param name="onAdd"></param>
+    /// <param name="onUpdate"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotSupportedException"></exception>
+    Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync<TViewModel>(TViewModel viewModel,
+        Func<TEntity>? create = null,
+        Action<TEntity>? onAdd = null,
+        Action<TEntity>? onUpdate = null,
+        CancellationToken cancellationToken = default) where TViewModel : notnull
+    {
+        throw new NotSupportedException();
+    }
+
+    /// <summary>
     /// 批量新增或更新实体
     /// </summary>
     /// <param name="entities">要新增或更新的多个实体</param>
@@ -117,7 +163,7 @@ public interface IRepository<[DynamicallyAccessedMembers(IEntity.DynamicallyAcce
     /// <param name="entities">要新增或更新的多个实体</param>
     /// <returns>受影响的行数与数据库逻辑</returns>
     IAsyncEnumerable<(int rowCount, DbRowExecResult result, TEntity entity)> InsertOrUpdateAsync(params TEntity[] entities)
-        => InsertOrUpdateAsync(entities.AsEnumerable());
+        => InsertOrUpdateAsync(entities: entities.AsEnumerable());
 
     #endregion
 }

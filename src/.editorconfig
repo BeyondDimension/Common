@@ -514,3 +514,9 @@ dotnet_diagnostic.CS8619.severity = error
 
 # CS8622: Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
 dotnet_diagnostic.CS8622.severity = error
+
+# CA1846: 首选 “AsSpan” 而不是 “Substring”
+dotnet_diagnostic.CA1846.severity = error
+
+# IDE0057: 使用范围运算符
+dotnet_diagnostic.IDE0057.severity = error

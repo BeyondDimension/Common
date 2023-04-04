@@ -29,6 +29,25 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
         });
     }
 
+    protected virtual Task<int> SetDisableAsync(IQueryable<TEntity> query, bool disable)
+    {
+        if (query is IQueryable<IDisable> queryDisable)
+        {
+            return EFRepositoryExtensions.SetDisableAsync(queryDisable, disable);
+        }
+        else
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public virtual async Task<int> SetDisableByIdAsync(TPrimaryKey primaryKey, bool disable)
+    {
+        var query = EntityNoTracking.Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey));
+        var r = await SetDisableAsync(query, disable);
+        return r;
+    }
+
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
     protected virtual async Task<int> ExecuteDeleteAsync(IQueryable<TEntity> query, CancellationToken cancellationToken = default)
@@ -63,18 +82,43 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
 
     #endregion
 
+    protected virtual CancellationToken CreateLinkedTokenSource(CancellationToken cancellationToken = default)
+    {
+        if (cancellationToken == default || cancellationToken == RequestAborted) return RequestAborted;
+        return CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, RequestAborted).Token;
+    }
+
     #region 查(通用查询)
 
     public virtual async ValueTask<TEntity?> FindAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken)
     {
         if (IRepository<TEntity, TPrimaryKey>.IsDefault(primaryKey)) return default;
-        return await Entity.FindAsync(keyValues: new object[] { primaryKey }, cancellationToken: cancellationToken);
+        return await Entity.FindAsync(keyValues: new object[] { primaryKey }, cancellationToken: CreateLinkedTokenSource(cancellationToken));
     }
 
     public virtual async ValueTask<bool> ExistAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken)
     {
         if (IRepository<TEntity, TPrimaryKey>.IsDefault(primaryKey)) return false;
-        return await Entity.AnyAsync(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey), cancellationToken);
+        return await Entity.AnyAsync(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey), CreateLinkedTokenSource(cancellationToken));
+    }
+
+    /// <summary>
+    /// 将实体类型转换为视图模型类，可使用 AutoMapper 实现重写
+    /// </summary>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="query"></param>
+    /// <returns></returns>
+    /// <exception cref="NotSupportedException"></exception>
+    protected virtual IQueryable<TViewModel> Cast<TViewModel>(IQueryable<TEntity> query)
+    {
+        throw new NotSupportedException();
+    }
+
+    public virtual Task<TEditViewModel?> GetEditByIdAsync<TEditViewModel>(TPrimaryKey primaryKey, CancellationToken cancellationToken = default) where TEditViewModel : notnull, IKeyModel<TPrimaryKey>
+    {
+        var query = EntityNoTracking.Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey));
+        var query_edit = Cast<TEditViewModel>(query);
+        return query_edit.FirstOrDefaultAsync(CreateLinkedTokenSource(cancellationToken));
     }
 
     #endregion
@@ -119,30 +163,30 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
         }
     }
 
-    public virtual async Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync<TDTO>(
-        TDTO dto,
+    public virtual async Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync<TViewModel>(
+        TViewModel viewModel,
         Func<TEntity>? create = null,
         Action<TEntity>? onAdd = null,
         Action<TEntity>? onUpdate = null,
-        CancellationToken cancellationToken = default) where TDTO : notnull
+        CancellationToken cancellationToken = default) where TViewModel : notnull
     {
         TPrimaryKey primaryKey;
-        if (dto is IEntity<TPrimaryKey> entity_id)
+        if (viewModel is IEntity<TPrimaryKey> entity_id)
         {
             primaryKey = entity_id.Id;
         }
-        else if (dto is IKeyModel<TPrimaryKey> km_id)
+        else if (viewModel is IKeyModel<TPrimaryKey> km_id)
         {
             primaryKey = km_id.Id;
         }
-        else if (dto is TEntity entity)
+        else if (viewModel is TEntity entity)
         {
             primaryKey = GetPrimaryKey(entity);
         }
         else
         {
             throw new InvalidOperationException(
-                $"Type {dto.GetType()} must inherit from {typeof(IKeyModel<TPrimaryKey>)}.");
+                $"Type {viewModel.GetType()} must inherit from {typeof(IKeyModel<TPrimaryKey>)}.");
         }
         var existingEntity = await FindAsync(primaryKey, cancellationToken);
         DbRowExecResult result;
@@ -150,13 +194,13 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
         {
             var entity = create == null ? Activator.CreateInstance<TEntity>() : create();
             await Entity.AddAsync(entity, cancellationToken);
-            db.Entry(entity).CurrentValues.SetValues(dto);
+            db.Entry(entity).CurrentValues.SetValues(viewModel);
             onAdd?.Invoke(entity);
             result = DbRowExecResult.Insert;
         }
         else
         {
-            db.Entry(existingEntity).CurrentValues.SetValues(dto);
+            db.Entry(existingEntity).CurrentValues.SetValues(viewModel);
             onUpdate?.Invoke(existingEntity);
             result = DbRowExecResult.Update;
         }
