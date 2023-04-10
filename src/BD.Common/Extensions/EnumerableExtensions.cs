@@ -44,6 +44,7 @@ public static class EnumerableExtensions
     public static Dictionary<TKey, TValue> ReverseKeyValue<TValue, TKey>(this IEnumerable<KeyValuePair<TValue, TKey>> source) where TKey : notnull => source.ToDictionary(k => k.Value, v => v.Key);
 
     /// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddRange<T>(this IList<T> ts, IEnumerable<T> collection)
     {
         if (ts is List<T> list)
@@ -61,6 +62,7 @@ public static class EnumerableExtensions
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IEnumerable<TSource> Distinct<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
     {
         var set = new HashSet<TKey>(EqualityComparer<TKey>.Default);
@@ -71,6 +73,7 @@ public static class EnumerableExtensions
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
     {
         HashSet<TKey> seenKeys = new();
@@ -101,6 +104,7 @@ public static class EnumerableExtensions
     /// <param name="keyGetter"></param>
     /// <param name="valueGetter"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Dictionary<TKey, TValue> ToDictionaryIgnoreRepeat<TElement, TKey, TValue>(this IEnumerable<TElement> source, Func<TElement, TKey> keyGetter, Func<TElement, TValue> valueGetter) where TKey : notnull
     {
         var dict = new Dictionary<TKey, TValue>();
@@ -114,5 +118,37 @@ public static class EnumerableExtensions
             dict.Add(key, valueGetter(e));
         }
         return dict;
+    }
+
+    /// <inheritdoc cref="List{T}.ForEach(Action{T})"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void ForEach<T>(this IEnumerable<T> ts, Action<T> action)
+    {
+        if (ts is List<T> list)
+        {
+            list.ForEach(action);
+        }
+        else if (ts is T[] array)
+        {
+            Array.ForEach(array, action);
+        }
+        else
+        {
+            foreach (var item in ts)
+            {
+                action(item);
+            }
+        }
+    }
+
+    /// <inheritdoc cref="List{T}.ForEach(Action{T})"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void FindAllForEach<T>(this IEnumerable<T> ts, Predicate<T> match, Action<T> action)
+    {
+        foreach (var item in ts)
+        {
+            if (match(item))
+                action(item);
+        }
     }
 }
