@@ -11,7 +11,7 @@ public sealed class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRem
     /// 按钮多语言名称
     /// </summary>
     [Required]
-    [MaxLength(MaxLengths.Name)]
+    [MaxLength(MaxLengths.MenuKey)]
     [Comment("按钮多语言名称")]
     public string Key { get; set; } = "";
 
@@ -19,7 +19,7 @@ public sealed class SysMenu : TenantBaseEntityV2, INEWSEQUENTIALID, IOrder, IRem
     /// 菜单名称
     /// </summary>
     [Required]
-    [MaxLength(MaxLengths.Name)]
+    [MaxLength(MaxLengths.MenuName)]
     [Comment("菜单名称")]
     public string Name { get; set; } = "";
 

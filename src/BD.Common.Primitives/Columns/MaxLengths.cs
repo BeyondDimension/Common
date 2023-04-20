@@ -18,6 +18,16 @@ public static class MaxLengths
     public const int Name = 20;
 
     /// <summary>
+    /// 菜单 Key
+    /// </summary>
+    public const int MenuKey = 100;
+
+    /// <summary>
+    /// 菜单名称
+    /// </summary>
+    public const int MenuName = 50;
+
+    /// <summary>
     /// 一般长名称
     /// </summary>
     public const int LongName = 400;
