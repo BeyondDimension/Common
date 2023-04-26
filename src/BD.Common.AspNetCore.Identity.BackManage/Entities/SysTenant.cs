@@ -5,7 +5,7 @@ namespace BD.Common.Entities;
 /// </summary>
 [Table("BM_Tenants")]
 [EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
-public sealed class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemarks
+public sealed class SysTenant : OperatorBaseEntityV2, INEWSEQUENTIALID, IDisable, IRemarks, ISoftDeleted
 {
     /// <summary>
     /// 租户名称
@@ -108,6 +108,9 @@ public sealed class SysTenant : TenantBaseEntityV2, INEWSEQUENTIALID, IDisable, 
     /// </summary>
     [Comment("是否为平台管理员")]
     public bool IsPlatformAdministrator { get; set; }
+
+    [Comment("是否软删除")]
+    public bool SoftDeleted { get; set; }
 
     /// <summary>
     /// 并发令牌 https://learn.microsoft.com/zh-cn/ef/core/modeling/concurrency?tabs=data-annotations#timestamprowversion
