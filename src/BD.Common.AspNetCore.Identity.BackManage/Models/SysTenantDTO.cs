@@ -130,16 +130,16 @@ public sealed class AddOrEditSysTenantDTO : KeyModel<Guid>, IValidatableObject
     /// <inheritdoc cref="SysTenant.UniqueCode"/>
     public string? UniqueCode { get; set; }
 
-    /// <inheritdoc cref="SysTenant.ContactName"/>
+    /// <inheritdoc cref="SysTenant.Contact"/>
     public string? ContactName { get; set; }
 
-    /// <inheritdoc cref="SysTenant.ContactPhone"/>
+    /// <inheritdoc cref="SysTenant.ContactPhoneNumber"/>
     public string? ContactPhone { get; set; }
 
     /// <inheritdoc cref="SysTenant.Address"/>
     public string? Address { get; set; }
 
-    /// <inheritdoc cref="SysTenant.Email"/>
+    /// <inheritdoc cref="SysTenant.RegisterEmail"/>
     public string? Email { get; set; }
 
     /// <inheritdoc cref="SysTenant.RegisterPhoneNumber"/>
@@ -169,7 +169,7 @@ public sealed class AddOrEditSysTenantDTO : KeyModel<Guid>, IValidatableObject
     /// <inheritdoc cref="SysTenant.AuthorizationEndTime"/>
     public DateTimeOffset AuthorizationEndTime { get; set; }
 
-    /// <inheritdoc cref="SysTenant.Status"/>
+    /// <inheritdoc cref="SysTenant.Disable"/>
     public bool Disable { get; set; }
 
     /// <inheritdoc cref="SysTenant.Remarks"/>

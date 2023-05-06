@@ -8,7 +8,7 @@ public static class ColorConverters
     {
         // Undefined
         if (hex.Length < 3)
-            throw new ArgumentException(nameof(hex));
+            throw new ArgumentException(null, nameof(hex));
 
         var idx = (hex[0] == '#') ? 1 : 0;
 

@@ -1,5 +1,3 @@
-using System.Runtime.Versioning;
-
 // ReSharper disable once CheckNamespace
 namespace System;
 

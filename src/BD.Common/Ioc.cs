@@ -1,7 +1,3 @@
-#if !NOT_DI
-using Microsoft.Extensions.DependencyInjection;
-#endif
-
 namespace System;
 
 /// <summary>

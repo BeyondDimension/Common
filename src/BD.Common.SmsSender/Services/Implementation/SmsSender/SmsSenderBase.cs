@@ -1,5 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-
 namespace BD.Common.Services.Implementation.SmsSender;
 
 public abstract class SmsSenderBase : ISmsSender
@@ -62,7 +60,7 @@ public abstract class SmsSenderBase : ISmsSender
         var jsonStr = JsonSerializer.Serialize(inputValue, JsonSerializerCompatOptions.Default);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #endif
-        return new StringContent(jsonStr, Encoding.UTF8, MimeTypes.Json);
+        return new StringContent(jsonStr, Encoding.UTF8, MediaTypeNames.JSON);
     }
 
     protected virtual async Task<T?> ReadFromJsonAsync<T>(HttpContent content, CancellationToken cancellationToken)

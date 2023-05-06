@@ -6,7 +6,7 @@ namespace BD.Common.Controllers.Abstractions;
 /// <typeparam name="T"></typeparam>
 [Route("api/[controller]")]
 [ApiController]
-[Produces(MimeTypes.Json)]
+[Produces(MediaTypeNames.JSON)]
 [ProducesResponseType(StatusCodes.Status200OK)]
 [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
 public abstract class ApiControllerBase<T> : ControllerBase where T : ApiControllerBase<T>

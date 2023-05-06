@@ -72,7 +72,8 @@ public static class String2
     /// <param name="url"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsStoreUrl([NotNullWhen(true)] string? url) => url != null && url.StartsWith(Prefix_MSStore, StringComparison.OrdinalIgnoreCase);
+    public static bool IsStoreUrl([NotNullWhen(true)] string? url)
+        => url != null && url.StartsWith(Prefix_MSStore, StringComparison.OrdinalIgnoreCase);
 
     /// <summary>
     /// 判断字符串是否为 Email Url
@@ -80,7 +81,8 @@ public static class String2
     /// <param name="url"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsEmailUrl([NotNullWhen(true)] string? url) => url != null && url.StartsWith(Prefix_Email, StringComparison.OrdinalIgnoreCase);
+    public static bool IsEmailUrl([NotNullWhen(true)] string? url)
+        => url != null && url.StartsWith(Prefix_Email, StringComparison.OrdinalIgnoreCase);
 
     /// <summary>
     /// 判断字符串是否为 File Url
@@ -88,5 +90,6 @@ public static class String2
     /// <param name="url"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsFileUrl([NotNullWhen(true)] string? url) => url != null && url.StartsWith(Prefix_File, StringComparison.OrdinalIgnoreCase);
+    public static bool IsFileUrl([NotNullWhen(true)] string? url)
+        => url != null && url.StartsWith(Prefix_File, StringComparison.OrdinalIgnoreCase);
 }

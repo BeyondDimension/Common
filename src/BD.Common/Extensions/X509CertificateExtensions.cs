@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-
 // ReSharper disable once CheckNamespace
 namespace System;
 

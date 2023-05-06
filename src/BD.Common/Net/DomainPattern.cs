@@ -1,7 +1,5 @@
 // https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub.Configuration/DomainPattern.cs
 
-using System.Text.RegularExpressions;
-
 // ReSharper disable once CheckNamespace
 namespace System.Net;
 
@@ -19,7 +17,10 @@ public sealed class DomainPattern : IComparable<DomainPattern>
     readonly ImmutableArray<Regex> regexs;
     readonly string domainPattern;
 
-    public int Sort { get; init; }
+    /// <summary>
+    /// 排序
+    /// </summary>
+    public long Order { get; init; }
 
     public DomainPattern(string domainPattern)
     {
@@ -57,11 +58,11 @@ public sealed class DomainPattern : IComparable<DomainPattern>
             return 1;
         }
 
-        if (Sort < other.Sort)
+        if (Order < other.Order)
         {
             return -1;
         }
-        else if (Sort > other.Sort)
+        else if (Order > other.Order)
         {
             return 1;
         }

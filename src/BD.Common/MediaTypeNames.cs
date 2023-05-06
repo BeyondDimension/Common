@@ -46,6 +46,8 @@ public static class MediaTypeNames
 
     public const string HTML = "text/html";
 
+    public const string Markdown = "text/markdown";
+
     public const string IMAGE = "image/*";
 
     public const string APK = "application/vnd.android.package-archive";
@@ -79,6 +81,8 @@ public static class MediaTypeNames
     public const string All = "*/*";
 
     public const string _7Z = "application/x-7z-compressed";
+
+    public const string ZIP = "application/zip";
 
     public const string CER = "application/x-x509-ca-cert";
 }
