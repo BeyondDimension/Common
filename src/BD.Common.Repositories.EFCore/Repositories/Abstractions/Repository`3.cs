@@ -147,6 +147,7 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
             // 如果实体不使用自动生成的键，则应用程序必须确定是应插入实体还是应更新实体：例如：
             var primaryKey = GetPrimaryKey(entity);
             var existingEntity = await FindAsync(primaryKey, cancellationToken);
+
             DbRowExecResult result;
             if (existingEntity == null)
             {
@@ -155,9 +156,16 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
             }
             else
             {
-                db.Entry(existingEntity).CurrentValues.SetValues(entity);
+                var entityEntry = db.Entry(existingEntity);
+                entityEntry.CurrentValues.SetValues(entity);
+
+                // 忽略与创建相关的字段的变动
+                entityEntry.Property(nameof(ICreateUserId.CreateUserId)).IsModified = false;
+                entityEntry.Property(nameof(ICreationTime.CreationTime)).IsModified = false;
+
                 result = DbRowExecResult.Update;
             }
+
             var rowCount = await db.SaveChangesAsync(cancellationToken);
             return (rowCount, result);
         }
@@ -189,6 +197,7 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
                 $"Type {viewModel.GetType()} must inherit from {typeof(IKeyModel<TPrimaryKey>)}.");
         }
         var existingEntity = await FindAsync(primaryKey, cancellationToken);
+
         DbRowExecResult result;
         if (existingEntity == null)
         {
@@ -200,7 +209,13 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
         }
         else
         {
-            db.Entry(existingEntity).CurrentValues.SetValues(viewModel);
+            var entityEntry = db.Entry(existingEntity);
+            entityEntry.CurrentValues.SetValues(viewModel);
+
+            // 忽略与创建相关的字段的变动
+            entityEntry.Property(nameof(ICreateUserId.CreateUserId)).IsModified = false;
+            entityEntry.Property(nameof(ICreationTime.CreationTime)).IsModified = false;
+
             onUpdate?.Invoke(existingEntity);
             result = DbRowExecResult.Update;
         }
