@@ -1,0 +1,15 @@
+files:
+  - source: /src/BD.Common/Resources/Strings.resx
+    ignore:
+      - '*.cs'
+    translation: /src/BD.Common/Resources/Strings.%two_letters_code%.resx
+  - source: /src/BD.Common.BirthDate/Resources/Strings.resx
+    ignore:
+      - '*.cs'
+    translation: /src/BD.Common.BirthDate/Resources/Strings.%two_letters_code%.resx
+  - source: /src/BD.Common.ModelValidator/Resources/Strings.resx
+    translation: /src/BD.Common.ModelValidator/Resources/Strings.%two_letters_code%.resx
+  - source: /src/BD.Common.PhoneNumber/Resources/Strings.resx
+    translation: /src/BD.Common.PhoneNumber/Resources/Strings.%two_letters_code%.resx
+  - source: /src/BD.Common.Primitives/Resources/Strings.resx
+    translation: /src/BD.Common.Primitives/Resources/Strings.%two_letters_code%.resx
