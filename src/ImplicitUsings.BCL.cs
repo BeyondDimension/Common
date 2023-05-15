@@ -29,6 +29,9 @@ global using System.Net;
 global using System.Net.Security;
 global using System.Net.Http.Headers;
 global using System.Net.Http.Json;
+#if !BLAZOR
+global using System.Net.Http.Client;
+#endif
 global using System.Net.Sockets;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;

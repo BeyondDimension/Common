@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace System;
 
 public static partial class Enum2
@@ -9,6 +7,7 @@ public static partial class Enum2
     /// </summary>
     /// <typeparam name="TEnum"></typeparam>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TEnum[] GetAll<TEnum>() where TEnum : struct, Enum =>
 #if !NET5_0_OR_GREATER
         (TEnum[])Enum.GetValues(typeof(TEnum));
@@ -16,6 +15,7 @@ public static partial class Enum2
         Enum.GetValues<TEnum>();
 #endif
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string[] GetAllStrings<TEnum>() where TEnum : struct, Enum => GetAll<TEnum>().Select(x => x.ToString()).ToArray();
 
     /// <summary>
@@ -24,9 +24,11 @@ public static partial class Enum2
     /// <typeparam name="TEnum"></typeparam>
     /// <param name="resultant"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IEnumerable<TEnum> FlagsSplit<TEnum>(TEnum resultant) where TEnum : struct, Enum
         => GetAll<TEnum>().Where(x => resultant.HasFlag(x)).ToArray();
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ConvertToInt32<TEnum>(TEnum value) where TEnum : struct, Enum => ConvertibleHelper.Convert<int, TEnum>(value);
 
     /// <summary>
@@ -37,6 +39,7 @@ public static partial class Enum2
     /// <typeparam name="TEnum"></typeparam>
     /// <param name="value">要获取描述的枚举值</param>
     /// <returns>指定枚举值的描述</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? GetDescription<TEnum>(this TEnum value) where TEnum : struct, Enum
     {
         // 获取枚举常数名称

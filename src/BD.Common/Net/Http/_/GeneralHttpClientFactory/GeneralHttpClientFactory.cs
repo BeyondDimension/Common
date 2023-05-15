@@ -22,8 +22,6 @@ public abstract partial class GeneralHttpClientFactory : IHttpClientFactory
 
     /// <summary>
     /// 用于 <see cref="IHttpClientFactory.CreateClient(string)"/> 中传递的 name
-    /// <para>如果为 <see langword="null"/> 则调用 <see cref="HttpClientFactoryExtensions.CreateClient(IHttpClientFactory)"/></para>
-    /// <para>默认值为 <see langword="null"/></para>
     /// </summary>
     protected virtual string? DefaultClientName { get; }
 
@@ -54,9 +52,10 @@ public abstract partial class GeneralHttpClientFactory : IHttpClientFactory
 #if DEBUG
         //logger.LogDebug("CreateClient, clientName: {0}", clientName);
 #endif
-        if (clientName == null)
+        if (string.IsNullOrEmpty(clientName))
         {
-            return _clientFactory.CreateClient();
+            // https://github.com/dotnet/runtime/blob/v7.0.5/src/libraries/Microsoft.Extensions.Http/src/HttpClientFactoryExtensions.cs#L22
+            return _clientFactory.CreateClient(Options.DefaultName);
         }
         else
         {

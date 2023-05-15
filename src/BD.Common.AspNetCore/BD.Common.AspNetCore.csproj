@@ -42,6 +42,7 @@
 		<PackageReference Include="NLog" />
 		<PackageReference Include="NLog.Extensions.Logging" />
 		<PackageReference Include="NLog.Web.AspNetCore" />
+		<PackageReference Include="PuppeteerSharp" />
 	</ItemGroup>
 
 	<ItemGroup>

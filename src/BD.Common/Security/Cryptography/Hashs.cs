@@ -7,12 +7,14 @@ public static partial class Hashs
 {
     internal const bool def_hash_str_is_lower = true;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ToString(byte[] bytes, bool isLower = def_hash_str_is_lower) => string.Join(null, bytes.Select(x => x.ToString($"{(isLower ? "x" : "X")}2"))
 #if NET35
         .ToArray()
 #endif
         );
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static byte[] ComputeHash<T>(byte[] buffer, T hashAlgorithm) where T : HashAlgorithm
     {
         var bytes = hashAlgorithm.ComputeHash(buffer);
@@ -20,6 +22,7 @@ public static partial class Hashs
         return bytes;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static byte[] ComputeHash<T>(Stream inputStream, T hashAlgorithm) where T : HashAlgorithm
     {
         var bytes = hashAlgorithm.ComputeHash(inputStream);
@@ -27,18 +30,21 @@ public static partial class Hashs
         return bytes;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString<T>(byte[] buffer, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {
         var bytes = ComputeHash(buffer, hashAlgorithm);
         return ToString(bytes, isLower);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString<T>(Stream inputStream, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {
         var bytes = ComputeHash(inputStream, hashAlgorithm);
         return ToString(bytes, isLower);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString<T>(string str, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {
         var bytes = Encoding.UTF8.GetBytes(str);

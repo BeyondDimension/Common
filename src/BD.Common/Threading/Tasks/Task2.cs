@@ -2,6 +2,7 @@ namespace System.Threading.Tasks;
 
 public static class Task2
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async void InBackground(Action action, bool longRunning = false)
     {
         ArgumentNullException.ThrowIfNull(action);
@@ -16,6 +17,7 @@ public static class Task2
         await Task.Factory.StartNew(action, CancellationToken.None, options, TaskScheduler.Default).ConfigureAwait(false);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void InBackground<T>(Func<T> function, bool longRunning = false)
     {
         ArgumentNullException.ThrowIfNull(function);
@@ -23,6 +25,7 @@ public static class Task2
         InBackground(void () => function(), longRunning);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<IList<T>> InParallel<T>(
         IEnumerable<Task<T>> tasks,
         bool minMemoryUsage = false)
@@ -48,6 +51,7 @@ public static class Task2
         return results;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task InParallel(
         IEnumerable<Task> tasks,
         bool minMemoryUsage = false)

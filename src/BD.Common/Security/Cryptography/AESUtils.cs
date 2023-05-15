@@ -30,6 +30,7 @@ public static class AESUtils
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Aes Create(byte[] data) => Parameters.Create(data).Create();
 
     /// <summary>
@@ -37,6 +38,7 @@ public static class AESUtils
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Aes? Create_Nullable(byte[]? data)
     {
         if (data == default) return default;
@@ -48,13 +50,15 @@ public static class AESUtils
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Aes Create(string data) => Parameters.Create(data).Create();
 
     /// <summary>
-    /// 通过 <see cref="AesParameters"/>(String) 创建 <see cref="Aes"/> 实例
+    /// 通过 <see cref="Parameters"/>(String) 创建 <see cref="Aes"/> 实例
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Aes? Create_Nullable(string? data)
     {
         if (data == default) return default;
@@ -69,6 +73,7 @@ public static class AESUtils
     /// <param name="mode"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Aes Create(
         byte[] key,
         byte[] iv,
@@ -84,6 +89,7 @@ public static class AESUtils
     /// </summary>
     /// <param name="aes"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static Parameters ToParams(this Aes aes) => new(aes.Key, aes.IV, aes.Mode, aes.Padding);
 
     /// <summary>
@@ -91,6 +97,7 @@ public static class AESUtils
     /// </summary>
     /// <param name="aes"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToParamsString(this Aes aes) => aes.ToParams().ToString();
 
     /// <summary>
@@ -98,6 +105,7 @@ public static class AESUtils
     /// </summary>
     /// <param name="aes"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] ToParamsByteArray(this Aes aes) => aes.ToParams().ToByteArray();
 
     #endregion
@@ -110,6 +118,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] Encrypt(this Aes aes, byte[] data)
     {
         using var transform = aes.CreateEncryptor();
@@ -122,6 +131,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? Encrypt_Nullable(this Aes aes, byte[]? data)
     {
         if (data == default) return default;
@@ -134,6 +144,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] EncryptToByteArray(this Aes aes, string text)
     {
         var data = Encoding.UTF8.GetBytes(text);
@@ -146,6 +157,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? EncryptToByteArray_Nullable(this Aes aes, string? text)
     {
         if (text == default) return default;
@@ -158,6 +170,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encrypt(this Aes aes, string text)
     {
         var result = EncryptToByteArray(aes, text);
@@ -170,6 +183,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string EncryptHex(this Aes aes, string text)
     {
         var result = EncryptToByteArray(aes, text);
@@ -182,6 +196,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Encrypt_Nullable(this Aes aes, string? text)
     {
         if (text == default) return default;
@@ -194,6 +209,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string EncryptToString(this Aes aes, byte[] data)
     {
         var result = Encrypt(aes, data);
@@ -206,6 +222,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? EncryptToString_Nullable(this Aes aes, byte[]? data)
     {
         if (data == default) return default;
@@ -222,6 +239,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] Decrypt(this Aes aes, byte[] data)
     {
         using var transform = aes.CreateDecryptor();
@@ -234,6 +252,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? Decrypt_Nullable(this Aes aes, byte[]? data)
     {
         if (data == default) return default;
@@ -246,6 +265,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] DecryptToByteArray(this Aes aes, string text)
     {
         var data = text.Base64UrlDecodeToByteArray();
@@ -258,6 +278,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] DecryptHexToByteArray(this Aes aes, string text)
     {
         var data = Convert2.FromHexString(text);
@@ -270,6 +291,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? DecryptToByteArray_Nullable(this Aes aes, string? text)
     {
         if (text == default) return default;
@@ -282,6 +304,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Decrypt(this Aes aes, string text)
     {
         var result = DecryptToByteArray(aes, text);
@@ -294,6 +317,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string DecryptHex(this Aes aes, string text)
     {
         var result = DecryptHexToByteArray(aes, text);
@@ -306,6 +330,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="text"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Decrypt_Nullable(this Aes aes, string? text)
     {
         if (text == default) return default;
@@ -318,6 +343,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string DecryptToString(this Aes aes, byte[] data)
     {
         var result = Decrypt(aes, data);
@@ -330,6 +356,7 @@ public static class AESUtils
     /// <param name="aes"></param>
     /// <param name="data"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? DecryptToString_Nullable(this Aes aes, byte[]? data)
     {
         if (data == default) return default;
@@ -592,6 +619,7 @@ public static class AESUtils
             _flags = flags;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Parameters Create(byte[] data)
         {
             var uint16 = BitConverter.ToUInt16(data, 0);
@@ -601,6 +629,7 @@ public static class AESUtils
             return new Parameters(mKeyByteArray, mIVByteArray, flags);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Parameters Create(string data)
         {
             var bytes = data.Base64UrlDecodeToByteArray();
@@ -619,6 +648,7 @@ public static class AESUtils
 
         public new string ToString() => ToByteArray().Base64UrlEncode();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Aes Create()
         {
             if (IVByteArray == null) throw new NullReferenceException(nameof(IVByteArray));
@@ -641,12 +671,14 @@ public static class AESUtils
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static (byte[] key, byte[] iv) GetParameters(string s)
     {
         var bytes = Encoding.UTF8.GetBytes(s);
         return GetParameters(bytes);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static (byte[] key, byte[] iv) GetParameters(byte[] bytes)
     {
         var key = Hashs.ByteArray.SHA1(bytes).Concat(Hashs.ByteArray.Crc32(bytes)).ToArray();

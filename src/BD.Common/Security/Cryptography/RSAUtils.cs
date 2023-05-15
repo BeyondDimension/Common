@@ -7,6 +7,7 @@ public static partial class RSAUtils
 {
     #region FromJsonString
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSAParameters GetRSAParametersFromJsonString(string jsonString)
     {
         var rsaParams = Serializable.DJSON<Parameters>(jsonString);
@@ -19,6 +20,7 @@ public static partial class RSAUtils
     /// </summary>
     /// <param name="rsa"></param>
     /// <param name="jsonString"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void FromJsonString(RSA rsa, string jsonString)
     {
         if (rsa == null) throw new ArgumentNullException(nameof(rsa));
@@ -114,6 +116,7 @@ public static partial class RSAUtils
     /// </summary>
     /// <param name="jsonString"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSA CreateFromJsonString(string jsonString)
     {
         var rsaParams = GetRSAParametersFromJsonString(jsonString);
@@ -131,6 +134,7 @@ public static partial class RSAUtils
     /// <param name="rsa"></param>
     /// <param name="includePrivateParameters"><see langword="true" /> 表示同时包含 RSA 公钥和私钥；<see langword="false" /> 表示仅包含公钥。</param>
     /// <returns>包含当前 <see cref="RSA"/> 对象的密钥的 JSON 字符串。</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToJsonString(this RSA rsa, bool includePrivateParameters)
     {
         var rsaParams = rsa.ExportParameters(includePrivateParameters).ToObject();
@@ -148,6 +152,7 @@ public static partial class RSAUtils
     [Obsolete("use DefaultPadding")]
     internal static RSAEncryptionPadding Padding => RSAEncryptionPadding.OaepSHA256;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSAEncryptionPadding GetPaddingByOaepHashAlgorithmName(string? oaepHashAlgorithmName)
     {
         if (!string.IsNullOrWhiteSpace(oaepHashAlgorithmName))
@@ -179,6 +184,7 @@ public static partial class RSAUtils
         return RSAEncryptionPadding.OaepSHA256;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToString(RSAEncryptionPadding rSAEncryptionPadding) => rSAEncryptionPadding.Mode switch
     {
         RSAEncryptionPaddingMode.Pkcs1 => "0",
@@ -208,7 +214,7 @@ public static partial class RSAUtils
     /// <param name="rsa"></param>
     /// <param name="data"></param>
     /// <returns></returns>
-    [Obsolete("", true)]
+    [Obsolete("use byte[] Encrypt(byte[] data, RSAEncryptionPadding padding)", true)]
     public static byte[] Encrypt(this RSA rsa, byte[] data) => rsa.Encrypt(data, Padding);
 
     /// <summary>
@@ -218,6 +224,7 @@ public static partial class RSAUtils
     /// <param name="data"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? Encrypt_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)
     {
         if (data == default) return default;
@@ -232,6 +239,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] EncryptToByteArray(this RSA rsa, string text, RSAEncryptionPadding? padding = null)
     {
         var data = Encoding.UTF8.GetBytes(text);
@@ -246,6 +254,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? EncryptToByteArray_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)
     {
         if (text == default) return default;
@@ -259,6 +268,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Encrypt(this RSA rsa, string text, RSAEncryptionPadding? padding = null)
     {
         var bytes = EncryptToByteArray(rsa, text, padding);
@@ -272,6 +282,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Encrypt_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)
     {
         if (text == default) return default;
@@ -285,6 +296,7 @@ public static partial class RSAUtils
     /// <param name="data"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string EncryptToString(this RSA rsa, byte[] data, RSAEncryptionPadding? padding = null)
     {
         padding ??= DefaultPadding;
@@ -299,6 +311,7 @@ public static partial class RSAUtils
     /// <param name="data"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string EncryptToHexString(this RSA rsa, byte[] data, RSAEncryptionPadding? padding = null)
     {
         padding ??= DefaultPadding;
@@ -313,6 +326,7 @@ public static partial class RSAUtils
     /// <param name="data"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? EncryptToString_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)
     {
         if (data == default) return default;
@@ -329,7 +343,7 @@ public static partial class RSAUtils
     /// <param name="rsa"></param>
     /// <param name="data"></param>
     /// <returns></returns>
-    [Obsolete("", true)]
+    [Obsolete("use byte[] Decrypt(byte[] data, RSAEncryptionPadding padding)", true)]
     public static byte[] Decrypt(this RSA rsa, byte[] data) => rsa.Decrypt(data, Padding);
 
     /// <summary>
@@ -339,6 +353,7 @@ public static partial class RSAUtils
     /// <param name="data"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? Decrypt_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)
     {
         if (data == default) return default;
@@ -353,6 +368,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] DecryptToByteArray(this RSA rsa, string text, RSAEncryptionPadding? padding = null)
     {
         var bytes = text.Base64UrlDecodeToByteArray();
@@ -367,6 +383,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] DecryptToByteArrayHex(this RSA rsa, string text, RSAEncryptionPadding? padding = null)
     {
         var bytes = Convert2.FromHexString(text);
@@ -381,6 +398,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[]? DecryptToByteArray_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)
     {
         if (text == default) return default;
@@ -394,6 +412,7 @@ public static partial class RSAUtils
     /// <param name="data"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string DecryptToString(this RSA rsa, byte[] data, RSAEncryptionPadding? padding = null)
     {
         padding ??= DefaultPadding;
@@ -408,6 +427,7 @@ public static partial class RSAUtils
     /// <param name="data"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? DecryptToString_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)
     {
         if (data == default) return default;
@@ -421,6 +441,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Decrypt(this RSA rsa, string text, RSAEncryptionPadding? padding = null)
     {
         var result = DecryptToByteArray(rsa, text, padding);
@@ -434,6 +455,7 @@ public static partial class RSAUtils
     /// <param name="text"></param>
     /// <param name="padding"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Decrypt_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)
     {
         if (text == default) return default;
@@ -487,6 +509,7 @@ public static partial class RSAUtils
 #endif
         public string? DQ { get; set; }
 
+        /// <summary>
         /// Represents the Exponent parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
         /// </summary>
 #if __HAVE_N_JSON__

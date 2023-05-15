@@ -22,6 +22,7 @@ partial class Hashs
         /// <param name="text"></param>
         /// <param name="isLower"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Crc32(string text, bool isLower = def_hash_str_is_lower) => ComputeHashString(text, CreateCrc32(), isLower);
 
         /// <summary>
@@ -30,6 +31,7 @@ partial class Hashs
         /// <param name="buffer"></param>
         /// <param name="isLower"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Crc32(byte[] buffer, bool isLower = def_hash_str_is_lower) => ComputeHashString(buffer, CreateCrc32(), isLower);
 
         /// <summary>
@@ -38,6 +40,7 @@ partial class Hashs
         /// <param name="inputStream"></param>
         /// <param name="isLower"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Crc32(Stream inputStream, bool isLower = def_hash_str_is_lower) => ComputeHashString(inputStream, CreateCrc32(), isLower);
     }
 
@@ -48,6 +51,7 @@ partial class Hashs
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] Crc32(byte[] buffer) => ComputeHash(buffer, CreateCrc32());
 
         /// <summary>
@@ -55,6 +59,7 @@ partial class Hashs
         /// </summary>
         /// <param name="inputStream"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] Crc32(Stream inputStream) => ComputeHash(inputStream, CreateCrc32());
     }
 }

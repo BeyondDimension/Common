@@ -27,6 +27,7 @@ partial class Hashs
         /// <param name="text"></param>
         /// <param name="isLower"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SHA256(string text, bool isLower = def_hash_str_is_lower) => ComputeHashString(text, CreateSHA256(), isLower);
 
         /// <summary>
@@ -35,6 +36,7 @@ partial class Hashs
         /// <param name="buffer"></param>
         /// <param name="isLower"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SHA256(byte[] buffer, bool isLower = def_hash_str_is_lower) => ComputeHashString(buffer, CreateSHA256(), isLower);
 
         /// <summary>
@@ -43,6 +45,7 @@ partial class Hashs
         /// <param name="inputStream"></param>
         /// <param name="isLower"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string SHA256(Stream inputStream, bool isLower = def_hash_str_is_lower) => ComputeHashString(inputStream, CreateSHA256(), isLower);
     }
 
@@ -53,6 +56,7 @@ partial class Hashs
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA256(byte[] buffer) => ComputeHash(buffer, CreateSHA256());
 
         /// <summary>
@@ -60,6 +64,7 @@ partial class Hashs
         /// </summary>
         /// <param name="inputStream"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA256(Stream inputStream) => ComputeHash(inputStream, CreateSHA256());
     }
 }

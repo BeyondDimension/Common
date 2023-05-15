@@ -3,6 +3,7 @@ namespace System;
 
 public static partial class ConvertibleHelper
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TOut Convert<TOut, TIn>(TIn value)
     {
         var parameter = Expression.Parameter(typeof(TIn));
@@ -13,6 +14,7 @@ public static partial class ConvertibleHelper
     }
 
 #if !BLAZOR
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T? Convert<T>(IConvertible? value) where T : notnull
     {
         if (value == default) return default;
