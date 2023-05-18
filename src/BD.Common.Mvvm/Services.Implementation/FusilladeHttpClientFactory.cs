@@ -12,9 +12,9 @@ using HttpHandlerType = System.Net.Http.SocketsHttpHandler;
 using IHttpClientFactory = System.Net.Http.Client.IHttpClientFactory;
 
 // ReSharper disable once CheckNamespace
-namespace BD.WTTS.Services.Implementation;
+namespace BD.Common.Services.Implementation;
 
-public sealed class FusilladeHttpClientFactory : IHttpClientFactory, IDisposable
+public class FusilladeHttpClientFactory : IHttpClientFactory, IDisposable
 {
     bool disposedValue;
     readonly HttpMessageHandler handler;
@@ -41,6 +41,22 @@ public sealed class FusilladeHttpClientFactory : IHttpClientFactory, IDisposable
         return handler;
     }
 
+    protected virtual HttpClient CreateClient(HttpMessageHandler handler)
+    {
+        var client = new HttpClient(handler);
+
+        try
+        {
+            client.Timeout = GeneralHttpClientFactory.DefaultTimeout;
+        }
+        catch
+        {
+
+        }
+
+        return client;
+    }
+
     HttpClient IHttpClientFactory.CreateClient(string name, HttpHandlerCategory category)
     {
         if (!category.IsDefined())
@@ -60,7 +76,7 @@ public sealed class FusilladeHttpClientFactory : IHttpClientFactory, IDisposable
             _ => this.handler,
         };
 
-        return activeClients[key] = new HttpClient(handler);
+        return activeClients[key] = CreateClient(handler);
     }
 
     void Dispose(bool disposing)
