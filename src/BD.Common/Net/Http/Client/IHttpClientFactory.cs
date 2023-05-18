@@ -21,10 +21,11 @@ public interface IHttpClientFactory
     /// to the logical name specified by <paramref name="name"/>.
     /// </summary>
     /// <param name="name">The logical name of the client to create.</param>
+    /// <param name="category"></param>
     /// <returns>A new <see cref="HttpClient"/> instance.</returns>
     /// <remarks>
     /// <para>
-    /// Each call to <see cref="CreateClient(string)"/> is guaranteed to return a new <see cref="HttpClient"/>
+    /// Each call to <see cref="CreateClient(string, HttpHandlerCategory)"/> is guaranteed to return a new <see cref="HttpClient"/>
     /// instance. It is generally not necessary to dispose of the <see cref="HttpClient"/> as the
     /// <see cref="IHttpClientFactory"/> tracks and disposes resources used by the <see cref="HttpClient"/>.
     /// </para>
@@ -33,5 +34,5 @@ public interface IHttpClientFactory
     /// as desired.
     /// </para>
     /// </remarks>
-    HttpClient CreateClient(string name);
+    HttpClient CreateClient(string name, HttpHandlerCategory category = default);
 }

@@ -1,27 +1,60 @@
-#if NETFRAMEWORK
-using SocketsHttpHandler = System.Net.Http.HttpClientHandler;
+#if !(TARGET_BROWSER || BLAZOR)
+#if ANDROID
+using HttpHandlerType = Xamarin.Android.Net.AndroidMessageHandler;
+#elif IOS || MACCATALYST
+using HttpHandlerType = System.Net.Http.NSUrlSessionHandler;
+#elif NETFRAMEWORK
+using HttpHandlerType = System.Net.Http.HttpClientHandler;
+#else
+using HttpHandlerType = System.Net.Http.SocketsHttpHandler;
+#endif
 #endif
 
 namespace System.Net.Http;
 
-public abstract class HttpClientServiceBaseImpl
+public abstract class HttpClientServiceBaseImpl : IDisposable
 {
+    bool disposedValue;
     protected readonly HttpClient client;
 
     public HttpClientServiceBaseImpl(HttpClient client)
     {
         this.client = client;
     }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                // 释放托管状态(托管对象)
+                client.Dispose();
+            }
+
+            // 释放未托管的资源(未托管的对象)并重写终结器
+            // 将大型字段设置为 null
+            disposedValue = true;
+        }
+    }
+
+    public void Dispose()
+    {
+        // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
+    }
 }
 
 #if !(TARGET_BROWSER || BLAZOR)
-public abstract class HttpClientUseCookiesServiceBaseImpl
+public abstract class HttpClientUseCookiesServiceBaseImpl : IDisposable
 {
     protected readonly CookieContainer cookieContainer = new();
 
-    protected SocketsHttpHandler Handler { get; private set; }
+    protected HttpHandlerType Handler { get; private set; }
 
     Lazy<HttpClient> _client;
+    bool disposedValue;
 
 #pragma warning disable IDE1006 // 命名样式
     protected HttpClient client => _client.Value;
@@ -29,13 +62,13 @@ public abstract class HttpClientUseCookiesServiceBaseImpl
 
     public HttpClientUseCookiesServiceBaseImpl()
     {
-        Handler = GetSocketsHttpHandler(cookieContainer);
+        Handler = CreateHandler(cookieContainer);
         _client = GetLazyHttpClient();
     }
 
-    static SocketsHttpHandler GetSocketsHttpHandler(CookieContainer cookieContainer)
+    static HttpHandlerType CreateHandler(CookieContainer cookieContainer)
     {
-        var handler = new SocketsHttpHandler
+        var handler = new HttpHandlerType
         {
             UseCookies = true,
             CookieContainer = cookieContainer,
@@ -45,9 +78,9 @@ public abstract class HttpClientUseCookiesServiceBaseImpl
             AutomaticDecompression = DecompressionMethods.All,
 #endif
         };
-#if !NETFRAMEWORK
-        handler.Compatibility();
-#endif
+        //#if !NETFRAMEWORK
+        //        handler.Compatibility();
+        //#endif
         return handler;
     }
 
@@ -62,8 +95,35 @@ public abstract class HttpClientUseCookiesServiceBaseImpl
             _client.Value.Dispose();
         }
         Handler.Dispose();
-        Handler = GetSocketsHttpHandler(cookieContainer);
+        Handler = CreateHandler(cookieContainer);
         _client = GetLazyHttpClient();
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                // 释放托管状态(托管对象)
+                if (_client.IsValueCreated)
+                {
+                    _client.Value.Dispose();
+                }
+                Handler.Dispose();
+            }
+
+            // 释放未托管的资源(未托管的对象)并重写终结器
+            // 将大型字段设置为 null
+            disposedValue = true;
+        }
+    }
+
+    public void Dispose()
+    {
+        // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
     }
 }
 #endif

@@ -1,5 +1,4 @@
 #if !DBREEZE
-using System.ComponentModel;
 
 namespace BD.Common.Settings;
 

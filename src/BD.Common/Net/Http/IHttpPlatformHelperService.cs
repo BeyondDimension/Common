@@ -1,5 +1,3 @@
-using System.IO.FileFormats;
-
 // ReSharper disable once CheckNamespace
 namespace System.Net.Http;
 

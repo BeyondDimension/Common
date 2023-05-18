@@ -11,7 +11,11 @@
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7.props" />
+	<ItemGroup>
+		<PackageReference Include="fusillade" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NET7_WITH_ALL.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>

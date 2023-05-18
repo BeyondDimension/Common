@@ -21,16 +21,23 @@ public abstract partial class GeneralHttpClientFactory : IHttpClientFactory
     }
 
     /// <summary>
-    /// 用于 <see cref="IHttpClientFactory.CreateClient(string)"/> 中传递的 name
+    /// 用于 <see cref="IHttpClientFactory.CreateClient(string, HttpHandlerCategory)"/> 中传递的 name
     /// </summary>
     protected virtual string? DefaultClientName { get; }
 
     /// <inheritdoc cref="HttpClient.Timeout"/>
     protected virtual TimeSpan? Timeout => DefaultTimeout;
 
-    protected virtual HttpClient CreateClient(string? clientName = null)
+    protected virtual HttpClient CreateClient(string? clientName, HttpHandlerCategory category)
     {
-        var client = CreateClientCore(clientName);
+        if (clientName == null)
+        {
+            clientName = DefaultClientName;
+            // https://github.com/dotnet/runtime/blob/v7.0.5/src/libraries/Microsoft.Extensions.Http/src/HttpClientFactoryExtensions.cs#L22
+            clientName ??= string.Empty;
+        }
+
+        var client = _clientFactory.CreateClient(clientName, category);
         var timeout = Timeout;
         if (timeout.HasValue)
         {
@@ -46,22 +53,9 @@ public abstract partial class GeneralHttpClientFactory : IHttpClientFactory
         return client;
     }
 
-    HttpClient CreateClientCore(string? clientName)
-    {
-        clientName ??= DefaultClientName;
-#if DEBUG
-        //logger.LogDebug("CreateClient, clientName: {0}", clientName);
-#endif
-        if (string.IsNullOrEmpty(clientName))
-        {
-            // https://github.com/dotnet/runtime/blob/v7.0.5/src/libraries/Microsoft.Extensions.Http/src/HttpClientFactoryExtensions.cs#L22
-            return _clientFactory.CreateClient(Options.DefaultName);
-        }
-        else
-        {
-            return _clientFactory.CreateClient(clientName);
-        }
-    }
+    [Obsolete("use CreateClient(string? clientName = null, HttpHandlerCategory category = default)")]
+    protected virtual HttpClient CreateClient(string? clientName = null)
+        => CreateClient(clientName, HttpHandlerCategory.Default);
 
-    HttpClient IHttpClientFactory.CreateClient(string name) => CreateClient(name);
+    HttpClient IHttpClientFactory.CreateClient(string name, HttpHandlerCategory category) => CreateClient(name, category);
 }

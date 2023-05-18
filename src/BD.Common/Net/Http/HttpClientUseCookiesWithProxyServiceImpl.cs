@@ -1,3 +1,13 @@
+#if ANDROID
+using HttpHandlerType = Xamarin.Android.Net.AndroidMessageHandler;
+#elif IOS || MACCATALYST
+using HttpHandlerType = System.Net.Http.NSUrlSessionHandler;
+#elif NETFRAMEWORK
+using HttpHandlerType = System.Net.Http.HttpClientHandler;
+#else
+using HttpHandlerType = System.Net.Http.SocketsHttpHandler;
+#endif
+
 namespace System.Net.Http;
 
 public abstract class HttpClientUseCookiesWithProxyServiceImpl : HttpClientUseCookiesServiceBaseImpl
@@ -29,9 +39,9 @@ public abstract class HttpClientUseCookiesWithProxyServiceImpl : HttpClientUseCo
     }
 
     protected readonly ILogger logger;
-    readonly Func<SocketsHttpHandler, HttpClient>? func;
+    readonly Func<HttpHandlerType, HttpClient>? func;
 
-    public HttpClientUseCookiesWithProxyServiceImpl(Func<SocketsHttpHandler, HttpClient>? func, ILogger logger)
+    public HttpClientUseCookiesWithProxyServiceImpl(Func<HttpHandlerType, HttpClient>? func, ILogger logger)
     {
         this.func = func;
         this.logger = logger;
@@ -83,10 +93,9 @@ public abstract class HttpClientUseCookiesWithProxyServiceImpl : HttpClientUseCo
     //#endregion
 }
 
-public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClientUseCookiesWithProxyServiceImpl, IDisposable
+public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClientUseCookiesWithProxyServiceImpl
 {
     readonly DynamicWebProxy? proxy;
-    protected bool disposedValue;
     readonly IDisposable? options_disposable;
 
     public HttpClientUseCookiesWithDynamicProxyServiceImpl(IServiceProvider? s, ILogger logger) : base(null, logger)
@@ -118,7 +127,7 @@ public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClie
         SetHandler();
     }
 
-    public HttpClientUseCookiesWithDynamicProxyServiceImpl(Func<SocketsHttpHandler, HttpClient>? func, ILogger logger) : base(func, logger)
+    public HttpClientUseCookiesWithDynamicProxyServiceImpl(Func<HttpHandlerType, HttpClient>? func, ILogger logger) : base(func, logger)
     {
 
     }
@@ -148,29 +157,21 @@ public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClie
         return new WebProxy(url, true, null, credentials);
     }
 
-    protected virtual void Dispose(bool disposing)
+    bool disposedValue;
+
+    protected override void Dispose(bool disposing)
     {
         if (!disposedValue)
         {
             if (disposing)
             {
-                // 释放托管状态(托管对象)
                 options_disposable?.Dispose();
-                client.Dispose();
-                Handler.Dispose();
             }
 
-            // 释放未托管的资源(未托管的对象)并重写终结器
-            // 将大型字段设置为 null
             disposedValue = true;
         }
-    }
 
-    public void Dispose()
-    {
-        // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
+        base.Dispose(disposing);
     }
 
     public static IServiceCollection TryAddAppSettings<TAppSettings>(
