@@ -3,8 +3,8 @@ namespace System.Runtime.Serialization.Formatters;
 /// <summary>
 /// 对类型 <see cref="Cookie"/>, <see cref="CookieCollection"/>, <see cref="CookieContainer"/> 的序列化与反序列化实现
 /// </summary>
-/// 
-public sealed class CookieFormatter : IMessagePackFormatter<Cookie?>,
+public sealed class CookieFormatter :
+    IMessagePackFormatter<Cookie?>,
     IMessagePackFormatter<CookieCollection?>,
     IMessagePackFormatter<CookieContainer?>,
     IMemoryPackFormatter<Cookie?>,

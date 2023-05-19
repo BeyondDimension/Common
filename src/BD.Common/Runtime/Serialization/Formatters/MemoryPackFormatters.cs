@@ -11,5 +11,10 @@ public sealed class MemoryPackFormatters : IMemoryPackFormatterRegister
         MemoryPackFormatterProvider.Register(IPAddressFormatterAttribute.Formatter.Default);
 
         MemoryPackFormatterProvider.Register(RSAParametersFormatterAttribute.Formatter.Default);
+
+        MemoryPackFormatterProvider.Register(ColorFormatterAttribute.Formatter.Default);
+        MemoryPackFormatterProvider.Register(SplatColorFormatterAttribute.Formatter.Default);
+        MemoryPackFormatterProvider.Register(NullableColorFormatterAttribute.Formatter.Default);
+        MemoryPackFormatterProvider.Register(NullableSplatColorFormatterAttribute.Formatter.Default);
     }
 }

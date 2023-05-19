@@ -48,6 +48,7 @@
 		<PackageReference Include="Polly" />
 		<PackageReference Include="Nito.AsyncEx.Coordination" />
 		<PackageReference Include="System.IO.Pipelines" />
+		<PackageReference Include="Splat.Drawing" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">

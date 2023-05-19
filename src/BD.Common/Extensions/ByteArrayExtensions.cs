@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-
 // ReSharper disable once CheckNamespace
 namespace System;
 
@@ -27,7 +25,7 @@ public static class ByteArrayExtensions
     public static byte[] ToByteArray(this ReadOnlySpan<sbyte> buffer)
         => MemoryMarshal.Cast<sbyte, byte>(buffer).ToArray();
 
-    [return: NotNullIfNotNull("buffer")]
+    [return: NotNullIfNotNull(nameof(buffer))]
     static byte[]? CompressByteArray(this byte[]? buffer, Func<Stream, Stream> func)
     {
         if (buffer == null) return null;
@@ -51,14 +49,14 @@ public static class ByteArrayExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [return: NotNullIfNotNull("buffer")]
+    [return: NotNullIfNotNull(nameof(buffer))]
     public static byte[]? CompressByteArray(this byte[]? buffer) => buffer.CompressByteArray(s => new GZipStream(s, CompressionMode.Compress, true));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [return: NotNullIfNotNull("buffer")]
+    [return: NotNullIfNotNull(nameof(buffer))]
     public static byte[]? CompressByteArrayByBrotli(this byte[]? buffer) => buffer.CompressByteArray(s => new BrotliStream(s, CompressionMode.Compress, true));
 
-    [return: NotNullIfNotNull("value")]
+    [return: NotNullIfNotNull(nameof(value))]
     static byte[]? DecompressByteArray(this byte[]? value, Func<Stream, Stream> func)
     {
         if (value == null) return null;
@@ -79,11 +77,11 @@ public static class ByteArrayExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [return: NotNullIfNotNull("value")]
+    [return: NotNullIfNotNull(nameof(value))]
     public static byte[]? DecompressByteArray(this byte[]? value) => value.DecompressByteArray(s => new GZipStream(s, CompressionMode.Decompress));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [return: NotNullIfNotNull("value")]
+    [return: NotNullIfNotNull(nameof(value))]
     public static byte[]? DecompressByteArrayByBrotli(this byte[]? value) => value.DecompressByteArray(s => new BrotliStream(s, CompressionMode.Decompress));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
