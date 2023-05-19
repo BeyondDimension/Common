@@ -3,7 +3,7 @@ namespace BD.Common.Repositories.Abstractions;
 /// <inheritdoc cref="Repository"/>
 public abstract class Repository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : Repository, IRepository<TEntity> where TEntity : class, new()
 {
-    protected static ValueTask<SQLiteAsyncConnection> GetDbConnection() => GetDbConnection<TEntity>();
+    protected virtual ValueTask<SQLiteAsyncConnection> GetDbConnection() => GetDbConnection<TEntity>();
 
     #region 增(Insert Funs) 立即执行并返回受影响的行数
 

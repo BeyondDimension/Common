@@ -3,6 +3,7 @@ namespace System;
 
 public static class FileInfoExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StreamReader? OpenText(this FileInfo fileInfo, Encoding? encoding = null)
     {
         var f = IOPath.OpenRead(fileInfo.FullName);

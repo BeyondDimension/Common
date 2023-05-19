@@ -44,29 +44,43 @@ public abstract class Repository : IRepository
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static SQLiteAsyncConnection GetConnection(string dbPath)
+        => new SQLiteAsyncConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static SQLiteAsyncConnection GetConnection()
     {
         var dbPath = DataBaseDirectory;
         if (!Directory.Exists(dbPath)) Directory.CreateDirectory(dbPath);
         dbPath = Path.Combine(dbPath, "application.dbf");
-        return new SQLiteAsyncConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache);
+        return GetConnection(dbPath);
     }
 
     static readonly Lazy<SQLiteAsyncConnection> dbConnection = new(GetConnection);
 
     static SQLiteAsyncConnection DbConnection => dbConnection.Value;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected static async ValueTask<SQLiteAsyncConnection> GetDbConnection<T>()
     {
-        if (!DbConnection.TableMappings.Any(x => x.MappedType == typeof(T)))
-        {
-            // On sqlite-net v1.6.0+, enabling write-ahead logging allows for faster database execution
-            await DbConnection.EnableWriteAheadLoggingAsync().ConfigureAwait(false);
-            await DbConnection.CreateTablesAsync(CreateFlags.None, typeof(T)).ConfigureAwait(false);
-        }
-        return DbConnection;
+        var connection = DbConnection;
+        await GetDbConnection<T>(connection);
+        return connection;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected static async ValueTask GetDbConnection<T>(SQLiteAsyncConnection connection)
+    {
+        if (!connection.TableMappings.Any(x => x.MappedType == typeof(T)))
+        {
+            // On sqlite-net v1.6.0+, enabling write-ahead logging allows for faster database execution
+            await connection.EnableWriteAheadLoggingAsync().ConfigureAwait(false);
+            await connection.CreateTablesAsync(CreateFlags.None, typeof(T)).ConfigureAwait(false);
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static SQLiteConnection GetDbConnectionSync<T>()
     {
         var conn = ConnectionSync;
@@ -79,6 +93,7 @@ public abstract class Repository : IRepository
         return conn;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected static Task<T> AttemptAndRetry<T>(Func<CancellationToken, Task<T>> @delegate, int numRetries = 10, CancellationToken cancellationToken = default)
     {
         return Policy.Handle<SQLiteException>().WaitAndRetryAsync(numRetries, pollyRetryAttempt).ExecuteAsync(@delegate, cancellationToken);

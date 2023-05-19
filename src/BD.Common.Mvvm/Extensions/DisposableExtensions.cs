@@ -13,6 +13,7 @@ public static partial class DisposableExtensions
     /// <param name="vm"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T AddTo<T>(this T disposable, IDisposableHolder vm) where T : IDisposable
     {
         if (vm == null)
@@ -37,6 +38,7 @@ public static partial class DisposableExtensions
     /// <param name="disposable"></param>
     /// <param name="vm"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool RemoveTo<T>(this T? disposable, IDisposableHolder vm) where T : IDisposable
     {
         if (disposable == null) return true;
