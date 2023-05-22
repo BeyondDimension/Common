@@ -46,7 +46,7 @@ public abstract class Repository : IRepository
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static SQLiteAsyncConnection GetConnection(string dbPath)
-        => new SQLiteAsyncConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache);
+        => new(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static SQLiteAsyncConnection GetConnection()
