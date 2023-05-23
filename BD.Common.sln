@@ -172,6 +172,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{1D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Essentials.Maui.Runtime", "src\BD.Common.Essentials.Maui.Runtime\BD.Common.Essentials.Maui.Runtime.csproj", "{D2BF9E7F-DB72-415B-961B-208FFA585337}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Settings.V4", "src\BD.Common.Settings.V4\BD.Common.Settings.V4.csproj", "{1F367D4A-4E17-4704-9B4D-7872C408E12D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Settings.V4.SourceGenerator", "src\BD.Common.Settings.V4.SourceGenerator\BD.Common.Settings.V4.SourceGenerator.csproj", "{668C6475-1857-4CCB-AF7D-C3FD96C3C88B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -330,6 +334,14 @@ Global
 		{D2BF9E7F-DB72-415B-961B-208FFA585337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2BF9E7F-DB72-415B-961B-208FFA585337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2BF9E7F-DB72-415B-961B-208FFA585337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F367D4A-4E17-4704-9B4D-7872C408E12D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F367D4A-4E17-4704-9B4D-7872C408E12D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F367D4A-4E17-4704-9B4D-7872C408E12D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F367D4A-4E17-4704-9B4D-7872C408E12D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{668C6475-1857-4CCB-AF7D-C3FD96C3C88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668C6475-1857-4CCB-AF7D-C3FD96C3C88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668C6475-1857-4CCB-AF7D-C3FD96C3C88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{668C6475-1857-4CCB-AF7D-C3FD96C3C88B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -371,6 +383,8 @@ Global
 		{6A660134-CEF5-4066-8A4E-B7543A2695C5} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 		{1DDE0DE2-D729-4DAA-B61E-E6A200B11C00} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 		{D2BF9E7F-DB72-415B-961B-208FFA585337} = {22348695-D32B-4731-AFB4-B7A3E258984E}
+		{1F367D4A-4E17-4704-9B4D-7872C408E12D} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
+		{668C6475-1857-4CCB-AF7D-C3FD96C3C88B} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}
