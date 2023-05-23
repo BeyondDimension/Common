@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<Product>次元超越设置 V4 源生成控制台工具</Product>
+		<Description>$(Product)</Description>
+		<RootNamespace>BD.Common.Settings</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<AllowedReferenceRelatedFileExtensions>
+			<!-- Prevent default XML and PDB files copied to output in RELEASE. 
+           		 Only *.allowedextension files will be included, which doesn't exist in my case.
+       		-->
+			.allowedextension
+		</AllowedReferenceRelatedFileExtensions>
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="..\AssemblyInfo.cs"></Compile>
+		<Compile Remove="..\ImplicitUsings.BCL.cs"></Compile>
+		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
+	</ItemGroup>
+
+	<Import Project="..\TFM_NET7.props" />
+
+</Project>

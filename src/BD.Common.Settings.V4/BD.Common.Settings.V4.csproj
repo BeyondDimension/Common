@@ -15,6 +15,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+		<PackageReference Include="ReactiveUI" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />

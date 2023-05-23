@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<!--源生成器项目需要以 netstandard2.0 TFM 为目标，否则它将不起作用。-->
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Product>次元超越设置 V4 库</Product>
+		<Product>次元超越设置 V4 源生成库</Product>
 		<PackageTags>BeyondDimension Common CommonSettingsV4 Settings</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common.Settings.SourceGenerator</RootNamespace>

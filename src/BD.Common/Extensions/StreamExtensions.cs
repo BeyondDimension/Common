@@ -112,6 +112,7 @@ public static class StreamExtensions
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] ToByteArray(this Stream stream)
     {
         if (stream is MemoryStream ms) return ms.ToArray();
