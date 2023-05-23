@@ -263,8 +263,10 @@ static void SourceGenerator_Class(string name, Stream s, string @namespace, Sett
 
     s.Write("}\r\n"u8);
 
+#if DEBUG
     var str = Encoding.UTF8.GetString(s.ToByteArray());
     Console.WriteLine(str);
+#endif
 }
 
 static void SourceGenerator_Interface(string name, Stream s, string @namespace, SettingsMetadata metadata, string usings = "")
@@ -352,8 +354,10 @@ static void SourceGenerator_Interface(string name, Stream s, string @namespace, 
 
     s.Write("}\r\n"u8);
 
+#if DEBUG
     var str = Encoding.UTF8.GetString(s.ToByteArray());
     Console.WriteLine(str);
+#endif
 }
 
 //AppSettings appSettings2 = AppSettings.Instance = new()
