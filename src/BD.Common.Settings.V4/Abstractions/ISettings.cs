@@ -2,7 +2,6 @@ using MemoryPack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Polly;
-using System.Text.Json.Serialization.Metadata;
 
 // ReSharper disable once CheckNamespace
 namespace BD.Common.Settings.Abstractions;
@@ -58,9 +57,9 @@ public interface ISettings
     protected static readonly HashSet<Type> types = new();
 
     private static readonly Lazy<ConcurrentDictionary<Type, bool>> lazy_save_status = new(() =>
-     {
-         return new(types.Select(x => new KeyValuePair<Type, bool>(x, false)));
-     });
+    {
+        return new(types.Select(x => new KeyValuePair<Type, bool>(x, false)));
+    });
 
     static ConcurrentDictionary<Type, bool> SaveStatus => lazy_save_status.Value;
 

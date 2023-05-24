@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Collections;
 
 // ReSharper disable once CheckNamespace
-namespace BD.WTTS.Settings;
+namespace BD.Common.Settings;
 
 /// <summary>
 /// 引用类型的设置属性
@@ -47,7 +47,7 @@ public class SettingsProperty<TValue, [DynamicallyAccessedMembers(DynamicallyAcc
 
     public override string PropertyName { get; }
 
-    public override TValue? ActualValue
+    protected override TValue? ActualValue
     {
         get => value ?? Default;
         set
