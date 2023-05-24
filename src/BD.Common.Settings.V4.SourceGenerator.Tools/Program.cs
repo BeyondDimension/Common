@@ -159,7 +159,7 @@ static void SourceGenerator_Class(string name, Stream s, string @namespace, Sett
         }
     }
 
-    s.Write("}\r\npublic static class "u8);
+    s.Write("}\r\n\r\npublic static partial class "u8);
     s.Write(classNameTrim);
     s.Write("\r\n{\r\n"u8);
 
@@ -180,6 +180,12 @@ static void SourceGenerator_Class(string name, Stream s, string @namespace, Sett
                 s.Write(" "u8);
                 s.Write(item.Summary);
             }
+            s.Write("\r\n\r\n"u8);
+        }
+        else if (!string.IsNullOrWhiteSpace(item.Sharp))
+        {
+            s.Write("#"u8);
+            s.Write(item.Sharp);
             s.Write("\r\n\r\n"u8);
         }
         else
@@ -316,6 +322,12 @@ static void SourceGenerator_Interface(string name, Stream s, string @namespace, 
             }
             s.Write("\r\n\r\n"u8);
         }
+        else if (!string.IsNullOrWhiteSpace(item.Sharp))
+        {
+            s.Write("#"u8);
+            s.Write(item.Sharp);
+            s.Write("\r\n\r\n"u8);
+        }
         else
         {
             var summary = Encoding.UTF8.GetBytes(item.Summary);
@@ -344,7 +356,7 @@ static void SourceGenerator_Interface(string name, Stream s, string @namespace, 
                 s.Write("    static readonly "u8);
             }
             s.Write(typeName);
-            s.Write(" Default"u8);
+            s.Write("? Default"u8);
             s.Write(propertyName);
             s.Write(" = "u8);
             s.Write(item.DefaultValue);

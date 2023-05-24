@@ -176,7 +176,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Settings.V4", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Settings.V4.SourceGenerator", "src\BD.Common.Settings.V4.SourceGenerator\BD.Common.Settings.V4.SourceGenerator.csproj", "{668C6475-1857-4CCB-AF7D-C3FD96C3C88B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Settings.V4.SourceGenerator.Tools", "src\BD.Common.Settings.V4.SourceGenerator.Tools\BD.Common.Settings.V4.SourceGenerator.Tools.csproj", "{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Settings.V4.SourceGenerator.Tools", "src\BD.Common.Settings.V4.SourceGenerator.Tools\BD.Common.Settings.V4.SourceGenerator.Tools.csproj", "{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.AspNetCore.SourceGenerator", "src\BD.Common.AspNetCore.SourceGenerator\BD.Common.AspNetCore.SourceGenerator.csproj", "{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -348,6 +350,10 @@ Global
 		{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -392,6 +398,7 @@ Global
 		{1F367D4A-4E17-4704-9B4D-7872C408E12D} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
 		{668C6475-1857-4CCB-AF7D-C3FD96C3C88B} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
 		{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
+		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34} = {AEF20BA0-D8EC-49EB-8050-440DE5933957}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}

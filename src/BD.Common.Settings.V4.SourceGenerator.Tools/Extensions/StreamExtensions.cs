@@ -12,6 +12,21 @@ public static class StreamExtensions
         stream.Write(Encoding.UTF8.GetBytes(s));
     }
 
+#if NETSTANDARD2_0
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Write(this Stream stream, byte[] bytes)
+    {
+        stream.Write(bytes, 0, bytes.Length);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Write(this Stream stream, ReadOnlySpan<byte> bytes)
+    {
+        var bytes_ = bytes.ToArray();
+        stream.Write(bytes_, 0, bytes_.Length);
+    }
+#endif
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] ToByteArray(this Stream stream)
     {

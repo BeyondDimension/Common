@@ -18,6 +18,7 @@ public sealed record class SettingsProperty(
     bool DefaultValueIsConst = true,
     string Summary = "",
     bool? IsRegionOrEndregion = null,
+    string? Sharp = null,
     bool? IsValueType = null)
 {
     public bool GetIsValueType()

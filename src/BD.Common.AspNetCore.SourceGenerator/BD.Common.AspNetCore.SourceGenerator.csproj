@@ -3,10 +3,10 @@
 	<PropertyGroup>
 		<!--源生成器项目需要以 netstandard2.0 TFM 为目标，否则它将不起作用。-->
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Product>次元超越设置 V4 源生成库</Product>
-		<PackageTags>BeyondDimension Common CommonSettingsV4 Settings SourceGenerator</PackageTags>
+		<Product>次元超越通用 Web API 源生成库</Product>
+		<PackageTags>BeyondDimension Common CommonAspNetCore AspNetCore SourceGenerator</PackageTags>
 		<Description>$(Product)</Description>
-		<RootNamespace>BD.Common.Settings.SourceGenerator</RootNamespace>
+		<RootNamespace>BD.Common.SourceGenerator</RootNamespace>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -16,6 +16,15 @@
 		<Compile Remove="..\AssemblyInfo.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.BCL.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IndexRange.cs" />
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IsExternalInit.cs" />
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator.Tools\Extensions\StreamExtensions.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" />
 	</ItemGroup>
 
 	<ItemGroup>
