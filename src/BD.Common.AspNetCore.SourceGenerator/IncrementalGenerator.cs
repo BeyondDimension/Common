@@ -33,8 +33,17 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+        context.AdditionalTextsProvider.Select((x, _) =>
+        {
+            Console.Write(x.Path);
+            return x.Path;
+        });
+
         var files = context.AdditionalTextsProvider
-            .Where(static file => file.Path.EndsWith(jsonFileName));
+            .Where(static file =>
+            {
+                return file.Path.EndsWith(jsonFileName);
+            });
 
         context.RegisterSourceOutput(files, (sourceProductionContext, file) =>
         {
@@ -304,6 +313,19 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
 
                     #endregion
 
+                    #region StringLengthAttribute
+
+                    if (entityProperty.MinLength.HasValue)
+                    {
+                        //StringLe
+                    }
+
+                    #endregion
+
+                    #region MaxLengthAttribute
+
+                    #endregion
+
                     #region Property Get/Set
 
                     entityFileMemoryStream.Write("""
@@ -354,6 +376,47 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
                     {
                         entityFileMemoryStream.Write(", "u8);
                     }
+                }
+
+                if (hasCreationTime && hasCreateUserIdNullable)
+                {
+                    ReadOnlySpan<byte> baseTypeName;
+
+                    if (hasUpdateTime && hasOperatorUserId)
+                    {
+                        if (hasSoftDeleted && hasTenantId)
+                        {
+                            baseTypeName = "TenantBaseEntityV2"u8;
+                        }
+                        else
+                        {
+                            baseTypeName = "OperatorBaseEntityV2"u8;
+                        }
+                    }
+                    else
+                    {
+                        baseTypeName = "CreationBaseEntityV2"u8;
+                    }
+
+                    if (entityMetadata.KeyTypeName.OICEquals("Guid"))
+                    {
+                        WriteBaseType();
+                        entityFileMemoryStream.Write(baseTypeName);
+                    }
+                    else
+                    {
+                        WriteBaseType();
+                        entityFileMemoryStream.Write(baseTypeName);
+                        entityFileMemoryStream.Write("<"u8);
+                        entityFileMemoryStream.Write(entityMetadata.KeyTypeName!);
+                        entityFileMemoryStream.Write(">"u8);
+                    }
+                }
+
+                if (entityMetadata.NEWSEQUENTIALID)
+                {
+                    WriteBaseType();
+                    entityFileMemoryStream.Write("INEWSEQUENTIALID"u8);
                 }
 
                 if (hasCreationTime)
@@ -431,15 +494,25 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
                     WriteBaseType();
                     entityFileMemoryStream.Write("ITitle"u8);
                 }
-                if (hasNickName)
+                if (hasUpdateTime)
                 {
                     WriteBaseType();
-                    entityFileMemoryStream.Write("INickName"u8);
+                    entityFileMemoryStream.Write("IUpdateTime"u8);
                 }
-                if (hasNickName)
+                if (hasCreateUserId)
                 {
                     WriteBaseType();
-                    entityFileMemoryStream.Write("INickName"u8);
+                    entityFileMemoryStream.Write("ICreateUserId"u8);
+                }
+                if (hasCreateUserIdNullable)
+                {
+                    WriteBaseType();
+                    entityFileMemoryStream.Write("ICreateUserIdNullable"u8);
+                }
+                if (hasOperatorUserId)
+                {
+                    WriteBaseType();
+                    entityFileMemoryStream.Write("IOperatorUserId"u8);
                 }
 
                 if (writtenbaseType)

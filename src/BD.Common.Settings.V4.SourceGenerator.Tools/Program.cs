@@ -138,6 +138,12 @@ static void SourceGenerator_Class(string name, Stream s, string @namespace, Sett
             }
             s.Write("\r\n\r\n"u8);
         }
+        else if (!string.IsNullOrWhiteSpace(item.Sharp))
+        {
+            //s.Write("#"u8);
+            //s.Write(item.Sharp);
+            //s.Write("\r\n\r\n"u8);
+        }
         else
         {
             var order_ = Encoding.UTF8.GetBytes(order.ToString());
@@ -200,11 +206,11 @@ static void SourceGenerator_Class(string name, Stream s, string @namespace, Sett
                 var key_ = Encoding.UTF8.GetBytes(key);
                 var value_ = Encoding.UTF8.GetBytes(value);
                 var propertyName = Encoding.UTF8.GetBytes(item.PropertyName);
-                s.Write("SettingsProperty<KeyValuePair<"u8);
+                s.Write("SettingsProperty<"u8);
                 s.Write(key_);
                 s.Write(", "u8);
                 s.Write(value_);
-                s.Write(">, "u8);
+                s.Write(", "u8);
                 s.Write(item.TypeName);
                 s.Write(", "u8);
                 s.Write(classNameTrim);
@@ -356,7 +362,12 @@ static void SourceGenerator_Interface(string name, Stream s, string @namespace, 
                 s.Write("    static readonly "u8);
             }
             s.Write(typeName);
-            s.Write("? Default"u8);
+            if ((item.DefaultValueIsNullable.HasValue && item.DefaultValueIsNullable.Value)
+                || (!item.GetIsValueType() && item.DefaultValue == "null"))
+            {
+                s.Write("?"u8);
+            }
+            s.Write(" Default"u8);
             s.Write(propertyName);
             s.Write(" = "u8);
             s.Write(item.DefaultValue);

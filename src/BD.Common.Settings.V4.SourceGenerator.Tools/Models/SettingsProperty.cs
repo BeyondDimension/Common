@@ -19,9 +19,12 @@ public sealed record class SettingsProperty(
     string Summary = "",
     bool? IsRegionOrEndregion = null,
     string? Sharp = null,
-    bool? IsValueType = null)
+    bool? IsValueType = null,
+    bool? DefaultValueIsNullable = null)
 {
-    public bool GetIsValueType()
+    bool? _IsValueType;
+
+    bool GetIsValueTypeCore()
     {
         if (IsValueType.HasValue)
             return IsValueType.Value;
@@ -37,6 +40,13 @@ public sealed record class SettingsProperty(
             "bool" => true,
             _ => false,
         };
+    }
+
+    public bool GetIsValueType()
+    {
+        if (!_IsValueType.HasValue)
+            _IsValueType = GetIsValueTypeCore();
+        return _IsValueType.Value;
     }
 
     public bool IsDictionary([NotNullWhen(true)] out string? key, [NotNullWhen(true)] out string? value)
