@@ -1,7 +1,7 @@
 // ReSharper disable once CheckNamespace
 namespace System;
 
-public static class StreamExtensions
+public static partial class StreamExtensions
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte ReadValueU8(this Stream stream)

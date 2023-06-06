@@ -25,7 +25,7 @@
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7_IOS_MACOS_MACCATALYST.props" />
+	<Import Project="..\TFM_NETX_IOS_MACOS_MACCATALYST.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>

@@ -7,6 +7,7 @@
 // https://docs.microsoft.com/zh-cn/dotnet/api/system.runtime.compilerservices.isexternalinit?view=net-6.0
 using System.ComponentModel;
 
+// ReSharper disable once CheckNamespace
 namespace System.Runtime.CompilerServices;
 
 [EditorBrowsable(EditorBrowsableState.Never)]

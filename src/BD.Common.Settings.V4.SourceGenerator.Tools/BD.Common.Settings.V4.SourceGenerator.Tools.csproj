@@ -25,6 +25,6 @@
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7.props" />
+	<Import Project="..\TFM_NETX.props" />
 
 </Project>

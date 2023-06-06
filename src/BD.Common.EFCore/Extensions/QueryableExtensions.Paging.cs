@@ -32,7 +32,7 @@ public static partial class QueryableExtensions
             var futureTotal = source.DeferredCount().FutureValue();
             query = source.Skip(skipCount).Take(pageSize);
 #if DEBUG
-        var sqlString = query.ToQueryString();
+            var sqlString = query.ToQueryString();
 #endif
             var futureDataSource = query.Future();
             total = await futureTotal.ValueAsync(cancellationToken);
@@ -51,7 +51,7 @@ public static partial class QueryableExtensions
         total = await source.CountAsync(cancellationToken);
         query = source.Skip(skipCount).Take(pageSize);
 #if DEBUG
-        var sqlString = query.ToQueryString();
+        var sqlString2 = query.ToQueryString();
 #endif
         dataSource = await query.ToArrayAsync(cancellationToken);
         pagedModel = new PagedModel<TEntity>

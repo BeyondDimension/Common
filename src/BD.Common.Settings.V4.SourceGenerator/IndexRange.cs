@@ -3,6 +3,7 @@
 
 using System.Runtime.CompilerServices;
 
+// ReSharper disable once CheckNamespace
 namespace System
 {
     /// <summary>Represent a type can be used to index a collection either from the start or the end.</summary>
@@ -233,6 +234,7 @@ namespace System
     }
 }
 
+// ReSharper disable once CheckNamespace
 namespace System.Runtime.CompilerServices
 {
     internal static class RuntimeHelpers

@@ -1,0 +1,10 @@
+<Project>
+	<PropertyGroup>
+		<TargetFrameworks>net$(DotNet_Version).0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version).0-windows10.0.19041.0</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
+	</ItemGroup>
+</Project>

@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net$(DotNet_Version).0;net$(DotNet_Version).0-android;net$(DotNet_Version).0-ios;net$(DotNet_Version).0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version).0-windows10.0.19041.0</TargetFrameworks>
 		<UseMaui>true</UseMaui>
 		<UseMauiEssentials>true</UseMauiEssentials>
 		<ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>

@@ -33,7 +33,7 @@
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7_WITH_ANDROID.props" />
+	<Import Project="..\TFM_NETX_WITH_ANDROID.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>

@@ -9,6 +9,6 @@
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7_WINDOWS.props" />
+	<Import Project="..\TFM_NETX_WINDOWS.props" />
 
 </Project>

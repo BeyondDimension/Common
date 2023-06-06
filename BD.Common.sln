@@ -19,10 +19,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{F221D7EA
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
 		.gitignore = .gitignore
+		.gitmodules = .gitmodules
 		.github\workflows\CI.yml = .github\workflows\CI.yml
 		src\Directory.Build.props = src\Directory.Build.props
 		ref\DirectoryPackages\Directory.Packages.props = ref\DirectoryPackages\Directory.Packages.props
 		src\GeneratePackage.props = src\GeneratePackage.props
+		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -110,15 +112,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.DynamicHttpWindow
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TFM", "TFM", "{149E7C8E-7B18-4363-A327-B80B65DB74A9}"
 	ProjectSection(SolutionItems) = preProject
-		src\TFM_NET7.props = src\TFM_NET7.props
-		src\TFM_NET7_ANDROID.props = src\TFM_NET7_ANDROID.props
-		src\TFM_NET7_IOS.props = src\TFM_NET7_IOS.props
-		src\TFM_NET7_IOS_MACOS_MACCATALYST.props = src\TFM_NET7_IOS_MACOS_MACCATALYST.props
-		src\TFM_NET7_MAUI.props = src\TFM_NET7_MAUI.props
-		src\TFM_NET7_WINDOWS.props = src\TFM_NET7_WINDOWS.props
-		src\TFM_NET7_WITH_ALL.props = src\TFM_NET7_WITH_ALL.props
-		src\TFM_NET7_WITH_ANDROID.props = src\TFM_NET7_WITH_ANDROID.props
-		src\TFM_NET7_WITH_WINDOWS.props = src\TFM_NET7_WITH_WINDOWS.props
+		src\TFM_NETX.props = src\TFM_NETX.props
+		src\TFM_NETX_ANDROID.props = src\TFM_NETX_ANDROID.props
+		src\TFM_NETX_IOS.props = src\TFM_NETX_IOS.props
+		src\TFM_NETX_IOS_MACOS_MACCATALYST.props = src\TFM_NETX_IOS_MACOS_MACCATALYST.props
+		src\TFM_NETX_MAUI.props = src\TFM_NETX_MAUI.props
+		src\TFM_NETX_WINDOWS.props = src\TFM_NETX_WINDOWS.props
+		src\TFM_NETX_WITH_ALL.props = src\TFM_NETX_WITH_ALL.props
+		src\TFM_NETX_WITH_ANDROID.props = src\TFM_NETX_WITH_ANDROID.props
+		src\TFM_NETX_WITH_WINDOWS.props = src\TFM_NETX_WITH_WINDOWS.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImplicitUsings", "ImplicitUsings", "{78E65096-FE22-4E82-AB15-EB4CB986194B}"
@@ -178,7 +180,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Settings.V4.Sourc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Settings.V4.SourceGenerator.Tools", "src\BD.Common.Settings.V4.SourceGenerator.Tools\BD.Common.Settings.V4.SourceGenerator.Tools.csproj", "{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.AspNetCore.SourceGenerator", "src\BD.Common.AspNetCore.SourceGenerator\BD.Common.AspNetCore.SourceGenerator.csproj", "{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.AspNetCore.SourceGenerator", "src\BD.Common.AspNetCore.SourceGenerator\BD.Common.AspNetCore.SourceGenerator.csproj", "{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SourceGenerator.Annotations", "src\BD.Common.Repositories.SourceGenerator.Annotations\BD.Common.Repositories.SourceGenerator.Annotations.csproj", "{28C1F178-7080-48B3-93F5-45C4D38A3748}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SourceGenerator", "src\BD.Common.Repositories.SourceGenerator\BD.Common.Repositories.SourceGenerator.csproj", "{1B63CB93-87E7-4158-9849-2FA09A139FC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceGenerator", "SourceGenerator", "{38AD83FC-B2FD-4458-ACEE-84B2B768FA6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{67F7A45D-E442-4F64-A2B1-776DFBC772BD}"
+	ProjectSection(SolutionItems) = preProject
+		src\Translate.cs = src\Translate.cs
+		src\Utils.cs = src\Utils.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -354,6 +368,14 @@ Global
 		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28C1F178-7080-48B3-93F5-45C4D38A3748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C1F178-7080-48B3-93F5-45C4D38A3748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C1F178-7080-48B3-93F5-45C4D38A3748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C1F178-7080-48B3-93F5-45C4D38A3748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B63CB93-87E7-4158-9849-2FA09A139FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B63CB93-87E7-4158-9849-2FA09A139FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B63CB93-87E7-4158-9849-2FA09A139FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B63CB93-87E7-4158-9849-2FA09A139FC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -390,7 +412,7 @@ Global
 		{41FCFFCC-CC2D-42E9-8289-D1FCE1864553} = {2396192B-A608-4B23-B05C-ED66885398A9}
 		{34A24725-D4B5-45B2-950B-DA1414715705} = {72184E2D-34EE-4E81-9008-1B2E4FC03972}
 		{149E7C8E-7B18-4363-A327-B80B65DB74A9} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
-		{78E65096-FE22-4E82-AB15-EB4CB986194B} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
+		{78E65096-FE22-4E82-AB15-EB4CB986194B} = {67F7A45D-E442-4F64-A2B1-776DFBC772BD}
 		{B3A960DC-6E46-48D3-A3AE-A77E1989504B} = {72184E2D-34EE-4E81-9008-1B2E4FC03972}
 		{6A660134-CEF5-4066-8A4E-B7543A2695C5} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 		{1DDE0DE2-D729-4DAA-B61E-E6A200B11C00} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
@@ -399,6 +421,10 @@ Global
 		{668C6475-1857-4CCB-AF7D-C3FD96C3C88B} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
 		{45B649C9-70DE-4D5A-B10A-2F1CA5F657BB} = {D47E3B6A-2AE8-4AD4-ABA4-9BC9750FAE9A}
 		{7923D9C3-B2AC-4435-9065-17A6B6CD1B34} = {AEF20BA0-D8EC-49EB-8050-440DE5933957}
+		{28C1F178-7080-48B3-93F5-45C4D38A3748} = {38AD83FC-B2FD-4458-ACEE-84B2B768FA6D}
+		{1B63CB93-87E7-4158-9849-2FA09A139FC1} = {38AD83FC-B2FD-4458-ACEE-84B2B768FA6D}
+		{38AD83FC-B2FD-4458-ACEE-84B2B768FA6D} = {09F764B5-4DB4-40B3-84B0-B9DD15AB69AA}
+		{67F7A45D-E442-4F64-A2B1-776DFBC772BD} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}

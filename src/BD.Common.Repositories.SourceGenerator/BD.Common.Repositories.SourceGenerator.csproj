@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<PackageTags>BeyondDimension Common CommonRepositories Repositories SourceGenerator</PackageTags>
+		<Description>$(Product)</Description>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<IsRoslynComponent>true</IsRoslynComponent>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="..\AssemblyInfo.cs"></Compile>
+		<Compile Remove="..\ImplicitUsings.BCL.cs"></Compile>
+		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IndexRange.cs" />
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IsExternalInit.cs" />
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator.Tools\Extensions\StreamExtensions.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common\Extensions\StreamExtensions.Format.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\Translate.cs">
+			<LinkBase>Helpers</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BD.Common.Repositories.SourceGenerator.Annotations\BD.Common.Repositories.SourceGenerator.Annotations.csproj" />
+	</ItemGroup>
+
+	<Import Project="..\GeneratePackage.props" />
+
+</Project>

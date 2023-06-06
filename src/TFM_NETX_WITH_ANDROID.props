@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net7.0-android</TargetFrameworks>
+		<TargetFrameworks>net$(DotNet_Version).0;net$(DotNet_Version).0-android</TargetFrameworks>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 </Project>

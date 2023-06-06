@@ -42,7 +42,7 @@
 		<PackageReference Include="Microsoft.Extensions.Http" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7.props" />
+	<Import Project="..\TFM_NETX.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>
