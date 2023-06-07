@@ -13,8 +13,9 @@ public static partial class CacheExtensions
 
     #endregion
 
-    #region IDistributedCache
+    #region IDistributedCache & MessagePack
 
+    [Obsolete("仅用于旧业务中需要兼容的部分，对于新的功能需要使用 MemoryPack 实现的 V2 版本")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<T?> GetAsync<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default) where T : notnull
     {
@@ -24,6 +25,7 @@ public static partial class CacheExtensions
         return r;
     }
 
+    [Obsolete("仅用于旧业务中需要兼容的部分，对于新的功能需要使用 MemoryPack 实现的 V2 版本")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task SetAsync<T>(this IDistributedCache cache, string key, T value, DistributedCacheEntryOptions options, CancellationToken cancellationToken = default) where T : notnull
     {
@@ -31,13 +33,19 @@ public static partial class CacheExtensions
         await cache.SetAsync(key, buffer, options, cancellationToken);
     }
 
+    [Obsolete("仅用于旧业务中需要兼容的部分，对于新的功能需要使用 MemoryPack 实现的 V2 版本")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task SetAsync<T>(this IDistributedCache cache, string key, T value, TimeSpan absoluteExpirationRelativeToNow, CancellationToken cancellationToken = default) where T : notnull
         => cache.SetAsync(key, value, new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow }, cancellationToken);
 
+    [Obsolete("仅用于旧业务中需要兼容的部分，对于新的功能需要使用 MemoryPack 实现的 V2 版本")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task SetAsync<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
         => cache.SetAsync(key, value, TimeSpan.FromMinutes(minutes), cancellationToken);
+
+    #endregion
+
+    #region IDistributedCache & MemoryPack
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<T?> GetV2Async<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default) where T : notnull

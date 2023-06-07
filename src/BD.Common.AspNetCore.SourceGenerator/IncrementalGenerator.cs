@@ -1,9 +1,6 @@
 using BD.Common.SourceGenerator.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using System.Diagnostics;
-using System.Text;
-using System.Text.Json;
 
 namespace BD.Common.SourceGenerator;
 

@@ -1,6 +1,4 @@
 using BD.Common.Settings.Models;
-using System.Text;
-using System.Text.Json;
 
 const string fileName = "settings_v4_app.json";
 try

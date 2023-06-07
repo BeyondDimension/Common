@@ -1,6 +1,6 @@
-// ReSharper disable once CheckNamespace
 using Microsoft.IdentityModel.Tokens;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Mvc;
 
 public static class HttpRequestExtensions

@@ -5,11 +5,11 @@
 		<PackageTags>BeyondDimension Common CommonRepositories Repositories SourceGenerator Annotations</PackageTags>
 		<Description>$(Product)</Description>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<DefineConstants>SOURCE_GENERATOR;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Remove="..\AssemblyInfo.cs"></Compile>
-		<Compile Remove="..\ImplicitUsings.BCL.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
 	</ItemGroup>
 

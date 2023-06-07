@@ -6,6 +6,7 @@ using static System.Net.Http.HttpClientUseCookiesWithProxyServiceImpl;
 
 namespace BD.Common.Services.Implementation;
 
+[Obsolete("use Playwright")]
 public class PuppeteerService : ConsoleRandomGetUserAgentServiceImpl, IPuppeteerService, IDisposable
 {
     protected readonly ILoggerFactory loggerFactory;

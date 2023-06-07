@@ -6,6 +6,7 @@
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common.Settings</RootNamespace>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<DefineConstants>SOURCE_GENERATOR;__HAVE_S_JSON__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -20,8 +21,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="..\BD.Common\Extensions\StreamExtensions.ToByteArray.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common\Extensions\StreamExtensions.Write.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Remove="..\AssemblyInfo.cs"></Compile>
-		<Compile Remove="..\ImplicitUsings.BCL.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
 	</ItemGroup>
 

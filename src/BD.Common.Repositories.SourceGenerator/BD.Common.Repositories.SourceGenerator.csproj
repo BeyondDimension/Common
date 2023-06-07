@@ -8,15 +8,18 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<DefineConstants>SOURCE_GENERATOR;__HAVE_S_JSON__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Remove="..\AssemblyInfo.cs"></Compile>
-		<Compile Remove="..\ImplicitUsings.BCL.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
 		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IndexRange.cs" />
 		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IsExternalInit.cs" />
-		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator.Tools\Extensions\StreamExtensions.cs">
+		<Compile Include="..\BD.Common\Extensions\StreamExtensions.ToByteArray.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common\Extensions\StreamExtensions.Write.cs">
 			<LinkBase>Extensions</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common\Extensions\StreamExtensions.Format.cs">

@@ -2,6 +2,7 @@ using PuppeteerSharp;
 
 namespace BD.Common.Services;
 
+[Obsolete("use Playwright")]
 public interface IPuppeteerService
 {
     /// <summary>

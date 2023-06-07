@@ -90,6 +90,7 @@ public static partial class StreamExtensions
 
     const int DefaultBufferSize = 1024;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static StreamWriter GetWriter(this Stream stream, Encoding? encoding = null, int bufferSize = -1, bool leaveOpen = false)
     {
         try
@@ -100,58 +101,12 @@ public static partial class StreamExtensions
         }
         catch (Exception e) when (e is ArgumentNullException || e is ArgumentOutOfRangeException)
         {
-            if (encoding == null)
-            {
-                encoding = EncodingCache.UTF8NoBOM;
-            }
+            encoding ??= EncodingCache.UTF8NoBOM;
             if (bufferSize == -1)
             {
                 bufferSize = DefaultBufferSize;
             }
             return new(stream, encoding, bufferSize, leaveOpen);
         }
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static byte[] ToByteArray(this Stream stream)
-    {
-        if (stream is MemoryStream ms) return ms.ToArray();
-
-        //try
-        //{
-        //    var len = stream.Length;
-        //    var bytes = new byte[len];
-        //    stream.Seek(0, SeekOrigin.Begin);
-        //    stream.Read(bytes, 0, bytes.Length);
-        //    stream.Seek(0, SeekOrigin.Begin);
-        //    return bytes;
-        //}
-        //catch
-        //{
-        using var ms2 = new MemoryStream();
-        stream.CopyTo(ms2);
-        return ms2.ToArray();
-        //}
-    }
-
-    public static async ValueTask<byte[]> ToByteArrayAsync(this Stream stream, CancellationToken cancellationToken = default)
-    {
-        if (stream is MemoryStream ms) return ms.ToArray();
-
-        //try
-        //{
-        //    var len = stream.Length;
-        //    var bytes = new byte[len];
-        //    stream.Seek(0, SeekOrigin.Begin);
-        //    await stream.ReadAsync(bytes, 0, bytes.Length, cancellationToken);
-        //    stream.Seek(0, SeekOrigin.Begin);
-        //    return bytes;
-        //}
-        //catch
-        //{
-        using var ms2 = new MemoryStream();
-        await stream.CopyToAsync(ms2, cancellationToken);
-        return ms2.ToArray();
-        //}
     }
 }
