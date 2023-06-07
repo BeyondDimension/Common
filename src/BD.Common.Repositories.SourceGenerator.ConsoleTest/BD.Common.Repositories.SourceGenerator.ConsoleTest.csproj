@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Product>次元超越通用仓储源生成测试</Product>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.MessagePack.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common.Repositories.EFCore\BD.Common.Repositories.EFCore.csproj" />
+		<ProjectReference Include="..\BD.Common.Repositories.SourceGenerator.Annotations\BD.Common.Repositories.SourceGenerator.Annotations.csproj" />
+		<ProjectReference Include="..\BD.Common.Repositories.SourceGenerator\BD.Common.Repositories.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NETX_WINDOWS.props" />
+
+</Project>

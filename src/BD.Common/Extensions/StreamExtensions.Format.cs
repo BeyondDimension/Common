@@ -16,7 +16,8 @@ public static partial class StreamExtensions
         ReadOnlySpan<byte> utf8String,
         params object?[] args)
     {
-        var index_l_brace = utf8String.IndexOf(l_brace);
+        int index_l_brace, index_r_brace;
+        index_l_brace = utf8String.IndexOf(l_brace);
         if (index_l_brace >= 0) // 查找左大括号
         {
             var index_l_brace_add_1 = index_l_brace + 1;
@@ -24,23 +25,38 @@ public static partial class StreamExtensions
             {
                 if (utf8String[index_l_brace_add_1] == l_brace) // 两个左大括号，转义不为参数
                 {
-                    stream.Write(utf8String[..index_l_brace_add_1]);
-                    stream.WriteFormat(utf8String[index_l_brace_add_1..], args);
+                    stream.Write(utf8String[..index_l_brace]);
+                    stream.WriteFormat(utf8String[(index_l_brace_add_1 + 1)..], args);
                     return;
                 }
                 else
                 {
-                    var index_r_brace = utf8String[index_l_brace_add_1..].IndexOf(r_brace);
+                    index_r_brace = utf8String[index_l_brace_add_1..].IndexOf(r_brace);
                     if (index_r_brace >= 0)
                     {
-                        var args_index_bytes = utf8String[index_l_brace..^(index_r_brace + index_l_brace)];
+                        //var index_r_brace_ = index_r_brace + index_l_brace_add_1;
+                        //var index_r_brace_add_1 = index_r_brace_ + 1;
+                        //if (index_r_brace_add_1 < utf8String.Length)
+                        //{
+                        //    if (utf8String[index_r_brace_add_1] == r_brace) // 两个右大括号，转义不为参数
+                        //    {
+                        //        stream.WriteByte(l_brace);
+                        //        stream.Write(utf8String[..index_r_brace]);
+                        //        stream.WriteByte(r_brace);
+                        //        stream.WriteFormat(utf8String[(index_r_brace_add_1 + 1)..], args);
+                        //        return;
+                        //    }
+                        //}
+
+                        var args_index_bytes = utf8String.Slice(index_l_brace_add_1, index_r_brace);
                         var args_index = Encoding.UTF8.GetString(args_index_bytes
 #if !(NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER)
                             .ToArray()
 #endif
                             );
-                        if (int.TryParse(args_index, out var args_index_int) && args_index_int >= 0 && args_index_int < args.Length - 1)
+                        if (int.TryParse(args_index, out var args_index_int) && args_index_int >= 0 && args_index_int < args.Length)
                         {
+                            stream.Write(utf8String[..index_l_brace]);
                             var arg = args[args_index_int];
                             if (arg == null)
                             {
@@ -71,9 +87,26 @@ public static partial class StreamExtensions
                                     stream.Write(bytes);
                                 }
                             }
-                            stream.WriteFormat(utf8String[index_r_brace..], args);
+                            stream.WriteFormat(utf8String[(index_l_brace_add_1 + index_r_brace + 1)..], args);
                             return;
                         }
+                    }
+                }
+            }
+        }
+        else
+        {
+            index_r_brace = utf8String.IndexOf(r_brace);
+            if (index_r_brace >= 0) // 查找右大括号
+            {
+                var index_r_brace_add_1 = index_r_brace + 1;
+                if (index_r_brace_add_1 < utf8String.Length)
+                {
+                    if (utf8String[index_r_brace_add_1] == r_brace) // 两个右大括号，转义不为参数
+                    {
+                        stream.Write(utf8String[..index_r_brace]);
+                        stream.WriteFormat(utf8String[(index_r_brace_add_1 + 1)..], args);
+                        return;
                     }
                 }
             }

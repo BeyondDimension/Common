@@ -25,6 +25,9 @@
 		<Compile Include="..\BD.Common\Extensions\StreamExtensions.Format.cs">
 			<LinkBase>Extensions</LinkBase>
 		</Compile>
+		<Compile Include="..\BD.Common\Extensions\StringExtensions.Trim.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
 		<Compile Include="..\Translate.cs">
 			<LinkBase>Helpers</LinkBase>
 		</Compile>

@@ -194,6 +194,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{67F7A4
 		src\Utils.cs = src\Utils.cs
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories.SourceGenerator.ConsoleTest", "src\BD.Common.Repositories.SourceGenerator.ConsoleTest\BD.Common.Repositories.SourceGenerator.ConsoleTest.csproj", "{B1423250-D6EE-4CEE-847C-CACFE23B109B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -376,6 +378,10 @@ Global
 		{1B63CB93-87E7-4158-9849-2FA09A139FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B63CB93-87E7-4158-9849-2FA09A139FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B63CB93-87E7-4158-9849-2FA09A139FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1423250-D6EE-4CEE-847C-CACFE23B109B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1423250-D6EE-4CEE-847C-CACFE23B109B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1423250-D6EE-4CEE-847C-CACFE23B109B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1423250-D6EE-4CEE-847C-CACFE23B109B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -425,6 +431,7 @@ Global
 		{1B63CB93-87E7-4158-9849-2FA09A139FC1} = {38AD83FC-B2FD-4458-ACEE-84B2B768FA6D}
 		{38AD83FC-B2FD-4458-ACEE-84B2B768FA6D} = {09F764B5-4DB4-40B3-84B0-B9DD15AB69AA}
 		{67F7A45D-E442-4F64-A2B1-776DFBC772BD} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
+		{B1423250-D6EE-4CEE-847C-CACFE23B109B} = {38AD83FC-B2FD-4458-ACEE-84B2B768FA6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}
