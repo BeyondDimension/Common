@@ -12,6 +12,9 @@
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="..\ImplicitUsings.EntityFrameworkCore.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>

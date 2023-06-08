@@ -1,0 +1,131 @@
+#pragma warning disable IDE0044 // 添加只读修饰符
+#pragma warning disable IDE0051 // 删除未使用的私有成员
+
+using BD.Common.Entities.Abstractions;
+
+namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
+
+[GenerateRepositories]
+//[Table("TestXXXs")] // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词
+public class 示例
+{
+    Guid Id;
+
+    Guid 租户Id;
+
+    #region CloudFileInfo
+
+    /// <summary>
+    /// XXXX
+    /// </summary>
+    [Description("CloudFileInfo")]
+    const PreprocessorDirective PD_CloudFileInfo_R = PreprocessorDirective.region;
+
+    [MaxLength(255, ErrorMessage = "AAAA")]
+    [Comment("xxxx")]
+    [StringLength(35, ErrorMessage = "BBBB")]
+    string? 文件名;
+
+    [MaxLength(Hashs.String.Lengths.SHA256 + 3)]
+    [MinLength(Hashs.String.Lengths.SHA256)]
+    string? SHA256;
+
+    [MaxLength(Hashs.String.Lengths.SHA384 + 3)]
+    [MinLength(Hashs.String.Lengths.SHA384)]
+    string? SHA384;
+
+    [Url]
+    [MaxLength(MaxLengths.Url)]
+    string? 文件路径;
+
+    [MaxLength(MaxLengths.FileExtension)]
+    string? 文件后缀名;
+
+    byte 文件类型;
+
+    [Range(0, int.MaxValue)]
+    long 文件大小;
+
+    [Range(0.5, int.MaxValue)]
+    long 文件大小2;
+
+    [Range(typeof(double), "0.25", "2555.2")]
+    double 文件大小3;
+
+    const PreprocessorDirective PD_CloudFileInfo_E = PreprocessorDirective.endregion;
+
+    #endregion
+
+    [MaxLength(MaxLengths.Url)]
+    string? 访问地址;
+
+    bool 是否删除;
+
+    Guid? 创建人;
+
+    DateTimeOffset 创建时间;
+
+#if !TEST_IF_XXXXXXXXXX
+
+    Guid? 操作人;
+
+#elif !TEST_IF_XXXX
+
+    DateTimeOffset 更新时间;
+
+#else
+
+#endif
+
+    public string? A { get; set; } // 随便定义一个属性，干扰源生成，需要忽略无关的数据
+
+    static void B()
+    {
+
+    }
+
+    static Task C() => Task.CompletedTask;
+
+    const int TestConst = 1;
+
+    [Required]
+    [StringLength(35, MinimumLength = 1, ErrorMessage = "D")]
+    string 名称 = "";
+
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    Guid Key;
+
+    [Precision(5, 2)]
+    float 平均分;
+
+    [Precision(5)]
+    float 平均分2;
+
+    [EmailAddress]
+    string 邮箱 = "";
+
+    Architecture Architecture = Architecture.X64;
+
+    string? Describe;
+
+    string? DisableReason;
+
+    Gender Gender;
+
+    string? NickName;
+
+    long Order;
+
+    bool IsTop;
+
+    string? IPAddress;
+
+    string? Password;
+
+    string? Remarks;
+
+    string? SmsCode;
+
+    string? Title;
+}

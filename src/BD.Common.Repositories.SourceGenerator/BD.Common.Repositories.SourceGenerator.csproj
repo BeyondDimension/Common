@@ -14,8 +14,12 @@
 	<ItemGroup>
 		<Compile Remove="..\AssemblyInfo.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
-		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IndexRange.cs" />
-		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IsExternalInit.cs" />
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IndexRange.cs">
+			<LinkBase>Compat</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IsExternalInit.cs">
+			<LinkBase>Compat</LinkBase>
+		</Compile>
 		<Compile Include="..\BD.Common\Extensions\StreamExtensions.ToByteArray.cs">
 			<LinkBase>Extensions</LinkBase>
 		</Compile>
@@ -28,13 +32,20 @@
 		<Compile Include="..\BD.Common\Extensions\StringExtensions.Trim.cs">
 			<LinkBase>Extensions</LinkBase>
 		</Compile>
+		<Compile Include="..\BD.Common\Extensions\StringExtensions.NumberLetter.cs">
+			<LinkBase>Extensions</LinkBase>
+		</Compile>
 		<Compile Include="..\Translate.cs">
+			<LinkBase>Helpers</LinkBase>
+		</Compile>
+		<Compile Include="..\Utils.cs">
 			<LinkBase>Helpers</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="System.Text.Json" />
+		<PackageReference Include="Humanizer.Core.zh-CN" />
 	</ItemGroup>
 
 	<ItemGroup>

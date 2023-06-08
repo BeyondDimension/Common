@@ -1,7 +1,7 @@
 // ReSharper disable once CheckNamespace
 namespace System;
 
-public static class StringExtensions
+public static partial class StringExtensions
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool OICEquals(this string? l, string? r)

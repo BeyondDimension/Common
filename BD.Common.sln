@@ -190,11 +190,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SourceGenerator", "SourceGe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{67F7A45D-E442-4F64-A2B1-776DFBC772BD}"
 	ProjectSection(SolutionItems) = preProject
+		src\GeneratorConfig.Repositories.json = src\GeneratorConfig.Repositories.json
 		src\Translate.cs = src\Translate.cs
 		src\Utils.cs = src\Utils.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories.SourceGenerator.ConsoleTest", "src\BD.Common.Repositories.SourceGenerator.ConsoleTest\BD.Common.Repositories.SourceGenerator.ConsoleTest.csproj", "{B1423250-D6EE-4CEE-847C-CACFE23B109B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SourceGenerator.ConsoleTest", "src\BD.Common.Repositories.SourceGenerator.ConsoleTest\BD.Common.Repositories.SourceGenerator.ConsoleTest.csproj", "{B1423250-D6EE-4CEE-847C-CACFE23B109B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

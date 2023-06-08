@@ -13,3 +13,5 @@ global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 #if !__NOT_IMPORT_Z_EF_PLUS__
 global using Z.EntityFramework.Plus;
 #endif
+
+global using KeyAttribute = System.ComponentModel.DataAnnotations.KeyAttribute;

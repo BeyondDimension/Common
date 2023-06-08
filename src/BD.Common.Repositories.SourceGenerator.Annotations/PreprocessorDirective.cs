@@ -24,4 +24,28 @@ public enum PreprocessorDirective
     endregion,
 
     #endregion
+
+    #region 条件编译
+
+    /// <summary>
+    /// 打开条件编译，其中仅在定义了指定的符号时才会编译代码。
+    /// </summary>
+    @if,
+
+    /// <summary>
+    /// 打开条件编译，其中仅在定义了指定的符号时才会编译代码。
+    /// </summary>
+    elif,
+
+    /// <summary>
+    /// 关闭前面的条件编译，如果没有定义前面指定的符号，打开一个新的条件编译。
+    /// </summary>
+    @else,
+
+    /// <summary>
+    /// 关闭前面的条件编译。
+    /// </summary>
+    endif,
+
+    #endregion
 }

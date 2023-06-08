@@ -6,7 +6,6 @@ namespace BD.Common.Repositories.SourceGenerator;
 [Generator]
 public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 {
-    const string cfgFileName = "GeneratorConfig.Repositories.json";
     const string namespaceSuffix = ".Entities.Design";
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
@@ -23,11 +22,16 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
             var fields = symbol.GetFields();
             var properties = PropertyMetadata.Parse(fields);
 
-            var tableClassName = symbol.Name;
+            var filePath = symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath;
+            var projPath = ProjPathHelper.GetProjPath(Path.GetDirectoryName(filePath));
+
+            var className = symbol.Name;
+            className = GeneratorConfig.Translate(className);
+            var tableClassName = EntityTemplate.GetTableName(symbol);
             var @namespace = symbol.ContainingNamespace.ToDisplayString().TrimEnd(namespaceSuffix);
 
             EntityTemplate.Instance.AddSource(ctx, symbol,
-                new(@namespace, tableClassName, tableClassName, tableClassName),
+                new(@namespace, symbol.Name, tableClassName, className),
                 properties);
         });
     }

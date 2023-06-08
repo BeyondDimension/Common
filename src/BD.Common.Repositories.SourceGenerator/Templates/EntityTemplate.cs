@@ -11,7 +11,19 @@ sealed class EntityTemplate : TemplateBase<EntityTemplate, EntityTemplate.Metada
         string TableName,
         string ClassName) : ITemplateMetadata
     {
+    }
 
+    public static string GetTableName(INamedTypeSymbol symbol)
+    {
+        var tableClassName = symbol.GetAttributes().FirstOrDefault(static x => x.ClassNameEquals(TypeFullNames.Table))?.
+            ConstructorArguments.FirstOrDefault().Value?.ToString();
+        if (string.IsNullOrWhiteSpace(tableClassName))
+        {
+            tableClassName = symbol.Name;
+            tableClassName = GeneratorConfig.Translate(tableClassName);
+            tableClassName = tableClassName.Pluralize();
+        }
+        return tableClassName!;
     }
 
     protected override void WriteCore(Stream stream, object?[] args, Metadata metadata, ImmutableArray<PropertyMetadata> fields)
@@ -28,6 +40,12 @@ namespace {0}.Entities;
 public sealed partial class {3}
 """u8;
         stream.WriteFormat(format, args);
+
+        var isFirstWriteBaseInterfaceType = true;
+        foreach (var field in fields)
+        {
+            field.WriteBaseInterfaceType(stream, ref isFirstWriteBaseInterfaceType);
+        }
 
         stream.Write(
 """
