@@ -47,7 +47,7 @@ global using System.Security.Claims;
 global using System.Security.Cryptography;
 global using System.Security.Principal;
 global using System.Text;
-#if !SOURCE_GENERATOR
+#if !SOURCE_GENERATOR || __HAVE_S_JSON__
 global using System.Text.Encodings.Web;
 global using System.Text.Unicode;
 #endif

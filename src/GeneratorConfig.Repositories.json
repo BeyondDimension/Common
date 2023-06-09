@@ -1,5 +1,17 @@
 {
   "Translates": {
-    "示例": "Example"
+    "示例": "Example",
+    "文件大小3": "FileSize3",
+    "文件大小2": "FileSize2",
+    "文件后缀名": "FileExtension",
+    "文件名": "FileName",
+    "平均分": "AverageScore",
+    "文件路径": "FilePath",
+    "访问地址": "Url",
+    "文件类型": "FileType",
+    "邮箱": "Email",
+    "名称": "Name",
+    "文件大小": "FileSize",
+    "平均分2": "AverageScore2"
   }
 }

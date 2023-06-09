@@ -1,7 +1,7 @@
 namespace BD.Common.Repositories.SourceGenerator.Templates.Abstractions;
 
 /// <summary>
-/// 生成源码模板
+/// 生成源码模板基类
 /// </summary>
 /// <typeparam name="TTemplate"></typeparam>
 /// <typeparam name="TTemplateMetadata"></typeparam>
@@ -45,7 +45,7 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
     {
         using var memoryStream = new MemoryStream();
         Write(memoryStream, metadata, fields);
-        var partialFileName = Name ?? typeof(TTemplate).Name;
+        var partialFileName = (Name ?? typeof(TTemplate).Name).TrimEnd("Template");
 
 #if DEBUG
         var sourceString = Encoding.UTF8.GetString(memoryStream.ToArray());

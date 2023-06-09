@@ -49,4 +49,25 @@ public class ServerGetUserAgentServiceImpl : IRandomGetUserAgentService
 
         return GetRandomUserAgent(UserAgents);
     }
+
+    static readonly string[] blacklist = new[] { "http-client", "Apache", "HttpClient" };
+
+    public static bool IsMatchBlacklist(string userAgent)
+    {
+        foreach (var item in blacklist)
+        {
+            if (userAgent.Contains(item, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static bool IsMatchBlacklist(HttpRequest request)
+    {
+        var userAgent = request.UserAgent();
+        var r = string.IsNullOrWhiteSpace(userAgent) || IsMatchBlacklist(userAgent);
+        return r;
+    }
 }

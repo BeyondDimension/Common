@@ -104,7 +104,7 @@ static class FixedPropertyHelper
                 fieldName.OICEquals("Password") ||
                 fieldName.OICEquals("Pwd"))
             {
-                fixedProperty = FixedProperty.IPAddress;
+                fixedProperty = FixedProperty.Password;
                 propertyType = "string";
                 fieldName = "Password";
                 fieldHumanizeName = "密码";
@@ -183,6 +183,7 @@ static class FixedPropertyHelper
             }
             else if (fieldName == "软删除" ||
                 fieldName == "是否软删除" ||
+                fieldName == "是否删除" ||
                 fieldName == "删除" ||
                 fieldName.OICEquals("SoftDeleted") ||
                 fieldName.OICEquals("IsDeleted") ||

@@ -1,29 +1,173 @@
 namespace BD.Common.Repositories.SourceGenerator.Models;
 
-public sealed record class GeneratorConfig(ImmutableDictionary<string, string> Translates)
+/// <summary>
+/// 源生成配置模型
+/// </summary>
+/// <param name="Translates"></param>
+public sealed record class GeneratorConfig(
+    ConcurrentDictionary<string, string> Translates,
+    ImmutableHashSet<string> AttributeTypeFullNames)
 {
+    static readonly Dictionary<string, string> DefTranslates = new()
+    {
+        { "名称", "Name" },
+        { "文件类型", "FileType" },
+        { "邮箱", "Email" },
+        { "文件大小", "FileSize" },
+        { "文件路径", "FilePath" },
+        { "文件后缀名", "FileExtension" },
+        { "文件名", "FileName" },
+    };
+
+    /// <summary>
+    /// 配置文件名
+    /// </summary>
     const string fileName = "GeneratorConfig.Repositories.json";
+
+    /// <summary>
+    /// 配置文件路径
+    /// </summary>
+    static readonly Lazy<string> filePath = new(() =>
+    {
+        var projPath = ProjPathHelper.GetProjPath(null);
+        var filePath = Path.Combine(projPath, "src", fileName);
+        return filePath;
+    });
+
+    public static ImmutableDictionary<string, string> AttrTypeFullNames { get; private set; } = null!;
 
     static readonly Lazy<GeneratorConfig> instance = new(() =>
     {
-        var projPath = ProjPathHelper.GetProjPath(null);
         using var stream = new FileStream(
-            Path.Combine(projPath, "src", fileName),
+            filePath.Value,
             FileMode.Open,
             FileAccess.Read,
             FileShare.ReadWrite | FileShare.Delete);
-        var generatorConfig = JsonSerializer.Deserialize<GeneratorConfig>(stream);
+
+        #region Deserialize
+
+        var generatorConfig = JsonSerializer.Deserialize(stream, GeneratorConfigContext.Instance.GeneratorConfig);
         if (generatorConfig == null)
             throw new ArgumentNullException(nameof(generatorConfig));
+
+        #endregion
+
+        #region Translates
+
+        foreach (var item in DefTranslates)
+        {
+            generatorConfig.Translates.TryAdd(item.Key, item.Value);
+        }
+
+        #endregion
+
+        #region AttributeTypeFullNames
+
+        var attrTypeFullNames = typeof(TypeFullNames).
+            GetFields(BindingFlags.Public | BindingFlags.Static).
+            ToDictionary(static x => x.GetValue(null).ToString(), static x => x.Name);
+
+        var attrTypeFullNamesCfg = generatorConfig.AttributeTypeFullNames;
+        if (attrTypeFullNamesCfg != null)
+            foreach (var key_ in attrTypeFullNamesCfg)
+            {
+                if (string.IsNullOrWhiteSpace(key_)) continue;
+                var key = key_;
+                try
+                {
+                    if (!key.EndsWith("Attribute"))
+                        key = $"{key}Attribute";
+                    var indexD = key.LastIndexOf('.');
+                    if (indexD == -1) continue;
+                    var value = key.Substring(indexD, key.Length - "Attribute".Length);
+                    if (!attrTypeFullNames.ContainsKey(key))
+                        attrTypeFullNames.Add(key, value);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
+        AttrTypeFullNames = attrTypeFullNames.ToImmutableDictionary();
+
+        #endregion
+
+        counter = generatorConfig.GetCounter();
         return generatorConfig;
     });
 
+    /// <summary>
+    /// 获取当前配置
+    /// </summary>
     public static GeneratorConfig Instance => instance.Value;
 
+    /// <summary>
+    /// 翻译
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public static string Translate(string input)
     {
-        if (Instance.Translates.TryGetValue(input, out var result))
-            return result;
+        if (!input.HasOther()) return input; // 仅英文字母与数字组合的名称不需要翻译
+        var instance = Instance;
+        if (instance.Translates.TryGetValue(input, out var result))
+        {
+            if (!string.IsNullOrEmpty(result)) return result;
+        }
+        else
+        {
+            instance.Translates.TryAdd(input, string.Empty);
+        }
         return input;
     }
+
+    static readonly object @lock = new();
+
+    /// <summary>
+    /// 保存当前配置到文件
+    /// </summary>
+    public static void Save()
+    {
+        var instance = Instance;
+        if (counter == instance.GetCounter()) return; // 通过计数器判断是否有变更需要保存
+        lock (@lock)
+        {
+            using var stream = new FileStream(
+                filePath.Value,
+                FileMode.OpenOrCreate,
+                FileAccess.Write,
+                FileShare.ReadWrite | FileShare.Delete);
+            JsonSerializer.Serialize(stream, instance, GeneratorConfigContext.Instance.GeneratorConfig);
+            stream.Flush();
+            stream.SetLength(stream.Position);
+        }
+    }
+
+    static long counter;
+
+    long GetCounter()
+    {
+        return Translates.Count;
+    }
+}
+
+[JsonSerializable(typeof(GeneratorConfig))]
+internal partial class GeneratorConfigContext : JsonSerializerContext
+{
+    static JsonSerializerOptions DefaultOptions { get; } = new()
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.Never,
+        IgnoreReadOnlyFields = false,
+        IgnoreReadOnlyProperties = false,
+        IncludeFields = false,
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    };
+
+    static GeneratorConfigContext? defaultContext;
+
+    /// <summary>
+    /// The default <see cref="JsonSerializerContext"/> associated with a default <see cref="JsonSerializerOptions"/> instance.
+    /// </summary>
+    public static GeneratorConfigContext Instance => defaultContext ??= new GeneratorConfigContext(new JsonSerializerOptions(DefaultOptions));
 }

@@ -3,25 +3,27 @@ namespace BD.Common.Repositories.SourceGenerator.Models;
 /// <summary>
 /// 属性元数据
 /// </summary>
-/// <param name="Field"></param>
-/// <param name="PropertyType"></param>
-/// <param name="Name"></param>
-/// <param name="HumanizeName"></param>
-/// <param name="FixedProperty"></param>
 public record struct PropertyMetadata(
     IFieldSymbol Field,
+    ImmutableArray<AttributeData> Attributes,
     string PropertyType,
     string Name,
     string HumanizeName,
-    FixedProperty FixedProperty)
+    FixedProperty FixedProperty,
+    BackManageFieldAttribute? BackManageField)
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    readonly ReadOnlySpan<byte> GetBaseInterfaceType() => FixedProperty switch
+    readonly ReadOnlySpan<byte> GetBaseInterfaceType(ClassType classType) => FixedProperty switch
     {
-        FixedProperty.Id => "Entity<PropertyType>"u8,
+        FixedProperty.Id => classType switch
+        {
+            ClassType.Entities => Encoding.UTF8.GetBytes($"Entity<{PropertyType}>"),
+            _ => Encoding.UTF8.GetBytes($"KeyModel<{PropertyType}>"),
+        },
         FixedProperty.TenantId => "Tenant"u8,
         FixedProperty.CreateUserId => "CreateUserIdNullable"u8,
-        _ => (ReadOnlySpan<byte>)Encoding.UTF8.GetBytes(FixedProperty.ToString()),
+        FixedProperty.IPAddress => "IPAddress"u8,
+        _ => Encoding.UTF8.GetBytes(FixedProperty.ToString()),
     };
 
     /// <summary>
@@ -29,7 +31,7 @@ public record struct PropertyMetadata(
     /// </summary>
     /// <param name="stream"></param>
     /// <param name="isFirstWrite"></param>
-    public readonly void WriteBaseInterfaceType(Stream stream, ref bool isFirstWrite)
+    public readonly void WriteBaseInterfaceType(Stream stream, ClassType classType, ref bool isFirstWrite)
     {
         // : IsFirst
         // , IsNotFirst
@@ -42,7 +44,7 @@ public record struct PropertyMetadata(
  : 
 """u8);
                 stream.WriteByte(I);
-                stream.Write(GetBaseInterfaceType());
+                stream.Write(GetBaseInterfaceType(classType));
                 isFirstWrite = false;
             }
             else
@@ -52,7 +54,7 @@ public record struct PropertyMetadata(
 , 
 """u8);
                 stream.WriteByte(I);
-                stream.Write(GetBaseInterfaceType());
+                stream.Write(GetBaseInterfaceType(classType));
             }
         }
     }
@@ -73,13 +75,17 @@ public record struct PropertyMetadata(
             propertyType = propertyType[(indexOf + 1)..];
         }
 
+        var attributes = field.GetAttributes();
+        var backManageField = attributes.GetBackManageFieldAttribute();
         FixedPropertyHelper.Analysis(
             field,
             ref propertyType,
             out var fieldName,
             out var fieldHumanizeName,
             out var fixedProperty);
-        return new(field, propertyType, fieldName, fieldHumanizeName, fixedProperty);
+        return new(field, attributes, propertyType,
+            fieldName, fieldHumanizeName, fixedProperty,
+            backManageField);
     }
 
     /// <summary>
@@ -111,14 +117,22 @@ public record struct PropertyMetadata(
 """u8);
     }
 
+    public readonly void WriteParam(Stream stream)
+    {
+        var format =
+"""
+/// <param name="{0}">{1}</param>
+"""u8;
+        var propertyName = GeneratorConfig.Translate(Name);
+        stream.WriteFormat(format, propertyName, HumanizeName);
+    }
+
     /// <summary>
     /// 将属性元数据写入到源码文件流中
     /// </summary>
-    /// <param name="stream"></param>
-    public readonly void Write(Stream stream)
+    public readonly void Write(Stream stream, ClassType classType)
     {
-        var attributes = Field.GetAttributes();
-
+        var attributes = Attributes;
         foreach (var handle in propertyHandles.Value)
         {
             if (handle.Write(new(stream, attributes, this)))
@@ -143,7 +157,7 @@ public record struct PropertyMetadata(
             if (attributeClassFullName == null)
                 continue;
             var writeAttribute = GeneralAttributeHandle.Instance.Write(
-                new(ClassType.Entities, stream, attribute, attributeClassFullName, this));
+                new(classType, stream, attribute, attributeClassFullName, this));
             if (writeAttribute != null)
                 writeAttributes.Add(writeAttribute);
             //foreach (var handle in attributeHandles.Value)
@@ -154,10 +168,15 @@ public record struct PropertyMetadata(
             //}
         }
 
-        if (!writeAttributes.Contains(TypeFullNames.Comment))
+        switch (classType)
         {
-            // 属性缺少 Comment 自动补全
-            WriteComment(stream, HumanizeName);
+            case ClassType.Entities:
+                if (!writeAttributes.Contains(TypeFullNames.Comment))
+                {
+                    // 属性缺少 Comment 自动补全
+                    WriteComment(stream, HumanizeName);
+                }
+                break;
         }
 
         var constantValue = Field.IsConst ? Field.ConstantValue : null;
@@ -191,7 +210,8 @@ public record struct PropertyMetadata(
 """
     public {0} {1} { get; set; }
 """u8;
-        stream.WriteFormat(property, propertyType, Name);
+        var propertyName = GeneratorConfig.Translate(Name);
+        stream.WriteFormat(property, propertyType, propertyName);
         if (constantValue != null)
         {
             var propertyConstantValue =
@@ -210,12 +230,9 @@ public record struct PropertyMetadata(
     /// <summary>
     /// 将属性元数据写入到源码文件流中，并根据下标与长度判断是否为最后一个不添加额外的空行
     /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="i"></param>
-    /// <param name="length"></param>
-    public readonly void Write(Stream stream, int i, int length)
+    public readonly void Write(Stream stream, ClassType classType, int i, int length)
     {
-        Write(stream);
+        Write(stream, classType);
         if (i < length - 1)
         {
             stream.Write(

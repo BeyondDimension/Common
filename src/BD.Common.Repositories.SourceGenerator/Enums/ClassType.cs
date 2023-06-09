@@ -11,7 +11,17 @@ public enum ClassType : byte
     Entities,
 
     /// <summary>
-    /// 模型类型
+    /// 后台管理页面添加模型
     /// </summary>
-    Models,
+    BackManageAddModels,
+
+    /// <summary>
+    /// 后台管理页面编辑模型
+    /// </summary>
+    BackManageEditModels,
+
+    /// <summary>
+    /// 后台管理页面表格查询模型
+    /// </summary>
+    BackManageTableModels,
 }

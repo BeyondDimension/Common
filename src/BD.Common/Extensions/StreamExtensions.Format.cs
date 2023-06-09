@@ -114,4 +114,11 @@ public static partial class StreamExtensions
 
         stream.Write(utf8String);
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteNewLine(this Stream stream) =>
+        stream.Write("""
+
+
+            """u8);
 }

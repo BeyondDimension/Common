@@ -21,4 +21,30 @@ static class AttributeDataHelper
             ConstructorArguments.FirstOrDefault().Value;
         return description?.ToString();
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static BackManageFieldAttribute? GetBackManageFieldAttribute(this ImmutableArray<AttributeData> attributes)
+    {
+        const string typeFullName = "BD.Common.Repositories.SourceGenerator.Annotations.BackManageFieldAttribute";
+        var attribute = attributes.FirstOrDefault(static x => x.ClassNameEquals(typeFullName));
+        if (attribute == null) return null;
+
+        BackManageFieldAttribute attr = new();
+        foreach (var item in attribute.NamedArguments)
+            attr.SetValue(item.Key, item.Value.Value);
+        return attr;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static GenerateRepositoriesAttribute? GetGenerateRepositoriesAttribute(this ImmutableArray<AttributeData> attributes)
+    {
+        const string typeFullName = "BD.Common.Repositories.SourceGenerator.Annotations.GenerateRepositoriesAttribute";
+        var attribute = attributes.FirstOrDefault(static x => x.ClassNameEquals(typeFullName));
+        if (attribute == null) return null;
+
+        GenerateRepositoriesAttribute attr = new();
+        foreach (var item in attribute.NamedArguments)
+            attr.SetValue(item.Key, item.Value.Value);
+        return attr;
+    }
 }

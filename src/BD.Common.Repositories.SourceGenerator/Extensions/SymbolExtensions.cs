@@ -27,8 +27,8 @@ public static class SymbolExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string GetSourceFileName(this ISymbol symbol, string partialFileName)
     {
-        var format = SymbolDisplayFormat.FullyQualifiedFormat.WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Omitted);
-        var sourceFileName = $"{symbol.ToDisplayString(format)}.{partialFileName}.g.cs";
+        using var hashAlgorithm = MD5.Create();
+        var sourceFileName = $"{symbol.Name}.{partialFileName}.{string.Join(null, hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(symbol.ToDisplayString())).Select(x => x.ToString("x2")).ToArray())}.g.cs";
         return sourceFileName;
     }
 

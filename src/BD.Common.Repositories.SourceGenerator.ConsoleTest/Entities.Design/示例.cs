@@ -1,8 +1,6 @@
 #pragma warning disable IDE0044 // 添加只读修饰符
 #pragma warning disable IDE0051 // 删除未使用的私有成员
 
-using BD.Common.Entities.Abstractions;
-
 namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
 
 [GenerateRepositories]
@@ -12,6 +10,9 @@ public class 示例
     Guid Id;
 
     Guid 租户Id;
+
+    [BackManageField]
+    string? Title;
 
     #region CloudFileInfo
 
@@ -56,6 +57,7 @@ public class 示例
 
     #endregion
 
+    [BackManageField(Edit = true)]
     [MaxLength(MaxLengths.Url)]
     string? 访问地址;
 
@@ -88,6 +90,7 @@ public class 示例
 
     const int TestConst = 1;
 
+    [BackManageField(Edit = true)]
     [Required]
     [StringLength(35, MinimumLength = 1, ErrorMessage = "D")]
     string 名称 = "";
@@ -96,36 +99,47 @@ public class 示例
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     Guid Key;
 
+    [BackManageField(Edit = true)]
     [Precision(5, 2)]
     float 平均分;
 
+    [BackManageField(Edit = true)]
     [Precision(5)]
     float 平均分2;
 
+    [BackManageField(Edit = true)]
     [EmailAddress]
     string 邮箱 = "";
 
     Architecture Architecture = Architecture.X64;
 
+    [BackManageField(Edit = true)]
     string? Describe;
 
+    [BackManageField(Edit = true)]
     string? DisableReason;
 
+    [BackManageField(Edit = true)]
     Gender Gender;
 
+    [BackManageField(Edit = true)]
     string? NickName;
 
+    [BackManageField(Edit = true)]
     long Order;
 
+    [BackManageField(Edit = true)]
     bool IsTop;
 
+    [BackManageField(Edit = true)]
     string? IPAddress;
 
+    [BackManageField(Edit = true)]
     string? Password;
 
+    [BackManageField(Edit = true)]
     string? Remarks;
 
+    [BackManageField(Edit = true)]
     string? SmsCode;
-
-    string? Title;
 }

@@ -4,13 +4,9 @@ sealed class GeneralAttributeHandle : IAttributeHandle
 {
     public static IAttributeHandle Instance { get; } = new GeneralAttributeHandle();
 
-    static readonly Lazy<ImmutableDictionary<string, string>> types = new(() =>
-        typeof(TypeFullNames).GetFields(BindingFlags.Public | BindingFlags.Static).
-            ToImmutableDictionary(static x => x.GetValue(null).ToString(), static x => x.Name));
-
     string? IAttributeHandle.Write(AttributeHandleArguments args)
     {
-        if (types.Value.TryGetValue(args.AttributeClassFullName, out var attrShortName))
+        if (GeneratorConfig.AttrTypeFullNames.TryGetValue(args.AttributeClassFullName, out var attrShortName))
         {
             if (args.ClassType != ClassType.Entities)
             {

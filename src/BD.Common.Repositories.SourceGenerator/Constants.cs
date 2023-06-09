@@ -25,7 +25,7 @@ static class Constants
     /// <summary>
     /// 定义特性类型完整名称
     /// </summary>
-    public static class TypeFullNames
+    internal static class TypeFullNames
     {
         public const string Comment = "Microsoft.EntityFrameworkCore.CommentAttribute";
         public const string MaxLength = "System.ComponentModel.DataAnnotations.MaxLengthAttribute";
