@@ -25,12 +25,14 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
     protected virtual bool IsInterface { get; }
 
-    protected void WriteMethodQueryAsync(
+    protected void WriteMethodQuery(
         Stream stream,
         TTemplateMetadata metadata,
         ImmutableArray<PropertyMetadata> fields)
     {
-        var format =
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
 """
     /// <summary>
     /// 分页查询{0}表格
@@ -38,7 +40,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <param name="current">当前页码，页码从 1 开始，默认值：<see cref="IPagedModel.DefaultCurrent"/></param>
     /// <param name="pageSize">页大小，如果为 0 必定返回空集合，默认值：<see cref="IPagedModel.DefaultPageSize"/></param>
 """u8;
-        stream.WriteFormat(format, metadata.Summary);
+        stream.WriteFormat(utf8String, metadata.Summary);
 
         fields = fields.
             Where(x => x.BackManageField != null &&
@@ -49,7 +51,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         {
             field.WriteParam(stream);
         }
-        format =
+        utf8String =
 """
 
     /// <returns>{0}</returns>
@@ -57,7 +59,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         int current = IPagedModel.DefaultCurrent,
         int pageSize = IPagedModel.DefaultPageSize
 """u8;
-        stream.WriteFormat(format,
+        stream.WriteFormat(utf8String,
             $"{metadata.Summary}分页表格查询结果数据",
             IsInterface ? null : "public async "u8.ToArray(),
             metadata.ClassName);

@@ -25,7 +25,7 @@ static class Constants
     /// <summary>
     /// 定义特性类型完整名称
     /// </summary>
-    internal static class TypeFullNames
+    public static class TypeFullNames
     {
         public const string Comment = "Microsoft.EntityFrameworkCore.CommentAttribute";
         public const string MaxLength = "System.ComponentModel.DataAnnotations.MaxLengthAttribute";
@@ -40,5 +40,41 @@ static class Constants
         public const string DatabaseGenerated = "System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute";
         public const string Precision = "Microsoft.EntityFrameworkCore.PrecisionAttribute";
         public const string EmailAddress = "System.ComponentModel.DataAnnotations.EmailAddressAttribute";
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetArgumentName(string argumentType)
+    {
+        var nameChars = argumentType.ToCharArray().AsSpan();
+        if (argumentType.Length >= 2 &&
+            nameChars[0] == 'I' &&
+            nameChars[1] >= 'A' &&
+            nameChars[1] <= 'Z')
+        {
+            nameChars = nameChars[1..];
+        }
+        nameChars[0] = char.ToLower(nameChars[0], CultureInfo.InvariantCulture);
+        if (argumentType.EndsWith("Repository"))
+        {
+            nameChars = nameChars[..^"sitory".Length];
+        }
+        return new string(nameChars
+#if !(NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER)
+            .ToArray()
+#endif
+            );
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static async Task InBackground(Action action, bool longRunning = false)
+    {
+        TaskCreationOptions options = TaskCreationOptions.DenyChildAttach;
+
+        if (longRunning)
+        {
+            options |= TaskCreationOptions.LongRunning | TaskCreationOptions.PreferFairness;
+        }
+
+        await Task.Factory.StartNew(action, CancellationToken.None, options, TaskScheduler.Default).ConfigureAwait(false);
     }
 }

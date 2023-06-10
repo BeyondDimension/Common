@@ -50,6 +50,18 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
 #if DEBUG
         var sourceString = Encoding.UTF8.GetString(memoryStream.ToArray());
         Console.WriteLine(sourceString);
+
+        switch (typeof(TTemplate).Name)
+        {
+            case nameof(EntityTemplate):
+                break;
+            case nameof(BackManageModelTemplate):
+                break;
+            case nameof(RepositoryTemplate):
+                break;
+            case nameof(RepositoryImplTemplate):
+                break;
+        }
 #endif
 
         ctx.AddSource(symbol, partialFileName, memoryStream);

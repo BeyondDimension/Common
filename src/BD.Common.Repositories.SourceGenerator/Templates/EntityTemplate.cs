@@ -45,9 +45,23 @@ public sealed partial class {3}
         args[0] = string.Format(args[0]!.ToString(), "Entities");
         stream.WriteFormat(format, args);
 
-        var isFirstWriteBaseInterfaceType = true;
+        var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
+
+        bool isFirstWriteBaseInterfaceType = true;
+        var fixedProperties = new HashSet<FixedProperty>(
+            fields.Where(x => x.FixedProperty != default)
+                .Select(x => x.FixedProperty));
+        var baseClassType = fixedProperties.GetEntityBaseClassType();
+        if (baseClassType != default)
+        {
+            var baseType = idField.GetBaseEntityType(baseClassType);
+            PropertyMetadata.WriteBaseType(stream, baseType, ref isFirstWriteBaseInterfaceType, false);
+        }
+
         foreach (var field in fields)
         {
+            if (field.FixedProperty != default && baseClassType.IsBaseProperty(field.FixedProperty))
+                continue; // 父类继承的接口跳过
             field.WriteBaseInterfaceType(stream, classType, ref isFirstWriteBaseInterfaceType);
         }
 
@@ -60,10 +74,20 @@ public sealed partial class {3}
 
         #region 生成属性 Properties
 
+        fields = fields.Where(x => x.FixedProperty == FixedProperty.Id ||
+            !baseClassType.IsBaseProperty(x.FixedProperty)).ToImmutableArray();
         for (int i = 0; i < fields.Length; i++)
         {
+            bool @override = false;
             var field = fields[i];
-            field.Write(stream, classType, i, fields.Length);
+            switch (field.FixedProperty)
+            {
+                case FixedProperty.Id:
+                    if (baseClassType.IsBaseProperty(FixedProperty.Id))
+                        @override = true;
+                    break;
+            }
+            field.Write(stream, classType, i, fields.Length, @override);
         }
 
         #endregion

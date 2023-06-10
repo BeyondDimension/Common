@@ -38,9 +38,9 @@
 		<Compile Include="..\BD.Common\Extensions\StringExtensions.NumberLetter.cs">
 			<LinkBase>Extensions</LinkBase>
 		</Compile>
-		<Compile Include="..\Translate.cs">
+		<!--<Compile Include="..\Translate.cs">
 			<LinkBase>Helpers</LinkBase>
-		</Compile>
+		</Compile>-->
 		<Compile Include="..\Utils.cs">
 			<LinkBase>Helpers</LinkBase>
 		</Compile>

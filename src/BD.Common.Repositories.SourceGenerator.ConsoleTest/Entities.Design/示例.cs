@@ -3,11 +3,16 @@
 
 namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
 
-[GenerateRepositories]
+[GenerateRepositories(
+    RepositoryConstructorArguments = new[] {
+        "ISysUserRepository",
+        "ASDASDRepository",
+    }
+)]
 //[Table("TestXXXs")] // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词
 public class 示例
 {
-    Guid Id;
+    string? Id;
 
     Guid 租户Id;
 

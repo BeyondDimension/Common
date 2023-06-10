@@ -9,9 +9,102 @@ sealed class RepositoryImplTemplate : RepositoryTemplateBase<RepositoryImplTempl
         string Namespace,
         string Summary,
         string ClassName,
-        string? PrimaryKeyTypeName = null) : ITemplateMetadata
+        string? PrimaryKeyTypeName = null,
+        string[]? ConstructorArguments = null) : ITemplateMetadata
     {
 
+    }
+
+    void WriteConstructor(
+        Stream stream,
+        Metadata metadata)
+    {
+        int i;
+        ReadOnlySpan<byte> utf8String;
+
+        if (metadata.ConstructorArguments == null)
+            return;
+
+        Dictionary<string, string> arguments = new();
+        foreach (var constructorArgument in metadata.ConstructorArguments)
+        {
+            var constructorArgumentName = GetArgumentName(constructorArgument);
+            if (!arguments.ContainsKey(constructorArgumentName))
+            {
+                arguments.Add(constructorArgumentName, constructorArgument);
+            }
+        }
+
+        i = 0;
+        foreach (var argument in arguments)
+        {
+            utf8String =
+"""
+    readonly {0} {1};
+"""u8;
+            stream.WriteFormat(utf8String, argument.Value, argument.Key);
+            stream.WriteNewLine();
+            if (i == arguments.Count - 1)
+                stream.WriteNewLine();
+            i++;
+        }
+
+        utf8String =
+"""
+    public {0}Repository(
+        TDbContext dbContext,
+        IRequestAbortedProvider requestAbortedProvider
+"""u8;
+        stream.WriteFormat(utf8String, metadata.ClassName);
+
+        // args
+        foreach (var argument in arguments)
+        {
+            utf8String =
+"""
+,
+        {0} {1}
+"""u8;
+            stream.WriteFormat(utf8String, argument.Value, argument.Key);
+        }
+
+        utf8String =
+"""
+) : base(dbContext, requestAbortedProvider
+"""u8;
+        stream.Write(utf8String);
+
+        // base args?
+
+        utf8String =
+"""
+)
+    {
+"""u8;
+        stream.Write(utf8String);
+
+        // this.xxx = xxx;
+        i = 0;
+        foreach (var argument in arguments.Keys)
+        {
+            if (i != 0 && i != arguments.Count - 1)
+                stream.WriteNewLine();
+            utf8String =
+"""
+
+        this.{0} = {0};
+"""u8;
+            stream.WriteFormat(utf8String, argument);
+            i++;
+        }
+
+        utf8String =
+"""
+
+    }
+
+"""u8;
+        stream.Write(utf8String);
     }
 
     protected override void WriteCore(Stream stream, object?[] args, Metadata metadata, ImmutableArray<PropertyMetadata> fields)
@@ -40,9 +133,11 @@ public sealed partial class {2}Repository<TDbContext> : Repository<TDbContext, {
 
 """u8);
 
+        WriteConstructor(stream, metadata);
+
         #region 生成方法 Methods
 
-        //WriteMethodQueryAsync(stream, metadata, fields);
+        //WriteMethodQuery(stream, metadata, fields);
 
         #endregion
 

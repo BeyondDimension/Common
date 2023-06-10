@@ -26,36 +26,52 @@ public record struct PropertyMetadata(
         _ => Encoding.UTF8.GetBytes(FixedProperty.ToString()),
     };
 
-    /// <summary>
-    /// 写入继承的接口类型
-    /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="isFirstWrite"></param>
-    public readonly void WriteBaseInterfaceType(Stream stream, ClassType classType, ref bool isFirstWrite)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public byte[]? GetBaseEntityType(EntityBaseClassType baseClassType) => baseClassType switch
+    {
+        EntityBaseClassType.Entity => Encoding.UTF8.GetBytes($"Entity<{PropertyType}>"),
+        EntityBaseClassType.TenantBaseEntityV2 => Encoding.UTF8.GetBytes($"TenantBaseEntityV2<{PropertyType}>"),
+        EntityBaseClassType.OperatorBaseEntityV2 => Encoding.UTF8.GetBytes($"OperatorBaseEntityV2<{PropertyType}>"),
+        EntityBaseClassType.CreationBaseEntityV2 => Encoding.UTF8.GetBytes($"CreationBaseEntityV2<{PropertyType}>"),
+        _ => default,
+    };
+
+    public static void WriteBaseType(Stream stream, ReadOnlySpan<byte> classType, ref bool isFirstWrite, bool writeI = true)
     {
         // : IsFirst
         // , IsNotFirst
-        if (Enum.IsDefined(typeof(FixedProperty), FixedProperty))
+        if (isFirstWrite)
         {
-            if (isFirstWrite)
-            {
-                stream.Write(
+            stream.Write(
 """
  : 
 """u8);
+            if (writeI)
                 stream.WriteByte(I);
-                stream.Write(GetBaseInterfaceType(classType));
-                isFirstWrite = false;
-            }
-            else
-            {
-                stream.Write(
+            stream.Write(classType);
+            isFirstWrite = false;
+        }
+        else
+        {
+            stream.Write(
 """
 , 
 """u8);
+            if (writeI)
                 stream.WriteByte(I);
-                stream.Write(GetBaseInterfaceType(classType));
-            }
+            stream.Write(classType);
+        }
+    }
+
+    /// <summary>
+    /// 写入继承的接口类型
+    /// </summary>
+    public readonly void WriteBaseInterfaceType(Stream stream, ClassType classType, ref bool isFirstWrite)
+    {
+        if (Enum.IsDefined(typeof(FixedProperty), FixedProperty))
+        {
+            var classType_ = GetBaseInterfaceType(classType);
+            WriteBaseType(stream, classType_, ref isFirstWrite, true);
         }
     }
 
@@ -107,6 +123,17 @@ public record struct PropertyMetadata(
 """u8, humanizeName);
     }
 
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteAttribute(Stream stream, ReadOnlySpan<byte> attribute)
+    {
+        stream.WriteFormat(
+"""
+    [{0}]
+
+"""u8, attribute.ToArray());
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void WriteRequired(Stream stream)
     {
@@ -127,10 +154,15 @@ public record struct PropertyMetadata(
         stream.WriteFormat(format, propertyName, HumanizeName);
     }
 
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
     /// <summary>
     /// 将属性元数据写入到源码文件流中
     /// </summary>
-    public readonly void Write(Stream stream, ClassType classType)
+    public readonly void Write(Stream stream, ClassType classType, bool @override = false)
     {
         var attributes = Attributes;
         foreach (var handle in propertyHandles.Value)
@@ -176,6 +208,16 @@ public record struct PropertyMetadata(
                     // 属性缺少 Comment 自动补全
                     WriteComment(stream, HumanizeName);
                 }
+                switch (FixedProperty)
+                {
+                    case FixedProperty.Id:
+                        if (!writeAttributes.Contains(TypeFullNames.Key))
+                        {
+                            // 主键 Id 属性缺少 Key 自动补全
+                            WriteAttribute(stream, "Key"u8);
+                        }
+                        break;
+                }
                 break;
         }
 
@@ -186,7 +228,7 @@ public record struct PropertyMetadata(
 
         switch (propertyType)
         {
-            case "string": // 类型为 String 不可 null 的
+            case "string": // 类型为 String 【不可】 null 的
                 constantValue = "\"\""; // 需要设置默认值空字符串
                 if (!writeAttributes.Contains(TypeFullNames.Required))
                 {
@@ -194,7 +236,7 @@ public record struct PropertyMetadata(
                     WriteRequired(stream);
                 }
                 break;
-            case "string?": // 类型为 String 可为 null 的
+            case "string?": // 类型为 String 【可】为 null 的
                 if (writeAttributes.Contains(TypeFullNames.Required)) // 但是有数据库必填
                 {
                     // 将类型更改为不可 null，并设置默认值空字符串
@@ -206,7 +248,10 @@ public record struct PropertyMetadata(
 
         #endregion
 
-        var property =
+        var property = @override ?
+"""
+    public override {0} {1} { get; set; }
+"""u8 :
 """
     public {0} {1} { get; set; }
 """u8;
@@ -230,9 +275,9 @@ public record struct PropertyMetadata(
     /// <summary>
     /// 将属性元数据写入到源码文件流中，并根据下标与长度判断是否为最后一个不添加额外的空行
     /// </summary>
-    public readonly void Write(Stream stream, ClassType classType, int i, int length)
+    public readonly void Write(Stream stream, ClassType classType, int i, int length, bool @override = false)
     {
-        Write(stream, classType);
+        Write(stream, classType, @override);
         if (i < length - 1)
         {
             stream.Write(

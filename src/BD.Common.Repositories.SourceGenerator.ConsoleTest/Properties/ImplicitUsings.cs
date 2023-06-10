@@ -10,3 +10,5 @@ global using BD.Common.Repositories.SourceGenerator.Annotations;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Repositories;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Repositories.Abstractions;
+
+global using IIPAddress = BD.Common.Columns.IPAddress;

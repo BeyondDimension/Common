@@ -15,7 +15,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
             static (_, _) => true,
             static (content, _) => content);
 
-        context.RegisterSourceOutput(attrs, (ctx, content) =>
+        context.RegisterSourceOutput(attrs, async (ctx, content) =>
         {
             if (content.TargetSymbol is not INamedTypeSymbol symbol)
                 return;
@@ -37,29 +37,43 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 var generateRepositories = attrs.GetGenerateRepositoriesAttribute();
                 if (generateRepositories != null)
                 {
+                    List<Task> tasks = new(); // 不同类型的模板使用多线程并行化执行
                     if (generateRepositories.Entity)
                     {
-                        EntityTemplate.Instance.AddSource(ctx, symbol,
-                            new(@namespace, symbol.Name, tableClassName, className),
-                            properties);
+                        tasks.Add(InBackground(() =>
+                        {
+                            EntityTemplate.Instance.AddSource(ctx, symbol,
+                                new(@namespace, symbol.Name, tableClassName, className),
+                                properties);
+                        }));
                         if (generateRepositories.BackManageAddModel ||
                             generateRepositories.BackManageEditModel ||
                             generateRepositories.BackManageTableModel)
                         {
-                            BackManageModelTemplate.Instance.AddSource(ctx, symbol,
-                                new(@namespace, symbol.Name, className,
-                                    generateRepositories.BackManageAddModel,
-                                    generateRepositories.BackManageEditModel,
-                                    generateRepositories.BackManageTableModel),
-                                properties);
+                            tasks.Add(InBackground(() =>
+                            {
+                                BackManageModelTemplate.Instance.AddSource(ctx, symbol,
+                                    new(@namespace, symbol.Name, className,
+                                        generateRepositories.BackManageAddModel,
+                                        generateRepositories.BackManageEditModel,
+                                        generateRepositories.BackManageTableModel),
+                                    properties);
+                            }));
                             if (generateRepositories.Repository)
                             {
-                                RepositoryTemplate.Instance.AddSource(ctx, symbol,
-                                    new(@namespace, symbol.Name, className),
-                                    properties);
-                                RepositoryImplTemplate.Instance.AddSource(ctx, symbol,
-                                    new(@namespace, symbol.Name, className),
-                                    properties);
+                                tasks.Add(InBackground(() =>
+                                {
+                                    RepositoryTemplate.Instance.AddSource(ctx, symbol,
+                                        new(@namespace, symbol.Name, className),
+                                        properties);
+                                }));
+                                tasks.Add(InBackground(() =>
+                                {
+                                    RepositoryImplTemplate.Instance.AddSource(ctx, symbol,
+                                        new(@namespace, symbol.Name, className,
+                                        ConstructorArguments: generateRepositories.RepositoryConstructorArguments),
+                                        properties);
+                                }));
                                 if (generateRepositories.ApiController)
                                 {
 
@@ -67,6 +81,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                             }
                         }
                     }
+                    await Task.WhenAll(tasks);
                     GeneratorConfig.Save();
                 }
             }

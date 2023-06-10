@@ -32,6 +32,11 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     public bool Repository { get; set; } = true;
 
     /// <summary>
+    /// 是否需要生成仓储层构造函数，如果为 <see langword="null"/> 则不生成构造函数，否则将根据参数类型自动生成，默认值为：ArrayEmpty
+    /// </summary>
+    public string[]? RepositoryConstructorArguments { get; set; } = Array.Empty<string>();
+
+    /// <summary>
     /// 是否需要生成控制器，默认值为：<see langword="true"/>
     /// </summary>
     public bool ApiController { get; set; } = true;
@@ -45,6 +50,10 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetValue(string key, object? value)
     {
+        static string?[]? ToStringArray(object? value) =>
+            value is string[] array ? array :
+                (value is IEnumerable<string> enumerable ? enumerable.ToArray() :
+                    (value is IEnumerable<object?> enumerable2 ? enumerable2.Select(x => x?.ToString()).ToArray() : null));
         switch (key)
         {
             case nameof(Entity):
@@ -61,6 +70,9 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 break;
             case nameof(Repository):
                 Repository = Convert.ToBoolean(value);
+                break;
+            case nameof(RepositoryConstructorArguments):
+                RepositoryConstructorArguments = ToStringArray(value)!;
                 break;
             case nameof(ApiController):
                 ApiController = Convert.ToBoolean(value);

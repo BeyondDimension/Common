@@ -23,6 +23,28 @@ static class AttributeDataHelper
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static object? GetObjectValue(this TypedConstant typedConstant)
+    {
+        try
+        {
+            return typedConstant.Value;
+        }
+        catch
+        {
+
+        }
+        try
+        {
+            return typedConstant.Values.Select(x => x.Value is TypedConstant typedConstant1 ? typedConstant1.GetObjectValue() : x.Value);
+        }
+        catch
+        {
+
+        }
+        return null;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static BackManageFieldAttribute? GetBackManageFieldAttribute(this ImmutableArray<AttributeData> attributes)
     {
         const string typeFullName = "BD.Common.Repositories.SourceGenerator.Annotations.BackManageFieldAttribute";
@@ -31,7 +53,7 @@ static class AttributeDataHelper
 
         BackManageFieldAttribute attr = new();
         foreach (var item in attribute.NamedArguments)
-            attr.SetValue(item.Key, item.Value.Value);
+            attr.SetValue(item.Key, item.Value.GetObjectValue());
         return attr;
     }
 
@@ -44,7 +66,7 @@ static class AttributeDataHelper
 
         GenerateRepositoriesAttribute attr = new();
         foreach (var item in attribute.NamedArguments)
-            attr.SetValue(item.Key, item.Value.Value);
+            attr.SetValue(item.Key, item.Value.GetObjectValue());
         return attr;
     }
 }
