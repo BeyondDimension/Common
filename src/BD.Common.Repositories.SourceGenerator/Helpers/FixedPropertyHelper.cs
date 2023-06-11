@@ -181,6 +181,22 @@ static class FixedPropertyHelper
                 fieldHumanizeName = "是否置顶";
                 return;
             }
+            else if (fieldName == "是否禁用" ||
+                fieldName == "禁用" ||
+                fieldName == "是否启用" ||
+                fieldName == "启用" ||
+                fieldName.OICEquals("Enable") ||
+                fieldName.OICEquals("Enabled") ||
+                fieldName.OICEquals("Disable") ||
+                fieldName.OICEquals("Disabled") ||
+                fieldName.OICEquals("IsEnable") ||
+                fieldName.OICEquals("IsDisable"))
+            {
+                fixedProperty = FixedProperty.Disable;
+                fieldName = "Disable";
+                fieldHumanizeName = "是否禁用";
+                return;
+            }
             else if (fieldName == "软删除" ||
                 fieldName == "是否软删除" ||
                 fieldName == "是否删除" ||

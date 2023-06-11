@@ -16,6 +16,12 @@ public static partial class StreamExtensions
         ReadOnlySpan<byte> utf8String,
         params object?[] args)
     {
+        if (args == null || args.Length == 0)
+        {
+            stream.Write(utf8String);
+            return;
+        }
+
         int index_l_brace, index_r_brace;
         index_l_brace = utf8String.IndexOf(l_brace);
         if (index_l_brace >= 0) // 查找左大括号

@@ -43,7 +43,8 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                         tasks.Add(InBackground(() =>
                         {
                             EntityTemplate.Instance.AddSource(ctx, symbol,
-                                new(@namespace, symbol.Name, tableClassName, className),
+                                new(@namespace, symbol.Name, tableClassName, className,
+                                generateRepositories.NEWSEQUENTIALID),
                                 properties);
                         }));
                         if (generateRepositories.BackManageAddModel ||
@@ -76,7 +77,14 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                 }));
                                 if (generateRepositories.ApiController)
                                 {
-
+                                    tasks.Add(InBackground(() =>
+                                    {
+                                        BackManageControllerTemplate.Instance.AddSource(ctx, symbol,
+                                            new(@namespace, symbol.Name, className,
+                                            ConstructorArguments: generateRepositories.ApiControllerConstructorArguments,
+                                            ApiRoutePrefix: generateRepositories.ApiRoutePrefix),
+                                            properties);
+                                    }));
                                 }
                             }
                         }
@@ -97,7 +105,10 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     builder.AppendLine();
                     ex = ex.InnerException;
                 } while (ex != null);
-                ctx.AddSource(hintName, SourceText.From(builder.ToString(), Encoding.UTF8));
+                var errorString = builder.ToString();
+                Debug.WriteLine(errorString);
+                errorString = string.Join("\r\n", errorString.Split(new string[] { "\r\n" }, StringSplitOptions.None).Select(x => $"// {x}"));
+                ctx.AddSource(hintName, SourceText.From(errorString, Encoding.UTF8));
             }
         });
     }

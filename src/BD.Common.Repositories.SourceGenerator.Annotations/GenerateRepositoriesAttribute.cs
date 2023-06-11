@@ -42,6 +42,16 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     public bool ApiController { get; set; } = true;
 
     /// <summary>
+    /// 是否需要生成控制器构造函数，如果为 <see langword="null"/> 则不生成构造函数，否则将根据参数类型自动生成，默认值为：ArrayEmpty
+    /// </summary>
+    public string[]? ApiControllerConstructorArguments { get; set; } = Array.Empty<string>();
+
+    /// <summary>
+    /// 控制器路由前缀，默认值为：<see langword="null"/>
+    /// </summary>
+    public string? ApiRoutePrefix { get; set; }
+
+    /// <summary>
     /// 如果需要生成实体类型且主键为 <see cref="Guid"/> 时是否需要继承接口 INEWSEQUENTIALID，默认值为：<see langword="true"/>
     /// </summary>
     public bool NEWSEQUENTIALID { get; set; } = true;
@@ -76,6 +86,12 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 break;
             case nameof(ApiController):
                 ApiController = Convert.ToBoolean(value);
+                break;
+            case nameof(ApiControllerConstructorArguments):
+                ApiControllerConstructorArguments = ToStringArray(value)!;
+                break;
+            case nameof(ApiRoutePrefix):
+                ApiRoutePrefix = value?.ToString();
                 break;
             case nameof(NEWSEQUENTIALID):
                 NEWSEQUENTIALID = Convert.ToBoolean(value);

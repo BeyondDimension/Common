@@ -27,7 +27,7 @@ public record struct PropertyMetadata(
     };
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public byte[]? GetBaseEntityType(EntityBaseClassType baseClassType) => baseClassType switch
+    public readonly byte[]? GetBaseEntityType(EntityBaseClassType baseClassType) => baseClassType switch
     {
         EntityBaseClassType.Entity => Encoding.UTF8.GetBytes($"Entity<{PropertyType}>"),
         EntityBaseClassType.TenantBaseEntityV2 => Encoding.UTF8.GetBytes($"TenantBaseEntityV2<{PropertyType}>"),

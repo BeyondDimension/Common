@@ -6,7 +6,9 @@ namespace BD.Common.Repositories.SourceGenerator.Models;
 /// <param name="Translates"></param>
 public sealed record class GeneratorConfig(
     ConcurrentDictionary<string, string> Translates,
-    ImmutableHashSet<string> AttributeTypeFullNames)
+    ImmutableHashSet<string> AttributeTypeFullNames,
+    string? ApiBaseUrlBackManageLocal,
+    string? ApiBaseUrlBackManageDevelopment)
 {
     static readonly Dictionary<string, string> DefTranslates = new()
     {
@@ -18,6 +20,26 @@ public sealed record class GeneratorConfig(
         { "文件后缀名", "FileExtension" },
         { "文件名", "FileName" },
     };
+
+    static readonly Lazy<byte[]> _GetApiBaseUrlBackManageLocal = new(() =>
+    {
+        var value = Instance.ApiBaseUrlBackManageLocal;
+        if (string.IsNullOrWhiteSpace(value))
+            return "https://localhost:7129"u8.ToArray();
+        return Encoding.UTF8.GetBytes(value!.TrimEnd("/"));
+    });
+
+    public static byte[] GetApiBaseUrlBackManageLocal() => _GetApiBaseUrlBackManageLocal.Value;
+
+    static readonly Lazy<byte[]> _GetApiBaseUrlBackManageDevelopment = new(() =>
+    {
+        var value = Instance.ApiBaseUrlBackManageDevelopment;
+        if (string.IsNullOrWhiteSpace(value))
+            return ""u8.ToArray();
+        return Encoding.UTF8.GetBytes(value!.TrimEnd("/"));
+    });
+
+    public static byte[] GetApiBaseUrlBackManageDevelopment() => _GetApiBaseUrlBackManageDevelopment.Value;
 
     /// <summary>
     /// 配置文件名

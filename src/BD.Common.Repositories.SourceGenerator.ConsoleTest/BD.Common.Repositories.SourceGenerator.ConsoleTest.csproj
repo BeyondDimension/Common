@@ -30,9 +30,13 @@
 		<Compile Include="..\ImplicitUsings.Repositories.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="..\ImplicitUsings.AspNetCore.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\BD.Common.AspNetCore.Identity.BackManage\BD.Common.AspNetCore.Identity.BackManage.csproj" />
 		<ProjectReference Include="..\BD.Common.Primitives\BD.Common.Primitives.csproj" />
 		<ProjectReference Include="..\BD.Common.Repositories.EFCore\BD.Common.Repositories.EFCore.csproj" />
 		<ProjectReference Include="..\BD.Common.Repositories.SourceGenerator.Annotations\BD.Common.Repositories.SourceGenerator.Annotations.csproj" />

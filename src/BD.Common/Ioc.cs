@@ -71,7 +71,14 @@ public static partial class Ioc
     public static T? Get_Nullable<T>() where T : notnull
     {
         if (value == null) return default;
-        return value.GetService<T>();
+        try
+        {
+            return value.GetService<T>();
+        }
+        catch (ObjectDisposedException)
+        {
+            return default;
+        }
     }
 
     /// <inheritdoc cref="Get{T}"/>
@@ -88,7 +95,14 @@ public static partial class Ioc
     public static object? Get_Nullable(Type serviceType)
     {
         if (value == null) return default;
-        return value.GetService(serviceType);
+        try
+        {
+            return value.GetService(serviceType);
+        }
+        catch (ObjectDisposedException)
+        {
+            return default;
+        }
     }
 
     public static IServiceScope CreateScope()

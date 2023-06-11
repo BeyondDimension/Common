@@ -29,6 +29,7 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
         });
     }
 
+    [Obsolete("use SetDisableByIdAsync in BD.Common.Repositories.SourceGenerator")]
     protected virtual Task<int> SetDisableAsync(IQueryable<TEntity> query, bool disable)
     {
         if (query is IQueryable<IDisable> queryDisable)
@@ -41,6 +42,7 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
         }
     }
 
+    [Obsolete("use SetDisableByIdAsync in BD.Common.Repositories.SourceGenerator")]
     public virtual async Task<int> SetDisableByIdAsync(TPrimaryKey primaryKey, bool disable)
     {
         var query = EntityNoTracking.Where(IRepository<TEntity, TPrimaryKey>.LambdaEqualId(primaryKey));

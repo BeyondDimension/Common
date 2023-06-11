@@ -5,10 +5,14 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
+global using Microsoft.Extensions.Logging;
+global using BD.Common.Controllers.Abstractions;
 global using BD.Common.Repositories.SourceGenerator.Annotations;
 
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Repositories;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Repositories.Abstractions;
+global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Controllers;
+global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Controllers.Abstractions;
 
 global using IIPAddress = BD.Common.Columns.IPAddress;

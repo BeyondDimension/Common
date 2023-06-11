@@ -20,4 +20,5 @@ public enum FixedProperty : ushort
     UpdateTime,
     CreateUserId,
     OperatorUserId,
+    Disable,
 }

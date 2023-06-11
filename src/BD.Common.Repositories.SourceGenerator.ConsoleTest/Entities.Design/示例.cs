@@ -7,17 +7,23 @@ namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
     RepositoryConstructorArguments = new[] {
         "ISysUserRepository",
         "ASDASDRepository",
-    }
+    },
+    ApiControllerConstructorArguments = new[] {
+        "ISysMenuRepository",
+    },
+    ApiRoutePrefix = "ms/accelerator"
 )]
 //[Table("TestXXXs")] // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词
 public class 示例
 {
-    string? Id;
+    Guid Id;
 
     Guid 租户Id;
 
     [BackManageField]
     string? Title;
+
+    bool 禁用;
 
     #region CloudFileInfo
 
