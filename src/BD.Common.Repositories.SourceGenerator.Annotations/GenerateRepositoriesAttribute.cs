@@ -7,47 +7,67 @@ namespace BD.Common.Repositories.SourceGenerator.Annotations;
 public sealed class GenerateRepositoriesAttribute : Attribute
 {
     /// <summary>
-    /// 是否需要生成表实体模型，默认值为：<see langword="true"/>
+    /// 是否需要生成【表实体】模型，默认值为：<see langword="true"/>
     /// </summary>
     public bool Entity { get; set; } = true;
 
     /// <summary>
-    /// 是否需要生成后台管理添加模型，默认值为：<see langword="true"/>
+    /// 是否需要生成后台管理【添加】模型，默认值为：<see langword="true"/>
     /// </summary>
     public bool BackManageAddModel { get; set; } = true;
 
     /// <summary>
-    /// 是否需要生成后台管理编辑模型，默认值为：<see langword="true"/>
+    /// 指定生成后台管理【添加】仓储层函数实现种类，默认值为：<see cref="RepositoryMethodImplType.Expression"/>
+    /// </summary>
+    public RepositoryMethodImplType BackManageAddMethodImplType { get; set; } = RepositoryMethodImplType.Expression;
+
+    /// <summary>
+    /// 是否需要生成后台管理【编辑】模型，默认值为：<see langword="true"/>
     /// </summary>
     public bool BackManageEditModel { get; set; } = true;
 
     /// <summary>
-    /// 是否需要生成后台管理表格查询模型，默认值为：<see langword="true"/>
+    /// 后台管理【编辑】模型是否仅作为详情展示的只读用途，决定是否生成 Update 函数，默认值为：<see langword="false"/>
+    /// </summary>
+    public bool BackManageEditModelReadOnly { get; set; }
+
+    /// <summary>
+    /// 指定生成后台管理【编辑】仓储层函数实现种类，默认值为：<see cref="RepositoryMethodImplType.Expression"/>
+    /// </summary>
+    public RepositoryMethodImplType BackManageEditMethodImplType { get; set; } = RepositoryMethodImplType.Expression;
+
+    /// <summary>
+    /// 是否需要生成后台管理【表格查询】模型，默认值为：<see langword="true"/>
     /// </summary>
     public bool BackManageTableModel { get; set; } = true;
 
     /// <summary>
-    /// 是否需要生成仓储层，默认值为：<see langword="true"/>
+    /// 指定生成后台管理【表格查询】仓储层函数实现种类，默认值为：<see cref="RepositoryMethodImplType.Expression"/>
+    /// </summary>
+    public RepositoryMethodImplType BackManageTableMethodImplType { get; set; } = RepositoryMethodImplType.Expression;
+
+    /// <summary>
+    /// 是否需要生成【仓储层】，默认值为：<see langword="true"/>
     /// </summary>
     public bool Repository { get; set; } = true;
 
     /// <summary>
-    /// 是否需要生成仓储层构造函数，如果为 <see langword="null"/> 则不生成构造函数，否则将根据参数类型自动生成，默认值为：ArrayEmpty
+    /// 是否需要生成【仓储层构造函数】，如果为 <see langword="null"/> 则不生成构造函数，否则将根据参数类型自动生成，默认值为：ArrayEmpty
     /// </summary>
     public string[]? RepositoryConstructorArguments { get; set; } = Array.Empty<string>();
 
     /// <summary>
-    /// 是否需要生成控制器，默认值为：<see langword="true"/>
+    /// 是否需要生成【控制器】，默认值为：<see langword="true"/>
     /// </summary>
     public bool ApiController { get; set; } = true;
 
     /// <summary>
-    /// 是否需要生成控制器构造函数，如果为 <see langword="null"/> 则不生成构造函数，否则将根据参数类型自动生成，默认值为：ArrayEmpty
+    /// 是否需要生成【控制器构造函数】，如果为 <see langword="null"/> 则不生成构造函数，否则将根据参数类型自动生成，默认值为：ArrayEmpty
     /// </summary>
     public string[]? ApiControllerConstructorArguments { get; set; } = Array.Empty<string>();
 
     /// <summary>
-    /// 控制器路由前缀，默认值为：<see langword="null"/>
+    /// 控制器【路由前缀】，默认值为：<see langword="null"/>
     /// </summary>
     public string? ApiRoutePrefix { get; set; }
 
@@ -74,6 +94,9 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 break;
             case nameof(BackManageEditModel):
                 BackManageEditModel = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageEditModelReadOnly):
+                BackManageEditModelReadOnly = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageTableModel):
                 BackManageTableModel = Convert.ToBoolean(value);

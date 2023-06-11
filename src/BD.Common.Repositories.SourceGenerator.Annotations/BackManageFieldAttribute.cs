@@ -17,6 +17,11 @@ public sealed class BackManageFieldAttribute : Attribute
     public bool Edit { get; set; }
 
     /// <summary>
+    /// 指示该字段需要在后台管理中作为详情只读仅展示，默认值为：<see langword="false"/>
+    /// </summary>
+    public bool Detail { get; set; }
+
+    /// <summary>
     /// 指示该字段需要在后台管理中表格作为【查询结果】，默认值为：<see langword="true"/>
     /// </summary>
     public bool Table { get; set; } = true;
@@ -36,6 +41,9 @@ public sealed class BackManageFieldAttribute : Attribute
                 break;
             case nameof(Edit):
                 Edit = Convert.ToBoolean(value);
+                break;
+            case nameof(Detail):
+                Detail = Convert.ToBoolean(value);
                 break;
             case nameof(Table):
                 Table = Convert.ToBoolean(value);

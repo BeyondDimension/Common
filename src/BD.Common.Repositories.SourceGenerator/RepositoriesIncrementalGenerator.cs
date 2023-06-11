@@ -44,7 +44,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                         {
                             EntityTemplate.Instance.AddSource(ctx, symbol,
                                 new(@namespace, symbol.Name, tableClassName, className,
-                                generateRepositories.NEWSEQUENTIALID),
+                                generateRepositories),
                                 properties);
                         }));
                         if (generateRepositories.BackManageAddModel ||
@@ -55,9 +55,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                             {
                                 BackManageModelTemplate.Instance.AddSource(ctx, symbol,
                                     new(@namespace, symbol.Name, className,
-                                        generateRepositories.BackManageAddModel,
-                                        generateRepositories.BackManageEditModel,
-                                        generateRepositories.BackManageTableModel),
+                                    GenerateRepositoriesAttribute: generateRepositories),
                                     properties);
                             }));
                             if (generateRepositories.Repository)
@@ -65,14 +63,15 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                 tasks.Add(InBackground(() =>
                                 {
                                     RepositoryTemplate.Instance.AddSource(ctx, symbol,
-                                        new(@namespace, symbol.Name, className),
+                                        new(@namespace, symbol.Name, className,
+                                        GenerateRepositoriesAttribute: generateRepositories),
                                         properties);
                                 }));
                                 tasks.Add(InBackground(() =>
                                 {
                                     RepositoryImplTemplate.Instance.AddSource(ctx, symbol,
                                         new(@namespace, symbol.Name, className,
-                                        ConstructorArguments: generateRepositories.RepositoryConstructorArguments),
+                                        GenerateRepositoriesAttribute: generateRepositories),
                                         properties);
                                 }));
                                 if (generateRepositories.ApiController)
@@ -81,8 +80,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                     {
                                         BackManageControllerTemplate.Instance.AddSource(ctx, symbol,
                                             new(@namespace, symbol.Name, className,
-                                            ConstructorArguments: generateRepositories.ApiControllerConstructorArguments,
-                                            ApiRoutePrefix: generateRepositories.ApiRoutePrefix),
+                                            GenerateRepositoriesAttribute: generateRepositories),
                                             properties);
                                     }));
                                 }

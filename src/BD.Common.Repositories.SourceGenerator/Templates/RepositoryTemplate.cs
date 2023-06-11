@@ -9,9 +9,22 @@ sealed class RepositoryTemplate : RepositoryTemplateBase<RepositoryTemplate, Rep
         string Namespace,
         string Summary,
         string ClassName,
-        string? PrimaryKeyTypeName = null) : ITemplateMetadata
+        string? PrimaryKeyTypeName = null,
+        GenerateRepositoriesAttribute GenerateRepositoriesAttribute = null!) : IRepositoryTemplateMetadata
     {
+        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel;
 
+        public RepositoryMethodImplType BackManageAddMethodImplType => GenerateRepositoriesAttribute.BackManageAddMethodImplType;
+
+        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel;
+
+        public bool BackManageEditModelReadOnly => GenerateRepositoriesAttribute.BackManageEditModelReadOnly;
+
+        public RepositoryMethodImplType BackManageEditMethodImplType => GenerateRepositoriesAttribute.BackManageEditMethodImplType;
+
+        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel;
+
+        public RepositoryMethodImplType BackManageTableMethodImplType => GenerateRepositoriesAttribute.BackManageTableMethodImplType;
     }
 
     protected override void WriteCore(Stream stream, object?[] args, Metadata metadata, ImmutableArray<PropertyMetadata> fields)
@@ -37,11 +50,7 @@ public partial interface I{2}Repository : IRepository<{2}, {3}>, IEFRepository
 
 """u8);
 
-        #region 生成方法 Methods
-
-        WriteByFields(stream, metadata, fields);
-
-        #endregion
+        WriteMethods(stream, metadata, fields);
 
         stream.Write(
 """

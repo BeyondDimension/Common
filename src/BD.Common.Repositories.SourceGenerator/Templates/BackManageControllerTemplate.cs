@@ -10,10 +10,25 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
         string Summary,
         string ClassName,
         string? PrimaryKeyTypeName = null,
-        string[]? ConstructorArguments = null,
-        string? ApiRoutePrefix = null) : ITemplateMetadata
+        GenerateRepositoriesAttribute GenerateRepositoriesAttribute = null!) : ITemplateMetadata
     {
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.ApiControllerConstructorArguments"/>
+        public string[]? ConstructorArguments => GenerateRepositoriesAttribute.ApiControllerConstructorArguments;
 
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.ApiRoutePrefix"/>
+        public string? ApiRoutePrefix => GenerateRepositoriesAttribute.ApiRoutePrefix;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddModel"/>
+        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModel"/>
+        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModelReadOnly"/>
+        public bool BackManageEditModelReadOnly => GenerateRepositoriesAttribute.BackManageEditModelReadOnly;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableModel"/>
+        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel;
     }
 
     void WriteConstructor(
@@ -195,6 +210,19 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 
         #endregion
 
+        if (metadata.BackManageEditModel)
+        {
+            WriteEditById(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
+            if (!metadata.BackManageEditModelReadOnly)
+            {
+                WriteUpdate(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
+            }
+        }
+        if (metadata.BackManageAddModel)
+        {
+            WriteInsert(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
+        }
+
         stream.Write(
 """
 }
@@ -364,6 +392,182 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
             IsSuccess = r > 0,
             Data = r,
         };
+    }
+
+
+"""u8);
+    }
+
+    /// <summary>
+    /// 写入方法 - 根据主键获取编辑模型
+    /// </summary>
+    void WriteEditById(
+        Stream stream,
+        Metadata metadata,
+        byte[] routePrefixU8,
+        byte[] classNamePluralizeLower,
+        PropertyMetadata idField,
+        byte[] repositoryInterfaceTypeArgName)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【主键】获取【编辑模型】
+"""u8;
+        stream.Write(utf8String);
+
+        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+
+        utf8String =
+"""
+
+    /// </summary>
+    /// <param name="id">主键</param>
+    /// <returns>编辑模型</returns>
+    [HttpGet("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Detail))]
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    public async Task<ApiResponse<Edit{1}DTO?>> EditById([FromRoute] {0} id)
+"""u8;
+        stream.WriteFormat(utf8String,
+            idField.PropertyType,
+            metadata.ClassName);
+
+        stream.Write(
+"""
+
+    {
+"""u8);
+        stream.WriteFormat(
+"""
+
+        var r = await {0}.GetEditByIdAsync(id);
+"""u8, repositoryInterfaceTypeArgName);
+        stream.Write(
+"""
+
+        return r;
+    }
+
+
+"""u8);
+    }
+
+    /// <summary>
+    /// 写入方法 - 根据添加模型新增一条数据
+    /// </summary>
+    void WriteInsert(
+        Stream stream,
+        Metadata metadata,
+        byte[] routePrefixU8,
+        byte[] classNamePluralizeLower,
+        byte[] repositoryInterfaceTypeArgName)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【添加模型】新增一条数据
+"""u8;
+        stream.Write(utf8String);
+
+        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, ""u8);
+
+        utf8String =
+"""
+
+    /// </summary>
+    /// <param name="model">添加模型</param>
+    /// <returns>受影响的行数</returns>
+    [HttpPost, PermissionFilter(ControllerName + nameof(SysButtonType.Add)))]
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    public async Task<ApiResponse<int>> Insert([FromBody] Add{0}DTO model)
+"""u8;
+        stream.WriteFormat(utf8String,
+            metadata.ClassName);
+
+        stream.Write(
+"""
+
+    {
+"""u8);
+        stream.WriteFormat(
+"""
+
+        var r = await {0}.InsertAsync(id);
+"""u8, repositoryInterfaceTypeArgName);
+        stream.Write(
+"""
+
+        return r;
+    }
+
+
+"""u8);
+    }
+
+    /// <summary>
+    /// 写入方法 - 根据编辑模型更新一条数据
+    /// </summary>
+    void WriteUpdate(
+        Stream stream,
+        Metadata metadata,
+        byte[] routePrefixU8,
+        byte[] classNamePluralizeLower,
+        byte[] repositoryInterfaceTypeArgName)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【编辑模型】更新一条数据
+"""u8;
+        stream.Write(utf8String);
+
+        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+
+        utf8String =
+"""
+
+    /// </summary>
+    /// <param name="model">编辑模型</param>
+    /// <returns>受影响的行数</returns>
+    [HttpPut("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Edit)))]
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    public async Task<ApiResponse<int>> Update([FromBody] Edit{0}DTO model)
+"""u8;
+        stream.WriteFormat(utf8String,
+            metadata.ClassName);
+
+        stream.Write(
+"""
+
+    {
+"""u8);
+        stream.WriteFormat(
+"""
+
+        var r = await {0}.UpdateAsync(id);
+"""u8, repositoryInterfaceTypeArgName);
+        stream.Write(
+"""
+
+        return r;
     }
 
 

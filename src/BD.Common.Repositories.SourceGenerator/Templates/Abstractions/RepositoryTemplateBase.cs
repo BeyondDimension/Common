@@ -7,8 +7,32 @@ namespace BD.Common.Repositories.SourceGenerator.Templates.Abstractions;
 /// <typeparam name="TTemplateMetadata"></typeparam>
 public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : TemplateBase<TTemplate, TTemplateMetadata>
     where TTemplate : RepositoryTemplateBase<TTemplate, TTemplateMetadata>, new()
-    where TTemplateMetadata : ITemplateMetadata
+    where TTemplateMetadata : RepositoryTemplateBase<TTemplate, TTemplateMetadata>.IRepositoryTemplateMetadata
 {
+    public interface IRepositoryTemplateMetadata : ITemplateMetadata
+    {
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddModel"/>
+        bool BackManageAddModel { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddMethodImplType"/>
+        RepositoryMethodImplType BackManageAddMethodImplType { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModel"/>
+        bool BackManageEditModel { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModelReadOnly"/>
+        bool BackManageEditModelReadOnly { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditMethodImplType"/>
+        RepositoryMethodImplType BackManageEditMethodImplType { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableModel"/>
+        bool BackManageTableModel { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableMethodImplType"/>
+        RepositoryMethodImplType BackManageTableMethodImplType { get; }
+    }
+
     /** Functions
      * QueryAsync 后台表格查询，或其他查询返回集合或数组的
      * InsertAsync 插入一行数据
@@ -127,12 +151,10 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// </summary>
     protected void WriteSetDisableById(
         Stream stream,
-        TTemplateMetadata metadata,
-        ImmutableArray<PropertyMetadata> fields)
+        PropertyMetadata idField)
     {
         ReadOnlySpan<byte> utf8String;
 
-        var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
         utf8String =
 """
     /// <summary>
@@ -179,18 +201,13 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <summary>
     /// 写入方法 - 获取用于选择框/下拉列表(Select)的数据
     /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="metadata"></param>
-    /// <param name="fields"></param>
     protected void WriteGetSelect(
         Stream stream,
-        TTemplateMetadata metadata,
-        ImmutableArray<PropertyMetadata> fields,
+        PropertyMetadata idField,
         string titlePropertyName = "Title")
     {
         ReadOnlySpan<byte> utf8String;
 
-        var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
         utf8String =
 """
     /// <summary>
@@ -203,7 +220,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}SelectItemDTO<{1}> GetSelectAsync(int takeCount = SelectItemDTO.Count)
+    {0}Task<SelectItemDTO<{1}>> GetSelectAsync(int takeCount = SelectItemDTO.Count)
 """u8;
         stream.WriteFormat(utf8String,
             IsInterface ? null : "public async "u8.ToArray(),
@@ -259,13 +276,13 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     protected void WriteGetEditById(
         Stream stream,
         TTemplateMetadata metadata,
-        ImmutableArray<PropertyMetadata> fields)
+        ImmutableArray<PropertyMetadata> fields,
+        PropertyMetadata idField)
     {
-        throw new NotImplementedException("TODO");
-
+        const ClassType classType = ClassType.BackManageEditModels;
+        var repositoryMethodImplType = metadata.BackManageEditMethodImplType;
         ReadOnlySpan<byte> utf8String;
 
-        var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
         utf8String =
 """
     /// <summary>
@@ -278,12 +295,14 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}SelectItemDTO<{1}> GetSelectAsync(int takeCount = SelectItemDTO.Count)
+    {0}Task<Edit{1}DTO?> GetEditByIdAsync({2} id)
 """u8;
+        var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
         stream.WriteFormat(utf8String,
-            IsInterface ? null : "public async "u8.ToArray(),
+            IsInterface ? null : (isCustomImpl ? "public partial "u8.ToArray() : "public async "u8.ToArray()),
+            metadata.ClassName,
             idField.PropertyType);
-        if (IsInterface)
+        if (IsInterface || isCustomImpl)
         {
             stream.Write(
 """
@@ -299,30 +318,55 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
     {
         var query = Entity.AsNoTrackingWithIdentityResolution();
-        var r = await query
+        var r = await query.Where(x => x.Id == id)
+
 """u8);
-            stream.WriteFormat(
+            switch (repositoryMethodImplType)
+            {
+                case RepositoryMethodImplType.Expression:
+                    stream.WriteFormat(
+"""
+            .Select(static x => new Edit{0}DTO
+"""u8, metadata.ClassName);
+                    stream.Write(
 """
 
-            .Select(x => new SelectItemDTO<{0}>
-"""u8, idField.PropertyType);
-            stream.Write(
-"""
+            {
 
-                Id = x.Id,
-                Title = x.
 """u8);
-            //stream.Write(Encoding.UTF8.GetBytes(titlePropertyName));
-            stream.Write(
+                    #region EditDTO Properties
+
+                    fields = BackManageModelTemplate.Filter(fields, classType);
+                    for (var i = 0; i < fields.Length; i++)
+                    {
+                        var field = fields[i];
+                        // TODO：创建人，操作人等关系查询的需要特殊适配
+                        stream.WriteFormat(
 """
-,
+                {0} = x.{0},
+
+"""u8, field.Name);
+                    }
+
+                    #endregion
+
+                    stream.Write(
+"""
             })
 
 """u8);
-            // 添加可选的排序支持 .OrderBy?OrderByDescending
+                    break;
+                case RepositoryMethodImplType.ProjectTo:
+                    stream.WriteFormat(
+"""
+            .ProjectTo<Edit{0}DTO>(mapper.ConfigurationProvider)
+
+"""u8, metadata.ClassName);
+                    break;
+            }
             stream.Write(
 """
-            .Take(takeCount).ToArrayAsync();
+            .FirstOrDefaultAsync(RequestAborted);
         return r;
     }
 
@@ -331,20 +375,246 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         }
     }
 
-    protected void WriteByFields(Stream stream, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
+    protected void WriteInsert(
+        Stream stream,
+        TTemplateMetadata metadata,
+        ImmutableArray<PropertyMetadata> fields,
+        PropertyMetadata idField)
     {
+        const ClassType classType = ClassType.BackManageAddModels;
+        var repositoryMethodImplType = metadata.BackManageAddMethodImplType;
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【添加模型】新增一条数据
+    /// </summary>
+    /// <param name="model">添加模型</param>
+    /// <returns>受影响的行数</returns>
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    {0}Task<int> InsertAsync(Add{1}DTO model)
+"""u8;
+        var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
+        stream.WriteFormat(utf8String,
+            IsInterface ? null : (isCustomImpl ? "public partial "u8.ToArray() : "public async "u8.ToArray()),
+            metadata.ClassName,
+            idField.PropertyType);
+        if (IsInterface || isCustomImpl)
+        {
+            stream.Write(
+"""
+;
+
+
+"""u8);
+        }
+        else
+        {
+            stream.Write(
+"""
+
+    {
+        var query = Entity.AsNoTrackingWithIdentityResolution();
+        var r = await query.Where(x => x.Id == id)
+
+"""u8);
+            switch (repositoryMethodImplType)
+            {
+                case RepositoryMethodImplType.Expression:
+                    stream.WriteFormat(
+"""
+            .Select(static x => new Edit{0}DTO
+"""u8, metadata.ClassName);
+                    stream.Write(
+"""
+
+            {
+
+"""u8);
+                    #region EditDTO Properties
+
+                    fields = BackManageModelTemplate.Filter(fields, classType);
+                    for (var i = 0; i < fields.Length; i++)
+                    {
+                        var field = fields[i];
+                        // TODO：创建人，操作人等关系查询的需要特殊适配
+                        stream.WriteFormat(
+"""
+                {0} = x.{0},
+
+"""u8, field.Name);
+                    }
+
+                    #endregion
+
+                    stream.Write(
+"""
+            })
+
+"""u8);
+                    break;
+                case RepositoryMethodImplType.ProjectTo:
+                    stream.WriteFormat(
+"""
+            .ProjectTo<Edit{0}DTO>(mapper.ConfigurationProvider)
+
+"""u8, metadata.ClassName);
+                    break;
+            }
+            stream.Write(
+"""
+            .FirstOrDefaultAsync(RequestAborted);
+        return r;
+    }
+
+
+"""u8);
+        }
+    }
+
+    protected void WriteUpdate(
+        Stream stream,
+        TTemplateMetadata metadata,
+        ImmutableArray<PropertyMetadata> fields,
+        PropertyMetadata idField)
+    {
+        const ClassType classType = ClassType.BackManageEditModels;
+        var repositoryMethodImplType = metadata.BackManageAddMethodImplType;
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【编辑模型】更新一条数据
+    /// </summary>
+    /// <param name="model">编辑模型</param>
+    /// <returns>受影响的行数</returns>
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    {0}Task<int> UpdateAsync(Edit{1}DTO model)
+"""u8;
+        var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
+        stream.WriteFormat(utf8String,
+            IsInterface ? null : (isCustomImpl ? "public partial "u8.ToArray() : "public async "u8.ToArray()),
+            metadata.ClassName,
+            idField.PropertyType);
+        if (IsInterface || isCustomImpl)
+        {
+            stream.Write(
+"""
+;
+
+
+"""u8);
+        }
+        else
+        {
+            stream.Write(
+"""
+
+    {
+        var query = Entity.AsNoTrackingWithIdentityResolution();
+        var r = await query.Where(x => x.Id == id)
+
+"""u8);
+            switch (repositoryMethodImplType)
+            {
+                case RepositoryMethodImplType.Expression:
+                    stream.WriteFormat(
+"""
+            .Select(static x => new Edit{0}DTO
+"""u8, metadata.ClassName);
+                    stream.Write(
+"""
+
+            {
+
+"""u8);
+                    #region EditDTO Properties
+
+                    fields = BackManageModelTemplate.Filter(fields, classType, isOnlyEdit: true);
+                    for (var i = 0; i < fields.Length; i++)
+                    {
+                        var field = fields[i];
+                        // TODO：创建人，操作人等关系查询的需要特殊适配
+                        stream.WriteFormat(
+"""
+                {0} = x.{0},
+
+"""u8, field.Name);
+                    }
+
+                    #endregion
+
+                    stream.Write(
+"""
+            })
+
+"""u8);
+                    break;
+                case RepositoryMethodImplType.ProjectTo:
+                    stream.WriteFormat(
+"""
+            .ProjectTo<Edit{0}DTO>(mapper.ConfigurationProvider)
+
+"""u8, metadata.ClassName);
+                    break;
+            }
+            stream.Write(
+"""
+            .FirstOrDefaultAsync(RequestAborted);
+        return r;
+    }
+
+
+"""u8);
+        }
+    }
+
+    /// <summary>
+    /// 生成方法 Methods
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="metadata"></param>
+    /// <param name="fields"></param>
+    protected void WriteMethods(Stream stream, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
+    {
+        WriteMethodQuery(stream, metadata, fields);
+
+        var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
         foreach (var field in fields)
         {
             switch (field.FixedProperty)
             {
                 case FixedProperty.Disable:
                     WriteSetDisable(stream, metadata);
-                    WriteSetDisableById(stream, metadata, fields);
+                    WriteSetDisableById(stream, idField);
                     break;
                 case FixedProperty.Title:
-                    WriteGetSelect(stream, metadata, fields);
+                    WriteGetSelect(stream, idField);
                     break;
             }
+        }
+
+        if (metadata.BackManageEditModel)
+        {
+            WriteGetEditById(stream, metadata, fields, idField);
+            if (!metadata.BackManageEditModelReadOnly)
+            {
+                WriteUpdate(stream, metadata, fields, idField);
+            }
+        }
+        if (metadata.BackManageAddModel)
+        {
+            WriteInsert(stream, metadata, fields, idField);
         }
     }
 }

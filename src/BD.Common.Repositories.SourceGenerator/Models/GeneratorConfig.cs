@@ -165,9 +165,9 @@ public sealed record class GeneratorConfig(
         }
     }
 
-    static long counter;
+    static int counter;
 
-    long GetCounter()
+    int GetCounter()
     {
         return Translates.Count;
     }

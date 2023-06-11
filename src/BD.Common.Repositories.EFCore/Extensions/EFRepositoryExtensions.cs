@@ -121,7 +121,6 @@ public static class EFRepositoryExtensions
     /// <param name="query"></param>
     /// <param name="disable"></param>
     /// <returns></returns>
-    [Obsolete("use SetDisableByIdAsync in BD.Common.Repositories.SourceGenerator")]
     public static async Task<int> SetDisableAsync(this IQueryable<IDisable> query, bool disable)
     {
         var r = await query.ExecuteUpdateAsync(x => x.SetProperty(y => y.Disable, y => disable));
@@ -137,7 +136,6 @@ public static class EFRepositoryExtensions
     /// <param name="id"></param>
     /// <param name="disable"></param>
     /// <returns></returns>
-    [Obsolete("use SetDisableByIdAsync in BD.Common.Repositories.SourceGenerator")]
     public static async Task<int> SetDisableByIdAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(this IQueryable<TEntity> query, TPrimaryKey id, bool disable)
         where TEntity : class, IDisable, IEntity<TPrimaryKey>
         where TPrimaryKey : IEquatable<TPrimaryKey>

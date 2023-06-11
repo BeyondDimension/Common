@@ -153,4 +153,12 @@ public class 示例
 
     [BackManageField(Edit = true)]
     string? SmsCode;
+
+    #region TODO：可选的仅用于表格查询参数中的字段，并定义查询表达式
+
+    #endregion
+
+    #region TODO：可选的仅用于表格详情只读中的字段，并定义查询与设置值表达式
+
+    #endregion
 }

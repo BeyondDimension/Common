@@ -10,8 +10,10 @@ sealed class EntityTemplate : TemplateBase<EntityTemplate, EntityTemplate.Metada
         string Summary,
         string TableName,
         string ClassName,
-        bool NEWSEQUENTIALID) : ITemplateMetadata
+        GenerateRepositoriesAttribute GenerateRepositoriesAttribute) : ITemplateMetadata
     {
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.NEWSEQUENTIALID"/>
+        public bool NEWSEQUENTIALID => GenerateRepositoriesAttribute.NEWSEQUENTIALID;
     }
 
     public static string GetTableName(INamedTypeSymbol symbol)

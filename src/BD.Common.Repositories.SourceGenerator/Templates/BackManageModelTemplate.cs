@@ -9,10 +9,16 @@ sealed class BackManageModelTemplate : TemplateBase<BackManageModelTemplate, Bac
         string Namespace,
         string Summary,
         string ClassName,
-        bool BackManageAddModel,
-        bool BackManageEditModel,
-        bool BackManageTableModel) : ITemplateMetadata
+        GenerateRepositoriesAttribute GenerateRepositoriesAttribute) : ITemplateMetadata
     {
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddModel"/>
+        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModel"/>
+        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableModel"/>
+        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -36,16 +42,18 @@ sealed class BackManageModelTemplate : TemplateBase<BackManageModelTemplate, Bac
         ClassType classType) => classType switch
         {
             ClassType.BackManageAddModels => attr.Add,
-            ClassType.BackManageEditModels => attr.Edit,
+            ClassType.BackManageEditModels => attr.Edit || attr.Detail,
             ClassType.BackManageTableModels => attr.Table,
             _ => false,
         };
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static ImmutableArray<PropertyMetadata> Filter(
+    internal static ImmutableArray<PropertyMetadata> Filter(
         ImmutableArray<PropertyMetadata> fields,
-        ClassType classType)
+        ClassType classType,
+        bool isOnlyEdit = false)
         => fields.Where(x => (x.BackManageField != null &&
+            (!isOnlyEdit || x.BackManageField.Detail == false) &&
             MatchBackManageField(x.BackManageField, classType) &&
             !IsIgnore(x.FixedProperty, classType)) ||
             (x.FixedProperty == FixedProperty.Id && classType == ClassType.BackManageTableModels)).

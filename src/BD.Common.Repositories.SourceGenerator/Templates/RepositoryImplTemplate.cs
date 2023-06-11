@@ -10,9 +10,23 @@ sealed class RepositoryImplTemplate : RepositoryTemplateBase<RepositoryImplTempl
         string Summary,
         string ClassName,
         string? PrimaryKeyTypeName = null,
-        string[]? ConstructorArguments = null) : ITemplateMetadata
+        GenerateRepositoriesAttribute GenerateRepositoriesAttribute = null!) : IRepositoryTemplateMetadata
     {
+        public string[]? ConstructorArguments => GenerateRepositoriesAttribute.RepositoryConstructorArguments;
 
+        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel;
+
+        public RepositoryMethodImplType BackManageAddMethodImplType => GenerateRepositoriesAttribute.BackManageAddMethodImplType;
+
+        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel;
+
+        public bool BackManageEditModelReadOnly => GenerateRepositoriesAttribute.BackManageEditModelReadOnly;
+
+        public RepositoryMethodImplType BackManageEditMethodImplType => GenerateRepositoriesAttribute.BackManageEditMethodImplType;
+
+        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel;
+
+        public RepositoryMethodImplType BackManageTableMethodImplType => GenerateRepositoriesAttribute.BackManageTableMethodImplType;
     }
 
     void WriteConstructor(
@@ -120,6 +134,7 @@ namespace {0};
 /// </summary>
 public sealed partial class {2}Repository<TDbContext> : Repository<TDbContext, {2}, {3}>, I{2}Repository where TDbContext : DbContext
 """u8;
+        // TODO 支持 TDbContext 自定义接口
         //, IAuthenticatorDbContext
         args[0] = string.Format(args[0]!.ToString(), "Repositories");
         args[3] = fields.Single(x => x.FixedProperty == FixedProperty.Id).PropertyType;
@@ -133,14 +148,7 @@ public sealed partial class {2}Repository<TDbContext> : Repository<TDbContext, {
 """u8);
 
         WriteConstructor(stream, metadata);
-
-        #region 生成方法 Methods
-
-        //WriteMethodQuery(stream, metadata, fields);
-
-        WriteByFields(stream, metadata, fields);
-
-        #endregion
+        WriteMethods(stream, metadata, fields);
 
         stream.Write(
 """

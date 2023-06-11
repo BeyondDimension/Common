@@ -1,3 +1,5 @@
+using GenerateRepositories = BD.Common.Repositories.SourceGenerator.Annotations.GenerateRepositoriesAttribute;
+
 namespace BD.Common.Repositories.SourceGenerator.Templates.Abstractions;
 
 /// <summary>
@@ -19,4 +21,7 @@ public interface ITemplateMetadata
     /// 类型名
     /// </summary>
     string ClassName { get; }
+
+    /// <inheritdoc cref="GenerateRepositories"/>
+    GenerateRepositories GenerateRepositoriesAttribute { get; }
 }
