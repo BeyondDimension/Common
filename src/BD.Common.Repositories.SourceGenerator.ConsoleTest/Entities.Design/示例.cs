@@ -11,7 +11,8 @@ namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
     ApiControllerConstructorArguments = new[] {
         "ISysMenuRepository",
     },
-    ApiRoutePrefix = "ms/accelerator"
+    ApiRoutePrefix = "ms/accelerator",
+    DbContextBaseInterface = "IAuthenticatorDbContext"
 )]
 //[Table("TestXXXs")] // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词
 public class 示例
@@ -20,9 +21,10 @@ public class 示例
 
     Guid 租户Id;
 
-    [BackManageField]
+    [BackManageField(Query = true)]
     string? Title;
 
+    [BackManageField(Query = true)]
     bool 禁用;
 
     #region CloudFileInfo
@@ -36,6 +38,7 @@ public class 示例
     [MaxLength(255, ErrorMessage = "AAAA")]
     [Comment("xxxx")]
     [StringLength(35, ErrorMessage = "BBBB")]
+    [BackManageField(Edit = true, Query = true)]
     string? 文件名;
 
     [MaxLength(Hashs.String.Lengths.SHA256 + 3)]
@@ -68,27 +71,30 @@ public class 示例
 
     #endregion
 
-    [BackManageField(Edit = true)]
+    [BackManageField(Edit = true, Query = true)]
     [MaxLength(MaxLengths.Url)]
     string? 访问地址;
 
     bool 是否删除;
 
+    [BackManageField(Query = true)]
     Guid? 创建人;
 
+    [BackManageField(Edit = true, Query = true)]
     DateTimeOffset 创建时间;
 
 #if !TEST_IF_XXXXXXXXXX
 
+    [BackManageField(Query = true)]
     Guid? 操作人;
 
 #elif !TEST_IF_XXXX
 
-    DateTimeOffset 更新时间;
-
 #else
 
 #endif
+
+    DateTimeOffset 更新时间;
 
     public string? A { get; set; } // 随便定义一个属性，干扰源生成，需要忽略无关的数据
 
@@ -101,7 +107,7 @@ public class 示例
 
     const int TestConst = 1;
 
-    [BackManageField(Edit = true)]
+    [BackManageField(Edit = true, Query = true)]
     [Required]
     [StringLength(35, MinimumLength = 1, ErrorMessage = "D")]
     string 名称 = "";
@@ -118,10 +124,11 @@ public class 示例
     [Precision(5)]
     float 平均分2;
 
-    [BackManageField(Edit = true)]
+    [BackManageField(Edit = true, Query = true)]
     [EmailAddress]
     string 邮箱 = "";
 
+    [BackManageField(Edit = true, Query = true)]
     Architecture Architecture = Architecture.X64;
 
     [BackManageField(Edit = true)]
@@ -130,10 +137,10 @@ public class 示例
     [BackManageField(Edit = true)]
     string? DisableReason;
 
-    [BackManageField(Edit = true)]
+    [BackManageField(Edit = true, Query = true)]
     Gender Gender;
 
-    [BackManageField(Edit = true)]
+    [BackManageField(Edit = true, Query = true)]
     string? NickName;
 
     [BackManageField(Edit = true)]

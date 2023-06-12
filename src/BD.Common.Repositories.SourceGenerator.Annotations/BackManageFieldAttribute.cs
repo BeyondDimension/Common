@@ -31,6 +31,11 @@ public sealed class BackManageFieldAttribute : Attribute
     /// </summary>
     public bool Query { get; set; }
 
+    /// <summary>
+    /// 指示该字段类型为 <see cref="string"/> 时在后台管理中表格作为查询条件中比较相等实现，默认值为：<see cref="StringWhereType.Contains"/>
+    /// </summary>
+    public StringWhereType QueryStringWhereType { get; set; }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetValue(string key, object? value)
     {
@@ -50,6 +55,9 @@ public sealed class BackManageFieldAttribute : Attribute
                 break;
             case nameof(Query):
                 Query = Convert.ToBoolean(value);
+                break;
+            case nameof(QueryStringWhereType):
+                QueryStringWhereType = value == null ? default : (StringWhereType)value;
                 break;
         }
     }

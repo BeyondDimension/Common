@@ -12,6 +12,16 @@ public record struct PropertyMetadata(
     FixedProperty FixedProperty,
     BackManageFieldAttribute? BackManageField)
 {
+    public string CamelizeName { get; set; } = null!;
+
+    public string TranslateName { get; set; } = null!;
+
+    public void Calculate()
+    {
+        TranslateName ??= GeneratorConfig.Translate(Name);
+        CamelizeName ??= TranslateName.Camelize();
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     readonly ReadOnlySpan<byte> GetBaseInterfaceType(ClassType classType) => FixedProperty switch
     {
@@ -99,9 +109,11 @@ public record struct PropertyMetadata(
             out var fieldName,
             out var fieldHumanizeName,
             out var fixedProperty);
-        return new(field, attributes, propertyType,
+        PropertyMetadata metadata = new(field, attributes, propertyType,
             fieldName, fieldHumanizeName, fixedProperty,
             backManageField);
+        metadata.Calculate();
+        return metadata;
     }
 
     /// <summary>
@@ -144,19 +156,14 @@ public record struct PropertyMetadata(
 """u8);
     }
 
-    public readonly void WriteParam(Stream stream)
+    public readonly void WriteParam(Stream stream, string name, string content)
     {
         var format =
 """
-/// <param name="{0}">{1}</param>
-"""u8;
-        var propertyName = GeneratorConfig.Translate(Name);
-        stream.WriteFormat(format, propertyName, HumanizeName);
-    }
 
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
+    /// <param name="{0}">{1}</param>
+"""u8;
+        stream.WriteFormat(format, name, content);
     }
 
     /// <summary>

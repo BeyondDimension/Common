@@ -27,11 +27,11 @@ sealed class BackManageModelTemplate : TemplateBase<BackManageModelTemplate, Bac
         ClassType classType)
         => fixedProperty switch
         {
-            FixedProperty.Id => classType != ClassType.BackManageTableModels,
+            FixedProperty.Id or
             FixedProperty.CreationTime or
             FixedProperty.UpdateTime or
             FixedProperty.CreateUserId or
-            FixedProperty.OperatorUserId or
+            FixedProperty.OperatorUserId => classType != ClassType.BackManageTableModels,
             FixedProperty.SoftDeleted => true,
             _ => false,
         };

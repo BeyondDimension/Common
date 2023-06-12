@@ -49,6 +49,16 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
     protected virtual bool IsInterface { get; }
 
+    internal static ImmutableArray<PropertyMetadata> GetTableQueryFields(ImmutableArray<PropertyMetadata> fields)
+    {
+        fields = fields.
+            Where(x => (x.FixedProperty == FixedProperty.Id) || (x.BackManageField != null &&
+                (x.BackManageField.Query || x.BackManageField.Detail) &&
+                (x.FixedProperty != FixedProperty.SoftDeleted))).
+            ToImmutableArray();
+        return fields;
+    }
+
     /// <summary>
     /// 写入方法 - 后台表格查询
     /// </summary>
@@ -60,6 +70,9 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         TTemplateMetadata metadata,
         ImmutableArray<PropertyMetadata> fields)
     {
+        var repositoryMethodImplType = metadata.BackManageTableMethodImplType;
+        var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
+        const ClassType classType = ClassType.BackManageTableModels;
         ReadOnlySpan<byte> utf8String;
 
         utf8String =
@@ -67,32 +80,290 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <summary>
     /// 分页查询{0}表格
     /// </summary>
-    /// <param name="current">当前页码，页码从 1 开始，默认值：<see cref="IPagedModel.DefaultCurrent"/></param>
-    /// <param name="pageSize">页大小，如果为 0 必定返回空集合，默认值：<see cref="IPagedModel.DefaultPageSize"/></param>
 """u8;
         stream.WriteFormat(utf8String, metadata.Summary);
 
-        fields = fields.
-            Where(x => x.BackManageField != null &&
-                x.BackManageField.Query &&
-                x.FixedProperty != FixedProperty.SoftDeleted).
-            ToImmutableArray();
+        fields = GetTableQueryFields(fields);
         foreach (var field in fields)
         {
-            field.WriteParam(stream);
+            if (field.BackManageField == null || !field.BackManageField.Query)
+                continue;
+
+            var camelizeName = field.CamelizeName;
+            switch (camelizeName)
+            {
+                case "createUserId":
+                    camelizeName = "createUser";
+                    break;
+                case "operatorUserId":
+                    camelizeName = "operatorUser";
+                    break;
+            }
+            field.WriteParam(stream, camelizeName, field.HumanizeName);
         }
+        stream.Write(
+"""
+
+    /// <param name="current">当前页码，页码从 1 开始，默认值：<see cref="IPagedModel.DefaultCurrent"/></param>
+    /// <param name="pageSize">页大小，如果为 0 必定返回空集合，默认值：<see cref="IPagedModel.DefaultPageSize"/></param>
+"""u8);
         utf8String =
 """
 
     /// <returns>{0}</returns>
     {1}Task<PagedModel<Table{2}DTO>> QueryAsync(
-        int current = IPagedModel.DefaultCurrent,
-        int pageSize = IPagedModel.DefaultPageSize
+
 """u8;
         stream.WriteFormat(utf8String,
             $"{metadata.Summary}分页表格查询结果数据",
-            IsInterface ? null : "public async "u8.ToArray(),
+            IsInterface ? null : (isCustomImpl ? "public partial "u8.ToArray() : "public async "u8.ToArray()),
             metadata.ClassName);
+        foreach (var field in fields)
+        {
+            if (field.BackManageField == null || !field.BackManageField.Query)
+                continue;
+
+            utf8String =
+"""
+        {0} {1},
+
+"""u8;
+            string propertyType = null!, camelizeName = field.CamelizeName;
+            switch (camelizeName)
+            {
+                case "createUserId":
+                    propertyType = "string?";
+                    camelizeName = "createUser";
+                    break;
+                case "operatorUserId":
+                    propertyType = "string?";
+                    camelizeName = "operatorUser";
+                    break;
+                case "creationTime":
+                case "updateTime":
+                    propertyType = "DateTimeOffset[]?";
+                    break;
+                default:
+                    break;
+            }
+            propertyType ??= field.PropertyType.EndsWith("?") ?
+                    field.PropertyType :
+                    $"{field.PropertyType}?";
+            stream.WriteFormat(utf8String,
+                propertyType,
+                camelizeName);
+        }
+        stream.Write(
+"""
+        int current = IPagedModel.DefaultCurrent,
+        int pageSize = IPagedModel.DefaultPageSize)
+"""u8);
+        if (IsInterface || isCustomImpl)
+        {
+            stream.Write(
+"""
+;
+
+
+"""u8);
+        }
+        else
+        {
+            stream.Write(
+"""
+
+    {
+        var query = Entity.AsNoTrackingWithIdentityResolution()
+"""u8);
+
+            #region Include
+
+            var include = metadata.GenerateRepositoriesAttribute.BackManageTableQueryInclude?.TrimStart(".");
+            if (!string.IsNullOrWhiteSpace(include))
+            {
+                stream.WriteFormat(
+    """
+
+            .{0}
+"""u8, include);
+            }
+
+            #endregion
+
+            #region OrderBy
+
+            WriteOrderBy(metadata.GenerateRepositoriesAttribute.DefaultOrderBy, stream, fields);
+
+            #endregion
+
+            stream.Write(
+"""
+
+            .AsQueryable();
+"""u8);
+
+            #region where if else
+
+            foreach (var field in fields)
+            {
+                if (field.BackManageField == null || !field.BackManageField.Query)
+                    continue;
+
+                string camelizeName = field.CamelizeName;
+                switch (camelizeName)
+                {
+                    case "createUserId":
+                        stream.WriteFormat(
+"""
+
+        if (!string.IsNullOrEmpty({0}))
+            query = query.Where(x => x.CreateUser!.NickName!.Contains({0}));
+"""u8, field.CamelizeName);
+                        continue;
+                    case "operatorUserId":
+                        stream.WriteFormat(
+"""
+
+        if (!string.IsNullOrEmpty({0}))
+            query = query.Where(x => x.OperatorUser!.NickName!.Contains({0}));
+"""u8, field.CamelizeName);
+                        continue;
+                    case "creationTime":
+                    case "updateTime":
+                        stream.WriteFormat(
+"""
+
+        if ({0} != null)
+            query = {0}.Length switch
+
+"""u8, field.CamelizeName);
+                        stream.Write(
+"""
+            {
+
+"""
+                            );
+                        stream.WriteFormat(
+"""
+                1 => query.Where(x => x.{1} >= {0}[0]),
+                2 => query.Where(x => x.{1} >= {0}[0] && x.{1} <= {0}[1]),
+                _ => query,
+"""u8, field.CamelizeName, field.TranslateName);
+                        stream.Write(
+"""
+
+            };
+"""
+                            );
+                        continue;
+                }
+
+                switch (field.PropertyType)
+                {
+                    case "string":
+                    case "string?":
+                        switch (field.BackManageField?.QueryStringWhereType ?? StringWhereType.Contains)
+                        {
+                            case StringWhereType.Contains:
+                                stream.WriteFormat(
+"""
+
+        if (!string.IsNullOrEmpty({0}))
+            query = query.Where(x => x.{1}.Contains({0}));
+"""u8, field.CamelizeName, field.TranslateName);
+                                break;
+                            case StringWhereType.Equals:
+                                stream.WriteFormat(
+"""
+
+        if (!string.IsNullOrEmpty({0}))
+            query = query.Where(x => x.{1} == {0});
+"""u8, field.CamelizeName, field.TranslateName);
+                                break;
+                        }
+                        break;
+                    default:
+                        if (field.Field.Type.IsValueType)
+                        {
+                            stream.WriteFormat(
+"""
+
+        if ({0}.HasValue)
+            query = query.Where(x => x.{1} == {0}.Value);
+"""u8, field.CamelizeName, field.TranslateName);
+                        }
+                        else
+                        {
+                            stream.WriteFormat(
+"""
+
+        if ({0} != null)
+            query = query.Where(x => x.{1} == {0});
+"""u8, field.CamelizeName, field.TranslateName);
+                        }
+                        break;
+                }
+            }
+
+            #endregion
+
+            switch (repositoryMethodImplType)
+            {
+                case RepositoryMethodImplType.Expression:
+                    stream.WriteFormat(
+"""
+
+        var r = await query
+            .Select(x => new Table{0}DTO()
+"""u8, metadata.ClassName);
+                    stream.Write(
+"""
+
+            {
+
+"""u8);
+                    #region Properties
+
+                    fields = BackManageModelTemplate.Filter(fields, classType);
+                    for (var i = 0; i < fields.Length; i++)
+                    {
+                        var field = fields[i];
+                        WriteSetPropertyValue(stream, field);
+                    }
+
+                    #endregion
+
+                    stream.Write(
+"""
+            })
+
+"""u8);
+                    stream.Write(
+"""
+            .PagingAsync(current, pageSize, RequestAborted);
+        return r;
+"""u8);
+                    break;
+                case RepositoryMethodImplType.ProjectTo:
+                    stream.WriteFormat(
+"""
+
+        var r = await query
+            .ProjectTo<Table{0}DTO>(mapper.ConfigurationProvider)
+            .PagingAsync(current, pageSize, RequestAborted);
+        return r;
+"""u8, metadata.ClassName);
+                    break;
+            }
+
+            stream.Write(
+"""
+
+    }
+
+
+"""u8);
+        }
     }
 
     /// <summary>
@@ -160,6 +431,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <summary>
     /// 根据【主键】设置设置【是否禁用】
     /// </summary>
+    /// <param name="operatorUserId">最后一次操作的人（记录后台管理员禁用或启用或编辑该条的操作）</param>
     /// <param name="id">主键</param>
     /// <param name="disable">是否禁用，当值为 <see langword="true"/> 时禁用，为 <see langword="false"/> 时启用</param>
     /// <returns>受影响的行数</returns>
@@ -168,7 +440,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<int> SetDisableByIdAsync({1} id, bool disable)
+    {0}Task<int> SetDisableByIdAsync(Guid? operatorUserId, {1} id, bool disable)
 """u8;
         stream.WriteFormat(utf8String,
             IsInterface ? null : "public async "u8.ToArray(),
@@ -189,11 +461,47 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
     {
         var r = await Entity.Where(x => x.Id == id)
-            .ExecuteUpdateAsync(x => x.SetProperty(y => y.Disable, y => disable));
+            .ExecuteUpdateAsync(x => x
+                .SetProperty(y => y.Disable, y => disable)
+                .SetProperty(y => y.UpdateTime, y => DateTimeOffset.Now)
+                .SetProperty(y => y.OperatorUserId, y => operatorUserId)
+            );
         return r;
     }
 
 
+"""u8);
+        }
+    }
+
+    void WriteOrderBy(
+        string? orderBy,
+        Stream stream,
+        ImmutableArray<PropertyMetadata> fields)
+    {
+        orderBy = orderBy?.TrimStart(".");
+        if (!string.IsNullOrWhiteSpace(orderBy))
+        {
+            stream.WriteFormat(
+"""
+
+            .{0}
+"""u8, orderBy);
+        }
+        else if (fields.Any(x => x.FixedProperty == FixedProperty.CreationTime))
+        {
+            stream.Write(
+"""
+
+            .OrderByDescending(x => x.CreationTime).ThenBy(x => x.Id)
+"""u8);
+        }
+        else
+        {
+            stream.Write(
+"""
+
+            .OrderBy(x => x.Id)
 """u8);
         }
     }
@@ -203,6 +511,8 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// </summary>
     protected void WriteGetSelect(
         Stream stream,
+        TTemplateMetadata metadata,
+        ImmutableArray<PropertyMetadata> fields,
         PropertyMetadata idField,
         string titlePropertyName = "Title")
     {
@@ -243,6 +553,8 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         var query = Entity.AsNoTrackingWithIdentityResolution();
         var r = await query
 """u8);
+            WriteOrderBy(metadata.GenerateRepositoriesAttribute.DefaultOrderBy, stream, fields);
+
             stream.WriteFormat(
 """
 
@@ -270,6 +582,36 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
 
 """u8);
+        }
+    }
+
+    void WriteSetPropertyValue(
+        Stream stream,
+        PropertyMetadata field)
+    {
+        switch (field.FixedProperty)
+        {
+            case FixedProperty.CreateUserId:
+                stream.WriteFormat(
+"""
+                CreateUser = x.CreateUser!.NickName,
+
+"""u8);
+                break;
+            case FixedProperty.OperatorUserId:
+                stream.WriteFormat(
+"""
+                OperatorUser = x.OperatorUser!.NickName,
+
+"""u8);
+                break;
+            default:
+                stream.WriteFormat(
+"""
+                {0} = x.{0},
+
+"""u8, field.TranslateName);
+                break;
         }
     }
 
@@ -334,18 +676,13 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
             {
 
 """u8);
-                    #region EditDTO Properties
+                    #region Properties
 
                     fields = BackManageModelTemplate.Filter(fields, classType);
                     for (var i = 0; i < fields.Length; i++)
                     {
                         var field = fields[i];
-                        // TODO：创建人，操作人等关系查询的需要特殊适配
-                        stream.WriteFormat(
-"""
-                {0} = x.{0},
-
-"""u8, field.Name);
+                        WriteSetPropertyValue(stream, field);
                     }
 
                     #endregion
@@ -419,33 +756,40 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 """
 
     {
-        var query = Entity.AsNoTrackingWithIdentityResolution();
-        var r = await query.Where(x => x.Id == id)
 
 """u8);
             switch (repositoryMethodImplType)
             {
                 case RepositoryMethodImplType.Expression:
                     stream.WriteFormat(
-"""
-            .Select(static x => new Edit{0}DTO
+        """
+        {0} entity = new()
 """u8, metadata.ClassName);
                     stream.Write(
 """
 
-            {
+        {
 
-"""u8);
-                    #region EditDTO Properties
+""");
+
+                    #region Properties
 
                     fields = BackManageModelTemplate.Filter(fields, classType);
                     for (var i = 0; i < fields.Length; i++)
                     {
                         var field = fields[i];
-                        // TODO：创建人，操作人等关系查询的需要特殊适配
+                        switch (field.FixedProperty)
+                        {
+                            case FixedProperty.Id:
+                            case FixedProperty.CreationTime:
+                            case FixedProperty.UpdateTime:
+                            case FixedProperty.CreateUserId:
+                            case FixedProperty.OperatorUserId:
+                                continue; // 一些字段不可添加
+                        }
                         stream.WriteFormat(
 """
-                {0} = x.{0},
+            {0} = model.{0},
 
 """u8, field.Name);
                     }
@@ -454,22 +798,21 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
                     stream.Write(
 """
-            })
+        };
+""");
 
+                    stream.Write(
+        """
+
+        await Entity.AddAsync(entity);
+        var r = await db.SaveChangesAsync();
+        return r;
 """u8);
-                    break;
-                case RepositoryMethodImplType.ProjectTo:
-                    stream.WriteFormat(
-"""
-            .ProjectTo<Edit{0}DTO>(mapper.ConfigurationProvider)
-
-"""u8, metadata.ClassName);
                     break;
             }
             stream.Write(
 """
-            .FirstOrDefaultAsync(RequestAborted);
-        return r;
+
     }
 
 
@@ -492,6 +835,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <summary>
     /// 根据【编辑模型】更新一条数据
     /// </summary>
+    /// <param name="operatorUserId">最后一次操作的人（记录后台管理员禁用或启用或编辑该条的操作）</param>
     /// <param name="model">编辑模型</param>
     /// <returns>受影响的行数</returns>
 """u8;
@@ -499,7 +843,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<int> UpdateAsync(Edit{1}DTO model)
+    {0}Task<int> UpdateAsync(Guid? operatorUserId, Edit{1}DTO model)
 """u8;
         var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
         stream.WriteFormat(utf8String,
@@ -517,37 +861,54 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         }
         else
         {
-            stream.Write(
+            switch (repositoryMethodImplType)
+            {
+                case RepositoryMethodImplType.Expression:
+
+                    stream.Write(
 """
 
     {
         var query = Entity.AsNoTrackingWithIdentityResolution();
         var r = await query.Where(x => x.Id == id)
+            .ExecuteUpdateAsync(x => x
 
 """u8);
-            switch (repositoryMethodImplType)
-            {
-                case RepositoryMethodImplType.Expression:
-                    stream.WriteFormat(
+                    #region Properties
+
+                    for (int i = 0; i < fields.Length; i++)
+                    {
+                        var field = fields[i];
+                        switch (field.FixedProperty)
+                        {
+                            case FixedProperty.UpdateTime:
+                                stream.WriteFormat(
 """
-            .Select(static x => new Edit{0}DTO
-"""u8, metadata.ClassName);
-                    stream.Write(
-"""
+                .SetProperty(y => y.UpdateTime, y => DateTimeOffset.Now)
+                .SetProperty(y => y.OperatorUserId, y => operatorUserId)
 
-            {
-
-"""u8);
-                    #region EditDTO Properties
-
+"""u8, field.Name);
+                                break;
+                            case FixedProperty.OperatorUserId:
+                                break;
+                        }
+                    }
                     fields = BackManageModelTemplate.Filter(fields, classType, isOnlyEdit: true);
                     for (var i = 0; i < fields.Length; i++)
                     {
                         var field = fields[i];
-                        // TODO：创建人，操作人等关系查询的需要特殊适配
+                        switch (field.FixedProperty)
+                        {
+                            case FixedProperty.Id:
+                            case FixedProperty.CreationTime:
+                            case FixedProperty.CreateUserId:
+                            case FixedProperty.UpdateTime:
+                            case FixedProperty.OperatorUserId:
+                                continue; // 一些字段不可编辑
+                        }
                         stream.WriteFormat(
 """
-                {0} = x.{0},
+                .SetProperty(y => y.{0}, y => model.{0})
 
 """u8, field.Name);
                     }
@@ -556,21 +917,14 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
                     stream.Write(
 """
-            })
+            );
 
 """u8);
-                    break;
-                case RepositoryMethodImplType.ProjectTo:
-                    stream.WriteFormat(
-"""
-            .ProjectTo<Edit{0}DTO>(mapper.ConfigurationProvider)
 
-"""u8, metadata.ClassName);
                     break;
             }
             stream.Write(
 """
-            .FirstOrDefaultAsync(RequestAborted);
         return r;
     }
 
@@ -599,7 +953,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                     WriteSetDisableById(stream, idField);
                     break;
                 case FixedProperty.Title:
-                    WriteGetSelect(stream, idField);
+                    WriteGetSelect(stream, metadata, fields, idField);
                     break;
             }
         }

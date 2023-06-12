@@ -222,6 +222,10 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         {
             WriteInsert(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
         }
+        if (metadata.BackManageTableModel)
+        {
+            WriteQuery(stream, metadata, fields, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
+        }
 
         stream.Write(
 """
@@ -382,7 +386,9 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         stream.WriteFormat(
 """
 
-        var r = await {0}.SetDisableAsync(id, disable);
+        if (!TryGetUserId(out Guid userId))
+            throw new ArgumentNullException(nameof(userId));
+        var r = await {0}.SetDisableByIdAsync(userId, id, disable);
 """u8, repositoryInterfaceTypeArgName);
         stream.Write(
 """
@@ -562,12 +568,147 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         stream.WriteFormat(
 """
 
-        var r = await {0}.UpdateAsync(id);
+        if (!TryGetUserId(out Guid userId))
+            throw new ArgumentNullException(nameof(userId));
+        var r = await {0}.UpdateAsync(userId, id);
 """u8, repositoryInterfaceTypeArgName);
         stream.Write(
 """
 
         return r;
+    }
+
+
+"""u8);
+    }
+
+    /// <summary>
+    /// 写入方法 - 后台表格查询
+    /// </summary>
+    void WriteQuery(
+        Stream stream,
+        Metadata metadata,
+        ImmutableArray<PropertyMetadata> fields,
+        byte[] routePrefixU8,
+        byte[] classNamePluralizeLower,
+        byte[] repositoryInterfaceTypeArgName)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 分页查询{0}表格
+"""u8;
+        stream.WriteFormat(utf8String, metadata.Summary);
+        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, ""u8);
+        stream.Write(
+"""
+
+    /// </summary>
+"""u8);
+
+        fields = RepositoryTemplate.GetTableQueryFields(fields);
+        foreach (var field in fields)
+        {
+            if (field.BackManageField == null || !field.BackManageField.Query)
+                continue;
+
+            var camelizeName = field.CamelizeName;
+            switch (camelizeName)
+            {
+                case "createUserId":
+                    camelizeName = "createUser";
+                    break;
+                case "operatorUserId":
+                    camelizeName = "operatorUser";
+                    break;
+            }
+            field.WriteParam(stream, camelizeName, field.HumanizeName);
+        }
+        stream.Write(
+"""
+
+    /// <param name="current">当前页码，页码从 1 开始，默认值：<see cref="IPagedModel.DefaultCurrent"/></param>
+    /// <param name="pageSize">页大小，如果为 0 必定返回空集合，默认值：<see cref="IPagedModel.DefaultPageSize"/></param>
+"""u8);
+        utf8String =
+"""
+
+    /// <returns>{0}</returns>
+    [HttpGet, PermissionFilter(ControllerName + nameof(SysButtonType.Query))]
+    public async Task<ApiResponse<PagedModel<Table{1}DTO>>> QueryAsync(
+
+"""u8;
+        stream.WriteFormat(utf8String,
+            $"{metadata.Summary}分页表格查询结果数据",
+            metadata.ClassName);
+        List<byte[]> camelizeNames = new();
+        foreach (var field in fields)
+        {
+            if (field.BackManageField == null || !field.BackManageField.Query)
+                continue;
+
+            utf8String =
+"""
+        [FromQuery] {0} {1} = null,
+
+"""u8;
+            string propertyType = null!, camelizeName = field.CamelizeName;
+            switch (camelizeName)
+            {
+                case "createUserId":
+                    propertyType = "string?";
+                    camelizeName = "createUser";
+                    break;
+                case "operatorUserId":
+                    propertyType = "string?";
+                    camelizeName = "operatorUser";
+                    break;
+                case "creationTime":
+                case "updateTime":
+                    propertyType = "DateTimeOffset[]?";
+                    break;
+                default:
+                    break;
+            }
+            propertyType ??= field.PropertyType.EndsWith("?") ?
+                    field.PropertyType :
+                    $"{field.PropertyType}?";
+            var camelizeNameU8 = Encoding.UTF8.GetBytes(camelizeName);
+            stream.WriteFormat(utf8String,
+                propertyType,
+                camelizeNameU8);
+            camelizeNames.Add(camelizeNameU8);
+        }
+        stream.Write(
+"""
+        [FromQuery] int current = IPagedModel.DefaultCurrent,
+        [FromQuery] int pageSize = IPagedModel.DefaultPageSize)
+"""u8);
+        stream.Write(
+"""
+
+    {
+
+"""u8);
+        stream.WriteFormat(
+"""
+         var r = await {0}.QueryAsync(
+"""u8, repositoryInterfaceTypeArgName);
+        foreach (var camelizeName in camelizeNames)
+        {
+            stream.Write(camelizeName);
+            stream.Write(", "u8);
+        }
+        stream.WriteFormat(
+"""
+current, pageSize);
+         return r;
+"""u8);
+        stream.Write(
+"""
+
     }
 
 

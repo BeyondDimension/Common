@@ -22,11 +22,11 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
             try
             {
-                var fields = symbol.GetFields();
-                var properties = PropertyMetadata.Parse(fields);
-
                 var filePath = symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath;
                 var projPath = ProjPathHelper.GetProjPath(Path.GetDirectoryName(filePath));
+
+                var fields = symbol.GetFields();
+                var properties = PropertyMetadata.Parse(fields);
 
                 var className = symbol.Name;
                 className = GeneratorConfig.Translate(className);

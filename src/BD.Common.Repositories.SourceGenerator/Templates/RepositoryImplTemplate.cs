@@ -40,6 +40,10 @@ sealed class RepositoryImplTemplate : RepositoryTemplateBase<RepositoryImplTempl
             return;
 
         Dictionary<string, string> arguments = new();
+        if (metadata.GenerateRepositoriesAttribute.RepositoryConstructorArgumentMapper)
+        {
+            arguments.Add("mapper", "IMapper");
+        }
         foreach (var constructorArgument in metadata.ConstructorArguments)
         {
             var constructorArgumentName = GetArgumentName(constructorArgument);
@@ -55,9 +59,9 @@ sealed class RepositoryImplTemplate : RepositoryTemplateBase<RepositoryImplTempl
             utf8String =
 """
     readonly {0} {1};
+
 """u8;
             stream.WriteFormat(utf8String, argument.Value, argument.Key);
-            stream.WriteNewLine();
             if (i == arguments.Count - 1)
                 stream.WriteNewLine();
             i++;
@@ -98,18 +102,14 @@ sealed class RepositoryImplTemplate : RepositoryTemplateBase<RepositoryImplTempl
         stream.Write(utf8String);
 
         // this.xxx = xxx;
-        i = 0;
         foreach (var argument in arguments.Keys)
         {
-            if (i != 0 && i != arguments.Count - 1)
-                stream.WriteNewLine();
             utf8String =
 """
 
         this.{0} = {0};
 """u8;
             stream.WriteFormat(utf8String, argument);
-            i++;
         }
 
         utf8String =
@@ -134,8 +134,12 @@ namespace {0};
 /// </summary>
 public sealed partial class {2}Repository<TDbContext> : Repository<TDbContext, {2}, {3}>, I{2}Repository where TDbContext : DbContext
 """u8;
-        // TODO 支持 TDbContext 自定义接口
-        //, IAuthenticatorDbContext
+        if (!string.IsNullOrWhiteSpace(metadata.GenerateRepositoriesAttribute.DbContextBaseInterface))
+        {
+            // 支持 TDbContext 自定义接口，例如, IAuthenticatorDbContext
+            stream.Write(", "u8);
+            stream.Write(metadata.GenerateRepositoriesAttribute.DbContextBaseInterface!);
+        }
         args[0] = string.Format(args[0]!.ToString(), "Repositories");
         args[3] = fields.Single(x => x.FixedProperty == FixedProperty.Id).PropertyType;
         stream.WriteFormat(format, args);

@@ -47,6 +47,16 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     public RepositoryMethodImplType BackManageTableMethodImplType { get; set; } = RepositoryMethodImplType.Expression;
 
     /// <summary>
+    /// 指定查询的默认值排序行为，默认值为 ".OrderByDescending(x => x.CreationTime).ThenBy(x => x.Id)"
+    /// </summary>
+    public string? DefaultOrderBy { get; set; }
+
+    /// <summary>
+    ///  指定生成后台管理【表格查询】仓储层函数实现需要关联查询的表，例如 "Include(x => x.XYAB)"
+    /// </summary>
+    public string? BackManageTableQueryInclude { get; set; }
+
+    /// <summary>
     /// 是否需要生成【仓储层】，默认值为：<see langword="true"/>
     /// </summary>
     public bool Repository { get; set; } = true;
@@ -55,6 +65,16 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// 是否需要生成【仓储层构造函数】，如果为 <see langword="null"/> 则不生成构造函数，否则将根据参数类型自动生成，默认值为：ArrayEmpty
     /// </summary>
     public string[]? RepositoryConstructorArguments { get; set; } = Array.Empty<string>();
+
+    /// <summary>
+    /// 仓储层构造函数中是否需要生成 AutoMapper.IMapper
+    /// </summary>
+    public bool RepositoryConstructorArgumentMapper { get; set; } = true;
+
+    /// <summary>
+    /// 仓储层【数据库上下文】接口约束
+    /// </summary>
+    public string? DbContextBaseInterface { get; set; }
 
     /// <summary>
     /// 是否需要生成【控制器】，默认值为：<see langword="true"/>
@@ -106,6 +126,9 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 break;
             case nameof(RepositoryConstructorArguments):
                 RepositoryConstructorArguments = ToStringArray(value)!;
+                break;
+            case nameof(DbContextBaseInterface):
+                DbContextBaseInterface = value?.ToString();
                 break;
             case nameof(ApiController):
                 ApiController = Convert.ToBoolean(value);
