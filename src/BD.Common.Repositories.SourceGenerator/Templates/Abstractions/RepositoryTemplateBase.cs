@@ -563,6 +563,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
             stream.Write(
 """
 
+            {
                 Id = x.Id,
                 Title = x.
 """u8);

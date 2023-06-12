@@ -134,15 +134,15 @@ namespace {0};
 /// </summary>
 public sealed partial class {2}Repository<TDbContext> : Repository<TDbContext, {2}, {3}>, I{2}Repository where TDbContext : DbContext
 """u8;
+        args[0] = string.Format(args[0]!.ToString(), "Repositories");
+        args[3] = fields.Single(x => x.FixedProperty == FixedProperty.Id).PropertyType;
+        stream.WriteFormat(format, args);
         if (!string.IsNullOrWhiteSpace(metadata.GenerateRepositoriesAttribute.DbContextBaseInterface))
         {
             // 支持 TDbContext 自定义接口，例如, IAuthenticatorDbContext
             stream.Write(", "u8);
             stream.Write(metadata.GenerateRepositoriesAttribute.DbContextBaseInterface!);
         }
-        args[0] = string.Format(args[0]!.ToString(), "Repositories");
-        args[3] = fields.Single(x => x.FixedProperty == FixedProperty.Id).PropertyType;
-        stream.WriteFormat(format, args);
 
         stream.Write(
 """

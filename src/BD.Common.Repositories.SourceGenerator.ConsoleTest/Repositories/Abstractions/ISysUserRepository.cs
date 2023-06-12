@@ -3,3 +3,8 @@ namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Repositories.Abstra
 public interface ISysUserRepository
 {
 }
+
+partial interface IExampleRepository
+{
+
+}

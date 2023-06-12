@@ -71,7 +71,7 @@ public sealed partial class {3}
             if (metadata.NEWSEQUENTIALID)
             {
                 PropertyMetadata.WriteBaseType(stream,
-                    "INEWSEQUENTIALID"u8, ref isFirstWriteBaseInterfaceType, true);
+                    "INEWSEQUENTIALID"u8, ref isFirstWriteBaseInterfaceType, false);
             }
         }
 

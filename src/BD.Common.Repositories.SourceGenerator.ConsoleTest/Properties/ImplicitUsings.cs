@@ -16,5 +16,8 @@ global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Controllers;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Controllers.Abstractions;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Data;
 global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Data.Abstractions;
+global using BD.Common.Repositories.SourceGenerator.ConsoleTest.Models;
 
+global using AutoMapper;
+global using AutoMapper.QueryableExtensions;
 global using IIPAddress = BD.Common.Columns.IPAddress;

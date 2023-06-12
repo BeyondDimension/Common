@@ -45,6 +45,12 @@
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="System.Text.Json" />
+		<PackageReference Include="Humanizer.Core.zh-CN" />
+	</ItemGroup>
+
 	<Import Project="..\TFM_NETX_WINDOWS.props" />
 
 </Project>

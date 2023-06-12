@@ -12,7 +12,7 @@ namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
         "ISysMenuRepository",
     },
     ApiRoutePrefix = "ms/accelerator",
-    DbContextBaseInterface = "IAuthenticatorDbContext"
+    DbContextBaseInterface = "IAcceleratorDbContext"
 )]
 //[Table("TestXXXs")] // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词
 public class 示例
