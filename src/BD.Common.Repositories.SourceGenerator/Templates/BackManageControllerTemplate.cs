@@ -215,7 +215,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
             WriteEditById(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
             if (!metadata.BackManageEditModelReadOnly)
             {
-                WriteUpdate(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
+                WriteUpdate(stream, metadata, idField, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
             }
         }
         if (metadata.BackManageAddModel)
@@ -491,7 +491,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     /// </summary>
     /// <param name="model">添加模型</param>
     /// <returns>受影响的行数</returns>
-    [HttpPost, PermissionFilter(ControllerName + nameof(SysButtonType.Add)))]
+    [HttpPost, PermissionFilter(ControllerName + nameof(SysButtonType.Add))]
 """u8;
         stream.Write(utf8String);
         utf8String =
@@ -510,7 +510,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         stream.WriteFormat(
 """
 
-        var r = await {0}.InsertAsync(id);
+        var r = await {0}.InsertAsync(model);
 """u8, repositoryInterfaceTypeArgName);
         stream.Write(
 """
@@ -528,6 +528,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     void WriteUpdate(
         Stream stream,
         Metadata metadata,
+        PropertyMetadata idField,
         byte[] routePrefixU8,
         byte[] classNamePluralizeLower,
         byte[] repositoryInterfaceTypeArgName)
@@ -547,18 +548,20 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """
 
     /// </summary>
+    /// <param name="id">主键</param>
     /// <param name="model">编辑模型</param>
     /// <returns>受影响的行数</returns>
-    [HttpPut("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Edit)))]
+    [HttpPut("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Edit))]
 """u8;
         stream.Write(utf8String);
         utf8String =
 """
 
-    public async Task<ApiResponse<int>> Update([FromBody] Edit{0}DTO model)
+    public async Task<ApiResponse<int>> Update([FromRoute] {1} id, [FromBody] Edit{0}DTO model)
 """u8;
         stream.WriteFormat(utf8String,
-            metadata.ClassName);
+            metadata.ClassName,
+            idField.PropertyType);
 
         stream.Write(
 """
@@ -570,7 +573,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 
         if (!TryGetUserId(out Guid userId))
             throw new ArgumentNullException(nameof(userId));
-        var r = await {0}.UpdateAsync(userId, id);
+        var r = await {0}.UpdateAsync(userId, id, model);
 """u8, repositoryInterfaceTypeArgName);
         stream.Write(
 """

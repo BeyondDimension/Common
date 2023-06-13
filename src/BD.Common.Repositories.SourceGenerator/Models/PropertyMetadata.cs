@@ -180,6 +180,18 @@ public record struct PropertyMetadata(
             }
         }
 
+        var humanizeName = HumanizeName;
+
+        switch (FixedProperty)
+        {
+            case FixedProperty.CreateUserId:
+                humanizeName = $"创建人 UserId（创建此条目的后台管理员）";
+                break;
+            case FixedProperty.OperatorUserId:
+                humanizeName = $"最后一次操作的人 UserId（记录后台管理员禁用或启用或编辑该条的操作）";
+                break;
+        }
+
         var summary =
 """
     /// <summary>
@@ -187,7 +199,7 @@ public record struct PropertyMetadata(
     /// </summary>
 
 """u8;
-        stream.WriteFormat(summary, HumanizeName);
+        stream.WriteFormat(summary, humanizeName);
 
         HashSet<string> writeAttributes = new();
         foreach (var attribute in attributes)
@@ -277,6 +289,37 @@ public record struct PropertyMetadata(
 
 
 """u8);
+
+        switch (classType)
+        {
+            case ClassType.BackManageTableModels:
+                switch (FixedProperty)
+                {
+                    case FixedProperty.CreateUserId:
+                        stream.Write(
+"""
+
+    /// <summary>
+    /// 创建人（创建此条目的后台管理员）
+    /// </summary>
+    public string? CreateUser { get; set; }
+
+"""u8);
+                        break;
+                    case FixedProperty.OperatorUserId:
+                        stream.Write(
+"""
+
+    /// <summary>
+    /// 最后一次操作的人（记录后台管理员禁用或启用或编辑该条的操作）
+    /// </summary>
+    public string? OperatorUser { get; set; }
+
+"""u8);
+                        break;
+                }
+                break;
+        }
     }
 
     /// <summary>

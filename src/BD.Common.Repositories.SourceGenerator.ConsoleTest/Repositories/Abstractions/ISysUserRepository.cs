@@ -4,7 +4,7 @@ public interface ISysUserRepository
 {
 }
 
-partial interface IExampleRepository
+public partial interface IExampleRepository
 {
 
 }

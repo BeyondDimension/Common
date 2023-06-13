@@ -6,6 +6,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<!--<Compile Remove="OutputPath\**" />-->
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -49,6 +53,8 @@
 		<PackageReference Include="AutoMapper" />
 		<PackageReference Include="System.Text.Json" />
 		<PackageReference Include="Humanizer.Core.zh-CN" />
+		<!--<PackageReference Include="BD.Common.Repositories.SourceGenerator.Annotations" />
+		<PackageReference Include="BD.Common.Repositories.SourceGenerator" />-->
 	</ItemGroup>
 
 	<Import Project="..\TFM_NETX_WINDOWS.props" />

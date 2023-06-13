@@ -208,7 +208,6 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
             {
                 if (field.BackManageField == null || !field.BackManageField.Query)
                     continue;
-
                 string camelizeName = field.CamelizeName;
                 switch (camelizeName)
                 {
@@ -216,16 +215,22 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                         stream.WriteFormat(
 """
 
-        if (!string.IsNullOrEmpty({0}))
-            query = query.Where(x => x.CreateUser!.NickName!.Contains({0}));
-"""u8, field.CamelizeName);
+        if (!string.IsNullOrEmpty(createUser))
+            if (ShortGuid.TryParse(createUser, out Guid createUserId))
+                query = query.Where(x => x.CreateUser!.Id == createUserId);
+            else
+                query = query.Where(x => x.CreateUser!.NickName!.Contains(createUser));
+"""u8);
                         continue;
                     case "operatorUserId":
                         stream.WriteFormat(
 """
 
-        if (!string.IsNullOrEmpty({0}))
-            query = query.Where(x => x.OperatorUser!.NickName!.Contains({0}));
+        if (!string.IsNullOrEmpty(operatorUser))
+            if (ShortGuid.TryParse(operatorUser, out Guid operatorUserId))
+                query = query.Where(x => x.OperatorUser!.Id == operatorUserId);
+            else
+                query = query.Where(x => x.OperatorUser!.NickName!.Contains(operatorUser));
 """u8, field.CamelizeName);
                         continue;
                     case "creationTime":
@@ -530,7 +535,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<SelectItemDTO<{1}>> GetSelectAsync(int takeCount = SelectItemDTO.Count)
+    {0}Task<SelectItemDTO<{1}>[]> GetSelectAsync(int takeCount = SelectItemDTO.Count)
 """u8;
         stream.WriteFormat(utf8String,
             IsInterface ? null : "public async "u8.ToArray(),
@@ -595,6 +600,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
             case FixedProperty.CreateUserId:
                 stream.WriteFormat(
 """
+                CreateUserId = x.CreateUser!.Id,
                 CreateUser = x.CreateUser!.NickName,
 
 """u8);
@@ -602,6 +608,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
             case FixedProperty.OperatorUserId:
                 stream.WriteFormat(
 """
+                OperatorUserId = x.OperatorUser!.Id,
                 OperatorUser = x.OperatorUser!.NickName,
 
 """u8);
@@ -792,7 +799,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 """
             {0} = model.{0},
 
-"""u8, field.Name);
+"""u8, field.TranslateName);
                     }
 
                     #endregion
@@ -837,6 +844,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// 根据【编辑模型】更新一条数据
     /// </summary>
     /// <param name="operatorUserId">最后一次操作的人（记录后台管理员禁用或启用或编辑该条的操作）</param>
+    /// <param name="id">主键</param>
     /// <param name="model">编辑模型</param>
     /// <returns>受影响的行数</returns>
 """u8;
@@ -844,7 +852,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<int> UpdateAsync(Guid? operatorUserId, Edit{1}DTO model)
+    {0}Task<int> UpdateAsync(Guid? operatorUserId, {2} id, Edit{1}DTO model)
 """u8;
         var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
         stream.WriteFormat(utf8String,
@@ -883,12 +891,12 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                         switch (field.FixedProperty)
                         {
                             case FixedProperty.UpdateTime:
-                                stream.WriteFormat(
+                                stream.Write(
 """
                 .SetProperty(y => y.UpdateTime, y => DateTimeOffset.Now)
                 .SetProperty(y => y.OperatorUserId, y => operatorUserId)
 
-"""u8, field.Name);
+"""u8);
                                 break;
                             case FixedProperty.OperatorUserId:
                                 break;
@@ -911,7 +919,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 """
                 .SetProperty(y => y.{0}, y => model.{0})
 
-"""u8, field.Name);
+"""u8, field.TranslateName);
                     }
 
                     #endregion

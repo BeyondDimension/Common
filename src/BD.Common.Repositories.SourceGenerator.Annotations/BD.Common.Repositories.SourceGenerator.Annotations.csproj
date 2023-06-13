@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
 		<PackageTags>BeyondDimension Common CommonRepositories Repositories SourceGenerator Annotations</PackageTags>
 		<Description>$(Product)</Description>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -13,6 +12,7 @@
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
 	</ItemGroup>
 
+	<Import Project="..\TFM_NETX.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>

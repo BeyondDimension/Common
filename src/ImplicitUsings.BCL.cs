@@ -9,9 +9,7 @@ global using Microsoft.Win32;
 global using System.Collections.Concurrent;
 global using System.Collections.ObjectModel;
 #if !NETFRAMEWORK
-#if !SOURCE_GENERATOR || __HAVE_S_JSON__
 global using System.Collections.Immutable;
-#endif
 global using System.ComponentModel;
 #if !SOURCE_GENERATOR
 global using System.ComponentModel.DataAnnotations;

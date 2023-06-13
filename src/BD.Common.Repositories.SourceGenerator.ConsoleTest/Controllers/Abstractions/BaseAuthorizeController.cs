@@ -6,4 +6,10 @@ public abstract class BaseAuthorizeController<T> : ApiAuthorizeControllerBase<T>
     {
 
     }
+
+    public bool TryGetUserId(out Guid userId)
+    {
+        userId = default;
+        return false;
+    }
 }

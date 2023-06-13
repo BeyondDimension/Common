@@ -1,6 +1,6 @@
 // See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Hell3o, World!");
 
 Console.WriteLine(typeof(ExamplesController));
 Console.WriteLine(typeof(AddExampleDTO));

@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="..\GeneratePackage.props" />
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
@@ -8,12 +9,19 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-		<DefineConstants>SOURCE_GENERATOR;__HAVE_S_JSON__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>SOURCE_GENERATOR;$(DefineConstants)</DefineConstants>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+		<EmbedUntrackedSources>false</EmbedUntrackedSources>
+		<IncludeSymbols>false</IncludeSymbols>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Remove="..\AssemblyInfo.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>
+		<Compile Include="..\BD.Common.Repositories.SourceGenerator.Annotations\*.cs">
+			<LinkBase>Annotations</LinkBase>
+		</Compile>
 		<Compile Include="..\BD.Common.Settings.V4.SourceGenerator\IndexRange.cs">
 			<LinkBase>Compat</LinkBase>
 		</Compile>
@@ -44,7 +52,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Text.Json" />
+		<!--<PackageReference Include="System.Text.Json" />-->
+		<PackageReference Include="Newtonsoft.Json" />
 		<PackageReference Include="Humanizer.Core.zh-CN" />
 	</ItemGroup>
 
@@ -56,10 +65,18 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common.Repositories.SourceGenerator.Annotations\BD.Common.Repositories.SourceGenerator.Annotations.csproj" />
-	</ItemGroup>
+	<!-- 👇 Add a new target that runs before the task that lists all the files to include in the NuGet package.
+          This task must run after the packages resolution target -->
+	<Target Name="AddNuGetDlls" BeforeTargets="_GetPackageFiles">
+		<ItemGroup>
+			<!-- Update the collection of items to pack with the DLLs from the NuGet packages -->
+			<None Include="$(OutputPath)\Newtonsoft.Json.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+			<None Include="$(OutputPath)\Humanizer.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+			<None Include="$(OutputPath)\zh-CN\Humanizer.resources.dll" Pack="true" PackagePath="analyzers/dotnet/cs/zh-CN" Visible="false" />
 
-	<Import Project="..\GeneratePackage.props" />
+			<!-- Add the DLL produced by the current project to the NuGet package -->
+			<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		</ItemGroup>
+	</Target>
 
 </Project>

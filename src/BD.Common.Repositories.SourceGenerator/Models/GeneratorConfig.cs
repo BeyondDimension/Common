@@ -1,9 +1,10 @@
+using Newtonsoft.Json;
+
 namespace BD.Common.Repositories.SourceGenerator.Models;
 
 /// <summary>
 /// 源生成配置模型
 /// </summary>
-/// <param name="Translates"></param>
 public sealed record class GeneratorConfig(
     ConcurrentDictionary<string, string> Translates,
     ImmutableHashSet<string> AttributeTypeFullNames,
@@ -68,7 +69,13 @@ public sealed record class GeneratorConfig(
 
         #region Deserialize
 
+#if __HAVE_S_JSON__
         var generatorConfig = JsonSerializer.Deserialize(stream, GeneratorConfigContext.Instance.GeneratorConfig);
+#else
+        using var streamReader = new StreamReader(stream, Encoding.UTF8);
+        using var jsonTextReader = new JsonTextReader(streamReader);
+        var generatorConfig = JsonSerializer.CreateDefault().Deserialize<GeneratorConfig>(jsonTextReader);
+#endif
         if (generatorConfig == null)
             throw new ArgumentNullException(nameof(generatorConfig));
 
@@ -159,7 +166,13 @@ public sealed record class GeneratorConfig(
                 FileMode.OpenOrCreate,
                 FileAccess.Write,
                 FileShare.ReadWrite | FileShare.Delete);
+#if __HAVE_S_JSON__
             JsonSerializer.Serialize(stream, instance, GeneratorConfigContext.Instance.GeneratorConfig);
+#else
+            using var streamWriter = new StreamWriter(stream, Encoding.UTF8);
+            using var jsonTextWriter = new JsonTextWriter(streamWriter);
+            JsonSerializer.CreateDefault().Serialize(jsonTextWriter, instance);
+#endif
             stream.Flush();
             stream.SetLength(stream.Position);
         }
@@ -173,6 +186,7 @@ public sealed record class GeneratorConfig(
     }
 }
 
+#if __HAVE_S_JSON__
 [JsonSerializable(typeof(GeneratorConfig))]
 internal partial class GeneratorConfigContext : JsonSerializerContext
 {
@@ -193,3 +207,4 @@ internal partial class GeneratorConfigContext : JsonSerializerContext
     /// </summary>
     public static GeneratorConfigContext Instance => defaultContext ??= new GeneratorConfigContext(new JsonSerializerOptions(DefaultOptions));
 }
+#endif

@@ -96,7 +96,6 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// </summary>
     public bool NEWSEQUENTIALID { get; set; } = true;
 
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetValue(string key, object? value)
     {
