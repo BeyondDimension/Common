@@ -18,12 +18,12 @@ public static partial class FileFormat
     /// <summary>
     /// 允许使用的图片格式
     /// </summary>
-    public static ImageFormat[] AllowImageFormats { get; } = { ImageFormat.JPEG, ImageFormat.PNG };
+    public static ImageFormat[] AllowImageFormats { get; set; } = { ImageFormat.JPEG, ImageFormat.PNG };
 
     /// <summary>
     /// 允许使用的图片格式的媒体类型
     /// </summary>
-    public static string[] AllowImageMediaTypeNames { get; } = AllowImageFormats.Select(x => x.GetMIME()).ToArray();
+    public static string[] AllowImageMediaTypeNames { get; set; } = AllowImageFormats.Select(x => x.GetMIME()).ToArray();
 
     /// <summary>
     /// 支持的图片格式
