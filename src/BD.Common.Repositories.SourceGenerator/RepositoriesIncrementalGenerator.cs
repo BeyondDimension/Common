@@ -47,45 +47,45 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                 generateRepositories),
                                 properties);
                         }));
-                        if (generateRepositories.BackManageAddModel ||
-                            generateRepositories.BackManageEditModel ||
-                            generateRepositories.BackManageTableModel)
+                    }
+                    if (generateRepositories.BackManageAddModel ||
+                        generateRepositories.BackManageEditModel ||
+                        generateRepositories.BackManageTableModel)
+                    {
+                        tasks.Add(InBackground(() =>
                         {
-                            tasks.Add(InBackground(() =>
-                            {
-                                BackManageModelTemplate.Instance.AddSource(ctx, symbol,
-                                    new(@namespace, symbol.Name, className,
-                                    GenerateRepositoriesAttribute: generateRepositories),
-                                    properties);
-                            }));
-                            if (generateRepositories.Repository)
-                            {
-                                tasks.Add(InBackground(() =>
-                                {
-                                    RepositoryTemplate.Instance.AddSource(ctx, symbol,
-                                        new(@namespace, symbol.Name, className,
-                                        GenerateRepositoriesAttribute: generateRepositories),
-                                        properties);
-                                }));
-                                tasks.Add(InBackground(() =>
-                                {
-                                    RepositoryImplTemplate.Instance.AddSource(ctx, symbol,
-                                        new(@namespace, symbol.Name, className,
-                                        GenerateRepositoriesAttribute: generateRepositories),
-                                        properties);
-                                }));
-                                if (generateRepositories.ApiController)
-                                {
-                                    tasks.Add(InBackground(() =>
-                                    {
-                                        BackManageControllerTemplate.Instance.AddSource(ctx, symbol,
-                                            new(@namespace, symbol.Name, className,
-                                            GenerateRepositoriesAttribute: generateRepositories),
-                                            properties);
-                                    }));
-                                }
-                            }
-                        }
+                            BackManageModelTemplate.Instance.AddSource(ctx, symbol,
+                                new(@namespace, symbol.Name, className,
+                                GenerateRepositoriesAttribute: generateRepositories),
+                                properties);
+                        }));
+                    }
+                    if (generateRepositories.Repository)
+                    {
+                        tasks.Add(InBackground(() =>
+                        {
+                            RepositoryTemplate.Instance.AddSource(ctx, symbol,
+                                new(@namespace, symbol.Name, className,
+                                GenerateRepositoriesAttribute: generateRepositories),
+                                properties);
+                        }));
+                        tasks.Add(InBackground(() =>
+                        {
+                            RepositoryImplTemplate.Instance.AddSource(ctx, symbol,
+                                new(@namespace, symbol.Name, className,
+                                GenerateRepositoriesAttribute: generateRepositories),
+                                properties);
+                        }));
+                    }
+                    if (generateRepositories.ApiController)
+                    {
+                        tasks.Add(InBackground(() =>
+                        {
+                            BackManageControllerTemplate.Instance.AddSource(ctx, symbol,
+                                new(@namespace, symbol.Name, className,
+                                GenerateRepositoriesAttribute: generateRepositories),
+                                properties);
+                        }));
                     }
                     await Task.WhenAll(tasks);
                     GeneratorConfig.Save();
