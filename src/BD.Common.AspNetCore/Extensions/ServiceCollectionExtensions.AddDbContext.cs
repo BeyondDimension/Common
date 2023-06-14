@@ -37,11 +37,14 @@ public static partial class ServiceCollectionExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void AddDbContext<TService, TContext>(this WebApplicationBuilder builder, Action<DbContextOptionsBuilder>? o = null)
+    public static void AddDbContext<TService, TContext>(this WebApplicationBuilder builder,
+        Action<DbContextOptionsBuilder>? o = null,
+        string databaseProvider = SqlConstants.PostgreSQL,
+        string connectionStringKeyName = "DefaultConnection")
         where TContext : DbContext, TService
         where TService : class
     {
-        builder.AddDbContext<TContext>(o);
+        builder.AddDbContext<TContext>(o, databaseProvider, connectionStringKeyName);
         builder.Services.AddScoped<TService>(s => s.GetRequiredService<TContext>());
     }
 }
