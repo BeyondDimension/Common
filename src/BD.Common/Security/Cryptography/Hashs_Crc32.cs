@@ -17,7 +17,7 @@ partial class Hashs
         }
 
         /// <summary>
-        /// 计算Crc32值
+        /// 计算 Crc32 值
         /// </summary>
         /// <param name="text"></param>
         /// <param name="isLower"></param>
@@ -26,7 +26,7 @@ partial class Hashs
         public static string Crc32(string text, bool isLower = def_hash_str_is_lower) => ComputeHashString(text, CreateCrc32(), isLower);
 
         /// <summary>
-        /// 计算Crc32值
+        /// 计算 Crc32 值
         /// </summary>
         /// <param name="buffer"></param>
         /// <param name="isLower"></param>
@@ -35,7 +35,16 @@ partial class Hashs
         public static string Crc32(byte[] buffer, bool isLower = def_hash_str_is_lower) => ComputeHashString(buffer, CreateCrc32(), isLower);
 
         /// <summary>
-        /// 计算Crc32值
+        /// 计算 Crc32 值
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="isLower"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string Crc32(ReadOnlySpan<byte> buffer, bool isLower = def_hash_str_is_lower) => ComputeHashString(buffer.ToArray(), CreateCrc32(), isLower);
+
+        /// <summary>
+        /// 计算 Crc32 值
         /// </summary>
         /// <param name="inputStream"></param>
         /// <param name="isLower"></param>
@@ -47,7 +56,7 @@ partial class Hashs
     partial class ByteArray
     {
         /// <summary>
-        /// 计算Crc32值
+        /// 计算 Crc32 值
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
@@ -55,7 +64,15 @@ partial class Hashs
         public static byte[] Crc32(byte[] buffer) => ComputeHash(buffer, CreateCrc32());
 
         /// <summary>
-        /// 计算Crc32值
+        /// 计算 Crc32 值
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte[] Crc32(ReadOnlySpan<byte> buffer) => ComputeHash(buffer.ToArray(), CreateCrc32());
+
+        /// <summary>
+        /// 计算 Crc32 值
         /// </summary>
         /// <param name="inputStream"></param>
         /// <returns></returns>
