@@ -950,7 +950,10 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <param name="fields"></param>
     protected void WriteMethods(Stream stream, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
-        WriteMethodQuery(stream, metadata, fields);
+        if (metadata.BackManageCanTable)
+        {
+            WriteMethodQuery(stream, metadata, fields);
+        }
 
         var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
         foreach (var field in fields)
@@ -967,7 +970,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
             }
         }
 
-        if (metadata.BackManageEditModel)
+        if (metadata.BackManageCanEdit)
         {
             WriteGetEditById(stream, metadata, fields, idField);
             if (!metadata.BackManageEditModelReadOnly)
@@ -975,7 +978,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                 WriteUpdate(stream, metadata, fields, idField);
             }
         }
-        if (metadata.BackManageCanEdit)
+        if (metadata.BackManageCanAdd)
         {
             WriteInsert(stream, metadata, fields, idField);
         }
