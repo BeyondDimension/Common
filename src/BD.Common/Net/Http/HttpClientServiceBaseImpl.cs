@@ -66,6 +66,12 @@ public abstract class HttpClientUseCookiesServiceBaseImpl : IDisposable
         _client = GetLazyHttpClient();
     }
 
+    public HttpClientUseCookiesServiceBaseImpl(Func<CookieContainer, HttpHandlerType> func)
+    {
+        Handler = func(cookieContainer);
+        _client = GetLazyHttpClient();
+    }
+
     static HttpHandlerType CreateHandler(CookieContainer cookieContainer)
     {
         var handler = new HttpHandlerType

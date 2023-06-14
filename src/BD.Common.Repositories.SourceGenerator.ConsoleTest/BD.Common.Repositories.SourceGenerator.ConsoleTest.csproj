@@ -6,7 +6,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!--<Compile Remove="OutputPath\**" />-->
+		<Compile Remove="OutputPath\**" />
+		<EmbeddedResource Remove="OutputPath\**" />
+		<None Remove="OutputPath\**" />
 	</ItemGroup>
 
 	<ItemGroup>

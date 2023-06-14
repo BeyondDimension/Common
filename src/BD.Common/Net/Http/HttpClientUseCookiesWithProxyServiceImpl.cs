@@ -47,6 +47,11 @@ public abstract class HttpClientUseCookiesWithProxyServiceImpl : HttpClientUseCo
         this.logger = logger;
     }
 
+    public HttpClientUseCookiesWithProxyServiceImpl(Func<CookieContainer, HttpHandlerType> func, ILogger logger) : base(func)
+    {
+        this.logger = logger;
+    }
+
     protected override HttpClient GetHttpClient()
         => func == null ? base.GetHttpClient() : func(Handler);
 
@@ -97,12 +102,14 @@ public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClie
 {
     readonly DynamicWebProxy? proxy;
     readonly IDisposable? options_disposable;
+    readonly bool useProxy;
 
-    public HttpClientUseCookiesWithDynamicProxyServiceImpl(IServiceProvider? s, ILogger logger) : base(null, logger)
+    public HttpClientUseCookiesWithDynamicProxyServiceImpl(IServiceProvider? s, ILogger logger) : base((Func<HttpHandlerType, HttpClient>?)null, logger)
     {
         if (s == null) return;
         var o = s.GetService<IOptionsMonitor<IAppSettings>>();
         var options = o == null ? default : o.CurrentValue;
+        useProxy = true;
         proxy = new DynamicWebProxy()
         {
             InnerProxy = GetWebProxy(options),
@@ -115,14 +122,21 @@ public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClie
         });
     }
 
+    public HttpClientUseCookiesWithDynamicProxyServiceImpl(Func<CookieContainer, HttpHandlerType> func, ILogger logger) : base(func, logger)
+    {
+
+    }
+
     void SetHandler()
     {
+        if (!useProxy) return;
         Handler.UseProxy = true;
         Handler.Proxy = proxy;
     }
 
     public override void Reset()
     {
+        if (!useProxy) return;
         base.Reset();
         SetHandler();
     }

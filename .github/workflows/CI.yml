@@ -61,6 +61,7 @@ jobs:
     needs: [ test ]
     if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
     runs-on: windows-latest
+    continue-on-error: true
     strategy:
       matrix:
         ProjectName: [
@@ -159,8 +160,8 @@ jobs:
         shell: pwsh
         run: |
           dotnet nuget push pkg\${{ matrix.ProjectName }}*.nupkg -s https://nuget.pkg.github.com/BeyondDimension -k ${{ secrets.RMBADMIN_TOKEN }} --skip-duplicate
-          dotnet nuget push pkg\${{ matrix.ProjectName }}*.snupkg -s https://nuget.pkg.github.com/BeyondDimension -k ${{ secrets.RMBADMIN_TOKEN }} --skip-duplicate
           dotnet nuget push pkg\${{ matrix.ProjectName }}*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+          dotnet nuget push pkg\${{ matrix.ProjectName }}*.snupkg -s https://nuget.pkg.github.com/BeyondDimension -k ${{ secrets.RMBADMIN_TOKEN }} --skip-duplicate
           dotnet nuget push pkg\${{ matrix.ProjectName }}*.snupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
   release:
     name: Release
