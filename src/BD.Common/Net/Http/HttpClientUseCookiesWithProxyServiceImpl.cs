@@ -121,7 +121,7 @@ public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClie
         });
     }
 
-    public HttpClientUseCookiesWithDynamicProxyServiceImpl(Func<CookieContainer, HttpHandlerType> func, ILogger logger) : base(func, logger)
+    public HttpClientUseCookiesWithDynamicProxyServiceImpl(Func<CookieContainer, HttpMessageHandler> func, ILogger logger) : base(func, logger)
     {
 
     }
