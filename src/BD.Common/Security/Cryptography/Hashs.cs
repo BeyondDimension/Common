@@ -16,11 +16,12 @@ public static partial class Hashs
     internal delegate ValueTask<byte[]> ComputeHashStreamAsyncDelegate(Stream stream, CancellationToken cancellationToken);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string ToString(byte[] bytes, bool isLower = def_hash_str_is_lower) => string.Join(null, bytes.Select(x => x.ToString($"{(isLower ? "x" : "X")}2"))
+    internal static string ToHexString(byte[] bytes, bool isLower = def_hash_str_is_lower) =>
 #if NET35
-        .ToArray()
+        string.Join(null, bytes.Select(x => x.ToString($"{(isLower ? "x" : "X")}2")).ToArray());
+#else
+        bytes.ToHexString(isLower);
 #endif
-        );
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static byte[] ComputeHash<T>(byte[] buffer, T hashAlgorithm) where T : HashAlgorithm
@@ -42,42 +43,42 @@ public static partial class Hashs
     internal static string ComputeHashString<T>(byte[] buffer, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {
         var bytes = ComputeHash(buffer, hashAlgorithm);
-        return ToString(bytes, isLower);
+        return ToHexString(bytes, isLower);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString(byte[] buffer, ComputeHashByteArrayDelegate @delegate, bool isLower = def_hash_str_is_lower)
     {
         var bytes = @delegate(buffer);
-        return ToString(bytes, isLower);
+        return ToHexString(bytes, isLower);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString(ReadOnlySpan<byte> buffer, ComputeHashReadOnlySpanByteDelegate @delegate, bool isLower = def_hash_str_is_lower)
     {
         var bytes = @delegate(buffer);
-        return ToString(bytes, isLower);
+        return ToHexString(bytes, isLower);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString<T>(Stream inputStream, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {
         var bytes = ComputeHash(inputStream, hashAlgorithm);
-        return ToString(bytes, isLower);
+        return ToHexString(bytes, isLower);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString(Stream inputStream, ComputeHashStreamDelegate @delegate, bool isLower = def_hash_str_is_lower)
     {
         var bytes = @delegate(inputStream);
-        return ToString(bytes, isLower);
+        return ToHexString(bytes, isLower);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static async ValueTask<string> ComputeHashStringAsync(Stream inputStream, ComputeHashStreamAsyncDelegate @delegate, bool isLower = def_hash_str_is_lower, CancellationToken cancellationToken = default)
     {
         var bytes = await @delegate(inputStream, cancellationToken);
-        return ToString(bytes, isLower);
+        return ToHexString(bytes, isLower);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
