@@ -47,13 +47,12 @@ public abstract class HttpClientUseCookiesWithProxyServiceImpl : HttpClientUseCo
         this.logger = logger;
     }
 
-    public HttpClientUseCookiesWithProxyServiceImpl(Func<CookieContainer, HttpHandlerType> func, ILogger logger) : base(func)
+    public HttpClientUseCookiesWithProxyServiceImpl(Func<CookieContainer, HttpMessageHandler> func, ILogger logger) : base(func)
     {
         this.logger = logger;
     }
 
-    protected override HttpClient GetHttpClient()
-        => func == null ? base.GetHttpClient() : func(Handler);
+    protected override HttpClient GetHttpClient() => (func != null && Handler is HttpHandlerType handler) ? func(handler) : base.GetHttpClient();
 
     //#region Cookie 序列化与反序列化
 
@@ -130,8 +129,11 @@ public abstract class HttpClientUseCookiesWithDynamicProxyServiceImpl : HttpClie
     void SetHandler()
     {
         if (!useProxy) return;
-        Handler.UseProxy = true;
-        Handler.Proxy = proxy;
+        if (Handler is HttpHandlerType handler)
+        {
+            handler.UseProxy = true;
+            handler.Proxy = proxy;
+        }
     }
 
     public override void Reset()

@@ -51,7 +51,7 @@ public abstract class HttpClientUseCookiesServiceBaseImpl : IDisposable
 {
     protected readonly CookieContainer cookieContainer = new();
 
-    protected HttpHandlerType Handler { get; private set; }
+    protected HttpMessageHandler Handler { get; private set; }
 
     Lazy<HttpClient> _client;
     bool disposedValue;
@@ -66,7 +66,7 @@ public abstract class HttpClientUseCookiesServiceBaseImpl : IDisposable
         _client = GetLazyHttpClient();
     }
 
-    public HttpClientUseCookiesServiceBaseImpl(Func<CookieContainer, HttpHandlerType> func)
+    public HttpClientUseCookiesServiceBaseImpl(Func<CookieContainer, HttpMessageHandler> func)
     {
         Handler = func(cookieContainer);
         _client = GetLazyHttpClient();
