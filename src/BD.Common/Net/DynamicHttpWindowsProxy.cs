@@ -214,7 +214,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                         }
                         else
                         {
-                            tmp = proxyHelper.ProxyBypass.Substring(start, idx - start);
+                            tmp = proxyHelper.ProxyBypass[start..idx];
                         }
 
                         // Skip trailing characters if any.
@@ -479,7 +479,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                 Array.Resize(ref uris, idx + 1);
                 uris[idx] = uri;
 
-                span = span.Slice(charactersConsumed);
+                span = span[charactersConsumed..];
             }
 
             return new MultiProxy(failedProxyCache, uris);
@@ -631,7 +631,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                     break;
                 }
 
-                proxyString = proxyString.Slice(iter);
+                proxyString = proxyString[iter..];
 
                 // Determine which scheme this part is for.
                 // If no schema is defined, use both.
@@ -640,23 +640,23 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                 if (proxyString.StartsWith("http="))
                 {
                     proxyType = INSECURE_FLAG;
-                    proxyString = proxyString.Slice("http=".Length);
+                    proxyString = proxyString["http=".Length..];
                 }
                 else if (proxyString.StartsWith("https="))
                 {
                     proxyType = SECURE_FLAG;
-                    proxyString = proxyString.Slice("https=".Length);
+                    proxyString = proxyString["https=".Length..];
                 }
 
                 if (proxyString.StartsWith("http://"))
                 {
                     proxyType = INSECURE_FLAG;
-                    proxyString = proxyString.Slice("http://".Length);
+                    proxyString = proxyString["http://".Length..];
                 }
                 else if (proxyString.StartsWith("https://"))
                 {
                     proxyType = SECURE_FLAG;
-                    proxyString = proxyString.Slice("https://".Length);
+                    proxyString = proxyString["https://".Length..];
                 }
 
                 // Find the next delimiter, or end of string.
@@ -667,7 +667,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                 }
 
                 // Return URI if it's a match to what we want.
-                if ((proxyType & wantedFlag) != 0 && Uri.TryCreate(Concat("http://", proxyString.Slice(0, iter)), UriKind.Absolute, out uri))
+                if ((proxyType & wantedFlag) != 0 && Uri.TryCreate(Concat("http://", proxyString[..iter]), UriKind.Absolute, out uri))
                 {
                     charactersConsumed = originalLength - proxyString.Length + iter;
                     Debug.Assert(charactersConsumed > 0);
@@ -675,7 +675,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                     return true;
                 }
 
-                proxyString = proxyString.Slice(iter);
+                proxyString = proxyString[iter..];
             }
 
             uri = null;
@@ -1208,11 +1208,11 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             string destination = uri.AbsoluteUri;
             if (uri.Scheme == UriScheme.Wss)
             {
-                destination = UriScheme.Https + destination.Substring(UriScheme.Wss.Length);
+                destination = UriScheme.Https + destination[UriScheme.Wss.Length..];
             }
             else if (uri.Scheme == UriScheme.Ws)
             {
-                destination = UriScheme.Http + destination.Substring(UriScheme.Ws.Length);
+                destination = UriScheme.Http + destination[UriScheme.Ws.Length..];
             }
 #pragma warning restore CA1845
 

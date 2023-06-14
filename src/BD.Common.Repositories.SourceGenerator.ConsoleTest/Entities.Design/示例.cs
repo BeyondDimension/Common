@@ -4,6 +4,11 @@
 namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
 
 [GenerateRepositories(
+    BackManageAddModel = false,
+    BackManageEditModel = false,
+    BackManageTableModel = false,
+    Repository = false,
+    Entity = false,
     RepositoryConstructorArguments = new[] {
         "ISysUserRepository",
         "ASDASDRepository",

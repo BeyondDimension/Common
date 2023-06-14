@@ -9,7 +9,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsTrimmable>true</IsTrimmable>
 		<!--<Version>1.yy.1MMdd.1hhmm</Version>-->
-		<Version>1.23.10614.11615</Version>
+		<Version>1.23.10614.11642</Version>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691?s=200&amp;v=4</PackageIconUrl>
 		<Company>长沙次元超越科技有限公司</Company>
 		<Copyright>©️ $(Company). All rights reserved.</Copyright>

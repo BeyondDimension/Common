@@ -18,17 +18,17 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
         /// <inheritdoc cref="GenerateRepositoriesAttribute.ApiRoutePrefix"/>
         public string? ApiRoutePrefix => GenerateRepositoriesAttribute.ApiRoutePrefix;
 
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddModel"/>
-        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel;
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanAdd"/>
+        public bool BackManageCanAdd => GenerateRepositoriesAttribute.BackManageCanAdd;
 
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModel"/>
-        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel;
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanEdit"/>
+        public bool BackManageCanEdit => GenerateRepositoriesAttribute.BackManageCanEdit;
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModelReadOnly"/>
         public bool BackManageEditModelReadOnly => GenerateRepositoriesAttribute.BackManageEditModelReadOnly;
 
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableModel"/>
-        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel;
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanTable"/>
+        public bool BackManageCanTable => GenerateRepositoriesAttribute.BackManageCanTable;
     }
 
     void WriteConstructor(
@@ -210,7 +210,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 
         #endregion
 
-        if (metadata.BackManageEditModel)
+        if (metadata.BackManageCanEdit)
         {
             WriteEditById(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
             if (!metadata.BackManageEditModelReadOnly)
@@ -218,11 +218,11 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
                 WriteUpdate(stream, metadata, idField, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
             }
         }
-        if (metadata.BackManageAddModel)
+        if (metadata.BackManageCanAdd)
         {
             WriteInsert(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
         }
-        if (metadata.BackManageTableModel)
+        if (metadata.BackManageCanTable)
         {
             WriteQuery(stream, metadata, fields, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
         }

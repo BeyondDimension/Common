@@ -12,17 +12,17 @@ sealed class RepositoryTemplate : RepositoryTemplateBase<RepositoryTemplate, Rep
         string? PrimaryKeyTypeName = null,
         GenerateRepositoriesAttribute GenerateRepositoriesAttribute = null!) : IRepositoryTemplateMetadata
     {
-        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel;
+        public bool BackManageCanAdd => GenerateRepositoriesAttribute.BackManageCanAdd;
 
         public RepositoryMethodImplType BackManageAddMethodImplType => GenerateRepositoriesAttribute.BackManageAddMethodImplType;
 
-        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel;
+        public bool BackManageCanEdit => GenerateRepositoriesAttribute.BackManageCanEdit;
 
         public bool BackManageEditModelReadOnly => GenerateRepositoriesAttribute.BackManageEditModelReadOnly;
 
         public RepositoryMethodImplType BackManageEditMethodImplType => GenerateRepositoriesAttribute.BackManageEditMethodImplType;
 
-        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel;
+        public bool BackManageCanTable => GenerateRepositoriesAttribute.BackManageCanTable;
 
         public RepositoryMethodImplType BackManageTableMethodImplType => GenerateRepositoriesAttribute.BackManageTableMethodImplType;
     }

@@ -11,14 +11,14 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 {
     public interface IRepositoryTemplateMetadata : ITemplateMetadata
     {
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddModel"/>
-        bool BackManageAddModel { get; }
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanAdd"/>
+        bool BackManageCanAdd { get; }
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddMethodImplType"/>
         RepositoryMethodImplType BackManageAddMethodImplType { get; }
 
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModel"/>
-        bool BackManageEditModel { get; }
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanEdit"/>
+        bool BackManageCanEdit { get; }
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModelReadOnly"/>
         bool BackManageEditModelReadOnly { get; }
@@ -26,8 +26,8 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditMethodImplType"/>
         RepositoryMethodImplType BackManageEditMethodImplType { get; }
 
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableModel"/>
-        bool BackManageTableModel { get; }
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanTable"/>
+        bool BackManageCanTable { get; }
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableMethodImplType"/>
         RepositoryMethodImplType BackManageTableMethodImplType { get; }
@@ -975,7 +975,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                 WriteUpdate(stream, metadata, fields, idField);
             }
         }
-        if (metadata.BackManageAddModel)
+        if (metadata.BackManageCanEdit)
         {
             WriteInsert(stream, metadata, fields, idField);
         }

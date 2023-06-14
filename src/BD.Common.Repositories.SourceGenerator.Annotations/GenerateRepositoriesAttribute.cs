@@ -17,6 +17,11 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     public bool BackManageAddModel { get; set; } = true;
 
     /// <summary>
+    /// 是否需要生成后台管理【添加】功能，默认值为：<see langword="true"/>
+    /// </summary>
+    public bool BackManageCanAdd { get; set; } = true;
+
+    /// <summary>
     /// 指定生成后台管理【添加】仓储层函数实现种类，默认值为：<see cref="RepositoryMethodImplType.Expression"/>
     /// </summary>
     public RepositoryMethodImplType BackManageAddMethodImplType { get; set; } = RepositoryMethodImplType.Expression;
@@ -25,6 +30,11 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// 是否需要生成后台管理【编辑】模型，默认值为：<see langword="true"/>
     /// </summary>
     public bool BackManageEditModel { get; set; } = true;
+
+    /// <summary>
+    /// 是否需要生成后台管理【编辑】功能，默认值为：<see langword="true"/>
+    /// </summary>
+    public bool BackManageCanEdit { get; set; } = true;
 
     /// <summary>
     /// 后台管理【编辑】模型是否仅作为详情展示的只读用途，决定是否生成 Update 函数，默认值为：<see langword="false"/>
@@ -40,6 +50,11 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// 是否需要生成后台管理【表格查询】模型，默认值为：<see langword="true"/>
     /// </summary>
     public bool BackManageTableModel { get; set; } = true;
+
+    /// <summary>
+    /// 是否需要生成后台管理【表格查询】功能，默认值为：<see langword="true"/>
+    /// </summary>
+    public bool BackManageCanTable { get; set; } = true;
 
     /// <summary>
     /// 指定生成后台管理【表格查询】仓储层函数实现种类，默认值为：<see cref="RepositoryMethodImplType.Expression"/>

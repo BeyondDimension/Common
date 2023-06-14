@@ -12,13 +12,13 @@ sealed class BackManageModelTemplate : TemplateBase<BackManageModelTemplate, Bac
         GenerateRepositoriesAttribute GenerateRepositoriesAttribute) : ITemplateMetadata
     {
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageAddModel"/>
-        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel;
+        public bool BackManageAddModel => GenerateRepositoriesAttribute.BackManageAddModel && GenerateRepositoriesAttribute.BackManageCanAdd;
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageEditModel"/>
-        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel;
+        public bool BackManageEditModel => GenerateRepositoriesAttribute.BackManageEditModel && GenerateRepositoriesAttribute.BackManageCanEdit;
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableModel"/>
-        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel;
+        public bool BackManageTableModel => GenerateRepositoriesAttribute.BackManageTableModel && GenerateRepositoriesAttribute.BackManageCanTable;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
