@@ -15,9 +15,9 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
             static (_, _) => true,
             static (content, _) => content);
 
-        context.RegisterSourceOutput(attrs, async (ctx, content) =>
+        context.RegisterSourceOutput(attrs, (sourceProductionContext, it) =>
         {
-            if (content.TargetSymbol is not INamedTypeSymbol symbol)
+            if (it.TargetSymbol is not INamedTypeSymbol symbol)
                 return;
 
             try
@@ -42,7 +42,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     {
                         tasks.Add(InBackground(() =>
                         {
-                            EntityTemplate.Instance.AddSource(ctx, symbol,
+                            EntityTemplate.Instance.AddSource(sourceProductionContext, symbol,
                                 new(@namespace, symbol.Name, tableClassName, className,
                                 generateRepositories),
                                 properties);
@@ -54,7 +54,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     {
                         tasks.Add(InBackground(() =>
                         {
-                            BackManageModelTemplate.Instance.AddSource(ctx, symbol,
+                            BackManageModelTemplate.Instance.AddSource(sourceProductionContext, symbol,
                                 new(@namespace, symbol.Name, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
@@ -64,14 +64,14 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     {
                         tasks.Add(InBackground(() =>
                         {
-                            RepositoryTemplate.Instance.AddSource(ctx, symbol,
+                            RepositoryTemplate.Instance.AddSource(sourceProductionContext, symbol,
                                 new(@namespace, symbol.Name, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
                         tasks.Add(InBackground(() =>
                         {
-                            RepositoryImplTemplate.Instance.AddSource(ctx, symbol,
+                            RepositoryImplTemplate.Instance.AddSource(sourceProductionContext, symbol,
                                 new(@namespace, symbol.Name, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
@@ -81,13 +81,13 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     {
                         tasks.Add(InBackground(() =>
                         {
-                            BackManageControllerTemplate.Instance.AddSource(ctx, symbol,
+                            BackManageControllerTemplate.Instance.AddSource(sourceProductionContext, symbol,
                                 new(@namespace, symbol.Name, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
                     }
-                    await Task.WhenAll(tasks);
+                    Task.WaitAll(tasks.ToArray());
                     GeneratorConfig.Save();
                 }
             }
@@ -106,7 +106,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 var errorString = builder.ToString();
                 Debug.WriteLine(errorString);
                 errorString = string.Join("\r\n", errorString.Split(new string[] { "\r\n" }, StringSplitOptions.None).Select(x => $"// {x}"));
-                ctx.AddSource(hintName, SourceText.From(errorString, Encoding.UTF8));
+                sourceProductionContext.AddSource(hintName, SourceText.From(errorString, Encoding.UTF8));
             }
         });
     }

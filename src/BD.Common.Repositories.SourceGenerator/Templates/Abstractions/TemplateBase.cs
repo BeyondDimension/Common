@@ -103,11 +103,11 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
     /// <summary>
     /// 添加当前源码模板生成的文件
     /// </summary>
-    /// <param name="ctx"></param>
+    /// <param name="sourceProductionContext"></param>
     /// <param name="symbol"></param>
     /// <param name="metadata"></param>
     /// <param name="fields"></param>
-    public void AddSource(SourceProductionContext ctx, ISymbol symbol, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
+    public void AddSource(SourceProductionContext sourceProductionContext, ISymbol symbol, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
         using var memoryStream = new MemoryStream();
         Write(memoryStream, metadata, fields);
@@ -132,6 +132,6 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
         }
 #endif
 
-        ctx.AddSource(symbol, partialFileName, memoryStream);
+        sourceProductionContext.AddSource(symbol, partialFileName, memoryStream);
     }
 }
