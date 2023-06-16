@@ -1,5 +1,4 @@
 // https://github.com/MicrosoftTranslator/Text-Translation-API-V3-C-Sharp/blob/master/Translate.cs
-using System.Text.Json;
 
 #nullable disable
 namespace System;
@@ -97,7 +96,11 @@ public sealed class Translatecs
     //    }
     //}
 
-    static readonly JsonSerializerOptions options = new(JsonSerializerDefaults.Web);
+    static readonly JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
+    {
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    };
+
     static readonly HttpClient client = new();
 
     // Async call to the Translator Text API
@@ -105,7 +108,11 @@ public sealed class Translatecs
     {
         var body = new object[] { new { Text = inputText } };
         using var requestStream = new MemoryStream();
-        var requestBody = JsonSerializer.SerializeAsync(requestStream, body, options);
+        await JsonSerializer.SerializeAsync(requestStream, body, options);
+#if DEBUG
+        var reqBody = Encoding.UTF8.GetString(requestStream.ToArray());
+#endif
+        requestStream.Position = 0;
 
         var request = new HttpRequestMessage
         {
@@ -114,8 +121,7 @@ public sealed class Translatecs
             RequestUri = new Uri(/*endpoint +*/ route),
             Content = new StreamContent(requestStream),
         };
-        request.Content.Headers.ContentType.MediaType = "application/json";
-        request.Content.Headers.ContentType.CharSet = "utf-8";
+        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json", "utf-8");
         request.Headers.Add("Ocp-Apim-Subscription-Key", SubscriptionKey);
         request.Headers.Add("Ocp-Apim-Subscription-Region", Region);
 
@@ -128,8 +134,13 @@ public sealed class Translatecs
         //using var json = new JsonTextReader(reader);
         //var deserializedOutput = jsonSerializer.Deserialize<TranslationResult>(json);
 
+#if DEBUG
+        var result = await response.Content.ReadAsStringAsync();
+        var deserializedOutput = JsonSerializer.Deserialize<TranslationResult[]>(result, options);
+#else
         using var result = await response.Content.ReadAsStreamAsync();
         var deserializedOutput = await JsonSerializer.DeserializeAsync<TranslationResult[]>(result, options);
+#endif
 
         return deserializedOutput;
 

@@ -5,6 +5,8 @@ static class Constants
     public const byte blank_space = 32;
     public const byte I = 73;
 
+#if !PROJ_TRANSLATE
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static ImmutableArray<T> GetInterfaces<T>()
     {
@@ -21,6 +23,8 @@ static class Constants
 
     //public static readonly Lazy<ImmutableArray<IAttributeHandle>> attributeHandles
     //    = new(GetInterfaces<IAttributeHandle>);
+
+#endif
 
     /// <summary>
     /// 定义特性类型完整名称

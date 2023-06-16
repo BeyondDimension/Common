@@ -1,4 +1,8 @@
+#if __HAVE_S_JSON__
+#else
 using Newtonsoft.Json;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+#endif
 
 namespace BD.Common.Repositories.SourceGenerator.Models;
 
@@ -50,7 +54,7 @@ public sealed record class GeneratorConfig(
     /// <summary>
     /// 配置文件路径
     /// </summary>
-    static readonly Lazy<string> filePath = new(() =>
+    internal static readonly Lazy<string> FilePath = new(() =>
     {
         var projPath = ProjPathHelper.GetProjPath(null);
         var filePath = Path.Combine(projPath, "src", fileName);
@@ -62,7 +66,7 @@ public sealed record class GeneratorConfig(
     static readonly Lazy<GeneratorConfig> instance = new(() =>
     {
         using var stream = new FileStream(
-            filePath.Value,
+            FilePath.Value,
             FileMode.Open,
             FileAccess.Read,
             FileShare.ReadWrite | FileShare.Delete);
@@ -155,14 +159,14 @@ public sealed record class GeneratorConfig(
     /// <summary>
     /// 保存当前配置到文件
     /// </summary>
-    public static void Save()
+    public static void Save(bool force = false)
     {
         var instance = Instance;
-        if (counter == instance.GetCounter()) return; // 通过计数器判断是否有变更需要保存
+        if (!force && counter == instance.GetCounter()) return; // 通过计数器判断是否有变更需要保存
         lock (@lock)
         {
             using var stream = new FileStream(
-                filePath.Value,
+                FilePath.Value,
                 FileMode.OpenOrCreate,
                 FileAccess.Write,
                 FileShare.ReadWrite | FileShare.Delete);
@@ -171,7 +175,9 @@ public sealed record class GeneratorConfig(
 #else
             using var streamWriter = new StreamWriter(stream, Encoding.UTF8);
             using var jsonTextWriter = new JsonTextWriter(streamWriter);
-            JsonSerializer.CreateDefault().Serialize(jsonTextWriter, instance);
+            JsonSerializer.CreateDefault(
+                new JsonSerializerSettings() { Formatting = Formatting.Indented })
+                .Serialize(jsonTextWriter, instance);
 #endif
             stream.Flush();
             stream.SetLength(stream.Position);

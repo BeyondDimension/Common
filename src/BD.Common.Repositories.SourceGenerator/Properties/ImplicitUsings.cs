@@ -5,14 +5,13 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
+#if !PROJ_TRANSLATE
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.Text;
 
 global using Humanizer;
 
 global using BD.Common.Repositories.SourceGenerator.Annotations;
-
-global using BD.Common.Repositories.SourceGenerator.Models;
 
 global using BD.Common.Repositories.SourceGenerator.Templates;
 global using BD.Common.Repositories.SourceGenerator.Templates.Abstractions;
@@ -26,5 +25,8 @@ global using BD.Common.Repositories.SourceGenerator.Helpers;
 
 global using BD.Common.Repositories.SourceGenerator.Handlers.Attributes;
 global using BD.Common.Repositories.SourceGenerator.Handlers.Attributes.Abstractions;
+#endif
+
+global using BD.Common.Repositories.SourceGenerator.Models;
 
 global using static BD.Common.Repositories.SourceGenerator.Constants;
