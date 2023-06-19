@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository{TDbContext}"/>
@@ -159,11 +161,9 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
             else
             {
                 var entityEntry = db.Entry(existingEntity);
-                entityEntry.CurrentValues.SetValues(entity);
 
-                // 忽略与创建相关的字段的变动
-                entityEntry.Property(nameof(ICreateUserId.CreateUserId)).IsModified = false;
-                entityEntry.Property(nameof(ICreationTime.CreationTime)).IsModified = false;
+                entityEntry.CurrentValues.SetValues(entity);
+                IgnoreCreationProperties(entityEntry);
 
                 result = DbRowExecResult.Update;
             }
@@ -212,17 +212,35 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
         else
         {
             var entityEntry = db.Entry(existingEntity);
-            entityEntry.CurrentValues.SetValues(viewModel);
 
-            // 忽略与创建相关的字段的变动
-            entityEntry.Property(nameof(ICreateUserId.CreateUserId)).IsModified = false;
-            entityEntry.Property(nameof(ICreationTime.CreationTime)).IsModified = false;
+            entityEntry.CurrentValues.SetValues(viewModel);
+            IgnoreCreationProperties(entityEntry);
 
             onUpdate?.Invoke(existingEntity);
             result = DbRowExecResult.Update;
         }
         var rowCount = await db.SaveChangesAsync(cancellationToken);
         return (rowCount, result);
+    }
+
+    /// <summary>
+    /// 忽略实体上与创建相关的属性的修改
+    /// </summary>
+    /// <param name="entityEntry"></param>
+    private static void IgnoreCreationProperties(EntityEntry<TEntity> entityEntry)
+    {
+        const string strCreationTime = nameof(ICreationTime.CreationTime);
+        const string strCreateUserId = nameof(ICreateUserId.CreateUserId);
+
+        var properties = entityEntry.Properties
+            .Where(p => p.IsModified)
+            .Where(p => p.Metadata.Name == strCreationTime ||
+                        p.Metadata.Name == strCreateUserId);
+
+        foreach (var prop in properties)
+        {
+            prop.IsModified = false;
+        }
     }
 
     #endregion
