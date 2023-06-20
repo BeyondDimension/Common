@@ -64,35 +64,7 @@ public static partial class StreamExtensions
                         {
                             stream.Write(utf8String[..index_l_brace]);
                             var arg = args[args_index_int];
-                            if (arg == null)
-                            {
-
-                            }
-                            else if (arg is byte[] bytes)
-                            {
-                                stream.Write(bytes);
-                            }
-                            else if (arg is byte @byte)
-                            {
-                                stream.WriteByte(@byte);
-                            }
-                            else if (arg is ReadOnlyMemory<byte> memory)
-                            {
-                                stream.Write(memory.Span);
-                            }
-                            else if (arg is IEnumerable<byte> enumerable)
-                            {
-                                stream.Write(enumerable);
-                            }
-                            else
-                            {
-                                var arg_str = arg.ToString();
-                                if (arg_str != null)
-                                {
-                                    bytes = Encoding.UTF8.GetBytes(arg_str);
-                                    stream.Write(bytes);
-                                }
-                            }
+                            stream.WriteObject(arg);
                             stream.WriteFormat(utf8String[(index_l_brace_add_1 + index_r_brace + 1)..], args);
                             return;
                         }

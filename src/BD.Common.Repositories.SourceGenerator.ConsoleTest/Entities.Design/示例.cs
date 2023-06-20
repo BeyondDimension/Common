@@ -4,12 +4,6 @@
 namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
 
 [GenerateRepositories(
-    BackManageAddModel = false,
-    BackManageEditModel = false,
-    BackManageTableModel = false,
-    Repository = false,
-    ApiController = false,
-    Entity = false,
     RepositoryConstructorArguments = new[] {
         "ISysUserRepository",
         "ASDASDRepository",
@@ -167,6 +161,21 @@ public class 示例
 
     [BackManageField(Edit = true)]
     string? SmsCode;
+
+    [Range(0, double.PositiveInfinity)]
+    double D;
+
+    [Range(0, float.PositiveInfinity)]
+    float F;
+
+    [Range(0, double.NegativeInfinity)]
+    double D1;
+
+    [Range(0, float.NegativeInfinity)]
+    float F2;
+
+    [Range(0, double.NegativeInfinity)]
+    decimal DE;
 
     #region TODO：可选的仅用于表格查询参数中的字段，并定义查询表达式
 

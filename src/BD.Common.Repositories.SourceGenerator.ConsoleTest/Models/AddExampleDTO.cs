@@ -1,15 +1,15 @@
 namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Models;
 
-partial class AddExampleDTO
+public partial class AddExampleDTO
 {
 }
 
-partial class EditExampleDTO
+public partial class EditExampleDTO
 {
 
 }
 
-partial class TableExampleDTO
+public partial class TableExampleDTO
 {
 
 }

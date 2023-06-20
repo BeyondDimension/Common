@@ -35,4 +35,38 @@ public static partial class StreamExtensions
             stream.WriteByte(@byte);
         }
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteObject(this Stream stream, object? obj)
+    {
+        if (obj == null)
+        {
+
+        }
+        else if (obj is byte[] bytes)
+        {
+            stream.Write(bytes);
+        }
+        else if (obj is byte @byte)
+        {
+            stream.WriteByte(@byte);
+        }
+        else if (obj is ReadOnlyMemory<byte> memory)
+        {
+            stream.Write(memory.Span);
+        }
+        else if (obj is IEnumerable<byte> enumerable)
+        {
+            stream.Write(enumerable);
+        }
+        else
+        {
+            var arg_str = obj.ToString();
+            if (arg_str != null)
+            {
+                bytes = Encoding.UTF8.GetBytes(arg_str);
+                stream.Write(bytes);
+            }
+        }
+    }
 }

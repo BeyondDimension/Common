@@ -4,7 +4,7 @@ public sealed class ASDASDRepository
 {
 }
 
-partial class ExampleRepository<TDbContext>
+public partial class ExampleRepository
 {
 
 }

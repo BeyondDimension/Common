@@ -23,7 +23,7 @@ static class AttributeDataHelper
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static object? GetObjectValue(this TypedConstant typedConstant)
+    public static object? GetObjectValue(this TypedConstant typedConstant)
     {
         try
         {
