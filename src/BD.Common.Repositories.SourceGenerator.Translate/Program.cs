@@ -3,6 +3,11 @@ using Humanizer;
 const string to_ = "&to=";
 const string route = "https://api.translator.azure.cn/translate?api-version=3.0&from=zh-Hans";
 
+static string GetValue(string value)
+{
+    return value.Trim().Replace(",", "").Replace(".", "").Dehumanize().Pascalize();
+}
+
 try
 {
     ReadAzureTranslationKey();
@@ -24,7 +29,7 @@ try
                 var translationResult = translationResults.
                     First(x => x != null).Translations.
                     First(x => x.To.Equals(lang, StringComparison.OrdinalIgnoreCase));
-                var value = translationResult.Text.Pascalize();
+                var value = GetValue(translationResult.Text);
                 Console.WriteLine(value);
                 cfg.Translates[kv.Key] = value;
             }
