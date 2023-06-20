@@ -148,7 +148,8 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
 
             }
 
-            var hintName = symbol.GetSourceFileName(partialFileName);
+            //var hintName = symbol.GetSourceFileName(partialFileName);
+            var hintName = $"{symbol.Name}.g.cs";
             var pathList = new List<string>() { ProjPathHelper.GetProjPath(null), };
             pathList.AddRange(value);
             if (!string.IsNullOrWhiteSpace(sourceFileDirName) &&
@@ -165,6 +166,7 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
             memoryStream.Position = 0;
             memoryStream.CopyTo(fileStream);
             fileStream.Flush();
+            fileStream.SetLength(fileStream.Position);
             return;
         }
 
