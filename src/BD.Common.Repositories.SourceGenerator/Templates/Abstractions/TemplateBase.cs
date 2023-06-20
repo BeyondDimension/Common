@@ -129,6 +129,8 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
                 break;
             case nameof(BackManageControllerTemplate):
                 break;
+            case nameof(BackManageUIPageTemplate):
+                break;
         }
 #endif
 

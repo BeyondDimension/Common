@@ -15,7 +15,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
             static (_, _) => true,
             static (content, _) => content);
 
-        context.RegisterSourceOutput(attrs, (sourceProductionContext, it) =>
+        context.RegisterSourceOutput(attrs, async (sourceProductionContext, it) =>
         {
             if (it.TargetSymbol is not INamedTypeSymbol symbol)
                 return;
@@ -37,6 +37,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 var generateRepositories = attrs.GetGenerateRepositoriesAttribute();
                 if (generateRepositories != null)
                 {
+
                     List<Task> tasks = new(); // 不同类型的模板使用多线程并行化执行
                     if (generateRepositories.Entity)
                     {
@@ -87,6 +88,16 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                 properties);
                         }));
                     }
+                    //if (generateRepositories.BackManageUIPage)
+                    //{
+                    //    tasks.Add(InBackground(() =>
+                    //    {
+                    //        BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, symbol,
+                    //            new(@namespace, symbol.Name, className,
+                    //            GenerateRepositoriesAttribute: generateRepositories),
+                    //            properties);
+                    //    }));
+                    //}
                     Task.WaitAll(tasks.ToArray());
                     GeneratorConfig.Save();
                 }

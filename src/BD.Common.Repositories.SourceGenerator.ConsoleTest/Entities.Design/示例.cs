@@ -8,6 +8,7 @@ namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
     BackManageEditModel = false,
     BackManageTableModel = false,
     Repository = false,
+    ApiController = false,
     Entity = false,
     RepositoryConstructorArguments = new[] {
         "ISysUserRepository",
@@ -17,9 +18,10 @@ namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
         "ISysMenuRepository",
     },
     ApiRoutePrefix = "ms/accelerator",
-    DbContextBaseInterface = "IAcceleratorDbContext"
+    DbContextBaseInterface = "IAcceleratorDbContext",
+    BackManageUIPage = true
 )]
-//[Table("TestXXXs")] // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词
+/*[Table("TestXXXs")]*/ // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词
 public class 示例
 {
     Guid Id;

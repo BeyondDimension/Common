@@ -111,6 +111,11 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// </summary>
     public bool NEWSEQUENTIALID { get; set; } = true;
 
+    /// <summary>
+    /// 是否需要生成前端管理页面，默认值为：<see langword="false"/>
+    /// </summary>
+    public bool BackManageUIPage { get; set; } = false;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetValue(string key, object? value)
     {
