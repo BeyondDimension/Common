@@ -13,7 +13,8 @@ public sealed record class GeneratorConfig(
     ConcurrentDictionary<string, string> Translates,
     ImmutableHashSet<string> AttributeTypeFullNames,
     string? ApiBaseUrlBackManageLocal,
-    string? ApiBaseUrlBackManageDevelopment)
+    string? ApiBaseUrlBackManageDevelopment,
+    Dictionary<string, string[]> SourcePath)
 {
     static readonly Dictionary<string, string> DefTranslates = new()
     {

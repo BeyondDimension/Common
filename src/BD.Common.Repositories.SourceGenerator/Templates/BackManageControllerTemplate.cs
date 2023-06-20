@@ -159,7 +159,7 @@ namespace {0};
 public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controller>
 """u8;
         //, IAuthenticatorDbContext
-        args[0] = string.Format(args[0]!.ToString(), "Controllers");
+        args[0] = string.Format(args[0]!.ToString()!, "Controllers");
         var classNamePluralize = metadata.ClassName.Pluralize();
         var classNamePluralizeLower = classNamePluralize.ToLowerInvariant();
         var classNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(classNamePluralizeLower);

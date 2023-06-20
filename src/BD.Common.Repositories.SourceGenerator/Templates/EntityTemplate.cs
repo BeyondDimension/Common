@@ -43,10 +43,11 @@ namespace {0};
 [Table("{2}")]
 public sealed partial class {3}
 """u8;
-        args[0] = string.Format(args[0]!.ToString(), "Entities");
+        args[0] = string.Format(args[0]!.ToString()!, "Entities");
         stream.WriteFormat(format, args);
 
         var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
+        var xml = idField.Field.GetDocumentationCommentXml();
 
         bool isFirstWriteBaseInterfaceType = true;
         var fixedProperties = new HashSet<FixedProperty>(

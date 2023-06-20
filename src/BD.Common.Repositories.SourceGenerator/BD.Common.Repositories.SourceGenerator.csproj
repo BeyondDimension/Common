@@ -16,6 +16,11 @@
 		<IncludeSymbols>false</IncludeSymbols>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="Exists('..\..\..\..\.gitmodules')">
+		<!--<TargetFramework>net7.0</TargetFramework>-->
+		<DefineConstants>REF_SUB_MODULE;$(DefineConstants)</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="..\AssemblyInfo.cs"></Compile>
 		<Compile Remove="..\ImplicitUsings.Common.cs"></Compile>

@@ -3,6 +3,10 @@
     "BD.Common.Repositories.SourceGenerator": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "..\\BD.Common.Repositories.SourceGenerator.ConsoleTest\\BD.Common.Repositories.SourceGenerator.ConsoleTest.csproj"
+    },
+    "BD.Common.Repositories.SourceGenerator.ConsoleApp": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\..\\..\\src\\BD.Common.Repositories.SourceGenerator.ConsoleApp\\BD.Common.Repositories.SourceGenerator.ConsoleApp.csproj"
     }
   }
 }

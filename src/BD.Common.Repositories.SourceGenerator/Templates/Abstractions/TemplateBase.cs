@@ -132,6 +132,42 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
         }
 #endif
 
+        // 可选通过配置将源码生成到文件
+        if (GeneratorConfig.Instance.SourcePath?.TryGetValue(partialFileName, out var value) ?? false)
+        {
+            string? sourceFileDirName = null;
+
+            try
+            {
+                var sourceFilePath = symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath;
+                var sourceFilePathArray = sourceFilePath!.Split(Path.DirectorySeparatorChar);
+                sourceFileDirName = sourceFilePathArray[^2];
+            }
+            catch
+            {
+
+            }
+
+            var hintName = symbol.GetSourceFileName(partialFileName);
+            var pathList = new List<string>() { ProjPathHelper.GetProjPath(null), };
+            pathList.AddRange(value);
+            if (!string.IsNullOrWhiteSpace(sourceFileDirName) &&
+                !string.Equals("Entities.Design", sourceFileDirName, StringComparison.OrdinalIgnoreCase))
+                pathList.Add(sourceFileDirName!);
+            pathList.Add("Generated");
+            pathList.Add(hintName);
+            var filePath = Path.Combine(pathList.ToArray());
+            var dirPath = Path.GetDirectoryName(filePath)!;
+#pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+            if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
+#pragma warning restore RS1035 // 不要使用禁用于分析器的 API
+            using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
+            memoryStream.Position = 0;
+            memoryStream.CopyTo(fileStream);
+            fileStream.Flush();
+            return;
+        }
+
         sourceProductionContext.AddSource(symbol, partialFileName, memoryStream);
     }
 }

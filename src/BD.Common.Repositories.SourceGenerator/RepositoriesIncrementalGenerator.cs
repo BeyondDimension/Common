@@ -11,7 +11,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         var attrs = context.SyntaxProvider.ForAttributeWithMetadataName(
-            typeof(GenerateRepositoriesAttribute).FullName,
+            typeof(GenerateRepositoriesAttribute).FullName!,
             static (_, _) => true,
             static (content, _) => content);
 
@@ -91,7 +91,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     GeneratorConfig.Save();
                 }
             }
-            catch (Exception ex)
+            catch (Exception? ex)
             {
                 var hintName = symbol.GetSourceFileName(nameof(Exception));
                 byte counter = 0;

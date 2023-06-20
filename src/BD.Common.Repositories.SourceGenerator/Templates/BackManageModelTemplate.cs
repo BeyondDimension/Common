@@ -193,7 +193,7 @@ public sealed partial class Table{2}DTO
 
     protected override void WriteCore(Stream stream, object?[] args, Metadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
-        args[0] = string.Format(args[0]!.ToString(), "Models");
+        args[0] = string.Format(args[0]!.ToString()!, "Models");
         WriteSourceHeader(stream);
         var format =
 """
