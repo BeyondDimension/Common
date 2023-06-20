@@ -10,6 +10,15 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
+#if REF_SUB_MODULE
+
+        // 阻止在开发过程中源生成器自动执行，
+        // 仅在开发人员主动使用调试的方式运行此项目时才执行源生成。
+        if (!Debugger.IsAttached)
+            return;
+
+#endif
+
         var attrs = context.SyntaxProvider.ForAttributeWithMetadataName(
             typeof(GenerateRepositoriesAttribute).FullName!,
             static (_, _) => true,
