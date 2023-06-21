@@ -72,6 +72,7 @@ import { getUrl } from '@/utils/index'
         {
             WriteSave(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
         }
+        var isSoft = false;
         foreach (var field in fields)
         {
             switch (field.FixedProperty)
@@ -82,7 +83,15 @@ import { getUrl } from '@/utils/index'
                 case FixedProperty.Title:
                     WriteGetSelect(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
                     break;
+                case FixedProperty.SoftDeleted:
+                    isSoft = true;
+                    WriteDelete(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, isSoft);
+                    break;
             }
+        }
+        if (!isSoft)
+        {
+            WriteDelete(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, isSoft);
         }
 
     }
@@ -180,7 +189,9 @@ export async function {0}EditById(id: string)
        Stream stream,
        Metadata metadata,
        byte[] routePrefixU8,
-       byte[] classNamePluralizeLower)
+       byte[] classNamePluralizeLower,
+       bool isSoft
+       )
     {
         ReadOnlySpan<byte> utf8String;
 
@@ -193,9 +204,9 @@ export async function {0}EditById(id: string)
         stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8);
         utf8String =
 """
-export async function {0}Delete(id: string)
+export async function {0}(id: string)
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.WriteFormat(utf8String, !isSoft ? $"{metadata.ClassName}Delete" : $"{metadata.ClassName}SoftDelete");
         stream.Write(
 """
 {
@@ -253,13 +264,9 @@ export async function {0}Save(id?: string, options?: { [key: string]: any })
 """
  
     return request<API.BApiResponse<number>>(config.ApiUrl + `/ms/accelerator/${id}`, {
+
 """u8;
         stream.WriteFormat(utf8String, routePrefixU8);
-        stream.Write(
-"""
-{
-
-"""u8);
         stream.Write(
 """
       method: 'PUT',

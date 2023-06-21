@@ -25,8 +25,7 @@ sealed class RepositoryTemplate : RepositoryTemplateBase<RepositoryTemplate, Rep
         public bool BackManageCanTable => GenerateRepositoriesAttribute.BackManageCanTable;
 
         public RepositoryMethodImplType BackManageTableMethodImplType => GenerateRepositoriesAttribute.BackManageTableMethodImplType;
-        public bool BackManageDelete => GenerateRepositoriesAttribute.BackManageDelete;
-        public bool BackManageSoftDelete => GenerateRepositoriesAttribute.BackManageSoftDelete;
+
     }
 
     protected override void WriteCore(Stream stream, object?[] args, Metadata metadata, ImmutableArray<PropertyMetadata> fields)

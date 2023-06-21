@@ -81,4 +81,20 @@ static class Constants
 
         await Task.Factory.StartNew(action, CancellationToken.None, options, TaskScheduler.Default).ConfigureAwait(false);
     }
+
+
+    /// <summary>
+    /// 后缀文件类型
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string GeFilExtensiont(string partialFileName) => partialFileName switch
+    {
+        "BackManageUIPage" => "tsx",
+        "BackManageUIPageTypings" => "t.ts",
+        "BackManageUIPageIndex" => "i.ts",
+        "BackManageUIPageApi" => "a.ts",
+        _ => "g.cs",
+    };
 }

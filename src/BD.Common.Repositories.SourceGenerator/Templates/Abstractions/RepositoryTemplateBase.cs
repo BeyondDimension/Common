@@ -32,11 +32,6 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableMethodImplType"/>
         RepositoryMethodImplType BackManageTableMethodImplType { get; }
 
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageDelete"/>
-        public bool BackManageDelete { get; }
-
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageSoftDelete"/>
-        public bool BackManageSoftDelete { get; }
     }
 
     /** Functions
@@ -958,11 +953,14 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// </summary>
     protected void WriteDelete(
         Stream stream,
+        bool isSoft,
         PropertyMetadata idField)
     {
         ReadOnlySpan<byte> utf8String;
 
-        utf8String =
+        if (!isSoft)
+        {
+            utf8String =
 """
     /// <summary>
     /// 根据【主键】删除
@@ -970,27 +968,27 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <param name="id">主键</param>
     /// <returns>受影响的行数</returns>
 """u8;
-        stream.Write(utf8String);
-        utf8String =
+            stream.Write(utf8String);
+            utf8String =
 """
 
     {0}Task<int> DeleteAsync({1} id)
 """u8;
-        stream.WriteFormat(utf8String,
+            stream.WriteFormat(utf8String,
             IsInterface ? null : "public async "u8.ToArray(),
             idField.PropertyType);
-        if (IsInterface)
-        {
-            stream.Write(
+            if (IsInterface)
+            {
+                stream.Write(
 """
 ;
 
 
 """u8);
-        }
-        else
-        {
-            stream.Write(
+            }
+            else
+            {
+                stream.Write(
 """
 
     {
@@ -1000,20 +998,12 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
 
 """u8);
+            }
         }
-    }
-
-    /// <summary>
-    /// 写入方法 - 根据主键软删除
-    /// </summary>
-    protected void WriteSoftDelete(
-        Stream stream,
-        PropertyMetadata idField)
-    {
-        ReadOnlySpan<byte> utf8String;
-
-        utf8String =
-"""
+        else
+        {
+            utf8String =
+    """
     /// <summary>
     /// 根据【主键】软删除
     /// </summary>
@@ -1021,28 +1011,28 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <param name="id">主键</param>
     /// <returns>受影响的行数</returns>
 """u8;
-        stream.Write(utf8String);
-        utf8String =
-"""
+            stream.Write(utf8String);
+            utf8String =
+    """
 
     {0}Task<int> SoftDeleteAsync(Guid? operatorUserId, {1} id)
 """u8;
-        stream.WriteFormat(utf8String,
-            IsInterface ? null : "public async "u8.ToArray(),
-            idField.PropertyType);
-        if (IsInterface)
-        {
-            stream.Write(
-"""
+            stream.WriteFormat(utf8String,
+                IsInterface ? null : "public async "u8.ToArray(),
+                idField.PropertyType);
+            if (IsInterface)
+            {
+                stream.Write(
+    """
 ;
 
 
 """u8);
-        }
-        else
-        {
-            stream.Write(
-"""
+            }
+            else
+            {
+                stream.Write(
+    """
 
     {
         var r = await Entity.Where(x => x.Id == id)
@@ -1054,8 +1044,11 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     }
 
 """u8);
+            }
+
         }
     }
+
 
     /// <summary>
     /// 生成方法 Methods
@@ -1065,11 +1058,11 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <param name="fields"></param>
     protected void WriteMethods(Stream stream, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
+        var isSoft = false;
         if (metadata.BackManageCanTable)
         {
             WriteMethodQuery(stream, metadata, fields);
         }
-
         var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
         foreach (var field in fields)
         {
@@ -1081,6 +1074,9 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                     break;
                 case FixedProperty.Title:
                     WriteGetSelect(stream, metadata, fields, idField);
+                    break;
+                case FixedProperty.SoftDeleted:
+                    isSoft = true;
                     break;
             }
         }
@@ -1097,13 +1093,9 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         {
             WriteInsert(stream, metadata, fields, idField);
         }
-        if (metadata.BackManageDelete)
+        if (isSoft)
         {
-            WriteDelete(stream, idField);
-        }
-        if (metadata.BackManageSoftDelete)
-        {
-            WriteSoftDelete(stream, idField);
+            WriteDelete(stream, isSoft, idField);
         }
     }
 }

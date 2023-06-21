@@ -29,12 +29,6 @@ sealed class BackManageUIPageTemplate : TemplateBase<BackManageUIPageTemplate, B
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanTable"/>
         public bool BackManageCanTable => GenerateRepositoriesAttribute.BackManageCanTable;
 
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageDelete"/>
-        public bool BackManageDelete => GenerateRepositoriesAttribute.BackManageDelete;
-
-        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageSoftDelete"/>
-        public bool BackManageSoftDelete => GenerateRepositoriesAttribute.BackManageSoftDelete;
-
     }
     protected override void WriteCore(Stream stream, object?[] args, Metadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
@@ -98,14 +92,7 @@ import {
         {
             ImportMethod.Add(string.Concat(metadata.ClassName, "Save"));
         }
-        if (metadata.BackManageDelete)
-        {
-            ImportMethod.Add(string.Concat(metadata.ClassName, "Delete"));
-        }
-        if (metadata.BackManageSoftDelete)
-        {
-            ImportMethod.Add(string.Concat(metadata.ClassName, "SoftDelete"));
-        }
+        var isSoft = false;
         foreach (var field in fields)
         {
             switch (field.FixedProperty)
@@ -116,7 +103,15 @@ import {
                 case FixedProperty.Title:
                     ImportMethod.Add(string.Concat(metadata.ClassName, "Select"));
                     break;
+                case FixedProperty.SoftDeleted:
+                    ImportMethod.Add(string.Concat(metadata.ClassName, "SoftDelete"));
+                    isSoft = true;
+                    break;
             }
+        }
+        if (!isSoft)
+        {
+            ImportMethod.Add(string.Concat(metadata.ClassName, "Delete"));
         }
         utf8String =
 """
@@ -143,6 +138,8 @@ import {
     object?[] args)
     {
         ReadOnlySpan<byte> utf8String;
+        var isSoft = false;
+        var disable = false;
         utf8String =
 """
 
@@ -193,8 +190,6 @@ const Manage: React.FC = () => {
         List<string> constParams = new List<string>();
         foreach (var field in fields)
         {
-            if (field.BackManageField == null || !field.BackManageField.Query)
-                continue;
             var camelizeName = field.CamelizeName;
             switch (camelizeName)
             {
@@ -204,7 +199,15 @@ const Manage: React.FC = () => {
                 case "operatorUserId":
                     camelizeName = "operatorUser";
                     break;
+                case "softDeleted":
+                    isSoft = true;
+                    break;
+                case "disable":
+                    disable = true;
+                    break;
             }
+            if (field.BackManageField == null || !field.BackManageField.Query)
+                continue;
             constParams.Add(camelizeName);
         }
         utf8String =
@@ -278,7 +281,6 @@ const Manage: React.FC = () => {
 
 """u8;
             stream.Write(utf8String);
-
             #region LoadInfo
             utf8String =
 """
@@ -348,9 +350,7 @@ const Manage: React.FC = () => {
 
             #endregion
         }
-        if (metadata.BackManageDelete || metadata.BackManageSoftDelete)
-        {
-            utf8String =
+        utf8String =
 """
 
   const showDeleteConfirm = (info: any, type: boolean) => {
@@ -366,15 +366,15 @@ const Manage: React.FC = () => {
       },
       onOk() {
 """u8;
-            stream.Write(utf8String);
-            utf8String =
+        stream.Write(utf8String);
+        utf8String =
 """
 
         {0}(info);
 
 """u8;
-            stream.WriteFormat(utf8String, metadata.BackManageDelete ? "OnDelte" : "OnSoftDelete");
-            utf8String =
+        stream.WriteFormat(utf8String, !isSoft ? "OnDelte" : "OnSoftDelete");
+        utf8String =
 """
       },
     });
@@ -382,31 +382,31 @@ const Manage: React.FC = () => {
 
 
 """u8;
-            stream.Write(utf8String);
-            utf8String =
+        stream.Write(utf8String);
+        utf8String =
 """
   const {0} = async (info: any): Promise<void> =>
 """u8;
-            stream.WriteFormat(utf8String, metadata.BackManageDelete ? "OnDelte" : "OnSoftDelete");
-            utf8String =
+        stream.WriteFormat(utf8String, !isSoft ? "OnDelte" : "OnSoftDelete");
+        utf8String =
 """
  {
 
 """u8;
-            stream.Write(utf8String);
-            utf8String =
+        stream.Write(utf8String);
+        utf8String =
 """
     if (info != null) {
 """u8;
-            stream.Write(utf8String);
-            utf8String =
+        stream.Write(utf8String);
+        utf8String =
 """
 
       var response = await {0}(info!.id);
 
 """u8;
-            stream.WriteFormat(utf8String, metadata.BackManageDelete ? $"{metadata.ClassName}Delte" : $"{metadata.ClassName}SoftDelete");
-            utf8String =
+        stream.WriteFormat(utf8String, !isSoft ? $"{metadata.ClassName}Delte" : $"{metadata.ClassName}SoftDelete");
+        utf8String =
 """
       if (response.isSuccess) {
         message.success("删除完成");
@@ -419,11 +419,37 @@ const Manage: React.FC = () => {
   }
 
 """u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        if (disable)
+        {
+            utf8String =
+"""
 
+ const SetUpDisable = async (e: CheckboxChangeEvent, id: any) => {
+
+"""u8;
+            stream.Write(utf8String);
+            utf8String =
+"""
+ var response = await {0}Disable(id, e.target.checked);
+
+"""u8;
+            stream.WriteFormat(utf8String, metadata.ClassName);
+            utf8String =
+"""
+    if (response.isSuccess) {
+      message.success("操作成功");
+      if (actionRef.current?.reset)
+        actionRef.current?.reset();
+    } else {
+      message.error(response.messages);
+    }
+  };
+
+"""u8;
+            stream.Write(utf8String);
         }
     }
-
     void WriteTableColums(
     Stream stream,
     Metadata metadata,
@@ -456,11 +482,29 @@ const columns: ProColumns<API.{0}>[] =[
             {
                 case "createUserId":
                     camelizeName = "createUser";
-                    humanizeName = humanizeName[..humanizeName.IndexOf('（')];
                     break;
                 case "operatorUserId":
                     camelizeName = "operatorUser";
-                    humanizeName = humanizeName[..humanizeName.IndexOf('（')];
+                    break;
+                case "disable":
+                    stream.Write(
+"""
+    {
+"""u8);
+                    utf8String =
+        """
+title: '{0}', dataIndex:'{1}', width: {2}, ellipsis: true,
+      render: (_, record: API.AccelerateProjectGroup) => [
+        <Checkbox checked={record.disable} className='my-checkbox' onChange={(CheckboxChangeEvent) => SetUpDisable(CheckboxChangeEvent, record)}></Checkbox>],
+      valueEnum: {
+        'null': { text: '全部' },
+        false: { text: '已禁用', status: 'Error' },
+        true: { text: '已启用', status: 'Success' }
+      }},
+
+"""u8;
+                    stream.WriteFormat(utf8String, humanizeName, camelizeName, humanizeName.Length * 10);
+
                     break;
             }
             stream.Write(
@@ -521,26 +565,22 @@ access?.{0}?.Edit?
             stream.Write(utf8String);
         }
 
-        if (metadata.BackManageDelete || metadata.BackManageSoftDelete)
-        {
-            stream.Write(
+        stream.Write(
 """
 
         {
 """u8);
-            utf8String =
+        utf8String =
     """
 access?.{0}?.Delete?
 """u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-            utf8String =
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        utf8String =
     """
 <Button type="link" onClick={() => { showDeleteConfirm(record, true) }} danger>删除</Button>:null}
 
 """u8;
-            stream.Write(utf8String);
-        }
-
+        stream.Write(utf8String);
         utf8String =
 """
         </Space>

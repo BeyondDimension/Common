@@ -231,7 +231,7 @@ static class FixedPropertyHelper
                 fixedProperty = FixedProperty.CreateUserId;
                 propertyType = "Guid?";
                 fieldName = "CreateUserId";
-                fieldHumanizeName = "创建人（创建此条目的后台管理员）";
+                fieldHumanizeName = "创建人";
                 return;
             }
             else if (fieldName == "操作人" ||
@@ -242,7 +242,7 @@ static class FixedPropertyHelper
                 fixedProperty = FixedProperty.OperatorUserId;
                 propertyType = "Guid?";
                 fieldName = "OperatorUserId";
-                fieldHumanizeName = "最后一次操作的人（记录后台管理员禁用或启用或编辑该条的操作）";
+                fieldHumanizeName = "操作人";
                 return;
             }
         }

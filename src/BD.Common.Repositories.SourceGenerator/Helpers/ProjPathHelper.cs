@@ -29,31 +29,4 @@ static class ProjPathHelper
             return projPath;
         }
     }
-
-    /// <summary>
-    /// 后缀文件类型
-    /// </summary>
-    /// <param name="path"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentNullException"></exception>
-    public static string GeFilExtensiont(string partialFileName)
-    {
-        string extensiont = "g.cs";
-        switch (partialFileName)
-        {
-            case "BackManageUIPage":
-                extensiont = "tsx";
-                break;
-            case "BackManageUIPageTypings":
-                extensiont = "t.ts";
-                break;
-            case "BackManageUIPageIndex":
-                extensiont = "i.ts";
-                break;
-            case "BackManageUIPageApi":
-                extensiont = "a.ts";
-                break;
-        }
-        return extensiont;
-    }
 }
