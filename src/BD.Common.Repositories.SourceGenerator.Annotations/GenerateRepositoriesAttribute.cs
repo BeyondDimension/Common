@@ -112,6 +112,16 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     public bool NEWSEQUENTIALID { get; set; } = true;
 
     /// <summary>
+    /// 是否需要生成后台管理【删除】功能，默认值为：<see langword="false"/>
+    /// </summary>
+    public bool BackManageDelete { get; set; } = true;
+
+    /// <summary>
+    /// 是否需要生成后台管理【软删除】功能，默认值为：<see langword="false"/>
+    /// </summary>
+    public bool BackManageSoftDelete { get; set; } = false;
+
+    /// <summary>
     /// 是否需要生成前端管理页面，默认值为：<see langword="false"/>
     /// </summary>
     public bool BackManageUIPage { get; set; } = false;
@@ -160,6 +170,9 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 break;
             case nameof(NEWSEQUENTIALID):
                 NEWSEQUENTIALID = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageUIPage):
+                BackManageUIPage = Convert.ToBoolean(value);
                 break;
         }
     }

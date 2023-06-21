@@ -46,8 +46,8 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 var generateRepositories = attrs.GetGenerateRepositoriesAttribute();
                 if (generateRepositories != null)
                 {
-
                     List<Task> tasks = new(); // 不同类型的模板使用多线程并行化执行
+
                     if (generateRepositories.Entity)
                     {
                         tasks.Add(InBackground(() =>
@@ -97,16 +97,33 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                 properties);
                         }));
                     }
-                    //if (generateRepositories.BackManageUIPage)
-                    //{
-                    //    tasks.Add(InBackground(() =>
-                    //    {
-                    //        BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                    //            new(@namespace, symbol.Name, className,
-                    //            GenerateRepositoriesAttribute: generateRepositories),
-                    //            properties);
-                    //    }));
-                    //}
+                    if (generateRepositories.BackManageUIPage)
+                    {
+                        tasks.Add(InBackground(() =>
+                        {
+                            BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, symbol,
+                                new(@namespace, symbol.Name, className,
+                                GenerateRepositoriesAttribute: generateRepositories),
+                                properties);
+
+                            BackManageUIPageApiTemplate.Instance.AddSource(sourceProductionContext, symbol,
+                               new(@namespace, symbol.Name, className,
+                               GenerateRepositoriesAttribute: generateRepositories),
+                               properties);
+                        }));
+                        tasks.Add(InBackground(() =>
+                        {
+                            BackManageUIPageIndexTemplate.Instance.AddSource(sourceProductionContext, symbol,
+                             new(@namespace, symbol.Name, className,
+                             GenerateRepositoriesAttribute: generateRepositories),
+                             properties);
+
+                            BackManageUIPageTypingsTemplate.Instance.AddSource(sourceProductionContext, symbol,
+                               new(@namespace, symbol.Name, className,
+                               GenerateRepositoriesAttribute: generateRepositories),
+                               properties);
+                        }));
+                    }
                     Task.WaitAll(tasks.ToArray());
                     GeneratorConfig.Save();
                 }

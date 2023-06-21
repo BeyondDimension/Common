@@ -4,6 +4,13 @@
 namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
 
 [GenerateRepositories(
+    BackManageAddModel = false,
+    BackManageEditModel = false,
+    BackManageTableModel = false,
+    BackManageCanAdd = false,
+    Repository = false,
+    ApiController = false,
+    Entity = false,
     RepositoryConstructorArguments = new[] {
         "ISysUserRepository",
         "ASDASDRepository",
@@ -13,6 +20,7 @@ namespace BD.Common.Repositories.SourceGenerator.ConsoleTest.Entities.Design;
     },
     ApiRoutePrefix = "ms/accelerator",
     DbContextBaseInterface = "IAcceleratorDbContext",
+    BackManageDelete = true,
     BackManageUIPage = true
 )]
 /*[Table("TestXXXs")]*/ // 可使用 TableAttribute 指定表名称，不指定时将使用类名的复数单词

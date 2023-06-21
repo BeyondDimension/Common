@@ -27,6 +27,10 @@ sealed class RepositoryImplTemplate : RepositoryTemplateBase<RepositoryImplTempl
         public bool BackManageCanTable => GenerateRepositoriesAttribute.BackManageCanTable;
 
         public RepositoryMethodImplType BackManageTableMethodImplType => GenerateRepositoriesAttribute.BackManageTableMethodImplType;
+
+        public bool BackManageDelete => GenerateRepositoriesAttribute.BackManageDelete;
+
+        public bool BackManageSoftDelete => GenerateRepositoriesAttribute.BackManageSoftDelete;
     }
 
     void WriteConstructor(

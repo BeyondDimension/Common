@@ -29,6 +29,12 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanTable"/>
         public bool BackManageCanTable => GenerateRepositoriesAttribute.BackManageCanTable;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageDelete"/>
+        public bool BackManageDelete => GenerateRepositoriesAttribute.BackManageDelete;
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageSoftDelete"/>
+        public bool BackManageSoftDelete => GenerateRepositoriesAttribute.BackManageSoftDelete;
     }
 
     void WriteConstructor(
@@ -226,7 +232,14 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         {
             WriteQuery(stream, metadata, fields, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
         }
-
+        if (metadata.BackManageDelete)
+        {
+            WriteDelete(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
+        }
+        if (metadata.BackManageSoftDelete)
+        {
+            WriteSoftDelete(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
+        }
         stream.Write(
 """
 }
@@ -405,6 +418,131 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     }
 
     /// <summary>
+    /// 写入方法 - 根据主键禁用
+    /// </summary>
+    void WriteDelete(
+        Stream stream,
+        byte[] routePrefixU8,
+        byte[] classNamePluralizeLower,
+        PropertyMetadata idField,
+        byte[] repositoryInterfaceTypeArgName)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【主键】删除
+"""u8;
+        stream.Write(utf8String);
+
+        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+
+        utf8String =
+"""
+
+    /// </summary>
+    /// <param name="id">主键</param>
+    /// <returns>受影响的行数</returns>
+    [HttpDelete("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Delete))]
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    public async Task<ApiResponse<int>> Delete([FromRoute] {0} id)
+"""u8;
+        stream.WriteFormat(utf8String,
+            idField.PropertyType);
+
+        stream.Write(
+"""
+
+    {
+"""u8);
+        stream.WriteFormat(
+"""
+
+        var r = await {0}.DeleteAsync(id);
+"""u8, repositoryInterfaceTypeArgName);
+        stream.Write(
+"""
+
+        return new ApiResponse<int>()
+        {
+            IsSuccess = r > 0,
+            Data = r,
+        };
+    }
+
+
+"""u8);
+    }
+
+    /// <summary>
+    /// 写入方法 - 根据主键软删除
+    /// </summary>
+    void WriteSoftDelete(
+        Stream stream,
+        byte[] routePrefixU8,
+        byte[] classNamePluralizeLower,
+        PropertyMetadata idField,
+        byte[] repositoryInterfaceTypeArgName)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【主键】软删除
+"""u8;
+        stream.Write(utf8String);
+        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+
+        utf8String =
+"""
+
+    /// </summary>
+    /// <param name="id">主键</param>
+    /// <returns>受影响的行数</returns>
+    [HttpPut("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Edit))]
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    public async Task<ApiResponse<int>> SoftDelete([FromRoute] {0} id)
+"""u8;
+        stream.WriteFormat(utf8String,
+            idField.PropertyType);
+
+        stream.Write(
+"""
+
+    {
+"""u8);
+        stream.WriteFormat(
+"""
+
+        if (!TryGetUserId(out Guid userId))
+            throw new ArgumentNullException(nameof(userId));
+        var r = await {0}.SoftDeleteAsync(userId, id);
+"""u8, repositoryInterfaceTypeArgName);
+        stream.Write(
+"""
+
+        return new ApiResponse<int>()
+        {
+            IsSuccess = r > 0,
+            Data = r,
+        };
+    }
+
+
+"""u8);
+    }
+
+    /// <summary>
     /// 写入方法 - 根据主键获取编辑模型
     /// </summary>
     void WriteEditById(
@@ -509,8 +647,9 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """u8);
         stream.WriteFormat(
 """
-
-        var r = await {0}.InsertAsync(model);
+        if (!TryGetUserId(out Guid userId))
+            throw new ArgumentNullException(nameof(userId));
+        var r = await {0}.InsertAsync(userId, model);
 """u8, repositoryInterfaceTypeArgName);
         stream.Write(
 """

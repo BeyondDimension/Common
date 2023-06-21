@@ -239,36 +239,55 @@ export async function {0}Delete(id: string)
         stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8);
         utf8String =
 """
-export async function {0}Save(put: boolean,id?: string, options?: { [key: string]: any })
+export async function {0}Save(id?: string, options?: { [key: string]: any })
 """u8;
         stream.WriteFormat(utf8String, metadata.ClassName);
         stream.Write(
 """
 {
-
+  if (id) {
 """u8
 );
+
         utf8String =
 """
-  return request<API.BApiResponse<number>>(config.ApiUrl + `{0}`,
+ 
+    return request<API.BApiResponse<number>>(config.ApiUrl + `/ms/accelerator/${id}`, {
 """u8;
         stream.WriteFormat(utf8String, routePrefixU8);
         stream.Write(
 """
 {
 
-"""u8
-);
+"""u8);
         stream.Write(
 """
-    method: put ? 'PUT' : 'POST',
-    id,
-    ...(options || {}),
-  });
+      method: 'PUT',
+      ...(options || {}),
+    });
+  }
+  else {
+
+"""u8);
+        utf8String =
+"""
+    return request<API.BApiResponse<number>>(config.ApiUrl + `{0}`,
+"""u8;
+        stream.WriteFormat(utf8String, routePrefixU8);
+        stream.Write(
+"""
+{
+
+"""u8);
+        stream.Write(
+"""
+      method: 'POST',
+      ...(options || {}),
+    });
+  }
 }
 
-"""u8
-);
+"""u8);
     }
 
     void WriteSetDisable(

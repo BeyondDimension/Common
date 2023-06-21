@@ -31,6 +31,12 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableMethodImplType"/>
         RepositoryMethodImplType BackManageTableMethodImplType { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageDelete"/>
+        public bool BackManageDelete { get; }
+
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageSoftDelete"/>
+        public bool BackManageSoftDelete { get; }
     }
 
     /** Functions
@@ -735,6 +741,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <summary>
     /// 根据【添加模型】新增一条数据
     /// </summary>
+    /// <param name="createUserId">创建人</param>
     /// <param name="model">添加模型</param>
     /// <returns>受影响的行数</returns>
 """u8;
@@ -742,7 +749,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<int> InsertAsync(Add{1}DTO model)
+    {0}Task<int> InsertAsync(Guid? createUserId, Add{1}DTO model)
 """u8;
         var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
         stream.WriteFormat(utf8String,
@@ -801,7 +808,11 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 
 """u8, field.TranslateName);
                     }
+                    stream.Write(
+"""
+            CreateUserId = createUserId,
 
+"""u8);
                     #endregion
 
                     stream.Write(
@@ -943,6 +954,110 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     }
 
     /// <summary>
+    /// 写入方法 - 根据主键删除
+    /// </summary>
+    protected void WriteDelete(
+        Stream stream,
+        PropertyMetadata idField)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【主键】删除
+    /// </summary>
+    /// <param name="id">主键</param>
+    /// <returns>受影响的行数</returns>
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    {0}Task<int> DeleteAsync({1} id)
+"""u8;
+        stream.WriteFormat(utf8String,
+            IsInterface ? null : "public async "u8.ToArray(),
+            idField.PropertyType);
+        if (IsInterface)
+        {
+            stream.Write(
+"""
+;
+
+
+"""u8);
+        }
+        else
+        {
+            stream.Write(
+"""
+
+    {
+        var r = await Entity.Where(x => x.Id == id).ExecuteDeleteAsync();
+        return r;
+    }
+
+
+"""u8);
+        }
+    }
+
+    /// <summary>
+    /// 写入方法 - 根据主键软删除
+    /// </summary>
+    protected void WriteSoftDelete(
+        Stream stream,
+        PropertyMetadata idField)
+    {
+        ReadOnlySpan<byte> utf8String;
+
+        utf8String =
+"""
+    /// <summary>
+    /// 根据【主键】软删除
+    /// </summary>
+    /// <param name="operatorUserId">操作人</param>
+    /// <param name="id">主键</param>
+    /// <returns>受影响的行数</returns>
+"""u8;
+        stream.Write(utf8String);
+        utf8String =
+"""
+
+    {0}Task<int> SoftDeleteAsync(Guid? operatorUserId, {1} id)
+"""u8;
+        stream.WriteFormat(utf8String,
+            IsInterface ? null : "public async "u8.ToArray(),
+            idField.PropertyType);
+        if (IsInterface)
+        {
+            stream.Write(
+"""
+;
+
+
+"""u8);
+        }
+        else
+        {
+            stream.Write(
+"""
+
+    {
+        var r = await Entity.Where(x => x.Id == id)
+            .ExecuteUpdateAsync(x =>
+            x.SetProperty(y => y.SoftDeleted, y => true)
+            .SetProperty(y => y.UpdateTime, y => DateTimeOffset.Now)
+            .SetProperty(y => y.OperatorUserId, y => operatorUserId));
+        return r;
+    }
+
+"""u8);
+        }
+    }
+
+    /// <summary>
     /// 生成方法 Methods
     /// </summary>
     /// <param name="stream"></param>
@@ -981,6 +1096,14 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         if (metadata.BackManageCanAdd)
         {
             WriteInsert(stream, metadata, fields, idField);
+        }
+        if (metadata.BackManageDelete)
+        {
+            WriteDelete(stream, idField);
+        }
+        if (metadata.BackManageSoftDelete)
+        {
+            WriteSoftDelete(stream, idField);
         }
     }
 }
