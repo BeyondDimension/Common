@@ -164,6 +164,15 @@ public sealed class GenerateRepositoriesAttribute : Attribute
             case nameof(BackManageUIPage):
                 BackManageUIPage = Convert.ToBoolean(value);
                 break;
+            case nameof(BackManageCanAdd):
+                BackManageCanAdd = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageCanEdit):
+                BackManageCanAdd = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageCanTable):
+                BackManageCanAdd = Convert.ToBoolean(value);
+                break;
         }
     }
 }
