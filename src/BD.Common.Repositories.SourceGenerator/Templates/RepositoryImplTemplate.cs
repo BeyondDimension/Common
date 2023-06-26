@@ -16,6 +16,8 @@ sealed class RepositoryImplTemplate : RepositoryTemplateBase<RepositoryImplTempl
 
         public bool BackManageCanAdd => GenerateRepositoriesAttribute.BackManageCanAdd;
 
+        public bool BackManageCanDelete => GenerateRepositoriesAttribute.BackManageCanDelete;
+
         public RepositoryMethodImplType BackManageAddMethodImplType => GenerateRepositoriesAttribute.BackManageAddMethodImplType;
 
         public bool BackManageCanEdit => GenerateRepositoriesAttribute.BackManageCanEdit;

@@ -6,6 +6,9 @@ namespace BD.Common.Repositories.SourceGenerator.Annotations;
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 public sealed class GenerateRepositoriesAttribute : Attribute
 {
+    private string? apiRoutePrefix;
+    private string? dbContextBaseInterface;
+
     /// <summary>
     /// 是否需要生成【表实体】模型，默认值为：<see langword="true"/>
     /// </summary>
@@ -20,6 +23,11 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// 是否需要生成后台管理【添加】功能，默认值为：<see langword="true"/>
     /// </summary>
     public bool BackManageCanAdd { get; set; } = true;
+
+    /// <summary>
+    /// 是否需要生成后台管理【删除】功能，默认值为：<see langword="true"/>
+    /// </summary>
+    public bool BackManageCanDelete { get; set; } = true;
 
     /// <summary>
     /// 指定生成后台管理【添加】仓储层函数实现种类，默认值为：<see cref="RepositoryMethodImplType.Expression"/>
@@ -89,7 +97,7 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// <summary>
     /// 仓储层【数据库上下文】接口约束
     /// </summary>
-    public string? DbContextBaseInterface { get; set; }
+    public string? DbContextBaseInterface { get => dbContextBaseInterface ?? $"I{ModuleName}DbContext"; set => dbContextBaseInterface = value; }
 
     /// <summary>
     /// 是否需要生成【控制器】，默认值为：<see langword="true"/>
@@ -104,7 +112,7 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// <summary>
     /// 控制器【路由前缀】，默认值为：<see langword="null"/>
     /// </summary>
-    public string? ApiRoutePrefix { get; set; }
+    public string? ApiRoutePrefix { get => apiRoutePrefix ?? "ms/" + ModuleName.ToLower(); set => apiRoutePrefix = value; }
 
     /// <summary>
     /// 如果需要生成实体类型且主键为 <see cref="Guid"/> 时是否需要继承接口 INEWSEQUENTIALID，默认值为：<see langword="true"/>
@@ -115,6 +123,11 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     /// 是否需要生成前端管理页面，默认值为：<see langword="false"/>
     /// </summary>
     public bool BackManageUIPage { get; set; } = false;
+
+    /// <summary>
+    /// 表实体模块名称
+    /// </summary>
+    public string ModuleName { get; set; } = string.Empty;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetValue(string key, object? value)
@@ -168,10 +181,13 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 BackManageCanAdd = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageCanEdit):
-                BackManageCanAdd = Convert.ToBoolean(value);
+                BackManageCanEdit = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageCanDelete):
+                BackManageCanDelete = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageCanTable):
-                BackManageCanAdd = Convert.ToBoolean(value);
+                BackManageCanTable = Convert.ToBoolean(value);
                 break;
         }
     }

@@ -155,38 +155,36 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
         // 可选通过配置将源码生成到文件
         if (GeneratorConfig.Instance.SourcePath?.TryGetValue(partialFileName, out var value) ?? false)
         {
-            string? sourceFileDirName = null;
-
-            try
-            {
-                var sourceFilePath = symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath;
-                var sourceFilePathArray = sourceFilePath!.Split(Path.DirectorySeparatorChar);
-                sourceFileDirName = sourceFilePathArray[^2];
-            }
-            catch
-            {
-
-            }
+            var moduleName = metadata.GenerateRepositoriesAttribute.ModuleName;
+            var hintName = GetFilePath(partialFileName, metadata.GenerateRepositoriesAttribute.ModuleName, metadata.ClassName);
 
             //var hintName = symbol.GetSourceFileName(partialFileName);
-            var hintName = $"{symbol.Name}.{GeFilExtensiont(partialFileName)}";
             var pathList = new List<string>() { ProjPathHelper.GetProjPath(null), };
             pathList.AddRange(value);
-            if (!string.IsNullOrWhiteSpace(sourceFileDirName) &&
-                !string.Equals("Entities.Design", sourceFileDirName, StringComparison.OrdinalIgnoreCase))
-                pathList.Add(sourceFileDirName!);
-            pathList.Add("Generated");
+            //if (!string.IsNullOrWhiteSpace(moduleName) &&
+            //    !string.Equals("Entities.Design", moduleName, StringComparison.OrdinalIgnoreCase))
+            //    pathList.Add(moduleName!);
+            //pathList.Add("Generated");
             pathList.Add(hintName);
             var filePath = Path.Combine(pathList.ToArray());
             var dirPath = Path.GetDirectoryName(filePath)!;
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
             if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
 #pragma warning restore RS1035 // 不要使用禁用于分析器的 API
+
+            var fileInfo = new FileInfo(filePath);
+            if (fileInfo.Exists)
+                fileInfo.IsReadOnly = false;
+
             using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
             memoryStream.Position = 0;
             memoryStream.CopyTo(fileStream);
             fileStream.Flush();
             fileStream.SetLength(fileStream.Position);
+
+            if (filePath.EndsWith(".g.cs"))
+                fileInfo.IsReadOnly = true;
+
             return;
         }
 

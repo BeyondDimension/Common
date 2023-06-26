@@ -32,6 +32,8 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageTableMethodImplType"/>
         RepositoryMethodImplType BackManageTableMethodImplType { get; }
 
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanDelete"/>
+        bool BackManageCanDelete { get; }
     }
 
     /** Functions
@@ -987,6 +989,6 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         if (metadata.BackManageCanAdd)
         {
             WriteInsert(stream, metadata, fields, idField);
-        };
+        }
     }
 }

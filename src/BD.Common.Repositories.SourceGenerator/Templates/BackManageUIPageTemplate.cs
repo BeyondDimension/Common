@@ -119,10 +119,10 @@ import {
 """u8);
         utf8String =
 """
- from '@/services/Basics/{0}/api'
+ from '@/services/{0}/{1}/Generated/api'
 
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.WriteFormat(utf8String, metadata.GenerateRepositoriesAttribute.ModuleName, metadata.ClassName);
     }
 
     void WriteConstMethod(

@@ -21,6 +21,9 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanAdd"/>
         public bool BackManageCanAdd => GenerateRepositoriesAttribute.BackManageCanAdd;
 
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanDelete"/>
+        public bool BackManageCanDelete => GenerateRepositoriesAttribute.BackManageCanDelete;
+
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanEdit"/>
         public bool BackManageCanEdit => GenerateRepositoriesAttribute.BackManageCanEdit;
 
@@ -196,7 +199,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         var repositoryInterfaceType = $"I{metadata.ClassName}Repository";
         var repositoryInterfaceTypeArgName = GetArgumentName(repositoryInterfaceType);
         var repositoryInterfaceTypeArgNameU8 = Encoding.UTF8.GetBytes(repositoryInterfaceTypeArgName);
-        var isSoft = false;
+
         foreach (var field in fields)
         {
             switch (field.FixedProperty)
@@ -208,7 +211,6 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
                     WriteGetSelect(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
                     break;
                 case FixedProperty.SoftDeleted:
-                    isSoft = true;
                     break;
             }
         }
@@ -231,9 +233,9 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         {
             WriteQuery(stream, metadata, fields, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
         }
-        if (isSoft)
+        if (metadata.BackManageCanDelete)
         {
-            WriteDelete(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8, isSoft);
+            WriteDelete(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
         }
         stream.Write(
 """
@@ -420,9 +422,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         byte[] routePrefixU8,
         byte[] classNamePluralizeLower,
         PropertyMetadata idField,
-        byte[] repositoryInterfaceTypeArgName,
-        bool isSoft
-        )
+        byte[] repositoryInterfaceTypeArgName)
     {
         ReadOnlySpan<byte> utf8String;
         utf8String =

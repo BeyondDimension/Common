@@ -48,6 +48,19 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 {
                     List<Task> tasks = new(); // 不同类型的模板使用多线程并行化执行
 
+                    if (generateRepositories.ModuleName == string.Empty)
+                    {
+                        // 未指定模块名时以所在目录作为模块名
+                        var sourceFilePath = symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath;
+                        var sourceFilePathArray = sourceFilePath!.Split(Path.DirectorySeparatorChar);
+                        var moduleName = sourceFilePathArray[^3]; // Entities.Design/Plugin/插件包.cs
+
+                        if (!string.Equals("Entities.Design", moduleName, StringComparison.OrdinalIgnoreCase))
+                            throw new Exception("实体设计文件请放置在 Entities.Design 目录下的模块目录下");
+
+                        generateRepositories.ModuleName = sourceFilePathArray[^2];
+                    }
+
                     if (generateRepositories.Entity)
                     {
                         tasks.Add(InBackground(() =>

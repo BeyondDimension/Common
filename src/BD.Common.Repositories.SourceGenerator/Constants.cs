@@ -96,4 +96,39 @@ static class Constants
         "BackManageUIPageApi" => "a.ts",
         _ => "g.cs",
     };
+
+    /// <summary>
+    /// 获取文件路径
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static string GetFilePath(string templateName, string moduleName, string tableName)
+    {
+        string pathTemplate = templateName switch
+        {
+            // c-sharp
+            "Entity" => "{module}/{entity}.g.cs",
+            "RepositoryImpl" => "{module}/{entity}Repository.g.cs",
+            "Repository" => "{module}/I{entity}Repository.g.cs",
+            "BackManageModel" => "{module}/{entity}DTOs.g.cs",
+            "BackManageController" => "MicroServices/{module}/{entity}Controller.g.cs",
+
+            // services
+            "BackManageUIPageApi" => "{module}/{entity}/Generated/api.ts",
+            "BackManageUIPageIndex" => "{module}/{entity}/Generated/index.ts",
+            "BackManageUIPageTypings" => "{module}/{entity}/Generated/typing.ts",
+
+            // pages
+            "BackManageUIPage" => "{module}/Generated/{entity}Manage.tsx",
+            _ => throw new NotImplementedException(),
+        };
+
+        string relativePath = pathTemplate
+            .Replace('/', Path.DirectorySeparatorChar)
+            .Replace("{entity}", tableName)
+            .Replace("{module}", moduleName);
+
+        return relativePath;
+    }
 }
