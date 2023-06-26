@@ -82,7 +82,6 @@ static class Constants
         await Task.Factory.StartNew(action, CancellationToken.None, options, TaskScheduler.Default).ConfigureAwait(false);
     }
 
-
     /// <summary>
     /// 后缀文件类型
     /// </summary>

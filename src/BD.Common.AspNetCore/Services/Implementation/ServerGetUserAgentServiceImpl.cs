@@ -9,26 +9,26 @@ namespace BD.Common.Services.Implementation;
 public class ServerGetUserAgentServiceImpl : IRandomGetUserAgentService
 {
     readonly IHttpContextAccessor? accessor;
-    readonly PuppeteerService? puppeteerService;
+    //readonly PuppeteerService? puppeteerService;
 
     public ServerGetUserAgentServiceImpl(IServiceProvider s)
     {
-        if (s.GetService<IPuppeteerService>() is PuppeteerService puppeteerService)
-        {
-            this.puppeteerService = puppeteerService;
-        }
-        else
-        {
-            accessor = s.GetService<IHttpContextAccessor>();
-        }
+        //if (s.GetService<IPuppeteerService>() is PuppeteerService puppeteerService)
+        //{
+        //    this.puppeteerService = puppeteerService;
+        //}
+        //else
+        //{
+        accessor = s.GetService<IHttpContextAccessor>();
+        //}
     }
 
     public virtual string[] UserAgents { get; } = new[] { Win10EdgeLatest, Win10ChromeLatest };
 
     public string GetUserAgent()
     {
-        // 当使用 Puppeteer 时，统一使用浏览器的 UA
-        if (puppeteerService != null) return puppeteerService.GetUserAgent();
+        //// 当使用 Puppeteer 时，统一使用浏览器的 UA
+        //if (puppeteerService != null) return puppeteerService.GetUserAgent();
 
         var ctx = accessor?.HttpContext;
         if (ctx != null)

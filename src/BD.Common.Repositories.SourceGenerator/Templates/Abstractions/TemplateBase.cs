@@ -36,6 +36,7 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
 
     static readonly Lazy<byte[]> sourceHeader = new(() =>
     {
+#pragma warning disable format
 #if REF_SUB_MODULE
         return """
             #nullable enable
@@ -51,6 +52,7 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
             
             """u8.ToArray();
 #endif
+#pragma warning restore format
 
         string runtimeVersion, roslynVersion, thisVersion;
         static string GetVersion(Assembly assembly)
