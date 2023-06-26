@@ -115,6 +115,14 @@ public sealed class GenerateRepositoriesAttribute : Attribute
     public string? ApiRoutePrefix { get => apiRoutePrefix ?? "ms/" + ModuleName.ToLower(); set => apiRoutePrefix = value; }
 
     /// <summary>
+    /// 控制器路由忽略冗余的表实体前缀
+    /// <para>
+    /// 比如：对于处于 Plugin 模块中的表实体 PluginCategory，路由地址将使用 ms/plugin/categories 而不是 ms/plugin/plugincategories。
+    /// </para>
+    /// </summary>
+    public bool ApiRouteIgnoreRedundantEntityPrefix { get; set; } = true;
+
+    /// <summary>
     /// 如果需要生成实体类型且主键为 <see cref="Guid"/> 时是否需要继承接口 INEWSEQUENTIALID，默认值为：<see langword="true"/>
     /// </summary>
     public bool NEWSEQUENTIALID { get; set; } = true;

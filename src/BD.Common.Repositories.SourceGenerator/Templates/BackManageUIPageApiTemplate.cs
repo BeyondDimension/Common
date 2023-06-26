@@ -15,6 +15,9 @@ sealed class BackManageUIPageApiTemplate : TemplateBase<BackManageUIPageApiTempl
         /// <inheritdoc cref="GenerateRepositoriesAttribute.ApiRoutePrefix"/>
         public string? ApiRoutePrefix => GenerateRepositoriesAttribute.ApiRoutePrefix;
 
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.ApiRouteIgnoreRedundantEntityPrefix"/>
+        public bool ApiRouteIgnoreRedundantEntityPrefix => GenerateRepositoriesAttribute.ApiRouteIgnoreRedundantEntityPrefix;
+
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanAdd"/>
         public bool BackManageCanAdd => GenerateRepositoriesAttribute.BackManageCanAdd;
 
@@ -60,34 +63,41 @@ import { getUrl } from '@/utils/index'
             }
             routePrefixU8 = Encoding.UTF8.GetBytes(routePrefix);
         }
-        var classNamePluralize = metadata.ClassName.Pluralize();
-        var classNamePluralizeLower = classNamePluralize.ToLowerInvariant();
-        var classNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(classNamePluralizeLower);
+        var routeNamePluralize = metadata.ClassName.Pluralize();
+        // 去除冗余的路由前缀
+        if (metadata.ApiRouteIgnoreRedundantEntityPrefix &&
+            metadata.ClassName != metadata.GenerateRepositoriesAttribute.ModuleName && // 实体名和模块名一样的话，不能忽略
+            metadata.ClassName.Titleize().Split(' ')[0] == metadata.GenerateRepositoriesAttribute.ModuleName)
+        {
+            routeNamePluralize = routeNamePluralize.TrimStart(metadata.GenerateRepositoriesAttribute.ModuleName);
+        }
+        var routeNamePluralizeLower = routeNamePluralize.ToLowerInvariant();
+        var routeNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(routeNamePluralizeLower);
         if (metadata.BackManageCanTable)
         {
-            WriteQuery(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
+            WriteQuery(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8);
         }
         if (metadata.BackManageCanEdit)
         {
-            WriteEditById(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
+            WriteEditById(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8);
         }
         if (!metadata.BackManageEditModelReadOnly || metadata.BackManageCanAdd)
         {
-            WriteSave(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
+            WriteSave(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8);
         }
         if (metadata.BackManageCanDelete)
         {
-            WriteDelete(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
+            WriteDelete(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8);
         }
         foreach (var field in fields)
         {
             switch (field.FixedProperty)
             {
                 case FixedProperty.Disable:
-                    WriteSetDisable(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
+                    WriteSetDisable(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8);
                     break;
                 case FixedProperty.Title:
-                    WriteGetSelect(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
+                    WriteGetSelect(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8);
                     break;
             }
         }
@@ -97,7 +107,7 @@ import { getUrl } from '@/utils/index'
         Stream stream,
         Metadata metadata,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower)
+        byte[] routeNamePluralizeLower)
     {
         ReadOnlySpan<byte> utf8String;
 
@@ -107,7 +117,7 @@ import { getUrl } from '@/utils/index'
 /** 获取 {0} 查询列表 GET {1}/{2} */
 
 """u8;
-        stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8, routeNamePluralizeLower);
         utf8String =
 """
 export async function {0}Query(data:any)
@@ -123,7 +133,7 @@ export async function {0}Query(data:any)
 """
   return request<API.BApiResponse<API.PageModel<API.{0}>>>(getUrl(config.ApiUrl + `{1}/{2}`, data),
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8, routeNamePluralizeLower);
         stream.Write(
 """
 {
@@ -139,7 +149,7 @@ export async function {0}Query(data:any)
         Stream stream,
         Metadata metadata,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower)
+        byte[] routeNamePluralizeLower)
     {
         ReadOnlySpan<byte> utf8String;
 
@@ -149,7 +159,7 @@ export async function {0}Query(data:any)
 /** 根据主键获取编辑模型 GET {0}/{1} */
 
 """u8;
-        stream.WriteFormat(utf8String, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, routePrefixU8, routeNamePluralizeLower);
         utf8String =
 """
 export async function {0}EditById(id: string)
@@ -165,7 +175,7 @@ export async function {0}EditById(id: string)
 """
   return request<API.BApiResponse<API.{0}>>(config.ApiUrl + `{1}/{2}/${id}`,
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8, routeNamePluralizeLower);
         stream.Write(
 """
 {
@@ -186,7 +196,7 @@ export async function {0}EditById(id: string)
        Stream stream,
        Metadata metadata,
        byte[] routePrefixU8,
-       byte[] classNamePluralizeLower
+       byte[] routeNamePluralizeLower
        )
     {
         ReadOnlySpan<byte> utf8String;
@@ -197,7 +207,7 @@ export async function {0}EditById(id: string)
 /** 删除 {0} 记录 DELETE {1}/{2} */
 
 """u8;
-        stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8, routeNamePluralizeLower);
         utf8String =
 """
 export async function {0}(id: string)
@@ -213,7 +223,7 @@ export async function {0}(id: string)
 """
   return request<API.BApiResponse<number>>(config.ApiUrl + `{1}/{2}/${id}`,
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8, routeNamePluralizeLower);
         stream.Write(
 """
 {
@@ -234,7 +244,7 @@ export async function {0}(id: string)
        Stream stream,
        Metadata metadata,
        byte[] routePrefixU8,
-       byte[] classNamePluralizeLower)
+       byte[] routeNamePluralizeLower)
     {
         ReadOnlySpan<byte> utf8String;
         utf8String =
@@ -243,12 +253,12 @@ export async function {0}(id: string)
 /** 保存对 {0} 新增编辑操作 PUT|POST {1}/{2} */
 
 """u8;
-        stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8, routeNamePluralizeLower);
         utf8String =
 """
 export async function {0}Save(id?: string, options?: { [key: string]: any })
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, metadata.ClassName, routeNamePluralizeLower);
         stream.Write(
 """
 {
@@ -262,7 +272,7 @@ export async function {0}Save(id?: string, options?: { [key: string]: any })
     return request<API.BApiResponse<number>>(config.ApiUrl + `{0}/{1}/${id}`, {
 
 """u8;
-        stream.WriteFormat(utf8String, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, routePrefixU8, routeNamePluralizeLower);
         stream.Write(
 """
       method: 'PUT',
@@ -276,7 +286,7 @@ export async function {0}Save(id?: string, options?: { [key: string]: any })
 """
     return request<API.BApiResponse<number>>(config.ApiUrl + `{0}/{1}`,
 """u8;
-        stream.WriteFormat(utf8String, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, routePrefixU8, routeNamePluralizeLower);
         stream.Write(
 """
 {
@@ -297,7 +307,7 @@ export async function {0}Save(id?: string, options?: { [key: string]: any })
        Stream stream,
        Metadata metadata,
        byte[] routePrefixU8,
-       byte[] classNamePluralizeLower)
+       byte[] routeNamePluralizeLower)
     {
         ReadOnlySpan<byte> utf8String;
 
@@ -323,7 +333,7 @@ export async function {0}Disable (id: string, disable:boolean)
 """
   return request<API.BApiResponse<number>>(config.ApiUrl + `{0}/{1}/disable/${id}/${disable}`,
 """u8;
-        stream.WriteFormat(utf8String, routePrefixU8, classNamePluralizeLower);
+        stream.WriteFormat(utf8String, routePrefixU8, routeNamePluralizeLower);
         stream.Write(
 """
 {
@@ -344,7 +354,7 @@ export async function {0}Disable (id: string, disable:boolean)
        Stream stream,
        Metadata metadata,
        byte[] routePrefixU8,
-       byte[] classNamePluralizeLower)
+       byte[] routeNamePluralizeLower)
     {
         ReadOnlySpan<byte> utf8String;
 

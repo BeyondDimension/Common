@@ -18,6 +18,9 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
         /// <inheritdoc cref="GenerateRepositoriesAttribute.ApiRoutePrefix"/>
         public string? ApiRoutePrefix => GenerateRepositoriesAttribute.ApiRoutePrefix;
 
+        /// <inheritdoc cref="GenerateRepositoriesAttribute.ApiRouteIgnoreRedundantEntityPrefix"/>
+        public bool ApiRouteIgnoreRedundantEntityPrefix => GenerateRepositoriesAttribute.ApiRouteIgnoreRedundantEntityPrefix;
+
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanAdd"/>
         public bool BackManageCanAdd => GenerateRepositoriesAttribute.BackManageCanAdd;
 
@@ -32,7 +35,6 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
 
         /// <inheritdoc cref="GenerateRepositoriesAttribute.BackManageCanTable"/>
         public bool BackManageCanTable => GenerateRepositoriesAttribute.BackManageCanTable;
-
     }
 
     void WriteConstructor(
@@ -165,14 +167,22 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         //, IAuthenticatorDbContext
         args[0] = string.Format(args[0]!.ToString()!, "Controllers");
         var classNamePluralize = metadata.ClassName.Pluralize();
-        var classNamePluralizeLower = classNamePluralize.ToLowerInvariant();
-        var classNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(classNamePluralizeLower);
+        var routeNamePluralize = classNamePluralize;
+        // 去除冗余的路由前缀
+        if (metadata.ApiRouteIgnoreRedundantEntityPrefix &&
+            metadata.ClassName != metadata.GenerateRepositoriesAttribute.ModuleName && // 实体名和模块名一样的话，不能忽略
+            metadata.ClassName.Titleize().Split(' ')[0] == metadata.GenerateRepositoriesAttribute.ModuleName)
+        {
+            routeNamePluralize = routeNamePluralize.TrimStart(metadata.GenerateRepositoriesAttribute.ModuleName);
+        }
+        var routeNamePluralizeLower = routeNamePluralize.ToLowerInvariant();
+        var routeNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(routeNamePluralizeLower);
         stream.WriteFormat(format, new object?[]
         {
             args[0],
             args[1],
             classNamePluralize,
-            classNamePluralizeLowerU8,
+            routeNamePluralizeLowerU8,
             routePrefixU8,
         });
 
@@ -205,10 +215,10 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
             switch (field.FixedProperty)
             {
                 case FixedProperty.Disable:
-                    WriteSetDisable(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
+                    WriteSetDisable(stream, routePrefixU8, routeNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
                     break;
                 case FixedProperty.Title:
-                    WriteGetSelect(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
+                    WriteGetSelect(stream, routePrefixU8, routeNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
                     break;
                 case FixedProperty.SoftDeleted:
                     break;
@@ -219,23 +229,23 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 
         if (metadata.BackManageCanEdit)
         {
-            WriteEditById(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
+            WriteEditById(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
             if (!metadata.BackManageEditModelReadOnly)
             {
-                WriteUpdate(stream, metadata, idField, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
+                WriteUpdate(stream, metadata, idField, routePrefixU8, routeNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
             }
         }
         if (metadata.BackManageCanAdd)
         {
-            WriteInsert(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
+            WriteInsert(stream, metadata, routePrefixU8, routeNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
         }
         if (metadata.BackManageCanTable)
         {
-            WriteQuery(stream, metadata, fields, routePrefixU8, classNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
+            WriteQuery(stream, metadata, fields, routePrefixU8, routeNamePluralizeLowerU8, repositoryInterfaceTypeArgNameU8);
         }
         if (metadata.BackManageCanDelete)
         {
-            WriteDelete(stream, routePrefixU8, classNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
+            WriteDelete(stream, routePrefixU8, routeNamePluralizeLowerU8, idField, repositoryInterfaceTypeArgNameU8);
         }
         stream.Write(
 """
@@ -247,7 +257,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     static void WriteApiUrlSummary(
         Stream stream,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         ReadOnlySpan<byte> route)
     {
         ReadOnlySpan<byte> utf8String;
@@ -261,7 +271,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         stream.Write(GeneratorConfig.GetApiBaseUrlBackManageLocal());
         stream.Write("/"u8);
         stream.Write(routePrefixU8);
-        stream.Write(classNamePluralizeLower);
+        stream.Write(routeNamePluralizeLower);
         stream.Write(route);
         utf8String =
 """
@@ -280,7 +290,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         stream.Write(GeneratorConfig.GetApiBaseUrlBackManageDevelopment());
         stream.Write("/"u8);
         stream.Write(routePrefixU8);
-        stream.Write(classNamePluralizeLower);
+        stream.Write(routeNamePluralizeLower);
         stream.Write(route);
         utf8String =
 """
@@ -298,7 +308,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     void WriteGetSelect(
         Stream stream,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         PropertyMetadata idField,
         byte[] repositoryInterfaceTypeArgName)
     {
@@ -311,7 +321,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """u8;
         stream.Write(utf8String);
 
-        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/select"u8);
+        WriteApiUrlSummary(stream, routePrefixU8, routeNamePluralizeLower, "/select"u8);
 
         utf8String =
 """
@@ -355,7 +365,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     void WriteSetDisable(
         Stream stream,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         PropertyMetadata idField,
         byte[] repositoryInterfaceTypeArgName)
     {
@@ -368,7 +378,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """u8;
         stream.Write(utf8String);
 
-        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/disable/{id}/{disable}"u8);
+        WriteApiUrlSummary(stream, routePrefixU8, routeNamePluralizeLower, "/disable/{id}/{disable}"u8);
 
         utf8String =
 """
@@ -420,7 +430,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     void WriteDelete(
         Stream stream,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         PropertyMetadata idField,
         byte[] repositoryInterfaceTypeArgName)
     {
@@ -432,7 +442,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """u8;
         stream.Write(utf8String);
 
-        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+        WriteApiUrlSummary(stream, routePrefixU8, routeNamePluralizeLower, "/{id}"u8);
 
         utf8String =
 """
@@ -483,7 +493,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         Stream stream,
         Metadata metadata,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         PropertyMetadata idField,
         byte[] repositoryInterfaceTypeArgName)
     {
@@ -496,7 +506,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """u8;
         stream.Write(utf8String);
 
-        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+        WriteApiUrlSummary(stream, routePrefixU8, routeNamePluralizeLower, "/{id}"u8);
 
         utf8String =
 """
@@ -543,7 +553,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         Stream stream,
         Metadata metadata,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         byte[] repositoryInterfaceTypeArgName)
     {
         ReadOnlySpan<byte> utf8String;
@@ -555,7 +565,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """u8;
         stream.Write(utf8String);
 
-        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, ""u8);
+        WriteApiUrlSummary(stream, routePrefixU8, routeNamePluralizeLower, ""u8);
 
         utf8String =
 """
@@ -603,7 +613,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         Metadata metadata,
         PropertyMetadata idField,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         byte[] repositoryInterfaceTypeArgName)
     {
         ReadOnlySpan<byte> utf8String;
@@ -615,7 +625,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 """u8;
         stream.Write(utf8String);
 
-        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+        WriteApiUrlSummary(stream, routePrefixU8, routeNamePluralizeLower, "/{id}"u8);
 
         utf8String =
 """
@@ -666,7 +676,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         Metadata metadata,
         ImmutableArray<PropertyMetadata> fields,
         byte[] routePrefixU8,
-        byte[] classNamePluralizeLower,
+        byte[] routeNamePluralizeLower,
         byte[] repositoryInterfaceTypeArgName)
     {
         ReadOnlySpan<byte> utf8String;
@@ -677,7 +687,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     /// 分页查询{0}表格
 """u8;
         stream.WriteFormat(utf8String, metadata.Summary);
-        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, ""u8);
+        WriteApiUrlSummary(stream, routePrefixU8, routeNamePluralizeLower, ""u8);
         stream.Write(
 """
 
