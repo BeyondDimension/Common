@@ -92,4 +92,52 @@ public static class String2
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsFileUrl([NotNullWhen(true)] string? url)
         => url != null && url.StartsWith(Prefix_File, StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// 将字符串尝试转换为 <see cref="Version"/>
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="version"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool TryParseVersion(string? value, [NotNullWhen(true)] out Version? version)
+    {
+        version = default;
+        if (value != null)
+        {
+            if (Version.TryParse(value, out version))
+            {
+                return true;
+            }
+            if (int.TryParse(value, out var major))
+            {
+                version = new Version(major, 0);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public const string VersionZero = "0.0.0.0";
+
+    /// <summary>
+    /// 将 <see cref="Version"/> 转换为 4 位完整长度补 0 的字符串
+    /// </summary>
+    /// <param name="version"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string? ToString(Version? version)
+    {
+        if (version == null)
+            return null;
+        if (version.Revision >= 0)
+            return $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        if (version.Build >= 0)
+            return $"{version.Major}.{version.Minor}.{version.Build}.0";
+        if (version.Minor >= 0)
+            return $"{version.Major}.{version.Minor}.0.0";
+        if (version.Major >= 0)
+            return $"{version.Major}.0.0.0";
+        return VersionZero;
+    }
 }
