@@ -948,107 +948,6 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         }
     }
 
-    /// <summary>
-    /// 写入方法 - 根据主键删除
-    /// </summary>
-    protected void WriteDelete(
-        Stream stream,
-        bool isSoft,
-        PropertyMetadata idField)
-    {
-        ReadOnlySpan<byte> utf8String;
-
-        if (!isSoft)
-        {
-            utf8String =
-"""
-    /// <summary>
-    /// 根据【主键】删除
-    /// </summary>
-    /// <param name="id">主键</param>
-    /// <returns>受影响的行数</returns>
-"""u8;
-            stream.Write(utf8String);
-            utf8String =
-"""
-
-    {0}Task<int> DeleteAsync({1} id)
-"""u8;
-            stream.WriteFormat(utf8String,
-            IsInterface ? null : "public async "u8.ToArray(),
-            idField.PropertyType);
-            if (IsInterface)
-            {
-                stream.Write(
-"""
-;
-
-
-"""u8);
-            }
-            else
-            {
-                stream.Write(
-"""
-
-    {
-        var r = await Entity.Where(x => x.Id == id).ExecuteDeleteAsync();
-        return r;
-    }
-
-
-"""u8);
-            }
-        }
-        else
-        {
-            utf8String =
-    """
-    /// <summary>
-    /// 根据【主键】软删除
-    /// </summary>
-    /// <param name="operatorUserId">操作人</param>
-    /// <param name="id">主键</param>
-    /// <returns>受影响的行数</returns>
-"""u8;
-            stream.Write(utf8String);
-            utf8String =
-    """
-
-    {0}Task<int> SoftDeleteAsync(Guid? operatorUserId, {1} id)
-"""u8;
-            stream.WriteFormat(utf8String,
-                IsInterface ? null : "public async "u8.ToArray(),
-                idField.PropertyType);
-            if (IsInterface)
-            {
-                stream.Write(
-    """
-;
-
-
-"""u8);
-            }
-            else
-            {
-                stream.Write(
-    """
-
-    {
-        var r = await Entity.Where(x => x.Id == id)
-            .ExecuteUpdateAsync(x =>
-            x.SetProperty(y => y.SoftDeleted, y => true)
-            .SetProperty(y => y.UpdateTime, y => DateTimeOffset.Now)
-            .SetProperty(y => y.OperatorUserId, y => operatorUserId));
-        return r;
-    }
-
-"""u8);
-            }
-
-        }
-    }
-
 
     /// <summary>
     /// 生成方法 Methods
@@ -1058,7 +957,6 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
     /// <param name="fields"></param>
     protected void WriteMethods(Stream stream, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
-        var isSoft = false;
         if (metadata.BackManageCanTable)
         {
             WriteMethodQuery(stream, metadata, fields);
@@ -1075,9 +973,6 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                 case FixedProperty.Title:
                     WriteGetSelect(stream, metadata, fields, idField);
                     break;
-                case FixedProperty.SoftDeleted:
-                    isSoft = true;
-                    break;
             }
         }
 
@@ -1092,10 +987,6 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         if (metadata.BackManageCanAdd)
         {
             WriteInsert(stream, metadata, fields, idField);
-        }
-        if (isSoft)
-        {
-            WriteDelete(stream, isSoft, idField);
-        }
+        };
     }
 }

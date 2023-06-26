@@ -425,18 +425,16 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         )
     {
         ReadOnlySpan<byte> utf8String;
-        if (!isSoft)
-        {
-            utf8String =
+        utf8String =
 """
     /// <summary>
     /// 根据【主键】删除
 """u8;
-            stream.Write(utf8String);
+        stream.Write(utf8String);
 
-            WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
+        WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
 
-            utf8String =
+        utf8String =
 """
 
     /// </summary>
@@ -444,26 +442,26 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
     /// <returns>受影响的行数</returns>
     [HttpDelete("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Delete))]
 """u8;
-            stream.Write(utf8String);
-            utf8String =
+        stream.Write(utf8String);
+        utf8String =
 """
 
     public async Task<ApiResponse<int>> Delete([FromRoute] {0} id)
 """u8;
-            stream.WriteFormat(utf8String,
+        stream.WriteFormat(utf8String,
             idField.PropertyType);
 
-            stream.Write(
+        stream.Write(
 """
 
     {
 """u8);
-            stream.WriteFormat(
+        stream.WriteFormat(
 """
 
         var r = await {0}.DeleteAsync(id);
 """u8, repositoryInterfaceTypeArgName);
-            stream.Write(
+        stream.Write(
 """
 
         return new ApiResponse<int>()
@@ -475,59 +473,6 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 
 
 """u8);
-        }
-        else
-        {
-            utf8String =
-    """
-    /// <summary>
-    /// 根据【主键】软删除
-"""u8;
-            stream.Write(utf8String);
-            WriteApiUrlSummary(stream, routePrefixU8, classNamePluralizeLower, "/{id}"u8);
-
-            utf8String =
-    """
-
-    /// </summary>
-    /// <param name="id">主键</param>
-    /// <returns>受影响的行数</returns>
-    [HttpPut("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Edit))]
-"""u8;
-            stream.Write(utf8String);
-            utf8String =
-    """
-
-    public async Task<ApiResponse<int>> SoftDelete([FromRoute] {0} id)
-"""u8;
-            stream.WriteFormat(utf8String,
-                idField.PropertyType);
-
-            stream.Write(
-    """
-
-    {
-"""u8);
-            stream.WriteFormat(
-    """
-
-        if (!TryGetUserId(out Guid userId))
-            throw new ArgumentNullException(nameof(userId));
-        var r = await {0}.SoftDeleteAsync(userId, id);
-"""u8, repositoryInterfaceTypeArgName);
-            stream.Write(
-    """
-
-        return new ApiResponse<int>()
-        {
-            IsSuccess = r > 0,
-            Data = r,
-        };
-    }
-
-
-"""u8);
-        }
     }
 
 

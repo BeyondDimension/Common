@@ -72,7 +72,6 @@ import { getUrl } from '@/utils/index'
         {
             WriteSave(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
         }
-        var isSoft = false;
         foreach (var field in fields)
         {
             switch (field.FixedProperty)
@@ -83,16 +82,10 @@ import { getUrl } from '@/utils/index'
                 case FixedProperty.Title:
                     WriteGetSelect(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
                     break;
-                case FixedProperty.SoftDeleted:
-                    isSoft = true;
-                    WriteDelete(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, isSoft);
-                    break;
             }
         }
-        if (!isSoft)
-        {
-            WriteDelete(stream, metadata, routePrefixU8, classNamePluralizeLowerU8, isSoft);
-        }
+
+        WriteDelete(stream, metadata, routePrefixU8, classNamePluralizeLowerU8);
 
     }
 
@@ -189,8 +182,7 @@ export async function {0}EditById(id: string)
        Stream stream,
        Metadata metadata,
        byte[] routePrefixU8,
-       byte[] classNamePluralizeLower,
-       bool isSoft
+       byte[] classNamePluralizeLower
        )
     {
         ReadOnlySpan<byte> utf8String;
@@ -198,15 +190,15 @@ export async function {0}EditById(id: string)
         utf8String =
 """
 
-/** 删除{0}记录 DELETE {1} */
+/** 删除 {0} 记录 DELETE {1} */
 
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8);
+        stream.WriteFormat(utf8String, metadata.Summary, routePrefixU8);
         utf8String =
 """
 export async function {0}(id: string)
 """u8;
-        stream.WriteFormat(utf8String, !isSoft ? $"{metadata.ClassName}Delete" : $"{metadata.ClassName}SoftDelete");
+        stream.WriteFormat(utf8String, $"{metadata.ClassName}Delete");
         stream.Write(
 """
 {

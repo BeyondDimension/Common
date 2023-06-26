@@ -70,6 +70,7 @@ import AccessPage from '@/components/AccessPage'
 import { PlusOutlined,ExclamationCircleFilled } from '@ant-design/icons';
 import { Button, message,Space,Modal} from 'antd';
 import { useModel, useAccess } from '@umijs/max'
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 """u8;
         stream.Write(utf8String);
@@ -103,16 +104,9 @@ import {
                 case FixedProperty.Title:
                     ImportMethod.Add(string.Concat(metadata.ClassName, "Select"));
                     break;
-                case FixedProperty.SoftDeleted:
-                    ImportMethod.Add(string.Concat(metadata.ClassName, "SoftDelete"));
-                    isSoft = true;
-                    break;
             }
         }
-        if (!isSoft)
-        {
-            ImportMethod.Add(string.Concat(metadata.ClassName, "Delete"));
-        }
+        ImportMethod.Add(string.Concat(metadata.ClassName, "Delete"));
         utf8String =
 """
 {0} 
@@ -138,7 +132,6 @@ import {
     object?[] args)
     {
         ReadOnlySpan<byte> utf8String;
-        var isSoft = false;
         var disable = false;
         utf8String =
 """
@@ -198,9 +191,6 @@ const Manage: React.FC = () => {
                     break;
                 case "operatorUserId":
                     camelizeName = "operatorUser";
-                    break;
-                case "softDeleted":
-                    isSoft = true;
                     break;
                 case "disable":
                     disable = true;
@@ -373,7 +363,7 @@ const Manage: React.FC = () => {
         {0}(info);
 
 """u8;
-        stream.WriteFormat(utf8String, !isSoft ? "OnDelte" : "OnSoftDelete");
+        stream.WriteFormat(utf8String, "OnDelete");
         utf8String =
 """
       },
@@ -387,7 +377,7 @@ const Manage: React.FC = () => {
 """
   const {0} = async (info: any): Promise<void> =>
 """u8;
-        stream.WriteFormat(utf8String, !isSoft ? "OnDelte" : "OnSoftDelete");
+        stream.WriteFormat(utf8String, "OnDelete");
         utf8String =
 """
  {
@@ -405,7 +395,7 @@ const Manage: React.FC = () => {
       var response = await {0}(info!.id);
 
 """u8;
-        stream.WriteFormat(utf8String, !isSoft ? $"{metadata.ClassName}Delte" : $"{metadata.ClassName}SoftDelete");
+        stream.WriteFormat(utf8String, $"{metadata.ClassName}Delete");
         utf8String =
 """
       if (response.isSuccess) {
@@ -445,6 +435,33 @@ const Manage: React.FC = () => {
       message.error(response.messages);
     }
   };
+
+"""u8;
+            stream.Write(utf8String);
+        }
+        if (metadata.BackManageCanAdd)
+        {
+            utf8String =
+ """
+
+  const onCopy = (info: API.{0}) =>
+"""u8;
+            stream.WriteFormat(utf8String, metadata.ClassName);
+            stream.Write(
+"""
+ {
+"""u8);
+            utf8String =
+"""
+
+    setEditModel(true);
+    var data = {
+      ...info,
+      id:null,
+    }
+    formRef.current?.setFieldsValue(data);
+    setEditInfo(data);
+  }
 
 """u8;
             stream.Write(utf8String);
@@ -494,7 +511,13 @@ const columns: ProColumns<API.{0}>[] =[
                     utf8String =
         """
 title: '{0}', dataIndex:'{1}', width: {2}, ellipsis: true,
-      render: (_, record: API.AccelerateProjectGroup) => [
+      render: (_, record: API.{3}) => [
+
+"""u8;
+                    stream.WriteFormat(utf8String, humanizeName, camelizeName, humanizeName.Length * 10, metadata.ClassName);
+
+                    utf8String =
+"""
         <Checkbox checked={record.disable} className='my-checkbox' onChange={(CheckboxChangeEvent) => SetUpDisable(CheckboxChangeEvent, record)}></Checkbox>],
       valueEnum: {
         'null': { text: '全部' },
@@ -504,8 +527,7 @@ title: '{0}', dataIndex:'{1}', width: {2}, ellipsis: true,
 
 """u8;
                     stream.WriteFormat(utf8String, humanizeName, camelizeName, humanizeName.Length * 10);
-
-                    break;
+                    continue;
             }
             stream.Write(
 """
@@ -545,6 +567,25 @@ title: '{0}', dataIndex:'{1}', width: {2}, ellipsis: true
         <Space size="middle">
 """u8;
         stream.WriteFormat(utf8String, metadata.ClassName);
+        if (metadata.BackManageCanAdd)
+        {
+            stream.Write(
+            """
+
+        {
+"""u8);
+            utf8String =
+"""
+access?.{0}?.Add?
+"""u8;
+            stream.WriteFormat(utf8String, metadata.ClassName);
+
+            utf8String =
+"""
+<a key={index} onClick={() => { onCopy(record)}}> 复制 </a>:null }
+"""u8;
+            stream.Write(utf8String);
+        }
         if (!metadata.BackManageEditModelReadOnly)
         {
             stream.Write(
