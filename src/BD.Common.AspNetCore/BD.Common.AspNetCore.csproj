@@ -42,7 +42,6 @@
 		<PackageReference Include="NLog" />
 		<PackageReference Include="NLog.Extensions.Logging" />
 		<PackageReference Include="NLog.Web.AspNetCore" />
-		<PackageReference Include="PuppeteerSharp" />
 		<PackageReference Include="StackExchange.Redis" />
 		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
 	</ItemGroup>
