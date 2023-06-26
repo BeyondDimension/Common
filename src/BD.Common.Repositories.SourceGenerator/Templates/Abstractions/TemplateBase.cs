@@ -166,24 +166,36 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
             //    pathList.Add(moduleName!);
             //pathList.Add("Generated");
             pathList.Add(hintName);
-            var filePath = Path.Combine(pathList.ToArray());
-            var dirPath = Path.GetDirectoryName(filePath)!;
+
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
-            if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
-#pragma warning restore RS1035 // 不要使用禁用于分析器的 API
 
-            var fileInfo = new FileInfo(filePath);
-            if (fileInfo.Exists)
-                fileInfo.IsReadOnly = false;
+            var filePath = Path.Combine(pathList.ToArray());
 
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+
+            // 移除文件只读属性
+            if (File.Exists(filePath))
+            {
+                var attr = File.GetAttributes(filePath);
+                if (attr.HasFlag(FileAttributes.ReadOnly))
+                    File.SetAttributes(filePath, attr ^ FileAttributes.ReadOnly);
+            }
+
+            // 生成的内容写入文件
             using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
             memoryStream.Position = 0;
             memoryStream.CopyTo(fileStream);
             fileStream.Flush();
             fileStream.SetLength(fileStream.Position);
 
+            // 设置文件只读属性
             if (filePath.EndsWith(".g.cs"))
-                fileInfo.IsReadOnly = true;
+            {
+                var attr = File.GetAttributes(filePath);
+                File.SetAttributes(filePath, attr | FileAttributes.ReadOnly);
+            }
+
+#pragma warning restore RS1035 // 不要使用禁用于分析器的 API
 
             return;
         }
