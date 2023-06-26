@@ -188,7 +188,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 
 """u8, new object?[]
 {
-    classNamePluralize,
+    metadata.ClassName,
 });
 
         WriteConstructor(stream, metadata, classNamePluralize);
