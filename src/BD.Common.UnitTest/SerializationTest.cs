@@ -80,43 +80,38 @@ public sealed class SerializationTest
         m.Cookies = Serializable.DMP2<CookieCollection>(bytes);
         TestCookieCollection(m.Cookies!);
     }
-}
 
-[MPObj, MP2Obj(SerializeLayout.Explicit)]
-public sealed partial class CookiesModel
-{
-    [MPKey(0), MP2Key(0)]
-    [MessagePackFormatter(typeof(CookieFormatter))]
-    [CookieCollectionFormatter]
-    public CookieCollection? Cookies { get; set; }
+    const string X500DistinguishedNameValue = $"C=CN, O=BeyondDimension, OU=Technical Department, CN=Common Certificate";
 
-    [MPKey(1), MP2Key(1)]
-    [MessagePackFormatter(typeof(ColorFormatter))]
-    [ColorFormatter]
-    public SDColor SDColor { get; set; }
+    [Test]
+    public void X509Certificate_MemoryPack()
+    {
+        using var rsa = RSA.Create();
+        CertificateRequest request = new(new X500DistinguishedName(X500DistinguishedNameValue), rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+        var cert = request.CreateSelfSigned(DateTimeOffset.Now, DateTimeOffset.MaxValue);
+        var model = new X509CertificateModel
+        {
+            X509Certificate = cert,
+            X509Certificate2 = cert,
+            NullableX509CertificatePackable2 =
+                X509CertificatePackable.CreateX509Certificate2(
+                    cert.GetRawCertData()),
+            X509CertificatePackable =
+                X509CertificatePackable.CreateX509Certificate2(
+                    cert.GetRawCertData()),
+        };
+        var bytes = Serializable.SMP2(model);
+        var m = Serializable.DMP2<X509CertificateModel>(bytes)!;
 
-    [MPKey(2), MP2Key(2)]
-    [MessagePackFormatter(typeof(ColorFormatter))]
-    [SplatColorFormatter]
-    public SplatColor SplatColor { get; set; }
+        MemoryPackFormatterProvider.Register<MemoryPackFormatters>();
 
-    [MPKey(3), MP2Key(3)]
-    [MessagePackFormatter(typeof(ColorFormatter))]
-    [NullableColorFormatter]
-    public SDColor? SDColor2 { get; set; }
+        bytes = Serializable.SMP2(cert);
+        model.X509Certificate2 = Serializable.DMP2<X509Certificate2>(bytes);
 
-    [MPKey(4), MP2Key(4)]
-    [MessagePackFormatter(typeof(ColorFormatter))]
-    [NullableSplatColorFormatter]
-    public SplatColor? SplatColor2 { get; set; }
+        bytes = Serializable.SMP2(model.NullableX509CertificatePackable2);
+        model.NullableX509CertificatePackable2 = Serializable.DMP2<X509CertificatePackable?>(bytes);
 
-    [MPKey(5), MP2Key(5)]
-    [MessagePackFormatter(typeof(ColorFormatter))]
-    [NullableColorFormatter]
-    public SDColor? SDColor3 { get; set; }
-
-    [MPKey(6), MP2Key(6)]
-    [MessagePackFormatter(typeof(ColorFormatter))]
-    [NullableSplatColorFormatter]
-    public SplatColor? SplatColor3 { get; set; }
+        bytes = Serializable.SMP2(model.X509CertificatePackable);
+        model.X509CertificatePackable = Serializable.DMP2<X509CertificatePackable>(bytes);
+    }
 }

@@ -6,3 +6,5 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
 global using NUnit.Framework;
+
+global using BD.Common.UnitTest.Models;
