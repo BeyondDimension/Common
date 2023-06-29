@@ -27,6 +27,7 @@
 		<Compile Include="..\BD.Common\Extensions\StreamExtensions.Write.cs">
 			<LinkBase>Extensions</LinkBase>
 		</Compile>
+		<Compile Include="..\Utils.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

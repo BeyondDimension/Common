@@ -1,15 +1,24 @@
 using BD.Common.Settings.Models;
 
-const string fileName = "settings_v4_app.json";
+var projPath = Utils.GetProjectPath(null);
+
+var parent = Directory.GetParent(projPath);
+if (parent != null && parent.Name.Equals("ref", StringComparison.OrdinalIgnoreCase))
+{
+    projPath = Utils.GetProjectPath(parent.FullName);
+}
+
+var buildPath = Path.Combine(projPath, "build");
+var filePath = Path.Combine(buildPath, "settings_v4_app.json");
 try
 {
-    if (!File.Exists(fileName))
+    if (!File.Exists(filePath))
     {
-        Console.WriteLine($"file notfound, name: {fileName}");
+        Console.WriteLine($"file notfound, name: {filePath}");
         return;
     }
     AppSettings? appSettings = null;
-    using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
+    using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
     {
         appSettings = JsonSerializer.Deserialize(fs, AppSettingsContext.Instance.AppSettings);
     }
@@ -28,7 +37,7 @@ try
     {
         if (!string.IsNullOrWhiteSpace(item.Value.ClassFilePath))
         {
-            var classFilePath = Path.Combine(AppContext.BaseDirectory, item.Value.ClassFilePath, $"{item.Key}.cs");
+            var classFilePath = Path.Combine(buildPath, item.Value.ClassFilePath, $"{item.Key}.cs");
             using var stream = GetFileStream(classFilePath);
             SourceGenerator_Class(item.Key, stream, appSettings.Namespace, item.Value, appSettings.Usings);
             stream.Flush();
@@ -37,7 +46,7 @@ try
         }
         if (!string.IsNullOrWhiteSpace(item.Value.InterfaceFilePath))
         {
-            var interfaceFilePath = Path.Combine(AppContext.BaseDirectory, item.Value.InterfaceFilePath, $"I{item.Key}.cs");
+            var interfaceFilePath = Path.Combine(buildPath, item.Value.InterfaceFilePath, $"I{item.Key}.cs");
             using var stream = GetFileStream(interfaceFilePath);
             SourceGenerator_Interface(item.Key, stream, appSettings.Namespace, item.Value, appSettings.Usings);
             stream.Flush();
