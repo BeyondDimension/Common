@@ -151,7 +151,7 @@ public partial struct X509CertificatePackable : IDisposable
                     }
                 }
                 X509Certificate2 = new(GetX509Certificate2Impl);
-                break;
+                return X509Certificate2.Value;
         }
         return null;
     }
