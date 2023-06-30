@@ -114,4 +114,24 @@ public sealed class SerializationTest
         bytes = Serializable.SMP2(model.X509CertificatePackable);
         model.X509CertificatePackable = Serializable.DMP2<X509CertificatePackable>(bytes);
     }
+
+    [Test]
+    public void ProcessStartInfo_MemoryPack()
+    {
+        MemoryPackFormatterProvider.Register<MemoryPackFormatters>();
+
+        var model = new ProcessStartInfo
+        {
+            FileName = "dotnet",
+            Arguments = "--info",
+            CreateNoWindow = true,
+        };
+        var bytes = Serializable.SMP2(model);
+        var m = Serializable.DMP2<ProcessStartInfo>(bytes)!;
+
+        Assert.That(m, Is.Not.EqualTo(null));
+        Assert.That(m.FileName, Is.EqualTo(model.FileName));
+        Assert.That(m.Arguments, Is.EqualTo(model.Arguments));
+        Assert.That(m.CreateNoWindow, Is.EqualTo(model.CreateNoWindow));
+    }
 }

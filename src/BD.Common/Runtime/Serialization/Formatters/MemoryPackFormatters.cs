@@ -30,5 +30,9 @@ public sealed class MemoryPackFormatters : IMemoryPackFormatterRegister
         Register(X509Certificate2FormatterAttribute.Formatter.Default);
         Register(X509CertificatePackableNullableFormatterAttribute.Formatter.Default);
         Register(X509CertificatePackableFormatterAttribute.Formatter.Default);
+
+        Register(ProcessStartInfoFormatterAttribute.Formatter.Default);
+        Register(ProcessStartInfoPackableNullableFormatterAttribute.Formatter.Default);
+        Register(ProcessStartInfoPackableFormatterAttribute.Formatter.Default);
     }
 }
