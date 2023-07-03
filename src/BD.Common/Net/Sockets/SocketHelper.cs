@@ -12,6 +12,7 @@ public static partial class SocketHelper
     /// </summary>
     /// <param name="address"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetRandomUnusedPort(IPAddress address)
     {
         var listener = new TcpListener(address, 0);
@@ -27,6 +28,7 @@ public static partial class SocketHelper
     /// <param name="address"></param>
     /// <param name="port"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsUsePort(IPAddress address, int port)
     {
         try
@@ -43,6 +45,7 @@ public static partial class SocketHelper
     }
 
     /// <inheritdoc cref="IsUsePort(IPAddress, int)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsUsePort(int port)
     {
         try
