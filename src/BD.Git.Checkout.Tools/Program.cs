@@ -19,12 +19,18 @@ try
     var github_workspace = GetArgument(0);
     if (string.IsNullOrWhiteSpace(github_workspace))
         throw new ArgumentOutOfRangeException(nameof(github_workspace));
+    if (!Directory.Exists(github_workspace))
+        Directory.CreateDirectory(github_workspace);
     var github_sha = GetArgument(1);
     if (string.IsNullOrWhiteSpace(github_sha))
         throw new ArgumentOutOfRangeException(nameof(github_sha));
     var github_repositoryUrl = GetArgument(2);
     if (string.IsNullOrWhiteSpace(github_repositoryUrl))
         throw new ArgumentOutOfRangeException(nameof(github_repositoryUrl));
+    github_repositoryUrl = github_repositoryUrl.Replace(
+        "git://",
+        "https://",
+        StringComparison.OrdinalIgnoreCase);
 
     try
     {
@@ -60,7 +66,7 @@ try
         {
             FileName = "git",
             Arguments = $"clone {github_repositoryUrl}",
-            WorkingDirectory = github_workspace,
+            WorkingDirectory = Directory.GetParent(github_workspace)!.FullName,
         };
         Process.Start(psi)!.WaitForExit();
     }
