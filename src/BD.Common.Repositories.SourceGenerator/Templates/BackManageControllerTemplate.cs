@@ -81,7 +81,7 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
     public {0}Controller(
         ILogger<{0}Controller> logger
 """u8;
-        stream.WriteFormat(utf8String, classNamePluralize);
+        stream.WriteFormat(utf8String, metadata.ClassName);
 
         // args
         foreach (var argument in arguments)
@@ -181,7 +181,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         {
             args[0],
             args[1],
-            classNamePluralize,
+            metadata.ClassName,
             routeNamePluralizeLowerU8,
             routePrefixU8,
         });
