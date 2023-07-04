@@ -131,4 +131,19 @@ static class Constants
 
         return relativePath;
     }
+
+    public static string ParseAgilePath(string path)
+    {
+        var segments = path.Split(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        for (int i = segments.Count - 1; i >= 0; i--)
+        {
+            if (segments[i] == "^..")
+            {
+                // 跳过一下个目录
+                segments.RemoveAt(i);
+                segments.RemoveAt(i);
+            }
+        }
+        return Path.Combine(segments.ToArray());
+    }
 }

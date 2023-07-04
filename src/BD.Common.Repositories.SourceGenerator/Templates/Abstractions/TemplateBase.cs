@@ -153,23 +153,23 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
 #endif
 
         // 可选通过配置将源码生成到文件
-        if (GeneratorConfig.Instance.SourcePath?.TryGetValue(partialFileName, out var value) ?? false)
+        if (GeneratorConfig.Instance.SourcePath?.TryGetValue(partialFileName, out var templatePath) ?? false)
         {
-            var moduleName = metadata.GenerateRepositoriesAttribute.ModuleName;
             var hintName = GetFilePath(partialFileName, metadata.GenerateRepositoriesAttribute.ModuleName, metadata.ClassName);
 
-            //var hintName = symbol.GetSourceFileName(partialFileName);
-            var pathList = new List<string>() { ProjPathHelper.GetProjPath(null), };
-            pathList.AddRange(value);
-            //if (!string.IsNullOrWhiteSpace(moduleName) &&
-            //    !string.Equals("Entities.Design", moduleName, StringComparison.OrdinalIgnoreCase))
-            //    pathList.Add(moduleName!);
-            //pathList.Add("Generated");
+            var rootPath = ProjPathHelper.GetProjPath(null);
+            var pathList = new List<string>(templatePath);
+
+            if (GeneratorConfig.Instance.GetModuleLevelConfig(symbol)
+                ?.RelativeSourcePath?.TryGetValue(partialFileName, out var specifiedFolder) ?? false)
+            {
+                pathList.Add(specifiedFolder);
+            }
             pathList.Add(hintName);
 
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
 
-            var filePath = Path.Combine(pathList.ToArray());
+            var filePath = Path.Combine(rootPath, ParseAgilePath(Path.Combine(pathList.ToArray())));
 
             Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
 
