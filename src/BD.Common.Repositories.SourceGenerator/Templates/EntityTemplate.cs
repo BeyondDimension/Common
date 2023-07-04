@@ -47,7 +47,7 @@ public sealed partial class {3}
         stream.WriteFormat(format, args);
 
         var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);
-        var xml = idField.Field.GetDocumentationCommentXml();
+        //var xml = idField.Field.GetDocumentationCommentXml();
 
         bool isFirstWriteBaseInterfaceType = true;
         var fixedProperties = new HashSet<FixedProperty>(
