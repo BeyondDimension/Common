@@ -146,20 +146,53 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                     (value is IEnumerable<object?> enumerable2 ? enumerable2.Select(x => x?.ToString()).ToArray() : null));
         switch (key)
         {
+            case nameof(DbContextBaseInterface):
+                DbContextBaseInterface = value?.ToString();
+                break;
+            case nameof(ApiRoutePrefix):
+                ApiRoutePrefix = value?.ToString();
+                break;
             case nameof(Entity):
                 Entity = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageAddModel):
                 BackManageAddModel = Convert.ToBoolean(value);
                 break;
+            case nameof(BackManageCanAdd):
+                BackManageCanAdd = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageCanDelete):
+                BackManageCanDelete = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageAddMethodImplType):
+                BackManageAddMethodImplType = (RepositoryMethodImplType)value;
+                break;
             case nameof(BackManageEditModel):
                 BackManageEditModel = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageCanEdit):
+                BackManageCanEdit = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageEditModelReadOnly):
                 BackManageEditModelReadOnly = Convert.ToBoolean(value);
                 break;
+            case nameof(BackManageEditMethodImplType):
+                BackManageEditMethodImplType = (RepositoryMethodImplType)value;
+                break;
             case nameof(BackManageTableModel):
                 BackManageTableModel = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageCanTable):
+                BackManageCanTable = Convert.ToBoolean(value);
+                break;
+            case nameof(BackManageTableMethodImplType):
+                BackManageTableMethodImplType = (RepositoryMethodImplType)value;
+                break;
+            case nameof(DefaultOrderBy):
+                DefaultOrderBy = value?.ToString();
+                break;
+            case nameof(BackManageTableQueryInclude):
+                BackManageTableQueryInclude = value?.ToString();
                 break;
             case nameof(Repository):
                 Repository = Convert.ToBoolean(value);
@@ -167,8 +200,8 @@ public sealed class GenerateRepositoriesAttribute : Attribute
             case nameof(RepositoryConstructorArguments):
                 RepositoryConstructorArguments = ToStringArray(value)!;
                 break;
-            case nameof(DbContextBaseInterface):
-                DbContextBaseInterface = value?.ToString();
+            case nameof(RepositoryConstructorArgumentMapper):
+                RepositoryConstructorArgumentMapper = Convert.ToBoolean(value);
                 break;
             case nameof(ApiController):
                 ApiController = Convert.ToBoolean(value);
@@ -176,8 +209,8 @@ public sealed class GenerateRepositoriesAttribute : Attribute
             case nameof(ApiControllerConstructorArguments):
                 ApiControllerConstructorArguments = ToStringArray(value)!;
                 break;
-            case nameof(ApiRoutePrefix):
-                ApiRoutePrefix = value?.ToString();
+            case nameof(ApiRouteIgnoreRedundantEntityPrefix):
+                ApiRouteIgnoreRedundantEntityPrefix = Convert.ToBoolean(value);
                 break;
             case nameof(NEWSEQUENTIALID):
                 NEWSEQUENTIALID = Convert.ToBoolean(value);
@@ -185,17 +218,8 @@ public sealed class GenerateRepositoriesAttribute : Attribute
             case nameof(BackManageUIPage):
                 BackManageUIPage = Convert.ToBoolean(value);
                 break;
-            case nameof(BackManageCanAdd):
-                BackManageCanAdd = Convert.ToBoolean(value);
-                break;
-            case nameof(BackManageCanEdit):
-                BackManageCanEdit = Convert.ToBoolean(value);
-                break;
-            case nameof(BackManageCanDelete):
-                BackManageCanDelete = Convert.ToBoolean(value);
-                break;
-            case nameof(BackManageCanTable):
-                BackManageCanTable = Convert.ToBoolean(value);
+            case nameof(ModuleName):
+                ModuleName = value?.ToString() ?? throw new ArgumentNullException();
                 break;
         }
     }
