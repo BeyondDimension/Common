@@ -117,7 +117,7 @@ static class Constants
             // services
             "BackManageUIPageApi" => "{module}/{entity}/Generated/api.ts",
             "BackManageUIPageIndex" => "{module}/{entity}/Generated/index.ts",
-            "BackManageUIPageTypings" => "{module}/{entity}/Generated/typing.ts",
+            "BackManageUIPageTypings" => "{module}/{entity}/Generated/typings.d.ts",
 
             // pages
             "BackManageUIPage" => "{module}/Generated/{entity}Manage.tsx",
