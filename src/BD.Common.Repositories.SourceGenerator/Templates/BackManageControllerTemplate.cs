@@ -146,7 +146,7 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
         }
         else
         {
-            routePrefix = routePrefix!.TrimStart("/");
+            routePrefix = routePrefix!.TrimStart("/").ToLowerInvariant();
             if (!routePrefix.EndsWith("/"))
             {
                 routePrefix = $"{routePrefix}/";
@@ -167,16 +167,16 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         //, IAuthenticatorDbContext
         args[0] = string.Format(args[0]!.ToString()!, "Controllers");
         var classNamePluralize = metadata.ClassName.Pluralize();
-        var routeNamePluralize = classNamePluralize;
+        var routeNamePluralize = classNamePluralize.ToLowerInvariant();
         // 去除冗余的路由前缀
+        var routeEnd = Encoding.UTF8.GetString(routePrefixU8).Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Last();
         if (metadata.ApiRouteIgnoreRedundantEntityPrefix &&
-            metadata.ClassName != metadata.GenerateRepositoriesAttribute.ModuleName && // 实体名和模块名一样的话，不能忽略
-            metadata.ClassName.Titleize().Split(' ')[0] == metadata.GenerateRepositoriesAttribute.ModuleName)
+            !metadata.ClassName.Equals(routeEnd, StringComparison.OrdinalIgnoreCase) && // 实体名和路由结尾一样的话，不能忽略
+            metadata.ClassName.Titleize().Split(' ').First().Equals(routeEnd, StringComparison.OrdinalIgnoreCase)) // 实体名第一个单词和路由结尾一致
         {
-            routeNamePluralize = routeNamePluralize.TrimStart(metadata.GenerateRepositoriesAttribute.ModuleName);
+            routeNamePluralize = routeNamePluralize.TrimStart(routeEnd, StringComparison.OrdinalIgnoreCase);
         }
-        var routeNamePluralizeLower = routeNamePluralize.ToLowerInvariant();
-        var routeNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(routeNamePluralizeLower);
+        var routeNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(routeNamePluralize);
         stream.WriteFormat(format, new object?[]
         {
             args[0],

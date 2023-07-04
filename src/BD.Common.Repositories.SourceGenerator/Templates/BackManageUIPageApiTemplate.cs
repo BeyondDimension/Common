@@ -56,20 +56,21 @@ import { getUrl } from '@/utils/index'
         }
         else
         {
-            routePrefix = routePrefix!.TrimStart("/");
+            routePrefix = routePrefix!.TrimStart("/").ToLowerInvariant();
             if (!routePrefix.StartsWith("/"))
             {
                 routePrefix = $"/{routePrefix}";
             }
             routePrefixU8 = Encoding.UTF8.GetBytes(routePrefix);
         }
-        var routeNamePluralize = metadata.ClassName.Pluralize();
+        var routeNamePluralize = metadata.ClassName.ToLowerInvariant().Pluralize();
         // 去除冗余的路由前缀
+        var routeEnd = Encoding.UTF8.GetString(routePrefixU8).Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Last();
         if (metadata.ApiRouteIgnoreRedundantEntityPrefix &&
-            metadata.ClassName != metadata.GenerateRepositoriesAttribute.ModuleName && // 实体名和模块名一样的话，不能忽略
-            metadata.ClassName.Titleize().Split(' ')[0] == metadata.GenerateRepositoriesAttribute.ModuleName)
+            !metadata.ClassName.Equals(routeEnd, StringComparison.OrdinalIgnoreCase) && // 实体名和路由结尾一样的话，不能忽略
+            metadata.ClassName.Titleize().Split(' ').First().Equals(routeEnd, StringComparison.OrdinalIgnoreCase)) // 实体名第一个单词和路由结尾一致
         {
-            routeNamePluralize = routeNamePluralize.TrimStart(metadata.GenerateRepositoriesAttribute.ModuleName);
+            routeNamePluralize = routeNamePluralize.TrimStart(routeEnd, StringComparison.OrdinalIgnoreCase);
         }
         var routeNamePluralizeLower = routeNamePluralize.ToLowerInvariant();
         var routeNamePluralizeLowerU8 = Encoding.UTF8.GetBytes(routeNamePluralizeLower);
