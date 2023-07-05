@@ -1,6 +1,6 @@
 <Project>
 	<!-- 👇 【作为】子模块时使用【父项目】的中央包版本配置 -->
-	<Import Condition="Exists('..\..\..\..\ref\DirectoryPackages\Directory.Packages.props')" Project="..\..\..\..\ref\DirectoryPackages\Directory.Packages.props" />
+	<Import Condition="Exists('..\..\..\ref\DirectoryPackages\Directory.Packages.props')" Project="..\..\..\ref\DirectoryPackages\Directory.Packages.props" />
 	<!-- 👇 【不为】子模块时使用【自己的子模块】的中央包版本配置 -->
-	<Import Condition="!Exists('..\..\..\..\ref\DirectoryPackages\Directory.Packages.props')" Project="..\ref\DirectoryPackages\Directory.Packages.props" />
+	<Import Condition="!Exists('..\..\..\ref\DirectoryPackages\Directory.Packages.props')" Project="..\ref\DirectoryPackages\Directory.Packages.props" />
 </Project>
