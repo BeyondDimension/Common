@@ -70,7 +70,7 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
 #endif
 
-#if WINDOWS7_0_OR_GREATER
+#if WINDOWS7_0_OR_GREATER && !NONE_UI
 global using WPFMessageBox = MS.Win32.MessageBox;
 #endif
 

@@ -1,3 +1,5 @@
+using BD.Git.Checkout.Tools.Properties;
+
 try
 {
     string? GetArgument(int index)
@@ -12,6 +14,18 @@ try
         }
     }
 
+    static string Unprotect(byte[] encryptedData)
+    {
+#if WINDOWS
+        var bytes = ProtectedData.Unprotect(encryptedData, Resources.hash2, DataProtectionScope.LocalMachine);
+        var str = Encoding.UTF8.GetString(bytes);
+        return str;
+#else
+        var str = Encoding.UTF8.GetString(encryptedData);
+        return str;
+#endif
+    }
+
     ProcessStartInfo psi;
     Console.WriteLine(string.Join(' ', Environment.GetCommandLineArgs()));
 
@@ -21,6 +35,9 @@ try
         throw new ArgumentOutOfRangeException(nameof(github_workspace));
     if (!Directory.Exists(github_workspace))
         Directory.CreateDirectory(github_workspace);
+    var github_workspace_parent = Directory.GetParent(github_workspace)?.FullName;
+    if (string.IsNullOrWhiteSpace(github_workspace_parent))
+        throw new ArgumentOutOfRangeException(nameof(github_workspace_parent));
     var github_sha = GetArgument(1);
     if (string.IsNullOrWhiteSpace(github_sha))
         throw new ArgumentOutOfRangeException(nameof(github_sha));
@@ -32,42 +49,89 @@ try
         "https://",
         StringComparison.OrdinalIgnoreCase);
 
+    string? proxy = default, github_auth_token = default;
     try
     {
-        var proxy = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Environment.ProcessPath!)!, "checkout.proxy.txt"));
-        if (!string.IsNullOrWhiteSpace(proxy))
-        {
-            Console.WriteLine($"proxy: {proxy}");
-            psi = new()
-            {
-                FileName = "git",
-                Arguments = $"config --global http.proxy {proxy}",
-                WorkingDirectory = github_workspace,
-            };
-            Process.Start(psi)!.WaitForExit();
-            psi = new()
-            {
-                FileName = "git",
-                Arguments = $"config --global https.proxy {proxy}",
-                WorkingDirectory = github_workspace,
-            };
-            Process.Start(psi)!.WaitForExit();
-        }
+        proxy = File.ReadAllText(Path.Combine(
+            Path.GetDirectoryName(Environment.ProcessPath!)!,
+            "checkout.proxy.txt"));
         Console.WriteLine("mark: proxyed");
     }
     catch (Exception ex)
     {
         Console.WriteLine(ex);
     }
+    try
+    {
+        github_auth_token = Unprotect(File.ReadAllBytes(Path.Combine(
+            Path.GetDirectoryName(Environment.ProcessPath!)!,
+            "checkout.t.txt")));
+        Console.WriteLine("mark: ted");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+
+    if (string.IsNullOrWhiteSpace(github_auth_token))
+    {
+        github_auth_token = Unprotect(Resources.value2);
+    }
+
+    Lazy<Dictionary<string, string>> environment = new(() =>
+    {
+        // file:///C:/Program%20Files/Git/mingw64/share/doc/git-doc/git-config.html
+        var env = new Dictionary<string, string>
+        {
+            { "GIT_CONFIG_NOSYSTEM", "true" },
+        };
+        int count = 0, count_a = 0;
+        if (!string.IsNullOrWhiteSpace(proxy))
+        {
+            count_a = count++;
+            env.Add($"GIT_CONFIG_KEY_{count_a}", "http.proxy");
+            env.Add($"GIT_CONFIG_VALUE_{count_a}", proxy);
+            count_a = count++;
+            env.Add($"GIT_CONFIG_KEY_{count_a}", "https.proxy");
+            env.Add($"GIT_CONFIG_VALUE_{count_a}", proxy);
+        }
+        if (!string.IsNullOrWhiteSpace(github_auth_token))
+        {
+            // https://github.com/cirruslabs/cirrus-ci-docs/issues/407#issuecomment-530366488
+            count_a = count++;
+            var token_key = $"""
+                url.https://{github_auth_token}@github.insteadOf
+                """;
+            env.Add($"GIT_CONFIG_KEY_{count_a}", token_key);
+            env.Add($"GIT_CONFIG_VALUE_{count_a}", "https://github");
+        }
+        if (count > 0)
+        {
+            env.Add("GIT_CONFIG_COUNT", count.ToString());
+        }
+        return env;
+    });
+
+    ProcessStartInfo Git(ProcessStartInfo psi)
+    {
+        psi.FileName = "git";
+        if (environment.Value.Any())
+        {
+            foreach (var env in environment.Value)
+            {
+                psi.Environment.Add(env!);
+            }
+        }
+        return psi;
+    }
 
     if (!Directory.Exists(Path.Combine(github_workspace, ".git")))
     {
-        psi = new()
+        psi = Git(new()
         {
-            FileName = "git",
             Arguments = $"clone {github_repositoryUrl}",
-            WorkingDirectory = Directory.GetParent(github_workspace)!.FullName,
-        };
+            WorkingDirectory = github_workspace_parent,
+        });
         Process.Start(psi)!.WaitForExit();
     }
     Console.WriteLine("mark: cloneed");
@@ -77,37 +141,33 @@ try
         Directory.CreateDirectory(github_workspace);
     }
 
-    psi = new()
+    psi = Git(new()
     {
-        FileName = "git",
         Arguments = $"config --global --add safe.directory {github_workspace}",
         WorkingDirectory = github_workspace,
-    };
+    });
     Process.Start(psi)!.WaitForExit();
     Console.WriteLine("mark: safeed");
 
-    psi = new()
+    psi = Git(new()
     {
-        FileName = "git",
         Arguments = "fetch origin",
         WorkingDirectory = github_workspace,
-    };
+    });
     Console.WriteLine("mark: fetched");
     Process.Start(psi)!.WaitForExit();
-    psi = new()
+    psi = Git(new()
     {
-        FileName = "git",
         Arguments = $"checkout {github_sha}",
         WorkingDirectory = github_workspace,
-    };
+    });
     Console.WriteLine("mark: checkouted");
     Process.Start(psi)!.WaitForExit();
-    psi = new()
+    psi = Git(new()
     {
-        FileName = "git",
         Arguments = $"submodule update --init --recursive",
         WorkingDirectory = github_workspace,
-    };
+    });
     Console.WriteLine("mark: submoduleed");
     Process.Start(psi)!.WaitForExit();
     return 0;

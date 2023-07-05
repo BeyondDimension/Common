@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BD.Git.Checkout.Tools": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Code\\2021\\BeyondDimension.Common\\src\\BD.Git.Checkout.Tools\\bin\\Release\\Publish\\win-x64\\SteamBot 11857530af4e3ecdc9bbee2f48b233b09756f36f git://github.com/BeyondDimension/SteamBot.git"
+    }
+  }
+}
