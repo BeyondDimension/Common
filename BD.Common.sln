@@ -202,9 +202,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{8F095672-759C-4B8F-9897-1D2E358F0C4F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalonia.Base", "src\Avalonia.Base\Avalonia.Base.csproj", "{3F304181-76A5-4274-9DB2-E84F35DBDA21}"
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SourceGenerator.Translate", "src\BD.Common.Repositories.SourceGenerator.Translate\BD.Common.Repositories.SourceGenerator.Translate.csproj", "{E0D4F623-C377-4504-943D-1CB125567924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Git.Checkout.Tools", "src\BD.Git.Checkout.Tools\BD.Git.Checkout.Tools.csproj", "{78A022E6-248E-40A0-B019-49C1E68691AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Git.Checkout.Tools", "src\BD.Git.Checkout.Tools\BD.Git.Checkout.Tools.csproj", "{78A022E6-248E-40A0-B019-49C1E68691AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
