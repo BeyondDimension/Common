@@ -5,6 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonModelValidator ModelValidator</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>COMMON_LIB_MODELVALIDATOR;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

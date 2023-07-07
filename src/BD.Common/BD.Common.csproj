@@ -31,6 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="BD.Common.XmlnsDefinition.Avalonia" />
 		<PackageReference Include="Nito.Comparers" />
 		<PackageReference Include="gfoidl.Base64" />
 		<PackageReference Include="Crc32.NET" />
@@ -72,6 +73,20 @@
 			<LastGenOutput>Strings.Designer.cs</LastGenOutput>
 			<CustomToolNamespace></CustomToolNamespace>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<ProjectReference Include="..\Avalonia.Base\Avalonia.Base.csproj">
+			<IncludeAssets>none</IncludeAssets>
+		</ProjectReference>-->
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<!--<Content Include="..\..\ref\Avalonia.Base.dll">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<Pack>true</Pack>
+			<PackagePath>lib/net$(DotNet_Version)/Avalonia.Base.dll;lib/net$(DotNet_Version)-android/Avalonia.Base.dll</PackagePath>
+		</Content>-->
 	</ItemGroup>
 
 	<Import Project="..\TFM_NETX_WITH_ALL.props" />

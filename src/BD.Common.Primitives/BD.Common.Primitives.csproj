@@ -5,6 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonPrimitives Primitives</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>COMMON_LIB_PRIMITIVES;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -39,6 +40,12 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Strings.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<Import Project="..\TFM_NETX.props" />

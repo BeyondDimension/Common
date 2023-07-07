@@ -5,13 +5,22 @@ namespace BD.Common.Services;
 /// </summary>
 public interface IToast
 {
+    /// <inheritdoc cref="Show(ToastIcon, string, ToastLength)"/>
+    [Obsolete("use Show(ToastIcon, string, int?)")]
+    void Show(string text, int? duration = null) => Show(ToastIcon.None, text, duration);
+
+    /// <inheritdoc cref="Show(ToastIcon, string, ToastLength)"/>
+    [Obsolete("use Show(ToastIcon, string, ToastLength)")]
+    void Show(string text, ToastLength duration) => Show(ToastIcon.None, text, duration);
+
     /// <summary>
-    /// 显示Toast
+    /// 显示 Toast
     /// </summary>
+    /// <param name="icon"></param>
     /// <param name="text"></param>
     /// <param name="duration"></param>
-    void Show(string text, int? duration = null);
+    void Show(ToastIcon icon, string text, int? duration = null);
 
-    /// <inheritdoc cref="Show(string, int?)"/>
-    void Show(string text, ToastLength duration);
+    /// <inheritdoc cref="Show(ToastIcon, string, ToastLength)"/>
+    void Show(ToastIcon icon, string text, ToastLength duration);
 }

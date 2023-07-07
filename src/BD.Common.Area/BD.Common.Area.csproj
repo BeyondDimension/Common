@@ -5,6 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonArea Area</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>COMMON_LIB_AREA;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -43,6 +44,12 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<Import Project="..\TFM_NETX.props" />

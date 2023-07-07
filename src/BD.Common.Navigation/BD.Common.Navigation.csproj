@@ -5,6 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonNavigation Navigation</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>COMMON_LIB_NAV;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,5 +20,11 @@
 
 	<Import Project="..\TFM_NETX.props" />
 	<Import Project="..\GeneratePackage.props" />
+
+	<ItemGroup>
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
 
 </Project>

@@ -199,6 +199,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.Sour
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SourceGenerator.Translate", "src\BD.Common.Repositories.SourceGenerator.Translate\BD.Common.Repositories.SourceGenerator.Translate.csproj", "{E0D4F623-C377-4504-943D-1CB125567924}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{8F095672-759C-4B8F-9897-1D2E358F0C4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalonia.Base", "src\Avalonia.Base\Avalonia.Base.csproj", "{3F304181-76A5-4274-9DB2-E84F35DBDA21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common.Repositories.SourceGenerator.Translate", "src\BD.Common.Repositories.SourceGenerator.Translate\BD.Common.Repositories.SourceGenerator.Translate.csproj", "{E0D4F623-C377-4504-943D-1CB125567924}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Git.Checkout.Tools", "src\BD.Git.Checkout.Tools\BD.Git.Checkout.Tools.csproj", "{78A022E6-248E-40A0-B019-49C1E68691AE}"
 EndProject
 Global
@@ -391,6 +396,10 @@ Global
 		{E0D4F623-C377-4504-943D-1CB125567924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0D4F623-C377-4504-943D-1CB125567924}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0D4F623-C377-4504-943D-1CB125567924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F304181-76A5-4274-9DB2-E84F35DBDA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F304181-76A5-4274-9DB2-E84F35DBDA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F304181-76A5-4274-9DB2-E84F35DBDA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F304181-76A5-4274-9DB2-E84F35DBDA21}.Release|Any CPU.Build.0 = Release|Any CPU
 		{78A022E6-248E-40A0-B019-49C1E68691AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{78A022E6-248E-40A0-B019-49C1E68691AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A022E6-248E-40A0-B019-49C1E68691AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -446,6 +455,7 @@ Global
 		{67F7A45D-E442-4F64-A2B1-776DFBC772BD} = {F221D7EA-7ADF-4F89-B2C9-6373E52D8731}
 		{B1423250-D6EE-4CEE-847C-CACFE23B109B} = {38AD83FC-B2FD-4458-ACEE-84B2B768FA6D}
 		{E0D4F623-C377-4504-943D-1CB125567924} = {38AD83FC-B2FD-4458-ACEE-84B2B768FA6D}
+		{3F304181-76A5-4274-9DB2-E84F35DBDA21} = {8F095672-759C-4B8F-9897-1D2E358F0C4F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3ABA6CBD-C4DB-4300-B2A2-087D9B5C872A}

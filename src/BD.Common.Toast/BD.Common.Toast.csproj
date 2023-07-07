@@ -5,7 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonToast Toast</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
-		<DefineConstants>__NOT_IMPORT_CONFIG__;__NOT_IMPORT_WEBENCODERS__;__NOT_IMPORT_COLUMNS__;__NOT_IMPORT_MODELS__;__NOT_IMPORT_SERVICES_IMPL__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>COMMON_LIB_TOAST;__NOT_IMPORT_CONFIG__;__NOT_IMPORT_WEBENCODERS__;__NOT_IMPORT_COLUMNS__;__NOT_IMPORT_MODELS__;__NOT_IMPORT_SERVICES_IMPL__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,5 +30,11 @@
 
 	<Import Project="..\TFM_NETX.props" />
 	<Import Project="..\GeneratePackage.props" />
+
+	<ItemGroup>
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
 
 </Project>

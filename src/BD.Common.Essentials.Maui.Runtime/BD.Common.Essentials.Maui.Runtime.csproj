@@ -8,7 +8,7 @@
 		<DefineConstants>__NOT_IMPORT_COLUMNS__;MAUI;MAUI_RUNTIME;$(DefineConstants)</DefineConstants>
 		<!--<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-macos;net7.0-maccatalyst</TargetFrameworks>-->
 		<TargetFrameworks>net7.0-macos;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows$(WinSDK_Version)</TargetFrameworks>
 		<UseMaui>false</UseMaui>
 		<UseMauiEssentials>false</UseMauiEssentials>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>

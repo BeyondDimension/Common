@@ -6,12 +6,20 @@
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__API_RSP__;$(DefineConstants)</DefineConstants>
+		<DefineConstants>COMMON_LIB_PRIMITIVES_API_RSP;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+	</ItemGroup>
 
 	<Import Project="..\TFM_NETX.props" />
 	<Import Project="..\GeneratePackage.props" />
+
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.Common\BD.Common.csproj" />
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 </Project>

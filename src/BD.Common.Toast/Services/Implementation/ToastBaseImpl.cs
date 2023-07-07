@@ -27,7 +27,7 @@ public abstract class ToastBaseImpl : IToast
     protected virtual void BeginInvokeOnMainThread(Action action)
         => mainThread.BeginInvokeOnMainThread(action);
 
-    public void Show(string text, int? duration)
+    public void Show(ToastIcon icon, string text, int? duration)
     {
         if (string.IsNullOrEmpty(text)) return;
 
@@ -44,9 +44,9 @@ public abstract class ToastBaseImpl : IToast
 
             void Show_()
             {
-                if (intercept.OnShowExecuting(text)) return;
+                if (intercept.OnShowExecuting(icon, text, duration)) return;
                 var duration_ = duration ?? CalcDurationByStringLength(text.Length);
-                PlatformShow(text, duration_);
+                PlatformShow(icon, text, duration_);
             }
         }
         catch (Exception e)
@@ -55,9 +55,10 @@ public abstract class ToastBaseImpl : IToast
         }
     }
 
-    public void Show(string text, ToastLength duration) => Show(text, ToDuration(duration));
+    public void Show(ToastIcon icon, string text, ToastLength duration)
+        => Show(icon, text, ToDuration(duration));
 
-    protected abstract void PlatformShow(string text, int duration);
+    protected abstract void PlatformShow(ToastIcon icon, string text, int duration);
 
     /// <summary>
     /// 将 <see cref="ToastLength"/> 转换为 持续时间

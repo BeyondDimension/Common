@@ -1,5 +1,3 @@
-using System.Collections.ObjectModel;
-
 namespace BD.Common.UI.Adapters;
 
 /// <summary>

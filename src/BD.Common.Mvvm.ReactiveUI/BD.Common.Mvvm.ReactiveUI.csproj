@@ -7,6 +7,7 @@
 		<RootNamespace>BD.Common</RootNamespace>
 		<AssemblyName>ReactiveUI.Tests</AssemblyName>
 		<PackageId>BD.Common.Mvvm.ReactiveUI</PackageId>
+		<DefineConstants>COMMON_LIB_MVVM_RXUI;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,5 +27,11 @@
 
 	<Import Project="..\TFM_NETX.props" />
 	<Import Project="..\GeneratePackage.props" />
+
+	<ItemGroup>
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
 
 </Project>

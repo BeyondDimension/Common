@@ -5,6 +5,7 @@
 		<PackageTags>BeyondDimension Common CommonMvvm Mvvm</PackageTags>
 		<Description>$(Product)</Description>
 		<RootNamespace>BD.Common</RootNamespace>
+		<DefineConstants>COMMON_LIB_MVVM;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,5 +18,11 @@
 
 	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 	<Import Project="..\GeneratePackage.props" />
+
+	<ItemGroup>
+		<Compile Include="..\AssemblyInfo.Xaml.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
 
 </Project>

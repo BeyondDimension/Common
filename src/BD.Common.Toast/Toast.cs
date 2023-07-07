@@ -4,23 +4,43 @@ namespace BD.Common;
 public static class Toast
 {
     /// <inheritdoc cref="IToast.Show(string, int?)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Obsolete("use Show(ToastIcon, string, int?)")]
     public static void Show(string text, int? duration = null)
     {
-        var toast = Ioc.Get<IToast>();
-        toast.Show(text, duration);
+        Show(ToastIcon.None, text, duration);
     }
 
     /// <inheritdoc cref="IToast.Show(string, ToastLength)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Obsolete("use Show(ToastIcon, string, ToastLength)")]
     public static void Show(string text, ToastLength duration)
     {
-        var toast = Ioc.Get<IToast>();
-        toast.Show(text, duration);
+        Show(ToastIcon.None, text, duration);
     }
 
-    static void ShowLong(string text) => Show(text, ToastLength.Long);
+    /// <inheritdoc cref="IToast.Show(ToastIcon, string, int?)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Show(ToastIcon icon, string text, int? duration = null)
+    {
+        var toast = Ioc.Get<IToast>();
+        toast.Show(icon, text, duration);
+    }
+
+    /// <inheritdoc cref="IToast.Show(ToastIcon, string, ToastLength)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Show(ToastIcon icon, string text, ToastLength duration)
+    {
+        var toast = Ioc.Get<IToast>();
+        toast.Show(icon, text, duration);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static void ShowLongError(string text) => Show(ToastIcon.Error, text, ToastLength.Long);
 
 #if DEBUG
     [Obsolete("use e.LogAndShowT(..", true)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Show(Exception e,
         string? tag = null, LogLevel level = LogLevel.Error,
         string? msg = null, params object?[] args) => e.LogAndShowT(tag, level, "", msg, args);
@@ -35,12 +55,13 @@ public static class Toast
     /// <param name="memberName"></param>
     /// <param name="msg"></param>
     /// <param name="args"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void LogAndShowT(this Exception? e,
         string? tag = null, LogLevel level = LogLevel.Error,
         [CallerMemberName] string memberName = "",
         string? msg = null, params object?[] args)
         => ExceptionExtensions.LogAndShow(e,
-            ShowLong,
+            ShowLongError,
             string.IsNullOrWhiteSpace(tag) ? nameof(Toast) : tag, level,
             memberName,
             msg, args);
@@ -54,11 +75,12 @@ public static class Toast
     /// <param name="memberName"></param>
     /// <param name="msg"></param>
     /// <param name="args"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void LogAndShowT(this Exception? e,
         ILogger logger, LogLevel level = LogLevel.Error,
         [CallerMemberName] string memberName = "",
         string? msg = null, params object?[] args) => ExceptionExtensions.LogAndShow(e,
-            ShowLong,
+            ShowLongError,
             logger, level,
             memberName, msg, args);
 }
