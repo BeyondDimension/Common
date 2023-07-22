@@ -1,5 +1,4 @@
 using Microsoft.IdentityModel.Tokens;
-using System.Runtime.Serialization.Formatters;
 
 namespace BD.Common.UnitTest;
 
