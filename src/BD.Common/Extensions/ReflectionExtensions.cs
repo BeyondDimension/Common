@@ -12,6 +12,7 @@ public static class ReflectionExtensions
     /// <param name="assembly"></param>
     /// <param name="attrType"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Attribute[]? GetCustomAttributesSafe(this Assembly assembly, Type attrType)
     {
         try
@@ -27,6 +28,7 @@ public static class ReflectionExtensions
         return null;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T GetRequiredCustomAttribute<T>(this Assembly assembly) where T : Attribute
     {
         var requiredCustomAttribute = assembly.GetCustomAttribute<T>();

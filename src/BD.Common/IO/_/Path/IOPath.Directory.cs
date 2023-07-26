@@ -4,9 +4,36 @@ namespace System;
 partial class IOPath
 {
     /// <summary>
+    /// 判断路径是否为文件夹，返回 <see cref="FileInfo"/> 或 <see cref="DirectoryInfo"/>，<see langword="true"/> 为文件夹，<see langword="false"/> 为文件，路径不存在则为 <see langword="null"/>
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="fileInfo"></param>
+    /// <param name="directoryInfo"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool? IsDirectory(string path, [NotNullWhen(false)] out FileInfo? fileInfo, [NotNullWhen(true)] out DirectoryInfo? directoryInfo)
+    {
+        fileInfo = new(path);
+        if (fileInfo.Exists) // 路径为文件
+        {
+            directoryInfo = null;
+            return false;
+        }
+        fileInfo = null;
+        directoryInfo = new(path);
+        if (directoryInfo.Exists) // 路径为文件夹
+        {
+            return true;
+        }
+        directoryInfo = null;
+        return null;
+    }
+
+    /// <summary>
     /// 如果指定的文件夹不存在，则创建文件夹
     /// </summary>
     /// <param name="dirPath"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string DirCreateByNotExists(string dirPath)
     {
         if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
@@ -14,6 +41,7 @@ partial class IOPath
     }
 
     /// <inheritdoc cref="DirCreateByNotExists(string)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static DirectoryInfo CreateByNotExists(this DirectoryInfo dirInfo)
     {
         if (!dirInfo.Exists) dirInfo.Create();
@@ -26,6 +54,7 @@ partial class IOPath
     /// </summary>
     /// <param name="dirPath"></param>
     /// <param name="noRecursive"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool DirTryDelete(string dirPath, bool noRecursive = false)
     {
         try
@@ -109,6 +138,7 @@ partial class IOPath
     /// </summary>
     /// <param name="sourceDirName"></param>
     /// <param name="destDirName"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void MoveDirectory(string sourceDirName, string destDirName)
     {
         try
@@ -262,5 +292,60 @@ partial class IOPath
             }
         }
         progress?.Report(maxProgress);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool RecursiveDelete(string baseDir, bool keepFolders, bool throwOnError = false)
+        => RecursiveDelete(new DirectoryInfo(baseDir), keepFolders, throwOnError);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool RecursiveDelete(DirectoryInfo baseDir, bool keepFolders, bool throwOnError = false)
+    {
+        if (!baseDir.Exists)
+            return true;
+
+        try
+        {
+            foreach (var dir in baseDir.EnumerateDirectories())
+            {
+                RecursiveDelete(dir, keepFolders);
+            }
+            var files = baseDir.GetFiles();
+            foreach (var file in files)
+            {
+                if (!file.Exists) continue;
+                file.IsReadOnly = false;
+                try
+                {
+                    file.Delete();
+                }
+                catch (Exception e)
+                {
+                    if (throwOnError)
+                    {
+                        Log.Error(nameof(IOPath), e, "Recursive Delete could not delete file.");
+                    }
+                }
+            }
+
+            if (keepFolders) return true;
+            try
+            {
+                baseDir.Delete();
+            }
+            catch (Exception e)
+            {
+                if (throwOnError)
+                {
+                    Log.Error(nameof(IOPath), e, "Recursive Delete could not delete folder.");
+                }
+            }
+            return true;
+        }
+        catch (UnauthorizedAccessException e)
+        {
+            Log.Error(nameof(IOPath), e, "RecursiveDelete failed");
+            return false;
+        }
     }
 }

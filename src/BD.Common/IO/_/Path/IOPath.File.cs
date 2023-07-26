@@ -9,6 +9,7 @@ partial class IOPath
     /// </summary>
     /// <param name="filePath"></param>
     /// <param name="notCreateDir"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void FileIfExistsItDelete(string filePath, bool notCreateDir = false)
     {
         if (File.Exists(filePath))
@@ -26,6 +27,7 @@ partial class IOPath
     }
 
     /// <inheritdoc cref="FileIfExistsItDelete(string, bool)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void IfExistsItDelete(this FileInfo fileInfo, bool notCreateDir = false)
     {
         if (fileInfo.Exists)
@@ -47,6 +49,7 @@ partial class IOPath
     /// <para>通常用于删除缓存</para>
     /// </summary>
     /// <param name="filePath"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool FileTryDelete(string filePath)
     {
         try
@@ -57,6 +60,75 @@ partial class IOPath
         catch
         {
             return false;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void CopyFile(string source, string dest, bool overwrite = true)
+    {
+        if (!File.Exists(source))
+            return;
+        if (File.Exists(dest) && !overwrite)
+            return;
+
+        // Try copy the file normally - This will fail if in use
+        var dirName = Path.GetDirectoryName(dest);
+        if (!string.IsNullOrWhiteSpace(dirName)) // This could be a file in the working directory, instead of a file in a folder -> No need to create folder if exists.
+            Directory.CreateDirectory(dirName);
+
+        try
+        {
+            File.Copy(source, dest, overwrite);
+        }
+        catch (Exception e)
+        {
+            // Try another method to copy.
+            if (e.HResult == -2147024864) // File in use
+            {
+                if (File.Exists(dest))
+                    File.Delete(dest);
+                using var inputFile = new FileStream(source, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using var outputFile = new FileStream(dest, FileMode.Create);
+                var buffer = new byte[0x10000];
+                int bytes;
+
+                while ((bytes = inputFile.Read(buffer, 0, buffer.Length)) > 0)
+                    outputFile.Write(buffer, 0, bytes);
+            }
+            else
+            {
+                throw;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Recursively copy files and directories
+    /// </summary>
+    /// <param name="inputFolder">Folder to copy files recursively from</param>
+    /// <param name="outputFolder">Destination folder</param>
+    /// <param name="overwrite">Whether to overwrite files or not</param>
+    /// <param name="throwOnError">When false, error is only logged (default)</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void CopyFilesRecursive(string? inputFolder, string outputFolder, bool overwrite = true)
+    {
+        _ = Directory.CreateDirectory(outputFolder);
+
+        if (string.IsNullOrEmpty(inputFolder))
+            return;
+
+        outputFolder = outputFolder.EndsWith("\\") ? outputFolder : outputFolder + "\\";
+        //Now Create all of the directories
+        foreach (var dirPath in Directory.GetDirectories(inputFolder, "*", SearchOption.AllDirectories))
+            _ = Directory.CreateDirectory(dirPath.Replace(inputFolder, outputFolder));
+
+        //Copy all the files & Replaces any files with the same name
+        foreach (var newPath in Directory.GetFiles(inputFolder, "*.*", SearchOption.AllDirectories))
+        {
+            var dest = newPath.Replace(inputFolder, outputFolder);
+            if (!overwrite && File.Exists(dest)) continue;
+
+            File.Copy(newPath, dest, true);
         }
     }
 }
