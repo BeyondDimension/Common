@@ -43,7 +43,7 @@ public static partial class Win32RegistryKeyExtensions
         this RegistryKey registryKey,
         string path,
         string name,
-        string value,
+        object value,
         RegistryValueKind valueKind)
     {
         var rk = registryKey.OpenSubKey(path, true);
