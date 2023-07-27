@@ -3,29 +3,36 @@ namespace System;
 
 partial class IOPath
 {
-    const double unit_double = 1024D;
+    public const double unit_multiple_double_1024 = 1024D;
+    public const double unit_multiple_double_1000 = 1000D;
 
-    static readonly string[] units = new[] { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB", "BB", };
+#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
+    public static readonly string[] unit_group = new[] { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB", "BB", };
+    public static readonly string[] unit_group_i = new[] { "B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB", "BiB", };
+#pragma warning restore SA1307 // Accessible fields should begin with upper-case letter
 
     /// <summary>
     /// 获取用于显示的文件大小
     /// </summary>
     /// <param name="length"></param>
+    /// <param name="unit_multiple"></param>
+    /// <param name="unit_group"></param>
     /// <returns></returns>
-    public static (double length, string unit) GetDisplayFileSize(double length)
+    public static (double length, string unit) GetDisplayFileSize(double length, double unit_multiple = unit_multiple_double_1024, string[]? unit_group = null)
     {
+        unit_group ??= IOPath.unit_group;
         if (length > 0D)
         {
-            for (int i = 0; i < units.Length; i++)
+            for (int i = 0; i < unit_group.Length; i++)
             {
-                if (i > 0) length /= unit_double;
-                if (length < unit_double) return (length, units[i]);
+                if (i > 0) length /= unit_multiple;
+                if (length < unit_multiple) return (length, unit_group[i]);
             }
-            return (length, units.Last());
+            return (length, unit_group.Last());
         }
         else
         {
-            return (0D, units.First());
+            return (0D, unit_group.First());
         }
     }
 
@@ -33,12 +40,14 @@ partial class IOPath
     /// 获取用于显示文件大小的字符串
     /// </summary>
     /// <param name="length"></param>
+    /// <param name="unit_multiple"></param>
+    /// <param name="unit_group"></param>
     /// <returns></returns>
-    public static string GetDisplayFileSizeString(double length)
+    public static string GetDisplayFileSizeString(double length, double unit_multiple = unit_multiple_double_1024, string[]? unit_group = null)
     {
         // https://github.com/CommunityToolkit/dotnet/blob/v8.0.0-preview3/CommunityToolkit.Common/Converters.cs#L17
-        (length, string unit) = GetDisplayFileSize(length);
-        return $"{length:0.00} {unit}";
+        (length, string unitstr) = GetDisplayFileSize(length, unit_multiple, unit_group);
+        return $"{length:0.00} {unitstr}";
     }
 
     /// <summary>
