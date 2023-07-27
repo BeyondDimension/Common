@@ -92,11 +92,13 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
             .ConfigureAwait(false);
         if (response.IsSuccessStatusCode)
         {
-            var imageStream = await response.Content.ReadAsStreamAsync(cancellationToken);
-            var memoryStream = new MemoryStream();
-            await imageStream.CopyToAsync(memoryStream, cancellationToken);
-            memoryStream.Position = 0;
-            return memoryStream;
+            //var imageStream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            //var memoryStream = new MemoryStream();
+            //await imageStream.CopyToAsync(memoryStream, cancellationToken);
+            //memoryStream.Position = 0;
+            //return memoryStream;
+            var imageBytes = await response.Content.ReadAsByteArrayAsync(cancellationToken);
+            return new MemoryStream(imageBytes, false);
         }
 
         return default;
