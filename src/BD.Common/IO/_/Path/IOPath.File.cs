@@ -131,4 +131,44 @@ partial class IOPath
             File.Copy(newPath, dest, true);
         }
     }
+
+    /// <summary>
+    /// 允许文件共享的形式打开文件并读取文本
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="encoding"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string ReadAllText(string path, Encoding? encoding = null)
+    {
+        using var fileStream = OpenReadCore(path);
+        using var streamReader = new StreamReader(fileStream, encoding ?? Encoding.UTF8);
+        var result = streamReader.ReadToEnd();
+        return result;
+    }
+
+    /// <summary>
+    /// 允许文件共享的形式打开文件并异步读取文本
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Task<string> ReadAllTextAsync(string path, CancellationToken cancellationToken = default) => ReadAllTextAsync(path, null, cancellationToken);
+
+    /// <summary>
+    /// 允许文件共享的形式打开文件并异步读取文本
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static async Task<string> ReadAllTextAsync(string path, Encoding? encoding, CancellationToken cancellationToken = default)
+    {
+        using var fileStream = OpenReadCore(path);
+        using var streamReader = new StreamReader(fileStream, encoding ?? Encoding.UTF8);
+        var result = await streamReader.ReadToEndAsync(cancellationToken);
+        return result;
+    }
 }

@@ -120,7 +120,7 @@ public static partial class Registry2
     /// <returns></returns>
     [SupportedOSPlatform("windows")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool TryReadRegistryKey(string encodedPath, out object? value)
+    public static bool TryReadRegistryKey(string encodedPath, [NotNullWhen(true)] out object? value)
     {
         value = ReadRegistryKey(encodedPath);
         return value != null;
