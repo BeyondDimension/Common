@@ -19,6 +19,7 @@ public class FusilladeHttpClientFactory : IHttpClientFactory, IDisposable
     bool disposedValue;
     readonly HttpMessageHandler handler;
     readonly ConcurrentDictionary<(string, HttpHandlerCategory), HttpClient> activeClients = new();
+    internal static readonly Dictionary<string, DefaultHttpClientBuilder> Builders = new();
 
     public FusilladeHttpClientFactory() : this(CreateHandler())
     {
@@ -36,7 +37,7 @@ public class FusilladeHttpClientFactory : IHttpClientFactory, IDisposable
         HttpHandlerType handler = new()
         {
             UseCookies = false,
-            AutomaticDecompression = DecompressionMethods.Brotli | DecompressionMethods.GZip,
+            AutomaticDecompression = DecompressionMethods.Brotli | DecompressionMethods.GZip | DecompressionMethods.Deflate,
         };
         return handler;
     }
@@ -67,16 +68,37 @@ public class FusilladeHttpClientFactory : IHttpClientFactory, IDisposable
         if (activeClients.TryGetValue(key, out var result))
             return result;
 
-        HttpMessageHandler handler = category switch
+        HttpMessageHandler? handler = default;
+        HttpMessageHandler GetHandler()
         {
-            HttpHandlerCategory.Speculative => NetCache.Speculative,
-            HttpHandlerCategory.UserInitiated => NetCache.UserInitiated,
-            HttpHandlerCategory.Background => NetCache.Background,
-            HttpHandlerCategory.Offline => NetCache.Offline,
-            _ => this.handler,
-        };
+            HttpMessageHandler handler = category switch
+            {
+                HttpHandlerCategory.Speculative => NetCache.Speculative,
+                HttpHandlerCategory.UserInitiated => NetCache.UserInitiated,
+                HttpHandlerCategory.Background => NetCache.Background,
+                HttpHandlerCategory.Offline => NetCache.Offline,
+                _ => this.handler,
+            };
+            return handler;
+        }
 
-        return activeClients[key] = CreateClient(handler);
+        if (Builders.TryGetValue(name, out var builder))
+        {
+            if (builder.ConfigureHandler != null)
+            {
+                handler = builder.ConfigureHandler(GetHandler);
+            }
+        }
+
+        handler ??= GetHandler();
+        var client = CreateClient(handler);
+
+        if (builder != default)
+        {
+            builder.ConfigureClient?.Invoke(client);
+        }
+
+        return activeClients[key] = client;
     }
 
     void Dispose(bool disposing)
