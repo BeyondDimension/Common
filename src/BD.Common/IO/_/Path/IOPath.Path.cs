@@ -22,32 +22,65 @@ partial class IOPath
         return r.Replace(f, "");
     }
 
+    public static partial class EnvVarNames
+    {
+        public const string MyDocuments = "%Documents%";
+        public const string MyMusic = "%Music%";
+        public const string MyPictures = "%Pictures%";
+        public const string MyVideos = "%Videos%";
+        public const string StartMenu = "%StartMenu%";
+        public const string StartMenuProgramData = "%StartMenuProgramData%";
+        public const string StartMenuAppData = "%StartMenuAppData%";
+        public const string AppData = "%SPP_AppData%";
+        public const string Cache = "%SPP_Cache%";
+        public const string PlatformFolder = "%Platform_Folder%";
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ExpandEnvironmentVariables(
         string? path,
-        string? platformFolder = null)
+        string? platformFolder = null,
+        string? appDataDirectory = null,
+        string? cacheDirectory = null,
+        bool addAppDataDirectory = true,
+        bool addCacheDirectory = false,
+        Action<Dictionary<string, string>>? action = null)
     {
         if (string.IsNullOrEmpty(path))
             return string.Empty;
 
         var variables = new Dictionary<string, string>
-            {
-                //{ "%SPP_UserData%", IOPath.CacheDirectory },
-                { "%SPP_AppData%", IOPath.AppDataDirectory },
-                { "%Documents%", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) },
-                { "%Music%", Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) },
-                { "%Pictures%", Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) },
-                { "%Videos%", Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) },
-                { "%StartMenu%", Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) },
-                { "%StartMenuProgramData%", Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs")) },
-                { "%StartMenuAppData%", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs") }
-            };
+        {
+            { EnvVarNames.MyDocuments, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) },
+            { EnvVarNames.MyMusic, Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) },
+            { EnvVarNames.MyPictures, Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) },
+            { EnvVarNames.MyVideos, Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) },
+            { EnvVarNames.StartMenu, Environment.GetFolderPath(Environment.SpecialFolder.StartMenu) },
+            { EnvVarNames.StartMenuProgramData, Environment.ExpandEnvironmentVariables(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "Programs")) },
+            { EnvVarNames.StartMenuAppData, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs") },
+        };
+
+        if (addAppDataDirectory)
+        {
+            if (string.IsNullOrEmpty(appDataDirectory))
+                appDataDirectory = AppDataDirectory;
+            variables.Add(EnvVarNames.AppData, appDataDirectory);
+        }
+
+        if (addCacheDirectory)
+        {
+            if (string.IsNullOrEmpty(cacheDirectory))
+                cacheDirectory = CacheDirectory;
+            variables.Add(EnvVarNames.Cache, cacheDirectory);
+        }
+
+        action?.Invoke(variables);
 
         foreach (var (k, v) in variables)
             path = path.Replace(k, v);
 
         if (!string.IsNullOrEmpty(platformFolder))
-            path = path.Replace("%Platform_Folder%", platformFolder);
+            path = path.Replace(EnvVarNames.PlatformFolder, platformFolder);
 
         return Environment.ExpandEnvironmentVariables(path);
     }

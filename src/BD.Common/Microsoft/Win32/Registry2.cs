@@ -3,6 +3,7 @@ namespace Microsoft.Win32;
 
 public static partial class Registry2
 {
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable CA1416 // 验证平台兼容性
 
     public const RegistryView DefaultRegistryView = RegistryView.Default;
@@ -22,7 +23,9 @@ public static partial class Registry2
         "HKPD" => RegistryHive.PerformanceData,
         _ => default,
     };
+
 #pragma warning restore CA1416 // 验证平台兼容性
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 
 #if WINDOWS
 
@@ -31,7 +34,6 @@ public static partial class Registry2
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    [SupportedOSPlatform("windows")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RegistryKey? GetRegistryKey(string hKey, RegistryView view = DefaultRegistryView)
     {
@@ -78,7 +80,6 @@ public static partial class Registry2
     /// </summary>
     /// <param name="encodedPath">HKXX\\path:SubKey</param>
     /// <returns></returns>
-    [SupportedOSPlatform("windows")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object? ReadRegistryKey(
         string encodedPath,
@@ -105,7 +106,6 @@ public static partial class Registry2
     /// </summary>
     /// <param name="encodedPath">HKXX\\path:SubKey</param>
     /// <returns></returns>
-    [SupportedOSPlatform("windows")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryReadRegistryKey(string encodedPath, RegistryView view, [NotNullWhen(true)] out object? value)
     {
@@ -118,7 +118,6 @@ public static partial class Registry2
     /// </summary>
     /// <param name="encodedPath">HKXX\\path:SubKey</param>
     /// <returns></returns>
-    [SupportedOSPlatform("windows")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool TryReadRegistryKey(string encodedPath, [NotNullWhen(true)] out object? value)
     {
@@ -131,7 +130,6 @@ public static partial class Registry2
     /// </summary>
     /// <param name="encodedPath">HKXX\\path:subkey</param>
     /// <param name="value">Value, or empty to "clear"</param>
-    [SupportedOSPlatform("windows")]
     public static bool SetRegistryKey(
         string encodedPath,
         RegistryView view,
@@ -176,12 +174,10 @@ public static partial class Registry2
     /// </summary>
     /// <param name="encodedPath">HKXX\\path:subkey</param>
     /// <param name="value">Value, or empty to "clear"</param>
-    [SupportedOSPlatform("windows")]
     public static bool SetRegistryKey(
         string encodedPath,
         string? value = null) => SetRegistryKey(encodedPath, DefaultRegistryView, value);
 
-    [SupportedOSPlatform("windows")]
     public static bool DeleteRegistryKey(string encodedPath, RegistryView view = DefaultRegistryView)
     {
         var (rootKey, path, subKey) = ExplodeRegistryKey(encodedPath, view);
