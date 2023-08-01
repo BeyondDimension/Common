@@ -161,3 +161,262 @@ public enum ClientPlatform : long
     /// </summary>
     Win32StoreArm64 = 2147483648L,
 }
+
+public static class ClientPlatformExtensions
+{
+    #region Platform
+
+    // 未知
+    //const ClientPlatform Platform_Unknown =
+
+    // Microsoft Windows(Win32)
+    const ClientPlatform Platform_Windows =
+        ClientPlatform.Win32X86 |
+        ClientPlatform.Win32X64 |
+        ClientPlatform.Win32Arm64 |
+        ClientPlatform.Win32StoreX86 |
+        ClientPlatform.Win32StoreX64 |
+        ClientPlatform.Win32StoreArm64;
+
+    // Ubuntu / Debian / CentOS / Tizen
+    const ClientPlatform Platform_Linux =
+        ClientPlatform.LinuxX64 |
+        ClientPlatform.LinuxArm64 |
+        ClientPlatform.LinuxArm;
+
+    // Android Phone / Android Pad / WearOS(Android Wear) / Android TV
+    const ClientPlatform Platform_Android =
+        ClientPlatform.AndroidPhoneX64 |
+        ClientPlatform.AndroidPhoneX86 |
+        ClientPlatform.AndroidPhoneArm64 |
+        ClientPlatform.AndroidPhoneArm |
+        ClientPlatform.AndroidPadX64 |
+        ClientPlatform.AndroidPadX86 |
+        ClientPlatform.AndroidPadArm64 |
+        ClientPlatform.AndroidPadArm |
+        ClientPlatform.AndroidWearArm64 |
+        ClientPlatform.AndroidTVX64 |
+        ClientPlatform.AndroidTVX86 |
+        ClientPlatform.AndroidTVArm64 |
+        ClientPlatform.AndroidTVArm;
+
+    // iOS / iPadOS / watchOS / tvOS / macOS
+    const ClientPlatform Platform_Apple =
+        ClientPlatform.macOSX64 |
+        ClientPlatform.macOSArm64 |
+        ClientPlatform.iOSArm64 |
+        ClientPlatform.iPadOSArm64 |
+        ClientPlatform.watchOSArm64 |
+        ClientPlatform.tvOSArm64;
+
+    // Universal Windows Platform
+    const ClientPlatform Platform_UWP =
+        ClientPlatform.UWPX86 |
+        ClientPlatform.UWPX64 |
+        ClientPlatform.UWPArm64;
+
+    // Windows UI 库 (WinUI) 3
+    //const ClientPlatform Platform_WinUI =
+
+    #endregion Platform
+
+    #region ArchitectureFlags
+
+    // 于 Intel 的 32 位处理器体系结构
+    const ClientPlatform ArchitectureFlags_X86 =
+        ClientPlatform.Win32X86 |
+        ClientPlatform.AndroidPhoneX86 |
+        ClientPlatform.AndroidPadX86 |
+        ClientPlatform.AndroidTVX86 |
+        ClientPlatform.UWPX86 |
+        ClientPlatform.Win32StoreX86;
+
+    // 32 位 ARM 处理器体系结构
+    const ClientPlatform ArchitectureFlags_Arm =
+        ClientPlatform.LinuxArm |
+        ClientPlatform.AndroidPhoneArm |
+        ClientPlatform.AndroidPadArm |
+        ClientPlatform.AndroidTVArm;
+
+    // 基于 Intel 的 64 位处理器体系结构(AMD64)
+    const ClientPlatform ArchitectureFlags_X64 =
+        ClientPlatform.Win32X64 |
+        ClientPlatform.macOSX64 |
+        ClientPlatform.LinuxX64 |
+        ClientPlatform.AndroidPhoneX64 |
+        ClientPlatform.AndroidPadX64 |
+        ClientPlatform.AndroidTVX64 |
+        ClientPlatform.UWPX64 |
+        ClientPlatform.Win32StoreX64;
+
+    // 64 位 ARM 处理器体系结构
+    const ClientPlatform ArchitectureFlags_Arm64 =
+        ClientPlatform.Win32Arm64 |
+        ClientPlatform.macOSArm64 |
+        ClientPlatform.LinuxArm64 |
+        ClientPlatform.AndroidPhoneArm64 |
+        ClientPlatform.iOSArm64 |
+        ClientPlatform.iPadOSArm64 |
+        ClientPlatform.watchOSArm64 |
+        ClientPlatform.tvOSArm64 |
+        ClientPlatform.AndroidPadArm64 |
+        ClientPlatform.AndroidWearArm64 |
+        ClientPlatform.AndroidTVArm64 |
+        ClientPlatform.UWPArm64 |
+        ClientPlatform.Win32StoreArm64;
+
+    // const ClientPlatform ArchitectureFlags_Wasm =
+    // const ClientPlatform ArchitectureFlags_S390x =
+    // const ClientPlatform ArchitectureFlags_LoongArch64 =
+    // const ClientPlatform ArchitectureFlags_Armv6 =
+    // const ClientPlatform ArchitectureFlags_Ppc64le =
+
+    #endregion ArchitectureFlags
+
+    #region DeviceIdiom
+
+    // 未知
+    //const ClientPlatform DeviceIdiom_Unknown =
+
+    // 手机
+    const ClientPlatform DeviceIdiom_Phone =
+        ClientPlatform.AndroidPhoneX64 |
+        ClientPlatform.AndroidPhoneX86 |
+        ClientPlatform.AndroidPhoneArm64 |
+        ClientPlatform.AndroidPhoneArm |
+        ClientPlatform.iOSArm64;
+
+    // 平板电脑
+    const ClientPlatform DeviceIdiom_Tablet =
+        ClientPlatform.iPadOSArm64 |
+        ClientPlatform.AndroidPadX64 |
+        ClientPlatform.AndroidPadX86 |
+        ClientPlatform.AndroidPadArm64 |
+        ClientPlatform.AndroidPadArm;
+
+    // 桌面
+    const ClientPlatform DeviceIdiom_Desktop =
+        ClientPlatform.Win32X86 |
+        ClientPlatform.Win32X64 |
+        ClientPlatform.Win32Arm64 |
+        ClientPlatform.Win32StoreX86 |
+        ClientPlatform.Win32StoreX64 |
+        ClientPlatform.Win32StoreArm64 |
+        ClientPlatform.UWPX86 |
+        ClientPlatform.UWPX64 |
+        ClientPlatform.UWPArm64 |
+        ClientPlatform.macOSX64 |
+        ClientPlatform.macOSArm64 |
+        ClientPlatform.LinuxX64 |
+        ClientPlatform.LinuxArm64 |
+        ClientPlatform.LinuxArm;
+
+    // 电视
+    const ClientPlatform DeviceIdiom_TV =
+        ClientPlatform.tvOSArm64 |
+        ClientPlatform.AndroidTVX64 |
+        ClientPlatform.AndroidTVX86 |
+        ClientPlatform.AndroidTVArm64 |
+        ClientPlatform.AndroidTVArm;
+
+    // 手表
+    const ClientPlatform DeviceIdiom_Watch =
+        ClientPlatform.watchOSArm64 |
+        ClientPlatform.AndroidWearArm64;
+
+    #endregion DeviceIdiom
+
+    public static Platform ToPlatform(this ClientPlatform source)
+    {
+        Platform result = default;
+        foreach (var item in Enum2.FlagsSplit(source))
+        {
+            if (Platform_Windows.HasFlag(item)) result |= Platform.Windows;
+            if (Platform_Linux.HasFlag(item)) result |= Platform.Linux;
+            if (Platform_Android.HasFlag(item)) result |= Platform.Android;
+            if (Platform_Apple.HasFlag(item)) result |= Platform.Apple;
+            if (Platform_UWP.HasFlag(item)) result |= Platform.UWP;
+        }
+        return result != default ? result : Platform.Unknown;
+    }
+
+    public static ArchitectureFlags ToArchitectureFlags(this ClientPlatform source)
+    {
+        ArchitectureFlags result = default;
+        foreach (var item in Enum2.FlagsSplit(source))
+        {
+            if (ArchitectureFlags_X86.HasFlag(item)) result |= ArchitectureFlags.X86;
+            if (ArchitectureFlags_Arm.HasFlag(item)) result |= ArchitectureFlags.Arm;
+            if (ArchitectureFlags_X64.HasFlag(item)) result |= ArchitectureFlags.X64;
+            if (ArchitectureFlags_Arm64.HasFlag(item)) result |= ArchitectureFlags.Arm64;
+        }
+        return result != default ? result : default;
+    }
+
+    public static DeviceIdiom ToDeviceIdiom(this ClientPlatform source)
+    {
+        DeviceIdiom result = default;
+        foreach (var item in Enum2.FlagsSplit(source))
+        {
+            if (DeviceIdiom_Phone.HasFlag(item)) result |= DeviceIdiom.Phone;
+            if (DeviceIdiom_Tablet.HasFlag(item)) result |= DeviceIdiom.Tablet;
+            if (DeviceIdiom_Desktop.HasFlag(item)) result |= DeviceIdiom.Desktop;
+            if (DeviceIdiom_TV.HasFlag(item)) result |= DeviceIdiom.TV;
+            if (DeviceIdiom_Watch.HasFlag(item)) result |= DeviceIdiom.Watch;
+        }
+        return result != default ? result : DeviceIdiom.Unknown;
+    }
+
+    public static ClientPlatform ToClientPlatform(this ArchitectureFlags source)
+    {
+        ClientPlatform result = default;
+        foreach (var item in Enum2.FlagsSplit(source))
+        {
+            result |= item switch
+            {
+                ArchitectureFlags.Arm64 => ArchitectureFlags_Arm64,
+                ArchitectureFlags.X86 => ArchitectureFlags_X86,
+                ArchitectureFlags.Arm => ArchitectureFlags_Arm,
+                ArchitectureFlags.X64 => ArchitectureFlags_X64,
+                _ => default,
+            };
+        }
+        return result;
+    }
+
+    public static ClientPlatform ToClientPlatform(this Platform source)
+    {
+        ClientPlatform result = default;
+        foreach (var item in Enum2.FlagsSplit(source))
+        {
+            result |= item switch
+            {
+                Platform.Windows => Platform_Windows,
+                Platform.Linux => Platform_Linux,
+                Platform.Android => Platform_Android,
+                Platform.Apple => Platform_Apple,
+                Platform.UWP => Platform_UWP,
+                _ => default
+            };
+        }
+        return result;
+    }
+
+    public static ClientPlatform ToClientPlatform(this DeviceIdiom source)
+    {
+        ClientPlatform result = default;
+        foreach (var item in Enum2.FlagsSplit(source))
+        {
+            result |= item switch
+            {
+                DeviceIdiom.TV => DeviceIdiom_TV,
+                DeviceIdiom.Phone => DeviceIdiom_Phone,
+                DeviceIdiom.Tablet => DeviceIdiom_Tablet,
+                DeviceIdiom.Desktop => DeviceIdiom_Desktop,
+                DeviceIdiom.Watch => DeviceIdiom_Watch,
+                _ => default
+            };
+        }
+        return result;
+    }
+}
