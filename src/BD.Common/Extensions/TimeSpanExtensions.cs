@@ -11,7 +11,7 @@ public static partial class TimeSpanExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToDisplayString(this TimeSpan timeSpan)
     {
-        var result = $"{Math.Floor(timeSpan.TotalHours)}:{timeSpan.Minutes}:{timeSpan.Seconds}";
+        var result = $"{Math.Floor(timeSpan.TotalHours):00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}";
         return result;
     }
 }
