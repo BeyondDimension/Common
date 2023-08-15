@@ -21,7 +21,7 @@ partial class IOPath
     {
         try
         {
-            return !Directory.EnumerateFiles(pszPath).Any();
+            return !Directory.EnumerateFileSystemEntries(pszPath).Any();
         }
         catch (DirectoryNotFoundException)
         {
