@@ -25,6 +25,16 @@ partial class FileFormat
             return !second.Where((t, i) => !equatable(first[i], t)).Any();
         }
 
+        static bool SequenceEqual<T>(
+            ReadOnlyMemory<byte> first,
+            IReadOnlyCollection<T> second,
+            Func<byte, T, bool> equatable)
+        {
+            if (second == null) return false;
+            if (first.Length < second.Count) return false;
+            return !second.Where((t, i) => !equatable(first.Span[i], t)).Any();
+        }
+
         static bool Equals(byte left, byte right) => left.Equals(right);
 
         static bool Equals(byte left, byte? right) => !right.HasValue || left.Equals(right);
@@ -37,6 +47,16 @@ partial class FileFormat
             => seconds.Any(second => SequenceEqual(first, second));
 
         public static bool SequenceEqual(IReadOnlyList<byte> first, IEnumerable<IReadOnlyCollection<byte?>> seconds)
+            => seconds.Any(second => SequenceEqual(first, second));
+
+        public static bool SequenceEqual(ReadOnlyMemory<byte> first, IReadOnlyCollection<byte?> second) => SequenceEqual(first, second, Equals);
+
+        public static bool SequenceEqual(ReadOnlyMemory<byte> first, IReadOnlyCollection<byte> second) => SequenceEqual(first, second, Equals);
+
+        public static bool SequenceEqual(ReadOnlyMemory<byte> first, IEnumerable<IReadOnlyCollection<byte>> seconds)
+            => seconds.Any(second => SequenceEqual(first, second));
+
+        public static bool SequenceEqual(ReadOnlyMemory<byte> first, IEnumerable<IReadOnlyCollection<byte?>> seconds)
             => seconds.Any(second => SequenceEqual(first, second));
 
         public static byte[] ReadHeaderBuffer(Stream stream, int length, bool resetPosition = true)
@@ -122,6 +142,53 @@ partial class FileFormat
                     buffer = ReadHeaderBuffer(stream, byteArrayArrayNullable.Max(x => x.Count));
                 }
                 result = SequenceEqual(buffer, byteArrayArrayNullable);
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
+        null_ex: throw new ArgumentNullException(nameof(stream), "stream or buffer one must be non null.");
+        }
+
+        public static bool Match(object magicNumber, ReadOnlyMemory<byte>? buffer, Stream? stream)
+        {
+            bool result;
+            if (magicNumber is IReadOnlyCollection<byte> byteArray)
+            {
+                if (!buffer.HasValue)
+                {
+                    if (stream == null) goto null_ex;
+                    buffer = ReadHeaderBuffer(stream, byteArray.Count);
+                }
+                result = SequenceEqual(buffer.Value, byteArray);
+            }
+            else if (magicNumber is IReadOnlyCollection<byte?> byteArrayNullable)
+            {
+                if (!buffer.HasValue)
+                {
+                    if (stream == null) goto null_ex;
+                    buffer = ReadHeaderBuffer(stream, byteArrayNullable.Count);
+                }
+                result = SequenceEqual(buffer.Value, byteArrayNullable);
+            }
+            else if (magicNumber is IEnumerable<IReadOnlyCollection<byte>> byteArrayArray)
+            {
+                if (!buffer.HasValue)
+                {
+                    if (stream == null) goto null_ex;
+                    buffer = ReadHeaderBuffer(stream, byteArrayArray.Max(x => x.Count));
+                }
+                result = SequenceEqual(buffer.Value, byteArrayArray);
+            }
+            else if (magicNumber is IEnumerable<IReadOnlyCollection<byte?>> byteArrayArrayNullable)
+            {
+                if (!buffer.HasValue)
+                {
+                    if (stream == null) goto null_ex;
+                    buffer = ReadHeaderBuffer(stream, byteArrayArrayNullable.Max(x => x.Count));
+                }
+                result = SequenceEqual(buffer.Value, byteArrayArrayNullable);
             }
             else
             {

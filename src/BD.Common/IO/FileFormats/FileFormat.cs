@@ -59,8 +59,39 @@ public static partial class FileFormat
     /// 检查 二进制数据 是否为图片格式
     /// </summary>
     /// <param name="buffer"></param>
+    /// <param name="format"></param>
+    /// <returns></returns>
+    public static bool IsImage(ReadOnlyMemory<byte> buffer, out ImageFormat format)
+    {
+        foreach (var item in ImageFormats)
+        {
+            if (item.IsImage(buffer))
+            {
+                format = item;
+                return true;
+            }
+        }
+        format = 0;
+        return false;
+    }
+
+    /// <summary>
+    /// 检查 二进制数据 是否为图片格式
+    /// </summary>
+    /// <param name="buffer"></param>
     /// <returns></returns>
     public static (bool isImage, ImageFormat format) IsImage(IReadOnlyList<byte> buffer)
+    {
+        var isImage = IsImage(buffer, out var format);
+        return (isImage, format);
+    }
+
+    /// <summary>
+    /// 检查 二进制数据 是否为图片格式
+    /// </summary>
+    /// <param name="buffer"></param>
+    /// <returns></returns>
+    public static (bool isImage, ImageFormat format) IsImage(ReadOnlyMemory<byte> buffer)
     {
         var isImage = IsImage(buffer, out var format);
         return (isImage, format);
@@ -75,7 +106,7 @@ public static partial class FileFormat
     public static bool IsImage(Stream stream, out ImageFormat format)
     {
         var length = imgFileMagicNums.Values.Max(MagicNumber.GetLength);
-        var buffer = MagicNumber.ReadHeaderBuffer(stream, length);
+        IReadOnlyList<byte> buffer = MagicNumber.ReadHeaderBuffer(stream, length);
         foreach (var item in imgFileMagicNums)
         {
             if (MagicNumber.Match(item.Value, buffer, null))
@@ -108,10 +139,21 @@ public static partial class FileFormat
         => MagicNumber.SequenceEqual(buffer, DataBaseFileFormat.SQLite3.MagicNumber);
 
     /// <summary>
+    /// 检查 二进制数据 是否为 SQLite3 数据库文件
+    /// </summary>
+    /// <param name="buffer"></param>
+    /// <returns></returns>
+    public static bool IsSQLite3(ReadOnlyMemory<byte> buffer)
+        => MagicNumber.SequenceEqual(buffer, DataBaseFileFormat.SQLite3.MagicNumber);
+
+    /// <summary>
     /// 检查 流中的数据 是否为 SQLite3 数据库文件
     /// </summary>
     /// <param name="stream"></param>
     /// <returns></returns>
     public static bool IsSQLite3(Stream stream)
-        => IsSQLite3(MagicNumber.ReadHeaderBuffer(stream, DataBaseFileFormat.SQLite3.MagicNumber.Length));
+    {
+        IReadOnlyList<byte> buffer = MagicNumber.ReadHeaderBuffer(stream, DataBaseFileFormat.SQLite3.MagicNumber.Length);
+        return IsSQLite3(buffer);
+    }
 }

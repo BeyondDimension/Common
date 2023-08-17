@@ -129,6 +129,10 @@ public static partial class FileEx
     /// </summary>
     public const string Reg = ".reg";
 
+    public const string SQLite = ".sqlite";
+
+    public const string Database = ".db";
+
     /// <summary>
     /// 是否支持使用文本阅读器打开的扩展名
     /// </summary>

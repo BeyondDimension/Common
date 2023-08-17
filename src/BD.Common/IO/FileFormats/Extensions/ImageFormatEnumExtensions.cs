@@ -112,6 +112,18 @@ public static partial class ImageFormatEnumExtensions
     }
 
     /// <summary>
+    /// 检查 二进制数据 是否为指定的图片格式
+    /// </summary>
+    /// <param name="imageFormat"></param>
+    /// <param name="buffer"></param>
+    /// <returns></returns>
+    public static bool IsImage(this ImageFormat imageFormat, ReadOnlyMemory<byte> buffer)
+    {
+        var magicNumber = imageFormat.GetMagicNumber();
+        return FileFormat.MagicNumber.Match(magicNumber, buffer, null);
+    }
+
+    /// <summary>
     /// 检查 流中的数据 是否为指定的图片格式
     /// </summary>
     /// <param name="imageFormat"></param>
@@ -120,6 +132,7 @@ public static partial class ImageFormatEnumExtensions
     public static bool IsImage(this ImageFormat imageFormat, Stream stream)
     {
         var magicNumber = imageFormat.GetMagicNumber();
-        return FileFormat.MagicNumber.Match(magicNumber, null, stream);
+        return FileFormat.MagicNumber.Match(magicNumber,
+            (IReadOnlyList<byte>?)null, stream);
     }
 }
