@@ -11,11 +11,13 @@ public static partial class Ioc
 
     internal static bool IsConfigured => value != null;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Dispose()
     {
         if (value is IDisposable disposable) disposable.Dispose();
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async ValueTask DisposeAsync()
     {
         if (value is IAsyncDisposable disposable) await disposable.DisposeAsync();
@@ -26,6 +28,7 @@ public static partial class Ioc
     /// 初始化依赖注入服务组(通过配置服务项的方式)
     /// </summary>
     /// <param name="configureServices"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void ConfigureServices(Action<IServiceCollection> configureServices)
     {
         var services = new ServiceCollection();
@@ -37,6 +40,7 @@ public static partial class Ioc
     /// 初始化依赖注入服务组(直接赋值)
     /// </summary>
     /// <param name="serviceProvider"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void ConfigureServices(IServiceProvider serviceProvider)
     {
         Interlocked.CompareExchange(ref value, serviceProvider, null);
@@ -46,6 +50,7 @@ public static partial class Ioc
 
 #if !NOT_DI
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static Exception GetDIGetFailException(Type serviceType)
     {
         var msg = $"DI.Get* fail, serviceType: {serviceType}";
@@ -53,56 +58,180 @@ public static partial class Ioc
         return new(msg);
     }
 
+    public delegate object? FallbackDelegate(Type serviceType, bool required);
+
+    /// <summary>
+    /// 设置获取依赖注入服务自定义回退实现
+    /// </summary>
+    public static FallbackDelegate? Fallback { private get; set; }
+
     /// <summary>
     /// 获取依赖注入服务
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T Get<T>() where T : notnull
     {
         if (value == null)
         {
+            if (Fallback != null)
+            {
+                if (Fallback(typeof(T), true) is T t)
+                {
+                    return t;
+                }
+            }
             throw GetDIGetFailException(typeof(T));
         }
-        return value.GetRequiredService<T>();
+        try
+        {
+            return value.GetRequiredService<T>();
+        }
+        catch
+        {
+            if (Fallback != null)
+            {
+                if (Fallback(typeof(T), true) is T t)
+                {
+                    return t;
+                }
+            }
+            throw;
+        }
     }
 
     /// <inheritdoc cref="Get{T}"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T? Get_Nullable<T>() where T : notnull
     {
-        if (value == null) return default;
+        if (value == null)
+        {
+            if (Fallback != null)
+            {
+                if (Fallback(typeof(T), false) is T t)
+                {
+                    return t;
+                }
+            }
+            return default;
+        }
+        T? r = default;
         try
         {
-            return value.GetService<T>();
+            r = value.GetService<T>();
         }
         catch (ObjectDisposedException)
         {
             return default;
         }
+        catch
+        {
+            if (Fallback != null)
+            {
+                if (Fallback(typeof(T), false) is T t)
+                {
+                    return t;
+                }
+            }
+            throw;
+        }
+        if (r is null)
+        {
+            if (Fallback != null)
+            {
+                if (Fallback(typeof(T), false) is T t)
+                {
+                    return t;
+                }
+            }
+        }
+        return r;
     }
 
     /// <inheritdoc cref="Get{T}"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object Get(Type serviceType)
     {
         if (value == null)
         {
+            if (Fallback != null)
+            {
+                var t = Fallback(serviceType, true);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
             throw GetDIGetFailException(serviceType);
         }
-        return value.GetRequiredService(serviceType);
+        try
+        {
+            return value.GetRequiredService(serviceType);
+        }
+        catch
+        {
+            if (Fallback != null)
+            {
+                var t = Fallback(serviceType, true);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+            throw;
+        }
     }
 
     /// <inheritdoc cref="Get_Nullable{T}"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object? Get_Nullable(Type serviceType)
     {
-        if (value == null) return default;
+        if (value == null)
+        {
+            if (Fallback != null)
+            {
+                var t = Fallback(serviceType, false);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+            return default;
+        }
+        object? r = default;
         try
         {
-            return value.GetService(serviceType);
+            r = value.GetService(serviceType);
         }
         catch (ObjectDisposedException)
         {
             return default;
         }
+        catch
+        {
+            if (Fallback != null)
+            {
+                var t = Fallback(serviceType, false);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+            throw;
+        }
+        if (r is null)
+        {
+            if (Fallback != null)
+            {
+                var t = Fallback(serviceType, false);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+        }
+        return r;
     }
 
     public static IServiceScope CreateScope()
