@@ -15,7 +15,7 @@ public static partial class Encoding2
         => Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
     /// <summary>
-    /// 获取 GB 2312 编码
+    /// 获取 GB2312 编码
     /// </summary>
     /// <returns></returns>
     public static Encoding GB2312 => GB2312_;

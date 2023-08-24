@@ -68,20 +68,22 @@ public abstract class Repository<[DynamicallyAccessedMembers(IEntity.Dynamically
     public virtual async Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
-        var rowCount = await AttemptAndRetry(t =>
+        var r = await AttemptAndRetry(async t =>
         {
             t.ThrowIfCancellationRequested();
             var primaryKey = GetPrimaryKey(entity);
             if (IRepository<TEntity, TPrimaryKey>.IsDefault(primaryKey))
             {
-                return dbConnection.InsertAsync(entity);
+                var rowCount = await dbConnection.InsertAsync(entity);
+                return (rowCount, DbRowExecResult.Insert);
             }
             else
             {
-                return dbConnection.InsertOrReplaceAsync(entity);
+                var rowCount = await dbConnection.InsertOrReplaceAsync(entity);
+                return (rowCount, DbRowExecResult.Update);
             }
         }, cancellationToken: cancellationToken).ConfigureAwait(false);
-        return (rowCount, DbRowExecResult.InsertOrUpdate);
+        return r;
     }
 
     #endregion

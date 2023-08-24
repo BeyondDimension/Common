@@ -29,9 +29,4 @@ public enum DbRowExecResult : byte
     /// 删除
     /// </summary>
     Delete,
-
-    /// <summary>
-    /// 插入或更新
-    /// </summary>
-    InsertOrUpdate,
 }
