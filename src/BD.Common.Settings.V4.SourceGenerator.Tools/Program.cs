@@ -183,9 +183,20 @@ static void SourceGenerator_Class(string name, Stream s, string @namespace, Sett
             order++;
             s.Write("    public "u8);
             s.Write(item.TypeName);
-            s.Write("? "u8);
+            if (item.TypeName == "string" || !item.GetIsValueType())
+            {
+                s.Write("? "u8);
+            }
+            else
+            {
+                s.Write(" "u8);
+            }
             s.Write(item.PropertyName);
-            s.Write(" { get; set; }\r\n\r\n"u8);
+            s.Write(" { get; set; } = I"u8);
+            s.Write(classNameTrim);
+            s.Write(".Default"u8);
+            s.Write(item.PropertyName);
+            s.Write(";\r\n\r\n"u8);
         }
     }
 
@@ -298,6 +309,8 @@ static void SourceGenerator_Class(string name, Stream s, string @namespace, Sett
     }
 
     s.Write("}\r\n"u8);
+    s.SetLength(s.Position);
+    s.Flush();
 
 #if DEBUG
     var str = Encoding.UTF8.GetString(s.ToByteArray());
@@ -342,6 +355,7 @@ static void SourceGenerator_Interface(string name, Stream s, string @namespace, 
     s.Write(classNameTrim);
     s.Write(">>()?.CurrentValue;\r\n\r\n"u8);
 
+    Action? writeDefaultValue = null;
     foreach (var item in metadata.Properties)
     {
         if (item.IsRegionOrEndregion.HasValue)
@@ -378,37 +392,51 @@ static void SourceGenerator_Interface(string name, Stream s, string @namespace, 
             s.Write("\r\n    /// </summary>\r\n"u8);
             s.Write("    "u8);
             s.Write(typeName);
-            s.Write("? "u8);
-            s.Write(propertyName);
-            s.Write(" { get; set; }\r\n\r\n"u8);
-
-            s.Write("    /// <summary>\r\n    /// "u8);
-            s.Write(summary);
-            s.Write("的默认值");
-            s.Write("\r\n    /// </summary>\r\n"u8);
-            if (item.DefaultValueIsConst)
+            if (item.TypeName == "string" || !item.GetIsValueType())
             {
-                s.Write("    const "u8);
+                s.Write("? "u8);
             }
             else
             {
-                s.Write("    static readonly "u8);
+                s.Write(" "u8);
             }
-            s.Write(typeName);
-            if ((item.DefaultValueIsNullable.HasValue && item.DefaultValueIsNullable.Value)
-                || (!item.GetIsValueType() && item.DefaultValue == "null"))
-            {
-                s.Write("?"u8);
-            }
-            s.Write(" Default"u8);
             s.Write(propertyName);
-            s.Write(" = "u8);
-            s.Write(item.DefaultValue);
-            s.Write(";\r\n\r\n"u8);
+            s.Write(" { get; set; }\r\n\r\n"u8);
+
+            writeDefaultValue += () =>
+            {
+                s.Write("    /// <summary>\r\n    /// "u8);
+                s.Write(summary);
+                s.Write("的默认值");
+                s.Write("\r\n    /// </summary>\r\n"u8);
+                if (item.DefaultValueIsConst)
+                {
+                    s.Write("    const "u8);
+                }
+                else
+                {
+                    s.Write("    static readonly "u8);
+                }
+                s.Write(typeName);
+                if ((item.DefaultValueIsNullable.HasValue && item.DefaultValueIsNullable.Value)
+                    || (!item.GetIsValueType() && item.DefaultValue == "null"))
+                {
+                    s.Write("?"u8);
+                }
+                s.Write(" Default"u8);
+                s.Write(propertyName);
+                s.Write(" = "u8);
+                s.Write(item.DefaultValue);
+                s.Write(";\r\n\r\n"u8);
+            };
         }
     }
 
+    writeDefaultValue?.Invoke();
+
     s.Write("}\r\n"u8);
+    s.SetLength(s.Position);
+    s.Flush();
 
 #if DEBUG
     var str = Encoding.UTF8.GetString(s.ToByteArray());
