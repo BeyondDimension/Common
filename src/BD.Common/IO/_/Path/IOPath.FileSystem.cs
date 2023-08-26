@@ -79,7 +79,19 @@ partial class IOPath
     /// </summary>
     /// <param name="filePath">要删除的文件路径</param>
     /// <param name="millisecondsDelay">延时等待的毫秒数</param>
+    [Obsolete("use TryDeleteInDelayAsync")]
     public static async void TryDeleteInDelay(string filePath, int millisecondsDelay = 9000)
+    {
+        await Task.Delay(millisecondsDelay);
+        FileTryDelete(filePath);
+    }
+
+    /// <summary>
+    /// 尝试延时一段时间后删除文件
+    /// </summary>
+    /// <param name="filePath">要删除的文件路径</param>
+    /// <param name="millisecondsDelay">延时等待的毫秒数</param>
+    public static async Task TryDeleteInDelayAsync(string filePath, int millisecondsDelay = 9000)
     {
         await Task.Delay(millisecondsDelay);
         FileTryDelete(filePath);
@@ -92,6 +104,7 @@ partial class IOPath
     /// <param name="filePath">要删除的文件路径</param>
     /// <param name="millisecondsDelay">延时等待的毫秒数</param>
     /// <param name="processWaitMillisecondsDelay">启动的进程等待退出的毫秒数</param>
+    [Obsolete("use TryDeleteInDelayAsync")]
     public static void TryDeleteInDelay(Process? process, string filePath, int millisecondsDelay = 9000, int processWaitMillisecondsDelay = 9000)
     {
         if (process != null)
@@ -108,6 +121,35 @@ partial class IOPath
 
                 }
                 TryDeleteInDelay(filePath, millisecondsDelay);
+                return;
+            }
+        }
+        FileTryDelete(filePath);
+    }
+
+    /// <summary>
+    /// 启动进程后尝试延时一段时间后删除文件
+    /// </summary>
+    /// <param name="process">启动的进程</param>
+    /// <param name="filePath">要删除的文件路径</param>
+    /// <param name="millisecondsDelay">延时等待的毫秒数</param>
+    /// <param name="processWaitMillisecondsDelay">启动的进程等待退出的毫秒数</param>
+    public static async Task TryDeleteInDelayAsync(Process? process, string filePath, int millisecondsDelay = 9000, int processWaitMillisecondsDelay = 9000)
+    {
+        if (process != null)
+        {
+            var waitForExitResult = process.TryWaitForExit(processWaitMillisecondsDelay);
+            if (!waitForExitResult)
+            {
+                try
+                {
+                    process.KillEntireProcessTree();
+                }
+                catch
+                {
+
+                }
+                await TryDeleteInDelayAsync(filePath, millisecondsDelay);
                 return;
             }
         }
