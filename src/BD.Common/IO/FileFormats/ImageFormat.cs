@@ -11,7 +11,7 @@ namespace System.IO.FileFormats;
 public enum ImageFormat : byte
 {
     // ReSharper disable once InconsistentNaming
-    // 此枚举中禁止出现值为0的
+    // 此枚举中禁止出现值为 0 的
 
     /// <summary>
     /// BMP取自位图Bitmap的缩写，也称为DIB（与设备无关的位图），是一种与显示器无关的位图数字图像文件格式。常见于 Microsoft Windows 和 OS/2 操作系统，Windows GDI API内部使用的DIB数据结构与 BMP 文件格式几乎相同。

@@ -22,7 +22,7 @@ public partial interface IRegistryService
     /// <param name="path"></param>
     /// <param name="contents"></param>
     /// <param name="millisecondsDelay"></param>
-    void StartProcessRegedit(
+    Task<byte> StartProcessRegeditAsync(
         string path,
         string contents,
         int millisecondsDelay = 3700);
@@ -52,7 +52,7 @@ sealed class DefaultRegistryService : IRegistryService
         return Registry2.SetRegistryKey(encodedPath, view, value);
     }
 
-    void IRegistryService.StartProcessRegedit(string path, string contents, int millisecondsDelay)
+    Task<byte> IRegistryService.StartProcessRegeditAsync(string path, string contents, int millisecondsDelay)
     {
         // 仅在 https://github.com/BeyondDimension/SteamTools 上实现
         throw new NotImplementedException();

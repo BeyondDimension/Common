@@ -43,6 +43,8 @@ public static class ImageSource
 
         public Stream OriginStream { get; }
 
+        public ImageFormat Format { get; init; }
+
         /// <inheritdoc cref="FileStream.Name"/>
         public string Name
         {
@@ -119,14 +121,48 @@ public static class ImageSource
             GC.SuppressFinalize(this);
         }
 
-        [return: NotNullIfNotNull("stream")]
-        public static implicit operator ClipStream?(Stream? stream) => stream == null ? null : new(stream);
+        public static implicit operator ClipStream?(Stream? stream)
+        {
+            if (stream == null) return null;
+            if (stream.CanSeek)
+            {
+                if (FileFormat.IsImage(stream, out var imageFormat))
+                {
+                    return new(stream)
+                    {
+                        Format = imageFormat,
+                    };
+                }
+                return null;
+            }
+            return new(stream);
+        }
 
         public static implicit operator ClipStream?(string? filePath)
         {
             FileStreamWrapper? wrapper = filePath;
-            ClipStream? clipStream = wrapper;
-            return clipStream;
+            if (wrapper == null) return null;
+
+            try
+            {
+                using var fs = new FileStream(filePath!,
+                    FileMode.Open,
+                    FileAccess.Read,
+                    IOPath.FileShareReadWriteDelete);
+                if (FileFormat.IsImage(fs, out var imageFormat))
+                {
+                    return new(wrapper)
+                    {
+                        Format = imageFormat,
+                    };
+                }
+            }
+            catch
+            {
+
+            }
+
+            return null;
         }
     }
 
@@ -158,7 +194,7 @@ public static class ImageSource
     /// <summary>
     /// 将图片文件本地路径或资源路径转为图像源
     /// </summary>
-    /// <param name="filePathOrResUri"></param>
+    /// <param name="imageStream"></param>
     /// <param name="isCircle">是否为圆形</param>
     /// <param name="config">图像可配置选项</param>
     /// <returns></returns>
@@ -200,15 +236,5 @@ public static class ImageSource
             config?.Invoke(clipStream);
         }
         return clipStream;
-    }
-
-    public static bool IsImage(string extension)
-    {
-        return string.Equals(extension, FileEx.JPG, StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(extension, FileEx.JPEG, StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(extension, FileEx.PNG, StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(extension, FileEx.WEBP, StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(extension, FileEx.HEIC, StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(extension, FileEx.HEIF, StringComparison.OrdinalIgnoreCase);
     }
 }
