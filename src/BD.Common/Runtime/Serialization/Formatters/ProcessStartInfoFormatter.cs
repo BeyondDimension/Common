@@ -121,6 +121,21 @@ public readonly partial record struct ProcessStartInfoPackable
         {
             psi.Arguments = value.Arguments;
         }
+        var environment = value.Environment;
+        if (environment != default)
+        {
+            foreach (var item in environment)
+            {
+                if (psi.Environment.ContainsKey(item.Key))
+                {
+                    psi.Environment[item.Key] = item.Value;
+                }
+                else
+                {
+                    psi.Environment.Add(item);
+                }
+            }
+        }
         return psi;
     }
 
@@ -137,7 +152,7 @@ public readonly partial record struct ProcessStartInfoPackable
             value.RedirectStandardInput,
             value.RedirectStandardError,
             OperatingSystem.IsWindows() ? value.PasswordInClearText : default,
-            OperatingSystem.IsWindows() ? value.LoadUserProfile : default,
+            OperatingSystem.IsWindows() && value.LoadUserProfile,
             value.FileName,
             value.ErrorDialogParentHandle,
             value.ErrorDialog,
