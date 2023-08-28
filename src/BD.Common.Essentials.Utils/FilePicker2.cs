@@ -37,7 +37,7 @@ public static partial class FilePicker2
             }
             else if (e.GetType().Name == "PermissionException")
             {
-                Toast.Show(e.Message); // Xamarin.Essentials.PermissionException
+                Toast.Show(ToastIcon.Error, e.Message); // Xamarin.Essentials.PermissionException
                 return null;
             }
             else
@@ -56,7 +56,7 @@ public static partial class FilePicker2
     /// <param name="fileTypes"></param>
     /// <param name="title"></param>
     /// <returns></returns>
-    public static async Task PickAsync(Action<string> action, FilePickerFileType? fileTypes = null, string? title = null)
+    public static async Task PickAsync(Action<string> action, IFilePickerFileType? fileTypes = null, string? title = null)
     {
         title ??= AssemblyTrademark;
         try
@@ -92,7 +92,7 @@ public static partial class FilePicker2
             }
             else if (e.GetType().Name == "PermissionException")
             {
-                Toast.Show(e.Message); // Xamarin.Essentials.PermissionException
+                Toast.Show(ToastIcon.Error, e.Message); // Xamarin.Essentials.PermissionException
                 return;
             }
             else
@@ -109,7 +109,7 @@ public static partial class FilePicker2
     /// <param name="fileTypes"></param>
     /// <param name="title"></param>
     /// <returns></returns>
-    public static async Task PickAsync(Func<string, Task> func, FilePickerFileType? fileTypes = null, string? title = null)
+    public static async Task PickAsync(Func<string, Task> func, IFilePickerFileType? fileTypes = null, string? title = null)
     {
         title ??= AssemblyTrademark;
         try
@@ -145,7 +145,7 @@ public static partial class FilePicker2
             }
             else if (e.GetType().Name == "PermissionException")
             {
-                Toast.Show(e.Message); // Xamarin.Essentials.PermissionException
+                Toast.Show(ToastIcon.Error, e.Message); // Xamarin.Essentials.PermissionException
                 return;
             }
             else
@@ -181,7 +181,7 @@ public static partial class FilePicker2
             }
             else if (e.GetType().Name == "PermissionException")
             {
-                Toast.Show(e.Message); // Xamarin.Essentials.PermissionException
+                Toast.Show(ToastIcon.Error, e.Message); // Xamarin.Essentials.PermissionException
                 return null;
             }
             else
@@ -198,7 +198,7 @@ public static partial class FilePicker2
     /// <param name="fileTypes"></param>
     /// <param name="title"></param>
     /// <returns></returns>
-    public static async Task PickMultipleAsync(Action<IEnumerable<string>?> action, FilePickerFileType? fileTypes = null, string? title = null)
+    public static async Task PickMultipleAsync(Action<IEnumerable<string>?> action, IFilePickerFileType? fileTypes = null, string? title = null)
     {
         title ??= AssemblyTrademark;
         try
@@ -234,7 +234,7 @@ public static partial class FilePicker2
             }
             else if (e.GetType().Name == "PermissionException")
             {
-                Toast.Show(e.Message); // Xamarin.Essentials.PermissionException
+                Toast.Show(ToastIcon.Error, e.Message); // Xamarin.Essentials.PermissionException
                 return;
             }
             else
@@ -251,7 +251,7 @@ public static partial class FilePicker2
     /// <param name="fileTypes"></param>
     /// <param name="title"></param>
     /// <returns></returns>
-    public static async Task PickMultipleAsync(Func<IEnumerable<string>?, Task> func, FilePickerFileType? fileTypes = null, string? title = null)
+    public static async Task PickMultipleAsync(Func<IEnumerable<string>?, Task> func, IFilePickerFileType? fileTypes = null, string? title = null)
     {
         title ??= AssemblyTrademark;
         try
@@ -287,7 +287,7 @@ public static partial class FilePicker2
             }
             else if (e.GetType().Name == "PermissionException")
             {
-                Toast.Show(e.Message); // Xamarin.Essentials.PermissionException
+                Toast.Show(ToastIcon.Error, e.Message); // Xamarin.Essentials.PermissionException
                 return;
             }
             else
@@ -323,7 +323,7 @@ public static partial class FilePicker2
             }
             else if (e.GetType().Name == "PermissionException")
             {
-                Toast.Show(e.Message); // Xamarin.Essentials.PermissionException
+                Toast.Show(ToastIcon.Error, e.Message); // Xamarin.Essentials.PermissionException
                 return null;
             }
             else
