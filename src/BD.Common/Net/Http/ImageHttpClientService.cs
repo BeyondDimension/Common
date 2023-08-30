@@ -162,12 +162,22 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
         }
     }
 
+    public sealed class ImageHttpRequestMessage : HttpRequestMessage
+    {
+        public ImageHttpRequestMessage(HttpMethod method, [StringSyntax(StringSyntaxAttribute.Uri)] string requestUri) : base(method, requestUri)
+        {
+            OriginalRequestUri = requestUri;
+        }
+
+        public string OriginalRequestUri { get; }
+    }
+
     async Task<MemoryStream?> GetImageMemoryStreamCoreAsync(
         string requestUri,
         HttpHandlerCategory category = DefaultHttpHandlerCategory,
         CancellationToken cancellationToken = default)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+        var request = new ImageHttpRequestMessage(HttpMethod.Get, requestUri);
         request.Headers.Accept.ParseAdd(http_helper.AcceptImages);
         request.Headers.UserAgent.ParseAdd(http_helper.UserAgent);
         var client = CreateClient(TAG, category);

@@ -27,6 +27,10 @@ public sealed class ImageHttpClientTest
         {
             TestContext.WriteLine($"key: {key}");
             TestContext.WriteLine($"key2: {UniqueKeyForRequest(request)}");
+            if (request is ImageHttpClientService.ImageHttpRequestMessage request2)
+            {
+                TestContext.WriteLine($"OriginalRequestUri: {request2.OriginalRequestUri}");
+            }
             using var client = new HttpClient();
             using var req = new HttpRequestMessage(request.Method, request.RequestUri);
             using var rsp = await client.SendAsync(req, ct);
