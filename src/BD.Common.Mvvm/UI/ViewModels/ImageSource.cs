@@ -216,6 +216,7 @@ public static class ImageSource
         string requestUri,
         bool isPolly = true,
         bool cache = false,
+        bool cacheFirst = false,
         HttpHandlerCategory category = HttpHandlerCategory.UserInitiated,
         bool isCircle = false,
         Action<ClipStream>? config = null,
@@ -225,7 +226,7 @@ public static class ImageSource
         if (imageHttpClientService == default)
             return default;
 
-        var imageMemoryStream = await imageHttpClientService.GetImageMemoryStreamAsync(requestUri, isPolly, cache, category, cancellationToken);
+        var imageMemoryStream = await imageHttpClientService.GetImageMemoryStreamAsync(requestUri, isPolly, cache, cacheFirst, category, cancellationToken);
         if (imageMemoryStream == default)
             return default;
 
