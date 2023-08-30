@@ -14,6 +14,36 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
     {
 
     }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+    static bool IsImageStream(Stream? s)
+    {
+        if (s == default) return false;
+
+        try
+        {
+            if (s.Length <= 4) return false;
+        }
+        catch
+        {
+
+        }
+
+        try
+        {
+            if (s.CanSeek)
+            {
+                if (!FileFormat.IsImage(s, out var _))
+                    return false;
+            }
+        }
+        catch
+        {
+
+        }
+
+        return true;
+    }
 
     public async Task<MemoryStream?> GetImageMemoryStreamAsync(
         string requestUri,
@@ -41,7 +71,17 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
         {
             // 如果缓存优先，则先从缓存中取
             response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
-            if (response != null) return response;
+            if (IsImageStream(response))
+                return response;
+
+            try
+            {
+                response?.Dispose();
+            }
+            catch
+            {
+
+            }
         }
 
         try
@@ -71,7 +111,19 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
             response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
         }
 
-        return response;
+        if (IsImageStream(response))
+            return response;
+
+        try
+        {
+            response?.Dispose();
+        }
+        catch
+        {
+
+        }
+
+        return null;
 
         async Task<MemoryStream?> _GetImageMemoryStreamCoreAsync(CancellationToken cancellationToken)
         {
