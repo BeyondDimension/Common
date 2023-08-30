@@ -14,8 +14,8 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
     {
 
     }
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsImageStream(Stream? s)
     {
         if (s == default) return false;
