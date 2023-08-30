@@ -19,6 +19,7 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
         string requestUri,
         bool isPolly = true,
         bool cache = false,
+        bool cacheFirst = false,
         HttpHandlerCategory category = DefaultHttpHandlerCategory,
         CancellationToken cancellationToken = default)
     {
@@ -35,16 +36,26 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
         }
 
         MemoryStream? response = null;
+
+        if (cacheFirst && category != HttpHandlerCategory.Offline && cache)
+        {
+            // 如果缓存优先，则先从缓存中取
+            response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
+            if (response != null) return response;
+        }
+
         try
         {
-            if (isPolly)
+            if (isPolly && category != HttpHandlerCategory.Offline)
             {
+                // 使用 Polly 尝试 numRetries 次进行网络请求，如果强行指定离线缓存，则不进行多次尝试
                 response = await Policy.HandleResult<MemoryStream?>(x => x == null)
                     .WaitAndRetryAsync(numRetries, PollyRetryAttempt)
                     .ExecuteAsync(_GetImageMemoryStreamCoreAsync, cancellationToken);
             }
             else
             {
+                // 不进行多次尝试，仅一次获取
                 response = await _GetImageMemoryStreamCoreAsync(cancellationToken);
             }
         }
@@ -54,27 +65,49 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
                 $"{nameof(GetImageMemoryStreamAsync)} fail, category: {{category}}.", category);
         }
 
-        if (response == null && category != HttpHandlerCategory.Offline && cache)
+        if (!cacheFirst && response == null && category != HttpHandlerCategory.Offline && cache)
         {
-            try
-            {
-                category = HttpHandlerCategory.Offline;
-                response = await _GetImageMemoryStreamCoreAsync(cancellationToken);
-            }
-            catch (Exception e)
-            {
-                logger.LogWarning(e,
-                    $"{nameof(GetImageMemoryStreamAsync)} fail, category: {{category}}.", category);
-            }
+            // 非缓存优先的情况下，从网络中加载失败，再去缓存中尝试加载
+            response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
         }
 
         return response;
 
-        Task<MemoryStream?> _GetImageMemoryStreamCoreAsync(CancellationToken cancellationToken)
-            => GetImageMemoryStreamCoreAsync(
-                requestUri,
-                category,
-                cancellationToken);
+        async Task<MemoryStream?> _GetImageMemoryStreamCoreAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var r = await GetImageMemoryStreamCoreAsync(
+                    requestUri,
+                    category,
+                    cancellationToken);
+                return r;
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e,
+                    $"{nameof(_GetImageMemoryStreamCoreAsync)} fail, category: {{category}}.", category);
+                return default;
+            }
+        }
+
+        async Task<MemoryStream?> _GetImageMemoryStreamCoreByOfflineAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var r = await GetImageMemoryStreamCoreAsync(
+                    requestUri,
+                    HttpHandlerCategory.Offline,
+                    cancellationToken);
+                return r;
+            }
+            catch (Exception e)
+            {
+                logger.LogWarning(e,
+                    $"{nameof(_GetImageMemoryStreamCoreByOfflineAsync)} fail, category: {{category}}(Offline).", category);
+                return default;
+            }
+        }
     }
 
     async Task<MemoryStream?> GetImageMemoryStreamCoreAsync(
@@ -92,11 +125,6 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
             .ConfigureAwait(false);
         if (response.IsSuccessStatusCode)
         {
-            //var imageStream = await response.Content.ReadAsStreamAsync(cancellationToken);
-            //var memoryStream = new MemoryStream();
-            //await imageStream.CopyToAsync(memoryStream, cancellationToken);
-            //memoryStream.Position = 0;
-            //return memoryStream;
             var imageBytes = await response.Content.ReadAsByteArrayAsync(cancellationToken);
             return new MemoryStream(imageBytes, false);
         }
@@ -106,7 +134,7 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
 
     #region Polly
 
-    const int numRetries = 3;
+    const int numRetries = 2; // 尝试次数
 
     static TimeSpan PollyRetryAttempt(int attemptNumber)
     {
