@@ -55,7 +55,7 @@ partial class Browser2
         }
         else if (String2.IsHttpUrl(url, HttpsOnly))
         {
-            if (!Essentials.IsSupported)
+            if (!CommonEssentials.IsSupported)
             {
                 return OpenCoreByProcess(url);
             }

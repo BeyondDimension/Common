@@ -1,6 +1,6 @@
 namespace BD.Common;
 
-public static partial class Essentials
+public static partial class CommonEssentials
 {
     public static bool IsSupported { get; internal set; }
 

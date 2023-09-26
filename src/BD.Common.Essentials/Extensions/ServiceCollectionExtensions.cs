@@ -1,4 +1,4 @@
-using Essentials = BD.Common.Essentials;
+using CommonEssentials = BD.Common.CommonEssentials;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
@@ -16,7 +16,7 @@ public static partial class ServiceCollectionExtensions
         this IServiceCollection services)
         where T : class, IFilePickerPlatformService.ISaveFileDialogService
     {
-        Essentials.IsSupportedSaveFileDialog = true;
+        CommonEssentials.IsSupportedSaveFileDialog = true;
         services.AddSingleton<IFilePickerPlatformService.ISaveFileDialogService, T>();
         return services;
     }
@@ -32,7 +32,7 @@ public static partial class ServiceCollectionExtensions
         this IServiceCollection services,
         Func<IServiceProvider, IFilePickerPlatformService.ISaveFileDialogService> implementationFactory)
     {
-        Essentials.IsSupportedSaveFileDialog = true;
+        CommonEssentials.IsSupportedSaveFileDialog = true;
         services.TryAddSingleton(implementationFactory);
         return services;
     }

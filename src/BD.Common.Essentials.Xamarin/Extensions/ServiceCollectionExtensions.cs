@@ -1,5 +1,5 @@
 using BD.Common.Services.Implementation.Essentials;
-using Essentials = BD.Common.Essentials;
+using CommonEssentials = BD.Common.CommonEssentials;
 #if ANDROID
 using DeviceInfoPlatformServiceImpl_ = BD.Common.Services.Implementation.Essentials.AndroidDeviceInfoPlatformServiceImpl;
 #else
@@ -19,7 +19,7 @@ public static class ServiceCollectionExtensions
     /// <returns></returns>
     public static IServiceCollection TryAddEssentials<TApplicationVersionServiceImpl>(this IServiceCollection services) where TApplicationVersionServiceImpl : class, IApplicationVersionService
     {
-        Essentials.IsSupported = true;
+        CommonEssentials.IsSupported = true;
         services.TryAddSingleton<IApplicationVersionService, TApplicationVersionServiceImpl>();
         services.TryAddSingleton<IBrowserPlatformService, BrowserPlatformServiceImpl>();
         services.TryAddSingleton<IClipboardPlatformService, ClipboardPlatformServiceImpl>();
