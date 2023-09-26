@@ -4,7 +4,6 @@
 		<Product>次元超越 Essentials 实现库</Product>
 		<PackageTags>BeyondDimension Common CommonEssentialsMaui EssentialsMaui Essentials</PackageTags>
 		<Description>$(Product)</Description>
-		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__NOT_IMPORT_COLUMNS__;MAUI;MAUI_RUNTIME;$(DefineConstants)</DefineConstants>
 		<!--<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-macos;net7.0-maccatalyst</TargetFrameworks>-->
 		<TargetFrameworks>net7.0-macos;net7.0-maccatalyst</TargetFrameworks>

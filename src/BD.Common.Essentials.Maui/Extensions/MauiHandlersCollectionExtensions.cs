@@ -1,6 +1,7 @@
+// ReSharper disable once CheckNamespace
 namespace Microsoft.Maui.Hosting;
 
-public static class MauiHandlersCollectionExtensions
+public static partial class MauiHandlersCollectionExtensions
 {
     public static IMauiHandlersCollection ReplaceHandler<TType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TTypeRender>(this IMauiHandlersCollection handlersCollection)
          where TType : IElement

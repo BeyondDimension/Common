@@ -3,6 +3,7 @@ using BaseService = BD.Common.Services.IFilePickerPlatformService;
 using IOpenFileDialogService = BD.Common.Services.IFilePickerPlatformService.IOpenFileDialogService;
 using ISaveFileDialogService = BD.Common.Services.IFilePickerPlatformService.ISaveFileDialogService;
 
+// ReSharper disable once CheckNamespace
 namespace BD.Common.Services.Implementation.Essentials;
 
 sealed class FilePickerPlatformServiceImpl : BaseService, IOpenFileDialogService

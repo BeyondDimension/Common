@@ -2,6 +2,7 @@
 using Android.OS;
 #endif
 
+// ReSharper disable once CheckNamespace
 namespace BD.Common.Services.Implementation.Essentials;
 
 public abstract class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService

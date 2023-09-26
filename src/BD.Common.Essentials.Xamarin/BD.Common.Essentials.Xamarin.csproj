@@ -4,7 +4,6 @@
 		<Product>次元超越 Essentials 实现库</Product>
 		<PackageTags>BeyondDimension Common CommonEssentialsXamarin EssentialsXamarin Essentials</PackageTags>
 		<Description>$(Product)</Description>
-		<RootNamespace>BD.Common</RootNamespace>
 		<DefineConstants>__NOT_IMPORT_COLUMNS__;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
