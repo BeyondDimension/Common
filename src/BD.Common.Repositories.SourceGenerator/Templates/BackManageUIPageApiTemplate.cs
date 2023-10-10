@@ -44,7 +44,6 @@ sealed class BackManageUIPageApiTemplate : TemplateBase<BackManageUIPageApiTempl
 /* eslint-disable */
 import { request } from '@umijs/max';
 import config from '@/utils/defaultSettings'
-import { getUrl } from '@/utils/index'
 
 """u8;
         stream.Write(utf8String);
@@ -132,13 +131,14 @@ export async function {0}Query(data:any)
 );
         utf8String =
 """
-  return request<API.BApiResponse<API.PageModel<API.{0}>>>(getUrl(config.ApiUrl + `{1}/{2}`, data),
+  return request<API.BApiResponse<API.PageModel<API.{0}>>>(config.ApiUrl + `{1}/{2}`,
 """u8;
         stream.WriteFormat(utf8String, metadata.ClassName, routePrefixU8, routeNamePluralizeLower);
         stream.Write(
 """
 {
-    method: 'GET',    
+    method: 'GET',   
+    params: data 
   });
 }
 

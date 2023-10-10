@@ -71,6 +71,8 @@ import { PlusOutlined,ExclamationCircleFilled } from '@ant-design/icons';
 import { Button, message,Space,Modal} from 'antd';
 import { useModel, useAccess } from '@umijs/max'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
+import { getDisableColumn } from '@/components/CommonColumn/DisableColumn';
+import { DateTimeColumn } from '@/components/CommonColumn';
 
 """u8;
         stream.Write(utf8String);
@@ -93,7 +95,6 @@ import {
         {
             ImportMethod.Add(string.Concat(metadata.ClassName, "Save"));
         }
-        var isSoft = false;
         foreach (var field in fields)
         {
             switch (field.FixedProperty)
@@ -132,7 +133,6 @@ import {
     object?[] args)
     {
         ReadOnlySpan<byte> utf8String;
-        var disable = false;
         utf8String =
 """
 
@@ -162,77 +162,24 @@ const Manage: React.FC = () => {
   }, [])
 
 """u8;
+        stream.Write(utf8String);
+
         #region Query
         utf8String =
 """
 
- const GetTable = async (params: any, sort: any, filter: any): Promise<API.PageModel<API.{0}> | null> =>
+  const GetTable = async (params: any, sort: any, filter: any): Promise<API.PageModel<API.{0}> | null> =>
 """u8;
         stream.WriteFormat(utf8String, metadata.ClassName);
         utf8String =
 """
  {
-"""u8;
-        stream.Write(utf8String);
-        utf8String =
-"""
-
-    const { 
-"""u8;
-        stream.Write(utf8String);
-        List<string> constParams = new List<string>();
-        foreach (var field in fields)
-        {
-            var camelizeName = field.CamelizeName;
-            switch (camelizeName)
-            {
-                case "createUserId":
-                    camelizeName = "createUser";
-                    break;
-                case "operatorUserId":
-                    camelizeName = "operatorUser";
-                    break;
-                case "disable":
-                    disable = true;
-                    break;
-            }
-            if (field.BackManageField == null || !field.BackManageField.Query)
-                continue;
-            constParams.Add(camelizeName);
-        }
-        utf8String =
-"""
-{0}
-"""u8;
-        stream.WriteFormat(utf8String, string.Join(",", constParams));
-        utf8String =
-"""
-} = params;
 
 """u8;
         stream.Write(utf8String);
-        stream.Write(
-"""
-    var query = {
-
-"""u8);
-        foreach (var Params in constParams)
-        {
-            utf8String =
-"""
-      {0},
-
-"""u8;
-            stream.WriteFormat(utf8String, Params);
-        }
-        stream.Write(
-"""
-    } as any;
-
-"""u8);
         utf8String =
 """
-    var data = await {0}Query(query);
+    var data = await {0}Query(params);
     return data.data;
   }
 
@@ -242,19 +189,17 @@ const Manage: React.FC = () => {
         #endregion
 
         #region onEdit
-        if (!metadata.BackManageEditModelReadOnly || metadata.BackManageCanAdd)
-        {
-            utf8String =
+        utf8String =
 """
 
   const onEdit = (info: API.{0} | null = null) =>
 """u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-            stream.Write(
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.Write(
 """
  {
 """u8);
-            utf8String =
+        utf8String =
 """
 
     setEditModel(true);
@@ -270,19 +215,21 @@ const Manage: React.FC = () => {
   }
 
 """u8;
-            stream.Write(utf8String);
-            #region LoadInfo
-            utf8String =
+        stream.Write(utf8String);
+        #endregion
+
+        #region LoadInfo
+        utf8String =
 """
 
   const LoadInfo = async (info: API.{0}) =>
 """u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-            stream.Write(
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.Write(
 """
  {
 """u8);
-            utf8String =
+        utf8String =
 """
 
       var data = {
@@ -293,31 +240,32 @@ const Manage: React.FC = () => {
  }
 
 """u8;
-            stream.Write(utf8String);
-            #endregion
+        stream.Write(utf8String);
+        #endregion
 
-            #region onSaveFinish
-            utf8String =
+        #region onSaveFinish
+
+        utf8String =
 """
 
-   const onSaveFinish = async (values: any) => {
+  const onSaveFinish = async (values: any) => {
     var data = {
       ...values,
     };
 
 """u8;
-            stream.Write(utf8String);
-            utf8String =
+        stream.Write(utf8String);
+        utf8String =
 """
     var response = await {0}Save
 """u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-            utf8String =
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        utf8String =
 """
 (data?.id, { data: data });
 """u8;
-            stream.Write(utf8String);
-            utf8String =
+        stream.Write(utf8String);
+        utf8String =
 """
 
     if (response.isSuccess && response.data) {
@@ -328,53 +276,17 @@ const Manage: React.FC = () => {
       if (actionRef.current?.reset)
         actionRef.current?.reset();
     }
-    else {
-      message.error(response.messages);
-    }
-    return response.isSuccess && (response.data ?? false);
+    return response.isSuccess ;
   }
 
 """u8;
-            stream.Write(utf8String);
-            #endregion
-
-            #endregion
-        }
-        utf8String =
-"""
-
-  const showDeleteConfirm = (info: any, type: boolean) => {
-    confirm({
-      title: '提示',
-      icon: <ExclamationCircleFilled />,
-      content: '确认删除吗?',
-      cancelText: '取消',
-      okText: '确认',
-      okType: 'danger',
-      centered: true,
-      okButtonProps: {
-      },
-      onOk() {
-"""u8;
         stream.Write(utf8String);
+        #endregion
+
+        #region OnDelete
         utf8String =
 """
 
-        {0}(info);
-
-"""u8;
-        stream.WriteFormat(utf8String, "OnDelete");
-        utf8String =
-"""
-      },
-    });
-  };
-
-
-"""u8;
-        stream.Write(utf8String);
-        utf8String =
-"""
   const {0} = async (info: any): Promise<void> =>
 """u8;
         stream.WriteFormat(utf8String, "OnDelete");
@@ -399,89 +311,69 @@ const Manage: React.FC = () => {
         utf8String =
 """
       if (response.isSuccess) {
-        message.success("删除完成");
         if (actionRef.current?.reset)
           actionRef.current?.reset();
-      } else {
-        message.error(response.messages);
-      }
+      } 
     }
   }
 
 """u8;
         stream.WriteFormat(utf8String, metadata.ClassName);
-        if (disable)
-        {
-            utf8String =
-"""
-
- const SetUpDisable = async (e: CheckboxChangeEvent, id: any) => {
-
-"""u8;
-            stream.Write(utf8String);
-            utf8String =
-"""
- var response = await {0}Disable(id, e.target.checked);
-
-"""u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-            utf8String =
-"""
-    if (response.isSuccess) {
-      message.success("操作成功");
-      if (actionRef.current?.reset)
-        actionRef.current?.reset();
-    } else {
-      message.error(response.messages);
+        #endregion
     }
-  };
 
-"""u8;
-            stream.Write(utf8String);
-        }
-        if (metadata.BackManageCanAdd)
-        {
-            utf8String =
- """
-
-  const onCopy = (info: API.{0}) =>
-"""u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-            stream.Write(
-"""
- {
-"""u8);
-            utf8String =
-"""
-
-    setEditModel(true);
-    var data = {
-      ...info,
-      id:null,
-    }
-    formRef.current?.setFieldsValue(data);
-    setEditInfo(data);
-  }
-
-"""u8;
-            stream.Write(utf8String);
-        }
-    }
     void WriteTableColums(
     Stream stream,
     Metadata metadata,
     ImmutableArray<PropertyMetadata> fields,
     object?[] args)
     {
-
         ReadOnlySpan<byte> utf8String;
         utf8String =
 """
 
-const operation = access?.{0}?.Edit || access?.{1}?.Delete;
+const operation = access?.{0}?.Edit || access?.{0}?.Delete;
+const operationColumn = getOperationColumn<API.{0}>([
 
 """u8;
-        stream.WriteFormat(utf8String, metadata.ClassName, metadata.ClassName);
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.Write(
+"""
+    {
+
+"""u8);
+        utf8String =
+"""
+      type: OperationColumnButtonType.Edit,
+      authorized: access?.{0}?.Edit,
+      action: onEdit
+
+"""u8;
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.Write(
+"""
+    },
+
+"""u8);
+        stream.Write(
+"""
+    {
+
+"""u8);
+        utf8String =
+"""
+      type: OperationColumnButtonType.Delete,
+      authorized: access?.{0}?.Delete,
+      action: OnDelete,
+
+"""u8;
+        stream.WriteFormat(utf8String, metadata.ClassName);
+        stream.Write(
+"""
+    },
+  ]);
+
+"""u8);
         utf8String =
 """
 const columns: ProColumns<API.{0}>[] =[
@@ -499,34 +391,24 @@ const columns: ProColumns<API.{0}>[] =[
             {
                 case "createUserId":
                     camelizeName = "createUser";
-                    break;
+                    continue;
                 case "operatorUserId":
                     camelizeName = "operatorUser";
-                    break;
+                    continue;
                 case "disable":
                     stream.Write(
 """
-    {
+    getDisableColumn({ executeApi: 
 """u8);
-                    utf8String =
-        """
-title: '{0}', dataIndex:'{1}', width: {2}, ellipsis: true,
-      render: (_, record: API.{3}) => [
-
-"""u8;
-                    stream.WriteFormat(utf8String, humanizeName, camelizeName, humanizeName.Length * 10, metadata.ClassName);
-
-                    utf8String =
+                    stream.WriteFormat(
 """
-        <Checkbox checked={record.disable} className='my-checkbox' onChange={(CheckboxChangeEvent) => SetUpDisable(CheckboxChangeEvent, record)}></Checkbox>],
-      valueEnum: {
-        'null': { text: '全部' },
-        false: { text: '已禁用', status: 'Error' },
-        true: { text: '已启用', status: 'Success' }
-      }},
+ {0}Disable
+"""u8, metadata.ClassName);
+                    stream.Write(
+"""
+ , onOk: () => actionRef.current?.reload() }) as any,
 
-"""u8;
-                    stream.WriteFormat(utf8String, humanizeName, camelizeName, humanizeName.Length * 10);
+"""u8);
                     continue;
             }
             stream.Write(
@@ -547,89 +429,24 @@ title: '{0}', dataIndex:'{1}', width: {2}, ellipsis: true
 """u8;
                 stream.Write(utf8String);
             }
-
+            if (field.PropertyType == "DateTimeOffset")
+            {
+                utf8String =
+"""
+, ...DateTimeColumn.GetDateTimeProps()
+"""u8;
+                stream.Write(utf8String);
+            }
             stream.Write(
 """
 },
 
 """u8);
         }
-        stream.Write(
-"""
-    (operation ? { title: '操作', valueType: 'option',key: 'option',
-        width: 200,
-        ellipsis: true,
-        fixed: 'right',
-"""u8);
+
         utf8String =
 """
- render: (text: any, record: API.{0}, index: number) => [
-        <Space size="middle">
-"""u8;
-        stream.WriteFormat(utf8String, metadata.ClassName);
-        if (metadata.BackManageCanAdd)
-        {
-            stream.Write(
-            """
-
-        {
-"""u8);
-            utf8String =
-"""
-access?.{0}?.Add?
-"""u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-
-            utf8String =
-"""
-<a key={index} onClick={() => { onCopy(record)}}> 复制 </a>:null }
-"""u8;
-            stream.Write(utf8String);
-        }
-        if (!metadata.BackManageEditModelReadOnly)
-        {
-            stream.Write(
-"""
-
-        {
-"""u8);
-            utf8String =
-"""
-access?.{0}?.Edit?
-"""u8;
-            stream.WriteFormat(utf8String, metadata.ClassName);
-
-            utf8String =
-"""
-<a key={index} onClick={() => { onEdit(record)}}> 编辑 </a>:null }
-"""u8;
-            stream.Write(utf8String);
-        }
-
-        stream.Write(
-"""
-
-        {
-"""u8);
-        utf8String =
-    """
-access?.{0}?.Delete?
-"""u8;
-        stream.WriteFormat(utf8String, metadata.ClassName);
-        utf8String =
-    """
-<Button type="link" onClick={() => { showDeleteConfirm(record, true) }} danger>删除</Button>:null}
-
-"""u8;
-        stream.Write(utf8String);
-        utf8String =
-"""
-        </Space>
-      ],
-    }:{
-      hideInTable: true,
-      hideInSearch: true
-    }),
+    operation ? operationColumn : { hideInTable: true, hideInSearch: true }
 
 ]
 
@@ -649,7 +466,7 @@ access?.{0}?.Delete?
         ReadOnlySpan<byte> utf8String;
         utf8String =
 """
-        <ModalForm
+      <ModalForm
         title={editInfo != null ? "编辑" : "新增"}
         formRef={formRef}
         modalProps={{
@@ -659,15 +476,14 @@ access?.{0}?.Delete?
         width={800}
         grid={true}
         onOpenChange={setEditModel}
-        onFinish={async (values: any) => await onSaveFinish(values)}
-      >
-          {editInfo != null && <ProFormText
-            key="id"
-            name="id"
-            readonly
-            label="Id"
-            hidden
-          />}
+        onFinish={async (values: number) => await onSaveFinish(values)} >
+
+        {editInfo != null && <ProFormText
+          key="id"
+          name="id"
+          readonly
+          label="Id"
+          hidden />}
 
 """u8;
         stream.Write(utf8String);
@@ -697,6 +513,9 @@ access?.{0}?.Delete?
                     ProFormDigit(stream, field.HumanizeName, field.CamelizeName);
                     break;
                 case "decimal":
+                    ProFormDigit(stream, field.HumanizeName, field.CamelizeName);
+                    break;
+                case "long":
                     ProFormDigit(stream, field.HumanizeName, field.CamelizeName);
                     break;
                 case "DateTimeOffset":
@@ -760,10 +579,7 @@ access?.{0}?.Query ?? false
               total: data?.total
             };
           }}
-          columnsState={{
-          persistenceKey: 'NoticeTypeTableFilter',
-          persistenceType: 'localStorage',
-          }}
+          scroll={{ x: 1200 }}
           rowKey="id"
           pagination={tablePagination}
           dateFormatter="string"
@@ -786,14 +602,16 @@ access?.{0}?.Query ?? false
 
 """u8;
             stream.Write(utf8String);
-            utf8String =
+        }
+        utf8String =
 """
+
         />
         </AccessPage>
 
 """u8;
-            stream.Write(utf8String);
-        }
+        stream.Write(utf8String);
+
     }
 
     #region ProForm---组件
@@ -803,7 +621,7 @@ access?.{0}?.Query ?? false
         stream.Write(
 """
 
-          <ProFormText
+        <ProFormText
           colProps={{ xs: 24, md: 12, xl: 8 }}
           rules={[]}
 """u8);
@@ -813,18 +631,18 @@ access?.{0}?.Query ?? false
           key="{0}"
           name="{0}"
           label="{1}"
-          placeholder="请输入{1}"
-          />
+          placeholder="请输入{1}" />
 
 """u8, camelizeName, humanizeName);
 
     }
+
     void ProFormSwitch(Stream stream, string humanizeName, string camelizeName)
     {
         stream.Write(
 """
 
-          <ProFormSwitch
+        <ProFormSwitch
           colProps={{ xs: 24, md: 12, xl: 8 }}
           rules={[]}
 """u8);
@@ -833,8 +651,7 @@ access?.{0}?.Query ?? false
 
           key="{0}"
           name="{0}"
-          label="{1}"
-          />
+          label="{1}" />
 
 """u8, camelizeName, humanizeName);
     }
@@ -844,7 +661,7 @@ access?.{0}?.Query ?? false
         stream.Write(
 """
 
-          <ProFormDateTimePicker
+        <ProFormDateTimePicker
           colProps={{ xs: 24, md: 12, xl: 8 }}
           rules={[]}
 """u8);
@@ -854,8 +671,7 @@ access?.{0}?.Query ?? false
           key="{0}"
           name="{0}"
           label="{1}"
-          placeholder="请选择{1}"
-          />
+          placeholder="请选择{1}" />
 
 """u8, camelizeName, humanizeName);
     }
@@ -865,7 +681,7 @@ access?.{0}?.Query ?? false
         stream.Write(
 """
 
-          <ProFormDigit
+        <ProFormDigit
           colProps={{ xs: 24, md: 12, xl: 8 }}
           rules={[]}
 """u8);
@@ -875,8 +691,7 @@ access?.{0}?.Query ?? false
           key="{0}"
           name="{0}"
           label="{1}"
-          placeholder="请输入{1}"
-          />
+          placeholder="请输入{1}" />
 
 """u8, camelizeName, humanizeName);
     }
