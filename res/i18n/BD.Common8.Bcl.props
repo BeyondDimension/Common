@@ -1,0 +1,39 @@
+<Project>
+	<ItemGroup>
+		<AdditionalFiles Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.resx" Visible="false">
+			<!-- 使用 AdditionalFiles 引入主 resx 文件用于源生成器 -->
+		</AdditionalFiles>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.resx">
+			<Link>Resources\Strings.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.en.resx">
+			<Link>Resources\Strings.en.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.en.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.es.resx">
+			<Link>Resources\Strings.es.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.es.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.it.resx">
+			<Link>Resources\Strings.it.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.it.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.ja.resx">
+			<Link>Resources\Strings.ja.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.ja.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.ko.resx">
+			<Link>Resources\Strings.ko.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.ko.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.ru.resx">
+			<Link>Resources\Strings.ru.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.ru.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.zh-Hant.resx">
+			<Link>Resources\Strings.zh-Hant.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Bcl.zh-Hant.resources</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+</Project>

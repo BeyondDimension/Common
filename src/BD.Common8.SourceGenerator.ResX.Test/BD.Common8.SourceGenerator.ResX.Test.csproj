@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\res\i18n\BD.Common8.Bcl.props" />
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\ProjectUtils.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\BD.Common8.SourceGenerator.ResX\Helpers\ResxSatelliteAssemblyHelper.cs">
+			<LinkBase>_SourceReference\Helpers</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+</Project>

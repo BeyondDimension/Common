@@ -1,0 +1,341 @@
+<style>
+    html, body, textarea, button {
+        background-color: #141414;
+        color: #ffffffd9;
+    }
+
+    textarea {
+        min-height: 150px;
+        min-width: 500px;
+        margin-bottom: 18px;
+    }
+
+    button {
+        min-height: 30px;
+        min-width: 80px;
+    }
+</style>
+<h3>System.Security.Cryptography.RSAUtils.Parameters</h3>
+<textarea readonly>
+const bool includePrivateParameters = true; // 是否导出私钥，在 WebAPI SubtleCrypto 中私钥仅用于解密，公钥仅用于加密
+using var rsa = RSA.Create(4096); // 4096-bit
+var parameters = rsa.ExportParameters(includePrivateParameters);
+var jsonWebKey = JsonWebKeyConverter.ConvertFromRSASecurityKey(
+    new RsaSecurityKey(parameters));
+</textarea>
+<br />
+<!-- rsa private key -->
+<!-- 密钥使用 JsonWebKey 格式，与其他格式转换与生成见 BD.Common.UnitTest.RSATest.JSONWebKey -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key -->
+<!--
+{"z":"kqbE_cdiGOWdSvvkWF1QitSRBiAZuKse2Gb252P_pc8nVVTHg7o0gIXt8RIWiTbWHSeLdxuJZcqNOTbC74K45IugCc6goDdl6eswz2podPF7ONqlxZfPP_5gq79KLuQmCZ4rjIPiG9eQUWrhu3rzKCx_Nn0haa5I8hI9W5RB_jhFA52sA-m_ZgJSMYh4s3HDe4a_6qJM038aQ7Rjf0lRmfgDqAJLdOj58EBIcU2XrBYQlliE7-LoyjSiQrFtoSa1uXM98dLkJWlZKRtGegNA5P0jiDqp-Zv7Cx9vUA37FCbCKLyOCR2iXlj-v8YcLfq87f68OrCUCqFlX0tJBqxv1zAsAqajIc8HKYA0g58t8ZndjSxtPbhxXttv0vMV0_r2V8g4y-WqRFfpmtCw75uBb9-1CjEw1eTN6OrUwWzTpNh6zulR9_XdX9YtoQ8z7S9whk4L4SeGOBF7XvMD_eFnDVAg1EodkZODFAlWDih9Tlf_CZCN1Tt-ibRZr-wCcpu8sSCOesWKI9U9wjnjNvMdLlUXeIsEC7mKw5yvw9vhUpwCDHvJxyq2HGhoUAIWV91lzfDF4N0A_oD-QP7xFNYxKAXbPA3ff1XyLCzpdjT5debhDJllskWtdCPlkYZRRAjasjQNbXWMvyCS_vgwqYSRV-f0kWufFFtcMabkakGth5k","x":"WIXkOsVVp6Kd7CPjhNNDfuY1nXFxvR3Oks9AcQtAT-fZQpdo5BymWN9HGrepxjp1G9NVHUiXr3jK0u6V6hBTkEpRK8HIoMFrvcoUlSZ4ToLJAk0Q9TSqxFEhx_g1vnDsioyx_XU-7St7r8v3R7qVh0mDkGLEZqdzWHw31mTcqKvGTWJdmkaYJy2OCqlpZQTnoOsbSpexyhy2YOW9-D61HH7AZTkApTlDnOFSGVKlZ1lp6qccVYnQsbEc7NKSYGEuCEXxLrLql4U9s1cQsQkILxBVly6vXeizeOMjYEEmnDFK5LKebdPK3cWMh0l9-9sFuk2FQrLj5KZZonJWxKivnw","c":"h79HdkyT9jdY9tpOvfKFbeMRKT9ZqTK_H2ZSPi6rhJXW4Ltl7G4dd5rEEjqDPucfwpwdmyiWpBoRpwI5fy8B9j4bORFLC6k26HYQK5rFs_iQrxWrqNsJ3-jETmUvCnDt6C2GBK5tkyKtb0LDa_fAVrHAYCCLScWR9ljCDS4PSMW6VwVPwVwaOdOM3xnWXf-D4JDvaspQnso9s6OUPz2Nrro6Ti5sHH48TbgrcPwr045Uj6t0jR8OIIrUJzdXk3s9kH20rPUxK95fJ8YRyfzAuTd5kky57fGie_DMMrfT6xyM-EhKA8PRO1XesgAQOqFFRUpVr6U2rgO2wubu45DbQw","v":"AQAB","b":"qz7R5aajzYy-94NaNtqIIovY8MtHDx-a1woStiZgFc03Y_AZRJV2OToT1ZryJeYLh7uY4Ddx3pAPYtWzYaO_7WASC67W53Ay8a-L30FIl9weknb9Rt5h_2P-8l266_cjxrD78tA8J2dPjD6gstZa2LRYxWM0Je7iWrM3EroybHnUMX29pgpIqd11cBGKmWapsZwbwBV7GyaC9Z2ynhaNbFMYLknYkDVEYBMO8b_qmzLTl_qbgOKt7P3semOfXLKHwsUao79UOtZhnz2HSYLjiXKLt_1ptazM7Xl33mgCePTgo8xt02qjyxUPdAdSzIh8ZGh2fCXk6hC5gxVjnWG6xQ","n":"vTeWydeo1IYYImYQ5S-IDK-m8oI2NrfV1-QYYpiqcMnTfU3fKYH7W1i0qupbPXGwKrojnZ1mkeq0yt5dMLmDWQ8NYh8UH7EBFc72_dlaV9imFrWc_wKTGwMoisfA7kf5sujkgWIUs-o_kak6SLMsie6ZVK7oDd5Te9kWrc5qJ3bZPfmRMHFlT-mK_c5RNBhtp-7NAzoHBlHboCc6IRtKdPSbmAuhKfwvGYDa8a_J8JD5E8CNpS3WPAC_jjyAWcYI5CyXLyXmf9IwiYM6gBWV8LBSHjXl_sKLw4hsicJEIYPTr6LlRDBmtuMWEZ_Br7KkIAhG2VPO6CC9WEseBJBBqmA33AykfHSNwX2sJW_5wdYqsLWSBhgUn9rbd6gdulM3TPtxQbig9c-XibeV9BTLMZkeEH95N3zLSJiPF-ElzlW8P5MMa9HR4Kp5AXqrxvoidT3g6sX81zJ9nqJBheNOZd26L9guHemwZ38TMOJAJlVMFBWY_02kyoYNn64tbE1B-vBaeWurHKDG1Wq9n_t2YZrlgGbN6BqySd1KBazC4cGGIcQxvOANlZJgD49BVNC0S5g1I_j0taP15VQfPBVWUwwMs-sd1dhIP8QDtjGDpZA9QS4F07VKCeUDBK5ApXDubZO2o-4qAJckKPBKk6a_EfZ5LmYAkaYNROXMxwyAWo0","m":"xq0C1mXJWysnuqccNYl-LqwG8LYP7Otec0y6vGV2KR4oyYCmChhpLh50qzkIUZqG6AbPsQIjipBW7e0oo9GnwjFeueZr-hdyZC-Jdz8tf-ikFuHPME-ISfS-h77TLlIr2Nc2c7ufRUCyqVq8vz0AdqjJTYui1rK87KpTHWa655IXESChR7SgadAgVX1AiU8A5sRKf3F0bjQPy110AuGnAn9R0g57TG_oNUaAquOyw6XIb7vACv6yHreeJOdm7A002bKRD7zAk2vi7y7k3hilPOhckstKN2Oun2vXzrwtvVGVtgD06fQQz5odV1OV0_tZlQ5Cgc2LGWHQXjm_uvuXvw","a":"88_sDt-xqsDGVqPi9NGSbg2zxLS4PTV0qr84chyQ-DNvqSHT7OrRi9yjVclUP7EwYt2v6ppnES_MCM-dkGHHyLdDaL4hG3f-1UYD5gGJ4xGURtkhbx1EoNlZ9ThapESd-c7c1MdZXxKzffv94ugZahY0niSTi3WXFb8_MOTb7GtAY62gMl9eu-jzcHKJU4zs_qbSZv2BWCG1GSy5miEF3DRmvhBALEze7yTyRzUxTFcUwoGq9VcYlmz9D4lXEKPlkAIrRzdyZnhCGqBoDxZ6BNByAWCPbAT4Xu7VUcT8yU0OJIh82pHIE_mIGU3phrUFdIlyVikWPeHZ-oaIpLrAsw"}
+-->
+<textarea id="key" placeholder="input rsa json web key…">
+{
+  "additionalData": {},
+  "e": "AQAB",
+  "keyOps": [],
+  "kty": "RSA",
+  "n": "vTeWydeo1IYYImYQ5S-IDK-m8oI2NrfV1-QYYpiqcMnTfU3fKYH7W1i0qupbPXGwKrojnZ1mkeq0yt5dMLmDWQ8NYh8UH7EBFc72_dlaV9imFrWc_wKTGwMoisfA7kf5sujkgWIUs-o_kak6SLMsie6ZVK7oDd5Te9kWrc5qJ3bZPfmRMHFlT-mK_c5RNBhtp-7NAzoHBlHboCc6IRtKdPSbmAuhKfwvGYDa8a_J8JD5E8CNpS3WPAC_jjyAWcYI5CyXLyXmf9IwiYM6gBWV8LBSHjXl_sKLw4hsicJEIYPTr6LlRDBmtuMWEZ_Br7KkIAhG2VPO6CC9WEseBJBBqmA33AykfHSNwX2sJW_5wdYqsLWSBhgUn9rbd6gdulM3TPtxQbig9c-XibeV9BTLMZkeEH95N3zLSJiPF-ElzlW8P5MMa9HR4Kp5AXqrxvoidT3g6sX81zJ9nqJBheNOZd26L9guHemwZ38TMOJAJlVMFBWY_02kyoYNn64tbE1B-vBaeWurHKDG1Wq9n_t2YZrlgGbN6BqySd1KBazC4cGGIcQxvOANlZJgD49BVNC0S5g1I_j0taP15VQfPBVWUwwMs-sd1dhIP8QDtjGDpZA9QS4F07VKCeUDBK5ApXDubZO2o-4qAJckKPBKk6a_EfZ5LmYAkaYNROXMxwyAWo0",
+  "x5c": [],
+  "keySize": 4096,
+  "hasPrivateKey": false,
+  "cryptoProviderFactory": {
+    "cryptoProviderCache": {},
+    "cacheSignatureProviders": true,
+    "signatureProviderObjectPoolCacheSize": 96
+  }
+}
+</textarea>
+<br />
+<textarea id="input" placeholder="input plaintext…"></textarea>
+<br />
+<textarea id="output" placeholder="input ciphertext…"></textarea>
+<br />
+<button id="generate">generate</button>
+<button id="encrypt">encrypt</button>
+<button id="decrypt">decrypt</button>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.slim.min.js"></script>
+<script>
+    "use strict";
+
+    /*\
+    |*|
+    |*|  Base64 / binary data / UTF-8 strings utilities (#2)
+    |*|
+    |*|  https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+    |*|
+    |*|  Author: madmurphy
+    |*|
+    \*/
+
+    /* Array of bytes to base64 string decoding */
+
+    function b64ToUint6(nChr) {
+
+        return nChr > 64 && nChr < 91 ?
+            nChr - 65
+            : nChr > 96 && nChr < 123 ?
+                nChr - 71
+                : nChr > 47 && nChr < 58 ?
+                    nChr + 4
+                    : nChr === 43 ?
+                        62
+                        : nChr === 47 ?
+                            63
+                            :
+                            0;
+
+    }
+
+    function base64DecToArr(sBase64, nBlockSize) {
+
+        var
+            sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, ""), nInLen = sB64Enc.length,
+            nOutLen = nBlockSize ? Math.ceil((nInLen * 3 + 1 >>> 2) / nBlockSize) * nBlockSize : nInLen * 3 + 1 >>> 2, aBytes = new Uint8Array(nOutLen);
+
+        for (var nMod3, nMod4, nUint24 = 0, nOutIdx = 0, nInIdx = 0; nInIdx < nInLen; nInIdx++) {
+            nMod4 = nInIdx & 3;
+            nUint24 |= b64ToUint6(sB64Enc.charCodeAt(nInIdx)) << 18 - 6 * nMod4;
+            if (nMod4 === 3 || nInLen - nInIdx === 1) {
+                for (nMod3 = 0; nMod3 < 3 && nOutIdx < nOutLen; nMod3++, nOutIdx++) {
+                    aBytes[nOutIdx] = nUint24 >>> (16 >>> nMod3 & 24) & 255;
+                }
+                nUint24 = 0;
+            }
+        }
+
+        return aBytes;
+    }
+
+    /* Base64 string to array encoding */
+
+    function uint6ToB64(nUint6) {
+
+        return nUint6 < 26 ?
+            nUint6 + 65
+            : nUint6 < 52 ?
+                nUint6 + 71
+                : nUint6 < 62 ?
+                    nUint6 - 4
+                    : nUint6 === 62 ?
+                        43
+                        : nUint6 === 63 ?
+                            47
+                            :
+                            65;
+
+    }
+
+    function base64EncArr(aBytes) {
+
+        var eqLen = (3 - (aBytes.length % 3)) % 3, sB64Enc = "";
+
+        for (var nMod3, nLen = aBytes.length, nUint24 = 0, nIdx = 0; nIdx < nLen; nIdx++) {
+            nMod3 = nIdx % 3;
+            /* Uncomment the following line in order to split the output in lines 76-character long: */
+            /*
+            if (nIdx > 0 && (nIdx * 4 / 3) % 76 === 0) { sB64Enc += "\r\n"; }
+            */
+            nUint24 |= aBytes[nIdx] << (16 >>> nMod3 & 24);
+            if (nMod3 === 2 || aBytes.length - nIdx === 1) {
+                sB64Enc += String.fromCharCode(uint6ToB64(nUint24 >>> 18 & 63), uint6ToB64(nUint24 >>> 12 & 63), uint6ToB64(nUint24 >>> 6 & 63), uint6ToB64(nUint24 & 63));
+                nUint24 = 0;
+            }
+        }
+
+        return eqLen === 0 ?
+            sB64Enc
+            :
+            sB64Enc.substring(0, sB64Enc.length - eqLen) + (eqLen === 1 ? "=" : "==");
+
+    }
+
+    /* UTF-8 array to DOMString and vice versa */
+
+    function UTF8ArrToStr(aBytes) {
+
+        var sView = "";
+
+        for (var nPart, nLen = aBytes.length, nIdx = 0; nIdx < nLen; nIdx++) {
+            nPart = aBytes[nIdx];
+            sView += String.fromCharCode(
+                nPart > 251 && nPart < 254 && nIdx + 5 < nLen ? /* six bytes */
+                    /* (nPart - 252 << 30) may be not so safe in ECMAScript! So...: */
+                    (nPart - 252) * 1073741824 + (aBytes[++nIdx] - 128 << 24) + (aBytes[++nIdx] - 128 << 18) + (aBytes[++nIdx] - 128 << 12) + (aBytes[++nIdx] - 128 << 6) + aBytes[++nIdx] - 128
+                    : nPart > 247 && nPart < 252 && nIdx + 4 < nLen ? /* five bytes */
+                        (nPart - 248 << 24) + (aBytes[++nIdx] - 128 << 18) + (aBytes[++nIdx] - 128 << 12) + (aBytes[++nIdx] - 128 << 6) + aBytes[++nIdx] - 128
+                        : nPart > 239 && nPart < 248 && nIdx + 3 < nLen ? /* four bytes */
+                            (nPart - 240 << 18) + (aBytes[++nIdx] - 128 << 12) + (aBytes[++nIdx] - 128 << 6) + aBytes[++nIdx] - 128
+                            : nPart > 223 && nPart < 240 && nIdx + 2 < nLen ? /* three bytes */
+                                (nPart - 224 << 12) + (aBytes[++nIdx] - 128 << 6) + aBytes[++nIdx] - 128
+                                : nPart > 191 && nPart < 224 && nIdx + 1 < nLen ? /* two bytes */
+                                    (nPart - 192 << 6) + aBytes[++nIdx] - 128
+                                    : /* nPart < 127 ? */ /* one byte */
+                                    nPart
+            );
+        }
+
+        return sView;
+
+    }
+
+    function strToUTF8Arr(sDOMStr) {
+
+        var aBytes, nChr, nStrLen = sDOMStr.length, nArrLen = 0;
+
+        /* mapping... */
+
+        for (var nMapIdx = 0; nMapIdx < nStrLen; nMapIdx++) {
+            nChr = sDOMStr.charCodeAt(nMapIdx);
+            nArrLen += nChr < 0x80 ? 1 : nChr < 0x800 ? 2 : nChr < 0x10000 ? 3 : nChr < 0x200000 ? 4 : nChr < 0x4000000 ? 5 : 6;
+        }
+
+        aBytes = new Uint8Array(nArrLen);
+
+        /* transcription... */
+
+        for (var nIdx = 0, nChrIdx = 0; nIdx < nArrLen; nChrIdx++) {
+            nChr = sDOMStr.charCodeAt(nChrIdx);
+            if (nChr < 128) {
+                /* one byte */
+                aBytes[nIdx++] = nChr;
+            } else if (nChr < 0x800) {
+                /* two bytes */
+                aBytes[nIdx++] = 192 + (nChr >>> 6);
+                aBytes[nIdx++] = 128 + (nChr & 63);
+            } else if (nChr < 0x10000) {
+                /* three bytes */
+                aBytes[nIdx++] = 224 + (nChr >>> 12);
+                aBytes[nIdx++] = 128 + (nChr >>> 6 & 63);
+                aBytes[nIdx++] = 128 + (nChr & 63);
+            } else if (nChr < 0x200000) {
+                /* four bytes */
+                aBytes[nIdx++] = 240 + (nChr >>> 18);
+                aBytes[nIdx++] = 128 + (nChr >>> 12 & 63);
+                aBytes[nIdx++] = 128 + (nChr >>> 6 & 63);
+                aBytes[nIdx++] = 128 + (nChr & 63);
+            } else if (nChr < 0x4000000) {
+                /* five bytes */
+                aBytes[nIdx++] = 248 + (nChr >>> 24);
+                aBytes[nIdx++] = 128 + (nChr >>> 18 & 63);
+                aBytes[nIdx++] = 128 + (nChr >>> 12 & 63);
+                aBytes[nIdx++] = 128 + (nChr >>> 6 & 63);
+                aBytes[nIdx++] = 128 + (nChr & 63);
+            } else /* if (nChr <= 0x7fffffff) */ {
+                /* six bytes */
+                aBytes[nIdx++] = 252 + (nChr >>> 30);
+                aBytes[nIdx++] = 128 + (nChr >>> 24 & 63);
+                aBytes[nIdx++] = 128 + (nChr >>> 18 & 63);
+                aBytes[nIdx++] = 128 + (nChr >>> 12 & 63);
+                aBytes[nIdx++] = 128 + (nChr >>> 6 & 63);
+                aBytes[nIdx++] = 128 + (nChr & 63);
+            }
+        }
+
+        return aBytes;
+
+    }
+</script>
+<script>
+    const len_iv = 16;
+    const len_key = 32; // 256-bit key
+    const len_flags_enum = 2;
+
+    /**
+     * 补全 Base64 末尾 = 符号
+     */
+    function padString(input) {
+        let segmentLength = 4;
+        let stringLength = input.length;
+        let diff = stringLength % segmentLength;
+
+        if (!diff) {
+            return input;
+        }
+
+        let padLength = segmentLength - diff;
+        let paddedStringLength = stringLength + padLength;
+
+        while (padLength--) {
+            input += '=';
+        }
+
+        return input;
+    }
+    /**
+     * Base64Url 解码
+     */
+    function base64UrlDecToArr(sBase64, nBlockSize) {
+        sBase64 = padString(sBase64)
+            .replace(/\-/g, "+")
+            .replace(/_/g, "/");
+        return base64DecToArr(sBase64, nBlockSize);
+    }
+    /**
+     * Base64Url 编码
+     */
+    function base64UrlEncArr(aBytes) {
+        var sBase64 = base64EncArr(aBytes);
+        return sBase64
+            .replace(/=/g, "")
+            .replace(/\+/g, "-")
+            .replace(/\//g, "_");
+    }
+    /**
+     * 读取 RSA 密钥
+     */
+    async function getCryptokey() {
+        if (cryptokey) return cryptokey;
+        const includePrivateParameters = false;
+        let keystr = JSON.parse($('#key').val());
+        keystr.alg = 'RSA-OAEP-256';
+        keystr.key_ops = [includePrivateParameters ? "decrypt" : "encrypt"];
+        cryptokey = await crypto.subtle.importKey(
+            "jwk",
+            keystr,
+            {
+                name: "RSA-OAEP",
+                hash: { name: "SHA-256" }
+            },
+            true,
+            keystr.key_ops
+        );
+        return cryptokey;
+    }
+    var iv, cryptokey;
+    $('#generate').click(async () => {
+        await getCryptokey();
+    });
+    $('#encrypt').click(async () => { // 加密
+        let message = $('#input').val();
+        let enc = new TextEncoder();
+        let encoded = enc.encode(message);
+        let ciphertext = await crypto.subtle.encrypt(
+            {
+                name: "RSA-OAEP",
+                hash: { name: "SHA-256" }
+            },
+            await getCryptokey(),
+            encoded
+        );
+        let buffer = new Uint8Array(ciphertext);
+        var output = base64UrlEncArr(buffer);
+        $('#output').val(output);
+    });
+    $('#decrypt').click(async () => { // 解密
+        let message = $('#output').val();
+        let encoded = base64UrlDecToArr(message);
+        let ciphertext = await crypto.subtle.decrypt(
+            {
+                name: "RSA-OAEP",
+                hash: { name: "SHA-256" }
+            },
+            await getCryptokey(),
+            encoded
+        );
+        let buffer = new Uint8Array(ciphertext);
+        var input = UTF8ArrToStr(buffer);
+        $('#input').val(input);
+    });
+</script>

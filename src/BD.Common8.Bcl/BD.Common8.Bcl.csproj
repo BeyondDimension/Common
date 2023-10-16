@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Sdk\GeneratePackage.props" />
+	<Import Project="..\Sdk\BD.Common8.Bcl.GlobalUsings.props" />
+	<Import Project="..\Sdk\BD.Common8.Bcl.Reference.props" />
+
+	<PropertyGroup>
+		<TargetFrameworks>$(Library_TargetFrameworks)</TargetFrameworks>
+		<RootNamespace>System</RootNamespace>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+</Project>

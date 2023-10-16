@@ -1,0 +1,27 @@
+<Project>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.CodeAnalysis.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SourceGenerator.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
+			<LinkBase>_SourceReference\Compat</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

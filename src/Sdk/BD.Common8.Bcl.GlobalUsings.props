@@ -1,0 +1,45 @@
+<Project>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.MemoryPack.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.MessagePack.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.DependencyInjection.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Logging.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Newtonsoft.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Polly.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Buffers.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Collections.Immutable.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.ComponentModel.DataAnnotations.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Formats.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Net.Http.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Text.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+	
+</Project>

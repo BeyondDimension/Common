@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\Sdk\BD.Common8.SourceGenerator.props" />
+
+	<PropertyGroup>
+		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
+		<Version>8.23.11016.11900</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+	</PropertyGroup>
+
+</Project>
