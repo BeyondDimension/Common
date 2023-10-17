@@ -1,4 +1,4 @@
-namespace System.Net.Http;
+namespace BD.Common8.Ipc.Client.Helpers;
 
 #pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable SA1313 // Parameter names should begin with lower-case letter
@@ -8,7 +8,7 @@ namespace System.Net.Http;
 /// </summary>
 /// <param name="pipeName"></param>
 /// <param name="serverName"></param>
-public sealed class NamedPipesConnectionFactory(string pipeName, string serverName = ".")
+sealed class NamedPipesConnectionFactory(string pipeName, string serverName = ".")
 {
     public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
         CancellationToken cancellationToken = default)

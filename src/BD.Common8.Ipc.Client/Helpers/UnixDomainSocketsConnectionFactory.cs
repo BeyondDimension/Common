@@ -1,4 +1,4 @@
-namespace System.Net.Http;
+namespace BD.Common8.Ipc.Client.Helpers;
 
 #pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable SA1313 // Parameter names should begin with lower-case letter
@@ -7,7 +7,7 @@ namespace System.Net.Http;
 /// https://learn.microsoft.com/zh-cn/aspnet/core/grpc/interprocess-uds?view=aspnetcore-8.0#client-configuration
 /// </summary>
 /// <param name="endPoint"></param>
-public sealed class UnixDomainSocketsConnectionFactory(EndPoint endPoint)
+sealed class UnixDomainSocketsConnectionFactory(EndPoint endPoint)
 {
     public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
         CancellationToken cancellationToken = default)
