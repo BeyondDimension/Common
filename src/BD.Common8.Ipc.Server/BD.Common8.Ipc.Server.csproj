@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(Library_TargetFrameworks)</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.Server.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.MemoryPack.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.DependencyInjection.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Net.Http.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Text.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(Library_TargetFrameworks)</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.Client.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.MemoryPack.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.DependencyInjection.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Logging.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Polly.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Buffers.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Net.Http.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Text.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+	</ItemGroup>
+
+</Project>

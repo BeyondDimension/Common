@@ -9,14 +9,29 @@
 ### BD.Common8.Bcl.Compat
 提供旧版 Runtime 上缺少的内容以兼容新版 C# 语法
 
+### BD.Common8.Ipc
+进程间通信 (IPC) 库
+
 ## ClientLibrary 客户端库
 
+### BD.Common8.Ipc.Client
+进程间通信 (IPC) 客户端库
+
 ## ServerLibrary 服务端库
+
+### BD.Common8.Ipc.Server
+进程间通信 (IPC) 服务端库
 
 ## SourceGenerator 源生成器
 
 ### BD.Common8.SourceGenerator.ResX
 xyz.Designer.cs 源生成器
+
+### BD.Common8.SourceGenerator.Ipc.Client
+进程间通信 (IPC) 客户端源生成器
+
+### BD.Common8.SourceGenerator.Ipc.Server
+进程间通信 (IPC) 服务端源生成器
 
 ## Tools 工具
 

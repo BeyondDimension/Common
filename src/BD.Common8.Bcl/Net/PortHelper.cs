@@ -18,10 +18,9 @@ public static partial class PortHelper
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int GetRandomUnusedPort(IPAddress address)
     {
-        var listener = new TcpListener(address, 0);
+        using var listener = new TcpListener(address, 0);
         listener.Start();
         var port = ((IPEndPoint)listener.LocalEndpoint).Port;
-        listener.Stop();
         return port;
     }
 
@@ -36,9 +35,8 @@ public static partial class PortHelper
     {
         try
         {
-            var listener = new TcpListener(address, port);
+            using var listener = new TcpListener(address, port);
             listener.Start();
-            listener.Stop();
             return false;
         }
         catch
