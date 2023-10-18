@@ -36,28 +36,26 @@ public sealed class JsonTest
     [Test]
     public void DuplicateKey_SJson()
     {
-        try
+        const string json0 =
+"""
+{
+  "test1": "Hello World",
+  "test1": "2",
+  "test1": "#",
+  "test1": "saf",
+  "test1": "😋",
+  "test2": 22,
+  "test3": false
+}
+""";
+        var obj = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.Nodes.JsonObject>(json0);
+        //var obj = Serializable.DJSON<SystemTextJsonObject>(Serializable.JsonImplType.SystemTextJson, json0);
+        TestContext.WriteLine(obj);
+        var value = obj.GetValue(() =>
         {
-            var obj = Serializable.DJSON<SystemTextJsonObject>(Serializable.JsonImplType.SystemTextJson, json0);
-            TestContext.WriteLine(obj);
             var value = obj?["test1"]?.ToString();
-            Assert.That(value, Is.EqualTo("😋"));
-        }
-        catch (ArgumentException)
-        {
-            return;
-        }
-
-        /* 消息:
-    System.ArgumentException : An item with the same key has already been added. Key: test1 (Parameter 'propertyName')
-
-  堆栈跟踪:
-    ThrowHelper.ThrowArgumentException_DuplicateKey(String paramName, String propertyName)
-    JsonObject.InitializeIfRequired()
-    JsonNode.get_Item(String propertyName)
-         */
-
-        throw new ApplicationException(
-            "SystemTextJson 在重复键的情况下应该会抛出异常，所以需要 NewtonsoftJson");
+            return value;
+        });
+        Assert.That(value, Is.EqualTo("😋"));
     }
 }

@@ -19,3 +19,4 @@ global using SystemTextJsonSerializerOptions = System.Text.Json.JsonSerializerOp
 global using SystemTextJsonIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition;
 global using SystemTextJsonConstructor = System.Text.Json.Serialization.JsonConstructorAttribute;
 global using SystemTextJsonObject = System.Text.Json.Nodes.JsonObject;
+global using SystemTextJsonPropertyStruct = System.Text.Json.JsonProperty;
