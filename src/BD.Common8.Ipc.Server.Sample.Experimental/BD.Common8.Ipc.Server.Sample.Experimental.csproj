@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<PublishAot>true</PublishAot>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Text.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\Properties\SR.cs">
+			<LinkBase>_SourceReference\Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\ThrowHelper.cs">
+			<LinkBase>_SourceReference</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\Net\IPAddress2.cs">
+			<LinkBase>_SourceReference\Net</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\Security\Cryptography\X509Certificates\X509Certificate2Generator.Constants.cs">
+			<LinkBase>_SourceReference\Security\Cryptography\X509Certificates</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\Security\Cryptography\X509Certificates\X509Certificate2Generator.cs">
+			<LinkBase>_SourceReference\Security\Cryptography\X509Certificates</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+</Project>
