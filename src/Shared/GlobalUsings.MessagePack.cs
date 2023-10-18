@@ -6,6 +6,8 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
 global using MessagePack;
+global using MessagePack.Resolvers;
+global using MessagePack.Formatters;
 global using MPConstructor = MessagePack.SerializationConstructorAttribute;
 global using MPIgnore = MessagePack.IgnoreMemberAttribute;
 global using MPKey = MessagePack.KeyAttribute;

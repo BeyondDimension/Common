@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+	<Import Project="..\Sdk\GeneratePackage.props" />
+
 	<PropertyGroup>
 		<TargetFrameworks>$(Library_TargetFrameworks)</TargetFrameworks>
 	</PropertyGroup>

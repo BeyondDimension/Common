@@ -5,7 +5,8 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using System.ComponentModel.DataAnnotations;
-global using System.ComponentModel.DataAnnotations.Schema;
-global using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
-global using KeyAttribute = System.ComponentModel.DataAnnotations.KeyAttribute;
+global using BD.Common8.Primitives.ApiRsp.Enums;
+global using BD.Common8.Primitives.ApiRsp.Helpers;
+global using BD.Common8.Primitives.ApiRsp.Models;
+global using BD.Common8.Primitives.ApiRsp.Models.Abstractions;
+global using BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals;

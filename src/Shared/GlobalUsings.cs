@@ -24,6 +24,7 @@ global using System.Runtime;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Serialization;
+global using System.Runtime.Serialization.Formatters;
 global using System.Runtime.Versioning;
 global using System.Security;
 global using System.Security.Claims;

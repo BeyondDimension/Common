@@ -40,6 +40,9 @@
 		<Compile Include="..\Shared\GlobalUsings.System.Text.Json.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Drawing.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 	</ItemGroup>
 	
 </Project>

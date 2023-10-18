@@ -5,7 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using System.ComponentModel.DataAnnotations;
-global using System.ComponentModel.DataAnnotations.Schema;
-global using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
-global using KeyAttribute = System.ComponentModel.DataAnnotations.KeyAttribute;
+// 不可变集合
+// https://learn.microsoft.com/zh-cn/archive/msdn-magazine/2017/march/net-framework-immutable-collections
+global using Microsoft.IdentityModel.Tokens;

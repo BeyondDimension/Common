@@ -4,7 +4,6 @@
 		<PackageReference Include="Nito.Comparers" />
 		<PackageReference Include="Crc32.NET" />
 		<PackageReference Include="Newtonsoft.Json" />
-		<PackageReference Include="Splat.Drawing" />
 		<PackageReference Include="Polly" />
 	</ItemGroup>
 

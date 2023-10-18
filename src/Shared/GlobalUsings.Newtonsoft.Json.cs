@@ -9,6 +9,7 @@ global using Newtonsoft.Json;
 global using Newtonsoft.Json.Converters;
 global using Newtonsoft.Json.Serialization;
 global using Newtonsoft.Json.Linq;
+// TODO: using NewtonsoftJsonXXX 缩减为 NJsonXXX
 global using NewtonsoftJsonConverter = Newtonsoft.Json.JsonConverter;
 global using NewtonsoftJsonIgnore = Newtonsoft.Json.JsonIgnoreAttribute;
 global using NewtonsoftJsonProperty = Newtonsoft.Json.JsonPropertyAttribute;
@@ -17,3 +18,4 @@ global using NewtonsoftJsonFormatting = Newtonsoft.Json.Formatting;
 global using NewtonsoftJsonConvert = Newtonsoft.Json.JsonConvert;
 global using NewtonsoftJsonSerializerSettings = Newtonsoft.Json.JsonSerializerSettings;
 global using NewtonsoftJsonConstructor = Newtonsoft.Json.JsonConstructorAttribute;
+global using NewtonsoftJsonObject = Newtonsoft.Json.Linq.JObject;

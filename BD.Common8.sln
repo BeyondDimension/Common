@@ -57,6 +57,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Sdk", "0.Sdk", "{FDC449E3
 		src\Sdk\BD.Common8.Bcl.Reference.props = src\Sdk\BD.Common8.Bcl.Reference.props
 		src\Sdk\BD.Common8.SourceGenerator.props = src\Sdk\BD.Common8.SourceGenerator.props
 		src\Sdk\BD.Common8.SourceGenerator.Reference.props = src\Sdk\BD.Common8.SourceGenerator.Reference.props
+		src\Sdk\BD.Common8.UnitTest.props = src\Sdk\BD.Common8.UnitTest.props
 		src\Sdk\GeneratePackage.props = src\Sdk\GeneratePackage.props
 	EndProjectSection
 EndProject
@@ -86,9 +87,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.Sample", "8.Sample", "{0E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Ipc.Server.Sample.Experimental", "src\BD.Common8.Ipc.Server.Sample.Experimental\BD.Common8.Ipc.Server.Sample.Experimental.csproj", "{1C7516B5-3DBA-4219-AC0D-B5077D8EA8D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Ipc.Client.Sample.Experimental", "src\BD.Common8.Ipc.Client.Sample.Experimental\BD.Common8.Ipc.Client.Sample.Experimental.csproj", "{DDA37C54-CDE0-41D0-B500-597AD06465A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Ipc.Client.Sample.Experimental", "src\BD.Common8.Ipc.Client.Sample.Experimental\BD.Common8.Ipc.Client.Sample.Experimental.csproj", "{DDA37C54-CDE0-41D0-B500-597AD06465A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ipc", "Ipc", "{C4F7E938-851F-45C5-921E-91A4B2E3BAA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Primitives.ApiRsp", "src\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj", "{D2E191BF-6206-45FF-8737-E9F7C7CB953C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.UnitTest", "src\BD.Common8.UnitTest\BD.Common8.UnitTest.csproj", "{A6618C21-FDF6-4141-BBFB-ACB050AD7B28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -144,6 +149,14 @@ Global
 		{DDA37C54-CDE0-41D0-B500-597AD06465A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDA37C54-CDE0-41D0-B500-597AD06465A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDA37C54-CDE0-41D0-B500-597AD06465A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E191BF-6206-45FF-8737-E9F7C7CB953C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E191BF-6206-45FF-8737-E9F7C7CB953C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2E191BF-6206-45FF-8737-E9F7C7CB953C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2E191BF-6206-45FF-8737-E9F7C7CB953C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6618C21-FDF6-4141-BBFB-ACB050AD7B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6618C21-FDF6-4141-BBFB-ACB050AD7B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6618C21-FDF6-4141-BBFB-ACB050AD7B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6618C21-FDF6-4141-BBFB-ACB050AD7B28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,6 +189,8 @@ Global
 		{1C7516B5-3DBA-4219-AC0D-B5077D8EA8D2} = {C4F7E938-851F-45C5-921E-91A4B2E3BAA7}
 		{DDA37C54-CDE0-41D0-B500-597AD06465A0} = {C4F7E938-851F-45C5-921E-91A4B2E3BAA7}
 		{C4F7E938-851F-45C5-921E-91A4B2E3BAA7} = {0E7091C6-2177-4D76-BA12-77D11E6220C0}
+		{D2E191BF-6206-45FF-8737-E9F7C7CB953C} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
+		{A6618C21-FDF6-4141-BBFB-ACB050AD7B28} = {0D29389A-0BDC-4C44-9798-8C33EFE883CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CA7F767-BBA3-4E1F-90E7-DAB32105B027}

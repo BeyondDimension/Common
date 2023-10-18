@@ -12,7 +12,11 @@ public static partial class RSAUtils
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSAParameters GetRSAParametersFromJsonString(string jsonString)
     {
+#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+        var rsaParams = SystemTextJsonSerializer.Deserialize(jsonString, ParametersJsonSerializerContext.Default.Parameters);
+#else
         var rsaParams = Serializable.DJSON<Parameters>(jsonString);
+#endif
         if (rsaParams == null) throw new NullReferenceException(nameof(rsaParams));
         return rsaParams.ToStruct();
     }
@@ -72,7 +76,11 @@ public static partial class RSAUtils
     public static string ToJsonString(this RSA rsa, bool includePrivateParameters)
     {
         var rsaParams = rsa.ExportParameters(includePrivateParameters).ToObject();
+#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+        var jsonString = SystemTextJsonSerializer.Serialize(rsaParams, ParametersJsonSerializerContext.Default.Parameters);
+#else
         var jsonString = Serializable.SJSON(rsaParams, ignoreNullValues: true);
+#endif
         return jsonString;
     }
 
@@ -495,6 +503,14 @@ public static partial class RSAUtils
                 string.Equals(Q, other.Q, StringComparison.Ordinal);
         }
     }
+
+#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [JsonSourceGenerationOptions]
+    [JsonSerializable(typeof(Parameters))]
+    internal sealed partial class ParametersJsonSerializerContext : JsonSerializerContext
+    {
+    }
+#endif
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static RSAParameters ToStruct(this Parameters parms) => new()
