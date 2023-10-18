@@ -1,9 +1,9 @@
-namespace BD.Common8.Primitives.AdministrativeArea.Enums;
+namespace BD.Common8.Primitives.District.Enums;
 
 /// <summary>
-/// 地区等级
+/// 行政区域等级
 /// </summary>
-public enum AreaLevel : byte
+public enum DistrictLevel : byte
 {
     省或直辖市或特别行政区 = 2,
 

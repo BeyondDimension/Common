@@ -14,7 +14,8 @@
 		<EmbeddedResource Update="Properties\Resources.resx">
 			<Generator></Generator>
 			<LastGenOutput></LastGenOutput>
-			<LogicalName>FxResources.BD.Common8.Primitives.AdministrativeArea.Properties.Resources.resources</LogicalName>
+			<LogicalName>FxResources.BD.Common8.Primitives.District.Properties.Resources.resources</LogicalName>
+			<SubType>Designer</SubType>
 		</EmbeddedResource>
 	</ItemGroup>
 

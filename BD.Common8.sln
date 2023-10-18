@@ -107,7 +107,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonalData", "PersonalDat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Primitives", "Primitives", "{8A476270-60FD-4699-9FCC-48D36F354613}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Primitives.AdministrativeArea", "src\BD.Common8.Primitives.AdministrativeArea\BD.Common8.Primitives.AdministrativeArea.csproj", "{06590934-22F0-476B-97B2-D86A0B5655CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Primitives.District", "src\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj", "{C47D31C9-3574-4438-8402-FEB2C8C360A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -183,10 +183,10 @@ Global
 		{243907C9-4C0D-4F87-8D7E-AF29890A47A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243907C9-4C0D-4F87-8D7E-AF29890A47A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243907C9-4C0D-4F87-8D7E-AF29890A47A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06590934-22F0-476B-97B2-D86A0B5655CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06590934-22F0-476B-97B2-D86A0B5655CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06590934-22F0-476B-97B2-D86A0B5655CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06590934-22F0-476B-97B2-D86A0B5655CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C47D31C9-3574-4438-8402-FEB2C8C360A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47D31C9-3574-4438-8402-FEB2C8C360A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47D31C9-3574-4438-8402-FEB2C8C360A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47D31C9-3574-4438-8402-FEB2C8C360A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -226,7 +226,7 @@ Global
 		{66FEE9BC-6854-40B6-8A4F-76EB97F95A6B} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
 		{DA5A5955-2AC6-45E1-9CEA-51D47C1DF89E} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
 		{8A476270-60FD-4699-9FCC-48D36F354613} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
-		{06590934-22F0-476B-97B2-D86A0B5655CC} = {8A476270-60FD-4699-9FCC-48D36F354613}
+		{C47D31C9-3574-4438-8402-FEB2C8C360A2} = {8A476270-60FD-4699-9FCC-48D36F354613}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CA7F767-BBA3-4E1F-90E7-DAB32105B027}

@@ -8,4 +8,14 @@
 		<UseMicrosoftIdentityModelTokens>true</UseMicrosoftIdentityModelTokens>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.District.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
+	</ItemGroup>
+
 </Project>

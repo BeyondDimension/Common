@@ -1,39 +1,36 @@
-namespace BD.Common8.Primitives.AdministrativeArea.Models.Abstractions;
+namespace BD.Common8.Primitives.District.Models.Abstractions;
 
-public partial interface IArea
+/// <summary>
+/// 行政区域
+/// <para>https://lbs.amap.com/api/webservice/guide/api/district</para>
+/// </summary>
+public partial interface IDistrict
 {
     /// <summary>
-    /// 地区 Id
+    /// 行政区域 Id
     /// </summary>
     int Id { get; set; }
 
     /// <summary>
-    /// 地区名的最大长度
-    /// </summary>
-    const int MaxLength_AreaName = 90;
-
-    /// <summary>
-    /// 地区名
+    /// 行政区域名
     /// </summary>
     string? Name { get; set; }
 
-    /// <summary>
-    /// 地区等级
-    /// </summary>
-    AreaLevel Level { get; set; }
+    /// <inheritdoc cref="DistrictLevel"/>
+    DistrictLevel Level { get; set; }
 
     /// <summary>
-    /// 上一级地区 Id
+    /// 上一级行政区域 Id
     /// </summary>
     int? Up { get; set; }
 
     /// <summary>
-    /// 短名称
+    /// 行政区域短名称
     /// </summary>
     string? ShortName { get; set; }
 
     /// <inheritdoc cref="object.ToString"/>
-    protected static string ToString(IArea area)
+    protected static string ToString(IDistrict area)
     {
         if (!string.IsNullOrWhiteSpace(area.ShortName))
             return area.ShortName;

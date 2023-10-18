@@ -37,7 +37,7 @@
 ### BD.Common8.PersonalData.PhoneNumber
 提供个人资料（手机号码）格式
 
-### BD.Common8.Primitives.AdministrativeArea
+### BD.Common8.Primitives.District
 提供行政区域数据封装库
 
 ### BD.Common8.Primitives.ApiResponse

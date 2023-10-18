@@ -20,6 +20,7 @@ global using System.Net;
 global using System.Net.Security;
 global using System.Net.Sockets;
 global using System.Reflection;
+global using System.Resources;
 global using System.Runtime;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
