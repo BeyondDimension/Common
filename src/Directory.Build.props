@@ -23,6 +23,7 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<UseArtifactsOutput>true</UseArtifactsOutput>
 		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+		<IsCommon8Project>true</IsCommon8Project>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
@@ -43,4 +44,5 @@
 	<ItemGroup>
 		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
 	</ItemGroup>
+
 </Project>

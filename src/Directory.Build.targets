@@ -1,0 +1,5 @@
+<Project>
+
+	<Import Project=".\Sdk\BD.Common8.Sdk.targets" />
+
+</Project>

@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\Sdk\BD.Common8.SourceGenerator.Reference.props" />
-
 	<PropertyGroup>
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<RootNamespace>BD.Common8.SourceGenerator</RootNamespace>
 	</PropertyGroup>
+
+	<Import Project="..\Sdk\BD.Common8.SourceGenerator.Reference.props" />
 
 </Project>

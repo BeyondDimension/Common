@@ -1,20 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<Import Project="..\Sdk\GeneratePackage.props" />
-	<Import Project="..\Sdk\BD.Common8.Bcl.GlobalUsings.props" />
-	<Import Project="..\Sdk\BD.Common8.Bcl.Reference.props" />
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>$(Library_TargetFrameworks)</TargetFrameworks>
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows</TargetFrameworks>
 		<RootNamespace>System</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
+		<IsGlobalUsingsCommon8Bcl>true</IsGlobalUsingsCommon8Bcl>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<Import Project="..\Sdk\BD.Common8.Bcl.Reference.props" />
 
 </Project>

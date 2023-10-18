@@ -1,46 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\Sdk\GeneratePackage.props" />
-
 	<PropertyGroup>
-		<TargetFrameworks>$(Library_TargetFrameworks)</TargetFrameworks>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.Client.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.MemoryPack.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.DependencyInjection.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Logging.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Polly.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.System.Buffers.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.System.Net.Http.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.System.Text.Json.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
 		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
 	</ItemGroup>
 

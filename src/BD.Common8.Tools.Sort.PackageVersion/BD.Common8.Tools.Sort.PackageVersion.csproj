@@ -3,12 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<UseProjectUtils>true</UseProjectUtils>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\Shared\ProjectUtils.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
 
 </Project>
