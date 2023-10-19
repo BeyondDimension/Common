@@ -10,7 +10,7 @@ namespace BD.Common.Repositories.SourceGenerator.Models;
 /// 源生成配置模型
 /// </summary>
 public sealed record class GeneratorConfig(
-    ConcurrentDictionary<string, string> Translates,
+    Dictionary<string, string> Translates,
     ImmutableHashSet<string> AttributeTypeFullNames,
     string? ApiBaseUrlBackManageLocal,
     string? ApiBaseUrlBackManageDevelopment,
@@ -90,7 +90,10 @@ public sealed record class GeneratorConfig(
 
         foreach (var item in DefTranslates)
         {
-            generatorConfig.Translates.TryAdd(item.Key, item.Value);
+            if (!generatorConfig.Translates.ContainsKey(item.Key))
+            {
+                generatorConfig.Translates.Add(item.Key, item.Value);
+            }
         }
 
         #endregion
@@ -143,16 +146,19 @@ public sealed record class GeneratorConfig(
     public static string Translate(string input)
     {
         if (!input.HasOther()) return input; // 仅英文字母与数字组合的名称不需要翻译
-        var instance = Instance;
-        if (instance.Translates.TryGetValue(input, out var result))
+        lock (@lock)
         {
-            if (!string.IsNullOrEmpty(result)) return result;
+            var instance = Instance;
+            if (instance.Translates.TryGetValue(input, out var result))
+            {
+                if (!string.IsNullOrEmpty(result)) return result;
+            }
+            else
+            {
+                instance.Translates.Add(input, string.Empty);
+            }
+            return input;
         }
-        else
-        {
-            instance.Translates.TryAdd(input, string.Empty);
-        }
-        return input;
     }
 
     static readonly object @lock = new();
