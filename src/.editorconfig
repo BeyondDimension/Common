@@ -268,6 +268,9 @@ dotnet_diagnostic.SA1629.severity = silent
 # SA1101: Prefix local calls with this
 dotnet_diagnostic.SA1101.severity = silent
 
+# SA1134: Attributes should not share line
+dotnet_diagnostic.SA1134.severity = silent
+
 # SA1623: Property summary documentation should match accessors
 dotnet_diagnostic.SA1623.severity = none
 
