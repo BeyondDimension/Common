@@ -98,14 +98,35 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
     /// <param name="m"></param>
     static void Execute(SourceProductionContext spc, SourceModel m)
     {
-        using var memoryStream = new MemoryStream();
-        WriteFile(memoryStream, m);
-        var sourceText = SourceText.From(memoryStream, canBeEmbedded: true);
+        SourceText sourceText;
+        try
+        {
+            using var memoryStream = new MemoryStream();
+            WriteFile(memoryStream, m);
+            sourceText = SourceText.From(memoryStream, canBeEmbedded: true);
 #if DEBUG
-        var sourceTextString = sourceText.ToString();
-        Console.WriteLine();
-        Console.WriteLine(sourceTextString);
+            var sourceTextString = sourceText.ToString();
+            Console.WriteLine();
+            Console.WriteLine(sourceTextString);
 #endif
+        }
+        catch (Exception ex)
+        {
+            StringBuilder builder = new();
+            builder.Append("Path: ");
+            builder.AppendLine(m.Path);
+            builder.Append("Namespace: ");
+            builder.AppendLine(m.Namespace);
+            builder.Append("TypeName: ");
+            builder.AppendLine(m.TypeName);
+            builder.Append("ResourceBaseName: ");
+            builder.AppendLine(m.ResourceBaseName);
+            builder.Append("IsPublic: ");
+            builder.AppendLine(m.IsPublic.ToString());
+            builder.AppendLine();
+            builder.AppendLine(ex.ToString());
+            sourceText = SourceText.From(builder.ToString());
+        }
         spc.AddSource($"{m.Namespace}.{m.TypeName}.Designer.g.cs", sourceText);
     }
 
