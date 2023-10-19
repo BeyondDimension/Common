@@ -8,7 +8,16 @@ namespace System;
 public static partial class ThrowHelper
 {
     /// <summary>
-    /// 抛出异常 <see cref="ArgumentOutOfRangeException(string?, object?, string?)"/>
+    /// 抛出 <see cref="ArgumentNullException"/>
+    /// </summary>
+    /// <param name="paramName"></param>
+    /// <exception cref="ArgumentNullException"></exception>
+    [DoesNotReturn]
+    public static void ThrowArgumentNullException(string? paramName)
+        => throw new ArgumentNullException(paramName);
+
+    /// <summary>
+    /// 抛出异常 <see cref="ArgumentOutOfRangeException(string?, object?, string?)"/>，使用通用 message
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="actualValue"></param>
@@ -17,4 +26,26 @@ public static partial class ThrowHelper
     [DoesNotReturn]
     public static void ThrowArgumentOutOfRangeException<T>(T actualValue, [CallerArgumentExpression(nameof(actualValue))] string? paramName = null) =>
           throw new ArgumentOutOfRangeException(SR.Arg_ArgumentOutOfRangeException__.Format(paramName, actualValue));
+
+    /// <summary>
+    /// 创建异常 <see cref="ArgumentOutOfRangeException(string?, object?, string?)"/>，使用通用 message
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="actualValue"></param>
+    /// <param name="paramName"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ArgumentOutOfRangeException GetArgumentOutOfRangeException<T>(T actualValue, [CallerArgumentExpression(nameof(actualValue))] string? paramName = null) =>
+        new(SR.Arg_ArgumentOutOfRangeException__.Format(paramName, actualValue));
+
+    /// <summary>
+    /// 创建异常 <see cref="ArgumentOutOfRangeException(string?, object?, string?)"/>，使用自定义 message
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="actualValue"></param>
+    /// <param name="message"></param>
+    /// <param name="paramName"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ArgumentOutOfRangeException GetArgumentOutOfRangeWithMessageException<T>(T actualValue, string message, [CallerArgumentExpression(nameof(actualValue))] string? paramName = null) =>
+        new(SR.Arg_ArgumentOutOfRangeException___.Format(paramName, actualValue, message));
 }

@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore">
 
 	<!--<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)\GeneratePackage.props" />-->
 	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.UnitTest.props" />
@@ -40,6 +40,26 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseEFCore) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Z.EntityFramework.Plus.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+		<PackageReference Include="Z.EntityFramework.Plus.EFCore" />
 	</ItemGroup>
 
 </Project>

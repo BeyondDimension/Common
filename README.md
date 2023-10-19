@@ -10,6 +10,7 @@
 - IsCommon8Project 是否为 ```Common8``` 仓库内的项目，将决定项目引用还是包引用
 - UseCommon8Bcl 是否引用 ```BD.Common8.Bcl``` 类库
 - UseAspNetCore 是否引用 ```ASP.NET Core``` 框架
+- UseEFCore 是否引用 ```EF Core``` 框架
 - UseProjectUtils 是否引用 ```src\Shared\ProjectUtils.cs```
 - UseSourceGeneratorResx 是否引用 ```Resx``` 的源生成器
 - UseMicrosoftIdentityModelTokens 是否引用包 ```Microsoft.IdentityModel.Tokens```
@@ -31,20 +32,26 @@
 ### BD.Common8.Ipc.Server
 进程间通信 (IPC) 服务端库
 
-### BD.Common8.PersonalData.BirthDate
-提供个人资料（出生日期）格式
-
-### BD.Common8.PersonalData.PhoneNumber
-提供个人资料（手机号码）格式
-
-### BD.Common8.Primitives.District
-提供行政区域数据封装库
+### BD.Common8.Orm.EFCore
+EFCore 相关的封装库
 
 ### BD.Common8.Primitives.ApiResponse
 提供 Api 响应 (BackManage 后台管理) 类型的封装库
 
 ### BD.Common8.Primitives.ApiRsp
 提供 Api 响应类型的封装库
+
+### BD.Common8.Primitives.PersonalData.BirthDate
+提供个人资料（出生日期）格式
+
+### BD.Common8.Primitives.PersonalData.PhoneNumber
+提供个人资料（手机号码）格式
+
+### BD.Common8.Primitives
+基本模型，枚举类型库
+
+### BD.Common8.Primitives.District
+提供行政区域数据封装库
 
 ## SourceGenerator 源生成器
 
@@ -67,18 +74,5 @@ NuGet 包清单排序
 
 ## UnitTest 单元测试
 
-<!-- TODO
-
-BD.Common8.ORM.EFCore
-提供对对象关系映射(EFCore)的扩展
-
-BD.Common8.UserInput.ModelValidator
-提供用户输入的模型验证
-
-BD.Common8.Primitives
-提供常见枚举
-
-BD.Common8.WebApi.Primitives.ApiResponse
-提供 WebApi 响应模型类型
-
--->
+### BD.Common8.UnitTest
+当前仓库的单元测试项目

@@ -11,6 +11,6 @@
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\BD.Common8.Primitives.ApiRsp.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildProjectName).props" />
 
 </Project>

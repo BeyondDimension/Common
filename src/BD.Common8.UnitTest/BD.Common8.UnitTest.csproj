@@ -12,10 +12,14 @@
 		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.District.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Security.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
+		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
 	</ItemGroup>
 
 </Project>

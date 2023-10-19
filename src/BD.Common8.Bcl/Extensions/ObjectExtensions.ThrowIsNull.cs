@@ -18,11 +18,7 @@ public static partial class ObjectExtensions
         // https://github.com/dotnet/runtime/blob/v6.0.5/src/libraries/System.Private.CoreLib/src/System/ArgumentNullException.cs#L59
         // https://github.com/CommunityToolkit/dotnet/blob/v8.0.0-preview3/CommunityToolkit.Diagnostics/Guard.cs#L63
         if (argument is null)
-            Throw(paramName);
+            ThrowHelper.ThrowArgumentNullException(paramName);
         return argument;
     }
-
-    [DoesNotReturn]
-    static void Throw(string? paramName)
-        => throw new ArgumentNullException(paramName);
 }

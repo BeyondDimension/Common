@@ -11,15 +11,22 @@
 		<PackageVersion Include="gfoidl.Base64" Version="2.0.0" />
 		<PackageVersion Include="MemoryPack" Version="1.9.16" />
 		<PackageVersion Include="MessagePack" Version="2.5.129" />
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0-rc.2.23480.2" />
 		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
 		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0-rc.2.23480.1" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0-rc.2.23480.1" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-rc.2.23480.1" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0-rc.2.23480.1" />
 		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-rc.2.23479.6" />
 		<PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.2.23479.6" />
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0-rc.2.23479.6" />
 		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.0.3" />
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0-release-23468-02" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageVersion Include="Nito.Comparers" Version="6.2.2" />
+		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-rc.2" />
 		<PackageVersion Include="NUnit" Version="3.13.3" />
 		<PackageVersion Include="NUnit.Analyzers" Version="3.8.0" />
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
@@ -34,5 +41,6 @@
 		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0" />
 		<PackageVersion Include="Vanara.PInvoke.WinHTTP" Version="$(Version_Vanara_PInvoke)" />
+		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.0.0-rc.2.23480.1-01" />
 	</ItemGroup>
 </Project>

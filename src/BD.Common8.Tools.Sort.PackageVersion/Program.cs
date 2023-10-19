@@ -4,12 +4,14 @@ var filePath = Path.Combine(ProjPath, "src", "Directory.Packages.props");
 var lines = await File.ReadAllLinesAsync(filePath);
 SortedDictionary<string, string> dict = [];
 List<string> startLines = [], endLines = [];
-foreach (var line in lines)
+for (int i = 0; i < lines.Length; i++)
 {
+    var line = lines[i];
     try
     {
-        var element = XElement.Parse(line);
-        if (element.Name == "PackageVersion")
+        var element = XElement.Parse(line.Trim().TrimStart("<!--").TrimEnd("-->"));
+        if (element.Name == "PackageVersion" ||
+            element.Name == "PackageReference")
         {
             var include = element.Attribute("Include")!.Value;
             var version = element.Attribute("Version")!.Value;

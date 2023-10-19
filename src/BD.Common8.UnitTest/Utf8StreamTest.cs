@@ -92,7 +92,7 @@ public sealed partial class {3}
 
 """;
         (var byString, var byStream) = TestWriteFormat2(test_01.Replace("{a", "{{"), test_01.Replace("{a", "{"),
-            "BD.Common.UnitTest",
+            "BD.Common8.UnitTest",
             "Test x",
             "Utf8StreamTests",
             "Utf8StreamTest");

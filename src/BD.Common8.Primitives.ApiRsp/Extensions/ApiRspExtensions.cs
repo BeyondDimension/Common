@@ -1,7 +1,6 @@
 using static BD.Common8.Primitives.ApiRsp.Resources.SR;
 
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
-namespace BD.Common8.Extensions;
+namespace BD.Common8.Primitives.ApiRsp.Extensions;
 
 #pragma warning disable SA1600 // Elements should be documented
 
@@ -17,58 +16,32 @@ public static partial class ApiRspExtensions
     public static string GetMessage(this ApiRspCode code, string? errorAppendText = null, string? errorFormat = null)
     {
         if (code == ApiRspCode.OK || code == ApiRspCode.Canceled)
-        {
             return string.Empty;
-        }
         else if (code == ApiRspCode.Unauthorized)
-        {
             return ApiResponseCode_Unauthorized;
-        }
         else if (code == ApiRspCode.IsNotOfficialChannelPackage)
-        {
             return IsNotOfficialChannelPackageWarning;
-        }
         else if (code == ApiRspCode.AppObsolete)
-        {
             return ApiResponseCode_AppObsolete;
-        }
         else if (code == ApiRspCode.UserIsBan)
-        {
             return ApiResponseCode_UserIsBan;
-        }
         else if (code == ApiRspCode.CertificateNotYetValid)
-        {
             return ApiResponseCode_CertificateNotYetValid;
-        }
         else if (code == ApiRspCode.NetworkConnectionInterruption)
-        {
             return NetworkConnectionInterruption;
-        }
         else if (code == ApiRspCode.BadGateway)
-        {
             return ApiResponseCode_BadGateway;
-        }
         string message;
         var notErrorAppendText = string.IsNullOrWhiteSpace(errorAppendText);
         if (string.IsNullOrWhiteSpace(errorFormat))
-        {
             if (notErrorAppendText)
-            {
                 errorFormat = IsClientExceptionOrServerException(code) ? ClientError_ : ServerError_;
-            }
             else
-            {
                 errorFormat = IsClientExceptionOrServerException(code) ? ClientError__ : ServerError__;
-            }
-        }
         if (notErrorAppendText)
-        {
             message = errorFormat.Format((int)code);
-        }
         else
-        {
             message = errorFormat.Format((int)code, errorAppendText);
-        }
         return message;
     }
 
@@ -83,7 +56,7 @@ public static partial class ApiRspExtensions
                 if (string.IsNullOrWhiteSpace(errorAppendText)) errorAppendText = exMsg;
                 else errorAppendText = $"{errorAppendText}{Environment.NewLine}{exMsg}";
             }
-            message = GetMessage(response.Code, errorAppendText, errorFormat);
+            message = response.Code.GetMessage(errorAppendText, errorFormat);
         }
         return message;
     }

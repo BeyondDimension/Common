@@ -671,17 +671,26 @@ public static class AESUtils
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static (byte[] key, byte[] iv) GetParameters(string s)
+    public static KeyIV GetParameters(string s)
     {
         var bytes = Encoding.UTF8.GetBytes(s);
         return GetParameters(bytes);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static (byte[] key, byte[] iv) GetParameters(byte[] bytes)
+    public static KeyIV GetParameters(byte[] bytes)
     {
         var key = Hashs.ByteArray.SHA1(bytes).Concat(Hashs.ByteArray.Crc32(bytes)).ToArray();
         var iv = Hashs.ByteArray.MD5(bytes);
-        return (key, iv);
+        return new() { Key = key, IV = iv };
+    }
+
+    public readonly struct KeyIV
+    {
+        /// <inheritdoc cref="SymmetricAlgorithm.Key"/>
+        public required readonly byte[] Key { get; init; }
+
+        /// <inheritdoc cref="SymmetricAlgorithm.IV"/>
+        public required readonly byte[] IV { get; init; }
     }
 }

@@ -1,6 +1,4 @@
-//using BD.Common.Services.Implementation;
 //using Fusillade;
-//using Microsoft.Extensions.Logging;
 
 //namespace BD.Common8.UnitTest;
 
