@@ -9,4 +9,8 @@
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
 </Project>

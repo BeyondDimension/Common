@@ -1,6 +1,6 @@
 <Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore">
 
-	<!--<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)\GeneratePackage.props" />-->
+	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)\GeneratePackage.props" />
 	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.UnitTest.props" />
 	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.SourceGenerator.props" />
 	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.GlobalUsings.props" />
