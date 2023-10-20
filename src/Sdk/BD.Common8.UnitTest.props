@@ -1,11 +1,5 @@
 <Project>
 
-	<PropertyGroup>
-		<TargetFramework>net$(DotNet_Version);net$(DotNet_Version)-windows</TargetFramework>
-		<IsPackable>false</IsPackable>
-		<IsTestProject>true</IsTestProject>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<Compile Include="..\Shared\GlobalUsings.UnitTest.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>

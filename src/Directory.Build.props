@@ -3,7 +3,6 @@
 		<DotNet_Version>8.0</DotNet_Version>
 		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
 		<SourceGenerator_TargetFramework>netstandard2.0</SourceGenerator_TargetFramework>
-		<Library_TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows</Library_TargetFrameworks>
 		<NoWarn>$(NoWarn);NU1507;1591;SA1612;IL2026</NoWarn>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
