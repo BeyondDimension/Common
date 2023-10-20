@@ -18,9 +18,6 @@ public abstract partial class SafeHANDLE : SafeHandleZeroOrMinusOneIsInvalid, IE
     {
     }
 
-    [LibraryImport("/usr/lib/libobjc.dylib", EntryPoint = "sel_registerName")]
-    private static partial void GetHandle([MarshalAs(UnmanagedType.LPWStr)] string name);
-
     /// <summary>Initializes a new instance of the <see cref="SafeHANDLE"/> class and assigns an existing handle.</summary>
     /// <param name="preexistingHandle">An <see cref="IntPtr"/> object that represents the pre-existing handle to use.</param>
     /// <param name="ownsHandle">
