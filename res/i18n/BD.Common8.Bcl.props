@@ -1,8 +1,5 @@
 <Project>
 	<ItemGroup>
-		<AdditionalFiles Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.resx" Visible="false">
-			<!-- 使用 AdditionalFiles 引入主 resx 文件用于源生成器 -->
-		</AdditionalFiles>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.resx">
 			<Link>Resources\Strings.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Bcl.resources</LogicalName>

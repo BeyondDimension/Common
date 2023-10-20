@@ -5,6 +5,7 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
+		<LinkResXGeneratedCodeAttribute>true</LinkResXGeneratedCodeAttribute>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,6 +23,9 @@
 		</Compile>
 		<Compile Include="..\BD.Common8.SourceGenerator.ResX\Helpers\ResxSatelliteAssemblyHelper.cs">
 			<LinkBase>_SourceReference\Helpers</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.SourceGenerator.ResX\Constants.GetDefaultNamespaceByProjectName.cs">
+			<LinkBase>_SourceReference</LinkBase>
 		</Compile>
 	</ItemGroup>
 

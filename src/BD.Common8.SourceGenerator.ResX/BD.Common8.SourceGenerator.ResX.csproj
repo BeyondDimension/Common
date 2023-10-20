@@ -4,9 +4,10 @@
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.23.11019.11838</Version>
+		<Version>8.23.11020.11716</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<LinkResXGeneratedCodeAttribute>true</LinkResXGeneratedCodeAttribute>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">

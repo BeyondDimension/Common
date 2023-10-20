@@ -72,13 +72,7 @@ static partial class Constants
     public static string GetDefaultNamespace(string filePath)
     {
         var fileNameWithoutEx = Path.GetFileNameWithoutExtension(filePath);
-        fileNameWithoutEx = fileNameWithoutEx switch
-        {
-            "BD.Common8.Bcl" => "BD.Common8",
-            _ => fileNameWithoutEx,
-        };
-        return fileNameWithoutEx.EndsWith(".Resources") ?
-            fileNameWithoutEx : $"{fileNameWithoutEx}.Resources";
+        return GetDefaultNamespaceByProjectName(fileNameWithoutEx);
     }
 
     /// <summary>

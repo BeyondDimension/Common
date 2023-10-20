@@ -139,11 +139,60 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
 #if DEBUG
         Console.WriteLine("Initialize(IncrementalGeneratorInitializationContext..");
 #endif
+        InitializeByAttribute(ctx);
+    }
+
+    [Obsolete("AdditionalText 在 macOS 上无效", true)]
+    void InitializeByAdditionalText(IncrementalGeneratorInitializationContext ctx)
+    {
         var source = ctx.AdditionalTextsProvider
               .Combine(ctx.AnalyzerConfigOptionsProvider)
               .Where(static x => Match(x.Left, x.Right))
               .Select(static (x, y) => Convert(x.Left, x.Right, y))
               .Where(static x => x != default);
         ctx.RegisterSourceOutput(source, Execute);
+    }
+
+    void InitializeByAttribute(IncrementalGeneratorInitializationContext ctx)
+    {
+        var source = ctx.SyntaxProvider.ForAttributeWithMetadataName(
+            typeof(ResXGeneratedCodeAttribute).FullName!,
+            static (_, _) => true,
+            static (content, _) => content);
+        ctx.RegisterSourceOutput(source, Execute);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static ResXGeneratedCodeAttribute GetResXGeneratedCodeAttribute(ImmutableArray<AttributeData> attributes)
+    {
+        const string typeFullName = "System.CodeDom.Compiler.ResXGeneratedCodeAttribute";
+        var attribute = attributes.FirstOrDefault(static x => x.ClassNameEquals(typeFullName));
+
+        var relativeFilePath = attribute.ThrowIsNull().ConstructorArguments.First().Value!.ToString();
+
+        return new(relativeFilePath);
+    }
+
+    static void Execute(SourceProductionContext spc, GeneratorAttributeSyntaxContext m)
+    {
+        if (m.TargetSymbol is not INamedTypeSymbol symbol)
+            return;
+
+        var @namespace = symbol.ContainingNamespace.ToDisplayString();
+        var typeName = symbol.Name;
+
+        var attr = GetResXGeneratedCodeAttribute(symbol.GetAttributes());
+        var path = Path.GetFullPath(Path.Combine([Path.GetDirectoryName(m.SemanticModel.SyntaxTree.FilePath), .. attr.RelativeFilePath.Split('\\')]));
+
+        SourceModel model = new()
+        {
+            Path = path,
+            Text = null,
+            Namespace = @namespace,
+            TypeName = typeName,
+            ResourceBaseName = GetDefaultResourceBaseName(path),
+            IsPublic = false,
+        };
+        Execute(spc, model);
     }
 }

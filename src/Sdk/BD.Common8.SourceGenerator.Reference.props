@@ -11,6 +11,9 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.CodeAnalysis.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Collections.Immutable.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SourceGenerator.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -22,6 +25,18 @@
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\ThrowHelper*.cs">
+			<LinkBase>_SourceReference</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Properties\SR.cs">
+			<LinkBase>_SourceReference\Properties</LinkBase>
 		</Compile>
 	</ItemGroup>
 </Project>

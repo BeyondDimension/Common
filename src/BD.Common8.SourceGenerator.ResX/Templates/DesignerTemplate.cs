@@ -18,7 +18,7 @@ sealed class DesignerTemplate : TemplateBase
         /// <summary>
         /// 源文本
         /// </summary>
-        public required SourceText Text { get; init; }
+        public required SourceText? Text { get; init; }
 
         /// <summary>
         /// 命名空间

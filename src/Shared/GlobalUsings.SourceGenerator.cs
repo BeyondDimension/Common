@@ -7,5 +7,6 @@
 
 global using System.Extensions;
 global using BD.Common8.SourceGenerator;
+global using BD.Common8.SourceGenerator.Helpers;
 global using BD.Common8.SourceGenerator.Templates;
 global using BD.Common8.SourceGenerator.Templates.Abstractions;
