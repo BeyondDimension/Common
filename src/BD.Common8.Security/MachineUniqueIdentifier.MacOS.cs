@@ -1,5 +1,7 @@
 namespace BD.Common8.Security;
 
+#pragma warning disable SA1413 // Use trailing comma in multi-line initializers
+
 partial class MachineUniqueIdentifier
 {
     static partial class MacOS
@@ -41,8 +43,15 @@ partial class MachineUniqueIdentifier
             }
         }
 
+        const uint kCFStringEncodingASCII = 0x0600;
+
         [LibraryImport("/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation")]
-        private static partial nint CFDataGetBytePtr(nint ptr);
+        [UnmanagedCallConv(CallConvs = new Type[] { typeof(CallConvCdecl) })]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static partial bool CFStringGetCString(nint theString, nint buffer, int bufferSize, uint encoding = kCFStringEncodingASCII);
+
+        [LibraryImport("/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation")]
+        internal static partial int CFStringGetLength(nint theString);
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         internal static string GetIOPlatformSerialNumber()
@@ -53,16 +62,34 @@ partial class MachineUniqueIdentifier
                 throw new InvalidOperationException("Direct invocation of this method is not allowed.");
 
             var value = string.Empty;
-            nint matching = IOServiceMatching("IOPlatformExpertDevice");
+            var matching = IOServiceMatching("IOPlatformExpertDevice");
             var platformExpert = IOServiceGetMatchingService(0, matching);
             if (platformExpert != 0)
             {
-                var valueIntPtr = IORegistryEntryCreateCFProperty(platformExpert, GetNSString("IOPlatformSerialNumber"), default, default);
-                if (valueIntPtr != default)
+                try
                 {
-                    value = Marshal.PtrToStringAuto(CFDataGetBytePtr(valueIntPtr)) ?? string.Empty;
+                    var valueIntPtr = IORegistryEntryCreateCFProperty(platformExpert, GetNSString("IOPlatformSerialNumber"), default, default);
+                    if (valueIntPtr != default)
+                    {
+                        var bufferSize = CFStringGetLength(valueIntPtr);
+                        var buffer = Marshal.AllocHGlobal(bufferSize);
+                        try
+                        {
+                            if (CFStringGetCString(valueIntPtr, buffer, bufferSize))
+                            {
+                                value = Marshal.PtrToStringAnsi(buffer, bufferSize) ?? string.Empty;
+                            }
+                        }
+                        finally
+                        {
+                            Marshal.FreeHGlobal(buffer);
+                        }
+                    }
                 }
-                _ = IOObjectRelease(platformExpert);
+                finally
+                {
+                    _ = IOObjectRelease(platformExpert);
+                }
             }
 
             return value;
