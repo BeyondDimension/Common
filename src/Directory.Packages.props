@@ -1,9 +1,5 @@
 <Project>
 	<!-- NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
-	<PropertyGroup>
-		<Version_PInvoke>0.7.124</Version_PInvoke>
-		<Version_Vanara_PInvoke>3.4.16</Version_Vanara_PInvoke>
-	</PropertyGroup>
 	<ItemGroup>
 		<PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.2.1" />
 		<PackageVersion Include="coverlet.collector" Version="6.0.0" />
@@ -24,6 +20,7 @@
 		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.0.3" />
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0-release-23468-02" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+		<PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.49-beta" />
 		<PackageVersion Include="MonoMac.NetStandard" Version="0.0.4" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageVersion Include="Nito.Comparers" Version="6.2.2" />
@@ -31,9 +28,6 @@
 		<PackageVersion Include="NUnit" Version="3.13.3" />
 		<PackageVersion Include="NUnit.Analyzers" Version="3.8.0" />
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
-		<PackageVersion Include="PInvoke.AdvApi32" Version="$(Version_PInvoke)" />
-		<PackageVersion Include="PInvoke.IPHlpApi" Version="$(Version_PInvoke)" />
-		<PackageVersion Include="PInvoke.Kernel32" Version="$(Version_PInvoke)" />
 		<PackageVersion Include="Polly" Version="7.2.4" />
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.507" />
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0-rc.2.23479.6" />
@@ -41,7 +35,6 @@
 		<PackageVersion Include="System.Text.Json" Version="8.0.0-rc.2.23479.6" />
 		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0" />
-		<PackageVersion Include="Vanara.PInvoke.WinHTTP" Version="$(Version_Vanara_PInvoke)" />
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.0.0-rc.2.23480.1-01" />
 	</ItemGroup>
 </Project>

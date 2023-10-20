@@ -54,12 +54,14 @@ public sealed class ModelValidator : IModelValidator
         var hasIgnores = ignores.Any_Nullable();
         if (!validators.Any())
             // 验证组不能为空集合！
-            throw new NotSupportedException("validators cannot be empty.");
+            throw ThrowHelper.GetArgumentOutOfRangeWithMessageException(validators,
+                "Validators cannot be empty.");
         foreach (var item in validators)
         {
             var parameters = new object?[] { item.Value, model, hasIgnores, ignores, ignoreNames };
             errorMessage = (string?)matchValidateMethod.MakeGenericMethod(item.Key).Invoke(null, parameters);
-            if (errorMessage != null) return false;
+            if (errorMessage != null)
+                return false;
         }
 
         errorMessage = null;

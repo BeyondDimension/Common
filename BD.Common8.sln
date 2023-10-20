@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{C30496
 		src\Directory.Build.props = src\Directory.Build.props
 		src\Directory.Build.targets = src\Directory.Build.targets
 		src\Directory.Packages.props = src\Directory.Packages.props
+		src\NativeMethods.txt = src\NativeMethods.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.WebRoot", "1.WebRoot", "{20B2A606-1299-4264-8EF9-0FFE95CC83AC}"
@@ -101,31 +102,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bcl", "Bcl", "{66FEE9BC-685
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Primitives", "Primitives", "{8A476270-60FD-4699-9FCC-48D36F354613}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Primitives.District", "src\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj", "{C47D31C9-3574-4438-8402-FEB2C8C360A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Primitives.District", "src\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj", "{C47D31C9-3574-4438-8402-FEB2C8C360A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Primitives", "src\BD.Common8.Primitives\BD.Common8.Primitives.csproj", "{5CC3FE42-2FF5-442E-BBC7-D297D2DC23B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Primitives", "src\BD.Common8.Primitives\BD.Common8.Primitives.csproj", "{5CC3FE42-2FF5-442E-BBC7-D297D2DC23B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonalData", "PersonalData", "{48968DE4-A6FA-4327-8B3C-DA2C8EE8DC31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiRsp", "ApiRsp", "{B1BA5237-CD33-45EA-B60A-6434DA6A5DD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Primitives.PersonalData.BirthDate", "src\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj", "{9FDE516F-13CC-49B2-90BF-F566027BFE79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Primitives.PersonalData.BirthDate", "src\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj", "{9FDE516F-13CC-49B2-90BF-F566027BFE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Primitives.PersonalData.PhoneNumber", "src\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj", "{17892E54-6715-4CAB-A8E1-D43F4C86E302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Primitives.PersonalData.PhoneNumber", "src\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj", "{17892E54-6715-4CAB-A8E1-D43F4C86E302}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserInput", "UserInput", "{EC328B5C-9789-4E11-BACF-A6E3C2D8BF87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.UserInput.ModelValidator", "src\BD.Common8.UserInput.ModelValidator\BD.Common8.UserInput.ModelValidator.csproj", "{03BE4E35-F94F-48EC-8F7B-C97F9E49239E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.UserInput.ModelValidator", "src\BD.Common8.UserInput.ModelValidator\BD.Common8.UserInput.ModelValidator.csproj", "{03BE4E35-F94F-48EC-8F7B-C97F9E49239E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orm", "Orm", "{FC61A5AB-E925-4682-A197-F77CE8F448A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Orm.EFCore", "src\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj", "{D36C604E-F306-4B22-A3AD-5DD14B8582D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Orm.EFCore", "src\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj", "{D36C604E-F306-4B22-A3AD-5DD14B8582D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvvm", "Mvvm", "{3D2AEAB5-53BA-48E8-986C-640452BA1A30}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{E2758D66-43BC-40F5-8C98-800B144F2992}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Security", "src\BD.Common8.Security\BD.Common8.Security.csproj", "{A7DA8B8E-EC56-417F-8A60-6F08A4A097AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Security", "src\BD.Common8.Security\BD.Common8.Security.csproj", "{A7DA8B8E-EC56-417F-8A60-6F08A4A097AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,7 @@
+RegNotifyChangeKeyValue
+RegOpenKeyEx
+GetExtendedTcpTable
+WinHttpOpen
+WinHttpCloseHandle
+WinHttpGetProxyForUrl
+WinHttpGetIEProxyConfigForCurrentUser

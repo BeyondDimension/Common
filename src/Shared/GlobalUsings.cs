@@ -6,6 +6,7 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
 global using Microsoft.Win32;
+global using Microsoft.Win32.SafeHandles;
 global using System.CodeDom.Compiler;
 global using System.Collections;
 global using System.Collections.Concurrent;
@@ -21,6 +22,7 @@ global using System.Linq.Expressions;
 global using System.Net;
 global using System.Net.Security;
 global using System.Net.Sockets;
+global using System.Net.NetworkInformation;
 global using System.Reflection;
 global using System.Resources;
 global using System.Runtime;

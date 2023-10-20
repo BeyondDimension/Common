@@ -2,18 +2,18 @@
 // https://blog.lindexi.com/post/dotnet-6-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E4%B8%8D%E8%B7%9F%E9%9A%8F%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E5%8F%98%E5%8C%96%E8%80%8C%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2%E4%BB%A3%E7%90%86.html
 
 #if WINDOWS
-
-using Microsoft.Win32.SafeHandles;
-using System.Net.NetworkInformation;
 using static System.String;
 using ErrorEventArgs = System.IO.ErrorEventArgs;
+#pragma warning disable CS8981
+using winmdroot = Windows.Win32;
+#pragma warning restore CS8981
 
 namespace System.Net;
 
 /// <summary>
 /// Windows 监听注册表中的 IE 代理的动态代理实现
 /// </summary>
-[SupportedOSPlatform("Windows")]
+[SupportedOSPlatform("Windows7.0")]
 public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
 {
     /// <inheritdoc cref="DynamicHttpWindowsProxy"/>
@@ -118,27 +118,32 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         GC.SuppressFinalize(this);
     }
 
-    private IWebProxy _innerProxy;
+    IWebProxy _innerProxy;
 
-    [SupportedOSPlatform("Windows")]
     sealed class HttpWindowsProxy : IWebProxy, IDisposable
     {
-        private readonly MultiProxy _insecureProxy;    // URI of the http system proxy if set
-        private readonly MultiProxy _secureProxy;      // URI of the https system proxy if set
-        private readonly FailedProxyCache _failedProxies = new();
-        private readonly List<string>? _bypass;         // list of domains not to proxy
-        private readonly bool _bypassLocal;    // we should bypass domain considered local
-        private readonly List<IPAddress>? _localIp;
-        private ICredentials? _credentials;
-        private readonly WinInetProxyHelper _proxyHelper;
-        private Vanara.PInvoke.WinHTTP.SafeHINTERNET? _sessionHandle;
-        private bool _disposed;
+        readonly MultiProxy _insecureProxy;    // URI of the http system proxy if set
+        readonly MultiProxy _secureProxy;      // URI of the https system proxy if set
+        readonly FailedProxyCache _failedProxies = new();
+        readonly List<string>? _bypass;         // list of domains not to proxy
+        readonly bool _bypassLocal;    // we should bypass domain considered local
+        readonly List<IPAddress>? _localIp;
+        ICredentials? _credentials;
+        readonly WinInetProxyHelper _proxyHelper;
+        winmdroot.Networking.WinHttp.SafeHINTERNET? _sessionHandle;
+        bool _disposed;
 
-        public static bool TryCreate([NotNullWhen(true)] out IWebProxy? proxy)
+        /// <summary>
+        /// Use the WinHTTP functions asynchronously. By default, all WinHTTP functions that use the returned HINTERNET handle are
+        /// performed synchronously. When this flag is set, the caller needs to specify a callback function through WinHttpSetStatusCallback.
+        /// </summary>
+        const uint WINHTTP_FLAG_ASYNC = 0x10000000;
+
+        public static unsafe bool TryCreate([NotNullWhen(true)] out IWebProxy? proxy)
         {
             // This will get basic proxy setting from system using existing
             // WinInetProxyHelper functions. If no proxy is enabled, it will return null.
-            Vanara.PInvoke.WinHTTP.SafeHINTERNET? sessionHandle = null;
+            winmdroot.Networking.WinHttp.SafeHINTERNET? sessionHandle = null;
             proxy = null;
 
             WinInetProxyHelper proxyHelper = new();
@@ -149,11 +154,11 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
 
             if (proxyHelper.AutoSettingsUsed)
             {
-                sessionHandle = Vanara.PInvoke.WinHTTP.WinHttpOpen(null,
-                    Vanara.PInvoke.WinHTTP.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY,
+                sessionHandle = winmdroot.PInvoke.WinHttpOpen(null,
+                    winmdroot.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY,
                     Interop.WinHttp.WINHTTP_NO_PROXY_NAME,
                     Interop.WinHttp.WINHTTP_NO_PROXY_BYPASS,
-                    Vanara.PInvoke.WinHTTP.WINHTTP_OPEN_FLAG.WINHTTP_FLAG_ASYNC
+                    WINHTTP_FLAG_ASYNC
                 );
 
                 if (sessionHandle.IsInvalid)
@@ -168,7 +173,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             return true;
         }
 
-        private HttpWindowsProxy(WinInetProxyHelper proxyHelper, Vanara.PInvoke.WinHTTP.SafeHINTERNET? sessionHandle)
+        private HttpWindowsProxy(WinInetProxyHelper proxyHelper, winmdroot.Networking.WinHttp.SafeHINTERNET? sessionHandle)
         {
             _proxyHelper = proxyHelper;
             _sessionHandle = sessionHandle;
@@ -289,7 +294,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         /// <summary>
         /// Gets the proxy URIs.
         /// </summary>
-        public MultiProxy GetMultiProxy(Uri uri)
+        public unsafe MultiProxy GetMultiProxy(Uri uri)
         {
             // We need WinHTTP to detect and/or process a PAC (JavaScript) file. This maps to
             // "Automatically detect settings" and/or "Use automatic configuration script" from IE
@@ -301,18 +306,18 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             // won't actually discover a PAC file on the network since WPAD protocol isn't configured.
             if (_proxyHelper.AutoSettingsUsed && !_proxyHelper.RecentAutoDetectionFailure)
             {
-                Vanara.PInvoke.WinHTTP.WINHTTP_PROXY_INFO proxyInfo = default;
+                winmdroot.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo = default;
                 try
                 {
                     if (_proxyHelper.GetProxyForUrl(_sessionHandle, uri, out proxyInfo))
                     {
                         // If WinHTTP just specified a Proxy with no ProxyBypass list, then
                         // we can return the Proxy uri directly.
-                        if (proxyInfo.lpszProxyBypass == IntPtr.Zero)
+                        if (proxyInfo.lpszProxyBypass == default)
                         {
-                            if (proxyInfo.lpszProxy != IntPtr.Zero)
+                            if (proxyInfo.lpszProxy != default)
                             {
-                                string proxyStr = proxyInfo.lpszProxy;
+                                string proxyStr = proxyInfo.lpszProxy.ToString();
                                 return MultiProxy.CreateLazy(_failedProxies, proxyStr, IsSecureUri(uri));
                             }
                             else
@@ -865,9 +870,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
     {
         #region P/Invoke
 
-        private const int KEY_QUERY_VALUE = 0x0001;
-        private const int KEY_NOTIFY = 0x0010;
-        private const int STANDARD_RIGHTS_READ = 0x00020000;
+        private const winmdroot.System.Registry.REG_SAM_FLAGS STANDARD_RIGHTS_READ = (winmdroot.System.Registry.REG_SAM_FLAGS)0x00020000;
 
         #endregion
 
@@ -929,8 +932,11 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         private bool _disposed = false;
         private readonly ManualResetEvent _eventTerminate = new(false);
 
-        private PInvoke.AdvApi32.RegNotifyFilter _regFilter = PInvoke.AdvApi32.RegNotifyFilter.REG_NOTIFY_CHANGE_NAME | PInvoke.AdvApi32.RegNotifyFilter.REG_NOTIFY_CHANGE_ATTRIBUTES |
-                                                   PInvoke.AdvApi32.RegNotifyFilter.REG_NOTIFY_CHANGE_LAST_SET | PInvoke.AdvApi32.RegNotifyFilter.REG_NOTIFY_CHANGE_SECURITY;
+        private winmdroot.System.Registry.REG_NOTIFY_FILTER _regFilter =
+            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_NAME |
+            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_ATTRIBUTES |
+            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_LAST_SET |
+            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_SECURITY;
 
         #endregion
 
@@ -957,7 +963,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         /// <summary>
         /// Gets or sets the <see cref="RegChangeNotifyFilter">RegChangeNotifyFilter</see>.
         /// </summary>
-        public PInvoke.AdvApi32.RegNotifyFilter RegChangeNotifyFilter
+        public winmdroot.System.Registry.REG_NOTIFY_FILTER RegChangeNotifyFilter
         {
             get => _regFilter;
             set
@@ -1061,15 +1067,15 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             AutoResetEvent? eventNotify = null;
             try
             {
-                var result = PInvoke.AdvApi32.RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | KEY_QUERY_VALUE | KEY_NOTIFY, out registryKey);
-                if (result != PInvoke.Win32ErrorCode.ERROR_SUCCESS)
+                var result = winmdroot.PInvoke.RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | winmdroot.System.Registry.REG_SAM_FLAGS.KEY_QUERY_VALUE | winmdroot.System.Registry.REG_SAM_FLAGS.KEY_NOTIFY, out registryKey);
+                if (result != winmdroot.Foundation.WIN32_ERROR.ERROR_SUCCESS)
                     throw new Win32Exception((int)result);
 
                 eventNotify = new AutoResetEvent(false);
                 WaitHandle[] waitHandles = [eventNotify, _eventTerminate];
                 while (!_eventTerminate.WaitOne(0, true))
                 {
-                    result = PInvoke.AdvApi32.RegNotifyChangeKeyValue(registryKey, true, _regFilter, eventNotify.SafeWaitHandle, true);
+                    result = winmdroot.PInvoke.RegNotifyChangeKeyValue(registryKey, true, _regFilter, eventNotify.SafeWaitHandle, true);
                     if (result != 0)
                         throw new Win32Exception((int)result);
 
@@ -1116,16 +1122,16 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
 
         public WinInetProxyHelper()
         {
-            Vanara.PInvoke.WinHTTP.WINHTTP_CURRENT_USER_IE_PROXY_CONFIG proxyConfig = default;
+            winmdroot.Networking.WinHttp.WINHTTP_CURRENT_USER_IE_PROXY_CONFIG proxyConfig = default;
 
             try
             {
-                if (Vanara.PInvoke.WinHTTP.WinHttpGetIEProxyConfigForCurrentUser(out proxyConfig))
+                if (winmdroot.PInvoke.WinHttpGetIEProxyConfigForCurrentUser(ref proxyConfig))
                 {
-                    _autoConfigUrl = proxyConfig.lpszAutoConfigUrl;
+                    _autoConfigUrl = proxyConfig.lpszAutoConfigUrl.ToString();
                     _autoDetect = proxyConfig.fAutoDetect;
-                    _proxy = proxyConfig.lpszProxy!;
-                    _proxyBypass = proxyConfig.lpszProxyBypass;
+                    _proxy = proxyConfig.lpszProxy.ToString();
+                    _proxyBypass = proxyConfig.lpszProxyBypass.ToString();
 
                     //if (NetEventSource.Log.IsEnabled())
                     //{
@@ -1168,14 +1174,27 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             _autoDetectionFailed &&
             Environment.TickCount - _lastTimeAutoDetectionFailed <= RecentAutoDetectionInterval;
 
-        public bool GetProxyForUrl(
-            Vanara.PInvoke.WinHTTP.SafeHINTERNET? sessionHandle,
+        /// <summary>Use DHCP to locate the proxy auto-configuration file.</summary>
+        const uint WINHTTP_AUTO_DETECT_TYPE_DHCP = 0x00000001;
+
+        /// <summary>
+        /// Use DNS to attempt to locate the proxy auto-configuration file at a well-known location on the domain of the local computer.
+        /// </summary>
+        const uint WINHTTP_AUTO_DETECT_TYPE_DNS_A = 0x00000002;
+
+        /// <summary>Attempt to automatically discover the URL of the PAC file using both DHCP and DNS queries to the local network.</summary>
+        const uint WINHTTP_AUTOPROXY_AUTO_DETECT = 0x00000001;
+
+        const uint WINHTTP_AUTOPROXY_CONFIG_URL = 0x00000002;
+
+        public unsafe bool GetProxyForUrl(
+            winmdroot.Networking.WinHttp.SafeHINTERNET? sessionHandle,
             Uri uri,
-            out Vanara.PInvoke.WinHTTP.WINHTTP_PROXY_INFO proxyInfo)
+            out winmdroot.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo)
         {
-            proxyInfo.dwAccessType = Vanara.PInvoke.WinHTTP.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY;
-            proxyInfo.lpszProxy = IntPtr.Zero;
-            proxyInfo.lpszProxyBypass = IntPtr.Zero;
+            proxyInfo.dwAccessType = winmdroot.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY;
+            proxyInfo.lpszProxy = default;
+            proxyInfo.lpszProxyBypass = default;
 
             if (!_useProxy)
             {
@@ -1183,100 +1202,102 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             }
 
             bool useProxy = false;
-
-            Vanara.PInvoke.WinHTTP.WINHTTP_AUTOPROXY_OPTIONS autoProxyOptions;
-            autoProxyOptions.lpszAutoConfigUrl = AutoConfigUrl;
-            autoProxyOptions.dwAutoDetectFlags = AutoDetect ?
-                (Vanara.PInvoke.WinHTTP.WINHTTP_AUTO_DETECT_TYPE.WINHTTP_AUTO_DETECT_TYPE_DHCP | Vanara.PInvoke.WinHTTP.WINHTTP_AUTO_DETECT_TYPE.WINHTTP_AUTO_DETECT_TYPE_DNS_A) : 0;
-            autoProxyOptions.fAutoLogonIfChallenged = false;
-            autoProxyOptions.dwFlags =
-                (AutoDetect ? Vanara.PInvoke.WinHTTP.WINHTTP_AUTOPROXY.WINHTTP_AUTOPROXY_AUTO_DETECT : 0) |
-                (!IsNullOrEmpty(AutoConfigUrl) ? Vanara.PInvoke.WinHTTP.WINHTTP_AUTOPROXY.WINHTTP_AUTOPROXY_CONFIG_URL : 0);
-            autoProxyOptions.lpvReserved = IntPtr.Zero;
-            autoProxyOptions.dwReserved = 0;
-
-            // AutoProxy Cache.
-            // https://docs.microsoft.com/en-us/windows/desktop/WinHttp/autoproxy-cache
-            // If the out-of-process service is active when WinHttpGetProxyForUrl is called, the cached autoproxy
-            // URL and script are available to the whole computer. However, if the out-of-process service is used,
-            // and the fAutoLogonIfChallenged flag in the pAutoProxyOptions structure is true, then the autoproxy
-            // URL and script are not cached. Therefore, calling WinHttpGetProxyForUrl with the fAutoLogonIfChallenged
-            // member set to TRUE results in additional overhead operations that may affect performance.
-            // The following steps can be used to improve performance:
-            // 1. Call WinHttpGetProxyForUrl with the fAutoLogonIfChallenged parameter set to false. The autoproxy
-            //    URL and script are cached for future calls to WinHttpGetProxyForUrl.
-            // 2. If Step 1 fails, with ERROR_WINHTTP_LOGIN_FAILURE, then call WinHttpGetProxyForUrl with the
-            //    fAutoLogonIfChallenged member set to TRUE.
-            //
-            // We match behavior of WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY and ignore errors.
-
-            // Underlying code does not understand WebSockets so we need to convert it to http or https.
-            string destination = uri.AbsoluteUri;
-            if (uri.Scheme == UriScheme.Wss)
+            winmdroot.Networking.WinHttp.WINHTTP_AUTOPROXY_OPTIONS autoProxyOptions;
+            fixed (char* lpszAutoConfigUrl = &Runtime.InteropServices.Marshalling.Utf16StringMarshaller.GetPinnableReference(AutoConfigUrl))
             {
-                destination = UriScheme.Https + destination[UriScheme.Wss.Length..];
-            }
-            else if (uri.Scheme == UriScheme.Ws)
-            {
-                destination = UriScheme.Http + destination[UriScheme.Ws.Length..];
-            }
+                autoProxyOptions.lpszAutoConfigUrl = lpszAutoConfigUrl;
+                autoProxyOptions.dwAutoDetectFlags = AutoDetect ?
+                    (WINHTTP_AUTO_DETECT_TYPE_DHCP | WINHTTP_AUTO_DETECT_TYPE_DNS_A) : 0;
+                autoProxyOptions.fAutoLogonIfChallenged = false;
+                autoProxyOptions.dwFlags =
+                    (AutoDetect ? WINHTTP_AUTOPROXY_AUTO_DETECT : 0) |
+                    (!IsNullOrEmpty(AutoConfigUrl) ? WINHTTP_AUTOPROXY_CONFIG_URL : 0);
+                autoProxyOptions.lpvReserved = default;
+                autoProxyOptions.dwReserved = 0;
 
-            var repeat = false;
-            do
-            {
-                _autoDetectionFailed = false;
-                if (Vanara.PInvoke.WinHTTP.WinHttpGetProxyForUrl(
-                    sessionHandle!,
-                    destination,
-                    in autoProxyOptions,
-                    out proxyInfo))
+                // AutoProxy Cache.
+                // https://docs.microsoft.com/en-us/windows/desktop/WinHttp/autoproxy-cache
+                // If the out-of-process service is active when WinHttpGetProxyForUrl is called, the cached autoproxy
+                // URL and script are available to the whole computer. However, if the out-of-process service is used,
+                // and the fAutoLogonIfChallenged flag in the pAutoProxyOptions structure is true, then the autoproxy
+                // URL and script are not cached. Therefore, calling WinHttpGetProxyForUrl with the fAutoLogonIfChallenged
+                // member set to TRUE results in additional overhead operations that may affect performance.
+                // The following steps can be used to improve performance:
+                // 1. Call WinHttpGetProxyForUrl with the fAutoLogonIfChallenged parameter set to false. The autoproxy
+                //    URL and script are cached for future calls to WinHttpGetProxyForUrl.
+                // 2. If Step 1 fails, with ERROR_WINHTTP_LOGIN_FAILURE, then call WinHttpGetProxyForUrl with the
+                //    fAutoLogonIfChallenged member set to TRUE.
+                //
+                // We match behavior of WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY and ignore errors.
+
+                // Underlying code does not understand WebSockets so we need to convert it to http or https.
+                string destination = uri.AbsoluteUri;
+                if (uri.Scheme == UriScheme.Wss)
                 {
-                    //if (NetEventSource.Log.IsEnabled()) NetEventSource.Info(this, "Using autoconfig proxy settings");
-                    useProxy = true;
-
-                    break;
+                    destination = UriScheme.Https + destination[UriScheme.Wss.Length..];
                 }
-                else
+                else if (uri.Scheme == UriScheme.Ws)
                 {
-                    var lastError = Marshal.GetLastWin32Error();
-                    //if (NetEventSource.Log.IsEnabled()) NetEventSource.Error(this, $"error={lastError}");
+                    destination = UriScheme.Http + destination[UriScheme.Ws.Length..];
+                }
 
-                    if (lastError == Interop.WinHttp.ERROR_WINHTTP_LOGIN_FAILURE)
+                var repeat = false;
+                do
+                {
+                    _autoDetectionFailed = false;
+                    if (winmdroot.PInvoke.WinHttpGetProxyForUrl(
+                        sessionHandle!,
+                        destination,
+                        ref autoProxyOptions,
+                        ref proxyInfo))
                     {
-                        if (repeat)
-                        {
-                            // We don't retry more than once.
-                            break;
-                        }
-                        else
-                        {
-                            repeat = true;
-                            autoProxyOptions.fAutoLogonIfChallenged = true;
-                        }
-                    }
-                    else
-                    {
-                        if (lastError == Interop.WinHttp.ERROR_WINHTTP_AUTODETECTION_FAILED)
-                        {
-                            _autoDetectionFailed = true;
-                            _lastTimeAutoDetectionFailed = Environment.TickCount;
-                        }
+                        //if (NetEventSource.Log.IsEnabled()) NetEventSource.Info(this, "Using autoconfig proxy settings");
+                        useProxy = true;
 
                         break;
                     }
+                    else
+                    {
+                        var lastError = Marshal.GetLastWin32Error();
+                        //if (NetEventSource.Log.IsEnabled()) NetEventSource.Error(this, $"error={lastError}");
+
+                        if (lastError == Interop.WinHttp.ERROR_WINHTTP_LOGIN_FAILURE)
+                        {
+                            if (repeat)
+                            {
+                                // We don't retry more than once.
+                                break;
+                            }
+                            else
+                            {
+                                repeat = true;
+                                autoProxyOptions.fAutoLogonIfChallenged = true;
+                            }
+                        }
+                        else
+                        {
+                            if (lastError == Interop.WinHttp.ERROR_WINHTTP_AUTODETECTION_FAILED)
+                            {
+                                _autoDetectionFailed = true;
+                                _lastTimeAutoDetectionFailed = Environment.TickCount;
+                            }
+
+                            break;
+                        }
+                    }
+                } while (repeat);
+
+                // Fall back to manual settings if available.
+                if (!useProxy && !IsNullOrEmpty(Proxy))
+                {
+                    proxyInfo.dwAccessType = winmdroot.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NAMED_PROXY;
+                    proxyInfo.lpszProxy = (char*)Marshal.StringToHGlobalUni(Proxy);
+                    proxyInfo.lpszProxyBypass = IsNullOrEmpty(ProxyBypass) ?
+                        default : (char*)Marshal.StringToHGlobalUni(ProxyBypass);
+
+                    //if (NetEventSource.Log.IsEnabled()) NetEventSource.Info(this, $"Fallback to Proxy={Proxy}, ProxyBypass={ProxyBypass}");
+                    useProxy = true;
                 }
-            } while (repeat);
-
-            // Fall back to manual settings if available.
-            if (!useProxy && !IsNullOrEmpty(Proxy))
-            {
-                proxyInfo.dwAccessType = Vanara.PInvoke.WinHTTP.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NAMED_PROXY;
-                proxyInfo.lpszProxy = Marshal.StringToHGlobalUni(Proxy);
-                proxyInfo.lpszProxyBypass = IsNullOrEmpty(ProxyBypass) ?
-                    IntPtr.Zero : Marshal.StringToHGlobalUni(ProxyBypass);
-
-                //if (NetEventSource.Log.IsEnabled()) NetEventSource.Info(this, $"Fallback to Proxy={Proxy}, ProxyBypass={ProxyBypass}");
-                useProxy = true;
             }
 
             //if (NetEventSource.Log.IsEnabled()) NetEventSource.Info(this, $"useProxy={useProxy}");

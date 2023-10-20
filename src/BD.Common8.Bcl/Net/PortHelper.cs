@@ -2,6 +2,11 @@
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 
 using System.Net.NetworkInformation;
+#if WINDOWS7_0_OR_GREATER
+#pragma warning disable CS8981
+using winmdroot = Windows.Win32;
+#pragma warning restore CS8981
+#endif
 
 namespace System.Net;
 
@@ -66,27 +71,27 @@ public static partial class PortHelper
     /// </summary>
     /// <param name="port"></param>
     /// <returns></returns>
-    [SupportedOSPlatform("Windows")]
-    public static Process? GetProcessByTcpPort(ushort port)
+    [SupportedOSPlatform("Windows7.0")]
+    public static unsafe Process? GetProcessByTcpPort(ushort port)
     {
 #if WINDOWS7_0_OR_GREATER
-        int bufferSize = 0;
+        uint bufferSize = 0;
 
         // Getting the size of TCP table, that is returned in 'bufferSize' variable.
-        _ = PInvoke.IPHlpApi.GetExtendedTcpTable(IntPtr.Zero, ref bufferSize, true, AddressFamily.InterNetwork,
-            PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+        _ = winmdroot.PInvoke.GetExtendedTcpTable(default, ref bufferSize, true, (uint)AddressFamily.InterNetwork,
+            winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
         // Allocating memory from the unmanaged memory of the process by using the
         // specified number of bytes in 'bufferSize' variable.
-        IntPtr tcpTableRecordsPtr = Marshal.AllocHGlobal(bufferSize);
+        IntPtr tcpTableRecordsPtr = Marshal.AllocHGlobal((int)bufferSize);
 
         try
         {
             // The size of the table returned in 'bufferSize' variable in previous
             // call must be used in this subsequent call to 'GetExtendedTcpTable'
             // function in order to successfully retrieve the table.
-            var result = PInvoke.IPHlpApi.GetExtendedTcpTable(tcpTableRecordsPtr, ref bufferSize, true,
-                AddressFamily.InterNetwork, PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+            var result = winmdroot.PInvoke.GetExtendedTcpTable((void*)tcpTableRecordsPtr, ref bufferSize, true,
+               (uint)AddressFamily.InterNetwork, winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
             // Non-zero value represent the function 'GetExtendedTcpTable' failed,
             // hence empty list is returned to the caller function.
@@ -154,27 +159,27 @@ public static partial class PortHelper
     /// This exception may be thrown by the function Marshal.AllocHGlobal when there
     /// is insufficient memory to satisfy the request.
     /// </exception>
-    [SupportedOSPlatform("Windows")]
-    public static List<TcpProcessRecord> GetAllTcpConnections()
+    [SupportedOSPlatform("Windows7.0")]
+    public static unsafe List<TcpProcessRecord> GetAllTcpConnections()
     {
-        int bufferSize = 0;
+        uint bufferSize = 0;
         List<TcpProcessRecord> tcpTableRecords = [];
 
         // Getting the size of TCP table, that is returned in 'bufferSize' variable.
-        _ = PInvoke.IPHlpApi.GetExtendedTcpTable(IntPtr.Zero, ref bufferSize, true, AddressFamily.InterNetwork,
-            PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+        _ = winmdroot.PInvoke.GetExtendedTcpTable(default, ref bufferSize, true, (uint)AddressFamily.InterNetwork,
+            winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
         // Allocating memory from the unmanaged memory of the process by using the
         // specified number of bytes in 'bufferSize' variable.
-        IntPtr tcpTableRecordsPtr = Marshal.AllocHGlobal(bufferSize);
+        var tcpTableRecordsPtr = Marshal.AllocHGlobal((int)bufferSize);
 
         try
         {
             // The size of the table returned in 'bufferSize' variable in previous
             // call must be used in this subsequent call to 'GetExtendedTcpTable'
             // function in order to successfully retrieve the table.
-            var result = PInvoke.IPHlpApi.GetExtendedTcpTable(tcpTableRecordsPtr, ref bufferSize, true,
-                AddressFamily.InterNetwork, PInvoke.IPHlpApi.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+            var result = winmdroot.PInvoke.GetExtendedTcpTable((void*)tcpTableRecordsPtr, ref bufferSize, true,
+                (uint)AddressFamily.InterNetwork, winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
             // Non-zero value represent the function 'GetExtendedTcpTable' failed,
             // hence empty list is returned to the caller function.

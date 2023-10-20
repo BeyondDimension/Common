@@ -107,6 +107,11 @@ public static partial class MachineUniqueIdentifier
                     if (!setMachineId)
                     {
                         _ = mMachineSecretKey.Value;
+                        if (machineId == null)
+                        {
+                            isGetMachineSecretKeyLazy = false;
+                            return null;
+                        }
                         return machineId;
                     }
                 }
