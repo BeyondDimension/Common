@@ -1,115 +1,71 @@
 namespace BD.Common8.Security;
 
-#pragma warning disable IDE1006 // 命名样式
-
 partial class MachineUniqueIdentifier
 {
-    [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
-    private static partial uint IOServiceGetMatchingService(uint masterPort, IntPtr matching);
-
-    [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
-    private static partial nint IOServiceMatching(nint s);
-
-    static unsafe _NativeSafeHandle Utf8StringToPointer(ReadOnlySpan<byte> s)
+    static partial class MacOS
     {
-        var bufferIntPtr = Marshal.AllocHGlobal(s.Length);
-        var nativeSpan = new Span<byte>(bufferIntPtr.ToPointer(), s.Length);
-        s.CopyTo(nativeSpan);
-        return new(bufferIntPtr);
-    }
+        [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
+        private static partial uint IOServiceGetMatchingService(uint masterPort, nint matching);
 
-    [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
-    private static partial nint IORegistryEntryCreateCFProperty(uint entry, IntPtr key, IntPtr allocator, uint options);
+        [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
+        private static partial nint IOServiceMatching([MarshalAs(UnmanagedType.LPStr)] string s);
 
-    [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
-    private static partial int IOObjectRelease(uint o);
+        [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
+        private static partial nint IORegistryEntryCreateCFProperty(uint entry, nint key, nint allocator, uint options);
 
-    sealed class _NativeSafeHandle(nint invalidHandleValue) : SafeHandle(invalidHandleValue, true)
-    {
-        public override bool IsInvalid => handle == default;
+        [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
+        private static partial int IOObjectRelease(uint o);
 
-        protected override bool ReleaseHandle()
+        static readonly nint allocSel = GetHandle("alloc");
+        static readonly nint nsStringClass = objc_getClass("NSString");
+        static readonly nint initWithCharactersSel = GetHandle("initWithCharacters:length:");
+
+        [LibraryImport("/usr/lib/libobjc.dylib", EntryPoint = "sel_registerName")]
+        private static partial nint GetHandle([MarshalAs(UnmanagedType.LPStr)] string name);
+
+        [LibraryImport("/usr/lib/libobjc.dylib")]
+        private static partial nint objc_getClass([MarshalAs(UnmanagedType.LPStr)] string className);
+
+        [LibraryImport("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
+        private static partial nint intptr_objc_msgSend(nint basePtr, nint selector);
+
+        [LibraryImport("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
+        private static partial nint IntPtr_objc_msgSend_IntPtr_IntPtr(nint receiver, nint selector, nint p1, nint p2);
+
+        static unsafe nint GetNSString(string str)
         {
-            Marshal.FreeHGlobal(handle);
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator nint(_NativeSafeHandle handle) => handle.handle;
-    }
-
-    static partial class _Messaging
-    {
-        internal const string LIBOBJC_DYLIB = "/usr/lib/libobjc.dylib";
-
-        [LibraryImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
-        public static partial nint IntPtr_objc_msgSend(nint receiver, nint selector);
-
-        [LibraryImport(LIBOBJC_DYLIB, EntryPoint = "objc_msgSend")]
-        public static partial void void_objc_msgSend(nint receiver, nint selector);
-    }
-
-    static partial class _Selector
-    {
-        // objc/runtime.h
-        // Selector.GetHandle is optimized by the AOT compiler, and the current implementation only supports IntPtr, so we can't switch to NativeHandle quite yet (the AOT compiler crashes).
-        [LibraryImport(_Messaging.LIBOBJC_DYLIB, EntryPoint = "sel_registerName")]
-        public static partial nint GetHandle(nint name);
-    }
-
-    static partial class _NSString
-    {
-        public static string? FromHandle(nint handle)
-        {
-            if (handle == default)
-                return null;
-
-            try
+            fixed (char* ptrFirstChar = str)
             {
-                using var selUTF8String = Utf8StringToPointer("UTF8String"u8);
-                return Marshal.PtrToStringAuto(_Messaging.IntPtr_objc_msgSend(handle, _Selector.GetHandle(selUTF8String)));
-            }
-            finally
-            {
-                DangerousRelease(handle);
+                var allocated = intptr_objc_msgSend(nsStringClass, allocSel);
+                return IntPtr_objc_msgSend_IntPtr_IntPtr(allocated, initWithCharactersSel, (nint)ptrFirstChar, str.Length);
             }
         }
 
-        static void DangerousRelease(nint handle)
+        [LibraryImport("/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation")]
+        private static partial nint CFDataGetBytePtr(nint ptr);
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        internal static string GetIOPlatformSerialNumber()
         {
-            if (handle == default)
-                return;
+            // 禁止反射调用此函数
+            var caller = new StackTrace().GetFrame(1)?.GetMethod()?.DeclaringType;
+            if (typeof(MachineUniqueIdentifier).Assembly != caller?.Assembly)
+                throw new InvalidOperationException("Direct invocation of this method is not allowed.");
 
-            using var release = Utf8StringToPointer("release"u8);
-            _Messaging.void_objc_msgSend(handle, _Selector.GetHandle(release));
-        }
-    }
-
-    [MethodImpl(MethodImplOptions.NoInlining)]
-    static string GetIOPlatformSerialNumber()
-    {
-        // 禁止反射调用此函数
-        var caller = new StackTrace().GetFrame(1)?.GetMethod()?.DeclaringType;
-        if (typeof(MachineUniqueIdentifier).Assembly != caller?.Assembly)
-            throw new InvalidOperationException("Direct invocation of this method is not allowed.");
-
-        var keyName = "IOPlatformSerialNumber"u8;
-
-        var value = string.Empty;
-        using var iOPlatformExpertDevice = Utf8StringToPointer("IOPlatformExpertDevice"u8);
-        nint matching = IOServiceMatching(iOPlatformExpertDevice);
-        var platformExpert = IOServiceGetMatchingService(0, matching);
-        if (platformExpert != 0)
-        {
-            using var keyName_ = Utf8StringToPointer(keyName);
-            var valueIntPtr = IORegistryEntryCreateCFProperty(platformExpert, keyName_, default, default);
-            if (valueIntPtr != default)
+            var value = string.Empty;
+            nint matching = IOServiceMatching("IOPlatformExpertDevice");
+            var platformExpert = IOServiceGetMatchingService(0, matching);
+            if (platformExpert != 0)
             {
-                value = _NSString.FromHandle(valueIntPtr) ?? value;
+                var valueIntPtr = IORegistryEntryCreateCFProperty(platformExpert, GetNSString("IOPlatformSerialNumber"), default, default);
+                if (valueIntPtr != default)
+                {
+                    value = Marshal.PtrToStringAuto(CFDataGetBytePtr(valueIntPtr)) ?? string.Empty;
+                }
+                _ = IOObjectRelease(platformExpert);
             }
-            _ = IOObjectRelease(platformExpert);
-        }
 
-        return value;
+            return value;
+        }
     }
 }
