@@ -54,7 +54,7 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
         Win10WithAesCFB,
     }
 
-    protected virtual AESUtils.KeyIV MachineSecretKey => MachineUniqueIdentifier.Value;
+    protected virtual AESUtils.KeyIV MachineSecretKey => MachineUniqueIdentifier.MachineSecretKey;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     byte[] Concat(byte[] value)

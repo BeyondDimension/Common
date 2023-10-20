@@ -1,9 +1,14 @@
-namespace BD.Common8.Security;
+namespace BD.Common8.Security.Helpers;
 
-partial class MachineUniqueIdentifier
+static partial class SecurityPlatformHelper
 {
+    /// <summary>
+    /// 获取 MachineId
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     [MethodImpl(MethodImplOptions.NoInlining)]
-    static string GetEtcMachineId()
+    public static string GetEtcMachineId()
     {
         // 禁止反射调用此函数
         var caller = new StackTrace().GetFrame(1)?.GetMethod()?.DeclaringType;

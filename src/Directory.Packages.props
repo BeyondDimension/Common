@@ -24,6 +24,7 @@
 		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.0.3" />
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0-release-23468-02" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+		<PackageVersion Include="MonoMac.NetStandard" Version="0.0.4" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageVersion Include="Nito.Comparers" Version="6.2.2" />
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-rc.2" />
