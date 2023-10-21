@@ -53,6 +53,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Sdk", "0.Sdk", "{FDC449E3
 		src\Sdk\BD.Common8.Bcl.Compat.Reference.props = src\Sdk\BD.Common8.Bcl.Compat.Reference.props
 		src\Sdk\BD.Common8.Bcl.GlobalUsings.props = src\Sdk\BD.Common8.Bcl.GlobalUsings.props
 		src\Sdk\BD.Common8.Bcl.Reference.props = src\Sdk\BD.Common8.Bcl.Reference.props
+		src\Sdk\BD.Common8.Pinyin.ChnCharInfo.Reference.props = src\Sdk\BD.Common8.Pinyin.ChnCharInfo.Reference.props
 		src\Sdk\BD.Common8.Sdk.targets = src\Sdk\BD.Common8.Sdk.targets
 		src\Sdk\BD.Common8.SourceGenerator.props = src\Sdk\BD.Common8.SourceGenerator.props
 		src\Sdk\BD.Common8.SourceGenerator.Reference.props = src\Sdk\BD.Common8.SourceGenerator.Reference.props
@@ -127,6 +128,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{E2758D66-43BC-40F5-8C98-800B144F2992}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Security", "src\BD.Common8.Security\BD.Common8.Security.csproj", "{A7DA8B8E-EC56-417F-8A60-6F08A4A097AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pinyin", "Pinyin", "{89EA9623-9495-40F7-9A46-0F47120D88E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Pinyin", "src\BD.Common8.Pinyin\BD.Common8.Pinyin.csproj", "{11E86BBF-473F-4D71-A082-8E0E09930E64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Pinyin.ChnCharInfo", "src\BD.Common8.Pinyin.ChnCharInfo\BD.Common8.Pinyin.ChnCharInfo.csproj", "{336D3D80-8677-4A75-814F-FEC72A9AACCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Pinyin.CoreFoundation", "src\BD.Common8.Pinyin.CoreFoundation\BD.Common8.Pinyin.CoreFoundation.csproj", "{AEA25989-BF2B-4348-99B4-0C25732F8752}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -222,6 +231,18 @@ Global
 		{A7DA8B8E-EC56-417F-8A60-6F08A4A097AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7DA8B8E-EC56-417F-8A60-6F08A4A097AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7DA8B8E-EC56-417F-8A60-6F08A4A097AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E86BBF-473F-4D71-A082-8E0E09930E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E86BBF-473F-4D71-A082-8E0E09930E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E86BBF-473F-4D71-A082-8E0E09930E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E86BBF-473F-4D71-A082-8E0E09930E64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336D3D80-8677-4A75-814F-FEC72A9AACCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336D3D80-8677-4A75-814F-FEC72A9AACCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336D3D80-8677-4A75-814F-FEC72A9AACCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336D3D80-8677-4A75-814F-FEC72A9AACCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEA25989-BF2B-4348-99B4-0C25732F8752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA25989-BF2B-4348-99B4-0C25732F8752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA25989-BF2B-4348-99B4-0C25732F8752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA25989-BF2B-4348-99B4-0C25732F8752}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -271,6 +292,10 @@ Global
 		{3D2AEAB5-53BA-48E8-986C-640452BA1A30} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
 		{E2758D66-43BC-40F5-8C98-800B144F2992} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
 		{A7DA8B8E-EC56-417F-8A60-6F08A4A097AF} = {E2758D66-43BC-40F5-8C98-800B144F2992}
+		{89EA9623-9495-40F7-9A46-0F47120D88E0} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
+		{11E86BBF-473F-4D71-A082-8E0E09930E64} = {89EA9623-9495-40F7-9A46-0F47120D88E0}
+		{336D3D80-8677-4A75-814F-FEC72A9AACCE} = {89EA9623-9495-40F7-9A46-0F47120D88E0}
+		{AEA25989-BF2B-4348-99B4-0C25732F8752} = {89EA9623-9495-40F7-9A46-0F47120D88E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CA7F767-BBA3-4E1F-90E7-DAB32105B027}

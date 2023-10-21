@@ -20,9 +20,9 @@ global using System.IO.Pipes;
 global using System.Linq;
 global using System.Linq.Expressions;
 global using System.Net;
+global using System.Net.NetworkInformation;
 global using System.Net.Security;
 global using System.Net.Sockets;
-global using System.Net.NetworkInformation;
 global using System.Reflection;
 global using System.Resources;
 global using System.Runtime;
@@ -44,3 +44,9 @@ global using System.Xml;
 global using System.Xml.Linq;
 global using System.Xml.Serialization;
 global using IPAddress = System.Net.IPAddress;
+
+#if MACCATALYST || MACOS || IOS
+global using ObjCRuntime;
+global using Foundation;
+global using CoreFoundation;
+#endif

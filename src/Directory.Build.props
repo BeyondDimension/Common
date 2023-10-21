@@ -38,6 +38,9 @@
 		<Compile Include="..\Shared\GlobalUsings.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
+		<Compile Condition="$(IsTestProject) != 'true'" Include="..\Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs">
+			<LinkBase>Properties\InternalsVisibleTo</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>

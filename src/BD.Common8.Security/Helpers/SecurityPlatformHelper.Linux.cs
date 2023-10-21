@@ -8,6 +8,7 @@ static partial class SecurityPlatformHelper
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
     [MethodImpl(MethodImplOptions.NoInlining)]
+    [SupportedOSPlatform("linux")]
     public static string GetEtcMachineId()
     {
         // 禁止反射调用此函数

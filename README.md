@@ -35,6 +35,15 @@
 ### BD.Common8.Orm.EFCore
 EFCore 相关的封装库
 
+### BD.Common8.Pinyin
+汉语拼音封装库
+
+### BD.Common8.Pinyin.ChnCharInfo
+使用 ChnCharInfo 实现的汉语拼音库
+
+### BD.Common8.Pinyin.CoreFoundation
+使用 CoreFoundation 实现的汉语拼音库
+
 ### BD.Common8.Primitives.ApiResponse
 提供 Api 响应 (BackManage 后台管理) 类型的封装库
 

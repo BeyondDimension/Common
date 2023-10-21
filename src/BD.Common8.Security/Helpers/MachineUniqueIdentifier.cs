@@ -87,7 +87,7 @@ public static partial class MachineUniqueIdentifier
         }
         else if (OperatingSystem.IsMacOS())
         {
-            mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.GetIOPlatformSerialNumber);
+            mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.MacOS.GetIOPlatformSerialNumber);
         }
         else if (OperatingSystem.IsLinux())
         {
