@@ -7,3 +7,4 @@
 
 global using BD.Common8.Ipc.Attributes;
 global using BD.Common8.Ipc.Enums;
+global using BD.Common8.Ipc.Models;

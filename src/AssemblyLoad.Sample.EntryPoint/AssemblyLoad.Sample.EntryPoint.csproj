@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<TargetFramework Condition="$([MSBuild]::IsOSPlatform('windows'))">net35</TargetFramework>
+		<UseProjectUtils>true</UseProjectUtils>
+	</PropertyGroup>
+
+</Project>

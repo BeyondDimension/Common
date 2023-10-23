@@ -11,25 +11,25 @@ public sealed partial class IpcAppBuilderOptions
     /// <param name="connectionStringType"></param>
     public void SetConnectionString(IpcAppConnectionStringType connectionStringType)
     {
-        using var stream = new MemoryStream();
-        stream.WriteByte((byte)connectionStringType);
-        switch (connectionStringType)
+        ConnectionString = connectionStringType switch
         {
-            case IpcAppConnectionStringType.Https:
-                stream.Write("https://localhost:"u8);
-                stream.Write(Encoding.UTF8.GetBytes(HttpsPort.ToString()));
-                break;
-            case IpcAppConnectionStringType.UnixSocket:
-                stream.Write(Encoding.UTF8.GetBytes(UnixSocketPath.ThrowIsNull()));
-                break;
-            case IpcAppConnectionStringType.NamedPipe:
-                stream.Write(Encoding.UTF8.GetBytes(PipeName.ThrowIsNull()));
-                break;
-            default:
-                ThrowHelper.ThrowArgumentOutOfRangeException(connectionStringType);
-                return;
-        }
-        ConnectionString = stream.ToArray().Base64UrlEncode();
+            IpcAppConnectionStringType.Https => new()
+            {
+                Type = connectionStringType,
+                Int32Value = HttpsPort,
+            },
+            IpcAppConnectionStringType.UnixSocket => new()
+            {
+                Type = connectionStringType,
+                StringValue = UnixSocketPath,
+            },
+            IpcAppConnectionStringType.NamedPipe => new()
+            {
+                Type = connectionStringType,
+                StringValue = PipeName,
+            },
+            _ => throw ThrowHelper.GetArgumentOutOfRangeException(connectionStringType),
+        };
     }
 
     /// <summary>

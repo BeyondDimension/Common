@@ -9,7 +9,9 @@ global using Microsoft.Win32;
 global using Microsoft.Win32.SafeHandles;
 global using System.CodeDom.Compiler;
 global using System.Collections;
+#if (NETFRAMEWORK && NET40_OR_GREATER) || !NETFRAMEWORK
 global using System.Collections.Concurrent;
+#endif
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Diagnostics;
@@ -32,14 +34,15 @@ global using System.Runtime.Serialization;
 global using System.Runtime.Serialization.Formatters;
 global using System.Runtime.Versioning;
 global using System.Security;
+#if (NETFRAMEWORK && NET45_OR_GREATER) || !NETFRAMEWORK
 global using System.Security.Claims;
+#endif
 global using System.Security.Cryptography;
 global using System.Security.Cryptography.X509Certificates;
 global using System.Security.Principal;
 global using System.Text;
 global using System.Text.RegularExpressions;
 global using System.Web;
-global using System.Windows.Input;
 global using System.Xml;
 global using System.Xml.Linq;
 global using System.Xml.Serialization;

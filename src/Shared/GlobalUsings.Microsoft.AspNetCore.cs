@@ -6,7 +6,6 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
 global using Microsoft.AspNetCore.Hosting;
-global using Microsoft.Extensions.Hosting;
 global using Microsoft.AspNetCore.Routing;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Builder;
@@ -20,9 +19,6 @@ global using Microsoft.AspNetCore.Mvc.ApplicationParts;
 global using Microsoft.AspNetCore.Mvc.Controllers;
 global using Microsoft.AspNetCore.Mvc.Razor.TagHelpers;
 global using Microsoft.AspNetCore.Mvc.ViewComponents;
-global using Microsoft.Extensions.FileProviders;
 global using Microsoft.AspNetCore.Authorization.Policy;
 global using Microsoft.AspNetCore.Mvc.Filters;
-global using Microsoft.Extensions.Caching.Memory;
-global using Microsoft.Extensions.Caching.Distributed;
 global using IOFile = System.IO.File;

@@ -8,4 +8,3 @@
 global using BD.Common8.Orm.EFCore.Columns;
 global using BD.Common8.Orm.EFCore.Data;
 global using BD.Common8.Orm.EFCore.Data.Abstractions;
-global using BD.Common8.Orm.EFCore.Extensions;

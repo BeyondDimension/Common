@@ -3,13 +3,11 @@ namespace BD.Common8.Ipc.Server.Models;
 /// <inheritdoc cref="WebApplication"/>
 public sealed class IpcApp(WebApplication webApp, IpcAppBuilderOptions o) : IDisposable, IAsyncDisposable
 {
-    readonly string? connectionString = o.ConnectionString;
-
     /// <inheritdoc cref="WebApplication"/>
     public WebApplication WebApp => webApp.ThrowIsNull();
 
     /// <inheritdoc cref="IpcAppConnectionStringType"/>
-    public string ConnectionString => connectionString.ThrowIsNull();
+    public IpcAppConnectionString ConnectionString { get; } = o.ConnectionString;
 
     /// <inheritdoc cref="WebApplication.RunAsync(string?)"/>
     public Task RunAsync() => WebApp.RunAsync();

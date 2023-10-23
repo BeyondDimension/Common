@@ -20,6 +20,8 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
 			<LinkBase>_SourceReference\Compat</LinkBase>
 		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" />
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>

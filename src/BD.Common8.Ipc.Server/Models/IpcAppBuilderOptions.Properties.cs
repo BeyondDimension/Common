@@ -53,7 +53,7 @@ partial class IpcAppBuilderOptions
     /// <summary>
     /// Ipc 应用程序连接字符串
     /// </summary>
-    internal string? ConnectionString { get; private set; }
+    internal IpcAppConnectionString ConnectionString { get; private set; }
 
     /// <summary>
     /// <see cref="IMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件

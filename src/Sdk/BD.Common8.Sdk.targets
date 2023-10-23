@@ -5,8 +5,33 @@
 	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.SourceGenerator.props" />
 	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.GlobalUsings.props" />
 
+	<!--<PropertyGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
+		<ImplicitUsings>false</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.net35.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>-->
+
 	<ItemGroup Condition="$(UseAspNetCore) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Caching.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />

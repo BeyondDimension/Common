@@ -1,3 +1,5 @@
+using ICommand = System.Windows.Input.ICommand;
+
 namespace System.Extensions;
 
 /// <summary>

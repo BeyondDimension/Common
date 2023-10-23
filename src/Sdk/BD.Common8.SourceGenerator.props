@@ -12,7 +12,10 @@
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\**\*.cs">
 			<LinkBase>_SourceReference\Shared</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
 		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\obj\**" />
 	</ItemGroup>
 
 	<ItemGroup>

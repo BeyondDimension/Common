@@ -12,29 +12,26 @@ public static partial class IpcAppConnectionStringHelper
     /// <param name="ignoreRemoteCertificateValidation">是否忽略服务端证书验证</param>
     /// <param name="timeoutFromSeconds">超时时间，单位秒</param>
     /// <returns></returns>
-    public static HttpClient GetHttpClient(string connectionString,
+    public static HttpClient GetHttpClient(IpcAppConnectionString connectionString,
         bool ignoreRemoteCertificateValidation = true,
         double timeoutFromSeconds = 3d)
     {
-        var bytes = connectionString.Base64UrlDecodeToByteArray();
-        var connectionStringType = (IpcAppConnectionStringType)bytes[0];
-        var str = Encoding.UTF8.GetString(bytes, 1, bytes.Length - 1);
+        var connectionStringType = connectionString.Type;
         string baseAddress = "https://localhost";
         Func<SocketsHttpConnectionContext, CancellationToken, ValueTask<Stream>>? connectCallback = null;
         switch (connectionStringType)
         {
             case IpcAppConnectionStringType.Https:
-                baseAddress = str;
+                baseAddress = $"https://localhost:{connectionString.Int32Value}";
                 break;
             case IpcAppConnectionStringType.UnixSocket:
-                connectCallback = UnixDomainSocketsConnectionFactory.GetConnectCallback(str);
+                connectCallback = UnixDomainSocketsConnectionFactory.GetConnectCallback(connectionString.StringValue.ThrowIsNull());
                 break;
             case IpcAppConnectionStringType.NamedPipe:
-                connectCallback = NamedPipesConnectionFactory.GetConnectCallback(str);
+                connectCallback = NamedPipesConnectionFactory.GetConnectCallback(connectionString.StringValue.ThrowIsNull());
                 break;
             default:
-                ThrowHelper.ThrowArgumentOutOfRangeException(connectionStringType);
-                break;
+                throw ThrowHelper.GetArgumentOutOfRangeException(connectionStringType);
         }
         SocketsHttpHandler handler = new()
         {

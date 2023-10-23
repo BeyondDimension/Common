@@ -5,6 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Pinyin;
-global using BD.Common8.Pinyin.Enums;
-global using BD.Common8.Pinyin.Services;
+// 为现代 HTTP 应用程序提供一个编程接口。
+// https://learn.microsoft.com/zh-cn/dotnet/api/system.net.http
+global using System.Net.Http.Client;

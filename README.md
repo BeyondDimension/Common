@@ -23,6 +23,12 @@
 ### BD.Common8.Bcl.Compat
 提供旧版 Runtime 上缺少的内容以兼容新版 C# 语法
 
+### BD.Common8.Http.ClientFactory
+适用于客户端的 HttpClient 工厂实现库 (使用 Fusillade 实现)
+
+### BD.Common8.Http.ClientFactory.Server
+适用于客户端的 HttpClient 工厂的服务端兼容实现库 (与 Microsoft.Extensions.Http 兼容)
+
 ### BD.Common8.Ipc
 进程间通信 (IPC) 库
 

@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.PhoneNumber.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.System.Net.Http.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Net.Http.Json" />
+		<PackageReference Include="Microsoft.Extensions.Options" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+	</ItemGroup>
+
+</Project>
