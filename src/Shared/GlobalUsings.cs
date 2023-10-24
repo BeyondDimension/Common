@@ -46,10 +46,5 @@ global using System.Web;
 global using System.Xml;
 global using System.Xml.Linq;
 global using System.Xml.Serialization;
+global using System.Xml.XPath;
 global using IPAddress = System.Net.IPAddress;
-
-#if MACCATALYST || MACOS || IOS
-global using ObjCRuntime;
-global using Foundation;
-global using CoreFoundation;
-#endif

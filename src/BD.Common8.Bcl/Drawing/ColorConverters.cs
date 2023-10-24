@@ -16,7 +16,7 @@ public static partial class ColorConverters
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Color FromHex(string hexStringColor)
+    public static SDColor FromHex(string hexStringColor)
     {
         // Undefined
         if (hexStringColor.Length < 3)

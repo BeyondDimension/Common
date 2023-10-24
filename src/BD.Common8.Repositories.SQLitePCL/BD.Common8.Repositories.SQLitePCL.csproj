@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<RootNamespace>BD.Common8.Repositories</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
@@ -12,9 +11,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\BD.Common8.Repositories.EFCore\Data\SQLStrings.shared.cs">
-			<LinkBase>Data</LinkBase>
-		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>

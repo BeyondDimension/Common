@@ -1,4 +1,4 @@
-namespace BD.Common8.Repositories.Repositories.Abstractions;
+namespace BD.Common8.Repositories.EFCore.Repositories.Abstractions;
 
 /// <inheritdoc cref="IEFRepository"/>
 public interface IEFRepository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : IEFRepository where TEntity : class

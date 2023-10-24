@@ -1,4 +1,4 @@
-namespace BD.Common8.Repositories.Entities;
+namespace BD.Common8.Repositories.SQLitePCL.Entities;
 
 #pragma warning disable SA1600 // Elements should be documented
 

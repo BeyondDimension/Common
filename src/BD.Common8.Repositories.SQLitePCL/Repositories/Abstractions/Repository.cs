@@ -1,4 +1,4 @@
-namespace BD.Common8.Repositories.Repositories.Abstractions;
+namespace BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;
 
 #pragma warning disable SA1600 // Elements should be documented
 
@@ -95,14 +95,19 @@ public abstract class Repository : IRepository
         return conn;
     }
 
-    const int DefaultRetryCount = 3;
+    public const int DefaultRetryCount = 3;
+
+    public static TimeSpan PollyRetryAttempt(int attemptNumber)
+        => TimeSpan.FromMilliseconds(Math.Pow(2, attemptNumber));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected static Task<T> AttemptAndRetry<T>(Func<CancellationToken, Task<T>> @delegate, int retryCount = DefaultRetryCount, CancellationToken cancellationToken = default)
-    {
-        return Policy.Handle<SQLiteException>().WaitAndRetryAsync(retryCount, pollyRetryAttempt).ExecuteAsync(@delegate, cancellationToken);
-        static TimeSpan pollyRetryAttempt(int attemptNumber) => TimeSpan.FromMilliseconds(Math.Pow(2, attemptNumber));
-    }
+    protected static Task<T> AttemptAndRetry<T>(
+        Func<CancellationToken, Task<T>> @delegate,
+        int retryCount = DefaultRetryCount,
+        CancellationToken cancellationToken = default)
+        => Policy.Handle<SQLiteException>()
+        .WaitAndRetryAsync(retryCount, PollyRetryAttempt)
+        .ExecuteAsync(@delegate, cancellationToken);
 
     #endregion
 }

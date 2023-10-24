@@ -1,9 +1,11 @@
+using CoreFoundation;
+
 namespace BD.Common8.Pinyin.Services.Implementation;
 
 #pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
-/// 使用 <see cref="CoreFoundation.CFStringTransform"/> 实现的拼音功能
+/// 使用 <see cref="CFStringTransform"/> 实现的拼音功能
 /// </summary>
 [SupportedOSPlatform("ios")]
 [SupportedOSPlatform("maccatalyst")]

@@ -1,8 +1,8 @@
-using KeyValuePair = BD.Common8.Repositories.Entities.KeyValuePair;
+using KeyValuePair = BD.Common8.Repositories.EFCore.Entities.KeyValuePair;
 
 #pragma warning disable SA1600 // Elements should be documented
 
-namespace BD.Common8.Repositories.Repositories;
+namespace BD.Common8.Repositories.EFCore.Repositories;
 
 /// <summary>
 /// 由 <see cref="Repository{TDbContext, TEntity, TPrimaryKey}"/> 实现的 <see cref="ISecureStorage"/>

@@ -21,7 +21,6 @@ public readonly struct IpcAppConnectionString
         switch (connectionStringType)
         {
             case IpcAppConnectionStringType.Https:
-                stream.Write("https://localhost:"u8);
                 stream.Write(BitConverter.GetBytes(Int32Value));
                 break;
             case IpcAppConnectionStringType.UnixSocket:
@@ -42,6 +41,13 @@ public readonly struct IpcAppConnectionString
         var buffer = stream.ToArray();
         return buffer;
     }
+
+    public override string? ToString() => Type switch
+    {
+        IpcAppConnectionStringType.Https => $"https://localhost:{Int32Value}",
+        IpcAppConnectionStringType.UnixSocket or IpcAppConnectionStringType.NamedPipe => StringValue,
+        _ => base.ToString(),
+    };
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator IpcAppConnectionString(byte[] buffer)

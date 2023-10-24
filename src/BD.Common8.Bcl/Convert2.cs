@@ -55,13 +55,12 @@ public static partial class Convert2
 
     /// <inheritdoc cref="System.Convert"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [RequiresUnreferencedCode(Serializable.SerializationUnreferencedCodeMessage)]
-    [RequiresDynamicCode(Serializable.SerializationRequiresDynamicCodeMessage)]
     public static T? Convert<T>(IConvertible? value) where T : notnull
     {
         if (value == default)
             return default;
         var typeCode = Type.GetTypeCode(typeof(T));
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         return typeCode switch
         {
             TypeCode.Boolean => Convert<T, bool>(value.ToBoolean(CultureInfo.InvariantCulture)),
@@ -82,6 +81,7 @@ public static partial class Convert2
             TypeCode.Object => ConvertObject<T>(value),
             _ => default,
         };
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
     }
 }
 

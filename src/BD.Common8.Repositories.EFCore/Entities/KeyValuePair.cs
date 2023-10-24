@@ -1,4 +1,4 @@
-namespace BD.Common8.Repositories.Entities;
+namespace BD.Common8.Repositories.EFCore.Entities;
 
 /// <summary>
 /// 键值对表

@@ -1,7 +1,7 @@
 namespace BD.Common8.Repositories.Data;
 
 /// <summary>
-/// SQL语句字符串常量，使用字符串拼接时应注意防止 SQL注入攻击
+/// SQL 语句字符串常量，使用字符串拼接时应注意防止 SQL 注入攻击
 /// <para>EFCore 可采用 <see cref="FormattableString"/> 参数化传入参数</para>
 /// </summary>
 public static partial class SQLStrings

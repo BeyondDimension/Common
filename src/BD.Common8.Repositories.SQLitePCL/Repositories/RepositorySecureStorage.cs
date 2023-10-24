@@ -1,6 +1,6 @@
-using KeyValuePair = BD.Common8.Repositories.Entities.KeyValuePair;
+using KeyValuePair = BD.Common8.Repositories.SQLitePCL.Entities.KeyValuePair;
 
-namespace BD.Common8.Repositories.Repositories;
+namespace BD.Common8.Repositories.SQLitePCL.Repositories;
 
 #pragma warning disable SA1600 // Elements should be documented
 

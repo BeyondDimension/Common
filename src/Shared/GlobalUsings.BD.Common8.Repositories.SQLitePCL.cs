@@ -5,7 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Repositories.Data;
-global using BD.Common8.Repositories.Entities;
-global using BD.Common8.Repositories.Repositories;
-global using BD.Common8.Repositories.Repositories.Abstractions;
+global using BD.Common8.Repositories.SQLitePCL.Entities;
+global using BD.Common8.Repositories.SQLitePCL.Repositories;
+global using BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;

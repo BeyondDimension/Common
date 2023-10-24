@@ -1,4 +1,4 @@
-namespace BD.Common8.Repositories.Repositories.Abstractions;
+namespace BD.Common8.Repositories.EFCore.Repositories.Abstractions;
 
 #pragma warning disable SA1600 // Elements should be documented
 

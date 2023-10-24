@@ -1,0 +1,41 @@
+namespace BD.Common8.Essentials.Helpers;
+
+#pragma warning disable SA1600 // Elements should be documented
+
+static partial class Utils
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Version ParseVersion(string version)
+    {
+        if (Version.TryParse(version, out var number))
+            return number;
+
+        if (int.TryParse(version, out var major))
+            return new Version(major, 0);
+
+        return new Version(0, 0);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static CancellationToken TimeoutToken(CancellationToken cancellationToken, TimeSpan timeout)
+    {
+        // create a new linked cancellation token source
+        var cancelTokenSrc = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+
+        // if a timeout was given, make the token source cancel after it expires
+        if (timeout > TimeSpan.Zero)
+            cancelTokenSrc.CancelAfter(timeout);
+
+        // our Cancel method will handle the actual cancellation logic
+        return cancelTokenSrc.Token;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static async Task<T?> WithTimeout<T>(Task<T> task, TimeSpan timeSpan)
+    {
+        var retTask = await Task.WhenAny(task, Task.Delay(timeSpan))
+            .ConfigureAwait(false);
+
+        return retTask is Task<T> ? task.Result : default(T);
+    }
+}
