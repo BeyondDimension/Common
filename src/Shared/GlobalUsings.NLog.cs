@@ -5,11 +5,9 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using Avalonia;
-global using Avalonia.Controls;
-global using Avalonia.Controls.Primitives;
-global using Avalonia.Media;
-global using Avalonia.Threading;
-global using Avalonia.Controls.ApplicationLifetimes;
-global using Avalonia.Platform.Storage;
-global using AvaApplication = Avalonia.Application;
+global using NLog;
+global using NLog.Common;
+global using NLog.Config;
+global using NLog.Targets;
+global using NLog.Web;
+global using NLogLevel = NLog.LogLevel;

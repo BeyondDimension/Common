@@ -5,6 +5,7 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<TargetFramework Condition="$([MSBuild]::IsOSPlatform('windows'))">net35</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
+		<PlatformTarget>ARM64EC</PlatformTarget>
 	</PropertyGroup>
 
 </Project>

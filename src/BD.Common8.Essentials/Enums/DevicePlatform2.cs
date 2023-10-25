@@ -118,6 +118,23 @@ public enum DevicePlatform2 : byte
 /// </summary>
 public static partial class DevicePlatform2EnumExtensions
 {
+    const string WindowsDesktopBridge = "Windows Desktop Bridge";
+    const string Android = "Android";
+
+    /// <summary>
+    /// 将 <see cref="DevicePlatform2"/> 转换为显示字符串
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string ToDisplayName(this DevicePlatform2 value) => value == default ? string.Empty :
+       (value.IsAndroid() ? Android :
+           value switch
+           {
+               DevicePlatform2.WindowsDesktopBridge => WindowsDesktopBridge,
+               _ => value.ToString(),
+           });
+
     /// <summary>
     /// 值是否在定义的范围中，排除 default
     /// </summary>
@@ -127,4 +144,39 @@ public static partial class DevicePlatform2EnumExtensions
     public static bool IsDefined(this DevicePlatform2 platform)
         => platform != default &&
             Enum.IsDefined(platform);
+
+    /// <summary>
+    /// 将 <see cref="string"/> 转换为 <see cref="DevicePlatform2"/>
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static DevicePlatform2 Parse(string value)
+    {
+        if (Enum.TryParse<DevicePlatform2>(value, true, out var valueEnum))
+            return valueEnum;
+        if (string.Equals(value, WindowsDesktopBridge, StringComparison.OrdinalIgnoreCase))
+            return DevicePlatform2.WindowsDesktopBridge;
+        return default;
+    }
+
+    /// <summary>
+    /// 判断 <see cref="DevicePlatform2"/> 值是否为 Android
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAndroid(this DevicePlatform2 value) => value switch
+    {
+        DevicePlatform2.WSA or
+        DevicePlatform2.AndroidUnknown or
+        DevicePlatform2.AndroidPhone or
+        DevicePlatform2.AndroidTablet or
+        DevicePlatform2.AndroidDesktop or
+        DevicePlatform2.AndroidTV or
+        DevicePlatform2.AndroidWatch or
+        DevicePlatform2.AndroidVirtual or
+        DevicePlatform2.ChromeOS => true,
+        _ => false,
+    };
 }

@@ -1,11 +1,11 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog">
 
 	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)\GeneratePackage.props" />
 	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.UnitTest.props" />
 	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.SourceGenerator.props" />
 	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.GlobalUsings.props" />
 
-	<!--<PropertyGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
+	<PropertyGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
 		<ImplicitUsings>false</ImplicitUsings>
 	</PropertyGroup>
 
@@ -13,7 +13,7 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.net35.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-	</ItemGroup>-->
+	</ItemGroup>
 
 	<ItemGroup Condition="$(UseAspNetCore) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
@@ -22,7 +22,7 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Caching.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+		<Compile Condition="$(UseEFCore) != 'true'" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
@@ -68,13 +68,13 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseEFCore) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Z.EntityFramework.Plus.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Z.EntityFramework.Plus.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
@@ -92,6 +92,23 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Avalonia" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseRedis) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.Redis.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="StackExchange.Redis" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseNLog) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.NLog.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="NLog" />
+		<PackageReference Include="NLog.Extensions.Logging" />
+		<PackageReference Condition="$(UseAspNetCore) == 'true'" Include="NLog.Web.AspNetCore" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(LinkResXGeneratedCodeAttribute) == 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">

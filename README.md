@@ -14,6 +14,8 @@
 - UseProjectUtils 是否引用 ```src\Shared\ProjectUtils.cs```
 - UseSourceGeneratorResx 是否引用 ```Resx``` 的源生成器
 - UseMicrosoftIdentityModelTokens 是否引用包 ```Microsoft.IdentityModel.Tokens```
+- UseAvalonia 是否引用包 ```Avalonia```
+- LinkResXGeneratedCodeAttribute 是否引用源码 ```src\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs```
 
 ## SharedLibrary 共享库
 
@@ -22,6 +24,15 @@
 
 ### BD.Common8.Bcl.Compat
 提供旧版 Runtime 上缺少的内容以兼容新版 C# 语法
+
+## BD.Common8.Essentials
+Essentials 提供单个跨平台 API，适用于任何 .NET 应用程序 (Win32、WinRT、Android、iOS、macOS、MacCatalyst)
+
+## BD.Common8.Essentials.Implementation
+具体平台的 Essentials 实现服务库
+
+## BD.Common8.Essentials.Implementation.Avalonia
+Avalonia UI 相关的 Essentials 实现服务库
 
 ### BD.Common8.Http.ClientFactory
 适用于客户端的 HttpClient 工厂实现库 (使用 Fusillade 实现)
@@ -67,6 +78,15 @@ EFCore 相关的封装库
 
 ### BD.Common8.Primitives.District
 提供行政区域数据封装库
+
+## BD.Common8.AspNetCore
+ASP.NET Core 的通用封装库
+
+## BD.Common8.AspNetCore.BackManage
+ASP.NET Core 实现的多租户后台管理系统通用封装库
+
+## BD.Common8.AspNetCore.Identity
+ASP.NET Core 的管理用户、密码、配置文件数据、角色、声明、令牌、电子邮件确认等封装库
 
 ## SourceGenerator 源生成器
 

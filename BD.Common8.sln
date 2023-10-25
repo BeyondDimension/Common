@@ -175,7 +175,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{70
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Essentials.Implementation", "src\BD.Common8.Essentials.Implementation\BD.Common8.Essentials.Implementation.csproj", "{9E0712A9-9F13-4DAD-B723-A625654170F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Essentials.Implementation.Avalonia", "src\BD.Common8.Essentials.Implementation.Avalonia\BD.Common8.Essentials.Implementation.Avalonia.csproj", "{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Essentials.Implementation.Avalonia", "src\BD.Common8.Essentials.Implementation.Avalonia\BD.Common8.Essentials.Implementation.Avalonia.csproj", "{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore", "AspNetCore", "{866C85F1-1070-424E-A481-D76441866CCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.AspNetCore", "src\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj", "{D22F34FF-31AF-40EA-A1CF-3F707DE8701A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.AspNetCore.Identity", "src\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj", "{DB4672D8-49D6-4897-B200-7C590AD32ACB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.AspNetCore.BackManage", "src\BD.Common8.AspNetCore.BackManage\BD.Common8.AspNetCore.BackManage.csproj", "{67F128A7-7083-4DA9-9BA6-DEC53ACF2031}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinUI3", "WinUI3", "{35AE4113-39D3-4840-A0C7-9F636CD78E29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -335,6 +345,18 @@ Global
 		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D22F34FF-31AF-40EA-A1CF-3F707DE8701A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D22F34FF-31AF-40EA-A1CF-3F707DE8701A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D22F34FF-31AF-40EA-A1CF-3F707DE8701A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D22F34FF-31AF-40EA-A1CF-3F707DE8701A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB4672D8-49D6-4897-B200-7C590AD32ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB4672D8-49D6-4897-B200-7C590AD32ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB4672D8-49D6-4897-B200-7C590AD32ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB4672D8-49D6-4897-B200-7C590AD32ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F128A7-7083-4DA9-9BA6-DEC53ACF2031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F128A7-7083-4DA9-9BA6-DEC53ACF2031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F128A7-7083-4DA9-9BA6-DEC53ACF2031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F128A7-7083-4DA9-9BA6-DEC53ACF2031}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -408,6 +430,11 @@ Global
 		{700D8573-E853-4E1D-A0EA-E2446BBFB586} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
 		{9E0712A9-9F13-4DAD-B723-A625654170F7} = {7215E610-C537-489F-92C0-0017F6AEBED8}
 		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF} = {7215E610-C537-489F-92C0-0017F6AEBED8}
+		{866C85F1-1070-424E-A481-D76441866CCD} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
+		{D22F34FF-31AF-40EA-A1CF-3F707DE8701A} = {866C85F1-1070-424E-A481-D76441866CCD}
+		{DB4672D8-49D6-4897-B200-7C590AD32ACB} = {866C85F1-1070-424E-A481-D76441866CCD}
+		{67F128A7-7083-4DA9-9BA6-DEC53ACF2031} = {866C85F1-1070-424E-A481-D76441866CCD}
+		{35AE4113-39D3-4840-A0C7-9F636CD78E29} = {0E7091C6-2177-4D76-BA12-77D11E6220C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CA7F767-BBA3-4E1F-90E7-DAB32105B027}

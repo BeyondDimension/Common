@@ -16,6 +16,7 @@
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0-rc.2.23480.1" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-rc.2.23480.1" />
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0-rc.2.23480.1" />
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0-rc.2.23480.2" />
 		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-rc.2.23479.6" />
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0-rc.2.23479.6" />
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0-rc.2.23479.6" />
@@ -29,6 +30,9 @@
 		<PackageVersion Include="MonoMac.NetStandard" Version="0.0.4" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageVersion Include="Nito.Comparers" Version="6.2.2" />
+		<PackageVersion Include="NLog" Version="5.2.5" />
+		<PackageVersion Include="NLog.Extensions.Logging" Version="5.3.5" />
+		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.3.5" />
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-rc.2" />
 		<PackageVersion Include="NUnit" Version="3.13.3" />
 		<PackageVersion Include="NUnit.Analyzers" Version="3.8.0" />
@@ -37,6 +41,7 @@
 		<PackageVersion Include="ReactiveUI" Version="19.5.1" />
 		<PackageVersion Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.6" />
+		<PackageVersion Include="StackExchange.Redis" Version="2.6.122" />
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.507" />
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0-rc.2.23479.6" />
 		<PackageVersion Include="System.Memory" Version="4.5.5" />
