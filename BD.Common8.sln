@@ -175,6 +175,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{70
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Essentials.Implementation", "src\BD.Common8.Essentials.Implementation\BD.Common8.Essentials.Implementation.csproj", "{9E0712A9-9F13-4DAD-B723-A625654170F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Essentials.Implementation.Avalonia", "src\BD.Common8.Essentials.Implementation.Avalonia\BD.Common8.Essentials.Implementation.Avalonia.csproj", "{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -329,6 +331,10 @@ Global
 		{9E0712A9-9F13-4DAD-B723-A625654170F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E0712A9-9F13-4DAD-B723-A625654170F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E0712A9-9F13-4DAD-B723-A625654170F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -401,6 +407,7 @@ Global
 		{55EB2635-7877-41C0-A7A9-CDCBE6950845} = {8580B0C5-1CDC-44F5-8405-C1C1EF7C0328}
 		{700D8573-E853-4E1D-A0EA-E2446BBFB586} = {B49265A0-7C0E-48F7-AB46-EA951683BAB4}
 		{9E0712A9-9F13-4DAD-B723-A625654170F7} = {7215E610-C537-489F-92C0-0017F6AEBED8}
+		{88736C46-4626-4CDC-8DC2-DF31BD9A28CF} = {7215E610-C537-489F-92C0-0017F6AEBED8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CA7F767-BBA3-4E1F-90E7-DAB32105B027}

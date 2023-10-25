@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia">
 
 	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)\GeneratePackage.props" />
 	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.UnitTest.props" />
@@ -85,6 +85,13 @@
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
 		<PackageReference Include="Z.EntityFramework.Plus.EFCore" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseAvalonia) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.Avalonia.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Avalonia" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(LinkResXGeneratedCodeAttribute) == 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
