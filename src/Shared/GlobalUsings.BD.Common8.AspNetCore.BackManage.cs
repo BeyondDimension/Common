@@ -5,5 +5,4 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using Microsoft.IdentityModel.Tokens;
-global using System.IdentityModel.Tokens.Jwt;
+global using BD.Common8;
