@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+
 namespace BD.Common8.AspNetCore.Identity;
 
 #pragma warning disable SA1600 // Elements should be documented

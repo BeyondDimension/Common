@@ -9,12 +9,12 @@ try
             "src",
             "artifacts",
             "bin",
-            "BD.Common8.AssemblyLoad.Sample.Library",
+            "AssemblyLoad.Sample.Library",
             "debug",
-            "BD.Common8.AssemblyLoad.Sample.Library.dll",
+            "AssemblyLoad.Sample.Library.dll",
         });
     var assembly = Assembly.LoadFile(libPath);
-    var program = assembly.GetType("BD.Common8.AssemblyLoad.Sample.Library.Program", true);
+    var program = assembly.GetType("AssemblyLoad.Sample.Library.Program", true);
     var main = program.GetMethod("Main", BindingFlags.Static | BindingFlags.NonPublic);
     var exitCode = Convert.ToInt32(main.Invoke(null, default, default, new object?[] { args }, null));
     Console.WriteLine($"ExitCode: {exitCode}");
