@@ -1,7 +1,5 @@
 // https://github.com/xamarin/Essentials/blob/1.7.3/Xamarin.Essentials/Types/ColorConverters.shared.cs
 
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Drawing;
 
 /// <summary>
@@ -116,6 +114,7 @@ public static partial class ColorConverters
         }
     }
 
+    /// <inheritdoc cref="ToHex"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static uint ToHexD(char c)
     {
@@ -123,6 +122,9 @@ public static partial class ColorConverters
         return (j << 4) | j;
     }
 
+    /// <summary>
+    /// 将字符转换为十六进制数
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static uint ToHex(char c)
     {

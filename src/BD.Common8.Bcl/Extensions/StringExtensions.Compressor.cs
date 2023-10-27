@@ -1,5 +1,8 @@
 namespace System.Extensions;
 
+/// <summary>
+/// 提供对 <see cref="string"/> 类型的扩展函数
+/// </summary>
 public static partial class StringExtensions
 {
     /// <summary>

@@ -4,6 +4,12 @@ namespace System.Extensions;
 
 public static partial class X509CertificateExtensions
 {
+    /// <summary>
+    /// 使用指定加密哈希算法获取证书的哈希值
+    /// </summary>
+    /// <param name="certificate">要计算哈希值的证书</param>
+    /// <param name="hashAlgorithm">指定加密算法</param>
+    /// <returns>证书的哈希值作为字节数返回</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static byte[] GetCertHashCompatImpl(this X509Certificate certificate, HashAlgorithmName hashAlgorithm)
     {
@@ -51,6 +57,9 @@ public static partial class X509CertificateExtensions
     const string BEGIN_CERTIFICATE_SIGIL = "-----BEGIN CERTIFICATE-----";
     const string END_CERTIFICATE_SIGIL = "-----END CERTIFICATE-----";
 
+    /// <summary>
+    /// 获取公钥证书的 PEM 格式字符串
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetPublicPemCertificateString(this X509Certificate2 certificate)
     {
@@ -63,6 +72,9 @@ public static partial class X509CertificateExtensions
         return builder.ToString();
     }
 
+    /// <summary>
+    /// 获取证书的主题备用名称
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IReadOnlyList<string> GetSubjectAlternativeNames(this X509Certificate2 certificate)
     {
@@ -79,6 +91,9 @@ public static partial class X509CertificateExtensions
         return Array.Empty<string>();
     }
 
+    /// <summary>
+    /// 将 X509 证书保存为 CER 文件
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void SaveCerCertificateFile(this X509Certificate2 certificate, string pathOrName)
     {

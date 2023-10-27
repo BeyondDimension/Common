@@ -1,6 +1,9 @@
 namespace System.Extensions;
 
-public static partial class HttpClientExtensions // UseDefaultSendX 使用此扩展代替 Send，将 DefaultRequestVersion 与 DefaultVersionPolicy 赋值给 HttpRequestMessage
+/// <summary>
+/// UseDefaultSendX 使用此扩展代替 Send，将 DefaultRequestVersion 与 DefaultVersionPolicy 赋值给 HttpRequestMessage
+/// </summary>
+public static partial class HttpClientExtensions
 {
 #if NETSTANDARD || NETFRAMEWORK
     /// <summary>

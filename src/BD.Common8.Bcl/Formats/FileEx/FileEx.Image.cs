@@ -2,29 +2,97 @@ namespace System.Formats;
 
 public static partial class FileEx
 {
-#pragma warning disable SA1600 // Elements should be documented
     // https://developer.mozilla.org/zh-CN/docs/Web/Media/Formats/Image_types#%E5%B8%B8%E8%A7%81%5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B
 
+    /// <summary>
+    /// .webp
+    /// </summary>
     public const string WebP = ".webp";
-    public const string Png = ".png";
-    public const string Jpg = ".jpg";
-    public const string Jpeg = ".jpeg";
-    public const string Gif = ".gif";
-    public const string Svg = ".svg";
-    public const string Jfif = ".jfif";
-    public const string Pjg = ".pjg";
-    public const string Pjpeg = ".pjpeg";
-    public const string Ico = ".ico";
-    public const string Cur = ".cur";
-    public const string Bmp = ".bmp";
-    public const string Avif = ".avif";
-    public const string Apng = ".apng";
-    public const string Heic = ".heic";
-    public const string Heif = ".heif";
-    public const string Tif = ".tif";
-    public const string Tiff = ".tiff";
 
-#pragma warning restore SA1600 // Elements should be documented
+    /// <summary>
+    /// .png
+    /// </summary>
+    public const string Png = ".png";
+
+    /// <summary>
+    /// .jpg
+    /// </summary>
+    public const string Jpg = ".jpg";
+
+    /// <summary>
+    /// .jpeg
+    /// </summary>
+    public const string Jpeg = ".jpeg";
+
+    /// <summary>
+    /// .gif
+    /// </summary>
+    public const string Gif = ".gif";
+
+    /// <summary>
+    /// .svg
+    /// </summary>
+    public const string Svg = ".svg";
+
+    /// <summary>
+    /// .jfif
+    /// </summary>
+    public const string Jfif = ".jfif";
+
+    /// <summary>
+    /// .pjg
+    /// </summary>
+    public const string Pjg = ".pjg";
+
+    /// <summary>
+    /// .pjpeg
+    /// </summary>
+    public const string Pjpeg = ".pjpeg";
+
+    /// <summary>
+    /// .ico
+    /// </summary>
+    public const string Ico = ".ico";
+
+    /// <summary>
+    /// .cur
+    /// </summary>
+    public const string Cur = ".cur";
+
+    /// <summary>
+    /// .bmp
+    /// </summary>
+    public const string Bmp = ".bmp";
+
+    /// <summary>
+    /// .avif
+    /// </summary>
+    public const string Avif = ".avif";
+
+    /// <summary>
+    /// .apng
+    /// </summary>
+    public const string Apng = ".apng";
+
+    /// <summary>
+    /// .heic
+    /// </summary>
+    public const string Heic = ".heic";
+
+    /// <summary>
+    /// .heif
+    /// </summary>
+    public const string Heif = ".heif";
+
+    /// <summary>
+    /// .tif
+    /// </summary>
+    public const string Tif = ".tif";
+
+    /// <summary>
+    /// .tiff
+    /// </summary>
+    public const string Tiff = ".tiff";
 
     static IEnumerable<string>? _Images;
 

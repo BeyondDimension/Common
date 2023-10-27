@@ -1,6 +1,9 @@
 namespace System.Extensions;
 
-public static partial class QueryableExtensions // WhereOr
+/// <summary>
+/// 表达式拼接扩展
+/// </summary>
+public static partial class QueryableExtensions
 {
     /// <summary>
     /// 将多个表达式通过 OR 拼接返回查询的 <see cref="IQueryable"/>

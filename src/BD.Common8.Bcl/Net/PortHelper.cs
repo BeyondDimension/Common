@@ -1,7 +1,6 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 
-using System.Net.NetworkInformation;
 #if WINDOWS7_0_OR_GREATER
 #pragma warning disable CS8981
 using winmdroot = Windows.Win32;

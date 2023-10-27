@@ -1,9 +1,15 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.ComponentModel;
 
+/// <summary>
+/// 用于将枚举类型转换为描述字符串
+/// </summary>
+/// <param name="type">需要进行转换的枚举类型，可以指定动态访问的成员类型（公共构造函数和公共字段）</param>
 public class EnumDescriptionTypeConverter([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicFields)] Type type) : EnumConverter(type)
 {
+    /// <summary>
+    /// 获取枚举值字段上的 DescriptionAttribute 特性来返回描述字符串，不存在则返回枚举值的字符串
+    /// </summary>
+    /// <returns></returns>
     public override object? ConvertTo(
         ITypeDescriptorContext? context,
         CultureInfo? culture,

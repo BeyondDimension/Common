@@ -1,7 +1,5 @@
 namespace System.Net;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 本地 Clash 代理
 /// </summary>
@@ -27,5 +25,8 @@ public sealed class LocalClashWebProxy : WebProxy
     /// </summary>
     public const string PortString = "7890";
 
+    /// <summary>
+    /// 使用默认的地址和端口号创建本地 Clash 代理
+    /// </summary>
     public LocalClashWebProxy() : base(AddressString, Port) { }
 }

@@ -5,7 +5,7 @@ namespace System.Formats.Internals;
 partial class ImageFileFormat
 {
     /// <summary>
-    /// High Efficiency Image File Format
+    /// 高效率图像文件格式（HEIF）
     /// <para>https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format</para>
     /// <para>https://www.jianshu.com/p/b016d10a087d</para>
     /// <para>https://www.freesion.com/article/5585164728/</para>
@@ -14,10 +14,19 @@ partial class ImageFileFormat
     {
         public static class HEIF
         {
+            /// <summary>
+            /// 图像格式为 <see cref="ImageFormat.HEIF"/>
+            /// </summary>
             public const ImageFormat Format = ImageFormat.HEIF;
 
+            /// <summary>
+            /// 默认文件扩展名为 <see cref="FileEx.HEIF"/>
+            /// </summary>
             public const string DefaultFileExtension = FileEx.HEIF;
 
+            /// <summary>
+            /// 默认的 MIME 类型为 <see cref="MediaTypeNames.HEIF"/>
+            /// </summary>
             public const string DefaultMIME = MediaTypeNames.HEIF;
 
             /// <summary>
@@ -33,8 +42,14 @@ partial class ImageFileFormat
 
         public static class HEIFSequence
         {
+            /// <summary>
+            /// 图像格式为 <see cref=" ImageFormat.HEIFSequence"/>
+            /// </summary>
             public const ImageFormat Format = ImageFormat.HEIFSequence;
 
+            /// <summary>
+            /// 默认文件扩展名为 <see cref="MediaTypeNames.HEIFSequence"/>
+            /// </summary>
             public const string DefaultMIME = MediaTypeNames.HEIFSequence;
 
             /// <summary>
@@ -50,10 +65,19 @@ partial class ImageFileFormat
 
         public static class HEIC
         {
+            /// <summary>
+            /// 图像格式为 <see cref=" ImageFormat.HEIC"/>
+            /// </summary>
             public const ImageFormat Format = ImageFormat.HEIC;
 
+            /// <summary>
+            /// 默认文件扩展名为 <see cref="MediaTypeNames.HEIC"/>
+            /// </summary>
             public const string DefaultFileExtension = FileEx.HEIC;
 
+            /// <summary>
+            /// 默认的 MIME 类型为 <see cref="MediaTypeNames.HEIC"/>
+            /// </summary>
             public const string DefaultMIME = MediaTypeNames.HEIC;
 
             public static readonly byte?[]?[] MagicNumber;
@@ -78,8 +102,14 @@ partial class ImageFileFormat
 
         public static class HEICSequence
         {
+            /// <summary>
+            /// 图像格式为 <see cref=" ImageFormat.HEICSequence"/>
+            /// </summary>
             public const ImageFormat Format = ImageFormat.HEICSequence;
 
+            /// <summary>
+            /// 默认文件扩展名为  <see cref=" ImageFormat.HEICSequence"/>
+            /// </summary>
             public const string DefaultMIME = MediaTypeNames.HEICSequence;
 
             public static readonly byte?[]?[] MagicNumber;

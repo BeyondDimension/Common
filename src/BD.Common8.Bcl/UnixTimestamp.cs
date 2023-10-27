@@ -2,6 +2,10 @@ namespace System;
 
 public static partial class UnixTimestamp
 {
+    /// <summary>
+    /// 计算给定 <see cref="DateTime"/> 相对于 1970/1/1 的时间差
+    /// </summary>
+    /// <returns>转换后的 Unix 时间戳值</returns>
     static double ToUnixTimestamp(this DateTime dt, UnixTimestampType unixTimestampType)
     {
         var timeDiff = new TimeSpan(dt.ToUniversalTime().Ticks - UnixEpochTicks);
@@ -14,6 +18,9 @@ public static partial class UnixTimestamp
         return (double)Math.Floor(total);
     }
 
+    /// <summary>
+    /// 获取 Unix 时间戳转换为 <see cref="DateTime"/> 结构中的 Ticks 值
+    /// </summary>
     static long GetTicks(long timestamp, UnixTimestampType unixTimestampType)
     {
         long ticks;
@@ -32,6 +39,9 @@ public static partial class UnixTimestamp
         return ticks;
     }
 
+    /// <summary>
+    /// 将指定的 Ticks 数转换为对应的本地时间或者 UTC 时间的 <see cref="DateTime"/>
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static DateTime GetDateTime(long ticks, bool convertLocalTime = true)
     {
@@ -39,6 +49,9 @@ public static partial class UnixTimestamp
         return convertLocalTime ? dt.ToLocalTime() : dt;
     }
 
+    /// <summary>
+    /// 将指定的 Ticks 数转换为对应的本地时间或者 UTC 时间的 <see cref="DateTimeOffset"/>
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static DateTimeOffset GetDateTimeOffset(long ticks, bool convertLocalTime = true)
     {

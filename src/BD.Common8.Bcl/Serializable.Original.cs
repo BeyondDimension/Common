@@ -1,7 +1,6 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0005 // 删除不必要的 using 指令
 #pragma warning disable IDE0161 // 转换为文件范围限定的 namespace
-#pragma warning disable SA1600 // Elements should be documented
 
 namespace System
 {
@@ -56,6 +55,9 @@ namespace Newtonsoft.Json.Serialization
     {
         readonly bool useCamelCase = useCamelCase;
 
+        /// <summary>
+        /// 创建属性列表，并根据成员序列化方式忽略特定属性
+        /// </summary>
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
             var result = base.CreateProperties(type, memberSerialization);

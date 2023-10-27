@@ -1,0 +1,11 @@
+### 文案指南 / 中西文混排
+- [B 类产品文案指南](https://zhuanlan.zhihu.com/p/351739115)
+- [文案 - Ant Design](https://ant.design/docs/spec/copywriting-cn)
+    - 在界面中，我们需要通过对话的方式与用户产生共鸣。精准、清晰的语言会更容易让用户理解，合适的语气更容易让用户建立信任感。因此在界面设计时，文案也应当被重视。 在使用和书写文案时有以下几点需要注意：
+        - 从用户角度出发
+        - 表述一致
+        - 重要的信息放在显著位置
+        - 专业、精准、完整
+        - 精简、友好、正面
+- [通用文案](https://design.teambition.com/doc/copywriting)
+- [中西文混排](https://design.teambition.com/doc/mixed)

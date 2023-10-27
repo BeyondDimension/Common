@@ -1,9 +1,10 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 using SR = BD.Common8.Resources.SR;
 
 namespace System.Diagnostics;
 
+/// <summary>
+/// 提供进程相关的操作
+/// </summary>
 public static partial class Process2
 {
     /// <summary>
@@ -50,6 +51,15 @@ public static partial class Process2
         }
     }
 
+    /// <summary>
+    /// 获取用于启动进程的 ProcessStartInfo 对象
+    /// </summary>
+    /// <param name="fileName">要执行的可执行文件的名称或路径</param>
+    /// <param name="arguments">传递的参数</param>
+    /// <param name="useShellExecute">指定是否使用 Shell 来执行</param>
+    /// <param name="workingDirectory">设置执行的工作目录</param>
+    /// <param name="environment">要传递给进程环境变量的键值对</param>
+    /// <returns>用于启动进程的 ProcessStartInfo 对象</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static ProcessStartInfo GetProcessStartInfo(string fileName, string? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
     {
@@ -58,6 +68,7 @@ public static partial class Process2
         {
             p.Arguments = arguments;
         }
+
         if (environment != null)
         {
             foreach (var item in environment)
@@ -119,6 +130,12 @@ public static partial class Process2
         return null;
     }
 
+    /// <summary>
+    /// 使用进程打开指定的 URL
+    /// </summary>
+    /// <param name="url">要打开的 URL </param>
+    /// <param name="onError">错误回调函数</param>
+    /// <returns>如果成功打开 URL，则返回 <see langword="true"/>；否则为 <see langword="false"/> </returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool OpenCoreByProcess(string url, Action<string>? onError = null)
     {
@@ -136,6 +153,13 @@ public static partial class Process2
         }
     }
 
+    /// <summary>
+    /// 执行 Shell 命令并返回结果
+    /// </summary>
+    /// <param name="fileName">要执行的命令</param>
+    /// <param name="value">传递给命令的参数</param>
+    /// <param name="onError">发生异常时执行的回调函数</param>
+    /// <returns>命令执行后的输出结果</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string RunShell(string fileName, string value, Action<Exception>? onError = null)
     {

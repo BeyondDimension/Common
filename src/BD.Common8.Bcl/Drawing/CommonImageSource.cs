@@ -1,7 +1,5 @@
 namespace System.Drawing;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 通用图片源
 /// </summary>
@@ -15,6 +13,10 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         OriginStream = this.stream = stream;
     }
 
+    /// <summary>
+    /// 克隆当前实例的副本
+    /// </summary>
+    /// <returns></returns>
     public CommonImageSource Clone()
     {
         CommonImageSource clipStream = new(OriginStream)
@@ -30,6 +32,9 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         return clipStream;
     }
 
+    /// <summary>
+    /// 获取图片流
+    /// </summary>
     public Stream? Stream
     {
         get
@@ -42,8 +47,14 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         }
     }
 
+    /// <summary>
+    /// 原始的图片流
+    /// </summary>
     public Stream OriginStream { get; }
 
+    /// <summary>
+    /// 图片格式
+    /// </summary>
     public ImageFormat Format { get; init; }
 
     /// <inheritdoc cref="FileStream.Name"/>
@@ -59,6 +70,7 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         }
     }
 
+    /// <inheritdoc/>
     public override string? ToString()
     {
         if (OriginStream is IFileStreamWrapper wrapper)
@@ -68,14 +80,29 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         return base.ToString();
     }
 
+    /// <summary>
+    /// 上边距
+    /// </summary>
     public float Top { get; set; }
 
+    /// <summary>
+    /// 左边距
+    /// </summary>
     public float Left { get; set; }
 
+    /// <summary>
+    /// 右边距
+    /// </summary>
     public float Right { get; set; }
 
+    /// <summary>
+    /// 下边距
+    /// </summary>
     public float Bottom { get; set; }
 
+    /// <summary>
+    /// 设置上下边距相同
+    /// </summary>
     public float TopBottom
     {
         set
@@ -85,6 +112,9 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         }
     }
 
+    /// <summary>
+    /// 设置左右边距相同
+    /// </summary>
     public float LeftRight
     {
         set
@@ -94,6 +124,9 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         }
     }
 
+    /// <summary>
+    /// 设置上下左右边距相同
+    /// </summary>
     public float TopBottomLeftRight
     {
         set
@@ -105,10 +138,19 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         }
     }
 
+    /// <summary>
+    /// X 轴圆角半径
+    /// </summary>
     public float Radius_X { get; set; }
 
+    /// <summary>
+    /// Y 轴圆角半径
+    /// </summary>
     public float Radius_Y { get; set; }
 
+    /// <summary>
+    /// 设置半径相同
+    /// </summary>
     public float Radius
     {
         set
@@ -118,6 +160,9 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
         }
     }
 
+    /// <summary>
+    /// 是否为圆形图片
+    /// </summary>
     public bool Circle { get; set; }
 
     void Dispose(bool disposing)
@@ -191,12 +236,8 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
     }
 
     /// <summary>
-    /// 将图片文件本地路径或资源路径转为图像源
+    /// 尝试将文件路径或资源 URI 转换为 <see cref="CommonImageSource"/>，如果转换失败返回值将为 <see langword="null"/>
     /// </summary>
-    /// <param name="filePathOrResUri"></param>
-    /// <param name="isCircle">是否为圆形</param>
-    /// <param name="config">图像可配置选项</param>
-    /// <returns></returns>
     public static object? TryParse(string? filePathOrResUri, bool isCircle = false, Action<CommonImageSource>? config = null)
     {
         if (filePathOrResUri == null)
@@ -213,12 +254,8 @@ public sealed class CommonImageSource : IDisposable, IFileStreamWrapper
     }
 
     /// <summary>
-    /// 将图片文件本地路径或资源路径转为图像源
+    /// 尝试将图片的输入流转换为 <see cref="CommonImageSource"/>，如果转换失败返回值将为 <see langword="null"/>
     /// </summary>
-    /// <param name="imageStream"></param>
-    /// <param name="isCircle">是否为圆形</param>
-    /// <param name="config">图像可配置选项</param>
-    /// <returns></returns>
     public static CommonImageSource? TryParse(Stream? imageStream, bool isCircle = false, Action<CommonImageSource>? config = null)
     {
         if (imageStream == null)

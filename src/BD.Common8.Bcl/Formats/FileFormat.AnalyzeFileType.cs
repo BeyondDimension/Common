@@ -1,5 +1,3 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Formats;
 
 partial class FileFormat
@@ -25,11 +23,22 @@ partial class FileFormat
         public static implicit operator AnalyzeFileTypeResult(ImageFormat imageFormat)
             => new(imageFormat);
 
+        /// <summary>
+        /// 获取或设置文件扩展名
+        /// </summary>
         public string FileEx { get; init; }
 
+        /// <summary>
+        /// 获取或设置图像格式
+        /// </summary>
         public ImageFormat? ImageFormat { get; init; }
     }
 
+    /// <summary>
+    /// 分析文件类型
+    /// </summary>
+    /// <param name="buffer">文件内容</param>
+    /// <returns>分析文件类型的结果</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static AnalyzeFileTypeResult AnalyzeFileType(ReadOnlyMemory<byte> buffer)
     {

@@ -2,25 +2,85 @@ namespace System.Formats;
 
 public static partial class FileEx
 {
-#pragma warning disable SA1600 // Elements should be documented
+    /// <summary>
+    /// .mp4
+    /// </summary>
     public const string Mp4 = ".mp4";
-    public const string M4v = ".m4v";
-    public const string Mpg = ".mpg";
-    public const string Mpeg = ".mpeg";
-    public const string Mp2 = ".mp2";
-    public const string Dat = ".dat";
-    public const string Asf = ".asf";
-    public const string Avi = ".avi";
-    public const string Rm = ".rm";
-    public const string Rmvb = ".rmvb";
-    public const string Mov = ".mov";
-    public const string Wmv = ".wmv";
-    public const string Flv = ".flv";
-    public const string Gifv = ".gifv";
-    public const string Mkv = ".mkv";
-    public const string Qt = ".qt";
 
-#pragma warning restore SA1600 // Elements should be documented
+    /// <summary>
+    /// .m4v
+    /// </summary>
+    public const string M4v = ".m4v";
+
+    /// <summary>
+    /// .mpg
+    /// </summary>
+    public const string Mpg = ".mpg";
+
+    /// <summary>
+    /// .mpeg
+    /// </summary>
+    public const string Mpeg = ".mpeg";
+
+    /// <summary>
+    /// .mp2
+    /// </summary>
+    public const string Mp2 = ".mp2";
+
+    /// <summary>
+    /// .dat
+    /// </summary>
+    public const string Dat = ".dat";
+
+    /// <summary>
+    /// .asf
+    /// </summary>
+    public const string Asf = ".asf";
+
+    /// <summary>
+    /// .avi
+    /// </summary>
+    public const string Avi = ".avi";
+
+    /// <summary>
+    /// .rm
+    /// </summary>
+    public const string Rm = ".rm";
+
+    /// <summary>
+    /// .rmvb
+    /// </summary>
+    public const string Rmvb = ".rmvb";
+
+    /// <summary>
+    /// .mov
+    /// </summary>
+    public const string Mov = ".mov";
+
+    /// <summary>
+    /// .wmv
+    /// </summary>
+    public const string Wmv = ".wmv";
+
+    /// <summary>
+    /// .flv
+    /// </summary>
+    public const string Flv = ".flv";
+
+    /// <summary>
+    /// .gifv
+    /// </summary>
+    public const string Gifv = ".gifv";
+
+    /// <summary>
+    /// .mkv
+    /// </summary>
+    public const string Mkv = ".mkv";
+
+    /// <summary>
+    /// .qt
+    /// </summary>
+    public const string Qt = ".qt";
 
     static IEnumerable<string>? _Videos;
 

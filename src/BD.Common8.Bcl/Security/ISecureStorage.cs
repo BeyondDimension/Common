@@ -1,7 +1,5 @@
 namespace System.Security;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 为键/值对提供简单的安全存储(值类型泛型与非泛型重载方法不兼容)
 /// <para>仅客户端：如果需要存储明文数据或需要同步方法，则可使用首选项(Preferences2)</para>
@@ -128,12 +126,21 @@ public partial interface ISecureStorage
         }
     }
 
+    /// <summary>
+    /// 检查给定键是否存在
+    /// </summary>
     Task<bool> ContainsKeyAsync(string key);
 
+    /// <summary>
+    /// 获取 <see cref="ISecureStorage"/> 的实例
+    /// </summary>
     static ISecureStorage Instance => Ioc.Get<ISecureStorage>();
 
     #endregion
 
+    /// <summary>
+    /// 获取是否原生支持字节数组存储
+    /// </summary>
     protected bool IsNativeSupportedBytes { get; }
 
     /// <inheritdoc cref="GetAsync(string)"/>

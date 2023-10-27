@@ -5,7 +5,6 @@
 #pragma warning disable IDE0005 // 删除不必要的 using 指令
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
-#pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable IDE0290 // 使用主构造函数
 
 namespace System.Runtime.Versioning;
@@ -16,6 +15,9 @@ namespace System.Runtime.Versioning;
 /// </summary>
 public partial class NuGetVersion : SemanticVersion
 {
+    /// <summary>
+    /// The original string of NuGet version number
+    /// </summary>
     protected readonly string? _originalString;
 
     /// <summary>

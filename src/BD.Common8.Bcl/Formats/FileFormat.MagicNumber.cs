@@ -1,5 +1,3 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Formats;
 
 partial class FileFormat
@@ -41,26 +39,45 @@ partial class FileFormat
 
         static bool Equals(byte left, byte? right) => !right.HasValue || left.Equals(right);
 
+        /// <inheritdoc cref="SequenceEqual{T}(IReadOnlyList{byte}, IReadOnlyCollection{T}, Func{byte, T, bool})"/>
         public static bool SequenceEqual(IReadOnlyList<byte> first, IReadOnlyCollection<byte?> second) => SequenceEqual(first, second, Equals);
 
+        /// <inheritdoc cref="SequenceEqual{T}(IReadOnlyList{byte}, IReadOnlyCollection{T}, Func{byte, T, bool})"/>
         public static bool SequenceEqual(IReadOnlyList<byte> first, IReadOnlyCollection<byte> second) => SequenceEqual(first, second, Equals);
 
+        /// <summary>
+        /// 判断 <see langword="first"/> 与 <see langword="seconds"/> 集合中的任意一个是否相等
+        /// </summary>
         public static bool SequenceEqual(IReadOnlyList<byte> first, IEnumerable<IReadOnlyCollection<byte>> seconds)
             => seconds.Any(second => SequenceEqual(first, second));
 
+        /// <summary>
+        /// 判断 <see langword="first"/> 与 <see langword="seconds"/> 可包含空值集合中的任意一个是否相等
+        /// </summary>
         public static bool SequenceEqual(IReadOnlyList<byte> first, IEnumerable<IReadOnlyCollection<byte?>> seconds)
             => seconds.Any(second => SequenceEqual(first, second));
 
+        /// <inheritdoc cref="SequenceEqual{T}(ReadOnlyMemory{byte}, IReadOnlyCollection{T}, Func{byte, T, bool})"/>
         public static bool SequenceEqual(ReadOnlyMemory<byte> first, IReadOnlyCollection<byte?> second) => SequenceEqual(first, second, Equals);
 
+        /// <inheritdoc cref="SequenceEqual{T}(ReadOnlyMemory{byte}, IReadOnlyCollection{T}, Func{byte, T, bool})"/>
         public static bool SequenceEqual(ReadOnlyMemory<byte> first, IReadOnlyCollection<byte> second) => SequenceEqual(first, second, Equals);
 
+        /// <summary>
+        /// 判断 <see langword="first"/> 与 <see langword="seconds"/> 集合中的任意一个是否相等
+        /// </summary>
         public static bool SequenceEqual(ReadOnlyMemory<byte> first, IEnumerable<IReadOnlyCollection<byte>> seconds)
             => seconds.Any(second => SequenceEqual(first, second));
 
+        /// <summary>
+        /// 判断 <see langword="first"/> 与 <see langword="seconds"/> 可包含空值集合中的任意一个是否相等
+        /// </summary>
         public static bool SequenceEqual(ReadOnlyMemory<byte> first, IEnumerable<IReadOnlyCollection<byte?>> seconds)
             => seconds.Any(second => SequenceEqual(first, second));
 
+        /// <summary>
+        /// 从流中读取文件头部字节缓冲区
+        /// </summary>
         public static byte[] ReadHeaderBuffer(Stream stream, int length, bool resetPosition = true)
         {
             var currentPosition = stream.Position;
@@ -82,6 +99,9 @@ partial class FileFormat
             return result;
         }
 
+        /// <summary>
+        /// 获取幻数长度
+        /// </summary>
         public static int GetLength(object magicNumber)
         {
             if (magicNumber is IReadOnlyCollection<byte> byteArray)
@@ -106,6 +126,14 @@ partial class FileFormat
             }
         }
 
+        /// <summary>
+        /// 用于判断给定的幻数是否与缓冲区或流中的数据相匹配
+        /// </summary>
+        /// <param name="magicNumber"></param>
+        /// <param name="buffer"></param>
+        /// <param name="stream"></param>
+        /// <returns>如果幻数与缓冲区或流中的数据相匹配，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static bool Match(object magicNumber, IReadOnlyList<byte>? buffer, Stream? stream)
         {
             bool result;
@@ -153,6 +181,14 @@ partial class FileFormat
         null_ex: throw new ArgumentNullException(nameof(stream), "stream or buffer one must be non null.");
         }
 
+        /// <summary>
+        /// 判断给定的幻数是否与缓冲区或流中的数据相匹配
+        /// </summary>
+        /// <param name="magicNumber"></param>
+        /// <param name="buffer"></param>
+        /// <param name="stream"></param>
+        /// <returns>如果幻数与缓冲区或流中的数据相匹配，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static bool Match(object magicNumber, ReadOnlyMemory<byte>? buffer, Stream? stream)
         {
             bool result;
