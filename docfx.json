@@ -2,83 +2,67 @@
   "metadata": [
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Bcl/**/BD.Common8.Bcl.dll"]}],
-      "dest": "api/BD.Common8.Bcl",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Bcl"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Bcl.Compat/**/BD.Common8.Bcl.Compat.dll"]}],
-      "dest": "api/BD.Common8.Bcl.Compat",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Bcl.Compat"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Ipc/**/BD.Common8.Ipc.dll"]}],
-      "dest": "api/BD.Common8.Ipc",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Ipc"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Ipc.Client/**/BD.Common8.Ipc.Client.dll"]}],
-      "dest": "api/BD.Common8.Ipc.Client",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Ipc.Client"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Ipc.Server/**/BD.Common8.Ipc.Server.dll"]}],
-      "dest": "api/BD.Common8.Ipc.Server",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Ipc.Server"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Orm.EFCore/**/BD.Common8.Orm.EFCore.dll"]}],
-      "dest": "api/BD.Common8.Orm.EFCore",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Orm.EFCore"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.ApiResponse/**/BD.Common8.Primitives.ApiResponse.dll"]}],
-      "dest": "api/BD.Common8.Primitives.ApiResponse",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Primitives.ApiResponse"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.ApiRsp/**/BD.Common8.Primitives.ApiRsp.dll"]}],
-      "dest": "api/BD.Common8.Primitives.ApiRsp",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Primitives.ApiRsp"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.PersonalData.BirthDate/**/BD.Common8.Primitives.PersonalData.BirthDate.dll"]}],
-      "dest": "api/BD.Common8.Primitives.PersonalData.BirthDate",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Primitives.PersonalData.BirthDate"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.PersonalData.BirthDate/**/BD.Common8.Primitives.PersonalData.BirthDate.dll"]}],
-      "dest": "api/BD.Common8.Primitives.PersonalData.BirthDate",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Primitives.PersonalData.BirthDate"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.PersonalData.PhoneNumber/**/BD.Common8.Primitives.PersonalData.PhoneNumber.dll"]}],
-      "dest": "api/BD.Common8.Primitives.PersonalData.PhoneNumber",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Primitives.PersonalData.PhoneNumber"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives/**/BD.Common8.Primitives.dll"]}],
-      "dest": "api/BD.Common8.Primitives",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Primitives"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.District/**/BD.Common8.Primitives.District.dll"]}],
-      "dest": "api/BD.Common8.Primitives.District",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Primitives.District"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Security/**/BD.Common8.Security.dll"]}],
-      "dest": "api/BD.Common8.Security",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Security"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.UserInput.ModelValidator/**/BD.Common8.UserInput.ModelValidator.dll"]}],
-      "dest": "api/BD.Common8.UserInput.ModelValidator",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.UserInput.ModelValidator"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.SourceGenerator.Shared/**/BD.Common8.SourceGenerator.Shared.dll"]}],
-      "dest": "api/BD.Common8.SourceGenerator.Shared",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.SourceGenerator.Shared"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Tools.DocFX/**/BD.Common8.Tools.DocFX.dll"]}],
@@ -86,28 +70,23 @@
     },
     {
       "src": [{"files": [ "src/artifacts/bin/BD.Common8.Tools.Sort.PackageVersion/**/BD.Common8.Tools.Sort.PackageVersion.dll"]}],
-      "dest": "api/BD.Common8.Tools.Sort.PackageVersion",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Tools.Sort.PackageVersion"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.UnitTest/**/BD.Common8.UnitTest.dll"]}],
-      "dest": "api/BD.Common8.UnitTest",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.UnitTest"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Pinyin/**/BD.Common8.Pinyin.dll"]}],
-      "dest": "api/BD.Common8.Pinyin",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Pinyin"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Pinyin.ChnCharInfo/**/BD.Common8.Pinyin.ChnCharInfo.dll"]}],
-      "dest": "api/BD.Common8.Pinyin.ChnCharInfo",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Pinyin.ChnCharInfo"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Pinyin.CoreFoundation/**/BD.Common8.Pinyin.CoreFoundation.dll"]}],
-      "dest": "api/BD.Common8.Pinyin.CoreFoundation",
-      "filter":"filterconfig.yml"
+      "dest": "api/BD.Common8.Pinyin.CoreFoundation"
     }
   ],
   "build": {
