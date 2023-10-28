@@ -79,13 +79,13 @@ EFCore 相关的封装库
 ### BD.Common8.Primitives.District
 提供行政区域数据封装库
 
-## BD.Common8.AspNetCore
+### BD.Common8.AspNetCore
 ASP.NET Core 的通用封装库
 
-## BD.Common8.AspNetCore.Identity
+### BD.Common8.AspNetCore.Identity
 ASP.NET Core 的管理用户、密码、配置文件数据、角色、声明、令牌、电子邮件确认等封装库
 
-## BD.Common8.AspNetCore.Identity.BackManage
+### BD.Common8.AspNetCore.Identity.BackManage
 ASP.NET Core 实现的多租户后台管理系统通用封装库
 
 ## SourceGenerator 源生成器
