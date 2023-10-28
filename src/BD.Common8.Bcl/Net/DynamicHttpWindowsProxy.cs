@@ -436,9 +436,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
     /// </summary>
     struct MultiProxy
     {
-#pragma warning disable IDE0300 // 简化集合初始化
-        private static readonly char[] proxyDelimiters = { ';', ' ', '\n', '\r', '\t' };
-#pragma warning restore IDE0300 // 简化集合初始化
+        private static readonly char[] proxyDelimiters = [';', ' ', '\n', '\r', '\t'];
         private readonly FailedProxyCache? _failedProxyCache;
         private readonly Uri[]? _uris;
         private readonly string? _proxyConfig;

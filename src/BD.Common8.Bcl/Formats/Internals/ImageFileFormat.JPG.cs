@@ -28,9 +28,7 @@ partial class ImageFileFormat
         /// <summary>
         /// 文件扩展名集合
         /// </summary>
-#pragma warning disable IDE0300 // 简化集合初始化
-        public static readonly string[] FileExtensions = { DefaultFileExtension, ".jpeg" };
-#pragma warning restore IDE0300 // 简化集合初始化
+        public static readonly string[] FileExtensions = [DefaultFileExtension, ".jpeg"];
 
         /// <summary>
         /// 用于识别 JPG 文件的幻数

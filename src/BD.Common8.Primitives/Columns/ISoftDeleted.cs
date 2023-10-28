@@ -1,7 +1,7 @@
 namespace BD.Common8.Primitives.Columns;
 
 /// <summary>
-/// 软删除
+/// 是否软删除
 /// </summary>
 public interface ISoftDeleted
 {

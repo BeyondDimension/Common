@@ -3,7 +3,7 @@ namespace System.Formats.Internals;
 partial class ImageFileFormat
 {
     /// <summary>
-    /// Windows位图（Bitmap）类
+    /// Windows 位图
     /// <para>https://en.wikipedia.org/wiki/BMP_file_format</para>
     /// </summary>
     public static class BMP
@@ -26,15 +26,12 @@ partial class ImageFileFormat
         /// <summary>
         /// 文件扩展名集合
         /// </summary>
-#pragma warning disable IDE0300 // 简化集合初始化
-        public static readonly string[] FileExtensions = { DefaultFileExtension, ".dib" };
-#pragma warning restore IDE0300 // 简化集合初始化
+        public static readonly string[] FileExtensions = [DefaultFileExtension, ".dib"];
+
         /// <summary>
         /// MIME 类型集合
         /// </summary>
-#pragma warning disable IDE0300 // 简化集合初始化
-        public static readonly string[] MIME = { DefaultMIME, "image/x-bmp" };
-#pragma warning restore IDE0300 // 简化集合初始化
+        public static readonly string[] MIME = [DefaultMIME, "image/x-bmp"];
 
         /// <summary>
         /// 用于识别 BMP 文件的幻数
