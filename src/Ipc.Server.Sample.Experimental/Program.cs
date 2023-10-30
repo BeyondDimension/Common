@@ -4,6 +4,14 @@
 // ssl 证书
 // https 端口号使用 5076 被占用时使用随机端口
 
+// https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/native-aot?view=aspnetcore-8.0#the-web-api-native-aot-template
+// https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/minimal-apis/openapi?view=aspnetcore-8.0
+// Ipc 服务端实验样品
+// ssl 证书
+// https 端口号使用 5076 被占用时使用随机端口
+
+using Ipc.Sample;
+
 namespace BD.Common8.Ipc.Server.Sample.Experimental;
 
 #pragma warning disable SA1600 // Elements should be documented
@@ -81,30 +89,59 @@ public static partial class Program
             });
         });
 
+        builder.Services.AddSingleton<ITodoService, TodoServiceImpl>();
+
         var app = builder.Build();
 
-        var sampleTodos = new Todo[] {
-            new(1, "Walk the dog"),
-            new(2, "Do the dishes", DateOnly.FromDateTime(DateTime.Now)),
-            new(3, "Do the laundry", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
-            new(4, "Clean the bathroom"),
-            new(5, "Clean the car", DateOnly.FromDateTime(DateTime.Now.AddDays(2))),
-        };
-
-        var todosApi = app.MapGroup("/todos");
-        todosApi.MapGet("/", () => sampleTodos);
-        todosApi.MapGet("/{id}", (int id) =>
-            sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
-                ? Results.Ok(todo)
-                : Results.NotFound());
+        TodoServiceImpl.Invoke(app);
 
         app.Run();
     }
 }
 
-public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
+partial interface IEndpointRouteMapGroup
+{
+    static abstract void Invoke(IEndpointRouteBuilder endpoints);
+}
 
-[JsonSerializable(typeof(Todo[]))]
+sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
+{
+    readonly ITodoService.Todo[] todos = [
+        new(1, "Walk the dog"),
+        new(2, "Do the dishes", DateOnly.FromDateTime(DateTime.Now)),
+        new(3, "Do the laundry", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
+        new(4, "Clean the bathroom"),
+        new(5, "Clean the car", DateOnly.FromDateTime(DateTime.Now.AddDays(2))),
+    ];
+
+    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All()
+    {
+        await Task.Delay(1);
+        return todos;
+    }
+
+    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id)
+    {
+        await Task.Delay(1);
+        return todos.FirstOrDefault(x => x.Id == id);
+    }
+
+    public static void Invoke(IEndpointRouteBuilder endpoints)
+    {
+        var todosApi = endpoints.MapGroup("/todos");
+        todosApi.MapPost("/", ([FromServices] ITodoService todoService) => todoService.All());
+        todosApi.MapPost("/{id}", ([FromServices] ITodoService todoService, [FromRoute] int id) =>
+            todoService.GetById(id));
+    }
+
+    public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21)
+    {
+        return Task.FromResult(ApiRspHelper.Ok());
+    }
+}
+
+[JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo[]>))]
+[JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo>))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext
 {
 }

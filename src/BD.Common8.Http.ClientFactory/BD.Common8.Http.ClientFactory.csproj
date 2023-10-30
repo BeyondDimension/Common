@@ -11,7 +11,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.System.Net.Http.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="fusillade" />
+		<PackageReference Include="System.Net.Http.Json" />
 	</ItemGroup>
 
 </Project>

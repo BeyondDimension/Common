@@ -1,3 +1,7 @@
+using Ipc.Sample;
+using Microsoft.Extensions.Logging;
+using System.Net.Http.Client;
+
 const string pipeName = "BD.Common8.Ipc.Server.Sample.Experimental";
 
 var clientNamedPipe = IpcAppConnectionStringHelper.GetHttpClient(
@@ -36,5 +40,35 @@ while (true)
     if ("exit".Equals(line, StringComparison.OrdinalIgnoreCase))
     {
         break;
+    }
+}
+
+#pragma warning disable SA1600 // Elements should be documented
+
+sealed class TodoServiceImpl(ILoggerFactory loggerFactory, IClientHttpClientFactory clientFactory) : WebApiClientBaseService(loggerFactory.CreateLogger(TAG), clientFactory, null), ITodoService
+{
+    const string TAG = "Todo";
+
+    protected override string ClientName => TAG;
+
+    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All()
+    {
+        var client = CreateClient();
+        using var rsp = await client.PostAsync("/All", null);
+        var r = await ReadFromAsync<ApiRspImpl<ITodoService.Todo[]?>>(rsp.Content);
+        return r!;
+    }
+
+    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id)
+    {
+        var client = CreateClient();
+        using var rsp = await client.PostAsync($"/GetById/{id}", null);
+        var r = await ReadFromAsync<ApiRspImpl<ITodoService.Todo?>>(rsp.Content);
+        return r!;
+    }
+
+    public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
+		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
+		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
+		<Version>8.23.11130.11603</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\BD.Common8.Ipc\Attributes\*.cs">
+			<LinkBase>_SourceReference\Attributes</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+</Project>

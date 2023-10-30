@@ -5,5 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.UnitTest;
-global using BD.Common8.UnitTest.Models;
+global using BD.Common8.Ipc.Attributes;
+global using BD.Common8.SourceGenerator.Ipc.Client;
+global using BD.Common8.SourceGenerator.Ipc.Client.Templates;

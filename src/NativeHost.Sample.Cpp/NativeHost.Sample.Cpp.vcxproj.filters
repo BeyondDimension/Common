@@ -19,4 +19,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="coreclr_delegates.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="hostfxr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@ namespace BD.Common8.SourceGenerator.Helpers;
 
 #pragma warning disable SA1600 // Elements should be documented
 
-public static class AttributeDataHelper
+public static partial class AttributeDataHelper
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? GetClassFullName(this AttributeData attribute)
