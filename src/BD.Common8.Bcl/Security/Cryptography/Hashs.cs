@@ -46,6 +46,10 @@ public static partial class Hashs
     /// <summary>
     /// 计算字节数组的哈希值
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="buffer"></param>
+    /// <param name="hashAlgorithm"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static byte[] ComputeHash<T>(byte[] buffer, T hashAlgorithm) where T : HashAlgorithm
     {
@@ -57,6 +61,10 @@ public static partial class Hashs
     /// <summary>
     /// 计算流的哈希值
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="inputStream"></param>
+    /// <param name="hashAlgorithm"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static byte[] ComputeHash<T>(Stream inputStream, T hashAlgorithm) where T : HashAlgorithm
     {
@@ -68,6 +76,11 @@ public static partial class Hashs
     /// <summary>
     /// 根据指定的哈希算法类型，计算字节数组的哈希值，并返回十六进制字符串形式
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="buffer"></param>
+    /// <param name="hashAlgorithm"></param>
+    /// <param name="isLower"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString<T>(byte[] buffer, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {
@@ -98,6 +111,11 @@ public static partial class Hashs
     /// <summary>
     /// 根据指定的哈希算法类型，计算输入流哈希值，并返回十六进制字符串形式
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="inputStream"></param>
+    /// <param name="hashAlgorithm"></param>
+    /// <param name="isLower"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString<T>(Stream inputStream, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {
@@ -128,6 +146,11 @@ public static partial class Hashs
     /// <summary>
     /// 根据指定的哈希算法类型，计算字符串哈希值，并返回十六进制字符串形式
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="str"></param>
+    /// <param name="hashAlgorithm"></param>
+    /// <param name="isLower"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ComputeHashString<T>(string str, T hashAlgorithm, bool isLower = def_hash_str_is_lower) where T : HashAlgorithm
     {

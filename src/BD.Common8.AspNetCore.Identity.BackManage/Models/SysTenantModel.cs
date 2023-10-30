@@ -275,7 +275,7 @@ public static partial class EntitiesExtensions
     }
 }
 
-public static partial class DTOExtensions
+public static partial class ModelExtensions
 {
     public static void SetValue(
        this AddOrEditSysTenantModelBase entity,

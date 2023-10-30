@@ -9,6 +9,9 @@ public static partial class TaskExtensions
     /// <summary>
     /// 执行带返回值的异步任务
     /// </summary>
+    /// <typeparam name="TResult"></typeparam>
+    /// <param name="func"></param>
+    /// <returns></returns>
     public static TResult RunSync<TResult>(this Func<Task<TResult>> func)
     {
         var cultureUi = CultureInfo.CurrentUICulture;
@@ -39,6 +42,9 @@ public static partial class TaskExtensions
     /// <summary>
     /// 执行带返回值的 ValueTask 异步方法
     /// </summary>
+    /// <typeparam name="TResult"></typeparam>
+    /// <param name="func"></param>
+    /// <returns></returns>
     public static TResult RunSync<TResult>(this Func<ValueTask<TResult>> func)
     {
         var cultureUi = CultureInfo.CurrentUICulture;
@@ -103,6 +109,9 @@ public static partial class TaskExtensions
     /// <summary>
     /// 等待所有任务完成并返回结果
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="tasks"></param>
+    /// <returns></returns>
     public static Task<T[]> WhenAll<T>(this IEnumerable<Task<T>> tasks) => Task.WhenAll(tasks);
 
     /// <summary>
