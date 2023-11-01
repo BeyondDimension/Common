@@ -56,7 +56,7 @@ partial class IpcAppBuilderOptions
     internal IpcAppConnectionString ConnectionString { get; private set; }
 
     /// <summary>
-    /// <see cref="IMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件
+    /// <see cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件
     /// </summary>
     internal static event Action<IEndpointRouteBuilder>? OnMapGroupEvent;
 }

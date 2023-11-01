@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BD.Common8.SourceGenerator.Ipc.Client (DebugRoslynComponent)": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\BD.Common8.SourceGenerator.Ipc.Client.Test\\BD.Common8.SourceGenerator.Ipc.Client.Test.csproj"
+    }
+  }
+}

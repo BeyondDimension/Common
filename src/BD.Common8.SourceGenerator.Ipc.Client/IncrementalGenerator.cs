@@ -1,4 +1,4 @@
-namespace BD.Common8.SourceGenerator.Ipc.Client;
+namespace BD.Common8.SourceGenerator.Ipc;
 
 /// <summary>
 /// Ipc 客户端增量源生成器
@@ -39,7 +39,7 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
         if (methods.Length == 0)
             return;
 
-        MinimalAPIsTemplate.SourceModel model = new()
+        WebApiClientTemplate.SourceModel model = new()
         {
             Namespace = @namespace,
             TypeName = typeName,
@@ -48,13 +48,13 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
         Execute(spc, model);
     }
 
-    static void Execute(SourceProductionContext spc, MinimalAPIsTemplate.SourceModel m)
+    static void Execute(SourceProductionContext spc, WebApiClientTemplate.SourceModel m)
     {
         SourceText sourceText;
         try
         {
             using var memoryStream = new MemoryStream();
-            MinimalAPIsTemplate.WriteFile(memoryStream, m);
+            WebApiClientTemplate.WriteFile(memoryStream, m);
             sourceText = SourceText.From(memoryStream, canBeEmbedded: true);
 #if DEBUG
             var sourceTextString = sourceText.ToString();

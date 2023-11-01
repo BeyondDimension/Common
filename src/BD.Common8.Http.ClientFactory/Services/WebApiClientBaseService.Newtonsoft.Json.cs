@@ -18,6 +18,8 @@ partial class WebApiClientBaseService
     [Obsolete("推荐使用 GetSJsonContent，即 System.Text.Json")]
     protected virtual HttpContent? GetNJsonContent<T>(T inputValue, MediaTypeHeaderValue? mediaType = null)
     {
+        if (inputValue == null)
+            return null;
         try
         {
             var stream = new MemoryStream(); // 使用内存流，避免 byte[] 块，与字符串 utf16 开销

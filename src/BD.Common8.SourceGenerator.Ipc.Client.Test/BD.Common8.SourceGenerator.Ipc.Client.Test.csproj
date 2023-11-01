@@ -5,7 +5,6 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseAspNetCore>true</UseAspNetCore>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 	</PropertyGroup>
 
@@ -22,22 +21,22 @@
 		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.Server.cs">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Http.ClientFactory.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
+		<ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
 		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
 		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
-		  <OutputItemType>Analyzer</OutputItemType>
-		  <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-	  </ProjectReference>
+		<ProjectReference Include="..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
 	</ItemGroup>
 
 </Project>

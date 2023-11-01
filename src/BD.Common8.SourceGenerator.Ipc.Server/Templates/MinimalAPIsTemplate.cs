@@ -1,4 +1,4 @@
-namespace BD.Common8.SourceGenerator.Ipc.Server.Templates;
+namespace BD.Common8.SourceGenerator.Ipc.Templates;
 
 /// <summary>
 /// 用于服务端的 Minimal APIs 源文件模板
@@ -48,14 +48,12 @@ partial interface {0} : IEndpointRouteMapGroup
             stream.WriteNewLine();
             stream.Write(
 """
+    /// <inheritdoc cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void Invoke(IEndpointRouteBuilder endpoints)
+    static void IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder endpoints)
 """u8);
             stream.WriteNewLine();
-            stream.Write(
-"""
-    
-"""u8);
+            stream.WriteNewLine();
             stream.WriteCurlyBracketLeft();
             stream.WriteNewLine();
             stream.WriteFormat(
@@ -66,67 +64,69 @@ partial interface {0} : IEndpointRouteMapGroup
 
             foreach (var method in m.Methods)
             {
-                if (method.Parameters.Length == 0) // 无参数函数
+                string typeString;
+                IParameterSymbol parameter;
+                var category = method.GetMethodParametersCategory();
+                switch (category)
                 {
-                    stream.WriteFormat(
+                    case MethodParametersCategory.None:
+                        stream.WriteFormat(
 """
         builder.MapPost("/{0}", ([FromServices] {1} s) => s.{0}());
 """u8, method.Name, m.TypeName);
-                    stream.WriteNewLine();
-                }
-                else if (method.Parameters.All(x => x.Type.IsSimpleTypes())) // 参数全部为简单类型，使用路由
-                {
-                    stream.WriteFormat(
-"""
+                        stream.WriteNewLine();
+                        break;
+                    case MethodParametersCategory.SimpleTypes:
+                        stream.WriteFormat(
+    """
         builder.MapPost("/{0}", ([FromServices] {1} s
 """u8, method.Name, m.TypeName);
-                    foreach (var parameters in method.Parameters)
-                    {
-                        var typeString = parameters.Type.ToDisplayString();
-                        if (typeString.Count(static x => x == '.') == 1)
+                        for (int i = 0; i < method.Parameters.Length; i++)
                         {
-                            typeString = typeString.TrimStart("System.");
+                            parameter = method.Parameters[i];
+                            typeString = category.GetParameterTypeString(parameter);
+                            stream.WriteFormat(
+    """
+, [FromRoute] {0} {1}
+"""u8, typeString, parameter.Name);
                         }
                         stream.WriteFormat(
-"""
-, [FromRoute] {0} {1}
-"""u8, typeString, parameters.Name);
-                    }
-                    stream.WriteFormat(
-"""
+    """
 ) => s.{0}(
 """u8, method.Name);
-                    var isFirstParameter = true;
-                    foreach (var parameters in method.Parameters)
-                    {
-                        if (isFirstParameter)
+                        var isFirstParameter = true;
+                        foreach (var parameters in method.Parameters)
                         {
-                            stream.WriteUtf16StrToUtf8OrCustom(parameters.Name);
-                            isFirstParameter = false;
-                        }
-                        else
-                        {
-                            stream.WriteFormat(
+                            if (isFirstParameter)
+                            {
+                                stream.WriteUtf16StrToUtf8OrCustom(parameters.Name);
+                                isFirstParameter = false;
+                            }
+                            else
+                            {
+                                stream.WriteFormat(
 """
 , {0}
 """u8, parameters.Name);
+                            }
                         }
-                    }
-                    stream.Write(
+                        stream.Write(
 """
 ));
 """u8);
-                    stream.WriteNewLine();
-                }
-                else if (method.Parameters.Length == 1)
-                {
-                    var parameter = method.Parameters[0];
-                    var typeString = parameter.Type.ToDisplayString();
-                    stream.WriteFormat(
+                        stream.WriteNewLine();
+                        break;
+                    case MethodParametersCategory.FromBody:
+                        parameter = method.Parameters[0];
+                        typeString = category.GetParameterTypeString(parameter);
+                        stream.WriteFormat(
 """
         builder.MapPost("/{0}", ([FromServices] {1} s, [FromBody] {2} {3}) => s.{0}({3}));
 """u8, method.Name, m.TypeName, typeString, parameter.Name);
-                    stream.WriteNewLine();
+                        stream.WriteNewLine();
+                        break;
+                    default:
+                        continue;
                 }
             }
 

@@ -45,7 +45,14 @@ while (true)
 
 #pragma warning disable SA1600 // Elements should be documented
 
-sealed class TodoServiceImpl(ILoggerFactory loggerFactory, IClientHttpClientFactory clientFactory) : WebApiClientBaseService(loggerFactory.CreateLogger(TAG), clientFactory, null), ITodoService
+sealed class TodoServiceImpl(
+    ILoggerFactory loggerFactory,
+    IClientHttpClientFactory clientFactory) :
+    WebApiClientBaseService(
+        loggerFactory.CreateLogger(TAG),
+        clientFactory,
+        null),
+    ITodoService
 {
     const string TAG = "Todo";
 
@@ -70,5 +77,14 @@ sealed class TodoServiceImpl(ILoggerFactory loggerFactory, IClientHttpClientFact
     public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo)
+    {
+        var client = CreateClient();
+        using var content = GetHttpContent(todo);
+        using var rsp = await client.PostAsync("/BodyTest", content);
+        var r = await ReadFromAsync<ApiRspImpl>(rsp.Content);
+        return r!;
     }
 }

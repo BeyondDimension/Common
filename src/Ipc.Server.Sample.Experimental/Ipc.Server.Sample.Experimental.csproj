@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
@@ -25,6 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
 	  <ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
 	  <ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
 	</ItemGroup>

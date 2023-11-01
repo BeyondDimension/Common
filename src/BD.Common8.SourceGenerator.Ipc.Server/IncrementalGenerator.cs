@@ -1,4 +1,4 @@
-namespace BD.Common8.SourceGenerator.Ipc.Server;
+namespace BD.Common8.SourceGenerator.Ipc;
 
 /// <summary>
 /// Ipc 服务端增量源生成器

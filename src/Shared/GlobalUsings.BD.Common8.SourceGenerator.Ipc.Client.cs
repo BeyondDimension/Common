@@ -6,5 +6,6 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
 global using BD.Common8.Ipc.Attributes;
-global using BD.Common8.SourceGenerator.Ipc.Client;
-global using BD.Common8.SourceGenerator.Ipc.Client.Templates;
+global using BD.Common8.SourceGenerator.Ipc;
+global using BD.Common8.SourceGenerator.Ipc.Enums;
+global using BD.Common8.SourceGenerator.Ipc.Templates;

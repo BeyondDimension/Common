@@ -13,7 +13,7 @@ public static partial class IpcServiceCollectionServiceExtensions
     /// <returns>A reference to this instance after the operation has completed.</returns>
     /// <seealso cref="ServiceLifetime.Singleton"/>
     public static IServiceCollection AddSingletonWithIpc<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this IServiceCollection services)
-        where TService : class, IMapGroup
+        where TService : class, IEndpointRouteMapGroup
         where TImplementation : class, TService
     {
         IpcAppBuilderOptions.OnMapGroupEvent += TService.OnMapGroup;

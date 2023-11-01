@@ -145,9 +145,9 @@ static partial class {0}
             stream.WriteNewLine();
             stream.Write(
 """
-    static global::System.Resources.ResourceManager resourceMan;
+    static global::System.Resources.ResourceManager? resourceMan;
 
-    static global::System.Globalization.CultureInfo resourceCulture;
+    static global::System.Globalization.CultureInfo? resourceCulture;
 
     /// <summary>
     ///   返回此类使用的缓存的 ResourceManager 实例。
@@ -171,7 +171,7 @@ static partial class {0}
     ///   使用此强类型资源类的所有资源查找执行重写。
     /// </summary>
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-    public static global::System.Globalization.CultureInfo Culture
+    public static global::System.Globalization.CultureInfo? Culture
     {
         get => resourceCulture;
         set => resourceCulture = value;
@@ -206,7 +206,7 @@ static partial class {0}
                 stream.WriteNewLine();
                 stream.WriteFormat(
 """
-    public static string {0} => ResourceManager.GetString("{0}", resourceCulture);
+    public static string {0} => ResourceManager.GetString("{0}", resourceCulture) ?? "";
 """u8, item.Name);
                 stream.WriteNewLine();
                 stream.WriteNewLine();

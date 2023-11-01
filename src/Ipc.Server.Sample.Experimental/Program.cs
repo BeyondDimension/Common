@@ -4,12 +4,7 @@
 // ssl 证书
 // https 端口号使用 5076 被占用时使用随机端口
 
-// https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/native-aot?view=aspnetcore-8.0#the-web-api-native-aot-template
-// https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/minimal-apis/openapi?view=aspnetcore-8.0
-// Ipc 服务端实验样品
-// ssl 证书
-// https 端口号使用 5076 被占用时使用随机端口
-
+using BD.Common8.Ipc.Server.Services;
 using Ipc.Sample;
 
 namespace BD.Common8.Ipc.Server.Sample.Experimental;
@@ -93,15 +88,16 @@ public static partial class Program
 
         var app = builder.Build();
 
-        TodoServiceImpl.Invoke(app);
+        OnMapGroup<TodoServiceImpl>(app);
 
         app.Run();
     }
-}
 
-partial interface IEndpointRouteMapGroup
-{
-    static abstract void Invoke(IEndpointRouteBuilder endpoints);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static void OnMapGroup<T>(IEndpointRouteBuilder endpoints) where T : IEndpointRouteMapGroup
+    {
+        T.OnMapGroup(endpoints);
+    }
 }
 
 sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
@@ -126,7 +122,9 @@ sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
         return todos.FirstOrDefault(x => x.Id == id);
     }
 
-    public static void Invoke(IEndpointRouteBuilder endpoints)
+    /// <inheritdoc cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static void IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder endpoints)
     {
         var todosApi = endpoints.MapGroup("/todos");
         todosApi.MapPost("/", ([FromServices] ITodoService todoService) => todoService.All());

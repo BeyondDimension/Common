@@ -12,6 +12,8 @@ partial class WebApiClientBaseService
     /// <returns></returns>
     protected virtual HttpContent? GetSJsonContent<T>(T inputValue, JsonTypeInfo<T> jsonTypeInfo, MediaTypeHeaderValue? mediaType = null)
     {
+        if (inputValue == null)
+            return null;
         try
         {
             JsonContent content;

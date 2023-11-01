@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<RootNamespace>BD.Common8.SourceGenerator.Ipc</RootNamespace>
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.23.11130.11603</Version>
+		<Version>8.23.11101.11741</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 	</PropertyGroup>
@@ -18,10 +19,6 @@
 		<Compile Include="..\BD.Common8.Ipc\Attributes\*.cs">
 			<LinkBase>_SourceReference\Attributes</LinkBase>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Templates\" />
 	</ItemGroup>
 
 </Project>
