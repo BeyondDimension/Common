@@ -1,5 +1,5 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.SourceGenerator.Reference.props" />
+	<Import Project="BD.Common8.SourceGenerator.Reference.props" />
 
 	<PropertyGroup>
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
@@ -10,18 +10,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\**\*.cs">
+		<Compile Include="..\BD.Common8.SourceGenerator.Shared\**\*.cs">
 			<LinkBase>_SourceReference\Shared</LinkBase>
 			<Exclude>bin\**;obj\**</Exclude>
 		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\obj\**" />
+		<Compile Remove="..\BD.Common8.SourceGenerator.Shared\bin\**" />
+		<Compile Remove="..\BD.Common8.SourceGenerator.Shared\obj\**" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)net35\_._" Pack="true" PackagePath="lib\net35" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)net40\_._" Pack="true" PackagePath="lib\net40" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)netstandard1.0\_._" Pack="true" PackagePath="lib\netstandard1.0" Visible="false" />
+		<None Include="net35\_._" Pack="true" PackagePath="lib\net35" Visible="false" />
+		<None Include="net40\_._" Pack="true" PackagePath="lib\net40" Visible="false" />
+		<None Include="netstandard1.0\_._" Pack="true" PackagePath="lib\netstandard1.0" Visible="false" />
 	</ItemGroup>
 </Project>

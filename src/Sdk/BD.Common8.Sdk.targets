@@ -1,63 +1,63 @@
 <Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog">
 
-	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)\GeneratePackage.props" />
-	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.UnitTest.props" />
-	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.SourceGenerator.props" />
-	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project="$(MSBuildThisFileDirectory)\BD.Common8.Bcl.GlobalUsings.props" />
+	<Import Condition="$(IsPackable) == 'true'" Project=".\GeneratePackage.props" />
+	<Import Condition="$(IsTestProject) == 'true'" Project=".\BD.Common8.UnitTest.props" />
+	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project=".\BD.Common8.SourceGenerator.props" />
+	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project=".\BD.Common8.Bcl.GlobalUsings.props" />
 
 	<PropertyGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
 		<ImplicitUsings>false</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.net35.cs">
+		<Compile Include="..\Shared\GlobalUsings.net35.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseAspNetCore) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Caching.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Caching.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Condition="$(UseEFCore) != 'true'" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+		<Compile Condition="$(UseEFCore) != 'true'" Include="..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(IsGlobalUsingsMSBuildProjectName) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
+		<Compile Include="..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseProjectUtils) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\ProjectUtils.cs">
+		<Compile Include="..\Shared\ProjectUtils.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseSourceGeneratorResx) == 'true'">
-		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8Bcl) == 'true' AND $(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
-		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseMicrosoftIdentityModelTokens) == 'true'">
@@ -68,13 +68,13 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseEFCore) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Z.EntityFramework.Plus.cs">
+		<Compile Include="..\Shared\GlobalUsings.Z.EntityFramework.Plus.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />

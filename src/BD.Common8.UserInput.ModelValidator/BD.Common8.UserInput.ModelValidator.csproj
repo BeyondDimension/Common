@@ -20,7 +20,7 @@
 		</Compile>
 	</ItemGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildProjectName).props" />
+	<Import Project="..\..\res\i18n\$(MSBuildProjectName).props" />
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />

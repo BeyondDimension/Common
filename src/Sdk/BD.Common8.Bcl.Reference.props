@@ -39,5 +39,5 @@
 		<AdditionalFiles Include="..\NativeMethods.txt" />
 	</ItemGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\BD.Common8.Bcl.props" />
+	<Import Project="..\..\res\i18n\BD.Common8.Bcl.props" />
 </Project>

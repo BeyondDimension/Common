@@ -15,10 +15,10 @@
 		<Compile Include="..\Shared\ProjectUtils.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
+		<Compile Include="..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
+		<Compile Include="..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common8.SourceGenerator.ResX\Helpers\ResxSatelliteAssemblyHelper.cs">

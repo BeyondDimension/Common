@@ -17,10 +17,10 @@
 		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.PhoneNumber.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<Compile Include="..\Shared\GlobalUsings.System.Net.Http.Json.cs">

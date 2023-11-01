@@ -82,7 +82,7 @@ static partial class ResXHelper
 #pragma warning disable format
 //                    stream.WriteFormat(
 //"""
-//                		<AdditionalFiles Include="$(MSBuildThisFileDirectory)\{0}.resx" Visible="false">
+//                		<AdditionalFiles Include="\{0}.resx" Visible="false">
 //                			<BD_Common8_Resx_IsPublic>false</BD_Common8_Resx_IsPublic>
 //                			<BD_Common8_Resx_Namespace>{1}.Resources</BD_Common8_Resx_Namespace>
 //                			<BD_Common8_Resx_CustomTypeName>SR</BD_Common8_Resx_CustomTypeName>
@@ -93,7 +93,7 @@ static partial class ResXHelper
                     // AdditionalText 在 macOS 上无效
 //                    stream.WriteFormat(
 //"""
-//                		<AdditionalFiles Include="$(MSBuildThisFileDirectory)\{0}.resx" Visible="false">
+//                		<AdditionalFiles Include="\{0}.resx" Visible="false">
 //                			<!-- 使用 AdditionalFiles 引入主 resx 文件用于源生成器 -->
 //                		</AdditionalFiles>
 //                """u8, satellite, @namespace);
@@ -102,7 +102,7 @@ static partial class ResXHelper
                 }
                 stream.WriteFormat(
 """
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\{0}.resx">
+		<EmbeddedResource Include="\{0}.resx">
 			<Link>Resources\{1}.resx</Link>
 			<LogicalName>FxResources.{0}.resources</LogicalName>
 		</EmbeddedResource>

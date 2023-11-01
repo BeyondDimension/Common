@@ -12,13 +12,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>

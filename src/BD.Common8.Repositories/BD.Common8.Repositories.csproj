@@ -12,7 +12,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
