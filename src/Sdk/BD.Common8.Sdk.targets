@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security">
 
 	<Import Condition="$(IsPackable) == 'true'" Project=".\GeneratePackage.props" />
 	<Import Condition="$(IsTestProject) == 'true'" Project=".\BD.Common8.UnitTest.props" />
@@ -115,6 +115,113 @@
 		<Compile Include="..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
 			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8Essentials) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8Repositories) == 'true' OR $(UseCommon8RepositoriesEFCore) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8OrmEFCore) == 'true' OR $(UseCommon8RepositoriesEFCore) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8RepositoriesEFCore) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.EFCore.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8Primitives) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8AspNetCore) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.AspNetCore.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8AspNetCoreIdentity) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8AspNetCoreIdentityBackManage) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.BackManage.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.AspNetCore.Identity.BackManage\BD.Common8.AspNetCore.Identity.BackManage.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8PrimitivesApiResponse) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiResponse.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8PrimitivesApiRsp) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.PhoneNumber.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataBirthDate) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.BirthDate.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8PrimitivesDistrict) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.District.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseSQLitePCL) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.SQLitePCL.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="sqlite-net-pcl" />
+		<PackageReference Include="Polly" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseCommon8Security) == 'true'">
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Security.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
 	</ItemGroup>
 
 </Project>

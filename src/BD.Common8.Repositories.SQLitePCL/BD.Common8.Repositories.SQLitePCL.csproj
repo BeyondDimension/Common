@@ -3,37 +3,15 @@
 	<PropertyGroup>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseSQLitePCL>true</UseSQLitePCL>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseCommon8Repositories>true</UseCommon8Repositories>
+		<UseCommon8Security>true</UseCommon8Security>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.SQLitePCL.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Security.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="sqlite-net-pcl" />
-		<PackageReference Include="Polly" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
-		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
-	</ItemGroup>
 
 </Project>

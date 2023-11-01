@@ -3,6 +3,9 @@
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Essentials>true</UseCommon8Essentials>
+		<UseCommon8RepositoriesEFCore>true</UseCommon8RepositoriesEFCore>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
 		<UseAspNetCore>true</UseAspNetCore>
 		<UseEFCore>true</UseEFCore>
 		<UseMicrosoftIdentityModelTokens>true</UseMicrosoftIdentityModelTokens>
@@ -10,36 +13,11 @@
 		<UseNLog>true</UseNLog>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
+	
+</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.EFCore.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
-	</ItemGroup>
 
 </Project>

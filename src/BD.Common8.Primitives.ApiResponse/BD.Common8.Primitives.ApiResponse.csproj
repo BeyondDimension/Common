@@ -3,21 +3,12 @@
 	<PropertyGroup>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
-	</ItemGroup>
 
 </Project>

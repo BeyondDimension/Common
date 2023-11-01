@@ -4,28 +4,14 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseEFCore>true</UseEFCore>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseCommon8OrmEFCore>true</UseCommon8OrmEFCore>
+		<UseCommon8Repositories>true</UseCommon8Repositories>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
-		<ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
-	</ItemGroup>
 
 </Project>
