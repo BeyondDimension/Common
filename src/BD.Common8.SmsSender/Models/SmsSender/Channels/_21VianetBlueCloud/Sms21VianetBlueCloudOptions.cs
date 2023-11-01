@@ -1,7 +1,8 @@
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供给蓝云短信服务的配置选项
+/// </summary>
 public class Sms21VianetBlueCloudOptions : ChannelSmsOptions
 {
     /// <summary>
@@ -29,6 +30,9 @@ public class Sms21VianetBlueCloudOptions : ChannelSmsOptions
     /// </summary>
     public string CodeTemplateKeyName { get; set; } = "code";
 
+    /// <summary>
+    /// 默认模板
+    /// </summary>
     public string? DefaultTemplate { get; set; }
 
     /// <summary>
@@ -36,6 +40,9 @@ public class Sms21VianetBlueCloudOptions : ChannelSmsOptions
     /// </summary>
     public SmsOptionsTemplateId<string>[]? Templates { get; set; }
 
+    /// <summary>
+    /// 检验选项是否有效
+    /// </summary>
     public override bool IsValid()
     {
         return base.IsValid() && !string.IsNullOrWhiteSpace(Account) &&

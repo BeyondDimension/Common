@@ -4,23 +4,33 @@ using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueC
 
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 短信服务提供商 - 世纪互联蓝云
 /// </summary>
 public class SmsSenderProvider : SmsSenderBase, ISmsSender
 {
+    /// <summary>
+    /// 蓝云的名称
+    /// </summary>
     public const string Name = nameof(_21VianetBlueCloud);
 
+    /// <inheritdoc/>
     public override string Channel => Name;
 
+    /// <inheritdoc/>
     public override bool SupportCheck => false;
 
     readonly HttpClient httpClient;
     readonly SmsOptions options;
     readonly ILogger logger;
 
+    /// <summary>
+    /// 初始化 <see cref="SmsSenderProvider"/> 类的实例，设置所需的日志记录器、配置选项和 HttpClient
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="options"></param>
+    /// <param name="httpClient"></param>
+    /// <exception cref="ArgumentException"></exception>
     public SmsSenderProvider(ILogger<SmsSenderProvider> logger, SmsOptions? options, HttpClient httpClient)
     {
         this.logger = logger;
@@ -29,10 +39,29 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         this.httpClient = httpClient;
     }
 
+    /// <summary>
+    /// 使用共享访问签名作为身份验证机制
+    /// </summary>
     const string Schema = "SharedAccessSignature";
+
+    /// <summary>
+    /// 签名密钥的名称
+    /// </summary>
     const string SignKey = "sig";
+
+    /// <summary>
+    /// 密钥名称的键
+    /// </summary>
     const string KeyNameKey = "skn";
+
+    /// <summary>
+    /// 过期时间的键
+    /// </summary>
     const string ExpiryKey = "se";
+
+    /// <summary>
+    /// 蓝云服务商的 API 地址
+    /// </summary>
     const string _endpoint = "https://bluecloudccs.21vbluecloud.com/services/sms/messages?api-version=2018-10-01";
 
     /// <summary>
@@ -62,6 +91,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         return $"{Schema} {SignKey}={HttpUtility.UrlEncode(sign)}&{signContent}";
     }
 
+    /// <inheritdoc/>
     public override async Task<ISendSmsResult> SendSmsAsync(string number, string message, ushort type, CancellationToken cancellationToken)
     {
         var key = options.KeyValue.ThrowIsNull(nameof(options.KeyValue));
@@ -121,11 +151,15 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         return result;
     }
 
+    /// <inheritdoc/>
     public override Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// 请求数据
+    /// </summary>
     internal sealed class RequestData
     {
         /// <summary>
@@ -140,10 +174,16 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         [SystemTextJsonProperty("extend")]
         public string? ExtendCode { get; set; }
 
+        /// <summary>
+        /// 消息正文
+        /// </summary>
         [SystemTextJsonProperty("messageBody")]
         public MessageBody? MessageBody { get; set; }
     }
 
+    /// <summary>
+    /// 消息正文
+    /// </summary>
     internal sealed class MessageBody
     {
         /// <summary>

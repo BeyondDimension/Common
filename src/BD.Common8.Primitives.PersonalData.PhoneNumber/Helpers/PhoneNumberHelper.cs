@@ -2,10 +2,11 @@ using SR = BD.Common8.Primitives.PersonalData.PhoneNumber.Resources.SR;
 
 namespace BD.Common8.Primitives.PersonalData.PhoneNumber.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public static partial class PhoneNumberHelper
 {
+    /// <summary>
+    /// 代表一个隐藏字符，以保护用户隐私或防止信息泄露
+    /// </summary>
     const char HideChar = '*';
 
     /// <summary>
@@ -39,8 +40,14 @@ public static partial class PhoneNumberHelper
     /// <inheritdoc cref="ToStringHideMiddleFour(string?, char)"/>
     public static string ToStringHideMiddleFour(this IReadOnlyPhoneNumber phoneNumber, char hideChar = HideChar) => ToStringHideMiddleFour(phoneNumber.PhoneNumber, hideChar);
 
+    /// <summary>
+    /// 中国大陆手机号码长度
+    /// </summary>
     public const int ChineseMainlandPhoneNumberLength = 11;
 
+    /// <summary>
+    /// 数据库字段中存储手机号码的最大长度
+    /// </summary>
     public const int DatabaseMaxLength = 20;
 
     /// <summary>
@@ -97,8 +104,14 @@ public static partial class PhoneNumberHelper
         /// </summary>
         public static byte[] MobileVirtualNetwork = [170, 171, 172];
 
+        /// <summary>
+        /// 其他类型的手机号段
+        /// </summary>
         public static byte[] Other = [190, 191, 192, 193, 195, 196, 197, 198, 199];
 
+        /// <summary>
+        /// 所有手机号段的汇总
+        /// </summary>
         static readonly Lazy<byte[]> mSummary = new(() => new[]
         {
             ChinaTelecom,

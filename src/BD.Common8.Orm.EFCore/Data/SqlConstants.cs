@@ -1,7 +1,8 @@
 namespace BD.Common8.Orm.EFCore.Data;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 用于存储 SQL 相关的常量和方法
+/// </summary>
 public static partial class SqlConstants
 {
     /// <summary>
@@ -19,6 +20,9 @@ public static partial class SqlConstants
     /// </summary>
     public static string DatabaseProvider { get; set; } = SqlServer;
 
+    /// <summary>
+    /// 是否开启 ZPlus 功能
+    /// </summary>
     static bool? _ZPlusEnable;
 
     /// <summary>
@@ -39,6 +43,13 @@ public static partial class SqlConstants
         set => _ZPlusEnable = value;
     }
 
+    /// <summary>
+    /// 获取 DateTimeOffset 类型字段的默认值 SQL 表达式
+    /// <para> 根据当前数据库提供程序判断：</para>
+    /// 如果为 SqlServer，则返回  <see cref="SYSDATETIMEOFFSET"/>；
+    /// 如果为 PostgreSQL，则返回 <see cref="now"/>；
+    /// 其它情况则抛出异常
+    /// </summary>
     public static string DateTimeOffsetDefaultValueSql => DatabaseProvider switch
     {
         SqlServer => SYSDATETIMEOFFSET,
@@ -46,6 +57,13 @@ public static partial class SqlConstants
         _ => throw ThrowHelper.GetArgumentOutOfRangeException(DatabaseProvider),
     };
 
+    /// <summary>
+    /// 获取 Guid 类型字段的默认值 SQL 表达式
+    /// <para> 根据当前数据库提供程序判断：</para>
+    /// 如果为 SqlServer，则返回  <see cref="NEWSEQUENTIALID"/>；
+    /// 如果为 PostgreSQL，则返回 <see cref="gen_random_uuid"/>；
+    /// 其它情况则抛出异常 
+    /// </summary>
     public static string GuidDefaultValueSql => DatabaseProvider switch
     {
         SqlServer => NEWSEQUENTIALID,
@@ -53,6 +71,9 @@ public static partial class SqlConstants
         _ => throw ThrowHelper.GetArgumentOutOfRangeException(DatabaseProvider),
     };
 
+    /// <summary>
+    /// 根据序列名称获取下一个值的默认值 SQL 表达式
+    /// </summary>
     public static string NextValueSequenceDefaultValueSql(string sequenceName) => DatabaseProvider switch
     {
         SqlServer => $"NEXT VALUE FOR {sequenceName}",
@@ -86,36 +107,80 @@ public static partial class SqlConstants
         return sql;
     }
 
+    /// <summary>
+    /// 表示 ON 的字符串常量
+    /// </summary>
     public const string ON = "ON";
 
+    /// <summary>
+    /// 表示 OFF 的字符串常量
+    /// </summary>
     public const string OFF = "OFF";
 
     #region PostgreSQL Functions
 
-    // https://www.postgresql.org/docs/15/functions-uuid.html
-
+    /// <summary>
+    /// PostgreSQL 的生成随机 UUID 函数的字符串常量
+    /// <para> https://www.postgresql.org/docs/15/functions-uuid.html </para> 
+    /// </summary>
     public const string gen_random_uuid = "gen_random_uuid()";
 
-    // https://www.postgresql.org/docs/15/functions-datetime.html#FUNCTIONS-DATETIME-CURRENT
-
+    /// <summary>
+    /// PostgreSQL 的获取当前时间函数的字符串常量
+    /// <para> https://www.postgresql.org/docs/15/functions-datetime.html#FUNCTIONS-DATETIME-CURRENT </para> 
+    /// </summary>
     public const string now = "now()";
 
     #endregion
 
+    /// <summary>
+    /// 类型 <see cref="IOrder"/> 的 Type 对象
+    /// </summary>
     public static readonly Type POrder = typeof(IOrder);
-    public static readonly Type PSoftDeleted = typeof(ISoftDeleted);
-    public static readonly Type PCreationTime = typeof(ICreationTime);
-    public static readonly Type PUpdateTime = typeof(IUpdateTime);
-    public static readonly Type PDisable = typeof(IDisable);
-    public static readonly Type PNEWSEQUENTIALID = typeof(INEWSEQUENTIALID);
-    public static readonly Type PPhoneNumber = typeof(IPhoneNumber);
 
     /// <summary>
-    /// https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types
+    /// 类型 <see cref="ISoftDeleted"/> 的 Type 对象
+    /// </summary>
+    public static readonly Type PSoftDeleted = typeof(ISoftDeleted);
+
+    /// <summary>
+    /// 类型 <see cref="ICreationTime"/> 的 Type 对象
+    /// </summary>
+    public static readonly Type PCreationTime = typeof(ICreationTime);
+
+    /// <summary>
+    /// 类型 <see cref="IUpdateTime"/> 的 Type 对象
+    /// </summary>
+    public static readonly Type PUpdateTime = typeof(IUpdateTime);
+
+    /// <summary>
+    /// 类型 <see cref="IDisable"/> 的 Type 对象
+    /// </summary>
+    public static readonly Type PDisable = typeof(IDisable);
+
+    /// <summary>
+    /// 类型 <see cref="INEWSEQUENTIALID"/> 的 Type 对象
+    /// </summary>
+    public static readonly Type PNEWSEQUENTIALID = typeof(INEWSEQUENTIALID);
+
+    /// <summary>
+    /// 类型 <see cref="IPhoneNumber"/> 的 Type 对象
+    /// </summary>
+    public static readonly Type PPhoneNumber = typeof(IPhoneNumber);
+
+    ///< summary>
+    /// 共享类型 Dictionary<string, object> 的 Type 对象
+    /// <para>  https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types </para> 
     /// </summary>
     public static readonly Type SharedType = typeof(Dictionary<string, object>);
 
+    /// <summary>
+    /// 存储了特定类型的对象，这些对象被标记为"软删除"
+    /// </summary>
     internal static readonly HashSet<Type> SoftDeleted = [];
 
+    /// <summary>
+    /// 判断指定类型是否实现了软删除接口
+    /// </summary>
     public static bool IsSoftDeleted(Type type) => SoftDeleted.Contains(type);
 }

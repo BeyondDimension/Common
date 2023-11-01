@@ -1,19 +1,41 @@
 namespace BD.Common8.Essentials.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供保存文件操作的结果
+/// </summary>
 public sealed class SaveFileResult : IDisposable
 {
+    /// <summary>
+    /// 文件的完整路径
+    /// </summary>
     readonly string? fullPath;
+
+    /// <summary>
+    /// 文件的流对象
+    /// </summary>
     Stream? stream;
+
+    /// <summary>
+    /// 文件的文本内容
+    /// </summary>
     readonly string? @string;
+
+    /// <summary>
+    /// 表示资源是否已经被释放的标志
+    /// </summary>
     bool disposedValue;
 
+    /// <summary>
+    /// 通过指定文件的完整路径创建 SaveFileResult 实例
+    /// </summary>
     public SaveFileResult(string fullPath)
     {
         this.fullPath = fullPath;
     }
 
+    /// <summary>
+    /// 通过指定文件的流对象和可选的文本内容创建 SaveFileResult 实例
+    /// </summary>
     public SaveFileResult(Stream stream, string? @string = null)
     {
         this.stream = stream;
@@ -34,6 +56,7 @@ public sealed class SaveFileResult : IDisposable
         throw new NotSupportedException();
     }
 
+    /// <inheritdoc/>
     public override string? ToString()
     {
         if (fullPath != null)
@@ -43,6 +66,9 @@ public sealed class SaveFileResult : IDisposable
         return base.ToString();
     }
 
+    /// <summary>
+    /// 释放资源，指定是否释放托管资源
+    /// </summary>
     private void Dispose(bool disposing)
     {
         if (!disposedValue)
@@ -58,6 +84,9 @@ public sealed class SaveFileResult : IDisposable
         }
     }
 
+    /// <summary>
+    /// 释放资源，始终会释放托管资源
+    /// </summary>
     public void Dispose()
     {
         // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中

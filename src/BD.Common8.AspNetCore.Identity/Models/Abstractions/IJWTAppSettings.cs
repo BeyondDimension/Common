@@ -1,7 +1,8 @@
 namespace BD.Common8.AspNetCore.Models.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供 JWT 配置项的接口
+/// </summary>
 public interface IJWTAppSettings
 {
     /// <summary>
@@ -29,5 +30,8 @@ public interface IJWTAppSettings
     /// </summary>
     TimeSpan RefreshExpiration { get; set; }
 
+    /// <summary>
+    /// 获取或设置签名凭证
+    /// </summary>
     SigningCredentials? SigningCredentials { get; set; }
 }

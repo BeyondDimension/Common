@@ -1,9 +1,10 @@
 namespace BD.Common8.SourceGenerator.ResX;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 static partial class Constants
 {
+    /// <summary>
+    /// 根据项目名称获取默认的命名空间
+    /// </summary>
     public static string GetDefaultNamespaceByProjectName(string projectName)
     {
         projectName = projectName switch

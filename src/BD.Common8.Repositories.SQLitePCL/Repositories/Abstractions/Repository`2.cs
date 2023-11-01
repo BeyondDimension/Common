@@ -1,14 +1,14 @@
 namespace BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <inheritdoc cref="IRepository"/>
 public abstract class Repository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey> : Repository<TEntity>, IRepository<TEntity, TPrimaryKey>
     where TEntity : class, IEntity<TPrimaryKey>, new()
     where TPrimaryKey : IEquatable<TPrimaryKey>
 {
+    /// <inheritdoc/>
     object IGetPrimaryKey<TEntity>.GetPrimaryKey(TEntity entity) => GetPrimaryKey(entity);
 
+    /// <inheritdoc cref="IGetPrimaryKey{TEntity}.GetPrimaryKey"/>
     protected TPrimaryKey GetPrimaryKey(TEntity entity)
     {
         IGetPrimaryKey<TEntity, TPrimaryKey> getPrimaryKey = this;
@@ -17,12 +17,14 @@ public abstract class Repository<[DynamicallyAccessedMembers(IEntity.Dynamically
 
     #region 删(Delete Funs) 立即执行并返回受影响的行数
 
+    /// <inheritdoc/>
     public override Task<int> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         var primaryKey = GetPrimaryKey(entity);
         return DeleteAsync(primaryKey, cancellationToken);
     }
 
+    /// <inheritdoc/>
     public virtual async Task<int> DeleteAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);
@@ -37,6 +39,7 @@ public abstract class Repository<[DynamicallyAccessedMembers(IEntity.Dynamically
 
     #region 查(通用查询)
 
+    /// <inheritdoc/>
     public virtual async ValueTask<TEntity?> FindAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken = default)
     {
         if (IRepository<TEntity, TPrimaryKey>.IsDefault(primaryKey))
@@ -49,6 +52,7 @@ public abstract class Repository<[DynamicallyAccessedMembers(IEntity.Dynamically
         }, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
+    /// <inheritdoc/>
     public virtual async ValueTask<bool> ExistAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken = default)
     {
         if (IRepository<TEntity, TPrimaryKey>.IsDefault(primaryKey))
@@ -67,6 +71,7 @@ public abstract class Repository<[DynamicallyAccessedMembers(IEntity.Dynamically
 
     #region 增或改(InsertOrUpdate Funs) 立即执行并返回受影响的行数
 
+    /// <inheritdoc/>
     public virtual async Task<(int rowCount, DbRowExecResult result)> InsertOrUpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         var dbConnection = await GetDbConnection().ConfigureAwait(false);

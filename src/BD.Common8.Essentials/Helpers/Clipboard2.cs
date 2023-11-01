@@ -1,7 +1,5 @@
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// Provides a way to work with text on the device clipboard.
 /// <para>https://docs.microsoft.com/zh-cn/xamarin/essentials/clipboard</para>
@@ -49,6 +47,9 @@ public static class Clipboard2
     }
 
 #if DEBUG
+    /// <summary>
+    /// 检查剪贴板中是否包含文本
+    /// </summary>
     [Obsolete("use HasTextAsync", true)]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasText()

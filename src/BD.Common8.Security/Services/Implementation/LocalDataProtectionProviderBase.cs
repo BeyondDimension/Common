@@ -2,21 +2,38 @@ using static BD.Common8.Security.Services.ILocalDataProtectionProvider;
 
 namespace BD.Common8.Security.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <inheritdoc cref="ILocalDataProtectionProvider"/>
 public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProvider
 {
     readonly Lazy<Aes> _aes;
 
 #pragma warning disable IDE1006 // 命名样式
+    /// <summary>
+    /// 获取 Aes 实例
+    /// </summary>
     protected Aes aes => _aes.Value;
 #pragma warning restore IDE1006 // 命名样式
 
+    /// <summary>
+    /// 默认的本地数据保护类型
+    /// </summary>
     protected readonly LocalDataProtectionType defaultELocalDataProtectionType;
+
+    /// <summary>
+    /// <see cref="IProtectedData"/>
+    /// </summary>
     protected readonly IProtectedData protectedData;
+
+    /// <summary>
+    /// <see cref="dataProtectionProvider"/>
+    /// </summary>
     protected readonly IDataProtectionProvider dataProtectionProvider;
 
+    /// <summary>
+    /// 初始化 <see cref="LocalDataProtectionProviderBase"/>
+    /// </summary>
+    /// <param name="protectedData"></param>
+    /// <param name="dataProtectionProvider"></param>
     public LocalDataProtectionProviderBase(
         IProtectedData protectedData,
         IDataProtectionProvider dataProtectionProvider)
@@ -43,6 +60,9 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
         });
     }
 
+    /// <summary>
+    /// 本机数据保护类型枚举
+    /// </summary>
     protected enum LocalDataProtectionType
     {
         None,
@@ -54,8 +74,14 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
         Win10WithAesCFB,
     }
 
+    /// <summary>
+    /// 获取本机唯一标识的加密密钥和初始向量值
+    /// </summary>
     protected virtual AESUtils.KeyIV MachineSecretKey => MachineUniqueIdentifier.MachineSecretKey;
 
+    /// <summary>
+    /// 将指定的字节数组与 <inheritdoc cref="defaultELocalDataProtectionType"/> 进行拼接
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     byte[] Concat(byte[] value)
     {
@@ -66,6 +92,9 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
         return r;
     }
 
+    /// <summary>
+    /// 使用 AES 加密算法加密字节数组
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     byte[] Encrypt(byte[] value)
     {
@@ -101,6 +130,9 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
         }
     }
 
+    /// <summary>
+    /// 使用 AES 加密算法解密字节数组
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     byte[]? Decrypt(byte[] value)
     {
@@ -109,6 +141,11 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
         return data_r;
     }
 
+    /// <summary>
+    /// 将一个字节数组剔除前面4个字节
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     static byte[] UnConcat(byte[] value) => value.Skip(sizeof(int)).ToArray();
 
     /// <inheritdoc/>
@@ -150,17 +187,23 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
         }
     }
 
+    /// <inheritdoc cref="IProtectedData"/>
     public sealed class EmptyProtectedData : IProtectedData
     {
+        /// <inheritdoc/>
         public byte[] Protect(byte[] userData) => userData;
 
+        /// <inheritdoc/>
         public byte[] Unprotect(byte[] encryptedData) => encryptedData;
     }
 
+    /// <inheritdoc cref="IDataProtectionProvider"/>
     public sealed class EmptyDataProtectionProvider : IDataProtectionProvider
     {
+        /// <inheritdoc/>
         public Task<byte[]> ProtectAsync(byte[] data) => Task.FromResult(data);
 
+        /// <inheritdoc/>
         public Task<byte[]> UnprotectAsync(byte[] data) => Task.FromResult(data);
     }
 }

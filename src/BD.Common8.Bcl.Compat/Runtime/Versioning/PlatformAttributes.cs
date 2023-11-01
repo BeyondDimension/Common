@@ -4,17 +4,24 @@
 
 #if !NET5_0_OR_GREATER || !NET6_0_OR_GREATER
 
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Runtime.Versioning;
 
+/// <summary>
+/// 提供特定操作系统平台兼容的特性
+/// </summary>
 public abstract class OSPlatformCompatAttribute : Attribute
 {
+    /// <summary>
+    /// 使用指定的平台名称初始化
+    /// </summary>
     private protected OSPlatformCompatAttribute(string platformName)
     {
         PlatformName = platformName;
     }
 
+    /// <summary>
+    /// 操作系统平台名称
+    /// </summary>
     public string PlatformName { get; }
 }
 #endif

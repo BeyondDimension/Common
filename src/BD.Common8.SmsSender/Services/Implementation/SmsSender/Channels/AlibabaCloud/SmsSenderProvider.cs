@@ -2,23 +2,33 @@ using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud.S
 
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.AlibabaCloud;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 短信服务提供商 - 阿里云
 /// </summary>
 public class SmsSenderProvider : SmsSenderBase, ISmsSender
 {
+    /// <summary>
+    /// 阿里云的名称
+    /// </summary>
     public const string Name = nameof(AlibabaCloud);
 
+    /// <inheritdoc/>
     public override string Channel => Name;
 
+    /// <inheritdoc/>
     public override bool SupportCheck => false;
 
     readonly HttpClient httpClient;
     readonly SmsOptions options;
     readonly ILogger logger;
 
+    /// <summary>
+    /// 初始化 <see cref="SmsSenderProvider"/> 类的实例，设置所需的日志记录器、配置选项和 HttpClient
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="options"></param>
+    /// <param name="httpClient"></param>
+    /// <exception cref="ArgumentException"></exception>
     public SmsSenderProvider(ILogger<SmsSenderProvider> logger, SmsOptions? options, HttpClient httpClient)
     {
         this.logger = logger;
@@ -43,12 +53,25 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
     #region helpers
 
+    /// <summary>
+    /// 日期格式
+    /// </summary>
     const string ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+
+    /// <summary>
+    /// 编码文本
+    /// </summary>
     const string encode_text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~";
 
+    /// <summary>
+    /// 格式化日期
+    /// </summary>
     static string FormatIso8601Date(DateTimeOffset date)
        => date.ToUniversalTime().ToString(ISO8601_DATE_FORMAT, CultureInfo.CreateSpecificCulture("en-US"));
 
+    /// <summary>
+    /// 对字符串进行 ACS URL 编码
+    /// </summary>
     static string AcsUrlEncode(string s)
     {
         var values = Encoding.UTF8.GetBytes(s).Select(x =>
@@ -63,6 +86,9 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         return string.Join(string.Empty, values);
     }
 
+    /// <summary>
+    /// 对字符串进行哈希签名，使用指定的密钥生成签名
+    /// </summary>
     private static string HashSign(string s, string secret)
     {
         using var hash = new HMACSHA1(Encoding.UTF8.GetBytes(secret.ToCharArray()));
@@ -71,6 +97,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
     #endregion
 
+    /// <inheritdoc/>
     public override async Task<ISendSmsResult> SendSmsAsync(string number, string message, ushort type, CancellationToken cancellationToken)
     {
         var now = DateTimeOffset.Now;
@@ -78,7 +105,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
         var templateParam = "{\"code\":\"" + message + "\"}"; // JsonConvert.SerializeObject(new { code = message });
 
-        var args = new SortedDictionary<string, string>(StringComparer.Ordinal)  // https://help.aliyun.com/document_detail/56189.html
+        var args = new SortedDictionary<string, string>(StringComparer.Ordinal) // https://help.aliyun.com/document_detail/56189.html
         {
 #region (系统参数)为POP协议的基本参数，有
            { "AccessKeyId", options.AccessKeyId.ThrowIsNull(nameof(options.AccessKeyId)) },
@@ -155,6 +182,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         return result;
     }
 
+    /// <inheritdoc/>
     public override Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)
     {
         throw new NotSupportedException();

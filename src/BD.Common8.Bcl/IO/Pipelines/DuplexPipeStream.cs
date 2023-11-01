@@ -38,17 +38,17 @@ public class DuplexPipeStream(IDuplexPipe duplexPipe, bool throwOnCancelled = fa
     }
 
     /// <summary>
-    /// 是可读取数据，始终返回 <see langword="true"/>
+    /// 是可读取数据
     /// </summary>
     public override bool CanRead => true;
 
     /// <summary>
-    /// 是否可读取数据，始终返回 <see langword="false"/>
+    /// 是否可查找
     /// </summary>
     public override bool CanSeek => false;
 
     /// <summary>
-    /// 是否可查找，始终返回 <see langword="true"/>
+    /// 是否可写
     /// </summary>
     public override bool CanWrite => true;
 

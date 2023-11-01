@@ -1,7 +1,8 @@
 namespace BD.Common8.Toast.Enums;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+///  Defines the duration of a toast notification.
+/// </summary>
 public enum ToastLength
 {
     /// <summary>

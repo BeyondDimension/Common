@@ -1,7 +1,6 @@
 namespace BD.Common8.Essentials.Models.Abstractions;
 
 #pragma warning disable SA1600 // Elements should be documented
-
 public abstract class FileBase : IFileBase
 {
     public FileBase(string fullPath)
@@ -21,10 +20,13 @@ public abstract class FileBase : IFileBase
         FileName = file.FileName;
     }
 
+    /// <inheritdoc/>
     public string FullPath { get; }
 
+    /// <inheritdoc/>
     public string? ContentType { get; set; }
 
+    /// <inheritdoc/>
     public virtual Task<Stream> OpenReadAsync()
     {
         var fileStream = IOPath.OpenRead(FullPath);
@@ -33,12 +35,16 @@ public abstract class FileBase : IFileBase
 
     string? fileName;
 
+    /// <inheritdoc/>
     public string FileName
     {
         get => GetFileName();
         set => fileName = value;
     }
 
+    /// <summary>
+    /// 获取文件的名称，如果文件名未提供，则从路径获取文件名
+    /// </summary>
     internal string GetFileName()
     {
         // try the provided file name

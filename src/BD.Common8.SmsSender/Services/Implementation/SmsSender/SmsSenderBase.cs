@@ -1,15 +1,20 @@
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// Sms 发送基类
+/// </summary>
 public abstract class SmsSenderBase : ISmsSender
 {
+    /// <inheritdoc/>
     public abstract string Channel { get; }
 
+    /// <inheritdoc/>
     public abstract bool SupportCheck { get; }
 
+    /// <inheritdoc/>
     public abstract Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken);
 
+    /// <inheritdoc/>
     public abstract Task<ISendSmsResult> SendSmsAsync(string number, string message, ushort type, CancellationToken cancellationToken);
 
     /// <summary>
@@ -22,6 +27,13 @@ public abstract class SmsSenderBase : ISmsSender
         return Random2.GenerateRandomNum(length).ToString();
     }
 
+    /// <summary>
+    /// 依赖注入，添加短信发送服务
+    /// </summary>
+    /// <typeparam name="TSmsSender"></typeparam>
+    /// <typeparam name="TSmsSettings"></typeparam>
+    /// <param name="services"></param>
+    /// <returns></returns>
     public static IServiceCollection Add<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TSmsSender, TSmsSettings>(
         IServiceCollection services)
         where TSmsSender : class, ISmsSender
@@ -33,6 +45,14 @@ public abstract class SmsSenderBase : ISmsSender
         return services;
     }
 
+    /// <summary>
+    /// 依赖注入，根据短信渠道添加短信发送服务
+    /// </summary>
+    /// <typeparam name="TSmsSettings"></typeparam>
+    /// <param name="services"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     internal static IServiceCollection Add<TSmsSettings>(
         IServiceCollection services,
         string? name)
@@ -48,12 +68,27 @@ public abstract class SmsSenderBase : ISmsSender
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null),
         };
 
+    /// <summary>
+    /// 获取 JSON 格式的 HttpContent
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="inputValue"></param>
+    /// <param name="jsonTypeInfo"></param>
+    /// <returns></returns>
     protected virtual HttpContent GetJsonContent<T>(T inputValue, JsonTypeInfo<T> jsonTypeInfo)
     {
         var content = JsonContent.Create(inputValue, jsonTypeInfo);
         return content;
     }
 
+    /// <summary>
+    /// 从 HttpContent 中读取 JSON 数据
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="content"></param>
+    /// <param name="jsonTypeInfo"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     protected virtual async Task<T?> ReadFromJsonAsync<T>(HttpContent content, JsonTypeInfo<T> jsonTypeInfo, CancellationToken cancellationToken)
     {
         var jsonObj = await content.ReadFromJsonAsync(jsonTypeInfo, cancellationToken);
@@ -61,6 +96,9 @@ public abstract class SmsSenderBase : ISmsSender
     }
 }
 
+/// <summary>
+/// 修改这些默认选项，可以控制相关类型序列化
+/// </summary>
 [JsonSerializable(typeof(Channels._21VianetBlueCloud.SmsSenderProvider.RequestData))]
 [JsonSerializable(typeof(SendSms21VianetBlueCloudResult))]
 [JsonSerializable(typeof(SendSmsAlibabaCloudResult))]

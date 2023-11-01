@@ -9,6 +9,9 @@ public abstract class SmsResult<TImplement> : JsonModel<TImplement>, IResult<ISm
 
     public ISmsSubResult? Result { get; set; }
 
+    /// <summary>
+    /// 获取或设置 HTTP 状态码
+    /// </summary>
     public int HttpStatusCode { get; set; }
 }
 
@@ -16,6 +19,9 @@ public abstract class SmsResult<TResult, TImplement> : SmsResult<TImplement>, IS
    where TResult : IJsonModel
    where TImplement : SmsResult<TResult, TImplement>
 {
+    /// <summary>
+    /// 获取或设置泛型类型的 SMS 结果
+    /// </summary>
     public new TResult? Result { get; set; }
 
     public ISmsSubResult? ResultObject { get => base.Result; set => base.Result = value; }

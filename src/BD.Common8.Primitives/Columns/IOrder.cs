@@ -1,7 +1,5 @@
 namespace BD.Common8.Primitives.Columns;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 排序
 /// </summary>
@@ -10,6 +8,9 @@ public interface IOrder
     /// <inheritdoc cref="IOrder"/>
     long Order { get; set; }
 
+    /// <summary>
+    /// 序列起始位置
+    /// </summary>
     const string SequenceStartsAt = "SequenceStartsAt";
 }
 

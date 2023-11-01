@@ -1,7 +1,8 @@
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供给阿里云短信配置选项
+/// </summary>
 public class SmsAlibabaCloudOptions : ChannelSmsOptions
 {
     /// <summary>
@@ -19,6 +20,9 @@ public class SmsAlibabaCloudOptions : ChannelSmsOptions
     /// </summary>
     public string? SignName { get; set; }
 
+    /// <summary>
+    /// 短信模板列表
+    /// </summary>
     public SmsOptionsTemplateId<string>[]? Templates { get; set; }
 
     /// <summary>
@@ -26,6 +30,10 @@ public class SmsAlibabaCloudOptions : ChannelSmsOptions
     /// </summary>
     public string? DefaultTemplate { get; set; }
 
+    /// <summary>
+    /// 验证配置是否有效的方法，检查必要的属性不为空，并且短信模板列表不为空或默认模板不为默认值
+    /// </summary>
+    /// <returns></returns>
     public override bool IsValid()
     {
         return base.IsValid() && !string.IsNullOrWhiteSpace(AccessKeyId) &&

@@ -25,8 +25,6 @@ http 响应:json
 
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEaseCloud;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 短信服务（网易云实现） 需要实现校验接口
 /// <para>参考资料：</para>
@@ -35,16 +33,28 @@ namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEas
 /// </summary>
 public class SmsSenderProvider : SmsSenderBase, ISmsSender
 {
+    /// <summary>
+    /// 网易云的名称
+    /// </summary>
     public const string Name = nameof(NetEaseCloud);
 
+    /// <inheritdoc/>
     public override string Channel => Name;
 
+    /// <inheritdoc/>
     public override bool SupportCheck => true;
 
     readonly HttpClient httpClient;
     readonly SmsOptions options;
     readonly ILogger logger;
 
+    /// <summary>
+    /// 初始化 <see cref="SmsSenderProvider"/> 类的实例，设置所需的日志记录器、配置选项和 HttpClient
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="options"></param>
+    /// <param name="httpClient"></param>
+    /// <exception cref="ArgumentException"></exception>
     public SmsSenderProvider(ILogger<SmsSenderProvider> logger, SmsOptions? options, HttpClient httpClient)
     {
         this.logger = logger;
@@ -56,10 +66,13 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
     #region 常量
 
     /// <summary>
-    /// 接口地址。
+    /// 接口地址
     /// </summary>
     const string SmsSendApiUrl = "https://api.netease.im/sms/sendcode.action";
 
+    /// <summary>
+    /// 短信验证接口的 URL
+    /// </summary>
     const string SmsCheckApiUrl = "https://api.netease.im/sms/verifycode.action";
 
     #endregion 常量
@@ -72,8 +85,14 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
     /// <returns></returns>
     static string CurTime() => DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
 
+    /// <summary>
+    /// 生成唯一标识符
+    /// </summary>
     static string Nonce() => Guid.NewGuid().ToString("N") + DateTime.Now.Ticks;
 
+    /// <summary>
+    /// 请求网易云接口
+    /// </summary>
     async Task<T> PostAsync<T, TResult>(
         string requestUri,
         Dictionary<string, string?> args,
@@ -132,6 +151,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
     #endregion helpers
 
+    /// <inheritdoc/>
     public override async Task<ISendSmsResult> SendSmsAsync(string number, string message, ushort type, CancellationToken cancellationToken)
     {
         var dictionary = new Dictionary<string, string?> { { "mobile", number } };
@@ -152,6 +172,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         return result;
     }
 
+    /// <inheritdoc/>
     public override async Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)
     {
         var dictionary = new Dictionary<string, string?> { { "mobile", number }, { "code", message } };

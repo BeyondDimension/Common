@@ -1,9 +1,10 @@
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 static partial class Utils
 {
+    /// <summary>
+    /// 用于解析版本号字符串
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Version ParseVersion(string version)
     {
@@ -16,6 +17,12 @@ static partial class Utils
         return new Version(0, 0);
     }
 
+    /// <summary>
+    /// 创建新的取消令牌令牌，如果给定超时时间，则在令牌过期后取消它
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <param name="timeout"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static CancellationToken TimeoutToken(CancellationToken cancellationToken, TimeSpan timeout)
     {
@@ -30,6 +37,9 @@ static partial class Utils
         return cancelTokenSrc.Token;
     }
 
+    /// <summary>
+    /// 使用指定的超时时间等待任务的完成，并返回任务的结果，如果任务在超时时间内未完成，则返回默认值
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<T?> WithTimeout<T>(Task<T> task, TimeSpan timeSpan)
     {

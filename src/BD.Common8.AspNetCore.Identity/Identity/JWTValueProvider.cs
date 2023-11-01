@@ -2,8 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace BD.Common8.AspNetCore.Identity;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// JWT 值提供程序
 /// </summary>
@@ -18,12 +16,27 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
     where TAppDbContext : DbContext, IApplicationDbContext<TUser>
     where TUser : class, IEntity<Guid>, IRefreshJWTUser
 {
+    /// <summary>
+    /// 应用程序设置
+    /// </summary>
     readonly TAppSettings options = options.Value;
+
+    /// <summary>
+    /// 应用程序数据库上下文
+    /// </summary>
     readonly TAppDbContext db = db;
+
+    /// <summary>
+    /// 随机数生成器
+    /// </summary>
     static readonly RandomNumberGenerator _rng = RandomNumberGenerator.Create();
 
+    /// <summary>
+    /// <see cref="IdentityOptions"/> 实例
+    /// </summary>
     readonly IdentityOptions? Options = optionsAccessor?.Value;
 
+    /// <inheritdoc/>
     public async Task<JWTEntity?> GenerateTokenAsync(Guid userId, IEnumerable<string>? roles, Action<List<Claim>>? aciton, CancellationToken cancellationToken)
     {
         var now = DateTimeOffset.UtcNow;
@@ -78,6 +91,9 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
         return response;
     }
 
+    /// <summary>
+    /// 向 Claims 中添加角色信息
+    /// </summary>
     static void AddRolesToClaims(List<Claim> claims, IEnumerable<string> roles)
     {
         foreach (var role in roles)
@@ -87,6 +103,9 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
         }
     }
 
+    /// <summary>
+    ///  生成刷新令牌
+    /// </summary>
     static string GenerateRefreshToken(string password)
     {
         // https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Extensions.Core/src/PasswordHasher.cs#L141
@@ -109,6 +128,9 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
         return outputBytes.Base64UrlEncode();
     }
 
+    /// <summary>
+    /// 将无符号整型值以网络字节顺序写入字节数组中
+    /// </summary>
     static void WriteNetworkByteOrder(byte[] buffer, int offset, uint value)
     {
         buffer[offset + 0] = (byte)(value >> 24);

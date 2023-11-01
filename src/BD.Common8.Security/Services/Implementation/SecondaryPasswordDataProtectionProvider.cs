@@ -1,22 +1,31 @@
 namespace BD.Common8.Security.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <inheritdoc cref="ISecondaryPasswordDataProtectionProvider"/>
 public class SecondaryPasswordDataProtectionProvider : ISecondaryPasswordDataProtectionProvider
 {
+    /// <inheritdoc cref="SecondaryPasswordDataProtectionType"/>
     protected readonly SecondaryPasswordDataProtectionType defaultESecondaryPasswordDataProtectionType;
 
+    /// <summary>
+    /// 初始化 <see cref="SecondaryPasswordDataProtectionProvider"/> 类的新实例
+    /// 将默认的二次密码数据保护类型设置为 <see cref="SecondaryPasswordDataProtectionType.AesCBC"/>
+    /// </summary>
     public SecondaryPasswordDataProtectionProvider()
     {
         defaultESecondaryPasswordDataProtectionType = SecondaryPasswordDataProtectionType.AesCBC;
     }
 
+    /// <summary>
+    /// 二级密码数据保护类型
+    /// </summary>
     protected enum SecondaryPasswordDataProtectionType
     {
         AesCBC,
     }
 
+    /// <summary>
+    /// 将指定的字节数组与 <inheritdoc cref="defaultESecondaryPasswordDataProtectionType"/> 进行拼接
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     byte[] Concat(byte[] value)
     {
@@ -27,6 +36,9 @@ public class SecondaryPasswordDataProtectionProvider : ISecondaryPasswordDataPro
         return r;
     }
 
+    /// <summary>
+    /// 使用 AES 加密算法加密字节数组
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static byte[] Encrypt(Aes aes, byte[] value)
     {
@@ -60,6 +72,9 @@ public class SecondaryPasswordDataProtectionProvider : ISecondaryPasswordDataPro
         }
     }
 
+    /// <summary>
+    /// 使用 AES 加密算法解密字节数组
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static byte[]? Decrypt(Aes aes, byte[] value)
     {

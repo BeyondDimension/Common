@@ -1,7 +1,5 @@
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 电子邮件，参考 Essentials.Email。
 /// <para>https://docs.microsoft.com/zh-cn/xamarin/essentials/email</para>
@@ -50,6 +48,9 @@ public static class Email2
         await ComposeByProcessAsync(message);
     }
 
+    /// <summary>
+    /// 通过进程异步发送电子邮件
+    /// </summary>
     static ValueTask ComposeByProcessAsync(EmailMessage? message)
     {
         try
@@ -68,6 +69,9 @@ public static class Email2
         return default;
     }
 
+    /// <summary>
+    /// 获取电子邮件地址的收件人 URI
+    /// </summary>
     public static string GetMailToUri(EmailMessage? message)
     {
         if (message != null && message.BodyFormat != EmailBodyFormat.PlainText)
@@ -94,10 +98,19 @@ public static class Email2
         return uri;
     }
 
+    /// <summary>
+    /// 异常事件
+    /// </summary>
     public static event Action<Exception>? OnError;
 
+    /// <summary>
+    /// 标签名称
+    /// </summary>
     const string TAG = nameof(Email2);
 
+    /// <summary>
+    /// 异常处理方法
+    /// </summary>
     static void HandlerException(Exception e)
     {
         if (OnError == null)

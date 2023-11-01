@@ -4,8 +4,6 @@ using WinFormsApplication = System.Windows.Forms.Application;
 
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 提供了访问设备文件夹位置的简便方法。
 /// </summary>
@@ -13,8 +11,14 @@ public sealed partial class FileSystem2 : IOPath.FileSystemBase
 {
     private FileSystem2() => throw new NotSupportedException();
 
+    /// <summary>
+    /// 文件系统的基础文件夹路径
+    /// </summary>
     public static class BaseDirectory
     {
+        /// <summary>
+        /// 获取应用程序的启动路径
+        /// </summary>
         static string StartupPath
         {
             get
@@ -29,6 +33,9 @@ public sealed partial class FileSystem2 : IOPath.FileSystemBase
             }
         }
 
+        /// <summary>
+        /// 获取应用程序的 AppData 文件夹路径
+        /// </summary>
         public static string AppDataDirectory
         {
             get
@@ -38,6 +45,9 @@ public sealed partial class FileSystem2 : IOPath.FileSystemBase
             }
         }
 
+        /// <summary>
+        /// 获取应用程序的 Cache 文件夹路径
+        /// </summary>
         public static string CacheDirectory
         {
             get

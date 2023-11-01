@@ -1,11 +1,16 @@
 namespace BD.Common8.Security.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <inheritdoc cref="IEmbeddedAesDataProtectionProvider"/>
 public abstract class EmbeddedAesDataProtectionProviderBase : IEmbeddedAesDataProtectionProvider
 {
+    /// <summary>
+    /// 获取 AES 密钥数组
+    /// </summary>
     public abstract Aes[]? Aes { get; }
 
+    /// <summary>
+    /// 使用 AES 密钥数组对给定的字节数组进行加密
+    /// </summary>
     static byte[] Encrypt(Aes[] aes, byte[] value)
     {
         if (value.Length == 0)
@@ -50,6 +55,9 @@ public abstract class EmbeddedAesDataProtectionProviderBase : IEmbeddedAesDataPr
             return value;
     }
 
+    /// <summary>
+    /// 使用 AES 密钥数组对给定的字节数组进行解密
+    /// </summary>
     static byte[]? Decrypt(Aes[] aes, byte[]? value)
     {
         if (value == null)

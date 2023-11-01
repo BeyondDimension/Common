@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Middleware;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 // https://github.com/dotnet/efcore/issues/19526#issuecomment-989036617
 /* 2022-07-25 13:09:15.3924||ERROR|Microsoft.EntityFrameworkCore.Query|An exception occurred while iterating over the results of a query for context type 'System.Application.Data.ApplicationDbContext'.
 System.Threading.Tasks.TaskCanceledException: A task was canceled.
@@ -27,51 +25,60 @@ System.Threading.Tasks.TaskCanceledException: A task was canceled.
 /// <param name="next"></param>
 public sealed partial class StandardizedExceptionMiddleware(RequestDelegate next)
 {
+    /// <summary>
+    /// 用于处理标准化异常的中间件
+    /// </summary>
     readonly RequestDelegate _next = next;
 
-    public async Task Invoke(HttpContext context)
+/// <summary>
+/// 调用下一个中间件，并捕获异常
+/// </summary>
+public async Task Invoke(HttpContext context)
+{
+    try
     {
-        try
-        {
-            await _next(context).ConfigureAwait(false);
-        }
-        catch (Exception ex)
-        {
-            if (IsCancellationException(ex))
-            {
-                if (context.RequestAborted.IsCancellationRequested)
-                    // Try to ensure cancelled requests don't get reported as 5xx errors
-                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return;
-            }
-            // This exception wasn't handled so let it bubble up
-            throw;
-        }
+        await _next(context).ConfigureAwait(false);
     }
+    catch (Exception ex)
+    {
+        if (IsCancellationException(ex))
+        {
+            if (context.RequestAborted.IsCancellationRequested)
+                // Try to ensure cancelled requests don't get reported as 5xx errors
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return;
+        }
+        // This exception wasn't handled so let it bubble up
+        throw;
+    }
+}
 
-    static bool IsCancellationException(Exception ex)
+/// <summary>
+/// 判断异常是否属于取消操作的异常，如果属于取消操作的异常则返回 <see langword="true"/>；否则为 <see langword="false"/>
+/// </summary>
+static bool IsCancellationException(Exception ex)
+{
+    if (ex == null) return false;
+    if (ex is OperationCanceledException)
+        return true;
+    if (ex is IOException && ex.Message == "The client reset the request stream.")
+        return true;
+    if (ex is ConnectionResetException)
+        return true;
+    // .NET SQL has a number of different exceptions thrown when operations are cancelled
+    if (ex.Source == "Microsoft.Data.SqlClient" && ex.Message == "Operation cancelled by user.")
+        return true;
+    var typeName = ex.GetType().FullName;
+    switch (typeName)
     {
-        if (ex == null) return false;
-        if (ex is OperationCanceledException)
-            return true;
-        if (ex is IOException && ex.Message == "The client reset the request stream.")
-            return true;
-        if (ex is ConnectionResetException)
-            return true;
-        // .NET SQL has a number of different exceptions thrown when operations are cancelled
-        if (ex.Source == "Microsoft.Data.SqlClient" && ex.Message == "Operation cancelled by user.")
-            return true;
-        var typeName = ex.GetType().FullName;
-        switch (typeName)
-        {
-            case "Microsoft.Data.SqlClient.SqlException":
-            case "System.Data.SqlClient.SqlException":
-                if (ex.Message.Contains("Operation cancelled by user"))
-                    return true;
-                break;
-        }
-        if (ex.InnerException is not null)
-            return IsCancellationException(ex.InnerException);
-        return false;
+        case "Microsoft.Data.SqlClient.SqlException":
+        case "System.Data.SqlClient.SqlException":
+            if (ex.Message.Contains("Operation cancelled by user"))
+                return true;
+            break;
     }
+    if (ex.InnerException is not null)
+        return IsCancellationException(ex.InnerException);
+    return false;
+}
 }

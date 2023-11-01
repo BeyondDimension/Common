@@ -3,8 +3,6 @@ using MediaTypeHeaderValue = Microsoft.Net.Http.Headers.MediaTypeHeaderValue;
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Microsoft.AspNetCore.Http;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 提供 ASP.NET 的兼容
 /// <para>https://docs.microsoft.com/zh-cn/dotnet/api/system.web.httprequest</para>
@@ -113,6 +111,9 @@ public static partial class SystemWebExtensions
             .ToString();
     }
 
+    /// <summary>
+    /// 用于生成包含查询字符串的 URL 
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Action(this IUrlHelper helper, string action, QueryString values)
     {

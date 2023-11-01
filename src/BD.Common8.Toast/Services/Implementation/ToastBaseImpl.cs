@@ -1,11 +1,18 @@
 namespace BD.Common8.Toast.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供用于显示 Toast 提示的通用逻辑，并定义了一些可重写的方法和属性供派生类实现具体的平台相关的操作
+/// </summary>
 public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
 {
+    /// <summary>
+    /// <see cref="IToastIntercept"/> 实列
+    /// </summary>
     protected readonly IToastIntercept intercept = intercept;
 
+    /// <summary>
+    /// TAG
+    /// </summary>
     protected const string TAG = "Toast";
 
     /// <summary>
@@ -16,10 +23,17 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
     protected virtual int CalcDurationByStringLength(int len)
         => len > 7 ? ToDuration(ToastLength.Long) : ToDuration(ToastLength.Short);
 
+    /// <summary>
+    /// 获取当前线程是否为主线程
+    /// </summary>
     protected virtual bool IsMainThread => true;
 
+    /// <summary>
+    /// 在主线程上执行指定的操作
+    /// </summary>
     protected virtual void BeginInvokeOnMainThread(Action action) => action.Invoke();
 
+    /// <inheritdoc />
     public void Show(ToastIcon icon, string text, int? duration)
     {
         if (string.IsNullOrEmpty(text))
@@ -44,9 +58,13 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
         }
     }
 
+    /// <inheritdoc />
     public void Show(ToastIcon icon, string text, ToastLength duration)
         => Show(icon, text, ToDuration(duration));
 
+    /// <summary>
+    /// 平台特定的显示 Toast 方法，需要在派生类中实现
+    /// </summary>
     protected abstract void PlatformShow(ToastIcon icon, string text, int duration);
 
     /// <summary>
@@ -56,6 +74,9 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
     /// <returns></returns>
     protected virtual int ToDuration(ToastLength toastLength) => (int)toastLength;
 
+    /// <summary>
+    /// 尝试添加 Toast 的服务依赖
+    /// </summary>
     protected static IServiceCollection TryAddToast<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TToastImpl>(IServiceCollection services) where TToastImpl : ToastBaseImpl
     {
         services.TryAddSingleton<IToastIntercept, NoneToastIntercept>();
@@ -63,6 +84,9 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
         return services;
     }
 
+    /// <summary>
+    /// 根据日志级别转换为对应的 <see cref="ToastIcon"/> 图标类型
+    /// </summary>
     protected virtual ToastIcon Convert(LogLevel logLevel) => logLevel switch
     {
         LogLevel.Trace or LogLevel.Debug or LogLevel.Information => ToastIcon.Info,
@@ -71,6 +95,7 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
         _ => ToastIcon.None,
     };
 
+    /// <inheritdoc />
     public virtual void LogAndShow(Exception? e,
          string? tag, LogLevel level,
          string memberName,
@@ -84,6 +109,7 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
             msg, args);
     }
 
+    /// <inheritdoc />
     public virtual void LogAndShow(Exception? e,
         ILogger logger, LogLevel level,
         string memberName,

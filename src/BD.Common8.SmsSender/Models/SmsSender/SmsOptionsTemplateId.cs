@@ -1,7 +1,9 @@
 namespace BD.Common8.SmsSender.Models.SmsSender;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 定义泛型短信模板选项
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class SmsOptionsTemplateId<T>
 {
     /// <summary>

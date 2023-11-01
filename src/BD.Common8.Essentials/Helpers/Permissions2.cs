@@ -1,7 +1,5 @@
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// The Permissions API provides the ability to check and request runtime permissions.
 /// </summary>
@@ -66,6 +64,9 @@ public static partial class Permissions2
         return default;
     }
 
+    /// <summary>
+    /// 确保特定权限 TPermission 被授予
+    /// </summary>
     public static void EnsureDeclared<TPermission>()
         where TPermission : IBasePermission
     {
@@ -73,6 +74,9 @@ public static partial class Permissions2
         permissionsPlatformService?.EnsureDeclared<TPermission>();
     }
 
+    /// <summary>
+    /// 检查是否授予了指定权限，如果没有授予，则引发 <see cref="PermissionException"/> 异常
+    /// </summary>
     public static async Task EnsureGrantedAsync<TPermission>()
         where TPermission : IBasePermission
     {
@@ -82,6 +86,9 @@ public static partial class Permissions2
             throw new PermissionException($"{typeof(TPermission).Name} permission was not granted: {status}");
     }
 
+    /// <summary>
+    /// 检查特定权限是否被授予或限制，如果没有授予或受限制，则引发 <see cref="PermissionException"/> 异常。
+    /// </summary>
     public static async Task EnsureGrantedOrRestrictedAsync<TPermission>()
         where TPermission : IBasePermission
     {

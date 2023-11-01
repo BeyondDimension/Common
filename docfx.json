@@ -87,17 +87,62 @@
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Pinyin.CoreFoundation/**/BD.Common8.Pinyin.CoreFoundation.dll"]}],
       "dest": "api/BD.Common8.Pinyin.CoreFoundation"
-    }
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.AspNetCore/**/BD.Common8.AspNetCore.dll"]}],
+      "dest": "api/BD.Common8.AspNetCore"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.AspNetCore.Identity/**/BD.Common8.AspNetCore.Identity.dll"]}],
+      "dest": "api/BD.Common8.AspNetCore.Identity"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.AspNetCore.Identity.BackManage/**/BD.Common8.AspNetCore.Identity.BackManage.dll"]}],
+      "dest": "api/BD.Common8.AspNetCore.Identity.BackManage"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Essentials/**/BD.Common8.Essentials.dll"]}],
+      "dest": "api/BD.Common8.Essentials"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Essentials.Implementation/**/BD.Common8.Essentials.Implementation.dll"]}],
+      "dest": "api/BD.Common8.Essentials.Implementation"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Essentials.Implementation.Avalonia/**/BD.Common8.Essentials.Implementation.Avalonia.dll"]}],
+      "dest": "api/BD.Common8.Essentials.Implementation.Avalonia"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Http.ClientFactory/**/BD.Common8.Http.ClientFactory.dll"]}],
+      "dest": "api/BD.Common8.Http.ClientFactory.Server"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Http.ClientFactory.Server/**/BD.Common8.Http.ClientFactory.Server.dll"]}],
+      "dest": "api/BD.Common8.Http.ClientFactory.Server"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Repositories/**/BD.Common8.Repositories.dll"]}],
+      "dest": "api/BD.Common8.Repositories"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Repositories.EFCore/**/BD.Common8.Repositories.EFCore.dll"]}],
+      "dest": "api/BD.Common8.Repositories.EFCore"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Repositories.SQLitePCL/**/BD.Common8.Repositories.SQLitePCL.dll"]}],
+      "dest": "api/BD.Common8.Repositories.SQLitePCL"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.SmsSender/**/BD.Common8.SmsSender.dll"]}],
+      "dest": "api/BD.Common8.SmsSender"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Toast/**/BD.Common8.Toast.dll"]}],
+      "dest": "api/BD.Common8.Toast"
+    }      
   ],
   "build": {
     "content": [
-      {
-        "files": [
-          "api/**.yml",
-          "api/index.md",
-          "api/**/**.yml"
-        ]
-      },
       {
         "files": [
           "articles/**.md",
@@ -107,6 +152,19 @@
           "toc.yml",
           "*.md"
         ]
+      },
+      {
+        "files": [
+          "topnav.html"
+        ],
+        "rootTocPath": "topnav.html" 
+      },
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md",
+          "api/**/**.yml"
+        ]
       }
     ],
     "resource": [
@@ -115,24 +173,33 @@
           "images/**",
           "res/DocFXIcon.png",
           "articles/aes.html",
-          "articles/rsa.html"
+          "articles/rsa.html",
+          "topnav.html",
+          "topnav.json"
         ]
       }
     ],
     "output": "_site",
-    "globalMetadata": {
+    "globalMetadata": {   
       "_appTitle": "BD.Common8 文档",
       "_appName": "Common8",
       "_appLogoPath": "res/DocFXIcon.png",
-      "_appLogoUrl": "https://github.com/BeyondDimension/Common",
       "_appFooter": "©️ 江苏蒸汽凡星科技有限公司. All rights reserved."
     },
+    
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
       "default",
       "modern"
     ],
+    "nav": [
+      {
+          "name": "MyTableOfContents",
+          "href": "/articles/toc.html",
+          "target": "_self"
+      }
+  ],
     "postProcessors": [],
     "keepFileLink": false,
     "disableGitFeatures": false

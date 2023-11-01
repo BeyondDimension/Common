@@ -4,10 +4,11 @@ using ObjCRuntime;
 
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 static partial class PlatformUtils
 {
+    /// <summary>
+    /// 获取有关系统和环境的信息
+    /// </summary>
 #if __IOS__
     [LibraryImport(Constants.SystemLibrary, EntryPoint = "sysctlbyname")]
 #else
@@ -15,6 +16,9 @@ static partial class PlatformUtils
 #endif
     private static partial int SysctlByName([MarshalAs(UnmanagedType.LPStr)] string property, IntPtr output, IntPtr oldLen, IntPtr newp, uint newlen);
 
+    /// <summary>
+    /// 通过指定的属性名称获取系统库的属性值
+    /// </summary>
     [SupportedOSPlatform("maccatalyst")]
     [SupportedOSPlatform("ios")]
     [SupportedOSPlatform("tvos")]
@@ -42,6 +46,9 @@ static partial class PlatformUtils
         return returnValue;
     }
 
+    /// <summary>
+    /// 在主线程上调度指定的操作
+    /// </summary>
     [SupportedOSPlatform("maccatalyst")]
     [SupportedOSPlatform("ios")]
     [SupportedOSPlatform("tvos")]

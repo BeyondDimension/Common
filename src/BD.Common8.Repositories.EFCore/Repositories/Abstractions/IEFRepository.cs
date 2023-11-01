@@ -1,14 +1,18 @@
 namespace BD.Common8.Repositories.EFCore.Repositories.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 由 EFCore 实现的 仓储接口
 /// </summary>
 public interface IEFRepository
 {
+    /// <summary>
+    /// 获取当前的 DbContext
+    /// </summary>
     DbContext DbContext { get; }
 
+    /// <summary>
+    /// 获取表名
+    /// </summary>
     string TableName { get; }
 
     /// <inheritdoc cref="DbContext.SaveChangesAsync(CancellationToken)"/>

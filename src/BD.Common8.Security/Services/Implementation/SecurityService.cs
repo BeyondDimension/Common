@@ -2,8 +2,6 @@ using static BD.Common8.Security.Services.ISecurityService;
 
 namespace BD.Common8.Security.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <inheritdoc cref="ISecurityService"/>
 sealed class SecurityService : ISecurityService
 {
@@ -11,6 +9,12 @@ sealed class SecurityService : ISecurityService
     readonly ILocalDataProtectionProvider local;
     readonly ISecondaryPasswordDataProtectionProvider sp;
 
+    /// <summary>
+    /// 初始化 <inheritdoc cref="SecurityService"/> 的实例
+    /// </summary>
+    /// <param name="ea"></param>
+    /// <param name="local"></param>
+    /// <param name="sp"></param>
     public SecurityService(
         IEmbeddedAesDataProtectionProvider ea,
         ILocalDataProtectionProvider local,
@@ -21,6 +25,9 @@ sealed class SecurityService : ISecurityService
         this.sp = sp;
     }
 
+    /// <summary>
+    /// 将指定的字节数组和 <inheritdoc cref="EncryptionMode"/> 连接起来
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static byte[]? Concat(byte[]? value, EncryptionMode encryptionMode)
     {
@@ -78,6 +85,10 @@ sealed class SecurityService : ISecurityService
         }
     }
 
+    /// <summary>
+    /// 将一个字节数组剔除前面4个字节
+    /// </summary>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static byte[] UnConcat(byte[] value) => value.Skip(sizeof(int)).ToArray();
 

@@ -27,10 +27,14 @@ using SR = BD.Common8.UserInput.ModelValidator.Resources.SR;
 
 namespace BD.Common8.UserInput.ModelValidator.Services;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供了模型验证器的功能
+/// </summary>
 public static partial class ModelValidatorProvider
 {
+    /// <summary>
+    /// 初始化模型验证器
+    /// </summary>
     public static void Init()
     {
         AddColumnValidate<IExplicitHasValue>(x =>
@@ -48,6 +52,9 @@ public static partial class ModelValidatorProvider
 
     #region ColumnValidates
 
+    /// <summary>
+    /// 执行手机号码的验证逻辑
+    /// </summary>
     static string? ColumnValidate(IReadOnlyPhoneNumber value)
     {
         if (string.IsNullOrEmpty(value.PhoneNumber))
@@ -57,6 +64,9 @@ public static partial class ModelValidatorProvider
         return null;
     }
 
+    /// <summary>
+    /// 执行短信验证码的验证逻辑
+    /// </summary>
     static string? ColumnValidate(IReadOnlySmsCode value)
     {
         if (string.IsNullOrEmpty(value.SmsCode))
@@ -84,6 +94,9 @@ public static partial class ModelValidatorProvider
     //    return null;
     //}
 
+    /// <summary>
+    /// 执行头像的验证逻辑
+    /// </summary>
     static string? ColumnValidate(IReadOnlyAvatar value)
     {
         if (value.Avatar == default)
@@ -91,6 +104,9 @@ public static partial class ModelValidatorProvider
         return null;
     }
 
+    /// <summary>
+    /// 执行昵称的验证逻辑
+    /// </summary>
     static string? ColumnValidate(IReadOnlyNickName value)
     {
         if (string.IsNullOrWhiteSpace(value.NickName))
@@ -121,10 +137,19 @@ public static partial class ModelValidatorProvider
     static bool IsSmsCodeCorrect(string value)
         => !(value.Length != MaxLengths.SMS_CAPTCHA || !value.IsDigital());
 
+    /// <summary>
+    /// 验证给定的 <see cref="ushort"/> 类型值是否是有效的端口号
+    /// </summary>
     public static bool IsPortId(ushort value) => value != 0;
 
+    /// <summary>
+    /// 验证给定的 <see cref="int"/> 类型值是否是有效的端口号
+    /// </summary>
     public static bool IsPortId(int value) => value > 0 && value <= ushort.MaxValue;
 
+    /// <summary>
+    /// 验证给定的 <see cref="string"/> 类型值是否是有效的端口号，并将转换后的端口号值 <see langword="out"/>
+    /// </summary>
     public static bool IsPortId(string value, out ushort value2) => ushort.TryParse(value, out value2) && IsPortId(value2);
 
     #endregion

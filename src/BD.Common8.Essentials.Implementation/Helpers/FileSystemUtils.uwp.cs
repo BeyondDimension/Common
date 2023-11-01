@@ -3,13 +3,16 @@ using Windows.ApplicationModel;
 
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
-/// https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/FileSystem/FileSystemUtils.uwp.cs
+/// 提供与应用程序包文件操作相关的方法
+/// <para> https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/FileSystem/FileSystemUtils.uwp.cs </para>
 /// </summary>
 static partial class FileSystemUtils
 {
+
+    /// <summary>
+    /// 判断指定的应用程序包文件是否存在
+    /// </summary>
     [SupportedOSPlatform("windows10.0.10240.0")]
     public static bool AppPackageFileExists(string filename)
     {
@@ -17,6 +20,9 @@ static partial class FileSystemUtils
         return File.Exists(file);
     }
 
+    /// <summary>
+    /// 获取完整的应用程序包文件路径
+    /// </summary>
     [SupportedOSPlatform("windows10.0.10240.0")]
     public static string PlatformGetFullAppPackageFilePath(string filename)
     {
@@ -33,6 +39,9 @@ static partial class FileSystemUtils
         return Path.Combine(root, filename);
     }
 
+    /// <summary>
+    /// 尝试获取应用程序包文件的 URI
+    /// </summary>
     [SupportedOSPlatform("windows10.0.10240.0")]
     public static bool TryGetAppPackageFileUri(string filename, [NotNullWhen(true)] out string? uri)
     {

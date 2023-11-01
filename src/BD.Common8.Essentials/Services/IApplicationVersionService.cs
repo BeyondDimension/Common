@@ -1,12 +1,13 @@
 namespace BD.Common8.Essentials.Services;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 应用程序版本号服务，必须由应用层实现
 /// </summary>
 public interface IApplicationVersionService
 {
+    /// <summary>
+    /// 获取应用程序版本号服务的单例实例
+    /// </summary>
     static IApplicationVersionService Instance => Ioc.Get<IApplicationVersionService>();
 
     /// <summary>

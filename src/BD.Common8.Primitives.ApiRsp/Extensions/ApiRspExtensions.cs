@@ -2,10 +2,15 @@ using static BD.Common8.Primitives.ApiRsp.Resources.SR;
 
 namespace BD.Common8.Primitives.ApiRsp.Extensions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供了 <see cref="ApiRspCode"/> 对象的扩展方法
+/// </summary>
 public static partial class ApiRspExtensions
 {
+    /// <summary>
+    /// 判断 <see cref="ApiRspCode"/> 是否为 <see cref="ApiRspCode.ClientException"/> 或 <see cref="ApiRspCode.ServerException"/> 
+    /// <para> <see cref="ApiRspCode.ClientException"/> 返回 <see langword="true"/>；否则为 <see langword="false"/> </para>
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsClientExceptionOrServerException(ApiRspCode code) => code switch
     {
@@ -13,6 +18,9 @@ public static partial class ApiRspExtensions
         _ => false,
     };
 
+    /// <summary>
+    /// 获取 <see cref="ApiRspCode"/> 对应的错误消息
+    /// </summary>
     public static string GetMessage(this ApiRspCode code, string? errorAppendText = null, string? errorFormat = null)
     {
         if (code == ApiRspCode.OK || code == ApiRspCode.Canceled)
@@ -45,6 +53,9 @@ public static partial class ApiRspExtensions
         return message;
     }
 
+    /// <summary>
+    /// 获取 <see cref="IApiRsp"/> 对应的错误消息
+    /// </summary>
     internal static string GetMessage(this IApiRsp response, string? errorAppendText = null, string? errorFormat = null)
     {
         var message = ApiRspHelper.GetInternalMessage(response);

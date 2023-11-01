@@ -1,16 +1,23 @@
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 提供了一种在应用程序中显示网页的方法。
 /// </summary>
 public static partial class Browser2
 {
+    /// <summary>
+    /// 当出现异常时触发的事件
+    /// </summary>
     public static event Action<Exception>? OnError;
 
+    /// <summary>
+    /// 指示是否仅使用 HTTPS 连接
+    /// </summary>
     public static bool HttpsOnly { get; set; }
 
+    /// <summary>
+    /// 默认的浏览器启动模式
+    /// </summary>
     const BrowserLaunchMode DefaultBrowserLaunchMode = BrowserLaunchMode.SystemPreferred;
 
     /// <inheritdoc cref="OpenAsync(string?, BrowserLaunchMode)"/>

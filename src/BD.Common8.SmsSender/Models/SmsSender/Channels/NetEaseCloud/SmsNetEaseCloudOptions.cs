@@ -1,7 +1,8 @@
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供给网易云短信配置选项
+/// </summary>
 public class SmsNetEaseCloudOptions : ChannelSmsOptions
 {
     /// <summary>
@@ -19,8 +20,14 @@ public class SmsNetEaseCloudOptions : ChannelSmsOptions
     /// </summary>
     public SmsOptionsTemplateId<int>[]? Templates { get; set; }
 
+    /// <summary>
+    /// 默认模板
+    /// </summary>
     public int? DefaultTemplate { get; set; }
 
+    /// <summary>
+    /// 验证选项是否有效
+    /// </summary>
     public override bool IsValid()
     {
         return base.IsValid() && !string.IsNullOrWhiteSpace(AppKey) &&

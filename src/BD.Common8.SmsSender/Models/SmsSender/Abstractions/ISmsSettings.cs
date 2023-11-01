@@ -1,7 +1,8 @@
 namespace BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 定义了一个短信配置
+/// </summary>
 public interface ISmsSettings
 {
     /// <summary>

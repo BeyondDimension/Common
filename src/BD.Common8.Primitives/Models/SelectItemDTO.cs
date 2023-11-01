@@ -1,7 +1,5 @@
 namespace BD.Common8.Primitives.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 用于 Select/ComboBox 的数据源模型
 /// </summary>
@@ -9,14 +7,23 @@ namespace BD.Common8.Primitives.Models;
 [MP2Obj(MP2SerializeLayout.Explicit)]
 public partial class SelectItemDTO : ITitle, IDisable
 {
+    /// <summary>
+    /// 标题
+    /// </summary>
     [MPKey(0)]
     [MP2Key(0)]
     public string Title { get; set; } = "";
 
+    /// <summary>
+    /// 是否禁用
+    /// </summary>
     [MPKey(LastMKeyIndex)]
     [MP2Key(LastMKeyIndex)]
     public bool Disable { get; set; }
 
+    /// <summary>
+    /// 数据源的数量
+    /// </summary>
     public const int Count = 100;
 
     /// <summary>
@@ -33,6 +40,9 @@ public partial class SelectItemDTO : ITitle, IDisable
 [MP2Obj(MP2SerializeLayout.Explicit)]
 public partial class SelectItemDTO<T> : SelectItemDTO
 {
+    /// <summary>
+    /// 数据源项的 Id
+    /// </summary>
     [MPKey(LastMKeyIndex + 1)]
     [MP2Key(LastMKeyIndex + 1)]
     public T? Id { get; set; }

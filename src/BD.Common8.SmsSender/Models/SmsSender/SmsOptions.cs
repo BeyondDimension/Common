@@ -1,15 +1,28 @@
 namespace BD.Common8.SmsSender.Models.SmsSender;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供短信相关配置选项
+/// </summary>
 public class SmsOptions
 {
+    /// <summary>
+    /// 阿里云短信配置选项
+    /// </summary>
     public SmsAlibabaCloudOptions? AlibabaCloud { get; set; }
 
+    /// <summary>
+    /// 网易云信短信配置选项
+    /// </summary>
     public SmsNetEaseCloudOptions? NetEaseCloud { get; set; }
 
+    /// <summary>
+    /// 蓝云短信配置选项
+    /// </summary>
     public Sms21VianetBlueCloudOptions? _21VianetBlueCloud { get; set; }
 
+    /// <summary>
+    /// 获取默认的短信提供商名称
+    /// </summary>
     public static string? GetDefaultProviderName(SmsOptions? options)
     {
         if (options != null)

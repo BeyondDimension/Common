@@ -1,13 +1,17 @@
 namespace BD.Common8.UserInput.ModelValidator.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <inheritdoc cref="IModelValidator"/>
 public sealed class ModelValidator : IModelValidator
 {
     static readonly MethodInfo matchValidateMethod = typeof(ModelValidator).GetMethod(nameof(MatchValidate), BindingFlags.NonPublic | BindingFlags.Static)!;
+
     static readonly IDictionary<Type, object> validators = new Dictionary<Type, object>();
 
+    /// <summary>
+    /// 添加列验证器
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="validate"></param>
     public static void AddColumnValidate<T>(Func<T, string?> validate)
         => validators.TryAdd(typeof(T), validate);
 
@@ -42,6 +46,9 @@ public sealed class ModelValidator : IModelValidator
         return null;
     }
 
+    /// <summary>
+    /// 验证
+    /// </summary>
     public bool Validate(object model, [NotNullWhen(false)] out string? errorMessage, params Type[] ignores)
     {
         string[]? ignoreNames_ = null;

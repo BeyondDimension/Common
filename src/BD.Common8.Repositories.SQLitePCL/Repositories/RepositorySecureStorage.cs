@@ -2,20 +2,24 @@ using KeyValuePair = BD.Common8.Repositories.SQLitePCL.Entities.KeyValuePair;
 
 namespace BD.Common8.Repositories.SQLitePCL.Repositories;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 由 <see cref="Repository{TEntity, TPrimaryKey}"/> 实现的 <see cref="ISecureStorage"/>
 /// <para>加密由 <see cref="ISecurityService"/> 实现</para>
 /// </summary>
 sealed class RepositorySecureStorage(ISecurityService ss) : Repository<KeyValuePair, string>, ISecureStorage
 {
+    /// <inheritdoc cref="ISecurityService"/>
     readonly ISecurityService ss = ss;
 
+    /// <inheritdoc/>
     bool ISecureStorage.IsNativeSupportedBytes => true;
 
+    /// <summary>
+    /// 获取 SHA256 哈希算法处理后的密钥
+    /// </summary>
     static string GetKey(string key) => Hashs.String.SHA256(key);
 
+    /// <inheritdoc/>
     async Task<byte[]?> ISecureStorage.GetBytesAsync(string key)
     {
         key = GetKey(key);
@@ -35,6 +39,7 @@ sealed class RepositorySecureStorage(ISecurityService ss) : Repository<KeyValueP
         });
     }
 
+    /// <inheritdoc/>
     Task ISecureStorage.SetAsync(string key, byte[]? value)
     {
         key = GetKey(key);
@@ -44,6 +49,7 @@ sealed class RepositorySecureStorage(ISecurityService ss) : Repository<KeyValueP
             return InsertOrUpdateAsync(key, value);
     }
 
+    /// <inheritdoc/>
     async Task<bool> ISecureStorage.RemoveAsync(string key)
     {
         key = GetKey(key);
@@ -51,6 +57,7 @@ sealed class RepositorySecureStorage(ISecurityService ss) : Repository<KeyValueP
         return result > 0;
     }
 
+    /// <inheritdoc/>
     async Task<bool> ISecureStorage.ContainsKeyAsync(string key)
     {
         key = GetKey(key);

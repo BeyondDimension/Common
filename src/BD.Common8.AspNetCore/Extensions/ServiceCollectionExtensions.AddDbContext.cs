@@ -1,9 +1,18 @@
 namespace Microsoft.Extensions.DependencyInjection;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供用于配置和添加 DbContext 到应用程序的扩展方法
+/// </summary>
 public static partial class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// 添加 DbContext 到应用程序
+    /// </summary>
+    /// <typeparam name="TContext">要添加的 DbContext 类型</typeparam>
+    /// <param name="builder">WebApplicationBuilder 实例</param>
+    /// <param name="o">配置 DbContextOptionsBuilder 的可选操作</param>
+    /// <param name="databaseProvider">数据库提供程序名称</param>
+    /// <param name="connectionStringKeyName">连接字符串键的名称</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddDbContext<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(
         this WebApplicationBuilder builder,
@@ -37,6 +46,15 @@ public static partial class ServiceCollectionExtensions
         });
     }
 
+    /// <summary>
+    /// 添加 DbContext 作为 TService 到应用程序并配置服务的生命周期为 Scoped
+    /// </summary>
+    /// <typeparam name="TService">要添加的服务类型</typeparam>
+    /// <typeparam name="TContext">要添加的 DbContext 类型</typeparam>
+    /// <param name="builder">WebApplicationBuilder 实例</param>
+    /// <param name="o">配置 DbContextOptionsBuilder 的可选操作</param>
+    /// <param name="databaseProvider">数据库提供程序名称</param>
+    /// <param name="connectionStringKeyName">连接字符串键的名称</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddDbContext<TService, [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(this WebApplicationBuilder builder,
         Action<DbContextOptionsBuilder>? o = null,

@@ -1,5 +1,6 @@
 - name: 代码风格 与 编码规范
   href: Code-Style.md  
+  homepage: Code-Style.md
 - name: 压缩与打包(归档)
   href: Compression-And-Packaging.md
 - name: 文案指南 / 中西文混排

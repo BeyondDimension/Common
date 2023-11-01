@@ -2,8 +2,6 @@ using CoreFoundation;
 
 namespace BD.Common8.Pinyin.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 使用 <see cref="CFStringTransform"/> 实现的拼音功能
 /// </summary>
@@ -13,12 +11,19 @@ namespace BD.Common8.Pinyin.Services.Implementation;
 [SupportedOSPlatform("tvos")]
 sealed class CoreFoundationPinyinImpl : IPinyin
 {
+    /// <summary>
+    /// 将指定的字符串转换拉丁字母表示形式
+    /// </summary>
+    /// <returns></returns>
     public static bool TransformMandarinLatin(string s, out CFMutableString str)
     {
         str = new CFMutableString(s);
         return str.Transform(CFStringTransform.MandarinLatin, false);
     }
 
+    /// <summary>
+    /// 获取指定字符串的拼音表示形式
+    /// </summary>
     public static bool GetPinyin(string s, out CFMutableString str)
         => TransformMandarinLatin(s, out str) &&
         str.Transform(CFStringTransform.StripDiacritics, false);

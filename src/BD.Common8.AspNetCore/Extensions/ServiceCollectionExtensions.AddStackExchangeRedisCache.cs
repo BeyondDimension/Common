@@ -32,6 +32,11 @@ public static partial class ServiceCollectionExtensions
         }
     }
 
+    /// <summary>
+    /// 添加 ConnectionMultiplexer 实例到 <see cref="IServiceCollection"/>中
+    /// </summary>
+    /// <param name="services">IServiceCollection 实例</param>
+    /// <param name="redisConnection">Redis 连接字符串</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void AddConnectionMultiplexer(this IServiceCollection services, string redisConnection)
     {
