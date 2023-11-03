@@ -2,15 +2,31 @@ using static BD.Common8.AspNetCore.Enums.RoleEnumHelper;
 
 namespace BD.Common8.AspNetCore.Enums;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public static partial class RoleEnumHelper
 {
+    /// <summary>
+    /// 分隔符字符
+    /// </summary>
     public const char SeparatorChar = ',';
+
+    /// <summary>
+    /// 分隔符字符串
+    /// </summary>
     public const string SeparatorString = ", ";
+
+    /// <summary>
+    /// 管理员权限名称
+    /// </summary>
     public const string Administrator = "Administrator";
+
+    /// <summary>
+    /// 管理员权限值
+    /// </summary>
     public const byte AdministratorValue = 1;
 
+    /// <summary>
+    /// 判断是否存在指定的权限
+    /// </summary>
     static bool RoleEquals(string left, string right) => string.Equals(left, right);
 
     /// <summary>
@@ -56,11 +72,17 @@ public static partial class RoleEnumHelper
         return roles;
     }
 
+    /// <summary>
+    /// 用于将权限集合转换为显示字符串的委托方法
+    /// </summary>
     public static Func<IEnumerable<string>?, string> ToDisplayStringDelegate { get; set; } = null!;
 
     /// <inheritdoc cref="RoleEnumHelper{TRoleEnum}.ToDisplayString(IEnumerable{string}?)"/>
     public static string ToDisplayString(IEnumerable<string>? roles) => ToDisplayStringDelegate(roles);
 
+    /// <summary>
+    /// 用于将权限字符串转换为权限集合的委托方法
+    /// </summary>
     public static Func<string?, IList<string>?> ParseDelegate { get; set; } = null!;
 
     /// <inheritdoc cref="RoleEnumHelper{TRoleEnum}.Parse(string?)"/>

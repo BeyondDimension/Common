@@ -8,8 +8,8 @@ namespace BD.Common8.Primitives.ApiRsp.Extensions;
 public static partial class ApiRspExtensions
 {
     /// <summary>
-    /// 判断 <see cref="ApiRspCode"/> 是否为 <see cref="ApiRspCode.ClientException"/> 或 <see cref="ApiRspCode.ServerException"/> 
-    /// <para> <see cref="ApiRspCode.ClientException"/> 返回 <see langword="true"/>；否则为 <see langword="false"/> </para>
+    /// 判断 <see cref="ApiRspCode"/> 是否为 <see cref="ApiRspCode.ClientException"/>
+    /// <para>如果是 <see cref="ApiRspCode.ClientException"/> 返回 <see langword="true"/>；否则为 <see langword="false"/></para>
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsClientExceptionOrServerException(ApiRspCode code) => code switch

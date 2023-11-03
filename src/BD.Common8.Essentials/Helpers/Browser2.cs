@@ -1,7 +1,7 @@
 namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
-/// 提供了一种在应用程序中显示网页的方法。
+/// 提供了一种在应用程序中显示网页的方法
 /// </summary>
 public static partial class Browser2
 {
@@ -11,7 +11,7 @@ public static partial class Browser2
     public static event Action<Exception>? OnError;
 
     /// <summary>
-    /// 指示是否仅使用 HTTPS 连接
+    /// 指示是否仅使用 Https 连接
     /// </summary>
     public static bool HttpsOnly { get; set; }
 

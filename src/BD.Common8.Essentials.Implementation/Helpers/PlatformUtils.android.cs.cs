@@ -9,7 +9,7 @@ namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
 /// 提供用于处理平台相关功能
-/// <para> https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/Platform/PlatformUtils.android.cs </para>
+/// <para>https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/Platform/PlatformUtils.android.cs</para>
 /// </summary>
 static partial class PlatformUtils
 {

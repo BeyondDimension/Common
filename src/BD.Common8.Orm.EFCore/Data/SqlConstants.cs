@@ -45,10 +45,11 @@ public static partial class SqlConstants
 
     /// <summary>
     /// 获取 DateTimeOffset 类型字段的默认值 SQL 表达式
-    /// <para> 根据当前数据库提供程序判断：</para>
-    /// 如果为 SqlServer，则返回  <see cref="SYSDATETIMEOFFSET"/>；
-    /// 如果为 PostgreSQL，则返回 <see cref="now"/>；
-    /// 其它情况则抛出异常
+    /// <list>根据当前数据库提供程序判断：
+    /// <item>如果为 SqlServer，则返回  <see cref="SYSDATETIMEOFFSET"/></item>
+    /// <item>如果为 PostgreSQL，则返回 <see cref="now"/></item>
+    /// <item>其它情况则抛出异常</item>
+    /// </list>
     /// </summary>
     public static string DateTimeOffsetDefaultValueSql => DatabaseProvider switch
     {
@@ -59,10 +60,11 @@ public static partial class SqlConstants
 
     /// <summary>
     /// 获取 Guid 类型字段的默认值 SQL 表达式
-    /// <para> 根据当前数据库提供程序判断：</para>
-    /// 如果为 SqlServer，则返回  <see cref="NEWSEQUENTIALID"/>；
-    /// 如果为 PostgreSQL，则返回 <see cref="gen_random_uuid"/>；
-    /// 其它情况则抛出异常 
+    /// <list>根据当前数据库提供程序判断：
+    /// <item>如果为 SqlServer，则返回  <see cref="NEWSEQUENTIALID"/></item>
+    /// <item>如果为 PostgreSQL，则返回 <see cref="gen_random_uuid"/></item>
+    /// <item>其它情况则抛出异常</item>
+    /// </list>
     /// </summary>
     public static string GuidDefaultValueSql => DatabaseProvider switch
     {
@@ -121,13 +123,13 @@ public static partial class SqlConstants
 
     /// <summary>
     /// PostgreSQL 的生成随机 UUID 函数的字符串常量
-    /// <para> https://www.postgresql.org/docs/15/functions-uuid.html </para> 
+    /// <para>https://www.postgresql.org/docs/15/functions-uuid.html</para>
     /// </summary>
     public const string gen_random_uuid = "gen_random_uuid()";
 
     /// <summary>
     /// PostgreSQL 的获取当前时间函数的字符串常量
-    /// <para> https://www.postgresql.org/docs/15/functions-datetime.html#FUNCTIONS-DATETIME-CURRENT </para> 
+    /// <para>https://www.postgresql.org/docs/15/functions-datetime.html#FUNCTIONS-DATETIME-CURRENT</para>
     /// </summary>
     public const string now = "now()";
 
@@ -168,9 +170,9 @@ public static partial class SqlConstants
     /// </summary>
     public static readonly Type PPhoneNumber = typeof(IPhoneNumber);
 
-    ///< summary>
-    /// 共享类型 Dictionary<string, object> 的 Type 对象
-    /// <para>  https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types </para> 
+    /// <summary>
+    /// 共享类型 Type 对象
+    /// <para>https://docs.microsoft.com/zh-cn/ef/core/modeling/shadow-properties#property-bag-entity-types</para>
     /// </summary>
     public static readonly Type SharedType = typeof(Dictionary<string, object>);
 

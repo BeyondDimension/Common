@@ -34,7 +34,7 @@ partial class ImageFileFormat
         public static readonly string[] MIME = [DefaultMIME, "image/x-bmp"];
 
         /// <summary>
-        /// 用于识别 BMP 文件的幻数
+        /// BMP 文件的幻数
         /// </summary>
         public static readonly byte[] MagicNumber;
 

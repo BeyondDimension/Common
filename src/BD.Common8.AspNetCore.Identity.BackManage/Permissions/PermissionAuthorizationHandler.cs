@@ -1,12 +1,20 @@
 namespace BD.Common8.AspNetCore.Permissions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public sealed class PermissionAuthorizationHandler<TDbContext>(TDbContext db, IUserManager userManager) : AuthorizationHandler<PermissionAuthorizationRequirement> where TDbContext : IApplicationDbContext
 {
+    /// <summary>
+    /// 数据上下文对象
+    /// </summary>
     readonly TDbContext db = db;
+
+    /// <summary>
+    /// 用户管理对象
+    /// </summary>
     readonly IUserManager userManager = userManager;
 
+    /// <summary>
+    /// 用户权限验证
+    /// </summary>
     protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionAuthorizationRequirement requirement)
     {
         if (userManager.TryGetUserId(context.User, out var userId))

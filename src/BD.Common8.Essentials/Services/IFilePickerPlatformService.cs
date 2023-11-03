@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IFilePickerPlatformService : IPresetFilePickerPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IFilePickerPlatformService"/>  的实例
+    /// 获取 <see cref="IFilePickerPlatformService"/> 实例
     /// </summary>
     static new IFilePickerPlatformService? Instance => Ioc.Get_Nullable<IFilePickerPlatformService>();
 
@@ -75,7 +75,7 @@ public interface IFilePickerPlatformService : IPresetFilePickerPlatformService
     public interface IOpenFileDialogService : IServiceBase
     {
         /// <summary>
-        /// 获取 <see cref="IOpenFileDialogService"/>  的实例
+        /// 获取 <see cref="IOpenFileDialogService"/> 实例
         /// </summary>
         static IOpenFileDialogService? Instance => Ioc.Get_Nullable<IOpenFileDialogService>();
 
@@ -91,7 +91,7 @@ public interface IFilePickerPlatformService : IPresetFilePickerPlatformService
     public interface ISaveFileDialogService : IServiceBase
     {
         /// <summary>
-        /// 获取 <see cref="ISaveFileDialogService"/>  的实例
+        /// 获取 <see cref="ISaveFileDialogService"/> 实例
         /// </summary>
         static ISaveFileDialogService? Instance => Ioc.Get_Nullable<ISaveFileDialogService>();
 

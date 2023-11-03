@@ -1,22 +1,22 @@
 namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
-/// Various states of the connection to the internet.
+/// 与互联网连接的各种状态
 /// </summary>
 public enum NetworkAccess : byte
 {
-    /// <summary>The state of the connectivity is not known.</summary>
+    /// <summary>连接状态未知</summary>
     Unknown = 0,
 
-    /// <summary>No connectivity.</summary>
+    /// <summary>无连接</summary>
     None = 1,
 
-    /// <summary>Local network access only.</summary>
+    /// <summary>仅本地网络访问</summary>
     Local = 2,
 
-    /// <summary>Limited internet access.</summary>
+    /// <summary>有限的互联网接入</summary>
     ConstrainedInternet = 3,
 
-    /// <summary>Local and Internet access.</summary>
+    /// <summary>本地和互联网接入</summary>
     Internet = 4,
 }

@@ -1,20 +1,20 @@
 namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
-/// The Permissions API provides the ability to check and request runtime permissions.
+/// 提供了检查和授予权限
 /// </summary>
 public static partial class Permissions2
 {
     /// <summary>
-    /// Retrieves the current status of the permission.
+    /// 检索权限的当前状态
     /// </summary>
     /// <remarks>
-    /// Will throw <see cref="PermissionException"/> if a required entry was not found in the application manifest.
-    /// Not all permissions require a manifest entry.
+    /// 如果在应用程序清单中找不到所需的条目，将抛出 <see cref="PermissionException"/>
+    /// 并非所有权限都需要清单条目
     /// </remarks>
-    /// <exception cref="PermissionException">Thrown if a required entry was not found in the application manifest.</exception>
-    /// <typeparam name="TPermission">The permission type to check.</typeparam>
-    /// <returns>A <see cref="PermissionStatus"/> value indicating the current status of the permission.</returns>
+    /// <exception cref="PermissionException">如果在应用程序清单中找不到所需的条目，则引发</exception>
+    /// <typeparam name="TPermission">要检查的权限类型</typeparam>
+    /// <returns><see cref="PermissionStatus"/> 指示权限的当前状态的值</returns>
     public static Task<PermissionStatus> CheckStatusAsync<TPermission>()
         where TPermission : IBasePermission
     {
@@ -27,15 +27,15 @@ public static partial class Permissions2
     }
 
     /// <summary>
-    /// Requests the permission from the user for this application.
+    /// 请求用户对此应用程序的权限
     /// </summary>
     /// <remarks>
-    /// Will throw <see cref="PermissionException"/> if a required entry was not found in the application manifest.
-    /// Not all permissions require a manifest entry.
+    /// 如果在应用程序清单中找不到所需的条目，将抛出 <see cref="PermissionException"/>
+    /// 并非所有权限都需要清单条目
     /// </remarks>
-    /// <exception cref="PermissionException">Thrown if a required entry was not found in the application manifest.</exception>
-    /// <typeparam name="TPermission">The permission type to check.</typeparam>
-    /// <returns>A <see cref="PermissionStatus"/> value indicating the result of this permission request.</returns>
+    /// <exception cref="PermissionException">如果在应用程序清单中找不到所需的条目，则引发</exception>
+    /// <typeparam name="TPermission">要检查的权限类型</typeparam>
+    /// <returns><see cref="PermissionStatus"/> 指示此权限请求结果的值</returns>
     public static Task<PermissionStatus> RequestAsync<TPermission>()
         where TPermission : IBasePermission
     {
@@ -48,11 +48,11 @@ public static partial class Permissions2
     }
 
     /// <summary>
-    /// Determines if an educational UI should be displayed explaining to the user how the permission will be used in the application.
+    /// 确定是否应显示 UI，向用户解释如何在应用程序中使用权限
     /// </summary>
-    /// <remarks>Only used on Android, other platforms will always return <see langword="false"/>.</remarks>
-    /// <typeparam name="TPermission">The permission type to check.</typeparam>
-    /// <returns><see langword="true"/> if the user has denied or disabled the permission in the past, else <see langword="false"/>.</returns>
+    /// <remarks> 仅在 Android 上使用，其他平台将始终返回 <see langword="false"/></remarks>
+    /// <typeparam name="TPermission">要检查的权限类型</typeparam>
+    /// <returns><see langword="true"/> 如果用户过去曾拒绝或禁用该权限，则 <see langword="false"/></returns>
     public static bool ShouldShowRationale<TPermission>()
         where TPermission : IBasePermission
     {
@@ -102,137 +102,137 @@ public static partial class Permissions2
 #pragma warning disable SA1302 // Interface names should begin with I
 
     /// <summary>
-    /// Represents permission to access phone number.
+    /// 表示访问电话号码的权限
     /// </summary>
     public interface PhoneNumber : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device battery information.
+    /// 表示访问设备电池信息的权限
     /// </summary>
     public interface Battery : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to communicate via Bluetooth (scanning, connecting and/or advertising).
+    /// 表示通过蓝牙通信的权限（扫描、连接和/或广告）
     /// </summary>
     public interface Bluetooth : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to read the device calendar information.
+    /// 表示读取设备日历信息的权限
     /// </summary>
     public interface CalendarRead : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to write to the device calendar data.
+    /// 表示写入设备日历数据的权限
     /// </summary>
     public interface CalendarWrite : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device camera.
+    /// 表示访问设备摄像头的权限
     /// </summary>
     public interface Camera : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to read the device contacts information.
+    /// 表示读取设备联系人信息的权限
     /// </summary>
     public interface ContactsRead : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to write to the device contacts data.
+    /// 表示写入设备联系人数据的权限
     /// </summary>
     public interface ContactsWrite : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device flashlight.
+    /// 表示访问设备手电筒的权限
     /// </summary>
     public interface Flashlight : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to launch other apps on the device.
+    /// 表示在设备上启动其他应用程序的权限
     /// </summary>
     public interface LaunchApp : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device location, only when the app is in use.
+    /// 表示仅当应用程序正在使用时访问设备位置的权限
     /// </summary>
     public interface LocationWhenInUse : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device location, always.
+    /// 表示访问设备位置的权限，始终
     /// </summary>
     public interface LocationAlways : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device maps application.
+    /// 表示访问设备映射应用程序的权限
     /// </summary>
     public interface Maps : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access media from the device gallery.
+    /// 表示从设备库访问媒体的权限
     /// </summary>
     public interface Media : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device microphone.
+    /// 表示访问设备麦克风的权限
     /// </summary>
     public interface Microphone : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access nearby WiFi devices.
+    /// 表示访问附近 WiFi 设备的权限
     /// </summary>
     public interface NearbyWifiDevices : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device network state information.
+    /// 表示访问设备网络状态信息的权限
     /// </summary>
     public interface NetworkState : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device phone data.
+    /// 表示访问设备电话数据的权限
     /// </summary>
     public interface Phone : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access photos from the device gallery.
+    /// 表示访问设备库中照片的权限
     /// </summary>
     public interface Photos : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to add photos (not read) to the device gallery.
+    /// 表示向设备库添加照片（非读取）的权限
     /// </summary>
     public interface PhotosAddOnly : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device reminders data.
+    /// 表示访问设备提醒数据的权限
     /// </summary>
     public interface Reminders : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device sensors.
+    /// 表示访问设备传感器的权限
     /// </summary>
     public interface Sensors : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device SMS data.
+    /// 表示访问设备 SMS 数据的权限
     /// </summary>
     public interface Sms : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device speech capabilities.
+    /// 表示访问设备语音功能的权限
     /// </summary>
     public interface Speech : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to read the device storage.
+    /// 表示读取设备存储的权限
     /// </summary>
     public interface StorageRead : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to write to the device storage.
+    /// 表示对设备存储的写入权限
     /// </summary>
     public interface StorageWrite : IBasePermission { }
 
     /// <summary>
-    /// Represents permission to access the device vibration motor.
+    /// 表示访问设备振动电机的权限
     /// </summary>
     public interface Vibrate : IBasePermission { }
 

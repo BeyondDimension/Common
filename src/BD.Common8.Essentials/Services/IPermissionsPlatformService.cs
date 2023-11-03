@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IPermissionsPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IPermissionsPlatformService"/>  的实例
+    /// 获取 <see cref="IPermissionsPlatformService"/> 的实例
     /// </summary>
     static IPermissionsPlatformService? Instance => Ioc.Get_Nullable<IPermissionsPlatformService>();
 

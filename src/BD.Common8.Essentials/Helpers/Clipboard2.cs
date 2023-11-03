@@ -1,18 +1,18 @@
 namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
-/// Provides a way to work with text on the device clipboard.
+/// 提供使用设备剪贴板的方法
 /// <para>https://docs.microsoft.com/zh-cn/xamarin/essentials/clipboard</para>
 /// <para>https://github.com/xamarin/Essentials/blob/main/Xamarin.Essentials/Clipboard/Clipboard.shared.cs</para>
 /// </summary>
 public static class Clipboard2
 {
     /// <summary>
-    /// Sets the contents of the clipboard to be the specified text.
+    /// 将剪贴板的内容设置为指定的文本
     /// </summary>
-    /// <param name="text">The text to put on the clipboard.</param>
-    /// <returns>A <see cref="ValueTask"/> object with the current status of the asynchronous operation.</returns>
-    /// <remarks>This method returns immediately and does not guarentee that the text is on the clipboard by the time this method returns.</remarks>
+    /// <param name="text">要放在剪贴板上的文本</param>
+    /// <returns><see cref="ValueTask"/> 具有异步操作当前状态的对象</returns>
+    /// <remarks>此方法立即返回，并且在返回时不保证文本已在剪贴板上</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async ValueTask SetTextAsync(string? text)
     {
@@ -24,17 +24,17 @@ public static class Clipboard2
     }
 
     /// <summary>
-    /// Sets the contents of the clipboard to be the specified text.
+    /// 将剪贴板的内容设置为指定的文本
     /// </summary>
-    /// <param name="text">The text to put on the clipboard.</param>
-    /// <remarks>This method returns immediately and does not guarentee that the text is on the clipboard by the time this method returns.</remarks>
+    /// <param name="text">要放在剪贴板上的文本</param>
+    /// <remarks>此方法会立即返回，并且不会保证此方法返回时文本已在剪贴板上</remarks>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async void SetText(string? text) => await SetTextAsync(text);
 
     /// <summary>
-    /// Returns any text that is on the clipboard.
+    /// 返回剪贴板上的任何文本
     /// </summary>
-    /// <returns>Text content that is on the clipboard, or <see cref="string.Empty"/> if there is none.</returns>
+    /// <returns>返回剪贴板上的文本内容，如果没有则返回 <see cref="string.Empty"/></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async ValueTask<string> GetTextAsync()
     {
@@ -69,7 +69,7 @@ public static class Clipboard2
 #endif
 
     /// <summary>
-    /// Gets a value indicating whether there is any text on the clipboard.
+    /// 获取一个值，该值指示剪贴板上是否有任何文本
     /// </summary>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -84,7 +84,7 @@ public static class Clipboard2
     }
 
     /// <summary>
-    /// Occurs when the clipboard content changes.
+    /// 剪贴板内容更改时发生
     /// </summary>
     public static event EventHandler<EventArgs>? ClipboardContentChanged
     {

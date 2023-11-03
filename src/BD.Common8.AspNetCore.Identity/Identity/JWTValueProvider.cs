@@ -140,7 +140,7 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
     }
 
     /// <summary>
-    /// 将 刷新 Token 添加或更新到数据库中，并返回 JwtId，这将触发
+    /// 将刷新 Token 添加或更新到数据库中，并返回 JwtId，这将触发
     /// </summary>
     /// <param name="userId"></param>
     /// <param name="refresh_token"></param>

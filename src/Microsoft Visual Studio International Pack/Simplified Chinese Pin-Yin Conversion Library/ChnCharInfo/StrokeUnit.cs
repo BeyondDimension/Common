@@ -7,14 +7,31 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供成员变量和方法来处理字符笔画单元
+/// </summary>
 sealed class StrokeUnit
 {
+    /// <summary>
+    /// 笔画的数量
+    /// </summary>
     internal byte StrokeNumber;
+
+    /// <summary>
+    /// 字符的数量
+    /// </summary>
     internal short CharCount;
+
+    /// <summary>
+    /// 存储字符数组的集合
+    /// </summary>
     internal char[] CharList = null!;
 
+    /// <summary>
+    /// 从 <see cref="BinaryReader"/> 对象中反序列化 <see cref="StrokeUnit"/> 对象
+    /// </summary>
+    /// <param name="binaryReader"></param>
+    /// <returns></returns>
     internal static StrokeUnit Deserialize(BinaryReader binaryReader)
     {
         StrokeUnit strokeUnit = new()
@@ -28,6 +45,10 @@ sealed class StrokeUnit
         return strokeUnit;
     }
 
+    /// <summary>
+    /// 将 <see cref="StrokeUnit"/> 对象序列化到 <see cref="BinaryWriter"/> 对象中
+    /// </summary>
+    /// <param name="binaryWriter"></param>
     internal void Serialize(BinaryWriter binaryWriter)
     {
         if (CharCount == 0)

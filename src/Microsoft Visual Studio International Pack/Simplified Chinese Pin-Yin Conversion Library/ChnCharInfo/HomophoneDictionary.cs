@@ -7,17 +7,44 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 同音词字典
+/// </summary>
 sealed class HomophoneDictionary
 {
+    /// <summary>
+    /// 字典长度
+    /// </summary>
     internal int Length;
+
+    /// <summary>
+    /// 偏移量
+    /// </summary>
     internal short Offset;
+
+    /// <summary>
+    /// 同音词单元数量
+    /// </summary>
     internal short Count;
+
+    /// <summary>
+    /// 保留字段
+    /// </summary>
     internal readonly byte[] Reserved = new byte[8];
+
+    /// <summary>
+    /// 同音词单元表
+    /// </summary>
     internal List<HomophoneUnit> HomophoneUnitTable = null!;
+
+    /// <summary>
+    /// 结束标记
+    /// </summary>
     internal readonly short EndMark = short.MaxValue;
 
+    /// <summary>
+    /// 将 <see cref="HomophoneDictionary"/> 序列化为 <see cref="BinaryWriter"/> 对象
+    /// </summary>
     internal void Serialize(BinaryWriter binaryWriter)
     {
         binaryWriter.Write(Length);
@@ -29,6 +56,9 @@ sealed class HomophoneDictionary
         binaryWriter.Write(EndMark);
     }
 
+    /// <summary>
+    /// 从 <see cref="BinaryReader"/> 对象中反序列化 <see cref="HomophoneDictionary"/> 对象
+    /// </summary>
     internal static HomophoneDictionary Deserialize(BinaryReader binaryReader)
     {
         HomophoneDictionary homophoneDictionary = new HomophoneDictionary();
@@ -44,8 +74,16 @@ sealed class HomophoneDictionary
         return homophoneDictionary;
     }
 
+    /// <summary>
+    /// 通过索引获取指定位置的同音词单元
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     internal HomophoneUnit GetHomophoneUnit(int index) => index >= 0 && index < Count ? HomophoneUnitTable[index] : throw new ArgumentOutOfRangeException(nameof(index), AssemblyResource.INDEX_OUT_OF_RANGE);
 
+    /// <summary>
+    /// 通过拼音获取对应的同音词单元
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     internal HomophoneUnit GetHomophoneUnit(
       PinyinDictionary pinyinDictionary,
       string pinyin)

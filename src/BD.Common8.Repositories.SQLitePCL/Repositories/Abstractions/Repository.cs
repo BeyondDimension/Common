@@ -132,7 +132,7 @@ public abstract class Repository : IRepository
     /// </summary>
     /// <typeparam name="T">返回类型</typeparam>
     /// <param name="delegate">要执行的异步任务</param>
-    /// <param name="retryCount">重试次数，默认为 <see cref="DefaultRetryCount"/> </param>
+    /// <param name="retryCount">重试次数，默认为 <see cref="DefaultRetryCount"/></param>
     /// <param name="cancellationToken">取消令牌</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected static Task<T> AttemptAndRetry<T>(

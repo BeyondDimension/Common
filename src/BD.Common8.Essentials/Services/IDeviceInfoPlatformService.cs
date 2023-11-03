@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IDeviceInfoPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IDeviceInfoPlatformService"/>实例
+    /// 获取 <see cref="IDeviceInfoPlatformService"/> 实例
     /// </summary>
     static IDeviceInfoPlatformService? Interface => Ioc.Get_Nullable<IDeviceInfoPlatformService>();
 

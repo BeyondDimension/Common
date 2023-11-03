@@ -1,7 +1,5 @@
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 提供网络连接相关的辅助方法
 /// </summary>

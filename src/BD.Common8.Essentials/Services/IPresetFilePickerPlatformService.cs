@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IPresetFilePickerPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IPresetFilePickerPlatformService"/>  的实例
+    /// 获取 <see cref="IPresetFilePickerPlatformService"/> 的实例
     /// </summary>
     static IPresetFilePickerPlatformService? Instance => Ioc.Get_Nullable<IPresetFilePickerPlatformService>();
 

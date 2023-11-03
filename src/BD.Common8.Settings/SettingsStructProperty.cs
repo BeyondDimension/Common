@@ -1,7 +1,5 @@
 namespace BD.Common8.Settings;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 值类型的设置项属性
 /// </summary>
@@ -15,6 +13,9 @@ public class SettingsStructProperty<TValue, [DynamicallyAccessedMembers(Dynamica
     SettingsStructPropertyBase<TValue, TSettings>(@default, autoSave, propertyName)
     where TValue : struct
 {
+    /// <summary>
+    /// 获取或设置属性的值
+    /// </summary>
     public TValue Value
     {
         get

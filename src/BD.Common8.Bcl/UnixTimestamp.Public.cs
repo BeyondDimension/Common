@@ -8,7 +8,7 @@ public static partial class UnixTimestamp
     public const long UnixEpochTicks = 621355968000000000;
 
     /// <summary>
-    /// 13位(毫秒)时间戳最大值
+    /// 13位 (毫秒)时间戳最大值
     /// </summary>
     public const long TimestampMillisecondsMaxValue = 253402300799999;
 

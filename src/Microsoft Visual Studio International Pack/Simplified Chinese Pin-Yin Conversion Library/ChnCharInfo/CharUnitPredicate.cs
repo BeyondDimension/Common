@@ -7,13 +7,24 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 字符单元
+/// </summary>
 sealed class CharUnitPredicate
 {
+    /// <summary>
+    /// 存储期望匹配的字符
+    /// </summary>
     readonly char ExpectedChar;
 
+    /// <summary>
+    /// 初始化 <see cref="CharUnitPredicate"/> 实例
+    /// </summary>
+    /// <param name="ch"></param>
     internal CharUnitPredicate(char ch) => ExpectedChar = ch;
 
+    /// <summary>
+    /// 用于比较给定的字符单元与期望字符是否一致
+    /// </summary>
     internal bool Match(CharUnit charUnit) => charUnit.Char == ExpectedChar;
 }

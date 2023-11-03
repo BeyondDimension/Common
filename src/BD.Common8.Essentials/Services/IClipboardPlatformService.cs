@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IClipboardPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IClipboardPlatformService"/> 的实例
+    /// 获取 <see cref="IClipboardPlatformService"/> 实例
     /// </summary>
     static IClipboardPlatformService? Instance => Ioc.Get_Nullable<IClipboardPlatformService>();
 

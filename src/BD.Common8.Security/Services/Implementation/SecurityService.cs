@@ -86,7 +86,7 @@ sealed class SecurityService : ISecurityService
     }
 
     /// <summary>
-    /// 将一个字节数组剔除前面4个字节
+    /// 将一个字节数组剔除前面 4 个字节
     /// </summary>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

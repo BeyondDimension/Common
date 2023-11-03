@@ -9,7 +9,7 @@ public interface IJWTValueProvider
     /// 生成 JWT 令牌
     /// </summary>
     Task<JWTEntity?> GenerateTokenAsync(Guid userId, IEnumerable<string>? roles, Action<List<Claim>>? aciton, CancellationToken cancellationToken = default);
-    
+
     /// <summary>
     /// 密钥最小长度
     /// </summary>

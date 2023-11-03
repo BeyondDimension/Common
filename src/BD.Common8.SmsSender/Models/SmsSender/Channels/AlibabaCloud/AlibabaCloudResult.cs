@@ -15,6 +15,6 @@ public class AlibabaCloudResult<T> : JsonModel<T> where T : AlibabaCloudResult<T
     /// <summary>
     /// 判断结果是否为 "OK"
     /// </summary>
-    /// <returns>如果结果为"OK"，返回 <see langword="true"/> ；否则返回 <see langword="false"/> </returns>
+    /// <returns>如果结果为"OK"，返回 <see langword="true"/> ；否则返回 <see langword="false"/></returns>
     public virtual bool IsOK() => Code?.Equals("OK", StringComparison.OrdinalIgnoreCase) ?? false;
 }

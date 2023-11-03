@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IBrowserPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IBrowserPlatformService"/>  的实例
+    /// 获取 <see cref="IBrowserPlatformService"/> 实例
     /// </summary>
     static IBrowserPlatformService? Instance => Ioc.Get_Nullable<IBrowserPlatformService>();
 

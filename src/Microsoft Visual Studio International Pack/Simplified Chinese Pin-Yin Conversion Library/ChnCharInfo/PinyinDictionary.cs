@@ -7,17 +7,44 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 拼音词典
+/// </summary>
 sealed class PinyinDictionary
 {
+    /// <summary>
+    /// 长度
+    /// </summary>
     internal short Length;
+
+    /// <summary>
+    /// 数量
+    /// </summary>
     internal short Count;
+
+    /// <summary>
+    ///  偏移量
+    /// </summary>
     internal short Offset;
+
+    /// <summary>
+    /// 保留数组
+    /// </summary>
     internal readonly byte[] Reserved = new byte[8];
+
+    /// <summary>
+    /// 拼音单元表
+    /// </summary>
     internal List<PinyinUnit> PinyinUnitTable = null!;
+
+    /// <summary>
+    /// 结束标记
+    /// </summary>
     internal readonly short EndMark = short.MaxValue;
 
+    /// <summary>
+    /// 将 <see cref="PinyinDictionary"/> 序列化为 <see cref="BinaryWriter"/> 对象
+    /// </summary>
     internal void Serialize(BinaryWriter binaryWriter)
     {
         binaryWriter.Write(Length);
@@ -29,6 +56,11 @@ sealed class PinyinDictionary
         binaryWriter.Write(EndMark);
     }
 
+    /// <summary>
+    /// 从 <see cref="BinaryReader"/> 对象中反序列化 <see cref="PinyinDictionary"/> 对象
+    /// </summary>
+    /// <param name="binaryReader"></param>
+    /// <returns></returns>
     internal static PinyinDictionary Deserialize(BinaryReader binaryReader)
     {
         PinyinDictionary pinyinDictionary = new PinyinDictionary();
@@ -44,9 +76,18 @@ sealed class PinyinDictionary
         return pinyinDictionary;
     }
 
+    /// <summary>
+    /// 根据指定的拼音查找对应的拼音单元在拼音单元表中的索引
+    /// </summary>
     internal int GetPinYinUnitIndex(string pinyin) => PinyinUnitTable.FindIndex(new PinyinUnitPredicate(pinyin).Match);
 
+    /// <summary>
+    /// 根据指定的拼音获取对应的拼音单元
+    /// </summary>
     internal PinyinUnit GetPinYinUnit(string pinyin) => PinyinUnitTable.Find(new PinyinUnitPredicate(pinyin).Match)!;
 
+    /// <summary>
+    /// 根据索引获取拼音单元
+    /// </summary>    /// <exception cref="ArgumentOutOfRangeException"></exception>
     internal PinyinUnit GetPinYinUnitByIndex(int index) => index >= 0 && index < Count ? PinyinUnitTable[index] : throw new ArgumentOutOfRangeException(nameof(index), AssemblyResource.INDEX_OUT_OF_RANGE);
 }

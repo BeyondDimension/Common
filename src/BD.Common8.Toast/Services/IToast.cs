@@ -1,7 +1,7 @@
 namespace BD.Common8.Toast.Services;
 
 /// <summary>
-/// Toast通知的接口
+/// Toast 通知的接口
 /// </summary>
 interface IToast
 {

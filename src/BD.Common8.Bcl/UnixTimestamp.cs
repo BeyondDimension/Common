@@ -3,7 +3,7 @@ namespace System;
 public static partial class UnixTimestamp
 {
     /// <summary>
-    /// 计算给定 <see cref="DateTime"/> 相对于 <see cref="UnixEpochTicks"/> 的时间差
+    /// 计算给定 <see cref="DateTime"/> 相对于 <see cref="UnixEpochTicks"/> (UTC Time 1970/1/1)的时间差
     /// </summary>
     /// <returns>转换后的 Unix 时间戳值</returns>
     static double ToUnixTimestamp(this DateTime dt, UnixTimestampType unixTimestampType)

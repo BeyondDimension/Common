@@ -5,7 +5,7 @@ using WinFormsApplication = System.Windows.Forms.Application;
 namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
-/// 提供了访问设备文件夹位置的简便方法。
+/// 提供了访问设备文件夹位置的简便方法
 /// </summary>
 public sealed partial class FileSystem2 : IOPath.FileSystemBase
 {

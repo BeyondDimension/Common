@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IConnectivityPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IConnectivityPlatformService"/>实例
+    /// 获取 <see cref="IConnectivityPlatformService"/> 实例
     /// </summary>
     static IConnectivityPlatformService? Interface => Ioc.Get_Nullable<IConnectivityPlatformService>();
 

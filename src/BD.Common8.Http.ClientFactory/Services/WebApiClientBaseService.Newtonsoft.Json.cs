@@ -9,7 +9,7 @@ partial class WebApiClientBaseService
     protected NewtonsoftJsonSerializer NewtonsoftJsonSerializer => newtonsoftJsonSerializer ??= new();
 
     /// <summary>
-    /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/>），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
+    /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="inputValue"></param>
@@ -40,7 +40,7 @@ partial class WebApiClientBaseService
     }
 
     /// <summary>
-    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/>），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="content"></param>
