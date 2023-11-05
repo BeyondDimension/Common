@@ -7,12 +7,19 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 拼音单元
+/// </summary>
 sealed class PinyinUnit
 {
+    /// <summary>
+    /// 拼音字符串
+    /// </summary>
     internal string Pinyin = null!;
 
+    /// <summary>
+    /// 将 <see cref="BinaryReader"/> 反序列化为 <see cref="PinyinUnit"/> 对象
+    /// </summary>
     internal static PinyinUnit Deserialize(BinaryReader binaryReader)
     {
         PinyinUnit pinyinUnit = new PinyinUnit();
@@ -23,6 +30,9 @@ sealed class PinyinUnit
         return pinyinUnit;
     }
 
+    /// <summary>
+    /// 将 <see cref="PinyinUnit"/> 序列化为 <see cref="BinaryWriter"/> 对象
+    /// </summary>
     internal void Serialize(BinaryWriter binaryWriter)
     {
         byte[] numArray = new byte[7];

@@ -1,10 +1,11 @@
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Avalonia;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public static partial class ApplicationExtensions
 {
+    /// <summary>
+    /// 获取主窗口、活动窗口或主视图
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TopLevel? GetMainWindowOrActiveWindowOrMainView(this AvaApplication? avaloniaApp)
     {

@@ -1,18 +1,28 @@
 namespace BD.Common8.Essentials.Models.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <inheritdoc cref="IFileBase"/>
 public abstract class FileBase : IFileBase
 {
+    /// <summary>
+    /// 根据文件路径实例化
+    /// </summary>
     public FileBase(string fullPath)
     {
         FullPath = fullPath;
     }
 
+    /// <summary>
+    /// 根据文件路径和内容类型实例化
+    /// </summary>
     public FileBase(string fullPath, string contentType) : this(fullPath)
     {
         ContentType = contentType;
     }
 
+    /// <summary>
+    /// 根据文件基类实例化
+    /// </summary>
+    /// <param name="file"></param>
     public FileBase(FileBase file)
     {
         FullPath = file.FullPath;

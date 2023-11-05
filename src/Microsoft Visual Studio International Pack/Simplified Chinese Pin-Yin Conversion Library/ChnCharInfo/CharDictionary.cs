@@ -7,17 +7,44 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 字符字典
+/// </summary>
 sealed class CharDictionary
 {
+    /// <summary>
+    /// 字典长度
+    /// </summary>
     internal int Length;
+
+    /// <summary>
+    /// 字符单元数量
+    /// </summary>
     internal int Count;
+
+    /// <summary>
+    /// 偏移量
+    /// </summary>
     internal short Offset;
+
+    /// <summary>
+    /// 保留的字节数组
+    /// </summary>
     internal readonly byte[] Reserved = new byte[24];
+
+    /// <summary>
+    /// 字符单元表
+    /// </summary>
     internal List<CharUnit> CharUnitTable = null!;
+
+    /// <summary>
+    /// 结束标记
+    /// </summary>
     internal readonly short EndMark = short.MaxValue;
 
+    /// <summary>
+    /// 将 <see cref="CharDictionary"/> 序列化为 <see cref="BinaryWriter"/> 对象
+    /// </summary>
     internal void Serialize(BinaryWriter binaryWriter)
     {
         binaryWriter.Write(Length);
@@ -29,6 +56,9 @@ sealed class CharDictionary
         binaryWriter.Write(EndMark);
     }
 
+    /// <summary>
+    /// 从 <see cref="BinaryReader"/> 对象中反序列化 <see cref="CharDictionary"/> 对象
+    /// </summary>
     internal static CharDictionary Deserialize(BinaryReader binaryReader)
     {
         CharDictionary charDictionary = new();
@@ -44,7 +74,13 @@ sealed class CharDictionary
         return charDictionary;
     }
 
+    /// <summary>
+    /// 根据索引获取字符单元
+    /// </summary>
     internal CharUnit GetCharUnit(int index) => index >= 0 && index < Count ? CharUnitTable[index] : throw new ArgumentOutOfRangeException(nameof(index), AssemblyResource.INDEX_OUT_OF_RANGE);
 
+    /// <summary>
+    /// 根据字符获取字符单元
+    /// </summary>
     internal CharUnit GetCharUnit(char ch) => CharUnitTable.Find(new CharUnitPredicate(ch).Match)!;
 }

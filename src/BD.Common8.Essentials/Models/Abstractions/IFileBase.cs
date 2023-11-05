@@ -1,6 +1,8 @@
 namespace BD.Common8.Essentials.Models.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <summary>
+/// 提供文件操作的基本属性和方法
+/// </summary>
 public interface IFileBase
 {
     /// <summary>
@@ -19,7 +21,7 @@ public interface IFileBase
     string FileName { get; set; }
 
     /// <summary>
-    /// 异步打开文件并返回文件内容的流
+    /// 打开文件并以异步方式读取文件流
     /// </summary>
     Task<Stream> OpenReadAsync();
 }

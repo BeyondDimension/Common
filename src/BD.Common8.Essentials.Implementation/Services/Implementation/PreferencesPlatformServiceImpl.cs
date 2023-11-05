@@ -14,14 +14,25 @@ partial class PreferencesPlatformServiceImpl
         conn = Repository.GetDbConnectionSync<Entity>();
     }
 
+    /// <summary>
+    /// 根据给定的键返回对应的 Id 值，并附加 "_K" 后缀
+    /// </summary>
     internal static string GetId(string key) => $"{key}_K";
 
+    /// <summary>
+    /// 根据给定的键和共享名称，返回对应的 Id 值。
+    /// 如果共享名称为空，则调用 <see cref="GetId(string)"/> 方法获取 Id 值
+    /// 如果共享名称不为空，则在键和共享名称之间用 "_" 连接，附加 "_S" 后缀
+    /// </summary>
     internal static string GetId(string key, string? sharedName)
     {
         if (sharedName == null) return GetId(key);
         return $"{key}_{sharedName}_S";
     }
 
+    /// <summary>
+    /// 尝试执行指定的委托方法，并在遇到异常时进行重试
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static T AttemptAndRetry<T>(Func<T> @delegate,
         int retryCount = Repository.DefaultRetryCount)
@@ -29,6 +40,9 @@ partial class PreferencesPlatformServiceImpl
         .WaitAndRetry(retryCount, Repository.PollyRetryAttempt)
         .Execute(@delegate);
 
+    /// <summary>
+    /// 清除指定共享名称的平台数据
+    /// </summary>
     public void PlatformClear(string? sharedName)
     {
         AttemptAndRetry(() =>
@@ -38,6 +52,9 @@ partial class PreferencesPlatformServiceImpl
         });
     }
 
+    /// <summary>
+    /// 检查指定键和共享名称的平台数据是否存在
+    /// </summary>
     public bool PlatformContainsKey(string key, string? sharedName)
     {
         var id = GetId(key, sharedName);
@@ -51,6 +68,10 @@ partial class PreferencesPlatformServiceImpl
         });
     }
 
+    /// <summary>
+    /// 获取指定键和共享名称的平台数据，如果数据不存在，则返回 defaultValue 参数指定的默认值
+    /// 数据的类型由泛型参数 T 指定，该类型必须实现 IConvertible 接口
+    /// </summary>
     public T? PlatformGet<T>(string key, T? defaultValue, string? sharedName) where T : notnull, IConvertible
     {
         var id = GetId(key, sharedName);
@@ -67,6 +88,9 @@ partial class PreferencesPlatformServiceImpl
         });
     }
 
+    /// <summary>
+    /// 移除指定键和共享名称的平台数据
+    /// </summary>
     public void PlatformRemove(string key, string? sharedName)
     {
         var id = GetId(key, sharedName);
@@ -77,6 +101,9 @@ partial class PreferencesPlatformServiceImpl
         });
     }
 
+    /// <summary>
+    /// 根据指定的键名和共享名称在数据库中设置平台首选项的值
+    /// </summary>
     public void PlatformSet<T>(string key, T? value, string? sharedName) where T : notnull, IConvertible
     {
         if (value == null)
@@ -99,6 +126,9 @@ partial class PreferencesPlatformServiceImpl
         }
     }
 
+    /// <summary>
+    /// 删除符合指定共享名称条件的记录
+    /// </summary>
     const string Sql_Delete_Where_SharedName_Equals =
         $"DELETE FROM \"{TableName}\" WHERE \"{ColumnName_SharedName}\" = ?";
 

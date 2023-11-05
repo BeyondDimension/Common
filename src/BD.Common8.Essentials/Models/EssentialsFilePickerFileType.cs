@@ -1,6 +1,8 @@
 namespace BD.Common8.Essentials.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <summary>
+/// 提供获取文件类型信息的方法
+/// </summary>
 public sealed class EssentialsFilePickerFileType : IFilePickerFileType
 {
     /// <summary>
@@ -61,12 +63,12 @@ public sealed class EssentialsFilePickerFileType : IFilePickerFileType
         }
 
         /// <summary>
-        /// 获取文件类型名称
+        /// 获取文件名称
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// 文件匹配模式的集合
+        /// 文件模式的集合
         /// </summary>
         public IReadOnlyList<string>? Patterns { get; init; }
 

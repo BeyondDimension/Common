@@ -1,7 +1,5 @@
 namespace BD.Common8.Ipc.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// Ipc 应用程序连接字符串
 /// </summary>
@@ -10,10 +8,19 @@ public readonly struct IpcAppConnectionString
     /// <inheritdoc cref="IpcAppConnectionStringType"/>
     public readonly IpcAppConnectionStringType Type { get; init; }
 
+    /// <summary>
+    /// 连接字符串中的内容
+    /// </summary>
     public readonly string? StringValue { get; init; }
 
+    /// <summary>
+    /// 连接字符串中的内容
+    /// </summary>
     public readonly int Int32Value { get; init; }
 
+    /// <summary>
+    /// 将连接字符串写入指定的流中
+    /// </summary>
     public void Write(Stream stream)
     {
         var connectionStringType = Type;
@@ -34,6 +41,9 @@ public readonly struct IpcAppConnectionString
         }
     }
 
+    /// <summary>
+    /// 将连接字符串转换为字节数组形式
+    /// </summary>
     public byte[] ToByteArray()
     {
         using var stream = new MemoryStream();
@@ -42,6 +52,10 @@ public readonly struct IpcAppConnectionString
         return buffer;
     }
 
+    /// <summary>
+    /// 根据连接字符串类型的不同返回不同的字符串表达形式
+    /// </summary>
+    /// <returns></returns>
     public override string? ToString() => Type switch
     {
         IpcAppConnectionStringType.Https => $"https://localhost:{Int32Value}",

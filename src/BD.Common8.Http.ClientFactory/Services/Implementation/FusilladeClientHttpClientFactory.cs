@@ -4,8 +4,6 @@ using IClientHttpClientFactory = System.Net.Http.Client.IClientHttpClientFactory
 
 namespace BD.Common8.Http.ClientFactory.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 使用 Fusillade 实现的 <see cref="IClientHttpClientFactory"/>
 /// <para>https://github.com/dotnet/runtime/blob/v7.0.3/src/libraries/Microsoft.Extensions.Http/src/DefaultHttpClientFactory.cs</para>
@@ -13,14 +11,29 @@ namespace BD.Common8.Http.ClientFactory.Services.Implementation;
 public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDisposable
 {
     bool disposedValue;
+
     readonly HttpMessageHandler handler;
+
     readonly ConcurrentDictionary<(string, HttpHandlerCategory), HttpClient> activeClients = new();
+
+    /// <summary>
+    /// 默认的 <see cref="HttpMessageHandler"/> 实例的字典
+    /// /// </summary>
     internal static readonly Dictionary<string, DefaultHttpClientBuilder> Builders = [];
 
+    /// <summary>
+    /// 初始化 <see cref="FusilladeClientHttpClientFactory"/> 的实例
+    /// </summary>
+    /// <param name="registerConstant">是否将 <see cref="HttpMessageHandler"/> 注册到服务定位器</param>
     public FusilladeClientHttpClientFactory(bool registerConstant = true) : this(CreateHandler(), registerConstant)
     {
     }
 
+    /// <summary>
+    /// 初始化 <see cref="FusilladeClientHttpClientFactory"/> 的实例
+    /// </summary>
+    /// <param name="handler">自定义的 <see cref="HttpMessageHandler"/> 实例</param>
+    /// <param name="registerConstant">是否将 <see cref="HttpMessageHandler"/> 注册到服务定位器</param>
     public FusilladeClientHttpClientFactory(HttpMessageHandler handler, bool registerConstant = true)
     {
         this.handler = handler;
@@ -28,6 +41,9 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
             Locator.CurrentMutable.RegisterConstant(handler, typeof(HttpMessageHandler));
     }
 
+    /// <summary>
+    /// 创建默认的处理程序
+    /// </summary>
     public static HttpMessageHandler CreateHandler()
     {
         HttpClientHandler handler = new()
@@ -38,6 +54,9 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
         return handler;
     }
 
+    /// <summary>
+    /// 创建一个 <see cref="HttpClient"/> 实例并设置默认超时时间
+    /// </summary>
     protected virtual HttpClient CreateClient(HttpMessageHandler handler)
     {
         var client = new HttpClient(handler);
@@ -51,6 +70,9 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
         return client;
     }
 
+    /// <summary>
+    /// 创建基于给定名称和分类的 HttpClient 实例
+    /// </summary>
     HttpClient IClientHttpClientFactory.CreateClient(string name, HttpHandlerCategory category)
     {
         if (!category.IsDefined())
@@ -151,6 +173,7 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
         }
     }
 
+    /// <inheritdoc/>
     public void Dispose()
     {
         // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
@@ -158,6 +181,9 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
         GC.SuppressFinalize(this);
     }
 
+    /// <summary>
+    /// 将 <see cref="FusilladeClientHttpClientFactory"/> 添加到服务集合中
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static IServiceCollection AddFusilladeHttpClientFactory(
         IServiceCollection services,

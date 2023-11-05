@@ -1,11 +1,19 @@
 namespace System.Runtime.Serialization.Formatters;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// MemoryPack 格式器
+/// </summary>
 public sealed class MemoryPackFormatters : IMemoryPackFormatterRegister
 {
+    /// <summary>
+    /// 注册完成时的事件委托
+    /// </summary>
     public static Action<Type>? OnRegister { get; set; }
 
+    /// <summary>
+    /// 注册指定类型的格式化器
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void Register<T>(MemoryPackFormatter<T> formatter)
     {
@@ -13,6 +21,9 @@ public sealed class MemoryPackFormatters : IMemoryPackFormatterRegister
         OnRegister?.Invoke(typeof(T));
     }
 
+    /// <summary>
+    /// 实现了 <see cref="IMemoryPackFormatterRegister"/> 接口，用于注册格式化器
+    /// </summary>
     static void IMemoryPackFormatterRegister.RegisterFormatter()
     {
         Register(CookieFormatterAttribute.Formatter.Default);

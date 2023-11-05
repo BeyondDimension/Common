@@ -7,13 +7,24 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 同音词单元
+/// </summary>
 sealed class HomophoneUnit
 {
+    /// <summary>
+    /// 同音词的数量
+    /// </summary>
     internal short Count;
+
+    /// <summary>
+    /// 同音词列表
+    /// </summary>
     internal char[] HomophoneList = null!;
 
+    /// <summary>
+    /// 从 <see cref="BinaryReader"/> 对象中反序列化 <see cref="HomophoneUnit"/> 对象
+    /// </summary>
     internal static HomophoneUnit Deserialize(BinaryReader binaryReader)
     {
         HomophoneUnit homophoneUnit = new HomophoneUnit()
@@ -26,6 +37,9 @@ sealed class HomophoneUnit
         return homophoneUnit;
     }
 
+    /// <summary>
+    /// 将 <see cref="HomophoneUnit"/> 序列化为 <see cref="BinaryWriter"/> 对象
+    /// </summary>
     internal void Serialize(BinaryWriter binaryWriter)
     {
         binaryWriter.Write(Count);

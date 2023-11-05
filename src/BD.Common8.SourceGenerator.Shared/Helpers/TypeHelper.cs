@@ -1,12 +1,19 @@
 namespace BD.Common8.SourceGenerator.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供类型判断
+/// </summary>
 public static partial class TypeHelper
 {
+    /// <summary>
+    /// 判断指定的类型是否为枚举类型
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsEnum(this ITypeSymbol typeSymbol) => typeSymbol.TypeKind == TypeKind.Enum;
 
+    /// <summary>
+    /// 判断指定的类型是否为简单类型
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSimpleTypes(this ITypeSymbol typeSymbol)
     {

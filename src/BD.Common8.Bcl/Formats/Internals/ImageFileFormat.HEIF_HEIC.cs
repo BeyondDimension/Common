@@ -1,5 +1,3 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Formats.Internals;
 
 partial class ImageFileFormat
@@ -12,6 +10,9 @@ partial class ImageFileFormat
     /// </summary>
     public static class HEIF_HEIC
     {
+        /// <summary>
+        /// 图形交换格式 HEIF
+        /// </summary>
         public static class HEIF
         {
             /// <summary>
@@ -40,6 +41,9 @@ partial class ImageFileFormat
             }
         }
 
+        /// <summary>
+        /// 图形交换格式 HEIFSequence
+        /// </summary>
         public static class HEIFSequence
         {
             /// <summary>
@@ -63,6 +67,9 @@ partial class ImageFileFormat
             }
         }
 
+        /// <summary>
+        /// 图形交换格式 HEIC
+        /// </summary>
         public static class HEIC
         {
             /// <summary>
@@ -80,6 +87,9 @@ partial class ImageFileFormat
             /// </summary>
             public const string DefaultMIME = MediaTypeNames.HEIC;
 
+            /// <summary>
+            /// HEIC 文件的幻数
+            /// </summary>
             public static readonly byte?[]?[] MagicNumber;
 
             /// <summary>
@@ -100,6 +110,9 @@ partial class ImageFileFormat
             }
         }
 
+        /// <summary>
+        /// 图形交换格式 HEICSequence
+        /// </summary>
         public static class HEICSequence
         {
             /// <summary>
@@ -108,10 +121,13 @@ partial class ImageFileFormat
             public const ImageFormat Format = ImageFormat.HEICSequence;
 
             /// <summary>
-            /// 默认文件扩展名为  <see cref=" ImageFormat.HEICSequence"/>
+            /// 默认文件扩展名为 <see cref=" ImageFormat.HEICSequence"/>
             /// </summary>
             public const string DefaultMIME = MediaTypeNames.HEICSequence;
 
+            /// <summary>
+            /// HEICSequence 文件的幻数
+            /// </summary>
             public static readonly byte?[]?[] MagicNumber;
 
             /// <summary>

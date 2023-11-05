@@ -112,7 +112,7 @@ public static partial class SystemWebExtensions
     }
 
     /// <summary>
-    /// 用于生成包含查询字符串的 URL 
+    /// 用于生成包含查询字符串的 URL
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string? Action(this IUrlHelper helper, string action, QueryString values)

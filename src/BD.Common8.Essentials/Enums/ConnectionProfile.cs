@@ -1,22 +1,22 @@
 namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
-/// Describes the type of connection the device is using.
+/// 描述设备正在使用的连接类型
 /// </summary>
 public enum ConnectionProfile
 {
-    /// <summary>Other unknown type of connection.</summary>
+    /// <summary>其他未知类型的连接</summary>
     Unknown = 0,
 
-    /// <summary>The bluetooth data connection.</summary>
+    /// <summary>蓝牙数据连接</summary>
     Bluetooth = 1,
 
-    /// <summary>The mobile/cellular data connection.</summary>
+    /// <summary>移动/蜂窝数据连接</summary>
     Cellular = 2,
 
-    /// <summary>The ethernet data connection.</summary>
+    /// <summary>以太网数据连接</summary>
     Ethernet = 3,
 
-    /// <summary>The Wi-Fi data connection.</summary>
+    /// <summary>Wi-Fi 数据连接</summary>
     WiFi = 4,
 }

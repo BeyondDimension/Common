@@ -138,7 +138,7 @@ public static partial class PhoneNumberHelper
     }
 
     /// <summary>
-    /// 中国大陆地区手机号码号段验证使用 黑名单(<see langword="true"/>) 或 白名单(<see langword="false"/>)
+    /// 中国大陆地区手机号码号段验证使用 黑名单( <see langword="true"/> ) 或 白名单( <see langword="false"/> )
     /// </summary>
     public static bool ChineseMainlandPhoneNumberSegmentVerifyUseBlacklistOrWhitelist { get; set; } = true;
 

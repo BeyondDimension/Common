@@ -1,5 +1,3 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Formats.Internals;
 
 partial class ImageFileFormat
@@ -31,7 +29,7 @@ partial class ImageFileFormat
         public static readonly string[] FileExtensions = [DefaultFileExtension, ".jpeg"];
 
         /// <summary>
-        /// 用于识别 JPG 文件的幻数
+        /// JPG 文件的幻数
         /// </summary>
         public static readonly byte[] MagicNumber;
 

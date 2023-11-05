@@ -87,7 +87,7 @@ public static partial class ArchitectureEnumExtensions
 #endif
 
     /// <summary>
-    /// 将 <see cref="Architecture"/>(CPU 架构) 转换为 <see cref="ArchitectureFlags"/>(CPU 架构多选)
+    /// 将 <see cref="Architecture"/> (CPU 架构)转换为 <see cref="ArchitectureFlags"/> (CPU 架构多选)
     /// </summary>
     /// <param name="architecture"></param>
     /// <param name="hasFlags"></param>

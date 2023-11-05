@@ -5,7 +5,7 @@ namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
 /// 提供与应用程序包文件操作相关的方法
-/// <para> https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/FileSystem/FileSystemUtils.uwp.cs </para>
+/// <para>https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/FileSystem/FileSystemUtils.uwp.cs</para>
 /// </summary>
 static partial class FileSystemUtils
 {

@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IEmailPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IEmailPlatformService"/>实例
+    /// 获取 <see cref="IEmailPlatformService"/> 实例
     /// </summary>
     static IEmailPlatformService? Instance => Ioc.Get_Nullable<IEmailPlatformService>();
 

@@ -7,90 +7,79 @@
 namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
-///     An enunmeration describing the priorities at which
-///     operations can be invoked via the Dispatcher.
-///     https://github.com/dotnet/wpf/blob/master/src/Microsoft.DotNet.Wpf/src/WindowsBase/System/Windows/Threading/DispatcherPriority.cs
+/// 描述了操作可以通过 Dispatcher 调用
+/// <para>https://github.com/dotnet/wpf/blob/master/src/Microsoft.DotNet.Wpf/src/WindowsBase/System/Windows/Threading/DispatcherPriority.cs</para>
 /// </summary>
 ///
 public enum ThreadingDispatcherPriority : sbyte
 {
     /// <summary>
-    ///     This is an invalid priority.
+    ///      这是无效的优先级
     /// </summary>
     Invalid = -1,
 
     /// <summary>
-    ///     Operations at this priority are not processed.
+    ///     不处理此优先级的操作
     /// </summary>
     Inactive = 0,
 
     /// <summary>
-    ///     Operations at this priority are processed when the system
-    ///     is idle.
+    ///     当系统空闲时，将处理此优先级的操作
     /// </summary>
     SystemIdle = 1,
 
     /// <summary>
-    /// Minimum possible priority
+    /// 最低可能优先级
     /// </summary>
     MinValue = 1,
 
     /// <summary>
-    ///     Operations at this priority are processed when the application
-    ///     is idle.
+    ///     当应用程序空闲时，将处理此优先级的操作
     /// </summary>
     ApplicationIdle,
 
     /// <summary>
-    ///     Operations at this priority are processed when the context
-    ///     is idle.
+    ///     上下文空闲时处理此优先级的操作
     /// </summary>
     ContextIdle,
 
     /// <summary>
-    ///     Operations at this priority are processed after all other
-    ///     non-idle operations are done.
+    ///     此优先级的操作在完成所有其他非空闲操作之后进行处理
     /// </summary>
     Background,
 
     /// <summary>
-    ///     Operations at this priority are processed at the same
-    ///     priority as input.
+    ///     此优先级的操作以与输入相同的优先级处理
     /// </summary>
     Input,
 
     /// <summary>
-    ///     Operations at this priority are processed when layout and render is
-    ///     done but just before items at input priority are serviced. Specifically
-    ///     this is used while firing the Loaded event
+    ///     当布局和渲染完成，但刚好在服务输入优先级的项目之前。明确地在激发Loaded事件时使用
     /// </summary>
     Loaded,
 
     /// <summary>
-    ///     Operations at this priority are processed at the same
-    ///     priority as rendering.
+    ///     同时处理此优先级的操作渲染时的优先级
     /// </summary>
     Render,
 
     /// <summary>
-    ///     Operations at this priority are processed at the same
-    ///     priority as data binding.
+    ///     同时处理此优先级的操作优先级作为数据绑定
     /// </summary>
     DataBind,
 
     /// <summary>
-    ///     Operations at this priority are processed at normal priority.
+    ///     此优先级的操作以正常优先级处理
     /// </summary>
     Normal,
 
     /// <summary>
-    ///     Operations at this priority are processed before other
-    ///     asynchronous operations.
+    ///     此优先级的操作在其他操作之前处理异步操作
     /// </summary>
     Send,
 
     /// <summary>
-    /// Maximum possible priority
+    ///     最大可能优先级
     /// </summary>
     MaxValue = Send,
 }

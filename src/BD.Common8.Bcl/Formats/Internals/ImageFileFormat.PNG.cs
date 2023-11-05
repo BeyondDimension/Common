@@ -1,11 +1,9 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Formats.Internals;
 
 partial class ImageFileFormat
 {
     /// <summary>
-    /// Portable Network Graphics
+    /// 可移植网络图形 PNG
     /// <para>https://en.wikipedia.org/wiki/Portable_Network_Graphics</para>
     /// </summary>
     public static class PNG
@@ -26,7 +24,7 @@ partial class ImageFileFormat
         public const string DefaultMIME = MediaTypeNames.PNG;
 
         /// <summary>
-        /// 用于识别 PNG 文件的幻数
+        /// PNG 文件的幻数
         /// </summary>
         public static readonly byte[] MagicNumber;
 

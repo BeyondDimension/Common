@@ -142,7 +142,7 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
     }
 
     /// <summary>
-    /// 将一个字节数组剔除前面4个字节
+    /// 将一个字节数组剔除前面 4 个字节
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>

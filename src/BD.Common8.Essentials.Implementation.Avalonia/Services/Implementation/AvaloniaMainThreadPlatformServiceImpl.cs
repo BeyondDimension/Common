@@ -1,9 +1,13 @@
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// Avalonia 主线程平台服务实现
+/// </summary>
 sealed class AvaloniaMainThreadPlatformServiceImpl : IMainThreadPlatformService
 {
+    /// <summary>
+    /// 判断当前平台是否为主线程
+    /// </summary>
     public bool PlatformIsMainThread
     {
         get
@@ -13,12 +17,18 @@ sealed class AvaloniaMainThreadPlatformServiceImpl : IMainThreadPlatformService
         }
     }
 
+    /// <summary>
+    /// 在主线程上开始执行指定的操作
+    /// </summary>
     public void PlatformBeginInvokeOnMainThread(Action action, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)
     {
         var priority_ = GetPriority(priority);
         Dispatcher.UIThread.Post(action, priority_);
     }
 
+    /// <summary>
+    /// 根据给定的优先级获取对应的 Avalonia 调度器优先级
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static DispatcherPriority GetPriority(ThreadingDispatcherPriority priority) => priority switch
     {

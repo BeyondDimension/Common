@@ -11,8 +11,6 @@ namespace Microsoft.Win32;
 
 #if !NETFRAMEWORK && WINDOWS
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public static partial class MessageBox
 {
     const uint DEFAULT_BUTTON1 = 0x00000000;
@@ -21,13 +19,33 @@ public static partial class MessageBox
 
     sealed partial class User32
     {
+        /// <summary>
+        /// 获取当前活动窗口的句柄
+        /// </summary>
         [LibraryImport(nameof(User32), SetLastError = true)]
         public static partial IntPtr GetActiveWindow();
 
+        /// <summary>
+        /// 显示带有指定文本、标题和按钮的消息框
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="text">消息框中显示的文本</param>
+        /// <param name="caption">消息框的标题</param>
+        /// <param name="options">指定要显示的按钮的选项</param>
         [LibraryImport(nameof(User32), EntryPoint = "MessageBoxW", StringMarshalling = StringMarshalling.Utf16)]
         public static partial MessageBoxResult MessageBox(IntPtr hWnd, string text, string caption, uint options);
     }
 
+    /// <summary>
+    /// 显示带有指定文本、标题、按钮、图标和行为的消息框，并且指定默认的用户响应
+    /// </summary>
+    /// <param name="messageBoxText">指定要在消息框中显示的文本</param>
+    /// <param name="caption">指定消息框的标题</param>
+    /// <param name="button">指定要在消息框中显示的按钮的类型</param>
+    /// <param name="icon">指定要在消息框中显示的图标的类型</param>
+    /// <param name="defaultResult">指定默认的用户响应</param>
+    /// <param name="options">指定其他行为选项</param>
+    /// <returns>用户对消息框的响应</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static MessageBoxResult Show(
             string messageBoxText,
@@ -37,6 +55,15 @@ public static partial class MessageBox
             MessageBoxResult defaultResult,
             MessageBoxOptions options) => ShowCore(IntPtr.Zero, messageBoxText, caption, button, icon, defaultResult, options);
 
+    /// <summary>
+    /// 显示带有指定文本、标题、按钮、图标的消息框，并且指定默认的用户响应结果
+    /// </summary>
+    /// <param name="messageBoxText">指定要在消息框中显示的文本</param>
+    /// <param name="caption">指定消息框的标题</param>
+    /// <param name="button">指定要在消息框中显示的按钮的类型</param>
+    /// <param name="icon">指定要在消息框中显示的图标的类型</param>
+    /// <param name="defaultResult">指定默认的用户响应</param>
+    /// <returns>用户对消息框的响应</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static MessageBoxResult Show(
           string messageBoxText,
@@ -45,6 +72,9 @@ public static partial class MessageBox
           MessageBoxImage icon,
           MessageBoxResult defaultResult) => ShowCore(IntPtr.Zero, messageBoxText, caption, button, icon, defaultResult, 0);
 
+    /// <summary>
+    /// 显示带有指定文本、标题、按钮、图标的消息框
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static MessageBoxResult Show(
          string messageBoxText,
@@ -52,15 +82,24 @@ public static partial class MessageBox
          MessageBoxButton button,
          MessageBoxImage icon) => ShowCore(IntPtr.Zero, messageBoxText, caption, button, icon, 0, 0);
 
+    /// <summary>
+    /// 显示带有指定文本、标题、按钮的消息框
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static MessageBoxResult Show(
           string messageBoxText,
           string caption,
           MessageBoxButton button) => ShowCore(IntPtr.Zero, messageBoxText, caption, button, MessageBoxImage.None, 0, 0);
 
+    /// <summary>
+    /// 显示带有指定文本、标题的消息框
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static MessageBoxResult Show(string messageBoxText, string caption) => ShowCore(IntPtr.Zero, messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.None, 0, 0);
 
+    /// <summary>
+    /// 显示带有指定文本消息框
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static MessageBoxResult Show(string messageBoxText) => ShowCore(IntPtr.Zero, messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.None, 0, 0);
 
@@ -88,6 +127,19 @@ public static partial class MessageBox
         }
     }
 
+    /// <summary>
+    /// 显示消息框的核心方法
+    /// </summary>
+    /// <param name="owner">消息框的拥有者窗口句柄</param>
+    /// <param name="messageBoxText">要显示的消息文本</param>
+    /// <param name="caption">消息框的标题</param>
+    /// <param name="button">消息框的按钮类型</param>
+    /// <param name="icon">消息框的图标类型</param>
+    /// <param name="defaultResult">消息框的结果</param>
+    /// <param name="options">消息框的附加选项</param>
+    /// <returns>用户在消息框上的操作结果</returns>
+    /// <exception cref="InvalidEnumArgumentException"></exception>
+    /// <exception cref="ArgumentException"></exception>
     internal static MessageBoxResult ShowCore(
            IntPtr owner,
            string messageBoxText,
@@ -191,6 +243,9 @@ public static partial class MessageBox
     }
 }
 
+/// <summary>
+/// 消息框结果
+/// </summary>
 public enum MessageBoxResult : byte
 {
     None = 0,
@@ -206,6 +261,9 @@ public enum MessageBoxResult : byte
     // NOTE: if you add or remove any values in this enum, be sure to update MessageBox.IsValidMessageBoxResult()
 }
 
+/// <summary>
+/// 消息框显示方式和行为
+/// </summary>
 [Flags]
 public enum MessageBoxOptions : uint
 {
@@ -220,6 +278,9 @@ public enum MessageBoxOptions : uint
     RtlReading = 0x00100000,
 }
 
+/// <summary>
+/// 消息框图标
+/// </summary>
 public enum MessageBoxImage : uint
 {
     None = 0,
@@ -243,6 +304,9 @@ public enum MessageBoxImage : uint
     // NOTE: if you add or remove any values in this enum, be sure to update MessageBox.IsValidMessageBoxIcon()
 }
 
+/// <summary>
+/// 消息框按钮
+/// </summary>
 public enum MessageBoxButton : uint
 {
     OK = 0x00000000,

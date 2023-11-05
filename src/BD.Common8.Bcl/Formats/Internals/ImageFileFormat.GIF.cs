@@ -1,10 +1,9 @@
-#pragma warning disable SA1600 // Elements should be documented
 namespace System.Formats.Internals;
 
 partial class ImageFileFormat
 {
     /// <summary>
-    /// Graphics Interchange Format
+    /// 图形交换格式 GIF
     /// <para>https://en.wikipedia.org/wiki/GIF</para>
     /// </summary>
     public static class GIF
@@ -24,10 +23,19 @@ partial class ImageFileFormat
         /// </summary>
         public const string DefaultMIME = MediaTypeNames.GIF;
 
+        /// <summary>
+        /// ftyphevc
+        /// </summary>
         public static readonly byte[] MagicNumber1;
 
+        /// <summary>
+        /// ftyphevx
+        /// </summary>
         public static readonly byte[] MagicNumber2;
 
+        /// <summary>
+        /// GIF 文件的幻数
+        /// </summary>
         public static readonly byte[]?[] MagicNumber;
 
         static GIF()

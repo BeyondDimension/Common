@@ -75,7 +75,7 @@ public static partial class DbContextExtensions
     }
 
     /// <summary>
-    /// 上移或下移，返回成功或找不到相邻的数据(主键为 <see cref="ulong"/>)
+    /// 上移或下移，返回成功或找不到相邻的数据(主键为 <see cref="ulong"/> )
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <param name="query"></param>

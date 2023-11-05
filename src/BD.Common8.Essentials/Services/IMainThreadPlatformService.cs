@@ -6,7 +6,7 @@ namespace BD.Common8.Essentials.Services;
 public interface IMainThreadPlatformService
 {
     /// <summary>
-    /// 获取 <see cref="IMainThreadPlatformService"/>  的实例
+    /// 获取 <see cref="IMainThreadPlatformService"/> 的实例
     /// </summary>
     static IMainThreadPlatformService? Instance => Ioc.Get_Nullable<IMainThreadPlatformService>();
 

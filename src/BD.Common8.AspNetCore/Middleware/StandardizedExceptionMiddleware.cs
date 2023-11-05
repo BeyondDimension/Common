@@ -30,55 +30,55 @@ public sealed partial class StandardizedExceptionMiddleware(RequestDelegate next
     /// </summary>
     readonly RequestDelegate _next = next;
 
-/// <summary>
-/// 调用下一个中间件，并捕获异常
-/// </summary>
-public async Task Invoke(HttpContext context)
-{
-    try
+    /// <summary>
+    /// 调用下一个中间件，并捕获异常
+    /// </summary>
+    public async Task Invoke(HttpContext context)
     {
-        await _next(context).ConfigureAwait(false);
-    }
-    catch (Exception ex)
-    {
-        if (IsCancellationException(ex))
+        try
         {
-            if (context.RequestAborted.IsCancellationRequested)
-                // Try to ensure cancelled requests don't get reported as 5xx errors
-                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return;
+            await _next(context).ConfigureAwait(false);
         }
-        // This exception wasn't handled so let it bubble up
-        throw;
+        catch (Exception ex)
+        {
+            if (IsCancellationException(ex))
+            {
+                if (context.RequestAborted.IsCancellationRequested)
+                    // Try to ensure cancelled requests don't get reported as 5xx errors
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return;
+            }
+            // This exception wasn't handled so let it bubble up
+            throw;
+        }
     }
-}
 
-/// <summary>
-/// 判断异常是否属于取消操作的异常，如果属于取消操作的异常则返回 <see langword="true"/>；否则为 <see langword="false"/>
-/// </summary>
-static bool IsCancellationException(Exception ex)
-{
-    if (ex == null) return false;
-    if (ex is OperationCanceledException)
-        return true;
-    if (ex is IOException && ex.Message == "The client reset the request stream.")
-        return true;
-    if (ex is ConnectionResetException)
-        return true;
-    // .NET SQL has a number of different exceptions thrown when operations are cancelled
-    if (ex.Source == "Microsoft.Data.SqlClient" && ex.Message == "Operation cancelled by user.")
-        return true;
-    var typeName = ex.GetType().FullName;
-    switch (typeName)
+    /// <summary>
+    /// 判断异常是否属于取消操作的异常，如果属于取消操作的异常则返回 <see langword="true"/>；否则为 <see langword="false"/>
+    /// </summary>
+    static bool IsCancellationException(Exception ex)
     {
-        case "Microsoft.Data.SqlClient.SqlException":
-        case "System.Data.SqlClient.SqlException":
-            if (ex.Message.Contains("Operation cancelled by user"))
-                return true;
-            break;
+        if (ex == null) return false;
+        if (ex is OperationCanceledException)
+            return true;
+        if (ex is IOException && ex.Message == "The client reset the request stream.")
+            return true;
+        if (ex is ConnectionResetException)
+            return true;
+        // .NET SQL has a number of different exceptions thrown when operations are cancelled
+        if (ex.Source == "Microsoft.Data.SqlClient" && ex.Message == "Operation cancelled by user.")
+            return true;
+        var typeName = ex.GetType().FullName;
+        switch (typeName)
+        {
+            case "Microsoft.Data.SqlClient.SqlException":
+            case "System.Data.SqlClient.SqlException":
+                if (ex.Message.Contains("Operation cancelled by user"))
+                    return true;
+                break;
+        }
+        if (ex.InnerException is not null)
+            return IsCancellationException(ex.InnerException);
+        return false;
     }
-    if (ex.InnerException is not null)
-        return IsCancellationException(ex.InnerException);
-    return false;
-}
 }

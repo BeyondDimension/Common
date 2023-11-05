@@ -1,7 +1,5 @@
 namespace BD.Common8.Primitives.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <inheritdoc cref="IPagedModel"/>
 [MPObj]
 [MP2Obj(MP2SerializeLayout.Explicit)]
@@ -53,7 +51,6 @@ public partial class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
     [MP2Key(3)]
     public int Total { get; set; }
 
-
     /// <summary>
     /// 判断对象是否有值
     /// </summary>
@@ -67,6 +64,7 @@ public partial class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
     /// </summary>
     IReadOnlyList<T> IReadOnlyPagedModel<T>.DataSource => DataSource;
 
+    /// <inheritdoc cref="DataSource"/>
     IList<T> IPagedModel<T>.DataSource
     {
         get => DataSource;

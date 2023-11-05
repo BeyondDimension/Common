@@ -93,7 +93,7 @@ public static partial class Random2
     /// 生成随机数字，长度为固定传入参数
     /// </summary>
     /// <param name="length">要生成的字符串长度</param>
-    /// <param name="endIsZero">生成的数字最后一位是否能够为0，默认不能为0(<see langword="false"/>)</param>
+    /// <param name="endIsZero">生成的数字最后一位是否能够为0，默认不能为0( <see langword="false"/> )</param>
     /// <returns></returns>
     public static int GenerateRandomNum(int length = 6, bool endIsZero = false)
     {

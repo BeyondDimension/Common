@@ -7,13 +7,26 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 提供检查拼音单元是否与预期拼音匹配的功能
+/// </summary>
 sealed class PinyinUnitPredicate
 {
+    /// <summary>
+    /// 存储预期拼音
+    /// </summary>
     readonly string ExpectedPinyin;
 
+    /// <summary>
+    /// 传入拼音，并将其赋值给 <see cref="ExpectedPinyin"/> 字段
+    /// </summary>
+    /// <param name="pinyin"></param>
     internal PinyinUnitPredicate(string pinyin) => ExpectedPinyin = pinyin;
 
+    /// <summary>
+    /// 用于检查给定的 <see cref="PinyinUnit"/> 是否与预期的拼音匹配
+    /// </summary>
+    /// <param name="pinyinUnit"></param>
+    /// <returns></returns>
     internal bool Match(PinyinUnit pinyinUnit) => string.Compare(pinyinUnit.Pinyin, ExpectedPinyin, true, CultureInfo.CurrentCulture) == 0;
 }

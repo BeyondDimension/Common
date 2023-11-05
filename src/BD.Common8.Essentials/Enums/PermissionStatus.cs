@@ -1,25 +1,25 @@
 namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
-/// Possible statuses of a permission.
+/// 权限的可能状态
 /// </summary>
 public enum PermissionStatus : byte
 {
-    /// <summary>The permission is in an unknown state.</summary>
+    /// <summary>权限处于未知状态</summary>
     Unknown = 0,
 
-    /// <summary>The user denied the permission request</summary>
+    /// <summary>用户拒绝了权限请求</summary>
     Denied = 1,
 
-    /// <summary>The feature is disabled on the device.</summary>
+    /// <summary>该功能在设备上被禁用</summary>
     Disabled = 2,
 
-    /// <summary>The user granted permission or is automatically granted.</summary>
+    /// <summary>授予权限的用户或自动授予的用户</summary>
     Granted = 3,
 
-    /// <summary>In a restricted state.</summary>
+    /// <summary>处于受限状态</summary>
     Restricted = 4,
 
-    /// <summary>In a limited state (only iOS).</summary>
+    /// <summary>处于受限状态（仅限 iOS）</summary>
     Limited = 5,
 }

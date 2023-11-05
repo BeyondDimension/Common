@@ -6,7 +6,7 @@ namespace BD.Common8.Toast.Services.Implementation;
 public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
 {
     /// <summary>
-    /// <see cref="IToastIntercept"/> 实列
+    /// <see cref="IToastIntercept"/> 实例
     /// </summary>
     protected readonly IToastIntercept intercept = intercept;
 
@@ -68,7 +68,7 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
     protected abstract void PlatformShow(ToastIcon icon, string text, int duration);
 
     /// <summary>
-    /// 将 <see cref="ToastLength"/> 转换为 持续时间
+    /// 将 <see cref="ToastLength"/> 转换为持续时间
     /// </summary>
     /// <param name="toastLength"></param>
     /// <returns></returns>

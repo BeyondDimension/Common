@@ -3,7 +3,7 @@
 		<DotNet_Version>8.0</DotNet_Version>
 		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
 		<SourceGenerator_TargetFramework>netstandard2.0</SourceGenerator_TargetFramework>
-		<NoWarn>$(NoWarn);NU1507;1591;SA1612;IL2026</NoWarn>
+		<NoWarn>$(NoWarn);NU1507;1591;SA1612</NoWarn>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
@@ -12,6 +12,7 @@
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
 		<Version>8.23.11016.11900</Version>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
+		<RepositoryType>git</RepositoryType>
 		<Company>江苏蒸汽凡星科技有限公司</Company>
 		<Copyright>©️ $(Company). All rights reserved.</Copyright>
 		<Authors>$(Company)</Authors>

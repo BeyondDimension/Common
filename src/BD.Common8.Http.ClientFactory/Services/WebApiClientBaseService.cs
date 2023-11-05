@@ -37,7 +37,7 @@ public abstract partial class WebApiClientBaseService(
     }
 
     /// <summary>
-    /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/>），默认使用 System.Text.Json 实现
+    /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），默认使用 System.Text.Json 实现
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="inputValue"></param>
@@ -48,7 +48,7 @@ public abstract partial class WebApiClientBaseService(
         mediaType);
 
     /// <summary>
-    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/>），默认使用 System.Text.Json 实现
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），默认使用 System.Text.Json 实现
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="content"></param>

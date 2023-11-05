@@ -3,7 +3,7 @@ namespace BD.Common8.Http.ClientFactory.Services;
 partial class WebApiClientBaseService
 {
     /// <summary>
-    /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/>），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
+    /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="inputValue"></param>
@@ -39,7 +39,7 @@ partial class WebApiClientBaseService
     }
 
     /// <summary>
-    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/>），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="content"></param>

@@ -1,40 +1,57 @@
 namespace BD.Common8.AspNetCore.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 用户管理
+/// </summary>
+/// <typeparam name="TDbContext"></typeparam>
 public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbContext : DbContext, IApplicationDbContext
 {
     bool _disposed;
 
+    /// <summary>
+    /// 数据库上下文
+    /// </summary>
     protected readonly TDbContext db;
 
     /// <summary>
-    /// The <see cref="ILookupNormalizer"/> used to normalize things like user and role names.
+    /// 用于规范化用户名和角色名等内容 <see cref="ILookupNormalizer"/>
     /// </summary>
     public ILookupNormalizer KeyNormalizer { get; set; }
 
     /// <summary>
-    /// The <see cref="IPasswordHasher{TUser}"/> used to hash passwords.
+    /// 用于散列密码的 <see cref="IPasswordHasher{TUser}"/>
     /// </summary>
     public IPasswordHasher<SysUser> PasswordHasher { get; set; }
 
     /// <summary>
-    /// The <see cref="IdentityOptions"/> used to configure Identity.
+    /// 用于配置标识的 <see cref="IdentityOptions"/>
     /// </summary>
     public IdentityOptions Options { get; set; }
 
     /// <summary>
-    /// The <see cref="IPasswordValidator{TUser}"/> used to validate passwords.
+    /// 用于验证密码的 <see cref="IPasswordValidator{TUser}"/>
     /// </summary>
     public IList<IPasswordValidator> PasswordValidators { get; } = new List<IPasswordValidator>();
 
     /// <summary>
-    /// The <see cref="IdentityErrorDescriber"/> used to generate error messages.
+    /// 用于生成错误消息的 <see cref="IdentityErrorDescriber"/>
     /// </summary>
     public IdentityErrorDescriber ErrorDescriber { get; set; }
 
+    /// <summary>
+    /// 取消标记令牌
+    /// </summary>
     protected virtual CancellationToken CancellationToken => CancellationToken.None;
 
+    /// <summary>
+    /// 初始化 <see cref="UserManagerImpl{TDbContext}"/> 实例
+    /// </summary>
+    /// <param name="db"></param>
+    /// <param name="keyNormalizer"></param>
+    /// <param name="optionsAccessor"></param>
+    /// <param name="passwordHasher"></param>
+    /// <param name="passwordValidators"></param>
+    /// <param name="errors"></param>
     public UserManagerImpl(TDbContext db,
         ILookupNormalizer keyNormalizer,
         IOptions<IdentityOptions> optionsAccessor,
@@ -53,6 +70,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
                 PasswordValidators.Add(v);
     }
 
+    /// <summary>
+    /// 根据用户 Id 异步查找用户
+    /// </summary>
     public async Task<SysUser?> FindByIdAsync(Guid userId)
     {
         ThrowIfDisposed();
@@ -60,6 +80,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
+    /// <summary>
+    /// 异步获取用户的角色列表
+    /// </summary>
     public async Task<IList<string>> GetRolesAsync(SysUser user)
     {
         ThrowIfDisposed();
@@ -72,6 +95,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return await query.ToListAsync(CancellationToken);
     }
 
+    /// <summary>
+    /// 根据用户名异步查找用户
+    /// </summary>
     public async Task<SysUser?> FindByNameAsync(string? userName)
     {
         if (userName == null) return null;
@@ -82,6 +108,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
+    /// <summary>
+    /// 根据用户名和租户 Id 异步查找用户
+    /// </summary>
     public async Task<SysUser?> FindByNameAsync(string? userName, Guid tenantId)
     {
         if (userName == null) return null;
@@ -92,6 +121,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
+    /// <summary>
+    /// 创建用户
+    /// </summary>
     public async Task<IdentityResult> CreateAsync(SysUser user, string password)
     {
         ThrowIfDisposed();
@@ -110,12 +142,12 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Updates a user's password hash.
+    /// 更新用户的密码哈希
     /// </summary>
-    /// <param name="user">The user.</param>
-    /// <param name="newPassword">The new password.</param>
-    /// <param name="validatePassword">Whether to validate the password.</param>
-    /// <returns>Whether the password has was successfully updated.</returns>
+    /// <param name="user">用户</param>
+    /// <param name="newPassword">新密码</param>
+    /// <param name="validatePassword">是否验证密码</param>
+    /// <returns>密码是否已成功更新</returns>
     protected virtual async ValueTask<IdentityResult> UpdatePasswordHash(SysUser user, string? newPassword, bool validatePassword = true)
     {
         if (validatePassword)
@@ -130,12 +162,11 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Should return <see cref="IdentityResult.Success"/> if validation is successful. This is
-    /// called before updating the password hash.
+    /// 如果验证成功，则应返回 <see cref="IdentityResult.Success"/>。这是在更新密码哈希之前调用
     /// </summary>
-    /// <param name="user">The user.</param>
-    /// <param name="password">The password.</param>
-    /// <returns>A <see cref="IdentityResult"/> representing whether validation was successful.</returns>
+    /// <param name="user">用户</param>
+    /// <param name="password">密码</param>
+    /// <returns>返回 <see cref="IdentityResult"/>，表示验证是否成功</returns>
     protected async ValueTask<IdentityResult> ValidatePasswordAsync(SysUser user, string? password)
     {
         List<IdentityError>? errors = null;
@@ -161,11 +192,10 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Should return <see cref="IdentityResult.Success"/> if validation is successful. This is
-    /// called before saving the user via Create or Update.
+    /// 如果验证成功，则应返回 <see cref="IdentityResult.Success"/>。这是在通过创建或更新保存用户之前调用
     /// </summary>
-    /// <param name="user">The user</param>
-    /// <returns>A <see cref="IdentityResult"/> representing whether validation was successful.</returns>
+    /// <param name="user">用户</param>
+    /// <returns>返回 <see cref="IdentityResult"/>，表示验证是否成功</returns>
     protected ValueTask<IdentityResult> ValidateUserAsync(SysUser user)
     {
         if (user.TenantId == default)
@@ -189,14 +219,23 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         },
     });
 
+    /// <summary>
+    /// 尝试获取用户 Id
+    /// </summary>
     public bool TryGetUserId(ClaimsPrincipal principal, out Guid userId)
     {
         var userIdS = principal.FindFirstValue(Options.ClaimsIdentity.UserIdClaimType);
         return ShortGuid.TryParse(userIdS, out userId);
     }
 
+    /// <summary>
+    /// 获取用户名称
+    /// </summary>
     public ValueTask<string> GetUserNameAsync(SysUser user) => new(user.UserName);
 
+    /// <summary>
+    /// 设置用户名称
+    /// </summary>
     public async ValueTask<IdentityResult> SetUserNameAsync(SysUser user, string userName)
     {
         if (string.IsNullOrWhiteSpace(userName))
@@ -206,6 +245,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return IdentityResult.Success;
     }
 
+    /// <summary>
+    /// 更新用户
+    /// </summary>
     public Task<IdentityResult> UpdateAsync(SysUser user)
     {
         ThrowIfDisposed();
@@ -213,10 +255,10 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Called to update the user after validating and updating the normalized email/user name.
+    /// 在验证和更新规范化的电子邮件/用户名后调用以更新用户
     /// </summary>
-    /// <param name="user">The user.</param>
-    /// <returns>Whether the operation was successful.</returns>
+    /// <param name="user">用户</param>
+    /// <returns>操作是否成功</returns>
     protected virtual async Task<IdentityResult> UpdateUserAsync(SysUser user)
     {
         var result = await ValidateUserAsync(user);
@@ -236,6 +278,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return IdentityResult.Success;
     }
 
+    /// <summary>
+    /// 根据 <see cref="ClaimsPrincipal"/> 获取用户
+    /// </summary>
     public async Task<SysUser?> GetUserAsync(ClaimsPrincipal principal)
     {
         if (!TryGetUserId(principal, out var userId)) return null;
@@ -243,6 +288,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
+    /// <summary>
+    /// 设置用户锁定的截止日期
+    /// </summary>
     public async Task<IdentityResult> SetLockoutEndDateAsync(SysUser user, DateTimeOffset? lockoutEnd)
     {
         ThrowIfDisposed();
@@ -252,6 +300,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return await UpdateUserAsync(user);
     }
 
+    /// <summary>
+    /// 检查用户是否被锁定
+    /// </summary>
     public ValueTask<bool> IsLockedOutAsync(SysUser user)
     {
         ThrowIfDisposed();
@@ -261,6 +312,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return new(lockoutTime >= DateTimeOffset.UtcNow);
     }
 
+    /// <summary>
+    /// 校验密码
+    /// </summary>
     public async ValueTask<bool> CheckPasswordAsync(SysUser user, string password)
     {
         ThrowIfDisposed();
@@ -280,14 +334,12 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Returns a <see cref="PasswordVerificationResult"/> indicating the result of a password hash comparison.
+    /// 返回指示密码哈希比较结果的 <see cref="PasswordVerificationResult"/>
     /// </summary>
-    /// <param name="store">The store containing a user's password.</param>
-    /// <param name="user">The user whose password should be verified.</param>
-    /// <param name="password">The password to verify.</param>
+    /// <param name="user">应验证其密码的用户</param>
+    /// <param name="password">要验证的密码</param>
     /// <returns>
-    /// The <see cref="Task"/> that represents the asynchronous operation, containing the <see cref="PasswordVerificationResult"/>
-    /// of the operation.
+    /// 返回异步操作，包含 <see cref="PasswordVerificationResult"/>
     /// </returns>
     protected virtual ValueTask<PasswordVerificationResult> VerifyPasswordAsync(SysUser user, string password)
     {
@@ -297,6 +349,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return new(PasswordHasher.VerifyHashedPassword(user, hash, password));
     }
 
+    /// <summary>
+    /// 更改用户密码
+    /// </summary>
     public async Task<IdentityResult> ChangePasswordAsync(SysUser user, string currentPassword, string newPassword)
     {
         ThrowIfDisposed();
@@ -311,6 +366,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return IdentityResult.Failed(ErrorDescriber.PasswordMismatch());
     }
 
+    /// <summary>
+    /// 判断用户是否属于指定角色
+    /// </summary>
     public async Task<bool> IsInRoleAsync(SysUser user, string role)
     {
         ThrowIfDisposed();
@@ -319,6 +377,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return isInRole;
     }
 
+    /// <summary>
+    /// 核心方法，判断用户是否属于指定角色
+    /// </summary>
     protected virtual async Task<(bool isInRole, Guid roleId, SysUserRole? userRole)> IsInRoleCoreAsync(SysUser user, string normalizedRole)
     {
         var role = await db.Roles.FirstOrDefaultAsync(x =>
@@ -332,12 +393,18 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return (false, default, default);
     }
 
+    /// <summary>
+    /// 将用户添加到角色
+    /// </summary>
     protected virtual async ValueTask AddToRoleAsync(SysUser user, Guid roleId)
     {
         var userRole = new SysUserRole { UserId = user.Id, RoleId = roleId, TenantId = user.TenantId };
         await db.UserRoles.AddAsync(userRole, CancellationToken);
     }
 
+    /// <summary>
+    /// 将用户添加到多个角色中
+    /// </summary>
     public async Task<IdentityResult> AddToRolesAsync(SysUser user, IEnumerable<string> roles)
     {
         ThrowIfDisposed();
@@ -352,12 +419,18 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return await UpdateUserAsync(user);
     }
 
+    /// <summary>
+    /// 从角色中删除用户
+    /// </summary>
     protected virtual ValueTask RemoveFromRoleAsync(SysUserRole userRole)
     {
         db.UserRoles.Remove(userRole);
         return ValueTask.CompletedTask;
     }
 
+    /// <summary>
+    /// 从多个角色中删除用户
+    /// </summary>
     public async Task<IdentityResult> RemoveFromRolesAsync(SysUser user, IEnumerable<string> roles)
     {
         ThrowIfDisposed();
@@ -373,19 +446,19 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Normalize user or role name for consistent comparisons.
+    /// 规范化用户名或角色名以进行一致的比较
     /// </summary>
-    /// <param name="name">The name to normalize.</param>
-    /// <returns>A normalized value representing the specified <paramref name="name"/>.</returns>
+    /// <param name="name">要规范化的名称</param>
+    /// <returns>返回指定的规范值</returns>
     [return: NotNullIfNotNull(nameof(name))]
     public virtual string? NormalizeName(string? name)
         => KeyNormalizer == null ? name : KeyNormalizer.NormalizeName(name);
 
     /// <summary>
-    /// Updates the normalized user name for the specified <paramref name="user"/>.
+    /// 更新指定的 <paramref name="user"/> 的规范化用户名
     /// </summary>
-    /// <param name="user">The user whose user name should be normalized and updated.</param>
-    /// <returns>The <see cref="Task"/> that represents the asynchronous operation.</returns>
+    /// <param name="user">应规范化和更新其用户名的用户</param>
+    /// <returns>返回异步操作 <see cref="Task"/></returns>
     public virtual ValueTask UpdateNormalizedUserNameAsync(SysUser user)
     {
         var normalizedName = NormalizeName(user.UserName);
@@ -394,7 +467,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Releases all resources used by the role manager.
+    /// 释放角色管理器使用的所有资源
     /// </summary>
     public void Dispose()
     {
@@ -403,9 +476,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Releases the unmanaged resources used by the role manager and optionally releases the managed resources.
+    /// 释放角色管理器使用的非托管资源，也可以选择释放托管资源
     /// </summary>
-    /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+    /// <param name="disposing"><see langword="true"/> 同时释放托管和非托管资源；<see langword="false"/> 仅释放非托管资源</param>
     protected virtual void Dispose(bool disposing)
     {
         if (disposing && !_disposed)
@@ -414,8 +487,9 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// Throws if this class has been disposed.
+    /// 如果该类已被释放则抛出异常
     /// </summary>
+    /// <exception cref="ObjectDisposedException"></exception>
     protected void ThrowIfDisposed()
     {
         if (_disposed)
@@ -423,14 +497,27 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 }
 
+/// <summary>
+///  ASP.NET 应用程序中进行用户管理
+/// </summary>
+/// <typeparam name="TDbContext"></typeparam>
 public class AspNetUserManager<TDbContext> : UserManagerImpl<TDbContext> where TDbContext : ApplicationDbContextBase
 {
+    /// <summary>
+    /// 请求上下文的访问器
+    /// </summary>
     protected readonly IHttpContextAccessor contextAccessor;
 
+    /// <summary>
+    /// 初始化 <see cref="AspNetUserManager{TDbContext}"/> 实例
+    /// </summary>
     public AspNetUserManager(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer keyNormalizer, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<SysUser> passwordHasher, IEnumerable<IPasswordValidator> passwordValidators, IdentityErrorDescriber errors) : base(db, keyNormalizer, optionsAccessor, passwordHasher, passwordValidators, errors)
     {
         this.contextAccessor = contextAccessor;
     }
 
+    /// <summary>
+    /// 获取请求的取消令牌
+    /// </summary>
     protected override CancellationToken CancellationToken => contextAccessor?.HttpContext?.RequestAborted ?? CancellationToken.None;
 }

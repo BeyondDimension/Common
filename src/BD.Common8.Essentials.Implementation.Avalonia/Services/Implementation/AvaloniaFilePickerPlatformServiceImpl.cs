@@ -2,20 +2,35 @@ namespace BD.Common8.Essentials.Services.Implementation;
 
 #pragma warning disable SA1600 // Elements should be documented
 
+/// <summary>
+/// Avalonia 文件选择器平台服务的实现
+/// </summary>
 sealed class AvaloniaFilePickerPlatformServiceImpl :
     IFilePickerPlatformService,
     IFilePickerPlatformService.IServiceBase,
     IFilePickerPlatformService.IOpenFileDialogService,
     IFilePickerPlatformService.ISaveFileDialogService
 {
+    /// <summary>
+    /// 打开文件对话框服务
+    /// </summary>
     IFilePickerPlatformService.IOpenFileDialogService IFilePickerPlatformService.OpenFileDialogService => this;
 
+    /// <summary>
+    /// 保存文件对话框服务
+    /// </summary>
     IFilePickerPlatformService.ISaveFileDialogService IFilePickerPlatformService.SaveFileDialogService => this;
 
     sealed class FilePickerFileTypeWrapper : IFilePickerFileType
     {
+        /// <summary>
+        /// 获取或设置文件类型列表
+        /// </summary>
         public required IReadOnlyList<FilePickerFileType> Values { get; init; }
 
+        /// <summary>
+        /// 获取特定平台的文件类型
+        /// </summary>
         public IEnumerable<string>? GetPlatformFileType(DevicePlatform2 platform)
         {
             foreach (var value in Values)
@@ -33,6 +48,9 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         }
     }
 
+    /// <summary>
+    /// 获取 Images 类型的文件选择器
+    /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Images { get; } = new FilePickerFileTypeWrapper
     {
         Values = new[]
@@ -46,6 +64,9 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         },
     };
 
+    /// <summary>
+    /// 获取 Png 类型的文件选择器
+    /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Png { get; } = new FilePickerFileTypeWrapper
     {
         Values = new[]
@@ -59,6 +80,9 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         },
     };
 
+    /// <summary>
+    /// 获取 Jpeg 类型的文件选择器
+    /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Jpeg { get; } = new FilePickerFileTypeWrapper
     {
         Values = new[]
@@ -72,8 +96,14 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         },
     };
 
+    /// <summary>
+    /// 预设视频文件选择器类型
+    /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Videos { get; } = new FilePickerFileTypeWrapper() { Values = [] };
 
+    /// <summary>
+    /// 预设 PDF 文件选择器类型
+    /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Pdf { get; } = new FilePickerFileTypeWrapper
     {
         Values = new[]
@@ -87,6 +117,11 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         },
     };
 
+    /// <summary>
+    /// 判断给定的字符串是否是苹果统一类型标识符格式
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsAppleUniformTypeIdentifier(string s)
     {
@@ -97,6 +132,11 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         return false;
     }
 
+    /// <summary>
+    /// 获取绝对文件路径
+    /// </summary>
+    /// <param name="storageItem"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static string? GetAbsoluteFilePath(IStorageItem? storageItem)
     {

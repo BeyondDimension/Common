@@ -1,17 +1,20 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
-
 namespace System;
-
-#pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
 /// https://github.com/dotnet/runtime/blob/v8.0.0-rc.2.23479.6/src/libraries/Common/src/Extensions/TypeNameHelper/TypeNameHelper.cs
 /// </summary>
 public static partial class TypeNameHelper
 {
+    /// <summary>
+    /// 默认的嵌套类型分隔符
+    /// </summary>
     const char DefaultNestedTypeDelimiter = '+';
 
+    /// <summary>
+    /// 内置输入类型字典
+    /// </summary>
     static readonly Dictionary<Type, string> _builtInTypeNames = new()
     {
         { typeof(void), "void" },
@@ -32,6 +35,9 @@ public static partial class TypeNameHelper
         { typeof(ushort), "ushort" }
     };
 
+    /// <summary>
+    /// 获取对象的类型名称
+    /// </summary>
     [return: NotNullIfNotNull(nameof(item))]
     public static string? GetTypeDisplayName(object? item, bool fullName = true)
     {

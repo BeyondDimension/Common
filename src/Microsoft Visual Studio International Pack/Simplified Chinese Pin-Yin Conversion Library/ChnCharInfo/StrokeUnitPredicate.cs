@@ -7,13 +7,23 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 用于比对笔画单元的数量
+/// </summary>
 sealed class StrokeUnitPredicate
 {
+    /// <summary>
+    /// 预期的笔画数量
+    /// </summary>
     readonly int ExpectedStrokeNum;
 
+    /// <summary>
+    /// 传入笔画数量，并将其赋值给 <see cref="ExpectedStrokeNum"/> 字段
+    /// </summary>
     internal StrokeUnitPredicate(int strokeNum) => ExpectedStrokeNum = strokeNum;
 
+    /// <summary>
+    /// 比对给定的笔画和预期的笔画数量是否相等
+    /// </summary>
     internal bool Match(StrokeUnit strokeUnit) => strokeUnit.StrokeNumber == ExpectedStrokeNum;
 }

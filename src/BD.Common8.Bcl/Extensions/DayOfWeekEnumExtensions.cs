@@ -8,10 +8,10 @@ namespace System.Extensions;
 public static partial class DayOfWeekEnumExtensions
 {
     /// <summary>
-    /// 将 <see cref="DayOfWeek"/>(周) 转换为字符串
+    /// 将 <see cref="DayOfWeek"/> (周)转换为字符串
     /// </summary>
     /// <param name="dayOfWeek"></param>
-    /// <param name="format_short_or_long">使用[(<see langword="true"/>)短]或[(<see langword="false"/>)长]的格式，默认使用长格式</param>
+    /// <param name="format_short_or_long">使用[( <see langword="true"/> )短]或[( <see langword="false"/> )长]的格式，默认使用长格式</param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToDisplayString(this DayOfWeek dayOfWeek, bool format_short_or_long = false)

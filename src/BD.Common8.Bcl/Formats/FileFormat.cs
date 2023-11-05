@@ -36,7 +36,7 @@ public static partial class FileFormat
     public static ImageFormat[] HEIF_HEIC_Formats { get; } = [ImageFormat.HEIF, ImageFormat.HEIFSequence, ImageFormat.HEIC, ImageFormat.HEICSequence];
 
     /// <summary>
-    /// 检查 二进制数据 是否为图片格式
+    /// 检查二进制数据是否为图片格式
     /// </summary>
     /// <param name="buffer"></param>
     /// <param name="format"></param>
@@ -76,7 +76,7 @@ public static partial class FileFormat
     }
 
     /// <summary>
-    /// 检查 二进制数据 是否为图片格式
+    /// 检查二进制数据是否为图片格式
     /// </summary>
     /// <param name="buffer"></param>
     /// <returns></returns>
@@ -87,7 +87,7 @@ public static partial class FileFormat
     }
 
     /// <summary>
-    /// 检查 二进制数据 是否为图片格式
+    /// 检查二进制数据是否为图片格式
     /// </summary>
     /// <param name="buffer"></param>
     /// <returns></returns>
@@ -98,7 +98,7 @@ public static partial class FileFormat
     }
 
     /// <summary>
-    /// 检查 流中的数据 是否为图片格式
+    /// 检查流中的数据是否为图片格式
     /// </summary>
     /// <param name="stream"></param>
     /// <param name="format"></param>
@@ -120,7 +120,7 @@ public static partial class FileFormat
     }
 
     /// <summary>
-    /// 检查 流中的数据 是否为图片格式
+    /// 检查流中的数据是否为图片格式
     /// </summary>
     /// <param name="stream"></param>
     /// <returns></returns>
@@ -131,7 +131,7 @@ public static partial class FileFormat
     }
 
     /// <summary>
-    /// 检查 二进制数据 是否为 SQLite3 数据库文件
+    /// 检查二进制数据是否为 SQLite3 数据库文件
     /// </summary>
     /// <param name="buffer"></param>
     /// <returns></returns>
@@ -139,7 +139,7 @@ public static partial class FileFormat
         => MagicNumber.SequenceEqual(buffer, DataBaseFileFormat.SQLite3.MagicNumber);
 
     /// <summary>
-    /// 检查 二进制数据 是否为 SQLite3 数据库文件
+    /// 检查二进制数据是否为 SQLite3 数据库文件
     /// </summary>
     /// <param name="buffer"></param>
     /// <returns></returns>
@@ -147,7 +147,7 @@ public static partial class FileFormat
         => MagicNumber.SequenceEqual(buffer, DataBaseFileFormat.SQLite3.MagicNumber);
 
     /// <summary>
-    /// 检查 流中的数据 是否为 SQLite3 数据库文件
+    /// 检查流中的数据是否为 SQLite3 数据库文件
     /// </summary>
     /// <param name="stream"></param>
     /// <returns></returns>

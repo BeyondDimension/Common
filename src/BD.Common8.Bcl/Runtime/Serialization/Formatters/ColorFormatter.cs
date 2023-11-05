@@ -1,11 +1,6 @@
 namespace System.Runtime.Serialization.Formatters;
 
 #pragma warning disable SA1600 // Elements should be documented
-
-///// <summary>
-///// 对类型 <see cref="SDColor"/>, <see cref="SplatColor"/> 的序列化与反序列化实现
-///// </summary>
-
 /// <summary>
 /// 对类型 <see cref="SDColor"/> 的序列化与反序列化实现
 /// </summary>
@@ -19,6 +14,9 @@ public sealed class ColorFormatter :
     IMemoryPackFormatter<SDColor?>//,
                                   //IMemoryPackFormatter<SplatColor?>
 {
+    /// <summary>
+    /// 默认的 <see cref="ColorFormatter"/> 实例
+    /// </summary>
     public static readonly ColorFormatter Default = new();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -38,17 +36,26 @@ public sealed class ColorFormatter :
         }
     }
 
+    /// <summary>
+    /// 对 <see cref="SDColor"/> 类型进行序列化
+    /// </summary>
     void IMessagePackFormatter<SDColor>.Serialize(ref MessagePackWriter writer, SDColor value, MessagePackSerializerOptions options)
     {
         MessagePackSerializer.Serialize(ref writer, ToUInt32(value.ToArgb()), options);
     }
 
+    /// <summary>
+    /// 对 <see cref="SDColor"/> 类型进行反序列化
+    /// </summary>
     SDColor IMessagePackFormatter<SDColor>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         var argb = MessagePackSerializer.Deserialize<uint>(ref reader, options);
         return FromArgb(argb);
     }
 
+    /// <summary>
+    /// 对可空 <see cref="SDColor"/> 类型进行序列化
+    /// </summary>
     void IMessagePackFormatter<SDColor?>.Serialize(ref MessagePackWriter writer, SDColor? value, MessagePackSerializerOptions options)
     {
         if (value.HasValue)
@@ -61,6 +68,9 @@ public sealed class ColorFormatter :
         }
     }
 
+    /// <summary>
+    /// 对可空 <see cref="SDColor"/> 类型进行反序列化
+    /// </summary>
     SDColor? IMessagePackFormatter<SDColor?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
@@ -110,11 +120,18 @@ public sealed class ColorFormatter :
     //    }
     //}
 
+    /// <summary>
+    /// 将 <see cref="SDColor"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/>
+    /// </summary>
+    /// <typeparam name="TBufferWriter"></typeparam>
     void IMemoryPackFormatter<SDColor>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SDColor value)
     {
         writer.WriteVarInt(ToUInt32(value.ToArgb()));
     }
 
+    /// <summary>
+    /// 将 <see cref="MemoryPackReader"/> 中的数据反序列化为 <see cref="SDColor"/> 对象
+    /// </summary>
     void IMemoryPackFormatter<SDColor>.Deserialize(ref MemoryPackReader reader, scoped ref SDColor value)
     {
         var argb = reader.ReadVarIntUInt32();
@@ -132,6 +149,10 @@ public sealed class ColorFormatter :
     //    value = SplatColor.FromArgb(argb);
     //}
 
+    /// <summary>
+    /// 将可空 <see cref="SDColor"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/>
+    /// </summary>
+    /// <typeparam name="TBufferWriter"></typeparam>
     void IMemoryPackFormatter<SDColor?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SDColor? value)
     {
         if (value.HasValue)
@@ -144,6 +165,9 @@ public sealed class ColorFormatter :
         }
     }
 
+    /// <summary>
+    /// 将 <see cref="MemoryPackReader"/> 中的数据反序列化为可空 <see cref="SDColor"/> 对象
+    /// </summary>
     void IMemoryPackFormatter<SDColor?>.Deserialize(ref MemoryPackReader reader, scoped ref SDColor? value)
     {
         if (reader.PeekIsNull())
@@ -185,18 +209,31 @@ public sealed class ColorFormatter :
 
 public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter, SDColor>
 {
+    /// <summary>
+    /// 获取 <see cref="ColorFormatter"/> 实例
+    /// </summary>
     public sealed override ColorFormatter GetFormatter() => ColorFormatter.Default;
 
     public sealed class Formatter : MemoryPackFormatter<SDColor>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将 <paramref name="value"/> 对象序列化到 <paramref name="writer"/> 中
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SDColor value)
         {
             IMemoryPackFormatter<SDColor> f = ColorFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <paramref name="reader"/> 中反序列化 <paramref name="value"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref SDColor value)
         {
             IMemoryPackFormatter<SDColor> f = ColorFormatter.Default;
@@ -233,14 +270,24 @@ public sealed class NullableColorFormatterAttribute : MemoryPackCustomFormatterA
 
     public sealed class Formatter : MemoryPackFormatter<SDColor?>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将可空 <paramref name="value"/> 对象序列化到 <paramref name="writer"/> 中
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SDColor? value)
         {
             IMemoryPackFormatter<SDColor?> f = ColorFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <paramref name="reader"/> 中反序列化可空 <paramref name="value"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref SDColor? value)
         {
             IMemoryPackFormatter<SDColor?> f = ColorFormatter.Default;

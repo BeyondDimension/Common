@@ -1,9 +1,7 @@
 namespace BD.Common8.SourceGenerator.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
-/// 提供 用于处理 AttributeData 类
+/// 提供用于处理 AttributeData 类
 /// </summary>
 public static class AttributeDataHelper
 {
@@ -22,7 +20,7 @@ public static class AttributeDataHelper
         => attribute.GetClassFullName() == attributeClassFullName;
 
     /// <summary>
-    /// 判断特性是否为 DescriptionAttribute 类
+    /// 判断特性是否为 <see cref="System.ComponentModel.DescriptionAttribute"/> 类
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsDescription(AttributeData attribute)
@@ -41,6 +39,9 @@ public static class AttributeDataHelper
         return description?.ToString();
     }
 
+    /// <summary>
+    /// 获取对象值
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object? GetObjectValue(this TypedConstant typedConstant)
     {

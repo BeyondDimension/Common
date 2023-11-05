@@ -7,15 +7,34 @@
 
 namespace Microsoft.International.Converters.PinYinConverter;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 字符单元
+/// </summary>
 sealed class CharUnit
 {
+    /// <summary>
+    /// 字符
+    /// </summary>
     internal char Char;
+
+    /// <summary>
+    /// 笔画数
+    /// </summary>
     internal byte StrokeNumber;
+
+    /// <summary>
+    /// 拼音数量
+    /// </summary>
     internal byte PinyinCount;
+
+    /// <summary>
+    /// 拼音索引列表
+    /// </summary>
     internal short[] PinyinIndexList = null!;
 
+    /// <summary>
+    /// 从 <see cref="BinaryReader"/> 对象中反序列化 <see cref="CharUnit"/> 对象
+    /// </summary>
     internal static CharUnit Deserialize(BinaryReader binaryReader)
     {
         CharUnit charUnit = new()
@@ -30,6 +49,9 @@ sealed class CharUnit
         return charUnit;
     }
 
+    /// <summary>
+    /// 将 <see cref="CharUnit"/> 序列化为 <see cref="BinaryWriter"/> 对象
+    /// </summary>
     internal void Serialize(BinaryWriter binaryWriter)
     {
         binaryWriter.Write(Char);
