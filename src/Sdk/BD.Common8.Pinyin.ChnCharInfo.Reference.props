@@ -1,33 +1,33 @@
 <Project>
 
 	<ItemGroup>
-		<Compile Include="..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\*.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\*.cs">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\AssemblyResource.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\AssemblyResource.resx">
 			<Link>_SourceReference\ChnCharInfo\AssemblyResource.resx</Link>
 			<LogicalName>Microsoft.International.Converters.PinYinConverter.AssemblyResource.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\AssemblyResource.en.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\AssemblyResource.en.resx">
 			<Link>_SourceReference\ChnCharInfo\AssemblyResource.en.resx</Link>
 			<LogicalName>Microsoft.International.Converters.PinYinConverter.AssemblyResource.en.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\CharDictionary">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\CharDictionary">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>
 			<LogicalName>Microsoft.International.Converters.PinYinConverter.CharDictionary.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\HomophoneDictionary">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\HomophoneDictionary">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>
 			<LogicalName>Microsoft.International.Converters.PinYinConverter.HomophoneDictionary.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\PinyinDictionary">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\PinyinDictionary">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>
 			<LogicalName>Microsoft.International.Converters.PinYinConverter.PinyinDictionary.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\StrokeDictionary">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\StrokeDictionary">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>
 			<LogicalName>Microsoft.International.Converters.PinYinConverter.StrokeDictionary.resources</LogicalName>
 		</EmbeddedResource>

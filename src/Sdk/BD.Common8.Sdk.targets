@@ -1,80 +1,80 @@
 <Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security">
 
-	<Import Condition="$(IsPackable) == 'true'" Project=".\GeneratePackage.props" />
-	<Import Condition="$(IsTestProject) == 'true'" Project=".\BD.Common8.UnitTest.props" />
-	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project=".\BD.Common8.SourceGenerator.props" />
-	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project=".\BD.Common8.Bcl.GlobalUsings.props" />
+	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)GeneratePackage.props" />
+	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.UnitTest.props" />
+	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.SourceGenerator.props" />
+	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.GlobalUsings.props" />
 
 	<PropertyGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
 		<ImplicitUsings>false</ImplicitUsings>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
-		<Compile Include="..\Shared\GlobalUsings.net35.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.net35.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseAspNetCore) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Caching.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Caching.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Condition="$(UseEFCore) != 'true'" Include="..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+		<Compile Condition="$(UseEFCore) != 'true'" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(IsGlobalUsingsMSBuildProjectName) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseProjectUtils) == 'true'">
-		<Compile Include="..\Shared\ProjectUtils.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\ProjectUtils.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseSourceGeneratorResx) == 'true'">
-		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8Bcl) == 'true' AND $(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
-		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseMicrosoftIdentityModelTokens) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.IdentityModel.Tokens.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.IdentityModel.Tokens.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseEFCore) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Z.EntityFramework.Plus.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Z.EntityFramework.Plus.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
@@ -88,14 +88,14 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseAvalonia) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.Avalonia.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Avalonia" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseRedis) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.Redis.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Redis.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="StackExchange.Redis" />
@@ -103,7 +103,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseNLog) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.NLog.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.NLog.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="NLog" />
@@ -112,104 +112,104 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(LinkResXGeneratedCodeAttribute) == 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
-		<Compile Include="..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
 			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8Essentials) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8Repositories) == 'true' OR $(UseCommon8RepositoriesEFCore) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8OrmEFCore) == 'true' OR $(UseCommon8RepositoriesEFCore) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8RepositoriesEFCore) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.EFCore.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Repositories.EFCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8Primitives) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8AspNetCore) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.AspNetCore.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.AspNetCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8AspNetCoreIdentity) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8AspNetCoreIdentityBackManage) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.BackManage.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.BackManage.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.AspNetCore.Identity.BackManage\BD.Common8.AspNetCore.Identity.BackManage.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity.BackManage\BD.Common8.AspNetCore.Identity.BackManage.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8PrimitivesApiResponse) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiResponse.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.ApiResponse.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8PrimitivesApiRsp) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.PhoneNumber.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.PhoneNumber.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataBirthDate) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.BirthDate.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.BirthDate.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8PrimitivesDistrict) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.District.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.District.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseSQLitePCL) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.SQLitePCL.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SQLitePCL.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="sqlite-net-pcl" />
@@ -218,10 +218,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8Security) == 'true'">
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Security.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Security.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Security\BD.Common8.Security.csproj" />
 	</ItemGroup>
 
 </Project>

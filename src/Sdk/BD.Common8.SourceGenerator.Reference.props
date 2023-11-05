@@ -8,39 +8,39 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.Microsoft.CodeAnalysis.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.CodeAnalysis.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.System.Collections.Immutable.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Collections.Immutable.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.SourceGenerator.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SourceGenerator.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common8.Bcl.Compat\**\*.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
 			<LinkBase>_SourceReference\Compat</LinkBase>
 		</Compile>
-		<Compile Remove="..\BD.Common8.Bcl.Compat\bin\**" />
-		<Compile Remove="..\BD.Common8.Bcl.Compat\obj\**" />
-		<Compile Include="..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" />
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common8.Bcl\Extensions\StringExtensions.Trim.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Trim.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common8.Bcl\ThrowHelper*.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\ThrowHelper*.cs">
 			<LinkBase>_SourceReference</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.Common8.Bcl\Properties\SR.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Properties\SR.cs">
 			<LinkBase>_SourceReference\Properties</LinkBase>
 		</Compile>
 	</ItemGroup>
