@@ -40,20 +40,20 @@ public sealed class EmailMessage
     /// <summary>
     /// 收件人列表
     /// </summary>
-    public List<string> To { get; set; } = new List<string>();
+    public List<string> To { get; set; } = [];
 
     /// <summary>
     /// 抄送列表
     /// </summary>
-    public List<string> Cc { get; set; } = new List<string>();
+    public List<string> Cc { get; set; } = [];
 
     /// <summary>
     /// 密送列表
     /// </summary>
-    public List<string> Bcc { get; set; } = new List<string>();
+    public List<string> Bcc { get; set; } = [];
 
     /// <summary>
     /// 附件列表
     /// </summary>
-    public List<EmailAttachment> Attachments { get; set; } = new List<EmailAttachment>();
+    public List<EmailAttachment> Attachments { get; set; } = [];
 }

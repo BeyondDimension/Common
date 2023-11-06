@@ -1,5 +1,11 @@
 namespace BD.Common8.AspNetCore.Permissions;
 
+/// <summary>
+/// 用户权限验证
+/// </summary>
+/// <typeparam name="TDbContext"></typeparam>
+/// <param name="db"></param>
+/// <param name="userManager"></param>
 public sealed class PermissionAuthorizationHandler<TDbContext>(TDbContext db, IUserManager userManager) : AuthorizationHandler<PermissionAuthorizationRequirement> where TDbContext : IApplicationDbContext
 {
     /// <summary>

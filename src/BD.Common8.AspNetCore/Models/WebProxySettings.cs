@@ -1,5 +1,6 @@
 #if DEBUG
 namespace BD.Common8.AspNetCore.Models;
+
 /// <summary>
 /// Web 代理设置
 /// </summary>

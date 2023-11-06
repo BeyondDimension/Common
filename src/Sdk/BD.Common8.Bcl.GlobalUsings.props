@@ -1,49 +1,49 @@
 <Project>
 
 	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.MemoryPack.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.MemoryPack.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.MessagePack.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.MessagePack.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.Microsoft.Extensions.DependencyInjection.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.DependencyInjection.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.Microsoft.Extensions.Logging.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Logging.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.Newtonsoft.Json.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Newtonsoft.Json.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.Polly.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Polly.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Buffers.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Buffers.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Collections.Immutable.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Collections.Immutable.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.ComponentModel.DataAnnotations.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.ComponentModel.DataAnnotations.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Extensions.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Extensions.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Formats.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Formats.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Net.Http.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Net.Http.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Text.Json.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Text.Json.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Drawing.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Drawing.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.System.Net.Http.Client.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Net.Http.Client.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>

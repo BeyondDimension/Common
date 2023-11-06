@@ -9,7 +9,6 @@ namespace BD.Common8.Essentials.Helpers;
 /// </summary>
 static partial class FileSystemUtils
 {
-
     /// <summary>
     /// 判断指定的应用程序包文件是否存在
     /// </summary>
