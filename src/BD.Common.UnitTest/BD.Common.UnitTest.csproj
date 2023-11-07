@@ -15,6 +15,11 @@
 		</Compile>
 	</ItemGroup>
 
+	<ItemGroup Condition="Exists('..\..\..\Constants.Sms.cs')">
+		<Compile Remove="Constants.Sms.cs" />
+		<Compile Include="..\..\..\Constants.Sms.cs" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="NUnit" />
@@ -27,6 +32,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\BD.Common.Mvvm\BD.Common.Mvvm.csproj" />
 		<ProjectReference Include="..\BD.Common.Settings.V4\BD.Common.Settings.V4.csproj" />
+		<ProjectReference Include="..\BD.Common.SmsSender\BD.Common.SmsSender.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 

@@ -1,6 +1,7 @@
 using BD.Common.Services.Implementation;
 using Fusillade;
 using Microsoft.Extensions.Logging;
+using IHttpClientFactory = System.Net.Http.Client.IHttpClientFactory;
 
 namespace BD.Common.UnitTest;
 
