@@ -43,6 +43,8 @@ public abstract class SmsSenderBase : ISmsSender
                 => Add<Channels.AlibabaCloud.SenderProviderInvoker<TSmsSettings>, TSmsSettings>(services),
             nameof(ISmsSettings.SmsOptions.NetEaseCloud)
                 => Add<Channels.NetEaseCloud.SenderProviderInvoker<TSmsSettings>, TSmsSettings>(services),
+            nameof(ISmsSettings.SmsOptions.HuaWeiCloud)
+                => Add<Channels.HuaWeiCloud.SenderProviderInvoker<TSmsSettings>, TSmsSettings>(services),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null),
         };
 

@@ -1,5 +1,6 @@
 using BD.Common.Models.SmsSender.Channels._21VianetBlueCloud;
 using BD.Common.Models.SmsSender.Channels.AlibabaCloud;
+using BD.Common.Models.SmsSender.Channels.HuaWeiCloud;
 using BD.Common.Models.SmsSender.Channels.NetEaseCloud;
 
 namespace BD.Common.Models.SmsSender;
@@ -14,6 +15,8 @@ public class SmsOptions
     public Sms21VianetBlueCloudOptions? _21VianetBlueCloud { get; set; }
 #pragma warning restore IDE1006 // 命名样式
 
+    public SmsHuaWeiCloudOptions? HuaWeiCloud { get; set; }
+
     public static string? GetDefaultProviderName(SmsOptions? options)
     {
         if (options != null)
@@ -21,6 +24,7 @@ public class SmsOptions
             if (options._21VianetBlueCloud.HasValue()) return nameof(_21VianetBlueCloud);
             if (options.AlibabaCloud.HasValue()) return nameof(AlibabaCloud);
             if (options.NetEaseCloud.HasValue()) return nameof(NetEaseCloud);
+            if (options.HuaWeiCloud.HasValue()) return nameof(HuaWeiCloud);
         }
         return null;
     }
