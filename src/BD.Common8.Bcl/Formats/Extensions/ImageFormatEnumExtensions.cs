@@ -34,7 +34,7 @@ public static partial class ImageFormatEnumExtensions
     }
 
     /// <summary>
-    /// 获取MIME
+    /// 获取 MIME
     /// </summary>
     /// <param name="imageFormat"></param>
     /// <returns></returns>

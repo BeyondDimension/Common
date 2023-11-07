@@ -11,7 +11,7 @@ partial class ImageFileFormat
     public static class HEIF_HEIC
     {
         /// <summary>
-        /// 图形交换格式 HEIF
+        /// HEIF 与传统的 JPEG 格式相比，HEIF 可以显著减小文件大小，同时保持更高的图像质量
         /// </summary>
         public static class HEIF
         {
@@ -42,7 +42,7 @@ partial class ImageFileFormat
         }
 
         /// <summary>
-        /// 图形交换格式 HEIFSequence
+        /// HEIFSequence 是指 HEIF 序列，它允许将多个图像组合成一个序列，从而创建连续播放或动态表现效果
         /// </summary>
         public static class HEIFSequence
         {
@@ -68,7 +68,7 @@ partial class ImageFileFormat
         }
 
         /// <summary>
-        /// 图形交换格式 HEIC
+        /// HEIC 可以将图像数据以更小的文件大小进行保存，同时保持较高的图像质量
         /// </summary>
         public static class HEIC
         {
@@ -111,7 +111,7 @@ partial class ImageFileFormat
         }
 
         /// <summary>
-        /// 图形交换格式 HEICSequence
+        /// HEICSequence 是指 HEIC 序列，它是一种由多个图片帧组成的连续序列
         /// </summary>
         public static class HEICSequence
         {

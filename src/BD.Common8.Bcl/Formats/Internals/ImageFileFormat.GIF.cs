@@ -3,7 +3,7 @@ namespace System.Formats.Internals;
 partial class ImageFileFormat
 {
     /// <summary>
-    /// 图形交换格式 GIF
+    /// GIF 图形交换格式 (Graphics Interchange Format)
     /// <para>https://en.wikipedia.org/wiki/GIF</para>
     /// </summary>
     public static class GIF

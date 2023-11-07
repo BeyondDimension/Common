@@ -3,7 +3,7 @@ namespace System.Formats.Internals;
 partial class ImageFileFormat
 {
     /// <summary>
-    /// Joint Photographic Experts Group
+    /// JPG 联合图像专家组 (Joint Photographic Experts Group)
     /// <para>https://en.wikipedia.org/wiki/JPEG</para>
     /// </summary>
     public static class JPG

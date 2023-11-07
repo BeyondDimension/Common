@@ -25,7 +25,7 @@ public static partial class AudioFormatEnumExtensions
     }
 
     /// <summary>
-    /// 获取MIME
+    /// 获取 MIME
     /// </summary>
     /// <param name="audioFormat"></param>
     /// <returns></returns>
