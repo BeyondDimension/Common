@@ -27,18 +27,16 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
     public override async Task<ISendSmsResult> SendSmsAsync(string number, string message, ushort type, CancellationToken cancellationToken)
     {
-        try
-        {
-            var key = options.AppKey.ThrowIsNull(nameof(options.AppKey));
-            var sender = options.Sender.ThrowIsNull(nameof(options.Sender));
-            var apiAddress = options.ApiAddress.ThrowIsNull(nameof(options.ApiAddress));
-            var appSecret = options.Signature.ThrowIsNull(nameof(options.Signature));
-            var templateId = options.Templates?.FirstOrDefault(x => x.Type == type)?.Template ?? options.DefaultTemplate;
-            var statusCallback = options.StatusCallBack.ThrowIsNull(nameof(options.StatusCallBack));
-            var signature = options.Signature.ThrowIsNull(nameof(options.Signature));
+        var key = options.AppKey.ThrowIsNull(nameof(options.AppKey));
+        var sender = options.Sender.ThrowIsNull(nameof(options.Sender));
+        var apiAddress = options.ApiAddress.ThrowIsNull(nameof(options.ApiAddress));
+        var appSecret = options.AppSecret.ThrowIsNull(nameof(options.AppSecret));
+        var templateId = options.Templates?.FirstOrDefault(x => x.Type == type)?.Template ?? options.DefaultTemplate;
+        var statusCallback = options.StatusCallBack.ThrowIsNull(nameof(options.StatusCallBack));
+        var signature = options.Signature.ThrowIsNull(nameof(options.Signature));
 
-            var templateParam = $"[\"{message}\"]";
-            var body = new Dictionary<string, string>() {
+        var templateParam = $"[\"{message}\"]";
+        var body = new Dictionary<string, string>() {
             { "from", sender }, //短信发送方的号码
             { "to", number }, //短信接收方的号码
             { "templateId", templateId.ThrowIsNull(nameof(templateId)) }, //短信模板 ID，用于唯一标识短信模板，请在申请短信模板时获取模板 ID
@@ -47,57 +45,50 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
             { "signature", signature } //使用国内短信通用模板时,必须填写签名名称
              };
 
-            HttpRequest r = new HttpRequest("POST", new Uri(apiAddress));
-            r.body = new FormUrlEncodedContent(body).ReadAsStringAsync().Result;
-            r.headers!.Add("Content-Type", "application/x-www-form-urlencoded");
+        HttpRequest r = new HttpRequest("POST", new Uri(apiAddress));
+        r.Body = await new FormUrlEncodedContent(body).ReadAsStringAsync();
 
-            Signer signer = new Signer();
-            signer.Key = key;
-            signer.Secret = appSecret;
+        Signer signer = new Signer();
+        signer.Key = key;
+        signer.Secret = appSecret;
 
-            var req = signer.Sign(r);
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, apiAddress);
-            foreach (string value in req.Headers.AllKeys)
-            {
-                request.Headers.TryAddWithoutValidation(value, req.Headers[value]);
-            }
-            request.Content = new StringContent(r.body);
-            var response = await httpClient.SendAsync(request, cancellationToken);
-
-            var isSuccess = false;
-            SendHuaweiCloudResult? jsonObject = null;
-
-            if (response.IsSuccessStatusCode)
-            {
-                jsonObject = await ReadFromJsonAsync<SendHuaweiCloudResult>(response.Content, cancellationToken);
-                isSuccess = jsonObject != default && jsonObject.IsOK();
-            }
-
-            var result = new SendSmsResult<SendHuaweiCloudResult>
-            {
-                HttpStatusCode = (int)response.StatusCode,
-                IsSuccess = isSuccess,
-                Result = jsonObject,
-                ResultObject = jsonObject,
-            };
-
-            if (!result.IsSuccess)
-            {
-                logger.LogError(
-                    $"调用化为云短信接口失败，" +
-                    $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
-                    $"短信内容：{message}，" +
-                    $"短信类型：{type}，" +
-                    $"HTTP状态码：{result.HttpStatusCode}");
-            }
-
-            return result;
-
-        }
-        catch (Exception ex)
+        var req = await signer.Sign(r);
+        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, apiAddress);
+        foreach (string value in req.Headers.AllKeys)
         {
-            throw;
+            request.Headers.TryAddWithoutValidation(value, req.Headers[value]);
         }
+        request.Content = new StringContent(r.Body, Encoding.UTF8, "application/x-www-form-urlencoded");
+
+        var response = await httpClient.SendAsync(request, cancellationToken);
+
+        var isSuccess = false;
+        SendHuaweiCloudResult? jsonObject = null;
+
+        if (response.IsSuccessStatusCode)
+        {
+            jsonObject = await ReadFromJsonAsync<SendHuaweiCloudResult>(response.Content, cancellationToken);
+            isSuccess = jsonObject != default && jsonObject.IsOK();
+        }
+
+        var result = new SendSmsResult<SendHuaweiCloudResult>
+        {
+            HttpStatusCode = (int)response.StatusCode,
+            IsSuccess = isSuccess,
+            Result = jsonObject,
+            ResultObject = jsonObject
+        };
+
+        if (!result.IsSuccess)
+        {
+            logger.LogError(
+                $"调用化为云短信接口失败，" +
+                $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
+                $"短信内容：{message}，" +
+                $"短信类型：{type}，" +
+                $"HTTP状态码：{result.HttpStatusCode}");
+        }
+        return result;
     }
 
     public override Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)

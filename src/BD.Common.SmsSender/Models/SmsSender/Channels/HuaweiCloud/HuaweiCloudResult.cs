@@ -1,6 +1,6 @@
 namespace BD.Common.Models.SmsSender.Channels.HuaweiCloud;
 
-public class HuaweiCloudResult<T> : JsonModel<T> where T : HuaweiCloudResult<T>
+public class HuaweiCloudResult<T> : JsonModel<T>, ISmsSubResult where T : HuaweiCloudResult<T>
 {
 #if __HAVE_N_JSON__
     [N_JsonProperty("code")]
@@ -19,4 +19,8 @@ public class HuaweiCloudResult<T> : JsonModel<T> where T : HuaweiCloudResult<T>
     public string? Description { get; set; }
 
     public virtual bool IsOK() => Description?.Equals("Success", StringComparison.OrdinalIgnoreCase) ?? false;
+
+    protected virtual string? GetRecord() => $"code: {Code}, Description {Description}";
+
+    string? ISmsSubResult.GetRecord() => GetRecord();
 }

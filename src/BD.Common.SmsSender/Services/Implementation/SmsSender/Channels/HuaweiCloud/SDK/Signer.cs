@@ -4,55 +4,55 @@ namespace APIGATEWAY_SDK
 {
     public class HttpRequest
     {
-        public string? method;
-        public string? host; /*   http://example.com  */
-        public string? uri = "/";  /*   /request/uri      */
-        public Dictionary<string, List<string>>? query = new Dictionary<string, List<string>>();
-        public WebHeaderCollection? headers = new WebHeaderCollection();
-        public string? body = "";
-        public string? canonicalRequest;
-        public string? stringToSign;
+        public string? Method;
+        public string? Host; /* http://example.com */
+        public string? Uri = "/"; /* /request/uri */
+        public Dictionary<string, List<string>>? Query = new Dictionary<string, List<string>>();
+        public WebHeaderCollection? Headers = new WebHeaderCollection();
+        public string? Body = "";
+        public string? CanonicalRequest;
+        public string? StringToSign;
 
-        public HttpRequest(string method = "GET", Uri url = null, WebHeaderCollection headers = null, string body = null)
+        public HttpRequest(string method = "GET", Uri? url = null, WebHeaderCollection? headers = null, string? body = null)
         {
             if (method != null)
             {
-                this.method = method;
+                Method = method;
             }
             if (url != null)
             {
-                host = url.Scheme + "://" + url.Host + ":" + url.Port;
-                uri = url.GetComponents(UriComponents.Path | UriComponents.KeepDelimiter, UriFormat.Unescaped);
-                query = new Dictionary<string, List<string>>();
+                Host = url.Scheme + "://" + url.Host + ":" + url.Port;
+                Uri = url.GetComponents(UriComponents.Path | UriComponents.KeepDelimiter, UriFormat.Unescaped);
+                Query = new Dictionary<string, List<string>>();
                 if (url.Query.Length > 1)
                 {
                     foreach (var kv in url.Query[1..].Split('&'))
                     {
-                        string[] spl = kv.Split(new char[] { '=' }, 2);
-                        string key = Uri.UnescapeDataString(spl[0]);
+                        string[] spl = kv.Split(['='], 2);
+                        string key = System.Uri.UnescapeDataString(spl[0]);
                         string value = "";
                         if (spl.Length > 1)
                         {
-                            value = Uri.UnescapeDataString(spl[1]);
+                            value = System.Uri.UnescapeDataString(spl[1]);
                         }
-                        if (query.ContainsKey(key))
+                        if (Query.ContainsKey(key))
                         {
-                            query[key].Add(value);
+                            Query[key].Add(value);
                         }
                         else
                         {
-                            query[key] = new List<string> { value };
+                            Query[key] = new List<string> { value };
                         }
                     }
                 }
             }
             if (headers != null)
             {
-                this.headers = headers;
+                Headers = headers;
             }
             if (body != null)
             {
-                this.body = body;
+                this.Body = body;
             }
         }
     }
@@ -67,8 +67,8 @@ namespace APIGATEWAY_SDK
         const string HeaderContentSha256 = "X-Sdk-Content-Sha256";
         readonly HashSet<string> unsignedHeaders = new HashSet<string> { "content-type" };
 
-        private string? key;
-        private string? secret;
+        private string key = "";
+        private string secret = "";
 
         public string AppKey
         {
@@ -112,24 +112,24 @@ namespace APIGATEWAY_SDK
         //  CanonicalHeaders + '\n' +
         //  SignedHeaders + '\n' +
         //  HexEncode(Hash(RequestPayload))
-        string CanonicalRequest(HttpRequest r, List<string> signedHeaders)
+        async Task<string> CanonicalRequest(HttpRequest r, List<string> signedHeaders)
         {
             string hexencode;
-            if (r.headers.Get(HeaderContentSha256) != null)
+            if (r.Headers!.Get(HeaderContentSha256) != null)
             {
-                hexencode = r.headers.Get(HeaderContentSha256);
+                hexencode = r.Headers.Get(HeaderContentSha256)!;
             }
             else
             {
-                var data = Encoding.UTF8.GetBytes(r.body!);
-                hexencode = HexEncodeSHA256Hash(data);
+                var data = Encoding.UTF8.GetBytes(r.Body!);
+                hexencode = await HexEncodeSHA256Hash(data);
             }
-            return string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}", r.method, CanonicalURI(r), CanonicalQueryString(r), CanonicalHeaders(r, signedHeaders), string.Join(";", signedHeaders), hexencode);
+            return string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}", r.Method, CanonicalURI(r), CanonicalQueryString(r), CanonicalHeaders(r, signedHeaders), string.Join(";", signedHeaders), hexencode);
         }
 
         string CanonicalURI(HttpRequest r)
         {
-            var pattens = r.uri.Split('/');
+            var pattens = r.Uri!.Split('/');
             List<string> uri = new List<string>();
             foreach (var v in pattens)
             {
@@ -147,17 +147,17 @@ namespace APIGATEWAY_SDK
         string CanonicalQueryString(HttpRequest r)
         {
             List<string> keys = new List<string>();
-            foreach (var pair in r.query)
+            foreach (var pair in r.Query!)
             {
                 keys.Add(pair.Key);
             }
-            keys.Sort(String.CompareOrdinal);
+            keys.Sort(string.CompareOrdinal);
             List<string> a = new List<string>();
             foreach (var key in keys)
             {
                 string k = UrlEncode(key);
-                List<string> values = r.query[key];
-                values.Sort(String.CompareOrdinal);
+                List<string> values = r.Query[key];
+                values.Sort(string.CompareOrdinal);
                 foreach (var value in values)
                 {
                     string kv = k + "=" + UrlEncode(value);
@@ -172,12 +172,12 @@ namespace APIGATEWAY_SDK
             List<string> a = new List<string>();
             foreach (string key in signedHeaders)
             {
-                var values = new List<string>(r.headers.GetValues(key)!);
-                values.Sort(String.CompareOrdinal);
+                var values = new List<string>(r.Headers!.GetValues(key)!);
+                values.Sort(string.CompareOrdinal);
                 foreach (var value in values)
                 {
                     a.Add(key + ":" + value.Trim());
-                    r.headers.Set(key, Encoding.GetEncoding("iso-8859-1").GetString(Encoding.UTF8.GetBytes(value)));
+                    r.Headers.Set(key, Encoding.GetEncoding("iso-8859-1").GetString(Encoding.UTF8.GetBytes(value)));
                 }
             }
             return string.Join("\n", a) + "\n";
@@ -186,7 +186,7 @@ namespace APIGATEWAY_SDK
         List<string> SignedHeaders(HttpRequest r)
         {
             List<string> a = new List<string>();
-            foreach (string key in r.headers.AllKeys)
+            foreach (string key in r.Headers!.AllKeys)
             {
                 string keyLower = key.ToLower();
                 if (!unsignedHeaders.Contains(keyLower))
@@ -194,7 +194,7 @@ namespace APIGATEWAY_SDK
                     a.Add(key.ToLower());
                 }
             }
-            a.Sort(String.CompareOrdinal);
+            a.Sort(string.CompareOrdinal);
             return a;
         }
 
@@ -221,13 +221,14 @@ namespace APIGATEWAY_SDK
             return new string(array, 0, num);
         }
 
-        // Create a "String to Sign".
-        string StringToSign(string canonicalRequest, DateTime t)
+        //Create a "String to Sign".
+        async Task<string> StringToSign(string canonicalRequest, DateTime t)
         {
-            SHA256 sha256 = new SHA256Managed();
-            var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(canonicalRequest));
-            sha256.Clear();
-            return string.Format("{0}\n{1}\n{2}", Algorithm, t.ToUniversalTime().ToString(BasicDateFormat), ToHexString(bytes));
+            using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(canonicalRequest)))
+            {
+                var bytes = await SHA256.HashDataAsync(stream);
+                return string.Format("{0}\n{1}\n{2}", Algorithm, t.ToUniversalTime().ToString(BasicDateFormat), ToHexString(bytes));
+            }
         }
 
         // Create the HWS Signature.
@@ -238,21 +239,20 @@ namespace APIGATEWAY_SDK
         }
 
         // HexEncodeSHA256Hash returns hexcode of sha256
-        public static string HexEncodeSHA256Hash(byte[] body)
+        public static async Task<string> HexEncodeSHA256Hash(byte[] body)
         {
-            SHA256 sha256 = new SHA256Managed();
-            var bytes = sha256.ComputeHash(body);
-            sha256.Clear();
-            return ToHexString(bytes);
+            using (MemoryStream stream = new MemoryStream(body))
+            {
+                var bytes = await SHA256.HashDataAsync(stream);
+                return ToHexString(bytes);
+            }
         }
 
-        public static string HexEncodeSHA256HashFile(string fname)
+        public static async Task<string> HexEncodeSHA256HashFile(string fname)
         {
-            SHA256 sha256 = new SHA256Managed();
             using (var fs = new FileStream(fname, FileMode.Open))
             {
-                var bytes = sha256.ComputeHash(fs);
-                sha256.Clear();
+                var bytes = await SHA256.HashDataAsync(fs);
                 return ToHexString(bytes);
             }
         }
@@ -263,37 +263,37 @@ namespace APIGATEWAY_SDK
             return string.Format("{0} Access={1}, SignedHeaders={2}, Signature={3}", Algorithm, key, string.Join(";", signedHeaders), signature);
         }
 
-        public bool Verify(HttpRequest r, string signature)
+        public async Task<bool> Verify(HttpRequest r, string signature)
         {
-            if (r.method != "POST" && r.method != "PATCH" && r.method != "PUT")
+            if (r.Method != "POST" && r.Method != "PATCH" && r.Method != "PUT")
             {
-                r.body = "";
+                r.Body = "";
             }
-            var time = r.headers.GetValues(HeaderXDate);
+            var time = r.Headers!.GetValues(HeaderXDate);
             if (time == null)
             {
                 return false;
             }
             DateTime t = DateTime.ParseExact(time[0], BasicDateFormat, CultureInfo.CurrentCulture);
             var signedHeaders = SignedHeaders(r);
-            var canonicalRequest = CanonicalRequest(r, signedHeaders);
-            var stringToSign = StringToSign(canonicalRequest, t);
+            var canonicalRequest = await CanonicalRequest(r, signedHeaders);
+            var stringToSign = await StringToSign(canonicalRequest, t);
             return signature == SignStringToSign(stringToSign, Encoding.UTF8.GetBytes(secret!));
         }
 
         // SignRequest set Authorization header
-        public HttpWebRequest Sign(HttpRequest r)
+        public async Task<HttpWebRequest> Sign(HttpRequest r)
         {
-            if (r.method != "POST" && r.method != "PATCH" && r.method != "PUT")
+            if (r.Method != "POST" && r.Method != "PATCH" && r.Method != "PUT")
             {
-                r.body = "";
+                r.Body = "";
             }
-            var time = r.headers.GetValues(HeaderXDate);
+            var time = r.Headers!.GetValues(HeaderXDate);
             DateTime t;
             if (time == null)
             {
                 t = DateTime.Now;
-                r.headers.Add(HeaderXDate, t.ToUniversalTime().ToString(BasicDateFormat));
+                r.Headers!.Add(HeaderXDate, t.ToUniversalTime().ToString(BasicDateFormat));
             }
             else
             {
@@ -304,11 +304,11 @@ namespace APIGATEWAY_SDK
             {
                 queryString = "?" + queryString;
             }
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(r.host + r.uri + queryString);
-            string host = null;
-            if (r.headers.GetValues(HeaderHost) != null)
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(r.Host + r.Uri + queryString);
+            string? host = null;
+            if (r.Headers.GetValues(HeaderHost) != null)
             {
-                host = r.headers.GetValues(HeaderHost)[0];
+                host = r.Headers.GetValues(HeaderHost)![0];
                 req.Host = host;
             }
             else
@@ -316,29 +316,34 @@ namespace APIGATEWAY_SDK
                 host = req.Host;
             }
 
-            r.headers.Set("host", host);
+            r.Headers.Set("host", host);
             var signedHeaders = SignedHeaders(r);
-            var canonicalRequest = CanonicalRequest(r, signedHeaders);
-            var stringToSign = StringToSign(canonicalRequest, t);
+            var canonicalRequest = await CanonicalRequest(r, signedHeaders);
+            var stringToSign = await StringToSign(canonicalRequest, t);
             var signature = SignStringToSign(stringToSign, Encoding.UTF8.GetBytes(secret!));
             var authValue = AuthHeaderValue(signature, signedHeaders);
-            r.headers.Set(HeaderAuthorization, authValue);
-            req.Method = r.method;
-            r.headers.Remove("host");
-            string[] reservedHeaders = new String[]
-            {
-                "content-type","accept","date","if-modified-since","referer","user-agent",
-            };
+            r.Headers.Set(HeaderAuthorization, authValue);
+            req.Method = r.Method!;
+            r.Headers.Remove("host");
+            string[] reservedHeaders =
+            [
+                "content-type",
+                "accept",
+                "date",
+                "if-modified-since",
+                "referer",
+                "user-agent",
+            ];
             Dictionary<string, string> savedHeaders = new Dictionary<string, string>();
             foreach (string header in reservedHeaders)
             {
-                if (r.headers.GetValues(header) != null)
+                if (r.Headers.GetValues(header) != null)
                 {
-                    savedHeaders[header] = r.headers.GetValues(header)[0];
-                    r.headers.Remove(header);
+                    savedHeaders[header] = r.Headers.GetValues(header)![0];
+                    r.Headers.Remove(header);
                 }
             }
-            req.Headers = r.headers;
+            req.Headers = r.Headers;
             if (savedHeaders.ContainsKey("content-type"))
             {
                 req.ContentType = savedHeaders["content-type"];
@@ -366,57 +371,57 @@ namespace APIGATEWAY_SDK
             return req;
         }
 
-        public HttpRequestMessage SignHttp(HttpRequest r)
+        public async Task<HttpRequestMessage> SignHttp(HttpRequest r)
         {
             var queryString = CanonicalQueryString(r);
             if (queryString != "")
             {
                 queryString = "?" + queryString;
             }
-            HttpRequestMessage req = new HttpRequestMessage(new HttpMethod(r.method!), r.host + r.uri + queryString);
-            if (r.method != "POST" && r.method != "PATCH" && r.method != "PUT")
+            HttpRequestMessage req = new HttpRequestMessage(new HttpMethod(r.Method!), r.Host + r.Uri + queryString);
+            if (r.Method != "POST" && r.Method != "PATCH" && r.Method != "PUT")
             {
-                r.body = "";
+                r.Body = "";
             }
             else
             {
-                req.Content = new StringContent(r.body!);
+                req.Content = new StringContent(r.Body!);
             }
-            var time = r.headers.GetValues(HeaderXDate);
+            var time = r.Headers!.GetValues(HeaderXDate);
             DateTime t;
             if (time == null)
             {
                 t = DateTime.Now;
-                r.headers.Add(HeaderXDate, t.ToUniversalTime().ToString(BasicDateFormat));
+                r.Headers.Add(HeaderXDate, t.ToUniversalTime().ToString(BasicDateFormat));
             }
             else
             {
                 t = DateTime.ParseExact(time[0], BasicDateFormat, CultureInfo.CurrentCulture);
             }
-            string host = null;
-            if (r.headers.GetValues(HeaderHost) != null)
+            string? host = null;
+            if (r.Headers.GetValues(HeaderHost) != null)
             {
-                host = r.headers.GetValues(HeaderHost)[0];
+                host = r.Headers.GetValues(HeaderHost)![0];
                 req.Headers.Host = host;
             }
             else
             {
-                host = req.RequestUri.Host;
+                host = req.RequestUri!.Host;
             }
 
-            r.headers.Set("host", host);
+            r.Headers.Set("host", host);
             var signedHeaders = SignedHeaders(r);
-            var canonicalRequest = CanonicalRequest(r, signedHeaders);
-            r.canonicalRequest = canonicalRequest;
-            var stringToSign = StringToSign(canonicalRequest, t);
-            r.stringToSign = stringToSign;
+            var canonicalRequest = await CanonicalRequest(r, signedHeaders);
+            r.CanonicalRequest = canonicalRequest;
+            var stringToSign = await StringToSign(canonicalRequest, t);
+            r.StringToSign = stringToSign;
             var signature = SignStringToSign(stringToSign, Encoding.UTF8.GetBytes(secret!));
             var authValue = AuthHeaderValue(signature, signedHeaders);
-            r.headers.Set(HeaderAuthorization, authValue);
-            r.headers.Remove("host");
-            foreach (string key in r.headers.AllKeys)
+            r.Headers.Set(HeaderAuthorization, authValue);
+            r.Headers.Remove("host");
+            foreach (string key in r.Headers.AllKeys)
             {
-                req.Headers.TryAddWithoutValidation(key, r.headers[key]);
+                req.Headers.TryAddWithoutValidation(key, r.Headers[key]);
             }
 
             return req;
