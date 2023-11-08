@@ -1,6 +1,6 @@
-namespace BD.Common.Models.SmsSender.Channels.HuaWeiCloud;
+namespace BD.Common.Models.SmsSender.Channels.HuaweiCloud;
 
-public class SmsHuaWeiCloudOptions : ChannelSmsOptions
+public class SmsHuaweiCloudOptions : ChannelSmsOptions
 {
     /// <summary>
     /// APP 接入地址(在控制台"应用管理"页面获取)+ 接口访问 URI

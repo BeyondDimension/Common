@@ -1,6 +1,6 @@
-namespace BD.Common.Models.SmsSender.Channels.HuaWeiCloud;
+namespace BD.Common.Models.SmsSender.Channels.HuaweiCloud;
 
-public class SendHuaWeiCloudResult : HuaWeiCloudResult<SendHuaWeiCloudResult>, ISmsSubResult
+public class SendHuaweiCloudResult : HuaweiCloudResult<SendHuaweiCloudResult>, ISmsSubResult
 {
 #if __HAVE_N_JSON__
     [N_JsonProperty("smsMsgId")]

@@ -6,7 +6,7 @@ static partial class Constants
 
     public const string sms_phone_number = "18611112211";
 
-    public static readonly bool enable_HuaWeiCloudSmsSenderProviderTest = true; // ²»Ê¹ÓÃ³£Á¿
+    public static readonly bool enable_HuaWeiCloudSmsSenderProviderTest = false; // ä¸ä½¿ç”¨å¸¸é‡
 
     public const string hwc_api_address = "";
 

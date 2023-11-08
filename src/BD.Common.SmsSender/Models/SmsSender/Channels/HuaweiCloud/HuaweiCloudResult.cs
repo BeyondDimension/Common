@@ -1,6 +1,6 @@
-namespace BD.Common.Models.SmsSender.Channels.HuaWeiCloud;
+namespace BD.Common.Models.SmsSender.Channels.HuaweiCloud;
 
-public class HuaWeiCloudResult<T> : JsonModel<T> where T : HuaWeiCloudResult<T>
+public class HuaweiCloudResult<T> : JsonModel<T> where T : HuaweiCloudResult<T>
 {
 #if __HAVE_N_JSON__
     [N_JsonProperty("code")]
