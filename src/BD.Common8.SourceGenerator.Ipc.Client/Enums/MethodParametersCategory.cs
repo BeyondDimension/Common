@@ -51,7 +51,9 @@ public static partial class MethodParametersCategoryEnumExtensions
     /// <param name="category"></param>
     /// <param name="parameter"></param>
     /// <returns></returns>
+#pragma warning disable IDE0060 // 删除未使用的参数
     public static string GetParameterTypeString(this MethodParametersCategory category, IParameterSymbol parameter)
+#pragma warning restore IDE0060 // 删除未使用的参数
     {
         var typeString = parameter.Type.ToDisplayString();
         if (typeString.Count(static x => x == '.') == 1)

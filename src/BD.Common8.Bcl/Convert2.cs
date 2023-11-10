@@ -61,6 +61,7 @@ public static partial class Convert2
             return default;
         var typeCode = Type.GetTypeCode(typeof(T));
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return typeCode switch
         {
             TypeCode.Boolean => Convert<T, bool>(value.ToBoolean(CultureInfo.InvariantCulture)),
@@ -81,6 +82,7 @@ public static partial class Convert2
             TypeCode.Object => ConvertObject<T>(value),
             _ => default,
         };
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
     }
 }
