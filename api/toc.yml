@@ -1,0 +1,107 @@
+items:
+- name: SharedLibrary 共享库
+  items:
+  - name: AspNetCore
+    items:
+    - name: BD.Common8.AspNetCore
+      href: BD.Common8.AspNetCore/toc.yml
+    - name: BD.Common8.AspNetCore.Identity
+      href: BD.Common8.AspNetCore.Identity/toc.yml
+    - name: BD.Common8.AspNetCore.Identity.BackManage
+      href: BD.Common8.AspNetCore.Identity.BackManage/toc.yml
+  - name: Bcl
+    items:
+    - name: BD.Common8.Bcl
+      href: BD.Common8.Bcl/toc.yml
+    - name: BD.Common8.Bcl.Compat
+      href : BD.Common8.Bcl.Compat/toc.yml
+  - name: Essentials
+    items:
+    - name: BD.Common8.Essentials
+      href: BD.Common8.Essentials/toc.yml
+    - name: BD.Common8.Essentials.Implementation
+      href: BD.Common8.Essentials.Implementation/toc.yml
+    - name: BD.Common8.Essentials.Implementation.Avalonia
+      href: BD.Common8.Essentials.Implementation.Avalonia/toc.yml
+  - name: Http
+    items:
+    - name: BD.Common8.Http.ClientFactory
+      href: BD.Common8.Http.ClientFactory/toc.yml
+    - name: BD.Common8.Http.ClientFactory.Server
+      href: BD.Common8.Http.ClientFactory.Server/toc.yml
+  - name: Ipc
+    items: 
+    - name: BD.Common8.Ipc
+      href: BD.Common8.Ipc/toc.yml
+    - name: BD.Common8.Ipc.Client
+      href: BD.Common8.Ipc.Client/toc.yml
+    - name: BD.Common8.Ipc.Server
+      href: BD.Common8.Ipc.Server/toc.yml
+  - name: Orm
+    items:
+    - name: BD.Common8.Orm.EFCore
+      href: BD.Common8.Orm.EFCore/toc.yml
+  - name: Pinyin
+    items:
+    - name: BD.Common8.Pinyin
+      href: BD.Common8.Pinyin/toc.yml
+    - name: BD.Common8.Pinyin.ChnCharInfo
+      href: BD.Common8.Pinyin.ChnCharInfo/toc.yml
+    - name: BD.Common8.Pinyin.CoreFoundation
+      href: BD.Common8.Pinyin.CoreFoundation/toc.yml
+  - name: Primitives
+    items:
+    - name: ApiRsp
+      items:
+      - name: BD.Common8.Primitives.ApiResponse
+        href: BD.Common8.Primitives.ApiResponse/toc.yml
+      - name: BD.Common8.Primitives.ApiRsp
+        href: BD.Common8.Primitives.ApiRsp/toc.yml
+    - name: PersonalData
+      items: 
+      - name: BD.Common8.Primitives.PersonalData.BirthDate
+        href: BD.Common8.Primitives.PersonalData.BirthDate/toc.yml
+      - name: BD.Common8.Primitives.PersonalData.PhoneNumber
+        href: BD.Common8.Primitives.PersonalData.PhoneNumber/toc.yml
+    - name: BD.Common8.Primitives
+      href: BD.Common8.Primitives/toc.yml
+    - name: BD.Common8.Primitives.District
+      href: BD.Common8.Primitives.District/toc.yml
+  - name: Repositories
+    items:
+    - name: BD.Common8.Repositories
+      href: BD.Common8.Repositories/toc.yml
+    - name: BD.Common8.Repositories.EFCore
+      href: BD.Common8.Repositories.EFCore/toc.yml
+    - name: BD.Common8.Repositories.SQLitePCL
+      href: BD.Common8.Repositories.SQLitePCL/toc.yml
+  - name: Security
+    items:
+    - name: BD.Common8.Security
+      href: BD.Common8.Security/toc.yml
+  - name: Sms
+    items:
+    - name: BD.Common8.SmsSender
+      href: BD.Common8.SmsSender/toc.yml
+  - name: Toast
+    items:
+    - name: BD.Common8.Toast
+      href: BD.Common8.Toast/toc.yml
+  - name: UserInput
+    items:
+    - name: BD.Common8.UserInput.ModelValidator
+      href: BD.Common8.UserInput.ModelValidator/toc.yml
+- name: SourceGenerator 源生成器
+  items:
+  - name: BD.Common8.SourceGenerator.Shared
+    href: BD.Common8.SourceGenerator.Shared/toc.yml
+- name: Tools 工具
+  items:
+  - name: BD.Common8.Tools.DocFX
+    href: BD.Common8.Tools.DocFX/toc.yml
+  - name: BD.Common8.Tools.Sort.PackageVersion
+    href: BD.Common8.Tools.Sort.PackageVersion/toc.yml
+- name : UnitTest 单元测试
+  items:
+  - name: BD.Common8.UnitTest
+    href: BD.Common8.UnitTest/toc.yml
