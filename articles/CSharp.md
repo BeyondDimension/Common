@@ -1,5 +1,9 @@
 ### [C# 中的新增功能 与 重大更改](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/relationships-between-language-and-library)
 
+#### [C# 12 中的新增功能](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-12)
+- [主构造函数](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-12#primary-constructors)
+- [集合表达式](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-12#collection-expressions)
+
 #### [C# 11 中的新增功能](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-11)
 - [泛型属性](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-11#generic-attributes)
 - [泛型数学支持](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-11#generic-math-support)
