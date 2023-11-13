@@ -10,7 +10,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsTrimmable>true</IsTrimmable>
 		<!--<Version>1.yy.1MMdd.1hhmm</Version>-->
-		<Version>1.23.10926.11939</Version>
+		<Version>1.23.11113.11410</Version>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691?s=200&amp;v=4</PackageIconUrl>
 		<Company>江苏蒸汽凡星科技有限公司</Company>
 		<Copyright>©️ $(Company). All rights reserved.</Copyright>
