@@ -25,6 +25,11 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
+	
+	<ItemGroup Condition="Exists('..\..\..\Constants.Sms.cs')">
+		<Compile Remove="Constants.Sms.cs" />
+		<Compile Include="..\..\..\Constants.Sms.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="MonoMac.NetStandard" />
@@ -34,6 +39,7 @@
 		<ProjectReference Include="..\BD.Common8.Pinyin.ChnCharInfo\BD.Common8.Pinyin.ChnCharInfo.csproj" />
 		<ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
 		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
+		<ProjectReference Include="..\BD.Common8.SmsSender\BD.Common8.SmsSender.csproj" />
 	</ItemGroup>
 
 </Project>

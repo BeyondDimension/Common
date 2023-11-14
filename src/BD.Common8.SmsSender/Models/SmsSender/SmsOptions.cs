@@ -21,6 +21,11 @@ public class SmsOptions
     public Sms21VianetBlueCloudOptions? _21VianetBlueCloud { get; set; }
 
     /// <summary>
+    /// 华为云短信配置
+    /// </summary>
+    public SmsHuaweiCloudOptions? HuaweiCloud { get; set; }
+
+    /// <summary>
     /// 获取默认的短信提供商名称
     /// </summary>
     public static string? GetDefaultProviderName(SmsOptions? options)
@@ -33,6 +38,8 @@ public class SmsOptions
                 return nameof(AlibabaCloud);
             if (options.NetEaseCloud.HasValue())
                 return nameof(NetEaseCloud);
+            if (options.HuaweiCloud.HasValue())
+                return nameof(HuaweiCloud);
         }
         return null;
     }

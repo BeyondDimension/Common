@@ -65,6 +65,8 @@ public abstract class SmsSenderBase : ISmsSender
                 => Add<Channels.AlibabaCloud.SenderProviderInvoker<TSmsSettings>, TSmsSettings>(services),
             nameof(ISmsSettings.SmsOptions.NetEaseCloud)
                 => Add<Channels.NetEaseCloud.SenderProviderInvoker<TSmsSettings>, TSmsSettings>(services),
+            nameof(ISmsSettings.SmsOptions.HuaweiCloud)
+                => Add<Channels.HuaweiCloud.SenderProviderInvoker<TSmsSettings>, TSmsSettings>(services),
             _ => throw new ArgumentOutOfRangeException(nameof(name), name, null),
         };
 
@@ -104,6 +106,7 @@ public abstract class SmsSenderBase : ISmsSender
 [JsonSerializable(typeof(SendSmsAlibabaCloudResult))]
 [JsonSerializable(typeof(SendSmsNetEaseCloudResult))]
 [JsonSerializable(typeof(NetEaseCloudResult))]
+[JsonSerializable(typeof(SendHuaweiCloudResult))]
 sealed partial class SmsSenderJsonSerializerContext : JsonSerializerContext
 {
     static SmsSenderJsonSerializerContext()

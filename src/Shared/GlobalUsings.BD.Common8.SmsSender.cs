@@ -14,7 +14,9 @@ global using BD.Common8.SmsSender.Services.Implementation.SmsSender;
 global using BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud;
 global using BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
 global using BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
+global using BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
 
 global using BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud;
 global using BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.AlibabaCloud;
 global using BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEaseCloud;
+global using BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.HuaweiCloud;
