@@ -46,6 +46,7 @@
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.6" />
 		<PackageVersion Include="StackExchange.Redis" Version="2.6.122" />
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.507" />
+		<PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0-rc.2.23479.6" />
 		<PackageVersion Include="System.Memory" Version="4.5.5" />
 		<PackageVersion Include="System.Net.Http.Json" Version="8.0.0-rc.2.23479.6" />

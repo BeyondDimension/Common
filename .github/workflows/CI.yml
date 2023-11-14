@@ -1,0 +1,162 @@
+name: CI
+on:
+  push:
+    branches:
+      - dev8
+    tags:
+      - "*"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+#        os: [ windows-latest ]
+        os: [ aigio-win10ltsc-vm ]
+
+    steps:
+      - name: Checkout repository
+#        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+#      - name: Checkout repository(BD.Git.Checkout.Tools)
+#        if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}
+#        run: C:\actions-runner\checkout.exe ${{ github.workspace }} ${{ github.sha }} ${{ github.repositoryUrl }}
+
+      - name: Setup .NET
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install Android SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install android
+
+      - name: Install iOS SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install ios
+
+      - name: Install macOS SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install macos
+
+      - name: Install Mac Catalyst SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install maccatalyst
+
+      - name: Install Maui
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install maui
+
+      - name: Install wasm-tools
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install wasm-tools
+
+      - name: Restore Workload
+        run: dotnet workload restore
+
+      - name: Verify dotnet info
+        run: dotnet --info
+
+      - name: Test
+        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false --nologo -v q /property:WarningLevel=1
+
+  build:
+    name: Build
+    needs: [ test ]
+    if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
+    runs-on: ${{ matrix.os }}
+    continue-on-error: true
+    strategy:
+      matrix:
+#        os: [ windows-latest ]
+        os: [ aigio-win10ltsc-vm ]
+
+    steps:
+      - name: Checkout repository
+#        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+#      - name: Checkout repository(BD.Git.Checkout.Tools)
+#        if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}
+#        run: C:\actions-runner\checkout.exe ${{ github.workspace }} ${{ github.sha }} ${{ github.repositoryUrl }}
+
+      - name: Setup .NET
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install Android SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install android
+
+      - name: Install iOS SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install ios
+
+      - name: Install macOS SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install macos
+
+      - name: Install Mac Catalyst SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install maccatalyst
+
+      - name: Install Maui
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install maui
+
+      - name: Install wasm-tools
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install wasm-tools
+
+      - name: Restore Workload
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload restore
+
+      - name: Verify dotnet info
+        run: dotnet --info
+
+      - name: Build tools
+        run: dotnet build -c Release src\BD.Common8.Tools.Build\BD.Common8.Tools.Build.csproj --nologo -v q /property:WarningLevel=1
+
+      - name: Build projects
+        run: .\src\artifacts\bin\BD.Common8.Tools.Build\release\BD.Common8.Tools.Build.exe build
+
+      - name: Push NuGet packages
+        run: .\src\artifacts\bin\BD.Common8.Tools.Build\release\BD.Common8.Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}
+
+      - name: Delete nuget packages
+        if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}
+        shell: cmd
+        run: del pkg /f /q
+
+  release:
+    name: Release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Changelog
+        uses: glennawatson/ChangeLog@v1
+        id: changelog
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.RMBADMIN_TOKEN }}
+          body: ${{ steps.changelog.outputs.commitLog }}
+          draft: false
+          prerelease: false

@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security;UseSystemCommandLine">
 
 	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)GeneratePackage.props" />
 	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.UnitTest.props" />
@@ -222,6 +222,13 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Security\BD.Common8.Security.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseSystemCommandLine) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.CommandLine.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="System.CommandLine" />
 	</ItemGroup>
 
 </Project>

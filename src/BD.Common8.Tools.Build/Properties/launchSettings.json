@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BD.Common8.Tools.Build": {
+      "commandName": "Project",
+      "commandLineArgs": "b"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseProjectUtils>true</UseProjectUtils>
+		<UseSystemCommandLine>true</UseSystemCommandLine>
+	</PropertyGroup>
+
+</Project>
