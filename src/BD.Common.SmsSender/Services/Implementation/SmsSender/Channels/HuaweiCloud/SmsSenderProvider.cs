@@ -221,7 +221,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         if (!result.IsSuccess)
         {
             logger.LogError(
-                $"调用化为云短信接口失败，" +
+                $"调用华为云短信接口失败，" +
                 $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
                 $"短信内容：{message}，" +
                 $"短信类型：{type}，" +
