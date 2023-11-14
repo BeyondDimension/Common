@@ -21,6 +21,9 @@ global using System.IO.Compression;
 global using System.IO.Pipes;
 global using System.Linq;
 global using System.Linq.Expressions;
+#if (NETFRAMEWORK && NET45_OR_GREATER) || !NETFRAMEWORK
+global using System.Numerics;
+#endif
 global using System.Net;
 global using System.Net.NetworkInformation;
 global using System.Net.Security;

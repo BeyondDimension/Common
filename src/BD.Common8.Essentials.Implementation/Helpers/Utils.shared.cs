@@ -40,6 +40,10 @@ static partial class Utils
     /// <summary>
     /// 使用指定的超时时间等待任务的完成，并返回任务的结果，如果任务在超时时间内未完成，则返回默认值
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="task"></param>
+    /// <param name="timeSpan"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<T?> WithTimeout<T>(Task<T> task, TimeSpan timeSpan)
     {

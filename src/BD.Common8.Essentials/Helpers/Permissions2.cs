@@ -67,6 +67,7 @@ public static partial class Permissions2
     /// <summary>
     /// 确保特定权限 TPermission 被授予
     /// </summary>
+    /// <typeparam name="TPermission"></typeparam>
     public static void EnsureDeclared<TPermission>()
         where TPermission : IBasePermission
     {
@@ -77,6 +78,9 @@ public static partial class Permissions2
     /// <summary>
     /// 检查是否授予了指定权限，如果没有授予，则引发 <see cref="PermissionException"/> 异常
     /// </summary>
+    /// <typeparam name="TPermission"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="PermissionException"></exception>
     public static async Task EnsureGrantedAsync<TPermission>()
         where TPermission : IBasePermission
     {
@@ -89,6 +93,9 @@ public static partial class Permissions2
     /// <summary>
     /// 检查特定权限是否被授予或限制，如果没有授予或受限制，则引发 <see cref="PermissionException"/> 异常。
     /// </summary>
+    /// <typeparam name="TPermission"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="PermissionException"></exception>
     public static async Task EnsureGrantedOrRestrictedAsync<TPermission>()
         where TPermission : IBasePermission
     {

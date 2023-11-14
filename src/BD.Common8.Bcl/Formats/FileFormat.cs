@@ -18,11 +18,13 @@ public static partial class FileFormat
     /// <summary>
     /// 允许使用的图片格式
     /// </summary>
+    [Obsolete("应由业务层定义允许的格式")]
     public static ImageFormat[] AllowImageFormats { get; set; } = [ImageFormat.JPEG, ImageFormat.PNG];
 
     /// <summary>
     /// 允许使用的图片格式的媒体类型
     /// </summary>
+    [Obsolete("应由业务层定义允许的格式")]
     public static string[] AllowImageMediaTypeNames { get; set; } = AllowImageFormats.Select(x => x.GetMIME()).ToArray();
 
     /// <summary>

@@ -207,4 +207,9 @@ public static partial class MediaTypeNames
     /// application/x-x509-ca-cert
     /// </summary>
     public const string CER = "application/x-x509-ca-cert";
+
+    /// <summary>
+    /// image/tiff
+    /// </summary>
+    public const string TIFF = "image/tiff";
 }

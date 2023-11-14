@@ -72,6 +72,11 @@ partial class PreferencesPlatformServiceImpl
     /// 获取指定键和共享名称的平台数据，如果数据不存在，则返回 defaultValue 参数指定的默认值
     /// 数据的类型由泛型参数 T 指定，该类型必须实现 IConvertible 接口
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="key"></param>
+    /// <param name="defaultValue"></param>
+    /// <param name="sharedName"></param>
+    /// <returns></returns>
     public T? PlatformGet<T>(string key, T? defaultValue, string? sharedName) where T : notnull, IConvertible
     {
         var id = GetId(key, sharedName);
@@ -104,6 +109,10 @@ partial class PreferencesPlatformServiceImpl
     /// <summary>
     /// 根据指定的键名和共享名称在数据库中设置平台首选项的值
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <param name="sharedName"></param>
     public void PlatformSet<T>(string key, T? value, string? sharedName) where T : notnull, IConvertible
     {
         if (value == null)

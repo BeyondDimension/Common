@@ -69,7 +69,9 @@ public static partial class JsonObjectExtensions
         static readonly Lazy<Type> _CreateJsonPropertyDictionaryJsonNode = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeName_JsonPropertyDictionary1, assemblyName_SystemTextJson)] () =>
         {
             var typeOfJObject = typeof(SystemTextJsonObject);
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
             var typeOfJsonPropertyDictionary = typeOfJObject.Assembly.GetType(typeName_JsonPropertyDictionary1, true);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
             var typeOfJsonPropertyDictionaryMakeGeneric = typeOfJsonPropertyDictionary.ThrowIsNull().MakeGenericType(typeof(JsonNode));
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
@@ -87,7 +89,9 @@ public static partial class JsonObjectExtensions
         static readonly Lazy<MethodInfo> _JsonNodeConverterCreate = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
         {
             var typeOfJObject = typeof(SystemTextJsonObject);
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
             var typeOfJsonNodeConverter = typeOfJObject.Assembly.GetType("System.Text.Json.Serialization.Converters.JsonNodeConverter", true);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
             var methodCreateJsonNode = typeOfJsonNodeConverter.ThrowIsNull().GetMethod("Create", BindingFlags.Static | BindingFlags.Public);
             return methodCreateJsonNode.ThrowIsNull();
         });

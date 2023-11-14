@@ -27,7 +27,11 @@ public static partial class ServiceCollectionExtensions
         services.TryAddSingleton<IConnectivityPlatformService, ConnectivityPlatformServiceImpl>();
         services.TryAddSingleton<IDeviceInfoPlatformService, DeviceInfoPlatformServiceImpl>();
         //services.TryAddSingleton<IEmailPlatformService, EmailPlatformServiceImpl>();
+#pragma warning disable IDE0079 // 请删除不必要的忽略
+#pragma warning disable CA1416 // 验证平台兼容性
         services.AddSingleton<IPermissionsPlatformService, PermissionsPlatformServiceImpl>();
+#pragma warning restore CA1416 // 验证平台兼容性
+#pragma warning restore IDE0079 // 请删除不必要的忽略
         services.TryAddSingleton<IPreferencesPlatformService, PreferencesPlatformServiceImpl>();
         services.TryAddSingleton<IFilePickerPlatformService, TFilePickerPlatformServiceImpl>();
         services.TryAddSingleton(s => s.GetRequiredService<IFilePickerPlatformService>().OpenFileDialogService);

@@ -144,6 +144,10 @@ public interface IMainThreadPlatformService
     /// <summary>
     /// 在主线程上异步调用指定的泛型函数任务
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="funcTask"></param>
+    /// <param name="priority"></param>
+    /// <returns></returns>
     Task<T> InvokeOnMainThreadAsync<T>(Func<Task<T>> funcTask, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)
     {
         if (PlatformIsMainThread)

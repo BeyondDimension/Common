@@ -64,6 +64,10 @@ public static partial class CacheExtensions
     /// 异步从缓存中获取指定键的值
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <param name="cache"></param>
+    /// <param name="key"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<T?> GetV2Async<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default) where T : notnull
     {
@@ -77,6 +81,12 @@ public static partial class CacheExtensions
     /// 异步将指定键和值添加到缓存中，并指定缓存选项
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <param name="cache"></param>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <param name="options"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task SetV2Async<T>(this IDistributedCache cache, string key, T value, DistributedCacheEntryOptions options, CancellationToken cancellationToken = default) where T : notnull
     {
@@ -88,6 +98,12 @@ public static partial class CacheExtensions
     /// 异步指定键和值添加到缓存中，并设置相对于当前时间的绝对过期时间
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <param name="cache"></param>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <param name="absoluteExpirationRelativeToNow"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task SetV2Async<T>(this IDistributedCache cache, string key, T value, TimeSpan absoluteExpirationRelativeToNow, CancellationToken cancellationToken = default) where T : notnull
         => cache.SetV2Async(key, value, new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow }, cancellationToken);
@@ -95,6 +111,13 @@ public static partial class CacheExtensions
     /// <summary>
     /// 异步将指定键和值添加到分布式缓存中，并设置过期时间
     /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="cache"></param>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <param name="minutes"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task SetV2Async<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
         => cache.SetV2Async(key, value, TimeSpan.FromMinutes(minutes), cancellationToken);

@@ -15,6 +15,7 @@ public static partial class TypeConverterBinder
     /// <param name="reader"></param>
     /// <param name="writer"></param>
     [RequiresDynamicCode("Using member 'System.Type.MakeGenericType(params Type[])' which has 'RequiresDynamicCodeAttribute' can break functionality when AOT compiling. The native code for this instantiation might not be available at runtime.")]
+    [RequiresUnreferencedCode("Generic TypeConverters may require the generic types to be annotated. For example, NullableConverter requires the underlying type to be DynamicallyAccessedMembers All.")]
     public static void Bind<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(Func<string, T?> reader, Func<T?, string?> writer)
     {
         binders[typeof(T)] = new Binder<T>(reader, writer);

@@ -41,9 +41,11 @@ public abstract class ApiControllerBase<T>(ILogger<T> logger) : ControllerBase w
     [NonAction]
     public virtual ActionResult Fail(IdentityResult identityResult)
     {
-        if (identityResult.Succeeded) throw new ArgumentOutOfRangeException(nameof(identityResult));
+        if (identityResult.Succeeded)
+            throw new ArgumentOutOfRangeException(nameof(identityResult));
         var errorMessages = GetErrors(identityResult).ToArray();
-        if (!errorMessages.Any()) errorMessages = new[] { "Identity Error", };
+        if (errorMessages.Length == 0)
+            errorMessages = new[] { "Identity Error", };
         return Fail(errorMessages);
     }
 

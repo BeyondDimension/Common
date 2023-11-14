@@ -357,7 +357,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             }
         }
 
+#pragma warning disable CA1822 // 将成员标记为 static
         internal void EnsureMainThread()
+#pragma warning restore CA1822 // 将成员标记为 static
         {
             if (!MainThread2.IsMainThread())
                 throw new PermissionException("Permission request must be invoked on main thread.");
@@ -385,7 +387,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             var eventStore = new EKEventStore();
 
 #pragma warning disable CA1416 // 验证平台兼容性
+#pragma warning disable CA1422 // 验证平台兼容性
             var results = await eventStore.RequestAccessAsync(entityType);
+#pragma warning restore CA1422 // 验证平台兼容性
 #pragma warning restore CA1416 // 验证平台兼容性
 
             return results.Item1 ? PermissionStatus.Granted : PermissionStatus.Denied;
@@ -444,7 +448,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         /// <inheritdoc/>
         public virtual bool ShouldShowRationale() => false;
 
+#pragma warning disable CA1822 // 将成员标记为 static
         internal void EnsureMainThread()
+#pragma warning restore CA1822 // 将成员标记为 static
         {
             if (!MainThread2.IsMainThread())
                 throw new PermissionException("Permission request must be invoked on main thread.");
@@ -1048,8 +1054,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             public event EventHandler<CLAuthorizationChangedEventArgs>? AuthorizationStatusChanged;
 
             [Export("locationManager:didChangeAuthorizationStatus:")]
+#pragma warning disable IDE0060 // 删除未使用的参数
             public void AuthorizationChanged(CLLocationManager manager, CLAuthorizationStatus status) =>
                 AuthorizationStatusChanged?.Invoke(this, new CLAuthorizationChangedEventArgs(status));
+#pragma warning restore IDE0060 // 删除未使用的参数
 
 #pragma warning disable CA1416 // 验证平台兼容性
             [Export("locationManagerDidChangeAuthorization:")]
@@ -1334,6 +1342,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
                         permissions.Add((Manifest.Permission.AnswerPhoneCalls, true));
                 }
 
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable CS0618 // Type or member is obsolete
 #pragma warning disable CA1416 // Validate platform compatibility
 #pragma warning disable CA1422 // Validate platform compatibility
@@ -1346,6 +1355,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #pragma warning restore CA1422 // Validate platform compatibility
 #pragma warning restore CA1416 // Validate platform compatibility
 #pragma warning restore CS0618 // Type or member is obsolete
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 
                 return permissions.ToArray();
             }

@@ -316,6 +316,11 @@ public static partial class FileEx
     public const string Database = ".db";
 
     /// <summary>
+    /// Tagged Image File Format 标签图像文件格式
+    /// </summary>
+    public const string TIFF = ".tiff";
+
+    /// <summary>
     /// 是否支持使用文本阅读器打开的扩展名
     /// </summary>
     /// <param name="extension"></param>

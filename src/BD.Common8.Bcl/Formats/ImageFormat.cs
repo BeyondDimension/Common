@@ -77,4 +77,9 @@ public enum ImageFormat : byte
     HEICSequence,
 
     #endregion
+
+    /// <summary>
+    /// Tagged Image File Format 标签图像文件格式
+    /// </summary>
+    TIFF,
 }

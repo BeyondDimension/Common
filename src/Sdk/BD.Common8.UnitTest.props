@@ -1,5 +1,14 @@
 <Project>
 
+	<PropertyGroup>
+		<!-- 单元测试无需 AOT & Trimmable -->
+		<IsTrimmable>false</IsTrimmable>
+		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>false</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>false</EnableAotAnalyzer>
+		<IsAotCompatible>false</IsAotCompatible>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.UnitTest.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>

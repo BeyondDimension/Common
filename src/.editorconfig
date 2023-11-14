@@ -241,6 +241,9 @@ dotnet_diagnostic.IDE0010.severity = none
 # IDE0011: 添加大括号
 dotnet_diagnostic.IDE0011.severity = none
 
+# IDE0028: 使用集合初始值设定项
+dotnet_diagnostic.IDE0028.severity = error
+
 # IDE0040: 添加可访问性修饰符
 dotnet_diagnostic.IDE0040.severity = none
 
@@ -516,6 +519,9 @@ dotnet_diagnostic.CA1829.severity = error
 
 # CA1846: 首选 “AsSpan” 而不是 “Substring”
 dotnet_diagnostic.CA1846.severity = error
+
+# CA1860：避免使用 “Enumerable.Any()” 扩展方法，直接使用 Length/Count 判断不等于 0 性能更好
+dotnet_diagnostic.CA1860.severity = error
 
 # IDE0057: 使用范围运算符
 dotnet_diagnostic.IDE0057.severity = error

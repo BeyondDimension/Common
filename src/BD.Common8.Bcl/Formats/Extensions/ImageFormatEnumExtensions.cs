@@ -28,7 +28,7 @@ public static partial class ImageFormatEnumExtensions
             ImageFormat.HEIFSequence => HEIF_HEIC.HEIF.DefaultFileExtension,
             ImageFormat.HEIC => HEIF_HEIC.HEIC.DefaultFileExtension,
             ImageFormat.HEICSequence => HEIF_HEIC.HEIC.DefaultFileExtension,
-            //ImageFormat.APNG => APNG.DefaultFileExtension,
+            ImageFormat.TIFF => TIFF.DefaultFileExtension,
             _ => throw new ArgumentOutOfRangeException(nameof(imageFormat), imageFormat, null),
         };
     }
@@ -53,7 +53,7 @@ public static partial class ImageFormatEnumExtensions
             ImageFormat.HEIFSequence => HEIF_HEIC.HEIFSequence.DefaultMIME,
             ImageFormat.HEIC => HEIF_HEIC.HEIC.DefaultMIME,
             ImageFormat.HEICSequence => HEIF_HEIC.HEICSequence.DefaultMIME,
-            //ImageFormat.APNG => APNG.DefaultMIME,
+            ImageFormat.TIFF => TIFF.DefaultMIME,
             _ => throw new ArgumentOutOfRangeException(nameof(imageFormat), imageFormat, null),
         };
     }
@@ -79,7 +79,7 @@ public static partial class ImageFormatEnumExtensions
             ImageFormat.HEIFSequence => HEIF_HEIC.HEIFSequence.MagicNumber,
             ImageFormat.HEIC => HEIF_HEIC.HEIC.MagicNumber,
             ImageFormat.HEICSequence => HEIF_HEIC.HEICSequence.MagicNumber,
-            //ImageFormat.APNG => APNG.MagicNumber,
+            ImageFormat.TIFF => TIFF.MagicNumber,
             _ => throw new ArgumentOutOfRangeException(nameof(imageFormat), imageFormat, null),
         };
     }
@@ -89,6 +89,7 @@ public static partial class ImageFormatEnumExtensions
     /// </summary>
     /// <param name="imageFormat"></param>
     /// <returns></returns>
+    [Obsolete("应由业务层定义允许的格式")]
     public static bool IsAllow(this ImageFormat imageFormat) => FileFormat.AllowImageFormats.Contains(imageFormat);
 
     /// <summary>

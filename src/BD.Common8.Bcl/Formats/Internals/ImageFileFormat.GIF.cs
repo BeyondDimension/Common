@@ -24,12 +24,12 @@ partial class ImageFileFormat
         public const string DefaultMIME = MediaTypeNames.GIF;
 
         /// <summary>
-        /// ftyphevc
+        /// GIF87a
         /// </summary>
         public static readonly byte[] MagicNumber1;
 
         /// <summary>
-        /// ftyphevx
+        /// GIF89a
         /// </summary>
         public static readonly byte[] MagicNumber2;
 
