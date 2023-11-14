@@ -24,50 +24,64 @@ interface IBuildCommand : ICommand
     }
 
     /// <summary>
-    /// 要构建的项目名称
+    /// 获取要构建的项目名称
     /// </summary>
-    static readonly string[] projectNames =
-        [
-            "BD.Common8.SourceGenerator.ResX",
+    /// <returns></returns>
+    static string[] GetProjectNames()
+    {
+        var slnFileName = Directory.GetFiles(ProjPath, "*.sln").FirstOrDefault();
+        slnFileName.ThrowIsNull();
+        slnFileName = Path.GetFileNameWithoutExtension(slnFileName);
 
-            "BD.Common8.Bcl",
+        return slnFileName switch
+        {
+            "BD.Common8" => [
+                "BD.Common8.SourceGenerator.ResX",
 
-            "BD.Common8.Primitives",
-            "BD.Common8.Primitives.District",
-            "BD.Common8.Primitives.ApiRsp",
-            "BD.Common8.Primitives.ApiResponse",
-            "BD.Common8.Primitives.PersonalData.BirthDate",
-            "BD.Common8.Primitives.PersonalData.PhoneNumber",
+                "BD.Common8.Bcl",
 
-            "BD.Common8.Orm.EFCore",
+                "BD.Common8.Primitives",
+                "BD.Common8.Primitives.District",
+                "BD.Common8.Primitives.ApiRsp",
+                "BD.Common8.Primitives.ApiResponse",
+                "BD.Common8.Primitives.PersonalData.BirthDate",
+                "BD.Common8.Primitives.PersonalData.PhoneNumber",
 
-            "BD.Common8.UserInput.ModelValidator",
+                "BD.Common8.Orm.EFCore",
 
-            "BD.Common8.AspNetCore",
-            "BD.Common8.AspNetCore.Identity",
-            "BD.Common8.AspNetCore.Identity.BackManage",
+                "BD.Common8.UserInput.ModelValidator",
 
-            "BD.Common8.SmsSender",
+                "BD.Common8.AspNetCore",
+                "BD.Common8.AspNetCore.Identity",
+                "BD.Common8.AspNetCore.Identity.BackManage",
 
-            "BD.Common8.Repositories",
-            "BD.Common8.Repositories.EFCore",
-            "BD.Common8.Repositories.SQLitePCL",
+                "BD.Common8.SmsSender",
 
-            "BD.Common8.Pinyin",
-            "BD.Common8.Pinyin.ChnCharInfo",
-            "BD.Common8.Pinyin.CoreFoundation",
+                "BD.Common8.Repositories",
+                "BD.Common8.Repositories.EFCore",
+                "BD.Common8.Repositories.SQLitePCL",
 
-            "BD.Common8.Http.ClientFactory",
-            "BD.Common8.Http.ClientFactory.Server",
+                "BD.Common8.Pinyin",
+                "BD.Common8.Pinyin.ChnCharInfo",
+                "BD.Common8.Pinyin.CoreFoundation",
 
-            "BD.Common8.Security",
+                "BD.Common8.Http.ClientFactory",
+                "BD.Common8.Http.ClientFactory.Server",
 
-            "BD.Common8.Toast",
+                "BD.Common8.Security",
 
-            "BD.Common8.Essentials",
-            "BD.Common8.Essentials.Implementation",
-            "BD.Common8.Essentials.Implementation.Avalonia",
-        ];
+                "BD.Common8.Toast",
+
+                "BD.Common8.Essentials",
+                "BD.Common8.Essentials.Implementation",
+                "BD.Common8.Essentials.Implementation.Avalonia",
+            ],
+            "BD.SteamClient8" => [
+                "BD.SteamClient8",
+            ],
+            _ => [],
+        };
+    }
 
     /// <summary>
     /// 根据项目路径清理 bin/obj 文件夹
@@ -97,6 +111,8 @@ interface IBuildCommand : ICommand
 
         var pkgPath = Path.Combine(repoPath, "pkg");
         IOPath.DirTryDelete(pkgPath, true);
+
+        var projectNames = GetProjectNames();
 
         //await Handler("BD.Common8.SourceGenerator.ResX", cts.Token);
         //await Parallel.ForEachAsync(projectNames, cts.Token, Handler); // 并行化构建相关项目

@@ -1,5 +1,7 @@
 <Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security;UseSystemCommandLine">
 
+	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
+
 	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)GeneratePackage.props" />
 	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.UnitTest.props" />
 	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.SourceGenerator.props" />
@@ -38,7 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(IsGlobalUsingsMSBuildProjectName) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
+		<Compile Include="$(MSBuildProjectDirectory)\..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
@@ -50,14 +52,14 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseSourceGeneratorResx) == 'true'">
-		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseCommon8Bcl) == 'true' AND $(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
-		<ProjectReference Condition="$(IsCommon8Project) == 'true'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseMicrosoftIdentityModelTokens) == 'true'">

@@ -1,4 +1,4 @@
-//namespace BD.Common8.UnitTest;
+//namespace 当前命名空间.UnitTest;
 
 ///// <summary>
 ///// 单元测试类的注释

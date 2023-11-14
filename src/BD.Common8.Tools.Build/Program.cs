@@ -1,7 +1,7 @@
 try
 {
     Console.OutputEncoding = Encoding.UTF8;
-    const string rootCommandDesc = "Common8 Build Tools";
+    const string rootCommandDesc = "BeyondDimension Build Tools";
     var rootCommand = new RootCommand(rootCommandDesc);
     // 根据命令行业务接口反射当前程序集查找所有实现循环添加
     var interfaceType = typeof(ICommand);

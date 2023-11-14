@@ -73,6 +73,7 @@ interface INuGetPushCommand : ICommand
                 }
             }
         }
+        var projectNames = GetProjectNames();
         var jobs = projectNames.Select(GetPushFileNames).SelectMany(static x => x).ToArray();
         await Parallel.ForEachAsync(
             jobs.Select(static x => new JobItem(PushSource.NuGet, x))
