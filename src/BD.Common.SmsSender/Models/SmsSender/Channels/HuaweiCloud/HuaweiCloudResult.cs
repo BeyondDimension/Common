@@ -20,7 +20,7 @@ public class HuaweiCloudResult<T> : JsonModel<T>, ISmsSubResult where T : Huawei
 
     public virtual bool IsOK() => Description?.Equals("Success", StringComparison.OrdinalIgnoreCase) ?? false;
 
-    protected virtual string? GetRecord() => $"code: {Code}, Description {Description}";
+    protected virtual string? GetRecord() => $"code: {Code}, description {Description}";
 
     string? ISmsSubResult.GetRecord() => GetRecord();
 }
