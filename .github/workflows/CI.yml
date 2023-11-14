@@ -59,8 +59,8 @@ jobs:
         if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
         run: dotnet workload install wasm-tools
 
-      - name: Restore Workload
-        run: dotnet workload restore
+#      - name: Restore Workload
+#        run: dotnet workload restore
 
       - name: Verify dotnet info
         run: dotnet --info
@@ -122,9 +122,9 @@ jobs:
         if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
         run: dotnet workload install wasm-tools
 
-      - name: Restore Workload
-        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
-        run: dotnet workload restore
+#      - name: Restore Workload
+#        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+#        run: dotnet workload restore
 
       - name: Verify dotnet info
         run: dotnet --info
