@@ -34,12 +34,14 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
     #endregion
 
-    #region 华为云短信签名 SDK
+    #region helpers
 
-    async Task<HttpRequestMessage> Sign(string appKey, string appSecret, string apiAddress, FormUrlEncodedContent bodyContent, CancellationToken cancellationToken)
+    static async Task<HttpRequestMessage> Sign(string appKey, string appSecret, string apiAddress, FormUrlEncodedContent bodyContent, CancellationToken cancellationToken)
     {
-        HttpRequestMessage request = new(HttpMethod.Post, apiAddress);
-        request.Content = new StringContent(await bodyContent.ReadAsStringAsync(), Encoding.UTF8, "application/x-www-form-urlencoded");
+        HttpRequestMessage request = new(HttpMethod.Post, apiAddress)
+        {
+            Content = bodyContent,
+        };
 
         var time = request.Headers.TryGetValues(HeaderXDate, out var xdate) ? xdate.FirstOrDefault() : null;
         DateTime xdateTime;
@@ -54,8 +56,8 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         }
         request.Headers.TryAddWithoutValidation(HeaderHost, request.RequestUri!.Host);
         var signedHeaders = SignedHeaders(request.Headers);
-        var canonicalRequest = await CanonicalRequest(request, signedHeaders, bodyContent, cancellationToken);
-        var stringToSign = await StringToSign(canonicalRequest, xdateTime);
+        using var canonicalRequest = await CanonicalRequest(request, signedHeaders, bodyContent, cancellationToken);
+        using var stringToSign = await StringToSign(canonicalRequest, xdateTime);
         var signature = SignStringToSign(stringToSign, Encoding.UTF8.GetBytes(appSecret));
         var authValue = AuthHeaderValue(signature, appKey, signedHeaders);
         request.Headers.TryAddWithoutValidation(HeaderAuthorization, authValue);
@@ -77,7 +79,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         return a;
     }
 
-    async Task<byte[]> CanonicalRequest(HttpRequestMessage req, IList<string> signedHeaders, FormUrlEncodedContent body, CancellationToken cancellationToken)
+    static async Task<MemoryStream> CanonicalRequest(HttpRequestMessage req, IList<string> signedHeaders, FormUrlEncodedContent body, CancellationToken cancellationToken)
     {
         var bodyString = await body.ReadAsStringAsync(cancellationToken);
         var data = Encoding.UTF8.GetBytes(bodyString);
@@ -123,62 +125,55 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
             }
         }
 
-        foreach (var item in signedHeaders)
+        for (int i = 0; i < signedHeaders.Count; i++)
         {
-            memorySteam.Write(item);
-            if (item != signedHeaders[signedHeaders.Count - 1]) memorySteam.Write(";"u8);
+            memorySteam.Write(signedHeaders[i]);
+            if (i != signedHeaders.Count - 1)
+                memorySteam.Write(";"u8);
         }
+
         memorySteam.Write("\n"u8);
         memorySteam.Write(hexencode);
-        return memorySteam.ToArray();
+        return memorySteam;
     }
 
-    async Task<byte[]> StringToSign(byte[] canonicalRequest, DateTime time)
+    static async Task<MemoryStream> StringToSign(MemoryStream canonicalRequest, DateTime time)
     {
-        using MemoryStream stream = new MemoryStream(canonicalRequest);
-        var bytes = await SHA256.HashDataAsync(stream);
-        using MemoryStream memorySteam = new();
+        canonicalRequest.Position = 0;
+        var bytes = await SHA256.HashDataAsync(canonicalRequest);
+        MemoryStream memorySteam = new();
         memorySteam.Write(Algorithm);
         memorySteam.Write("\n");
         memorySteam.Write(time.ToUniversalTime().ToString(BasicDateFormat));
         memorySteam.Write("\n");
-        memorySteam.Write(ToHexString(bytes));
-        return memorySteam.ToArray();
+        memorySteam.Write(bytes.ToHexString(true));
+        return memorySteam;
     }
 
-    string SignStringToSign(byte[] stringToSign, byte[] signingKey)
+    static string SignStringToSign(MemoryStream stringToSign, byte[] signingKey)
     {
+        stringToSign.Position = 0;
         using var hmacsha256 = new HMACSHA256(signingKey);
         var hm = hmacsha256.ComputeHash(stringToSign);
-        return ToHexString(hm);
+        return hm.ToHexString(true);
     }
 
-    static string ToHexString(byte[] value)
+    static string AuthHeaderValue(string signature, string appKey, IList<string> signedHeaders)
     {
-        int num = value.Length * 2;
-        char[] array = new char[num];
-        int num2 = 0;
-        for (int i = 0; i < num; i += 2)
+        using MemoryStream memorySteam = new();
+        memorySteam.Write(Algorithm);
+        memorySteam.Write(" Access="u8);
+        memorySteam.Write(appKey);
+        memorySteam.Write(", SignedHeaders="u8);
+        for (int i = 0; i < signedHeaders.Count; i++)
         {
-            byte b = value[num2++];
-            array[i] = GetHexValue(b / 16);
-            array[i + 1] = GetHexValue(b % 16);
+            memorySteam.Write(signedHeaders[i]);
+            if (i != signedHeaders.Count - 1)
+                memorySteam.Write(";"u8);
         }
-        return new string(array, 0, num);
-    }
-
-    static char GetHexValue(int i)
-    {
-        if (i < 10)
-        {
-            return (char)(i + '0');
-        }
-        return (char)(i - 10 + 'a');
-    }
-
-    string AuthHeaderValue(string signature, string appKey, IList<string> signedHeaders)
-    {
-        return string.Format("{0} Access={1}, SignedHeaders={2}, Signature={3}", Algorithm, appKey, string.Join(";", signedHeaders), signature);
+        memorySteam.Write(", Signature="u8);
+        memorySteam.Write(signature);
+        return Encoding.UTF8.GetString(memorySteam.ToArray());
     }
 
     #endregion
