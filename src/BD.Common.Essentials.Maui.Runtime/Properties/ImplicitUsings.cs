@@ -1,1 +1,0 @@
-global using FileBase = Microsoft.Maui.Storage.FileBase;

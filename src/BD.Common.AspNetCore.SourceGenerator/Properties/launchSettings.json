@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "配置文件 1": {
-      "commandName": "DebugRoslynComponent",
-      "targetProject": "..\\BD.Common.Area.ConsoleTest\\BD.Common.Area.ConsoleTest.csproj"
-    }
-  }
-}
