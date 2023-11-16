@@ -8,9 +8,12 @@ on:
 jobs:
  build:
     name: Build
-    runs-on: windows-latest
-    permissions:
-      contents: write
+    runs-on: ${{ matrix.os }}
+    continue-on-error: true
+    strategy:
+      matrix:
+        os: [ aigio-win10ltsc-vm ]
+
     steps:
       - name: Checkout repository
 #        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
