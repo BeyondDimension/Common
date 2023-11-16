@@ -17,8 +17,13 @@ jobs:
         with:
           ref: dev8
           path: source
-      - name: DLL Bulid
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: DLL Build
         run: "& dotnet build"
+        working-directory: ./source 
       - name: Install DocFX
         run: "& dotnet tool update -g docfx"
       - name: Build docfx
