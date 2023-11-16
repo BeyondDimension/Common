@@ -9,13 +9,17 @@ jobs:
  build:
     name: Build
     runs-on: windows-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
           ref: dev8
           path: source
-      - name: install DocFX
+      - name: DLL Bulid
+        run: "& dotnet build"
+      - name: Install DocFX
         run: "& dotnet tool update -g docfx"
       - name: Build docfx
         run: "& docfx ./docfx.json"
@@ -41,9 +45,9 @@ jobs:
           if ($LASTEXITCODE -eq 0) {
             Write-Host "No changes to commit!"
           } else {
-            git config --global user.name "Lxy829"
-            git config --global user.email "3346435289@qq.com"
-            git commit -m "Updated docs from commit $env:GITHUB_SHA on $env:GITHUB_REF"
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "Updated _site from commit $env:GITHUB_SHA on $env:GITHUB_REF"
             git remote set-url origin https://x-access-token:${{ secrets.RMBADMIN_TOKEN }}@github.com/${{ github.repository }}
             git push origin gh-pages
           }
