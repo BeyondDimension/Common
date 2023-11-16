@@ -22,7 +22,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Install dependencies
-        run: "& dotnet workload install"
+        run: "& dotnet workload restore"
       - name: DLL Build
         run: "& dotnet build" 
       - name: Install DocFX
