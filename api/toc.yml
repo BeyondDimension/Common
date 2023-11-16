@@ -22,11 +22,9 @@ items:
     - name: BD.Common8.Essentials.Implementation
       href: BD.Common8.Essentials.Implementation/toc.yml
     - name: BD.Common8.Essentials.Implementation.Avalonia
-      href: BD.Common8.Essentials.Implementation.Avalonia/toc.yml
   - name: Http
     items:
     - name: BD.Common8.Http.ClientFactory
-      href: BD.Common8.Http.ClientFactory/toc.yml
     - name: BD.Common8.Http.ClientFactory.Server
       href: BD.Common8.Http.ClientFactory.Server/toc.yml
   - name: Ipc
