@@ -12,6 +12,7 @@
 		<PackageVersion Include="Avalonia.Skia" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Win32" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.X11" Version="11.0.5" />
+		<PackageVersion Include="Avalonia.Themes.Simple" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Xaml.Behaviors" Version="11.0.2" />
 		<PackageVersion Include="Avalonia.Xaml.Interactivity" Version="11.0.2" />
 		<PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.2.1" />
@@ -61,6 +62,7 @@
 		<PackageVersion Include="StackExchange.Redis" Version="2.7.4" />
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.507" />
 		<PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+		<PackageVersion Include="System.Drawing.Common" Version="8.0.0" />
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0" />
 		<PackageVersion Include="System.Management" Version="8.0.0" />
 		<PackageVersion Include="System.Memory" Version="4.5.5" />
