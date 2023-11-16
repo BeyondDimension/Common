@@ -21,9 +21,10 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
+      - name: Install dependencies
+        run: "& dotnet restore"
       - name: DLL Build
-        run: "& dotnet build"
-        working-directory: ./source 
+        run: "& dotnet build --configuration Release --no-restore" 
       - name: Install DocFX
         run: "& dotnet tool update -g docfx"
       - name: Build docfx
