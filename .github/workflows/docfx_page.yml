@@ -56,8 +56,11 @@ jobs:
       - name: Verify dotnet info
         run: dotnet --info
 
+      - name: Build tools
+        run: dotnet build -c Release src\BD.Common8.Tools.Build\BD.Common8.Tools.Build.csproj --nologo -v q /property:WarningLevel=1
+
       - name: Build projects
-        run: dotnet build -c Release BD.Common8.sln
+        run: .\src\artifacts\bin\BD.Common8.Tools.Build\release\BD.Common8.Tools.Build.exe build
         
       - name: Install DocFX
         run: dotnet tool update -g docfx
