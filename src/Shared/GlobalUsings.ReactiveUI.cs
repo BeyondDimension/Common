@@ -5,6 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using SDBitmap = System.Drawing.Bitmap;
-global using SDPixelFormat = System.Drawing.Imaging.PixelFormat;
-global using SDImageFormat = System.Drawing.Imaging.ImageFormat;
+global using System.Windows.Input;
+
+global using ReactiveUI;

@@ -10,6 +10,7 @@ global using Avalonia.Animation;
 global using Avalonia.Controls;
 global using Avalonia.Controls.Primitives;
 global using Avalonia.Controls.ApplicationLifetimes;
+global using Avalonia.Data.Converters;
 global using Avalonia.Media;
 global using Avalonia.Media.Imaging;
 global using Avalonia.Threading;

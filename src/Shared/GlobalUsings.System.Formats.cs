@@ -7,3 +7,4 @@
 
 // 包含常用的文件格式的数据的类型。
 global using System.Formats;
+global using ImageFormat = System.Formats.ImageFormat;
