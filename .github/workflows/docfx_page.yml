@@ -12,36 +12,75 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - name: Checkout repository
+#        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        uses: actions/checkout@v3
         with:
-          ref: dev8
-          path: source
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
+          fetch-depth: 0
+          submodules: recursive
+
+#      - name: Checkout repository(BD.Git.Checkout.Tools)
+#        if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}
+#        run: C:\actions-runner\checkout.exe ${{ github.workspace }} ${{ github.sha }} ${{ github.repositoryUrl }}
+
+      - name: Setup .NET
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 8.0.x
-      - name: Install dependencies
-        run: dotnet workload restore
-      - name: DLL Build
-        run: dotnet build" 
+
+      - name: Install Android SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install android
+
+      - name: Install iOS SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install ios
+
+      - name: Install macOS SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install macos
+
+      - name: Install Mac Catalyst SDK
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install maccatalyst
+
+      - name: Install Maui
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install maui
+
+      - name: Install wasm-tools
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
+        run: dotnet workload install wasm-tools
+
+      - name: Verify dotnet info
+        run: dotnet --info
+
+      - name: Build projects
+        run: dotnet build -c Release BD.Common8.sln
+        
       - name: Install DocFX
         run: dotnet tool update -g docfx
+        
       - name: Build docfx
         run: docfx ./docfx.json
         working-directory: ./source 
+
       - name: Checkout docs
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: gh-pages
           path: docs
+
       # Sync the site
       - name: Clear docs repo
         run: Get-ChildItem -Force -Exclude .git | ForEach-Object { Remove-Item -Recurse -Verbose -Force $_ }
         working-directory: ./docs
+
       - name: Sync new content
         run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/source/_site/*" "$env:GITHUB_WORKSPACE/docs"
         working-directory: ./docs
+
         # update docs
       - name: Commit to gh-pages and push
         run: |
