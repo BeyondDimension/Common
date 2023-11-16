@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.AngleSharp.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AngleSharp" />
+	</ItemGroup>
+
+</Project>
