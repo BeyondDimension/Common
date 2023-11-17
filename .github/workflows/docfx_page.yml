@@ -9,19 +9,16 @@ jobs:
  build:
     name: Build
     runs-on: ${{ matrix.os }}
-    continue-on-error: true
     strategy:
       matrix:
+#       os: [ windows-latest ]
         os: [ aigio-win10ltsc-vm ]
-
     steps:
       - name: Checkout repository
 #        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          submodules: recursive
-
+          ref: dev8
 #      - name: Checkout repository(BD.Git.Checkout.Tools)
 #        if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}
 #        run: C:\actions-runner\checkout.exe ${{ github.workspace }} ${{ github.sha }} ${{ github.repositoryUrl }}
@@ -70,7 +67,6 @@ jobs:
         
       - name: Build docfx
         run: docfx ./docfx.json
-        working-directory: ./source 
 
       - name: Checkout docs
         uses: actions/checkout@v3
@@ -84,7 +80,7 @@ jobs:
         working-directory: ./docs
 
       - name: Sync new content
-        run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/source/_site/*" "$env:GITHUB_WORKSPACE/docs"
+        run: Copy-Item -Recurse -Verbose -Force "$env:GITHUB_WORKSPACE/_site/*" "$env:GITHUB_WORKSPACE/docs"
         working-directory: ./docs
 
         # update docs
