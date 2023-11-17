@@ -14,7 +14,6 @@ items:
     - name: BD.Common8.Bcl
       href: BD.Common8.Bcl/toc.yml
     - name: BD.Common8.Bcl.Compat
-      href : BD.Common8.Bcl.Compat/toc.yml
   - name: Essentials
     items:
     - name: BD.Common8.Essentials
@@ -30,11 +29,8 @@ items:
   - name: Ipc
     items: 
     - name: BD.Common8.Ipc
-      href: BD.Common8.Ipc/toc.yml
     - name: BD.Common8.Ipc.Client
-      href: BD.Common8.Ipc.Client/toc.yml
     - name: BD.Common8.Ipc.Server
-      href: BD.Common8.Ipc.Server/toc.yml
   - name: Orm
     items:
     - name: BD.Common8.Orm.EFCore
@@ -92,14 +88,10 @@ items:
 - name: SourceGenerator 源生成器
   items:
   - name: BD.Common8.SourceGenerator.Shared
-    href: BD.Common8.SourceGenerator.Shared/toc.yml
 - name: Tools 工具
   items:
   - name: BD.Common8.Tools.DocFX
-    href: BD.Common8.Tools.DocFX/toc.yml
   - name: BD.Common8.Tools.Sort.PackageVersion
-    href: BD.Common8.Tools.Sort.PackageVersion/toc.yml
 - name : UnitTest 单元测试
   items:
   - name: BD.Common8.UnitTest
-    href: BD.Common8.UnitTest/toc.yml
