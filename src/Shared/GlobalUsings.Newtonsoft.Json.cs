@@ -20,3 +20,4 @@ global using NewtonsoftJsonSerializerSettings = Newtonsoft.Json.JsonSerializerSe
 global using NewtonsoftJsonConstructor = Newtonsoft.Json.JsonConstructorAttribute;
 global using NewtonsoftJsonObject = Newtonsoft.Json.Linq.JObject;
 global using NewtonsoftJsonPropertyClass = Newtonsoft.Json.Serialization.JsonProperty;
+global using NewtonsoftJsonExtensionData = Newtonsoft.Json.JsonExtensionDataAttribute;

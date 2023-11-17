@@ -20,3 +20,7 @@ global using SystemTextJsonIgnoreCondition = System.Text.Json.Serialization.Json
 global using SystemTextJsonConstructor = System.Text.Json.Serialization.JsonConstructorAttribute;
 global using SystemTextJsonObject = System.Text.Json.Nodes.JsonObject;
 global using SystemTextJsonPropertyStruct = System.Text.Json.JsonProperty;
+global using SystemTextJsonExtensionData = System.Text.Json.Serialization.JsonExtensionDataAttribute;
+global using SystemTextJsonSerializable = System.Text.Json.Serialization.JsonSerializableAttribute;
+global using SystemTextJsonSerializerContext = System.Text.Json.Serialization.JsonSerializerContext;
+global using SystemTextJsonConverter = System.Text.Json.Serialization.JsonConverterAttribute;
