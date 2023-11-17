@@ -1,0 +1,919 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SysTenantTableItem
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SysTenantTableItem
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem">
+
+
+
+  <h1 id="BD_Common8_AspNetCore_Models_SysTenantTableItem" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem" class="text-break">
+    Class SysTenantTableItem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.AspNetCore.html">AspNetCore</a>.<a class="xref" href="BD.Common8.AspNetCore.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>租户查询表格项模型类</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SysTenantTableItem : KeyModel&lt;Guid&gt;, IKeyModel&lt;Guid&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/Models/Abstractions/KeyModel.cs">KeyModel</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>&gt;</div>
+      <div><span class="xref">SysTenantTableItem</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/Models/Abstractions/KeyModel.cs">IKeyModel</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="../BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.KeyModel-1.html#BD_Common8_Primitives_Models_Abstractions_KeyModel_1_Id">KeyModel&lt;Guid&gt;.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem__ctor_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.#ctor*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem__ctor" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.#ctor">
+  SysTenantTableItem()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SysTenantTableItem()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Address_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Address*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Address" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Address">
+  Address
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Address { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditRemarks_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditRemarks*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditRemarks" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditRemarks">
+  AuditRemarks
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>审核备注</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? AuditRemarks { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditStatus_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditStatus*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditStatus" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditStatus">
+  AuditStatus
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>审核状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SysTenantAuditStatus? AuditStatus { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.AspNetCore.Enums.SysTenantAuditStatus.html">SysTenantAuditStatus</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditTime_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditTime*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditTime" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditTime">
+  AuditTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>审核时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeOffset? AuditTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Auditor_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Auditor*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Auditor" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Auditor">
+  Auditor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>审核人</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Auditor { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditorId_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditorId*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuditorId" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuditorId">
+  AuditorId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>审核人 Id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Guid? AuditorId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuthorizationEndTime_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuthorizationEndTime*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuthorizationEndTime" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuthorizationEndTime">
+  AuthorizationEndTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>授权结束时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeOffset AuthorizationEndTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuthorizationStartTime_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuthorizationStartTime*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_AuthorizationStartTime" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.AuthorizationStartTime">
+  AuthorizationStartTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>授权开始时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeOffset AuthorizationStartTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_ContactName_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.ContactName*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_ContactName" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.ContactName">
+  ContactName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>联系人</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ContactName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_ContactPhone_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.ContactPhone*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_ContactPhone" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.ContactPhone">
+  ContactPhone
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>联系人电话</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ContactPhone { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_CreateUserName_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.CreateUserName*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_CreateUserName" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.CreateUserName">
+  CreateUserName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建人(创建此条目的后台管理员)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? CreateUserName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_CreationTime_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.CreationTime*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_CreationTime" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.CreationTime">
+  CreationTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeOffset CreationTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Disable_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Disable*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Disable" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Disable">
+  Disable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否禁用该条</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Disable { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Email_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Email*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Email" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Email">
+  Email
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>注册邮箱</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Email { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_IsPlatformAdministrator_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.IsPlatformAdministrator*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_IsPlatformAdministrator" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.IsPlatformAdministrator">
+  IsPlatformAdministrator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否为平台管理员</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPlatformAdministrator { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Name_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Name*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Name" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>租户名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_OperatorUserName_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.OperatorUserName*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_OperatorUserName" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.OperatorUserName">
+  OperatorUserName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最后一次操作的人(纪录后台管理员禁用或启用或编辑该条的操作)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? OperatorUserName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_RegisterEmail_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.RegisterEmail*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_RegisterEmail" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.RegisterEmail">
+  RegisterEmail
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>注册邮箱</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? RegisterEmail { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_RegisterPhoneNumber_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.RegisterPhoneNumber*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_RegisterPhoneNumber" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.RegisterPhoneNumber">
+  RegisterPhoneNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>注册手机号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? RegisterPhoneNumber { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Remarks_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Remarks*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_Remarks" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.Remarks">
+  Remarks
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>备注</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Remarks { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_UniqueCode_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.UniqueCode*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_UniqueCode" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.UniqueCode">
+  UniqueCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>租户唯一编码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? UniqueCode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_SysTenantTableItem_UpdateTime_" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.UpdateTime*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_SysTenantTableItem_UpdateTime" data-uid="BD.Common8.AspNetCore.Models.SysTenantTableItem.UpdateTime">
+  UpdateTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTimeOffset UpdateTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Models/SysTenantModel.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

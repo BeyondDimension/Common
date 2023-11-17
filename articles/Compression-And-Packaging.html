@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>压缩与打包(归档) | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="压缩与打包(归档) | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../topnav.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BeyondDimension/Common/blob/main/articles/Compression-And-Packaging.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h3 id="压缩与打包归档">压缩与打包(归档)</h3>
+
+<p>在 Linux 上通常压缩与打包是分开作为两个功能，而在 Windows 上通常是合在一起的<br>
+<strong>压缩</strong>是指利用算法将文件进行处理，已达到保留最大文件信息，而让文件体积变小的目的。其基本原理为，通过查找文件内的重复字节，建立一个相同字节的词典文件，并用一个代码表示。比如说，在压缩文件中，有不止一处出现了 &quot;C语言中文网&quot;，那么，在压缩文件时，这个词就会用一个代码表示并写入词典文件，这样就可以实现缩小文件体积的目的。由于计算机处理的信息是以二进制的形式表示的，因此，压缩软件就是把二进制信息中相同的字符串以特殊字符标记，只要通过合理的数学计算，文件的体积就能够被大大压缩。把一个或者多个文件用压缩软件进行压缩，形成一个文件压缩包，既可以节省存储空间，有方便在网络上传送。<br>
+<strong>打包</strong>，也称为归档，指的是一个文件或目录的集合，而这个集合被存储在一个文件中。归档文件没有经过压缩，因此，它占用的空间是其中所有文件和目录的总和。通常，归档总是会和系统（数据）备份联系在一起。</p>
+<h4 id="windows-上常用的一些格式">Windows 上常用的一些格式</h4>
+<ul>
+<li><strong>7z</strong> 是一种全新的压缩格式，它拥有极高的压缩比。<br>
+使用包 Squid-Box.SevenZipSharp.Lite 与 7-Zip.NativeAssets.Win32 在 C# 中操作，由于本机库仅支持 Windows，尚未测试其他平台本机库是否兼容</li>
+<li><strong>Zip</strong> 文件格式是一种数据压缩和文档储存的文件格式，原名 Deflate，发明者为菲尔·卡茨（Phil Katz），他于1989年1月公布了该格式的资料。<br>
+使用 .NET Framework 4.5 中新增的 <code>System.IO.Compression.ZipArchive</code> 类进行操作<br>
+<a href="https://learn.microsoft.com/zh-cn/dotnet/standard/io/how-to-compress-and-extract-files">.NET 基础知识 - 如何：压缩和解压缩文件</a></li>
+</ul>
+<h4 id="linux-上常用的一些格式">Linux 上常用的一些格式</h4>
+<ul>
+<li><strong>tar</strong> Unix 和类 Unix 系统上的压缩打包工具，可以将多个文件合并为一个文件，打包后的文件后缀亦为 tar<br>
+将打包后的一个文件进行压缩，例如采用 gzip 压缩，文件后缀名即为 tar.gz 又可简写为 .tgz<br>
+使用包 SharpZipLib 或 .NET 7 中新增的 <code>System.Formats.Tar</code> 进行操作</li>
+<li><strong>Zstandard/zstd</strong> 是 Facebook 在 2016 年开源的新无损压缩算法，是针对 zlib 级别的实时压缩方案，以及更好的压缩比。它由一个非常快的熵阶段，由 Huff0 和 FSE 库提供<br>
+使用包 ZstdNet 进行操作</li>
+</ul>
+<h4 id="web-中常用的压缩格式这些格式由-net-基础类库实现的可跨平台使用">Web 中常用的压缩格式，这些格式由 .NET 基础类库实现的可跨平台使用</h4>
+<ul>
+<li><strong>Gzip</strong> 是一种用于文件压缩与解压缩的文件格式。它基于 Deflate 算法，可将文件压缩地更小，从而实现更快的网络传输。<br>
+<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/GZip_compression">https://developer.mozilla.org/zh-CN/docs/Glossary/GZip_compression</a><br>
+使用 <code>System.IO.Compression.GZipStream</code> 类型进行操作</li>
+<li><strong>Brotli/Br</strong> 是 Google 发明的一种通用的无损压缩算法。<br>
+<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/brotli_compression">https://developer.mozilla.org/zh-CN/docs/Glossary/brotli_compression</a><br>
+使用 .NET Core 2.1 中新增的 <code>System.IO.Compression.BrotliStream</code> 类型 或在 .NET Framework 中使用包 Brotli.NET 进行操作</li>
+</ul>
+<h4 id="参考文献">参考文献</h4>
+<p><a href="https://www.cnblogs.com/TheGCC/p/14228439.html">Linux(四)：Linux的打包和压缩详解 作者：糖拌西红柿</a></p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/articles/Compression-And-Packaging.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

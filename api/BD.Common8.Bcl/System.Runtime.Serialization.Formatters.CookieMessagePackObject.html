@@ -1,0 +1,742 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CookieMessagePackObject
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CookieMessagePackObject
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject">
+
+
+
+  <h1 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject" class="text-break">
+    Class CookieMessagePackObject
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="System.html">System</a>.<a class="xref" href="System.Runtime.html">Runtime</a>.<a class="xref" href="System.Runtime.Serialization.html">Serialization</a>.<a class="xref" href="System.Runtime.Serialization.Formatters.html">Formatters</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Bcl.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[MessagePackObject(false)]
+public sealed class CookieMessagePackObject</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CookieMessagePackObject</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="System.Extensions.ObjectExtensions.html#System_Extensions_ObjectExtensions_ThrowIsNull__1___0_System_String_">ObjectExtensions.ThrowIsNull&lt;T&gt;(T?, string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.ObjectExtensions.html#System_Extensions_ObjectExtensions_ThrowIsNull__1___0_System_String_">ObjectExtensions.ThrowIsNull&lt;T&gt;(T?, string?)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject__ctor_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.#ctor*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject__ctor" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.#ctor">
+  CookieMessagePackObject()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializationConstructor]
+public CookieMessagePackObject()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject__ctor_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.#ctor*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject__ctor_System_Net_Cookie_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.#ctor(System.Net.Cookie)">
+  CookieMessagePackObject(Cookie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CookieMessagePackObject(Cookie cookie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cookie</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.cookie">Cookie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Comment_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Comment*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Comment" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Comment">
+  Comment
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(0)]
+public string Comment { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_CommentUri_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.CommentUri*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_CommentUri" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.CommentUri">
+  CommentUri
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(1)]
+public Uri? CommentUri { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Uri</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Discard_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Discard*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Discard" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Discard">
+  Discard
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(2)]
+public bool Discard { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Domain_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Domain*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Domain" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Domain">
+  Domain
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(3)]
+public string Domain { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Expires_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Expires*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Expires" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Expires">
+  Expires
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(5)]
+public DateTime Expires { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_HttpOnly_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.HttpOnly*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_HttpOnly" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.HttpOnly">
+  HttpOnly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(6)]
+public bool HttpOnly { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Name_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Name*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Name" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(7)]
+public string Name { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Path_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Path*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Path" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Path">
+  Path
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(8)]
+public string Path { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Port_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Port*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Port" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Port">
+  Port
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(9)]
+public string Port { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Secure_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Secure*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Secure" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Secure">
+  Secure
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(10)]
+public bool Secure { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Value_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Value*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Value" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Value">
+  Value
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(11)]
+public string Value { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Version_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Version*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_Version" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Key(12)]
+public int Version { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_ToCookie_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.ToCookie*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_ToCookie" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.ToCookie">
+  ToCookie()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Cookie ToCookie()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.cookie">Cookie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_op_Implicit_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.op_Implicit*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_op_Implicit_System_Net_Cookie__System_Runtime_Serialization_Formatters_CookieMessagePackObject" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.op_Implicit(System.Net.Cookie)~System.Runtime.Serialization.Formatters.CookieMessagePackObject">
+  implicit operator CookieMessagePackObject(Cookie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator CookieMessagePackObject(Cookie cookie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cookie</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.cookie">Cookie</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="System.Runtime.Serialization.Formatters.CookieMessagePackObject.html">CookieMessagePackObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_op_Implicit_" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.op_Implicit*"></a>
+
+  <h3 id="System_Runtime_Serialization_Formatters_CookieMessagePackObject_op_Implicit_System_Runtime_Serialization_Formatters_CookieMessagePackObject__System_Net_Cookie" data-uid="System.Runtime.Serialization.Formatters.CookieMessagePackObject.op_Implicit(System.Runtime.Serialization.Formatters.CookieMessagePackObject)~System.Net.Cookie">
+  implicit operator Cookie(CookieMessagePackObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Cookie(CookieMessagePackObject cookie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cookie</code> <a class="xref" href="System.Runtime.Serialization.Formatters.CookieMessagePackObject.html">CookieMessagePackObject</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.cookie">Cookie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Serialization/Formatters/CookieFormatter.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

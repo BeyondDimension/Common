@@ -1,0 +1,584 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IRepository&lt;TEntity&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IRepository&lt;TEntity&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1">
+
+
+
+  <h1 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1" class="text-break">
+    Interface IRepository&lt;TEntity&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.Repositories.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Repositories.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>仓储接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IRepository&lt;TEntity&gt; : IRepository where TEntity : class</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.Repositories.Abstractions.IRepository.html#BD_Common8_Repositories_Repositories_Abstractions_IRepository_OperateRangeAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_Tasks_Task_System_Int32___">IRepository.OperateRangeAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, Task&lt;int&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.Repositories.Abstractions.IRepository.html#BD_Common8_Repositories_Repositories_Abstractions_IRepository_OperateRangeAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Int32___System_Threading_CancellationToken_">IRepository.OperateRangeAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;int&gt;&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.Repositories.Abstractions.IRepository.html#BD_Common8_Repositories_Repositories_Abstractions_IRepository_OperateRangeAsyncEnumerable__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_Tasks_Task_System_Int32___">IRepository.OperateRangeAsyncEnumerable&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, Task&lt;int&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.Repositories.Abstractions.IRepository.html#BD_Common8_Repositories_Repositories_Abstractions_IRepository_OperateRangeAsyncEnumerable__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Int32___System_Threading_CancellationToken_">IRepository.OperateRangeAsyncEnumerable&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;int&gt;&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.Repositories.Abstractions.IRepository.html#BD_Common8_Repositories_Repositories_Abstractions_IRepository_OperateRangeAsyncEnumerable__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_Tasks_Task_System_ValueTuple_System_Int32_BD_Common8_Repositories_Enums_DbRowExecResult____">IRepository.OperateRangeAsyncEnumerable&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, Task&lt;(int rowCount, DbRowExecResult result)&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.Repositories.Abstractions.IRepository.html#BD_Common8_Repositories_Repositories_Abstractions_IRepository_OperateRangeAsyncEnumerable__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple_System_Int32_BD_Common8_Repositories_Enums_DbRowExecResult____System_Threading_CancellationToken_">IRepository.OperateRangeAsyncEnumerable&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;(int rowCount, DbRowExecResult result)&gt;&gt;, CancellationToken)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_DeleteAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.DeleteAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_DeleteAsync__0_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.DeleteAsync(`0,System.Threading.CancellationToken)">
+  DeleteAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体从数据库中删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要删除的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_DeleteRangeAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.DeleteRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_DeleteRangeAsync_System_Collections_Generic_IEnumerable__0__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.DeleteRangeAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">
+  DeleteRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体从数据库中删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; DeleteRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要删除的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_DeleteRangeAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.DeleteRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_DeleteRangeAsync__0___" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.DeleteRangeAsync(`0[])">
+  DeleteRangeAsync(params TEntity[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体从数据库中删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; DeleteRangeAsync(params TEntity[] entities)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> TEntity[]</dt>
+    <dd><p>要删除的多个实体</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_FirstOrDefaultAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.FirstOrDefaultAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_FirstOrDefaultAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.FirstOrDefaultAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
+  FirstOrDefaultAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回序列中满足指定的条件或默认值，如果找到这样的元素的第一个元素</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;TEntity?&gt; FirstOrDefaultAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; predicate, CancellationToken cancellation = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEntity, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>用于测试每个元素是否满足条件的函数</p>
+</dd>
+    <dt><code>cancellation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEntity&gt;</dt>
+    <dd><p>default(TEntity) 如果 集合 为空，或者如果没有元素通过由指定的测试 <code class="paramref">predicate</code>;
+否则为中的第一个元素 集合 通过由指定的测试 <code class="paramref">predicate</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>集合 或 <code class="paramref">predicate</code> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_InsertAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.InsertAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_InsertAsync__0_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.InsertAsync(`0,System.Threading.CancellationToken)">
+  InsertAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体插入到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; InsertAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要添加的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_InsertRangeAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.InsertRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_InsertRangeAsync_System_Collections_Generic_IEnumerable__0__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.InsertRangeAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">
+  InsertRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体插入到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; InsertRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要添加的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_InsertRangeAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.InsertRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_InsertRangeAsync__0___" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.InsertRangeAsync(`0[])">
+  InsertRangeAsync(params TEntity[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体插入到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; InsertRangeAsync(params TEntity[] entities)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> TEntity[]</dt>
+    <dd><p>要添加的多个实体</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_UpdateAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.UpdateAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_UpdateAsync__0_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.UpdateAsync(`0,System.Threading.CancellationToken)">
+  UpdateAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体更新到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要更新的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_UpdateRangeAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.UpdateRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_UpdateRangeAsync_System_Collections_Generic_IEnumerable__0__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.UpdateRangeAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">
+  UpdateRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体更新到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; UpdateRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要更新的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_UpdateRangeAsync_" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.UpdateRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_Repositories_Abstractions_IRepository_1_UpdateRangeAsync__0___" data-uid="BD.Common8.Repositories.Repositories.Abstractions.IRepository`1.UpdateRangeAsync(`0[])">
+  UpdateRangeAsync(params TEntity[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体更新到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; UpdateRangeAsync(params TEntity[] entities)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> TEntity[]</dt>
+    <dd><p>要更新的多个实体</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

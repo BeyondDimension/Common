@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IMainThreadPlatformService
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IMainThreadPlatformService
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService">
+
+
+
+  <h1 id="BD_Common8_Essentials_Services_IMainThreadPlatformService" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService" class="text-break">
+    Interface IMainThreadPlatformService
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Essentials.html">Essentials</a>.<a class="xref" href="BD.Common8.Essentials.Services.html">Services</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Essentials.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>由平台实现的主线程帮助类</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMainThreadPlatformService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_Instance_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.Instance*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_Instance" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.Instance">
+  Instance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 <a class="xref" href="BD.Common8.Essentials.Services.IMainThreadPlatformService.html">IMainThreadPlatformService</a> 的实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IMainThreadPlatformService? Instance { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Essentials.Services.IMainThreadPlatformService.html">IMainThreadPlatformService</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_PlatformIsMainThread_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformIsMainThread*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_PlatformIsMainThread" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformIsMainThread">
+  PlatformIsMainThread
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前平台是否处于主线程中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool PlatformIsMainThread { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_BeginInvokeOnMainThread_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_BeginInvokeOnMainThread_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)">
+  BeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在主线程上执行给定的操作，如果是在主线程上运行则直接执行操作，否则在主线程上调度执行</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void BeginInvokeOnMainThread(Action action, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd><p>要在主线程上执行的操作</p>
+</dd>
+    <dt><code>priority</code> <a class="xref" href="BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html">ThreadingDispatcherPriority</a></dt>
+    <dd><p>操作的优先级</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)">
+  InvokeOnMainThreadAsync(Action, ThreadingDispatcherPriority)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在主线程上异步执行指定的操作，并返回表示异步操作的任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task InvokeOnMainThreadAsync(Action action, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+    <dt><code>priority</code> <a class="xref" href="BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html">ThreadingDispatcherPriority</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_System_Func_System_Threading_Tasks_Task__BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)">
+  InvokeOnMainThreadAsync(Func&lt;Task&gt;, ThreadingDispatcherPriority)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在主线程上异步调用指定的函数任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task InvokeOnMainThreadAsync(Func&lt;Task&gt; funcTask, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>funcTask</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>priority</code> <a class="xref" href="BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html">ThreadingDispatcherPriority</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync__1_System_Func_System_Threading_Tasks_Task___0___BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)">
+  InvokeOnMainThreadAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, ThreadingDispatcherPriority)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在主线程上异步调用指定的泛型函数任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; InvokeOnMainThreadAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; funcTask, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>funcTask</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>priority</code> <a class="xref" href="BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html">ThreadingDispatcherPriority</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync__1_System_Func___0__BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)">
+  InvokeOnMainThreadAsync&lt;T&gt;(Func&lt;T&gt;, ThreadingDispatcherPriority)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在主线程上异步执行指定的操作，并返回操作的结果，通过泛型参数指定操作结果的类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;T&gt; InvokeOnMainThreadAsync&lt;T&gt;(Func&lt;T&gt; func, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>func</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>priority</code> <a class="xref" href="BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html">ThreadingDispatcherPriority</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IMainThreadPlatformService_PlatformBeginInvokeOnMainThread_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IMainThreadPlatformService_PlatformBeginInvokeOnMainThread_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_" data-uid="BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)">
+  PlatformBeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在主线程上调度指定的操作</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformBeginInvokeOnMainThread(Action action, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd><p>要在主线程上执行的操作</p>
+</dd>
+    <dt><code>priority</code> <a class="xref" href="BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html">ThreadingDispatcherPriority</a></dt>
+    <dd><p>操作的优先级</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IMainThreadPlatformService.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

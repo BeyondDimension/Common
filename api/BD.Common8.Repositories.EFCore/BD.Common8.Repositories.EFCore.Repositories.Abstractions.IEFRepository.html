@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IEFRepository
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IEFRepository
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository">
+
+
+
+  <h1 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository" class="text-break">
+    Interface IEFRepository
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/IEFRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.EFCore.html">EFCore</a>.<a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Repositories.EFCore.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>由 EFCore 实现的 仓储接口</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IEFRepository</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_GetSqlSetIdentityInsert_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Boolean_">EFRepositoryExtensions.GetSqlSetIdentityInsert(IEFRepository, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_IdentityInsertSaveChanges_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_">EFRepositoryExtensions.IdentityInsertSaveChanges(IEFRepository)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_IdentityInsertSaveChangesAsync_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Threading_CancellationToken_">EFRepositoryExtensions.IdentityInsertSaveChangesAsync(IEFRepository, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_SetIdentityInsert_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Boolean_">EFRepositoryExtensions.SetIdentityInsert(IEFRepository, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_SetIdentityInsertAsync_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Boolean_System_Threading_CancellationToken_">EFRepositoryExtensions.SetIdentityInsertAsync(IEFRepository, bool, CancellationToken)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_DbContext_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.DbContext*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_DbContext" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.DbContext">
+  DbContext
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/IEFRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前的 DbContext</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DbContext DbContext { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_TableName_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.TableName*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_TableName" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.TableName">
+  TableName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/IEFRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取表名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string TableName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_SaveChangesAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.SaveChangesAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_SaveChangesAsync_System_Boolean_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.SaveChangesAsync(System.Boolean,System.Threading.CancellationToken)">
+  SaveChangesAsync(bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/IEFRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves all changes made in this context to the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>acceptAllChangesOnSuccess</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.acceptallchanges">AcceptAllChanges()</a> is called after
+the changes have been sent successfully to the database.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> to observe while waiting for the task to complete.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>A task that represents the asynchronous save operation. The task result contains the
+number of state entries written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_SaveChangesAsync_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+                    This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
+                    to discover any changes to entity instances before saving to the underlying database. This can be disabled via
+                    <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
+                </p>
+<p>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more
+                    information and examples.
+                </p>
+<p>
+                    See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
+                </p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateexception">DbUpdateException</a></dt>
+    <dd><p>An error is encountered while saving to the database.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception">DbUpdateConcurrencyException</a></dt>
+    <dd><p>A concurrency violation is encountered while saving to the database.
+A concurrency violation occurs when an unexpected number of rows are affected during save.
+This is usually because the data in the database has been modified since it was loaded into memory.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>If the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> is canceled.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_SaveChangesAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.SaveChangesAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_SaveChangesAsync_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.SaveChangesAsync(System.Threading.CancellationToken)">
+  SaveChangesAsync(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/IEFRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves all changes made in this context to the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;int&gt; SaveChangesAsync(CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> to observe while waiting for the task to complete.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>A task that represents the asynchronous save operation. The task result contains the
+number of state entries written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_SaveChangesAsync_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+                    This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
+                    to discover any changes to entity instances before saving to the underlying database. This can be disabled via
+                    <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
+                </p>
+<p>
+                    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more
+                    information and examples.
+                </p>
+<p>
+                    See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
+                </p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateexception">DbUpdateException</a></dt>
+    <dd><p>An error is encountered while saving to the database.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception">DbUpdateConcurrencyException</a></dt>
+    <dd><p>A concurrency violation is encountered while saving to the database.
+A concurrency violation occurs when an unexpected number of rows are affected during save.
+This is usually because the data in the database has been modified since it was loaded into memory.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>If the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> is canceled.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/IEFRepository.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Git 提交规范 | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Git 提交规范 | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../topnav.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BeyondDimension/Common/blob/main/articles/Git-Commit-Message-Standard.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h3 id="git-提交规范">Git 提交规范</h3>
+
+<p>Windows 10 输入法在英文状态下按 <code>Win + .</code> 或 <code>Win + ;</code> 唤起表情键盘输入表情的英文名选取表情</p>
+<h4 id="art">art</h4>
+<pre><code>🎨 改进代码格式/结构/样式
+当你提交的修改主要是为了改进代码的结构或格式时，可以使用这个 emoji。它对应的 motto 是 “art is never finished”，表示改进代码结构和风格永无止境。
+</code></pre>
+<h4 id="bug">bug</h4>
+<pre><code>🐛 修复了某个功能 #issue
+可在第二行开始带上这个 bug 引发的异常堆栈信息
+当你提交的修改主要是为了修复已知的 Bug 时，可以使用这个 emoji。它对应的 motto 是 “don't panic”，表明你已经找到并解决了 Bug。
+</code></pre>
+<h4 id="sparkles">sparkles</h4>
+<pre><code>✨ 某个新功能
+当你提交的修改主要是引入新功能或特性时，可以使用这个 emoji。它对应的 motto 是“stop wishing, start doing”，表明你已经实现了你想要的新功能。
+</code></pre>
+<h4 id="lipstick">lipstick</h4>
+<pre><code>💄 更新某个功能的 UI/界面/外观
+当你提交的修改主要是为了更新 UI 或外观时，可以使用这个 emoji。它对应的 motto 是“look good, feel good”，表示你已经让界面看起来更加的漂亮。
+</code></pre>
+<h4 id="fire">fire</h4>
+<pre><code>🔥 删除代码/文件
+当你提交的修改主要是删除了一些无用的代码或文件时，可以使用这个 emoji。它对应的 motto 是“keep it clean”，表示你很重视代码的干净程度。
+</code></pre>
+<h4 id="ambulance">ambulance</h4>
+<pre><code>🚑 修复紧急情况
+当你提交的修改主要是为了修复一些紧急情况（如网络故障，服务器宕机等）时，可以使用这个 emoji。它对应的 motto 是“every second counts”，表示你非常专注于解决这个问题。
+</code></pre>
+<h4 id="lock">lock</h4>
+<pre><code>🔒 修复安全问题
+</code></pre>
+<h4 id="memo">memo</h4>
+<pre><code>📝 编写文档
+当你提交的修改主要是为了编写或更新文档时，可以使用这个 emoji。它对应的 motto 是“doc it up”，表示你很注重文档的完整性和准确性。
+</code></pre>
+<h4 id="zap">zap</h4>
+<pre><code>⚡️ 优化性能
+</code></pre>
+<h4 id="test">test</h4>
+<pre><code>🧪 新增/修改 单元测试
+</code></pre>
+<h4 id="section">🍎</h4>
+<pre><code>🍎 修复 macOS 平台相关问题
+</code></pre>
+<h4 id="penguin">penguin</h4>
+<pre><code>🐧 修复 Linux 平台相关问题
+</code></pre>
+<h4 id="window">window</h4>
+<pre><code>🪟 修复 Windows 平台相关问题
+</code></pre>
+<h4 id="robot">robot</h4>
+<pre><code>🤖 修复 Android 平台相关问题
+</code></pre>
+<h4 id="green_apple">green_apple</h4>
+<pre><code>🍏 修复 iOS/iPadOS 平台相关问题
+</code></pre>
+<h4 id="green_apple-1">green_apple</h4>
+<pre><code>🔖 3.0.0
+发行/版本标签
+</code></pre>
+<h4 id="rotating_light">rotating_light</h4>
+<pre><code>🚨 移除 IDE 中错误列表中的警告
+仅移除相关的警告使用此 emoji，如果提交中包含了样式改进等，则应使用 🎨
+</code></pre>
+<h4 id="construction">construction</h4>
+<pre><code>🚧 工作进行中
+某个功能开发中尚未完成的中途提交
+</code></pre>
+<h4 id="construction_worker">construction_worker</h4>
+<pre><code>👷 添加 CI 构建系统
+</code></pre>
+<h4 id="green_heart">green_heart</h4>
+<pre><code>💚 修复 CI 构建问题
+</code></pre>
+<h4 id="arrow_up">arrow_up</h4>
+<pre><code>⬆️ 升级依赖
+</code></pre>
+<h4 id="arrow_down">arrow_down</h4>
+<pre><code>⬇️ 降级依赖
+</code></pre>
+<h4 id="recycle">recycle</h4>
+<pre><code>♻️ 重构代码
+</code></pre>
+<h4 id="whale">whale</h4>
+<pre><code>🐳 Docker 相关
+</code></pre>
+<h4 id="globe_with_meridians">globe_with_meridians</h4>
+<pre><code>🌐 国际化与本地化
+</code></pre>
+<h4 id="heavy_plus_sign">heavy_plus_sign</h4>
+<pre><code>➕ 增加一个依赖
+</code></pre>
+<h4 id="heavy_minus_sign">heavy_minus_sign</h4>
+<pre><code>➖ 减少一个依赖
+</code></pre>
+<h4 id="wrench">wrench</h4>
+<pre><code>🔧 修改配置文件
+</code></pre>
+<h4 id="hammer">hammer</h4>
+<pre><code>🔨 重大重构
+</code></pre>
+<h4 id="rewind">rewind</h4>
+<pre><code>⏪ 撤销更改
+</code></pre>
+<h4 id="twisted_rightwards_arrows">twisted_rightwards_arrows</h4>
+<pre><code>🔀 合并分支
+</code></pre>
+<h4 id="package">package</h4>
+<pre><code>📦 更新编译的文件或包
+</code></pre>
+<h4 id="alien">alien</h4>
+<pre><code>👽 由于外部 API 更改而更新代码
+</code></pre>
+<h4 id="truck">truck</h4>
+<pre><code>🚚 移动或者重命名文件
+</code></pre>
+<h4 id="page_facing_up">page_facing_up</h4>
+<pre><code>📄 增加或更新许可证书
+</code></pre>
+<h4 id="boom">boom</h4>
+<pre><code>💥 引入突破性的变化
+</code></pre>
+<h4 id="bento">bento</h4>
+<pre><code>🍱 增加或更新资源
+</code></pre>
+<h4 id="ok_hand">ok_hand</h4>
+<pre><code>👌 由于代码审查更改而更新代码
+</code></pre>
+<h4 id="wheelchair">wheelchair</h4>
+<pre><code>♿️ 改善无障碍交互
+</code></pre>
+<h4 id="bulb">bulb</h4>
+<pre><code>💡 给代码添加注释
+</code></pre>
+<h4 id="card_file_box">card_file_box</h4>
+<pre><code>🗃 执行与数据库相关的更改
+</code></pre>
+<h4 id="children_crossing">children_crossing</h4>
+<pre><code>🚸 优化用户体验、可用性
+</code></pre>
+<h4 id="building_construction">building_construction</h4>
+<pre><code>🏗 结构变动
+</code></pre>
+<h4 id="egg">egg</h4>
+<pre><code>🥚 增加或更改彩蛋
+</code></pre>
+<h4 id="see_no_evil">see_no_evil</h4>
+<pre><code>🙈 增加或更改 gitignore
+</code></pre>
+<h4 id="camera_flash">camera_flash</h4>
+<pre><code>📸 增加或更新截图
+</code></pre>
+<h4 id="alembic">alembic</h4>
+<pre><code>⚗️ 尝试新东西
+</code></pre>
+<h4 id="mag">mag</h4>
+<pre><code>🔍 SEO 优化
+</code></pre>
+<h4 id="wheel_of_dharma">wheel_of_dharma</h4>
+<pre><code>☸️ 关于 Kubernetes 的工作
+</code></pre>
+<h4 id="label">label</h4>
+<pre><code>🏷 增加类型（FLow、TypeScript）
+</code></pre>
+<h4 id="参考资料">参考资料</h4>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAwNTMxMzg1MA==&amp;mid=2654095853&amp;idx=4&amp;sn=f32cc8ebb50937bdb83ec21d26938204&amp;chksm=80d86db8b7afe4ae44c411dc057e2780fc45b438bdc005af82e6175d5ed3a468a4ba2068ba56&amp;mpshare=1&amp;scene=23&amp;srcid=0325WA0uW12C9P8Z0PAnqV5v&amp;sharer_sharetime=1679738885952&amp;sharer_shareid=c6d15eaf7ed7598647324e36731f2680#rd">一款基于 Git 提交时的 emoji 表情使用指南</a></li>
+<li><a href="https://github.com/carloscuesta/gitmoji-cli">gitmoji-cli A gitmoji interactive client for using gitmojis on commit messages.</a></li>
+<li><a href="https://github.com/carloscuesta/gitmoji-cli/commits/master">gitmoji-cli/commits</a></li>
+<li><a href="https://github.com/ant-design/ant-design/commits/master">ant-design/commits</a></li>
+<li><a href="https://emojipedia.org">emojipedia</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/articles/Git-Commit-Message-Standard.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

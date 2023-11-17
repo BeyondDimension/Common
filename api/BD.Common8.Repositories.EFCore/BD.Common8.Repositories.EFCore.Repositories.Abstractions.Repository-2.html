@@ -1,0 +1,814 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Repository&lt;TDbContext, TEntity&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Repository&lt;TDbContext, TEntity&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2">
+
+
+
+  <h1 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2" class="text-break">
+    Class Repository&lt;TDbContext, TEntity&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.EFCore.html">EFCore</a>.<a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Repositories.EFCore.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>由 EntityFrameworkCore 实现的仓储层</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class Repository&lt;TDbContext, TEntity&gt; : Repository&lt;TDbContext&gt;, IRepository&lt;TEntity&gt;, IRepository, IEFRepository&lt;TEntity&gt;, IEFRepository where TDbContext : DbContext where TEntity : class</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDbContext</code></dt>
+    <dd></dd>
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository-1.html">Repository</a>&lt;TDbContext&gt;</div>
+      <div><span class="xref">Repository&lt;TDbContext, TEntity&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs">IRepository</a>&lt;TEntity&gt;</div>
+      <div><a class="xref" href="../BD.Common8.Repositories/BD.Common8.Repositories.Repositories.Abstractions.IRepository.html">IRepository</a></div>
+      <div><a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository-1.html">IEFRepository</a>&lt;TEntity&gt;</div>
+      <div><a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.Abstractions.IEFRepository.html">IEFRepository</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository-3.html">Repository&lt;TDbContext, TEntity, TPrimaryKey&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository-1.html#BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_1_db">Repository&lt;TDbContext&gt;.db</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_GetSqlSetIdentityInsert_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Boolean_">EFRepositoryExtensions.GetSqlSetIdentityInsert(IEFRepository, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_IdentityInsertSaveChanges_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_">EFRepositoryExtensions.IdentityInsertSaveChanges(IEFRepository)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_IdentityInsertSaveChangesAsync_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Threading_CancellationToken_">EFRepositoryExtensions.IdentityInsertSaveChangesAsync(IEFRepository, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_SetIdentityInsert_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Boolean_">EFRepositoryExtensions.SetIdentityInsert(IEFRepository, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_SetIdentityInsertAsync_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository_System_Boolean_System_Threading_CancellationToken_">EFRepositoryExtensions.SetIdentityInsertAsync(IEFRepository, bool, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_IdentityInsertRangeAsync__1_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository___0__System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_">EFRepositoryExtensions.IdentityInsertRangeAsync&lt;TEntity&gt;(IEFRepository&lt;TEntity&gt;, IEnumerable&lt;TEntity&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="Microsoft.EntityFrameworkCore.EFRepositoryExtensions.html#Microsoft_EntityFrameworkCore_EFRepositoryExtensions_IdentityInsertRange__1_BD_Common8_Repositories_EFCore_Repositories_Abstractions_IEFRepository___0__System_Collections_Generic_IEnumerable___0__">EFRepositoryExtensions.IdentityInsertRange&lt;TEntity&gt;(IEFRepository&lt;TEntity&gt;, IEnumerable&lt;TEntity&gt;)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2__ctor_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.#ctor*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2__ctor__0_System_Threading_IRequestAbortedProvider_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.#ctor(`0,System.Threading.IRequestAbortedProvider)">
+  Repository(TDbContext, IRequestAbortedProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化成员</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Repository(TDbContext dbContext, IRequestAbortedProvider requestAbortedProvider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dbContext</code> <span class="xref">TDbContext</span></dt>
+    <dd></dd>
+    <dt><code>requestAbortedProvider</code> <a class="xref" href="../BD.Common8.Bcl/System.Threading.IRequestAbortedProvider.html">IRequestAbortedProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_Entity_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.Entity*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_Entity" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.Entity">
+  Entity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> can be used to query and save instances of TEntity.
+LINQ queries against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> will be translated into queries against the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;TEntity&gt; Entity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_Entity_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+                    The results of a LINQ query against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> will contain the results
+                    returned from the database and may not reflect changes made in the context that have not
+                    been persisted to the database. For example, the results will not contain newly added entities
+                    and may still contain entities that are marked for deletion.
+                </p>
+<p>
+                    Depending on the database being used, some parts of a LINQ query against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a>
+                    may be evaluated in memory rather than being translated into a database query.
+                </p>
+<p>
+  <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> objects are usually obtained from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a>
+                    property on a derived <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a> or from the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.set#microsoft-entityframeworkcore-dbcontext-set-1">Set&lt;TEntity&gt;()</a>
+                    method.
+                </p>
+<p>
+                    Entity Framework Core does not support multiple parallel operations being run on the same <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a>
+                    instance. This includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                    in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more information
+                    and examples.
+                </p>
+<p>
+                    See <a href="https://aka.ms/efcore-docs-dbcontext">DbContext lifetime, configuration, and initialization</a>,
+                    <a href="https://aka.ms/efcore-docs-query">Querying data with EF Core</a>, and
+                    <a href="https://aka.ms/efcore-docs-change-tracking">Changing tracking</a> for more information and examples.
+                </p>
+</div>
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_EntityNoTracking_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.EntityNoTracking*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_EntityNoTracking" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.EntityNoTracking">
+  EntityNoTracking
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The change tracker will not track any of the entities that are returned from a LINQ query. If the
+entity instances are modified, this will not be detected by the change tracker and
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges#microsoft-entityframeworkcore-dbcontext-savechanges">SaveChanges()</a> will not persist those changes to the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IQueryable&lt;TEntity&gt; EntityNoTracking { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd><p>A new query where the result set will not be tracked by the context.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_EntityNoTracking_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+                    Disabling change tracking is useful for read-only scenarios because it avoids the overhead of setting
+                    up change tracking for each entity instance. You should not disable change tracking if you want to
+                    manipulate entity instances and persist those changes to the database using
+                    <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges#microsoft-entityframeworkcore-dbcontext-savechanges">SaveChanges()</a>.
+                </p>
+<p>
+                    Identity resolution will be performed to ensure that all occurrences of an entity with a given key
+                    in the result set are represented by the same entity instance.
+                </p>
+<p>
+                    The default tracking behavior for queries can be controlled by <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.querytrackingbehavior">QueryTrackingBehavior</a>.
+                </p>
+<p>
+                    See <a href="https://aka.ms/efcore-docs-query-tracking">No-tracking queries in EF Core</a> for more information and examples.
+                </p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p><code class="paramref">source</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_EntityType_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.EntityType*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_EntityType" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.EntityType">
+  EntityType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取实体类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEntityType EntityType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.metadata.ientitytype">IEntityType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_IsSoftDeleted_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.IsSoftDeleted*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_IsSoftDeleted" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.IsSoftDeleted">
+  IsSoftDeleted
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否软删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsSoftDeleted { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_RequestAborted_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.RequestAborted*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_RequestAborted" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.RequestAborted">
+  RequestAborted
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取请求中断的令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CancellationToken RequestAborted { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_TableName_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.TableName*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_TableName" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.TableName">
+  TableName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取表名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TableName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_DeleteAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.DeleteAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_DeleteAsync__1_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.DeleteAsync(`1,System.Threading.CancellationToken)">
+  DeleteAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体从数据库中删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要删除的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_DeleteRangeAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.DeleteRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_DeleteRangeAsync_System_Collections_Generic_IEnumerable__1__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.DeleteRangeAsync(System.Collections.Generic.IEnumerable{`1},System.Threading.CancellationToken)">
+  DeleteRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体从数据库中删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; DeleteRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要删除的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_FirstOrDefaultAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.FirstOrDefaultAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_FirstOrDefaultAsync_System_Linq_Expressions_Expression_System_Func__1_System_Boolean___System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.FirstOrDefaultAsync(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}},System.Threading.CancellationToken)">
+  FirstOrDefaultAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回序列中满足指定的条件或默认值，如果找到这样的元素的第一个元素</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;TEntity?&gt; FirstOrDefaultAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEntity, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>用于测试每个元素是否满足条件的函数</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEntity&gt;</dt>
+    <dd><p>default(TEntity) 如果 集合 为空，或者如果没有元素通过由指定的测试 <code class="paramref">predicate</code>;
+否则为中的第一个元素 集合 通过由指定的测试 <code class="paramref">predicate</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>集合 或 <code class="paramref">predicate</code> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_InsertAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.InsertAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_InsertAsync__1_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.InsertAsync(`1,System.Threading.CancellationToken)">
+  InsertAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体插入到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; InsertAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要添加的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_InsertRangeAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.InsertRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_InsertRangeAsync_System_Collections_Generic_IEnumerable__1__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.InsertRangeAsync(System.Collections.Generic.IEnumerable{`1},System.Threading.CancellationToken)">
+  InsertRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体插入到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; InsertRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要添加的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_UpdateAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.UpdateAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_UpdateAsync__1_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.UpdateAsync(`1,System.Threading.CancellationToken)">
+  UpdateAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体更新到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要更新的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_UpdateRangeAsync_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.UpdateRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_UpdateRangeAsync_System_Collections_Generic_IEnumerable__1__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.EFCore.Repositories.Abstractions.Repository`2.UpdateRangeAsync(System.Collections.Generic.IEnumerable{`1},System.Threading.CancellationToken)">
+  UpdateRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体更新到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; UpdateRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要更新的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

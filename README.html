@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Common8 | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Common8 | BD.Common8 文档 ">
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="topnav.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/BeyondDimension/Common/blob/main/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="common8">Common8</h1>
+
+<p>次元超越 .NET 8+ 通用类库</p>
+<h2 id="sdk-参数">Sdk 参数</h2>
+<ul>
+<li>IsPackable 是否为 <code>NuGet</code> 包项目</li>
+<li>IsTestProject 是否为单元测试项目</li>
+<li>IsSourceGeneratorProject 是否为源生成器项目</li>
+<li>IsGlobalUsingsCommon8Bcl 是否全局引用命名空间 <code>BD.Common8.Bcl</code></li>
+<li>IsGlobalUsingsMSBuildProjectName 是否全局引用当前项目的命名空间，位于 <code>src\Shared\GlobalUsings.$(MSBuildProjectName).cs</code></li>
+<li>IsCommon8Project 是否为 <code>Common8</code> 仓库内的项目，将决定项目引用还是包引用</li>
+<li>UseCommon8Bcl 是否引用 <code>BD.Common8.Bcl</code> 类库</li>
+<li>UseAspNetCore 是否引用 <code>ASP.NET Core</code> 框架</li>
+<li>UseEFCore 是否引用 <code>EF Core</code> 框架</li>
+<li>UseProjectUtils 是否引用 <code>src\Shared\ProjectUtils.cs</code></li>
+<li>UseSourceGeneratorResx 是否引用 <code>Resx</code> 的源生成器</li>
+<li>UseMicrosoftIdentityModelTokens 是否引用包 <code>Microsoft.IdentityModel.Tokens</code></li>
+<li>UseAvalonia 是否引用包 <code>Avalonia</code></li>
+<li>LinkResXGeneratedCodeAttribute 是否引用源码 <code>src\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs</code></li>
+</ul>
+<h2 id="sharedlibrary-共享库">SharedLibrary 共享库</h2>
+<h3 id="bdcommon8bcl">BD.Common8.Bcl</h3>
+<p>提供对基类库的扩展</p>
+<h3 id="bdcommon8bclcompat">BD.Common8.Bcl.Compat</h3>
+<p>提供旧版 Runtime 上缺少的内容以兼容新版 C# 语法</p>
+<h2 id="bdcommon8essentials">BD.Common8.Essentials</h2>
+<p>Essentials 提供单个跨平台 API，适用于任何 .NET 应用程序 (Win32、WinRT、Android、iOS、macOS、MacCatalyst)</p>
+<h2 id="bdcommon8essentialsimplementation">BD.Common8.Essentials.Implementation</h2>
+<p>具体平台的 Essentials 实现服务库</p>
+<h2 id="bdcommon8essentialsimplementationavalonia">BD.Common8.Essentials.Implementation.Avalonia</h2>
+<p>Avalonia UI 相关的 Essentials 实现服务库</p>
+<h3 id="bdcommon8httpclientfactory">BD.Common8.Http.ClientFactory</h3>
+<p>适用于客户端的 HttpClient 工厂实现库 (使用 Fusillade 实现)</p>
+<h3 id="bdcommon8httpclientfactoryserver">BD.Common8.Http.ClientFactory.Server</h3>
+<p>适用于客户端的 HttpClient 工厂的服务端兼容实现库 (与 Microsoft.Extensions.Http 兼容)</p>
+<h3 id="bdcommon8ipc">BD.Common8.Ipc</h3>
+<p>进程间通信 (IPC) 库</p>
+<h3 id="bdcommon8ipcclient">BD.Common8.Ipc.Client</h3>
+<p>进程间通信 (IPC) 客户端库</p>
+<h3 id="bdcommon8ipcserver">BD.Common8.Ipc.Server</h3>
+<p>进程间通信 (IPC) 服务端库</p>
+<h3 id="bdcommon8ormefcore">BD.Common8.Orm.EFCore</h3>
+<p>EFCore 相关的封装库</p>
+<h3 id="bdcommon8pinyin">BD.Common8.Pinyin</h3>
+<p>汉语拼音封装库</p>
+<h3 id="bdcommon8pinyinchncharinfo">BD.Common8.Pinyin.ChnCharInfo</h3>
+<p>使用 ChnCharInfo 实现的汉语拼音库</p>
+<h3 id="bdcommon8pinyincorefoundation">BD.Common8.Pinyin.CoreFoundation</h3>
+<p>使用 CoreFoundation 实现的汉语拼音库</p>
+<h3 id="bdcommon8primitivesapiresponse">BD.Common8.Primitives.ApiResponse</h3>
+<p>提供 Api 响应 (BackManage 后台管理) 类型的封装库</p>
+<h3 id="bdcommon8primitivesapirsp">BD.Common8.Primitives.ApiRsp</h3>
+<p>提供 Api 响应类型的封装库</p>
+<h3 id="bdcommon8primitivespersonaldatabirthdate">BD.Common8.Primitives.PersonalData.BirthDate</h3>
+<p>提供个人资料（出生日期）格式</p>
+<h3 id="bdcommon8primitivespersonaldataphonenumber">BD.Common8.Primitives.PersonalData.PhoneNumber</h3>
+<p>提供个人资料（手机号码）格式</p>
+<h3 id="bdcommon8primitives">BD.Common8.Primitives</h3>
+<p>基本模型，枚举类型库</p>
+<h3 id="bdcommon8primitivesdistrict">BD.Common8.Primitives.District</h3>
+<p>提供行政区域数据封装库</p>
+<h3 id="bdcommon8aspnetcore">BD.Common8.AspNetCore</h3>
+<p>ASP.NET Core 的通用封装库</p>
+<h3 id="bdcommon8aspnetcoreidentity">BD.Common8.AspNetCore.Identity</h3>
+<p>ASP.NET Core 的管理用户、密码、配置文件数据、角色、声明、令牌、电子邮件确认等封装库</p>
+<h3 id="bdcommon8aspnetcoreidentitybackmanage">BD.Common8.AspNetCore.Identity.BackManage</h3>
+<p>ASP.NET Core 实现的多租户后台管理系统通用封装库</p>
+<h2 id="sourcegenerator-源生成器">SourceGenerator 源生成器</h2>
+<h3 id="bdcommon8sourcegeneratorresx">BD.Common8.SourceGenerator.ResX</h3>
+<p>xyz.Designer.cs 源生成器</p>
+<h3 id="bdcommon8sourcegeneratoripcclient">BD.Common8.SourceGenerator.Ipc.Client</h3>
+<p>进程间通信 (IPC) 客户端源生成器</p>
+<h3 id="bdcommon8sourcegeneratoripcserver">BD.Common8.SourceGenerator.Ipc.Server</h3>
+<p>进程间通信 (IPC) 服务端源生成器</p>
+<h2 id="tools-工具">Tools 工具</h2>
+<h3 id="bdcommon8toolsdocfx">BD.Common8.Tools.DocFX</h3>
+<p>启动 DocFX</p>
+<h3 id="bdcommon8toolssortpackageversion">BD.Common8.Tools.Sort.PackageVersion</h3>
+<p>NuGet 包清单排序</p>
+<h2 id="unittest-单元测试">UnitTest 单元测试</h2>
+<h3 id="bdcommon8unittest">BD.Common8.UnitTest</h3>
+<p>当前仓库的单元测试项目</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

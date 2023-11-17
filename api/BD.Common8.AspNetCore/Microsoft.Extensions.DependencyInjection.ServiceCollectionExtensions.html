@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ServiceCollectionExtensions
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ServiceCollectionExtensions
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+
+
+
+  <h1 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions" class="text-break">
+    Class ServiceCollectionExtensions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft">Microsoft</a>.<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions">Extensions</a>.<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection">DependencyInjection</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>提供用于配置和添加 DbContext 到应用程序的扩展方法</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ServiceCollectionExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ServiceCollectionExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext__1_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Action_Microsoft_EntityFrameworkCore_DbContextOptionsBuilder__System_String_System_String_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext``1(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.String,System.String)">
+  AddDbContext&lt;TContext&gt;(WebApplicationBuilder, Action&lt;DbContextOptionsBuilder&gt;?, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加 DbContext 到应用程序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddDbContext&lt;TContext&gt;(this WebApplicationBuilder builder, Action&lt;DbContextOptionsBuilder&gt;? o = null, string databaseProvider = &quot;Npgsql.EntityFrameworkCore.PostgreSQL&quot;, string connectionStringKeyName = &quot;DefaultConnection&quot;) where TContext : DbContext</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
+    <dd><p>WebApplicationBuilder 实例</p>
+</dd>
+    <dt><code>o</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder">DbContextOptionsBuilder</a>&gt;</dt>
+    <dd><p>配置 DbContextOptionsBuilder 的可选操作</p>
+</dd>
+    <dt><code>databaseProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据库提供程序名称</p>
+</dd>
+    <dt><code>connectionStringKeyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>连接字符串键的名称</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TContext</code></dt>
+    <dd><p>要添加的 DbContext 类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext__2_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Action_Microsoft_EntityFrameworkCore_DbContextOptionsBuilder__System_String_System_String_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext``2(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.String,System.String)">
+  AddDbContext&lt;TService, TContext&gt;(WebApplicationBuilder, Action&lt;DbContextOptionsBuilder&gt;?, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加 DbContext 作为 TService 到应用程序并配置服务的生命周期为 Scoped</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddDbContext&lt;TService, TContext&gt;(this WebApplicationBuilder builder, Action&lt;DbContextOptionsBuilder&gt;? o = null, string databaseProvider = &quot;Npgsql.EntityFrameworkCore.PostgreSQL&quot;, string connectionStringKeyName = &quot;DefaultConnection&quot;) where TService : class where TContext : DbContext, TService</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
+    <dd><p>WebApplicationBuilder 实例</p>
+</dd>
+    <dt><code>o</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder">DbContextOptionsBuilder</a>&gt;</dt>
+    <dd><p>配置 DbContextOptionsBuilder 的可选操作</p>
+</dd>
+    <dt><code>databaseProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据库提供程序名称</p>
+</dd>
+    <dt><code>connectionStringKeyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>连接字符串键的名称</p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TService</code></dt>
+    <dd><p>要添加的服务类型</p>
+</dd>
+    <dt><code>TContext</code></dt>
+    <dd><p>要添加的 DbContext 类型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddHttpContextRequestAbortedProvider_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddHttpContextRequestAbortedProvider*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddHttpContextRequestAbortedProvider_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddHttpContextRequestAbortedProvider(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  AddHttpContextRequestAbortedProvider(IServiceCollection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.HttpContextRequestAbortedProvider.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加 <a class="xref" href="../BD.Common8.Bcl/System.Threading.IRequestAbortedProvider.html">IRequestAbortedProvider</a> 的 AspNetCore 实现</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddHttpContextRequestAbortedProvider(this IServiceCollection services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddStackExchangeRedisCache_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddStackExchangeRedisCache*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddStackExchangeRedisCache_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_String_System_String_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddStackExchangeRedisCache(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.String,System.String)">
+  AddStackExchangeRedisCache(WebApplicationBuilder, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddStackExchangeRedisCache.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加由 Redis 实现的分布式缓存</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddStackExchangeRedisCache(this WebApplicationBuilder builder, string instanceName, string connectionStringKeyName = &quot;RedisConnection&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
+    <dd></dd>
+    <dt><code>instanceName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>connectionStringKeyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_HideServerHeader_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.HideServerHeader*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_HideServerHeader_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.HideServerHeader(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  HideServerHeader(IServiceCollection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.HideServerHeader.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>隐藏服务响应头</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection HideServerHeader(this IServiceCollection services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_UseForwardedHeaders_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.UseForwardedHeaders*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_UseForwardedHeaders__1_Microsoft_AspNetCore_Builder_IApplicationBuilder___0_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.UseForwardedHeaders``1(Microsoft.AspNetCore.Builder.IApplicationBuilder,``0)">
+  UseForwardedHeaders&lt;TAppSettings&gt;(IApplicationBuilder, TAppSettings)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.UseForwardedHeaders.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IApplicationBuilder UseForwardedHeaders&lt;TAppSettings&gt;(this IApplicationBuilder builder, TAppSettings appSettings) where TAppSettings : class, INotUseForwardedHeaders</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TAppSettings</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder">IApplicationBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TAppSettings</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

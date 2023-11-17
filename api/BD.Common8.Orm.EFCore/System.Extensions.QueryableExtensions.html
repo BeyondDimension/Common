@@ -1,0 +1,1122 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class QueryableExtensions
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class QueryableExtensions
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System.Extensions.QueryableExtensions">
+
+
+
+  <h1 id="System_Extensions_QueryableExtensions" data-uid="System.Extensions.QueryableExtensions" class="text-break">
+    Class QueryableExtensions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="System.html">System</a>.<a class="xref" href="System.Extensions.html">Extensions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Orm.EFCore.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class QueryableExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">QueryableExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="System_Extensions_QueryableExtensions_GeneralDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_GeneralDeleteAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteAsync``1(System.Linq.IQueryable{``0},System.Threading.CancellationToken)">
+  GeneralDeleteAsync&lt;TEntity&gt;(IQueryable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据条件常规删除（批量删除或软删除），根据实体是否继承了 <a class="xref" href="../BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISoftDeleted.html">ISoftDeleted</a> 自动检测</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; GeneralDeleteAsync&lt;TEntity&gt;(this IQueryable&lt;TEntity&gt; query, CancellationToken cancellationToken = default) where TEntity : class, IEntity</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_GeneralDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_GeneralDeleteAsync__2_System_Linq_IQueryable___0__System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteAsync``2(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+  GeneralDeleteAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据多个实体常规删除（批量删除或软删除），根据实体是否继承了 <a class="xref" href="../BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISoftDeleted.html">ISoftDeleted</a> 自动检测</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; GeneralDeleteAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt; where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_GeneralDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_GeneralDeleteAsync__2_System_Linq_IQueryable___0____0_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteAsync``2(System.Linq.IQueryable{``0},``0,System.Threading.CancellationToken)">
+  GeneralDeleteAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据实体常规删除（批量删除或软删除），根据实体是否继承了 <a class="xref" href="../BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISoftDeleted.html">ISoftDeleted</a> 自动检测</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; GeneralDeleteAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, TEntity entity, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt; where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_GeneralDeleteByIdAsync_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteByIdAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_GeneralDeleteByIdAsync__2_System_Linq_IQueryable___0__System_Collections_Generic_IEnumerable___1__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteByIdAsync``2(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Threading.CancellationToken)">
+  GeneralDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, IEnumerable&lt;TPrimaryKey&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据多个主键常规删除（批量删除或软删除），根据实体是否继承了 <a class="xref" href="../BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISoftDeleted.html">ISoftDeleted</a> 自动检测</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; GeneralDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, IEnumerable&lt;TPrimaryKey&gt; primaryKeys, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt; where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>primaryKeys</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TPrimaryKey&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_GeneralDeleteByIdAsync_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteByIdAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_GeneralDeleteByIdAsync__2_System_Linq_IQueryable___0____1_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.GeneralDeleteByIdAsync``2(System.Linq.IQueryable{``0},``1,System.Threading.CancellationToken)">
+  GeneralDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, TPrimaryKey, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据主键常规删除（批量删除或软删除），根据实体是否继承了 <a class="xref" href="../BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISoftDeleted.html">ISoftDeleted</a> 自动检测</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; GeneralDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, TPrimaryKey primaryKey, CancellationToken cancellationToken = default) where TEntity : class, IEntity where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>primaryKey</code> <span class="xref">TPrimaryKey</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_HardDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.HardDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_HardDeleteAsync__2_System_Linq_IQueryable___0__System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.HardDeleteAsync``2(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+  HardDeleteAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据多个实体硬删除（从数据库中删除数据）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; HardDeleteAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt;, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_HardDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.HardDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_HardDeleteAsync__2_System_Linq_IQueryable___0____0_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.HardDeleteAsync``2(System.Linq.IQueryable{``0},``0,System.Threading.CancellationToken)">
+  HardDeleteAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据实体硬删除（从数据库中删除数据）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; HardDeleteAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, TEntity entity, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt;, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_HardDeleteByIdAsync_" data-uid="System.Extensions.QueryableExtensions.HardDeleteByIdAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_HardDeleteByIdAsync__2_System_Linq_IQueryable___0__System_Collections_Generic_IEnumerable___1__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.HardDeleteByIdAsync``2(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Threading.CancellationToken)">
+  HardDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, IEnumerable&lt;TPrimaryKey&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据多个主键硬删除（从数据库中删除数据）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; HardDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, IEnumerable&lt;TPrimaryKey&gt; primaryKeys, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt;, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>primaryKeys</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TPrimaryKey&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_HardDeleteByIdAsync_" data-uid="System.Extensions.QueryableExtensions.HardDeleteByIdAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_HardDeleteByIdAsync__2_System_Linq_IQueryable___0____1_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.HardDeleteByIdAsync``2(System.Linq.IQueryable{``0},``1,System.Threading.CancellationToken)">
+  HardDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, TPrimaryKey, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据主键硬删除（从数据库中删除数据）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; HardDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, TPrimaryKey primaryKey, CancellationToken cancellationToken = default) where TEntity : class, IEntity, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>primaryKey</code> <span class="xref">TPrimaryKey</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_PagingAnchorAsync_" data-uid="System.Extensions.QueryableExtensions.PagingAnchorAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_PagingAnchorAsync__1_System_Linq_IQueryable___0__System_Int32_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.PagingAnchorAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Threading.CancellationToken)">
+  PagingAnchorAsync&lt;TEntity&gt;(IQueryable&lt;TEntity&gt;, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据描点进行分页查询，调用此方法前 必须 进行排序 和 判断描点条件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;PagedModel&lt;TEntity&gt;&gt; PagingAnchorAsync&lt;TEntity&gt;(this IQueryable&lt;TEntity&gt; source, int pageSize = 10, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Primitives.Models.PagedModel_T_.MemoryPackFormatter.g.cs">PagedModel</a>&lt;TEntity&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_PagingAsync_" data-uid="System.Extensions.QueryableExtensions.PagingAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_PagingAsync__1_System_Linq_IQueryable___0__System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.PagingAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Threading.CancellationToken)">
+  PagingAsync&lt;TEntity&gt;(IQueryable&lt;TEntity&gt;, int, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据页码进行分页查询，调用此方法前 必须 进行排序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;PagedModel&lt;TEntity&gt;&gt; PagingAsync&lt;TEntity&gt;(this IQueryable&lt;TEntity&gt; source, int current = 1, int pageSize = 10, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Primitives.Models.PagedModel_T_.MemoryPackFormatter.g.cs">PagedModel</a>&lt;TEntity&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_PagingOffsetAsync_" data-uid="System.Extensions.QueryableExtensions.PagingOffsetAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_PagingOffsetAsync__1_System_Linq_IQueryable___0__System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.PagingOffsetAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Threading.CancellationToken)">
+  PagingOffsetAsync&lt;TEntity&gt;(IQueryable&lt;TEntity&gt;, int, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据偏移量进行分页查询，调用此方法前 必须 进行排序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;PagedModel&lt;TEntity&gt;&gt; PagingOffsetAsync&lt;TEntity&gt;(this IQueryable&lt;TEntity&gt; source, int offset = 0, int pageSize = 10, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Primitives.Models.PagedModel_T_.MemoryPackFormatter.g.cs">PagedModel</a>&lt;TEntity&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_PagingSortAsync_" data-uid="System.Extensions.QueryableExtensions.PagingSortAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_PagingSortAsync__1_System_Linq_IQueryable___0__BD_Common8_Primitives_Columns_ICreationTime_System_Int32_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.PagingSortAsync``1(System.Linq.IQueryable{``0},BD.Common8.Primitives.Columns.ICreationTime,System.Int32,System.Threading.CancellationToken)">
+  PagingSortAsync&lt;TEntity&gt;(IQueryable&lt;TEntity&gt;, ICreationTime?, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Paging.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据创建时间描点进行分页查询，此方法 已使用 创建时间倒序排序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;PagedModel&lt;TEntity&gt;&gt; PagingSortAsync&lt;TEntity&gt;(this IQueryable&lt;TEntity&gt; source, ICreationTime? anchor = null, int pageSize = 10, CancellationToken cancellationToken = default) where TEntity : class, ICreationTime</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>anchor</code> <a class="xref" href="../BD.Common8.Primitives/BD.Common8.Primitives.Columns.ICreationTime.html">ICreationTime</a></dt>
+    <dd></dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Primitives.Models.PagedModel_T_.MemoryPackFormatter.g.cs">PagedModel</a>&lt;TEntity&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_PagingSortAsync_" data-uid="System.Extensions.QueryableExtensions.PagingSortAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_PagingSortAsync__1_System_Linq_IQueryable___0__System_DateTimeOffset_System_Int32_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.PagingSortAsync``1(System.Linq.IQueryable{``0},System.DateTimeOffset,System.Int32,System.Threading.CancellationToken)">
+  PagingSortAsync&lt;TEntity&gt;(IQueryable&lt;TEntity&gt;, DateTimeOffset, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据创建时间描点进行分页查询，此方法 已使用 创建时间倒序排序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;PagedModel&lt;TEntity&gt;&gt; PagingSortAsync&lt;TEntity&gt;(this IQueryable&lt;TEntity&gt; source, DateTimeOffset anchor = default, int pageSize = 10, CancellationToken cancellationToken = default) where TEntity : class, ICreationTime</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>anchor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></dt>
+    <dd></dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Primitives.Models.PagedModel_T_.MemoryPackFormatter.g.cs">PagedModel</a>&lt;TEntity&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_PagingSortAsync_" data-uid="System.Extensions.QueryableExtensions.PagingSortAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_PagingSortAsync__1_System_Linq_IQueryable___0__System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.PagingSortAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Threading.CancellationToken)">
+  PagingSortAsync&lt;TEntity&gt;(IQueryable&lt;TEntity&gt;, int, int, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Paging.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据页码进行分页查询，此方法 已使用 创建时间倒序排序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;PagedModel&lt;TEntity&gt;&gt; PagingSortAsync&lt;TEntity&gt;(this IQueryable&lt;TEntity&gt; source, int current = 1, int pageSize = 10, CancellationToken cancellationToken = default) where TEntity : class, ICreationTime</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Primitives.Models.PagedModel_T_.MemoryPackFormatter.g.cs">PagedModel</a>&lt;TEntity&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_SoftDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_SoftDeleteAsync_System_Linq_IQueryable_BD_Common8_Primitives_Columns_ISoftDeleted__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteAsync(System.Linq.IQueryable{BD.Common8.Primitives.Columns.ISoftDeleted},System.Threading.CancellationToken)">
+  SoftDeleteAsync(IQueryable&lt;ISoftDeleted&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据条件批量软删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; SoftDeleteAsync(this IQueryable&lt;ISoftDeleted&gt; query, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/Columns/ISoftDeleted.cs">ISoftDeleted</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_SoftDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_SoftDeleteAsync__2_System_Linq_IQueryable___0__System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteAsync``2(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+  SoftDeleteAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据多个实体软删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; SoftDeleteAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt;, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_SoftDeleteAsync_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_SoftDeleteAsync__2_System_Linq_IQueryable___0____0_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteAsync``2(System.Linq.IQueryable{``0},``0,System.Threading.CancellationToken)">
+  SoftDeleteAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据实体软删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; SoftDeleteAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, TEntity entity, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt;, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_SoftDeleteByIdAsync_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteByIdAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_SoftDeleteByIdAsync__2_System_Linq_IQueryable___0__System_Collections_Generic_IEnumerable___1__System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteByIdAsync``2(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Threading.CancellationToken)">
+  SoftDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, IEnumerable&lt;TPrimaryKey&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据多个主键软删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; SoftDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, IEnumerable&lt;TPrimaryKey&gt; primaryKeys, CancellationToken cancellationToken = default) where TEntity : class, IEntity&lt;TPrimaryKey&gt;, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>primaryKeys</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TPrimaryKey&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_QueryableExtensions_SoftDeleteByIdAsync_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteByIdAsync*"></a>
+
+  <h3 id="System_Extensions_QueryableExtensions_SoftDeleteByIdAsync__2_System_Linq_IQueryable___0____1_System_Threading_CancellationToken_" data-uid="System.Extensions.QueryableExtensions.SoftDeleteByIdAsync``2(System.Linq.IQueryable{``0},``1,System.Threading.CancellationToken)">
+  SoftDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(IQueryable&lt;TEntity&gt;, TPrimaryKey, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据主键软删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;int&gt; SoftDeleteByIdAsync&lt;TEntity, TPrimaryKey&gt;(this IQueryable&lt;TEntity&gt; query, TPrimaryKey primaryKey, CancellationToken cancellationToken = default) where TEntity : class, IEntity, ISoftDeleted where TPrimaryKey : IEquatable&lt;TPrimaryKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.iqueryable-1">IQueryable</a>&lt;TEntity&gt;</dt>
+    <dd></dd>
+    <dt><code>primaryKey</code> <span class="xref">TPrimaryKey</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+    <dt><code>TPrimaryKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Orm.EFCore/Extensions/QueryableExtensions.Delete.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

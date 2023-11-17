@@ -1,0 +1,1641 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SemanticVersion
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SemanticVersion
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System.Runtime.Versioning.SemanticVersion">
+
+
+
+  <h1 id="System_Runtime_Versioning_SemanticVersion" data-uid="System.Runtime.Versioning.SemanticVersion" class="text-break">
+    Class SemanticVersion
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="System.html">System</a>.<a class="xref" href="System.Runtime.html">Runtime</a>.<a class="xref" href="System.Runtime.Versioning.html">Versioning</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Bcl.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A strict SemVer implementation</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SemanticVersion : IFormattable, IComparable, IComparable&lt;SemanticVersion&gt;, IEquatable&lt;SemanticVersion&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SemanticVersion</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformattable">IFormattable</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable">IComparable</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a>&gt;</div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="System.Runtime.Versioning.NuGetVersion.html">NuGetVersion</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="System.Extensions.ObjectExtensions.html#System_Extensions_ObjectExtensions_ThrowIsNull__1___0_System_String_">ObjectExtensions.ThrowIsNull&lt;T&gt;(T?, string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.ObjectExtensions.html#System_Extensions_ObjectExtensions_ThrowIsNull__1___0_System_String_">ObjectExtensions.ThrowIsNull&lt;T&gt;(T?, string?)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Int32_System_Int32_System_Int32_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Int32,System.Int32,System.Int32)">
+  SemanticVersion(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a SemanticVersion X.Y.Z</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SemanticVersion(int major, int minor, int patch)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>major</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>X.y.z</p>
+</dd>
+    <dt><code>minor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.Y.z</p>
+</dd>
+    <dt><code>patch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.y.Z</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Int32_System_Int32_System_Int32_System_Collections_Generic_IEnumerable_System_String__System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Int32,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.String},System.String)">
+  SemanticVersion(int, int, int, IEnumerable&lt;string&gt;?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a NuGetVersion X.Y.Z-alpha.1.2#build01</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SemanticVersion(int major, int minor, int patch, IEnumerable&lt;string&gt;? releaseLabels, string? metadata)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>major</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>X.y.z</p>
+</dd>
+    <dt><code>minor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.Y.z</p>
+</dd>
+    <dt><code>patch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.y.Z</p>
+</dd>
+    <dt><code>releaseLabels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>Release labels that have been split by the dot separator</p>
+</dd>
+    <dt><code>metadata</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Build metadata</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Int32_System_Int32_System_Int32_System_Int32_System_Collections_Generic_IEnumerable_System_String__System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.String},System.String)">
+  SemanticVersion(int, int, int, int, IEnumerable&lt;string&gt;?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SemanticVersion(int major, int minor, int patch, int revision, IEnumerable&lt;string&gt;? releaseLabels, string? metadata)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>major</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>minor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>patch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>revision</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>releaseLabels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>metadata</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Int32_System_Int32_System_Int32_System_Int32_System_String_System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String)">
+  SemanticVersion(int, int, int, int, string?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SemanticVersion(int major, int minor, int patch, int revision, string? releaseLabel, string? metadata)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>major</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>minor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>patch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>revision</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>releaseLabel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>metadata</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Int32_System_Int32_System_Int32_System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Int32,System.Int32,System.Int32,System.String)">
+  SemanticVersion(int, int, int, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a NuGetVersion X.Y.Z-alpha</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SemanticVersion(int major, int minor, int patch, string? releaseLabel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>major</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>X.y.z</p>
+</dd>
+    <dt><code>minor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.Y.z</p>
+</dd>
+    <dt><code>patch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.y.Z</p>
+</dd>
+    <dt><code>releaseLabel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Prerelease label</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Int32_System_Int32_System_Int32_System_String_System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Int32,System.Int32,System.Int32,System.String,System.String)">
+  SemanticVersion(int, int, int, string?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a NuGetVersion X.Y.Z-alpha#build01</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SemanticVersion(int major, int minor, int patch, string? releaseLabel, string? metadata)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>major</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>X.y.z</p>
+</dd>
+    <dt><code>minor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.Y.z</p>
+</dd>
+    <dt><code>patch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>x.y.Z</p>
+</dd>
+    <dt><code>releaseLabel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Prerelease label</p>
+</dd>
+    <dt><code>metadata</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Build metadata</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Runtime.Versioning.SemanticVersion)">
+  SemanticVersion(SemanticVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a SemanticVersion from an existing SemanticVersion</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SemanticVersion(SemanticVersion version)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Version_System_Collections_Generic_IEnumerable_System_String__System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Version,System.Collections.Generic.IEnumerable{System.String},System.String)">
+  SemanticVersion(Version, IEnumerable&lt;string&gt;?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SemanticVersion(Version version, IEnumerable&lt;string&gt;? releaseLabels, string? metadata)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.version">Version</a></dt>
+    <dd></dd>
+    <dt><code>releaseLabels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>metadata</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion__ctor_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__ctor_System_Version_System_String_System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.#ctor(System.Version,System.String,System.String)">
+  SemanticVersion(Version, string?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SemanticVersion(Version version, string? releaseLabel = null, string? metadata = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.version">Version</a></dt>
+    <dd></dd>
+    <dt><code>releaseLabel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>metadata</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Invalidvalue" data-uid="System.Runtime.Versioning.SemanticVersion.Invalidvalue">
+  Invalidvalue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p><a href="https://github.com/NuGetArchive/NuGet.Versioning/blob/rc-preview1/src/NuGet.Versioning/Resources.resx#L64-L66">https://github.com/NuGetArchive/NuGet.Versioning/blob/rc-preview1/src/NuGet.Versioning/Resources.resx#L64-L66</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const string Invalidvalue = &quot;&#39;{0}&#39; is not a valid version string.&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__metadata" data-uid="System.Runtime.Versioning.SemanticVersion._metadata">
+  _metadata
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly string? _metadata</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__releaseLabels" data-uid="System.Runtime.Versioning.SemanticVersion._releaseLabels">
+  _releaseLabels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IEnumerable&lt;string&gt;? _releaseLabels</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion__version" data-uid="System.Runtime.Versioning.SemanticVersion._version">
+  _version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Version _version</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.version">Version</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_HasMetadata_" data-uid="System.Runtime.Versioning.SemanticVersion.HasMetadata*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_HasMetadata" data-uid="System.Runtime.Versioning.SemanticVersion.HasMetadata">
+  HasMetadata
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if metadata exists for the version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool HasMetadata { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_IsPrerelease_" data-uid="System.Runtime.Versioning.SemanticVersion.IsPrerelease*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_IsPrerelease" data-uid="System.Runtime.Versioning.SemanticVersion.IsPrerelease">
+  IsPrerelease
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if pre-release labels exist for the version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool IsPrerelease { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Major_" data-uid="System.Runtime.Versioning.SemanticVersion.Major*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Major" data-uid="System.Runtime.Versioning.SemanticVersion.Major">
+  Major
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Major version X (X.y.z)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Major { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Metadata_" data-uid="System.Runtime.Versioning.SemanticVersion.Metadata*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Metadata" data-uid="System.Runtime.Versioning.SemanticVersion.Metadata">
+  Metadata
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Build metadata attached to the version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string? Metadata { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Minor_" data-uid="System.Runtime.Versioning.SemanticVersion.Minor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Minor" data-uid="System.Runtime.Versioning.SemanticVersion.Minor">
+  Minor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Minor version Y (x.Y.z)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Minor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Patch_" data-uid="System.Runtime.Versioning.SemanticVersion.Patch*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Patch" data-uid="System.Runtime.Versioning.SemanticVersion.Patch">
+  Patch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Patch version Z (x.y.Z)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Patch { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Release_" data-uid="System.Runtime.Versioning.SemanticVersion.Release*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Release" data-uid="System.Runtime.Versioning.SemanticVersion.Release">
+  Release
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The full pre-release label for the version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Release { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_ReleaseLabels_" data-uid="System.Runtime.Versioning.SemanticVersion.ReleaseLabels*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_ReleaseLabels" data-uid="System.Runtime.Versioning.SemanticVersion.ReleaseLabels">
+  ReleaseLabels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A collection of pre-release labels attached to the version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; ReleaseLabels { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_CompareTo_" data-uid="System.Runtime.Versioning.SemanticVersion.CompareTo*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_CompareTo_System_Object_" data-uid="System.Runtime.Versioning.SemanticVersion.CompareTo(System.Object)">
+  CompareTo(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int CompareTo(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_CompareTo_" data-uid="System.Runtime.Versioning.SemanticVersion.CompareTo*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_CompareTo_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.CompareTo(System.Runtime.Versioning.SemanticVersion)">
+  CompareTo(SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int CompareTo(SemanticVersion? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_CompareTo_" data-uid="System.Runtime.Versioning.SemanticVersion.CompareTo*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_CompareTo_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_VersionComparison_" data-uid="System.Runtime.Versioning.SemanticVersion.CompareTo(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion.VersionComparison)">
+  CompareTo(SemanticVersion?, VersionComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Compares NuGetVersion objects using the given comparison mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int CompareTo(SemanticVersion? other, SemanticVersion.VersionComparison versionComparison)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>versionComparison</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a>.<a class="xref" href="System.Runtime.Versioning.SemanticVersion.VersionComparison.html">VersionComparison</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Equals_" data-uid="System.Runtime.Versioning.SemanticVersion.Equals*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Equals_System_Object_" data-uid="System.Runtime.Versioning.SemanticVersion.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Equals_" data-uid="System.Runtime.Versioning.SemanticVersion.Equals*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Equals_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.Equals(System.Runtime.Versioning.SemanticVersion)">
+  Equals(SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Equals(SemanticVersion? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Equals_" data-uid="System.Runtime.Versioning.SemanticVersion.Equals*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Equals_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_VersionComparison_" data-uid="System.Runtime.Versioning.SemanticVersion.Equals(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion.VersionComparison)">
+  Equals(SemanticVersion?, VersionComparison)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if the VersionBase objects are equal based on the given comparison mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Equals(SemanticVersion? other, SemanticVersion.VersionComparison versionComparison)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>versionComparison</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a>.<a class="xref" href="System.Runtime.Versioning.SemanticVersion.VersionComparison.html">VersionComparison</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_GetHashCode_" data-uid="System.Runtime.Versioning.SemanticVersion.GetHashCode*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_GetHashCode" data-uid="System.Runtime.Versioning.SemanticVersion.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_Parse_" data-uid="System.Runtime.Versioning.SemanticVersion.Parse*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_Parse_System_String_" data-uid="System.Runtime.Versioning.SemanticVersion.Parse(System.String)">
+  Parse(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Parses a SemVer string using strict SemVer rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SemanticVersion Parse(string value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_ToNormalizedString_" data-uid="System.Runtime.Versioning.SemanticVersion.ToNormalizedString*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_ToNormalizedString" data-uid="System.Runtime.Versioning.SemanticVersion.ToNormalizedString">
+  ToNormalizedString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gives a normalized representation of the version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string ToNormalizedString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_ToString_" data-uid="System.Runtime.Versioning.SemanticVersion.ToString*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_ToString" data-uid="System.Runtime.Versioning.SemanticVersion.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_ToString_" data-uid="System.Runtime.Versioning.SemanticVersion.ToString*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_ToString_System_String_System_IFormatProvider_" data-uid="System.Runtime.Versioning.SemanticVersion.ToString(System.String,System.IFormatProvider)">
+  ToString(string?, IFormatProvider?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string ToString(string? format, IFormatProvider? formatProvider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>formatProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_TryFormatter_" data-uid="System.Runtime.Versioning.SemanticVersion.TryFormatter*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_TryFormatter_System_String_System_IFormatProvider_System_String__" data-uid="System.Runtime.Versioning.SemanticVersion.TryFormatter(System.String,System.IFormatProvider,System.String@)">
+  TryFormatter(string?, IFormatProvider?, out string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool TryFormatter(string? format, IFormatProvider? formatProvider, out string? formattedString)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>format</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>formatProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+    <dt><code>formattedString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_TryParse_" data-uid="System.Runtime.Versioning.SemanticVersion.TryParse*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_TryParse_System_String_System_Runtime_Versioning_SemanticVersion__" data-uid="System.Runtime.Versioning.SemanticVersion.TryParse(System.String,System.Runtime.Versioning.SemanticVersion@)">
+  TryParse(string?, out SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Parse a version string</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParse(string? value, out SemanticVersion? version)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>version</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>false if the version is not a strict semver</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_op_Equality_" data-uid="System.Runtime.Versioning.SemanticVersion.op_Equality*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_op_Equality_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.op_Equality(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion)">
+  operator ==(SemanticVersion?, SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(SemanticVersion? version1, SemanticVersion? version2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version1</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>version2</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_op_GreaterThan_" data-uid="System.Runtime.Versioning.SemanticVersion.op_GreaterThan*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_op_GreaterThan_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.op_GreaterThan(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion)">
+  operator &gt;(SemanticVersion?, SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;(SemanticVersion? version1, SemanticVersion? version2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version1</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>version2</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_op_GreaterThanOrEqual_" data-uid="System.Runtime.Versioning.SemanticVersion.op_GreaterThanOrEqual*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_op_GreaterThanOrEqual_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.op_GreaterThanOrEqual(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion)">
+  operator &gt;=(SemanticVersion?, SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(SemanticVersion? version1, SemanticVersion? version2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version1</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>version2</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_op_Inequality_" data-uid="System.Runtime.Versioning.SemanticVersion.op_Inequality*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_op_Inequality_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.op_Inequality(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion)">
+  operator !=(SemanticVersion?, SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(SemanticVersion? version1, SemanticVersion? version2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version1</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>version2</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_op_LessThan_" data-uid="System.Runtime.Versioning.SemanticVersion.op_LessThan*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_op_LessThan_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.op_LessThan(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion)">
+  operator &lt;(SemanticVersion?, SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(SemanticVersion? version1, SemanticVersion? version2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version1</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>version2</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SemanticVersion_op_LessThanOrEqual_" data-uid="System.Runtime.Versioning.SemanticVersion.op_LessThanOrEqual*"></a>
+
+  <h3 id="System_Runtime_Versioning_SemanticVersion_op_LessThanOrEqual_System_Runtime_Versioning_SemanticVersion_System_Runtime_Versioning_SemanticVersion_" data-uid="System.Runtime.Versioning.SemanticVersion.op_LessThanOrEqual(System.Runtime.Versioning.SemanticVersion,System.Runtime.Versioning.SemanticVersion)">
+  operator &lt;=(SemanticVersion?, SemanticVersion?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(SemanticVersion? version1, SemanticVersion? version2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version1</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+    <dt><code>version2</code> <a class="xref" href="System.Runtime.Versioning.SemanticVersion.html">SemanticVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SemanticVersion.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

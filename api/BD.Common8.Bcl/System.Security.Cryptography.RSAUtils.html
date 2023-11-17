@@ -1,0 +1,1205 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RSAUtils
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RSAUtils
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System.Security.Cryptography.RSAUtils">
+
+
+
+  <h1 id="System_Security_Cryptography_RSAUtils" data-uid="System.Security.Cryptography.RSAUtils" class="text-break">
+    Class RSAUtils
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="https://learn.microsoft.com/dotnet/api/system">System</a>.<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security">Security</a>.<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography">Cryptography</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Bcl.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>非对称加密算法 - RSA</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class RSAUtils</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">RSAUtils</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="System_Security_Cryptography_RSAUtils_DefaultPadding_" data-uid="System.Security.Cryptography.RSAUtils.DefaultPadding*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_DefaultPadding" data-uid="System.Security.Cryptography.RSAUtils.DefaultPadding">
+  DefaultPadding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RSAEncryptionPadding DefaultPadding { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Create_" data-uid="System.Security.Cryptography.RSAUtils.Create*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Create_System_Security_Cryptography_RSAParameters_" data-uid="System.Security.Cryptography.RSAUtils.Create(System.Security.Cryptography.RSAParameters)">
+  Create(RSAParameters)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RSA Create(this RSAParameters parms)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parms</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaparameters">RSAParameters</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_CreateFromJsonString_" data-uid="System.Security.Cryptography.RSAUtils.CreateFromJsonString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_CreateFromJsonString_System_String_" data-uid="System.Security.Cryptography.RSAUtils.CreateFromJsonString(System.String)">
+  CreateFromJsonString(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RSA CreateFromJsonString(string jsonString)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>jsonString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Decrypt_" data-uid="System.Security.Cryptography.RSAUtils.Decrypt*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Decrypt_System_Security_Cryptography_RSA_System_Byte___" data-uid="System.Security.Cryptography.RSAUtils.Decrypt(System.Security.Cryptography.RSA,System.Byte[])">
+  Decrypt(RSA, byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(ByteArray → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;use byte[] Decrypt(byte[] data, RSAEncryptionPadding padding)&quot;, true)]
+public static byte[] Decrypt(this RSA rsa, byte[] data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Decrypt_" data-uid="System.Security.Cryptography.RSAUtils.Decrypt*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Decrypt_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.Decrypt(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  Decrypt(RSA, string, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(String → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Decrypt(this RSA rsa, string text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_DecryptToByteArray_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToByteArray*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_DecryptToByteArray_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToByteArray(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  DecryptToByteArray(RSA, string, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(String → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] DecryptToByteArray(this RSA rsa, string text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_DecryptToByteArrayHex_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToByteArrayHex*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_DecryptToByteArrayHex_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToByteArrayHex(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  DecryptToByteArrayHex(RSA, string, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(String → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] DecryptToByteArrayHex(this RSA rsa, string text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_DecryptToByteArray_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToByteArray_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_DecryptToByteArray_Nullable_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToByteArray_Nullable(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  DecryptToByteArray_Nullable(RSA, string?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(String → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[]? DecryptToByteArray_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_DecryptToString_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_DecryptToString_System_Security_Cryptography_RSA_System_Byte___System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToString(System.Security.Cryptography.RSA,System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+  DecryptToString(RSA, byte[], RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(ByteArray → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string DecryptToString(this RSA rsa, byte[] data, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_DecryptToString_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToString_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_DecryptToString_Nullable_System_Security_Cryptography_RSA_System_Byte___System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.DecryptToString_Nullable(System.Security.Cryptography.RSA,System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+  DecryptToString_Nullable(RSA, byte[]?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(ByteArray → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? DecryptToString_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Decrypt_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.Decrypt_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Decrypt_Nullable_System_Security_Cryptography_RSA_System_Byte___System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.Decrypt_Nullable(System.Security.Cryptography.RSA,System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+  Decrypt_Nullable(RSA, byte[]?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(ByteArray → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[]? Decrypt_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Decrypt_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.Decrypt_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Decrypt_Nullable_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.Decrypt_Nullable(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  Decrypt_Nullable(RSA, string?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA解密(String → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? Decrypt_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Encrypt_" data-uid="System.Security.Cryptography.RSAUtils.Encrypt*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Encrypt_System_Security_Cryptography_RSA_System_Byte___" data-uid="System.Security.Cryptography.RSAUtils.Encrypt(System.Security.Cryptography.RSA,System.Byte[])">
+  Encrypt(RSA, byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(ByteArray → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;use byte[] Encrypt(byte[] data, RSAEncryptionPadding padding)&quot;, true)]
+public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Encrypt_" data-uid="System.Security.Cryptography.RSAUtils.Encrypt*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Encrypt_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.Encrypt(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  Encrypt(RSA, string, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(String → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Encrypt(this RSA rsa, string text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_EncryptToByteArray_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToByteArray*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_EncryptToByteArray_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToByteArray(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  EncryptToByteArray(RSA, string, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(String → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] EncryptToByteArray(this RSA rsa, string text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_EncryptToByteArray_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToByteArray_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_EncryptToByteArray_Nullable_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToByteArray_Nullable(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  EncryptToByteArray_Nullable(RSA, string?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(String → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[]? EncryptToByteArray_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_EncryptToHexString_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToHexString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_EncryptToHexString_System_Security_Cryptography_RSA_System_Byte___System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToHexString(System.Security.Cryptography.RSA,System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+  EncryptToHexString(RSA, byte[], RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(ByteArray → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string EncryptToHexString(this RSA rsa, byte[] data, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_EncryptToString_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_EncryptToString_System_Security_Cryptography_RSA_System_Byte___System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToString(System.Security.Cryptography.RSA,System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+  EncryptToString(RSA, byte[], RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(ByteArray → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string EncryptToString(this RSA rsa, byte[] data, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_EncryptToString_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToString_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_EncryptToString_Nullable_System_Security_Cryptography_RSA_System_Byte___System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.EncryptToString_Nullable(System.Security.Cryptography.RSA,System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+  EncryptToString_Nullable(RSA, byte[]?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(ByteArray → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? EncryptToString_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Encrypt_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.Encrypt_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Encrypt_Nullable_System_Security_Cryptography_RSA_System_Byte___System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.Encrypt_Nullable(System.Security.Cryptography.RSA,System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+  Encrypt_Nullable(RSA, byte[]?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(ByteArray → ByteArray)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[]? Encrypt_Nullable(this RSA rsa, byte[]? data, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_Encrypt_Nullable_" data-uid="System.Security.Cryptography.RSAUtils.Encrypt_Nullable*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_Encrypt_Nullable_System_Security_Cryptography_RSA_System_String_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.Encrypt_Nullable(System.Security.Cryptography.RSA,System.String,System.Security.Cryptography.RSAEncryptionPadding)">
+  Encrypt_Nullable(RSA, string?, RSAEncryptionPadding?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>RSA加密(String → String)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? Encrypt_Nullable(this RSA rsa, string? text, RSAEncryptionPadding? padding = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>padding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_FromJsonString_" data-uid="System.Security.Cryptography.RSAUtils.FromJsonString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_FromJsonString_System_Security_Cryptography_RSA_System_String_" data-uid="System.Security.Cryptography.RSAUtils.FromJsonString(System.Security.Cryptography.RSA,System.String)">
+  FromJsonString(RSA, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过 JSON 字符串中的密钥信息初始化 RSA 对象。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void FromJsonString(RSA rsa, string jsonString)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>jsonString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_GetPaddingByOaepHashAlgorithmName_" data-uid="System.Security.Cryptography.RSAUtils.GetPaddingByOaepHashAlgorithmName*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_GetPaddingByOaepHashAlgorithmName_System_String_" data-uid="System.Security.Cryptography.RSAUtils.GetPaddingByOaepHashAlgorithmName(System.String)">
+  GetPaddingByOaepHashAlgorithmName(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RSAEncryptionPadding GetPaddingByOaepHashAlgorithmName(string? oaepHashAlgorithmName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oaepHashAlgorithmName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_GetRSAParametersFromJsonString_" data-uid="System.Security.Cryptography.RSAUtils.GetRSAParametersFromJsonString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_GetRSAParametersFromJsonString_System_String_" data-uid="System.Security.Cryptography.RSAUtils.GetRSAParametersFromJsonString(System.String)">
+  GetRSAParametersFromJsonString(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RSAParameters GetRSAParametersFromJsonString(string jsonString)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>jsonString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaparameters">RSAParameters</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_ToJsonString_" data-uid="System.Security.Cryptography.RSAUtils.ToJsonString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_ToJsonString_System_Security_Cryptography_RSA_System_Boolean_" data-uid="System.Security.Cryptography.RSAUtils.ToJsonString(System.Security.Cryptography.RSA,System.Boolean)">
+  ToJsonString(RSA, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建并返回包含当前 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象的密钥的 JSON 字符串。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToJsonString(this RSA rsa, bool includePrivateParameters)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
+    <dd></dd>
+    <dt><code>includePrivateParameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 表示同时包含 RSA 公钥和私钥；<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 表示仅包含公钥。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>包含当前 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象的密钥的 JSON 字符串。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_RSAUtils_ToString_" data-uid="System.Security.Cryptography.RSAUtils.ToString*"></a>
+
+  <h3 id="System_Security_Cryptography_RSAUtils_ToString_System_Security_Cryptography_RSAEncryptionPadding_" data-uid="System.Security.Cryptography.RSAUtils.ToString(System.Security.Cryptography.RSAEncryptionPadding)">
+  ToString(RSAEncryptionPadding)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ToString(RSAEncryptionPadding rSAEncryptionPadding)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rSAEncryptionPadding</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,801 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RoleManagerImpl&lt;TDbContext&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RoleManagerImpl&lt;TDbContext&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1">
+
+
+
+  <h1 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1" class="text-break">
+    Class RoleManagerImpl&lt;TDbContext&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.AspNetCore.html">AspNetCore</a>.<a class="xref" href="BD.Common8.AspNetCore.Services.html">Services</a>.<a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.html">Implementation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>角色管理器</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class RoleManagerImpl&lt;TDbContext&gt; : IRoleManager, IDisposable where TDbContext : DbContext, IApplicationDbContext</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDbContext</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">RoleManagerImpl&lt;TDbContext&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.AspNetCore.Services.IRoleManager.html">IRoleManager</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.AspNetRoleManager-1.html">AspNetRoleManager&lt;TDbContext&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1__ctor_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.#ctor*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1__ctor__0_Microsoft_AspNetCore_Identity_ILookupNormalizer_Microsoft_AspNetCore_Identity_IdentityErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.#ctor(`0,Microsoft.AspNetCore.Identity.ILookupNormalizer,Microsoft.AspNetCore.Identity.IdentityErrorDescriber)">
+  RoleManagerImpl(TDbContext, ILookupNormalizer, IdentityErrorDescriber)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>角色管理器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RoleManagerImpl(TDbContext db, ILookupNormalizer lookupNormalizer, IdentityErrorDescriber errors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>db</code> <span class="xref">TDbContext</span></dt>
+    <dd></dd>
+    <dt><code>lookupNormalizer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ilookupnormalizer">ILookupNormalizer</a></dt>
+    <dd></dd>
+    <dt><code>errors</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityerrordescriber">IdentityErrorDescriber</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_db" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.db">
+  db
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>数据库上下文</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TDbContext db</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TDbContext</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_CancellationToken_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.CancellationToken*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_CancellationToken" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.CancellationToken">
+  CancellationToken
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取取消令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual CancellationToken CancellationToken { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_ErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.ErrorDescriber*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_ErrorDescriber" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.ErrorDescriber">
+  ErrorDescriber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于生成错误消息的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityerrordescriber">IdentityErrorDescriber</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IdentityErrorDescriber ErrorDescriber { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityerrordescriber">IdentityErrorDescriber</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_KeyNormalizer_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.KeyNormalizer*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_KeyNormalizer" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.KeyNormalizer">
+  KeyNormalizer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取将角色名称规范化为键时要使用的规范化器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ILookupNormalizer KeyNormalizer { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ilookupnormalizer">ILookupNormalizer</a></dt>
+    <dd><p>将角色名称规范化为键时要使用的规范化器</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_CreateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.CreateAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_CreateAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.CreateAsync(BD.Common8.AspNetCore.Entities.SysRole)">
+  CreateAsync(SysRole)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; CreateAsync(SysRole role)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_DeleteAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.DeleteAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_DeleteAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.DeleteAsync(BD.Common8.AspNetCore.Entities.SysRole)">
+  DeleteAsync(SysRole)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; DeleteAsync(SysRole role)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_Dispose_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.Dispose*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_Dispose" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放角色管理器使用的所有资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_Dispose_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.Dispose*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_Dispose_System_Boolean_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.Dispose(System.Boolean)">
+  Dispose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放角色管理器使用的非托管资源，也可以选择释放托管资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 同时释放托管和非托管资源；<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 仅释放非托管资源</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_FindByIdAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.FindByIdAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_FindByIdAsync_System_Guid_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.FindByIdAsync(System.Guid)">
+  FindByIdAsync(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据角色 Id 查找角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;SysRole?&gt; FindByIdAsync(Guid roleId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>roleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_FindByNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.FindByNameAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_FindByNameAsync_System_String_System_Guid_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.FindByNameAsync(System.String,System.Guid)">
+  FindByNameAsync(string?, Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据角色名称和租户 Id 查找角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;SysRole?&gt; FindByNameAsync(string? roleName, Guid tenantId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>roleName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>tenantId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_NormalizeKey_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.NormalizeKey*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_NormalizeKey_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.NormalizeKey(System.String)">
+  NormalizeKey(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定的的规范化表示形式 <code class="paramref">key</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string? NormalizeKey(string? key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要规范化的值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>指定的规范化表示 <code class="paramref">key</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_ThrowIfDisposed_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.ThrowIfDisposed*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_ThrowIfDisposed" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.ThrowIfDisposed">
+  ThrowIfDisposed()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>如果该类已被释放则抛出异常</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ThrowIfDisposed()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_UpdateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.UpdateAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_UpdateAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.UpdateAsync(BD.Common8.AspNetCore.Entities.SysRole)">
+  UpdateAsync(SysRole)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; UpdateAsync(SysRole role)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_UpdateNormalizedRoleNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.UpdateNormalizedRoleNameAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_UpdateNormalizedRoleNameAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.UpdateNormalizedRoleNameAsync(BD.Common8.AspNetCore.Entities.SysRole)">
+  UpdateNormalizedRoleNameAsync(SysRole)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>规范化更新角色名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ValueTask UpdateNormalizedRoleNameAsync(SysRole role)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_UpdateRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.UpdateRoleAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_UpdateRoleAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.UpdateRoleAsync(BD.Common8.AspNetCore.Entities.SysRole)">
+  UpdateRoleAsync(SysRole)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新角色信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;IdentityResult&gt; UpdateRoleAsync(SysRole role)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_ValidateRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.ValidateRoleAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_RoleManagerImpl_1_ValidateRoleAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.RoleManagerImpl`1.ValidateRoleAsync(BD.Common8.AspNetCore.Entities.SysRole)">
+  ValidateRoleAsync(SysRole)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>验证角色对象的有效性</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;IdentityResult&gt; ValidateRoleAsync(SysRole role)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/RoleManagerImpl.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

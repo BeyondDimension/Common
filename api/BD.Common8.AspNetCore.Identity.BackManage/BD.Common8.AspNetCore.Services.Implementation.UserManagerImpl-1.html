@@ -1,0 +1,1616 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class UserManagerImpl&lt;TDbContext&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class UserManagerImpl&lt;TDbContext&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1">
+
+
+
+  <h1 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1" class="text-break">
+    Class UserManagerImpl&lt;TDbContext&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.AspNetCore.html">AspNetCore</a>.<a class="xref" href="BD.Common8.AspNetCore.Services.html">Services</a>.<a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.html">Implementation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>用户管理</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class UserManagerImpl&lt;TDbContext&gt; : IUserManager, IDisposable where TDbContext : DbContext, IApplicationDbContext</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDbContext</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">UserManagerImpl&lt;TDbContext&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.AspNetCore.Services.IUserManager.html">IUserManager</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.AspNetUserManager-1.html">AspNetUserManager&lt;TDbContext&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1__ctor_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.#ctor*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1__ctor__0_Microsoft_AspNetCore_Identity_ILookupNormalizer_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_AspNetCore_Identity_IPasswordHasher_BD_Common8_AspNetCore_Entities_SysUser__System_Collections_Generic_IEnumerable_BD_Common8_AspNetCore_Services_IPasswordValidator__Microsoft_AspNetCore_Identity_IdentityErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.#ctor(`0,Microsoft.AspNetCore.Identity.ILookupNormalizer,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Identity.IdentityOptions},Microsoft.AspNetCore.Identity.IPasswordHasher{BD.Common8.AspNetCore.Entities.SysUser},System.Collections.Generic.IEnumerable{BD.Common8.AspNetCore.Services.IPasswordValidator},Microsoft.AspNetCore.Identity.IdentityErrorDescriber)">
+  UserManagerImpl(TDbContext, ILookupNormalizer, IOptions&lt;IdentityOptions&gt;, IPasswordHasher&lt;SysUser&gt;, IEnumerable&lt;IPasswordValidator&gt;, IdentityErrorDescriber)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化 <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html">UserManagerImpl&lt;TDbContext&gt;</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UserManagerImpl(TDbContext db, ILookupNormalizer keyNormalizer, IOptions&lt;IdentityOptions&gt; optionsAccessor, IPasswordHasher&lt;SysUser&gt; passwordHasher, IEnumerable&lt;IPasswordValidator&gt; passwordValidators, IdentityErrorDescriber errors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>db</code> <span class="xref">TDbContext</span></dt>
+    <dd></dd>
+    <dt><code>keyNormalizer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ilookupnormalizer">ILookupNormalizer</a></dt>
+    <dd></dd>
+    <dt><code>optionsAccessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityoptions">IdentityOptions</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>passwordHasher</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>passwordValidators</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Services.IPasswordValidator.html">IPasswordValidator</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>errors</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityerrordescriber">IdentityErrorDescriber</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_db" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.db">
+  db
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>数据库上下文</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TDbContext db</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TDbContext</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CancellationToken_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CancellationToken*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CancellationToken" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CancellationToken">
+  CancellationToken
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消标记令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual CancellationToken CancellationToken { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ErrorDescriber*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ErrorDescriber" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ErrorDescriber">
+  ErrorDescriber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于生成错误消息的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityerrordescriber">IdentityErrorDescriber</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IdentityErrorDescriber ErrorDescriber { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityerrordescriber">IdentityErrorDescriber</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_KeyNormalizer_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.KeyNormalizer*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_KeyNormalizer" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.KeyNormalizer">
+  KeyNormalizer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于规范化用户名和角色名等内容 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ilookupnormalizer">ILookupNormalizer</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ILookupNormalizer KeyNormalizer { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ilookupnormalizer">ILookupNormalizer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_Options_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.Options*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_Options" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.Options">
+  Options
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于配置标识的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityoptions">IdentityOptions</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IdentityOptions Options { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityoptions">IdentityOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_PasswordHasher_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.PasswordHasher*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_PasswordHasher" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.PasswordHasher">
+  PasswordHasher
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于散列密码的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher&lt;TUser&gt;</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IPasswordHasher&lt;SysUser&gt; PasswordHasher { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_PasswordValidators_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.PasswordValidators*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_PasswordValidators" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.PasswordValidators">
+  PasswordValidators
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于验证密码的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordvalidator-1">IPasswordValidator&lt;TUser&gt;</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;IPasswordValidator&gt; PasswordValidators { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Services.IPasswordValidator.html">IPasswordValidator</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRoleAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRoleAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Guid_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRoleAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Guid)">
+  AddToRoleAsync(SysUser, Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将用户添加到角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask AddToRoleAsync(SysUser user, Guid roleId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>roleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRolesAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRolesAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Collections_Generic_IEnumerable_System_String__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRolesAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Collections.Generic.IEnumerable{System.String})">
+  AddToRolesAsync(SysUser, IEnumerable&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将用户添加到多个角色中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; AddToRolesAsync(SysUser user, IEnumerable&lt;string&gt; roles)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>roles</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ChangePasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ChangePasswordAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ChangePasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ChangePasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String,System.String)">
+  ChangePasswordAsync(SysUser, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更改用户密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; ChangePasswordAsync(SysUser user, string currentPassword, string newPassword)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>currentPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>newPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CheckPasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CheckPasswordAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CheckPasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CheckPasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
+  CheckPasswordAsync(SysUser, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>校验密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;bool&gt; CheckPasswordAsync(SysUser user, string password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CreateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CreateAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CreateAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CreateAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
+  CreateAsync(SysUser, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; CreateAsync(SysUser user, string password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_Dispose_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.Dispose*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_Dispose" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放角色管理器使用的所有资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_Dispose_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.Dispose*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_Dispose_System_Boolean_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.Dispose(System.Boolean)">
+  Dispose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>释放角色管理器使用的非托管资源，也可以选择释放托管资源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 同时释放托管和非托管资源；<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 仅释放非托管资源</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByIdAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.FindByIdAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByIdAsync_System_Guid_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.FindByIdAsync(System.Guid)">
+  FindByIdAsync(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据用户 Id 异步查找用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; FindByIdAsync(Guid userId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.FindByNameAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByNameAsync_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.FindByNameAsync(System.String)">
+  FindByNameAsync(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据用户名异步查找用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; FindByNameAsync(string? userName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.FindByNameAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByNameAsync_System_String_System_Guid_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.FindByNameAsync(System.String,System.Guid)">
+  FindByNameAsync(string?, Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据用户名和租户 Id 异步查找用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; FindByNameAsync(string? userName, Guid tenantId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>tenantId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetRolesAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetRolesAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetRolesAsync(BD.Common8.AspNetCore.Entities.SysUser)">
+  GetRolesAsync(SysUser)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步获取用户的角色列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;string&gt;&gt; GetRolesAsync(SysUser user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetUserAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserAsync_System_Security_Claims_ClaimsPrincipal_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetUserAsync(System.Security.Claims.ClaimsPrincipal)">
+  GetUserAsync(ClaimsPrincipal)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.claims.claimsprincipal">ClaimsPrincipal</a> 获取用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; GetUserAsync(ClaimsPrincipal principal)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>principal</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.claims.claimsprincipal">ClaimsPrincipal</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetUserNameAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetUserNameAsync(BD.Common8.AspNetCore.Entities.SysUser)">
+  GetUserNameAsync(SysUser)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取用户名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;string&gt; GetUserNameAsync(SysUser user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
+  IsInRoleAsync(SysUser, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断用户是否属于指定角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; IsInRoleAsync(SysUser user, string role)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>role</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleCoreAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleCoreAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleCoreAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleCoreAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
+  IsInRoleCoreAsync(SysUser, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>核心方法，判断用户是否属于指定角色</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;(bool isInRole, Guid roleId, SysUserRole? userRole)&gt; IsInRoleCoreAsync(SysUser user, string normalizedRole)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>normalizedRole</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.sysuserrole-.isinrole">isInRole</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.sysuserrole-.roleid">roleId</a>, <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserRole.html">SysUserRole</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.sysuserrole-.userrole">userRole</a>)&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsLockedOutAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsLockedOutAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsLockedOutAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsLockedOutAsync(BD.Common8.AspNetCore.Entities.SysUser)">
+  IsLockedOutAsync(SysUser)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查用户是否被锁定</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;bool&gt; IsLockedOutAsync(SysUser user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_NormalizeName_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.NormalizeName*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_NormalizeName_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.NormalizeName(System.String)">
+  NormalizeName(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>规范化用户名或角色名以进行一致的比较</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string? NormalizeName(string? name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要规范化的名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>返回指定的规范值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRoleAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRoleAsync_BD_Common8_AspNetCore_Entities_SysUserRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRoleAsync(BD.Common8.AspNetCore.Entities.SysUserRole)">
+  RemoveFromRoleAsync(SysUserRole)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从角色中删除用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask RemoveFromRoleAsync(SysUserRole userRole)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>userRole</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserRole.html">SysUserRole</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRolesAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRolesAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Collections_Generic_IEnumerable_System_String__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRolesAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Collections.Generic.IEnumerable{System.String})">
+  RemoveFromRolesAsync(SysUser, IEnumerable&lt;string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从多个角色中删除用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; RemoveFromRolesAsync(SysUser user, IEnumerable&lt;string&gt; roles)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>roles</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetLockoutEndDateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetLockoutEndDateAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetLockoutEndDateAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Nullable_System_DateTimeOffset__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetLockoutEndDateAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Nullable{System.DateTimeOffset})">
+  SetLockoutEndDateAsync(SysUser, DateTimeOffset?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置用户锁定的截止日期</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; SetLockoutEndDateAsync(SysUser user, DateTimeOffset? lockoutEnd)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>lockoutEnd</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetUserNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetUserNameAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetUserNameAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
+  SetUserNameAsync(SysUser, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置用户名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;IdentityResult&gt; SetUserNameAsync(SysUser user, string userName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+    <dt><code>userName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ThrowIfDisposed_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ThrowIfDisposed*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ThrowIfDisposed" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ThrowIfDisposed">
+  ThrowIfDisposed()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>如果该类已被释放则抛出异常</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ThrowIfDisposed()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_TryGetUserId_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.TryGetUserId*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_TryGetUserId_System_Security_Claims_ClaimsPrincipal_System_Guid__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.TryGetUserId(System.Security.Claims.ClaimsPrincipal,System.Guid@)">
+  TryGetUserId(ClaimsPrincipal, out Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试获取用户 Id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetUserId(ClaimsPrincipal principal, out Guid userId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>principal</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.claims.claimsprincipal">ClaimsPrincipal</a></dt>
+    <dd></dd>
+    <dt><code>userId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateAsync(BD.Common8.AspNetCore.Entities.SysUser)">
+  UpdateAsync(SysUser)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; UpdateAsync(SysUser user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateNormalizedUserNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateNormalizedUserNameAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateNormalizedUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateNormalizedUserNameAsync(BD.Common8.AspNetCore.Entities.SysUser)">
+  UpdateNormalizedUserNameAsync(SysUser)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新指定的 <code class="paramref">user</code> 的规范化用户名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ValueTask UpdateNormalizedUserNameAsync(SysUser user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd><p>应规范化和更新其用户名的用户</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd><p>返回异步操作 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdatePasswordHash_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdatePasswordHash*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdatePasswordHash_BD_Common8_AspNetCore_Entities_SysUser_System_String_System_Boolean_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdatePasswordHash(BD.Common8.AspNetCore.Entities.SysUser,System.String,System.Boolean)">
+  UpdatePasswordHash(SysUser, string?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>更新用户的密码哈希</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;IdentityResult&gt; UpdatePasswordHash(SysUser user, string? newPassword, bool validatePassword = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd><p>用户</p>
+</dd>
+    <dt><code>newPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>新密码</p>
+</dd>
+    <dt><code>validatePassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否验证密码</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd><p>密码是否已成功更新</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateUserAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateUserAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateUserAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateUserAsync(BD.Common8.AspNetCore.Entities.SysUser)">
+  UpdateUserAsync(SysUser)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在验证和更新规范化的电子邮件/用户名后调用以更新用户</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;IdentityResult&gt; UpdateUserAsync(SysUser user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd><p>用户</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd><p>操作是否成功</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidatePasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidatePasswordAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidatePasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidatePasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
+  ValidatePasswordAsync(SysUser, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>如果验证成功，则应返回 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult.success">Success</a>。这是在更新密码哈希之前调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ValueTask&lt;IdentityResult&gt; ValidatePasswordAsync(SysUser user, string? password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd><p>用户</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>密码</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd><p>返回 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>，表示验证是否成功</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidateUserAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidateUserAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidateUserAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidateUserAsync(BD.Common8.AspNetCore.Entities.SysUser)">
+  ValidateUserAsync(SysUser)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>如果验证成功，则应返回 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult.success">Success</a>。这是在通过创建或更新保存用户之前调用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ValueTask&lt;IdentityResult&gt; ValidateUserAsync(SysUser user)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd><p>用户</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>&gt;</dt>
+    <dd><p>返回 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityresult">IdentityResult</a>，表示验证是否成功</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_VerifyPasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.VerifyPasswordAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_VerifyPasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.VerifyPasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
+  VerifyPasswordAsync(SysUser, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回指示密码哈希比较结果的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.passwordverificationresult">PasswordVerificationResult</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;PasswordVerificationResult&gt; VerifyPasswordAsync(SysUser user, string password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dd><p>应验证其密码的用户</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要验证的密码</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.passwordverificationresult">PasswordVerificationResult</a>&gt;</dt>
+    <dd><p>返回异步操作，包含 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.passwordverificationresult">PasswordVerificationResult</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Enum ImageFormat
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Enum ImageFormat
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System.Formats.ImageFormat">
+
+
+
+
+  <h1 id="System_Formats_ImageFormat" data-uid="System.Formats.ImageFormat" class="text-break">
+    Enum ImageFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Formats/ImageFormat.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="System.html">System</a>.<a class="xref" href="System.Formats.html">Formats</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Bcl.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>图片格式</p>
+<p>添加新格式操作说明：</p>
+<p>在 <a class="xref" href="System.Formats.ImageFormat.html">ImageFormat</a> 添加新的格式</p>
+<p>在 <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_GetExtension_System_Formats_ImageFormat_">GetExtension(ImageFormat)</a> 添加新的 case</p>
+<p>在 <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_GetMIME_System_Formats_ImageFormat_">GetMIME(ImageFormat)</a> 添加新的 case</p>
+<p>在 <span class="xref">System.Formats.ImageFormatEnumExtensions.GetMagicNumber(System.Formats.ImageFormat)</span> 添加新的 case</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public enum ImageFormat : byte</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="System.Enum2.html#System_Enum2_GetDescription_System_Enum_">Enum2.GetDescription(Enum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Enum2.html#System_Enum2_GetDescription__1___0_">Enum2.GetDescription&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToByte__1___0_">EnumExtensions.ConvertToByte&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToInt16__1___0_">EnumExtensions.ConvertToInt16&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToInt32__1___0_">EnumExtensions.ConvertToInt32&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToInt64__1___0_">EnumExtensions.ConvertToInt64&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToSByte__1___0_">EnumExtensions.ConvertToSByte&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToUInt16__1___0_">EnumExtensions.ConvertToUInt16&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToUInt32__1___0_">EnumExtensions.ConvertToUInt32&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_ConvertToUInt64__1___0_">EnumExtensions.ConvertToUInt64&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Extensions.EnumExtensions.html#System_Extensions_EnumExtensions_IsDefined__1___0_">EnumExtensions.IsDefined&lt;TEnum&gt;(TEnum)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_GetExtension_System_Formats_ImageFormat_">ImageFormatEnumExtensions.GetExtension(ImageFormat)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_GetMIME_System_Formats_ImageFormat_">ImageFormatEnumExtensions.GetMIME(ImageFormat)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_IsAllow_System_Formats_ImageFormat_">ImageFormatEnumExtensions.IsAllow(ImageFormat)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_IsHEIF_HEIC_System_Formats_ImageFormat_">ImageFormatEnumExtensions.IsHEIF_HEIC(ImageFormat)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_IsImage_System_Formats_ImageFormat_System_Collections_Generic_IReadOnlyList_System_Byte__">ImageFormatEnumExtensions.IsImage(ImageFormat, IReadOnlyList&lt;byte&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_IsImage_System_Formats_ImageFormat_System_IO_Stream_">ImageFormatEnumExtensions.IsImage(ImageFormat, Stream)</a>
+  </div>
+  <div>
+      <a class="xref" href="System.Formats.ImageFormatEnumExtensions.html#System_Formats_ImageFormatEnumExtensions_IsImage_System_Formats_ImageFormat_System_ReadOnlyMemory_System_Byte__">ImageFormatEnumExtensions.IsImage(ImageFormat, ReadOnlyMemory&lt;byte&gt;)</a>
+  </div>
+  </dd></dl>
+
+  <h2 id="fields">Fields
+</h2>
+  <dl class="parameters">
+    <dt id="System_Formats_ImageFormat_BMP"><code>BMP = 2</code></dt>
+    <dd><p>BMP取自位图Bitmap的缩写，也称为DIB（与设备无关的位图），是一种与显示器无关的位图数字图像文件格式。常见于 Microsoft Windows 和 OS/2 操作系统，Windows GDI API内部使用的DIB数据结构与 BMP 文件格式几乎相同。</p>
+<p>https://en.wikipedia.org/wiki/BMP_file_format</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_GIF"><code>GIF = 3</code></dt>
+    <dd><p>图像互换格式（GIF，Graphics Interchange Format）是一种位图图形文件格式，以8位色（即256种颜色）重现真彩色的图像。它实际上是一种压缩文档，采用LZW压缩算法进行编码，有效地减少了图像文件在网络上传输的时间。它是目前万维网广泛应用的网络传输图像格式之一。</p>
+<p>https://en.wikipedia.org/wiki/GIF</p>
+<p>https://baike.sogou.com/v2844.htm</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_HEIC"><code>HEIC = 10</code></dt>
+    <dd><p>HEIF/HEIC
+高效率图像文件格式（英语：High Efficiency Image File Format, HEIF；也称高效图像文件格式）是一个用于单张图像或图像序列的文件格式。它由运动图像专家组（MPEG）开发，并在MPEG-H Part 12（ISO/IEC 23008-12）中定义。</p>
+<p>https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format</p><p>https://baike.baidu.com/item/HEIC/10444257</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_HEICSequence"><code>HEICSequence = 11</code></dt>
+    <dd><p>HEIF/HEIC
+高效率图像文件格式（英语：High Efficiency Image File Format, HEIF；也称高效图像文件格式）是一个用于单张图像或图像序列的文件格式。它由运动图像专家组（MPEG）开发，并在MPEG-H Part 12（ISO/IEC 23008-12）中定义。</p>
+<p>https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format</p><p>https://baike.baidu.com/item/HEIC/10444257</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_HEIF"><code>HEIF = 8</code></dt>
+    <dd><p>HEIF/HEIC
+高效率图像文件格式（英语：High Efficiency Image File Format, HEIF；也称高效图像文件格式）是一个用于单张图像或图像序列的文件格式。它由运动图像专家组（MPEG）开发，并在MPEG-H Part 12（ISO/IEC 23008-12）中定义。</p>
+<p>https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format</p>
+<p>https://baike.baidu.com/item/HEIC/10444257</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_HEIFSequence"><code>HEIFSequence = 9</code></dt>
+    <dd><p>HEIF/HEIC
+高效率图像文件格式（英语：High Efficiency Image File Format, HEIF；也称高效图像文件格式）是一个用于单张图像或图像序列的文件格式。它由运动图像专家组（MPEG）开发，并在MPEG-H Part 12（ISO/IEC 23008-12）中定义。</p>
+<p>https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format</p><p>https://baike.baidu.com/item/HEIC/10444257</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_ICO"><code>ICO = 4</code></dt>
+    <dd><p>ICO文件格式是Microsoft Windows中计算机图标的图像文件格式。 ICO文件包含多个尺寸和颜色深度的一个或多个小图像，以便可以适当地缩放它们。 在Windows中，向用户，桌面，“开始”菜单或Windows资源管理器中显示图标的所有可执行文件都必须带有ICO格式的图标。</p>
+<p>https://en.wikipedia.org/wiki/ICO_(file_format)</p>
+<p>https://baike.sogou.com/v64848120.htm</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_JPEG"><code>JPEG = 5</code></dt>
+    <dd><p>JPG/JPEG
+在计算机中，JPEG（发音为jay-peg, IPA：[ˈdʒeɪpɛg]）是一种针对照片视频而广泛使用的有损压缩标准方法。这个名称代表Joint Photographic Experts Group（联合图像专家小组）。此团队创立于1986年，1992年发布了JPEG的标准而在1994年获得了ISO 10918-1的认定。JPEG与视频音频压缩标准的MPEG（Moving Picture Experts Group）很容易混淆，但两者是不同的组织及标准。</p>
+<p>https://en.wikipedia.org/wiki/JPEG</p>
+<p>https://baike.sogou.com/v241266.htm</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_PNG"><code>PNG = 6</code></dt>
+    <dd><p>便携式网络图形（Portable Network Graphics，PNG）是一种无损压缩的位图图形格式，支持索引、灰度、RGB三种颜色方案以及Alpha通道等特性。PNG的开发目标是改善并取代GIF作为适合网络传输的格式而不需专利许可，所以被广泛应用于互联网及其他方面上。</p>
+<p>https://en.wikipedia.org/wiki/Portable_Network_Graphics</p>
+<p>https://baike.sogou.com/v44717.htm</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_TIFF"><code>TIFF = 12</code></dt>
+    <dd><p>Tagged Image File Format 标签图像文件格式</p>
+</dd>
+    <dt id="System_Formats_ImageFormat_WebP"><code>WebP = 7</code></dt>
+    <dd><p>WebP（发音weppy），是一种同时提供了有损压缩与无损压缩（可逆压缩）的图片文件格式，派生自视频编码格式VP8，被认为是WebM多媒体格式的姊妹项目，是由Google在购买On2 Technologies后发展出来，以BSD授权条款发布。</p>
+<p>https://zh.wikipedia.org/wiki/WebP</p>
+<p>https://baike.sogou.com/v10183483.htm</p>
+<p>https://developers.google.com/speed/webp/</p>
+<p>https://developers.google.cn/speed/webp/</p>
+</dd>
+  </dl>
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Formats/ImageFormat.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

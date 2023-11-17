@@ -1,0 +1,839 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ApiRspHelper
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ApiRspHelper
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper">
+
+
+
+  <h1 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper" class="text-break">
+    Class ApiRspHelper
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Primitives.html">Primitives</a>.<a class="xref" href="BD.Common8.Primitives.ApiRsp.html">ApiRsp</a>.<a class="xref" href="BD.Common8.Primitives.ApiRsp.Helpers.html">Helpers</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Primitives.ApiRsp.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ApiRspHelper</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ApiRspHelper</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Code_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Code*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Code_BD_Common8_Primitives_ApiRsp_Enums_ApiRspCode_System_String_System_Exception_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Code(BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode,System.String,System.Exception)">
+  Code(ApiRspCode, string?, Exception?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据状态码，消息，异常创建 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl Code(ApiRspCode code, string? message = null, Exception? exception = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>code</code> <a class="xref" href="BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode.html">ApiRspCode</a></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>exception</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Code_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Code*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Code__1_BD_Common8_Primitives_ApiRsp_Enums_ApiRspCode_System_String_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Code``1(BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode,System.String)">
+  Code&lt;T&gt;(ApiRspCode, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据状态码，消息创建 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl&lt;TContent&gt;</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl&lt;T?&gt; Code&lt;T&gt;(ApiRspCode code, string? message = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>code</code> <a class="xref" href="BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode.html">ApiRspCode</a></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Code_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Code*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Code__1_BD_Common8_Primitives_ApiRsp_Enums_ApiRspCode_System_String___0_System_Exception_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Code``1(BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode,System.String,``0,System.Exception)">
+  Code&lt;T&gt;(ApiRspCode, string?, T?, Exception?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据状态码，消息，异常创建 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl&lt;TContent&gt;</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl&lt;T?&gt; Code&lt;T&gt;(ApiRspCode code, string? message, T? content, Exception? exception = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>code</code> <a class="xref" href="BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode.html">ApiRspCode</a></dt>
+    <dd></dd>
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>content</code> <span class="xref">T</span></dt>
+    <dd></dd>
+    <dt><code>exception</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Create_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Create*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Create__1_BD_Common8_Primitives_ApiRsp_Models_Abstractions_IApiRsp_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Create``1(BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp)">
+  Create&lt;T&gt;(IApiRsp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp.html">IApiRsp</a> 创建一个新的 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl&lt;TContent&gt;</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl&lt;T?&gt; Create&lt;T&gt;(IApiRsp rsp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsp</code> <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp.html">IApiRsp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_DeserializeAsync_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.DeserializeAsync*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_DeserializeAsync__1_System_IO_Stream_System_Threading_CancellationToken_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.DeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)">
+  DeserializeAsync&lt;T&gt;(Stream, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用 MessagePack 反序列化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ValueTask&lt;IApiRsp&lt;T?&gt;&gt; DeserializeAsync&lt;T&gt;(Stream stream, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.html">IApiRsp</a>&lt;T&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Deserialize_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Deserialize*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Deserialize__1_System_Byte___" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Deserialize``1(System.Byte[])">
+  Deserialize&lt;T&gt;(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用 MessagePack 反序列化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IApiRsp&lt;T?&gt; Deserialize&lt;T&gt;(byte[] buffer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.html">IApiRsp</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Exception_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Exception*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Exception_System_Exception_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Exception(System.Exception)">
+  Exception(Exception)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据异常创建失败的 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl Exception(Exception exception)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>exception</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Exception_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Exception*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Exception__1_System_Exception_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Exception``1(System.Exception)">
+  Exception&lt;T&gt;(Exception)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据异常创建失败的 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl&lt;TContent&gt;</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl&lt;T?&gt; Exception&lt;T&gt;(Exception exception)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>exception</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Fail_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Fail*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Fail_System_String_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Fail(System.String)">
+  Fail(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据消息创建失败的 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl Fail(string? message = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Fail_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Fail*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Fail__1_System_String_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Fail``1(System.String)">
+  Fail&lt;T&gt;(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据消息创建失败的 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl&lt;TContent&gt;</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl&lt;T?&gt; Fail&lt;T&gt;(string? message = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_GetInternalMessage_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.GetInternalMessage*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_GetInternalMessage_BD_Common8_Primitives_ApiRsp_Models_Abstractions_IApiRsp_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.GetInternalMessage(BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp)">
+  GetInternalMessage(IApiRsp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取内部消息字符串值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? GetInternalMessage(IApiRsp rsp)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rsp</code> <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp.html">IApiRsp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_JsonPackDeserializeAsync_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.JsonPackDeserializeAsync*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_JsonPackDeserializeAsync__1_System_IO_Stream_System_Threading_CancellationToken_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.JsonPackDeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)">
+  JsonPackDeserializeAsync&lt;T&gt;(Stream, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用 System.Text.Json 反序列化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ValueTask&lt;IApiRsp&lt;T?&gt;&gt; JsonPackDeserializeAsync&lt;T&gt;(Stream stream, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.html">IApiRsp</a>&lt;T&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_MemoryPackDeserializeAsync_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.MemoryPackDeserializeAsync*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_MemoryPackDeserializeAsync__1_System_IO_Stream_System_Threading_CancellationToken_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.MemoryPackDeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)">
+  MemoryPackDeserializeAsync&lt;T&gt;(Stream, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用 MemoryPack 反序列化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ValueTask&lt;IApiRsp&lt;T?&gt;&gt; MemoryPackDeserializeAsync&lt;T&gt;(Stream stream, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.html">IApiRsp</a>&lt;T&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Ok_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Ok*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Ok" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Ok">
+  Ok()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取成功的 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl Ok()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html">ApiRspImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Ok_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Ok*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_Ok__1___0_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.Ok``1(``0)">
+  Ok&lt;T&gt;(T?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据内容创建成功的 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl&lt;TContent&gt;</a> 实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ApiRspImpl&lt;T?&gt; Ok&lt;T&gt;(T? content = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>content</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html">ApiRspImpl</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_TryGetContent_" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.TryGetContent*"></a>
+
+  <h3 id="BD_Common8_Primitives_ApiRsp_Helpers_ApiRspHelper_TryGetContent__1_BD_Common8_Primitives_ApiRsp_Models_Abstractions_IApiRsp___0____0__" data-uid="BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.TryGetContent``1(BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp{``0},``0@)">
+  TryGetContent&lt;T&gt;(IApiRsp&lt;T&gt;, out T?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>尝试从 <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.html">IApiRsp&lt;TContent&gt;</a> 中取出 Content，返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 时，Content 必定不为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryGetContent&lt;T&gt;(this IApiRsp&lt;T&gt; response, out T? content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>response</code> <a class="xref" href="BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.html">IApiRsp</a>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>content</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Helpers/ApiRspHelper.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

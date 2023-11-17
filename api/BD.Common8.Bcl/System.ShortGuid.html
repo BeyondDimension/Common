@@ -1,0 +1,1176 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct ShortGuid
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct ShortGuid
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System.ShortGuid">
+
+
+
+  <h1 id="System_ShortGuid" data-uid="System.ShortGuid" class="text-break">
+    Struct ShortGuid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="System.html">System</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Bcl.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A convenience wrapper struct for dealing with URL-safe Base64 encoded globally unique identifiers (GUID),
+making a shorter string value (22 vs 36 characters long).</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct ShortGuid</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="System_ShortGuid_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>What is URL-safe Base64? That's just a Base64 string with well known special characters replaced (/, +)
+or removed (==).</p>
+<p>NB: As of version 2.0.0, <a class="xref" href="System.ShortGuid.html#System_ShortGuid_Decode_System_String_">Decode(string)</a> performs a sanity check when decoding
+strings to ensure they haven't been tampered with, i.e. allowing the end of a Base64 string to be tweaked
+where it still produces that same byte array to create the underlying Guid. Effectively there is "unused
+space" in the Base64 string which is ignored, but will now result in an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.formatexception">FormatException</a> being
+thrown.</p>
+<p>ShortGuid will never produce an invalid string, however if one is supplied it, could result in an
+unintended collision where multiple URL-safe Base64 strings can point to the same Guid. To avoid this
+uncertainty, a round-trip check is performed to ensure a 1-1 match with the input string.</p>
+<p>Stick with version 1.1.0 if you require the old behaviour with opt-in strict parsing.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="System_ShortGuid__ctor_" data-uid="System.ShortGuid.#ctor*"></a>
+
+  <h3 id="System_ShortGuid__ctor_System_Guid_" data-uid="System.ShortGuid.#ctor(System.Guid)">
+  ShortGuid(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new instance with the given <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ShortGuid(Guid guid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guid</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> to encode.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid__ctor_" data-uid="System.ShortGuid.#ctor*"></a>
+
+  <h3 id="System_ShortGuid__ctor_System_String_" data-uid="System.ShortGuid.#ctor(System.String)">
+  ShortGuid(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new instance with the given URL-safe Base64 encoded string.</p>
+<p>See also <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a> which will try to coerce the
+the value from URL-safe Base64 or normal Guid string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ShortGuid(string value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A 22 character URL-safe Base64 encoded string to decode.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="System_ShortGuid_Empty" data-uid="System.ShortGuid.Empty">
+  Empty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A read-only instance of the ShortGuid struct whose value is guaranteed to be all zeroes i.e. equivalent
+to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid.empty">Empty</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly ShortGuid Empty</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="System_ShortGuid_StringLength" data-uid="System.ShortGuid.StringLength">
+  StringLength
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>ShortGuid string length.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int StringLength = 22</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="System_ShortGuid_Guid_" data-uid="System.ShortGuid.Guid*"></a>
+
+  <h3 id="System_ShortGuid_Guid" data-uid="System.ShortGuid.Guid">
+  Guid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> for the encoded ShortGuid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Guid Guid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_Value_" data-uid="System.ShortGuid.Value*"></a>
+
+  <h3 id="System_ShortGuid_Value" data-uid="System.ShortGuid.Value">
+  Value
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the encoded string value of the <a class="xref" href="System.ShortGuid.html#System_ShortGuid_Guid">Guid</a> as a URL-safe Base64 string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly string Value { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="System_ShortGuid_Decode_" data-uid="System.ShortGuid.Decode*"></a>
+
+  <h3 id="System_ShortGuid_Decode_System_String_" data-uid="System.ShortGuid.Decode(System.String)">
+  Decode(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decodes the given value from a 22 character URL-safe Base64 string to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</p>
+<p>Supports: ShortGuid format only.</p>
+<p>See also <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a> or <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Guid Decode(string value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A 22 character URL-safe Base64 encoded string to decode.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>A new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> instance from the parsed string.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.formatexception">FormatException</a></dt>
+    <dd><p>If <code class="paramref">value</code> is not a valid Base64 string (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.convert.frombase64string">FromBase64String(string)</a>)
+or if the decoded guid doesn't strictly match the input <code class="paramref">value</code>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="System_ShortGuid_Encode_" data-uid="System.ShortGuid.Encode*"></a>
+
+  <h3 id="System_ShortGuid_Encode_System_Guid_" data-uid="System.ShortGuid.Encode(System.Guid)">
+  Encode(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Encodes the given <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> as an encoded ShortGuid string. The encoding is
+similar to Base64, with some non-URL safe characters replaced, and padding removed, resulting
+in a 22 character string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Encode(Guid guid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guid</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> to encode.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A 22 character ShortGuid URL-safe Base64 string.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_Encode_" data-uid="System.ShortGuid.Encode*"></a>
+
+  <h3 id="System_ShortGuid_Encode_System_String_" data-uid="System.ShortGuid.Encode(System.String)">
+  Encode(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Encodes the given value as an encoded ShortGuid string. The encoding is similar to Base64, with
+some non-URL safe characters replaced, and padding removed, resulting in a 22 character string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Encode(string value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Any valid <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A 22 character ShortGuid URL-safe Base64 string.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_Equals_" data-uid="System.ShortGuid.Equals*"></a>
+
+  <h3 id="System_ShortGuid_Equals_System_Object_" data-uid="System.ShortGuid.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a value indicating whether this instance and a specified object represent the same type and value.</p>
+<p>Compares for equality against other string, Guid and ShortGuid types.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override readonly bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_GetHashCode_" data-uid="System.ShortGuid.GetHashCode*"></a>
+
+  <h3 id="System_ShortGuid_GetHashCode" data-uid="System.ShortGuid.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the hash code for the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override readonly int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_NewGuid_" data-uid="System.ShortGuid.NewGuid*"></a>
+
+  <h3 id="System_ShortGuid_NewGuid" data-uid="System.ShortGuid.NewGuid">
+  NewGuid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initialises a new instance of a ShortGuid using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid.newguid">NewGuid()</a>.</p>
+<p>Equivalent of calling: <pre><code class="lang-csharp">`new ShortGuid(Guid.NewGuid())`</code></pre>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ShortGuid NewGuid()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_ToString_" data-uid="System.ShortGuid.ToString*"></a>
+
+  <h3 id="System_ShortGuid_ToString" data-uid="System.ShortGuid.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the encoded URL-safe Base64 string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_TryDecode_" data-uid="System.ShortGuid.TryDecode*"></a>
+
+  <h3 id="System_ShortGuid_TryDecode_System_String_System_Guid__" data-uid="System.ShortGuid.TryDecode(System.String,System.Guid@)">
+  TryDecode(string?, out Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Supports ShortGuid format only.</p>
+<p>Attempts to decode the given value from a 22 character URL-safe Base64 string to
+a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</p>
+<p>The difference between TryParse and TryDecode:</p>
+<ol><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a></span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
+        <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, but outputs the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> - this method.</li></ol>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryDecode(string? value, out Guid guid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The ShortGuid encoded string to decode.</p>
+</dd>
+    <dt><code>guid</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>A new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> instance from the parsed string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A boolean indicating if the decode was successful.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_TryParse_" data-uid="System.ShortGuid.TryParse*"></a>
+
+  <h3 id="System_ShortGuid_TryParse_System_String_System_Guid__" data-uid="System.ShortGuid.TryParse(System.String,System.Guid@)">
+  TryParse(string?, out Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Supports ShortGuid &amp; Guid formats.</p>
+<p>Tries to parse the value either a 22 character URL-safe Base64 string or
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> string, and outputs the <a class="xref" href="System.ShortGuid.html#System_ShortGuid_Guid">Guid</a> value.</p>
+<p>The difference between TryParse and TryDecode:</p>
+<ol><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> - this method.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a></span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
+        <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, outputting the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li></ol>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParse(string? value, out Guid guid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The ShortGuid encoded string or string representation of a Guid.</p>
+</dd>
+    <dt><code>guid</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd><p>A new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> instance from the parsed string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A boolean indicating if the parse was successful.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_TryParse_" data-uid="System.ShortGuid.TryParse*"></a>
+
+  <h3 id="System_ShortGuid_TryParse_System_String_System_ShortGuid__" data-uid="System.ShortGuid.TryParse(System.String,System.ShortGuid@)">
+  TryParse(string?, out ShortGuid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Supports ShortGuid &amp; Guid formats.</p>
+<p>Tries to parse the value from either a 22 character URL-safe Base64 string or
+a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> string, and outputs a <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</p>
+<p>The difference between TryParse and TryDecode:</p>
+<ol><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a></span>Supports: Guid &amp; ShortGuid; Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance - this method.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a></span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
+        <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, but outputs the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li></ol>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryParse(string? value, out ShortGuid shortGuid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The ShortGuid encoded string or string representation of a Guid.</p>
+</dd>
+    <dt><code>shortGuid</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd><p>A new <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance from the parsed string.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="System_ShortGuid_op_Equality_" data-uid="System.ShortGuid.op_Equality*"></a>
+
+  <h3 id="System_ShortGuid_op_Equality_System_Guid_System_ShortGuid_" data-uid="System.ShortGuid.op_Equality(System.Guid,System.ShortGuid)">
+  operator ==(Guid, ShortGuid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if both instances have the same underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Guid x, ShortGuid y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Equality_" data-uid="System.ShortGuid.op_Equality*"></a>
+
+  <h3 id="System_ShortGuid_op_Equality_System_ShortGuid_System_Guid_" data-uid="System.ShortGuid.op_Equality(System.ShortGuid,System.Guid)">
+  operator ==(ShortGuid, Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if both instances have the same underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(ShortGuid x, Guid y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Equality_" data-uid="System.ShortGuid.op_Equality*"></a>
+
+  <h3 id="System_ShortGuid_op_Equality_System_ShortGuid_System_ShortGuid_" data-uid="System.ShortGuid.op_Equality(System.ShortGuid,System.ShortGuid)">
+  operator ==(ShortGuid, ShortGuid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if both ShortGuid instances have the same underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(ShortGuid x, ShortGuid y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Implicit_" data-uid="System.ShortGuid.op_Implicit*"></a>
+
+  <h3 id="System_ShortGuid_op_Implicit_System_Guid__System_ShortGuid" data-uid="System.ShortGuid.op_Implicit(System.Guid)~System.ShortGuid">
+  implicit operator ShortGuid(Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicitly converts the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> to a ShortGuid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator ShortGuid(Guid guid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guid</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Implicit_" data-uid="System.ShortGuid.op_Implicit*"></a>
+
+  <h3 id="System_ShortGuid_op_Implicit_System_ShortGuid__System_Guid" data-uid="System.ShortGuid.op_Implicit(System.ShortGuid)~System.Guid">
+  implicit operator Guid(ShortGuid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicitly converts the ShortGuid to its <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> equivalent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Guid(ShortGuid shortGuid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>shortGuid</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Implicit_" data-uid="System.ShortGuid.op_Implicit*"></a>
+
+  <h3 id="System_ShortGuid_op_Implicit_System_ShortGuid__System_String" data-uid="System.ShortGuid.op_Implicit(System.ShortGuid)~System.String">
+  implicit operator string(ShortGuid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicitly converts the ShortGuid to its string equivalent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator string(ShortGuid shortGuid)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>shortGuid</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Implicit_" data-uid="System.ShortGuid.op_Implicit*"></a>
+
+  <h3 id="System_ShortGuid_op_Implicit_System_String__System_ShortGuid" data-uid="System.ShortGuid.op_Implicit(System.String)~System.ShortGuid">
+  implicit operator ShortGuid(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicitly converts the string to a ShortGuid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator ShortGuid(string value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Inequality_" data-uid="System.ShortGuid.op_Inequality*"></a>
+
+  <h3 id="System_ShortGuid_op_Inequality_System_Guid_System_ShortGuid_" data-uid="System.ShortGuid.op_Inequality(System.Guid,System.ShortGuid)">
+  operator !=(Guid, ShortGuid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if both instances do not have the same underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Guid x, ShortGuid y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Inequality_" data-uid="System.ShortGuid.op_Inequality*"></a>
+
+  <h3 id="System_ShortGuid_op_Inequality_System_ShortGuid_System_Guid_" data-uid="System.ShortGuid.op_Inequality(System.ShortGuid,System.Guid)">
+  operator !=(ShortGuid, Guid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if both instances do not have the same underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(ShortGuid x, Guid y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_ShortGuid_op_Inequality_" data-uid="System.ShortGuid.op_Inequality*"></a>
+
+  <h3 id="System_ShortGuid_op_Inequality_System_ShortGuid_System_ShortGuid_" data-uid="System.ShortGuid.op_Inequality(System.ShortGuid,System.ShortGuid)">
+  operator !=(ShortGuid, ShortGuid)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if both ShortGuid instances do not have the same underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(ShortGuid x, ShortGuid y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/ShortGuid.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

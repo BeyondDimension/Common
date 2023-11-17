@@ -1,0 +1,536 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Repository&lt;TEntity&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Repository&lt;TEntity&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1">
+
+
+
+  <h1 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1" class="text-break">
+    Class Repository&lt;TEntity&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.SQLitePCL.html">SQLitePCL</a>.<a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Repositories.SQLitePCL.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>由 sqlite-net-pcl 实现的仓储层</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class Repository&lt;TEntity&gt; : Repository, IRepository&lt;TEntity&gt;, IRepository where TEntity : class, new()</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEntity</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html">Repository</a></div>
+      <div><span class="xref">Repository&lt;TEntity&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories/Repositories/Abstractions/IRepository%601.cs">IRepository</a>&lt;TEntity&gt;</div>
+      <div><a class="xref" href="../BD.Common8.Repositories/BD.Common8.Repositories.Repositories.Abstractions.IRepository.html">IRepository</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository-2.html">Repository&lt;TEntity, TPrimaryKey&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_DefaultRetryCount">Repository.DefaultRetryCount</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_GetConnection_System_String_">Repository.GetConnection(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_GetDbConnection__1">Repository.GetDbConnection&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_GetDbConnection__1_SQLite_SQLiteAsyncConnection_">Repository.GetDbConnection&lt;T&gt;(SQLiteAsyncConnection)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_GetDbConnectionSync__1">Repository.GetDbConnectionSync&lt;T&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_PollyRetryAttempt_System_Int32_">Repository.PollyRetryAttempt(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_AttemptAndRetry__1_System_Func_System_Threading_CancellationToken_System_Threading_Tasks_Task___0___System_Int32_System_Threading_CancellationToken_">Repository.AttemptAndRetry&lt;T&gt;(Func&lt;CancellationToken, Task&lt;T&gt;&gt;, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository.html#BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_DataBaseDirectory">Repository.DataBaseDirectory</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1__ctor_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.#ctor*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1__ctor" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.#ctor">
+  Repository()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Repository()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_DeleteAsync_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.DeleteAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_DeleteAsync__0_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.DeleteAsync(`0,System.Threading.CancellationToken)">
+  DeleteAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体从数据库中删除</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要删除的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_FirstOrDefaultAsync_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.FirstOrDefaultAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_FirstOrDefaultAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.FirstOrDefaultAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Threading.CancellationToken)">
+  FirstOrDefaultAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回序列中满足指定的条件或默认值，如果找到这样的元素的第一个元素</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;TEntity?&gt; FirstOrDefaultAsync(Expression&lt;Func&lt;TEntity, bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TEntity, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>用于测试每个元素是否满足条件的函数</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEntity&gt;</dt>
+    <dd><p>default(TEntity) 如果 集合 为空，或者如果没有元素通过由指定的测试 <code class="paramref">predicate</code>;
+否则为中的第一个元素 集合 通过由指定的测试 <code class="paramref">predicate</code></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>集合 或 <code class="paramref">predicate</code> 为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_GetDbConnection_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.GetDbConnection*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_GetDbConnection" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.GetDbConnection">
+  GetDbConnection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取数据库连接</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;SQLiteAsyncConnection&gt; GetDbConnection()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<span class="xref">SQLiteAsyncConnection</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_InsertAsync_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.InsertAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_InsertAsync__0_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.InsertAsync(`0,System.Threading.CancellationToken)">
+  InsertAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体插入到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; InsertAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要添加的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_InsertRangeAsync_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.InsertRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_InsertRangeAsync_System_Collections_Generic_IEnumerable__0__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.InsertRangeAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">
+  InsertRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体插入到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; InsertRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要添加的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_UpdateAsync_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.UpdateAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_UpdateAsync__0_System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.UpdateAsync(`0,System.Threading.CancellationToken)">
+  UpdateAsync(TEntity, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将实体更新到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entity</code> <span class="xref">TEntity</span></dt>
+    <dd><p>要更新的实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_UpdateRangeAsync_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.UpdateRangeAsync*"></a>
+
+  <h3 id="BD_Common8_Repositories_SQLitePCL_Repositories_Abstractions_Repository_1_UpdateRangeAsync_System_Collections_Generic_IEnumerable__0__System_Threading_CancellationToken_" data-uid="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions.Repository`1.UpdateRangeAsync(System.Collections.Generic.IEnumerable{`0},System.Threading.CancellationToken)">
+  UpdateRangeAsync(IEnumerable&lt;TEntity&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将多个实体更新到数据库中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; UpdateRangeAsync(IEnumerable&lt;TEntity&gt; entities, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>entities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEntity&gt;</dt>
+    <dd><p>要更新的多个实体</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>受影响的行数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Repositories.SQLitePCL/Repositories/Abstractions/Repository%601.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

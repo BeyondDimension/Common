@@ -1,0 +1,826 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IPreferencesPlatformService
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IPreferencesPlatformService
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService">
+
+
+
+  <h1 id="BD_Common8_Essentials_Services_IPreferencesPlatformService" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService" class="text-break">
+    Interface IPreferencesPlatformService
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Essentials.html">Essentials</a>.<a class="xref" href="BD.Common8.Essentials.Services.html">Services</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Essentials.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>提供存储首选项信息的服务</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPreferencesPlatformService</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_Instance_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.Instance*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_Instance" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.Instance">
+  Instance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 <a class="xref" href="BD.Common8.Essentials.Services.IPreferencesPlatformService.html">IPreferencesPlatformService</a> 的实例</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IPreferencesPlatformService Instance { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Essentials.Services.IPreferencesPlatformService.html">IPreferencesPlatformService</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformClear_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformClear*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformClear_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformClear(System.String)">
+  PlatformClear(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>清空指定共享名称下的数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformClear(string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformContainsKey_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformContainsKey*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformContainsKey_System_String_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformContainsKey(System.String,System.String)">
+  PlatformContainsKey(string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否包含指定键值的数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool PlatformContainsKey(string key, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_System_String_System_Boolean_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet(System.String,System.Boolean,System.String)">
+  PlatformGet(string, bool, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键值的布尔型数据，若不存在则返回默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool PlatformGet(string key, bool defaultValue, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_System_String_System_DateTime_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet(System.String,System.DateTime,System.String)">
+  PlatformGet(string, DateTime, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键值的日期时间数据，若不存在则返回默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DateTime PlatformGet(string key, DateTime defaultValue, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_System_String_System_Double_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet(System.String,System.Double,System.String)">
+  PlatformGet(string, double, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键值的浮点数数据，若不存在则返回默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double PlatformGet(string key, double defaultValue, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_System_String_System_Int32_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet(System.String,System.Int32,System.String)">
+  PlatformGet(string, int, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键值的整数数据，若不存在则返回默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int PlatformGet(string key, int defaultValue, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_System_String_System_Int64_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet(System.String,System.Int64,System.String)">
+  PlatformGet(string, long, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键值的长整型数据，若不存在则返回默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long PlatformGet(string key, long defaultValue, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_System_String_System_Single_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet(System.String,System.Single,System.String)">
+  PlatformGet(string, float, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键值的浮点数数据，若不存在则返回默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">float PlatformGet(string key, float defaultValue, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformGet_System_String_System_String_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformGet(System.String,System.String,System.String)">
+  PlatformGet(string, string?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取指定键值的字符串数据，若不存在则返回默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? PlatformGet(string key, string? defaultValue, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformRemove_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformRemove*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformRemove_System_String_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformRemove(System.String,System.String)">
+  PlatformRemove(string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>移除指定键值的数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformRemove(string key, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_System_String_System_Boolean_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet(System.String,System.Boolean,System.String)">
+  PlatformSet(string, bool, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定键值的布尔型数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformSet(string key, bool value, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_System_String_System_DateTime_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet(System.String,System.DateTime,System.String)">
+  PlatformSet(string, DateTime, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定键值的日期时间数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformSet(string key, DateTime value, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_System_String_System_Double_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet(System.String,System.Double,System.String)">
+  PlatformSet(string, double, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定键值的浮点数数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformSet(string key, double value, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_System_String_System_Int32_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet(System.String,System.Int32,System.String)">
+  PlatformSet(string, int, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定键值的整数数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformSet(string key, int value, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_System_String_System_Int64_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet(System.String,System.Int64,System.String)">
+  PlatformSet(string, long, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定键值的长整型数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformSet(string key, long value, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_System_String_System_Single_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet(System.String,System.Single,System.String)">
+  PlatformSet(string, float, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定键值的浮点数数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformSet(string key, float value, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet*"></a>
+
+  <h3 id="BD_Common8_Essentials_Services_IPreferencesPlatformService_PlatformSet_System_String_System_String_System_String_" data-uid="BD.Common8.Essentials.Services.IPreferencesPlatformService.PlatformSet(System.String,System.String,System.String)">
+  PlatformSet(string, string?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置指定键值的字符串数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void PlatformSet(string key, string? value, string? sharedName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>sharedName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Services/IPreferencesPlatformService.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,822 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct SimpleVersion
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct SimpleVersion
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System.Runtime.Versioning.SimpleVersion">
+
+
+
+  <h1 id="System_Runtime_Versioning_SimpleVersion" data-uid="System.Runtime.Versioning.SimpleVersion" class="text-break">
+    Struct SimpleVersion
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="System.html">System</a>.<a class="xref" href="System.Runtime.html">Runtime</a>.<a class="xref" href="System.Runtime.Versioning.html">Versioning</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Bcl.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Simple replacement for System.Version used to implement version
+comparison intrinic property functions.</p>
+<p>Allows major version only (e.g. &quot;3&quot; is 3.0.0.0), ignores leading 'v'
+(e.g. &quot;v3.0&quot; is 3.0.0.0).</p>
+<p>Ignores semver prerelease and metadata portions (e.g. &quot;1.0.0-preview+info&quot;
+is 1.0.0.0).</p>
+<p>Treats unspecified components as 0 (e.g. x == x.0 == x.0.0 == x.0.0.0).</p>
+<p>Ignores leading and trailing whitespace, but does not tolerate whitespace
+between components, unlike System.Version.</p>
+<p>Also unlike System.Version, '+' is ignored as semver metadata as described
+above, not tolerated as positive sign of integer component.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly struct SimpleVersion : IEquatable&lt;SimpleVersion&gt;, IComparable&lt;SimpleVersion&gt;</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icomparable-1">IComparable</a>&lt;<a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="System_Runtime_Versioning_SimpleVersion_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Tolerating leading 'v' allows using $(TargetFrameworkVersion) directly.</p>
+<p>Ignoring semver portions allows, for example, checking &gt;= major.minor
+while still in development of that release.</p>
+<p>Implemented as a struct to avoid heap allocation. Parsing is done
+without heap allocation at all on .NET Core. However, on .NET Framework,
+the integer component substrings are allocated as there is no int.Parse
+on span there.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion__ctor_" data-uid="System.Runtime.Versioning.SimpleVersion.#ctor*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion__ctor_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="System.Runtime.Versioning.SimpleVersion.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+  SimpleVersion(int, int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用指定的主版本号、次版本号、内部版本号和修订号初始化 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 类的新实例。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SimpleVersion(int major, int minor = 0, int build = 0, int revision = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>major</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>主版本号。</p>
+</dd>
+    <dt><code>minor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>次版本号。</p>
+</dd>
+    <dt><code>build</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>内部版本号。</p>
+</dd>
+    <dt><code>revision</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>修订号。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>major、minor、build 或 revision 小于零。</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_Build" data-uid="System.Runtime.Versioning.SimpleVersion.Build">
+  Build
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象版本号的内部版本号部分的值。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Build</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_Major" data-uid="System.Runtime.Versioning.SimpleVersion.Major">
+  Major
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象版本号的主要版本号部分的值。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Major</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_Minor" data-uid="System.Runtime.Versioning.SimpleVersion.Minor">
+  Minor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象版本号的次要版本号部分的值。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Minor</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_Revision" data-uid="System.Runtime.Versioning.SimpleVersion.Revision">
+  Revision
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象版本号的修订号部分的值。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Revision</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_CompareTo_" data-uid="System.Runtime.Versioning.SimpleVersion.CompareTo*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_CompareTo_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.CompareTo(System.Runtime.Versioning.SimpleVersion)">
+  CompareTo(SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象与指定的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象进行比较，并返回二者相对值的一个指示。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(SimpleVersion other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd><p>要与当前的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象进行比较的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象，或者为 default。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_Equals_" data-uid="System.Runtime.Versioning.SimpleVersion.Equals*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_Equals_System_Object_" data-uid="System.Runtime.Versioning.SimpleVersion.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回一个值，该值指示当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象和指定的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象是否表示同一个值。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>要与当前的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象进行比较的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象，或者为 null。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_Equals_" data-uid="System.Runtime.Versioning.SimpleVersion.Equals*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_Equals_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.Equals(System.Runtime.Versioning.SimpleVersion)">
+  Equals(SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回一个值，该值指示当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象和指定的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象是否表示同一个值。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(SimpleVersion other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd><p>要与当前的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象进行比较的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象，或者为 null。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_GetHashCode_" data-uid="System.Runtime.Versioning.SimpleVersion.GetHashCode*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_GetHashCode" data-uid="System.Runtime.Versioning.SimpleVersion.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>返回当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象的哈希代码。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>32 位有符号整数哈希代码。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_Parse_" data-uid="System.Runtime.Versioning.SimpleVersion.Parse*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_Parse_System_String_" data-uid="System.Runtime.Versioning.SimpleVersion.Parse(System.String)">
+  Parse(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将版本号的字符串表示形式转换为等效的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SimpleVersion Parse(string input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>input</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>包含要转换的版本号的字符串。</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd><p>一个等效于 input 参数中指定的版本号的对象。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>input 为 null。</p>
+</dd>
+  </dl>
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_ToString_" data-uid="System.Runtime.Versioning.SimpleVersion.ToString*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_ToString" data-uid="System.Runtime.Versioning.SimpleVersion.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将当前 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 对象的值转换为其等效的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> 表示形式。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>当前 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> 对象的主要版本号、次要版本号、内部版本号和修订号部分的值的 <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a> 表示形式（遵循下面所示格式）。 各部分之间由句点字符（“.”）分隔。</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_op_Equality_" data-uid="System.Runtime.Versioning.SimpleVersion.op_Equality*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_op_Equality_System_Runtime_Versioning_SimpleVersion_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.op_Equality(System.Runtime.Versioning.SimpleVersion,System.Runtime.Versioning.SimpleVersion)">
+  operator ==(SimpleVersion, SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(SimpleVersion a, SimpleVersion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_op_GreaterThan_" data-uid="System.Runtime.Versioning.SimpleVersion.op_GreaterThan*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_op_GreaterThan_System_Runtime_Versioning_SimpleVersion_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.op_GreaterThan(System.Runtime.Versioning.SimpleVersion,System.Runtime.Versioning.SimpleVersion)">
+  operator &gt;(SimpleVersion, SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;(SimpleVersion a, SimpleVersion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_op_GreaterThanOrEqual_" data-uid="System.Runtime.Versioning.SimpleVersion.op_GreaterThanOrEqual*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_op_GreaterThanOrEqual_System_Runtime_Versioning_SimpleVersion_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.op_GreaterThanOrEqual(System.Runtime.Versioning.SimpleVersion,System.Runtime.Versioning.SimpleVersion)">
+  operator &gt;=(SimpleVersion, SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(SimpleVersion a, SimpleVersion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_op_Inequality_" data-uid="System.Runtime.Versioning.SimpleVersion.op_Inequality*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_op_Inequality_System_Runtime_Versioning_SimpleVersion_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.op_Inequality(System.Runtime.Versioning.SimpleVersion,System.Runtime.Versioning.SimpleVersion)">
+  operator !=(SimpleVersion, SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(SimpleVersion a, SimpleVersion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_op_LessThan_" data-uid="System.Runtime.Versioning.SimpleVersion.op_LessThan*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_op_LessThan_System_Runtime_Versioning_SimpleVersion_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.op_LessThan(System.Runtime.Versioning.SimpleVersion,System.Runtime.Versioning.SimpleVersion)">
+  operator &lt;(SimpleVersion, SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(SimpleVersion a, SimpleVersion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Runtime_Versioning_SimpleVersion_op_LessThanOrEqual_" data-uid="System.Runtime.Versioning.SimpleVersion.op_LessThanOrEqual*"></a>
+
+  <h3 id="System_Runtime_Versioning_SimpleVersion_op_LessThanOrEqual_System_Runtime_Versioning_SimpleVersion_System_Runtime_Versioning_SimpleVersion_" data-uid="System.Runtime.Versioning.SimpleVersion.op_LessThanOrEqual(System.Runtime.Versioning.SimpleVersion,System.Runtime.Versioning.SimpleVersion)">
+  operator &lt;=(SimpleVersion, SimpleVersion)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(SimpleVersion a, SimpleVersion b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>a</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+    <dt><code>b</code> <a class="xref" href="System.Runtime.Versioning.SimpleVersion.html">SimpleVersion</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Runtime/Versioning/SimpleVersion.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

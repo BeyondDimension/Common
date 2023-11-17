@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace System
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace System
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="System">
+
+  <h1 id="System" data-uid="System" class="text-break">Namespace System
+</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">
+Classes
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Convert2.html">Convert2</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.DateTimeFormat.html">DateTimeFormat</a></dt>
+      <dd><p>常用日期时间格式化字符串</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Enum2.html">Enum2</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.IOPath.html">IOPath</a></dt>
+      <dd><p>文件夹(Directory), 文件(File), 路径/目录(Path) 工具类</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.IOPath.EnvVarNames.html">IOPath.EnvVarNames</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.IOPath.FileSystemBase.html">IOPath.FileSystemBase</a></dt>
+      <dd><p>初始化文件系统抽象类</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Ioc.html">Ioc</a></dt>
+      <dd><p>A type that facilitates the use of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a> type.
+The <a class="xref" href="System.Ioc.html">Ioc</a> provides the ability to configure services in a singleton, thread-safe
+service provider instance, which can then be used to resolve service instances.
+The first step to use this feature is to declare some services, for instance:</p>
+<pre><code class="lang-csharp">public interface ILogger
+{
+    void Log(string text);
+}</code></pre>
+<pre><code class="lang-csharp">public class ConsoleLogger : ILogger
+{
+    void Log(string text) =&gt; Console.WriteLine(text);
+}</code></pre>
+<p>Then the services configuration should then be done at startup, by calling the <a class="xref" href="System.Ioc.html#System_Ioc_ConfigureServices_System_IServiceProvider_">ConfigureServices(IServiceProvider)</a>
+method and passing an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a> instance with the services to use. That instance can
+be from any library offering dependency injection functionality, such as Microsoft.Extensions.DependencyInjection.
+For instance, using that library, <a class="xref" href="System.Ioc.html#System_Ioc_ConfigureServices_System_IServiceProvider_">ConfigureServices(IServiceProvider)</a> can be used as follows in this example:</p>
+<pre><code class="lang-csharp">Ioc.Default.ConfigureServices(
+    new ServiceCollection()
+    .AddSingleton&lt;ILogger, Logger&gt;()
+    .BuildServiceProvider());</code></pre>
+<p>Finally, you can use the <a class="xref" href="System.Ioc.html">Ioc</a> instance (which implements <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a>)
+to retrieve the service instances from anywhere in your application, by doing as follows:</p>
+<pre><code class="lang-csharp">Ioc.Default.GetService&lt;ILogger&gt;().Log("Hello world!");</code></pre>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Log.html">Log</a></dt>
+      <dd><p>日志</p>
+<p>使用说明：</p>
+<p>在类中定义 const string TAG = 类名(长度小于等于23)</p>
+<p>使用 Log.Debug(TAG,... / Log.Info(TAG,... / Log.Warn(TAG,... / Log.Error(TAG,...</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.MediaTypeNames.html">MediaTypeNames</a></dt>
+      <dd><p>MIME 类型</p>
+<p>https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_Types</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Num2IntFormatEnumExtensions.html">Num2IntFormatEnumExtensions</a></dt>
+      <dd><p>Enum 扩展 <a class="xref" href="System.Num2IntFormat.html">Num2IntFormat</a></p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Random2.html">Random2</a></dt>
+      <dd><p>线程安全的随机数生成</p>
+<p>https://devblogs.microsoft.com/pfxteam/getting-random-numbers-in-a-thread-safe-way</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Serializable.html">Serializable</a></dt>
+      <dd><p>序列化、反序列化 助手类</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.SerializableExtensions.html">SerializableExtensions</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.String2.html">String2</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.StringExtensions.html">StringExtensions</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.ThrowHelper.html">ThrowHelper</a></dt>
+      <dd><p>ThrowHelper 类是可用于高效引发异常的帮助程序类型。 它旨在支持 Guard API，并且应主要用于开发人员需要对引发的异常类型进行精细控制的情况，或者需要对要包含的确切异常消息进行精细控制。</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.TypeNameHelper.html">TypeNameHelper</a></dt>
+      <dd><p><a href="https://github.com/dotnet/runtime/blob/v8.0.0-rc.2.23479.6/src/libraries/Common/src/Extensions/TypeNameHelper/TypeNameHelper.cs">https://github.com/dotnet/runtime/blob/v8.0.0-rc.2.23479.6/src/libraries/Common/src/Extensions/TypeNameHelper/TypeNameHelper.cs</a></p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.UnixTimestamp.html">UnixTimestamp</a></dt>
+      <dd></dd>
+    </dl>
+    <h3 id="structs">
+Structs
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.ShortGuid.html">ShortGuid</a></dt>
+      <dd><p>A convenience wrapper struct for dealing with URL-safe Base64 encoded globally unique identifiers (GUID),
+making a shorter string value (22 vs 36 characters long).</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.nil.html">nil</a></dt>
+      <dd><p>This class represents the void return type</p>
+</dd>
+    </dl>
+    <h3 id="interfaces">
+Interfaces
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.ICloneableSerializable.html">ICloneableSerializable</a></dt>
+      <dd><p>用于序列化克隆对象，使用扩展函数 <a class="xref" href="System.SerializableExtensions.html#System_SerializableExtensions_Clone__1___0_">Clone&lt;T&gt;(T)</a></p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.IDisposableHolder.html">IDisposableHolder</a></dt>
+      <dd></dd>
+    </dl>
+    <h3 id="enums">
+Enums
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.ExceptionKnownType.html">ExceptionKnownType</a></dt>
+      <dd><p>异常已知类型，通常不为 <a class="xref" href="System.ExceptionKnownType.html#System_ExceptionKnownType_Unknown">Unknown</a> 的异常不需要纪录日志</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Num2IntFormat.html">Num2IntFormat</a></dt>
+      <dd><p>小数数字转换为整数数字格式</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Serializable.ImplType.html">Serializable.ImplType</a></dt>
+      <dd><p>序列化程式实现种类</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Serializable.JsonImplType.html">Serializable.JsonImplType</a></dt>
+      <dd><p>JSON 序列化程式实现种类</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.UnixTimestampType.html">UnixTimestampType</a></dt>
+      <dd><p>时间戳类型</p>
+</dd>
+    </dl>
+    <h3 id="delegates">
+Delegates
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="System.Ioc.FallbackDelegate.html">Ioc.FallbackDelegate</a></dt>
+      <dd><p>设置获取依赖注入服务自定义回退实现</p>
+</dd>
+    </dl>
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
