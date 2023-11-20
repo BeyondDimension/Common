@@ -82,9 +82,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.ResX.Test", "src\BD.Common8.SourceGenerator.ResX.Test\BD.Common8.SourceGenerator.ResX.Test.csproj", "{09D1B0E6-8FFB-41FD-A2A3-65A304CBC2A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Tools.DocFX", "src\BD.Common8.Tools.DocFX\BD.Common8.Tools.DocFX.csproj", "{7845D691-1FF5-4F1C-8D42-B6B7C3845AAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.DocFX", "src\Tools.DocFX\Tools.DocFX.csproj", "{7845D691-1FF5-4F1C-8D42-B6B7C3845AAB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Tools.Sort.PackageVersion", "src\BD.Common8.Tools.Sort.PackageVersion\BD.Common8.Tools.Sort.PackageVersion.csproj", "{D4A61618-B508-45B6-A852-7A6E769C7F50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Sort.PackageVersion", "src\Tools.Sort.PackageVersion\Tools.Sort.PackageVersion.csproj", "{D4A61618-B508-45B6-A852-7A6E769C7F50}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Ipc", "src\BD.Common8.Ipc\BD.Common8.Ipc.csproj", "{521B46C6-609C-4014-8D32-189D98DBBF8D}"
 EndProject
@@ -216,14 +216,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{37ADE808-2DCD-4283-A8CA-E14F6DDEAFC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Tools.Build", "src\BD.Common8.Tools.Build\BD.Common8.Tools.Build.csproj", "{F38CDAD3-DA81-4A6F-B300-558C5061F994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Build", "src\Tools.Build\Tools.Build.csproj", "{F38CDAD3-DA81-4A6F-B300-558C5061F994}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{1D391794-20EF-4BD0-92BE-C09F1E2F564D}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\CI.yml = .github\workflows\CI.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.Crawler", "src\BD.Common8.Crawler\BD.Common8.Crawler.csproj", "{3D42F575-E4C2-4507-A08A-85CFC9A899E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Crawler", "src\BD.Common8.Crawler\BD.Common8.Crawler.csproj", "{3D42F575-E4C2-4507-A08A-85CFC9A899E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

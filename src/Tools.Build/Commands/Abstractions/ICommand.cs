@@ -1,4 +1,4 @@
-namespace BD.Common8.Tools.Build.Commands.Abstractions;
+namespace Tools.Build.Commands.Abstractions;
 
 /// <summary>
 /// 命令行业务接口

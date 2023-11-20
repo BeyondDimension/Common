@@ -1,6 +1,6 @@
-using static BD.Common8.Tools.Build.Commands.IBuildCommand;
+using static Tools.Build.Commands.IBuildCommand;
 
-namespace BD.Common8.Tools.Build.Commands;
+namespace Tools.Build.Commands;
 
 /// <summary>
 /// 推送 NuGet 包命令

@@ -1,4 +1,4 @@
-namespace BD.Common8.Tools.Build.Commands;
+namespace Tools.Build.Commands;
 
 /// <summary>
 /// 构建当前仓库源代码命令

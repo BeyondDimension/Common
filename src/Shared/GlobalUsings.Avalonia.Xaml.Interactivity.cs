@@ -5,5 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Tools.Build.Commands;
-global using BD.Common8.Tools.Build.Commands.Abstractions;
+global using Avalonia.Xaml;
+global using Avalonia.Xaml.Interactions;
+global using Avalonia.Xaml.Interactivity;

@@ -1,7 +1,5 @@
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 提供 Avalonia 剪贴板服务实现
 /// </summary>
@@ -61,7 +59,7 @@ sealed class AvaloniaClipboardPlatformServiceImpl : IClipboardPlatformService
         if (topLevel != null)
         {
             var clipboard = topLevel.Clipboard;
-            // 不能用 await 等待 Linux 上不知啥原因导致卡死
+            // TODO: 不能用 await 等待 Linux 上不知啥原因导致卡死
             clipboard?.SetTextAsync(text);
         }
         return default;
