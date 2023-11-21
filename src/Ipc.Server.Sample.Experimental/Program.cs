@@ -23,6 +23,8 @@ public static partial class Program
         builder.Services.AddRoutingCore();
         builder.WebHost.UseKestrelCore();
 
+        builder.Services.AddLogging(l => l.AddConsole());
+
         builder.Services.ConfigureHttpJsonOptions(options =>
         {
             options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
@@ -113,7 +115,9 @@ sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
     public async Task<ApiRspImpl<ITodoService.Todo[]?>> All()
     {
         await Task.Delay(1);
-        return todos;
+        return todos.Concat(new[] {
+            new ITodoService.Todo(6, DateTimeOffset.Now.ToString()),
+        }).ToArray();
     }
 
     public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id)
@@ -126,10 +130,11 @@ sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder endpoints)
     {
-        var todosApi = endpoints.MapGroup("/todos");
-        todosApi.MapPost("/", ([FromServices] ITodoService todoService) => todoService.All());
-        todosApi.MapPost("/{id}", ([FromServices] ITodoService todoService, [FromRoute] int id) =>
-            todoService.GetById(id));
+        var builder = endpoints.MapGroup("/ITodoService");
+        builder.MapPost("/All", ([FromServices] ITodoService s) => s.All());
+        builder.MapPost("/GetById", ([FromServices] ITodoService s, [FromRoute] int id) => s.GetById(id));
+        builder.MapPost("/SimpleTypes", ([FromServices] ITodoService s, [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2, [FromRoute] char p3, [FromRoute] DateOnly p4, [FromRoute] DateTime p5, [FromRoute] DateTimeOffset p6, [FromRoute] decimal p7, [FromRoute] double p8, [FromRoute] System.Reflection.ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11, [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14, [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17, [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20, [FromRoute] Version p21) => s.SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21));
+        builder.MapPost("/BodyTest", ([FromServices] ITodoService s, [FromBody] ITodoService.Todo todo) => s.BodyTest(todo));
     }
 
     public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21)
@@ -140,6 +145,7 @@ sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
 
 [JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo[]>))]
 [JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo>))]
-internal partial class AppJsonSerializerContext : JsonSerializerContext
+[JsonSerializable(typeof(ApiRspImpl))]
+internal partial class AppJsonSerializerContext : SystemTextJsonSerializerContext
 {
 }

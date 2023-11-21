@@ -17,7 +17,12 @@ var clientHttps = IpcAppConnectionStringHelper.GetHttpClient(
         Int32Value = 5076,
     });
 
-static Task<string> GetStringAsync(HttpClient client) => client.GetStringAsync("/todos");
+static async Task<string> GetStringAsync(HttpClient client)
+{
+    using var rsp = await client.PostAsync("/ITodoService/All", content: null);
+    var str = await rsp.Content.ReadAsStringAsync();
+    return str;
+}
 
 while (true)
 {
