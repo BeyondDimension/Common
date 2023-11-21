@@ -27,6 +27,7 @@ public abstract class TemplateBase
 #nullable enable
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0005 // 删除不必要的 using 指令
+#pragma warning disable IDE1006 // 命名样式
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 #pragma warning disable SA1600 // Elements should be documented
@@ -63,4 +64,25 @@ public abstract class TemplateBase
     /// 获取当前源生成器的文件版本
     /// </summary>
     protected static string FileVersion => mFileVersion.Value;
+
+    static Random? random;
+
+    /// <inheritdoc cref="System.Random"/>
+    protected static Random Random => random ??= new(Guid.NewGuid().GetHashCode());
+
+    /// <summary>
+    /// 获取随机字段名
+    /// </summary>
+    /// <returns></returns>
+    protected static string GetRandomFieldName()
+    {
+        var fieldName = "k__BackingField".ToCharArray();
+        for (int i = 0; i < fieldName.Length / 2; i++)
+        {
+            const string random_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            var index = Random.Next(fieldName.Length);
+            fieldName[index] = random_chars[Random.Next(random_chars.Length)];
+        }
+        return new(fieldName);
+    }
 }

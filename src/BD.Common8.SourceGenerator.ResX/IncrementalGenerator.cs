@@ -96,6 +96,7 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
     /// </summary>
     /// <param name="spc"></param>
     /// <param name="m"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void Execute(SourceProductionContext spc, SourceModel m)
     {
         SourceText sourceText;
@@ -125,9 +126,9 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
             builder.AppendLine(m.IsPublic.ToString());
             builder.AppendLine();
             builder.AppendLine(ex.ToString());
-            sourceText = SourceText.From(builder.ToString());
+            sourceText = builder.ToSourceText();
         }
-        spc.AddSource($"{m.Namespace}.{m.TypeName}.Designer.g.cs", sourceText);
+        spc.AddSource($"{m.Namespace}.{m.TypeName}.{Id}.g.cs", sourceText);
     }
 
     /// <summary>
@@ -143,6 +144,7 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
     }
 
     [Obsolete("AdditionalText 在 macOS 上无效", true)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     void InitializeByAdditionalText(IncrementalGeneratorInitializationContext ctx)
     {
         var source = ctx.AdditionalTextsProvider
@@ -153,6 +155,7 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
         ctx.RegisterSourceOutput(source, Execute);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     void InitializeByAttribute(IncrementalGeneratorInitializationContext ctx)
     {
         var source = ctx.SyntaxProvider.ForAttributeWithMetadataName(

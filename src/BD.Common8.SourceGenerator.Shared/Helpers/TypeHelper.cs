@@ -55,4 +55,20 @@ public static partial class TypeHelper
 
         return false;
     }
+
+    /// <summary>
+    /// 获取类型短名称
+    /// </summary>
+    /// <param name="typeSymbol"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetTypeShortName(this ITypeSymbol typeSymbol)
+    {
+        var typeString = typeSymbol.ToDisplayString();
+        if (typeString.Contains('.'))
+        {
+            typeString = typeString.Split(['.'], StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+        }
+        return typeString;
+    }
 }

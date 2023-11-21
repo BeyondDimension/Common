@@ -71,8 +71,8 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
             builder.AppendLine(m.TypeName);
             builder.AppendLine();
             builder.AppendLine(ex.ToString());
-            sourceText = SourceText.From(builder.ToString());
+            sourceText = builder.ToSourceText();
         }
-        spc.AddSource($"{m.Namespace}.{m.TypeName}.Designer.g.cs", sourceText);
+        spc.AddSource($"{m.Namespace}.{m.TypeName}.{MinimalAPIsTemplate.Id}.g.cs", sourceText);
     }
 }

@@ -6,6 +6,11 @@ namespace BD.Common8.SourceGenerator.ResX.Templates;
 sealed class DesignerTemplate : TemplateBase
 {
     /// <summary>
+    /// Designer
+    /// </summary>
+    internal const string Id = "Designer";
+
+    /// <summary>
     /// 从源码中读取并分析生成器所需要的模型
     /// </summary>
     internal readonly record struct SourceModel
@@ -48,6 +53,58 @@ sealed class DesignerTemplate : TemplateBase
         public required string Value { get; init; }
 
         public required string? Comment { get; init; }
+
+        public void WriteSummary(Stream stream)
+        {
+            string valueTrim = Value.Trim();
+            string[] valueValues = valueTrim.Split("\r\n".ToCharArray(),
+                StringSplitOptions.RemoveEmptyEntries);
+
+            string? commentTrim = Comment?.Trim();
+            string[]? commentValues = commentTrim?.Split("\r\n".ToCharArray(),
+                    StringSplitOptions.RemoveEmptyEntries);
+
+            stream.Write(
+"""
+    /// <summary>
+"""u8);
+            stream.WriteNewLine();
+
+            foreach (var item in valueValues)
+            {
+                stream.WriteFormat(
+"""
+    /// {0}
+"""u8, item.Trim());
+                stream.WriteNewLine();
+            }
+
+            if (commentValues != null)
+            {
+                for (int i = 0; i < commentValues.Length; i++)
+                {
+                    var item = commentValues[i];
+                    if (i == 0)
+                    {
+                        stream.Write(
+"""
+    /// <para/> // comment
+"""u8);
+                    }
+                    stream.WriteFormat(
+    """
+    /// {0}
+"""u8, item.Trim());
+                    stream.WriteNewLine();
+                }
+            }
+
+            stream.Write(
+"""
+    /// </summary>
+"""u8);
+            stream.WriteNewLine();
+        }
     }
 
     /// <summary>
@@ -89,7 +146,6 @@ sealed class DesignerTemplate : TemplateBase
     /// </summary>
     /// <param name="stream"></param>
     /// <param name="m"></param>
-    /// <param name="cancellationToken"></param>
     public static void WriteFile(
         Stream stream,
         SourceModel m)
@@ -135,7 +191,7 @@ static partial class {0}
 """u8, m.TypeName);
             }
             stream.WriteNewLine();
-            stream.WriteCurlyBracketLeft();
+            stream.WriteCurlyBracketLeft(); // {
             stream.WriteNewLine();
             stream.WriteFormat("""
     const string baseName = "{0}";
@@ -184,26 +240,7 @@ static partial class {0}
             var items = DeserializeResXDataElements(elements);
             foreach (var item in items)
             {
-                if (string.IsNullOrWhiteSpace(item.Comment))
-                {
-                    stream.WriteFormat(
-"""
-    /// <summary>
-    /// {0}
-    /// </summary>
-"""u8, item.Value);
-                }
-                else
-                {
-                    stream.WriteFormat(
-"""
-    /// <summary>
-    /// {0}
-    /// <para>{1}</para>
-    /// </summary>
-"""u8, item.Value, item.Comment);
-                }
-                stream.WriteNewLine();
+                item.WriteSummary(stream);
                 stream.WriteFormat(
 """
     public static string {0} => ResourceManager.GetString("{0}", resourceCulture) ?? "";
@@ -212,7 +249,7 @@ static partial class {0}
                 stream.WriteNewLine();
             }
 
-            stream.WriteCurlyBracketRight();
+            stream.WriteCurlyBracketRight(); // }
             stream.WriteNewLine();
         }
         catch (OperationCanceledException)

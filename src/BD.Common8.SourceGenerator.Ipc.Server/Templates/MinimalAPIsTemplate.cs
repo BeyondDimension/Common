@@ -6,6 +6,11 @@ namespace BD.Common8.SourceGenerator.Ipc.Templates;
 sealed class MinimalAPIsTemplate : TemplateBase
 {
     /// <summary>
+    /// MinimalAPIs
+    /// </summary>
+    internal const string Id = "MinimalAPIs";
+
+    /// <summary>
     /// 从源码中读取并分析生成器所需要的模型
     /// </summary>
     internal readonly record struct SourceModel

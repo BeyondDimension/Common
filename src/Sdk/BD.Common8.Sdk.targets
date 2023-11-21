@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security;UseSystemCommandLine;UseCommon8HttpClientFactory;UseCommon8Crawler;UseReactiveUI;UseReactiveUIFody;UseFluentAvalonia">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security;UseSystemCommandLine;UseCommon8HttpClientFactory;UseCommon8Crawler;UseReactiveUI;UseReactiveUIFody;UseFluentAvalonia;UseSourceGeneratorBcl">
 
 	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
 
@@ -53,6 +53,13 @@
 
 	<ItemGroup Condition="$(UseSourceGeneratorResx) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseSourceGeneratorBcl) == 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
@@ -258,7 +265,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseReactiveUIFody) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.UseReactiveUIFody.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ReactiveUI.Fody.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="ReactiveUI.Fody" />
