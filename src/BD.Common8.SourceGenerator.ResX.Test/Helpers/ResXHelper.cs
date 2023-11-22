@@ -102,7 +102,7 @@ static partial class ResXHelper
                 }
                 stream.WriteFormat(
 """
-		<EmbeddedResource Include="\{0}.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory){0}.resx">
 			<Link>Resources\{1}.resx</Link>
 			<LogicalName>FxResources.{0}.resources</LogicalName>
 		</EmbeddedResource>

@@ -1,34 +1,34 @@
 <Project>
 	<ItemGroup>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.resx">
 			<Link>Resources\Strings.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.en.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.en.resx">
 			<Link>Resources\Strings.en.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.en.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.es.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.es.resx">
 			<Link>Resources\Strings.es.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.es.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.it.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.it.resx">
 			<Link>Resources\Strings.it.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.it.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.ja.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.ja.resx">
 			<Link>Resources\Strings.ja.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.ja.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.ko.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.ko.resx">
 			<Link>Resources\Strings.ko.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.ko.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.ru.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.ru.resx">
 			<Link>Resources\Strings.ru.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.ru.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.UserInput.ModelValidator.zh-Hant.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.zh-Hant.resx">
 			<Link>Resources\Strings.zh-Hant.resx</Link>
 			<LogicalName>FxResources.BD.Common8.UserInput.ModelValidator.zh-Hant.resources</LogicalName>
 		</EmbeddedResource>

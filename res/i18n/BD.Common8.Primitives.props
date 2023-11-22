@@ -1,34 +1,34 @@
 <Project>
 	<ItemGroup>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.resx">
 			<Link>Resources\Strings.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.en.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.en.resx">
 			<Link>Resources\Strings.en.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.en.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.es.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.es.resx">
 			<Link>Resources\Strings.es.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.es.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.it.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.it.resx">
 			<Link>Resources\Strings.it.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.it.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.ja.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ja.resx">
 			<Link>Resources\Strings.ja.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.ja.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.ko.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ko.resx">
 			<Link>Resources\Strings.ko.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.ko.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.ru.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ru.resx">
 			<Link>Resources\Strings.ru.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.ru.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.zh-Hant.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.zh-Hant.resx">
 			<Link>Resources\Strings.zh-Hant.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.zh-Hant.resources</LogicalName>
 		</EmbeddedResource>

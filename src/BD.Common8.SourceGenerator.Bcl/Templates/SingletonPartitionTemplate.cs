@@ -165,11 +165,11 @@ partial class {0}
 """
     {0}() { }
 """u8, m.TypeName);
-                stream.WriteNewLine();
             }
 
             #endregion
 
+            stream.WriteNewLine();
             stream.WriteCurlyBracketRight(); // }
             stream.WriteNewLine();
         }

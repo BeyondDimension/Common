@@ -15,3 +15,4 @@ global using FluentAvalonia.UI.Windowing;
 global using FluentAvalonia.UI.Media;
 global using FluentAvalonia.UI.Media.Animation;
 global using FluentAvalonia.UI.Navigation;
+global using FAvaFrame = FluentAvalonia.UI.Controls.Frame;

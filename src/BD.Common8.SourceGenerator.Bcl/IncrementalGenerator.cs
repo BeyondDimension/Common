@@ -21,6 +21,10 @@ public sealed class IncrementalGenerator : IIncrementalGenerator
         InitializeByAttribute(ctx,
             ViewModelWrapperTemplate.AttrName,
             ViewModelWrapperTemplate.Execute);
+
+        InitializeByAttribute(ctx,
+            ConstantsByPathTemplate.AttrName,
+            ConstantsByPathTemplate.Execute);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

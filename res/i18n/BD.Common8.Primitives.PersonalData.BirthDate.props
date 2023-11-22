@@ -1,34 +1,34 @@
 <Project>
 	<ItemGroup>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.resx">
 			<Link>Resources\Strings.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.en.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.en.resx">
 			<Link>Resources\Strings.en.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.en.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.es.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.es.resx">
 			<Link>Resources\Strings.es.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.es.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.it.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.it.resx">
 			<Link>Resources\Strings.it.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.it.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.ja.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.ja.resx">
 			<Link>Resources\Strings.ja.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.ja.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.ko.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.ko.resx">
 			<Link>Resources\Strings.ko.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.ko.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.ru.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.ru.resx">
 			<Link>Resources\Strings.ru.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.ru.resources</LogicalName>
 		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)\BD.Common8.Primitives.PersonalData.BirthDate.zh-Hant.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.zh-Hant.resx">
 			<Link>Resources\Strings.zh-Hant.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.BirthDate.zh-Hant.resources</LogicalName>
 		</EmbeddedResource>
