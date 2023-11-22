@@ -44,6 +44,7 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
         public bool B { get; set; }
     }
 
+    [MP2Obj(MP2SerializeLayout.Sequential)]
     public sealed record class TodoModel
     {
         public bool C { get; set; }
@@ -52,6 +53,8 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
 
         //[ObservableProperty]
         public string? D2;
+
+        public override string ToString() => $"C: {C}, D: {D}";
     }
 
     [ViewModelWrapperGenerated(typeof(TodoModel),

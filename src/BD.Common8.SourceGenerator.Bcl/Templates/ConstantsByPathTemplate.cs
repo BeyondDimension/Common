@@ -16,7 +16,7 @@ sealed class ConstantsByPathTemplate : TemplateBase
         var attribute = attributes.FirstOrDefault(static x => x.ClassNameEquals(AttrName));
         attribute.ThrowIsNull();
 
-        string? relativePath = null, prefix = null;
+        string? relativePath = null, valuePrefix = null, namePrefix = null;
         for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
         {
             var value = attribute.ConstructorArguments[i].GetObjectValue();
@@ -26,11 +26,14 @@ sealed class ConstantsByPathTemplate : TemplateBase
                     relativePath = value?.ToString();
                     break;
                 case 1:
-                    prefix = value?.ToString();
+                    valuePrefix = value?.ToString();
+                    break;
+                case 2:
+                    namePrefix = value?.ToString();
                     break;
             }
         }
-        ConstantsByPathGeneratedAttribute result = new(relativePath.ThrowIsNull(), prefix);
+        ConstantsByPathGeneratedAttribute result = new(relativePath.ThrowIsNull(), valuePrefix, namePrefix);
 
         return result;
     }
@@ -148,10 +151,10 @@ partial class {0}
                     var relativePathStr = file.TrimStart(m.DirPath);
                     var relativePath = relativePathStr.ToCharArray();
 
-                    stream.Write(
+                    stream.WriteFormat(
 """
-    public const string 
-"""u8);
+    public const string {0}
+"""u8, m.Attribute.NamePrefix);
                     bool upper = true;
                     for (int i = 0; i < relativePath.Length; i++)
                     {
@@ -190,7 +193,7 @@ partial class {0}
 """
  = $"{
 """u8);
-                    stream.WriteUtf16StrToUtf8OrCustom(string.IsNullOrWhiteSpace(m.Attribute.Prefix) ? "\"\"" : m.Attribute.Prefix!);
+                    stream.WriteUtf16StrToUtf8OrCustom(string.IsNullOrWhiteSpace(m.Attribute.ValuePrefix) ? "\"\"" : m.Attribute.ValuePrefix!);
 
                     stream.Write(
 """

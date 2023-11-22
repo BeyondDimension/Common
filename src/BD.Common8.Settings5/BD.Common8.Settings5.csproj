@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DynamicData" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
+	</ItemGroup>
+
+</Project>

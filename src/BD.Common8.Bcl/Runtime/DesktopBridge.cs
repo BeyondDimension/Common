@@ -1,7 +1,9 @@
+#if DEBUG
 #pragma warning disable SA1600 // Elements should be documented
 
 namespace System.Runtime;
 
+[Obsolete("use System.OSHelper", true)]
 public abstract class DesktopBridge
 {
     protected DesktopBridge() => throw new NotSupportedException();
@@ -14,3 +16,4 @@ public abstract class DesktopBridge
     /// </summary>
     public static bool IsRunningAsUwp { get; protected set; }
 }
+#endif

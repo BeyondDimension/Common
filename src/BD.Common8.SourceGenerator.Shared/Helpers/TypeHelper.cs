@@ -71,4 +71,14 @@ public static partial class TypeHelper
         }
         return typeString;
     }
+
+    /// <summary>
+    /// 判断该函数是否为重写的 <see cref="object.ToString"/>
+    /// </summary>
+    /// <param name="methodSymbol"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsObjectToString(this IMethodSymbol methodSymbol) => methodSymbol.Name == nameof(ToString) &&
+                    methodSymbol.ReturnType.Name == "String" &&
+                    methodSymbol.Parameters.Length == 0;
 }
