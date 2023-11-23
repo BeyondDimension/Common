@@ -6,15 +6,13 @@ namespace BD.Common8.Ipc.Client.Helpers;
 public static partial class IpcAppConnectionStringHelper
 {
     /// <summary>
-    /// 根据 Ipc 应用程序连接字符串创建 <see cref="HttpClient"/>
+    /// 根据 Ipc 应用程序连接字符串创建 <see cref="HttpMessageHandler"/>
     /// </summary>
     /// <param name="connectionString">连接字符串</param>
     /// <param name="ignoreRemoteCertificateValidation">是否忽略服务端证书验证</param>
-    /// <param name="timeoutFromSeconds">超时时间，单位秒</param>
     /// <returns></returns>
-    public static HttpClient GetHttpClient(IpcAppConnectionString connectionString,
-        bool ignoreRemoteCertificateValidation = true,
-        double timeoutFromSeconds = 3d)
+    public static (string baseAddress, HttpMessageHandler handler) GetHttpMessageHandler(IpcAppConnectionString connectionString,
+        bool ignoreRemoteCertificateValidation = true)
     {
         var connectionStringType = connectionString.Type;
         string baseAddress = "https://localhost";
@@ -24,12 +22,15 @@ public static partial class IpcAppConnectionStringHelper
             case IpcAppConnectionStringType.Https:
                 baseAddress = $"https://localhost:{connectionString.Int32Value}";
                 break;
+
             case IpcAppConnectionStringType.UnixSocket:
                 connectCallback = UnixDomainSocketsConnectionFactory.GetConnectCallback(connectionString.StringValue.ThrowIsNull());
                 break;
+
             case IpcAppConnectionStringType.NamedPipe:
                 connectCallback = NamedPipesConnectionFactory.GetConnectCallback(connectionString.StringValue.ThrowIsNull());
                 break;
+
             default:
                 throw ThrowHelper.GetArgumentOutOfRangeException(connectionStringType);
         }
@@ -41,6 +42,21 @@ public static partial class IpcAppConnectionStringHelper
         };
         if (ignoreRemoteCertificateValidation)
             handler.SslOptions.RemoteCertificateValidationCallback = (_, _, _, _) => true;
+        return (baseAddress, handler);
+    }
+
+    /// <summary>
+    /// 根据 Ipc 应用程序连接字符串创建 <see cref="HttpClient"/>
+    /// </summary>
+    /// <param name="connectionString">连接字符串</param>
+    /// <param name="ignoreRemoteCertificateValidation">是否忽略服务端证书验证</param>
+    /// <param name="timeoutFromSeconds">超时时间，单位秒</param>
+    /// <returns></returns>
+    public static HttpClient GetHttpClient(IpcAppConnectionString connectionString,
+        bool ignoreRemoteCertificateValidation = true,
+        double timeoutFromSeconds = 3d)
+    {
+        (string baseAddress, HttpMessageHandler handler) = GetHttpMessageHandler(connectionString, ignoreRemoteCertificateValidation);
         HttpClient client = new(handler)
         {
             DefaultRequestVersion = HttpVersion.Version20,

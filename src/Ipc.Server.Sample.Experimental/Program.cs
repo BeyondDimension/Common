@@ -6,6 +6,8 @@
 
 using BD.Common8.Ipc.Server.Services;
 using Ipc.Sample;
+using Ipc.Server.Sample.Experimental.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace BD.Common8.Ipc.Server.Sample.Experimental;
 
@@ -13,8 +15,9 @@ namespace BD.Common8.Ipc.Server.Sample.Experimental;
 
 public static partial class Program
 {
-    const string X500DistinguishedCNName = "BeyondDimension Console Test Certificate";
-    const string X500DistinguishedName =
+    private const string X500DistinguishedCNName = "BeyondDimension Console Test Certificate";
+
+    private const string X500DistinguishedName =
         $"C=CN, O=BeyondDimension, OU=Technical Department, CN={X500DistinguishedCNName}";
 
     public static void Main()
@@ -75,8 +78,9 @@ public static partial class Program
             Console.WriteLine($"https://localhost:{port}/todos");
             options.ListenLocalhost(port, listenOptions =>
             {
-                listenOptions.Protocols = HttpProtocols.Http2;
-                listenOptions.UseHttps(serverCertificate);
+                listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                listenOptions.UseHttps();
+                // listenOptions.UseHttps(serverCertificate);
             });
             const string pipeName = "BD.Common8.Ipc.Server.Sample.Experimental";
             options.ListenNamedPipe(pipeName, listenOptions =>
@@ -86,9 +90,35 @@ public static partial class Program
             });
         });
 
+        //注册 SignalR 相关服务
+        builder.Services.AddSignalR(opt =>
+        {
+            /*
+             * // 客户端超时时间 默认30s(建议的值为 KeepAliveInterval 值的两倍)
+             * opt.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
+             * // 如果客户端在此时间间隔内未发送初始握手消息，则连接将关闭。
+             * // 这是一个高级设置，只应在由于严重的网络延迟而发生握手超时错误时才考虑修改。
+             * // 有关握手过程的更多详细信息，请参阅
+             * // https://github.com/aspnet/SignalR/blob/master/specs/HubProtocol.md
+             * opt.HandshakeTimeout = TimeSpan.FromSeconds(15);
+             * // 如果服务器在此间隔内未发送消息，将自动发送 ping 消息以保持连接处于开启状态
+             * opt.KeepAliveInterval = TimeSpan.FromSeconds(15);
+             *
+             */
+#if DEBUG
+            opt.EnableDetailedErrors = true;
+#endif
+        });
+
         builder.Services.AddSingleton<ITodoService, TodoServiceImpl>();
 
         var app = builder.Build();
+
+        // SignalR hub 注册
+        app.MapHub<TestHub>("/test", opt =>
+        {
+            //opt.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
+        });
 
         OnMapGroup<TodoServiceImpl>(app);
 
@@ -96,15 +126,15 @@ public static partial class Program
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static void OnMapGroup<T>(IEndpointRouteBuilder endpoints) where T : IEndpointRouteMapGroup
+    private static void OnMapGroup<T>(IEndpointRouteBuilder endpoints) where T : IEndpointRouteMapGroup
     {
         T.OnMapGroup(endpoints);
     }
 }
 
-sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
+internal sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
 {
-    readonly ITodoService.Todo[] todos = [
+    private readonly ITodoService.Todo[] todos = [
         new(1, "Walk the dog"),
         new(2, "Do the dishes", DateOnly.FromDateTime(DateTime.Now)),
         new(3, "Do the laundry", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
@@ -132,9 +162,15 @@ sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
     {
         var builder = endpoints.MapGroup("/ITodoService");
         builder.MapPost("/All", ([FromServices] ITodoService s) => s.All());
-        builder.MapPost("/GetById", ([FromServices] ITodoService s, [FromRoute] int id) => s.GetById(id));
-        builder.MapPost("/SimpleTypes", ([FromServices] ITodoService s, [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2, [FromRoute] char p3, [FromRoute] DateOnly p4, [FromRoute] DateTime p5, [FromRoute] DateTimeOffset p6, [FromRoute] decimal p7, [FromRoute] double p8, [FromRoute] System.Reflection.ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11, [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14, [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17, [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20, [FromRoute] Version p21) => s.SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21));
-        builder.MapPost("/BodyTest", ([FromServices] ITodoService s, [FromBody] ITodoService.Todo todo) => s.BodyTest(todo));
+
+        builder.MapGet("/TestHub", async ([FromServices] IHubContext<TestHub> c) =>
+        {
+            await c.Clients.All.SendAsync("ServerReceivedMsg", "接收路由请求消息");
+            return "hello test hub";
+        });
+        //builder.MapPost("/GetById/{id}", ([FromServices] ITodoService s, [FromRoute] int id) => s.GetById(id));
+        //builder.MapPost("/SimpleTypes", ([FromServices] ITodoService s, [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2, [FromRoute] char p3, [FromRoute] DateOnly p4, [FromRoute] DateTime p5, [FromRoute] DateTimeOffset p6, [FromRoute] decimal p7, [FromRoute] double p8, [FromRoute] System.Reflection.ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11, [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14, [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17, [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20, [FromRoute] Version p21) => s.SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21));
+        //builder.MapPost("/BodyTest", ([FromServices] ITodoService s, [FromBody] ITodoService.Todo todo) => s.BodyTest(todo));
     }
 
     public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21)
@@ -146,6 +182,6 @@ sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
 [JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo[]>))]
 [JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo>))]
 [JsonSerializable(typeof(ApiRspImpl))]
-internal partial class AppJsonSerializerContext : SystemTextJsonSerializerContext
+internal partial class AppJsonSerializerContext : JsonSerializerContext
 {
 }

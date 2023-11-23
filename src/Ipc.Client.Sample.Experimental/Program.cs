@@ -1,4 +1,5 @@
 using Ipc.Sample;
+using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Client;
 
@@ -17,10 +18,80 @@ var clientHttps = IpcAppConnectionStringHelper.GetHttpClient(
         Int32Value = 5076,
     });
 
+var hubConn = await GetSignalRHubConnection();
+
 static async Task<string> GetStringAsync(HttpClient client)
 {
     using var rsp = await client.PostAsync("/ITodoService/All", content: null);
     var str = await rsp.Content.ReadAsStringAsync();
+    return str;
+}
+
+static async Task<HubConnection> GetSignalRHubConnection()
+{
+    (string baseAddress, var httpMessageHandler) = CreateHandlerFunc();
+
+    HubConnection conn = new HubConnectionBuilder()
+       //.WithServerTimeout(TimeSpan.FromSeconds(1)) // 多久未接收到服务端消息断开连接(开启了自动重连会触发自动重连)
+       .WithKeepAliveInterval(TimeSpan.FromMicroseconds(30))
+       // .WithUrl("https://localhost:5076/test")
+       .WithUrl(baseAddress, opt =>
+       {
+           opt.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
+           //opt.SkipNegotiation = true;
+           opt.HttpMessageHandlerFactory = (message) =>
+           {
+               message.Dispose();
+               return CreateHandlerFunc().handler;
+           };
+           opt.WebSocketConfiguration = static o =>
+           {
+               o.HttpVersion = HttpVersion.Version20;
+           };
+           opt.Url = new Uri(baseAddress + "/test");
+       })
+       .WithAutomaticReconnect()
+       .Build();
+
+    conn.Reconnected += (s) =>
+    {
+        Console.WriteLine(@"已重连:" + DateTime.Now);
+        return Task.CompletedTask;
+    };
+
+    conn.Reconnecting += (s) =>
+    {
+        Console.WriteLine(s);
+        Console.WriteLine(@"正在重连:" + DateTime.Now);
+        return Task.CompletedTask;
+    };
+
+    // 监听服务端消息
+    conn.On<string>("ServerReceivedMsg", (serverMsg) =>
+    {
+        Console.WriteLine(@"ServerReceivedMsg => " + serverMsg);
+    });
+
+    await conn.StartAsync();
+
+    return conn;
+    // 创建自定义 handler
+    static (string baseAddress, HttpMessageHandler handler) CreateHandlerFunc() =>
+        IpcAppConnectionStringHelper.GetHttpMessageHandler(new IpcAppConnectionString
+        {
+            Type = IpcAppConnectionStringType.Https,
+            Int32Value = 5076,
+            //Type = IpcAppConnectionStringType.NamedPipe,
+            //StringValue = pipeName,
+        });
+}
+
+static async Task<string> GetSignalRStringAsync(HubConnection conn)
+{
+    string s = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+
+    var str = await conn.InvokeAsync<string>("ReturnClientResult", s);
+
     return str;
 }
 
@@ -35,6 +106,10 @@ while (true)
         var resultHttps = await GetStringAsync(clientHttps);
         Console.WriteLine("resultHttps: ");
         Console.WriteLine(resultHttps);
+
+        var resultSignalR = await GetSignalRStringAsync(hubConn);
+        Console.WriteLine("resultSignalR: ");
+        Console.WriteLine(resultSignalR);
     }
     catch (Exception ex)
     {
@@ -50,7 +125,7 @@ while (true)
 
 #pragma warning disable SA1600 // Elements should be documented
 
-sealed class TodoServiceImpl(
+internal sealed class TodoServiceImpl(
     ILoggerFactory loggerFactory,
     IClientHttpClientFactory clientFactory) :
     WebApiClientBaseService(
@@ -59,7 +134,7 @@ sealed class TodoServiceImpl(
         null),
     ITodoService
 {
-    const string TAG = "Todo";
+    private const string TAG = "Todo";
 
     protected override string ClientName => TAG;
 

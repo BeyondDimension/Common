@@ -24,6 +24,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
 		<ProjectReference Include="..\BD.Common8.Ipc.Client\BD.Common8.Ipc.Client.csproj" />
 		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
