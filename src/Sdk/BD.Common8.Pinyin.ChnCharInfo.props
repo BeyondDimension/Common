@@ -1,5 +1,10 @@
 <Project>
 
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Pinyin>true</UseCommon8Pinyin>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\*.cs">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>

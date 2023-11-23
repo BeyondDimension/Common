@@ -1,0 +1,7 @@
+<Project>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+	</PropertyGroup>
+
+</Project>

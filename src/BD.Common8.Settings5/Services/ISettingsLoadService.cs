@@ -16,12 +16,7 @@ public interface ISettingsLoadService
     const DynamicallyAccessedMemberTypes DAMT_M = DynamicallyAccessedMemberTypes.PublicParameterlessConstructor;
 
     /// <summary>
-    /// 设置项文件存放文件夹名
-    /// </summary>
-    const string DirName = "Settings";
-
-    /// <summary>
-    /// 加载设置项，返回是否已经加载过
+    /// 后端加载设置项，返回是否已经加载过
     /// </summary>
     /// <typeparam name="TSettingsModel">设置项模型</typeparam>
     /// <param name="configureServices">返回配置该设置项的服务配置委托</param>
@@ -29,11 +24,22 @@ public interface ISettingsLoadService
     /// <param name="settingsFileDirectoryExists">设置项保存文件所在文件夹是否存在，传递此值以防止多次计算</param>
     /// <param name="settingsFileDirectory">设置项保存文件所在文件夹，默认将取 <see cref="IOPath.AppDataDirectory"/></param>
     /// <returns></returns>
-    bool Load<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
+    bool BackendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
         out Action<IServiceCollection>? configureServices,
         out IOptionsMonitor<TSettingsModel>? options,
         bool settingsFileDirectoryExists,
         string? settingsFileDirectory = null) where TSettingsModel : class, new();
+
+    /// <summary>
+    /// 前端加载设置项，返回是否已经加载过
+    /// </summary>
+    /// <typeparam name="TSettingsModel">设置项模型</typeparam>
+    /// <param name="configureServices">返回配置该设置项的服务配置委托</param>
+    /// <param name="options">设置项监听接口</param>
+    /// <returns></returns>
+    bool FrontendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
+        out Action<IServiceCollection>? configureServices,
+        out IOptionsMonitor<TSettingsModel>? options) where TSettingsModel : class, new();
 
     /// <summary>
     /// 保存配置项到文件

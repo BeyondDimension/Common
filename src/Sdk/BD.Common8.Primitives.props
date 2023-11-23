@@ -1,0 +1,10 @@
+<Project>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
+	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\BD.Common8.Primitives.props" />
+
+</Project>

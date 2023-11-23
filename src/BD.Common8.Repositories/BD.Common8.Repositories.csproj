@@ -3,13 +3,14 @@
 	<PropertyGroup>
 		<RootNamespace>BD.Common8.Repositories</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
+
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

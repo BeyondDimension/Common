@@ -1,0 +1,10 @@
+<Project>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseAvalonia>true</UseAvalonia>
+		<UseCommon8Essentials>true</UseCommon8Essentials>
+		<UseCommon8EssentialsImplementation>true</UseCommon8EssentialsImplementation>
+	</PropertyGroup>
+
+</Project>

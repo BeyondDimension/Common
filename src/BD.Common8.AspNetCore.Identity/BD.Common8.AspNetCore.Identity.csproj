@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<RootNamespace>BD.Common8.AspNetCore</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseCommon8Essentials>true</UseCommon8Essentials>
 		<UseCommon8RepositoriesEFCore>true</UseCommon8RepositoriesEFCore>
@@ -13,7 +14,6 @@
 		<UseRedis>true</UseRedis>
 		<UseNLog>true</UseNLog>
 		<UseCommon8AspNetCore>true</UseCommon8AspNetCore>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">

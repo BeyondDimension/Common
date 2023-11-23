@@ -1,0 +1,12 @@
+<Project>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Settings5>true</UseCommon8Settings5>
+		<UseMicrosoftExtensionsOptions>true</UseMicrosoftExtensionsOptions>
+		<UseMicrosoftExtensionsConfiguration>true</UseMicrosoftExtensionsConfiguration>
+		<UseMicrosoftExtensionsConfigurationJson>true</UseMicrosoftExtensionsConfigurationJson>
+		<UseMicrosoftExtensionsOptionsConfigurationExtensions>true</UseMicrosoftExtensionsOptionsConfigurationExtensions>
+	</PropertyGroup>
+
+</Project>

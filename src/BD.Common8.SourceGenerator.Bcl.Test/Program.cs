@@ -45,7 +45,7 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
     }
 
     [MP2Obj(MP2SerializeLayout.Sequential)]
-    public sealed record class TodoModel
+    public sealed partial record class TodoModel
     {
         public bool C { get; set; }
 

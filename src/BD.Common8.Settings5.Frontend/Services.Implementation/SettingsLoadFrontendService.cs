@@ -8,17 +8,24 @@ namespace BD.Common8.Settings5.Services.Implementation;
 public sealed class SettingsLoadFrontendService : ISettingsLoadService
 {
     /// <inheritdoc/>
-    public bool Load<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
+    public bool FrontendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
         out Action<IServiceCollection>? configureServices,
-        out IOptionsMonitor<TSettingsModel>? options,
-        bool settingsFileDirectoryExists,
-        string? settingsFileDirectory = null) where TSettingsModel : class, new()
+        out IOptionsMonitor<TSettingsModel>? options) where TSettingsModel : class, new()
     {
         options = default;
         configureServices = default;
 
-        throw new NotImplementedException();
+        // TODO
+        return false;
     }
+
+    /// <inheritdoc/>
+    public bool BackendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
+        out Action<IServiceCollection>? configureServices,
+        out IOptionsMonitor<TSettingsModel>? options,
+        bool settingsFileDirectoryExists,
+        string? settingsFileDirectory = null) where TSettingsModel : class, new()
+        => FrontendLoad(out configureServices, out options);
 
     /// <inheritdoc/>
     public void Save<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(TSettingsModel settingsModel, bool force = true) where TSettingsModel : class, new()

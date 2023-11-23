@@ -4,35 +4,13 @@
 		<RootNamespace>BD.Common8.Essentials</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.SQLitePCL.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Repositories.SQLitePCL.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
-		<ProjectReference Include="..\BD.Common8.Repositories.SQLitePCL\BD.Common8.Repositories.SQLitePCL.csproj" />
-	</ItemGroup>
-
-	<Import Project="..\Sdk\BD.Common8.Essentials.Implementation.Reference.props" />
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 </Project>

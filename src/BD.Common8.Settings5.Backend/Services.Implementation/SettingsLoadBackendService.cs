@@ -9,6 +9,11 @@ namespace BD.Common8.Settings5.Services.Implementation;
 /// </summary>
 public sealed class SettingsLoadBackendService : ISettingsLoadService
 {
+    /// <summary>
+    /// 设置项文件存放文件夹名
+    /// </summary>
+    const string DirName = "Settings";
+
     readonly SystemTextJsonSerializerContext settingsSerializerContext;
 
     /// <summary>
@@ -112,7 +117,7 @@ public sealed class SettingsLoadBackendService : ISettingsLoadService
     }
 
     /// <inheritdoc/>
-    public bool Load<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
+    public bool BackendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
         out Action<IServiceCollection>? configureServices,
         out IOptionsMonitor<TSettingsModel>? options,
         bool settingsFileDirectoryExists,
@@ -180,6 +185,15 @@ public sealed class SettingsLoadBackendService : ISettingsLoadService
         };
         options = monitor;
         return isInvalid;
+    }
+
+    /// <inheritdoc/>
+    public bool FrontendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
+        out Action<IServiceCollection>? configureServices,
+        out IOptionsMonitor<TSettingsModel>? options) where TSettingsModel : class, new()
+    {
+        throw new NotSupportedException(
+            "This function is not supported in SettingsLoadBackendService.");
     }
 
     /// <inheritdoc/>

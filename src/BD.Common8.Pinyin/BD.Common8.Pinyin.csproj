@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -15,5 +15,7 @@
 			<LinkBase>Properties\InternalsVisibleTo</LinkBase>
 		</Compile>
 	</ItemGroup>
+
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

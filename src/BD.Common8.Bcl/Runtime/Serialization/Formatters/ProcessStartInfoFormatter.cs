@@ -162,7 +162,7 @@ public readonly partial record struct ProcessStartInfoPackable
             OperatingSystem.IsWindows() ? value.Domain : default,
             value.CreateNoWindow,
             value.Arguments,
-            value.ArgumentList.ToImmutableArray(),
+            [.. value.ArgumentList],
             value.WindowStyle,
             value.WorkingDirectory);
 

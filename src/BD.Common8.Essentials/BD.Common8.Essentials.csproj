@@ -3,22 +3,14 @@
 	<PropertyGroup>
 		<RootNamespace>BD.Common8.Essentials</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Toast.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\BD.Common8.Toast\BD.Common8.Toast.csproj" />
-	</ItemGroup>
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>
