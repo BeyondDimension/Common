@@ -58,3 +58,4 @@ global using AvaButton = Avalonia.Controls.Button;
 global using AvaNotification = Avalonia.Controls.Notifications.Notification;
 global using AvaNotificationType = Avalonia.Controls.Notifications.NotificationType;
 global using AvaControls = Avalonia.Controls.Controls;
+global using AvaRectangle = Avalonia.Controls.Shapes.Rectangle;
