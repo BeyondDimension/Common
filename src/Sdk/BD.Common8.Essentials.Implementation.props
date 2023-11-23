@@ -1,0 +1,13 @@
+<Project>
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Essentials>true</UseCommon8Essentials>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseSQLitePCL>true</UseSQLitePCL>
+		<UseCommon8RepositoriesSQLitePCL>true</UseCommon8RepositoriesSQLitePCL>
+		<UseAndroidXBrowser>true</UseAndroidXBrowser>
+	</PropertyGroup>
+
+</Project>

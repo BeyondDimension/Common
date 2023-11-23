@@ -2,16 +2,14 @@
 
 	<PropertyGroup>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseSQLitePCL>true</UseSQLitePCL>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
-		<UseCommon8Repositories>true</UseCommon8Repositories>
-		<UseCommon8Security>true</UseCommon8Security>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
+
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

@@ -3,21 +3,13 @@
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
 		<RootNamespace>BD.Common8.Pinyin</RootNamespace>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Pinyin.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Pinyin\BD.Common8.Pinyin.csproj" />
-	</ItemGroup>
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

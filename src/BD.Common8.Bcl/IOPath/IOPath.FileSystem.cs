@@ -207,7 +207,7 @@ public static partial class IOPath
             bool ExistsNotEmptyDir(string path)
             {
                 var exists = Directory.Exists(path);
-                if (DesktopBridge.IsRunningAsUwp)
+                if (OSHelper.IsPublishToStore)
                 {
                     if (path == destCachePath || path == sourceCachePath)
                     {
@@ -269,7 +269,7 @@ public static partial class IOPath
                         }
                         catch
                         {
-                            if (!DesktopBridge.IsRunningAsUwp)
+                            if (!OSHelper.IsPublishToStore)
                             {
                                 // 跨卷移动失败或其他原因失败，使用旧的目录，并尝试删除创建的空文件夹
                                 DirTryDelete(path);

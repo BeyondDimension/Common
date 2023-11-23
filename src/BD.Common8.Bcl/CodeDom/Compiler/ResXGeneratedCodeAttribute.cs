@@ -8,7 +8,7 @@ namespace System.CodeDom.Compiler;
 public sealed class ResXGeneratedCodeAttribute(string relativeFilePath) : Attribute
 {
     /// <summary>
-    /// ResX 文件相对路径
+    /// ResX 文件相对路径，路径分隔符使用 Windows 分隔符，即 '/'
     /// </summary>
     public string RelativeFilePath { get; init; } = relativeFilePath;
 }

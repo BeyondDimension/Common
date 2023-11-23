@@ -4,25 +4,12 @@
 		<RootNamespace>BD.Common8.Essentials</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseAvalonia>true</UseAvalonia>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Essentials.Implementation.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Essentials.Implementation\BD.Common8.Essentials.Implementation.csproj" />
-	</ItemGroup>
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

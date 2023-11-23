@@ -102,7 +102,7 @@ static partial class ResXHelper
                 }
                 stream.WriteFormat(
 """
-		<EmbeddedResource Include="\{0}.resx">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory){0}.resx">
 			<Link>Resources\{1}.resx</Link>
 			<LogicalName>FxResources.{0}.resources</LogicalName>
 		</EmbeddedResource>
@@ -122,7 +122,7 @@ static partial class ResXHelper
             static void WriteCSharpSR(string dirPath, string projName)
             {
                 var resxFilePath = Path.Combine(dirPath, $"{projName}.resx");
-                var dirPathCSharpSR = Path.Combine(ProjPath, "src", projName, "Properties");
+                var dirPathCSharpSR = Path.Combine(ProjPath, "src", projName, "Resources");
                 var filePathCSharpSR = Path.Combine(dirPathCSharpSR, "SR.ResXGeneratedCodeAttributes.cs");
                 if (!Directory.Exists(dirPathCSharpSR)) Directory.CreateDirectory(dirPathCSharpSR);
 

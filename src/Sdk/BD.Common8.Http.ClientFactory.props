@@ -1,0 +1,9 @@
+<Project>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseFusillade>true</UseFusillade>
+		<UseSystemNetHttpJson>true</UseSystemNetHttpJson>
+	</PropertyGroup>
+
+</Project>

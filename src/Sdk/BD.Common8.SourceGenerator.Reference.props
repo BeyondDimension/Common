@@ -40,8 +40,8 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\ThrowHelper*.cs">
 			<LinkBase>_SourceReference</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Properties\SR.cs">
-			<LinkBase>_SourceReference\Properties</LinkBase>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Resources\SR.cs">
+			<LinkBase>_SourceReference\Resources</LinkBase>
 		</Compile>
 	</ItemGroup>
 </Project>

@@ -1,5 +1,11 @@
 <Project>
 
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
+		<IsGlobalUsingsCommon8Bcl>true</IsGlobalUsingsCommon8Bcl>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Nito.Comparers" />
 		<PackageReference Include="Crc32.NET" />

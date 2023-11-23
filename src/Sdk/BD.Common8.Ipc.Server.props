@@ -1,0 +1,9 @@
+<Project>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Ipc>true</UseCommon8Ipc>
+		<UseAspNetCore>true</UseAspNetCore>
+	</PropertyGroup>
+
+</Project>

@@ -185,7 +185,7 @@ public sealed class CookieFormatter :
         {
             if (value == null)
             {
-                value = new CookieCollection();
+                value = [];
             }
             else
             {

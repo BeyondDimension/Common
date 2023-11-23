@@ -1,0 +1,8 @@
+<Project>
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+	</PropertyGroup>
+
+</Project>

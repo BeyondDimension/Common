@@ -52,3 +52,4 @@ global using System.Xml.Linq;
 global using System.Xml.Serialization;
 global using System.Xml.XPath;
 global using IPAddress = System.Net.IPAddress;
+global using Path = System.IO.Path;

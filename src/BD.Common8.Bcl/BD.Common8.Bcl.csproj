@@ -4,15 +4,13 @@
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<RootNamespace>System</RootNamespace>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
-		<IsGlobalUsingsCommon8Bcl>true</IsGlobalUsingsCommon8Bcl>
+		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<Import Project="..\Sdk\BD.Common8.Bcl.Reference.props" />
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

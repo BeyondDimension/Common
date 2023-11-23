@@ -29,7 +29,7 @@ sealed class ViewModelWrapperTemplate : TemplateBase
             throw new ArgumentOutOfRangeException(nameof(modelType));
 
         Dictionary<string, Type>? dictProperties = null;
-        ViewModelWrapperGeneratedAttribute attr = new(new TypeStringImpl(modelType.ToString()));
+        ViewModelWrapperGeneratedAttribute attr = new(new TypeStringImpl(modelType));
         foreach (var item in attribute.ThrowIsNull().NamedArguments)
         {
             var value = item.Value.GetObjectValue();
@@ -178,6 +178,13 @@ sealed class ViewModelWrapperTemplate : TemplateBase
     {
         try
         {
+            var modelTypeSymbol = TypeStringImpl.GetTypeSymbol(m.AttrModel.Attribute.ModelType);
+            modelTypeSymbol.ThrowIsNull();
+
+            var modelAttrs = modelTypeSymbol.GetAttributes();
+            //var isMP2 = modelAttrs.Any(static x => x.ClassNameEquals("MemoryPack.MemoryPackableAttribute"));
+            bool isMP2 = false; // TODO
+
             WriteFileHeader(stream);
             stream.WriteNewLine();
             WriteNamespace(stream, m.Namespace);
@@ -188,24 +195,31 @@ sealed class ViewModelWrapperTemplate : TemplateBase
             if (m.Attribute.Constructor)
             {
                 stream.WriteFormat(m.Attribute.IsSealed ?
-    """
+"""
 sealed partial class {0}({2} model) : {1}
 """u8
                     :
-    """
+"""
 partial class {0}({2} model) : {1}
 """u8, m.TypeName, vmBaseType, modelType);
             }
             else
             {
                 stream.WriteFormat(m.Attribute.IsSealed ?
-    """
+"""
 sealed partial class {0} : {1}
 """u8
                     :
-    """
+"""
 partial class {0} : {1}
 """u8, m.TypeName, vmBaseType);
+            }
+            if (isMP2)
+            {
+                stream.WriteFormat(
+"""
+, IMemoryPackable<{0}>, IFixedSizeMemoryPackable
+"""u8, m.TypeName);
             }
             stream.WriteNewLine();
             stream.WriteCurlyBracketLeft(); // {
@@ -262,14 +276,14 @@ partial class {0} : {1}
 
             if (m.AttrModel.DictProperties != null)
             {
-                var modelProperties = m.NamedTypeSymbol.GetMembers().OfType<IPropertySymbol>().ToImmutableArray();
+                var vmProperties = m.NamedTypeSymbol.GetMembers().OfType<IPropertySymbol>().ToImmutableArray();
                 foreach (var p in m.AttrModel.DictProperties)
                 {
                     stream.WriteNewLine();
 
                     // 如果有手动属性，例如需要标注验证的特性，则生成 get/set 函数，否则将生成属性
                     // 参考 https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/generators/observableproperty#requesting-property-validation
-                    if (modelProperties.Any(x => x.Name == p.Key))
+                    if (vmProperties.Any(x => x.Name == p.Key))
                     {
                         stream.WriteFormat(
 """
@@ -389,8 +403,67 @@ partial class {0} : {1}
                 }
             }
 
+            // if 重写 ToString
+            var methods = modelTypeSymbol.GetMembers().OfType<IMethodSymbol>();
+
+            var isOverrideToString = methods.Any(static x => x.IsObjectToString());
+            if (isOverrideToString) // 如果模型类重写了 ToString，那么视图模型也要重写
+            {
+                if (!m.NamedTypeSymbol.GetMembers().OfType<IMethodSymbol>().Any(static x => x.IsObjectToString())) // 视图模型没有手写的重写 ToString
+                {
+                    stream.WriteNewLine();
+                    stream.Write(
+"""
+
+    /// <inheritdoc />
+    public override string ToString() => Model.ToString();
+"""u8);
+                }
+            }
+
+            if (isMP2)
+            {
+                stream.WriteNewLine();
+                stream.Write(
+"""
+    static SizePositionModel()
+    {
+        global::MemoryPack.MemoryPackFormatterProvider.Register<SizePositionModel>();
+    }
+
+    [global::MemoryPack.Internal.Preserve]
+    static int global::MemoryPack.IFixedSizeMemoryPackable.Size => 
+
+    [global::MemoryPack.Internal.Preserve]
+    static void IMemoryPackFormatterRegister.RegisterFormatter()
+    {
+        if (!global::MemoryPack.MemoryPackFormatterProvider.IsRegistered<SizePositionModel>())
+        {
+            global::MemoryPack.MemoryPackFormatterProvider.Register(new global::MemoryPack.Formatters.MemoryPackableFormatter<SizePositionModel>());
+        }
+        if (!global::MemoryPack.MemoryPackFormatterProvider.IsRegistered<SizePositionModel[]>())
+        {
+            global::MemoryPack.MemoryPackFormatterProvider.Register(new global::MemoryPack.Formatters.ArrayFormatter<SizePositionModel>());
+        }
+    }
+
+    [global::MemoryPack.Internal.Preserve]
+    static void IMemoryPackable<SizePositionModel>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SizePositionModel? value)
+    {
+    }
+
+    [global::MemoryPack.Internal.Preserve]
+    static void IMemoryPackable<SizePositionModel>.Deserialize(ref MemoryPackReader reader, scoped ref SizePositionModel? value)
+    {
+    }
+"""u8);
+            }
+
+            // IMemoryPackable<T>, IFixedSizeMemoryPackable
+
             #endregion
 
+            stream.WriteNewLine();
             stream.WriteCurlyBracketRight(); // }
             stream.WriteNewLine();
         }
