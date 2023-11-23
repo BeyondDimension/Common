@@ -163,11 +163,14 @@ internal sealed class TodoServiceImpl : ITodoService, IEndpointRouteMapGroup
         var builder = endpoints.MapGroup("/ITodoService");
         builder.MapPost("/All", ([FromServices] ITodoService s) => s.All());
 
+        // 通过路由访问 连接到 TestHub的 Client 并发送消息
         builder.MapGet("/TestHub", async ([FromServices] IHubContext<TestHub> c) =>
         {
             await c.Clients.All.SendAsync("ServerReceivedMsg", "接收路由请求消息");
             return "hello test hub";
         });
+
+        // 暂时注释掉这些路由 (格式不正确,有FromRoute特性但是 route 中并不包含这些参数会导致启动异常
         //builder.MapPost("/GetById/{id}", ([FromServices] ITodoService s, [FromRoute] int id) => s.GetById(id));
         //builder.MapPost("/SimpleTypes", ([FromServices] ITodoService s, [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2, [FromRoute] char p3, [FromRoute] DateOnly p4, [FromRoute] DateTime p5, [FromRoute] DateTimeOffset p6, [FromRoute] decimal p7, [FromRoute] double p8, [FromRoute] System.Reflection.ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11, [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14, [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17, [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20, [FromRoute] Version p21) => s.SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21));
         //builder.MapPost("/BodyTest", ([FromServices] ITodoService s, [FromBody] ITodoService.Todo todo) => s.BodyTest(todo));
