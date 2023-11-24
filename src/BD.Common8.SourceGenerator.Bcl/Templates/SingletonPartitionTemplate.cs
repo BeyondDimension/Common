@@ -2,17 +2,21 @@ namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 #pragma warning disable SA1600 // Elements should be documented
 
-sealed class SingletonPartitionTemplate : TemplateBase
+[Generator]
+public sealed class SingletonPartitionTemplate :
+    GeneratedAttributeTemplateBase<
+        SingletonPartitionGeneratedAttribute,
+        SingletonPartitionTemplate.SourceModel>
 {
-    const string Id = "SingletonPartition";
+    protected override string Id =>
+        "SingletonPartition";
 
-    public const string AttrName =
-        $"System.Runtime.CompilerServices.{Id}GeneratedAttribute";
+    protected override string AttrName =>
+        "System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute";
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static SingletonPartitionGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override SingletonPartitionGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(static x => x.ClassNameEquals(AttrName));
+        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
 
         SingletonPartitionGeneratedAttribute result = new();
         foreach (var item in attribute.ThrowIsNull().NamedArguments)
@@ -41,7 +45,7 @@ sealed class SingletonPartitionTemplate : TemplateBase
     /// <summary>
     /// 从源码中读取并分析生成器所需要的模型
     /// </summary>
-    internal readonly record struct SourceModel
+    public readonly record struct SourceModel : ISourceModel
     {
         /// <summary>
         /// 命名空间
@@ -57,97 +61,46 @@ sealed class SingletonPartitionTemplate : TemplateBase
         public required SingletonPartitionGeneratedAttribute Attribute { get; init; }
     }
 
-    public static void Execute(SourceProductionContext spc, GeneratorAttributeSyntaxContext m)
+    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
     {
-        if (m.TargetSymbol is not INamedTypeSymbol symbol)
-            return;
-
-        var @namespace = symbol.ContainingNamespace.ToDisplayString();
-        var typeName = symbol.Name;
-
-        var attr = GetAttribute(symbol.GetAttributes());
-
         SourceModel model = new()
         {
-            Namespace = @namespace,
-            TypeName = typeName,
-            Attribute = attr,
+            Namespace = args.@namespace,
+            TypeName = args.typeName,
+            Attribute = args.attr,
         };
-        Execute(spc, model);
+        return model;
     }
 
-    /// <summary>
-    /// 源生成器执行逻辑
-    /// </summary>
-    /// <param name="spc"></param>
-    /// <param name="m"></param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static void Execute(SourceProductionContext spc, SourceModel m)
+    protected override void WriteFile(Stream stream, SourceModel m)
     {
-        SourceText sourceText;
-        try
-        {
-            using var memoryStream = new MemoryStream();
-            WriteFile(memoryStream, m);
-            sourceText = SourceText.From(memoryStream, canBeEmbedded: true);
-#if DEBUG
-            var sourceTextString = sourceText.ToString();
-            Console.WriteLine();
-            Console.WriteLine(sourceTextString);
-#endif
-        }
-        catch (Exception ex)
-        {
-            StringBuilder builder = new();
-            builder.Append("Namespace: ");
-            builder.AppendLine(m.Namespace);
-            builder.Append("TypeName: ");
-            builder.AppendLine(m.TypeName);
-            builder.AppendLine();
-            builder.AppendLine(ex.ToString());
-            sourceText = builder.ToSourceText();
-        }
-        spc.AddSource($"{m.Namespace}.{m.TypeName}.{Id}.g.cs", sourceText);
-    }
-
-    /// <summary>
-    /// 写入源码
-    /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="m"></param>
-    public static void WriteFile(
-        Stream stream,
-        SourceModel m)
-    {
-        try
-        {
-            WriteFileHeader(stream);
-            stream.WriteNewLine();
-            WriteNamespace(stream, m.Namespace);
-            stream.WriteNewLine();
-            stream.WriteFormat(m.Attribute.IsSealed ?
+        WriteFileHeader(stream);
+        stream.WriteNewLine();
+        WriteNamespace(stream, m.Namespace);
+        stream.WriteNewLine();
+        stream.WriteFormat(m.Attribute.IsSealed ?
 """
 sealed partial class {0}
 """u8
-                :
+            :
 """
 partial class {0}
 """u8, m.TypeName);
-            stream.WriteNewLine();
-            stream.WriteCurlyBracketLeft(); // {
-            stream.WriteNewLine();
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketLeft(); // {
+        stream.WriteNewLine();
 
-            #region Body
+        #region Body
 
-            var currentPropertyName =
-                string.IsNullOrWhiteSpace(m.Attribute.PropertyName) ?
-                "Current" :
-                m.Attribute.PropertyName;
-            var summary =
-                string.IsNullOrWhiteSpace(m.Attribute.Summary) ?
-                "获取当前单例服务" :
-                m.Attribute.Summary;
-            stream.WriteFormat(
+        var currentPropertyName =
+            string.IsNullOrWhiteSpace(m.Attribute.PropertyName) ?
+            "Current" :
+            m.Attribute.PropertyName;
+        var summary =
+            string.IsNullOrWhiteSpace(m.Attribute.Summary) ?
+            "获取当前单例服务" :
+            m.Attribute.Summary;
+        stream.WriteFormat(
 """
     static {0}? {1};
 
@@ -156,25 +109,21 @@ partial class {0}
     /// </summary>
     public static {0} {2} => {1} ??= new();
 """u8, m.TypeName, GetRandomFieldName(), currentPropertyName, summary);
-            stream.WriteNewLine();
+        stream.WriteNewLine();
 
-            if (m.Attribute.Constructor)
-            {
-                stream.WriteNewLine();
-                stream.WriteFormat(
+        if (m.Attribute.Constructor)
+        {
+            stream.WriteNewLine();
+            stream.WriteFormat(
 """
     {0}() { }
 """u8, m.TypeName);
-            }
-
-            #endregion
-
-            stream.WriteNewLine();
-            stream.WriteCurlyBracketRight(); // }
-            stream.WriteNewLine();
         }
-        catch (OperationCanceledException)
-        {
-        }
+
+        #endregion
+
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketRight(); // }
+        stream.WriteNewLine();
     }
 }

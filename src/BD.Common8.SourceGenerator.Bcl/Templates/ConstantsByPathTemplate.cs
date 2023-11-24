@@ -3,17 +3,21 @@ namespace BD.Common8.SourceGenerator.Bcl.Templates;
 #pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
 
-sealed class ConstantsByPathTemplate : TemplateBase
+[Generator]
+public sealed class ConstantsByPathTemplate :
+    GeneratedAttributeTemplateBase<
+        ConstantsByPathGeneratedAttribute,
+        ConstantsByPathTemplate.SourceModel>
 {
-    const string Id = "ConstantsByPath";
+    protected override string Id =>
+        "ConstantsByPath";
 
-    public const string AttrName =
-        $"System.Runtime.CompilerServices.{Id}GeneratedAttribute";
+    protected override string AttrName =>
+        "System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute";
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static ConstantsByPathGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override ConstantsByPathGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(static x => x.ClassNameEquals(AttrName));
+        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
         attribute.ThrowIsNull();
 
         string? relativePath = null, valuePrefix = null, namePrefix = null;
@@ -41,7 +45,7 @@ sealed class ConstantsByPathTemplate : TemplateBase
     /// <summary>
     /// 从源码中读取并分析生成器所需要的模型
     /// </summary>
-    internal readonly record struct SourceModel
+    public readonly record struct SourceModel : ISourceModel
     {
         /// <summary>
         /// 命名空间
@@ -62,179 +66,129 @@ sealed class ConstantsByPathTemplate : TemplateBase
         public required ConstantsByPathGeneratedAttribute Attribute { get; init; }
     }
 
-    public static void Execute(SourceProductionContext spc, GeneratorAttributeSyntaxContext m)
+    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
     {
-        if (m.TargetSymbol is not INamedTypeSymbol symbol)
-            return;
-
-        var @namespace = symbol.ContainingNamespace.ToDisplayString();
-        var typeName = symbol.Name;
-
-        var attr = GetAttribute(symbol.GetAttributes());
-        var path = Path.GetFullPath(Path.Combine([Path.GetDirectoryName(m.SemanticModel.SyntaxTree.FilePath), .. attr.RelativePath.Split('\\')]));
+        var dirPath = Path.GetFullPath(
+            Path.Combine(
+                [Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath),
+                ..
+                args.attr.RelativePath.Split('\\')]));
 
         SourceModel model = new()
         {
-            Namespace = @namespace,
-            TypeName = typeName,
-            Attribute = attr,
-            DirPath = path,
+            Namespace = args.@namespace,
+            TypeName = args.typeName,
+            Attribute = args.attr,
+            DirPath = dirPath,
         };
-        Execute(spc, model);
+        return model;
     }
 
-    /// <summary>
-    /// 源生成器执行逻辑
-    /// </summary>
-    /// <param name="spc"></param>
-    /// <param name="m"></param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static void Execute(SourceProductionContext spc, SourceModel m)
+    protected override void WriteFile(Stream stream, SourceModel m)
     {
-        SourceText sourceText;
-        try
-        {
-            using var memoryStream = new MemoryStream();
-            WriteFile(memoryStream, m);
-            sourceText = SourceText.From(memoryStream, canBeEmbedded: true);
-#if DEBUG
-            var sourceTextString = sourceText.ToString();
-            Console.WriteLine();
-            Console.WriteLine(sourceTextString);
-#endif
-        }
-        catch (Exception ex)
-        {
-            StringBuilder builder = new();
-            builder.Append("Namespace: ");
-            builder.AppendLine(m.Namespace);
-            builder.Append("TypeName: ");
-            builder.AppendLine(m.TypeName);
-            builder.AppendLine();
-            builder.AppendLine(ex.ToString());
-            sourceText = builder.ToSourceText();
-        }
-        spc.AddSource($"{m.Namespace}.{m.TypeName}.{Id}.g.cs", sourceText);
-    }
-
-    /// <summary>
-    /// 写入源码
-    /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="m"></param>
-    public static void WriteFile(
-        Stream stream,
-        SourceModel m)
-    {
-        try
-        {
-            WriteFileHeader(stream);
-            stream.WriteNewLine();
-            WriteNamespace(stream, m.Namespace);
-            stream.WriteNewLine();
-            stream.WriteFormat(
+        WriteFileHeader(stream);
+        stream.WriteNewLine();
+        WriteNamespace(stream, m.Namespace);
+        stream.WriteNewLine();
+        stream.WriteFormat(
 """
 partial class {0}
 """u8, m.TypeName);
-            stream.WriteNewLine();
-            stream.WriteCurlyBracketLeft(); // {
-            stream.WriteNewLine();
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketLeft(); // {
+        stream.WriteNewLine();
 
-            #region Body
+        #region Body
 
-            EachDirectories(m.DirPath);
+        EachDirectories(m.DirPath);
 
-            void EachFiles(params string[] files)
+        void EachFiles(params string[] files)
+        {
+            foreach (var file in files)
             {
-                foreach (var file in files)
-                {
-                    var relativePathStr = file.TrimStart(m.DirPath);
-                    var relativePath = relativePathStr.ToCharArray();
+                var relativePathStr = file.TrimStart(m.DirPath);
+                var relativePath = relativePathStr.ToCharArray();
 
-                    stream.WriteFormat(
+                stream.WriteFormat(
 """
     public const string {0}
 """u8, m.Attribute.NamePrefix);
-                    bool upper = true;
-                    for (int i = 0; i < relativePath.Length; i++)
+                bool upper = true;
+                for (int i = 0; i < relativePath.Length; i++)
+                {
+                    var item = relativePath[i];
+                    if (i == 0 && item == Path.DirectorySeparatorChar)
+                        continue;
+
+                    if (item == Path.DirectorySeparatorChar)
                     {
-                        var item = relativePath[i];
-                        if (i == 0 && item == Path.DirectorySeparatorChar)
-                            continue;
-
-                        if (item == Path.DirectorySeparatorChar)
-                        {
-                            upper = true;
-                            stream.Write("_"u8);
-                            continue;
-                        }
-
-                        if (item == '-' || item == '_')
-                        {
-                            upper = true;
-                            continue;
-                        }
-
-                        if (item == '.')
-                            break; // 跳过扩展名，不允许文件名相同扩展名不同的资源
-
-                        if (upper)
-                        {
-                            if (!char.IsUpper(item))
-                            {
-                                relativePath[i] = item = char.ToUpperInvariant(item);
-                            }
-                            upper = false;
-                        }
-                        stream.Write(Encoding.UTF8.GetBytes(relativePath, i, 1));
+                        upper = true;
+                        stream.Write("_"u8);
+                        continue;
                     }
 
-                    stream.Write(
+                    if (item == '-' || item == '_')
+                    {
+                        upper = true;
+                        continue;
+                    }
+
+                    if (item == '.')
+                        break; // 跳过扩展名，不允许文件名相同扩展名不同的资源
+
+                    if (upper)
+                    {
+                        if (!char.IsUpper(item))
+                        {
+                            relativePath[i] = item = char.ToUpperInvariant(item);
+                        }
+                        upper = false;
+                    }
+                    stream.Write(Encoding.UTF8.GetBytes(relativePath, i, 1));
+                }
+
+                stream.Write(
 """
  = $"{
 """u8);
-                    stream.WriteUtf16StrToUtf8OrCustom(string.IsNullOrWhiteSpace(m.Attribute.ValuePrefix) ? "\"\"" : m.Attribute.ValuePrefix!);
+                stream.WriteUtf16StrToUtf8OrCustom(string.IsNullOrWhiteSpace(m.Attribute.ValuePrefix) ? "\"\"" : m.Attribute.ValuePrefix!);
 
-                    stream.Write(
+                stream.Write(
 """
 }
 """u8);
-                    relativePath = relativePathStr.ToCharArray();
-                    for (int i = 0; i < relativePath.Length; i++)
-                    {
-                        var item = relativePath[i];
-                        if (i == 0 && item == Path.DirectorySeparatorChar)
-                            continue;
+                relativePath = relativePathStr.ToCharArray();
+                for (int i = 0; i < relativePath.Length; i++)
+                {
+                    var item = relativePath[i];
+                    if (i == 0 && item == Path.DirectorySeparatorChar)
+                        continue;
 
-                        if (item == Path.DirectorySeparatorChar && Path.DirectorySeparatorChar != '/')
-                            relativePath[i] = item = '/';
+                    if (item == Path.DirectorySeparatorChar && Path.DirectorySeparatorChar != '/')
+                        relativePath[i] = item = '/';
 
-                        stream.Write(Encoding.UTF8.GetBytes(relativePath, i, 1));
-                    }
+                    stream.Write(Encoding.UTF8.GetBytes(relativePath, i, 1));
+                }
 
-                    stream.Write(
+                stream.Write(
 """
 ";
 """u8);
-                    stream.WriteNewLine();
-                }
+                stream.WriteNewLine();
             }
-            void EachDirectories(params string[] directories)
-            {
-                foreach (var dir in directories)
-                {
-                    EachFiles(Directory.GetFiles(dir));
-                    EachDirectories(Directory.GetDirectories(dir));
-                }
-            }
-
-            #endregion
-
-            stream.WriteCurlyBracketRight(); // }
-            stream.WriteNewLine();
         }
-        catch (OperationCanceledException)
+        void EachDirectories(params string[] directories)
         {
+            foreach (var dir in directories)
+            {
+                EachFiles(Directory.GetFiles(dir));
+                EachDirectories(Directory.GetDirectories(dir));
+            }
         }
+
+        #endregion
+
+        stream.WriteCurlyBracketRight(); // }
+        stream.WriteNewLine();
     }
 }

@@ -5,33 +5,33 @@
 
 using BD.Common8.SourceGenerator.Bcl.Test;
 
-Console.WriteLine(typeof(TodoService).FullName);
+//Console.WriteLine(typeof(TodoService).FullName);
 
-var s1 = TodoService.Current;
-var s2 = TodoService.Current;
-Console.WriteLine(s2.GetHashCode());
-if (s1 != s2)
-    throw new ArgumentOutOfRangeException(nameof(s2));
+//var s1 = TodoService.Current;
+//var s2 = TodoService.Current;
+//Console.WriteLine(s2.GetHashCode());
+//if (s1 != s2)
+//    throw new ArgumentOutOfRangeException(nameof(s2));
 
-var ss = await Task2.InParallel(
-    Enumerable.Range(0, 15).Select(static _ => Task.Run(() =>
-    {
-        var result = TodoService.Current;
-        Console.WriteLine(
-            $"ManagedThreadId: {Environment.CurrentManagedThreadId}, s: {result.GetHashCode()}");
-        return result;
-    })));
-foreach (var item in ss)
-{
-    if (s1 != item)
-        throw new ArgumentOutOfRangeException(nameof(item));
-}
+//var ss = await Task2.InParallel(
+//    Enumerable.Range(0, 15).Select(static _ => Task.Run(() =>
+//    {
+//        var result = TodoService.Current;
+//        Console.WriteLine(
+//            $"ManagedThreadId: {Environment.CurrentManagedThreadId}, s: {result.GetHashCode()}");
+//        return result;
+//    })));
+//foreach (var item in ss)
+//{
+//    if (s1 != item)
+//        throw new ArgumentOutOfRangeException(nameof(item));
+//}
 
-var m = new TodoModel();
-var d = m.D2;
-var vm = new TodoViewModel(m);
+//var m = new TodoModel();
+//var d = m.D2;
+//var vm = new TodoViewModel(m);
 
-var c = vm.C;
+//var c = vm.C;
 
 Console.WriteLine("Wait ReadLine Exit!");
 Console.ReadLine();
@@ -47,14 +47,38 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
     [MP2Obj(MP2SerializeLayout.Sequential)]
     public sealed partial record class TodoModel
     {
-        public bool C { get; set; }
+        public Dictionary<TestEnum, Dictionary<TestEnum, Dictionary<TestEnum, string>>>? C { get; set; }
 
         public string D { get; set; } = "";
 
         //[ObservableProperty]
         public string? D2;
 
+        public int B { get; set; } = DefaultB;
+
+        public const int DefaultB = 5;
+
+        public List<double>? DB { get; set; }
+
+        public List<double> DB2 { get; set; } = [];
+
+        public HashSet<string> HS { get; set; } = [];
+
+        public HashSet<string?> HS2 { get; set; } = [];
+
+        public HashSet<string?> HS3 { get; set; } = DefaultHS3;
+
+        public static readonly HashSet<string?> DefaultHS3 = ["aaa"];
+
+        public Dictionary<TestEnum, string>? TE { get; set; }
+
+        public Dictionary<TestEnum, int> TE2 { get; set; } = [];
+
         public override string ToString() => $"C: {C}, D: {D}";
+    }
+
+    public enum TestEnum
+    {
     }
 
     [ViewModelWrapperGenerated(typeof(TodoModel),
@@ -67,5 +91,10 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
         /// <inheritdoc cref="TodoModel.D"/>
         [MinLength(2)]
         public string D { get => _D(); set => _D(value); }
+    }
+
+    [SettingsPropertyGenerated(typeof(TodoModel))]
+    public static partial class TodoSettings
+    {
     }
 }

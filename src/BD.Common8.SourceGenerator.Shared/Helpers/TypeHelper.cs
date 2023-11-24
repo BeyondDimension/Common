@@ -81,4 +81,13 @@ public static partial class TypeHelper
     public static bool IsObjectToString(this IMethodSymbol methodSymbol) => methodSymbol.Name == nameof(ToString) &&
                     methodSymbol.ReturnType.Name == "String" &&
                     methodSymbol.Parameters.Length == 0;
+
+    /// <summary>
+    /// 判断该属性是否为 record 生成的属性
+    /// </summary>
+    /// <param name="propertySymbol"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsRecordGeneratorProperty(this IPropertySymbol propertySymbol)
+        => propertySymbol.Name == "EqualityContract" && propertySymbol.Type.Name == "Type";
 }

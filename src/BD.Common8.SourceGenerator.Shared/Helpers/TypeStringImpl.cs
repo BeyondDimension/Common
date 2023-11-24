@@ -6,6 +6,7 @@ namespace BD.Common8.SourceGenerator.Helpers;
 /// 包装 <see cref="string"/> 或 <see cref="ITypeSymbol"/> 到 <see cref="Type"/> 的类型转换
 /// </summary>
 /// <param name="fullName"></param>
+[DebuggerDisplay("{FullName,nq}")]
 public sealed class TypeStringImpl(string fullName) : Type
 {
     readonly ITypeSymbol? typeSymbol;
@@ -16,11 +17,11 @@ public sealed class TypeStringImpl(string fullName) : Type
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Type? Parse(string? fullName) =>
+    public static TypeStringImpl? Parse(string? fullName) =>
         string.IsNullOrWhiteSpace(fullName) ? null : new TypeStringImpl(fullName!);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Type Parse(ITypeSymbol typeSymbol) =>
+    public static TypeStringImpl Parse(ITypeSymbol typeSymbol) =>
         new TypeStringImpl(typeSymbol);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -29,6 +30,90 @@ public sealed class TypeStringImpl(string fullName) : Type
         if (type is TypeStringImpl typeStringImpl)
             return typeStringImpl.typeSymbol;
         return null;
+    }
+
+    public string DictionaryKey
+    {
+        get
+        {
+            try
+            {
+                var name = Name;
+                var indexL = name.IndexOf('<');
+                var indexR = name.IndexOf(',');
+                var result = name.Substring(indexL + 1, indexR - indexL - 1);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+    }
+
+    public string DictionaryValue
+    {
+        get
+        {
+            try
+            {
+                var name = Name;
+                var indexL = name.IndexOf(',') + 1;
+                for (int i = 0; i < byte.MaxValue; i++)
+                {
+                    if (name[indexL] == ' ')
+                    {
+                        indexL += 1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                var indexR = name.Length - 1;
+                if (name[indexR] == '?')
+                {
+                    indexR -= 1;
+                }
+                if (name[indexR] == '>')
+                {
+                    indexR -= 1;
+                }
+                var result = name[indexL..(indexR + 1)];
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+    }
+
+    public string GenericT
+    {
+        get
+        {
+            try
+            {
+                var name = Name;
+                var indexR = name.IndexOf('<') + 1;
+                var len = name.Length;
+                if (name[len - 1] == '?')
+                {
+                    len -= 1;
+                }
+                if (name[len - 1] == '>')
+                {
+                    len -= 1;
+                }
+                var result = name[indexR..len];
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
     }
 
     public override Assembly Assembly => throw new NotImplementedException();
@@ -55,7 +140,39 @@ public sealed class TypeStringImpl(string fullName) : Type
 
     public override Type UnderlyingSystemType => throw new NotImplementedException();
 
-    public override string Name => FullName.Split(['.'], StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+    string? name;
+
+    static string GetNameByFullName(string fullName)
+    {
+        try
+        {
+            var split = fullName.Split(['<', '>', ',']);
+            StringBuilder builder = new();
+            var index = 0;
+            for (int i = 0; i < split.Length; i++)
+            {
+                var item = split[i];
+                var itemSplitLast = item.Trim().Split(['.'],
+                    StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+                if (item.FirstOrDefault() == ' ')
+                    builder.Append(' ');
+                builder.Append(itemSplitLast);
+                index += item.Length;
+                if (i != 0)
+                    index += 1;
+                if (index < fullName.Length)
+                    builder.Append(fullName[index]);
+            }
+            var name = builder.ToString();
+            return name;
+        }
+        catch
+        {
+            return fullName;
+        }
+    }
+
+    public override string Name => name ??= GetNameByFullName(FullName);
 
     public override ConstructorInfo[] GetConstructors(BindingFlags bindingAttr) => throw new NotImplementedException();
 
@@ -111,5 +228,5 @@ public sealed class TypeStringImpl(string fullName) : Type
 
     protected override bool IsPrimitiveImpl() => throw new NotImplementedException();
 
-    public override string ToString() => FullName;
+    public override string ToString() => Name;
 }

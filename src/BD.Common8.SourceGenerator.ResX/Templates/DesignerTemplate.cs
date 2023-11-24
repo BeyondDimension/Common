@@ -1,20 +1,46 @@
+using static BD.Common8.SourceGenerator.ResX.Constants;
+
 namespace BD.Common8.SourceGenerator.ResX.Templates;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
 /// Designer.cs 源文件模板
 /// </summary>
-sealed class DesignerTemplate : TemplateBase
+[Generator]
+public sealed class DesignerTemplate :
+    GeneratedAttributeTemplateBase<
+        ResXGeneratedCodeAttribute,
+        DesignerTemplate.SourceModel>
 {
-    /// <summary>
-    /// Designer
-    /// </summary>
-    internal const string Id = "Designer";
+    protected override string Id =>
+        "ResXGeneratedCode";
+
+    protected override string AttrName =>
+        "System.CodeDom.Compiler.ResXGeneratedCodeAttribute";
+
+    protected override string FileId => "Designer";
+
+    protected override ResXGeneratedCodeAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    {
+        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
+
+        var relativeFilePath = attribute.ThrowIsNull().ConstructorArguments.First().Value!.ToString();
+
+        return new(relativeFilePath);
+    }
 
     /// <summary>
     /// 从源码中读取并分析生成器所需要的模型
     /// </summary>
-    internal readonly record struct SourceModel
+    public readonly record struct SourceModel : ISourceModel
     {
+        /// <inheritdoc cref="INamedTypeSymbol"/>
+        public required INamedTypeSymbol NamedTypeSymbol { get; init; }
+
+        /// <inheritdoc cref="ResXGeneratedCodeAttribute"/>
+        public required ResXGeneratedCodeAttribute Attribute { get; init; }
+
         /// <summary>
         /// 源码路径
         /// </summary>
@@ -44,6 +70,29 @@ sealed class DesignerTemplate : TemplateBase
         /// 生成的类型是否为 <see langword="public"/>
         /// </summary>
         public required bool IsPublic { get; init; }
+    }
+
+    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    {
+        var path = Path.GetFullPath(Path.Combine(
+            [
+                Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath),
+                ..
+                args.attr.RelativeFilePath.Split('\\')
+            ]));
+
+        SourceModel model = new()
+        {
+            NamedTypeSymbol = args.symbol,
+            Attribute = args.attr,
+            Path = path,
+            Text = null,
+            Namespace = args.@namespace,
+            TypeName = args.typeName,
+            ResourceBaseName = GetDefaultResourceBaseName(path),
+            IsPublic = false,
+        };
+        return model;
     }
 
     readonly record struct RootDataXmlElement
@@ -141,22 +190,13 @@ sealed class DesignerTemplate : TemplateBase
         }
     }
 
-    /// <summary>
-    /// 写入 Designer.cs 文件
-    /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="m"></param>
-    public static void WriteFile(
-        Stream stream,
-        SourceModel m)
+    protected override void WriteFile(Stream stream, SourceModel m)
     {
-        try
-        {
-            WriteFileHeader(stream);
-            stream.WriteNewLine();
-            WriteNamespace(stream, m.Namespace);
-            stream.WriteNewLine();
-            stream.Write(
+        WriteFileHeader(stream);
+        stream.WriteNewLine();
+        WriteNamespace(stream, m.Namespace);
+        stream.WriteNewLine();
+        stream.Write(
 """
 /// <summary>
 ///   一个强类型的资源类，用于查找本地化的字符串等。
@@ -164,42 +204,42 @@ sealed class DesignerTemplate : TemplateBase
 // 此类是由 BD.Common8.ResXSourceGenerator 通过源生成器自动生成的。
 // 若要添加或移除成员，请编辑 .ResX 文件，然后保存文件以重新运行源生成器
 """u8);
-            stream.WriteNewLine();
-            stream.WriteFormat(
+        stream.WriteNewLine();
+        stream.WriteFormat(
 """
 [global::System.CodeDom.Compiler.GeneratedCodeAttribute("BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate", "{0}")]
 """u8, FileVersion);
-            stream.WriteNewLine();
-            stream.Write(
+        stream.WriteNewLine();
+        stream.Write(
 """
 [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
 """u8);
-            stream.WriteNewLine();
-            if (m.IsPublic)
-            {
-                stream.WriteFormat(
+        stream.WriteNewLine();
+        if (m.IsPublic)
+        {
+            stream.WriteFormat(
 """
 public static partial class {0}
 """u8, m.TypeName);
-            }
-            else
-            {
-                stream.WriteFormat(
+        }
+        else
+        {
+            stream.WriteFormat(
 """
 static partial class {0}
 """u8, m.TypeName);
-            }
-            stream.WriteNewLine();
-            stream.WriteCurlyBracketLeft(); // {
-            stream.WriteNewLine();
-            stream.WriteFormat("""
+        }
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketLeft(); // {
+        stream.WriteNewLine();
+        stream.WriteFormat("""
     const string baseName = "{0}";
 
     static global::System.Reflection.Assembly ResourceAssembly => typeof({1}).Assembly;
 """u8, m.ResourceBaseName, m.TypeName);
-            stream.WriteNewLine();
-            stream.Write(
+        stream.WriteNewLine();
+        stream.Write(
 """
     static global::System.Resources.ResourceManager? resourceMan;
 
@@ -233,27 +273,23 @@ static partial class {0}
         set => resourceCulture = value;
     }
 """u8);
-            stream.WriteNewLine();
-            stream.WriteNewLine();
+        stream.WriteNewLine();
+        stream.WriteNewLine();
 
-            var elements = GetXmlElementsByResXFilePath(m.Path);
-            var items = DeserializeResXDataElements(elements);
-            foreach (var item in items)
-            {
-                item.WriteSummary(stream);
-                stream.WriteFormat(
+        var elements = GetXmlElementsByResXFilePath(m.Path);
+        var items = DeserializeResXDataElements(elements);
+        foreach (var item in items)
+        {
+            item.WriteSummary(stream);
+            stream.WriteFormat(
 """
     public static string {0} => ResourceManager.GetString("{0}", resourceCulture) ?? "";
 """u8, item.Name);
-                stream.WriteNewLine();
-                stream.WriteNewLine();
-            }
-
-            stream.WriteCurlyBracketRight(); // }
+            stream.WriteNewLine();
             stream.WriteNewLine();
         }
-        catch (OperationCanceledException)
-        {
-        }
+
+        stream.WriteCurlyBracketRight(); // }
+        stream.WriteNewLine();
     }
 }

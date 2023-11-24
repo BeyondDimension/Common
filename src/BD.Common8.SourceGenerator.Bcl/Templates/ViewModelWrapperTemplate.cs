@@ -2,14 +2,19 @@ namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 #pragma warning disable SA1600 // Elements should be documented
 
-sealed class ViewModelWrapperTemplate : TemplateBase
+[Generator]
+public sealed class ViewModelWrapperTemplate :
+    GeneratedAttributeTemplateBase<
+        ViewModelWrapperTemplate.AttributeModel,
+        ViewModelWrapperTemplate.SourceModel>
 {
-    const string Id = "ViewModelWrapper";
+    protected override string Id =>
+        "ViewModelWrapper";
 
-    public const string AttrName =
-        $"System.Runtime.CompilerServices.{Id}GeneratedAttribute";
+    protected override string AttrName =>
+        "System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute";
 
-    internal readonly record struct AttributeModel
+    public readonly record struct AttributeModel
     {
         /// <inheritdoc cref="ViewModelWrapperGeneratedAttribute.Properties"/>
         public Dictionary<string, Type>? DictProperties { get; init; }
@@ -18,10 +23,9 @@ sealed class ViewModelWrapperTemplate : TemplateBase
         public required ViewModelWrapperGeneratedAttribute Attribute { get; init; }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static AttributeModel GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override AttributeModel GetAttribute(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(static x => x.ClassNameEquals(AttrName));
+        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
         attribute.ThrowIsNull();
 
         if (attribute.ConstructorArguments.FirstOrDefault().GetObjectValue()
@@ -76,7 +80,7 @@ sealed class ViewModelWrapperTemplate : TemplateBase
     /// <summary>
     /// 从源码中读取并分析生成器所需要的模型
     /// </summary>
-    internal readonly record struct SourceModel
+    public readonly record struct SourceModel : ISourceModel
     {
         /// <inheritdoc cref="INamedTypeSymbol"/>
         public required INamedTypeSymbol NamedTypeSymbol { get; init; }
@@ -96,159 +100,122 @@ sealed class ViewModelWrapperTemplate : TemplateBase
 
         /// <inheritdoc cref="ViewModelWrapperGeneratedAttribute"/>
         public ViewModelWrapperGeneratedAttribute Attribute => AttrModel.Attribute;
+
+        /// <inheritdoc/>
+        AttributeModel ISourceModel.Attribute => AttrModel;
     }
 
-    public static void Execute(SourceProductionContext spc, GeneratorAttributeSyntaxContext m)
+    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
     {
-        if (m.TargetSymbol is not INamedTypeSymbol symbol)
-            return;
-
-        var @namespace = symbol.ContainingNamespace.ToDisplayString();
-        var typeName = symbol.Name;
-
-        var attr = GetAttribute(symbol.GetAttributes());
-
         SourceModel model = new()
         {
-            NamedTypeSymbol = symbol,
-            Namespace = @namespace,
-            TypeName = typeName,
-            AttrModel = attr,
+            NamedTypeSymbol = args.symbol,
+            Namespace = args.@namespace,
+            TypeName = args.typeName,
+            AttrModel = args.attr,
         };
-        Execute(spc, model);
-    }
-
-    /// <summary>
-    /// 源生成器执行逻辑
-    /// </summary>
-    /// <param name="spc"></param>
-    /// <param name="m"></param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static void Execute(SourceProductionContext spc, SourceModel m)
-    {
-        SourceText sourceText;
-        try
-        {
-            using var memoryStream = new MemoryStream();
-            WriteFile(memoryStream, m);
-            sourceText = SourceText.From(memoryStream, canBeEmbedded: true);
-#if DEBUG
-            var sourceTextString = sourceText.ToString();
-            Console.WriteLine();
-            Console.WriteLine(sourceTextString);
-#endif
-        }
-        catch (Exception ex)
-        {
-            StringBuilder builder = new();
-            builder.Append("Namespace: ");
-            builder.AppendLine(m.Namespace);
-            builder.Append("TypeName: ");
-            builder.AppendLine(m.TypeName);
-            builder.AppendLine();
-            builder.AppendLine(ex.ToString());
-            sourceText = builder.ToSourceText();
-        }
-        spc.AddSource($"{m.Namespace}.{m.TypeName}.{Id}.g.cs", sourceText);
+        return model;
     }
 
     static bool UseEqualityComparer(Type type)
     {
-        var typeSymbol = TypeStringImpl.GetTypeSymbol(type);
-        if (typeSymbol == null)
-            return true;
+        return false;
+        //var typeSymbol = TypeStringImpl.GetTypeSymbol(type);
+        //if (typeSymbol == null)
+        //    return true;
 
-        if (string.Equals("string", typeSymbol.Name, StringComparison.OrdinalIgnoreCase))
-            return false;
+        ////typeSymbol.TypeKind == TypeKind.Class
 
-        if (typeSymbol.IsSimpleTypes())
-            return false;
+        //if (string.Equals("string", typeSymbol.Name, StringComparison.OrdinalIgnoreCase))
+        //    return false;
 
-        return true;
+        //if (typeSymbol.IsSimpleTypes())
+        //    return false;
+
+        //var methods = typeSymbol.GetMembers().OfType<IMethodSymbol>();
+
+        //const string methodName = "op_Inequality";
+        //var has_op_Inequality = methods
+        //    .Any(static x => x.Name == methodName);
+        //if (has_op_Inequality) // 是否实现了不相等运算符
+        //    return false;
+
+        //return true;
     }
 
-    /// <summary>
-    /// 写入源码
-    /// </summary>
-    /// <param name="stream"></param>
-    /// <param name="m"></param>
-    public static void WriteFile(
-        Stream stream,
-        SourceModel m)
+    protected override void WriteFile(Stream stream, SourceModel m)
     {
-        try
+        var modelTypeSymbol = TypeStringImpl.GetTypeSymbol(m.AttrModel.Attribute.ModelType);
+        modelTypeSymbol.ThrowIsNull();
+
+        var modelAttrs = modelTypeSymbol.GetAttributes();
+        //var isMP2 = modelAttrs.Any(static x => x.ClassNameEquals("MemoryPack.MemoryPackableAttribute"));
+        bool isMP2 = false; // TODO
+
+        WriteFileHeader(stream);
+        stream.WriteNewLine();
+        WriteNamespace(stream, m.Namespace);
+        stream.WriteNewLine();
+        var vmBaseType = m.Attribute.ViewModelBaseType?.Name ?? "ReactiveObject";
+        var modelType = m.Attribute.ModelType?.Name;
+        modelType.ThrowIsNull();
+        if (m.Attribute.Constructor)
         {
-            var modelTypeSymbol = TypeStringImpl.GetTypeSymbol(m.AttrModel.Attribute.ModelType);
-            modelTypeSymbol.ThrowIsNull();
-
-            var modelAttrs = modelTypeSymbol.GetAttributes();
-            //var isMP2 = modelAttrs.Any(static x => x.ClassNameEquals("MemoryPack.MemoryPackableAttribute"));
-            bool isMP2 = false; // TODO
-
-            WriteFileHeader(stream);
-            stream.WriteNewLine();
-            WriteNamespace(stream, m.Namespace);
-            stream.WriteNewLine();
-            var vmBaseType = m.Attribute.ViewModelBaseType?.Name ?? "ReactiveObject";
-            var modelType = m.Attribute.ModelType?.Name;
-            modelType.ThrowIsNull();
-            if (m.Attribute.Constructor)
-            {
-                stream.WriteFormat(m.Attribute.IsSealed ?
+            stream.WriteFormat(m.Attribute.IsSealed ?
 """
 sealed partial class {0}({2} model) : {1}
 """u8
-                    :
+                :
 """
 partial class {0}({2} model) : {1}
 """u8, m.TypeName, vmBaseType, modelType);
-            }
-            else
-            {
-                stream.WriteFormat(m.Attribute.IsSealed ?
+        }
+        else
+        {
+            stream.WriteFormat(m.Attribute.IsSealed ?
 """
 sealed partial class {0} : {1}
 """u8
-                    :
+                :
 """
 partial class {0} : {1}
 """u8, m.TypeName, vmBaseType);
-            }
-            if (isMP2)
-            {
-                stream.WriteFormat(
+        }
+        if (isMP2)
+        {
+            stream.WriteFormat(
 """
 , IMemoryPackable<{0}>, IFixedSizeMemoryPackable
 """u8, m.TypeName);
-            }
-            stream.WriteNewLine();
-            stream.WriteCurlyBracketLeft(); // {
-            stream.WriteNewLine();
+        }
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketLeft(); // {
+        stream.WriteNewLine();
 
-            #region Body
+        #region Body
 
-            if (m.Attribute.Constructor)
-            {
-                stream.WriteFormat(
+        if (m.Attribute.Constructor)
+        {
+            stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}"/>
     public {0} Model { get; } = model;
 """u8, modelType);
-            }
-            else
-            {
-                stream.WriteFormat(
+        }
+        else
+        {
+            stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}"/>
     public {0} Model { get; }
 """u8, modelType);
-            }
-            stream.WriteNewLine();
+        }
+        stream.WriteNewLine();
 
-            if (m.Attribute.ImplicitOperator)
-            {
-                stream.WriteNewLine();
-                stream.WriteFormat(
+        if (m.Attribute.ImplicitOperator)
+        {
+            stream.WriteNewLine();
+            stream.WriteFormat(
 """
     /// <summary>
     /// ViewModel => Model
@@ -263,36 +230,47 @@ partial class {0} : {1}
     /// <param name="model"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
 """u8, modelType, m.TypeName);
-                stream.WriteNewLine();
-                if (m.Attribute.ImplicitOperatorNotNull)
-                {
-                    stream.WriteFormat(
+            stream.WriteNewLine();
+            if (m.Attribute.ImplicitOperatorNotNull)
+            {
+                stream.WriteFormat(
 """
     public static implicit operator {0}({1} model) => new(model);
 """u8, m.TypeName, modelType);
-                }
-                else
-                {
-                    stream.WriteFormat(
+            }
+            else
+            {
+                stream.WriteFormat(
 """
     public static implicit operator {0}?([NotNullIfNotNull(nameof(model))] {1}? model) => model is null ? null : new(model);
 """u8, m.TypeName, modelType);
-                }
-                stream.WriteNewLine();
             }
+            stream.WriteNewLine();
+        }
 
-            if (m.AttrModel.DictProperties != null)
+        var vmProperties = m.NamedTypeSymbol.GetMembers()
+            .OfType<IPropertySymbol>().ToImmutableArray(); // 视图模型的属性
+        var mProperties = modelTypeSymbol.GetMembers()
+            .OfType<IPropertySymbol>().ToImmutableArray(); // 模型的属性
+
+        stream.WriteNewLine();
+        foreach (var property in mProperties)
+        {
+            if (property.IsRecordGeneratorProperty())
+                continue; // 如果模型类为 record 则会生成该属性，跳过
+
+            Type? propertyType = null;
+            var isReactiveProperty = m.AttrModel.DictProperties != null && m.AttrModel.DictProperties.TryGetValue(property.Name, out propertyType);
+            propertyType ??= TypeStringImpl.Parse(property.Type);
+
+            var p = new KeyValuePair<string, Type>(property.Name, propertyType);
+            if (isReactiveProperty)
             {
-                var vmProperties = m.NamedTypeSymbol.GetMembers().OfType<IPropertySymbol>().ToImmutableArray();
-                foreach (var p in m.AttrModel.DictProperties)
+                // 如果有手动属性，例如需要标注验证的特性，则生成 get/set 函数，否则将生成属性
+                // 参考 https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/generators/observableproperty#requesting-property-validation
+                if (vmProperties.Any(x => x.Name == p.Key))
                 {
-                    stream.WriteNewLine();
-
-                    // 如果有手动属性，例如需要标注验证的特性，则生成 get/set 函数，否则将生成属性
-                    // 参考 https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/generators/observableproperty#requesting-property-validation
-                    if (vmProperties.Any(x => x.Name == p.Key))
-                    {
-                        stream.WriteFormat(
+                    stream.WriteFormat(
 """
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     {1} _{0}() => Model.{0};
@@ -300,104 +278,104 @@ partial class {0} : {1}
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     void _{0}({1} value)
 """u8, p.Key, p.Value);
-                        stream.Write(
+                    stream.Write(
 """
 
     {
 
 """u8);
-                        if (UseEqualityComparer(p.Value))
-                        {
-                            stream.WriteFormat(
+                    if (UseEqualityComparer(p.Value))
+                    {
+                        stream.WriteFormat(
 """
         if (!EqualityComparer<{0}>.Default.Equals(Model.{1}, value))
 """u8, p.Value, p.Key);
-                        }
-                        else
-                        {
-                            stream.WriteFormat(
-"""
-        if (Model.{0} != value)
-"""u8, p.Key);
-                        }
-                        stream.Write(
-   """
-
-        {
-"""u8);
-                        stream.WriteNewLine();
-                        stream.WriteFormat(
-"""
-            this.RaisePropertyChanging(nameof({0}));
-"""u8, p.Key); // 生成的函数需要手动传递 propertyName
-                        stream.WriteNewLine();
-                        stream.WriteFormat(
-"""
-            Model.{0} = value;
-"""u8, p.Key);
-                        stream.WriteNewLine();
-                        stream.WriteFormat(
-"""
-            this.RaisePropertyChanged(nameof({0}));
-"""u8, p.Key); // 生成的函数需要手动传递 propertyName
-                        stream.WriteNewLine();
-                        stream.Write(
-"""
-        }
-    }
-
-"""u8);
                     }
                     else
                     {
                         stream.WriteFormat(
 """
+        if (Model.{0} != value)
+"""u8, p.Key);
+                    }
+                    stream.Write(
+"""
+
+        {
+"""u8);
+                    stream.WriteNewLine();
+                    stream.WriteFormat(
+"""
+            this.RaisePropertyChanging(nameof({0}));
+"""u8, p.Key); // 生成的函数需要手动传递 propertyName
+                    stream.WriteNewLine();
+                    stream.WriteFormat(
+"""
+            Model.{0} = value;
+"""u8, p.Key);
+                    stream.WriteNewLine();
+                    stream.WriteFormat(
+"""
+            this.RaisePropertyChanged(nameof({0}));
+"""u8, p.Key); // 生成的函数需要手动传递 propertyName
+                    stream.WriteNewLine();
+                    stream.Write(
+"""
+        }
+    }
+
+"""u8);
+                }
+                else
+                {
+                    stream.WriteFormat(
+"""
     /// <inheritdoc cref="{0}.{1}"/>
     public {2} {1}
 """u8, modelType, p.Key, p.Value);
-                        stream.Write(
+                    stream.Write(
 """
 
     {
 
 """u8);
-                        stream.WriteFormat(
+                    stream.WriteFormat(
 """
         get => Model.{0};
 """u8, p.Key);
-                        stream.Write(
+                    stream.Write(
 """
 
         set
         {
 
 """u8);
-                        if (UseEqualityComparer(p.Value))
-                        {
-                            stream.WriteFormat(
+                    if (UseEqualityComparer(p.Value))
+                    {
+                        stream.WriteFormat(
 """
             if (!EqualityComparer<{0}>.Default.Equals(Model.{1}, value))
 """u8, p.Value, p.Key);
-                        }
-                        else
-                        {
-                            stream.WriteFormat(
+                    }
+                    else
+                    {
+                        stream.WriteFormat(
 """
             if (Model.{0} != value)
 """u8, p.Key);
-                        }
-                        stream.Write(
-    """
+                    }
+                    stream.Write(
+"""
 
             {
                 this.RaisePropertyChanging();
 
 """u8);
-                        stream.WriteFormat(
+                    stream.WriteFormat(
 """
                 Model.{0} = value;
 """u8, p.Key);
-                        stream.Write(
+                    stream.Write(
 """
 
                 this.RaisePropertyChanged();
@@ -406,32 +384,69 @@ partial class {0} : {1}
     }
 
 """u8);
-                    }
                 }
             }
-
-            // if 重写 ToString
-            var methods = modelTypeSymbol.GetMembers().OfType<IMethodSymbol>();
-
-            var isOverrideToString = methods.Any(static x => x.IsObjectToString());
-            if (isOverrideToString) // 如果模型类重写了 ToString，那么视图模型也要重写
+            else
             {
-                if (!m.NamedTypeSymbol.GetMembers().OfType<IMethodSymbol>().Any(static x => x.IsObjectToString())) // 视图模型没有手写的重写 ToString
+                if (vmProperties.Any(x => x.Name == p.Key))
+                    continue; // 视图模型中手动定义了该属性则跳过生成
+
+                stream.WriteFormat(
+"""
+    /// <inheritdoc cref="{0}.{1}"/>
+    public {2} {1} 
+"""u8, modelType, p.Key, p.Value);
+                stream.Write("{"u8);
+                var hasSetMethod = property.SetMethod != null;
+                var hasGetMethod = property.GetMethod != null;
+                if (hasSetMethod && hasGetMethod)
                 {
-                    stream.WriteNewLine();
-                    stream.Write(
+                    stream.WriteFormat(
+"""
+ get => Model.{1}; set => Model.{1} = value; 
+"""u8, modelType, p.Key, p.Value);
+                }
+                else if (!hasSetMethod)
+                {
+                    stream.WriteFormat(
+"""
+ get => Model.{1}; 
+"""u8, modelType, p.Key, p.Value);
+                }
+                else
+                {
+                    stream.WriteFormat(
+"""
+ set => Model.{1} = value; 
+"""u8, modelType, p.Key, p.Value);
+                }
+                stream.Write("}"u8);
+                stream.WriteNewLine();
+            }
+            stream.WriteNewLine();
+        }
+
+        // if 重写 ToString
+        var methods = modelTypeSymbol.GetMembers().OfType<IMethodSymbol>();
+
+        var isOverrideToString = methods.Any(static x => x.IsObjectToString());
+        if (isOverrideToString) // 如果模型类重写了 ToString，那么视图模型也要重写
+        {
+            if (!m.NamedTypeSymbol.GetMembers().OfType<IMethodSymbol>().Any(static x => x.IsObjectToString())) // 视图模型没有手写的重写 ToString
+            {
+                stream.Write(
 """
 
     /// <inheritdoc />
     public override string ToString() => Model.ToString();
 """u8);
-                }
             }
+        }
 
-            if (isMP2)
-            {
-                stream.WriteNewLine();
-                stream.Write(
+        if (isMP2)
+        {
+            stream.WriteNewLine();
+            stream.Write(
 """
     static SizePositionModel()
     {
@@ -464,18 +479,14 @@ partial class {0} : {1}
     {
     }
 """u8);
-            }
-
-            // IMemoryPackable<T>, IFixedSizeMemoryPackable
-
-            #endregion
-
-            stream.WriteNewLine();
-            stream.WriteCurlyBracketRight(); // }
-            stream.WriteNewLine();
         }
-        catch (OperationCanceledException)
-        {
-        }
+
+        // IMemoryPackable<T>, IFixedSizeMemoryPackable
+
+        #endregion
+
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketRight(); // }
+        stream.WriteNewLine();
     }
 }

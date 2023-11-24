@@ -86,3 +86,247 @@ public abstract class TemplateBase
         return new(fieldName);
     }
 }
+
+/// <summary>
+/// 基于 GeneratedAttribute 的源生成模板
+/// </summary>
+/// <typeparam name="TGeneratedAttribute">生成特性模型</typeparam>
+/// <typeparam name="TSourceModel">生成源文件参数模型</typeparam>
+public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourceModel> : TemplateBase, IIncrementalGenerator
+    where TGeneratedAttribute : notnull
+    where TSourceModel : GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourceModel>.ISourceModel
+{
+    /// <summary>
+    /// 从源码中读取并分析生成器所需要的模型
+    /// </summary>
+    public interface ISourceModel
+    {
+        /// <summary>
+        /// 命名空间
+        /// </summary>
+        string Namespace { get; }
+
+        /// <summary>
+        /// 类型名
+        /// </summary>
+        string TypeName { get; }
+
+        /// <summary>
+        /// 生成特性模型
+        /// </summary>
+        TGeneratedAttribute Attribute { get; }
+    }
+
+    /// <summary>
+    /// typeof(TGeneratedAttribute).Name.TrimEnd("GeneratedAttribute")
+    /// </summary>
+    protected virtual string Id => typeof(TGeneratedAttribute).Name.TrimEnd("GeneratedAttribute");
+
+    /// <summary>
+    /// typeof(TGeneratedAttribute).FullName
+    /// </summary>
+    protected virtual string AttrName => typeof(TGeneratedAttribute).FullName;
+
+    /// <summary>
+    /// 根据 <see cref="AttributeData"/> 还原 TGeneratedAttribute 数据
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <returns></returns>
+    protected abstract TGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes);
+
+#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
+#pragma warning disable SA1604 // Element documentation should have summary
+
+    /// <summary>
+    /// 获取 <see cref="ISourceModel"/> 需要的参数数据
+    /// </summary>
+    protected record struct GetSourceModelArgs
+    {
+        /// <see cref="SourceProductionContext"/>
+        public SourceProductionContext spc;
+
+        /// <see cref="GeneratorAttributeSyntaxContext"/>
+        public GeneratorAttributeSyntaxContext m;
+
+        /// <see cref="INamedTypeSymbol"/>
+        public INamedTypeSymbol symbol;
+
+        /// <summary>
+        /// 命名空间
+        /// </summary>
+        public string @namespace;
+
+        /// <summary>
+        /// 类型名
+        /// </summary>
+        public string typeName;
+
+        /// <summary>
+        /// 调用 <see cref="GetAttribute(ImmutableArray{AttributeData})"/> 的返回值
+        /// </summary>
+        public TGeneratedAttribute attr;
+    }
+
+#pragma warning restore SA1604 // Element documentation should have summary
+#pragma warning restore SA1307 // Accessible fields should begin with upper-case letter
+
+    /// <summary>
+    /// 业务实现获取 <see cref="ISourceModel"/>
+    /// </summary>
+    /// <param name="args"></param>
+    /// <returns></returns>
+    protected abstract TSourceModel GetSourceModel(GetSourceModelArgs args);
+
+    /// <summary>
+    /// 通用增量源生成器执行函数
+    /// </summary>
+    /// <param name="spc"></param>
+    /// <param name="m"></param>
+    protected virtual void Execute(SourceProductionContext spc, GeneratorAttributeSyntaxContext m)
+    {
+#if DEBUG
+        var thisTypeName = GetType().Name;
+        Console.WriteLine($"{thisTypeName} Execute");
+#endif
+        try
+        {
+            if (m.TargetSymbol is not INamedTypeSymbol symbol)
+                return;
+
+            var @namespace = symbol.ContainingNamespace.ToDisplayString();
+            var typeName = symbol.Name;
+
+            var attr = GetAttribute(symbol.GetAttributes());
+
+            var model = GetSourceModel(new()
+            {
+                spc = spc,
+                m = m,
+                symbol = symbol,
+                @namespace = @namespace,
+                typeName = typeName,
+                attr = attr,
+            });
+            ExecuteCore(spc, model);
+        }
+        catch (Exception ex)
+        {
+#if DEBUG
+            Console.WriteLine(ex);
+#endif
+        }
+    }
+
+#if DEBUG
+    void ConsoleWriteSourceText(string sourceTextString)
+    {
+        var thisTypeName = GetType().Name;
+        Console.WriteLine();
+        Console.WriteLine($"{thisTypeName}: ");
+        Console.WriteLine(sourceTextString);
+
+        switch (FileId) // 在 case 断点查看生成的源码字符串
+        {
+            case "ConstantsByPath":
+                break;
+            case "SettingsProperty":
+                break;
+            case "SingletonPartition":
+                break;
+            case "ViewModelWrapper":
+                break;
+            case "WebApiClient":
+                break;
+            case "MinimalAPIs":
+                break;
+            case "Designer": // ResXGeneratedCodeAttribute
+                break;
+        }
+    }
+#endif
+
+    /// <summary>
+    /// 通用增量源生成器执行函数
+    /// </summary>
+    /// <param name="spc"></param>
+    /// <param name="m"></param>
+    protected virtual void ExecuteCore(SourceProductionContext spc, TSourceModel m)
+    {
+#if DEBUG
+        var thisTypeName = GetType().Name;
+        Console.WriteLine($"{thisTypeName} ExecuteCore");
+#endif
+        SourceText sourceText;
+        try
+        {
+            using var memoryStream = new MemoryStream();
+            try
+            {
+                WriteFile(memoryStream, m);
+            }
+            catch (OperationCanceledException)
+            {
+#if DEBUG
+                Console.WriteLine($"{thisTypeName} OperationCanceledException");
+#endif
+                return;
+            }
+            sourceText = SourceText.From(memoryStream, canBeEmbedded: true);
+#if DEBUG
+            ConsoleWriteSourceText(sourceText.ToString());
+#endif
+        }
+        catch (Exception ex)
+        {
+            StringBuilder builder = new();
+            builder.Append("Namespace: ");
+            builder.AppendLine(m.Namespace);
+            builder.Append("TypeName: ");
+            builder.AppendLine(m.TypeName);
+            builder.AppendLine();
+            builder.AppendLine(ex.ToString());
+            var sourceTextString = builder.ToString();
+            sourceText = SourceText.From(sourceTextString, Encoding.UTF8);
+#if DEBUG
+            ConsoleWriteSourceText(sourceTextString);
+#endif
+        }
+        spc.AddSource($"{m.Namespace}.{m.TypeName}.{FileId}.g.cs", sourceText);
+    }
+
+    /// <summary>
+    /// 该模板生成源文件名中的唯一名称，默认使用 <see cref="Id"/>，可重写替换
+    /// </summary>
+    protected virtual string FileId => Id;
+
+    /// <summary>
+    /// 源生成器写入文件流执行逻辑
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="m"></param>
+    protected abstract void WriteFile(Stream stream, TSourceModel m);
+
+    /// <inheritdoc/>
+    void IIncrementalGenerator.Initialize(IncrementalGeneratorInitializationContext context)
+    {
+        try
+        {
+            var fullyQualifiedMetadataName = AttrName;
+            var source = context.SyntaxProvider.ForAttributeWithMetadataName(
+                fullyQualifiedMetadataName,
+                static (_, _) => true,
+                static (content, _) => content);
+            context.RegisterSourceOutput(source, Execute);
+#if DEBUG
+            var thisTypeName = GetType().Name;
+            Console.WriteLine($"{thisTypeName} Initialized, AttrName: {AttrName}, Id: {Id}, FileId: {FileId}.");
+#endif
+        }
+        catch (Exception ex)
+        {
+#if DEBUG
+            Console.WriteLine(ex);
+#endif
+        }
+    }
+}

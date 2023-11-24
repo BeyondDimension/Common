@@ -4,7 +4,7 @@
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.23.11123.11207</Version>
+		<Version>8.23.11124.12148</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 	</PropertyGroup>
@@ -15,6 +15,9 @@
 
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Runtime\CompilerServices\*GeneratedAttribute.cs">
+			<LinkBase>Attributes</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5.Frontend\Infrastructure\*GeneratedAttribute.cs">
 			<LinkBase>Attributes</LinkBase>
 		</Compile>
 	</ItemGroup>
