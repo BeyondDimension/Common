@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 权限控制相关实体类 - 用户组织架构关系
 /// </summary>
@@ -31,8 +29,10 @@ public class SysUserOrganization : ITenant
     /// <inheritdoc cref="SysUser"/>
     public virtual SysUser? User { get; set; }
 
+    /// <inheritdoc cref="IEntityTypeConfiguration{SysUserOrganization}"/>
     public class EntityTypeConfiguration : IEntityTypeConfiguration<SysUserOrganization>
     {
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<SysUserOrganization> builder)
         {
             builder.HasKey(x => new { x.UserId, x.OrganizationId, x.TenantId });

@@ -148,15 +148,14 @@ public static partial class PortHelper
     // https://github.com/microsoftarchive/msdn-code-gallery-microsoft/blob/master/OneCodeTeam/C%23%20Sample%20to%20list%20all%20the%20active%20TCP%20and%20UDP%20connections%20using%20Windows%20Form%20appl/%5BC%23%5D-C%23%20Sample%20to%20list%20all%20the%20active%20TCP%20and%20UDP%20connections%20using%20Windows%20Form%20appl/C%23/SocketConnection/SocketConnection.cs
 
     /// <summary>
-    /// This function reads and parses the active TCP socket connections available
-    /// and stores them in a list.
+    /// 此函数读取并解析可用的活动 TCP 套接字连接
+    /// 并将它们存储在列表中
     /// </summary>
     /// <returns>
-    /// It returns the current set of TCP socket connections which are active.
+    /// 它返回当前活动的 TCP 套接字连接集
     /// </returns>
     /// <exception cref="OutOfMemoryException">
-    /// This exception may be thrown by the function Marshal.AllocHGlobal when there
-    /// is insufficient memory to satisfy the request.
+    /// 此异常可能由函数 Marshal 引发，AllocHGlobal 内存不足，无法满足请求
     /// </exception>
     [SupportedOSPlatform("Windows7.0")]
     public static unsafe List<TcpProcessRecord> GetAllTcpConnections()
@@ -164,7 +163,7 @@ public static partial class PortHelper
         uint bufferSize = 0;
         List<TcpProcessRecord> tcpTableRecords = [];
 
-        // Getting the size of TCP table, that is returned in 'bufferSize' variable.
+        // 正在获取 TCP 表的大小，该大小在“bufferSize”变量中返回
         _ = winmdroot.PInvoke.GetExtendedTcpTable(default, ref bufferSize, true, (uint)AddressFamily.InterNetwork,
             winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
@@ -227,9 +226,8 @@ public static partial class PortHelper
     }
 
     /// <summary>
-    /// The structure contains information that describes an IPv4 TCP connection with
-    /// IPv4 addresses, ports used by the TCP connection, and the specific process ID
-    /// (PID) associated with connection.
+    /// 该结构包含描述 IPv4 TCP 连接的信息
+    /// IPv4地址、TCP连接使用的端口以及与连接关联的特定进程ID（PID）
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     struct MIB_TCPROW_OWNER_PID
@@ -245,8 +243,7 @@ public static partial class PortHelper
     }
 
     /// <summary>
-    /// The structure contains a table of process IDs (PIDs) and the IPv4 TCP links that
-    /// are context bound to these PIDs.
+    /// 该结构包含进程 ID（PID）的表以及上下文绑定到这些 PID 的 IPv4 TCP 链路
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     struct MIB_TCPTABLE_OWNER_PID
@@ -256,32 +253,47 @@ public static partial class PortHelper
         public MIB_TCPROW_OWNER_PID[] table;
     }
 
-#pragma warning disable SA1600 // Elements should be documented
-
     /// <summary>
-    /// This class provides access an IPv4 TCP connection addresses and ports and its
-    /// associated Process IDs and names.
+    /// 此类提供访问 IPv4 TCP 连接地址和端口及其关联的进程 ID 和名称
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public sealed class TcpProcessRecord
     {
+        /// <summary>
+        /// 获取或设置本地地址
+        /// </summary>
         [DisplayName("Local Address")]
         public IPAddress LocalAddress { get; set; }
 
+        /// <summary>
+        /// 获取或设置本地端口
+        /// </summary>
         [DisplayName("Local Port")]
         public ushort LocalPort { get; set; }
 
+        /// <summary>
+        /// 获取或设置远程地址
+        /// </summary>
         [DisplayName("Remote Address")]
         public IPAddress RemoteAddress { get; set; }
 
+        /// <summary>
+        /// 获取或设置远程端口
+        /// </summary>
         [DisplayName("Remote Port")]
         public ushort RemotePort { get; set; }
 
+        /// <summary>
+        /// 获取或设置 TCP 连接状态
+        /// </summary>
         [DisplayName("State")]
         public MibTcpState State { get; set; }
 
         int _ProcessId;
 
+        /// <summary>
+        /// 获取或设置进程 ID
+        /// </summary>
         [DisplayName("Process ID")]
         public int ProcessId
         {
@@ -305,12 +317,27 @@ public static partial class PortHelper
 
         Lazy<Process?>? _Process;
 
+        /// <summary>
+        /// 获取与当前进程 ID 关联的进程
+        /// </summary>
         [DisplayName("Process")]
         public Process? Process => _Process?.Value;
 
+        /// <summary>
+        /// 获取进程的名称
+        /// </summary>
         [DisplayName("Process Name")]
         public string? ProcessName => Process?.ProcessName;
 
+        /// <summary>
+        /// 初始化 TcpProcessRecord 类的新实例
+        /// </summary>
+        /// <param name="localIp">本地 IP 地址</param>
+        /// <param name="remoteIp">远程 IP 地址</param>
+        /// <param name="localPort">本地端口号</param>
+        /// <param name="remotePort">远程端口号</param>
+        /// <param name="pId">进程 ID</param>
+        /// <param name="state">TCP 连接状态</param>
         public TcpProcessRecord(IPAddress localIp, IPAddress remoteIp, ushort localPort,
             ushort remotePort, int pId, MibTcpState state)
         {
@@ -323,7 +350,9 @@ public static partial class PortHelper
         }
     }
 
-    // Enum for different possible states of TCP connection
+    /// <summary>
+    /// TCP 连接的不同可能状态的枚举
+    /// </summary>
     public enum MibTcpState
     {
         CLOSED = 1,
@@ -341,6 +370,5 @@ public static partial class PortHelper
         NONE = 0,
     }
 
-#pragma warning restore SA1600 // Elements should be documented
 #endif
 }

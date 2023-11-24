@@ -1,13 +1,15 @@
 #if NETCOREAPP || NETSTANDARD2_1_OR_GREATER
 namespace System.IO;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 文件流包装器接口
+/// </summary>
 public interface IFileStreamWrapper
 {
     /// <inheritdoc cref="FileStream.Name"/>
     string Name { get; }
 
+    /// <inheritdoc cref="IOPath.OpenRead"/>
     FileStream? FileStream => IOPath.OpenRead(Name);
 
     /// <inheritdoc cref="IO.FileStream(string, FileMode)"/>

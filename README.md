@@ -1,6 +1,8 @@
 # Common8
 次元超越 .NET 8+ 通用类库
 
+## [🏗️ 项目结构](./articles/Project-Structure.md)
+
 ## Sdk 参数
 - IsPackable 是否为 ```NuGet``` 包项目
 - IsTestProject 是否为单元测试项目
@@ -16,6 +18,50 @@
 - UseMicrosoftIdentityModelTokens 是否引用包 ```Microsoft.IdentityModel.Tokens```
 - UseAvalonia 是否引用包 ```Avalonia```
 - LinkResXGeneratedCodeAttribute 是否引用源码 ```src\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs```
+- UseRedis 是否引用包 ```Redis```
+- UseNLog 是否引用包 ```NLog```
+- UseCommon8Essentials 是否引用类库 ```BD.Common8.Essentials```
+- UseCommon8Repositories 是否引用类库 ```BD.Common8.Repositories```
+- UseCommon8OrmEFCore 是否引用类库 ```BD.Common8.Orm.EFCore```
+- UseCommon8RepositoriesEFCore 是否引用类库 ```BD.Common8.Repositories.EFCore```
+- UseCommon8Primitives 是否引用类库 ```BD.Common8.Primitives```
+- UseCommon8AspNetCore 是否引用类库 ```BD.Common8.AspNetCore``` 
+- UseCommon8AspNetCoreIdentity 是否引用类库 ```BD.Common8.AspNetCore.Identity```
+- UseCommon8AspNetCoreIdentityBackManage 是否引用类库 ```BD.Common8.AspNetCore.Identity.BackManage```
+- UseCommon8PrimitivesApiResponse 是否引用类库 ```BD.Common8.Primitives.ApiResponse```
+- UseCommon8PrimitivesPersonalDataPhoneNumber 是否引用类库 ```BD.Common8.Primitives.PersonalData.PhoneNumber```
+- UseCommon8PrimitivesPersonalDataBirthDate 是否引用类库 ```BD.Common8.Primitives.PersonalData.BirthDate```
+- UseCommon8PrimitivesDistrict 是否引用类库 ```BD.Common8.Primitives.District```
+- UseCommon8PrimitivesApiRsp 是否引用类库 ```BD.Common8.Primitives.ApiRsp```
+- UseSQLitePCL 是否引用包 ```sqlite-net-pcl``` ```Polly``` ```SQLitePCLRaw.bundle_green```
+- UseCommon8Security 是否引用类库 ```BD.Common8.Security```
+- UseSystemCommandLine 是否引用包 ```System.CommandLine```
+- UseCommon8HttpClientFactory 是否引用类库 ```BD.Common8.Http.ClientFactory```
+- UseCommon8Crawler 是否引用类库 ```BD.Common8.Crawler```
+- UseReactiveUI 是否引用包 ```ReactiveUI``` 框架
+- UseReactiveUIFody 是否引用包 ```ReactiveUI.Fody```
+- UseFluentAvalonia 是否引用包 ```FluentAvaloniaUI```
+- UseSourceGeneratorBcl 是否引用类库 ```BD.Common8.SourceGenerator.Bcl```
+- UseMicrosoftExtensionsOptions 是否引用包 ```Microsoft.Extensions.Options```
+- UseMicrosoftExtensionsFileProviders 是否引用源码 ```Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs```
+- UseMicrosoftExtensionsPrimitives 是否引用源码 ```Shared\GlobalUsings.Microsoft.Extensions.Primitives.cs```
+- UseAvaloniaReactiveUI 是否引用包 ```Avalonia.ReactiveUI```
+- UseAvaloniaXamlInteractivity 是否引用包 ```Avalonia.Xaml.Behaviors```
+- UseCommon8Toast 是否引用类库 ```BD.Common8.Toast```
+- UseCommon8RepositoriesSQLitePCL 是否引用类库 ```BD.Common8.Repositories.SQLitePCL```
+- UseAndroidXBrowser 是否引用包 ```Xamarin.AndroidX.Browser``` 目标框架为 android 时
+- UseCommon8EssentialsImplementation 是否引用类库 ```BD.Common8.Essentials.Implementation```
+- UseFusillade 是否引用包 ```fusillade```
+- UseSystemNetHttpJson 是否引用包 ```System.Net.Http.Json```
+- UseCommon8Ipc 是否引用类库 ```BD.Common8.Ipc```
+- UseCommon8Pinyin 是否引用类库 ```BD.Common8.Pinyin```
+- UseAngleSharp 是否引用包 ```AngleSharp```
+- UseCommon8Settings5 是否引用类库 ```BD.Common8.Settings5```
+- UseCommon8Settings5Frontend 是否引用类库 ```BD.Common8.Settings5.Frontend```
+- UseCommon8Settings5Backend 是否引用类库 ```BD.Common8.Settings5.Backend```
+- UseMicrosoftExtensionsConfiguration 是否引用包 ```Microsoft.Extensions.Configuration```
+- UseMicrosoftExtensionsConfigurationJson 是否引用包 ```Microsoft.Extensions.Configuration.Json```
+- UseMicrosoftExtensionsOptionsConfigurationExtensions 是否引用包 ```Microsoft.Extensions.Options.ConfigurationExtensions```
 
 ## SharedLibrary 共享库
 

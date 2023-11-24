@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 租户信息实体类
 /// </summary>
@@ -99,9 +97,11 @@ public sealed class SysTenant : OperatorBaseEntity, INEWSEQUENTIALID, IDisable, 
     [Comment("授权结束时间")]
     public DateTimeOffset AuthorizationEndTime { get; set; }
 
+    /// <inheritdoc/>
     [Comment("是否禁用")]
     public bool Disable { get; set; }
 
+    /// <inheritdoc/>
     [Comment("备注")]
     public string? Remarks { get; set; }
 
@@ -111,6 +111,7 @@ public sealed class SysTenant : OperatorBaseEntity, INEWSEQUENTIALID, IDisable, 
     [Comment("是否为平台管理员")]
     public bool IsPlatformAdministrator { get; set; }
 
+    /// <inheritdoc/>
     [Comment("是否软删除")]
     public bool SoftDeleted { get; set; }
 
@@ -121,8 +122,10 @@ public sealed class SysTenant : OperatorBaseEntity, INEWSEQUENTIALID, IDisable, 
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
 
+    /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysTenant>
     {
+        /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<SysTenant> builder)
         {
             base.Configure(builder);

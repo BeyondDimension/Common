@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 系统用户(多租户)实体类
 /// </summary>
@@ -61,15 +59,19 @@ public sealed class SysUser : TenantBaseEntity, INEWSEQUENTIALID, IRefreshJWTUse
     [Comment("用户的登录尝试失败次数")]
     public int AccessFailedCount { get; set; }
 
+    /// <inheritdoc/>
     [Comment("刷新 Token 值")]
     public string? RefreshToken { get; set; }
 
+    /// <inheritdoc/>
     [Comment("刷新 Token 值有效期")]
     public DateTimeOffset RefreshExpiration { get; set; }
 
+    /// <inheritdoc/>
     [Comment("禁止在此时间之前刷新 Token")]
     public DateTimeOffset NotBefore { get; set; }
 
+    /// <inheritdoc/>
     [MaxLength(PhoneNumberHelper.DatabaseMaxLength)]
     [Comment("手机号码")]
     public string? PhoneNumber { get; set; }
@@ -87,9 +89,11 @@ public sealed class SysUser : TenantBaseEntity, INEWSEQUENTIALID, IRefreshJWTUse
     [Comment("性别")]
     public Gender Gender { get; set; }
 
+    /// <inheritdoc/>
     [Comment("备注")]
     public string? Remarks { get; set; }
 
+    /// <inheritdoc/>
     [Comment("是否禁用")]
     public bool Disable { get; set; }
 
@@ -105,10 +109,13 @@ public sealed class SysUser : TenantBaseEntity, INEWSEQUENTIALID, IRefreshJWTUse
     /// </summary>
     public List<SysTenant>? AuditorTenants { get; set; }
 
+    /// <inheritdoc cref="SysUserOrganization"/>
     public List<SysUserOrganization>? Organizations { get; set; }
 
+    /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysUser>
     {
+        /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<SysUser> builder)
         {
             base.Configure(builder);

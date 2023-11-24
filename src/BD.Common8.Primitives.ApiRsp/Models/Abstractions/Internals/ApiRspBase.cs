@@ -9,12 +9,22 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     ApiRspCode mCode;
     bool mIsSuccess;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+    /// <summary>
+    /// 表示 Josn 数据中 Code 字段属性
+    /// </summary>
     public const string JsonPropertyName_Code = "🦄";
+
+    /// <summary>
+    /// 表示 Josn 数据中 Message 字段属性
+    /// </summary>
     public const string JsonPropertyName_Message = "🐴";
+
+    /// <summary>
+    /// 表示 Josn 数据中 Content 字段属性
+    /// </summary>
     public const string JsonPropertyName_Content = "🦓";
 
+    /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPKey(0)]
 #endif
@@ -51,6 +61,7 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 #endif
     public string? InternalMessage { get; set; }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
@@ -64,6 +75,7 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 #endif
     public string Message => InternalMessage ?? string.Empty;
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
@@ -77,8 +89,13 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 #endif
     public bool IsSuccess => mIsSuccess;
 
+    /// <summary>
+    /// 获取内容对象
+    /// </summary>
+    /// <returns></returns>
     protected virtual object? GetContent() => null;
 
+    /// <inheritdoc/>
     object? IApiRspBase.Content => GetContent();
 
     /// <summary>
@@ -86,6 +103,7 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     /// </summary>
     protected const int LastMKeyIndex = 1;
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
@@ -99,6 +117,7 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 #endif
     public Exception? ClientException { get; set; }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
@@ -111,6 +130,4 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     [SystemTextJsonIgnore]
 #endif
     public string? Url { get; set; }
-
-#pragma warning restore SA1600 // Elements should be documented
 }

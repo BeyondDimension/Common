@@ -1,7 +1,8 @@
 namespace BD.Common8.AspNetCore.Data;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 应用程序数据上下文的基础实现
+/// </summary>
 [method: RequiresUnreferencedCode("EF Core isn't fully compatible with trimming, and running the application may generate unexpected runtime failures. Some specific coding pattern are usually required to make trimming work properly, see https://aka.ms/efcore-docs-trimming for more details.")]
 [method: RequiresDynamicCode("EF Core isn't fully compatible with NativeAOT, and running the application may generate unexpected runtime failures.")]
 public abstract class ApplicationDbContextBase(DbContextOptions options) : DbContext(options), IApplicationDbContext
@@ -39,6 +40,10 @@ public abstract class ApplicationDbContextBase(DbContextOptions options) : DbCon
     /// <inheritdoc cref="SysUserOrganization"/>
     public DbSet<SysUserOrganization> UserOrganizations { get; set; } = null!;
 
+    /// <summary>
+    /// 配置实体的模型
+    /// </summary>
+    /// <param name="b"><see cref="ModelBuilder"/> 对象，用于构建模型</param>
     protected override void OnModelCreating(ModelBuilder b)
     {
         base.OnModelCreating(b);
@@ -51,11 +56,21 @@ public abstract class ApplicationDbContextBase(DbContextOptions options) : DbCon
         return buildAction;
     }
 
+    /// <summary>
+    /// 用于追加构建实体的操作方法
+    /// </summary>
     protected virtual Action<EntityTypeBuilder>? AppendBuildEntities(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
     {
         return buildAction;
     }
 
+    /// <summary>
+    /// 创建实体的用户属性类型 <see cref="ICreateUser"/>
+    /// </summary>
     public static readonly Type PCreateUser = typeof(ICreateUser);
+
+    /// <summary>
+    /// 操作实体的用户属性类型 <see cref="IOperatorUser"/>
+    /// </summary>
     public static readonly Type POperatorUser = typeof(IOperatorUser);
 }

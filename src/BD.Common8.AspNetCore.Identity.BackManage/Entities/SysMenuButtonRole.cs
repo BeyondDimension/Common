@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 权限控制相关实体类 - 角色菜单按钮关系
 /// </summary>
@@ -39,8 +37,10 @@ public sealed class SysMenuButtonRole : ITenant
     [Comment("控制器名称")]
     public string ControllerName { get; set; } = "";
 
+    /// <inheritdoc cref="IEntityTypeConfiguration{SysMenuButtonRole}"/>
     public sealed class EntityTypeConfiguration : IEntityTypeConfiguration<SysMenuButtonRole>
     {
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<SysMenuButtonRole> builder)
         {
             builder.HasKey(x => new { x.ButtonId, x.RoleId, x.MenuId, x.TenantId, x.ControllerName, });

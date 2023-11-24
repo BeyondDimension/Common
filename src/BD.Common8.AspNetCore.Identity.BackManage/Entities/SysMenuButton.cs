@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 权限控制相关实体类 - 菜单按钮关系
 /// </summary>
@@ -24,6 +22,9 @@ public sealed class SysMenuButton : ITenant, IOrder
     [Comment("按钮 Id")]
     public Guid ButtonId { get; set; }
 
+    /// <summary>
+    /// 排序
+    /// </summary>
     [Comment("排序")]
     public long Order { get; set; }
 

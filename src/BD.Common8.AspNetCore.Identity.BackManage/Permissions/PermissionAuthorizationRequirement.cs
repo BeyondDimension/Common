@@ -1,7 +1,8 @@
 namespace BD.Common8.AspNetCore.Permissions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 权限授权要求类，用于定义控制器的权限授权需求
+/// </summary>
 public sealed class PermissionAuthorizationRequirement(string controllerName) : IAuthorizationRequirement
 {
     /// <summary>

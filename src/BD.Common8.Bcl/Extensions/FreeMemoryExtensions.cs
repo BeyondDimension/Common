@@ -5,10 +5,14 @@ using winmdroot = Windows.Win32;
 
 namespace System.Extensions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 内存释放扩展类，用于释放代理信息内存
+/// </summary>
 internal static partial class FreeMemoryExtensions
 {
+    /// <summary>
+    /// 释放代理信息内存
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static unsafe void FreeMemory(
         this winmdroot.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo)
@@ -20,7 +24,10 @@ internal static partial class FreeMemoryExtensions
         proxyInfo.lpszProxy = proxyInfo.lpszProxyBypass = default;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    /// <summary>
+    /// 释放当前用户IE代理配置内存
+    /// </summary>
+    /// <param name="proxyConfig">代理配置信息</param>
     internal static unsafe void FreeMemory(
         this winmdroot.Networking.WinHttp.WINHTTP_CURRENT_USER_IE_PROXY_CONFIG proxyConfig)
     {

@@ -2,7 +2,7 @@
 namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
-/// Contains extension methods to <see cref="IServiceCollection"/> for configuring identity services.
+/// 用于配置 Identity 服务到 <see cref="IServiceCollection"/>
 /// </summary>
 public static class IdentityServiceCollectionExtensions
 {

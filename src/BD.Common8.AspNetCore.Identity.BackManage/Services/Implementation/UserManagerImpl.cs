@@ -23,9 +23,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// </summary>
     public IPasswordHasher<SysUser> PasswordHasher { get; set; }
 
-    /// <summary>
-    /// 用于配置标识的 <see cref="IdentityOptions"/>
-    /// </summary>
+    /// <inheritdoc/>
     public IdentityOptions Options { get; set; }
 
     /// <summary>
@@ -70,9 +68,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
                 PasswordValidators.Add(v);
     }
 
-    /// <summary>
-    /// 根据用户 Id 异步查找用户
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<SysUser?> FindByIdAsync(Guid userId)
     {
         ThrowIfDisposed();
@@ -80,9 +76,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
-    /// <summary>
-    /// 异步获取用户的角色列表
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<IList<string>> GetRolesAsync(SysUser user)
     {
         ThrowIfDisposed();
@@ -95,9 +89,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return await query.ToListAsync(CancellationToken);
     }
 
-    /// <summary>
-    /// 根据用户名异步查找用户
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<SysUser?> FindByNameAsync(string? userName)
     {
         if (userName == null) return null;
@@ -108,9 +100,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
-    /// <summary>
-    /// 根据用户名和租户 Id 异步查找用户
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<SysUser?> FindByNameAsync(string? userName, Guid tenantId)
     {
         if (userName == null) return null;
@@ -121,9 +111,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
-    /// <summary>
-    /// 创建用户
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<IdentityResult> CreateAsync(SysUser user, string password)
     {
         ThrowIfDisposed();
@@ -219,23 +207,17 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         },
     });
 
-    /// <summary>
-    /// 尝试获取用户 Id
-    /// </summary>
+    /// <inheritdoc/>
     public bool TryGetUserId(ClaimsPrincipal principal, out Guid userId)
     {
         var userIdS = principal.FindFirstValue(Options.ClaimsIdentity.UserIdClaimType);
         return ShortGuid.TryParse(userIdS, out userId);
     }
 
-    /// <summary>
-    /// 获取用户名称
-    /// </summary>
+    /// <inheritdoc/>
     public ValueTask<string> GetUserNameAsync(SysUser user) => new(user.UserName);
 
-    /// <summary>
-    /// 设置用户名称
-    /// </summary>
+    /// <inheritdoc/>
     public async ValueTask<IdentityResult> SetUserNameAsync(SysUser user, string userName)
     {
         if (string.IsNullOrWhiteSpace(userName))
@@ -245,9 +227,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return IdentityResult.Success;
     }
 
-    /// <summary>
-    /// 更新用户
-    /// </summary>
+    /// <inheritdoc/>
     public Task<IdentityResult> UpdateAsync(SysUser user)
     {
         ThrowIfDisposed();
@@ -255,10 +235,8 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <summary>
-    /// 在验证和更新规范化的电子邮件/用户名后调用以更新用户
+    /// 更新用户
     /// </summary>
-    /// <param name="user">用户</param>
-    /// <returns>操作是否成功</returns>
     protected virtual async Task<IdentityResult> UpdateUserAsync(SysUser user)
     {
         var result = await ValidateUserAsync(user);
@@ -278,9 +256,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return IdentityResult.Success;
     }
 
-    /// <summary>
-    /// 根据 <see cref="ClaimsPrincipal"/> 获取用户
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<SysUser?> GetUserAsync(ClaimsPrincipal principal)
     {
         if (!TryGetUserId(principal, out var userId)) return null;
@@ -288,9 +264,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return user;
     }
 
-    /// <summary>
-    /// 设置用户锁定的截止日期
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<IdentityResult> SetLockoutEndDateAsync(SysUser user, DateTimeOffset? lockoutEnd)
     {
         ThrowIfDisposed();
@@ -300,9 +274,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return await UpdateUserAsync(user);
     }
 
-    /// <summary>
-    /// 检查用户是否被锁定
-    /// </summary>
+    /// <inheritdoc/>
     public ValueTask<bool> IsLockedOutAsync(SysUser user)
     {
         ThrowIfDisposed();
@@ -349,9 +321,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         return new(PasswordHasher.VerifyHashedPassword(user, hash, password));
     }
 
-    /// <summary>
-    /// 更改用户密码
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<IdentityResult> ChangePasswordAsync(SysUser user, string currentPassword, string newPassword)
     {
         ThrowIfDisposed();

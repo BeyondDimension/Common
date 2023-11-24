@@ -1,7 +1,5 @@
 namespace System.Security.Cryptography;
-
 #pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 非对称加密算法 - RSA
 /// </summary>
@@ -9,6 +7,12 @@ public static partial class RSAUtils
 {
     #region FromJsonString
 
+    /// <summary>
+    /// 从 JSON 字符串获取 RSA 参数
+    /// </summary>
+    /// <param name="jsonString"></param>
+    /// <returns></returns>
+    /// <exception cref="NullReferenceException"></exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSAParameters GetRSAParametersFromJsonString(string jsonString)
     {
@@ -22,7 +26,7 @@ public static partial class RSAUtils
     }
 
     /// <summary>
-    /// 通过 JSON 字符串中的密钥信息初始化 RSA 对象。
+    /// 通过 JSON 字符串中的密钥信息初始化 RSA 对象
     /// </summary>
     /// <param name="rsa"></param>
     /// <param name="jsonString"></param>
@@ -67,11 +71,11 @@ public static partial class RSAUtils
     #region 从 RSA 实例中获取密钥
 
     /// <summary>
-    /// 创建并返回包含当前 <see cref="RSA"/> 对象的密钥的 JSON 字符串。
+    /// 创建并返回包含当前 <see cref="RSA"/> 对象的密钥的 JSON 字符串
     /// </summary>
     /// <param name="rsa"></param>
-    /// <param name="includePrivateParameters"><see langword="true" /> 表示同时包含 RSA 公钥和私钥；<see langword="false" /> 表示仅包含公钥。</param>
-    /// <returns>包含当前 <see cref="RSA"/> 对象的密钥的 JSON 字符串。</returns>
+    /// <param name="includePrivateParameters"><see langword="true" /> 表示同时包含 RSA 公钥和私钥；<see langword="false" /> 表示仅包含公钥</param>
+    /// <returns>包含当前 <see cref="RSA"/> 对象的密钥的 JSON 字符串</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToJsonString(this RSA rsa, bool includePrivateParameters)
     {

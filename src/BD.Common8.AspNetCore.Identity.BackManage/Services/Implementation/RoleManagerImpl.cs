@@ -30,15 +30,11 @@ public class RoleManagerImpl<TDbContext>(
     public IdentityErrorDescriber ErrorDescriber { get; set; } = errors;
 
     /// <summary>
-    /// 获取取消令牌
+    /// 取消令牌
     /// </summary>
     protected virtual CancellationToken CancellationToken => CancellationToken.None;
 
-    /// <summary>
-    /// 根据角色 Id 查找角色
-    /// </summary>
-    /// <param name="roleId"></param>
-    /// <returns></returns>
+    /// <inheritdoc/>
     public async Task<SysRole?> FindByIdAsync(Guid roleId)
     {
         ThrowIfDisposed();
@@ -46,9 +42,7 @@ public class RoleManagerImpl<TDbContext>(
         return role;
     }
 
-    /// <summary>
-    /// 创建角色
-    /// </summary>
+    /// <inheritdoc/>
     public async Task<IdentityResult> CreateAsync(SysRole role)
     {
         ThrowIfDisposed();
@@ -61,12 +55,7 @@ public class RoleManagerImpl<TDbContext>(
         return IdentityResult.Success;
     }
 
-    /// <summary>
-    /// 根据角色名称和租户 Id 查找角色
-    /// </summary>
-    /// <param name="roleName"></param>
-    /// <param name="tenantId"></param>
-    /// <returns></returns>
+    /// <inheritdoc/>
     public async Task<SysRole?> FindByNameAsync(string? roleName, Guid tenantId)
     {
         if (roleName == null) return null;
@@ -77,11 +66,7 @@ public class RoleManagerImpl<TDbContext>(
         return role;
     }
 
-    /// <summary>
-    /// 获取指定的的规范化表示形式 <paramref name="key"/>
-    /// </summary>
-    /// <param name="key">要规范化的值</param>
-    /// <returns>指定的规范化表示 <paramref name="key"/> </returns>
+    /// <inheritdoc/>
     [return: NotNullIfNotNull(nameof(key))]
     public virtual string? NormalizeKey(string? key) => KeyNormalizer == null ? key : KeyNormalizer.NormalizeName(key);
 
@@ -119,18 +104,14 @@ public class RoleManagerImpl<TDbContext>(
         return ValueTask.CompletedTask;
     }
 
-    /// <summary>
-    /// 更新角色
-    /// </summary>
+    /// <inheritdoc/>
     public Task<IdentityResult> UpdateAsync(SysRole role)
     {
         ThrowIfDisposed();
         return UpdateRoleAsync(role);
     }
 
-    /// <summary>
-    /// 删除角色
-    /// </summary>
+    /// <inheritdoc/>
     public Task<IdentityResult> DeleteAsync(SysRole role)
     {
         ThrowIfDisposed();

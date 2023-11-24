@@ -1,7 +1,5 @@
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 提供首选项设置平台服务的实现
 /// </summary>
@@ -27,6 +25,9 @@ sealed partial class PreferencesPlatformServiceImpl : IPreferencesGenericPlatfor
     /// </summary>
     const string ColumnName_SharedName = "F6A739AA";
 
+    /// <summary>
+    /// 表示一个实体的类，用于映射到数据库表
+    /// </summary>
     [SQLiteTable(TableName)]
     [DebuggerDisplay("{DebuggerDisplay(),nq}")]
     public sealed class Entity : IEntity<string>

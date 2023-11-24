@@ -1,5 +1,3 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Extensions;
 
 public static partial class X509CertificateExtensions
@@ -19,6 +17,7 @@ public static partial class X509CertificateExtensions
         return hasher.GetHashAndReset();
     }
 
+    /// <inheritdoc cref="GetCertHashCompatImpl"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] GetCertHashCompat(this X509Certificate certificate, HashAlgorithmName hashAlgorithm)
     {
@@ -36,6 +35,9 @@ public static partial class X509CertificateExtensions
 #endif
     }
 
+    /// <summary>
+    /// 使用指定加密哈希算法获取证书的哈希值字符串
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetCertHashStringCompat(this X509Certificate certificate, HashAlgorithmName hashAlgorithm)
     {

@@ -1,12 +1,16 @@
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Microsoft.AspNetCore.Mvc;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public static partial class HttpRequestExtensions
 {
+    /// <summary>
+    /// 自定义 URL 方案名称
+    /// </summary>
     public const string CUSTOM_URL_SCHEME_NAME = "spp";
 
+    /// <summary>
+    /// 自定义 URL 方案
+    /// </summary>
     public const string CUSTOM_URL_SCHEME = $"{CUSTOM_URL_SCHEME_NAME}://";
 
     /// <summary>

@@ -1,9 +1,7 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
-/// 系统组织架构实体类
+/// 系统组织实体类
 /// </summary>
 [Table("BM_Organizations")]
 [EntityTypeConfiguration(typeof(EntityTypeConfiguration))]
@@ -27,19 +25,19 @@ public sealed class SysOrganization : TenantBaseEntity, INEWSEQUENTIALID, IOrder
     [Comment("父级 Id")]
     public Guid ParentId { get; set; }
 
+    /// <summary>
+    /// 排序
+    /// </summary>
     [Comment("排序")]
     public long Order { get; set; }
 
-    /// <summary>
-    /// 父级系统组织架构
-    /// </summary>
+    /// <inheritdoc cref="SysOrganization"/>
     public SysOrganization? Parent { get; set; }
 
-    /// <summary>
-    /// 子级系统组织架构
-    /// </summary>
+    /// <inheritdoc cref="SysOrganization"/>
     public List<SysOrganization>? Children { get; set; }
 
+    /// <inheritdoc cref="SysUserOrganization"/>
     public List<SysUserOrganization>? UserOrganizations { get; set; }
 
     /// <summary>
@@ -49,8 +47,10 @@ public sealed class SysOrganization : TenantBaseEntity, INEWSEQUENTIALID, IOrder
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
 
+    /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysOrganization>
     {
+        /// <inheritdoc/>
         public override void Configure(EntityTypeBuilder<SysOrganization> builder)
         {
             base.Configure(builder);

@@ -11,8 +11,6 @@ using ObjCRuntime;
 
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/DeviceInfo
 /// </summary>
@@ -43,7 +41,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
 #endif
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="DeviceInfoPlatformServiceImpl"/> class.
+    /// 初始化 <see cref="DeviceInfoPlatformServiceImpl"/> 类的新实例
     /// </summary>
     public DeviceInfoPlatformServiceImpl()
     {
@@ -60,6 +58,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
 #endif
     }
 
+    /// <inheritdoc/>
     public virtual string Model
     {
         get
@@ -87,6 +86,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public virtual string Manufacturer
     {
         get
@@ -103,6 +103,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public virtual string Name
     {
         get
@@ -141,6 +142,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public virtual string VersionString
     {
         get
@@ -169,6 +171,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public virtual DeviceType DeviceType
     {
         get
@@ -207,6 +210,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public virtual DeviceIdiom Idiom
     {
         get
@@ -316,6 +320,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public virtual bool IsChromeOS
     {
         get
@@ -517,6 +522,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
     }
 #endif
 
+    /// <inheritdoc/>
     public DevicePlatform2 Platform
     {
         get

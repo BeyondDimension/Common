@@ -25,8 +25,8 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
 {
     event EventHandler<ConnectivityChangedEventArgs>? ConnectivityChangedInternal;
 
-    // a cache so that events aren't fired unnecessarily
-    // this is mainly an issue on Android, but we can stiil do this everywhere
+    // 缓存，这样就不会不必要地触发事件
+    // 这主要是安卓系统上的一个问题，但我们仍然可以在任何地方这样做
     NetworkAccess currentAccess;
     List<ConnectionProfileEnum> currentProfiles = [];
 
@@ -72,33 +72,33 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
     }
 
     /// <summary>
-    /// The current connectivity information from the change event.
+    /// 更改事件中的当前连接信息
     /// </summary>
     /// <remarks>
-    /// Initializes a new instance of the <see cref="ConnectivityChangedEventArgs"/> class.
+    /// 初始化 <see cref="ConnectivityChangedEventArgs"/> 类的新实例
     /// </remarks>
-    /// <param name="access">The current access of the network.</param>
-    /// <param name="connectionProfiles">The connection profiles changing correspondingto this event.</param>
+    /// <param name="access">网络的当前访问权限</param>
+    /// <param name="connectionProfiles">连接配置文件根据此事件而更改</param>
     public class ConnectivityChangedEventArgs(NetworkAccess access, IEnumerable<ConnectionProfileEnum> connectionProfiles) : EventArgs
     {
         /// <summary>
-        /// Gets the current state of network access.
+        /// 获取网络访问的当前状态
         /// </summary>
         /// <remarks>
-        /// <para>Even when <see cref="NetworkAccess.Internet"/> is returned, full internet access is not guaranteed.</para>
-        /// <para>Can throw <see cref="PermissionException"/> on Android if <c>ACCESS_NETWORK_STATE</c> is not set in manifest.</para>
+        /// <para>即使返回 <see cref="NetworkAccess.Internet"/>，也不能保证完全访问 Internet</para>
+        /// <para>如果清单中未设置 <c>ACCESS_NETWORK_STATE</c>，则会在 Android 上引发 <see cref="PermissionException"/> </para>
         /// </remarks>
         public NetworkAccess NetworkAccess { get; } = access;
 
         /// <summary>
-        /// Gets the active connectivity profiles for the device.
+        /// 获取设备的活动连接配置文件
         /// </summary>
         public IEnumerable<ConnectionProfileEnum> ConnectionProfiles { get; } = connectionProfiles;
 
         /// <summary>
-        /// Returns a string representation of the current values of <see cref="ConnectivityChangedEventArgs"/>.
+        /// 返回 <see cref="ConnectivityChangedEventArgs"/> 的当前值的字符串表示形式
         /// </summary>
-        /// <returns>A string representation of this instance in the format of <c>NetworkAccess: {value}, ConnectionProfiles: [{value1}, {value2}]</c>.</returns>
+        /// <returns>此实例的字符串表示形式，格式为 <c>NetworkAccess: {value}, ConnectionProfiles: [{value1}, {value2}]</c></returns>
         public override string ToString() =>
             $"{nameof(NetworkAccess)}: {NetworkAccess}, " +
             $"{nameof(ConnectionProfiles)}: [{string.Join(", ", ConnectionProfiles)}]";
@@ -106,7 +106,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
 
 #if ANDROID
     /// <summary>
-    /// Unique identifier for the connectivity changed action on Android.
+    /// Android 上连接更改操作的唯一标识符
     /// </summary>
     public const string ConnectivityChangedAction = "com.maui.essentials.ESSENTIALS_CONNECTIVITY_CHANGED";
     static readonly Intent connectivityIntent = new(ConnectivityChangedAction);
@@ -218,6 +218,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
     static NetworkAccess IsBetterAccess(NetworkAccess currentAccess, NetworkAccess newAccess) =>
         newAccess > currentAccess ? newAccess : currentAccess;
 
+    /// <inheritdoc/>
     public NetworkAccess NetworkAccess
     {
         get
@@ -314,6 +315,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public IEnumerable<ConnectionProfileEnum> ConnectionProfiles
     {
         get
@@ -530,6 +532,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
         listener = null;
     }
 
+    /// <inheritdoc/>
     public NetworkAccess NetworkAccess
     {
         get
@@ -553,6 +556,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
         }
     }
 
+    /// <inheritdoc/>
     public IEnumerable<ConnectionProfileEnum> ConnectionProfiles
     {
         get

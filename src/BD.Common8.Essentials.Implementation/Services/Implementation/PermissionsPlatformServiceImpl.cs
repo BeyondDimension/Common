@@ -24,9 +24,8 @@ using Photos;
 
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
+/// 权限平台服务实现
 /// https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Permissions
 /// </summary>
 [SupportedOSPlatform("android")]
@@ -36,18 +35,25 @@ namespace BD.Common8.Essentials.Services.Implementation;
 [SupportedOSPlatform("windows")]
 public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 {
+    /// <inheritdoc/>
     Task<PermissionStatus> IPermissionsPlatformService.CheckStatusAsync<TPermission>()
         => GetRequiredService(typeof(TPermission).Name).CheckStatusAsync();
 
+    /// <inheritdoc/>
     void IPermissionsPlatformService.EnsureDeclared<TPermission>()
         => GetRequiredService(typeof(TPermission).Name).EnsureDeclared();
 
+    /// <inheritdoc/>
     Task<PermissionStatus> IPermissionsPlatformService.RequestAsync<TPermission>()
         => GetRequiredService(typeof(TPermission).Name).RequestAsync();
 
+    /// <inheritdoc/>
     bool IPermissionsPlatformService.ShouldShowRationale<TPermission>()
         => GetRequiredService(typeof(TPermission).Name).ShouldShowRationale();
 
+    /// <summary>
+    /// 获取所需服务实例
+    /// </summary>
     protected virtual IBasePermission GetRequiredService(string serviceName) => serviceName switch
     {
         nameof(Permissions2.PhoneNumber) => new PhoneNumber(),
@@ -80,6 +86,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
     };
 
 #if ANDROID
+    /// <summary>
+    /// 检查权限是否在应用程序清单中声明
+    /// </summary>
     public static bool IsDeclaredInManifest(string permission)
     {
         var context = Application.Context;
@@ -89,27 +98,63 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         return requestedPermissions?.Any(r => r.Equals(permission, StringComparison.OrdinalIgnoreCase)) ?? false;
     }
 
+    /// <summary>
+    /// 处理权限请求结果
+    /// </summary>
+    /// <param name="requestCode">请求码</param>
+    /// <param name="permissions">权限数组</param>
+    /// <param name="grantResults">授权结果数组</param>
     internal static void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         => BasePlatformPermission.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
+    /// <summary>
+    /// 权限结果类用于存储权限请求的结果信息
+    /// </summary>
     public partial class PermissionResult(string[] permissions, Permission[] grantResults)
     {
+        /// <summary>
+        /// 获取请求的权限数组
+        /// </summary>
         public string[] Permissions { get; } = permissions;
 
+        /// <summary>
+        /// 获取授权结果数组
+        /// </summary>
         public Permission[] GrantResults { get; } = grantResults;
     }
 
+    /// <summary>
+    /// 表示所有权限的抽象基类，实现 <see cref="IBasePermission"/> 接口
+    /// </summary>
     public abstract partial class BasePlatformPermission : IBasePermission
     {
+        /// <summary>
+        /// 权限请求的字典，用于存储每个请求的请求代码和对应的任务完成源
+        /// </summary>
         static readonly Dictionary<int, TaskCompletionSource<PermissionResult>> requests = [];
 
+        /// <summary>
+        /// 用于请求字典的锁对象
+        /// </summary>
         static readonly object locker = new();
+
+        /// <summary>
+        /// 当前的请求代码
+        /// </summary>
         static int requestCode;
 
+        /// <summary>
+        /// 获取所需的权限数组
+        /// </summary>
         public virtual (string androidPermission, bool isRuntime)[]? RequiredPermissions { get; }
 
+        /// <inheritdoc/>
         public virtual Task<PermissionStatus> CheckStatusAsync() => CheckStatusAsync(RequiredPermissions);
 
+        /// <summary>
+        /// 检索此权限的当前状态
+        /// </summary>
+        /// <exception cref="PermissionException">如果权限没有在 AndroidManifest.xml 中声明，则引发</exception>
         public virtual Task<PermissionStatus> CheckStatusAsync((string androidPermission, bool isRuntime)[]? requiredPermissions)
         {
             if (requiredPermissions == null || requiredPermissions.Length <= 0)
@@ -129,6 +174,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return Task.FromResult(PermissionStatus.Granted);
         }
 
+        /// <inheritdoc/>
         public virtual async Task<PermissionStatus> RequestAsync()
         {
             var requiredPermissions = RequiredPermissions;
@@ -151,6 +197,11 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return PermissionStatus.Granted;
         }
 
+        /// <summary>
+        /// 执行权限请求并返回结果
+        /// </summary>
+        /// <param name="permissions">需要请求的权限数组</param>
+        /// <returns>权限请求的结果</returns>
         protected virtual async Task<PermissionResult> DoRequest(string[] permissions)
         {
             TaskCompletionSource<PermissionResult> tcs;
@@ -177,6 +228,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return result;
         }
 
+        /// <inheritdoc/>
         public virtual void EnsureDeclared()
         {
             if (RequiredPermissions == null || RequiredPermissions.Length <= 0)
@@ -190,6 +242,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             }
         }
 
+        /// <inheritdoc/>
         public virtual bool ShouldShowRationale()
         {
             if (RequiredPermissions == null || RequiredPermissions.Length <= 0)
@@ -207,6 +260,11 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return false;
         }
 
+        /// <summary>
+        /// 执行权限检查
+        /// </summary>
+        /// <param name="androidPermission">Android 权限字符串</param>
+        /// <returns>权限状态</returns>
         protected virtual PermissionStatus DoCheck(string androidPermission)
         {
             var context = Application.Context;
@@ -238,6 +296,12 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return status;
         }
 
+        /// <summary>
+        /// 处理权限请求结果
+        /// </summary>
+        /// <param name="requestCode">请求代码</param>
+        /// <param name="permissions">请求的权限数组</param>
+        /// <param name="grantResults">授权结果数组</param>
         internal static void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             lock (locker)
@@ -253,10 +317,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
     }
 #elif WINDOWS
     /// <summary>
-    /// Checks if the capability specified in <paramref name="capabilityName"/> is declared in the application's <c>AppxManifest.xml</c> file.
+    /// 检查 <paramref name="capabilityName"/> 中指定的功能是否在应用程序的 <c>AppxManifest.xml</c> 文件中声明
     /// </summary>
-    /// <param name="capabilityName">The capability to check for specification in the <c>AppxManifest.xml</c> file.</param>
-    /// <returns><see langword="true"/> when the capability is specified, otherwise <see langword="false"/>.</returns>
+    /// <param name="capabilityName">在 <c>AppxManifest.xml</c> 文件中检查规范的功能</param>
+    /// <returns><see langword="true"/>当指定了该功能时，否则 <see langword="false"/></returns>
     [SupportedOSPlatform("windows10.0.10240.0")]
     public static bool IsCapabilityDeclared(string capabilityName)
     {
@@ -276,12 +340,12 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
     }
 
     /// <summary>
-    /// Represents the platform-specific abstract base class for all permissions on this platform.
+    /// 表示所有权限的抽象基类，实现 <see cref="IBasePermission"/> 接口
     /// </summary>
     public abstract partial class BasePlatformPermission : IBasePermission
     {
         /// <summary>
-        /// Gets the required entries that need to be present in the application's <c>AppxManifest.xml</c> file for this permission.
+        /// 获取权限所需声明
         /// </summary>
         protected virtual Func<IEnumerable<string>> RequiredDeclarations { get; } = Array.Empty<string>;
 
@@ -312,25 +376,47 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         public virtual bool ShouldShowRationale() => false;
     }
 #elif MACOS
+
+    /// <summary>
+    /// 检查指定的键是否在 Info.plist 文件中声明
+    /// </summary>
+    /// <param name="usageKey">要检查的键名</param>
+    /// <returns>如果键存在于 Info.plist 中，则返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
     public static bool IsKeyDeclaredInInfoPlist(string usageKey) =>
         NSBundle.MainBundle.InfoDictionary.ContainsKey(new NSString(usageKey));
 
+    /// <summary>
+    /// 获取或设置位置超时时间，默认为 10 秒
+    /// </summary>
     public static TimeSpan LocationTimeout { get; set; } = TimeSpan.FromSeconds(10);
 
+    /// <summary>
+    /// 表示所有权限的抽象基类，实现 <see cref="IBasePermission"/> 接口
+    /// </summary>
     public abstract class BasePlatformPermission : IBasePermission
     {
+        /// <summary>
+        /// 获取推荐的 Info.plist 键
+        /// </summary>
         protected virtual Func<IEnumerable<string>>? RecommendedInfoPlistKeys { get; }
 
+        /// <summary>
+        /// 获取必需的 Info.plist 键
+        /// </summary>
         protected virtual Func<IEnumerable<string>>? RequiredInfoPlistKeys { get; }
 
+        /// <inheritdoc/>
         public virtual Task<PermissionStatus> CheckStatusAsync() =>
             Task.FromResult(PermissionStatus.Granted);
 
+        /// <inheritdoc/>
         public virtual Task<PermissionStatus> RequestAsync() =>
             Task.FromResult(PermissionStatus.Granted);
 
+        /// <inheritdoc/>
         public virtual bool ShouldShowRationale() => false;
 
+        /// <inheritdoc/>
         public virtual void EnsureDeclared()
         {
             var plistKeys = RequiredInfoPlistKeys?.Invoke();
@@ -357,6 +443,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             }
         }
 
+        /// <summary>
+        /// 检查在主线程调用
+        /// </summary>
+        /// <exception cref="PermissionException">不在主线程上调用权限请求，则引发</exception>
 #pragma warning disable CA1822 // 将成员标记为 static
         internal void EnsureMainThread()
 #pragma warning restore CA1822 // 将成员标记为 static
@@ -366,8 +456,14 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         }
     }
 #elif IOS || MACCATALYST
+    /// <summary>
+    /// 访问系统事件权限类
+    /// </summary>
     internal static class EventPermission
     {
+        /// <summary>
+        /// 检查权限状态
+        /// </summary>
         internal static PermissionStatus CheckPermissionStatus(EKEntityType entityType)
         {
 #pragma warning disable CA1416 // 验证平台兼容性
@@ -382,6 +478,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             };
         }
 
+        /// <summary>
+        /// 异步请求对事件的访问权限
+        /// </summary>
+        /// <returns>权限状态</returns>
         internal static async Task<PermissionStatus> RequestPermissionAsync(EKEntityType entityType)
         {
             var eventStore = new EKEventStore();
@@ -397,25 +497,25 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
     }
 
     /// <summary>
-    /// Checks if the key specified in <paramref name="usageKey"/> is declared in the application's <c>Info.plist</c> file.
+    /// 检查 <paramref name="usageKey"/> 中指定的密钥是否在应用程序的 <c>Info.plist</c> 文件中声明
     /// </summary>
-    /// <param name="usageKey">The key to check for declaration in the <c>Info.plist</c> file.</param>
-    /// <returns><see langword="true"/> when the key is declared, otherwise <see langword="false"/>.</returns>
+    /// <param name="usageKey">检查 <c>Info.plist</c> 文件中声明的键</param>
+    /// <returns><see langword="true"/> 当键被声明时，否则 <see langword="false"/></returns>
     public static bool IsKeyDeclaredInInfoPlist(string usageKey) =>
         NSBundle.MainBundle.InfoDictionary.ContainsKey(new NSString(usageKey));
 
     /// <summary>
-    /// Gets or sets the timeout that is used when the location permission is requested.
+    /// 获取或设置请求位置权限时使用的超时
     /// </summary>
     public static TimeSpan LocationTimeout { get; set; } = TimeSpan.FromSeconds(10);
 
     /// <summary>
-    /// Represents the platform-specific abstract base class for all permissions on this platform.
+    /// 表示所有权限的抽象基类，实现 <see cref="IBasePermission"/> 接口
     /// </summary>
     public abstract class BasePlatformPermission : IBasePermission
     {
         /// <summary>
-        /// Gets the required entries that need to be present in the application's <c>Info.plist</c> file for this permission.
+        /// 获取此权限需要存在于应用程序的 Info.plist 文件中的必需项
         /// </summary>
         protected virtual Func<IEnumerable<string>>? RequiredInfoPlistKeys { get; }
 
@@ -449,6 +549,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         public virtual bool ShouldShowRationale() => false;
 
 #pragma warning disable CA1822 // 将成员标记为 static
+        /// <summary>
+        /// 检查在主线程调用
+        /// </summary>
+        /// <exception cref="PermissionException">不在主线程上调用权限请求，则引发</exception>
         internal void EnsureMainThread()
 #pragma warning restore CA1822 // 将成员标记为 static
         {
@@ -457,22 +561,30 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         }
     }
 #else
+
+    /// <summary>
+    /// 表示所有权限的抽象基类，实现 <see cref="IBasePermission"/> 接口
+    /// </summary>
     public abstract class BasePlatformPermission : IBasePermission
     {
+        /// <inheritdoc/>
         public virtual Task<PermissionStatus> CheckStatusAsync()
         {
             return Task.FromResult(PermissionStatus.Granted);
         }
 
+        /// <inheritdoc/>
         public virtual void EnsureDeclared()
         {
         }
 
+        /// <inheritdoc/>
         public virtual Task<PermissionStatus> RequestAsync()
         {
             return Task.FromResult(PermissionStatus.Granted);
         }
 
+        /// <inheritdoc/>
         public virtual bool ShouldShowRationale()
         {
             return default;
@@ -481,9 +593,16 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
 
 #if IOS || MACCATALYST
+
+    /// <summary>
+    /// 用于检查和请求 <see cref="AVCaptureDevice"/> 权限的辅助类
+    /// </summary>
     internal static partial class AVPermissions
     {
 #pragma warning disable CA1416 // https://github.com/xamarin/xamarin-macios/issues/14619
+        /// <summary>
+        /// 检查媒体类型的权限状态
+        /// </summary>
         internal static PermissionStatus CheckPermissionsStatus(AVAuthorizationMediaType mediaType)
         {
             var status = AVCaptureDevice.GetAuthorizationStatus(mediaType);
@@ -496,6 +615,11 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             };
         }
 
+        /// <summary>
+        /// 异步请求媒体类型的权限
+        /// </summary>
+        /// <param name="mediaType">媒体类型</param>
+        /// <returns>权限状态</returns>
         internal static async Task<PermissionStatus> RequestPermissionAsync(AVAuthorizationMediaType mediaType)
         {
             try
@@ -513,24 +637,36 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
     }
 #endif
 
+    /// <summary>
+    /// 电话号码权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.PhoneNumber"/> 类
+    /// </summary>
     public partial class PhoneNumber : BasePlatformPermission, Permissions2.PhoneNumber
     {
     }
 
+    /// <summary>
+    /// 电池权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Battery"/> 类
+    /// </summary>
     public partial class Battery : BasePlatformPermission, Permissions2.Battery
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.BatteryStats, false) };
 
+        /// <inheritdoc/>
         public override Task<PermissionStatus> CheckStatusAsync() =>
             Task.FromResult(IsDeclaredInManifest(Manifest.Permission.BatteryStats) ? PermissionStatus.Granted : PermissionStatus.Denied);
 #endif
     }
 
+    /// <summary>
+    /// 蓝牙权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Bluetooth"/> 类
+    /// </summary>
     public partial class Bluetooth : BasePlatformPermission, Permissions2.Bluetooth
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions
         {
             get
@@ -561,9 +697,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 读取设备日历信息权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.CalendarRead"/> 类
+    /// </summary>
     public partial class CalendarRead : BasePlatformPermission, Permissions2.CalendarRead
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.ReadCalendar, true) };
 #elif IOS || MACCATALYST
@@ -593,12 +733,17 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 写入设备日历数据权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.CalendarWrite"/> 类
+    /// </summary>
     public partial class CalendarWrite : BasePlatformPermission, Permissions2.CalendarWrite
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.WriteCalendar, true) };
 #elif IOS || MACCATALYST
+
         /// <inheritdoc/>
         protected override Func<IEnumerable<string>> RequiredInfoPlistKeys =>
             () => new string[] { "NSCalendarsUsageDescription" };
@@ -625,13 +770,18 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 访问设备摄像头的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Camera"/> 类
+    /// </summary>
     public partial class Camera : BasePlatformPermission, Permissions2.Camera
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.Camera, true) };
 #elif IOS || MACCATALYST
 #pragma warning disable CA1416 // 验证平台兼容性
+
         /// <inheritdoc/>
         protected override Func<IEnumerable<string>> RequiredInfoPlistKeys =>
             () => new string[] { "NSCameraUsageDescription" };
@@ -661,9 +811,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 读取设备联系人信息的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.ContactsRead"/> 类
+    /// </summary>
     public partial class ContactsRead : BasePlatformPermission, Permissions2.ContactsRead
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.ReadContacts, true) };
 #elif WINDOWS
@@ -708,6 +862,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return RequestAddressBookPermission();
         }
 
+        /// <summary>
+        /// 获取通讯录权限状态的内部静态方法
+        /// </summary>
+        /// <returns>权限状态</returns>
         internal static PermissionStatus GetAddressBookPermissionStatus()
         {
             var status = Contacts.CNContactStore.GetAuthorizationStatus(Contacts.CNEntityType.Contacts);
@@ -720,6 +878,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             };
         }
 
+        /// <summary>
+        /// 请求通讯录权限的内部异步方法
+        /// </summary>
+        /// <returns>权限状态</returns>
         internal static async Task<PermissionStatus> RequestAddressBookPermission()
         {
             var contactStore = new Contacts.CNContactStore();
@@ -734,9 +896,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 写入设备联系人数据的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.ContactsWrite"/> 类
+    /// </summary>
     public partial class ContactsWrite : BasePlatformPermission, Permissions2.ContactsWrite
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.WriteContacts, true) };
 #elif WINDOWS
@@ -782,9 +948,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 访问设备手电筒的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Flashlight"/> 类
+    /// </summary>
     public partial class Flashlight : BasePlatformPermission, Permissions2.Flashlight
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[]
             {
@@ -794,13 +964,20 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 在设备上启动其他应用程序的权限，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.LaunchApp"/> 类
+    /// </summary>
     public partial class LaunchApp : BasePlatformPermission, Permissions2.LaunchApp
     {
     }
 
+    /// <summary>
+    /// 仅当应用程序正在使用时访问设备位置的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.LaunchApp"/> 类
+    /// </summary>
     public partial class LocationWhenInUse : BasePlatformPermission, Permissions2.LocationWhenInUse
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[]
             {
@@ -808,6 +985,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
                     (Manifest.Permission.AccessFineLocation, true),
             };
 
+        /// <inheritdoc/>
         public override async Task<PermissionStatus> RequestAsync()
         {
             // Check status before requesting first
@@ -826,6 +1004,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             };
         }
 #elif WINDOWS
+
         /// <inheritdoc/>
         public override Task<PermissionStatus> CheckStatusAsync()
         {
@@ -833,6 +1012,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return RequestLocationPermissionAsync();
         }
 
+        /// <summary>
+        /// 请求位置权限内部方法，必须在主线程调用权限请求，否则引发异常 <see cref="PermissionException"/>
+        /// </summary>
         internal static async Task<PermissionStatus> RequestLocationPermissionAsync()
         {
             if (!MainThread2.IsMainThread())
@@ -849,9 +1031,11 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #pragma warning restore CA1416 // 验证平台兼容性
         }
 #elif MACOS
+        /// <inheritdoc/>
         protected override Func<IEnumerable<string>> RecommendedInfoPlistKeys =>
                 () => new string[] { "NSLocationWhenInUseUsageDescription" };
 
+        /// <inheritdoc/>
         public override Task<PermissionStatus> CheckStatusAsync()
         {
             EnsureDeclared();
@@ -859,6 +1043,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return Task.FromResult(GetLocationStatus());
         }
 
+        /// <inheritdoc/>
         public override async Task<PermissionStatus> RequestAsync()
         {
             EnsureDeclared();
@@ -872,6 +1057,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return await RequestLocationAsync();
         }
 
+        /// <summary>
+        /// 获取位置权限状态
+        /// </summary>
         internal static PermissionStatus GetLocationStatus()
         {
             if (!CLLocationManager.LocationServicesEnabled)
@@ -895,6 +1083,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 
         static CLLocationManager? locationManager;
 
+        /// <summary>
+        /// 异步请求位置权限方法
+        /// </summary>
+        /// <returns></returns>
         internal static Task<PermissionStatus> RequestLocationAsync()
         {
             locationManager = new CLLocationManager();
@@ -925,6 +1117,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #pragma warning restore CA1422 // 验证平台兼容性
         }
 #elif IOS || MACCATALYST
+
         /// <inheritdoc/>
         protected override Func<IEnumerable<string>> RequiredInfoPlistKeys =>
             () => new string[] { "NSLocationWhenInUseUsageDescription" };
@@ -953,6 +1146,11 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #pragma warning restore CA1416
         }
 
+        /// <summary>
+        /// 根据给定的参数获取位置权限状态
+        /// </summary>
+        /// <param name="whenInUse">是否是在使用期间请求权限</param>
+        /// <returns>位置权限状态</returns>
         internal static PermissionStatus GetLocationStatus(bool whenInUse)
         {
             if (!CLLocationManager.LocationServicesEnabled)
@@ -976,6 +1174,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 
         static CLLocationManager? locationManager;
 
+        /// <summary>
+        /// 异步请求用户位置权限的方法
+        /// </summary>
         internal static Task<PermissionStatus> RequestLocationAsync(bool whenInUse, Action<CLLocationManager> invokeRequest)
         {
             if (!CLLocationManager.LocationServicesEnabled)
@@ -1068,9 +1269,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备位置的权限，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.LocationAlways"/> 类
+    /// </summary>
     public partial class LocationAlways : BasePlatformPermission, Permissions2.LocationAlways
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions
         {
             get
@@ -1090,6 +1295,7 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         }
 
 #if __ANDROID_29__
+        /// <inheritdoc/>
         public override async Task<PermissionStatus> RequestAsync()
         {
             // Check status before requesting first
@@ -1154,10 +1360,16 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示设备访问地图的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Maps"/> 类
+    /// </summary>
     public partial class Maps : BasePlatformPermission, Permissions2.Maps
     {
     }
 
+    /// <summary>
+    /// 从设备库访问媒体的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Media"/> 类
+    /// </summary>
     public partial class Media : BasePlatformPermission, Permissions2.Media
     {
 #if IOS || MACCATALYST
@@ -1188,6 +1400,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return RequestMediaPermission();
         }
 
+        /// <summary>
+        /// 获取媒体权限状态的内部静态方法
+        /// </summary>
+        /// <returns>返回权限状态</returns>
         internal static PermissionStatus GetMediaPermissionStatus()
         {
             var status = MPMediaLibrary.AuthorizationStatus;
@@ -1200,6 +1416,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             };
         }
 
+        /// <summary>
+        /// 请求媒体权限的内部静态方法
+        /// </summary>
+        /// <returns>返回权限状态的任务</returns>
         internal static Task<PermissionStatus> RequestMediaPermission()
         {
             var tcs = new TaskCompletionSource<PermissionStatus>();
@@ -1229,9 +1449,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 访问设备麦克风的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Microphone"/> 类
+    /// </summary>
     public partial class Microphone : BasePlatformPermission, Permissions2.Microphone
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.RecordAudio, true) };
 #elif IOS || MACCATALYST
@@ -1265,9 +1489,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 访问附近 WiFi 设备的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.NearbyWifiDevices"/> 类
+    /// </summary>
     public partial class NearbyWifiDevices : BasePlatformPermission, Permissions2.NearbyWifiDevices
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions
         {
             get
@@ -1293,9 +1521,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备网络状态信息的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.NetworkState"/> 类
+    /// </summary>
     public partial class NetworkState : BasePlatformPermission, Permissions2.NetworkState
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions
         {
             get
@@ -1314,9 +1546,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备电话数据的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Phone"/> 类
+    /// </summary>
     public partial class Phone : BasePlatformPermission, Permissions2.Phone
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions
         {
             get
@@ -1363,6 +1599,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备库中照片的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Photos"/> 类
+    /// </summary>
     public partial class Photos : BasePlatformPermission, Permissions2.Photos
     {
 #if IOS || MACCATALYST
@@ -1409,6 +1648,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示向设备库添加照片（非读取）的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Photos"/> 类
+    /// </summary>
     public partial class PhotosAddOnly : BasePlatformPermission, Permissions2.PhotosAddOnly
     {
 #if IOS || MACCATALYST || MACOS
@@ -1486,6 +1728,9 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #pragma warning restore CA1416 // 验证平台兼容性
 #endif
 
+    /// <summary>
+    /// 提醒事项权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Reminders"/> 类
+    /// </summary>
     public partial class Reminders : BasePlatformPermission, Permissions2.Reminders
     {
 #if IOS || MACCATALYST
@@ -1515,12 +1760,19 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备传感器的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Sensors"/> 类
+    /// </summary>
     public partial class Sensors : BasePlatformPermission, Permissions2.Sensors
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.BodySensors, true) };
 #elif WINDOWS
+        /// <summary>
+        /// 表示活动传感器类的标识符
+        /// </summary>
         static readonly Guid activitySensorClassId = new("9D9E0118-1807-4F2E-96E4-2CE57142E196");
 
         /// <inheritdoc/>
@@ -1564,6 +1816,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return RequestSensorPermission();
         }
 
+        /// <summary>
+        /// 获取传感器权限的状态
+        /// </summary>
+        /// <returns>返回传感器权限状态。</returns>
         internal static PermissionStatus GetSensorPermissionStatus()
         {
             // Check if it's available
@@ -1592,6 +1848,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             return PermissionStatus.Unknown;
         }
 
+        /// <summary>
+        /// 请求传感器权限的方法
+        /// </summary>
+        /// <returns>表示传感器权限状态的枚举值。</returns>
         internal static async Task<PermissionStatus> RequestSensorPermission()
         {
 #pragma warning disable CA1416 // 验证平台兼容性
@@ -1615,9 +1875,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备 SMS 数据的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Sms"/> 类
+    /// </summary>
     public partial class Sms : BasePlatformPermission, Permissions2.Sms
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions
         {
             get
@@ -1641,9 +1905,13 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备语音功能的权限类，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Speech"/> 类
+    /// </summary>
     public partial class Speech : BasePlatformPermission, Permissions2.Speech
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.RecordAudio, true) };
 #elif IOS || MACCATALYST
@@ -1674,6 +1942,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
         }
 
 #pragma warning disable CA1416 // https://github.com/xamarin/xamarin-macios/issues/14619
+        /// <summary>
+        /// 获取语音权限的状态
+        /// </summary>
+        /// <returns>权限状态</returns>
         internal static PermissionStatus GetSpeechPermissionStatus()
         {
             var status = SFSpeechRecognizer.AuthorizationStatus;
@@ -1686,6 +1958,10 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
             };
         }
 
+        /// <summary>
+        /// 请求语音权限
+        /// </summary>
+        /// <returns>权限状态</returns>
         internal static Task<PermissionStatus> RequestSpeechPermission()
         {
             var tcs = new TaskCompletionSource<PermissionStatus>();
@@ -1715,25 +1991,37 @@ public class PermissionsPlatformServiceImpl : IPermissionsPlatformService
 #endif
     }
 
+    /// <summary>
+    /// 表示读取设备存储的权限，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.StorageRead"/> 类
+    /// </summary>
     public partial class StorageRead : BasePlatformPermission, Permissions2.StorageRead
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.ReadExternalStorage, true) };
 #endif
     }
 
+    /// <summary>
+    /// 表示对设备存储的写入权限，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.StorageWrite"/> 类
+    /// </summary>
     public partial class StorageWrite : BasePlatformPermission, Permissions2.StorageWrite
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.WriteExternalStorage, true) };
 #endif
     }
 
+    /// <summary>
+    /// 表示访问设备震动的权限，，继承自 <see cref="BasePlatformPermission"/> 和 <see cref="Permissions2.Vibrate"/> 类
+    /// </summary>
     public partial class Vibrate : BasePlatformPermission, Permissions2.Vibrate
     {
 #if ANDROID
+        /// <inheritdoc/>
         public override (string androidPermission, bool isRuntime)[] RequiredPermissions =>
             new (string, bool)[] { (Manifest.Permission.Vibrate, false) };
 #endif

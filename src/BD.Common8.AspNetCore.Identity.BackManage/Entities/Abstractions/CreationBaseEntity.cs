@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 基类实体 - 包含创建时间与创建人
 /// </summary>
@@ -24,9 +22,16 @@ public abstract class CreationBaseEntity<TPrimaryKey> :
     /// <inheritdoc/>
     public virtual SysUser? CreateUser { get; set; }
 
+    /// <summary>
+    /// 配置实体类型
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : IEntityTypeConfiguration<TEntity>
         where TEntity : CreationBaseEntity<TPrimaryKey>
     {
+        /// <summary>
+        /// 配置关系映射
+        /// </summary>
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {
             builder.HasOne(x => x.CreateUser)
@@ -40,6 +45,10 @@ public abstract class CreationBaseEntity<TPrimaryKey> :
 /// <inheritdoc cref="CreationBaseEntity{TPrimaryKey}"/>
 public abstract class CreationBaseEntity : CreationBaseEntity<Guid>
 {
+    /// <summary>
+    /// 配置实体类型
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public new abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : CreationBaseEntity<Guid>.EntityTypeConfiguration<TEntity>
         where TEntity : CreationBaseEntity<Guid>
     {

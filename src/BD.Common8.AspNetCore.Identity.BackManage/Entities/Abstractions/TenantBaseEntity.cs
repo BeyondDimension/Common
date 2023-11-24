@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 基类实体 - 包含租户与软删除与修改时间与操作人与创建时间与创建人
 /// </summary>

@@ -1,8 +1,8 @@
 namespace BD.Common8.AspNetCore.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
-/// <inheritdoc cref="SysTenant"/>
+/// <summary>
+/// <see cref="SysTenant"/> 模型类
+/// </summary>
 public sealed partial class SysTenantModel : KeyModel<Guid>
 {
     /// <inheritdoc cref="SysTenant.Name"/>
@@ -33,12 +33,18 @@ public sealed partial class SysTenantModel : KeyModel<Guid>
     public string? CreateUser { get; set; }
 
 #if !BLAZOR
+    /// <summary>
+    /// 将操作用户和创建用户关联到查询中
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IQueryable<SysTenant> Includes(IQueryable<SysTenant> query)
       => query
         .Include(x => x.OperatorUser)
         .Include(x => x.CreateUser);
 
+    /// <summary>
+    /// 表达式用于将 <see cref="SysTenant"/> 转换为 <see cref="SysTenantModel"/>
+    /// </summary>
     public static readonly Expression<Func<SysTenant, SysTenantModel>> Expression = x => new()
     {
         Id = x.Id,
@@ -57,24 +63,36 @@ public sealed partial class SysTenantModel : KeyModel<Guid>
 }
 
 /// <summary>
-/// 添加或编辑租户数据基类
+/// 添加或编辑 <see cref="SysTenant"/> 租户数据模型基类
 /// </summary>
 public abstract partial class AddOrEditSysTenantModelBase : IKeyModel<Guid>, IValidatableObject
 {
+    /// <summary>
+    /// 租户 Id
+    /// </summary>
     public Guid TenantId { get; set; }
 
+    /// <inheritdoc cref="SysTenant.Name"/>
     public string TenantName { get; set; } = "";
 
+    /// <inheritdoc cref="SysTenant.Contact"/>
     public string? Contact { get; set; }
 
+    /// <inheritdoc cref="SysTenant.ContactPhoneNumber"/>
     public string? ContactPhoneNumber { get; set; }
 
+    /// <inheritdoc cref="SysTenant.Address"/>
     public string? Address { get; set; }
 
+    /// <inheritdoc cref="SysTenant.RegisterEmail"/>
     public string? RegisterEmail { get; set; }
 
+    /// <inheritdoc cref="TenantId"/>
     Guid IKeyModel<Guid>.Id { get => TenantId; set => TenantId = value; }
 
+    /// <summary>
+    /// 验证模型的有效性
+    /// </summary>
     public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (string.IsNullOrWhiteSpace(TenantName))
@@ -83,16 +101,28 @@ public abstract partial class AddOrEditSysTenantModelBase : IKeyModel<Guid>, IVa
 }
 
 /// <summary>
-/// 添加租户模型类
+/// 添加 <see cref="SysTenant"/> 租户数据模型
 /// </summary>
 public sealed partial class AddSysTenantModel : AddOrEditSysTenantModelBase
 {
+    /// <summary>
+    /// 获取或设置租户管理员用户名
+    /// </summary>
     public string? AdminUserName { get; set; }
 
+    /// <summary>
+    /// 获取或设置租户管理员密码，第一次输入
+    /// </summary>
     public string? AdminPassword1 { get; set; }
 
+    /// <summary>
+    /// 获取或设置租户管理员密码，第二次输入
+    /// </summary>
     public string? AdminPassword2 { get; set; }
 
+    /// <summary>
+    /// 验证添加租户模型的属性值是否符合规范
+    /// </summary>
     IEnumerable<ValidationResult> ValidateCore()
     {
         if (string.IsNullOrWhiteSpace(AdminUserName))
@@ -105,6 +135,9 @@ public sealed partial class AddSysTenantModel : AddOrEditSysTenantModelBase
             yield return new ValidationResult("两次输入的租户管理员密码不一致", new[] { nameof(AdminPassword2) });
     }
 
+    /// <summary>
+    /// 重写基类的验证方法，用于调用 <see cref="ValidateCore"/> 核心验证方法
+    /// </summary>
     public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         return ValidateCore().Concat(base.Validate(validationContext));
@@ -121,7 +154,7 @@ public sealed partial class EditSysTenantModel : AddOrEditSysTenantModelBase
 #region 新租户实体
 
 /// <summary>
-/// 租户添加或编辑模型类
+/// <see cref="SysTenant"/> 租户添加或编辑模型类
 /// </summary>
 public sealed class AddOrEditSysTenantModel : KeyModel<Guid>, IValidatableObject
 {
@@ -179,6 +212,9 @@ public sealed class AddOrEditSysTenantModel : KeyModel<Guid>, IValidatableObject
     /// <inheritdoc cref="SysTenant.IsPlatformAdministrator"/>
     public bool IsPlatformAdministrator { get; set; }
 
+    /// <summary>
+    /// 验证模型有效性
+    /// </summary>
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (string.IsNullOrWhiteSpace(Name))
@@ -187,7 +223,7 @@ public sealed class AddOrEditSysTenantModel : KeyModel<Guid>, IValidatableObject
 }
 
 /// <summary>
-/// 租户查询表格项模型类
+/// <see cref="SysTenant"/> 租户查询表格项模型类
 /// </summary>
 public sealed class SysTenantTableItem : KeyModel<Guid>
 {
@@ -260,8 +296,14 @@ public sealed class SysTenantTableItem : KeyModel<Guid>
 
 #endregion
 
+/// <summary>
+/// 提供对实体类 <see cref="SysTenant"/> 的扩展方法
+/// </summary>
 public static partial class EntitiesExtensions
 {
+    /// <summary>
+    /// 将 <see cref="AddOrEditSysTenantModelBase"/> 对象的属性值赋给 <see cref="SysTenant"/> 对象
+    /// </summary>
     public static SysTenant SetValue(
         this SysTenant entity,
         AddOrEditSysTenantModelBase model)
@@ -275,8 +317,14 @@ public static partial class EntitiesExtensions
     }
 }
 
+/// <summary>
+/// 提供对模型类 <see cref="AddOrEditSysTenantModelBase"/> 的扩展方法
+/// </summary>
 public static partial class ModelExtensions
 {
+    /// <summary>
+    /// 将 <see cref="SysTenantModel"/> 对象的属性值赋给 <see cref="AddOrEditSysTenantModelBase"/> 对象
+    /// </summary>
     public static void SetValue(
        this AddOrEditSysTenantModelBase entity,
        SysTenantModel? model)

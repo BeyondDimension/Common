@@ -10,9 +10,8 @@ using SafariServices;
 
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
+/// 浏览器平台服务实现
 /// <para>https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/Browser/Browser.shared.cs</para>
 /// <para>https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/Browser/Browser.android.cs</para>
 /// <para>https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/Browser/Browser.ios.cs</para>
@@ -160,31 +159,37 @@ sealed class BrowserPlatformServiceImpl : IBrowserPlatformService
     }
 #endif
 
+    /// <inheritdoc/>
     ValueTask<bool> IBrowserPlatformService.OpenAsync(string uri)
     {
         return OpenAsync(uri, null);
     }
 
+    /// <inheritdoc/>
     ValueTask<bool> IBrowserPlatformService.OpenAsync(Uri uri)
     {
         return OpenAsync(uri.AbsoluteUri, null);
     }
 
+    /// <inheritdoc/>
     ValueTask<bool> IBrowserPlatformService.OpenAsync(string uri, BrowserLaunchMode launchMode)
     {
         return OpenAsync(uri, new() { LaunchMode = launchMode, });
     }
 
+    /// <inheritdoc/>
     ValueTask<bool> IBrowserPlatformService.OpenAsync(Uri uri, BrowserLaunchMode launchMode)
     {
         return OpenAsync(uri.AbsoluteUri, new() { LaunchMode = launchMode, });
     }
 
+    /// <inheritdoc/>
     ValueTask<bool> IBrowserPlatformService.OpenAsync(string uri, BrowserLaunchOptions options)
     {
         return OpenAsync(uri, null);
     }
 
+    /// <inheritdoc/>
     ValueTask<bool> IBrowserPlatformService.OpenAsync(Uri uri, BrowserLaunchOptions options)
     {
         return OpenAsync(uri.AbsoluteUri, null);

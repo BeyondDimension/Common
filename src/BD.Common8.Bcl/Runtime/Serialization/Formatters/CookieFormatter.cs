@@ -18,8 +18,14 @@ public sealed class CookieFormatter :
 
     // https://www.coderbusy.com/archives/2002.html
 
+    /// <summary>
+    /// 默认的 <see cref="CookieFormatter"/> 实例
+    /// </summary>
     public static readonly CookieFormatter Default = new();
 
+    /// <summary>
+    /// 对可空 <see cref="Cookie"/> 类型进行序列化
+    /// </summary>
     void IMessagePackFormatter<Cookie?>.Serialize(ref MessagePackWriter writer, Cookie? value, MessagePackSerializerOptions options)
     {
         if (value == null)
@@ -33,6 +39,9 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 对可空 <see cref="Cookie"/> 类型进行反列化
+    /// </summary>
     Cookie? IMessagePackFormatter<Cookie?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
@@ -46,6 +55,9 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 对可空 <see cref="CookieCollection"/> 类型进行序列化
+    /// </summary>
     void IMessagePackFormatter<CookieCollection?>.Serialize(ref MessagePackWriter writer, CookieCollection? value, MessagePackSerializerOptions options)
     {
         if (value == null)
@@ -65,6 +77,9 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 将可空 <see cref="CookieCollection"/> 类型进行反列化
+    /// </summary>
     CookieCollection? IMessagePackFormatter<CookieCollection?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
@@ -94,6 +109,9 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 将可空 <see cref="CookieContainer"/> 对象序列化为 <see cref="MessagePackWriter"/> 对象
+    /// </summary>
     void IMessagePackFormatter<CookieContainer?>.Serialize(ref MessagePackWriter writer, CookieContainer? value, MessagePackSerializerOptions options)
     {
         CookieCollection? cookies = value?.GetAllCookies();
@@ -101,6 +119,9 @@ public sealed class CookieFormatter :
         formatter.Serialize(ref writer, cookies, options);
     }
 
+    /// <summary>
+    /// 将 <see cref="MessagePackReader"/> 对象反序列化为可空 <see cref="CookieContainer"/> 对象
+    /// </summary>
     CookieContainer? IMessagePackFormatter<CookieContainer?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
@@ -130,6 +151,10 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 将可为空 <see cref="Cookie"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/>
+    /// </summary>
+    /// <typeparam name="TBufferWriter"></typeparam>
     void IMemoryPackFormatter<Cookie?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Cookie? value)
     {
         if (value == null)
@@ -143,6 +168,9 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 将 <see cref="MemoryPackReader"/> 中的数据反序列化为可为空 <see cref="Cookie"/> 对象
+    /// </summary>
     void IMemoryPackFormatter<Cookie?>.Deserialize(ref MemoryPackReader reader, scoped ref Cookie? value)
     {
         if (reader.PeekIsNull())
@@ -156,6 +184,10 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 将可为空 <see cref="CookieCollection"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/>
+    /// </summary>
+    /// <typeparam name="TBufferWriter"></typeparam>
     void IMemoryPackFormatter<CookieCollection?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieCollection? value)
     {
         if (value == null)
@@ -175,6 +207,9 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 将 <see cref="MemoryPackReader"/> 中的数据反序列化为可为空 <see cref="CookieCollection"/> 对象
+    /// </summary>
     void IMemoryPackFormatter<CookieCollection?>.Deserialize(ref MemoryPackReader reader, scoped ref CookieCollection? value)
     {
         if (!reader.TryReadCollectionHeader(out var length))
@@ -202,6 +237,10 @@ public sealed class CookieFormatter :
         }
     }
 
+    /// <summary>
+    /// 将可为空 <see cref="CookieContainer"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/>
+    /// </summary>
+    /// <typeparam name="TBufferWriter"></typeparam>
     void IMemoryPackFormatter<CookieContainer?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieContainer? value)
     {
         CookieCollection? cookies = value?.GetAllCookies();
@@ -209,6 +248,9 @@ public sealed class CookieFormatter :
         formatter.Serialize(ref writer, ref cookies);
     }
 
+    /// <summary>
+    /// 将 <see cref="MemoryPackReader"/> 中的数据反序列化为可为空 <see cref="CookieContainer"/> 对象
+    /// </summary>
     void IMemoryPackFormatter<CookieContainer?>.Deserialize(ref MemoryPackReader reader, scoped ref CookieContainer? value)
     {
         if (!reader.TryReadCollectionHeader(out var length))

@@ -1,7 +1,8 @@
 namespace BD.Common8.Essentials.Models.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 表示电子邮件附件的接口
+/// </summary>
 public interface IEmailAttachment : IFileBase
 {
 }

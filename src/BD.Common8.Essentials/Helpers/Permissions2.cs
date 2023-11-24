@@ -169,7 +169,7 @@ public static partial class Permissions2
     public interface LocationAlways : IBasePermission { }
 
     /// <summary>
-    /// 表示访问设备映射应用程序的权限
+    /// 表示设备访问地图的权限
     /// </summary>
     public interface Maps : IBasePermission { }
 
@@ -239,7 +239,7 @@ public static partial class Permissions2
     public interface StorageWrite : IBasePermission { }
 
     /// <summary>
-    /// 表示访问设备振动电机的权限
+    /// 表示访问设备震动的权限
     /// </summary>
     public interface Vibrate : IBasePermission { }
 

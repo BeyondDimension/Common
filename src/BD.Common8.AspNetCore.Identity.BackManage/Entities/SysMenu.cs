@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 权限控制相关实体类 - 系统菜单
 /// </summary>
@@ -31,6 +29,7 @@ public sealed class SysMenu : TenantBaseEntity, INEWSEQUENTIALID, IOrder, IRemar
     [Comment("父菜单 Id")]
     public Guid? ParentId { get; set; }
 
+    /// <inheritdoc cref="SysMenu"/>
     public SysMenu? Parent { get; set; }
 
     /// <summary>
@@ -62,6 +61,9 @@ public sealed class SysMenu : TenantBaseEntity, INEWSEQUENTIALID, IOrder, IRemar
     [Comment("打开方式")]
     public SysMenuOpenMethod OpenMethod { get; set; }
 
+    /// <summary>
+    /// 备注
+    /// </summary>
     [Comment("备注")]
     public string? Remarks { get; set; }
 
@@ -83,8 +85,10 @@ public sealed class SysMenu : TenantBaseEntity, INEWSEQUENTIALID, IOrder, IRemar
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
 
+    /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysMenu>
     {
+        /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<SysMenu> builder)
         {
             base.Configure(builder);

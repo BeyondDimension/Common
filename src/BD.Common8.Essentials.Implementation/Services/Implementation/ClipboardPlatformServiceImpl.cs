@@ -10,14 +10,15 @@ using WindowsClipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 namespace BD.Common8.Essentials.Services.Implementation;
 
 #pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable CA1822 // 将成员标记为 static
 
 /// <summary>
+/// 剪贴板平台服务实现
 /// https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Clipboard
 /// </summary>
 sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
 {
+    /// <inheritdoc/>
     ValueTask IClipboardPlatformService.PlatformSetTextAsync(string text)
     {
 #if ANDROID
@@ -63,6 +64,7 @@ sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
                 null)?[0]?.ToString();
 #endif
 
+    /// <inheritdoc/>
     ValueTask<string> IClipboardPlatformService.PlatformGetTextAsync()
     {
 #if ANDROID
@@ -81,6 +83,7 @@ sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
 #endif
     }
 
+    /// <inheritdoc/>
     ValueTask<bool> IClipboardPlatformService.PlatformHasTextAsync()
     {
 #if ANDROID
@@ -104,6 +107,7 @@ sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
 
     event EventHandler<EventArgs>? ClipboardContentChangedInternal;
 
+    /// <inheritdoc/>
     public event EventHandler<EventArgs> ClipboardContentChanged
     {
         add
@@ -121,6 +125,10 @@ sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
         }
     }
 
+    /// <summary>
+    ///  当剪贴板内容改变时调用的方法，调用剪贴板内容改变的内部事件
+    /// </summary>
+    /// <param name="sender"></param>
     internal void OnClipboardContentChanged(object? sender = null) =>
         ClipboardContentChangedInternal?.Invoke(sender ?? this, EventArgs.Empty);
 
@@ -161,9 +169,9 @@ sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
         clipboardListener ??= new ClipboardChangeListener(this);
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ClipboardChangeListener"/> class.
+    /// 初始化 <see cref="ClipboardChangeListener"/> 类的新实例
     /// </summary>
-    /// <param name="clipboard">An instance of <see cref="ClipboardPlatformServiceImpl"/> that will be used to listen for changes.</param>
+    /// <param name="clipboard">将用于侦听更改的 <see cref="ClipboardPlatformServiceImpl"/> 的实例</param>
     sealed class ClipboardChangeListener(ClipboardPlatformServiceImpl clipboard) : Java.Lang.Object, IOnPrimaryClipChangedListener
     {
         readonly ClipboardPlatformServiceImpl clipboard = clipboard;
@@ -173,10 +181,10 @@ sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
     }
 #elif WINDOWS
     /// <summary>
-    /// The event listener for triggering the <see cref="ClipboardContentChanged"/> event.
+    /// 触发 <see cref="ClipboardContentChanged"/> 事件的事件侦听器
     /// </summary>
-    /// <param name="sender">The object that initiated the event.</param>
-    /// <param name="val">The value for this event.</param>
+    /// <param name="sender">启动事件的对象</param>
+    /// <param name="val">此事件的值</param>
     public void ClipboardChangedEventListener(object? sender, object val)
         => OnClipboardContentChanged(sender);
 #elif MACOS
@@ -188,9 +196,9 @@ sealed class ClipboardPlatformServiceImpl : IClipboardPlatformService
     NSObject? observer;
 
     /// <summary>
-    /// The observer for triggering the <see cref="ClipboardContentChanged"/> event.
+    /// 用于触发 <see cref="ClipboardContentChanged"/> 事件的观察器
     /// </summary>
-    /// <param name="notification">The notification that triggered this event.</param>
+    /// <param name="notification">触发此事件的通知</param>
     public void ClipboardChangedObserver(NSNotification notification)
         => OnClipboardContentChanged();
 #endif

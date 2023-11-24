@@ -1,13 +1,11 @@
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 partial class PreferencesPlatformServiceImpl
 {
     readonly SQLiteConnection conn;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="PreferencesPlatformServiceImpl"/> class.
+    /// 初始化 <see cref="PreferencesPlatformServiceImpl"/> 类的新实例
     /// </summary>
     public PreferencesPlatformServiceImpl()
     {

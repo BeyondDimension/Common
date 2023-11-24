@@ -1,46 +1,46 @@
 namespace BD.Common8.Essentials.Services;
 
 /// <summary>
-/// Represents the abstract base class for all permissions.
+/// 表示所有权限的抽象基类
 /// </summary>
 public interface IBasePermission
 {
     /// <summary>
-    /// Retrieves the current status of this permission.
+    /// 检索此权限的当前状态
     /// </summary>
     /// <remarks>
-    /// Will throw <see cref="PermissionException"/> if a required entry was not found in the application manifest.
-    /// Not all permissions require a manifest entry.
+    /// 如果在应用程序清单中找不到所需的条目，将抛出 <see cref="PermissionException"/>
+    /// 并非所有权限都需要清单条目
     /// </remarks>
-    /// <exception cref="PermissionException">Thrown if a required entry was not found in the application manifest.</exception>
-    /// <returns>A <see cref="PermissionStatus"/> value indicating the current status of this permission.</returns>
+    /// <exception cref="PermissionException">如果在应用程序清单中找不到所需的条目，则引发</exception>
+    /// <returns><see cref="PermissionStatus"/>指示此权限的当前状态的值</returns>
     Task<PermissionStatus> CheckStatusAsync();
 
     /// <summary>
-    /// Requests this permission from the user for this application.
+    /// 向用户请求此应用程序的此权限
     /// </summary>
     /// <remarks>
-    /// Will throw <see cref="PermissionException"/> if a required entry was not found in the application manifest.
-    /// Not all permissions require a manifest entry.
+    /// 如果在应用程序清单中找不到所需的条目，将抛出 <see cref="PermissionException"/>
+    /// 并非所有权限都需要清单条目
     /// </remarks>
-    /// <exception cref="PermissionException">Thrown if a required entry was not found in the application manifest.</exception>
-    /// <returns>A <see cref="PermissionStatus"/> value indicating the result of this permission request.</returns>
+    /// <exception cref="PermissionException">如果在应用程序清单中找不到所需的条目，则引发</exception>
+    /// <returns><see cref="PermissionStatus"/> 指示此权限请求的结果的值</returns>
     Task<PermissionStatus> RequestAsync();
 
     /// <summary>
-    /// Ensures that a required entry matching this permission is found in the application manifest file.
+    /// 确保在应用程序清单文件中找到与此权限匹配的必需条目
     /// </summary>
     /// <remarks>
-    /// Will throw <see cref="PermissionException"/> if a required entry was not found in the application manifest.
-    /// Not all permissions require a manifest entry.
+    /// 如果在应用程序清单中找不到所需的条目，将抛出 <see cref="PermissionException"/>
+    /// 并非所有权限都需要清单条目
     /// </remarks>
-    /// <exception cref="PermissionException">Thrown if a required entry was not found in the application manifest.</exception>
+    /// <exception cref="PermissionException">如果在应用程序清单中找不到所需的条目，则引发</exception>
     void EnsureDeclared();
 
     /// <summary>
-    /// Determines if an educational UI should be displayed explaining to the user how this permission will be used in the application.
+    /// 确定是否应显示 Educational UI，向用户解释如何在应用程序中使用此权限
     /// </summary>
-    /// <remarks>Only used on Android, other platforms will always return <see langword="false"/>.</remarks>
-    /// <returns><see langword="true"/> if the user has denied or disabled this permission in the past, else <see langword="false"/>.</returns>
+    /// <remarks>仅在Android上使用，其他平台将始终返回 <see langword="false"/></remarks>
+    /// <returns><see langword="true"/> 如果用户过去拒绝或禁用过此权限，则返回 <see langword="false"/></returns>
     bool ShouldShowRationale();
 }

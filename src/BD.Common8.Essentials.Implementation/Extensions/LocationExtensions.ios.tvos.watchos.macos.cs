@@ -5,9 +5,8 @@ using CoreLocation;
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace BD.Common8.Essentials;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
+/// 地理位置扩展类，提供与地理位置相关的扩展方法
 /// https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/Types/LocationExtensions.ios.tvos.watchos.macos.cs
 /// </summary>
 public static partial class LocationExtensions
@@ -49,6 +48,11 @@ public static partial class LocationExtensions
     //            AltitudeReferenceSystem = AltitudeReferenceSystem.Geoid
     //        };
 
+    /// <summary>
+    /// 将 <see cref="NSDate"/> 对象转换为 <see cref="DateTimeOffset"/> 对象
+    /// </summary>
+    /// <param name="timestamp">要转换的 <see cref="NSDate"/> 对象</param>
+    /// <returns>转换后的 <see cref="DateTimeOffset"/> 对象</returns>
     [SupportedOSPlatform("macos")]
     [SupportedOSPlatform("maccatalyst")]
     [SupportedOSPlatform("ios")]
@@ -64,6 +68,9 @@ public static partial class LocationExtensions
         }
     }
 
+    /// <summary>
+    /// 获取 <see cref="CLLocationManager"/> 的授权状态
+    /// </summary>
     [SupportedOSPlatform("macos")]
     [SupportedOSPlatform("maccatalyst")]
     [SupportedOSPlatform("ios")]

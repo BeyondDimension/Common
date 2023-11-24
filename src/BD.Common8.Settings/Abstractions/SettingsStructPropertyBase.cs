@@ -1,7 +1,10 @@
 namespace BD.Common8.Settings.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 结构类型的设置属性
+/// </summary>
+/// <typeparam name="TValue"></typeparam>
+/// <typeparam name="TSettings"></typeparam>
 public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettings> : SettingsPropertyBase<TValue?>, IDisposable, INotifyPropertyChanged
     where TValue : struct
 {
@@ -12,6 +15,12 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
     TValue? value;
     bool disposedValue;
 
+    /// <summary>
+    /// 初始化结构类型的设置属性新实例
+    /// </summary>
+    /// <param name="default"></param>
+    /// <param name="autoSave"></param>
+    /// <param name="propertyName"></param>
     public SettingsStructPropertyBase(TValue? @default = default, bool autoSave = true, [CallerMemberName] string? propertyName = null)
     {
         PropertyName = propertyName.ThrowIsNull();
@@ -29,6 +38,10 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
         disposable = monitor.OnChange(OnChange);
     }
 
+    /// <summary>
+    /// 当设置发生变化时触发的事件
+    /// </summary>
+    /// <param name="settings">更改后的设置</param>
     void OnChange(TSettings settings)
     {
         if (ISettings.settingsTypeCaches[typeof(TSettings)].IsSaveing)
@@ -37,10 +50,13 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
         SetValue(getter(settings), false);
     }
 
+    /// <summary>
+    /// 属性名称
+    /// </summary>
     public override string PropertyName { get; }
 
     /// <summary>
-    /// 值
+    /// 实际值
     /// </summary>
     protected override TValue? ActualValue
     {
@@ -51,8 +67,14 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
         }
     }
 
+    /// <summary>
+    /// 默认值
+    /// </summary>
     public override TValue? Default { get; }
 
+    /// <summary>
+    /// 设置字段的值，并触发相应事件
+    /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     void SetValue(TValue? value, bool save = true)
     {
@@ -76,6 +98,10 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     void Save() => ISettings.TrySave(typeof(TSettings), monitor, true);
 
+    /// <summary>
+    /// 触发值变化事件
+    /// </summary>
+    /// <param name="notSave">是否不保存</param>
     public override void RaiseValueChanged(bool notSave = false)
     {
         setter(monitor.CurrentValue, value); // 赋值模型类属性
@@ -84,6 +110,9 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
             Save();
     }
 
+    /// <summary>
+    /// 重置设置为默认值，并触发相应事件
+    /// </summary>
     public override void Reset()
     {
         var oldValue = value;
@@ -96,8 +125,17 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
             Save();
     }
 
+    /// <summary>
+    /// 获取表示该对象的字符串
+    /// </summary>
     public override string ToString() => value?.ToString() ?? string.Empty;
 
+    /// <summary>
+    /// 订阅设置值变化事件
+    /// </summary>
+    /// <param name="listener">设置值变化事件的回调函数</param>
+    /// <param name="notifyOnInitialValue">是否在初始化时触发回调函数</param>
+    /// <returns>可用于取消订阅的对象</returns>
     public IDisposable Subscribe(Action<TValue> listener, bool notifyOnInitialValue = true)
     {
         void listener_(TValue? value)
@@ -114,6 +152,10 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
         return Subscribe((Action<TValue?>)listener_, notifyOnInitialValue);
     }
 
+    /// <summary>
+    /// 释放资源
+    /// </summary>
+    /// <param name="disposing">是否正在主动释放资源</param>
     protected virtual void Dispose(bool disposing)
     {
         if (!disposedValue)
@@ -129,6 +171,7 @@ public class SettingsStructPropertyBase<TValue, [DynamicallyAccessedMembers(Dyna
         }
     }
 
+    /// <inheritdoc cref="IDisposable.Dispose"/>
     public void Dispose()
     {
         // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中

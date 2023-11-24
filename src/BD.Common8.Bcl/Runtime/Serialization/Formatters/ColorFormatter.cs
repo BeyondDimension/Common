@@ -1,6 +1,5 @@
 namespace System.Runtime.Serialization.Formatters;
 
-#pragma warning disable SA1600 // Elements should be documented
 /// <summary>
 /// 对类型 <see cref="SDColor"/> 的序列化与反序列化实现
 /// </summary>
@@ -207,13 +206,19 @@ public sealed class ColorFormatter :
     //}
 }
 
+/// <summary>
+/// 颜色格式化程序特性
+/// </summary>
 public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter, SDColor>
 {
     /// <summary>
-    /// 获取 <see cref="ColorFormatter"/> 实例
+    /// 获取 <see cref="ColorFormatter.Default"/> 实例
     /// </summary>
     public sealed override ColorFormatter GetFormatter() => ColorFormatter.Default;
 
+    /// <summary>
+    /// <see cref="SDColor"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<SDColor>
     {
         /// <summary>
@@ -264,10 +269,19 @@ public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute
 //    }
 //}
 
+/// <summary>
+/// 可为空的颜色格式化程序特性
+/// </summary>
 public sealed class NullableColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter, SDColor?>
 {
+    /// <summary>
+    /// 获取 <see cref="ColorFormatter.Default"/> 实例
+    /// </summary>
     public sealed override ColorFormatter GetFormatter() => ColorFormatter.Default;
 
+    /// <summary>
+    /// 可为空的 <see cref="SDColor"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<SDColor?>
     {
         /// <summary>

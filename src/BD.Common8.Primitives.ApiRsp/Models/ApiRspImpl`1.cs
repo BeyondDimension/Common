@@ -12,7 +12,7 @@ namespace BD.Common8.Primitives.ApiRsp.Models;
 #endif
 public sealed partial class ApiRspImpl<TContent> : ApiRspBase, IApiRsp<TContent?>
 {
-#pragma warning disable SA1600 // Elements should be documented
+    /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPKey(LastMKeyIndex + 1)]
 #endif
@@ -24,7 +24,6 @@ public sealed partial class ApiRspImpl<TContent> : ApiRspBase, IApiRsp<TContent?
     [SystemTextJsonProperty(JsonPropertyName_Content)]
 #endif
     public TContent? Content { get; set; }
-#pragma warning restore SA1600 // Elements should be documented
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiRspImpl<TContent?>(TContent content) => ApiRspHelper.Ok(content);

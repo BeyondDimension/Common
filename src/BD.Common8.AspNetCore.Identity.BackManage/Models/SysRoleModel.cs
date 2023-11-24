@@ -1,12 +1,17 @@
 namespace BD.Common8.AspNetCore.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="SysRole"/> 模型类
+/// </summary>
 public sealed partial class SysRoleModel : KeyModel<Guid>
 {
+    /// <inheritdoc cref="SysRole.Name"/>
     public string? Name { get; set; }
 
 #if !BLAZOR
+    /// <summary>
+    /// 表达式用于将 <see cref="SysRole"/> 对象转换为 <see cref="SysRoleModel"/> 对象
+    /// </summary>
     public static readonly Expression<Func<SysRole, SysRoleModel>> Expression = x => new()
     {
         Id = x.Id,
@@ -15,10 +20,17 @@ public sealed partial class SysRoleModel : KeyModel<Guid>
 #endif
 }
 
+/// <summary>
+/// 添加或编辑 <see cref="SysRole"/> 模型类
+/// </summary>
 public sealed class AddOrEditSysRoleModel : IValidatableObject
 {
+    /// <inheritdoc cref="SysRole.Name"/>
     public string? Name { get; set; }
 
+    /// <summary>
+    /// 验证模型的有效性
+    /// </summary>
     IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
     {
         if (string.IsNullOrWhiteSpace(Name))

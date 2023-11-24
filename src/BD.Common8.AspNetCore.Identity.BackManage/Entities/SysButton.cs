@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 权限控制相关实体类 - 系统按钮
 /// </summary>
@@ -39,8 +37,10 @@ public sealed class SysButton : TenantBaseEntity, INEWSEQUENTIALID, IDisable
     /// <inheritdoc cref="SysMenuButton"/>
     public List<SysMenuButton>? MenuButtons { get; set; }
 
+    /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysButton>
     {
+        /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<SysButton> builder)
         {
             base.Configure(builder);

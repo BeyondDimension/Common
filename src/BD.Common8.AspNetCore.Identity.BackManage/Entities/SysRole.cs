@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 系统角色(权限)实体类
 /// </summary>
@@ -35,9 +33,15 @@ public sealed class SysRole : TenantBaseEntity, INEWSEQUENTIALID, IOrder, IDisab
     [Comment("用户 Id")]
     public Guid UserId { get; set; }
 
+    /// <summary>
+    /// 排序
+    /// </summary>
     [Comment("排序")]
     public long Order { get; set; }
 
+    /// <summary>
+    /// 是否禁用
+    /// </summary>
     [Comment("是否禁用")]
     public bool Disable { get; set; }
 
@@ -48,8 +52,10 @@ public sealed class SysRole : TenantBaseEntity, INEWSEQUENTIALID, IOrder, IDisab
     [Comment("并发令牌")]
     public byte[]? Timestamp { get; set; }
 
+    /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public sealed class EntityTypeConfiguration : EntityTypeConfiguration<SysRole>
     {
+        /// <inheritdoc/>
         public sealed override void Configure(EntityTypeBuilder<SysRole> builder)
         {
             base.Configure(builder);

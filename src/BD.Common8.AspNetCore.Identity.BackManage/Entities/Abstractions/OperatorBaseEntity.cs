@@ -1,7 +1,5 @@
 namespace BD.Common8.AspNetCore.Entities.Abstractions;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 基类实体 - 包含修改时间与操作人与创建时间与创建人
 /// </summary>
@@ -24,9 +22,11 @@ public abstract class OperatorBaseEntity<TPrimaryKey> :
     /// <inheritdoc/>
     public virtual SysUser? OperatorUser { get; set; }
 
+    /// <inheritdoc cref="CreationBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public new abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : CreationBaseEntity<TPrimaryKey>.EntityTypeConfiguration<TEntity>
           where TEntity : OperatorBaseEntity<TPrimaryKey>
     {
+        /// <inheritdoc/>
         public override void Configure(EntityTypeBuilder<TEntity> builder)
         {
             base.Configure(builder);
@@ -42,6 +42,7 @@ public abstract class OperatorBaseEntity<TPrimaryKey> :
 /// <inheritdoc cref="OperatorBaseEntity{TPrimaryKey}"/>
 public abstract class OperatorBaseEntity : OperatorBaseEntity<Guid>
 {
+    /// <inheritdoc cref=" OperatorBaseEntity{Guid}.EntityTypeConfiguration{TEntity}"/>
     public new abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : OperatorBaseEntity<Guid>.EntityTypeConfiguration<TEntity>
         where TEntity : OperatorBaseEntity<Guid>
     {

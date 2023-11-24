@@ -11,9 +11,8 @@ namespace BD.Common8.Primitives.ApiRsp.Models;
 #endif
 public sealed partial class ApiRspImpl : ApiRspBase, IApiRsp<object?>
 {
-#pragma warning disable SA1600 // Elements should be documented
+    /// <inheritdoc/>
     object? IApiRsp<object?>.Content => null;
-#pragma warning restore SA1600 // Elements should be documented
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiRspImpl(ApiRspCode code) => ApiRspHelper.Code(code);

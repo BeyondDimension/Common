@@ -1,5 +1,3 @@
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Diagnostics;
 
 /// <summary>
@@ -8,9 +6,16 @@ namespace System.Diagnostics;
 /// </summary>
 public interface IDebuggerDisplay
 {
+    /// <summary>
+    /// 获取调试器显示值
+    /// </summary>
     string? GetDebuggerDisplayValue(object obj);
 
 #if NETCOREAPP || NETSTANDARD2_1_OR_GREATER
+
+    /// <summary>
+    /// 根据 <paramref name="obj"/> 获取相应的调试显示值，如果无法获取调试显示值，则返回字符串表示形式
+    /// </summary>
     public static string? GetValue(object obj)
     {
         try

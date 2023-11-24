@@ -84,11 +84,16 @@ public static partial class ApiRspHelper
 #endif
 
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-#pragma warning disable SA1600 // Elements should be documented
-    // https://github.com/dotnet/runtime/blob/v8.0.0-rc.1.23419.4/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/JsonSerializer.Helpers.cs#L13-L14
+    /// <summary>
+    /// https://github.com/dotnet/runtime/blob/v8.0.0-rc.1.23419.4/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/JsonSerializer.Helpers.cs#L13
+    /// 映射序列化未引用的代码消息
+    /// </summary>
     internal const string SerializationUnreferencedCodeMessage = "JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.";
+
+    /// <summary>
+    /// 序列化要求动态代码消息
+    /// </summary>
     internal const string SerializationRequiresDynamicCodeMessage = "JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.";
-#pragma warning restore SA1600 // Elements should be documented
 
     /// <summary>
     /// 使用 System.Text.Json 反序列化

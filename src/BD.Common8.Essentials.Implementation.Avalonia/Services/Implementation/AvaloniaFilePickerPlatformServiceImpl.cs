@@ -1,7 +1,5 @@
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// Avalonia 文件选择器平台服务的实现
 /// </summary>
@@ -273,6 +271,7 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         }
     }
 
+    /// <inheritdoc/>
     async Task<IEnumerable<IFileResult>> IFilePickerPlatformService.IOpenFileDialogService.PlatformPickAsync(PickOptions? options, bool allowMultiple)
     {
         var topLevel = AvaApplication.Current.GetMainWindowOrActiveWindowOrMainView();
@@ -309,6 +308,7 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         return Array.Empty<FileResult>();
     }
 
+    /// <inheritdoc/>
     async Task<SaveFileResult?> IFilePickerPlatformService.ISaveFileDialogService.PlatformSaveAsync(PickOptions? options)
     {
         var topLevel = AvaApplication.Current.GetMainWindowOrActiveWindowOrMainView();
