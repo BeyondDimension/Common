@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security;UseSystemCommandLine;UseCommon8HttpClientFactory;UseCommon8Crawler;UseReactiveUI;UseReactiveUIFody;UseFluentAvalonia;UseSourceGeneratorBcl;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseCommon8Toast;UseCommon8RepositoriesSQLitePCL;UseAndroidXBrowser;UseCommon8EssentialsImplementation;UseFusillade;UseSystemNetHttpJson;UseCommon8Ipc;UseCommon8Pinyin;UseAngleSharp;UseCommon8Settings5;UseCommon8Settings5Frontend;UseCommon8Settings5Backend;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptionsConfigurationExtensions">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security;UseSystemCommandLine;UseCommon8HttpClientFactory;UseCommon8Crawler;UseReactiveUI;UseReactiveUIFody;UseFluentAvalonia;UseSourceGeneratorBcl;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseCommon8Toast;UseCommon8RepositoriesSQLitePCL;UseAndroidXBrowser;UseCommon8EssentialsImplementation;UseFusillade;UseSystemNetHttpJson;UseCommon8Ipc;UseCommon8Pinyin;UseAngleSharp;UseCommon8Settings5;UseCommon8Settings5Frontend;UseCommon8Settings5Backend;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts">
 
 	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
 
@@ -110,11 +110,19 @@
 		<PackageReference Include="Avalonia.ReactiveUI" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(UseAvaloniaReactiveUI) == 'true'">
+	<ItemGroup Condition="$(UseAvaloniaXamlInteractivity) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.Xaml.Interactivity.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Avalonia.Xaml.Behaviors" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseAvaloniaControlsDataGrid) == 'true'">
+		<PackageReference Include="Avalonia.Controls.DataGrid" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(UseAvaloniaControlsLiveCharts) == 'true'">
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(UseRedis) == 'true'">

@@ -248,14 +248,21 @@ partial class {0} : {1}
             if (m.Attribute.ImplicitOperator)
             {
                 stream.WriteNewLine();
-                stream.Write(
+                stream.WriteFormat(
 """
+    /// <summary>
+    /// ViewModel => Model
+    /// </summary>
+    /// <param name="vm"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator {0}({1} vm) => vm.Model;
+
     /// <summary>
     /// Model => ViewModel
     /// </summary>
     /// <param name="model"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-"""u8);
+"""u8, modelType, m.TypeName);
                 stream.WriteNewLine();
                 if (m.Attribute.ImplicitOperatorNotNull)
                 {

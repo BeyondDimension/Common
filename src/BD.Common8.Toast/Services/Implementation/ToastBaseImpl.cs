@@ -75,19 +75,6 @@ public abstract class ToastBaseImpl(IToastIntercept intercept) : IToast
     protected virtual int ToDuration(ToastLength toastLength) => (int)toastLength;
 
     /// <summary>
-    /// 尝试添加 Toast 的服务依赖
-    /// </summary>
-    /// <typeparam name="TToastImpl"></typeparam>
-    /// <param name="services"></param>
-    /// <returns></returns>
-    protected static IServiceCollection TryAddToast<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TToastImpl>(IServiceCollection services) where TToastImpl : ToastBaseImpl
-    {
-        services.TryAddSingleton<IToastIntercept, NoneToastIntercept>();
-        services.TryAddSingleton<IToast, TToastImpl>();
-        return services;
-    }
-
-    /// <summary>
     /// 根据日志级别转换为对应的 <see cref="ToastIcon"/> 图标类型
     /// </summary>
     protected virtual ToastIcon Convert(LogLevel logLevel) => logLevel switch

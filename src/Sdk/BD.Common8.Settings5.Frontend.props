@@ -5,6 +5,7 @@
 		<UseCommon8Essentials>true</UseCommon8Essentials>
 		<UseCommon8Settings5>true</UseCommon8Settings5>
 		<UseMicrosoftExtensionsOptions>true</UseMicrosoftExtensionsOptions>
+		<UseReactiveUI>true</UseReactiveUI>
 	</PropertyGroup>
 
 </Project>
