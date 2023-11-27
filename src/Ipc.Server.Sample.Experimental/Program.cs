@@ -79,8 +79,7 @@ public static partial class Program
             options.ListenLocalhost(port, listenOptions =>
             {
                 listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                listenOptions.UseHttps();
-                // listenOptions.UseHttps(serverCertificate);
+                listenOptions.UseHttps(serverCertificate);
             });
             const string pipeName = "BD.Common8.Ipc.Server.Sample.Experimental";
             options.ListenNamedPipe(pipeName, listenOptions =>

@@ -11,6 +11,7 @@ var clientNamedPipe = IpcAppConnectionStringHelper.GetHttpClient(
         Type = IpcAppConnectionStringType.NamedPipe,
         StringValue = pipeName,
     });
+
 var clientHttps = IpcAppConnectionStringHelper.GetHttpClient(
     new IpcAppConnectionString
     {
@@ -33,7 +34,6 @@ static async Task<HubConnection> GetSignalRHubConnection()
 
     HubConnection conn = new HubConnectionBuilder()
        //.WithServerTimeout(TimeSpan.FromSeconds(1)) // 多久未接收到服务端消息断开连接(开启了自动重连会触发自动重连)
-       .WithKeepAliveInterval(TimeSpan.FromMicroseconds(30))
        // .WithUrl("https://localhost:5076/test")
        .WithUrl(baseAddress, opt =>
        {
