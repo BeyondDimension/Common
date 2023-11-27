@@ -256,7 +256,7 @@ partial class {0} : {1}
         stream.WriteNewLine();
         foreach (var property in mProperties)
         {
-            if (property.IsRecordGeneratorProperty())
+            if (property.IsGeneratorProperty())
                 continue; // 如果模型类为 record 则会生成该属性，跳过
 
             Type? propertyType = null;

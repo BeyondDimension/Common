@@ -1,5 +1,5 @@
 #if DEBUG
-using DeviceIdiomEnum = BD.Common8.Essentials.Enums.DeviceIdiom;
+using DeviceIdiomEnum = BD.Common8.Primitives.Essentials.Enums.DeviceIdiom;
 
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace System.Runtime.Devices;

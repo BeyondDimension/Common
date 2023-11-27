@@ -83,11 +83,33 @@ public static partial class TypeHelper
                     methodSymbol.Parameters.Length == 0;
 
     /// <summary>
-    /// 判断该属性是否为 record 生成的属性
+    /// 判断该属性是否为生成的属性
     /// </summary>
     /// <param name="propertySymbol"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsRecordGeneratorProperty(this IPropertySymbol propertySymbol)
-        => propertySymbol.Name == "EqualityContract" && propertySymbol.Type.Name == "Type";
+    public static bool IsGeneratorProperty(this IPropertySymbol propertySymbol)
+    {
+        switch (propertySymbol.Name)
+        {
+            case "EqualityContract":
+                switch (propertySymbol.Type.Name)
+                {
+                    case "Type":
+                        return true; // 记录 record 关键字将生成的属性
+                }
+                break;
+            case "global::MemoryPack.IFixedSizeMemoryPackable.Size":
+            case "MemoryPack.IFixedSizeMemoryPackable.Size":
+            case "IFixedSizeMemoryPackable.Size":
+                switch (propertySymbol.Type.Name)
+                {
+                    case "Int32":
+                        return true; // MemoryPack.MemoryPackableAttribute 生成的属性
+                }
+                break;
+        }
+
+        return false;
+    }
 }

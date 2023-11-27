@@ -1,4 +1,4 @@
-namespace BD.Common8.Essentials.Enums;
+namespace BD.Common8.Primitives.Essentials.Enums;
 
 /// <summary>
 /// 可以设置的额外标志，以控制浏览器的打开方式。

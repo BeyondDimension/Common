@@ -1,4 +1,4 @@
-namespace BD.Common8.Toast.Enums;
+namespace BD.Common8.Primitives.Toast.Enums;
 
 /// <summary>
 ///  Defines the duration of a toast notification.

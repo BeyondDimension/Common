@@ -12,7 +12,6 @@ using CoreTelephony;
 using CoreFoundation;
 using SystemConfiguration;
 #endif
-using ConnectionProfileEnum = BD.Common8.Essentials.Enums.ConnectionProfile;
 
 namespace BD.Common8.Essentials.Services.Implementation;
 
@@ -28,7 +27,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
     // 缓存，这样就不会不必要地触发事件
     // 这主要是安卓系统上的一个问题，但我们仍然可以在任何地方这样做
     NetworkAccess currentAccess;
-    List<ConnectionProfileEnum> currentProfiles = [];
+    List<EssConnectionProfile> currentProfiles = [];
 
     public event EventHandler<ConnectivityChangedEventArgs> ConnectivityChanged
     {
@@ -53,10 +52,10 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
     void SetCurrent()
     {
         currentAccess = NetworkAccess;
-        currentProfiles = new List<ConnectionProfileEnum>(ConnectionProfiles);
+        currentProfiles = new List<EssConnectionProfile>(ConnectionProfiles);
     }
 
-    void OnConnectivityChanged(NetworkAccess access, IEnumerable<ConnectionProfileEnum> profiles)
+    void OnConnectivityChanged(NetworkAccess access, IEnumerable<EssConnectionProfile> profiles)
             => OnConnectivityChanged(new ConnectivityChangedEventArgs(access, profiles));
 
     void OnConnectivityChanged()
@@ -79,7 +78,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
     /// </remarks>
     /// <param name="access">网络的当前访问权限</param>
     /// <param name="connectionProfiles">连接配置文件根据此事件而更改</param>
-    public class ConnectivityChangedEventArgs(NetworkAccess access, IEnumerable<ConnectionProfileEnum> connectionProfiles) : EventArgs
+    public class ConnectivityChangedEventArgs(NetworkAccess access, IEnumerable<EssConnectionProfile> connectionProfiles) : EventArgs
     {
         /// <summary>
         /// 获取网络访问的当前状态
@@ -93,7 +92,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
         /// <summary>
         /// 获取设备的活动连接配置文件
         /// </summary>
-        public IEnumerable<ConnectionProfileEnum> ConnectionProfiles { get; } = connectionProfiles;
+        public IEnumerable<EssConnectionProfile> ConnectionProfiles { get; } = connectionProfiles;
 
         /// <summary>
         /// 返回 <see cref="ConnectivityChangedEventArgs"/> 的当前值的字符串表示形式
@@ -316,7 +315,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
     }
 
     /// <inheritdoc/>
-    public IEnumerable<ConnectionProfileEnum> ConnectionProfiles
+    public IEnumerable<EssConnectionProfile> ConnectionProfiles
     {
         get
         {
@@ -348,7 +347,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
             }
 
 #pragma warning disable CS0618 // Type or member is obsolete
-            static ConnectionProfileEnum? ProcessNetworkInfo(NetworkInfo? info)
+            static EssConnectionProfile? ProcessNetworkInfo(NetworkInfo? info)
             {
                 if (info == null || !info.IsAvailable || !info.IsConnectedOrConnecting)
                     return null;
@@ -361,44 +360,44 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
         }
     }
 
-    internal static ConnectionProfileEnum GetConnectionType(ConnectivityType connectivityType, string? typeName)
+    internal static EssConnectionProfile GetConnectionType(ConnectivityType connectivityType, string? typeName)
     {
         switch (connectivityType)
         {
             case ConnectivityType.Ethernet:
-                return ConnectionProfileEnum.Ethernet;
+                return EssConnectionProfile.Ethernet;
             case ConnectivityType.Wifi:
-                return ConnectionProfileEnum.WiFi;
+                return EssConnectionProfile.WiFi;
             case ConnectivityType.Bluetooth:
-                return ConnectionProfileEnum.Bluetooth;
+                return EssConnectionProfile.Bluetooth;
             case ConnectivityType.Wimax:
             case ConnectivityType.Mobile:
             case ConnectivityType.MobileDun:
             case ConnectivityType.MobileHipri:
             case ConnectivityType.MobileMms:
-                return ConnectionProfileEnum.Cellular;
+                return EssConnectionProfile.Cellular;
             case ConnectivityType.Dummy:
-                return ConnectionProfileEnum.Unknown;
+                return EssConnectionProfile.Unknown;
             default:
                 if (string.IsNullOrWhiteSpace(typeName))
-                    return ConnectionProfileEnum.Unknown;
+                    return EssConnectionProfile.Unknown;
 
                 if (typeName.Contains("mobile", StringComparison.OrdinalIgnoreCase))
-                    return ConnectionProfileEnum.Cellular;
+                    return EssConnectionProfile.Cellular;
 
                 if (typeName.Contains("wimax", StringComparison.OrdinalIgnoreCase))
-                    return ConnectionProfileEnum.Cellular;
+                    return EssConnectionProfile.Cellular;
 
                 if (typeName.Contains("wifi", StringComparison.OrdinalIgnoreCase))
-                    return ConnectionProfileEnum.WiFi;
+                    return EssConnectionProfile.WiFi;
 
                 if (typeName.Contains("ethernet", StringComparison.OrdinalIgnoreCase))
-                    return ConnectionProfileEnum.Ethernet;
+                    return EssConnectionProfile.Ethernet;
 
                 if (typeName.Contains("bluetooth", StringComparison.OrdinalIgnoreCase))
-                    return ConnectionProfileEnum.Bluetooth;
+                    return EssConnectionProfile.Bluetooth;
 
-                return ConnectionProfileEnum.Unknown;
+                return EssConnectionProfile.Unknown;
         }
     }
 
@@ -460,14 +459,14 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
         }
     }
 
-    public IEnumerable<ConnectionProfileEnum> ConnectionProfiles
+    public IEnumerable<EssConnectionProfile> ConnectionProfiles
     {
         get
         {
             var networkInterfaceList = NetworkInformation.GetConnectionProfiles();
             foreach (var interfaceInfo in networkInterfaceList.Where(nii => nii.GetNetworkConnectivityLevel() != NetworkConnectivityLevel.None))
             {
-                var type = ConnectionProfileEnum.Unknown;
+                var type = EssConnectionProfile.Unknown;
 
                 try
                 {
@@ -479,14 +478,14 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
                     switch (adapter.IanaInterfaceType)
                     {
                         case 6:
-                            type = ConnectionProfileEnum.Ethernet;
+                            type = EssConnectionProfile.Ethernet;
                             break;
                         case 71:
-                            type = ConnectionProfileEnum.WiFi;
+                            type = EssConnectionProfile.WiFi;
                             break;
                         case 243:
                         case 244:
-                            type = ConnectionProfileEnum.Cellular;
+                            type = EssConnectionProfile.Cellular;
                             break;
 
                         // xbox wireless, can skip
@@ -557,7 +556,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
     }
 
     /// <inheritdoc/>
-    public IEnumerable<ConnectionProfileEnum> ConnectionProfiles
+    public IEnumerable<EssConnectionProfile> ConnectionProfiles
     {
         get
         {
@@ -567,13 +566,13 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
                 switch (status)
                 {
                     case NetworkStatus.ReachableViaCarrierDataNetwork:
-                        yield return ConnectionProfileEnum.Cellular;
+                        yield return EssConnectionProfile.Cellular;
                         break;
                     case NetworkStatus.ReachableViaWiFiNetwork:
-                        yield return ConnectionProfileEnum.WiFi;
+                        yield return EssConnectionProfile.WiFi;
                         break;
                     default:
-                        yield return ConnectionProfileEnum.Unknown;
+                        yield return EssConnectionProfile.Unknown;
                         break;
                 }
             }
@@ -768,7 +767,7 @@ sealed class ConnectivityPlatformServiceImpl : IConnectivityPlatformService
 #else
     public NetworkAccess NetworkAccess => NetworkAccess.Unknown;
 
-    public IEnumerable<ConnectionProfileEnum> ConnectionProfiles => [];
+    public IEnumerable<EssConnectionProfile> ConnectionProfiles => [];
 
     static void StartListeners() { }
 
