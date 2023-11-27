@@ -95,7 +95,8 @@
   <dl><dt>Assembly</dt><dd>BD.Common8.Essentials.Implementation.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>读取设备日历信息权限类，继承自 <a class="xref" href="BD.Common8.Essentials.Services.Implementation.PermissionsPlatformServiceImpl.BasePlatformPermission.html">PermissionsPlatformServiceImpl.BasePlatformPermission</a> 和 <a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Permissions2.CalendarRead.html">Permissions2.CalendarRead</a> 类</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -207,7 +208,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the required entries that need to be present in the application's <code>Info.plist</code> file for this permission.</p>
+  <div class="markdown level1 summary"><p>获取此权限需要存在于应用程序的 Info.plist 文件中的必需项</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -239,7 +240,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>获取所需的权限数组</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -274,7 +276,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Retrieves the current status of this permission.</p>
+  <div class="markdown level1 summary"><p>检索此权限的当前状态</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -285,8 +287,8 @@
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Enums/PermissionStatus.cs">PermissionStatus</a>&gt;</dt>
-    <dd><p>A <a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html">PermissionStatus</a> value indicating the current status of this permission.</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.Essentials/Enums/PermissionStatus.cs">PermissionStatus</a>&gt;</dt>
+    <dd><p><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.Essentials/Enums/PermissionStatus.cs">PermissionStatus</a>指示此权限的当前状态的值</p>
 </dd>
   </dl>
 
@@ -297,14 +299,14 @@
 
 
   <h4 class="section" id="BD_Common8_Essentials_Services_Implementation_PermissionsPlatformServiceImpl_CalendarRead_CheckStatusAsync_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Will throw <a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Helpers.PermissionException.html">PermissionException</a> if a required entry was not found in the application manifest.
-Not all permissions require a manifest entry.</p>
+  <div class="markdown level1 remarks"><p>如果在应用程序清单中找不到所需的条目，将抛出 <a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Helpers.PermissionException.html">PermissionException</a>
+并非所有权限都需要清单条目</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Helpers.PermissionException.html">PermissionException</a></dt>
-    <dd><p>Thrown if a required entry was not found in the application manifest.</p>
+    <dd><p>如果在应用程序清单中找不到所需的条目，则引发</p>
 </dd>
   </dl>
 
@@ -317,7 +319,7 @@ Not all permissions require a manifest entry.</p>
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Requests this permission from the user for this application.</p>
+  <div class="markdown level1 summary"><p>向用户请求此应用程序的此权限</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -328,8 +330,8 @@ Not all permissions require a manifest entry.</p>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials/Enums/PermissionStatus.cs">PermissionStatus</a>&gt;</dt>
-    <dd><p>A <a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html">PermissionStatus</a> value indicating the result of this permission request.</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.Essentials/Enums/PermissionStatus.cs">PermissionStatus</a>&gt;</dt>
+    <dd><p><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.Essentials/Enums/PermissionStatus.cs">PermissionStatus</a> 指示此权限请求的结果的值</p>
 </dd>
   </dl>
 
@@ -340,14 +342,14 @@ Not all permissions require a manifest entry.</p>
 
 
   <h4 class="section" id="BD_Common8_Essentials_Services_Implementation_PermissionsPlatformServiceImpl_CalendarRead_RequestAsync_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Will throw <a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Helpers.PermissionException.html">PermissionException</a> if a required entry was not found in the application manifest.
-Not all permissions require a manifest entry.</p>
+  <div class="markdown level1 remarks"><p>如果在应用程序清单中找不到所需的条目，将抛出 <a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Helpers.PermissionException.html">PermissionException</a>
+并非所有权限都需要清单条目</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
   <dl class="parameters">
     <dt><a class="xref" href="../BD.Common8.Essentials/BD.Common8.Essentials.Helpers.PermissionException.html">PermissionException</a></dt>
-    <dd><p>Thrown if a required entry was not found in the application manifest.</p>
+    <dd><p>如果在应用程序清单中找不到所需的条目，则引发</p>
 </dd>
   </dl>
 

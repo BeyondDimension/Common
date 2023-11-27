@@ -966,9 +966,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Data.Abstractions.yml",
       "output": {
@@ -989,9 +986,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Entities.Abstractions.yml",
       "output": {
@@ -1195,9 +1189,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.yml",
       "output": {
@@ -1218,9 +1209,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore/BD.Common8.AspNetCore.Services.Implementation.yml",
       "output": {
@@ -1231,9 +1219,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore/Microsoft.AspNetCore.Http.HttpContextExtensions.yml",
       "output": {
@@ -1254,9 +1239,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore/Microsoft.AspNetCore.Http.yml",
       "output": {
@@ -1327,9 +1309,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -1340,9 +1319,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -1366,9 +1342,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -1379,9 +1352,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -2543,6 +2513,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.OSHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.OSHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Random2.yml",
       "output": {
         ".html": {
@@ -2553,10 +2533,40 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.DesktopBridge.yml",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Bcl/System.Runtime.DesktopBridge.html"
+          "relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.html"
         }
       },
       "version": ""
@@ -3083,16 +3093,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Bcl/System.Runtime.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Security.Cryptography.AESUtils.KeyIV.yml",
       "output": {
         ".html": {
@@ -3585,9 +3585,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials.Implementation.Avalonia/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -3598,9 +3595,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials.Implementation.Avalonia/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -3694,9 +3688,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials.Implementation/BD.Common8.Essentials.Resource.yml",
       "output": {
@@ -4037,9 +4028,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials.Implementation/BD.Common8.Essentials.yml",
       "output": {
@@ -4050,9 +4038,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials.Implementation/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -4063,9 +4048,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials.Implementation/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -4084,156 +4066,6 @@
         },
         ".json": {
           "relative_path": "api/BD.Common8.Essentials.Implementation/toc.json"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchFlags.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchFlags.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchMode.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchMode.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserTitleMode.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserTitleMode.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceType.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceTypeExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceTypeExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.EmailBodyFormat.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.EmailBodyFormat.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.IdiomEnumExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.IdiomEnumExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.html"
         }
       },
       "version": ""
@@ -4619,9 +4451,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.yml",
       "output": {
@@ -5055,9 +4884,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -5068,9 +4894,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -5194,9 +5017,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Orm.EFCore/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -5207,9 +5027,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Orm.EFCore/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -5220,9 +5037,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Orm.EFCore/System.Extensions.QueryableExtensions.yml",
       "output": {
@@ -5233,9 +5047,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Orm.EFCore/System.Extensions.yml",
       "output": {
@@ -5259,9 +5070,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Pinyin.ChnCharInfo/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -5272,9 +5080,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Pinyin.ChnCharInfo/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -5318,9 +5123,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Pinyin.CoreFoundation/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -5331,9 +5133,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Pinyin.CoreFoundation/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -6508,9 +6307,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Repositories.EFCore/Microsoft.EntityFrameworkCore.DbContextExtensions.yml",
       "output": {
@@ -6531,9 +6327,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Repositories.EFCore/Microsoft.EntityFrameworkCore.yml",
       "output": {
@@ -6544,9 +6337,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Repositories.EFCore/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -6557,9 +6347,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Repositories.EFCore/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -6643,9 +6430,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Repositories.SQLitePCL/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -6656,9 +6440,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Repositories.SQLitePCL/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -6679,9 +6460,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Repositories.SQLitePCL/System.yml",
       "output": {
@@ -7541,9 +7319,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SmsSender/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -7554,9 +7329,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SmsSender/Microsoft.Extensions.DependencyInjection.yml",
       "output": {
@@ -7575,36 +7347,6 @@
         },
         ".json": {
           "relative_path": "api/BD.Common8.SmsSender/toc.json"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastLength.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastLength.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Toast/BD.Common8.Toast.Enums.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Toast/BD.Common8.Toast.Enums.html"
         }
       },
       "version": ""
@@ -7665,6 +7407,26 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Toast/BD.Common8.Toast.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Toast/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Toast/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Toast/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Toast/Microsoft.Extensions.DependencyInjection.html"
         }
       },
       "version": ""
@@ -7733,9 +7495,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.UserInput.ModelValidator/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
@@ -7746,9 +7505,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.UserInput.ModelValidator/Microsoft.Extensions.DependencyInjection.yml",
       "output": {

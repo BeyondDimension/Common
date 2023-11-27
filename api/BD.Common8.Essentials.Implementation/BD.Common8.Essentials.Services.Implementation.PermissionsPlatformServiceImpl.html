@@ -95,7 +95,8 @@
   <dl><dt>Assembly</dt><dd>BD.Common8.Essentials.Implementation.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p><a href="https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Permissions">https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Permissions</a></p>
+  <div class="markdown summary"><p>权限平台服务实现
+<a href="https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Permissions">https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Permissions</a></p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -194,7 +195,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the timeout that is used when the location permission is requested.</p>
+  <div class="markdown level1 summary"><p>获取或设置请求位置权限时使用的超时</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -230,7 +231,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>获取所需服务实例</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -266,7 +268,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Checks if the capability specified in <code class="paramref">capabilityName</code> is declared in the application's <code>AppxManifest.xml</code> file.</p>
+  <div class="markdown level1 summary"><p>检查 <code class="paramref">capabilityName</code> 中指定的功能是否在应用程序的 <code>AppxManifest.xml</code> 文件中声明</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -277,14 +279,14 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>capabilityName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The capability to check for specification in the <code>AppxManifest.xml</code> file.</p>
+    <dd><p>在 <code>AppxManifest.xml</code> 文件中检查规范的功能</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> when the capability is specified, otherwise <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>当指定了该功能时，否则 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
 </dd>
   </dl>
 
@@ -305,7 +307,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>检查权限是否在应用程序清单中声明</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -341,7 +344,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Essentials.Implementation/Services/Implementation/PermissionsPlatformServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Checks if the key specified in <code class="paramref">usageKey</code> is declared in the application's <code>Info.plist</code> file.</p>
+  <div class="markdown level1 summary"><p>检查 <code class="paramref">usageKey</code> 中指定的密钥是否在应用程序的 <code>Info.plist</code> 文件中声明</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -352,14 +355,14 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>usageKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The key to check for declaration in the <code>Info.plist</code> file.</p>
+    <dd><p>检查 <code>Info.plist</code> 文件中声明的键</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> when the key is declared, otherwise <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 当键被声明时，否则 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
 </dd>
   </dl>
 

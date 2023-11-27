@@ -157,7 +157,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_Crc32.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 Crc32 值</p>
+  <div class="markdown level1 summary"><p>计算字节数组的 Crc32 哈希值并返回哈希结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -168,13 +168,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 MD5 哈希值</p>
+</dd>
   </dl>
 
 
@@ -194,7 +196,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_Crc32.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 Crc32 值</p>
+  <div class="markdown level1 summary"><p>计算流的 Crc32 哈希值并返回哈希结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -205,13 +207,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的流</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 MD5 哈希值</p>
+</dd>
   </dl>
 
 
@@ -231,7 +235,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_Crc32.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 Crc32 值</p>
+  <div class="markdown level1 summary"><p>计算只读字节数组的 Crc32 哈希值并返回哈希结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -242,13 +246,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的字节数组的只读跨度</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的哈希结果的字节数组</p>
+</dd>
   </dl>
 
 
@@ -268,7 +274,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_MD5.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 MD5 值</p>
+  <div class="markdown level1 summary"><p>计算字节数组的 MD5 哈希值并返回哈希结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -279,13 +285,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 MD5 哈希值</p>
+</dd>
   </dl>
 
 
@@ -305,7 +313,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_MD5.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 MD5 值</p>
+  <div class="markdown level1 summary"><p>计算流的 MD5 哈希值并返回哈希结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -316,13 +324,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的流</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 MD5 哈希值</p>
+</dd>
   </dl>
 
 
@@ -342,7 +352,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_MD5.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 MD5 值</p>
+  <div class="markdown level1 summary"><p>计算只读字节数组的 MD5 哈希值并返回哈希结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -353,13 +363,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的只读字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 MD5 哈希值</p>
+</dd>
   </dl>
 
 
@@ -379,7 +391,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_MD5.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 MD5 值</p>
+  <div class="markdown level1 summary"><p>异步计算流的 MD5 哈希值并返回哈希结果</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -390,15 +402,18 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要异步计算哈希值的流</p>
+</dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
+    <dd><p>取消操作的令牌</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>计算得到的 MD5 哈希值的异步任务</p>
+</dd>
   </dl>
 
 
@@ -418,7 +433,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA1.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA1 值</p>
+  <div class="markdown level1 summary"><p>计算指定字节数组的 SHA1 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -429,13 +444,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 SHA1 哈希值</p>
+</dd>
   </dl>
 
 
@@ -455,7 +472,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA1.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA1 值</p>
+  <div class="markdown level1 summary"><p>计算从指定流中读取的数据的 SHA1 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -466,13 +483,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要读取数据的流</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 SHA1 哈希值</p>
+</dd>
   </dl>
 
 
@@ -492,7 +511,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA1.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA1 值</p>
+  <div class="markdown level1 summary"><p>计算指定只读字节数组的 SHA1 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -503,13 +522,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的只读字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 SHA1 哈希值</p>
+</dd>
   </dl>
 
 
@@ -529,7 +550,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA1.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA1 值</p>
+  <div class="markdown level1 summary"><p>异步计算从指定流中读取的数据的 SHA1 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -540,15 +561,18 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要读取数据的流</p>
+</dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
+    <dd><p>用于取消操作的取消标记</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>计算得到的 SHA1 哈希值的异步任务</p>
+</dd>
   </dl>
 
 
@@ -568,7 +592,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA256.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA256 值</p>
+  <div class="markdown level1 summary"><p>计算指定字节数组的 SHA256 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -579,13 +603,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 SHA256 哈希值的字节数组</p>
+</dd>
   </dl>
 
 
@@ -605,7 +631,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA256.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA256 值</p>
+  <div class="markdown level1 summary"><p>计算指定输入流的 SHA256 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -616,13 +642,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的输入流</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 SHA256 哈希值的字节数组</p>
+</dd>
   </dl>
 
 
@@ -642,7 +670,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA256.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA256 值</p>
+  <div class="markdown level1 summary"><p>计算指定只读字节数组的 SHA256 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -653,13 +681,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的只读字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>计算得到的 SHA256 哈希值的字节数组</p>
+</dd>
   </dl>
 
 
@@ -679,7 +709,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA256.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA256 值</p>
+  <div class="markdown level1 summary"><p>异步计算指定输入流的 SHA256 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -690,15 +720,18 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的输入流</p>
+</dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
+    <dd><p>取消操作的取消标记</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>表示异步计算得到的 SHA256 哈希值的字节数组的 ValueTask 对象</p>
+</dd>
   </dl>
 
 
@@ -718,7 +751,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA384.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算SHA384值</p>
+  <div class="markdown level1 summary"><p>计算指定字节数组的 SHA384 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -729,13 +762,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>表示字节数组的 SHA384 哈希值的字节数组</p>
+</dd>
   </dl>
 
 
@@ -755,7 +790,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA384.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算SHA384值</p>
+  <div class="markdown level1 summary"><p>计算指定流的 SHA384 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -766,13 +801,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的流</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>表示流的 SHA384 哈希值的字节数组</p>
+</dd>
   </dl>
 
 
@@ -792,7 +829,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA384.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA384 值</p>
+  <div class="markdown level1 summary"><p>异步计算指定流的 SHA384 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -803,15 +840,18 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的流</p>
+</dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
+    <dd><p>取消操作令牌</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>表示异步操作的任务对象，包含流的 SHA384 哈希值的字节数组</p>
+</dd>
   </dl>
 
 
@@ -831,7 +871,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA512.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA512 值</p>
+  <div class="markdown level1 summary"><p>计算指定字节数组的 SHA512 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -842,13 +882,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>字节数组的 SHA512 哈希值</p>
+</dd>
   </dl>
 
 
@@ -868,7 +910,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA512.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA512 值</p>
+  <div class="markdown level1 summary"><p>计算指定流的 SHA512 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -879,13 +921,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的流</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>字节数组的 SHA512 哈希值</p>
+</dd>
   </dl>
 
 
@@ -905,7 +949,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA512.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA512 值</p>
+  <div class="markdown level1 summary"><p>计算指定只读字节数组的 SHA512 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -916,13 +960,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的只读字节数组</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
+    <dd><p>字节数组的 SHA512 哈希值</p>
+</dd>
   </dl>
 
 
@@ -942,7 +988,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/Hashs_SHA512.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>计算 SHA512 值</p>
+  <div class="markdown level1 summary"><p>异步计算指定流的 SHA512 哈希值</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -953,15 +999,18 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
-    <dd></dd>
+    <dd><p>要计算哈希值的流</p>
+</dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
+    <dd><p>取消操作的令牌</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd></dd>
+    <dd><p>表示异步任务，结果为字节数组的 SHA512 哈希值</p>
+</dd>
   </dl>
 
 

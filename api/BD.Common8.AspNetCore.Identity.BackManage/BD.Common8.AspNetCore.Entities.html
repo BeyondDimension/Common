@@ -99,7 +99,8 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysButton.EntityTypeConfiguration.html">SysButton.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>配置实体类型</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysInfo.html">SysInfo</a></dt>
@@ -113,7 +114,8 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysMenu.EntityTypeConfiguration.html">SysMenu.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>配置实体类型</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysMenuButton.html">SysMenuButton</a></dt>
@@ -127,16 +129,24 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysMenuButtonRole.EntityTypeConfiguration.html">SysMenuButtonRole.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>Allows configuration for an entity type to be factored into a separate class,
+rather than in-line in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.
+Implement this interface, applying configuration for the entity in the
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.ientitytypeconfiguration-1.configure">Configure(EntityTypeBuilder&lt;TEntity&gt;)</a> method,
+and then apply the configuration to the model using
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder.applyconfiguration">ApplyConfiguration&lt;TEntity&gt;(IEntityTypeConfiguration&lt;TEntity&gt;)</a>
+in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysOrganization.html">SysOrganization</a></dt>
-      <dd><p>系统组织架构实体类</p>
+      <dd><p>系统组织实体类</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysOrganization.EntityTypeConfiguration.html">SysOrganization.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>配置实体类型</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
@@ -145,7 +155,8 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.EntityTypeConfiguration.html">SysRole.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>配置实体类型</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysTenant.html">SysTenant</a></dt>
@@ -154,7 +165,8 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysTenant.EntityTypeConfiguration.html">SysTenant.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>配置实体类型</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
@@ -163,7 +175,8 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.EntityTypeConfiguration.html">SysUser.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>配置实体类型</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserOrganization.html">SysUserOrganization</a></dt>
@@ -172,7 +185,14 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserOrganization.EntityTypeConfiguration.html">SysUserOrganization.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>Allows configuration for an entity type to be factored into a separate class,
+rather than in-line in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.
+Implement this interface, applying configuration for the entity in the
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.ientitytypeconfiguration-1.configure">Configure(EntityTypeBuilder&lt;TEntity&gt;)</a> method,
+and then apply the configuration to the model using
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder.applyconfiguration">ApplyConfiguration&lt;TEntity&gt;(IEntityTypeConfiguration&lt;TEntity&gt;)</a>
+in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserRole.html">SysUserRole</a></dt>
@@ -181,7 +201,14 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserRole.EntityTypeConfiguration.html">SysUserRole.EntityTypeConfiguration</a></dt>
-      <dd></dd>
+      <dd><p>Allows configuration for an entity type to be factored into a separate class,
+rather than in-line in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.
+Implement this interface, applying configuration for the entity in the
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.ientitytypeconfiguration-1.configure">Configure(EntityTypeBuilder&lt;TEntity&gt;)</a> method,
+and then apply the configuration to the model using
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder.applyconfiguration">ApplyConfiguration&lt;TEntity&gt;(IEntityTypeConfiguration&lt;TEntity&gt;)</a>
+in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.</p>
+</dd>
     </dl>
 
 

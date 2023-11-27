@@ -7061,597 +7061,6 @@ references:
   commentId: N:BD.Common8.Essentials
   fullName: BD.Common8.Essentials
   nameWithType: BD.Common8.Essentials
-- uid: BD.Common8.Essentials.Enums
-  name: BD.Common8.Essentials.Enums
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.html
-  commentId: N:BD.Common8.Essentials.Enums
-  fullName: BD.Common8.Essentials.Enums
-  nameWithType: BD.Common8.Essentials.Enums
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchFlags
-  name: BrowserLaunchFlags
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchFlags.html
-  commentId: T:BD.Common8.Essentials.Enums.BrowserLaunchFlags
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchFlags
-  nameWithType: BrowserLaunchFlags
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchFlags.LaunchAdjacent
-  name: LaunchAdjacent
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchFlags.html#BD_Common8_Essentials_Enums_BrowserLaunchFlags_LaunchAdjacent
-  commentId: F:BD.Common8.Essentials.Enums.BrowserLaunchFlags.LaunchAdjacent
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchFlags.LaunchAdjacent
-  nameWithType: BrowserLaunchFlags.LaunchAdjacent
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchFlags.None
-  name: None
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchFlags.html#BD_Common8_Essentials_Enums_BrowserLaunchFlags_None
-  commentId: F:BD.Common8.Essentials.Enums.BrowserLaunchFlags.None
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchFlags.None
-  nameWithType: BrowserLaunchFlags.None
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchFlags.PresentAsFormSheet
-  name: PresentAsFormSheet
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchFlags.html#BD_Common8_Essentials_Enums_BrowserLaunchFlags_PresentAsFormSheet
-  commentId: F:BD.Common8.Essentials.Enums.BrowserLaunchFlags.PresentAsFormSheet
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchFlags.PresentAsFormSheet
-  nameWithType: BrowserLaunchFlags.PresentAsFormSheet
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchFlags.PresentAsPageSheet
-  name: PresentAsPageSheet
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchFlags.html#BD_Common8_Essentials_Enums_BrowserLaunchFlags_PresentAsPageSheet
-  commentId: F:BD.Common8.Essentials.Enums.BrowserLaunchFlags.PresentAsPageSheet
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchFlags.PresentAsPageSheet
-  nameWithType: BrowserLaunchFlags.PresentAsPageSheet
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchMode
-  name: BrowserLaunchMode
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchMode.html
-  commentId: T:BD.Common8.Essentials.Enums.BrowserLaunchMode
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchMode
-  nameWithType: BrowserLaunchMode
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchMode.External
-  name: External
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchMode.html#BD_Common8_Essentials_Enums_BrowserLaunchMode_External
-  commentId: F:BD.Common8.Essentials.Enums.BrowserLaunchMode.External
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchMode.External
-  nameWithType: BrowserLaunchMode.External
-- uid: BD.Common8.Essentials.Enums.BrowserLaunchMode.SystemPreferred
-  name: SystemPreferred
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserLaunchMode.html#BD_Common8_Essentials_Enums_BrowserLaunchMode_SystemPreferred
-  commentId: F:BD.Common8.Essentials.Enums.BrowserLaunchMode.SystemPreferred
-  fullName: BD.Common8.Essentials.Enums.BrowserLaunchMode.SystemPreferred
-  nameWithType: BrowserLaunchMode.SystemPreferred
-- uid: BD.Common8.Essentials.Enums.BrowserTitleMode
-  name: BrowserTitleMode
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserTitleMode.html
-  commentId: T:BD.Common8.Essentials.Enums.BrowserTitleMode
-  fullName: BD.Common8.Essentials.Enums.BrowserTitleMode
-  nameWithType: BrowserTitleMode
-- uid: BD.Common8.Essentials.Enums.BrowserTitleMode.Default
-  name: Default
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserTitleMode.html#BD_Common8_Essentials_Enums_BrowserTitleMode_Default
-  commentId: F:BD.Common8.Essentials.Enums.BrowserTitleMode.Default
-  fullName: BD.Common8.Essentials.Enums.BrowserTitleMode.Default
-  nameWithType: BrowserTitleMode.Default
-- uid: BD.Common8.Essentials.Enums.BrowserTitleMode.Hide
-  name: Hide
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserTitleMode.html#BD_Common8_Essentials_Enums_BrowserTitleMode_Hide
-  commentId: F:BD.Common8.Essentials.Enums.BrowserTitleMode.Hide
-  fullName: BD.Common8.Essentials.Enums.BrowserTitleMode.Hide
-  nameWithType: BrowserTitleMode.Hide
-- uid: BD.Common8.Essentials.Enums.BrowserTitleMode.Show
-  name: Show
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.BrowserTitleMode.html#BD_Common8_Essentials_Enums_BrowserTitleMode_Show
-  commentId: F:BD.Common8.Essentials.Enums.BrowserTitleMode.Show
-  fullName: BD.Common8.Essentials.Enums.BrowserTitleMode.Show
-  nameWithType: BrowserTitleMode.Show
-- uid: BD.Common8.Essentials.Enums.ConnectionProfile
-  name: ConnectionProfile
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.html
-  commentId: T:BD.Common8.Essentials.Enums.ConnectionProfile
-  fullName: BD.Common8.Essentials.Enums.ConnectionProfile
-  nameWithType: ConnectionProfile
-- uid: BD.Common8.Essentials.Enums.ConnectionProfile.Bluetooth
-  name: Bluetooth
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.html#BD_Common8_Essentials_Enums_ConnectionProfile_Bluetooth
-  commentId: F:BD.Common8.Essentials.Enums.ConnectionProfile.Bluetooth
-  fullName: BD.Common8.Essentials.Enums.ConnectionProfile.Bluetooth
-  nameWithType: ConnectionProfile.Bluetooth
-- uid: BD.Common8.Essentials.Enums.ConnectionProfile.Cellular
-  name: Cellular
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.html#BD_Common8_Essentials_Enums_ConnectionProfile_Cellular
-  commentId: F:BD.Common8.Essentials.Enums.ConnectionProfile.Cellular
-  fullName: BD.Common8.Essentials.Enums.ConnectionProfile.Cellular
-  nameWithType: ConnectionProfile.Cellular
-- uid: BD.Common8.Essentials.Enums.ConnectionProfile.Ethernet
-  name: Ethernet
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.html#BD_Common8_Essentials_Enums_ConnectionProfile_Ethernet
-  commentId: F:BD.Common8.Essentials.Enums.ConnectionProfile.Ethernet
-  fullName: BD.Common8.Essentials.Enums.ConnectionProfile.Ethernet
-  nameWithType: ConnectionProfile.Ethernet
-- uid: BD.Common8.Essentials.Enums.ConnectionProfile.Unknown
-  name: Unknown
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.html#BD_Common8_Essentials_Enums_ConnectionProfile_Unknown
-  commentId: F:BD.Common8.Essentials.Enums.ConnectionProfile.Unknown
-  fullName: BD.Common8.Essentials.Enums.ConnectionProfile.Unknown
-  nameWithType: ConnectionProfile.Unknown
-- uid: BD.Common8.Essentials.Enums.ConnectionProfile.WiFi
-  name: WiFi
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ConnectionProfile.html#BD_Common8_Essentials_Enums_ConnectionProfile_WiFi
-  commentId: F:BD.Common8.Essentials.Enums.ConnectionProfile.WiFi
-  fullName: BD.Common8.Essentials.Enums.ConnectionProfile.WiFi
-  nameWithType: ConnectionProfile.WiFi
-- uid: BD.Common8.Essentials.Enums.DeviceIdiom
-  name: DeviceIdiom
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html
-  commentId: T:BD.Common8.Essentials.Enums.DeviceIdiom
-  fullName: BD.Common8.Essentials.Enums.DeviceIdiom
-  nameWithType: DeviceIdiom
-- uid: BD.Common8.Essentials.Enums.DeviceIdiom.Desktop
-  name: Desktop
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html#BD_Common8_Essentials_Enums_DeviceIdiom_Desktop
-  commentId: F:BD.Common8.Essentials.Enums.DeviceIdiom.Desktop
-  fullName: BD.Common8.Essentials.Enums.DeviceIdiom.Desktop
-  nameWithType: DeviceIdiom.Desktop
-- uid: BD.Common8.Essentials.Enums.DeviceIdiom.Phone
-  name: Phone
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html#BD_Common8_Essentials_Enums_DeviceIdiom_Phone
-  commentId: F:BD.Common8.Essentials.Enums.DeviceIdiom.Phone
-  fullName: BD.Common8.Essentials.Enums.DeviceIdiom.Phone
-  nameWithType: DeviceIdiom.Phone
-- uid: BD.Common8.Essentials.Enums.DeviceIdiom.TV
-  name: TV
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html#BD_Common8_Essentials_Enums_DeviceIdiom_TV
-  commentId: F:BD.Common8.Essentials.Enums.DeviceIdiom.TV
-  fullName: BD.Common8.Essentials.Enums.DeviceIdiom.TV
-  nameWithType: DeviceIdiom.TV
-- uid: BD.Common8.Essentials.Enums.DeviceIdiom.Tablet
-  name: Tablet
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html#BD_Common8_Essentials_Enums_DeviceIdiom_Tablet
-  commentId: F:BD.Common8.Essentials.Enums.DeviceIdiom.Tablet
-  fullName: BD.Common8.Essentials.Enums.DeviceIdiom.Tablet
-  nameWithType: DeviceIdiom.Tablet
-- uid: BD.Common8.Essentials.Enums.DeviceIdiom.Unknown
-  name: Unknown
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html#BD_Common8_Essentials_Enums_DeviceIdiom_Unknown
-  commentId: F:BD.Common8.Essentials.Enums.DeviceIdiom.Unknown
-  fullName: BD.Common8.Essentials.Enums.DeviceIdiom.Unknown
-  nameWithType: DeviceIdiom.Unknown
-- uid: BD.Common8.Essentials.Enums.DeviceIdiom.Watch
-  name: Watch
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceIdiom.html#BD_Common8_Essentials_Enums_DeviceIdiom_Watch
-  commentId: F:BD.Common8.Essentials.Enums.DeviceIdiom.Watch
-  fullName: BD.Common8.Essentials.Enums.DeviceIdiom.Watch
-  nameWithType: DeviceIdiom.Watch
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2
-  name: DevicePlatform2
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html
-  commentId: T:BD.Common8.Essentials.Enums.DevicePlatform2
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2
-  nameWithType: DevicePlatform2
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidDesktop
-  name: AndroidDesktop
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_AndroidDesktop
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.AndroidDesktop
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidDesktop
-  nameWithType: DevicePlatform2.AndroidDesktop
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidPhone
-  name: AndroidPhone
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_AndroidPhone
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.AndroidPhone
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidPhone
-  nameWithType: DevicePlatform2.AndroidPhone
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidTV
-  name: AndroidTV
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_AndroidTV
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.AndroidTV
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidTV
-  nameWithType: DevicePlatform2.AndroidTV
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidTablet
-  name: AndroidTablet
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_AndroidTablet
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.AndroidTablet
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidTablet
-  nameWithType: DevicePlatform2.AndroidTablet
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidUnknown
-  name: AndroidUnknown
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_AndroidUnknown
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.AndroidUnknown
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidUnknown
-  nameWithType: DevicePlatform2.AndroidUnknown
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidVirtual
-  name: AndroidVirtual
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_AndroidVirtual
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.AndroidVirtual
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidVirtual
-  nameWithType: DevicePlatform2.AndroidVirtual
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidWatch
-  name: AndroidWatch
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_AndroidWatch
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.AndroidWatch
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.AndroidWatch
-  nameWithType: DevicePlatform2.AndroidWatch
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.ChromeOS
-  name: ChromeOS
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_ChromeOS
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.ChromeOS
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.ChromeOS
-  nameWithType: DevicePlatform2.ChromeOS
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.Linux
-  name: Linux
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_Linux
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.Linux
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.Linux
-  nameWithType: DevicePlatform2.Linux
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.MacCatalyst
-  name: MacCatalyst
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_MacCatalyst
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.MacCatalyst
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.MacCatalyst
-  nameWithType: DevicePlatform2.MacCatalyst
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.Tizen
-  name: Tizen
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_Tizen
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.Tizen
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.Tizen
-  nameWithType: DevicePlatform2.Tizen
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.UWP
-  name: UWP
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_UWP
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.UWP
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.UWP
-  nameWithType: DevicePlatform2.UWP
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.WSA
-  name: WSA
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_WSA
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.WSA
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.WSA
-  nameWithType: DevicePlatform2.WSA
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.WinUI
-  name: WinUI
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_WinUI
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.WinUI
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.WinUI
-  nameWithType: DevicePlatform2.WinUI
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.Windows
-  name: Windows
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_Windows
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.Windows
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.Windows
-  nameWithType: DevicePlatform2.Windows
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.WindowsDesktopBridge
-  name: WindowsDesktopBridge
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_WindowsDesktopBridge
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.WindowsDesktopBridge
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.WindowsDesktopBridge
-  nameWithType: DevicePlatform2.WindowsDesktopBridge
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.iOS
-  name: iOS
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_iOS
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.iOS
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.iOS
-  nameWithType: DevicePlatform2.iOS
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.iPadOS
-  name: iPadOS
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_iPadOS
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.iPadOS
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.iPadOS
-  nameWithType: DevicePlatform2.iPadOS
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.macOS
-  name: macOS
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_macOS
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.macOS
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.macOS
-  nameWithType: DevicePlatform2.macOS
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.tvOS
-  name: tvOS
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_tvOS
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.tvOS
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.tvOS
-  nameWithType: DevicePlatform2.tvOS
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2.watchOS
-  name: watchOS
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2.html#BD_Common8_Essentials_Enums_DevicePlatform2_watchOS
-  commentId: F:BD.Common8.Essentials.Enums.DevicePlatform2.watchOS
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2.watchOS
-  nameWithType: DevicePlatform2.watchOS
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions
-  name: DevicePlatform2EnumExtensions
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html
-  commentId: T:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions
-  nameWithType: DevicePlatform2EnumExtensions
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsAndroid(BD.Common8.Essentials.Enums.DevicePlatform2)
-  name: IsAndroid(DevicePlatform2)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_IsAndroid_BD_Common8_Essentials_Enums_DevicePlatform2_
-  commentId: M:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsAndroid(BD.Common8.Essentials.Enums.DevicePlatform2)
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsAndroid(BD.Common8.Essentials.Enums.DevicePlatform2)
-  nameWithType: DevicePlatform2EnumExtensions.IsAndroid(DevicePlatform2)
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsAndroid*
-  name: IsAndroid
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_IsAndroid_
-  commentId: Overload:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsAndroid
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsAndroid
-  nameWithType: DevicePlatform2EnumExtensions.IsAndroid
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsDefined(BD.Common8.Essentials.Enums.DevicePlatform2)
-  name: IsDefined(DevicePlatform2)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_IsDefined_BD_Common8_Essentials_Enums_DevicePlatform2_
-  commentId: M:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsDefined(BD.Common8.Essentials.Enums.DevicePlatform2)
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsDefined(BD.Common8.Essentials.Enums.DevicePlatform2)
-  nameWithType: DevicePlatform2EnumExtensions.IsDefined(DevicePlatform2)
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsDefined*
-  name: IsDefined
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_IsDefined_
-  commentId: Overload:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsDefined
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.IsDefined
-  nameWithType: DevicePlatform2EnumExtensions.IsDefined
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.Parse(System.String)
-  name: Parse(string)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_Parse_System_String_
-  commentId: M:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.Parse(System.String)
-  name.vb: Parse(String)
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.Parse(string)
-  fullName.vb: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.Parse(String)
-  nameWithType: DevicePlatform2EnumExtensions.Parse(string)
-  nameWithType.vb: DevicePlatform2EnumExtensions.Parse(String)
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.Parse*
-  name: Parse
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_Parse_
-  commentId: Overload:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.Parse
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.Parse
-  nameWithType: DevicePlatform2EnumExtensions.Parse
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.ToDisplayName(BD.Common8.Essentials.Enums.DevicePlatform2)
-  name: ToDisplayName(DevicePlatform2)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_ToDisplayName_BD_Common8_Essentials_Enums_DevicePlatform2_
-  commentId: M:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.ToDisplayName(BD.Common8.Essentials.Enums.DevicePlatform2)
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.ToDisplayName(BD.Common8.Essentials.Enums.DevicePlatform2)
-  nameWithType: DevicePlatform2EnumExtensions.ToDisplayName(DevicePlatform2)
-- uid: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.ToDisplayName*
-  name: ToDisplayName
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.html#BD_Common8_Essentials_Enums_DevicePlatform2EnumExtensions_ToDisplayName_
-  commentId: Overload:BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.ToDisplayName
-  fullName: BD.Common8.Essentials.Enums.DevicePlatform2EnumExtensions.ToDisplayName
-  nameWithType: DevicePlatform2EnumExtensions.ToDisplayName
-- uid: BD.Common8.Essentials.Enums.DeviceType
-  name: DeviceType
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceType.html
-  commentId: T:BD.Common8.Essentials.Enums.DeviceType
-  fullName: BD.Common8.Essentials.Enums.DeviceType
-  nameWithType: DeviceType
-- uid: BD.Common8.Essentials.Enums.DeviceType.Physical
-  name: Physical
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceType.html#BD_Common8_Essentials_Enums_DeviceType_Physical
-  commentId: F:BD.Common8.Essentials.Enums.DeviceType.Physical
-  fullName: BD.Common8.Essentials.Enums.DeviceType.Physical
-  nameWithType: DeviceType.Physical
-- uid: BD.Common8.Essentials.Enums.DeviceType.Unknown
-  name: Unknown
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceType.html#BD_Common8_Essentials_Enums_DeviceType_Unknown
-  commentId: F:BD.Common8.Essentials.Enums.DeviceType.Unknown
-  fullName: BD.Common8.Essentials.Enums.DeviceType.Unknown
-  nameWithType: DeviceType.Unknown
-- uid: BD.Common8.Essentials.Enums.DeviceType.Virtual
-  name: Virtual
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceType.html#BD_Common8_Essentials_Enums_DeviceType_Virtual
-  commentId: F:BD.Common8.Essentials.Enums.DeviceType.Virtual
-  fullName: BD.Common8.Essentials.Enums.DeviceType.Virtual
-  nameWithType: DeviceType.Virtual
-- uid: BD.Common8.Essentials.Enums.DeviceTypeExtensions
-  name: DeviceTypeExtensions
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceTypeExtensions.html
-  commentId: T:BD.Common8.Essentials.Enums.DeviceTypeExtensions
-  fullName: BD.Common8.Essentials.Enums.DeviceTypeExtensions
-  nameWithType: DeviceTypeExtensions
-- uid: BD.Common8.Essentials.Enums.DeviceTypeExtensions.IsDefined(BD.Common8.Essentials.Enums.DeviceType)
-  name: IsDefined(DeviceType)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceTypeExtensions.html#BD_Common8_Essentials_Enums_DeviceTypeExtensions_IsDefined_BD_Common8_Essentials_Enums_DeviceType_
-  commentId: M:BD.Common8.Essentials.Enums.DeviceTypeExtensions.IsDefined(BD.Common8.Essentials.Enums.DeviceType)
-  fullName: BD.Common8.Essentials.Enums.DeviceTypeExtensions.IsDefined(BD.Common8.Essentials.Enums.DeviceType)
-  nameWithType: DeviceTypeExtensions.IsDefined(DeviceType)
-- uid: BD.Common8.Essentials.Enums.DeviceTypeExtensions.IsDefined*
-  name: IsDefined
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.DeviceTypeExtensions.html#BD_Common8_Essentials_Enums_DeviceTypeExtensions_IsDefined_
-  commentId: Overload:BD.Common8.Essentials.Enums.DeviceTypeExtensions.IsDefined
-  fullName: BD.Common8.Essentials.Enums.DeviceTypeExtensions.IsDefined
-  nameWithType: DeviceTypeExtensions.IsDefined
-- uid: BD.Common8.Essentials.Enums.EmailBodyFormat
-  name: EmailBodyFormat
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.EmailBodyFormat.html
-  commentId: T:BD.Common8.Essentials.Enums.EmailBodyFormat
-  fullName: BD.Common8.Essentials.Enums.EmailBodyFormat
-  nameWithType: EmailBodyFormat
-- uid: BD.Common8.Essentials.Enums.EmailBodyFormat.Html
-  name: Html
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.EmailBodyFormat.html#BD_Common8_Essentials_Enums_EmailBodyFormat_Html
-  commentId: F:BD.Common8.Essentials.Enums.EmailBodyFormat.Html
-  fullName: BD.Common8.Essentials.Enums.EmailBodyFormat.Html
-  nameWithType: EmailBodyFormat.Html
-- uid: BD.Common8.Essentials.Enums.EmailBodyFormat.PlainText
-  name: PlainText
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.EmailBodyFormat.html#BD_Common8_Essentials_Enums_EmailBodyFormat_PlainText
-  commentId: F:BD.Common8.Essentials.Enums.EmailBodyFormat.PlainText
-  fullName: BD.Common8.Essentials.Enums.EmailBodyFormat.PlainText
-  nameWithType: EmailBodyFormat.PlainText
-- uid: BD.Common8.Essentials.Enums.IdiomEnumExtensions
-  name: IdiomEnumExtensions
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.IdiomEnumExtensions.html
-  commentId: T:BD.Common8.Essentials.Enums.IdiomEnumExtensions
-  fullName: BD.Common8.Essentials.Enums.IdiomEnumExtensions
-  nameWithType: IdiomEnumExtensions
-- uid: BD.Common8.Essentials.Enums.IdiomEnumExtensions.IsDefined(BD.Common8.Essentials.Enums.DeviceIdiom)
-  name: IsDefined(DeviceIdiom)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.IdiomEnumExtensions.html#BD_Common8_Essentials_Enums_IdiomEnumExtensions_IsDefined_BD_Common8_Essentials_Enums_DeviceIdiom_
-  commentId: M:BD.Common8.Essentials.Enums.IdiomEnumExtensions.IsDefined(BD.Common8.Essentials.Enums.DeviceIdiom)
-  fullName: BD.Common8.Essentials.Enums.IdiomEnumExtensions.IsDefined(BD.Common8.Essentials.Enums.DeviceIdiom)
-  nameWithType: IdiomEnumExtensions.IsDefined(DeviceIdiom)
-- uid: BD.Common8.Essentials.Enums.IdiomEnumExtensions.IsDefined*
-  name: IsDefined
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.IdiomEnumExtensions.html#BD_Common8_Essentials_Enums_IdiomEnumExtensions_IsDefined_
-  commentId: Overload:BD.Common8.Essentials.Enums.IdiomEnumExtensions.IsDefined
-  fullName: BD.Common8.Essentials.Enums.IdiomEnumExtensions.IsDefined
-  nameWithType: IdiomEnumExtensions.IsDefined
-- uid: BD.Common8.Essentials.Enums.NetworkAccess
-  name: NetworkAccess
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.html
-  commentId: T:BD.Common8.Essentials.Enums.NetworkAccess
-  fullName: BD.Common8.Essentials.Enums.NetworkAccess
-  nameWithType: NetworkAccess
-- uid: BD.Common8.Essentials.Enums.NetworkAccess.ConstrainedInternet
-  name: ConstrainedInternet
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.html#BD_Common8_Essentials_Enums_NetworkAccess_ConstrainedInternet
-  commentId: F:BD.Common8.Essentials.Enums.NetworkAccess.ConstrainedInternet
-  fullName: BD.Common8.Essentials.Enums.NetworkAccess.ConstrainedInternet
-  nameWithType: NetworkAccess.ConstrainedInternet
-- uid: BD.Common8.Essentials.Enums.NetworkAccess.Internet
-  name: Internet
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.html#BD_Common8_Essentials_Enums_NetworkAccess_Internet
-  commentId: F:BD.Common8.Essentials.Enums.NetworkAccess.Internet
-  fullName: BD.Common8.Essentials.Enums.NetworkAccess.Internet
-  nameWithType: NetworkAccess.Internet
-- uid: BD.Common8.Essentials.Enums.NetworkAccess.Local
-  name: Local
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.html#BD_Common8_Essentials_Enums_NetworkAccess_Local
-  commentId: F:BD.Common8.Essentials.Enums.NetworkAccess.Local
-  fullName: BD.Common8.Essentials.Enums.NetworkAccess.Local
-  nameWithType: NetworkAccess.Local
-- uid: BD.Common8.Essentials.Enums.NetworkAccess.None
-  name: None
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.html#BD_Common8_Essentials_Enums_NetworkAccess_None
-  commentId: F:BD.Common8.Essentials.Enums.NetworkAccess.None
-  fullName: BD.Common8.Essentials.Enums.NetworkAccess.None
-  nameWithType: NetworkAccess.None
-- uid: BD.Common8.Essentials.Enums.NetworkAccess.Unknown
-  name: Unknown
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.NetworkAccess.html#BD_Common8_Essentials_Enums_NetworkAccess_Unknown
-  commentId: F:BD.Common8.Essentials.Enums.NetworkAccess.Unknown
-  fullName: BD.Common8.Essentials.Enums.NetworkAccess.Unknown
-  nameWithType: NetworkAccess.Unknown
-- uid: BD.Common8.Essentials.Enums.PermissionStatus
-  name: PermissionStatus
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html
-  commentId: T:BD.Common8.Essentials.Enums.PermissionStatus
-  fullName: BD.Common8.Essentials.Enums.PermissionStatus
-  nameWithType: PermissionStatus
-- uid: BD.Common8.Essentials.Enums.PermissionStatus.Denied
-  name: Denied
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html#BD_Common8_Essentials_Enums_PermissionStatus_Denied
-  commentId: F:BD.Common8.Essentials.Enums.PermissionStatus.Denied
-  fullName: BD.Common8.Essentials.Enums.PermissionStatus.Denied
-  nameWithType: PermissionStatus.Denied
-- uid: BD.Common8.Essentials.Enums.PermissionStatus.Disabled
-  name: Disabled
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html#BD_Common8_Essentials_Enums_PermissionStatus_Disabled
-  commentId: F:BD.Common8.Essentials.Enums.PermissionStatus.Disabled
-  fullName: BD.Common8.Essentials.Enums.PermissionStatus.Disabled
-  nameWithType: PermissionStatus.Disabled
-- uid: BD.Common8.Essentials.Enums.PermissionStatus.Granted
-  name: Granted
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html#BD_Common8_Essentials_Enums_PermissionStatus_Granted
-  commentId: F:BD.Common8.Essentials.Enums.PermissionStatus.Granted
-  fullName: BD.Common8.Essentials.Enums.PermissionStatus.Granted
-  nameWithType: PermissionStatus.Granted
-- uid: BD.Common8.Essentials.Enums.PermissionStatus.Limited
-  name: Limited
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html#BD_Common8_Essentials_Enums_PermissionStatus_Limited
-  commentId: F:BD.Common8.Essentials.Enums.PermissionStatus.Limited
-  fullName: BD.Common8.Essentials.Enums.PermissionStatus.Limited
-  nameWithType: PermissionStatus.Limited
-- uid: BD.Common8.Essentials.Enums.PermissionStatus.Restricted
-  name: Restricted
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html#BD_Common8_Essentials_Enums_PermissionStatus_Restricted
-  commentId: F:BD.Common8.Essentials.Enums.PermissionStatus.Restricted
-  fullName: BD.Common8.Essentials.Enums.PermissionStatus.Restricted
-  nameWithType: PermissionStatus.Restricted
-- uid: BD.Common8.Essentials.Enums.PermissionStatus.Unknown
-  name: Unknown
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.PermissionStatus.html#BD_Common8_Essentials_Enums_PermissionStatus_Unknown
-  commentId: F:BD.Common8.Essentials.Enums.PermissionStatus.Unknown
-  fullName: BD.Common8.Essentials.Enums.PermissionStatus.Unknown
-  nameWithType: PermissionStatus.Unknown
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority
-  name: ThreadingDispatcherPriority
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html
-  commentId: T:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority
-  nameWithType: ThreadingDispatcherPriority
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.ApplicationIdle
-  name: ApplicationIdle
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_ApplicationIdle
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.ApplicationIdle
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.ApplicationIdle
-  nameWithType: ThreadingDispatcherPriority.ApplicationIdle
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Background
-  name: Background
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Background
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Background
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Background
-  nameWithType: ThreadingDispatcherPriority.Background
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.ContextIdle
-  name: ContextIdle
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_ContextIdle
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.ContextIdle
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.ContextIdle
-  nameWithType: ThreadingDispatcherPriority.ContextIdle
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.DataBind
-  name: DataBind
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_DataBind
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.DataBind
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.DataBind
-  nameWithType: ThreadingDispatcherPriority.DataBind
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Inactive
-  name: Inactive
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Inactive
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Inactive
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Inactive
-  nameWithType: ThreadingDispatcherPriority.Inactive
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Input
-  name: Input
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Input
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Input
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Input
-  nameWithType: ThreadingDispatcherPriority.Input
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Invalid
-  name: Invalid
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Invalid
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Invalid
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Invalid
-  nameWithType: ThreadingDispatcherPriority.Invalid
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Loaded
-  name: Loaded
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Loaded
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Loaded
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Loaded
-  nameWithType: ThreadingDispatcherPriority.Loaded
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.MaxValue
-  name: MaxValue
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_MaxValue
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.MaxValue
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.MaxValue
-  nameWithType: ThreadingDispatcherPriority.MaxValue
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.MinValue
-  name: MinValue
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_MinValue
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.MinValue
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.MinValue
-  nameWithType: ThreadingDispatcherPriority.MinValue
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Normal
-  name: Normal
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Normal
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Normal
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Normal
-  nameWithType: ThreadingDispatcherPriority.Normal
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Render
-  name: Render
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Render
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Render
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Render
-  nameWithType: ThreadingDispatcherPriority.Render
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Send
-  name: Send
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_Send
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Send
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.Send
-  nameWithType: ThreadingDispatcherPriority.Send
-- uid: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.SystemIdle
-  name: SystemIdle
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.html#BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_SystemIdle
-  commentId: F:BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.SystemIdle
-  fullName: BD.Common8.Essentials.Enums.ThreadingDispatcherPriority.SystemIdle
-  nameWithType: ThreadingDispatcherPriority.SystemIdle
 - uid: BD.Common8.Essentials.Helpers
   name: BD.Common8.Essentials.Helpers
   href: api/BD.Common8.Essentials.Implementation/BD.Common8.Essentials.Helpers.html
@@ -7817,13 +7226,13 @@ references:
   commentId: E:BD.Common8.Essentials.Helpers.Browser2.OnError
   fullName: BD.Common8.Essentials.Helpers.Browser2.OnError
   nameWithType: Browser2.OnError
-- uid: BD.Common8.Essentials.Helpers.Browser2.Open(System.String,BD.Common8.Essentials.Enums.BrowserLaunchMode)
+- uid: BD.Common8.Essentials.Helpers.Browser2.Open(System.String,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
   name: Open(string?, BrowserLaunchMode)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_Open_System_String_BD_Common8_Essentials_Enums_BrowserLaunchMode_
-  commentId: M:BD.Common8.Essentials.Helpers.Browser2.Open(System.String,BD.Common8.Essentials.Enums.BrowserLaunchMode)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_Open_System_String_BD_Common8_Primitives_Essentials_Enums_BrowserLaunchMode_
+  commentId: M:BD.Common8.Essentials.Helpers.Browser2.Open(System.String,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
   name.vb: Open(String, BrowserLaunchMode)
-  fullName: BD.Common8.Essentials.Helpers.Browser2.Open(string?, BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  fullName.vb: BD.Common8.Essentials.Helpers.Browser2.Open(String, BD.Common8.Essentials.Enums.BrowserLaunchMode)
+  fullName: BD.Common8.Essentials.Helpers.Browser2.Open(string?, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  fullName.vb: BD.Common8.Essentials.Helpers.Browser2.Open(String, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
   nameWithType: Browser2.Open(string?, BrowserLaunchMode)
   nameWithType.vb: Browser2.Open(String, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Helpers.Browser2.Open*
@@ -7832,15 +7241,6 @@ references:
   commentId: Overload:BD.Common8.Essentials.Helpers.Browser2.Open
   fullName: BD.Common8.Essentials.Helpers.Browser2.Open
   nameWithType: Browser2.Open
-- uid: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.String,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  name: OpenAsync(string?, BrowserLaunchMode)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_OpenAsync_System_String_BD_Common8_Essentials_Enums_BrowserLaunchMode_
-  commentId: M:BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.String,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  name.vb: OpenAsync(String, BrowserLaunchMode)
-  fullName: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(string?, BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  fullName.vb: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(String, BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  nameWithType: Browser2.OpenAsync(string?, BrowserLaunchMode)
-  nameWithType.vb: Browser2.OpenAsync(String, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.String,BD.Common8.Essentials.Models.BrowserLaunchOptions)
   name: OpenAsync(string?, BrowserLaunchOptions)
   href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_OpenAsync_System_String_BD_Common8_Essentials_Models_BrowserLaunchOptions_
@@ -7850,18 +7250,27 @@ references:
   fullName.vb: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(String, BD.Common8.Essentials.Models.BrowserLaunchOptions)
   nameWithType: Browser2.OpenAsync(string?, BrowserLaunchOptions)
   nameWithType.vb: Browser2.OpenAsync(String, BrowserLaunchOptions)
-- uid: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  name: OpenAsync(Uri, BrowserLaunchMode)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_OpenAsync_System_Uri_BD_Common8_Essentials_Enums_BrowserLaunchMode_
-  commentId: M:BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  fullName: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri, BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  nameWithType: Browser2.OpenAsync(Uri, BrowserLaunchMode)
+- uid: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.String,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  name: OpenAsync(string?, BrowserLaunchMode)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_OpenAsync_System_String_BD_Common8_Primitives_Essentials_Enums_BrowserLaunchMode_
+  commentId: M:BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.String,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  name.vb: OpenAsync(String, BrowserLaunchMode)
+  fullName: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(string?, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  fullName.vb: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(String, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  nameWithType: Browser2.OpenAsync(string?, BrowserLaunchMode)
+  nameWithType.vb: Browser2.OpenAsync(String, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri,BD.Common8.Essentials.Models.BrowserLaunchOptions)
   name: OpenAsync(Uri, BrowserLaunchOptions)
   href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_OpenAsync_System_Uri_BD_Common8_Essentials_Models_BrowserLaunchOptions_
   commentId: M:BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri,BD.Common8.Essentials.Models.BrowserLaunchOptions)
   fullName: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri, BD.Common8.Essentials.Models.BrowserLaunchOptions)
   nameWithType: Browser2.OpenAsync(Uri, BrowserLaunchOptions)
+- uid: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  name: OpenAsync(Uri, BrowserLaunchMode)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_OpenAsync_System_Uri_BD_Common8_Primitives_Essentials_Enums_BrowserLaunchMode_
+  commentId: M:BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  fullName: BD.Common8.Essentials.Helpers.Browser2.OpenAsync(System.Uri, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  nameWithType: Browser2.OpenAsync(Uri, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Helpers.Browser2.OpenAsync*
   name: OpenAsync
   href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Browser2.html#BD_Common8_Essentials_Helpers_Browser2_OpenAsync_
@@ -8327,11 +7736,11 @@ references:
   commentId: T:BD.Common8.Essentials.Helpers.MainThread2
   fullName: BD.Common8.Essentials.Helpers.MainThread2
   nameWithType: MainThread2
-- uid: BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: BeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_BeginInvokeOnMainThread_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread(System.Action, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_BeginInvokeOnMainThread_System_Action_BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread(System.Action, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: MainThread2.BeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
 - uid: BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread*
   name: BeginInvokeOnMainThread
@@ -8339,19 +7748,19 @@ references:
   commentId: Overload:BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread
   fullName: BD.Common8.Essentials.Helpers.MainThread2.BeginInvokeOnMainThread
   nameWithType: MainThread2.BeginInvokeOnMainThread
-- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync(Action, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Action, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync_System_Action_BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Action, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: MainThread2.InvokeOnMainThreadAsync(Action, ThreadingDispatcherPriority)
-- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync(Func<Task>, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync_System_Func_System_Threading_Tasks_Task__BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync_System_Func_System_Threading_Tasks_Task__BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name.vb: InvokeOnMainThreadAsync(Func(Of Task), ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func<System.Threading.Tasks.Task>, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName.vb: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func(Of System.Threading.Tasks.Task), BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func<System.Threading.Tasks.Task>, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName.vb: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(System.Func(Of System.Threading.Tasks.Task), BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: MainThread2.InvokeOnMainThreadAsync(Func<Task>, ThreadingDispatcherPriority)
   nameWithType.vb: MainThread2.InvokeOnMainThreadAsync(Func(Of Task), ThreadingDispatcherPriority)
 - uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync*
@@ -8360,22 +7769,22 @@ references:
   commentId: Overload:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync
   fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync
   nameWithType: MainThread2.InvokeOnMainThreadAsync
-- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync<T>(Func<Task<T>>, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync__1_System_Func_System_Threading_Tasks_Task___0___BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync__1_System_Func_System_Threading_Tasks_Task___0___BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name.vb: InvokeOnMainThreadAsync(Of T)(Func(Of Task(Of T)), ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName.vb: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName.vb: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: MainThread2.InvokeOnMainThreadAsync<T>(Func<Task<T>>, ThreadingDispatcherPriority)
   nameWithType.vb: MainThread2.InvokeOnMainThreadAsync(Of T)(Func(Of Task(Of T)), ThreadingDispatcherPriority)
-- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync<T>(Func<T>, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync__1_System_Func___0__BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.MainThread2.html#BD_Common8_Essentials_Helpers_MainThread2_InvokeOnMainThreadAsync__1_System_Func___0__BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name.vb: InvokeOnMainThreadAsync(Of T)(Func(Of T), ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync<T>(System.Func<T>, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName.vb: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(Of T)(System.Func(Of T), BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync<T>(System.Func<T>, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName.vb: BD.Common8.Essentials.Helpers.MainThread2.InvokeOnMainThreadAsync(Of T)(System.Func(Of T), BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: MainThread2.InvokeOnMainThreadAsync<T>(Func<T>, ThreadingDispatcherPriority)
   nameWithType.vb: MainThread2.InvokeOnMainThreadAsync(Of T)(Func(Of T), ThreadingDispatcherPriority)
 - uid: BD.Common8.Essentials.Helpers.MainThread2.IsMainThread
@@ -8921,11 +8330,11 @@ references:
   commentId: T:BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType
   fullName: BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType
   nameWithType: IFilePickerFileType
-- uid: BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.GetPlatformFileType(BD.Common8.Essentials.Enums.DevicePlatform2)
+- uid: BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.GetPlatformFileType(BD.Common8.Primitives.Essentials.Enums.DevicePlatform2)
   name: GetPlatformFileType(DevicePlatform2)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.html#BD_Common8_Essentials_Models_Abstractions_IFilePickerFileType_GetPlatformFileType_BD_Common8_Essentials_Enums_DevicePlatform2_
-  commentId: M:BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.GetPlatformFileType(BD.Common8.Essentials.Enums.DevicePlatform2)
-  fullName: BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.GetPlatformFileType(BD.Common8.Essentials.Enums.DevicePlatform2)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.html#BD_Common8_Essentials_Models_Abstractions_IFilePickerFileType_GetPlatformFileType_BD_Common8_Primitives_Essentials_Enums_DevicePlatform2_
+  commentId: M:BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.GetPlatformFileType(BD.Common8.Primitives.Essentials.Enums.DevicePlatform2)
+  fullName: BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.GetPlatformFileType(BD.Common8.Primitives.Essentials.Enums.DevicePlatform2)
   nameWithType: IFilePickerFileType.GetPlatformFileType(DevicePlatform2)
 - uid: BD.Common8.Essentials.Models.Abstractions.IFilePickerFileType.GetPlatformFileType*
   name: GetPlatformFileType
@@ -9813,15 +9222,6 @@ references:
   fullName.vb: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(String)
   nameWithType: IBrowserPlatformService.OpenAsync(string)
   nameWithType.vb: IBrowserPlatformService.OpenAsync(String)
-- uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.String,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  name: OpenAsync(string, BrowserLaunchMode)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_System_String_BD_Common8_Essentials_Enums_BrowserLaunchMode_
-  commentId: M:BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.String,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  name.vb: OpenAsync(String, BrowserLaunchMode)
-  fullName: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(string, BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  fullName.vb: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(String, BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  nameWithType: IBrowserPlatformService.OpenAsync(string, BrowserLaunchMode)
-  nameWithType.vb: IBrowserPlatformService.OpenAsync(String, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.String,BD.Common8.Essentials.Models.BrowserLaunchOptions)
   name: OpenAsync(string, BrowserLaunchOptions)
   href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_System_String_BD_Common8_Essentials_Models_BrowserLaunchOptions_
@@ -9831,24 +9231,33 @@ references:
   fullName.vb: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(String, BD.Common8.Essentials.Models.BrowserLaunchOptions)
   nameWithType: IBrowserPlatformService.OpenAsync(string, BrowserLaunchOptions)
   nameWithType.vb: IBrowserPlatformService.OpenAsync(String, BrowserLaunchOptions)
+- uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.String,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  name: OpenAsync(string, BrowserLaunchMode)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_System_String_BD_Common8_Primitives_Essentials_Enums_BrowserLaunchMode_
+  commentId: M:BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.String,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  name.vb: OpenAsync(String, BrowserLaunchMode)
+  fullName: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(string, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  fullName.vb: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(String, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  nameWithType: IBrowserPlatformService.OpenAsync(string, BrowserLaunchMode)
+  nameWithType.vb: IBrowserPlatformService.OpenAsync(String, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri)
   name: OpenAsync(Uri)
   href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_System_Uri_
   commentId: M:BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri)
   fullName: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri)
   nameWithType: IBrowserPlatformService.OpenAsync(Uri)
-- uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  name: OpenAsync(Uri, BrowserLaunchMode)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_System_Uri_BD_Common8_Essentials_Enums_BrowserLaunchMode_
-  commentId: M:BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri,BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  fullName: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri, BD.Common8.Essentials.Enums.BrowserLaunchMode)
-  nameWithType: IBrowserPlatformService.OpenAsync(Uri, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri,BD.Common8.Essentials.Models.BrowserLaunchOptions)
   name: OpenAsync(Uri, BrowserLaunchOptions)
   href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_System_Uri_BD_Common8_Essentials_Models_BrowserLaunchOptions_
   commentId: M:BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri,BD.Common8.Essentials.Models.BrowserLaunchOptions)
   fullName: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri, BD.Common8.Essentials.Models.BrowserLaunchOptions)
   nameWithType: IBrowserPlatformService.OpenAsync(Uri, BrowserLaunchOptions)
+- uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  name: OpenAsync(Uri, BrowserLaunchMode)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_System_Uri_BD_Common8_Primitives_Essentials_Enums_BrowserLaunchMode_
+  commentId: M:BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri,BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  fullName: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync(System.Uri, BD.Common8.Primitives.Essentials.Enums.BrowserLaunchMode)
+  nameWithType: IBrowserPlatformService.OpenAsync(Uri, BrowserLaunchMode)
 - uid: BD.Common8.Essentials.Services.IBrowserPlatformService.OpenAsync*
   name: OpenAsync
   href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IBrowserPlatformService.html#BD_Common8_Essentials_Services_IBrowserPlatformService_OpenAsync_
@@ -10257,11 +9666,11 @@ references:
   commentId: T:BD.Common8.Essentials.Services.IMainThreadPlatformService
   fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService
   nameWithType: IMainThreadPlatformService
-- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: BeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_BeginInvokeOnMainThread_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread(System.Action, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_BeginInvokeOnMainThread_System_Action_BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread(System.Action, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: IMainThreadPlatformService.BeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
 - uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.BeginInvokeOnMainThread*
   name: BeginInvokeOnMainThread
@@ -10281,19 +9690,19 @@ references:
   commentId: Overload:BD.Common8.Essentials.Services.IMainThreadPlatformService.Instance
   fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.Instance
   nameWithType: IMainThreadPlatformService.Instance
-- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync(Action, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Action, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_System_Action_BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Action, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: IMainThreadPlatformService.InvokeOnMainThreadAsync(Action, ThreadingDispatcherPriority)
-- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync(Func<Task>, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_System_Func_System_Threading_Tasks_Task__BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync_System_Func_System_Threading_Tasks_Task__BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func{System.Threading.Tasks.Task},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name.vb: InvokeOnMainThreadAsync(Func(Of Task), ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func<System.Threading.Tasks.Task>, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName.vb: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func(Of System.Threading.Tasks.Task), BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func<System.Threading.Tasks.Task>, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName.vb: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(System.Func(Of System.Threading.Tasks.Task), BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: IMainThreadPlatformService.InvokeOnMainThreadAsync(Func<Task>, ThreadingDispatcherPriority)
   nameWithType.vb: IMainThreadPlatformService.InvokeOnMainThreadAsync(Func(Of Task), ThreadingDispatcherPriority)
 - uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync*
@@ -10302,29 +9711,29 @@ references:
   commentId: Overload:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync
   fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync
   nameWithType: IMainThreadPlatformService.InvokeOnMainThreadAsync
-- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync<T>(Func<Task<T>>, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync__1_System_Func_System_Threading_Tasks_Task___0___BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync__1_System_Func_System_Threading_Tasks_Task___0___BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{System.Threading.Tasks.Task{``0}},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name.vb: InvokeOnMainThreadAsync(Of T)(Func(Of Task(Of T)), ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName.vb: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync<T>(System.Func<System.Threading.Tasks.Task<T>>, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName.vb: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(Of T)(System.Func(Of System.Threading.Tasks.Task(Of T)), BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: IMainThreadPlatformService.InvokeOnMainThreadAsync<T>(Func<Task<T>>, ThreadingDispatcherPriority)
   nameWithType.vb: IMainThreadPlatformService.InvokeOnMainThreadAsync(Of T)(Func(Of Task(Of T)), ThreadingDispatcherPriority)
-- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: InvokeOnMainThreadAsync<T>(Func<T>, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync__1_System_Func___0__BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_InvokeOnMainThreadAsync__1_System_Func___0__BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync``1(System.Func{``0},BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name.vb: InvokeOnMainThreadAsync(Of T)(Func(Of T), ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync<T>(System.Func<T>, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName.vb: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(Of T)(System.Func(Of T), BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync<T>(System.Func<T>, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName.vb: BD.Common8.Essentials.Services.IMainThreadPlatformService.InvokeOnMainThreadAsync(Of T)(System.Func(Of T), BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: IMainThreadPlatformService.InvokeOnMainThreadAsync<T>(Func<T>, ThreadingDispatcherPriority)
   nameWithType.vb: IMainThreadPlatformService.InvokeOnMainThreadAsync(Of T)(Func(Of T), ThreadingDispatcherPriority)
-- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+- uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   name: PlatformBeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
-  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_PlatformBeginInvokeOnMainThread_System_Action_BD_Common8_Essentials_Enums_ThreadingDispatcherPriority_
-  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(System.Action,BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
-  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(System.Action, BD.Common8.Essentials.Enums.ThreadingDispatcherPriority)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Services.IMainThreadPlatformService.html#BD_Common8_Essentials_Services_IMainThreadPlatformService_PlatformBeginInvokeOnMainThread_System_Action_BD_Common8_Primitives_Essentials_Enums_ThreadingDispatcherPriority_
+  commentId: M:BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(System.Action,BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
+  fullName: BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(System.Action, BD.Common8.Primitives.Essentials.Enums.ThreadingDispatcherPriority)
   nameWithType: IMainThreadPlatformService.PlatformBeginInvokeOnMainThread(Action, ThreadingDispatcherPriority)
 - uid: BD.Common8.Essentials.Services.IMainThreadPlatformService.PlatformBeginInvokeOnMainThread*
   name: PlatformBeginInvokeOnMainThread
@@ -21926,66 +21335,6 @@ references:
   commentId: Overload:BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderBase.SupportCheck
   fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderBase.SupportCheck
   nameWithType: SmsSenderBase.SupportCheck
-- uid: BD.Common8.Toast.Enums
-  name: BD.Common8.Toast.Enums
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.html
-  commentId: N:BD.Common8.Toast.Enums
-  fullName: BD.Common8.Toast.Enums
-  nameWithType: BD.Common8.Toast.Enums
-- uid: BD.Common8.Toast.Enums.ToastIcon
-  name: ToastIcon
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.html
-  commentId: T:BD.Common8.Toast.Enums.ToastIcon
-  fullName: BD.Common8.Toast.Enums.ToastIcon
-  nameWithType: ToastIcon
-- uid: BD.Common8.Toast.Enums.ToastIcon.Error
-  name: Error
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.html#BD_Common8_Toast_Enums_ToastIcon_Error
-  commentId: F:BD.Common8.Toast.Enums.ToastIcon.Error
-  fullName: BD.Common8.Toast.Enums.ToastIcon.Error
-  nameWithType: ToastIcon.Error
-- uid: BD.Common8.Toast.Enums.ToastIcon.Info
-  name: Info
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.html#BD_Common8_Toast_Enums_ToastIcon_Info
-  commentId: F:BD.Common8.Toast.Enums.ToastIcon.Info
-  fullName: BD.Common8.Toast.Enums.ToastIcon.Info
-  nameWithType: ToastIcon.Info
-- uid: BD.Common8.Toast.Enums.ToastIcon.None
-  name: None
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.html#BD_Common8_Toast_Enums_ToastIcon_None
-  commentId: F:BD.Common8.Toast.Enums.ToastIcon.None
-  fullName: BD.Common8.Toast.Enums.ToastIcon.None
-  nameWithType: ToastIcon.None
-- uid: BD.Common8.Toast.Enums.ToastIcon.Success
-  name: Success
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.html#BD_Common8_Toast_Enums_ToastIcon_Success
-  commentId: F:BD.Common8.Toast.Enums.ToastIcon.Success
-  fullName: BD.Common8.Toast.Enums.ToastIcon.Success
-  nameWithType: ToastIcon.Success
-- uid: BD.Common8.Toast.Enums.ToastIcon.Warning
-  name: Warning
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastIcon.html#BD_Common8_Toast_Enums_ToastIcon_Warning
-  commentId: F:BD.Common8.Toast.Enums.ToastIcon.Warning
-  fullName: BD.Common8.Toast.Enums.ToastIcon.Warning
-  nameWithType: ToastIcon.Warning
-- uid: BD.Common8.Toast.Enums.ToastLength
-  name: ToastLength
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastLength.html
-  commentId: T:BD.Common8.Toast.Enums.ToastLength
-  fullName: BD.Common8.Toast.Enums.ToastLength
-  nameWithType: ToastLength
-- uid: BD.Common8.Toast.Enums.ToastLength.Long
-  name: Long
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastLength.html#BD_Common8_Toast_Enums_ToastLength_Long
-  commentId: F:BD.Common8.Toast.Enums.ToastLength.Long
-  fullName: BD.Common8.Toast.Enums.ToastLength.Long
-  nameWithType: ToastLength.Long
-- uid: BD.Common8.Toast.Enums.ToastLength.Short
-  name: Short
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Enums.ToastLength.html#BD_Common8_Toast_Enums_ToastLength_Short
-  commentId: F:BD.Common8.Toast.Enums.ToastLength.Short
-  fullName: BD.Common8.Toast.Enums.ToastLength.Short
-  nameWithType: ToastLength.Short
 - uid: BD.Common8.Toast.Helpers
   name: BD.Common8.Toast.Helpers
   href: api/BD.Common8.Toast/BD.Common8.Toast.Helpers.html
@@ -22022,22 +21371,22 @@ references:
   commentId: Overload:BD.Common8.Toast.Helpers.ToastHelper.LogAndShow
   fullName: BD.Common8.Toast.Helpers.ToastHelper.LogAndShow
   nameWithType: ToastHelper.LogAndShow
-- uid: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,BD.Common8.Toast.Enums.ToastLength)
+- uid: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,BD.Common8.Primitives.Toast.Enums.ToastLength)
   name: Show(ToastIcon, string, ToastLength)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Helpers.ToastHelper.html#BD_Common8_Toast_Helpers_ToastHelper_Show_BD_Common8_Toast_Enums_ToastIcon_System_String_BD_Common8_Toast_Enums_ToastLength_
-  commentId: M:BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,BD.Common8.Toast.Enums.ToastLength)
+  href: api/BD.Common8.Toast/BD.Common8.Toast.Helpers.ToastHelper.html#BD_Common8_Toast_Helpers_ToastHelper_Show_BD_Common8_Primitives_Toast_Enums_ToastIcon_System_String_BD_Common8_Primitives_Toast_Enums_ToastLength_
+  commentId: M:BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,BD.Common8.Primitives.Toast.Enums.ToastLength)
   name.vb: Show(ToastIcon, String, ToastLength)
-  fullName: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon, string, BD.Common8.Toast.Enums.ToastLength)
-  fullName.vb: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon, String, BD.Common8.Toast.Enums.ToastLength)
+  fullName: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, string, BD.Common8.Primitives.Toast.Enums.ToastLength)
+  fullName.vb: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, String, BD.Common8.Primitives.Toast.Enums.ToastLength)
   nameWithType: ToastHelper.Show(ToastIcon, string, ToastLength)
   nameWithType.vb: ToastHelper.Show(ToastIcon, String, ToastLength)
-- uid: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
+- uid: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
   name: Show(ToastIcon, string, int?)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Helpers.ToastHelper.html#BD_Common8_Toast_Helpers_ToastHelper_Show_BD_Common8_Toast_Enums_ToastIcon_System_String_System_Nullable_System_Int32__
-  commentId: M:BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
+  href: api/BD.Common8.Toast/BD.Common8.Toast.Helpers.ToastHelper.html#BD_Common8_Toast_Helpers_ToastHelper_Show_BD_Common8_Primitives_Toast_Enums_ToastIcon_System_String_System_Nullable_System_Int32__
+  commentId: M:BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
   name.vb: Show(ToastIcon, String, Integer?)
-  fullName: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon, string, int?)
-  fullName.vb: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Toast.Enums.ToastIcon, String, Integer?)
+  fullName: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, string, int?)
+  fullName.vb: BD.Common8.Toast.Helpers.ToastHelper.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, String, Integer?)
   nameWithType: ToastHelper.Show(ToastIcon, string, int?)
   nameWithType.vb: ToastHelper.Show(ToastIcon, String, Integer?)
 - uid: BD.Common8.Toast.Helpers.ToastHelper.Show*
@@ -22058,13 +21407,13 @@ references:
   commentId: T:BD.Common8.Toast.Services.IToastIntercept
   fullName: BD.Common8.Toast.Services.IToastIntercept
   nameWithType: IToastIntercept
-- uid: BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
+- uid: BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
   name: OnShowExecuting(ToastIcon, string, int?)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.IToastIntercept.html#BD_Common8_Toast_Services_IToastIntercept_OnShowExecuting_BD_Common8_Toast_Enums_ToastIcon_System_String_System_Nullable_System_Int32__
-  commentId: M:BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
+  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.IToastIntercept.html#BD_Common8_Toast_Services_IToastIntercept_OnShowExecuting_BD_Common8_Primitives_Toast_Enums_ToastIcon_System_String_System_Nullable_System_Int32__
+  commentId: M:BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
   name.vb: OnShowExecuting(ToastIcon, String, Integer?)
-  fullName: BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Toast.Enums.ToastIcon, string, int?)
-  fullName.vb: BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Toast.Enums.ToastIcon, String, Integer?)
+  fullName: BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Primitives.Toast.Enums.ToastIcon, string, int?)
+  fullName.vb: BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting(BD.Common8.Primitives.Toast.Enums.ToastIcon, String, Integer?)
   nameWithType: IToastIntercept.OnShowExecuting(ToastIcon, string, int?)
   nameWithType.vb: IToastIntercept.OnShowExecuting(ToastIcon, String, Integer?)
 - uid: BD.Common8.Toast.Services.IToastIntercept.OnShowExecuting*
@@ -22178,13 +21527,13 @@ references:
   commentId: Overload:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.LogAndShow
   fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.LogAndShow
   nameWithType: ToastBaseImpl.LogAndShow
-- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Int32)
+- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Int32)
   name: PlatformShow(ToastIcon, string, int)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_PlatformShow_BD_Common8_Toast_Enums_ToastIcon_System_String_System_Int32_
-  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Int32)
+  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_PlatformShow_BD_Common8_Primitives_Toast_Enums_ToastIcon_System_String_System_Int32_
+  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Int32)
   name.vb: PlatformShow(ToastIcon, String, Integer)
-  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Toast.Enums.ToastIcon, string, int)
-  fullName.vb: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Toast.Enums.ToastIcon, String, Integer)
+  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Primitives.Toast.Enums.ToastIcon, string, int)
+  fullName.vb: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow(BD.Common8.Primitives.Toast.Enums.ToastIcon, String, Integer)
   nameWithType: ToastBaseImpl.PlatformShow(ToastIcon, string, int)
   nameWithType.vb: ToastBaseImpl.PlatformShow(ToastIcon, String, Integer)
 - uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow*
@@ -22193,22 +21542,22 @@ references:
   commentId: Overload:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow
   fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.PlatformShow
   nameWithType: ToastBaseImpl.PlatformShow
-- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,BD.Common8.Toast.Enums.ToastLength)
+- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,BD.Common8.Primitives.Toast.Enums.ToastLength)
   name: Show(ToastIcon, string, ToastLength)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_Show_BD_Common8_Toast_Enums_ToastIcon_System_String_BD_Common8_Toast_Enums_ToastLength_
-  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,BD.Common8.Toast.Enums.ToastLength)
+  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_Show_BD_Common8_Primitives_Toast_Enums_ToastIcon_System_String_BD_Common8_Primitives_Toast_Enums_ToastLength_
+  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,BD.Common8.Primitives.Toast.Enums.ToastLength)
   name.vb: Show(ToastIcon, String, ToastLength)
-  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon, string, BD.Common8.Toast.Enums.ToastLength)
-  fullName.vb: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon, String, BD.Common8.Toast.Enums.ToastLength)
+  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, string, BD.Common8.Primitives.Toast.Enums.ToastLength)
+  fullName.vb: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, String, BD.Common8.Primitives.Toast.Enums.ToastLength)
   nameWithType: ToastBaseImpl.Show(ToastIcon, string, ToastLength)
   nameWithType.vb: ToastBaseImpl.Show(ToastIcon, String, ToastLength)
-- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
+- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
   name: Show(ToastIcon, string, int?)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_Show_BD_Common8_Toast_Enums_ToastIcon_System_String_System_Nullable_System_Int32__
-  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
+  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_Show_BD_Common8_Primitives_Toast_Enums_ToastIcon_System_String_System_Nullable_System_Int32__
+  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon,System.String,System.Nullable{System.Int32})
   name.vb: Show(ToastIcon, String, Integer?)
-  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon, string, int?)
-  fullName.vb: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Toast.Enums.ToastIcon, String, Integer?)
+  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, string, int?)
+  fullName.vb: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show(BD.Common8.Primitives.Toast.Enums.ToastIcon, String, Integer?)
   nameWithType: ToastBaseImpl.Show(ToastIcon, string, int?)
   nameWithType.vb: ToastBaseImpl.Show(ToastIcon, String, Integer?)
 - uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.Show*
@@ -22223,11 +21572,11 @@ references:
   commentId: F:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TAG
   fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TAG
   nameWithType: ToastBaseImpl.TAG
-- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration(BD.Common8.Toast.Enums.ToastLength)
+- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration(BD.Common8.Primitives.Toast.Enums.ToastLength)
   name: ToDuration(ToastLength)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_ToDuration_BD_Common8_Toast_Enums_ToastLength_
-  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration(BD.Common8.Toast.Enums.ToastLength)
-  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration(BD.Common8.Toast.Enums.ToastLength)
+  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_ToDuration_BD_Common8_Primitives_Toast_Enums_ToastLength_
+  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration(BD.Common8.Primitives.Toast.Enums.ToastLength)
+  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration(BD.Common8.Primitives.Toast.Enums.ToastLength)
   nameWithType: ToastBaseImpl.ToDuration(ToastLength)
 - uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration*
   name: ToDuration
@@ -22235,21 +21584,6 @@ references:
   commentId: Overload:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration
   fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.ToDuration
   nameWithType: ToastBaseImpl.ToDuration
-- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TryAddToast*
-  name: TryAddToast
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_TryAddToast_
-  commentId: Overload:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TryAddToast
-  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TryAddToast
-  nameWithType: ToastBaseImpl.TryAddToast
-- uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TryAddToast``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  name: TryAddToast<TToastImpl>(IServiceCollection)
-  href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_TryAddToast__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_
-  commentId: M:BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TryAddToast``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  name.vb: TryAddToast(Of TToastImpl)(IServiceCollection)
-  fullName: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TryAddToast<TToastImpl>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  fullName.vb: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.TryAddToast(Of TToastImpl)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  nameWithType: ToastBaseImpl.TryAddToast<TToastImpl>(IServiceCollection)
-  nameWithType.vb: ToastBaseImpl.TryAddToast(Of TToastImpl)(IServiceCollection)
 - uid: BD.Common8.Toast.Services.Implementation.ToastBaseImpl.intercept
   name: intercept
   href: api/BD.Common8.Toast/BD.Common8.Toast.Services.Implementation.ToastBaseImpl.html#BD_Common8_Toast_Services_Implementation_ToastBaseImpl_intercept
@@ -23309,6 +22643,21 @@ references:
   fullName.vb: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddSecureStorage(Of TDbContext)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   nameWithType: ServiceCollectionExtensions.TryAddSecureStorage<TDbContext>(IServiceCollection)
   nameWithType.vb: ServiceCollectionExtensions.TryAddSecureStorage(Of TDbContext)(IServiceCollection)
+- uid: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddToast*
+  name: TryAddToast
+  href: api/BD.Common8.Toast/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_TryAddToast_
+  commentId: Overload:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddToast
+  fullName: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddToast
+  nameWithType: ServiceCollectionExtensions.TryAddToast
+- uid: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddToast``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: TryAddToast<TToastImpl>(IServiceCollection)
+  href: api/BD.Common8.Toast/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_TryAddToast__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddToast``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: TryAddToast(Of TToastImpl)(IServiceCollection)
+  fullName: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddToast<TToastImpl>(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.TryAddToast(Of TToastImpl)(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: ServiceCollectionExtensions.TryAddToast<TToastImpl>(IServiceCollection)
+  nameWithType.vb: ServiceCollectionExtensions.TryAddToast(Of TToastImpl)(IServiceCollection)
 - uid: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.UseForwardedHeaders*
   name: UseForwardedHeaders
   href: api/BD.Common8.AspNetCore/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_UseForwardedHeaders_
@@ -33472,6 +32821,54 @@ references:
   commentId: Overload:System.Num2IntFormatEnumExtensions.ToInt32
   fullName: System.Num2IntFormatEnumExtensions.ToInt32
   nameWithType: Num2IntFormatEnumExtensions.ToInt32
+- uid: System.OSHelper
+  name: OSHelper
+  href: api/BD.Common8.Bcl/System.OSHelper.html
+  commentId: T:System.OSHelper
+  fullName: System.OSHelper
+  nameWithType: OSHelper
+- uid: System.OSHelper.#ctor
+  name: OSHelper()
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper__ctor
+  commentId: M:System.OSHelper.#ctor
+  name.vb: New()
+  fullName: System.OSHelper.OSHelper()
+  fullName.vb: System.OSHelper.New()
+  nameWithType: OSHelper.OSHelper()
+  nameWithType.vb: OSHelper.New()
+- uid: System.OSHelper.#ctor*
+  name: OSHelper
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper__ctor_
+  commentId: Overload:System.OSHelper.#ctor
+  name.vb: New
+  fullName: System.OSHelper.OSHelper
+  fullName.vb: System.OSHelper.New
+  nameWithType: OSHelper.OSHelper
+  nameWithType.vb: OSHelper.New
+- uid: System.OSHelper.IsPublishToStore
+  name: IsPublishToStore
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsPublishToStore
+  commentId: P:System.OSHelper.IsPublishToStore
+  fullName: System.OSHelper.IsPublishToStore
+  nameWithType: OSHelper.IsPublishToStore
+- uid: System.OSHelper.IsPublishToStore*
+  name: IsPublishToStore
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsPublishToStore_
+  commentId: Overload:System.OSHelper.IsPublishToStore
+  fullName: System.OSHelper.IsPublishToStore
+  nameWithType: OSHelper.IsPublishToStore
+- uid: System.OSHelper.IsWindows11AtLeast
+  name: IsWindows11AtLeast()
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsWindows11AtLeast
+  commentId: M:System.OSHelper.IsWindows11AtLeast
+  fullName: System.OSHelper.IsWindows11AtLeast()
+  nameWithType: OSHelper.IsWindows11AtLeast()
+- uid: System.OSHelper.IsWindows11AtLeast*
+  name: IsWindows11AtLeast
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsWindows11AtLeast_
+  commentId: Overload:System.OSHelper.IsWindows11AtLeast
+  fullName: System.OSHelper.IsWindows11AtLeast
+  nameWithType: OSHelper.IsWindows11AtLeast
 - uid: System.Random2
   name: Random2
   href: api/BD.Common8.Bcl/System.Random2.html
@@ -33577,48 +32974,252 @@ references:
   commentId: Overload:System.Random2.Shared
   fullName: System.Random2.Shared
   nameWithType: Random2.Shared
-- uid: System.Runtime
-  name: System.Runtime
-  href: api/BD.Common8.Bcl/System.Runtime.html
-  commentId: N:System.Runtime
-  fullName: System.Runtime
-  nameWithType: System.Runtime
-- uid: System.Runtime.DesktopBridge
-  name: DesktopBridge
-  href: api/BD.Common8.Bcl/System.Runtime.DesktopBridge.html
-  commentId: T:System.Runtime.DesktopBridge
-  fullName: System.Runtime.DesktopBridge
-  nameWithType: DesktopBridge
-- uid: System.Runtime.DesktopBridge.#ctor
-  name: DesktopBridge()
-  href: api/BD.Common8.Bcl/System.Runtime.DesktopBridge.html#System_Runtime_DesktopBridge__ctor
-  commentId: M:System.Runtime.DesktopBridge.#ctor
-  name.vb: New()
-  fullName: System.Runtime.DesktopBridge.DesktopBridge()
-  fullName.vb: System.Runtime.DesktopBridge.New()
-  nameWithType: DesktopBridge.DesktopBridge()
-  nameWithType.vb: DesktopBridge.New()
-- uid: System.Runtime.DesktopBridge.#ctor*
-  name: DesktopBridge
-  href: api/BD.Common8.Bcl/System.Runtime.DesktopBridge.html#System_Runtime_DesktopBridge__ctor_
-  commentId: Overload:System.Runtime.DesktopBridge.#ctor
+- uid: System.Runtime.CompilerServices
+  name: System.Runtime.CompilerServices
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.html
+  commentId: N:System.Runtime.CompilerServices
+  fullName: System.Runtime.CompilerServices
+  nameWithType: System.Runtime.CompilerServices
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute
+  name: ConstantsByPathGeneratedAttribute
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html
+  commentId: T:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute
+  nameWithType: ConstantsByPathGeneratedAttribute
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.#ctor(System.String,System.String,System.String)
+  name: ConstantsByPathGeneratedAttribute(string, string?, string?)
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute__ctor_System_String_System_String_System_String_
+  commentId: M:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.#ctor(System.String,System.String,System.String)
+  name.vb: New(String, String, String)
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ConstantsByPathGeneratedAttribute(string, string?, string?)
+  fullName.vb: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.New(String, String, String)
+  nameWithType: ConstantsByPathGeneratedAttribute.ConstantsByPathGeneratedAttribute(string, string?, string?)
+  nameWithType.vb: ConstantsByPathGeneratedAttribute.New(String, String, String)
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.#ctor*
+  name: ConstantsByPathGeneratedAttribute
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute__ctor_
+  commentId: Overload:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.#ctor
   name.vb: New
-  fullName: System.Runtime.DesktopBridge.DesktopBridge
-  fullName.vb: System.Runtime.DesktopBridge.New
-  nameWithType: DesktopBridge.DesktopBridge
-  nameWithType.vb: DesktopBridge.New
-- uid: System.Runtime.DesktopBridge.IsRunningAsUwp
-  name: IsRunningAsUwp
-  href: api/BD.Common8.Bcl/System.Runtime.DesktopBridge.html#System_Runtime_DesktopBridge_IsRunningAsUwp
-  commentId: P:System.Runtime.DesktopBridge.IsRunningAsUwp
-  fullName: System.Runtime.DesktopBridge.IsRunningAsUwp
-  nameWithType: DesktopBridge.IsRunningAsUwp
-- uid: System.Runtime.DesktopBridge.IsRunningAsUwp*
-  name: IsRunningAsUwp
-  href: api/BD.Common8.Bcl/System.Runtime.DesktopBridge.html#System_Runtime_DesktopBridge_IsRunningAsUwp_
-  commentId: Overload:System.Runtime.DesktopBridge.IsRunningAsUwp
-  fullName: System.Runtime.DesktopBridge.IsRunningAsUwp
-  nameWithType: DesktopBridge.IsRunningAsUwp
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ConstantsByPathGeneratedAttribute
+  fullName.vb: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.New
+  nameWithType: ConstantsByPathGeneratedAttribute.ConstantsByPathGeneratedAttribute
+  nameWithType.vb: ConstantsByPathGeneratedAttribute.New
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.NamePrefix
+  name: NamePrefix
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute_NamePrefix
+  commentId: P:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.NamePrefix
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.NamePrefix
+  nameWithType: ConstantsByPathGeneratedAttribute.NamePrefix
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.NamePrefix*
+  name: NamePrefix
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute_NamePrefix_
+  commentId: Overload:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.NamePrefix
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.NamePrefix
+  nameWithType: ConstantsByPathGeneratedAttribute.NamePrefix
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.RelativePath
+  name: RelativePath
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute_RelativePath
+  commentId: P:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.RelativePath
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.RelativePath
+  nameWithType: ConstantsByPathGeneratedAttribute.RelativePath
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.RelativePath*
+  name: RelativePath
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute_RelativePath_
+  commentId: Overload:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.RelativePath
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.RelativePath
+  nameWithType: ConstantsByPathGeneratedAttribute.RelativePath
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ValuePrefix
+  name: ValuePrefix
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute_ValuePrefix
+  commentId: P:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ValuePrefix
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ValuePrefix
+  nameWithType: ConstantsByPathGeneratedAttribute.ValuePrefix
+- uid: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ValuePrefix*
+  name: ValuePrefix
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.html#System_Runtime_CompilerServices_ConstantsByPathGeneratedAttribute_ValuePrefix_
+  commentId: Overload:System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ValuePrefix
+  fullName: System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute.ValuePrefix
+  nameWithType: ConstantsByPathGeneratedAttribute.ValuePrefix
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute
+  name: SingletonPartitionGeneratedAttribute
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html
+  commentId: T:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute
+  nameWithType: SingletonPartitionGeneratedAttribute
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.#ctor
+  name: SingletonPartitionGeneratedAttribute()
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute__ctor
+  commentId: M:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.#ctor
+  name.vb: New()
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.SingletonPartitionGeneratedAttribute()
+  fullName.vb: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.New()
+  nameWithType: SingletonPartitionGeneratedAttribute.SingletonPartitionGeneratedAttribute()
+  nameWithType.vb: SingletonPartitionGeneratedAttribute.New()
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.#ctor*
+  name: SingletonPartitionGeneratedAttribute
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute__ctor_
+  commentId: Overload:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.#ctor
+  name.vb: New
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.SingletonPartitionGeneratedAttribute
+  fullName.vb: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.New
+  nameWithType: SingletonPartitionGeneratedAttribute.SingletonPartitionGeneratedAttribute
+  nameWithType.vb: SingletonPartitionGeneratedAttribute.New
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Constructor
+  name: Constructor
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_Constructor
+  commentId: P:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Constructor
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Constructor
+  nameWithType: SingletonPartitionGeneratedAttribute.Constructor
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Constructor*
+  name: Constructor
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_Constructor_
+  commentId: Overload:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Constructor
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Constructor
+  nameWithType: SingletonPartitionGeneratedAttribute.Constructor
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.IsSealed
+  name: IsSealed
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_IsSealed
+  commentId: P:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.IsSealed
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.IsSealed
+  nameWithType: SingletonPartitionGeneratedAttribute.IsSealed
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.IsSealed*
+  name: IsSealed
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_IsSealed_
+  commentId: Overload:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.IsSealed
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.IsSealed
+  nameWithType: SingletonPartitionGeneratedAttribute.IsSealed
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.PropertyName
+  name: PropertyName
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_PropertyName
+  commentId: P:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.PropertyName
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.PropertyName
+  nameWithType: SingletonPartitionGeneratedAttribute.PropertyName
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.PropertyName*
+  name: PropertyName
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_PropertyName_
+  commentId: Overload:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.PropertyName
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.PropertyName
+  nameWithType: SingletonPartitionGeneratedAttribute.PropertyName
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Summary
+  name: Summary
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_Summary
+  commentId: P:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Summary
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Summary
+  nameWithType: SingletonPartitionGeneratedAttribute.Summary
+- uid: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Summary*
+  name: Summary
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.html#System_Runtime_CompilerServices_SingletonPartitionGeneratedAttribute_Summary_
+  commentId: Overload:System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Summary
+  fullName: System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.Summary
+  nameWithType: SingletonPartitionGeneratedAttribute.Summary
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute
+  name: ViewModelWrapperGeneratedAttribute
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html
+  commentId: T:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute
+  nameWithType: ViewModelWrapperGeneratedAttribute
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.#ctor(System.Type)
+  name: ViewModelWrapperGeneratedAttribute(Type)
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute__ctor_System_Type_
+  commentId: M:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.#ctor(System.Type)
+  name.vb: New(Type)
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelWrapperGeneratedAttribute(System.Type)
+  fullName.vb: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.New(System.Type)
+  nameWithType: ViewModelWrapperGeneratedAttribute.ViewModelWrapperGeneratedAttribute(Type)
+  nameWithType.vb: ViewModelWrapperGeneratedAttribute.New(Type)
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.#ctor*
+  name: ViewModelWrapperGeneratedAttribute
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute__ctor_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.#ctor
+  name.vb: New
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelWrapperGeneratedAttribute
+  fullName.vb: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.New
+  nameWithType: ViewModelWrapperGeneratedAttribute.ViewModelWrapperGeneratedAttribute
+  nameWithType.vb: ViewModelWrapperGeneratedAttribute.New
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Constructor
+  name: Constructor
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_Constructor
+  commentId: P:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Constructor
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Constructor
+  nameWithType: ViewModelWrapperGeneratedAttribute.Constructor
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Constructor*
+  name: Constructor
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_Constructor_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Constructor
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Constructor
+  nameWithType: ViewModelWrapperGeneratedAttribute.Constructor
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperator
+  name: ImplicitOperator
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ImplicitOperator
+  commentId: P:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperator
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperator
+  nameWithType: ViewModelWrapperGeneratedAttribute.ImplicitOperator
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperator*
+  name: ImplicitOperator
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ImplicitOperator_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperator
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperator
+  nameWithType: ViewModelWrapperGeneratedAttribute.ImplicitOperator
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull
+  name: ImplicitOperatorNotNull
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ImplicitOperatorNotNull
+  commentId: P:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull
+  nameWithType: ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull*
+  name: ImplicitOperatorNotNull
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ImplicitOperatorNotNull_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull
+  nameWithType: ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.IsSealed
+  name: IsSealed
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_IsSealed
+  commentId: P:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.IsSealed
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.IsSealed
+  nameWithType: ViewModelWrapperGeneratedAttribute.IsSealed
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.IsSealed*
+  name: IsSealed
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_IsSealed_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.IsSealed
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.IsSealed
+  nameWithType: ViewModelWrapperGeneratedAttribute.IsSealed
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ModelType
+  name: ModelType
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ModelType
+  commentId: P:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ModelType
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ModelType
+  nameWithType: ViewModelWrapperGeneratedAttribute.ModelType
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ModelType*
+  name: ModelType
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ModelType_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ModelType
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ModelType
+  nameWithType: ViewModelWrapperGeneratedAttribute.ModelType
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Properties
+  name: Properties
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_Properties
+  commentId: P:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Properties
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Properties
+  nameWithType: ViewModelWrapperGeneratedAttribute.Properties
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Properties*
+  name: Properties
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_Properties_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Properties
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.Properties
+  nameWithType: ViewModelWrapperGeneratedAttribute.Properties
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelBaseType
+  name: ViewModelBaseType
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ViewModelBaseType
+  commentId: P:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelBaseType
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelBaseType
+  nameWithType: ViewModelWrapperGeneratedAttribute.ViewModelBaseType
+- uid: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelBaseType*
+  name: ViewModelBaseType
+  href: api/BD.Common8.Bcl/System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.html#System_Runtime_CompilerServices_ViewModelWrapperGeneratedAttribute_ViewModelBaseType_
+  commentId: Overload:System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelBaseType
+  fullName: System.Runtime.CompilerServices.ViewModelWrapperGeneratedAttribute.ViewModelBaseType
+  nameWithType: ViewModelWrapperGeneratedAttribute.ViewModelBaseType
 - uid: System.Runtime.InteropServices
   name: System.Runtime.InteropServices
   href: api/BD.Common8.Bcl/System.Runtime.InteropServices.html

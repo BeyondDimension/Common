@@ -158,7 +158,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>获取在特定操作系统上使用的默认加密填充模式，如果操作系统是 Android，则返回 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding.oaepsha1">OaepSHA1</a>；否则返回 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding.oaepsha256">OaepSHA256</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -193,7 +194,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>使用指定参数创建 RSA 实例</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -203,13 +205,15 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>parms</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaparameters">RSAParameters</a></dt>
-    <dd></dd>
+    <dd><p>要使用的密钥参数</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
-    <dd></dd>
+    <dd><p>创建的 RSA 实例</p>
+</dd>
   </dl>
 
 
@@ -229,7 +233,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>创建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象。</p>
+  <div class="markdown level1 summary"><p>创建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1002,7 +1006,7 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>通过 JSON 字符串中的密钥信息初始化 RSA 对象。</p>
+  <div class="markdown level1 summary"><p>通过 JSON 字符串中的密钥信息初始化 RSA 对象</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1036,7 +1040,8 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>根据 OAEP 哈希算法获取 RSA 加密填充方式</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -1046,13 +1051,15 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>oaepHashAlgorithmName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>OAEP 哈希算法的名称</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsaencryptionpadding">RSAEncryptionPadding</a></dt>
-    <dd></dd>
+    <dd><p>对应的 RSA 加密填充方式</p>
+</dd>
   </dl>
 
 
@@ -1072,7 +1079,8 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>从 JSON 字符串获取 RSA 参数</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -1098,6 +1106,11 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullreferenceexception">NullReferenceException</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -1108,7 +1121,7 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>创建并返回包含当前 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象的密钥的 JSON 字符串。</p>
+  <div class="markdown level1 summary"><p>创建并返回包含当前 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象的密钥的 JSON 字符串</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1121,14 +1134,14 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
     <dt><code>rsa</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a></dt>
     <dd></dd>
     <dt><code>includePrivateParameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 表示同时包含 RSA 公钥和私钥；<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 表示仅包含公钥。</p>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 表示同时包含 RSA 公钥和私钥；<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 表示仅包含公钥</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>包含当前 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象的密钥的 JSON 字符串。</p>
+    <dd><p>包含当前 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.rsa">RSA</a> 对象的密钥的 JSON 字符串</p>
 </dd>
   </dl>
 
@@ -1149,7 +1162,8 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Security/Cryptography/RSAUtils.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>将指定要与 RSA 加密或解密操作一起使用的填充模式转换成字符串表现形式</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -1175,6 +1189,11 @@ public static byte[] Encrypt(this RSA rsa, byte[] data)</code></pre>
 
 
 
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

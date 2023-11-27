@@ -95,7 +95,14 @@
   <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Allows configuration for an entity type to be factored into a separate class,
+rather than in-line in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.
+Implement this interface, applying configuration for the entity in the
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.ientitytypeconfiguration-1.configure">Configure(EntityTypeBuilder&lt;TEntity&gt;)</a> method,
+and then apply the configuration to the model using
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder.applyconfiguration">ApplyConfiguration&lt;TEntity&gt;(IEntityTypeConfiguration&lt;TEntity&gt;)</a>
+in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onmodelcreating">OnModelCreating(ModelBuilder)</a>.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -147,6 +154,10 @@
 
 
 
+  <h2 id="BD_Common8_AspNetCore_Entities_SysMenuButtonRole_EntityTypeConfiguration_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>See <a href="https://aka.ms/efcore-docs-modeling">Modeling entity types and relationships in EF Core</a> for more information and
+examples.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors

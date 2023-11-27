@@ -95,7 +95,8 @@
   <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>应用程序数据上下文的基础实现</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -310,7 +311,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Data/ApplicationDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>应用程序数据上下文的基础实现</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -344,7 +346,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Data/ApplicationDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>创建实体的用户属性类型 <a class="xref" href="BD.Common8.AspNetCore.Columns.ICreateUser.html">ICreateUser</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -374,7 +377,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Data/ApplicationDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>操作实体的用户属性类型 <a class="xref" href="BD.Common8.AspNetCore.Columns.IOperatorUser.html">IOperatorUser</a></p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -537,7 +541,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Data/ApplicationDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>系统组织架构实体类</p>
+  <div class="markdown level1 summary"><p>系统组织实体类</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -765,7 +769,8 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Data/ApplicationDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>用于追加构建实体的操作方法</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -807,9 +812,7 @@
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.AspNetCore.Identity.BackManage/Data/ApplicationDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Override this method to further configure the model that was discovered by convention from the entity types
-exposed in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> properties on your derived context. The resulting model may be cached
-and re-used for subsequent instances of your derived context.</p>
+  <div class="markdown level1 summary"><p>配置实体的模型</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -820,7 +823,8 @@ and re-used for subsequent instances of your derived context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>b</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a></dt>
-    <dd></dd>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a> 对象，用于构建模型</p>
+</dd>
   </dl>
 
 
@@ -830,16 +834,6 @@ and re-used for subsequent instances of your derived context.</p>
 
 
 
-  <h4 class="section" id="BD_Common8_AspNetCore_Data_ApplicationDbContextBase_OnModelCreating_Microsoft_EntityFrameworkCore_ModelBuilder__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>
-                    If a model is explicitly set on the options for this context (via <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder.usemodel">UseModel(IModel)</a>)
-                    then this method will not be run. However, it will still run when creating a compiled model.
-                </p>
-<p>
-                    See <a href="https://aka.ms/efcore-docs-modeling">Modeling entity types and relationships</a> for more information and
-                    examples.
-                </p>
-</div>
 
 
 

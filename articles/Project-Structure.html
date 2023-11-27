@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>&#127959;️ 项目结构 | BD.Common8 文档 </title>
+      <title>Common8 | BD.Common8 文档 </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="&#127959;️ 项目结构 | BD.Common8 文档 ">
+      <meta name="title" content="Common8 | BD.Common8 文档 ">
       
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
@@ -80,103 +80,106 @@
         </div>
 
         <article data-uid="">
-<h3 id="-项目结构">🏗️ 项目结构</h3>
+<h3 id="common8">Common8</h3>
 
+<p>次元超越 .NET 8+ 通用类库结构</p>
+<h4 id="sharedlibrary-共享库">SharedLibrary 共享库</h4>
 <ul>
-<li>Client Lib 客户端类库
-<ul>
-<li>BD.Common.Mvvm 客户端 MVVM 类库</li>
-<li>BD.Common.Mvvm.ReactiveUI 客户端 MVVM ReactiveUI 类库</li>
-<li>BD.Common.Security 安全相关类库</li>
-<li>BD.Common.Toast Toast UI 提示抽象层类库</li>
-</ul>
+<li><p>BD.Common8.Bcl<br>
+提供对基类库的扩展</p>
 </li>
-<li>Essentials
-<ul>
-<li>Implementation Essentials 的实现库
-<ul>
-<li>Preferences
-<ul>
-<li>BD.Common.Essentials.Preferences.SQLite SQLite 实现库</li>
-<li>BD.Common.Essentials.Preferences.DBreeze DBreeze 实现库</li>
-</ul>
+<li><p>BD.Common8.Bcl.Compat<br>
+提供旧版 Runtime 上缺少的内容以兼容新版 C# 语法</p>
 </li>
-<li>BD.Common.Essentials.Maui 使用 Maui.Essentials 的实现库</li>
-<li>BD.Common.Essentials.Xamarin 使用 Xamarin.Essentials 的实现库</li>
-</ul>
+<li><p>BD.Common8.Essentials<br>
+Essentials 提供单个跨平台 API，适用于任何 .NET 应用程序 (Win32、WinRT、Android、iOS、macOS、MacCatalyst)</p>
 </li>
-<li>BD.Common.Essentials Essentials 抽象层类库</li>
-<li>BD.Common.Essentials.Primitives 基本模型类库</li>
-<li>BD.Common.Essentials.Utils 静态工具类库</li>
-</ul>
+<li><p>BD.Common8.Essentials.Implementation<br>
+具体平台的 Essentials 实现服务库</p>
 </li>
-<li>Pinyin 汉语拼音库
+<li><p>BD.Common8.Essentials.Implementation.Avalonia<br>
+Avalonia UI 相关的 Essentials 实现服务库</p>
+</li>
+<li><p>BD.Common8.Http.ClientFactory<br>
+适用于客户端的 HttpClient 工厂实现库 (使用 Fusillade 实现)</p>
+</li>
+<li><p>BD.Common8.Http.ClientFactory.Server<br>
+适用于客户端的 HttpClient 工厂的服务端兼容实现库 (与 Microsoft.Extensions.Http 兼容)</p>
+</li>
+<li><p>BD.Common8.Ipc<br>
+进程间通信 (IPC) 库</p>
+</li>
+<li><p>BD.Common8.Ipc.Client<br>
+进程间通信 (IPC) 客户端库</p>
+</li>
+<li><p>BD.Common8.Ipc.Server<br>
+进程间通信 (IPC) 服务端库</p>
+</li>
+<li><p>BD.Common8.Orm.EFCore<br>
+EFCore 相关的封装库</p>
+</li>
+<li><p>BD.Common8.Pinyin<br>
+汉语拼音封装库</p>
+</li>
+<li><p>BD.Common8.Pinyin.ChnCharInfo<br>
+使用 ChnCharInfo 实现的汉语拼音库</p>
+</li>
+<li><p>BD.Common8.Pinyin.CoreFoundation<br>
+使用 CoreFoundation 实现的汉语拼音库</p>
+</li>
+<li><p>BD.Common8.Primitives.ApiResponse<br>
+提供 Api 响应 (BackManage 后台管理) 类型的封装库</p>
+</li>
+<li><p>BD.Common8.Primitives.ApiRsp<br>
+提供 Api 响应类型的封装库</p>
+</li>
+<li><p>BD.Common8.Primitives.PersonalData.BirthDate<br>
+提供个人资料（出生日期）格式</p>
+</li>
+<li><p>BD.Common8.Primitives.PersonalData.PhoneNumber<br>
+提供个人资料（手机号码）格式</p>
+</li>
+<li><p>BD.Common8.Primitives<br>
+基本模型，枚举类型库</p>
+</li>
+<li><p>BD.Common8.Primitives.District<br>
+提供行政区域数据封装库</p>
+</li>
+<li><p>BD.Common8.AspNetCore<br>
+ASP.NET Core 的通用封装库</p>
+</li>
+<li><p>BD.Common8.AspNetCore.Identity<br>
+ASP.NET Core 的管理用户、密码、配置文件数据、角色、声明、令牌、电子邮件确认等封装库</p>
+</li>
+<li><p>BD.Common8.AspNetCore.Identity.BackManage<br>
+ASP.NET Core 实现的多租户后台管理系统通用封装库</p>
+</li>
+</ul>
+<h4 id="sourcegenerator-源生成器">SourceGenerator 源生成器</h4>
 <ul>
-<li>BD.Common.Pinyin 汉语拼音类库</li>
-<li>BD.Common.Pinyin.CFStringTransform 使用 CFStringTransform 实现的汉语拼音类库</li>
-<li>BD.Common.Pinyin.ChnCharInfo 使用 ChnCharInfo 实现的汉语拼音类库</li>
-<li>BD.Common.Pinyin.TinyPinyin 使用 TinyPinyin 实现的汉语拼音类库</li>
-</ul>
+<li><p>BD.Common8.SourceGenerator.ResX<br>
+xyz.Designer.cs 源生成器</p>
 </li>
-<li>Repositories 仓储层
-<ul>
-<li>BD.Common.Repositories 通用仓储层基类库</li>
-<li>BD.Common.Repositories.EFCore 使用 EF Core 实现的仓储层类库</li>
-<li>BD.Common.Repositories.SQLitePCL 使用 SQLitePCL 实现的仓储层类库</li>
-</ul>
+<li><p>BD.Common8.SourceGenerator.Ipc.Client<br>
+进程间通信 (IPC) 客户端源生成器</p>
 </li>
-<li>Server Lib 仅用于服务端的通用类库
-<ul>
-<li>BD.Common.SmsSender 短信服务库，支持阿里云，网易云信，世纪互联蓝云</li>
-</ul>
+<li><p>BD.Common8.SourceGenerator.Ipc.Server<br>
+进程间通信 (IPC) 服务端源生成器</p>
 </li>
-<li>Settings
-<ul>
-<li>BD.Common.Settings 文件键值对设置存储类库</li>
-<li>BD.Common.Settings.V3 文件键值对设置存储 DBreeze 实现类库</li>
 </ul>
+<h4 id="tools-工具">Tools 工具</h4>
+<ul>
+<li><p>BD.Common8.Tools.DocFX<br>
+启动 DocFX</p>
 </li>
-<li>Test
-<ul>
-<li>BD.Common.UnitTest 单元测试</li>
-</ul>
+<li><p>BD.Common8.Tools.Sort.PackageVersion<br>
+NuGet 包清单排序</p>
 </li>
-<li>Web API 仅用于服务端的 Web API 通用类库
-<ul>
-<li>BD.Common.AspNetCore 用于 ASP.NET Core 的通用类库</li>
-<li>BD.Common.AspNetCore.Identity 用于 ASP.NET Core 的身份通用类库</li>
-<li>BD.Common.AspNetCore.Identity.BackManage 用于 ASP.NET Core 后台管理系统的身份通用类库</li>
 </ul>
-</li>
-<li>Web UI
+<h4 id="unittest-单元测试">UnitTest 单元测试</h4>
 <ul>
-<li>BD.Common.AspNetCore.Blazor.BackManage 用于 ASP.NET Core 后台管理系统 Blazor UI 的通用类库</li>
-</ul>
-</li>
-<li>BD.Common 对 .NET BCL 的扩展或增强通用类库</li>
-<li>BD.Common.Area 地区区域省市区数据类库</li>
-<li>BD.Common.BirthDate 出生日期生日类库</li>
-<li>BD.Common.EFCore 对 EF Core 的扩展或增强通用类库</li>
-<li>BD.Common.ModelValidator 模型验证类库</li>
-<li>BD.Common.PhoneNumber 用于中国大陆的手机号相关的通用类库</li>
-<li>BD.Common.Primitives 通用模型，枚举，列接口的通用类库</li>
-<li>BD.Common.Primitives.ApiResponse 通用 API 响应模型类库</li>
-</ul>
-<h3 id="-注意事项">⚠ 注意事项</h3>
-<ol>
-<li><code>ServiceCollectionExtensions.*.cs</code> <strong>DI 注册服务扩展类，命名空间统一使用</strong></li>
-</ol>
-<pre>
-// ReSharper disable once CheckNamespace
-namespace Microsoft.Extensions.DependencyInjection
-</pre>
-<h3 id="resx-资源文件">Resx 资源文件</h3>
-<ul>
-<li>src\BD.Common\Resources\Strings.resx 通用类库字符串资源</li>
-<li>src\BD.Common.BirthDate\Strings.resx 生日类库字符串资源</li>
-<li>src\BD.Common.ModelValidator\Resources\Strings.resx 模型验证类库字符串资源</li>
-<li>src\BD.Common.PhoneNumber\Resources\Strings.resx 手机号类库字符串资源</li>
-<li>src\BD.Common.Primitives\Resources\Strings.resx 模型类库字符串资源</li>
+<li>BD.Common8.UnitTest<br>
+当前仓库的单元测试项目</li>
 </ul>
 
 </article>
