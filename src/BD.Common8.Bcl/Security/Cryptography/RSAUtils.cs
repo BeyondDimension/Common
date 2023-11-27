@@ -1,5 +1,5 @@
 namespace System.Security.Cryptography;
-#pragma warning disable SA1600 // Elements should be documented
+
 /// <summary>
 /// 非对称加密算法 - RSA
 /// </summary>
@@ -54,7 +54,7 @@ public static partial class RSAUtils
     //}
 
     /// <summary>
-    /// 创建 <see cref="RSA" /> 对象。
+    /// 创建 <see cref="RSA" /> 对象
     /// </summary>
     /// <param name="jsonString"></param>
     /// <returns></returns>
@@ -98,6 +98,11 @@ public static partial class RSAUtils
     [Obsolete("use DefaultPadding")]
     internal static RSAEncryptionPadding Padding => RSAEncryptionPadding.OaepSHA256;
 
+    /// <summary>
+    /// 根据 OAEP 哈希算法获取 RSA 加密填充方式
+    /// </summary>
+    /// <param name="oaepHashAlgorithmName">OAEP 哈希算法的名称</param>
+    /// <returns>对应的 RSA 加密填充方式</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSAEncryptionPadding GetPaddingByOaepHashAlgorithmName(string? oaepHashAlgorithmName)
     {
@@ -130,6 +135,12 @@ public static partial class RSAUtils
         return RSAEncryptionPadding.OaepSHA256;
     }
 
+    /// <summary>
+    /// 将指定要与 RSA 加密或解密操作一起使用的填充模式转换成字符串表现形式
+    /// </summary>
+    /// <param name="rSAEncryptionPadding"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToString(RSAEncryptionPadding rSAEncryptionPadding) => rSAEncryptionPadding.Mode switch
     {
@@ -145,6 +156,9 @@ public static partial class RSAUtils
         _ => throw new ArgumentOutOfRangeException(nameof(rSAEncryptionPadding)),
     };
 
+    /// <summary>
+    /// 获取在特定操作系统上使用的默认加密填充模式，如果操作系统是 Android，则返回 <see cref="RSAEncryptionPadding.OaepSHA1"/>；否则返回 <see cref="RSAEncryptionPadding.OaepSHA256"/>
+    /// </summary>
     public static RSAEncryptionPadding DefaultPadding
         => OperatingSystem.IsAndroid() ?
             RSAEncryptionPadding.OaepSHA1 :
@@ -417,13 +431,17 @@ public static partial class RSAUtils
     internal sealed class Parameters
     {
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+
+        /// <summary>
+        /// 初始化 <see cref="Parameters"/> 类的新实例
+        /// </summary>
         [SystemTextJsonConstructor]
 #endif
         [NewtonsoftJsonConstructor]
         public Parameters() { }
 
         /// <summary>
-        /// Represents the D parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的D参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("z")]
@@ -432,7 +450,7 @@ public static partial class RSAUtils
         public string? D { get; set; }
 
         /// <summary>
-        /// Represents the DP parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 DP 参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("x")]
@@ -441,7 +459,7 @@ public static partial class RSAUtils
         public string? DP { get; set; }
 
         /// <summary>
-        /// Represents the DQ parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 DQ 参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("c")]
@@ -450,7 +468,7 @@ public static partial class RSAUtils
         public string? DQ { get; set; }
 
         /// <summary>
-        /// Represents the Exponent parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Exponent 参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("v")]
@@ -459,7 +477,7 @@ public static partial class RSAUtils
         public string? Exponent { get; set; }
 
         /// <summary>
-        /// Represents the InverseQ parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 InverseQ 参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("b")]
@@ -468,7 +486,7 @@ public static partial class RSAUtils
         public string? InverseQ { get; set; }
 
         /// <summary>
-        /// Represents the Modulus parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Modulus 参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("n")]
@@ -477,7 +495,7 @@ public static partial class RSAUtils
         public string? Modulus { get; set; }
 
         /// <summary>
-        /// Represents the P parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 P 参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("m")]
@@ -486,7 +504,7 @@ public static partial class RSAUtils
         public string? P { get; set; }
 
         /// <summary>
-        /// Represents the Q parameter for the <see cref="T:System.Security.Cryptography.RSA"></see> algorithm.
+        /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Q 参数
         /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
         [SystemTextJsonProperty("a")]
@@ -494,6 +512,9 @@ public static partial class RSAUtils
         [NewtonsoftJsonProperty("a")]
         public string? Q { get; set; }
 
+        /// <summary>
+        /// 判断两个 <see cref="Parameters"/> 对象是否相等
+        /// </summary>
         public bool Equals(Parameters? other)
         {
             if (other == null) return false;
@@ -508,6 +529,9 @@ public static partial class RSAUtils
         }
     }
 
+    /// <summary>
+    /// 用于序列化 <see cref="RSAUtils.Parameters"/> 类的 JSON 上下文类
+    /// </summary>
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [JsonSourceGenerationOptions]
     [JsonSerializable(typeof(Parameters))]
@@ -516,6 +540,11 @@ public static partial class RSAUtils
     }
 #endif
 
+    /// <summary>
+    /// 将 <see cref="Parameters"/> 对象转换为 <see cref="RSAParameters"/> 结构体
+    /// </summary>
+    /// <param name="parms">要转换的 <see cref="Parameters"/> 对象</param>
+    /// <returns>转换后得到的 <see cref="RSAParameters"/> 结构体</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static RSAParameters ToStruct(this Parameters parms) => new()
     {
@@ -529,6 +558,11 @@ public static partial class RSAUtils
         Q = parms.Q.Base64UrlDecodeToByteArray_Nullable(),
     };
 
+    /// <summary>
+    /// 将 <see cref="RSAParameters"/> 结构体转换为 <see cref="Parameters"/> 对象
+    /// </summary>
+    /// <param name="parms">要转换的 <see cref="RSAParameters"/> 结构体</param>
+    /// <returns>转换后得到的 <see cref="Parameters"/> 对象</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static Parameters ToObject(this RSAParameters parms) => new()
     {
@@ -542,6 +576,11 @@ public static partial class RSAUtils
         Q = parms.Q.Base64UrlEncode_Nullable(),
     };
 
+    /// <summary>
+    /// 使用指定参数创建 RSA 实例
+    /// </summary>
+    /// <param name="parms">要使用的密钥参数</param>
+    /// <returns>创建的 RSA 实例</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSA Create(this RSAParameters parms) => RSA.Create(parms);
 }

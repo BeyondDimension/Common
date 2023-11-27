@@ -1,14 +1,19 @@
 namespace System.Runtime.Serialization.Formatters;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// 对类型 <see cref="ProcessStartInfo"/>, <see cref="ProcessStartInfoPackable"/> 的序列化与反序列化实现
+/// </summary>
 public sealed class ProcessStartInfoFormatter :
     IMemoryPackFormatter<ProcessStartInfo?>,
     IMemoryPackFormatter<ProcessStartInfoPackable?>,
     IMemoryPackFormatter<ProcessStartInfoPackable>
 {
+    /// <summary>
+    /// 默认的 <see cref="ProcessStartInfoFormatter"/> 实例
+    /// </summary>
     public static readonly ProcessStartInfoFormatter Default = new();
 
+    /// <inheritdoc/>
     void IMemoryPackFormatter<ProcessStartInfo?>.Deserialize(ref MemoryPackReader reader, scoped ref ProcessStartInfo? value)
     {
         if (reader.PeekIsNull())
@@ -21,6 +26,7 @@ public sealed class ProcessStartInfoFormatter :
         }
     }
 
+    /// <inheritdoc/>
     void IMemoryPackFormatter<ProcessStartInfoPackable>.Deserialize(ref MemoryPackReader reader, scoped ref ProcessStartInfoPackable value)
     {
         if (reader.PeekIsNull())
@@ -33,6 +39,7 @@ public sealed class ProcessStartInfoFormatter :
         }
     }
 
+    /// <inheritdoc/>
     void IMemoryPackFormatter<ProcessStartInfoPackable?>.Deserialize(ref MemoryPackReader reader, scoped ref ProcessStartInfoPackable? value)
     {
         if (reader.PeekIsNull())
@@ -45,6 +52,7 @@ public sealed class ProcessStartInfoFormatter :
         }
     }
 
+    /// <inheritdoc/>
     void IMemoryPackFormatter<ProcessStartInfo?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref ProcessStartInfo? value)
     {
         if (value == null)
@@ -58,6 +66,7 @@ public sealed class ProcessStartInfoFormatter :
         }
     }
 
+    /// <inheritdoc/>
     void IMemoryPackFormatter<ProcessStartInfoPackable>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref ProcessStartInfoPackable value)
     {
         if (value == default)
@@ -70,6 +79,7 @@ public sealed class ProcessStartInfoFormatter :
         }
     }
 
+    /// <inheritdoc/>
     void IMemoryPackFormatter<ProcessStartInfoPackable?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref ProcessStartInfoPackable? value)
     {
         if (!value.HasValue || value.Value == default)
@@ -305,20 +315,39 @@ public readonly partial record struct ProcessStartInfoPackable
     string? WorkingDirectory { get; }
 }
 
+/// <summary>
+/// 可空 <see cref="ProcessStartInfo"/> 格式化程序特性
+/// </summary>
 public sealed class ProcessStartInfoFormatterAttribute : MemoryPackCustomFormatterAttribute<ProcessStartInfoFormatter, ProcessStartInfo?>
 {
+    /// <summary>
+    /// 获取 <see cref="ProcessStartInfoFormatter.Default"/> 实例
+    /// </summary>
     public sealed override ProcessStartInfoFormatter GetFormatter() => ProcessStartInfoFormatter.Default;
 
+    /// <summary>
+    /// 可空 <see cref="ProcessStartInfo"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<ProcessStartInfo?>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将可空 <see cref="ProcessStartInfo"/> 对象序列化到 <see cref="MemoryPackWriter{TBufferWriter}"/> 对象
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref ProcessStartInfo? value)
         {
             IMemoryPackFormatter<ProcessStartInfo?> f = ProcessStartInfoFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <see cref="MemoryPackReader"/> 对象反序列化为可空 <see cref="ProcessStartInfo"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref ProcessStartInfo? value)
         {
             IMemoryPackFormatter<ProcessStartInfo?> f = ProcessStartInfoFormatter.Default;
@@ -327,20 +356,39 @@ public sealed class ProcessStartInfoFormatterAttribute : MemoryPackCustomFormatt
     }
 }
 
+/// <summary>
+/// 可空 <see cref="ProcessStartInfoPackable"/> 格式化程序特性
+/// </summary>
 public sealed class ProcessStartInfoPackableNullableFormatterAttribute : MemoryPackCustomFormatterAttribute<ProcessStartInfoFormatter, ProcessStartInfoPackable?>
 {
+    /// <summary>
+    /// 获取 <see cref="ProcessStartInfoFormatter.Default"/> 实例
+    /// </summary>
     public sealed override ProcessStartInfoFormatter GetFormatter() => ProcessStartInfoFormatter.Default;
 
+    /// <summary>
+    /// 可空 <see cref="ProcessStartInfoPackable"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<ProcessStartInfoPackable?>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将可空 <see cref="ProcessStartInfoPackable"/> 对象序列化到 <see cref="MemoryPackWriter{TBufferWriter}"/> 对象
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref ProcessStartInfoPackable? value)
         {
             IMemoryPackFormatter<ProcessStartInfoPackable?> f = ProcessStartInfoFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <see cref="MemoryPackReader"/> 对象反序列化为可空 <see cref="ProcessStartInfoPackable"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref ProcessStartInfoPackable? value)
         {
             IMemoryPackFormatter<ProcessStartInfoPackable?> f = ProcessStartInfoFormatter.Default;
@@ -349,20 +397,39 @@ public sealed class ProcessStartInfoPackableNullableFormatterAttribute : MemoryP
     }
 }
 
+/// <summary>
+/// <see cref="ProcessStartInfoPackable"/> 格式化程序
+/// </summary>
 public sealed class ProcessStartInfoPackableFormatterAttribute : MemoryPackCustomFormatterAttribute<ProcessStartInfoFormatter, ProcessStartInfoPackable>
 {
+    /// <summary>
+    /// 获取 <see cref="ProcessStartInfoFormatter.Default"/> 实例
+    /// </summary>
     public sealed override ProcessStartInfoFormatter GetFormatter() => ProcessStartInfoFormatter.Default;
 
+    /// <summary>
+    /// <see cref="ProcessStartInfoPackable"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<ProcessStartInfoPackable>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将 <see cref="ProcessStartInfoPackable"/> 对象序列化到 <see cref="MemoryPackWriter{TBufferWriter}"/> 对象
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref ProcessStartInfoPackable value)
         {
             IMemoryPackFormatter<ProcessStartInfoPackable> f = ProcessStartInfoFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <see cref="MemoryPackReader"/> 对象反序列化为 <see cref="ProcessStartInfoPackable"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref ProcessStartInfoPackable value)
         {
             IMemoryPackFormatter<ProcessStartInfoPackable> f = ProcessStartInfoFormatter.Default;

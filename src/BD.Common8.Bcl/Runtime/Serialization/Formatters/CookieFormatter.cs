@@ -1,7 +1,5 @@
 namespace System.Runtime.Serialization.Formatters;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 对类型 <see cref="Cookie"/>, <see cref="CookieCollection"/>, <see cref="CookieContainer"/> 的序列化与反序列化实现
 /// </summary>
@@ -272,14 +270,24 @@ public sealed class CookieFormatter :
     }
 }
 
+/// <summary>
+/// 表示 Cookie 消息包装对象
+/// </summary>
 [MessagePackObject]
 public sealed class CookieMessagePackObject
 {
+    /// <summary>
+    /// 初始化 <see cref="CookieMessagePackObject"/> 类的新实例
+    /// </summary>
     [SerializationConstructor]
     public CookieMessagePackObject()
     {
     }
 
+    /// <summary>
+    /// 初始化 <see cref="CookieMessagePackObject"/> 类的新实例
+    /// </summary>
+    /// <param name="cookie"></param>
     public CookieMessagePackObject(Cookie cookie)
     {
         Comment = cookie.Comment;
@@ -297,6 +305,10 @@ public sealed class CookieMessagePackObject
         Version = cookie.Version;
     }
 
+    /// <summary>
+    /// 将 <see cref="CookieMessagePackObject"/> 转换为 <see cref="Cookie"/> 对象
+    /// </summary>
+    /// <returns>转换后的 <see cref="Cookie"/> 对象</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Cookie ToCookie()
     {
@@ -379,6 +391,7 @@ public sealed class CookieMessagePackObject
 [MemoryPackable]
 public readonly partial struct CookieMemoryPackable
 {
+    /// <inheritdoc cref="Cookie"/>
     [MemoryPackIgnore]
     public readonly Cookie Cookie;
 
@@ -439,6 +452,10 @@ public readonly partial struct CookieMemoryPackable
         }
     }
 
+    /// <summary>
+    /// 实例化 <see cref="CookieMemoryPackable.Cookie"/> 的值
+    /// </summary>
+    /// <param name="cookie"></param>
     public CookieMemoryPackable(Cookie cookie) => Cookie = cookie;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -448,20 +465,39 @@ public readonly partial struct CookieMemoryPackable
     public static implicit operator CookieMemoryPackable(Cookie value) => new(value);
 }
 
+/// <summary>
+/// Cookie 格式化程序特性
+/// </summary>
 public sealed class CookieFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieFormatter, Cookie?>
 {
+    /// <summary>
+    /// 获取 <see cref="CookieFormatter.Default"/> 实例
+    /// </summary>
     public sealed override CookieFormatter GetFormatter() => CookieFormatter.Default;
 
+    /// <summary>
+    /// 可空 <see cref="Cookie"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<Cookie?>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将可空 <see cref="Cookie"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/> 对象
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Cookie? value)
         {
             IMemoryPackFormatter<Cookie?> f = CookieFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <see cref="MemoryPackReader"/> 对象反序列化为可空 <see cref="Cookie"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref Cookie? value)
         {
             IMemoryPackFormatter<Cookie?> f = CookieFormatter.Default;
@@ -470,20 +506,39 @@ public sealed class CookieFormatterAttribute : MemoryPackCustomFormatterAttribut
     }
 }
 
+/// <summary>
+/// CookieCollection 格式化程序特性
+/// </summary>
 public sealed class CookieCollectionFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieFormatter, CookieCollection?>
 {
+    /// <summary>
+    /// 获取 <see cref="CookieFormatter.Default"/> 实例
+    /// </summary>
     public sealed override CookieFormatter GetFormatter() => CookieFormatter.Default;
 
+    /// <summary>
+    /// 可空 <see cref="CookieCollection"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<CookieCollection?>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将可空 <see cref="CookieCollection"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/> 对象
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieCollection? value)
         {
             IMemoryPackFormatter<CookieCollection?> f = CookieFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <see cref="MemoryPackReader"/> 对象反序列化为可空 <see cref="CookieCollection"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref CookieCollection? value)
         {
             IMemoryPackFormatter<CookieCollection?> f = CookieFormatter.Default;
@@ -492,20 +547,39 @@ public sealed class CookieCollectionFormatterAttribute : MemoryPackCustomFormatt
     }
 }
 
+/// <summary>
+/// CookieContainer 格式化程序特性
+/// </summary>
 public sealed class CookieContainerFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieFormatter, CookieContainer?>
 {
+    /// <summary>
+    /// 获取 <see cref="CookieFormatter.Default"/> 实例
+    /// </summary>
     public sealed override CookieFormatter GetFormatter() => CookieFormatter.Default;
 
+    /// <summary>
+    /// 可空 <see cref="CookieCollection"/> 格式化程序
+    /// </summary>
     public sealed class Formatter : MemoryPackFormatter<CookieContainer?>
     {
+        /// <summary>
+        /// 默认的 <see cref="Formatter"/> 实例
+        /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将可空 <see cref="CookieContainer"/> 对象序列化到 <see cref="MemoryPackWriter{TBufferWriter}"/> 对象
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieContainer? value)
         {
             IMemoryPackFormatter<CookieContainer?> f = CookieFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <see cref="MemoryPackReader"/> 对象反序列化为可空 <see cref="CookieContainer"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref CookieContainer? value)
         {
             IMemoryPackFormatter<CookieContainer?> f = CookieFormatter.Default;

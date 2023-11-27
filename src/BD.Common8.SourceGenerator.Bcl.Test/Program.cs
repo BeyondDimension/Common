@@ -3,9 +3,7 @@
 
 // https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/generators/observableproperty
 
-using BD.Common8.SourceGenerator.Bcl.Test;
-
-Console.WriteLine(typeof(TodoService).FullName);
+//Console.WriteLine(typeof(TodoService).FullName);
 
 var s1 = TodoService.Current;
 var s2 = TodoService.Current;

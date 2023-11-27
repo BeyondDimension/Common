@@ -1,13 +1,14 @@
 namespace System.Security.Cryptography;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 partial class Hashs
 {
     partial class String
     {
         partial class Lengths
         {
+            /// <summary>
+            /// SHA256 算法的哈希长度
+            /// </summary>
             public const int SHA256 = 64;
         }
 
@@ -52,35 +53,35 @@ partial class Hashs
     partial class ByteArray
     {
         /// <summary>
-        /// 计算 SHA256 值
+        /// 计算指定字节数组的 SHA256 哈希值
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
+        /// <param name="buffer">要计算哈希值的字节数组</param>
+        /// <returns>计算得到的 SHA256 哈希值的字节数组</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA256(byte[] buffer) => Cryptography.SHA256.HashData(buffer);
 
         /// <summary>
-        /// 计算 SHA256 值
+        /// 计算指定只读字节数组的 SHA256 哈希值
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
+        /// <param name="buffer">要计算哈希值的只读字节数组</param>
+        /// <returns>计算得到的 SHA256 哈希值的字节数组</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA256(ReadOnlySpan<byte> buffer) => Cryptography.SHA256.HashData(buffer);
 
         /// <summary>
-        /// 计算 SHA256 值
+        /// 计算指定输入流的 SHA256 哈希值
         /// </summary>
-        /// <param name="inputStream"></param>
-        /// <returns></returns>
+        /// <param name="inputStream">要计算哈希值的输入流</param>
+        /// <returns>计算得到的 SHA256 哈希值的字节数组</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA256(Stream inputStream) => Cryptography.SHA256.HashData(inputStream);
 
         /// <summary>
-        /// 计算 SHA256 值
+        /// 异步计算指定输入流的 SHA256 哈希值
         /// </summary>
-        /// <param name="inputStream"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <param name="inputStream">要计算哈希值的输入流</param>
+        /// <param name="cancellationToken">取消操作的取消标记</param>
+        /// <returns>表示异步计算得到的 SHA256 哈希值的字节数组的 ValueTask 对象</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask<byte[]> SHA256Async(Stream inputStream, CancellationToken cancellationToken = default) => Cryptography.SHA256.HashDataAsync(inputStream, cancellationToken);
     }
