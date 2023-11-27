@@ -5,7 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Essentials.Enums;
 global using BD.Common8.Essentials.Helpers;
 global using BD.Common8.Essentials.Models;
 global using BD.Common8.Essentials.Models.Abstractions;

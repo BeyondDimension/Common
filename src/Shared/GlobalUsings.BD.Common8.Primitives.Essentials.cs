@@ -5,8 +5,5 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Toast.Helpers;
-global using BD.Common8.Toast.Services;
-global using BD.Common8.Toast.Services.Implementation;
-
-global using Toast = BD.Common8.Toast.Helpers.ToastHelper;
+global using BD.Common8.Primitives.Essentials.Enums;
+global using EssConnectionProfile = BD.Common8.Primitives.Essentials.Enums.ConnectionProfile;

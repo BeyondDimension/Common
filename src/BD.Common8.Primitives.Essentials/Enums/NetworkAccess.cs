@@ -1,4 +1,4 @@
-namespace BD.Common8.Essentials.Enums;
+namespace BD.Common8.Primitives.Essentials.Enums;
 
 /// <summary>
 /// 与互联网连接的各种状态

@@ -106,6 +106,8 @@ public sealed class SettingsPropertyTemplate :
 """
 #pragma warning disable IDE0028 // 使用集合初始值设定项
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable CS8631 // 类型不能用作泛型类型或方法中的类型参数。类型参数的为 Null 性与约束类型不匹配。
+#pragma warning disable CS8634 // 类型不能用作泛型类型或方法中的类型参数。类型参数的为 Null 性与 “class” 约束不匹配。
 
 """u8);
         stream.WriteNewLine();
@@ -128,7 +130,7 @@ static partial class {0}
         var mFields = modelTypeSymbol.GetMembers().OfType<IFieldSymbol>(); // 模型的字段
         foreach (var property in mProperties)
         {
-            if (property.IsRecordGeneratorProperty())
+            if (property.IsGeneratorProperty())
                 continue; // 如果模型类为 record 则会生成该属性，跳过
 
             var propertyType = TypeStringImpl.Parse(property.Type);

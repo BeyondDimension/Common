@@ -4,7 +4,7 @@
 // https://github.com/dotnet/wpf/blob/v6.0.5/src/Microsoft.DotNet.Wpf/src/WindowsBase/System/Windows/Threading/DispatcherPriority.cs
 // https://github.com/AvaloniaUI/Avalonia/blob/0.10.14/src/Avalonia.Base/Threading/DispatcherPriority.cs
 
-namespace BD.Common8.Essentials.Enums;
+namespace BD.Common8.Primitives.Essentials.Enums;
 
 /// <summary>
 /// 描述了操作可以通过 Dispatcher 调用
