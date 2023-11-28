@@ -7651,7 +7651,7 @@
       "version": ""
     },
     {
-      "type": "Conceptual",
+      "type": "Redirection",
       "source_relative_path": "articles/index.md",
       "output": {
         ".html": {
@@ -7694,7 +7694,7 @@
       "version": ""
     },
     {
-      "type": "Conceptual",
+      "type": "Redirection",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
