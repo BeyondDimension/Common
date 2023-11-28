@@ -1,4 +1,3 @@
-using Fusillade;
 using Splat;
 using IClientHttpClientFactory = System.Net.Http.Client.IClientHttpClientFactory;
 
