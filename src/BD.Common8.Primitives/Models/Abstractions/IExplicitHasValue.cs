@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Models.Abstractions;
+namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
 /// HasValue 接口定义，通常显示实现此接口

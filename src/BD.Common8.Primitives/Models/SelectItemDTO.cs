@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Models;
+namespace BD.Common8.Models;
 
 /// <summary>
 /// 用于 Select/ComboBox 的数据源模型

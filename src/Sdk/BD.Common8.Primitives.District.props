@@ -4,4 +4,24 @@
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
 
+	<ItemGroup Condition="$(MSBuildProjectName) == 'BD.Common8.Primitives.District'">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\..\res\AMap_adcode_citycode.resx">
+			<LinkBase>Properties</LinkBase>
+			<Generator></Generator>
+			<LastGenOutput></LastGenOutput>
+			<LogicalName>FxResources.BD.Common8.Primitives.District.Properties.Resources.resources</LogicalName>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup Condition="$(MSBuildProjectName) != 'BD.Common8.Primitives.District'">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\..\res\AMap_adcode_citycode.resx">
+			<LinkBase>_SourceReference\Common8\Primitives.District\Properties</LinkBase>
+			<Generator></Generator>
+			<LastGenOutput></LastGenOutput>
+			<LogicalName>FxResources.BD.Common8.Primitives.District.Properties.Resources.resources</LogicalName>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+	</ItemGroup>
+
 </Project>

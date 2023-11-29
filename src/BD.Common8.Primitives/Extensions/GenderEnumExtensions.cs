@@ -1,6 +1,6 @@
 using SR = BD.Common8.Primitives.Resources.SR;
 
-namespace BD.Common8.Primitives.Extensions;
+namespace BD.Common8.Extensions;
 
 /// <summary>
 /// Enum 扩展 <see cref="Gender"/>

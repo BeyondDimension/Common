@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiRsp.Enums;
+namespace BD.Common8.Enums;
 
 /// <summary>
 /// 接口响应状态码

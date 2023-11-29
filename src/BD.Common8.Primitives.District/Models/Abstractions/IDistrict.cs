@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.District.Models.Abstractions;
+namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
 /// 行政区域

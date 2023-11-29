@@ -5,9 +5,9 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Primitives.ApiRsp.Extensions;
-global using BD.Common8.Primitives.ApiRsp.Enums;
-global using BD.Common8.Primitives.ApiRsp.Helpers;
-global using BD.Common8.Primitives.ApiRsp.Models;
-global using BD.Common8.Primitives.ApiRsp.Models.Abstractions;
-global using BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals;
+global using BD.Common8.Extensions;
+global using BD.Common8.Enums;
+global using BD.Common8.Helpers;
+global using BD.Common8.Models;
+global using BD.Common8.Models.Abstractions;
+global using BD.Common8.Models.Abstractions.Internals;

@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Extensions;
+namespace BD.Common8.Extensions;
 
 /// <summary>
 /// 包含对 <see cref="IExplicitHasValue"/> 接口的扩展方法，用于判断对象是否具有值

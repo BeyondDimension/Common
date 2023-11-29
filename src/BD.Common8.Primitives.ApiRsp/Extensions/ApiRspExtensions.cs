@@ -1,6 +1,6 @@
 using static BD.Common8.Primitives.ApiRsp.Resources.SR;
 
-namespace BD.Common8.Primitives.ApiRsp.Extensions;
+namespace BD.Common8.Extensions;
 
 /// <summary>
 /// 提供了 <see cref="ApiRspCode"/> 对象的扩展方法

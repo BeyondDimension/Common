@@ -63,22 +63,25 @@ static partial class ResXHelper
         {
             var propsFilePath = Path.Combine(dirPath, $"{item.Key}.props");
             using var stream = GetStream(propsFilePath);
-            stream.Write(
+            stream.WriteFormat(
 """
 <Project>
-	<ItemGroup>
-"""u8);
-            stream.WriteNewLine();
-            var satellites = item.OrderBy(static x => x).ToArray();
-            foreach (var satellite in satellites)
+	<ItemGroup Condition="$(MSBuildProjectName) == '{0}'">
+"""u8, item.Key);
+            WriteItemGroupContent("");
+            void WriteItemGroupContent(string linkPrefix)
             {
-                if (satellite == item.Key)
+                stream.WriteNewLine();
+                var satellites = item.OrderBy(static x => x).ToArray();
+                foreach (var satellite in satellites)
                 {
-                    string @namespace = satellite switch
+                    if (satellite == item.Key)
                     {
-                        "BD.Common8.Bcl" => "BD.Common8",
-                        _ => satellite,
-                    };
+                        string @namespace = satellite switch
+                        {
+                            "BD.Common8.Bcl" => "BD.Common8",
+                            _ => satellite,
+                        };
 #pragma warning disable format
 //                    stream.WriteFormat(
 //"""
@@ -100,15 +103,22 @@ static partial class ResXHelper
 //                    stream.WriteNewLine();
 #pragma warning restore format
                 }
-                stream.WriteFormat(
-"""
+                    stream.WriteFormat(
+    """
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory){0}.resx">
-			<Link>Resources\{1}.resx</Link>
+			<Link>{2}Resources\{1}.resx</Link>
 			<LogicalName>FxResources.{0}.resources</LogicalName>
 		</EmbeddedResource>
-"""u8, satellite, satellite.Replace(item.Key, "Strings"));
-                stream.WriteNewLine();
+"""u8, satellite, satellite.Replace(item.Key, "Strings"), linkPrefix);
+                    stream.WriteNewLine();
+                }
             }
+            stream.WriteFormat(
+"""
+	</ItemGroup>
+	<ItemGroup Condition="$(MSBuildProjectName) != '{0}'">
+"""u8, item.Key);
+            WriteItemGroupContent($@"_SourceReference\{item.Key.Replace("BD.Common8", @"Common8\").TrimEnd('\\').Replace(@"\.", @"\")}\");
             stream.Write(
 """
 	</ItemGroup>

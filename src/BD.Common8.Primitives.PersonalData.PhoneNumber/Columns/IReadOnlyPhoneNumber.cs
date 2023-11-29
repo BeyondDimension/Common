@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.PersonalData.PhoneNumber.Columns;
+namespace BD.Common8.Columns;
 
 /// <inheritdoc cref="IPhoneNumber"/>
 public interface IReadOnlyPhoneNumber

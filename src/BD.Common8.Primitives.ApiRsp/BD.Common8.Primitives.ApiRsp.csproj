@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<RootNamespace>BD.Common8</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->

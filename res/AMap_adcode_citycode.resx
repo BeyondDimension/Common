@@ -119,6 +119,6 @@
 	</resheader>
 	<assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
 	<data name="AMap_adcode_citycode_20210406" type="System.Resources.ResXFileRef, System.Windows.Forms">
-		<value>..\..\..\res\AMap_adcode_citycode_20210406;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>.\AMap_adcode_citycode_20210406;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</data>
 </root>

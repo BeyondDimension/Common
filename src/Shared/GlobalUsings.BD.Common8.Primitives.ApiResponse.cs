@@ -5,6 +5,6 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Primitives.ApiResponse.Extensions;
-global using BD.Common8.Primitives.ApiResponse.Models;
-global using BD.Common8.Primitives.ApiResponse.Models.Abstractions;
+global using BD.Common8.Extensions;
+global using BD.Common8.Models;
+global using BD.Common8.Models.Abstractions;

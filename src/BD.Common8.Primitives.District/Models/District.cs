@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.District.Models;
+namespace BD.Common8.Models;
 
 /// <inheritdoc cref="IDistrict"/>
 [MPObj]

@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.PersonalData.PhoneNumber.Columns;
+namespace BD.Common8.Columns;
 
 /// <summary>
 /// 手机号码

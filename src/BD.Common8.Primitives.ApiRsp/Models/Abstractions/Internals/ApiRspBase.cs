@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals;
+namespace BD.Common8.Models.Abstractions.Internals;
 
 /// <summary>
 /// <see cref="IApiRsp"/> 的默认实现基类

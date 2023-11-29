@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<RootNamespace>BD.Common8</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
@@ -9,15 +10,6 @@
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="Properties\Resources.resx">
-			<Generator></Generator>
-			<LastGenOutput></LastGenOutput>
-			<LogicalName>FxResources.BD.Common8.Primitives.District.Properties.Resources.resources</LogicalName>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-	</ItemGroup>
 
 	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 

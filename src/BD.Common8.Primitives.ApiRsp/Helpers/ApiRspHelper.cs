@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiRsp.Helpers;
+namespace BD.Common8.Helpers;
 
 public static partial class ApiRspHelper
 {

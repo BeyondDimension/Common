@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiResponse.Models;
+namespace BD.Common8.Models;
 
 /// <summary>
 /// <see cref="IApiResponse"/> 的默认实现类

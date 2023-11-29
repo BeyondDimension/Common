@@ -121,13 +121,13 @@ public class {0}Impl(
                 var len = returnType.Length - taskMarkPrefix.Length - 1;
                 returnType = returnType.Substring(taskMarkPrefix.Length, len);
             }
-            const string apiRspMarkPrefix = "BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl<";
+            const string apiRspMarkPrefix = "BD.Common8.Models.ApiRspImpl<";
             if (returnType.StartsWith(apiRspMarkPrefix))
             {
                 var len = returnType.Length - apiRspMarkPrefix.Length - 1;
                 returnType = returnType.Substring(apiRspMarkPrefix.Length, len);
             }
-            var isApiRspImplByReturnType = returnType == "BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl";
+            var isApiRspImplByReturnType = returnType == "BD.Common8.Models.ApiRspImpl";
 
             if (isApiRspImplByReturnType)
             {

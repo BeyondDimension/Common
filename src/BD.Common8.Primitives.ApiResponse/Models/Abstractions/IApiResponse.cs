@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiResponse.Models.Abstractions;
+namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
 /// Api 返回接口 (BackManage 后台管理)
