@@ -6,8 +6,7 @@
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<UseProjectUtils>true</UseProjectUtils>
 		<UseSystemCommandLine>true</UseSystemCommandLine>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
-
-	<Import Project="../Sdk/BD.Common8.Bcl.props" />
 
 </Project>

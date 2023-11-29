@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;UseProjectUtils;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;LinkResXGeneratedCodeAttribute;IsCommon8Project;UseSourceGeneratorResx;UseSourceGeneratorBcl;UseAspNetCore;UseEFCore;UseMicrosoftIdentityModelTokens;UseAvalonia;UseAvaloniaDiagnostics;UseAvaloniaSkia;UseAvaloniaWin32;UseAvaloniaX11;UseAvaloniaNative;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseFluentAvalonia;UseRedis;UseNLog;UsePolly;UseSQLitePCL;UseSystemCommandLine;UseReactiveUI;UseReactiveUIFody;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseMicrosoftExtensionsHosting;UseMicrosoftExtensionsHttp;UseAndroidXBrowser;UseFusillade;UseMoq;UseSystemNetHttpJson;UseAngleSharp">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;UseProjectUtils;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;LinkResXGeneratedCodeAttribute;IsCommon8Project;UseSourceGeneratorResx;UseSourceGeneratorBcl;UseAspNetCore;UseEFCore;UseMicrosoftIdentityModelTokens;UseAvalonia;UseAvaloniaDiagnostics;UseAvaloniaSkia;UseAvaloniaWin32;UseAvaloniaX11;UseAvaloniaNative;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseFluentAvalonia;UseRedis;UseNLog;UsePolly;UseSQLitePCL;UseSystemCommandLine;UseReactiveUI;UseReactiveUIFody;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseMicrosoftExtensionsHosting;UseMicrosoftExtensionsHttp;UseAndroidXBrowser;UseFusillade;UseMoq;UseSystemNetHttpJson;UseAngleSharp;UseCommon8Bcl;UseCommon8Primitives;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesEssentials;UseCommon8PrimitivesToast;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesApiRsp;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8Essentials;UseCommon8EssentialsImplementation;UseCommon8EssentialsImplementationAvalonia;UseCommon8HttpClientFactory;UseCommon8HttpClientFactoryServer;UseCommon8Ipc;UseCommon8IpcClient;UseCommon8IpcServer;UseCommon8OrmEFCore;UseCommon8Pinyin;UseCommon8PinyinChnCharInfo;UseCommon8PinyinCoreFoundation;UseCommon8Repositories;UseCommon8RepositoriesEFCore;UseCommon8RepositoriesSQLitePCL;UseCommon8Security;UseCommon8Settings5;UseCommon8Settings5Backend;UseCommon8Settings5Frontend;UseCommon8SmsSender;UseCommon8Toast;UseCommon8UserInputModelValidator;UseCommon8Crawler;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage">
 
 	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
 
@@ -329,5 +329,45 @@
 	</ItemGroup>
 
 	<!-- ## PackageReference End -->
+
+	<!--## Common8Reference Start -->
+	
+	<Import Condition="$(UseCommon8Bcl) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
+	<Import Condition="$(UseCommon8Primitives) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.props" />
+	<Import Condition="$(UseCommon8PrimitivesDistrict) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.District.props" />
+	<Import Condition="$(UseCommon8PrimitivesEssentials) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.Essentials.props" />
+	<Import Condition="$(UseCommon8PrimitivesToast) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.Toast.props" />
+	<Import Condition="$(UseCommon8PrimitivesApiResponse) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiResponse.props" />
+	<Import Condition="$(UseCommon8PrimitivesApiRsp) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.props" />
+	<Import Condition="$(UseCommon8PrimitivesPersonalDataBirthDate) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.props" />
+	<Import Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.props" />
+	<Import Condition="$(UseCommon8Essentials) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Essentials.props" />
+	<Import Condition="$(UseCommon8EssentialsImplementation) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Essentials.Implementation.props" />
+	<Import Condition="$(UseCommon8EssentialsImplementationAvalonia) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Essentials.Implementation.Avalonia.props" />
+	<Import Condition="$(UseCommon8HttpClientFactory) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Http.ClientFactory.props" />
+	<Import Condition="$(UseCommon8HttpClientFactoryServer) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Http.ClientFactory.Server.props" />
+	<Import Condition="$(UseCommon8Ipc) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Ipc.props" />
+	<Import Condition="$(UseCommon8IpcClient) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Ipc.Client.props" />
+	<Import Condition="$(UseCommon8IpcServer) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Ipc.Server.props" />
+	<Import Condition="$(UseCommon8OrmEFCore) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Orm.EFCore.props" />
+	<Import Condition="$(UseCommon8Pinyin) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Pinyin.props" />
+	<Import Condition="$(UseCommon8PinyinChnCharInfo) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Pinyin.ChnCharInfo.props" />
+	<Import Condition="$(UseCommon8PinyinCoreFoundation) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Pinyin.CoreFoundation.props" />
+	<Import Condition="$(UseCommon8Repositories) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Repositories.props" />
+	<Import Condition="$(UseCommon8RepositoriesEFCore) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Repositories.EFCore.props" />
+	<Import Condition="$(UseCommon8RepositoriesSQLitePCL) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Repositories.SQLitePCL.props" />
+	<Import Condition="$(UseCommon8Security) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Security.props" />
+	<Import Condition="$(UseCommon8Settings5) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Settings5.props" />
+	<Import Condition="$(UseCommon8Settings5Backend) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Settings5.Backend.props" />
+	<Import Condition="$(UseCommon8Settings5Frontend) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Settings5.Frontend.props" />
+	<Import Condition="$(UseCommon8SmsSender) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.SmsSender.props" />
+	<Import Condition="$(UseCommon8Toast) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Toast.props" />
+	<Import Condition="$(UseCommon8UserInputModelValidator) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.props" />
+	<Import Condition="$(UseCommon8Crawler) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Crawler.props" />
+	<Import Condition="$(UseCommon8AspNetCore) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.AspNetCore.props" />
+	<Import Condition="$(UseCommon8AspNetCoreIdentity) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.AspNetCore.Identity.props" />
+	<Import Condition="$(UseCommon8AspNetCoreIdentityBackManage) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.AspNetCore.Identity.BackManage.props" />
+
+	<!-- ## Common8Reference End -->
 
 </Project>

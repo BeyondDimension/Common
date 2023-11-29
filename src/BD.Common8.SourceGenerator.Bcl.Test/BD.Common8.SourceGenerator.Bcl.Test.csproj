@@ -4,6 +4,9 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseReactiveUI>true</UseReactiveUI>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Settings5>true</UseCommon8Settings5>
+		<UseCommon8Settings5Frontend>true</UseCommon8Settings5Frontend>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,9 +15,5 @@
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
-	
-	<Import Project="../Sdk/BD.Common8.Bcl.props" />
-	<Import Project="../Sdk/BD.Common8.Settings5.props" />
-	<Import Project="../Sdk/BD.Common8.Settings5.Frontend.props" />
 
 </Project>

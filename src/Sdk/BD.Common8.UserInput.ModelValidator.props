@@ -12,6 +12,9 @@
 
 	<PropertyGroup>
 		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseCommon8PrimitivesPersonalDataPhoneNumber>true</UseCommon8PrimitivesPersonalDataPhoneNumber>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

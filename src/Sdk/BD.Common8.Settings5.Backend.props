@@ -1,7 +1,4 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Settings5.props" />
-
 	<!-- 当前项目 或 源码引用此项目 -->
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 	</PropertyGroup>
@@ -11,6 +8,8 @@
 		<UseMicrosoftExtensionsConfiguration>true</UseMicrosoftExtensionsConfiguration>
 		<UseMicrosoftExtensionsConfigurationJson>true</UseMicrosoftExtensionsConfigurationJson>
 		<UseMicrosoftExtensionsOptionsConfigurationExtensions>true</UseMicrosoftExtensionsOptionsConfigurationExtensions>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Settings5>true</UseCommon8Settings5>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

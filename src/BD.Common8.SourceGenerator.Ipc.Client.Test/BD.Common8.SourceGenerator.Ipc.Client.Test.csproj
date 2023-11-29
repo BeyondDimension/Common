@@ -6,6 +6,10 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 		<UseProjectUtils>true</UseProjectUtils>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Ipc>true</UseCommon8Ipc>
+		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
+		<UseCommon8HttpClientFactory>true</UseCommon8HttpClientFactory>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,10 +24,5 @@
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
-
-	<Import Project="../Sdk/BD.Common8.Bcl.props" />
-	<Import Project="../Sdk/BD.Common8.Ipc.props" />
-	<Import Project="../Sdk/BD.Common8.Primitives.ApiRsp.props" />
-	<Import Project="../Sdk/BD.Common8.Http.ClientFactory.props" />
 
 </Project>

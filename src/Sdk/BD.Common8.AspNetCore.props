@@ -1,12 +1,15 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.Essentials.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Repositories.EFCore.props" />
-	
 	<!-- 当前项目 或 源码引用此项目 -->
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseCommon8PrimitivesEssentials>true</UseCommon8PrimitivesEssentials>
+		<UseCommon8OrmEFCore>true</UseCommon8OrmEFCore>
+		<UseCommon8RepositoriesEFCore>true</UseCommon8RepositoriesEFCore>
 	</PropertyGroup>
 	
 	

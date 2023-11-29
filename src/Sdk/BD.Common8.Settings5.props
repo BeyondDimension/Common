@@ -1,12 +1,11 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
-
 	<!-- 当前项目 或 源码引用此项目 -->
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<UseMicrosoftExtensionsOptions>true</UseMicrosoftExtensionsOptions>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

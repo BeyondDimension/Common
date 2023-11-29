@@ -8,6 +8,12 @@
 		<IsTestProject>true</IsTestProject>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<UseMicrosoftIdentityModelTokens>true</UseMicrosoftIdentityModelTokens>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Pinyin>true</UseCommon8Pinyin>
+		<UseCommon8PinyinChnCharInfo>true</UseCommon8PinyinChnCharInfo>
+		<UseCommon8PrimitivesDistrict>true</UseCommon8PrimitivesDistrict>
+		<UseCommon8Security>true</UseCommon8Security>
+		<UseCommon8SmsSender>true</UseCommon8SmsSender>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,12 +30,5 @@
 	<ItemGroup>
 		<PackageReference Include="MonoMac.NetStandard" />
 	</ItemGroup>
-
-	<Import Project="../Sdk/BD.Common8.Bcl.props" />
-	<Import Project="../Sdk/BD.Common8.Pinyin.props" />
-	<Import Project="../Sdk/BD.Common8.Pinyin.ChnCharInfo.props" />
-	<Import Project="../Sdk/BD.Common8.Primitives.District.props" />
-	<Import Project="../Sdk/BD.Common8.Security.props" />
-	<Import Project="../Sdk/BD.Common8.SmsSender.props" />
 
 </Project>

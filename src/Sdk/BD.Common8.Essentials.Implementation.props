@@ -1,11 +1,4 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.Toast.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Toast.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.Essentials.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Essentials.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.props" />
-	
 	<!-- 当前项目 或 源码引用此项目 -->
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -15,6 +8,12 @@
 		<!--<UseSQLitePCL>true</UseSQLitePCL>-->
 		<!--<UseCommon8RepositoriesSQLitePCL>true</UseCommon8RepositoriesSQLitePCL>-->
 		<UseAndroidXBrowser>true</UseAndroidXBrowser>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8PrimitivesToast>true</UseCommon8PrimitivesToast>
+		<UseCommon8Toast>true</UseCommon8Toast>
+		<UseCommon8PrimitivesEssentials>true</UseCommon8PrimitivesEssentials>
+		<UseCommon8Essentials>true</UseCommon8Essentials>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

@@ -1,11 +1,13 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.Toast.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Toast.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.Essentials.props" />
-
 	<!-- 当前项目 或 源码引用此项目 -->
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8PrimitivesToast>true</UseCommon8PrimitivesToast>
+		<UseCommon8Toast>true</UseCommon8Toast>
+		<UseCommon8PrimitivesEssentials>true</UseCommon8PrimitivesEssentials>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

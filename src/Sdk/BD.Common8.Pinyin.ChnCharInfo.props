@@ -1,12 +1,11 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Pinyin.props" />
-
 	<!-- 当前项目 或 源码引用此项目 -->
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Pinyin>true</UseCommon8Pinyin>
 	</PropertyGroup>
 
 	<!-- 当前项目 或 源码引用此项目(ItemGroup) -->

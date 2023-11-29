@@ -1,6 +1,4 @@
 <Project>
-	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
-
 	<!-- 当前项目 或 源码引用此项目 -->
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 	</PropertyGroup>
@@ -8,6 +6,7 @@
 	<PropertyGroup>
 		<UseFusillade>true</UseFusillade>
 		<UseSystemNetHttpJson>true</UseSystemNetHttpJson>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->
