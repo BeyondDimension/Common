@@ -7,22 +7,12 @@
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseMicrosoftIdentityModelTokens>true</UseMicrosoftIdentityModelTokens>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.District.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Security.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
 		<Compile Include="..\BD.Common8.Security\Helpers\SecurityPlatformHelper.MacOS.cs">
 			<LinkBase>_SourceReference\Helpers</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Pinyin.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 	
@@ -35,11 +25,11 @@
 		<PackageReference Include="MonoMac.NetStandard" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Pinyin.ChnCharInfo\BD.Common8.Pinyin.ChnCharInfo.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
-		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
-		<ProjectReference Include="..\BD.Common8.SmsSender\BD.Common8.SmsSender.csproj" />
-	</ItemGroup>
+	<Import Project="../Sdk/BD.Common8.Bcl.props" />
+	<Import Project="../Sdk/BD.Common8.Pinyin.props" />
+	<Import Project="../Sdk/BD.Common8.Pinyin.ChnCharInfo.props" />
+	<Import Project="../Sdk/BD.Common8.Primitives.District.props" />
+	<Import Project="../Sdk/BD.Common8.Security.props" />
+	<Import Project="../Sdk/BD.Common8.SmsSender.props" />
 
 </Project>

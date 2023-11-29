@@ -1,4 +1,5 @@
 <Project>
+	<!-- 源生成器项目 -->
 	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.SourceGenerator.Reference.props" />
 
 	<PropertyGroup>

@@ -6,31 +6,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.Client.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
 		<Compile Include="..\Ipc.Server.Sample.Experimental\ITodoService.cs">
 			<LinkBase>Services</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Http.ClientFactory.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
-		<ProjectReference Include="..\BD.Common8.Ipc.Client\BD.Common8.Ipc.Client.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
-	</ItemGroup>
+	
+	<Import Project="../Sdk/BD.Common8.Bcl.props" />
+	<Import Project="../Sdk/BD.Common8.Http.ClientFactory.props" />
+	<Import Project="../Sdk/BD.Common8.Ipc.props" />
+	<Import Project="../Sdk/BD.Common8.Ipc.Client.props" />
+	<Import Project="../Sdk/BD.Common8.Primitives.ApiRsp.props" />
 
 </Project>

@@ -1,0 +1,38 @@
+<Project>
+	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.props" />
+	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.props" />
+	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.BirthDate.props" />
+
+	<!-- 当前项目 或 源码引用此项目 -->
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<UseEFCore>true</UseEFCore>
+	</PropertyGroup>
+
+	<!-- 全局 using 当前项目 -->
+	<ItemGroup>
+		<Compile Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 源码引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
+			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\obj\**" />
+	</ItemGroup>
+
+	<!-- 项目引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) != 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+</Project>

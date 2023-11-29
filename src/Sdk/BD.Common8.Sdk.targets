@@ -1,30 +1,75 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;IsCommon8Project;UseCommon8Bcl;UseAspNetCore;UseProjectUtils;UseSourceGeneratorResx;UseMicrosoftIdentityModelTokens;UseEFCore;LinkResXGeneratedCodeAttribute;UseAvalonia;UseRedis;UseNLog;UseCommon8Essentials;UseCommon8Repositories;UseCommon8OrmEFCore;UseCommon8RepositoriesEFCore;UseCommon8Primitives;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesApiRsp;UseSQLitePCL;UseCommon8Security;UseSystemCommandLine;UseCommon8HttpClientFactory;UseCommon8Crawler;UseReactiveUI;UseReactiveUIFody;UseFluentAvalonia;UseSourceGeneratorBcl;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseCommon8Toast;UseCommon8RepositoriesSQLitePCL;UseAndroidXBrowser;UseCommon8EssentialsImplementation;UseFusillade;UseSystemNetHttpJson;UseCommon8Ipc;UseCommon8Pinyin;UseAngleSharp;UseCommon8Settings5;UseCommon8Settings5Frontend;UseCommon8Settings5Backend;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseCommon8PrimitivesToast;UseCommon8PrimitivesEssentials;UseMoq;IsSourceReference">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;UseProjectUtils;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;LinkResXGeneratedCodeAttribute;IsCommon8Project;UseSourceGeneratorResx;UseSourceGeneratorBcl;UseAspNetCore;UseEFCore;UseMicrosoftIdentityModelTokens;UseAvalonia;UseAvaloniaDiagnostics;UseAvaloniaSkia;UseAvaloniaWin32;UseAvaloniaX11;UseAvaloniaNative;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseFluentAvalonia;UseRedis;UseNLog;UsePolly;UseSQLitePCL;UseSystemCommandLine;UseReactiveUI;UseReactiveUIFody;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseMicrosoftExtensionsHosting;UseMicrosoftExtensionsHttp;UseAndroidXBrowser;UseFusillade;UseMoq;UseSystemNetHttpJson;UseAngleSharp">
 
 	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
 
+	<!-- 配置 NuGet 包生成 -->
 	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)GeneratePackage.props" />
+
+	<!-- 单元测试 -->
 	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.UnitTest.props" />
+
+	<!-- 源生成器项目 -->
 	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.SourceGenerator.props" />
+
+	<!-- 基础类库全局 using -->
 	<Import Condition="$(IsGlobalUsingsCommon8Bcl) == 'true' OR $(UseCommon8Bcl) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.GlobalUsings.props" />
 
-	<PropertyGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
-		<ImplicitUsings>false</ImplicitUsings>
-	</PropertyGroup>
+	<!-- .NET Framework 3.5 SDK 兼容 -->
+	<Import Condition="$(TargetFramework.StartsWith('net35'))" Project="$(MSBuildThisFileDirectory)net35.props" />
 
-	<PropertyGroup Condition="$(UseCommon8Toast) == 'true' OR $(MSBuildProjectName) == 'BD.Common8.Toast'">
-		<UseCommon8PrimitivesToast>true</UseCommon8PrimitivesToast>
-	</PropertyGroup>
+	<ItemGroup Condition="$(IsGlobalUsingsMSBuildProjectName) == 'true'">
+		<Compile Include="$(MSBuildProjectDirectory)\..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
 
-	<PropertyGroup Condition="$(UseCommon8Essentials) == 'true' OR $(MSBuildProjectName) == 'BD.Common8.Essentials'">
-		<UseCommon8PrimitivesEssentials>true</UseCommon8PrimitivesEssentials>
-	</PropertyGroup>
+	<!-- 是否源码引用 ProjectUtils -->
+	<ItemGroup Condition="$(UseProjectUtils) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\ProjectUtils.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
 
-	<ItemGroup Condition=" $(TargetFramework.StartsWith('net35')) ">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.net35.cs">
+	<!-- 是否全局 using Microsoft.Extensions.FileProviders -->
+	<ItemGroup Condition="$(UseMicrosoftExtensionsFileProviders) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
 
+	<!-- 是否全局 using Microsoft.Extensions.Primitives -->
+	<ItemGroup Condition="$(UseMicrosoftExtensionsPrimitives) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Primitives.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 是否源码引用 ResXGeneratedCodeAttribute -->
+	<ItemGroup Condition="$(LinkResXGeneratedCodeAttribute) == 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
+			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 是否引用 Resx 源生成器 -->
+	<ItemGroup Condition="$(UseSourceGeneratorResx) == 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<!-- 是否引用 Bcl 源生成器 -->
+	<ItemGroup Condition="$(UseSourceGeneratorBcl) == 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<!--## FrameworkReference Start -->
+
+	<!-- 是否框架引用 ASP.NET Core 框架 -->
 	<ItemGroup Condition="$(UseAspNetCore) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -47,51 +92,11 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(IsGlobalUsingsMSBuildProjectName) == 'true'">
-		<Compile Include="$(MSBuildProjectDirectory)\..\Shared\GlobalUsings.$(MSBuildProjectName).cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
+	<!-- ## FrameworkReference End -->
 
-	<ItemGroup Condition="$(UseProjectUtils) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\ProjectUtils.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
+	<!-- ## PackageReference Start -->
 
-	<ItemGroup Condition="$(UseSourceGeneratorResx) == 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseSourceGeneratorBcl) == 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Bcl) == 'true' AND $(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Bcl) == 'true' AND $(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Bcl</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\obj\**" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseMicrosoftIdentityModelTokens) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.IdentityModel.Tokens.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
-	</ItemGroup>
-
+	<!-- 是否包引用 EF Core 框架 -->
 	<ItemGroup Condition="$(UseEFCore) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -112,6 +117,15 @@
 		<PackageReference Include="Z.EntityFramework.Plus.EFCore" />
 	</ItemGroup>
 
+	<!-- 是否包引用 Microsoft.IdentityModel.Tokens -->
+	<ItemGroup Condition="$(UseMicrosoftIdentityModelTokens) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.IdentityModel.Tokens.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Avalonia -->
 	<ItemGroup Condition="$(UseAvalonia) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -119,6 +133,32 @@
 		<PackageReference Include="Avalonia" />
 	</ItemGroup>
 
+	<!-- 是否包引用 Avalonia.Diagnostics -->
+	<ItemGroup Condition="$(UseAvaloniaDiagnostics) == 'true'">
+		<PackageReference Include="Avalonia.Diagnostics" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Avalonia.Skia -->
+	<ItemGroup Condition="$(UseAvaloniaSkia) == 'true'">
+		<PackageReference Include="Avalonia.Skia" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Avalonia.Win32 -->
+	<ItemGroup Condition="$(UseAvaloniaWin32) == 'true'">
+		<PackageReference Include="Avalonia.Win32" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Avalonia.X11 -->
+	<ItemGroup Condition="$(UseAvaloniaX11) == 'true'">
+		<PackageReference Include="Avalonia.X11" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Avalonia.Native -->
+	<ItemGroup Condition="$(UseAvaloniaNative) == 'true'">
+		<PackageReference Include="Avalonia.Native" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Avalonia.ReactiveUI -->
 	<ItemGroup Condition="$(UseAvaloniaReactiveUI) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.ReactiveUI.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -126,6 +166,7 @@
 		<PackageReference Include="Avalonia.ReactiveUI" />
 	</ItemGroup>
 
+	<!-- 是否包引用 Avalonia.Xaml.Behaviors -->
 	<ItemGroup Condition="$(UseAvaloniaXamlInteractivity) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.Xaml.Interactivity.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -133,14 +174,25 @@
 		<PackageReference Include="Avalonia.Xaml.Behaviors" />
 	</ItemGroup>
 
+	<!-- 是否包引用 Avalonia.Controls.DataGrid -->
 	<ItemGroup Condition="$(UseAvaloniaControlsDataGrid) == 'true'">
 		<PackageReference Include="Avalonia.Controls.DataGrid" />
 	</ItemGroup>
 
+	<!-- 是否包引用 LiveChartsCore.SkiaSharpView.Avalonia -->
 	<ItemGroup Condition="$(UseAvaloniaControlsLiveCharts) == 'true'">
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" />
 	</ItemGroup>
 
+	<!-- 是否包引用 FluentAvaloniaUI -->
+	<ItemGroup Condition="$(UseFluentAvalonia) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.FluentAvaloniaUI.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="FluentAvaloniaUI" />
+	</ItemGroup>
+
+	<!-- 是否包引用 StackExchange.Redis/Microsoft.Extensions.Caching.StackExchangeRedis -->
 	<ItemGroup Condition="$(UseRedis) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Redis.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -149,6 +201,7 @@
 		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
 	</ItemGroup>
 
+	<!-- 是否包引用 NLog -->
 	<ItemGroup Condition="$(UseNLog) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.NLog.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -158,217 +211,24 @@
 		<PackageReference Condition="$(UseAspNetCore) == 'true'" Include="NLog.Web.AspNetCore" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(LinkResXGeneratedCodeAttribute) == 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
-			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Essentials) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Essentials.cs">
+	<!-- 是否包引用 Polly -->
+	<ItemGroup Condition="$(UsePolly) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Polly.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
+		<PackageReference Include="Polly" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(UseCommon8Repositories) == 'true' OR $(UseCommon8RepositoriesEFCore) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Repositories.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8OrmEFCore) == 'true' OR $(UseCommon8RepositoriesEFCore) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Orm.EFCore.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8RepositoriesEFCore) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Repositories.EFCore.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8RepositoriesSQLitePCL) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Repositories.SQLitePCL.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.SQLitePCL\BD.Common8.Repositories.SQLitePCL.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Primitives) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Primitives) == 'true' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Primitives) == 'true' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Primitives</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\obj\**" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesToast) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.Toast.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesToast) == 'true' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\BD.Common8.Primitives.Toast.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesToast) == 'true' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Primitives.Toast</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\obj\**" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesEssentials) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.Essentials.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesEssentials) == 'true' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesEssentials) == 'true' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Primitives.Essentials</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\obj\**" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8AspNetCore) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.AspNetCore.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8AspNetCoreIdentity) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8AspNetCoreIdentityBackManage) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.AspNetCore.Identity.BackManage.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity.BackManage\BD.Common8.AspNetCore.Identity.BackManage.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesApiResponse) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.ApiResponse.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesApiRsp) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesApiRsp) == 'true' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesApiRsp) == 'true' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Primitives.ApiRsp</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\obj\**" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.PhoneNumber.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == 'true' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == 'true' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\obj\**" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataBirthDate) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.PersonalData.BirthDate.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataBirthDate) == 'true' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesPersonalDataBirthDate) == 'true' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Primitives.PersonalData.BirthDate</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\obj\**" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesDistrict) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Primitives.District.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesDistrict) == 'true' AND $(IsSourceReference) != 'true'">
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8PrimitivesDistrict) == 'true' AND $(IsSourceReference) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\**\*.cs">
-			<LinkBase>_SourceReference\Common8\Primitives.District</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\obj\**" />
-	</ItemGroup>
-
+	<!-- 是否包引用 sqlite-net-pcl -->
 	<ItemGroup Condition="$(UseSQLitePCL) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SQLitePCL.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="sqlite-net-pcl" />
-		<PackageReference Include="Polly" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(UseCommon8Security) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Security.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Security\BD.Common8.Security.csproj" />
-	</ItemGroup>
-
+	<!-- 是否包引用 System.CommandLine -->
 	<ItemGroup Condition="$(UseSystemCommandLine) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.CommandLine.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -376,23 +236,7 @@
 		<PackageReference Include="System.CommandLine" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(UseCommon8HttpClientFactory) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Http.ClientFactory.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Crawler) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Crawler.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.AngleSharp.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Crawler\BD.Common8.Crawler.csproj" />
-	</ItemGroup>
-
+	<!-- 是否包引用 ReactiveUI -->
 	<ItemGroup Condition="$(UseReactiveUI) == 'true' OR $(UseReactiveUIFody) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ReactiveUI.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -400,6 +244,7 @@
 		<PackageReference Include="ReactiveUI" />
 	</ItemGroup>
 
+	<!-- 是否包引用 ReactiveUI.Fody -->
 	<ItemGroup Condition="$(UseReactiveUIFody) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ReactiveUI.Fody.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -407,113 +252,7 @@
 		<PackageReference Include="ReactiveUI.Fody" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$(UseFluentAvalonia) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.FluentAvaloniaUI.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<PackageReference Include="FluentAvaloniaUI" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseMicrosoftExtensionsOptions) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<PackageReference Include="Microsoft.Extensions.Options" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseMicrosoftExtensionsFileProviders) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseMicrosoftExtensionsPrimitives) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Toast) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Toast.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Toast\BD.Common8.Toast.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' AND $(UseAndroidXBrowser) == 'true'">
-		<PackageReference Include="Xamarin.AndroidX.Browser" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8EssentialsImplementation) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Essentials.Implementation.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation\BD.Common8.Essentials.Implementation.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseFusillade) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Fusillade.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<PackageReference Include="fusillade" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseMoq) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Moq.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<PackageReference Include="Moq" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseSystemNetHttpJson) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Net.Http.Json.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<PackageReference Include="System.Net.Http.Json" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Ipc) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Pinyin) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Pinyin.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin\BD.Common8.Pinyin.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseAngleSharp) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.AngleSharp.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<PackageReference Include="AngleSharp" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Settings5) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Settings5.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5\BD.Common8.Settings5.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Settings5Frontend) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Settings5.Frontend.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5.Frontend\BD.Common8.Settings5.Frontend.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(UseCommon8Settings5Backend) == 'true'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.Settings5.Backend.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5.Backend\BD.Common8.Settings5.Backend.csproj" />
-	</ItemGroup>
-
+	<!-- 是否包引用 Microsoft.Extensions.Configuration -->
 	<ItemGroup Condition="$(UseMicrosoftExtensionsConfiguration) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -521,12 +260,74 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration" />
 	</ItemGroup>
 
+	<!-- 是否包引用 Microsoft.Extensions.Configuration.Json -->
 	<ItemGroup Condition="$(UseMicrosoftExtensionsConfigurationJson) == 'true'">
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" />
 	</ItemGroup>
 
+	<!-- 是否包引用 Microsoft.Extensions.Options -->
+	<ItemGroup Condition="$(UseMicrosoftExtensionsOptions) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Microsoft.Extensions.Options" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Microsoft.Extensions.Options.ConfigurationExtensions -->
 	<ItemGroup Condition="$(UseMicrosoftExtensionsOptionsConfigurationExtensions) == 'true'">
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
 	</ItemGroup>
+
+	<!-- 是否包引用 Microsoft.Extensions.Hosting -->
+	<ItemGroup Condition="$(UseMicrosoftExtensionsHosting) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Microsoft.Extensions.Http -->
+	<ItemGroup Condition="$(UseMicrosoftExtensionsHttp) == 'true'">
+		<PackageReference Include="Microsoft.Extensions.Http" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Xamarin.AndroidX.Browser -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' AND $(UseAndroidXBrowser) == 'true'">
+		<PackageReference Include="Xamarin.AndroidX.Browser" />
+	</ItemGroup>
+
+	<!-- 是否包引用 fusillade -->
+	<ItemGroup Condition="$(UseFusillade) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Fusillade.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="fusillade" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Moq -->
+	<ItemGroup Condition="$(UseMoq) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Moq.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Moq" />
+	</ItemGroup>
+
+	<!-- 是否包引用 System.Net.Http.Json -->
+	<ItemGroup Condition="$(UseSystemNetHttpJson) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Net.Http.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="System.Net.Http.Json" />
+	</ItemGroup>
+
+	<!-- 是否包引用 AngleSharp -->
+	<ItemGroup Condition="$(UseAngleSharp) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.AngleSharp.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="AngleSharp" />
+	</ItemGroup>
+
+	<!-- ## PackageReference End -->
 
 </Project>

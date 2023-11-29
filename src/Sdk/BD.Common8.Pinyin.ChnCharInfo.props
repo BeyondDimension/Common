@@ -1,17 +1,19 @@
 <Project>
+	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Pinyin.props" />
 
-	<PropertyGroup>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Pinyin>true</UseCommon8Pinyin>
+	<!-- 当前项目 或 源码引用此项目 -->
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 	</PropertyGroup>
 
-	<ItemGroup>
+	<PropertyGroup>
+	</PropertyGroup>
+
+	<!-- 当前项目 或 源码引用此项目(ItemGroup) -->
+	<ItemGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\*.cs">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\AssemblyResource.resx">
 			<Link>_SourceReference\ChnCharInfo\AssemblyResource.resx</Link>
 			<LogicalName>Microsoft.International.Converters.PinYinConverter.AssemblyResource.resources</LogicalName>
@@ -38,4 +40,27 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
+	<!-- 全局 using 当前项目 -->
+	<ItemGroup>
+		<Compile Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 源码引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
+			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\obj\**" />
+	</ItemGroup>
+
+	<!-- 项目引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) != 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
 </Project>

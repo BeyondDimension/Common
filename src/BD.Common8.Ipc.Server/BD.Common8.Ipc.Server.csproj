@@ -2,7 +2,6 @@
 
 	<PropertyGroup>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">

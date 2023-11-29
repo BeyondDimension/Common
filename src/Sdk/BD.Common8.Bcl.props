@@ -1,7 +1,13 @@
 <Project>
+	<!-- 当前项目 或 源码引用此项目 -->
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<!-- i18n 资源(当前项目 或 源码引用此项目) -->
+	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
 
 	<PropertyGroup>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
 		<IsGlobalUsingsCommon8Bcl>true</IsGlobalUsingsCommon8Bcl>
 	</PropertyGroup>
@@ -37,13 +43,17 @@
 		<PackageReference Include="System.Text.Json" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
-		<PackageReference Include="Microsoft.Windows.CsWin32">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<AdditionalFiles Include="$(MSBuildThisFileDirectory)..\NativeMethods.txt" />
+	<!-- 源码引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
+			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\obj\**" />
 	</ItemGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\BD.Common8.Bcl.props" />
+	<!-- 项目引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) != 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
 </Project>

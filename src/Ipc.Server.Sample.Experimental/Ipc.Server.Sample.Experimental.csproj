@@ -16,18 +16,11 @@
 		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
-	</ItemGroup>
+	<Import Project="../Sdk/BD.Common8.Bcl.props" />
+	<Import Project="../Sdk/BD.Common8.Ipc.props" />
+	<Import Project="../Sdk/BD.Common8.Ipc.Server.props" />
+	<Import Project="../Sdk/BD.Common8.Primitives.ApiRsp.props" />
 
 </Project>

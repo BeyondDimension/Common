@@ -1,5 +1,5 @@
 <Project>
-
+	<!-- 单元测试 -->
 	<PropertyGroup>
 		<!-- 单元测试无需 AOT & Trimmable -->
 		<IsTrimmable>false</IsTrimmable>
@@ -22,5 +22,4 @@
 		<PackageReference Include="NUnit.Analyzers" />
 		<PackageReference Include="coverlet.collector" />
 	</ItemGroup>
-
 </Project>

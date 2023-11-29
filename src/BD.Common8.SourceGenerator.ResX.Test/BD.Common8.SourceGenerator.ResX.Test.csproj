@@ -29,10 +29,6 @@
 		</Compile>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Resources\" />
-	</ItemGroup>
-
 	<Import Project="..\..\res\i18n\BD.Common8.Bcl.props" />
 
 </Project>

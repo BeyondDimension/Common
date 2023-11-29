@@ -2,22 +2,12 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Essentials>true</UseCommon8Essentials>
-		<UseCommon8RepositoriesEFCore>true</UseCommon8RepositoriesEFCore>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
-		<UseAspNetCore>true</UseAspNetCore>
-		<UseEFCore>true</UseEFCore>
-		<UseMicrosoftIdentityModelTokens>true</UseMicrosoftIdentityModelTokens>
-		<UseRedis>true</UseRedis>
-		<UseNLog>true</UseNLog>
-	
-</PropertyGroup>
+	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
+
+	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

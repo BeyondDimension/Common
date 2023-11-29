@@ -1,5 +1,5 @@
 <Project>
-
+	<!-- Bcl 全局 using -->
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.MemoryPack.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -47,5 +47,4 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
-
 </Project>

@@ -1,5 +1,3 @@
-using Microsoft.International.Converters.PinYinConverter;
-
 namespace BD.Common8.Pinyin.Services.Implementation;
 
 /// <summary>

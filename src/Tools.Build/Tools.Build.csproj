@@ -4,9 +4,10 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseProjectUtils>true</UseProjectUtils>
 		<UseSystemCommandLine>true</UseSystemCommandLine>
 	</PropertyGroup>
+
+	<Import Project="../Sdk/BD.Common8.Bcl.props" />
 
 </Project>

@@ -4,11 +4,10 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Repositories.SQLitePCL\BD.Common8.Repositories.SQLitePCL.csproj" />
-	</ItemGroup>
+	<Import Project="../Sdk/BD.Common8.Bcl.props" />
+	<Import Project="../Sdk/BD.Common8.Repositories.props" />
+	<Import Project="../Sdk/BD.Common8.Repositories.SQLitePCL.props" />
 
 </Project>
