@@ -118,7 +118,8 @@ static partial class ResXHelper
 	</ItemGroup>
 	<ItemGroup Condition="$(MSBuildProjectName) != '{0}'">
 """u8, item.Key);
-            WriteItemGroupContent($@"_SourceReference\{item.Key.Replace("BD.Common8", @"Common8\").TrimEnd('\\').Replace(@"\.", @"\")}\");
+            //WriteItemGroupContent($@"_SourceReference\{item.Key.Replace("BD.Common8", @"Common8\").TrimEnd('\\').Replace(@"\.", @"\")}\");
+            WriteItemGroupContent($@"_SourceReference\{item.Key}\");
             stream.Write(
 """
 	</ItemGroup>

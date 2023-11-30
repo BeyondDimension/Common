@@ -1,23 +1,22 @@
 <Project>
 	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'">
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl_Ref) == 'code'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseMicrosoftWindowsCsWin32>true</UseMicrosoftWindowsCsWin32>
 	</PropertyGroup>
 
 	<!-- i18n 资源(当前项目 或 源码引用此项目) -->
-	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(IsSourceReference) == 'true'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
+	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl_Ref) == 'code'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
 
 	<PropertyGroup>
+		<UseSystemDrawingCommon>true</UseSystemDrawingCommon>
+		<UsePolly>true</UsePolly>
+		<UseNitoComparers>true</UseNitoComparers>
+		<UseCrc32NET>true</UseCrc32NET>
+		<UseNewtonsoftJson>true</UseNewtonsoftJson>
 		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
 		<IsGlobalUsingsCommon8Bcl>true</IsGlobalUsingsCommon8Bcl>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Nito.Comparers" />
-		<PackageReference Include="Crc32.NET" />
-		<PackageReference Include="Newtonsoft.Json" />
-		<PackageReference Include="Polly" />
-	</ItemGroup>
 
 	<!-- != .NET Framework 3.5 ~ 4.6 && != .NET Standard 1.X -->
 	<ItemGroup Condition=" (!$(TargetFramework.StartsWith('net35')) AND !$(TargetFramework.StartsWith('net40')) AND !$(TargetFramework.StartsWith('net45')) AND !$(TargetFramework.StartsWith('net451')) AND !$(TargetFramework.StartsWith('net452')) AND !$(TargetFramework.EndsWith('net46')) AND !$(TargetFramework.StartsWith('netstandard1'))) OR $(TargetFramework.StartsWith('net462')) ">
@@ -44,7 +43,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) == 'true'">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl_Ref) == 'code'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -53,7 +52,7 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(IsSourceReference) != 'true'">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl_Ref) != 'code'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
 	</ItemGroup>
 </Project>

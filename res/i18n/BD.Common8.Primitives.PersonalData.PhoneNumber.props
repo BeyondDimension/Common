@@ -35,35 +35,35 @@
 	</ItemGroup>
 	<ItemGroup Condition="$(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.PhoneNumber'">
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.resources</LogicalName>
 		</EmbeddedResource>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.en.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.en.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.en.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.en.resources</LogicalName>
 		</EmbeddedResource>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.es.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.es.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.es.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.es.resources</LogicalName>
 		</EmbeddedResource>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.it.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.it.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.it.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.it.resources</LogicalName>
 		</EmbeddedResource>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.ja.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.ja.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.ja.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.ja.resources</LogicalName>
 		</EmbeddedResource>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.ko.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.ko.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.ko.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.ko.resources</LogicalName>
 		</EmbeddedResource>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.ru.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.ru.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.ru.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.ru.resources</LogicalName>
 		</EmbeddedResource>
 		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.PersonalData.PhoneNumber.zh-Hant.resx">
-			<Link>_SourceReference\Common8\Primitives.PersonalData.PhoneNumber\Resources\Strings.zh-Hant.resx</Link>
+			<Link>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber\Resources\Strings.zh-Hant.resx</Link>
 			<LogicalName>FxResources.BD.Common8.Primitives.PersonalData.PhoneNumber.zh-Hant.resources</LogicalName>
 		</EmbeddedResource>
 	</ItemGroup>

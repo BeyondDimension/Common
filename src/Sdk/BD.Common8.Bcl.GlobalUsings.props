@@ -13,12 +13,6 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Logging.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Newtonsoft.Json.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Polly.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Buffers.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
@@ -38,9 +32,6 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Text.Json.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Drawing.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Net.Http.Client.cs">

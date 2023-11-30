@@ -26,9 +26,4 @@
 	  </ProjectReference>
 	</ItemGroup>
 
-	<Import Project="../Sdk/BD.Common8.Bcl.props" />
-	<Import Project="../Sdk/BD.Common8.Ipc.props" />
-	<Import Project="../Sdk/BD.Common8.Primitives.ApiRsp.props" />
-	<Import Project="../Sdk/BD.Common8.Ipc.Server.props" />
-
 </Project>

@@ -10,14 +10,6 @@
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
-		<PackageReference Include="Microsoft.Windows.CsWin32">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<AdditionalFiles Include="$(MSBuildThisFileDirectory)..\NativeMethods.txt" />
-	</ItemGroup>
-
 	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
 
 </Project>

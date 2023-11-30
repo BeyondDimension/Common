@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;UseProjectUtils;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;LinkResXGeneratedCodeAttribute;IsCommon8Project;UseSourceGeneratorResx;UseSourceGeneratorBcl;UseAspNetCore;UseEFCore;UseMicrosoftIdentityModelTokens;UseAvalonia;UseAvaloniaDiagnostics;UseAvaloniaSkia;UseAvaloniaWin32;UseAvaloniaX11;UseAvaloniaNative;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseFluentAvalonia;UseRedis;UseNLog;UsePolly;UseSQLitePCL;UseSystemCommandLine;UseReactiveUI;UseReactiveUIFody;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseMicrosoftExtensionsHosting;UseMicrosoftExtensionsHttp;UseAndroidXBrowser;UseFusillade;UseMoq;UseSystemNetHttpJson;UseAngleSharp;UseCommon8Bcl;UseCommon8Primitives;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesEssentials;UseCommon8PrimitivesToast;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesApiRsp;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8Essentials;UseCommon8EssentialsImplementation;UseCommon8EssentialsImplementationAvalonia;UseCommon8HttpClientFactory;UseCommon8HttpClientFactoryServer;UseCommon8Ipc;UseCommon8IpcClient;UseCommon8IpcServer;UseCommon8OrmEFCore;UseCommon8Pinyin;UseCommon8PinyinChnCharInfo;UseCommon8PinyinCoreFoundation;UseCommon8Repositories;UseCommon8RepositoriesEFCore;UseCommon8RepositoriesSQLitePCL;UseCommon8Security;UseCommon8Settings5;UseCommon8Settings5Backend;UseCommon8Settings5Frontend;UseCommon8SmsSender;UseCommon8Toast;UseCommon8UserInputModelValidator;UseCommon8Crawler;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;UseProjectUtils;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;LinkResXGeneratedCodeAttribute;IsCommon8Project;UseSourceGeneratorResx;UseSourceGeneratorBcl;UseAspNetCore;UseEFCore;UseMicrosoftIdentityModelTokens;UseAvalonia;UseAvaloniaDiagnostics;UseAvaloniaSkia;UseAvaloniaWin32;UseAvaloniaX11;UseAvaloniaNative;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseFluentAvalonia;UseRedis;UseNLog;UsePolly;UseSQLitePCL;UseSystemCommandLine;UseReactiveUI;UseReactiveUIFody;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseMicrosoftExtensionsHosting;UseMicrosoftExtensionsHttp;UseAndroidXBrowser;UseFusillade;UseMoq;UseSystemNetHttpJson;UseAngleSharp;UseSystemDrawingCommon;UseAvaloniaXmlnsDefinition;UseMicrosoftWindowsCsWin32;UseNitoComparers;UseCrc32NET;UseNewtonsoftJson;UseCommon8Bcl;UseCommon8Primitives;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesEssentials;UseCommon8PrimitivesToast;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesApiRsp;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8Essentials;UseCommon8EssentialsImplementation;UseCommon8EssentialsImplementationAvalonia;UseCommon8HttpClientFactory;UseCommon8HttpClientFactoryServer;UseCommon8Ipc;UseCommon8IpcClient;UseCommon8IpcServer;UseCommon8OrmEFCore;UseCommon8Pinyin;UseCommon8PinyinChnCharInfo;UseCommon8PinyinCoreFoundation;UseCommon8Repositories;UseCommon8RepositoriesEFCore;UseCommon8RepositoriesSQLitePCL;UseCommon8Security;UseCommon8Settings5;UseCommon8Settings5Backend;UseCommon8Settings5Frontend;UseCommon8SmsSender;UseCommon8Toast;UseCommon8UserInputModelValidator;UseCommon8Crawler;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage">
 
 	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
 
@@ -326,6 +326,49 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="AngleSharp" />
+	</ItemGroup>
+
+	<!-- 是否包引用 System.Drawing.Common -->
+	<ItemGroup Condition="$(UseSystemDrawingCommon) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Drawing.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="System.Drawing.Common" />
+	</ItemGroup>
+
+	<!-- 是否包引用 BD.Common.XmlnsDefinition.Avalonia -->
+	<ItemGroup Condition="$(UseAvaloniaXmlnsDefinition) == 'true'">
+		<PackageReference Condition="$(UseAvalonia) != 'true'" Include="BD.Common.XmlnsDefinition.Avalonia" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Microsoft.Windows.CsWin32 -->
+	<ItemGroup Condition="$(UseMicrosoftWindowsCsWin32) == 'true'">
+		<PackageReference Include="Microsoft.Windows.CsWin32">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<AdditionalFiles Include="$(MSBuildProjectDirectory)\..\NativeMethods.txt" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Nito.Comparers -->
+	<ItemGroup Condition="$(UseNitoComparers) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Nito.Comparers.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Nito.Comparers" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Crc32.NET -->
+	<ItemGroup Condition="$(UseCrc32NET) == 'true'">
+		<PackageReference Include="Crc32.NET" />
+	</ItemGroup>
+
+	<!-- 是否包引用 Newtonsoft.Json -->
+	<ItemGroup Condition="$(UseNewtonsoftJson) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Newtonsoft.Json.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="Newtonsoft.Json" />
 	</ItemGroup>
 
 	<!-- ## PackageReference End -->

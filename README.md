@@ -90,6 +90,18 @@
 	- ```System.Net.Http.Json```
   - UseAngleSharp 
 	- ```AngleSharp```
+  - UseSystemDrawingCommon
+	- ```System.Drawing.Common```
+  - UseAvaloniaXmlnsDefinition
+	- ```BD.Common.XmlnsDefinition.Avalonia```
+  - UseMicrosoftWindowsCsWin32
+	- ```Microsoft.Windows.CsWin32```
+  - UseNitoComparers
+	- ```Nito.Comparers```
+  - UseCrc32NET
+	- ```Crc32.NET```
+  - UseNewtonsoftJson
+	- ```Newtonsoft.Json```
 
 ## SharedLibrary 共享库
 
