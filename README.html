@@ -87,63 +87,214 @@
 <h2 id="sdk-参数">Sdk 参数</h2>
 <ul>
 <li>IsPackable 是否为 <code>NuGet</code> 包项目</li>
-<li>IsTestProject 是否为单元测试项目</li>
-<li>IsSourceGeneratorProject 是否为源生成器项目</li>
-<li>IsGlobalUsingsCommon8Bcl 是否全局引用命名空间 <code>BD.Common8.Bcl</code></li>
-<li>IsGlobalUsingsMSBuildProjectName 是否全局引用当前项目的命名空间，位于 <code>src\Shared\GlobalUsings.$(MSBuildProjectName).cs</code></li>
-<li>IsCommon8Project 是否为 <code>Common8</code> 仓库内的项目，将决定项目引用还是包引用</li>
-<li>UseCommon8Bcl 是否引用 <code>BD.Common8.Bcl</code> 类库</li>
-<li>UseAspNetCore 是否引用 <code>ASP.NET Core</code> 框架</li>
-<li>UseEFCore 是否引用 <code>EF Core</code> 框架</li>
-<li>UseProjectUtils 是否引用 <code>src\Shared\ProjectUtils.cs</code></li>
-<li>UseSourceGeneratorResx 是否引用 <code>Resx</code> 的源生成器</li>
-<li>UseMicrosoftIdentityModelTokens 是否引用包 <code>Microsoft.IdentityModel.Tokens</code></li>
-<li>UseAvalonia 是否引用包 <code>Avalonia</code></li>
-<li>LinkResXGeneratedCodeAttribute 是否引用源码 <code>src\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs</code></li>
-<li>UseRedis 是否引用包 <code>Redis</code></li>
-<li>UseNLog 是否引用包 <code>NLog</code></li>
-<li>UseCommon8Essentials 是否引用类库 <code>BD.Common8.Essentials</code></li>
-<li>UseCommon8Repositories 是否引用类库 <code>BD.Common8.Repositories</code></li>
-<li>UseCommon8OrmEFCore 是否引用类库 <code>BD.Common8.Orm.EFCore</code></li>
-<li>UseCommon8RepositoriesEFCore 是否引用类库 <code>BD.Common8.Repositories.EFCore</code></li>
-<li>UseCommon8Primitives 是否引用类库 <code>BD.Common8.Primitives</code></li>
-<li>UseCommon8AspNetCore 是否引用类库 <code>BD.Common8.AspNetCore</code></li>
-<li>UseCommon8AspNetCoreIdentity 是否引用类库 <code>BD.Common8.AspNetCore.Identity</code></li>
-<li>UseCommon8AspNetCoreIdentityBackManage 是否引用类库 <code>BD.Common8.AspNetCore.Identity.BackManage</code></li>
-<li>UseCommon8PrimitivesApiResponse 是否引用类库 <code>BD.Common8.Primitives.ApiResponse</code></li>
-<li>UseCommon8PrimitivesPersonalDataPhoneNumber 是否引用类库 <code>BD.Common8.Primitives.PersonalData.PhoneNumber</code></li>
-<li>UseCommon8PrimitivesPersonalDataBirthDate 是否引用类库 <code>BD.Common8.Primitives.PersonalData.BirthDate</code></li>
-<li>UseCommon8PrimitivesDistrict 是否引用类库 <code>BD.Common8.Primitives.District</code></li>
-<li>UseCommon8PrimitivesApiRsp 是否引用类库 <code>BD.Common8.Primitives.ApiRsp</code></li>
-<li>UseSQLitePCL 是否引用包 <code>sqlite-net-pcl</code> <code>Polly</code> <code>SQLitePCLRaw.bundle_green</code></li>
-<li>UseCommon8Security 是否引用类库 <code>BD.Common8.Security</code></li>
-<li>UseSystemCommandLine 是否引用包 <code>System.CommandLine</code></li>
-<li>UseCommon8HttpClientFactory 是否引用类库 <code>BD.Common8.Http.ClientFactory</code></li>
-<li>UseCommon8Crawler 是否引用类库 <code>BD.Common8.Crawler</code></li>
-<li>UseReactiveUI 是否引用包 <code>ReactiveUI</code> 框架</li>
-<li>UseReactiveUIFody 是否引用包 <code>ReactiveUI.Fody</code></li>
-<li>UseFluentAvalonia 是否引用包 <code>FluentAvaloniaUI</code></li>
-<li>UseSourceGeneratorBcl 是否引用类库 <code>BD.Common8.SourceGenerator.Bcl</code></li>
-<li>UseMicrosoftExtensionsOptions 是否引用包 <code>Microsoft.Extensions.Options</code></li>
-<li>UseMicrosoftExtensionsFileProviders 是否引用源码 <code>Shared\GlobalUsings.Microsoft.Extensions.FileProviders.cs</code></li>
-<li>UseMicrosoftExtensionsPrimitives 是否引用源码 <code>Shared\GlobalUsings.Microsoft.Extensions.Primitives.cs</code></li>
-<li>UseAvaloniaReactiveUI 是否引用包 <code>Avalonia.ReactiveUI</code></li>
-<li>UseAvaloniaXamlInteractivity 是否引用包 <code>Avalonia.Xaml.Behaviors</code></li>
-<li>UseCommon8Toast 是否引用类库 <code>BD.Common8.Toast</code></li>
-<li>UseCommon8RepositoriesSQLitePCL 是否引用类库 <code>BD.Common8.Repositories.SQLitePCL</code></li>
-<li>UseAndroidXBrowser 是否引用包 <code>Xamarin.AndroidX.Browser</code> 目标框架为 android 时</li>
-<li>UseCommon8EssentialsImplementation 是否引用类库 <code>BD.Common8.Essentials.Implementation</code></li>
-<li>UseFusillade 是否引用包 <code>fusillade</code></li>
-<li>UseSystemNetHttpJson 是否引用包 <code>System.Net.Http.Json</code></li>
-<li>UseCommon8Ipc 是否引用类库 <code>BD.Common8.Ipc</code></li>
-<li>UseCommon8Pinyin 是否引用类库 <code>BD.Common8.Pinyin</code></li>
-<li>UseAngleSharp 是否引用包 <code>AngleSharp</code></li>
-<li>UseCommon8Settings5 是否引用类库 <code>BD.Common8.Settings5</code></li>
-<li>UseCommon8Settings5Frontend 是否引用类库 <code>BD.Common8.Settings5.Frontend</code></li>
-<li>UseCommon8Settings5Backend 是否引用类库 <code>BD.Common8.Settings5.Backend</code></li>
-<li>UseMicrosoftExtensionsConfiguration 是否引用包 <code>Microsoft.Extensions.Configuration</code></li>
-<li>UseMicrosoftExtensionsConfigurationJson 是否引用包 <code>Microsoft.Extensions.Configuration.Json</code></li>
-<li>UseMicrosoftExtensionsOptionsConfigurationExtensions 是否引用包 <code>Microsoft.Extensions.Options.ConfigurationExtensions</code></li>
+<li>IsTestProject 是否为<code>单元测试</code>项目</li>
+<li>IsSourceGeneratorProject 是否为<code>源生成器</code>项目</li>
+<li>SourceReference 是否<code>源码引用</code> Compile Link
+<ul>
+<li>IsGlobalUsingsCommon8Bcl <code>基础类库全局 using</code>
+<ul>
+<li>Properties\GlobalUsings.???.cs</li>
+</ul>
+</li>
+<li>UseProjectUtils
+<ul>
+<li><code>static class ProjectUtils</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsFileProviders
+<ul>
+<li><code>GlobalUsings.Microsoft.Extensions.FileProviders.cs</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsPrimitives
+<ul>
+<li><code>GlobalUsings.Microsoft.Extensions.Primitives.cs</code></li>
+</ul>
+</li>
+<li>LinkResXGeneratedCodeAttribute
+<ul>
+<li><code>ResXGeneratedCodeAttribute.cs</code></li>
+</ul>
+</li>
+<li>IsCommon8Project
+<ul>
+<li><code>InternalsVisibleTo.BD.Common8.UnitTest.cs</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>引用源生成器
+<ul>
+<li>UseSourceGeneratorResx <code>Resx</code></li>
+<li>UseSourceGeneratorBcl <code>Bcl</code></li>
+</ul>
+</li>
+<li>FrameworkReference 框架引用
+<ul>
+<li>UseAspNetCore <code>ASP.NET Core</code></li>
+</ul>
+</li>
+<li>PackageReference 包引用
+<ul>
+<li>UseEFCore
+<ul>
+<li><code>EF Core</code></li>
+</ul>
+</li>
+<li>UseMicrosoftIdentityModelTokens
+<ul>
+<li><code>Microsoft.IdentityModel.Tokens</code></li>
+</ul>
+</li>
+<li>UseAvalonia
+<ul>
+<li><code>Avalonia</code></li>
+</ul>
+</li>
+<li>UseAvaloniaDiagnostics
+<ul>
+<li><code>Avalonia.Diagnostics</code></li>
+</ul>
+</li>
+<li>UseAvaloniaSkia
+<ul>
+<li><code>Avalonia.Skia</code></li>
+</ul>
+</li>
+<li>UseAvaloniaWin32
+<ul>
+<li><code>Avalonia.Win32</code></li>
+</ul>
+</li>
+<li>UseAvaloniaX11
+<ul>
+<li><code>Avalonia.X11</code></li>
+</ul>
+</li>
+<li>UseAvaloniaNative
+<ul>
+<li><code>Avalonia.Native</code></li>
+</ul>
+</li>
+<li>UseAvaloniaReactiveUI
+<ul>
+<li><code>Avalonia.ReactiveUI</code></li>
+</ul>
+</li>
+<li>UseAvaloniaXamlInteractivity
+<ul>
+<li><code>Avalonia.Xaml.Behaviors</code></li>
+</ul>
+</li>
+<li>UseAvaloniaControlsDataGrid
+<ul>
+<li><code>Avalonia.Controls.DataGrid</code></li>
+</ul>
+</li>
+<li>UseAvaloniaControlsLiveCharts
+<ul>
+<li><code>LiveChartsCore.SkiaSharpView.Avalonia</code></li>
+</ul>
+</li>
+<li>UseFluentAvalonia
+<ul>
+<li><code>FluentAvaloniaUI</code></li>
+</ul>
+</li>
+<li>UseRedis
+<ul>
+<li><code>StackExchange.Redis</code></li>
+<li><code>Microsoft.Extensions.Caching.StackExchangeRedis</code></li>
+</ul>
+</li>
+<li>UseNLog
+<ul>
+<li><code>NLog</code></li>
+</ul>
+</li>
+<li>UsePolly
+<ul>
+<li><code>Polly</code></li>
+</ul>
+</li>
+<li>UseSQLitePCL
+<ul>
+<li><code>sqlite-net-pcl</code></li>
+<li><code>SQLitePCLRaw.bundle_green</code></li>
+</ul>
+</li>
+<li>UseSystemCommandLine
+<ul>
+<li><code>System.CommandLine</code></li>
+</ul>
+</li>
+<li>UseReactiveUI
+<ul>
+<li><code>ReactiveUI</code></li>
+</ul>
+</li>
+<li>UseReactiveUIFody
+<ul>
+<li><code>ReactiveUI.Fody</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsConfiguration
+<ul>
+<li><code>Microsoft.Extensions.Configuration</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsConfigurationJson
+<ul>
+<li><code>Microsoft.Extensions.Configuration.Json</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsOptions
+<ul>
+<li><code>Microsoft.Extensions.Options</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsOptionsConfigurationExtensions
+<ul>
+<li><code>Microsoft.Extensions.Options.ConfigurationExtensions</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsHosting
+<ul>
+<li><code>Microsoft.Extensions.Hosting</code></li>
+</ul>
+</li>
+<li>UseMicrosoftExtensionsHttp
+<ul>
+<li><code>Microsoft.Extensions.Http</code></li>
+</ul>
+</li>
+<li>UseAndroidXBrowser
+<ul>
+<li><code>Xamarin.AndroidX.Browser</code></li>
+</ul>
+</li>
+<li>UseFusillade
+<ul>
+<li><code>fusillade</code></li>
+</ul>
+</li>
+<li>UseMoq
+<ul>
+<li><code>Moq</code></li>
+</ul>
+</li>
+<li>UseSystemNetHttpJson
+<ul>
+<li><code>System.Net.Http.Json</code></li>
+</ul>
+</li>
+<li>UseAngleSharp
+<ul>
+<li><code>AngleSharp</code></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="sharedlibrary-共享库">SharedLibrary 共享库</h2>
 <h3 id="bdcommon8bcl">BD.Common8.Bcl</h3>

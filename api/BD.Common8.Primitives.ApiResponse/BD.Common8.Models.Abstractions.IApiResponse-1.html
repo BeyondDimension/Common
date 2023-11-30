@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IApiResponse&lt;T&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IApiResponse&lt;T&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.Common8.Models.Abstractions.IApiResponse`1">
+
+
+
+  <h1 id="BD_Common8_Models_Abstractions_IApiResponse_1" data-uid="BD.Common8.Models.Abstractions.IApiResponse`1" class="text-break">
+    Interface IApiResponse&lt;T&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiResponse/Models/Abstractions/IApiResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Models.html">Models</a>.<a class="xref" href="BD.Common8.Models.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Primitives.ApiResponse.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Api 返回接口 (BackManage 后台管理)，带附加内容</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IApiResponse&lt;out T&gt; : IApiResponse, IApiRsp&lt;T&gt;, IApiRsp</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.Models.Abstractions.IApiResponse.html#BD_Common8_Models_Abstractions_IApiResponse_IsSuccess">IApiResponse.IsSuccess</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Models.Abstractions.IApiResponse.html#BD_Common8_Models_Abstractions_IApiResponse_Messages">IApiResponse.Messages</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.IApiRsp-1.html#BD_Common8_Models_Abstractions_IApiRsp_1_Content">IApiRsp&lt;T&gt;.Content</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.IApiRsp.html#BD_Common8_Models_Abstractions_IApiRsp_Code">IApiRsp.Code</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.IApiRsp.html#BD_Common8_Models_Abstractions_IApiRsp_Message">IApiRsp.Message</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="BD.Common8.Extensions.ApiResponseExtensions.html#BD_Common8_Extensions_ApiResponseExtensions_GetMessages_BD_Common8_Models_Abstractions_IApiResponse_">ApiResponseExtensions.GetMessages(IApiResponse)</a>
+  </div>
+  <div>
+      <a class="xref" href="BD.Common8.Extensions.ApiResponseExtensions.html#BD_Common8_Extensions_ApiResponseExtensions_SetMessages_BD_Common8_Models_Abstractions_IApiResponse_System_String___">ApiResponseExtensions.SetMessages(IApiResponse, params string[])</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Models_Abstractions_IApiResponse_1_Data_" data-uid="BD.Common8.Models.Abstractions.IApiResponse`1.Data*"></a>
+
+  <h3 id="BD_Common8_Models_Abstractions_IApiResponse_1_Data" data-uid="BD.Common8.Models.Abstractions.IApiResponse`1.Data">
+  Data
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiResponse/Models/Abstractions/IApiResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>主数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T? Data { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiResponse/Models/Abstractions/IApiResponse.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

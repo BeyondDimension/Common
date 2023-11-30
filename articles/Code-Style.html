@@ -171,7 +171,7 @@ Enums 中枚举名称不用 E 开头， 某些第三方库会像接口用 I 开�
 枚举使用值枚举+扩展函数，不推荐使用自定义类作为枚举，值枚举性能优先<br>
 枚举类型不是很多的情况下，指定继承 byte 可节约一些内存， 抠一点性能优化 例如 public enum X : byte</p>
 <h4 id="模型层视图模型层规范-primitivesmodelsprimitivesviewmodels">模型层/视图模型层规范 Primitives.Models/Primitives.ViewModels</h4>
-<p>XXX.Primitives.Models 存放模型类， XXX.Primitives.ViewModels 通常仅 Link 模型类，通过 DefineConstants 定义符号 MVVM_VM 配合 #if 标注一些在客户端 MVVM 上使用的内容<br>
+<p>XXX.Models 存放模型类， XXX.ViewModels 通常仅 Link 模型类，通过 DefineConstants 定义符号 MVVM_VM 配合 #if 标注一些在客户端 MVVM 上使用的内容<br>
 通常表实体映射成 DTO，对应的类名在末尾加上 DTO，例如 User 表实体，与 UserDTO<br>
 就 DTO 字段不用写注释，类型名上自己查表类型看字段的注释了，遵循这个约定就好了<br>
 用于 API 的 Request Body 模型在名称末尾加上 Request，例如 LoginOrRegisterRequest<br>

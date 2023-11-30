@@ -5210,80 +5210,80 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Extensions.ApiResponseExtensions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Extensions.ApiResponseExtensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Extensions.ApiResponseExtensions.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Extensions.ApiResponseExtensions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Extensions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Extensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Extensions.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Extensions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.Abstractions.IApiResponse-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.Abstractions.IApiResponse-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.Abstractions.IApiResponse-1.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.Abstractions.IApiResponse-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.Abstractions.IApiResponse.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.Abstractions.IApiResponse.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.Abstractions.IApiResponse.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.Abstractions.IApiResponse.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.Abstractions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.Abstractions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.Abstractions.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.Abstractions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.ApiResponse-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.ApiResponse-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.ApiResponse-1.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.ApiResponse-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.ApiResponse.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.ApiResponse.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.ApiResponse.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.ApiResponse.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.Models.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.html"
         }
       },
       "version": ""
@@ -5303,150 +5303,150 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Enums.ApiRspCode.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Enums.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Enums.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Extensions.ApiRspExtensions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Extensions.ApiRspExtensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Extensions.ApiRspExtensions.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Extensions.ApiRspExtensions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Extensions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Extensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Extensions.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Extensions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.ApiRspHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Helpers.ApiRspHelper.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.ApiRspHelper.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Helpers.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Helpers.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.IApiRsp-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp-1.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.IApiRsp-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.IApiRsp.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.IApiRsp.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.IApiRsp.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals.ApiRspBase.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.ApiRspBase.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals.ApiRspBase.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.ApiRspBase.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals.IApiRspBase.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.IApiRspBase.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals.IApiRspBase.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.IApiRspBase.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.Abstractions.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.ApiRspImpl-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl-1.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.ApiRspImpl-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.ApiRspImpl.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.ApiRspImpl.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.ApiRspImpl.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.Models.html"
+          "relative_path": "api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.html"
         }
       },
       "version": ""
@@ -5466,60 +5466,60 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Enums.DistrictLevel.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Enums.DistrictLevel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Enums.DistrictLevel.html"
+          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Enums.DistrictLevel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Enums.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Enums.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Enums.html"
+          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Enums.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.Abstractions.IDistrict.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.Abstractions.IDistrict.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.Abstractions.IDistrict.html"
+          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.Abstractions.IDistrict.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.Abstractions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.Abstractions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.Abstractions.html"
+          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.Abstractions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.District.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.District.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.District.html"
+          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.District.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Primitives.District.Models.html"
+          "relative_path": "api/BD.Common8.Primitives.District/BD.Common8.Models.html"
         }
       },
       "version": ""
@@ -5539,60 +5539,60 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.IBirthDate.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.IBirthDate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.IBirthDate.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.IBirthDate.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.IBirthDateTimeZone.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.IBirthDateTimeZone.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.IBirthDateTimeZone.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.IBirthDateTimeZone.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.IReadOnlyBirthDate.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.IReadOnlyBirthDate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.IReadOnlyBirthDate.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.IReadOnlyBirthDate.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Columns.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Helpers.BirthDateHelper.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Helpers.BirthDateHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Helpers.BirthDateHelper.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Helpers.BirthDateHelper.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Helpers.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Helpers.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.Helpers.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Helpers.html"
         }
       },
       "version": ""
@@ -5612,50 +5612,50 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Columns.IPhoneNumber.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Columns.IPhoneNumber.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Columns.IPhoneNumber.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Columns.IPhoneNumber.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Columns.IReadOnlyPhoneNumber.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Columns.IReadOnlyPhoneNumber.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Columns.IReadOnlyPhoneNumber.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Columns.IReadOnlyPhoneNumber.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Columns.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Columns.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Columns.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Columns.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Helpers.PhoneNumberHelper.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Helpers.PhoneNumberHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Helpers.PhoneNumberHelper.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Helpers.PhoneNumberHelper.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Helpers.yml",
+      "source_relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Helpers.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.Helpers.html"
+          "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Helpers.html"
         }
       },
       "version": ""
@@ -5675,540 +5675,540 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IAvatar.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IAvatar.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IAvatar.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IAvatar.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ICreateUserId.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ICreateUserId.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ICreateUserId.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ICreateUserId.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ICreateUserIdNullable.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ICreateUserIdNullable.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ICreateUserIdNullable.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ICreateUserIdNullable.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ICreationTime.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ICreationTime.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ICreationTime.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ICreationTime.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDescribe.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDescribe.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDescribe.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDescribe.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDisable.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDisable.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDisable.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDisable.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDisableKeyModel-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDisableKeyModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDisableKeyModel-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDisableKeyModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDisableReason.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDisableReason.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IDisableReason.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IDisableReason.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IGender.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IGender.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IGender.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IGender.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IIsTop.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IIsTop.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IIsTop.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IIsTop.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.INickName.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.INickName.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.INickName.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.INickName.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IOperatorUserId.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IOperatorUserId.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IOperatorUserId.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IOperatorUserId.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IOrder.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IOrder.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IOrder.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IOrder.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IPAddress.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IPAddress.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IPAddress.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IPAddress.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IPassword.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IPassword.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IPassword.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IPassword.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlyAvatar.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlyAvatar.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlyAvatar.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlyAvatar.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlyGender.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlyGender.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlyGender.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlyGender.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlyNickName.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlyNickName.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlyNickName.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlyNickName.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlySmsCode.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlySmsCode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IReadOnlySmsCode.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IReadOnlySmsCode.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IRemarks.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IRemarks.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IRemarks.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IRemarks.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IResult-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IResult-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IResult-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IResult-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISmsCode.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ISmsCode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISmsCode.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ISmsCode.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISoftDeleted.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ISoftDeleted.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ISoftDeleted.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ISoftDeleted.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ITenant.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ITenant.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ITenant.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ITenant.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ITitle.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ITitle.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.ITitle.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.ITitle.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IUpdateTime.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IUpdateTime.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.IUpdateTime.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.IUpdateTime.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.MaxLengths.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.MaxLengths.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.MaxLengths.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.MaxLengths.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Columns.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Columns.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.Entity-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.Entity-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.Entity-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.Entity-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.IEntity-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.IEntity-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.IEntity-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.IEntity-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.IEntity.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.IEntity.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.IEntity.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.IEntity.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Entities.Abstractions.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Enums.Gender.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Enums.Gender.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Enums.Gender.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Enums.Gender.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Enums.NotificationImportanceLevel.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Enums.NotificationImportanceLevel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Enums.NotificationImportanceLevel.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Enums.NotificationImportanceLevel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Enums.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Enums.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Enums.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Enums.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Extensions.ExplicitHasValueExtensions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Extensions.ExplicitHasValueExtensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Extensions.ExplicitHasValueExtensions.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Extensions.ExplicitHasValueExtensions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Extensions.GenderEnumExtensions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Extensions.GenderEnumExtensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Extensions.GenderEnumExtensions.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Extensions.GenderEnumExtensions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Extensions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Extensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Extensions.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Extensions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IExplicitHasValue.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IExplicitHasValue.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IExplicitHasValue.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IExplicitHasValue.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IJsonModel.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IJsonModel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IJsonModel.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IJsonModel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IKeyModel-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IKeyModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IKeyModel-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IKeyModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IPagedModel-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IPagedModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IPagedModel-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IPagedModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IPagedModel.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IPagedModel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IPagedModel.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IPagedModel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IReadOnlyPagedModel-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IReadOnlyPagedModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.IReadOnlyPagedModel-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.IReadOnlyPagedModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.JsonModel-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.JsonModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.JsonModel-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.JsonModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.JsonModel.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.JsonModel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.JsonModel.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.JsonModel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.KeyModel-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.KeyModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.KeyModel-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.KeyModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.Abstractions.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.Abstractions.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.JWTEntity.QueryString.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.JWTEntity.QueryString.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.JWTEntity.QueryString.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.JWTEntity.QueryString.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.JWTEntity.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.JWTEntity.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.JWTEntity.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.JWTEntity.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.PagedModel-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.PagedModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.PagedModel-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.PagedModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.SelectItemDTO-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.SelectItemDTO-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.SelectItemDTO.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.SelectItemDTO.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Primitives.Models.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.html"
         }
       },
       "version": ""
