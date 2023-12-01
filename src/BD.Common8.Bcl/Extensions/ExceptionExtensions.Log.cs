@@ -21,7 +21,7 @@ public static partial class ExceptionExtensions
         string? message = null,
         params object?[] args) => LogAndShowCore(e, show, tag, logger: null, level, memberName, message, args);
 
-    /// <inheritdoc cref="LogAndShow(Exception?, Action{string}?, string, LogLevel, string, string?, object?[])"/>
+    /// <inheritdoc cref="LogAndShow(Exception?, Action{string}?, ILogger?, LogLevel, string, string?, object?[])"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void LogAndShow(Exception? e,
         Action<string>? show,
