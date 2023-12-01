@@ -3,8 +3,6 @@
 	<PropertyGroup>
 		<RootNamespace>BD.Common8.Essentials</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
-		<!-- 将 UseXYZ 定义在 Sdk\$(MSBuildProjectName).props 上 -->
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">

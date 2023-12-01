@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Models;
+namespace BD.Common8.Models;
 
 /// <summary>
 /// JWT 值

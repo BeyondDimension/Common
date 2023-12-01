@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Models.Abstractions;
+namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
 /// 带有主键的键模型抽象类，实现了<see cref="IKeyModel{TPrimaryKey}"/> 接口

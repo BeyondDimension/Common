@@ -1,0 +1,47 @@
+<Project>
+	<!-- 褰撳墠椤圭洰 鎴?婧愮爜寮曠敤姝ら」鐩?-->
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8AspNetCore_Ref) == 'code'">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseCommon8PrimitivesEssentials>true</UseCommon8PrimitivesEssentials>
+		<UseCommon8OrmEFCore>true</UseCommon8OrmEFCore>
+		<UseCommon8RepositoriesEFCore>true</UseCommon8RepositoriesEFCore>
+	</PropertyGroup>
+	
+	
+	<PropertyGroup>
+		<UseAspNetCore>true</UseAspNetCore>
+		<UseEFCore>true</UseEFCore>
+		<UseMicrosoftIdentityModelTokens>true</UseMicrosoftIdentityModelTokens>
+		<UseRedis>true</UseRedis>
+		<UseNLog>true</UseNLog>
+	</PropertyGroup>
+
+	<!-- 鍏ㄥ眬 using 褰撳墠椤圭洰 -->
+	<ItemGroup>
+		<Compile Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 婧愮爜寮曠敤姝ら」鐩?-->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore_Ref) == 'code'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
+			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\obj\**" />
+	</ItemGroup>
+
+	<!-- 椤圭洰寮曠敤姝ら」鐩?-->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore_Ref) != 'code' AND $(IsSourceReference) != 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+</Project>

@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Toast.Enums;
+namespace BD.Common8.Enums;
 
 /// <summary>
 /// Toast 显示的图标

@@ -1,10 +1,38 @@
 <Project>
-
-	<PropertyGroup>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
+	<!-- 当前项目 或 源码引用此项目 -->
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8PrimitivesPersonalDataBirthDate_Ref) == 'code'">
 	</PropertyGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\BD.Common8.Primitives.PersonalData.BirthDate.props" />
+	<!-- i18n 资源(当前项目 或 源码引用此项目) -->
+	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8PrimitivesPersonalDataBirthDate_Ref) == 'code'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
+
+	<PropertyGroup>
+		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+	</PropertyGroup>
+
+	<!-- 全局 using 当前项目 -->
+	<ItemGroup>
+		<Compile Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 源码引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PrimitivesPersonalDataBirthDate_Ref) == 'code'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
+			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\obj\**" />
+	</ItemGroup>
+
+	<!-- 项目引用此项目 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PrimitivesPersonalDataBirthDate_Ref) != 'code' AND $(IsSourceReference) != 'true'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
 
 </Project>

@@ -71,7 +71,7 @@ public sealed class ConstantsByPathTemplate :
         var dirPath = Path.GetFullPath(
             Path.Combine(
                 [Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath),
-                ..
+                    ..
                 args.attr.RelativePath.Split('\\')]));
 
         SourceModel model = new()

@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiRsp.Models;
+namespace BD.Common8.Models;
 
 /// <summary>
 /// <see cref="IApiRsp"/> 的默认实现类

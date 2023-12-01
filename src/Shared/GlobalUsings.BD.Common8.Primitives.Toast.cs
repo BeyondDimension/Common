@@ -5,4 +5,5 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Primitives.Toast.Enums;
+global using BD.Common8.Enums;
+global using ToastLength = BD.Common8.Enums.ToastLength;

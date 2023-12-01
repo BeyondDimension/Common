@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Columns;
+namespace BD.Common8.Columns;
 
 /// <summary>
 /// 表示一个带有禁用状态和主键的模型的接口

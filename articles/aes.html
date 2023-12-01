@@ -29,11 +29,7 @@
       <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -85,7 +81,7 @@
         <article data-uid="">
 
 <style>
-    html, body, textarea, button {
+     textarea, button {
         background-color: #141414;
         color: #ffffffd9;
     }
@@ -440,12 +436,13 @@
     </main>
 
 
-    <footer class="border-top">
-      <div class="container-xxl">
-        <div class="flex-fill">
-          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+    <footer class="border-top text-secondary">
+        <div class="container-xxl">
+          <div class="flex-fill">
+            ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+          </div>
         </div>
-      </div>
-    </footer>
-  </body>
-</html>
+      </footer>
+    </body>
+  </html>
+  

@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Essentials.Enums;
+namespace BD.Common8.Enums;
 
 /// <summary>
 /// 应用程序正在运行的设备平台。

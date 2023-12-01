@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Columns;
+namespace BD.Common8.Columns;
 
 /// <summary>
 /// 创建时间

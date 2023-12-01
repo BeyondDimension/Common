@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Essentials.Enums;
+namespace BD.Common8.Enums;
 
 /// <summary>
 /// 电子邮件正文格式

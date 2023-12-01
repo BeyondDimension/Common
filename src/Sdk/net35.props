@@ -1,0 +1,12 @@
+<Project>
+	<!-- .NET Framework 3.5 SDK 兼容 -->
+	<PropertyGroup>
+		<!-- ImplicitUsings 自动引入的命名空间包含不存在的命名空间 -->
+		<ImplicitUsings>false</ImplicitUsings>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.net35.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

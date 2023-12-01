@@ -1,11 +1,13 @@
 using Force.Crc32;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Security.Cryptography;
 
 partial class Hashs
 {
+    /// <summary>
+    /// 创建一个 Crc32 算法实例
+    /// </summary>
+    /// <returns><see cref="Crc32Algorithm"/> 实例</returns>
     static Crc32Algorithm CreateCrc32()
     {
         return new Crc32Algorithm();
@@ -15,6 +17,9 @@ partial class Hashs
     {
         partial class Lengths
         {
+            /// <summary>
+            /// Crc32 算法的哈希长度
+            /// </summary>
             public const int Crc32 = 8;
         }
 
@@ -58,26 +63,26 @@ partial class Hashs
     partial class ByteArray
     {
         /// <summary>
-        /// 计算 Crc32 值
+        /// 计算字节数组的 Crc32 哈希值并返回哈希结果
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
+        /// <param name="buffer">要计算哈希值的字节数组</param>
+        /// <returns>计算得到的 MD5 哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] Crc32(byte[] buffer) => ComputeHash(buffer, CreateCrc32());
 
         /// <summary>
-        /// 计算 Crc32 值
+        /// 计算只读字节数组的 Crc32 哈希值并返回哈希结果
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
+        /// <param name="buffer">要计算哈希值的字节数组的只读跨度</param>
+        /// <returns>计算得到的哈希结果的字节数组</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] Crc32(ReadOnlySpan<byte> buffer) => ComputeHash(buffer.ToArray(), CreateCrc32());
 
         /// <summary>
-        /// 计算 Crc32 值
+        /// 计算流的 Crc32 哈希值并返回哈希结果
         /// </summary>
-        /// <param name="inputStream"></param>
-        /// <returns></returns>
+        /// <param name="inputStream">要计算哈希值的流</param>
+        /// <returns>计算得到的 MD5 哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] Crc32(Stream inputStream) => ComputeHash(inputStream, CreateCrc32());
     }

@@ -1,5 +1,5 @@
 <Project>
-
+	<!-- Bcl 全局 using -->
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.MemoryPack.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
@@ -11,12 +11,6 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Logging.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Newtonsoft.Json.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Polly.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Buffers.cs">
@@ -40,12 +34,8 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Text.Json.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Drawing.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Net.Http.Client.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
-
 </Project>

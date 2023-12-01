@@ -1,11 +1,11 @@
+using BD.Common8.SourceGenerator.Bcl.Test;
+
 #pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable IDE1006 // 命名样式
 
 // https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/generators/observableproperty
 
-using BD.Common8.SourceGenerator.Bcl.Test;
-
-Console.WriteLine(typeof(TodoService).FullName);
+//Console.WriteLine(typeof(TodoService).FullName);
 
 var s1 = TodoService.Current;
 var s2 = TodoService.Current;

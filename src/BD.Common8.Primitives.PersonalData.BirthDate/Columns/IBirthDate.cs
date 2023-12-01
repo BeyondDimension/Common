@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.PersonalData.BirthDate.Columns;
+namespace BD.Common8.Columns;
 
 /// <summary>
 /// 生日/出生日期

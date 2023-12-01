@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiRsp.Models.Abstractions.Internals;
+namespace BD.Common8.Models.Abstractions.Internals;
 
 /// <summary>
 /// Api 返回基类接口

@@ -82,7 +82,7 @@ Enums 中枚举名称不用 E 开头， 某些第三方库会像接口用 I 开�
 枚举类型不是很多的情况下，指定继承 byte 可节约一些内存， 抠一点性能优化 例如 public enum X : byte  
 
 #### 模型层/视图模型层规范 Primitives.Models/Primitives.ViewModels 
-XXX.Primitives.Models 存放模型类， XXX.Primitives.ViewModels 通常仅 Link 模型类，通过 DefineConstants 定义符号 MVVM_VM 配合 #if 标注一些在客户端 MVVM 上使用的内容  
+XXX.Models 存放模型类， XXX.ViewModels 通常仅 Link 模型类，通过 DefineConstants 定义符号 MVVM_VM 配合 #if 标注一些在客户端 MVVM 上使用的内容  
 通常表实体映射成 DTO，对应的类名在末尾加上 DTO，例如 User 表实体，与 UserDTO  
 就 DTO 字段不用写注释，类型名上自己查表类型看字段的注释了，遵循这个约定就好了  
 用于 API 的 Request Body 模型在名称末尾加上 Request，例如 LoginOrRegisterRequest  

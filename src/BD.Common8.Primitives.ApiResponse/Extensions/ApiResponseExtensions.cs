@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.ApiResponse.Extensions;
+namespace BD.Common8.Extensions;
 
 public static partial class ApiResponseExtensions
 {

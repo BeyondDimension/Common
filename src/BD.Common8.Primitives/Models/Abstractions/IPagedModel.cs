@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Models.Abstractions;
+namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
 /// 分页模型

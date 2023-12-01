@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Essentials.Enums;
+namespace BD.Common8.Enums;
 
 /// <summary>
 /// 设备种类，例如手机，平板，电视，手表

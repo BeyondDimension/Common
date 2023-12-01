@@ -10,29 +10,39 @@
 #pragma warning disable IDE0005 // 删除不必要的 using 指令
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Runtime.Versioning;
 
 /// <summary>
-/// A strict SemVer implementation
+/// 严格的 SemVer 实现
 /// </summary>
 public partial class SemanticVersion
 {
+    /// <summary>
+    /// 发布标签集合
+    /// </summary>
     protected readonly IEnumerable<string>? _releaseLabels;
+
+    /// <summary>
+    /// 用于描述版本的附加信息
+    /// </summary>
     protected readonly string? _metadata;
+
+    /// <summary>
+    /// 表示版本号的 <see cref="Version"/> 对象
+    /// </summary>
     protected readonly Version _version;
 
     /// <summary>
-    /// Creates a SemanticVersion from an existing SemanticVersion
+    /// 初始化 <see cref="SemanticVersion"/> 类的新实例
     /// </summary>
+    /// <param name="version"></param>
     public SemanticVersion(SemanticVersion version)
         : this(version.Major, version.Minor, version.Patch, version.ReleaseLabels, version.Metadata)
     {
     }
 
     /// <summary>
-    /// Creates a SemanticVersion X.Y.Z
+    /// 创建语义版本 X.Y.Z
     /// </summary>
     /// <param name="major">X.y.z</param>
     /// <param name="minor">x.Y.z</param>
@@ -43,58 +53,88 @@ public partial class SemanticVersion
     }
 
     /// <summary>
-    /// Creates a NuGetVersion X.Y.Z-alpha
+    /// 创建 NuGetVersion X.Y.Z-alpha
     /// </summary>
     /// <param name="major">X.y.z</param>
     /// <param name="minor">x.Y.z</param>
     /// <param name="patch">x.y.Z</param>
-    /// <param name="releaseLabel">Prerelease label</param>
+    /// <param name="releaseLabel">预发布标签</param>
     public SemanticVersion(int major, int minor, int patch, string? releaseLabel)
         : this(major, minor, patch, ParseReleaseLabels(releaseLabel), null)
     {
     }
 
     /// <summary>
-    /// Creates a NuGetVersion X.Y.Z-alpha#build01
+    /// 创建 NuGetVersion X.Y.Z-alpha#build01
     /// </summary>
     /// <param name="major">X.y.z</param>
     /// <param name="minor">x.Y.z</param>
     /// <param name="patch">x.y.Z</param>
-    /// <param name="releaseLabel">Prerelease label</param>
-    /// <param name="metadata">Build metadata</param>
+    /// <param name="releaseLabel">预发布标签</param>
+    /// <param name="metadata">生成元数据</param>
     public SemanticVersion(int major, int minor, int patch, string? releaseLabel, string? metadata)
         : this(major, minor, patch, ParseReleaseLabels(releaseLabel), metadata)
     {
     }
 
     /// <summary>
-    /// Creates a NuGetVersion X.Y.Z-alpha.1.2#build01
+    /// 创建 NuGetVersion X.Y.Z-alpha 1.2#build01
     /// </summary>
     /// <param name="major">X.y.z</param>
     /// <param name="minor">x.Y.z</param>
     /// <param name="patch">x.y.Z</param>
-    /// <param name="releaseLabels">Release labels that have been split by the dot separator</param>
-    /// <param name="metadata">Build metadata</param>
+    /// <param name="releaseLabels">释放已由点分隔符拆分的标签</param>
+    /// <param name="metadata">生成元数据</param>
     public SemanticVersion(int major, int minor, int patch, IEnumerable<string>? releaseLabels, string? metadata)
         : this(new Version(major, minor, patch, 0), releaseLabels, metadata)
     {
     }
 
+    /// <summary>
+    /// 初始化 <see cref="SemanticVersion"/> 类的新实例
+    /// </summary>
+    /// <param name="version"></param>
+    /// <param name="releaseLabel"></param>
+    /// <param name="metadata"></param>
     protected SemanticVersion(Version version, string? releaseLabel = null, string? metadata = null)
         : this(version, ParseReleaseLabels(releaseLabel), metadata)
     {
     }
 
+    /// <summary>
+    /// 初始化 <see cref="SemanticVersion"/> 类的新实例
+    /// </summary>
+    /// <param name="major"></param>
+    /// <param name="minor"></param>
+    /// <param name="patch"></param>
+    /// <param name="revision"></param>
+    /// <param name="releaseLabel"></param>
+    /// <param name="metadata"></param>
     protected SemanticVersion(int major, int minor, int patch, int revision, string? releaseLabel, string? metadata)
         : this(major, minor, patch, revision, ParseReleaseLabels(releaseLabel), metadata)
     {
     }
 
+    /// <summary>
+    /// 初始化 <see cref="SemanticVersion"/> 类的新实例
+    /// </summary>
+    /// <param name="major"></param>
+    /// <param name="minor"></param>
+    /// <param name="patch"></param>
+    /// <param name="revision"></param>
+    /// <param name="releaseLabels"></param>
+    /// <param name="metadata"></param>
     protected SemanticVersion(int major, int minor, int patch, int revision, IEnumerable<string>? releaseLabels, string? metadata)
         : this(new Version(major, minor, patch, revision), releaseLabels, metadata)
     {
     }
 
+    /// <summary>
+    /// 初始化 <see cref="SemanticVersion"/> 类的新实例
+    /// </summary>
+    /// <param name="version"></param>
+    /// <param name="releaseLabels"></param>
+    /// <param name="metadata"></param>
     protected SemanticVersion(Version version, IEnumerable<string>? releaseLabels, string? metadata)
     {
 #if NET6_0_OR_GREATER
@@ -114,27 +154,27 @@ public partial class SemanticVersion
     }
 
     /// <summary>
-    /// Major version X (X.y.z)
+    /// 主要版本 X (X.y.z)
     /// </summary>
     public int Major => _version.Major;
 
     /// <summary>
-    /// Minor version Y (x.Y.z)
+    /// 次要版本 Y (x.Y.z)
     /// </summary>
     public int Minor => _version.Minor;
 
     /// <summary>
-    /// Patch version Z (x.y.Z)
+    /// 修补程序版本 Z (x.y.Z)
     /// </summary>
     public int Patch => _version.Build;
 
     /// <summary>
-    /// A collection of pre-release labels attached to the version.
+    /// 附加到版本的预发布标签的集合
     /// </summary>
     public IEnumerable<string> ReleaseLabels => _releaseLabels ?? Enumerable.Empty<string>();
 
     /// <summary>
-    /// The full pre-release label for the version.
+    /// 该版本的完整预发布标签
     /// </summary>
     public string Release
     {
@@ -150,7 +190,7 @@ public partial class SemanticVersion
     }
 
     /// <summary>
-    /// True if pre-release labels exist for the version.
+    /// 如果版本存在预发布标签，则为 <see langword="true"/>
     /// </summary>
     public virtual bool IsPrerelease
     {
@@ -167,12 +207,12 @@ public partial class SemanticVersion
     }
 
     /// <summary>
-    /// True if metadata exists for the version.
+    /// 如果版本存在元数据，则为 <see langword="true"/>
     /// </summary>
     public virtual bool HasMetadata => !string.IsNullOrEmpty(Metadata);
 
     /// <summary>
-    /// Build metadata attached to the version.
+    /// 生成附加到版本的元数据
     /// </summary>
     public virtual string? Metadata => _metadata;
 }
@@ -180,18 +220,25 @@ public partial class SemanticVersion
 partial class SemanticVersion : IFormattable, IComparable, IComparable<SemanticVersion>, IEquatable<SemanticVersion>
 {
     /// <summary>
-    /// Gives a normalized representation of the version.
+    /// 提供版本的规范化表示
     /// </summary>
     public virtual string ToNormalizedString()
     {
         return ToString("N", new VersionFormatter());
     }
 
+    /// <inheritdoc cref="ToNormalizedString"/>
     public override string ToString()
     {
         return ToNormalizedString();
     }
 
+    /// <summary>
+    /// 将 SemanticVersion 对象转换为字符串
+    /// </summary>
+    /// <param name="format">指定格式字符串</param>
+    /// <param name="formatProvider">提供自定义格式化的对象</param>
+    /// <returns>格式化后的字符串表示</returns>
     public virtual string ToString(string? format, IFormatProvider? formatProvider)
     {
         if (formatProvider == null || !TryFormatter(format, formatProvider, out var formattedString))
@@ -202,6 +249,13 @@ partial class SemanticVersion : IFormattable, IComparable, IComparable<SemanticV
         return formattedString ?? string.Empty;
     }
 
+    /// <summary>
+    /// 尝试使用自定义格式化对象对 SemanticVersion 进行格式化
+    /// </summary>
+    /// <param name="format">指定格式字符串</param>
+    /// <param name="formatProvider">提供自定义格式化的对象</param>
+    /// <param name="formattedString">格式化后的字符串</param>
+    /// <returns>如果成功格式化，则返回true；否则返回false</returns>
     protected bool TryFormatter(string? format, IFormatProvider? formatProvider, out string? formattedString)
     {
         bool formatted = false;
@@ -219,33 +273,41 @@ partial class SemanticVersion : IFormattable, IComparable, IComparable<SemanticV
         return formatted;
     }
 
+    /// <summary>
+    /// 获取 <see cref="SemanticVersion"/> 对象的哈希码
+    /// </summary>
+    /// <returns>SemanticVersion 对象的哈希码</returns>
     public override int GetHashCode()
     {
         return VersionComparer.Default.GetHashCode(this);
     }
 
+    /// <inheritdoc/>
     public virtual int CompareTo(object? obj)
     {
         return CompareTo(obj as SemanticVersion);
     }
 
+    /// <inheritdoc/>
     public virtual int CompareTo(SemanticVersion? other)
     {
         return CompareTo(other, VersionComparison.Default);
     }
 
+    /// <inheritdoc/>
     public override bool Equals(object? obj)
     {
         return Equals(obj as SemanticVersion);
     }
 
+    /// <inheritdoc/>
     public virtual bool Equals(SemanticVersion? other)
     {
         return Equals(other, VersionComparison.Default);
     }
 
     /// <summary>
-    /// True if the VersionBase objects are equal based on the given comparison mode.
+    /// 如果 <see cref="SemanticVersion"/> 对象基于给定的比较模式相等，则为 <see langword="true"/>
     /// </summary>
     public virtual bool Equals(SemanticVersion? other, VersionComparison versionComparison)
     {
@@ -253,26 +315,71 @@ partial class SemanticVersion : IFormattable, IComparable, IComparable<SemanticV
     }
 
     /// <summary>
-    /// Compares NuGetVersion objects using the given comparison mode.
+    /// 使用给定的比较模式比较 <see cref="SemanticVersion"/> 对象
     /// </summary>
+    /// <param name="other"></param>
+    /// <param name="versionComparison"></param>
+    /// <returns>返回比较结果的数值</returns>
     public virtual int CompareTo(SemanticVersion? other, VersionComparison versionComparison)
     {
         VersionComparer comparer = new(versionComparison);
         return comparer.Compare(this, other);
     }
 
+    /// <summary>
+    /// 判断两个语义化版本是否相等
+    /// </summary>
+    /// <param name="version1">要比较的第一个语义化版本</param>
+    /// <param name="version2">要比较的第二个语义化版本</param>
+    /// <returns>如果两个版本相等，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
     public static bool operator ==(SemanticVersion? version1, SemanticVersion? version2) => Compare(version1, version2) == 0;
 
+    /// <summary>
+    /// 判断两个语义化版本是否不相等
+    /// </summary>
+    /// <param name="version1">要比较的第一个语义化版本</param>
+    /// <param name="version2">要比较的第二个语义化版本</param>
+    /// <returns>如果两个版本不相等，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
     public static bool operator !=(SemanticVersion? version1, SemanticVersion? version2) => Compare(version1, version2) != 0;
 
+    /// <summary>
+    /// 判断第一个语义化版本是否小于第二个语义化版本
+    /// </summary>
+    /// <param name="version1">要比较的第一个语义化版本</param>
+    /// <param name="version2">要比较的第二个语义化版本</param>
+    /// <returns>如果第一个版本小于第二个版本，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
     public static bool operator <(SemanticVersion? version1, SemanticVersion? version2) => Compare(version1, version2) < 0;
 
+    /// <summary>
+    /// 判断第一个语义化版本是否小于等于第二个语义化版本
+    /// </summary>
+    /// <param name="version1">要比较的第一个语义化版本</param>
+    /// <param name="version2">要比较的第二个语义化版本</param>
+    /// <returns>如果第一个版本小于等于第二个版本，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
     public static bool operator <=(SemanticVersion? version1, SemanticVersion? version2) => Compare(version1, version2) <= 0;
 
+    /// <summary>
+    /// 判断第一个语义化版本是否大于第二个语义化版本
+    /// </summary>
+    /// <param name="version1">要比较的第一个语义化版本</param>
+    /// <param name="version2">要比较的第二个语义化版本</param>
+    /// <returns>如果第一个版本大于等于第二个版本，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
     public static bool operator >(SemanticVersion? version1, SemanticVersion? version2) => Compare(version1, version2) > 0;
 
+    /// <summary>
+    /// 判断第一个语义化版本是否大于等于第二个语义化版本
+    /// </summary>
+    /// <param name="version1">要比较的第一个语义化版本</param>
+    /// <param name="version2">要比较的第二个语义化版本</param>
+    /// <returns>如果第一个版本大于等于第二个版本，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
     public static bool operator >=(SemanticVersion? version1, SemanticVersion? version2) => Compare(version1, version2) >= 0;
 
+    /// <summary>
+    /// 比较两个语义化版本的大小
+    /// </summary>
+    /// <param name="version1">要比较的第一个语义化版本</param>
+    /// <param name="version2">要比较的第二个语义化版本</param>
+    /// <returns>如果第一个版本小于第二个版本，则为负数；如果两个版本相等，则为零；如果第一个版本大于第二个版本，则为正数</returns>
     static int Compare(SemanticVersion? version1, SemanticVersion? version2)
     {
         var comparer = new VersionComparer();
@@ -288,7 +395,7 @@ partial class SemanticVersion
     protected const string Invalidvalue = "'{0}' is not a valid version string.";
 
     /// <summary>
-    /// Parses a SemVer string using strict SemVer rules.
+    /// 解析版本字符串，解析失败引发 <see cref="ArgumentException"/> 异常
     /// </summary>
     public static SemanticVersion Parse(string value)
     {
@@ -301,9 +408,8 @@ partial class SemanticVersion
     }
 
     /// <summary>
-    /// Parse a version string
+    /// 尝试解析版本字符串
     /// </summary>
-    /// <returns>false if the version is not a strict semver</returns>
     public static bool TryParse(string? value, [NotNullWhen(true)] out SemanticVersion? version)
     {
         version = null;
@@ -358,6 +464,11 @@ partial class SemanticVersion
         return false;
     }
 
+    /// <summary>
+    /// 判断字符是否为字母数字或破折号
+    /// </summary>
+    /// <param name="c">要判断的字符</param>
+    /// <returns><see langword="true"/> 表示是字母数字或破折号，<see langword="false"/> 表示不是</returns>
     internal static bool IsLetterOrDigitOrDash(char c)
     {
         int x = c;
@@ -366,16 +477,34 @@ partial class SemanticVersion
         return (x >= 48 && x <= 57) || (x >= 65 && x <= 90) || (x >= 97 && x <= 122) || x == 45;
     }
 
+    /// <summary>
+    /// 判断字符串是否为有效的语义版本
+    /// </summary>
+    /// <param name="s">要判断的字符串</param>
+    /// <param name="allowLeadingZeros">是否允许以零开头的版本号部分</param>
+    /// <returns><see langword="true"/> 表示是有效的语义版本，<see langword="false"/> 表示不是</returns>
     internal static bool IsValid(string s, bool allowLeadingZeros)
     {
         return s.Split('.').All(p => IsValidPart(p, allowLeadingZeros));
     }
 
+    /// <summary>
+    /// 判断字符串的版本号部分是否有效
+    /// </summary>
+    /// <param name="s">要判断的版本号部分</param>
+    /// <param name="allowLeadingZeros">是否允许以零开头的版本号部分</param>
+    /// <returns><see langword="true"/> 表示是有效的版本号部分，<see langword="false"/> 表示不是</returns>
     internal static bool IsValidPart(string s, bool allowLeadingZeros)
     {
         return IsValidPart(s.ToCharArray(), allowLeadingZeros);
     }
 
+    /// <summary>
+    /// 判断字符数组的版本号部分是否有效
+    /// </summary>
+    /// <param name="chars">要判断的字符数组</param>
+    /// <param name="allowLeadingZeros">是否允许以零开头的版本号部分</param>
+    /// <returns><see langword="true"/> 表示是有效的版本号部分，<see langword="false"/> 表示不是</returns>
     internal static bool IsValidPart(char[] chars, bool allowLeadingZeros)
     {
         bool result = true;
@@ -402,10 +531,10 @@ partial class SemanticVersion
     }
 
     /// <summary>
-    /// Parse the version string into version/release/build
-    /// The goal of this code is to take the most direct and optimized path
-    /// to parsing and validating a semver. Regex would be much cleaner, but
-    /// due to the number of versions created in NuGet Regex is too slow.
+    /// 将版本字符串解析为版本 /release/build
+    /// 此代码的目标是采用最直接和优化的路径
+    /// 解析和验证 semver，Regex 会更干净
+    /// 但是由于在 NuGet-Regex 中创建的版本数量太慢
     /// </summary>
     internal static (string? versionString, string[]? releaseLabels, string? buildMetadata) ParseSections(string value)
     {
@@ -460,6 +589,11 @@ partial class SemanticVersion
         return new(versionString, releaseLabels, buildMetadata);
     }
 
+    /// <summary>
+    /// 将版本号规范化
+    /// </summary>
+    /// <param name="version">待规范化的版本号</param>
+    /// <returns>规范化后的版本号</returns>
     internal static Version NormalizeVersionValue(Version version)
     {
         Version normalized = version;
@@ -476,6 +610,11 @@ partial class SemanticVersion
         return normalized;
     }
 
+    /// <summary>
+    /// 解析发布标签
+    /// </summary>
+    /// <param name="releaseLabels">发布标签字符串</param>
+    /// <returns>解析后的发布标签数组</returns>
     static string[]? ParseReleaseLabels(string? releaseLabels)
     {
         if (!string.IsNullOrEmpty(releaseLabels))
@@ -489,21 +628,21 @@ partial class SemanticVersion
 partial class SemanticVersion
 {
     /// <summary>
-    /// IVersionComparer represents a version comparer capable of sorting and determining the equality of SemanticVersion objects.
+    /// 表示能够对 <see cref="SemanticVersion"/> 对象进行排序并确定其相等性的版本比较器
     /// </summary>
     public interface IVersionComparer : IEqualityComparer<SemanticVersion?>, IComparer<SemanticVersion?>
     {
     }
 
     /// <summary>
-    /// An IVersionComparer for NuGetVersion and NuGetVersion types.
+    /// 版本比较器实现类
     /// </summary>
     public sealed class VersionComparer : IVersionComparer
     {
         readonly VersionComparison _mode;
 
         /// <summary>
-        /// Creates a VersionComparer using the default mode.
+        /// 初始化默认版本比较模式的 <see cref="VersionComparer"/> 的新实例
         /// </summary>
         public VersionComparer()
         {
@@ -511,16 +650,16 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// Creates a VersionComparer that respects the given comparison mode.
+        /// 初始化给定版本比较模式的 <see cref="VersionComparer"/> 的新实例
         /// </summary>
-        /// <param name="versionComparison">comparison mode</param>
+        /// <param name="versionComparison">比较模式</param>
         public VersionComparer(VersionComparison versionComparison)
         {
             _mode = versionComparison;
         }
 
         /// <summary>
-        /// Determines if both versions are equal.
+        /// 确定两个版本是否相等
         /// </summary>
         public bool Equals(SemanticVersion? x, SemanticVersion? y)
         {
@@ -528,7 +667,7 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// Compares the given versions using the VersionComparison mode.
+        /// 使用 <see cref="VersionComparison"/> 模式比较给定的版本
         /// </summary>
         public static int Compare(SemanticVersion? version1, SemanticVersion? version2, VersionComparison versionComparison)
         {
@@ -537,7 +676,7 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// Gives a hash code based on the normalized version string.
+        /// 提供基于规范化版本字符串的哈希代码
         /// </summary>
         public int GetHashCode(SemanticVersion? version)
         {
@@ -578,7 +717,7 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// Compare versions.
+        /// 比较版本
         /// </summary>
         public int Compare(SemanticVersion? x, SemanticVersion? y)
         {
@@ -646,7 +785,7 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// Compares the 4th digit of the version number.
+        /// 比较版本号的第四位数字
         /// </summary>
         static int CompareLegacyVersion(NuGetVersion? legacyX, NuGetVersion? legacyY)
         {
@@ -670,27 +809,27 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// A default comparer that compares metadata as strings.
+        /// 将元数据作为字符串进行比较的默认比较器
         /// </summary>
         public static readonly IVersionComparer Default = new VersionComparer(VersionComparison.Default);
 
         /// <summary>
-        /// A comparer that uses only the version numbers.
+        /// 仅使用版本号的比较器
         /// </summary>
         public static readonly IVersionComparer Version = new VersionComparer(VersionComparison.Version);
 
         /// <summary>
-        /// Compares versions without comparing the metadata.
+        /// 比较版本而不比较元数据
         /// </summary>
         public static readonly IVersionComparer VersionRelease = new VersionComparer(VersionComparison.VersionRelease);
 
         /// <summary>
-        /// A version comparer that follows SemVer 2.0.0 rules.
+        /// 遵循 SemVer 2.0.0 规则的版本比较器
         /// </summary>
         public static readonly IVersionComparer VersionReleaseMetadata = new VersionComparer(VersionComparison.VersionReleaseMetadata);
 
         /// <summary>
-        /// Compares sets of release labels.
+        /// 比较发布标签集
         /// </summary>
         static int CompareReleaseLabels(IEnumerable<string> version1, IEnumerable<string> version2)
         {
@@ -724,7 +863,7 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// Release labels are compared as numbers if they are numeric, otherwise they will be compared
+        /// 如果发布标签是数字，则将其作为数字进行比较，否则将进行比较
         /// as strings.
         /// </summary>
         static int CompareRelease(string version1, string version2)
@@ -761,33 +900,43 @@ partial class SemanticVersion
     }
 
     /// <summary>
-    /// Version comparison modes.
+    /// 版本比较模式
     /// </summary>
     public enum VersionComparison : byte
     {
         /// <summary>
-        /// Semantic version 2.0.1-rc comparison with additional compares for extra NuGetVersion fields.
+        /// 语义版本 2.0.1-rc 比较，对额外的 NuGetVersion 字段进行额外比较
         /// </summary>
         Default = 0,
 
         /// <summary>
-        /// Compares only the version numbers.
+        /// 仅比较版本号
         /// </summary>
         Version = 1,
 
         /// <summary>
-        /// Include Version number and Release labels in the compare.
+        /// 在比较中包括版本号和发布标签
         /// </summary>
         VersionRelease = 2,
 
         /// <summary>
-        /// Include all metadata during the compare.
+        /// 在比较期间包括所有元数据
         /// </summary>
         VersionReleaseMetadata = 3,
     }
 
+    /// <summary>
+    /// 版本格式化器，实现 <see cref="IFormatProvider"/> 和 <see cref="ICustomFormatter"/> 接口
+    /// </summary>
     public class VersionFormatter : IFormatProvider, ICustomFormatter
     {
+        /// <summary>
+        /// 格式化指定对象
+        /// </summary>
+        /// <param name="format">格式字符串</param>
+        /// <param name="arg">要格式化的对象</param>
+        /// <param name="formatProvider">用于提供格式化信息的对象</param>
+        /// <returns>格式化结果</returns>
         public string Format(string? format, object? arg, IFormatProvider? formatProvider)
         {
 #if NET6_0_OR_GREATER
@@ -838,6 +987,11 @@ partial class SemanticVersion
             return formatted ?? string.Empty;
         }
 
+        /// <summary>
+        /// 获取提供指定类型格式化信息的对象
+        /// </summary>
+        /// <param name="formatType">要获取的格式化信息的类型</param>
+        /// <returns>指定类型的格式化信息对象</returns>
         public object? GetFormat(Type? formatType)
         {
             if (formatType == typeof(ICustomFormatter)
@@ -850,6 +1004,11 @@ partial class SemanticVersion
             return null;
         }
 
+        /// <summary>
+        /// 获取规范化字符串
+        /// </summary>
+        /// <param name="version">语义版本对象</param>
+        /// <returns>规范化的版本字符串</returns>
         static string GetNormalizedString(SemanticVersion version)
         {
             StringBuilder sb = new StringBuilder();
@@ -871,6 +1030,12 @@ partial class SemanticVersion
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 格式化版本字符串
+        /// </summary>
+        /// <param name="c">格式化字符</param>
+        /// <param name="version">语义版本对象</param>
+        /// <returns>格式化后的字符串</returns>
         static string? Format(char c, SemanticVersion version)
         {
             string? s = null;
@@ -906,6 +1071,11 @@ partial class SemanticVersion
             return s;
         }
 
+        /// <summary>
+        /// 格式化完整版本字符串
+        /// </summary>
+        /// <param name="version">语义版本对象</param>
+        /// <returns>格式化后的完整版本字符串</returns>
         static string FormatVersion(SemanticVersion version)
         {
             var nuGetVersion = version as NuGetVersion;
@@ -917,37 +1087,64 @@ partial class SemanticVersion
     }
 
     /// <summary>
-    /// Hash code creator, based on the original NuGet hash code combiner/ASP hash code combiner implementations
+    /// 哈希代码创建者，基于原始 NuGet 哈希代码组合器 /ASP 哈希代码组合程序实现
     /// </summary>
     internal sealed class HashCodeCombiner
     {
-        // seed from String.GetHashCode()
+        /// <summary>
+        /// 字符串中的种子
+        /// </summary>
         const long Seed = 0x1505L;
 
+        /// <summary>
+        /// 组合哈希码的存储变量
+        /// </summary>
         long _combinedHash;
 
+        /// <summary>
+        /// 初始化 <see cref="HashCodeCombiner"/> 类的新实例
+        /// </summary>
         internal HashCodeCombiner()
         {
             _combinedHash = Seed;
         }
 
+        /// <summary>
+        /// 返回 <see cref="_combinedHash"/> 的哈希代码
+        /// </summary>
         internal int CombinedHash => _combinedHash.GetHashCode();
 
+        /// <summary>
+        /// 向组合哈希码中添加一个 32 位整数
+        /// </summary>
+        /// <param name="i">要添加的 32 位整数</param>
         internal void AddInt32(int i)
         {
             _combinedHash = ((_combinedHash << 5) + _combinedHash) ^ i;
         }
 
+        /// <summary>
+        /// 向组合哈希码中添加一个整数
+        /// </summary>
+        /// <param name="i">要添加的对象</param>
         internal void AddObject(int i)
         {
             AddInt32(i);
         }
 
+        /// <summary>
+        /// 向组合哈希码中添加一个布尔值，使用布尔值的哈希码进行组合
+        /// </summary>
+        /// <param name="b">要添加的布尔值</param>
         internal void AddObject(bool b)
         {
             AddInt32(b.GetHashCode());
         }
 
+        /// <summary>
+        /// 向组合哈希码中添加一个对象，使用该对象的哈希码进行组合
+        /// </summary>
+        /// <param name="o">要添加的对象</param>
         internal void AddObject(object? o)
         {
             if (o != null)
@@ -957,7 +1154,7 @@ partial class SemanticVersion
         }
 
         /// <summary>
-        /// Create a unique hash code for the given set of items
+        /// 为给定的项目集创建唯一的哈希代码
         /// </summary>
         internal static int GetHashCode(params object[] objects)
         {

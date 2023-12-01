@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Models.Abstractions;
+namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
 /// JSON 模型接口，用于表示具有 JSON 序列化功能的模型

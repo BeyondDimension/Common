@@ -1,6 +1,6 @@
 using SR = BD.Common8.Primitives.PersonalData.BirthDate.Resources.SR;
 
-namespace BD.Common8.Primitives.PersonalData.BirthDate.Helpers;
+namespace BD.Common8.Helpers;
 
 public static partial class BirthDateHelper
 {

@@ -5,10 +5,10 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.Common8.Primitives.Extensions;
-global using BD.Common8.Primitives.Columns;
-global using BD.Common8.Primitives.Entities;
-global using BD.Common8.Primitives.Entities.Abstractions;
-global using BD.Common8.Primitives.Enums;
-global using BD.Common8.Primitives.Models;
-global using BD.Common8.Primitives.Models.Abstractions;
+global using BD.Common8.Extensions;
+global using BD.Common8.Columns;
+global using BD.Common8.Entities;
+global using BD.Common8.Entities.Abstractions;
+global using BD.Common8.Enums;
+global using BD.Common8.Models;
+global using BD.Common8.Models.Abstractions;

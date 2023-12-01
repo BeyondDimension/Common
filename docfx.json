@@ -165,7 +165,7 @@
           "api/index.md",
           "api/**/**.yml"
         ]
-      }
+      }  
     ],
     "resource": [
       {
@@ -193,13 +193,6 @@
       "default",
       "modern"
     ],
-    "nav": [
-      {
-          "name": "MyTableOfContents",
-          "href": "/articles/toc.html",
-          "target": "_self"
-      }
-  ],
     "postProcessors": [],
     "keepFileLink": false,
     "disableGitFeatures": false

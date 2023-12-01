@@ -4,32 +4,18 @@
 		<RootNamespace>BD.Common8.SourceGenerator.Ipc</RootNamespace>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+		<UseProjectUtils>true</UseProjectUtils>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Ipc>true</UseCommon8Ipc>
+		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
+		<UseCommon8HttpClientFactory>true</UseCommon8HttpClientFactory>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\Shared\ProjectUtils.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="..\Ipc.Server.Sample.Experimental\ITodoService.cs">
 			<LinkBase>Services</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Primitives.ApiRsp.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Ipc.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.Common8.Http.ClientFactory.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
-		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

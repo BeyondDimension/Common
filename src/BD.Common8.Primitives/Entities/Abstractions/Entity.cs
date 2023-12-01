@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Entities.Abstractions;
+namespace BD.Common8.Entities.Abstractions;
 
 /// <summary>
 /// (数据库表)实体模型抽象基类

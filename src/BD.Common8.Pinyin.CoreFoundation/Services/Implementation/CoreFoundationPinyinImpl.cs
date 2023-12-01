@@ -1,5 +1,3 @@
-using CoreFoundation;
-
 namespace BD.Common8.Pinyin.Services.Implementation;
 
 /// <summary>

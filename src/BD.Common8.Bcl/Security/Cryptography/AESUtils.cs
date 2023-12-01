@@ -1,7 +1,5 @@
 namespace System.Security.Cryptography;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 对称加密算法 - AES
 /// </summary>
@@ -9,6 +7,9 @@ public static class AESUtils
 {
     #region 创建 Aes 实例
 
+    /// <summary>
+    /// AES 密钥的位数
+    /// </summary>
     public const int AesKeySize = 256;
 
     /// <summary>
@@ -87,7 +88,7 @@ public static class AESUtils
     #region 从 Aes 实例中获取密钥
 
     /// <summary>
-    /// 将 <see cref="Aes"/> 实例中的 [密钥,向量,模式,填充] 转换为可传输的模型类对象。
+    /// 将 <see cref="Aes"/> 实例中的 [密钥,向量,模式,填充] 转换为可传输的模型类对象
     /// </summary>
     /// <param name="aes"></param>
     /// <returns></returns>
@@ -95,7 +96,7 @@ public static class AESUtils
     internal static Parameters ToParams(this Aes aes) => new(aes.Key, aes.IV, aes.Mode, aes.Padding);
 
     /// <summary>
-    /// 将 <see cref="Aes"/> 实例中的密钥转换为可传输的字符串。
+    /// 将 <see cref="Aes"/> 实例中的密钥转换为可传输的字符串
     /// </summary>
     /// <param name="aes"></param>
     /// <returns></returns>
@@ -103,7 +104,7 @@ public static class AESUtils
     public static string ToParamsString(this Aes aes) => aes.ToParams().ToString();
 
     /// <summary>
-    /// 将 <see cref="Aes"/> 实例中的密钥转换为可传输的 <see cref="byte"/>[] 。
+    /// 将 <see cref="Aes"/> 实例中的密钥转换为可传输的 <see cref="byte"/>[]
     /// </summary>
     /// <param name="aes"></param>
     /// <returns></returns>
@@ -115,7 +116,7 @@ public static class AESUtils
     #region 加密(Encrypt)
 
     /// <summary>
-    /// AES加密(ByteArray → ByteArray)
+    /// AES 加密(ByteArray → ByteArray)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="data"></param>
@@ -128,7 +129,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(ByteArray → ByteArray)
+    /// AES 加密(ByteArray → ByteArray)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="data"></param>
@@ -141,7 +142,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(String → ByteArray)
+    /// AES 加密(String → ByteArray)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="text"></param>
@@ -154,7 +155,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(String → ByteArray)
+    /// AES 加密(String → ByteArray)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="text"></param>
@@ -167,7 +168,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(String → String)
+    /// AES 加密(String → String)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="text"></param>
@@ -180,7 +181,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(String → String)
+    /// AES 加密(String → String)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="text"></param>
@@ -193,7 +194,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(String → String)
+    /// AES 加密(String → String)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="text"></param>
@@ -206,7 +207,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(ByteArray → String)
+    /// AES 加密(ByteArray → String)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="data"></param>
@@ -219,7 +220,7 @@ public static class AESUtils
     }
 
     /// <summary>
-    /// AES加密(ByteArray → String)
+    /// AES 加密(ByteArray → String)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="data"></param>
@@ -236,7 +237,7 @@ public static class AESUtils
     #region 解密(Decrypt)
 
     /// <summary>
-    /// AES解密(ByteArray → ByteArray)
+    /// AES 解密(ByteArray → ByteArray)
     /// </summary>
     /// <param name="aes"></param>
     /// <param name="data"></param>
@@ -387,30 +388,59 @@ public static class AESUtils
             OnPropertyChanged(flags);
         }
 
+        /// <summary>
+        /// 使用指定的密钥、向量、加密模式和填充模式创建参数实例
+        /// </summary>
+        /// <param name="key">加密密钥</param>
+        /// <param name="iv">初始化向量</param>
+        /// <param name="mode">加密模式，默认为密码块模式 <see cref="CipherMode.CBC"/></param>
+        /// <param name="padding">填充模式，默认为 <see cref=" PaddingMode.PKCS7"/> 填充</param>
         public Parameters(string key, string iv, CipherMode mode = CipherMode.CBC, PaddingMode padding = PaddingMode.PKCS7) : this(mode, padding)
         {
             Key = key;
             IV = iv;
         }
 
+        /// <summary>
+        /// 使用指定的密钥、向量、加密模式和填充模式创建参数实例
+        /// </summary>
+        /// <param name="key">加密密钥</param>
+        /// <param name="iv">初始化向量</param>
+        /// <param name="mode">加密模式，默认为密码块模式 <see cref="CipherMode.CBC"/></param>
+        /// <param name="padding">填充模式，默认为 <see cref=" PaddingMode.PKCS7"/> 填充</param>
         public Parameters(byte[] key, byte[] iv, CipherMode mode = CipherMode.CBC, PaddingMode padding = PaddingMode.PKCS7) : this(mode, padding)
         {
             KeyByteArray = key;
             IVByteArray = iv;
         }
 
+        /// <summary>
+        /// 使用指定的密钥、向量和标志位创建参数实例
+        /// </summary>
+        /// <param name="key">加密密钥</param>
+        /// <param name="iv">初始化向量</param>
+        /// <param name="flags">标志位</param>
         public Parameters(string key, string iv, Flags flags) : this(flags)
         {
             Key = key;
             IV = iv;
         }
 
+        /// <summary>
+        /// 使用指定的密钥、向量和标志位创建参数实例
+        /// </summary>
+        /// <param name="key">加密密钥</param>
+        /// <param name="iv">初始化向量</param>
+        /// <param name="flags"><see cref="Flags"/></param>
         public Parameters(byte[] key, byte[] iv, Flags flags) : this(flags)
         {
             KeyByteArray = key;
             IVByteArray = iv;
         }
 
+        /// <summary>
+        /// 加密模式，填充枚举
+        /// </summary>
         [Flags]
         public enum Flags
         {
@@ -621,6 +651,11 @@ public static class AESUtils
             _flags = flags;
         }
 
+        /// <summary>
+        /// 从字节数组创建 <see cref="Parameters"/> 实例
+        /// </summary>
+        /// <param name="data">包含数据的字节数组</param>
+        /// <returns><see cref="Parameters"/> 实例</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Parameters Create(byte[] data)
         {
@@ -631,6 +666,11 @@ public static class AESUtils
             return new Parameters(mKeyByteArray, mIVByteArray, flags);
         }
 
+        /// <summary>
+        /// 从字符串创建 <see cref="Parameters"/> 实例
+        /// </summary>
+        /// <param name="data">包含数据的字符串</param>
+        /// <returns><see cref="Parameters"/> 实例</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Parameters Create(string data)
         {
@@ -638,6 +678,10 @@ public static class AESUtils
             return Create(bytes);
         }
 
+        /// <summary>
+        /// 将 <see cref="Parameters"/> 实例转换为字节数组
+        /// </summary>
+        /// <returns>转换后的字节数组</returns>
         public byte[] ToByteArray()
         {
             IVByteArray.ThrowIsNull();
@@ -645,8 +689,16 @@ public static class AESUtils
             return [.. BitConverter.GetBytes((ushort)ModeAndPadding), .. IVByteArray, .. KeyByteArray.Reverse()];
         }
 
+        /// <summary>
+        /// 将 <see cref="Parameters"/> 实例转换为 Base64 编码的字符串
+        /// </summary>
+        /// <returns>转换后的 Base64 编码字符串</returns>
         public new string ToString() => ToByteArray().Base64UrlEncode();
 
+        /// <summary>
+        /// 创建 Aes 实例
+        /// </summary>
+        /// <returns>Aes 实例</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Aes Create()
         {
@@ -660,6 +712,11 @@ public static class AESUtils
             return aes;
         }
 
+        /// <summary>
+        /// 比较两个 <see cref="Parameters"/> 实例是否相等
+        /// </summary>
+        /// <param name="other">要比较的另一个 <see cref="Parameters"/> 实例</param>
+        /// <returns>如果两个实例相等，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
         public bool Equals(Parameters? other)
         {
             if (other == null) return false;
@@ -670,6 +727,11 @@ public static class AESUtils
         }
     }
 
+    /// <summary>
+    /// 根据字符串获取 KeyIV 参数
+    /// </summary>
+    /// <param name="s">输入的字符串</param>
+    /// <returns>KeyIV 参数</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static KeyIV GetParameters(string s)
     {
@@ -677,6 +739,11 @@ public static class AESUtils
         return GetParameters(bytes);
     }
 
+    /// <summary>
+    /// 根据字节数组获取 KeyIV 参数
+    /// </summary>
+    /// <param name="bytes">输入的字节数组</param>
+    /// <returns>KeyIV 参数</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static KeyIV GetParameters(byte[] bytes)
     {
@@ -685,6 +752,9 @@ public static class AESUtils
         return new() { Key = key, IV = iv };
     }
 
+    /// <summary>
+    /// 密钥和向量参数结构体
+    /// </summary>
     public readonly struct KeyIV
     {
         /// <inheritdoc cref="SymmetricAlgorithm.Key"/>

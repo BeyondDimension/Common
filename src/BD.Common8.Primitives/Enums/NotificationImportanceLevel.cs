@@ -1,4 +1,4 @@
-namespace BD.Common8.Primitives.Enums;
+namespace BD.Common8.Enums;
 
 /// <summary>
 /// 通知重要性级别

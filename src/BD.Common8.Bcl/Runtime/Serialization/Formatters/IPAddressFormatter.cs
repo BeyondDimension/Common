@@ -1,7 +1,5 @@
 namespace System.Runtime.Serialization.Formatters;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 对类型 <see cref="IPAddress"/> 的序列化与反序列化实现
 /// </summary>
@@ -15,7 +13,7 @@ public sealed class IPAddressFormatter :
     public static readonly IPAddressFormatter Default = new();
 
     /// <summary>
-    /// 对可空 <see cref="SDColor"/> 类型进行序列化
+    /// 对可空 <see cref="IPAddress"/> 类型进行序列化
     /// </summary>
     public void Serialize(ref MessagePackWriter writer, IPAddress? value, MessagePackSerializerOptions options)
     {
@@ -23,7 +21,7 @@ public sealed class IPAddressFormatter :
     }
 
     /// <summary>
-    /// 对可空 <see cref="SDColor"/> 类型进行反序列化
+    /// 对可空 <see cref="IPAddress"/> 类型进行反序列化
     /// </summary>
     public IPAddress? Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
@@ -41,7 +39,7 @@ public sealed class IPAddressFormatter :
     }
 
     /// <summary>
-    /// 将可空 <see cref="IPAddress"/> 对象序列化为 <see cref="MemoryPackWriter{TBufferWriter}"/>
+    /// 将可空 <see cref="IPAddress"/> 对象序列化到 <see cref="MemoryPackWriter{TBufferWriter}"/>
     /// </summary>
     /// <typeparam name="TBufferWriter"></typeparam>
     void IMemoryPackFormatter<IPAddress?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref IPAddress? value)
@@ -61,7 +59,7 @@ public sealed class IPAddressFormatter :
 }
 
 /// <summary>
-/// IP 地址格式化程序特性
+/// IPAddress 格式化程序特性
 /// </summary>
 public sealed class IPAddressFormatterAttribute : MemoryPackCustomFormatterAttribute<IPAddressFormatter, IPAddress?>
 {
@@ -71,7 +69,7 @@ public sealed class IPAddressFormatterAttribute : MemoryPackCustomFormatterAttri
     public sealed override IPAddressFormatter GetFormatter() => IPAddressFormatter.Default;
 
     /// <summary>
-    /// <see cref="IPAddress"/> 格式化程序
+    /// 可空 <see cref="IPAddress"/> 格式化程序
     /// </summary>
     public sealed class Formatter : MemoryPackFormatter<IPAddress?>
     {
@@ -80,12 +78,19 @@ public sealed class IPAddressFormatterAttribute : MemoryPackCustomFormatterAttri
         /// </summary>
         public static readonly Formatter Default = new();
 
+        /// <summary>
+        /// 将可空 <see cref="IPAddress"/> 对象序列化到 <see cref="MemoryPackWriter{TBufferWriter}"/> 对象
+        /// </summary>
+        /// <typeparam name="TBufferWriter"></typeparam>
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref IPAddress? value)
         {
             IMemoryPackFormatter<IPAddress?> f = IPAddressFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
+        /// <summary>
+        /// 从 <see cref="MemoryPackReader"/> 对象反序列化为可空 <see cref="IPAddress"/> 对象
+        /// </summary>
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref IPAddress? value)
         {
             IMemoryPackFormatter<IPAddress?> f = IPAddressFormatter.Default;

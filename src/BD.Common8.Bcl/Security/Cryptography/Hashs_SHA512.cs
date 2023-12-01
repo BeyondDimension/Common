@@ -1,13 +1,14 @@
 namespace System.Security.Cryptography;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 partial class Hashs
 {
     partial class String
     {
         partial class Lengths
         {
+            /// <summary>
+            /// SHA512 算法的哈希长度
+            /// </summary>
             public const int SHA512 = 128;
         }
 
@@ -52,35 +53,35 @@ partial class Hashs
     partial class ByteArray
     {
         /// <summary>
-        /// 计算 SHA512 值
+        /// 计算指定字节数组的 SHA512 哈希值
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
+        /// <param name="buffer">要计算哈希值的字节数组</param>
+        /// <returns>字节数组的 SHA512 哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA512(byte[] buffer) => Cryptography.SHA512.HashData(buffer);
 
         /// <summary>
-        /// 计算 SHA512 值
+        /// 计算指定只读字节数组的 SHA512 哈希值
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
+        /// <param name="buffer">要计算哈希值的只读字节数组</param>
+        /// <returns>字节数组的 SHA512 哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA512(ReadOnlySpan<byte> buffer) => Cryptography.SHA512.HashData(buffer);
 
         /// <summary>
-        /// 计算 SHA512 值
+        /// 计算指定流的 SHA512 哈希值
         /// </summary>
-        /// <param name="inputStream"></param>
-        /// <returns></returns>
+        /// <param name="inputStream">要计算哈希值的流</param>
+        /// <returns>字节数组的 SHA512 哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SHA512(Stream inputStream) => Cryptography.SHA512.HashData(inputStream);
 
         /// <summary>
-        /// 计算 SHA512 值
+        /// 异步计算指定流的 SHA512 哈希值
         /// </summary>
-        /// <param name="inputStream"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <param name="inputStream">要计算哈希值的流</param>
+        /// <param name="cancellationToken">取消操作的令牌</param>
+        /// <returns>表示异步任务，结果为字节数组的 SHA512 哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask<byte[]> SHA512Async(Stream inputStream, CancellationToken cancellationToken = default) => Cryptography.SHA512.HashDataAsync(inputStream, cancellationToken);
     }
