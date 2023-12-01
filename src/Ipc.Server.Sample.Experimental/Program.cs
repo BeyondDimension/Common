@@ -119,6 +119,8 @@ public static partial class Program
             //opt.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
         });
 
+        app.MapHub<StreamingHub>("/streaming");
+
         OnMapGroup<TodoServiceImpl>(app);
 
         app.Run();

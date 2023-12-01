@@ -20,6 +20,7 @@ var clientHttps = IpcAppConnectionStringHelper.GetHttpClient(
     });
 
 var hubConn = await GetSignalRHubConnection();
+var hubStreamConn = await GetSignalRHubConnection("/streaming");
 
 static async Task<string> GetStringAsync(HttpClient client)
 {
@@ -28,7 +29,7 @@ static async Task<string> GetStringAsync(HttpClient client)
     return str;
 }
 
-static async Task<HubConnection> GetSignalRHubConnection()
+static async Task<HubConnection> GetSignalRHubConnection(string pattern = "/test")
 {
     (string baseAddress, var httpMessageHandler) = CreateHandlerFunc();
 
@@ -48,7 +49,7 @@ static async Task<HubConnection> GetSignalRHubConnection()
            {
                o.HttpVersion = HttpVersion.Version20;
            };
-           opt.Url = new Uri(baseAddress + "/test");
+           opt.Url = new Uri(baseAddress + pattern);
        })
        .WithAutomaticReconnect()
        .Build();
@@ -95,6 +96,14 @@ static async Task<string> GetSignalRStringAsync(HubConnection conn)
     return str;
 }
 
+static async Task GetSignalRStringAsync2(HubConnection conn)
+{
+    await foreach (var pack in conn.StreamAsync<Pack>("AsyncEnumerable", 20))
+    {
+        await Console.Out.WriteLineAsync(pack.ToString());
+    }
+}
+
 while (true)
 {
     try
@@ -110,6 +119,8 @@ while (true)
         var resultSignalR = await GetSignalRStringAsync(hubConn);
         Console.WriteLine("resultSignalR: ");
         Console.WriteLine(resultSignalR);
+
+        await GetSignalRStringAsync2(hubStreamConn);
     }
     catch (Exception ex)
     {
@@ -166,5 +177,31 @@ internal sealed class TodoServiceImpl(
         using var rsp = await client.PostAsync("/BodyTest", content);
         var r = await ReadFromAsync<ApiRspImpl>(rsp.Content);
         return r!;
+    }
+}
+
+/// <summary>
+/// 测试包对象
+/// </summary>
+public class Pack
+{
+    /// <summary>
+    /// 时间
+    /// </summary>
+    public DateTime DateTime { get; set; }
+
+    /// <summary>
+    ///  id
+    /// </summary>
+    public string PackId { get; set; } = Guid.NewGuid().ToString("N");
+
+    /// <summary>
+    /// 数据
+    /// </summary>
+    public object? Data { get; set; }
+
+    public override string ToString()
+    {
+        return $"{DateTime.ToString("yyyy-MM-dd HH:mm:ss fff")}, packId:{PackId} ";
     }
 }
