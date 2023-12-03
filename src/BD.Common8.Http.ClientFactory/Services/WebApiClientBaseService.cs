@@ -43,9 +43,11 @@ public abstract partial class WebApiClientBaseService(
     /// <param name="inputValue"></param>
     /// <param name="mediaType"></param>
     /// <returns></returns>
-    protected virtual HttpContent? GetHttpContent<T>(T inputValue, MediaTypeHeaderValue? mediaType = null) => GetSJsonContent(inputValue,
-        null!, // 可通过重写传递 JsonTypeInfo
-        mediaType);
+    protected virtual HttpContent? GetHttpContent<T>(T inputValue, MediaTypeHeaderValue? mediaType = null)
+    {
+        var content = GetSJsonContent(inputValue, null, mediaType);
+        return content;
+    }
 
     /// <summary>
     /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），默认使用 System.Text.Json 实现
@@ -54,7 +56,40 @@ public abstract partial class WebApiClientBaseService(
     /// <param name="content"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual Task<T?> ReadFromAsync<T>(HttpContent content, CancellationToken cancellationToken = default) => ReadFromSJsonAsync<T>(content,
-        null!, // 可通过重写传递 JsonTypeInfo
-        cancellationToken);
+    protected virtual async Task<T?> ReadFromAsync<T>(HttpContent content, CancellationToken cancellationToken = default)
+    {
+        T? result;
+        result = await ReadFromSJsonAsync<T>(content, null, cancellationToken);
+        return result;
+    }
+
+    /// <summary>
+    /// 使用的默认文本编码，默认值为 <see cref="Encoding.UTF8"/>
+    /// </summary>
+    protected virtual Encoding DefaultEncoding => Encoding.UTF8;
+
+    /// <summary>
+    /// 当序列化出现错误时
+    /// </summary>
+    /// <param name="ex"></param>
+    /// <param name="isSerializeOrDeserialize">是序列化还是反序列化</param>
+    /// <param name="modelType">模型类类型</param>
+    protected virtual void OnSerializerError(Exception ex,
+        bool isSerializeOrDeserialize,
+        Type modelType)
+    {
+        // 记录错误时，不需要带上 requestUrl 等敏感信息
+        if (isSerializeOrDeserialize)
+        {
+            logger.LogError(ex,
+                "Error serializing request model class. (Parameter '{type}')",
+                modelType);
+        }
+        else
+        {
+            logger.LogError(ex,
+                "Error reading and deserializing the response content into an instance. (Parameter '{type}')",
+                modelType);
+        }
+    }
 }
