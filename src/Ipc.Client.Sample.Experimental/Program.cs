@@ -1,7 +1,5 @@
 using Ipc.Sample;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Logging;
-using System.Net.Http.Client;
 
 const string pipeName = "BD.Common8.Ipc.Server.Sample.Experimental";
 
@@ -104,6 +102,16 @@ static async Task GetSignalRStringAsync2(HubConnection conn)
     }
 }
 
+static async Task GetSignalRStringAsync3(HubConnection conn)
+{
+    var channel = await conn.StreamAsChannelAsync<Pack>("ChannelAsync", 99);
+
+    await foreach (var pack in channel.ReadAllAsync())
+    {
+        await Console.Out.WriteLineAsync(pack.ToString());
+    }
+}
+
 while (true)
 {
     try
@@ -120,7 +128,7 @@ while (true)
         Console.WriteLine("resultSignalR: ");
         Console.WriteLine(resultSignalR);
 
-        await GetSignalRStringAsync2(hubStreamConn);
+        await GetSignalRStringAsync3(hubStreamConn);
     }
     catch (Exception ex)
     {

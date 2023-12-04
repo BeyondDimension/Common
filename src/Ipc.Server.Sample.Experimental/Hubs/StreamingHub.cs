@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.SignalR;
+using System.Threading.Channels;
 
 namespace Ipc.Server.Sample.Experimental.Hubs;
 
@@ -21,6 +22,40 @@ public class StreamingHub : Hub
             yield return new Pack();
             count--;
         }
+    }
+
+    /// <summary>
+    /// 测试 Channel
+    /// </summary>
+    /// <param name="count"></param>
+    /// <returns></returns>
+    public ChannelReader<Pack> ChannelAsync(int count)
+    {
+        var channel = Channel.CreateUnbounded<Pack>();
+
+        _ = Task.Run(async () =>
+        {
+            Exception? localEx = null;
+            try
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    await channel.Writer.WriteAsync(new Pack());
+
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                }
+            }
+            catch (Exception ex)
+            {
+                localEx = ex;
+            }
+            finally
+            {
+                channel.Writer.Complete(localEx);
+            }
+        });
+
+        return channel.Reader;
     }
 
     /// <summary>
