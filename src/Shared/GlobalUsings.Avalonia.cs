@@ -41,6 +41,10 @@ global using Avalonia.Markup.Xaml.MarkupExtensions;
 global using Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;
 global using Avalonia.Utilities;
 
+#if ANDROID
+global using Avalonia.Android;
+#endif
+
 global using AvaColor = Avalonia.Media.Color;
 global using AvaSize = Avalonia.Size;
 global using AvaPoint = Avalonia.Point;

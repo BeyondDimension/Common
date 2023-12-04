@@ -41,7 +41,7 @@
 	</ItemGroup>
 
 	<!-- 椤圭洰寮曠敤姝ら」鐩?-->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore_Ref) != 'code' AND $(IsSourceReference) != 'true'">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore_Ref) == ''">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
 	</ItemGroup>
 </Project>

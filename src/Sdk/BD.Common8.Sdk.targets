@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;UseProjectUtils;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;LinkResXGeneratedCodeAttribute;IsCommon8Project;UseSourceGeneratorResx;UseSourceGeneratorBcl;UseAspNetCore;UseEFCore;UseMicrosoftIdentityModelTokens;UseAvalonia;UseAvaloniaDiagnostics;UseAvaloniaSkia;UseAvaloniaWin32;UseAvaloniaX11;UseAvaloniaNative;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseFluentAvalonia;UseRedis;UseNLog;UsePolly;UseSQLitePCL;UseSystemCommandLine;UseReactiveUI;UseReactiveUIFody;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseMicrosoftExtensionsHosting;UseMicrosoftExtensionsHttp;UseAndroidXBrowser;UseFusillade;UseMoq;UseSystemNetHttpJson;UseAngleSharp;UseSystemDrawingCommon;UseAvaloniaXmlnsDefinition;UseMicrosoftWindowsCsWin32;UseNitoComparers;UseCrc32NET;UseNewtonsoftJson;UseCommon8Bcl;UseCommon8Primitives;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesEssentials;UseCommon8PrimitivesToast;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesApiRsp;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8Essentials;UseCommon8EssentialsImplementation;UseCommon8EssentialsImplementationAvalonia;UseCommon8HttpClientFactory;UseCommon8HttpClientFactoryServer;UseCommon8Ipc;UseCommon8IpcClient;UseCommon8IpcServer;UseCommon8OrmEFCore;UseCommon8Pinyin;UseCommon8PinyinChnCharInfo;UseCommon8PinyinCoreFoundation;UseCommon8Repositories;UseCommon8RepositoriesEFCore;UseCommon8RepositoriesSQLitePCL;UseCommon8Security;UseCommon8Settings5;UseCommon8Settings5Backend;UseCommon8Settings5Frontend;UseCommon8SmsSender;UseCommon8Toast;UseCommon8UserInputModelValidator;UseCommon8Crawler;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage">
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);IsPackable;IsTestProject;IsSourceGeneratorProject;IsGlobalUsingsCommon8Bcl;IsGlobalUsingsMSBuildProjectName;UseProjectUtils;UseMicrosoftExtensionsFileProviders;UseMicrosoftExtensionsPrimitives;LinkResXGeneratedCodeAttribute;IsCommon8Project;UseSourceGeneratorResx;UseSourceGeneratorBcl;UseAspNetCore;UseEFCore;UseMicrosoftIdentityModelTokens;UseAvalonia;UseAvaloniaDiagnostics;UseAvaloniaSkia;UseAvaloniaX11;UseAvaloniaReactiveUI;UseAvaloniaXamlInteractivity;UseAvaloniaControlsDataGrid;UseAvaloniaControlsLiveCharts;UseFluentAvalonia;UseRedis;UseNLog;UsePolly;UseSQLitePCL;UseSystemCommandLine;UseReactiveUI;UseReactiveUIFody;UseMicrosoftExtensionsConfiguration;UseMicrosoftExtensionsConfigurationJson;UseMicrosoftExtensionsOptions;UseMicrosoftExtensionsOptionsConfigurationExtensions;UseMicrosoftExtensionsHosting;UseMicrosoftExtensionsHttp;UseAndroidXBrowser;UseFusillade;UseMoq;UseSystemNetHttpJson;UseAngleSharp;UseSystemDrawingCommon;UseAvaloniaXmlnsDefinition;UseMicrosoftWindowsCsWin32;UseNitoComparers;UseCrc32NET;UseNewtonsoftJson;UseCommon8Bcl;UseCommon8Primitives;UseCommon8PrimitivesDistrict;UseCommon8PrimitivesEssentials;UseCommon8PrimitivesToast;UseCommon8PrimitivesApiResponse;UseCommon8PrimitivesApiRsp;UseCommon8PrimitivesPersonalDataBirthDate;UseCommon8PrimitivesPersonalDataPhoneNumber;UseCommon8Essentials;UseCommon8EssentialsImplementation;UseCommon8EssentialsImplementationAvalonia;UseCommon8HttpClientFactory;UseCommon8HttpClientFactoryServer;UseCommon8Ipc;UseCommon8IpcClient;UseCommon8IpcServer;UseCommon8OrmEFCore;UseCommon8Pinyin;UseCommon8PinyinChnCharInfo;UseCommon8PinyinCoreFoundation;UseCommon8Repositories;UseCommon8RepositoriesEFCore;UseCommon8RepositoriesSQLitePCL;UseCommon8Security;UseCommon8Settings5;UseCommon8Settings5Backend;UseCommon8Settings5Frontend;UseCommon8SmsSender;UseCommon8Toast;UseCommon8UserInputModelValidator;UseCommon8Crawler;UseCommon8AspNetCore;UseCommon8AspNetCoreIdentity;UseCommon8AspNetCoreIdentityBackManage">
 
 	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
 
@@ -131,6 +131,11 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 		<PackageReference Include="Avalonia" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" Include="Avalonia.Android" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'" Include="Avalonia.iOS" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'" Include="Avalonia.Native" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Include="Avalonia.Win32" />
+		<PackageReference Condition="$(UseAvaloniaX11) == 'true'" Include="Avalonia.X11" />
 	</ItemGroup>
 
 	<!-- 是否包引用 Avalonia.Diagnostics -->
@@ -141,21 +146,6 @@
 	<!-- 是否包引用 Avalonia.Skia -->
 	<ItemGroup Condition="$(UseAvaloniaSkia) == 'true'">
 		<PackageReference Include="Avalonia.Skia" />
-	</ItemGroup>
-
-	<!-- 是否包引用 Avalonia.Win32 -->
-	<ItemGroup Condition="$(UseAvaloniaWin32) == 'true'">
-		<PackageReference Include="Avalonia.Win32" />
-	</ItemGroup>
-
-	<!-- 是否包引用 Avalonia.X11 -->
-	<ItemGroup Condition="$(UseAvaloniaX11) == 'true'">
-		<PackageReference Include="Avalonia.X11" />
-	</ItemGroup>
-
-	<!-- 是否包引用 Avalonia.Native -->
-	<ItemGroup Condition="$(UseAvaloniaNative) == 'true'">
-		<PackageReference Include="Avalonia.Native" />
 	</ItemGroup>
 
 	<!-- 是否包引用 Avalonia.ReactiveUI -->

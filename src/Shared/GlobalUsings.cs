@@ -54,5 +54,8 @@ global using System.Xml.XPath;
 global using IPAddress = System.Net.IPAddress;
 global using Path = System.IO.Path;
 #if ANDROID
+global using Android.Runtime;
 global using AToastLength = Android.Widget.ToastLength;
+global using AndroidApplication = Android.App.Application;
+global using Activity = Android.App.Activity;
 #endif
