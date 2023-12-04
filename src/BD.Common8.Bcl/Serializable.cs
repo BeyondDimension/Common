@@ -129,7 +129,7 @@ namespace System
             /// <summary>
             /// 使用的默认文本编码
             /// </summary>
-            Encoding DefaultEncoding { get; }
+            Encoding DefaultEncoding => Encoding.UTF8;
 
             /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
             NewtonsoftJsonSerializer NewtonsoftJsonSerializer => null!;

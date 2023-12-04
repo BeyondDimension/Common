@@ -3,10 +3,12 @@
 	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8IpcClient_Ref) == 'code'">
 	</PropertyGroup>
 
-
 	<PropertyGroup>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseCommon8Ipc>true</UseCommon8Ipc>
+		<UseCommon8HttpClientFactory>true</UseCommon8HttpClientFactory>
+		<UseSignalRClient>true</UseSignalRClient>
+		<UseDotNextThreading>true</UseDotNextThreading>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

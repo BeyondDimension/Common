@@ -43,6 +43,7 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
     /// <summary>
     /// 创建默认的处理程序
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static HttpMessageHandler CreateHandler()
     {
         HttpClientHandler handler = new()

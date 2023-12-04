@@ -17,7 +17,7 @@ public abstract partial class WebApiClientBaseService(
     protected readonly IHttpPlatformHelperService httpPlatformHelper = httpPlatformHelper;
 
     /// <inheritdoc cref="IHttpPlatformHelperService.UserAgent"/>
-    protected virtual string UserAgent => httpPlatformHelper.UserAgent;
+    protected virtual string? UserAgent => httpPlatformHelper.UserAgent;
 
     /// <inheritdoc cref="ILogger"/>
     protected readonly ILogger logger = logger;

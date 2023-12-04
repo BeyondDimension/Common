@@ -81,5 +81,7 @@
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0" />
 		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.6.0.2" />
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.0.0-rc.2.23480.1-02" />
+		<PackageVersion Include="DotNext" Version="4.15.2" />
+		<PackageVersion Include="DotNext.Threading" Version="4.15.2" />
 	</ItemGroup>
 </Project>

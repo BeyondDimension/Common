@@ -6,6 +6,16 @@ namespace BD.Common8.Ipc.Client.Helpers;
 public static partial class IpcAppConnectionStringHelper
 {
     /// <summary>
+    /// SignalR 的 Hub 名称
+    /// </summary>
+    public const string HubName = "IpcHub";
+
+    /// <summary>
+    /// 超时时间
+    /// </summary>
+    public const double TimeoutFromSeconds = 2.9;
+
+    /// <summary>
     /// 根据 Ipc 应用程序连接字符串创建 <see cref="HttpMessageHandler"/>
     /// </summary>
     /// <param name="connectionString">连接字符串</param>
@@ -54,7 +64,7 @@ public static partial class IpcAppConnectionStringHelper
     /// <returns></returns>
     public static HttpClient GetHttpClient(IpcAppConnectionString connectionString,
         bool ignoreRemoteCertificateValidation = true,
-        double timeoutFromSeconds = 3d)
+        double timeoutFromSeconds = TimeoutFromSeconds)
     {
         (string baseAddress, HttpMessageHandler handler) = GetHttpMessageHandler(connectionString, ignoreRemoteCertificateValidation);
         HttpClient client = new(handler)

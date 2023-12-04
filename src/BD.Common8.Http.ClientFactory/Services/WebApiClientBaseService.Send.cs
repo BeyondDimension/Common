@@ -102,7 +102,10 @@ partial class WebApiClientBaseService
                 {
                     userAgent = s.UserAgent;
                 }
-                httpRequestMessage.Headers.UserAgent.ParseAdd(userAgent);
+                if (!string.IsNullOrEmpty(userAgent))
+                {
+                    httpRequestMessage.Headers.UserAgent.ParseAdd(userAgent);
+                }
             }
 
             ConfigureRequestMessage?.Invoke(httpRequestMessage, this, cancellationToken);
