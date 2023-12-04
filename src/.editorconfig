@@ -242,7 +242,7 @@ dotnet_diagnostic.IDE0010.severity = none
 dotnet_diagnostic.IDE0011.severity = none
 
 # IDE0028: 使用集合初始值设定项
-dotnet_diagnostic.IDE0028.severity = error
+dotnet_diagnostic.IDE0028.severity = none
 
 # IDE0040: 添加可访问性修饰符
 dotnet_diagnostic.IDE0040.severity = none
