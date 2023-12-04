@@ -4,15 +4,26 @@ namespace BD.Common8.Http.ClientFactory.Services;
 /// WebApiClient 基类服务，实现序列化相关，统一使用方式
 /// </summary>
 /// <param name="logger"></param>
+/// <param name="httpPlatformHelper"></param>
 /// <param name="clientFactory"></param>
 /// <param name="newtonsoftJsonSerializer">如果需要使用 <see cref="Newtonsoft.Json"/> 则需要传递自定义实例或通过直接 new()，否则应保持为 <see langword="null"/></param>
 public abstract partial class WebApiClientBaseService(
     ILogger logger,
+    IHttpPlatformHelperService httpPlatformHelper,
     IClientHttpClientFactory clientFactory,
-    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null)
+    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : Serializable.IService
 {
+    /// <inheritdoc cref="IHttpPlatformHelperService"/>
+    protected readonly IHttpPlatformHelperService httpPlatformHelper = httpPlatformHelper;
+
+    /// <inheritdoc cref="IHttpPlatformHelperService.UserAgent"/>
+    protected virtual string UserAgent => httpPlatformHelper.UserAgent;
+
     /// <inheritdoc cref="ILogger"/>
     protected readonly ILogger logger = logger;
+
+    /// <inheritdoc/>
+    ILogger Log.I.Logger => logger;
 
     /// <inheritdoc cref="IClientHttpClientFactory"/>
     protected readonly IClientHttpClientFactory clientFactory = clientFactory;
@@ -68,28 +79,20 @@ public abstract partial class WebApiClientBaseService(
     /// </summary>
     protected virtual Encoding DefaultEncoding => Encoding.UTF8;
 
-    /// <summary>
-    /// 当序列化出现错误时
-    /// </summary>
-    /// <param name="ex"></param>
-    /// <param name="isSerializeOrDeserialize">是序列化还是反序列化</param>
-    /// <param name="modelType">模型类类型</param>
+    /// <inheritdoc/>
+    Encoding Serializable.IService.DefaultEncoding => DefaultEncoding;
+
+    /// <inheritdoc cref="Serializable.IService.OnSerializerError(Exception, bool, Type)"/>
     protected virtual void OnSerializerError(Exception ex,
         bool isSerializeOrDeserialize,
         Type modelType)
     {
-        // 记录错误时，不需要带上 requestUrl 等敏感信息
-        if (isSerializeOrDeserialize)
-        {
-            logger.LogError(ex,
-                "Error serializing request model class. (Parameter '{type}')",
-                modelType);
-        }
-        else
-        {
-            logger.LogError(ex,
-                "Error reading and deserializing the response content into an instance. (Parameter '{type}')",
-                modelType);
-        }
+        Serializable.IService.DefaultOnSerializerError(logger, ex, isSerializeOrDeserialize, modelType);
     }
+
+    /// <inheritdoc/>
+    void Serializable.IService.OnSerializerError(Exception ex,
+        bool isSerializeOrDeserialize,
+        Type modelType)
+        => OnSerializerError(ex, isSerializeOrDeserialize, modelType);
 }

@@ -40,6 +40,8 @@ namespace System
             /// <para>https://github.com/Cysharp/MemoryPack</para>
             /// </summary>
             MemoryPack,
+
+            Xml,
         }
 
         /// <summary>
@@ -118,6 +120,69 @@ namespace System
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         }
+
+        /// <summary>
+        /// 使用序列化的服务
+        /// </summary>
+        public interface IService : Log.I
+        {
+            /// <summary>
+            /// 使用的默认文本编码
+            /// </summary>
+            Encoding DefaultEncoding { get; }
+
+            /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
+            NewtonsoftJsonSerializer NewtonsoftJsonSerializer => null!;
+
+            /// <summary>
+            /// 序列化是否必须使用 <see cref="JsonTypeInfo"/>，即源生成的类型信息数据，避免运行时反射
+            /// </summary>
+            bool RequiredJsonTypeInfo => true;
+
+            /// <summary>
+            /// 用于序列化的类型信息，由 Json 源生成
+            /// </summary>
+            JsonTypeInfo? JsonTypeInfo => null;
+
+            /// <summary>
+            /// 当序列化出现错误时
+            /// </summary>
+            /// <param name="ex"></param>
+            /// <param name="isSerializeOrDeserialize">是序列化还是反序列化</param>
+            /// <param name="modelType">模型类类型</param>
+            void OnSerializerError(Exception ex,
+                bool isSerializeOrDeserialize,
+                Type modelType)
+                => DefaultOnSerializerError(Logger, ex, isSerializeOrDeserialize, modelType);
+
+            /// <summary>
+            /// <see cref="OnSerializerError(Exception, bool, Type)"/> 的默认实现
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="ex"></param>
+            /// <param name="isSerializeOrDeserialize"></param>
+            /// <param name="modelType"></param>
+            static void DefaultOnSerializerError(
+                ILogger logger,
+                Exception ex,
+                bool isSerializeOrDeserialize,
+                Type modelType)
+            {
+                // 记录错误时，不需要带上 requestUrl 等敏感信息
+                if (isSerializeOrDeserialize)
+                {
+                    logger.LogError(ex,
+                        "Error serializing request model class. (Parameter '{type}')",
+                        modelType);
+                }
+                else
+                {
+                    logger.LogError(ex,
+                        "Error reading and deserializing the response content into an instance. (Parameter '{type}')",
+                        modelType);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -157,5 +222,417 @@ namespace System
                     return false;
             }
         }
+
+#pragma warning disable SA1600 // Elements should be documented
+        public const string Obsolete_GetNJsonContent = "无特殊情况下应使用 GetSJsonContent，即 System.Text.Json";
+        public const string Obsolete_ReadFromNJsonAsync = "无特殊情况下应使用 ReadFromSJsonAsync，即 System.Text.Json";
+        public const string Obsolete_UseAsync = "无特殊情况下应使用 Async 异步的函数版本";
+#pragma warning restore SA1600 // Elements should be documented
+
+        #region MemoryPack
+
+        /// <summary>
+        /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），使用 MemoryPack
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="inputValue"></param>
+        /// <param name="mediaType"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static HttpContent? GetMemoryPackContent<T>(
+            this IService s,
+            T inputValue,
+            MediaTypeHeaderValue? mediaType = null)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: true, typeof(T));
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 MemoryPack
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="content"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static async Task<T?> ReadFromMemoryPackAsync<T>(
+            this IService s,
+            HttpContent content,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                await Task.CompletedTask;
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: false, typeof(T));
+                return default;
+            }
+        }
+
+        #endregion
+
+        #region Newtonsoft.Json
+
+        /// <summary>
+        /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="inputValue"></param>
+        /// <param name="encoding"></param>
+        /// <param name="mediaType"></param>
+        /// <returns></returns>
+        [Obsolete(Obsolete_GetNJsonContent)]
+        public static HttpContent? GetNJsonContent<T>(
+            this IService s,
+            T inputValue,
+            Encoding? encoding = null,
+            MediaTypeHeaderValue? mediaType = null)
+        {
+            if (inputValue == null)
+                return null;
+            try
+            {
+                encoding ??= s.DefaultEncoding;
+                var stream = new MemoryStream(); // 使用内存流，避免 byte[] 块，与字符串 utf16 开销
+                using var streamWriter = new StreamWriter(stream, encoding, leaveOpen: true);
+                using var jsonWriter = new JsonTextWriter(streamWriter);
+                s.NewtonsoftJsonSerializer.Serialize(jsonWriter, inputValue, typeof(T));
+                var content = new StreamContent(stream);
+                content.Headers.ContentType = mediaType ?? new MediaTypeHeaderValue(MediaTypeNames.JSON, encoding.WebName);
+                return content;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: true, typeof(T));
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
+        /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="NewtonsoftJsonObject"/></para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="content"></param>
+        /// <param name="encoding"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [Obsolete(Obsolete_ReadFromNJsonAsync)]
+        public static async Task<T?> ReadFromNJsonAsync<T>(
+            this IService s,
+            HttpContent content,
+            Encoding? encoding = null,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                encoding ??= s.DefaultEncoding;
+                using var contentStream = await content.ReadAsStreamAsync(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+                using var contentStreamReader = new StreamReader(contentStream, encoding);
+                using var contentJsonTextReader = new JsonTextReader(contentStreamReader);
+                var result = s.NewtonsoftJsonSerializer.Deserialize<T>(contentJsonTextReader);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: false, typeof(T));
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
+        /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="NewtonsoftJsonObject"/></para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="content"></param>
+        /// <param name="encoding"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [Obsolete(Obsolete_UseAsync)]
+        public static T? ReadFromNJson<T>(
+            this IService s,
+            HttpContent content,
+            Encoding? encoding = null,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                encoding ??= s.DefaultEncoding;
+                using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+                using var contentStreamReader = new StreamReader(contentStream, encoding);
+                using var contentJsonTextReader = new JsonTextReader(contentStreamReader);
+                var result = s.NewtonsoftJsonSerializer.Deserialize<T>(contentJsonTextReader);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: false, typeof(T));
+                return default;
+            }
+        }
+
+        #endregion
+
+        #region System.Text.Json
+
+        /// <summary>
+        /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="inputValue"></param>
+        /// <param name="jsonTypeInfo"></param>
+        /// <param name="mediaType"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static HttpContent? GetSJsonContent<T>(
+            this IService s,
+            T inputValue,
+            JsonTypeInfo<T>? jsonTypeInfo,
+            MediaTypeHeaderValue? mediaType = null)
+        {
+            if (inputValue == null)
+                return null;
+            try
+            {
+                JsonContent content;
+                jsonTypeInfo ??= s.JsonTypeInfo is JsonTypeInfo<T> jsonTypeInfo_ ? jsonTypeInfo_ : null;
+                if (jsonTypeInfo == null)
+                {
+                    if (s.RequiredJsonTypeInfo) throw new ArgumentNullException(nameof(jsonTypeInfo));
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                    content = JsonContent.Create(inputValue, mediaType);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+                }
+                else
+                {
+                    content = JsonContent.Create(inputValue, jsonTypeInfo, mediaType);
+                }
+                return content;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: true, typeof(T));
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
+        /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="SystemTextJsonObject"/></para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="content"></param>
+        /// <param name="jsonTypeInfo"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public static async Task<T?> ReadFromSJsonAsync<T>(
+            this IService s,
+            HttpContent content,
+            JsonTypeInfo<T>? jsonTypeInfo,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                T? result;
+                jsonTypeInfo ??= s.JsonTypeInfo is JsonTypeInfo<T> jsonTypeInfo_ ? jsonTypeInfo_ : null;
+                if (jsonTypeInfo == null)
+                {
+                    if (s.RequiredJsonTypeInfo)
+                    {
+                        var modelType = typeof(T);
+                        if (modelType != typeof(SystemTextJsonObject))
+                        {
+                            throw new ArgumentNullException(nameof(jsonTypeInfo));
+                        }
+                    }
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                    result = await content.ReadFromJsonAsync<T>(cancellationToken);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+                }
+                else
+                {
+                    result = await content.ReadFromJsonAsync(jsonTypeInfo, cancellationToken);
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: false, typeof(T));
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
+        /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="SystemTextJsonObject"/></para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="content"></param>
+        /// <param name="jsonTypeInfo"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        [Obsolete(Obsolete_UseAsync)]
+        public static T? ReadFromSJson<T>(
+            this IService s,
+            HttpContent content,
+            JsonTypeInfo<T>? jsonTypeInfo,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                T? result;
+                jsonTypeInfo ??= s.JsonTypeInfo is JsonTypeInfo<T> jsonTypeInfo_ ? jsonTypeInfo_ : null;
+                if (jsonTypeInfo == null)
+                {
+                    if (s.RequiredJsonTypeInfo)
+                    {
+                        var modelType = typeof(T);
+                        if (modelType != typeof(SystemTextJsonObject))
+                        {
+                            throw new ArgumentNullException(nameof(jsonTypeInfo));
+                        }
+                    }
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                    using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+                    result = SystemTextJsonSerializer.Deserialize<T>(contentStream);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+                }
+                else
+                {
+                    using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+                    result = SystemTextJsonSerializer.Deserialize(contentStream, jsonTypeInfo);
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: false, typeof(T));
+                return default;
+            }
+        }
+
+        #endregion
+
+        #region Xml
+
+        /// <summary>
+        /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），使用 XML
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="inputValue"></param>
+        /// <param name="encoding"></param>
+        /// <param name="mediaType"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+        public static HttpContent? GetXmlContent<T>(
+            this IService s,
+            T inputValue,
+            Encoding? encoding = null,
+            MediaTypeHeaderValue? mediaType = null)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: true, typeof(T));
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 XML
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="content"></param>
+        /// <param name="encoding"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+        public static async Task<T?> ReadFromXmlAsync<T>(
+            this IService s,
+            HttpContent content,
+            Encoding? encoding = null,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                encoding ??= s.DefaultEncoding;
+                using var contentStream = await content.ReadAsStreamAsync(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+                using var contentStreamReader = new StreamReader(contentStream, encoding);
+                var result = DXml<T>(contentStreamReader);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: false, typeof(T));
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 XML
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="s"></param>
+        /// <param name="content"></param>
+        /// <param name="encoding"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+        [Obsolete(Obsolete_UseAsync)]
+        public static T? ReadFromXml<T>(
+            this IService s,
+            HttpContent content,
+            Encoding? encoding = null,
+            CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                encoding ??= s.DefaultEncoding;
+                using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+                using var contentStreamReader = new StreamReader(contentStream, encoding);
+                var result = DXml<T>(contentStreamReader);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                s.OnSerializerError(ex, isSerializeOrDeserialize: false, typeof(T));
+                return default;
+            }
+        }
+
+        #endregion
     }
 }

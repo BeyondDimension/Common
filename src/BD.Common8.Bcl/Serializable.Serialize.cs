@@ -221,4 +221,18 @@ public static partial class Serializable // Serialize(序列化)
     }
 
 #endif
+
+    /// <summary>
+    /// (Serialize)Xml
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="textWriter"></param>
+    /// <param name="value"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+    public static void SXml<T>(TextWriter textWriter, T? value)
+    {
+        var xmlSerializer = GetXmlSerializer(typeof(T));
+        xmlSerializer.Serialize(textWriter, value);
+    }
 }

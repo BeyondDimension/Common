@@ -1,3 +1,5 @@
+#pragma warning disable SA1600 // Elements should be documented
+
 namespace System.Extensions;
 
 /// <summary>
@@ -17,7 +19,7 @@ public static partial class HttpClientExtensions
 #endif
 #endif
 
-    static void UseDefault(HttpClient httpClient, HttpRequestMessage request)
+    public static void UseDefault(HttpClient httpClient, HttpRequestMessage request)
     {
 #if NETSTANDARD || NETFRAMEWORK
         request.Version = DefaultRequestVersion;

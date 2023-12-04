@@ -10,6 +10,7 @@
 
 	<PropertyGroup>
 		<UseSystemDrawingCommon>true</UseSystemDrawingCommon>
+		<UseSystemNetHttpJson>true</UseSystemNetHttpJson>
 		<UsePolly>true</UsePolly>
 		<UseNitoComparers>true</UseNitoComparers>
 		<UseCrc32NET>true</UseCrc32NET>

@@ -236,5 +236,14 @@ public static partial class Log
     }
 
     #endregion
+
+    /// <summary>
+    /// 日志接口定义
+    /// </summary>
+    public interface I
+    {
+        /// <inheritdoc cref="ILogger"/>
+        ILogger Logger { get; }
+    }
 }
 #endif

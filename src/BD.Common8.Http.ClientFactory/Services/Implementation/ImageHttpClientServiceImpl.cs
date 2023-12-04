@@ -71,18 +71,18 @@ public sealed class ImageHttpClientServiceImpl(
             isPolly = false;
         }
 
-        MemoryStream? response = null;
+        ImageMemoryStreamWrapper response = default;
 
         if (cacheFirst && category != HttpHandlerCategory.Offline && cache)
         {
             // 如果缓存优先，则先从缓存中取
             response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
-            if (IsImageStream(response))
-                return response;
+            if (IsImageStream(response.Stream))
+                return response.Stream;
 
             try
             {
-                response?.Dispose();
+                response.Stream?.Dispose();
             }
             catch
             {
@@ -94,7 +94,8 @@ public sealed class ImageHttpClientServiceImpl(
             if (isPolly && category != HttpHandlerCategory.Offline)
             {
                 // 使用 Polly 尝试 numRetries 次进行网络请求，如果强行指定离线缓存，则不进行多次尝试
-                response = await Policy.HandleResult<MemoryStream?>(x => x == null)
+                response = await Policy.HandleResult<ImageMemoryStreamWrapper>(
+                        static x => x.Stream == null && !x.IsStopped) // 流为空时并且没有取消请求的情况下重试
                     .WaitAndRetryAsync(numRetries, PollyRetryAttempt)
                     .ExecuteAsync(_GetImageMemoryStreamCoreAsync, cancellationToken);
             }
@@ -106,22 +107,24 @@ public sealed class ImageHttpClientServiceImpl(
         }
         catch (Exception e)
         {
+            if (e.GetKnownType().IsCanceledException())
+                return null;
             logger.LogWarning(e,
                 $"{nameof(GetImageMemoryStreamAsync)} fail, category: {{category}}.", category);
         }
 
-        if (!cacheFirst && response == null && category != HttpHandlerCategory.Offline && cache)
+        if (!cacheFirst && response.Stream == null && category != HttpHandlerCategory.Offline && cache)
         {
             // 非缓存优先的情况下，从网络中加载失败，再去缓存中尝试加载
             response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
         }
 
-        if (IsImageStream(response))
-            return response;
+        if (IsImageStream(response.Stream))
+            return response.Stream;
 
         try
         {
-            response?.Dispose();
+            response.Stream?.Dispose();
         }
         catch
         {
@@ -129,7 +132,7 @@ public sealed class ImageHttpClientServiceImpl(
 
         return null;
 
-        async Task<MemoryStream?> _GetImageMemoryStreamCoreAsync(CancellationToken cancellationToken)
+        async Task<ImageMemoryStreamWrapper> _GetImageMemoryStreamCoreAsync(CancellationToken cancellationToken)
         {
             try
             {
@@ -141,13 +144,15 @@ public sealed class ImageHttpClientServiceImpl(
             }
             catch (Exception e)
             {
+                if (e.GetKnownType().IsCanceledException())
+                    return true;
                 logger.LogWarning(e,
                     $"{nameof(_GetImageMemoryStreamCoreAsync)} fail, category: {{category}}.", category);
-                return default;
+                return false; // 可重试
             }
         }
 
-        async Task<MemoryStream?> _GetImageMemoryStreamCoreByOfflineAsync(CancellationToken cancellationToken)
+        async Task<ImageMemoryStreamWrapper> _GetImageMemoryStreamCoreByOfflineAsync(CancellationToken cancellationToken)
         {
             try
             {
@@ -159,11 +164,42 @@ public sealed class ImageHttpClientServiceImpl(
             }
             catch (Exception e)
             {
+                if (e.GetKnownType().IsCanceledException())
+                    return true;
                 logger.LogWarning(e,
                     $"{nameof(_GetImageMemoryStreamCoreByOfflineAsync)} fail, category: {{category}}(Offline).", category);
-                return default;
+                return false; // 可重试
             }
         }
+    }
+
+    /// <summary>
+    /// 图片内存流包装类型
+    /// </summary>
+    readonly record struct ImageMemoryStreamWrapper
+    {
+        /// <summary>
+        /// 图片内存流
+        /// </summary>
+        public MemoryStream? Stream { get; init; }
+
+        /// <summary>
+        /// 请求是否中止，比如取消，停止重试等
+        /// </summary>
+        public required bool IsStopped { get; init; }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator ImageMemoryStreamWrapper(bool isStopped) => isStopped ? new()
+        {
+            IsStopped = true,
+        } : default;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator ImageMemoryStreamWrapper(MemoryStream? stream) => new()
+        {
+            IsStopped = true,
+            Stream = stream,
+        };
     }
 
     /// <summary>
@@ -179,7 +215,7 @@ public sealed class ImageHttpClientServiceImpl(
         public string OriginalRequestUri { get; } = requestUri;
     }
 
-    async Task<MemoryStream?> GetImageMemoryStreamCoreAsync(
+    async Task<ImageMemoryStreamWrapper> GetImageMemoryStreamCoreAsync(
         string requestUri,
         HttpHandlerCategory category,
         CancellationToken cancellationToken = default)
@@ -195,10 +231,11 @@ public sealed class ImageHttpClientServiceImpl(
         if (response.IsSuccessStatusCode)
         {
             var imageBytes = await response.Content.ReadAsByteArrayAsync(cancellationToken);
-            return new MemoryStream(imageBytes, false);
+            var memoryStream = new MemoryStream(imageBytes, false);
+            return memoryStream;
         }
 
-        return default;
+        return true; // 请求结束，状态码不为 2xx 则判定失败且不进行重试
     }
 
     #region Polly

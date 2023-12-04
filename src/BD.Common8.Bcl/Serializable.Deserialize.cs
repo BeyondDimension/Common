@@ -190,4 +190,19 @@ public static partial class Serializable // Deserialize(反序列化)
     }
 
 #endif
+
+    /// <summary>
+    /// (Deserialize)Xml
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="textReader"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+    public static T? DXml<T>(TextReader textReader)
+    {
+        var xmlSerializer = GetXmlSerializer(typeof(T));
+        var result = xmlSerializer.Deserialize(textReader);
+        return (T?)result;
+    }
 }
