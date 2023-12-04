@@ -43,6 +43,8 @@ global using Avalonia.Utilities;
 
 #if ANDROID
 global using Avalonia.Android;
+#elif IOS
+global using Avalonia.iOS;
 #endif
 
 global using AvaColor = Avalonia.Media.Color;
