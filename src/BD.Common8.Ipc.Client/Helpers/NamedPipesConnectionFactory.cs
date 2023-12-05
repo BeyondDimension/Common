@@ -1,4 +1,4 @@
-namespace BD.Common8.Ipc.Client.Helpers;
+namespace BD.Common8.Ipc.Helpers;
 #pragma warning disable SA1313 // Parameter names should begin with lower-case letter
 
 /// <summary>

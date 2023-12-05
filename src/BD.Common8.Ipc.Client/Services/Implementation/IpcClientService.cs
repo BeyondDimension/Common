@@ -1,8 +1,6 @@
-using DotNext.Threading;
-using Microsoft.AspNetCore.SignalR.Client;
 using HttpTransportType = Microsoft.AspNetCore.Http.Connections.HttpTransportType;
 
-namespace BD.Common8.Ipc.Client.Services.Implementation;
+namespace BD.Common8.Ipc.Services.Implementation;
 
 #pragma warning disable SA1600 // Elements should be documented
 
@@ -10,35 +8,42 @@ namespace BD.Common8.Ipc.Client.Services.Implementation;
 /// Ipc 客户端连接服务实现
 /// </summary>
 /// <param name="connectionString"></param>
-public class IpcClientService(IpcAppConnectionString connectionString) : IIpcClientService, IAsyncDisposable
+public class IpcClientService(IpcAppConnectionString connectionString) :
+    WebApiClientService(Log.Factory.CreateLogger<IpcClientService>(), null!),
+    IIpcClientService, IAsyncDisposable
 {
-    /// <inheritdoc cref="ILogger"/>
-    protected readonly ILogger logger = Log.Factory.CreateLogger<IpcClientService>();
-
-    /// <inheritdoc/>
-    ILogger Log.I.Logger => logger;
-
+    SocketsHttpHandler? httpHandler;
     HttpClient? httpClient;
-    HttpMessageHandler? hubConnHandler;
+    SocketsHttpHandler? hubConnHandler;
     HubConnection? hubConnection;
 
     /// <inheritdoc cref="IpcAppConnectionString"/>
     protected readonly IpcAppConnectionString connectionString = connectionString;
 
-    /// <inheritdoc/>
-    public HttpClient HttpClient
-        => httpClient ??= IpcAppConnectionStringHelper.GetHttpClient(connectionString);
+    protected sealed override HttpClient CreateClient()
+    {
+        if (httpClient == null)
+        {
+            (httpClient, httpHandler) = IpcAppConnectionStringHelper.GetHttpClient(connectionString);
+            ConfigureSocketsHttpHandler(httpHandler);
+        }
+        return httpClient;
+    }
 
-    /// <inheritdoc/>
-    public async ValueTask<HubConnection> GetHubConnAsync()
+    /// <summary>
+    /// 异步获取 SignalR Hub 连接
+    /// </summary>
+    /// <returns></returns>
+    protected async ValueTask<HubConnection> GetHubConnAsync()
     {
         if (hubConnection != null)
             return hubConnection;
         var @lock = new AsyncExclusiveLock();
         using (await @lock.AcquireLockAsync(CancellationToken.None))
         {
-            (string baseAddress, HttpMessageHandler handler) = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
-            hubConnHandler = handler;
+            (var baseAddress, hubConnHandler) =
+                IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
+            ConfigureSocketsHttpHandler(hubConnHandler);
 
             var builder = new HubConnectionBuilder()
                 .WithUrl(baseAddress, opt =>
@@ -47,7 +52,7 @@ public class IpcClientService(IpcAppConnectionString connectionString) : IIpcCli
                     opt.HttpMessageHandlerFactory = (oldHandler) =>
                     {
                         oldHandler.Dispose(); // 传过来的 Handler 丢弃，使用根据连接字符串解析的
-                        return handler;
+                        return hubConnHandler;
                     };
                     opt.WebSocketConfiguration = static o =>
                     {
@@ -61,11 +66,19 @@ public class IpcClientService(IpcAppConnectionString connectionString) : IIpcCli
             hubConnection.Reconnected += HubConnection_Reconnected;
             hubConnection.Reconnecting += HubConnection_Reconnecting;
 
-            var cts = new CancellationTokenSource();
+            using var cts = new CancellationTokenSource();
             cts.CancelAfter(TimeSpan.FromSeconds(IpcAppConnectionStringHelper.TimeoutFromSeconds));
             await hubConnection.StartAsync(cts.Token);
         }
         return hubConnection;
+    }
+
+    /// <summary>
+    /// 配置 <see cref="SocketsHttpHandler"/>
+    /// </summary>
+    /// <param name="handler"></param>
+    protected virtual void ConfigureSocketsHttpHandler(SocketsHttpHandler handler)
+    {
     }
 
     /// <inheritdoc cref="HubConnection.Reconnecting"/>

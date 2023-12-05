@@ -1,215 +1,157 @@
-using Ipc.Sample;
-using Microsoft.AspNetCore.SignalR.Client;
-
-const string pipeName = "BD.Common8.Ipc.Server.Sample.Experimental";
-
-var clientNamedPipe = IpcAppConnectionStringHelper.GetHttpClient(
-    new IpcAppConnectionString
-    {
-        Type = IpcAppConnectionStringType.NamedPipe,
-        StringValue = pipeName,
-    });
-
-var clientHttps = IpcAppConnectionStringHelper.GetHttpClient(
-    new IpcAppConnectionString
-    {
-        Type = IpcAppConnectionStringType.Https,
-        Int32Value = 5076,
-    });
-
-var hubConn = await GetSignalRHubConnection();
-var hubStreamConn = await GetSignalRHubConnection("/streaming");
-
-static async Task<string> GetStringAsync(HttpClient client)
-{
-    using var rsp = await client.PostAsync("/ITodoService/All", content: null);
-    var str = await rsp.Content.ReadAsStringAsync();
-    return str;
-}
-
-static async Task<HubConnection> GetSignalRHubConnection(string pattern = "/test")
-{
-    (string baseAddress, var httpMessageHandler) = CreateHandlerFunc();
-
-    HubConnection conn = new HubConnectionBuilder()
-       //.WithServerTimeout(TimeSpan.FromSeconds(1)) // 多久未接收到服务端消息断开连接(开启了自动重连会触发自动重连)
-       // .WithUrl("https://localhost:5076/test")
-       .WithUrl(baseAddress, opt =>
-       {
-           opt.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
-           //opt.SkipNegotiation = true;
-           opt.HttpMessageHandlerFactory = (message) =>
-           {
-               message.Dispose();
-               return CreateHandlerFunc().handler;
-           };
-           opt.WebSocketConfiguration = static o =>
-           {
-               o.HttpVersion = HttpVersion.Version20;
-           };
-           opt.Url = new Uri(baseAddress + pattern);
-       })
-       .WithAutomaticReconnect()
-       .Build();
-
-    conn.Reconnected += (s) =>
-    {
-        Console.WriteLine(@"已重连:" + DateTime.Now);
-        return Task.CompletedTask;
-    };
-
-    conn.Reconnecting += (s) =>
-    {
-        Console.WriteLine(s);
-        Console.WriteLine(@"正在重连:" + DateTime.Now);
-        return Task.CompletedTask;
-    };
-
-    // 监听服务端消息
-    conn.On<string>("ServerReceivedMsg", (serverMsg) =>
-    {
-        Console.WriteLine(@"ServerReceivedMsg => " + serverMsg);
-    });
-
-    await conn.StartAsync();
-
-    return conn;
-    // 创建自定义 handler
-    static (string baseAddress, HttpMessageHandler handler) CreateHandlerFunc() =>
-        IpcAppConnectionStringHelper.GetHttpMessageHandler(new IpcAppConnectionString
-        {
-            Type = IpcAppConnectionStringType.Https,
-            Int32Value = 5076,
-            //Type = IpcAppConnectionStringType.NamedPipe,
-            //StringValue = pipeName,
-        });
-}
-
-static async Task<string> GetSignalRStringAsync(HubConnection conn)
-{
-    string s = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-
-    var str = await conn.InvokeAsync<string>("ReturnClientResult", s);
-
-    return str;
-}
-
-static async Task GetSignalRStringAsync2(HubConnection conn)
-{
-    await foreach (var pack in conn.StreamAsync<Pack>("AsyncEnumerable", 20))
-    {
-        await Console.Out.WriteLineAsync(pack.ToString());
-    }
-}
-
-static async Task GetSignalRStringAsync3(HubConnection conn)
-{
-    var channel = await conn.StreamAsChannelAsync<Pack>("ChannelAsync", 99);
-
-    await foreach (var pack in channel.ReadAllAsync())
-    {
-        await Console.Out.WriteLineAsync(pack.ToString());
-    }
-}
-
-while (true)
-{
-    try
-    {
-        var resultNamedPipe = await GetStringAsync(clientNamedPipe);
-        Console.WriteLine("resultNamedPipe: ");
-        Console.WriteLine(resultNamedPipe);
-
-        var resultHttps = await GetStringAsync(clientHttps);
-        Console.WriteLine("resultHttps: ");
-        Console.WriteLine(resultHttps);
-
-        var resultSignalR = await GetSignalRStringAsync(hubConn);
-        Console.WriteLine("resultSignalR: ");
-        Console.WriteLine(resultSignalR);
-
-        await GetSignalRStringAsync3(hubStreamConn);
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine(ex);
-    }
-
-    var line = Console.ReadLine();
-    if ("exit".Equals(line, StringComparison.OrdinalIgnoreCase))
-    {
-        break;
-    }
-}
+namespace Ipc.Client.Sample.Experimental;
 
 #pragma warning disable SA1600 // Elements should be documented
 
-internal sealed class TodoServiceImpl(
-    ILoggerFactory loggerFactory,
-    IClientHttpClientFactory clientFactory) :
-    WebApiClientBaseService(
-        loggerFactory.CreateLogger(TAG),
-        clientFactory,
-        null),
-    ITodoService
-{
-    private const string TAG = "Todo";
-
-    protected override string ClientName => TAG;
-
-    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All()
-    {
-        var client = CreateClient();
-        using var rsp = await client.PostAsync("/All", null);
-        var r = await ReadFromAsync<ApiRspImpl<ITodoService.Todo[]?>>(rsp.Content);
-        return r!;
-    }
-
-    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id)
-    {
-        var client = CreateClient();
-        using var rsp = await client.PostAsync($"/GetById/{id}", null);
-        var r = await ReadFromAsync<ApiRspImpl<ITodoService.Todo?>>(rsp.Content);
-        return r!;
-    }
-
-    public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo)
-    {
-        var client = CreateClient();
-        using var content = GetHttpContent(todo);
-        using var rsp = await client.PostAsync("/BodyTest", content);
-        var r = await ReadFromAsync<ApiRspImpl>(rsp.Content);
-        return r!;
-    }
-}
-
 /// <summary>
-/// 测试包对象
+/// Ipc 客户端示例
 /// </summary>
-public class Pack
+static partial class Program
 {
-    /// <summary>
-    /// 时间
-    /// </summary>
-    public DateTime DateTime { get; set; }
-
-    /// <summary>
-    ///  id
-    /// </summary>
-    public string PackId { get; set; } = Guid.NewGuid().ToString("N");
-
-    /// <summary>
-    /// 数据
-    /// </summary>
-    public object? Data { get; set; }
-
-    public override string ToString()
+    static async Task Main()
     {
-        return $"{DateTime.ToString("yyyy-MM-dd HH:mm:ss fff")}, packId:{PackId} ";
+        Ioc.ConfigureServices(static s =>
+        {
+            s.AddLogging(static l =>
+            {
+                l.AddConsole();
+            });
+        });
+
+        IpcAppConnectionString[]? connectionStrings;
+        while (true) // 循环直到服务端启动并写入连接字符串数据文件
+        {
+            connectionStrings = SamplePathHelper.GetConnectionStrings();
+            if (connectionStrings != null && connectionStrings.Length != 0)
+                break;
+
+            Console.WriteLine("读取连接字符串失败，可能是服务端未启动，键入回车重试。");
+            Console.ReadLine();
+        }
+
+        List<IIpcClientService2> ipcClientServices = [];
+        foreach (var connectionString in connectionStrings)
+        {
+            IpcClientService2 ipcClientService = new TodoService_WebApi(connectionString);
+            ipcClientServices.Add(ipcClientService);
+        }
+
+        while (true) // 循环向服务端请求
+        {
+            foreach (var ipcClientService in ipcClientServices)
+            {
+                Console.WriteLine($"{ipcClientService.Title}: ");
+                if (ipcClientService is ITodoService todoService)
+                {
+                    var resultAll = await todoService.All();
+                    Console.WriteLine($"{nameof(ITodoService.All)}: ");
+                    Console.WriteLine(Serializable.SJSON_Original(resultAll, NewtonsoftJsonFormatting.Indented));
+
+                    var resultGetById = await todoService.GetById(Random.Shared.Next(int.MaxValue));
+                    Console.WriteLine($"{nameof(ITodoService.GetById)}: ");
+                    Console.WriteLine(Serializable.SJSON_Original(resultGetById, NewtonsoftJsonFormatting.Indented));
+
+                    var resultSimpleTypes = await todoService.SimpleTypes(true, 2, 3, '4', DateOnly.FromDateTime(DateTime.Today), DateTime.UtcNow, DateTimeOffset.Now, 7.1m, 8.2d, ProcessorArchitecture.MSIL, Guid.NewGuid(), 11, 12, long.MaxValue, 14.5f, TimeOnly.FromDateTime(DateTime.Now), TimeSpan.FromHours(3), 17, 18, 19, new Uri("http://github.com/BeyondDimension"), new Version(9, 12));
+                    Console.WriteLine($"{nameof(ITodoService.SimpleTypes)}: ");
+                    Console.WriteLine(Serializable.SJSON_Original(resultSimpleTypes, NewtonsoftJsonFormatting.Indented));
+
+                    var resultSimple2Types = await todoService.SimpleTypes2(2, 3, 7.1m, 8.2d, 11, 12, long.MaxValue, 14.5f, 17, 18, 19);
+                    Console.WriteLine($"{nameof(ITodoService.SimpleTypes2)}: ");
+                    Console.WriteLine(Serializable.SJSON_Original(resultSimple2Types, NewtonsoftJsonFormatting.Indented));
+
+                    var resultBodyTest = await todoService.BodyTest(new(9, Random2.GenerateRandomString(64)));
+                    Console.WriteLine($"{nameof(ITodoService.BodyTest)}: ");
+                    Console.WriteLine(Serializable.SJSON_Original(resultBodyTest, NewtonsoftJsonFormatting.Indented));
+                }
+            }
+            Console.WriteLine("键入回车再次发送请求。");
+            Console.ReadLine();
+        }
     }
+
+    interface IIpcClientService2 : IIpcClientService
+    {
+        string Title { get; }
+    }
+
+    abstract class IpcClientService2(IpcAppConnectionString connectionString) : IpcClientService(connectionString), IIpcClientService2
+    {
+        public string Title => $"{connectionString.Type}_{GetType().Name}";
+
+        /// <inheritdoc/>
+        protected sealed override void ConfigureSocketsHttpHandler(SocketsHttpHandler handler)
+        {
+            handler.SslOptions.ClientCertificates ??= new();
+            handler.SslOptions.ClientCertificates.Add(SamplePathHelper.ServerCertificate);
+        }
+
+        /// <inheritdoc/>
+        protected sealed override SystemTextJsonSerializerContext? JsonSerializerContext
+            => SampleJsonSerializerContext.Default;
+    }
+
+    #region 可使用源生成服务的调用实现
+
+    sealed class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcClientService2(connectionString), ITodoService
+    {
+        public async Task<ApiRspImpl<ITodoService.Todo[]?>> All(CancellationToken cancellationToken = default)
+        {
+            WebApiClientSendArgs args = new("/ITodoService/All")
+            {
+                Method = HttpMethod.Post,
+            };
+            var result = await SendAsync<ApiRspImpl<ITodoService.Todo[]?>>(args, cancellationToken);
+            return result!;
+        }
+
+        public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id, CancellationToken cancellationToken = default)
+        {
+            WebApiClientSendArgs args = new($"/ITodoService/GetById/{id}")
+            {
+                Method = HttpMethod.Post,
+            };
+            var result = await SendAsync<ApiRspImpl<ITodoService.Todo?>>(args, cancellationToken);
+            return result!;
+        }
+
+        public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21, CancellationToken cancellationToken = default)
+        {
+            WebApiClientSendArgs args = new($"/ITodoService/SimpleTypes/{WebUtility.UrlEncode(p0.ToString())}/{WebUtility.UrlEncode(p1.ToString())}/{WebUtility.UrlEncode(p2.ToString())}/{WebUtility.UrlEncode(p3.ToString())}/{WebUtility.UrlEncode(p4.ToString())}/{WebUtility.UrlEncode(p5.ToString())}/{WebUtility.UrlEncode(p6.ToString())}/{WebUtility.UrlEncode(p7.ToString())}/{WebUtility.UrlEncode(p8.ToString())}/{WebUtility.UrlEncode(((int)p9).ToString())}/{WebUtility.UrlEncode(p10.ToString())}/{WebUtility.UrlEncode(p11.ToString())}/{WebUtility.UrlEncode(p12.ToString())}/{WebUtility.UrlEncode(p13.ToString())}/{WebUtility.UrlEncode(p14.ToString())}/{WebUtility.UrlEncode(p15.ToString())}/{WebUtility.UrlEncode(p16.ToString())}/{WebUtility.UrlEncode(p17.ToString())}/{WebUtility.UrlEncode(p18.ToString())}/{WebUtility.UrlEncode(p19.ToString())}/{WebUtility.UrlEncode(p20.ToString())}/{WebUtility.UrlEncode(p21.ToString())}")
+            {
+                Method = HttpMethod.Post,
+            };
+            var result = await SendAsync<ApiRspImpl>(args, cancellationToken);
+            return result!;
+        }
+
+        public async Task<ApiRspImpl> SimpleTypes2(byte p1, sbyte p2, decimal p7, double p8, short p11, int p12, long p13, float p14, ushort p17, uint p18, ulong p19, CancellationToken cancellationToken = default)
+        {
+            WebApiClientSendArgs args = new($"/ITodoService/SimpleTypes2/{WebUtility.UrlEncode(p1.ToString())}/{WebUtility.UrlEncode(p2.ToString())}/{WebUtility.UrlEncode(p7.ToString())}/{WebUtility.UrlEncode(p8.ToString())}/{WebUtility.UrlEncode(p11.ToString())}/{WebUtility.UrlEncode(p12.ToString())}/{WebUtility.UrlEncode(p13.ToString())}/{WebUtility.UrlEncode(p14.ToString())}/{WebUtility.UrlEncode(p17.ToString())}/{WebUtility.UrlEncode(p18.ToString())}/{WebUtility.UrlEncode(p19.ToString())}")
+            {
+                Method = HttpMethod.Post,
+            };
+            var result = await SendAsync<ApiRspImpl>(args, cancellationToken);
+            return result!;
+        }
+
+        public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo, CancellationToken cancellationToken = default)
+        {
+            WebApiClientSendArgs args = new("/ITodoService/BodyTest")
+            {
+                Method = HttpMethod.Post,
+            };
+            var result = await SendAsync<ApiRspImpl, ITodoService.Todo>(args, todo, cancellationToken);
+            return result!;
+        }
+
+        public IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default)
+        {
+            // https://learn.microsoft.com/zh-cn/dotnet/core/compatibility/serialization/6.0/iasyncenumerable-serialization
+            // System.Text.Json 现支持 IAsyncEnumerable<T> 实例的序列化和反序列化。
+            throw new NotImplementedException("TODO：改进 SerializableExtensions 支持 WebApi 的异步迭代器实现");
+        }
+    }
+
+    //sealed class TodoService_SignalR(IIpcClientService ipcClientService)
+
+    #endregion
 }

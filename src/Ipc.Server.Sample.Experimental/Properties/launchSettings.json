@@ -1,12 +1,12 @@
 {
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "BD.Common8.Ipc.Server.Sample.Experimental (https://localhost:5076)": {
+    "BD.Common8.Ipc.Server.Sample.Experimental (https://localhost:15076)": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "todos",
-      "applicationUrl": "https://localhost:5076",
+      "launchUrl": "",
+      "applicationUrl": "https://localhost:15076",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

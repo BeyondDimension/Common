@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<RootNamespace>BD.Common8.Ipc</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 	</PropertyGroup>
 

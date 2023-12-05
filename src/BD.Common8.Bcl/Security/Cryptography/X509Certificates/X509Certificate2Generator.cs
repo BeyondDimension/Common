@@ -353,6 +353,6 @@ public static partial class X509Certificate2Generator
             notBefore, notAfter, serialNumber); // 创建证书
         using var serverCertificateCopyWithPrivateKey = serverCertificate.CopyWithPrivateKey(rsa); // 将私钥复制进去
         var serverCertificateCopyWithPrivateKeyExport = serverCertificateCopyWithPrivateKey.Export(X509ContentType.Pfx); // 导出 Pfx 数据
-        return new X509Certificate2(serverCertificateCopyWithPrivateKeyExport); // 重新创建证书，否则无法应用在 Kestrel 中
+        return new X509Certificate2(serverCertificateCopyWithPrivateKeyExport, (string?)null, X509KeyStorageFlags.Exportable); // 重新创建证书，否则无法应用在 Kestrel 中
     }
 }

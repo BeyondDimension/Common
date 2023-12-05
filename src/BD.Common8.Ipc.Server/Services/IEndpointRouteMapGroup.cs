@@ -1,4 +1,4 @@
-namespace BD.Common8.Ipc.Server.Services;
+namespace BD.Common8.Ipc.Services;
 
 /// <summary>
 /// 用于定义以指定 prefix 为前缀的所有终结点。

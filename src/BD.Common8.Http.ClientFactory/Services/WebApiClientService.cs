@@ -1,189 +1,94 @@
 namespace BD.Common8.Http.ClientFactory.Services;
 
-partial class WebApiClientBaseService
+/// <summary>
+/// WebApiClient 基类服务，实现序列化相关，统一使用方式
+/// <para>继承此类需要实现 <see cref="CreateClient"/></para>
+/// </summary>
+/// <param name="logger"></param>
+/// <param name="httpPlatformHelper"></param>
+/// <param name="newtonsoftJsonSerializer"></param>
+public abstract partial class WebApiClientService(
+    ILogger logger,
+    IHttpPlatformHelperService? httpPlatformHelper,
+    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : Log.I
 {
+#pragma warning disable SA1600 // Elements should be documented
+    protected const string Obsolete_GetNJsonContent = "无特殊情况下应使用 GetSJsonContent，即 System.Text.Json";
+    protected const string Obsolete_ReadFromNJsonAsync = "无特殊情况下应使用 ReadFromSJsonAsync，即 System.Text.Json";
+    protected const string Obsolete_UseAsync = "无特殊情况下应使用 Async 异步的函数版本";
+#pragma warning restore SA1600 // Elements should be documented
+
+    /// <inheritdoc cref="IHttpPlatformHelperService"/>
+    protected readonly IHttpPlatformHelperService? httpPlatformHelper = httpPlatformHelper;
+
+    /// <inheritdoc cref="IHttpPlatformHelperService.UserAgent"/>
+    internal virtual string? UserAgent => httpPlatformHelper?.UserAgent;
+
+    /// <inheritdoc cref="WebApiClientSendArgs.Accept"/>
+    protected virtual string Accept => MediaTypeNames.JSON;
+
+    /// <inheritdoc cref="ILogger"/>
+    protected readonly ILogger logger = logger;
+
+    /// <inheritdoc/>
+    ILogger Log.I.Logger => logger;
+
     /// <summary>
-    /// 发送 HTTP 请求的参数
+    /// 使用的默认文本编码，默认值为 <see cref="Encoding.UTF8"/>
     /// </summary>
-    public record class SendArgs
+    protected virtual Encoding DefaultEncoding => Encoding.UTF8;
+
+    #region Json
+
+    /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
+    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = newtonsoftJsonSerializer;
+
+    /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
+    protected NewtonsoftJsonSerializer NewtonsoftJsonSerializer => newtonsoftJsonSerializer ??= new();
+
+    /// <summary>
+    /// 序列化是否必须使用 <see cref="SystemTextJsonSerializerContext"/>，即源生成的类型信息数据，避免运行时反射
+    /// </summary>
+    protected virtual bool RequiredJsonSerializerContext => true;
+
+    /// <summary>
+    /// 用于序列化的类型信息，由 Json 源生成
+    /// </summary>
+    protected virtual SystemTextJsonSerializerContext? JsonSerializerContext { get; }
+
+    #endregion
+
+    /// <summary>
+    /// 当序列化出现错误时
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="ex"></param>
+    /// <param name="isSerializeOrDeserialize">是序列化还是反序列化</param>
+    /// <param name="modelType">模型类型</param>
+    protected virtual T? OnSerializerError<T>(Exception ex,
+        bool isSerializeOrDeserialize,
+        Type modelType) where T : notnull
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendArgs"/> class.
-        /// </summary>
-        /// <param name="requestUriString"></param>
-        public SendArgs([StringSyntax(StringSyntaxAttribute.Uri)] string requestUriString)
+        // 记录错误时，不需要带上 requestUrl 等敏感信息
+        if (isSerializeOrDeserialize)
         {
-            RequestUriString = requestUriString;
+            logger.LogError(ex,
+                "Error serializing request model class. (Parameter '{type}')",
+                modelType);
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendArgs"/> class.
-        /// </summary>
-        /// <param name="requestUri"></param>
-        public SendArgs(Uri requestUri)
+        else
         {
-            RequestUri = requestUri;
+            logger.LogError(ex,
+                "Error reading and deserializing the response content into an instance. (Parameter '{type}')",
+                modelType);
         }
-
-        string? _RequestUriString;
-        Uri? _RequestUri;
-
-        /// <summary>
-        /// 请求地址，字符串
-        /// </summary>
-        [StringSyntax(StringSyntaxAttribute.Uri)]
-        public string RequestUriString
-        {
-            get
-            {
-                if (_RequestUriString != null)
-                {
-                    return _RequestUriString;
-                }
-                if (RequestUri != null)
-                {
-                    return _RequestUriString = RequestUri.ToString();
-                }
-                throw new ArgumentNullException(nameof(_RequestUriString));
-            }
-            internal set => _RequestUriString = value;
-        }
-
-        /// <summary>
-        /// 请求地址，<see cref="Uri"/>
-        /// </summary>
-        public Uri RequestUri
-        {
-            get
-            {
-                if (_RequestUri != null)
-                {
-                    return _RequestUri;
-                }
-                if (!string.IsNullOrWhiteSpace(_RequestUriString))
-                {
-                    return _RequestUri = new(_RequestUriString, UriKind.RelativeOrAbsolute);
-                }
-                throw new ArgumentNullException(nameof(_RequestUri));
-            }
-            internal set => _RequestUri = value;
-        }
-
-        /// <summary>
-        /// 请求方法，默认值为 <see cref="HttpMethod.Get"/>
-        /// </summary>
-        public virtual HttpMethod Method { get; init; } = HttpMethod.Get;
-
-        /// <summary>
-        /// 创建一个 <see cref="HttpRequestMessage"/>，请求消息实例经过 Send 后不可重发
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public virtual HttpRequestMessage GetHttpRequestMessage(WebApiClientBaseService s, CancellationToken cancellationToken = default)
-        {
-            HttpRequestMessage httpRequestMessage = new(Method, RequestUri);
-
-            if (!string.IsNullOrEmpty(Accept))
-            {
-                httpRequestMessage.Headers.Accept.ParseAdd(Accept);
-            }
-
-            var content = GetRequestContent(s, cancellationToken);
-            if (content != null)
-            {
-                httpRequestMessage.Content = content;
-            }
-
-            if (!EmptyUserAgent)
-            {
-                var userAgent = UserAgent;
-                if (string.IsNullOrEmpty(userAgent))
-                {
-                    userAgent = s.UserAgent;
-                }
-                if (!string.IsNullOrEmpty(userAgent))
-                {
-                    httpRequestMessage.Headers.UserAgent.ParseAdd(userAgent);
-                }
-            }
-
-            ConfigureRequestMessage?.Invoke(httpRequestMessage, this, cancellationToken);
-
-            return httpRequestMessage;
-        }
-
-        /// <summary>
-        /// 自定义的请求正文
-        /// </summary>
-        public Func<WebApiClientBaseService, SendArgs, CancellationToken, HttpContent?>? GetRequestContentDelegate { get; set; }
-
-        /// <summary>
-        /// 获取请求正文
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        protected virtual HttpContent? GetRequestContent(WebApiClientBaseService s, CancellationToken cancellationToken)
-        {
-            return GetRequestContentDelegate?.Invoke(s, this, cancellationToken);
-        }
-
-        /// <summary>
-        /// 自定义处理请求消息委托
-        /// </summary>
-        public Action<HttpRequestMessage, SendArgs, CancellationToken>? ConfigureRequestMessage { get; init; }
-
-        ///// <summary>
-        ///// 自定义处理响应消息委托
-        ///// </summary>
-        //public Action<HttpResponseMessage, SendArgs, CancellationToken>? ConfigureResponseMessage { get; set; }
-
-        /// <summary>
-        /// 是否验证 RequestUri 是否为 Http 地址
-        /// </summary>
-        public bool VerifyRequestUri { get; init; } = true;
-
-        /// <summary>
-        /// Accept 请求头用来告知（服务器）客户端可以处理的内容类型，这种内容类型用 MIME 类型来表示。
-        /// <para>https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Accept</para>
-        /// </summary>
-        public string? Accept { get; init; }
-
-        /// <summary>
-        /// 选择 Json 序列化的实现，默认值 <see cref="Serializable.JsonImplType.SystemTextJson"/>
-        /// </summary>
-        public Serializable.JsonImplType JsonImplType { get; init; } = Serializable.JsonImplType.SystemTextJson;
-
-        /// <summary>
-        /// 使用自定义 UserAgent 值
-        /// </summary>
-        public string? UserAgent { get; init; }
-
-        /// <summary>
-        /// 是否使用空的 UserAgent 值
-        /// </summary>
-        public bool EmptyUserAgent { get; init; }
-
-        /// <summary>
-        /// 重试请求，最大重试次数，为 0 时不重试，默认值 0
-        /// </summary>
-        public int NumRetries { get; init; }
-
-        /// <summary>
-        /// 用于重试的间隔时间计算
-        /// </summary>
-        /// <param name="attemptNumber"></param>
-        /// <returns></returns>
-        public virtual TimeSpan PollyRetryAttempt(int attemptNumber)
-        {
-            var powY = attemptNumber % NumRetries;
-            var timeSpan = TimeSpan.FromMilliseconds(Math.Pow(2, powY));
-            int addS = attemptNumber / NumRetries;
-            if (addS > 0) timeSpan = timeSpan.Add(TimeSpan.FromSeconds(addS));
-            return timeSpan;
-        }
+        return default;
     }
+
+    #region Send
+
+    /// <inheritdoc cref="IClientHttpClientFactory.CreateClient(string, HttpHandlerCategory)"/>
+    protected abstract HttpClient CreateClient();
 
     #region TResponseBody
 
@@ -202,39 +107,10 @@ partial class WebApiClientBaseService
     /// <param name="args"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<TResponseBody?> SendAsync<TResponseBody>(SendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    public virtual async Task<TResponseBody?> SendAsync<TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        if (args.VerifyRequestUri)
-        {
-            if (args.RequestUri.IsAbsoluteUri)
-            {
-                if (!String2.IsHttpUrl(args.RequestUriString))
-                {
-                    return default;
-                }
-            }
-        }
-
-        var client = CreateClient();
-        var isPolly = args.NumRetries > 0;
-        if (isPolly)
-        {
-            var result = await Policy.HandleResult<SendResultWrapper<TResponseBody>>(
-                    static x => x.Value == null && !x.IsStopped)
-                .WaitAndRetryAsync(args.NumRetries, args.PollyRetryAttempt)
-                .ExecuteAsync(_SendCoreAsync, cancellationToken);
-            return result.Value;
-            async Task<SendResultWrapper<TResponseBody>> _SendCoreAsync(CancellationToken cancellationToken)
-            {
-                var result = await SendCoreAsync<TResponseBody>(client, args, cancellationToken);
-                return result;
-            }
-        }
-        else
-        {
-            var result = await SendCoreAsync<TResponseBody>(client, args, cancellationToken);
-            return result.Value;
-        }
+        var result = await SendAsync<TResponseBody, nil>(args, default, cancellationToken);
+        return result;
     }
 
     /// <summary>
@@ -252,40 +128,11 @@ partial class WebApiClientBaseService
     /// <param name="args"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [Obsolete(SerializableExtensions.Obsolete_UseAsync)]
-    public virtual TResponseBody? Send<TResponseBody>(SendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    [Obsolete(Obsolete_UseAsync)]
+    public virtual TResponseBody? Send<TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        if (args.VerifyRequestUri)
-        {
-            if (args.RequestUri.IsAbsoluteUri)
-            {
-                if (!String2.IsHttpUrl(args.RequestUriString))
-                {
-                    return default;
-                }
-            }
-        }
-
-        var client = CreateClient();
-        var isPolly = args.NumRetries > 0;
-        if (isPolly)
-        {
-            var result = Policy.HandleResult<SendResultWrapper<TResponseBody>>(
-                    static x => x.Value == null && !x.IsStopped)
-                .WaitAndRetry(args.NumRetries, args.PollyRetryAttempt)
-                .Execute(_SendCore, cancellationToken);
-            return result.Value;
-            SendResultWrapper<TResponseBody> _SendCore(CancellationToken cancellationToken)
-            {
-                var result = SendCore<TResponseBody>(client, args, cancellationToken);
-                return result;
-            }
-        }
-        else
-        {
-            var result = SendCore<TResponseBody>(client, args, cancellationToken);
-            return result.Value;
-        }
+        var result = Send<TResponseBody, nil>(args, default, cancellationToken);
+        return result;
     }
 
     /// <summary>
@@ -304,12 +151,41 @@ partial class WebApiClientBaseService
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<TResponseBody?> SendAsync<TResponseBody, TRequestBody>(SendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull
+    public virtual async Task<TResponseBody?> SendAsync<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+        where TResponseBody : notnull
+        where TRequestBody : notnull
     {
-        args.GetRequestContentDelegate = (s, args, cancellationToken) => s.GetRequestContent(args, requestBody, cancellationToken);
+        if (args.VerifyRequestUri)
+        {
+            if (args.RequestUri.IsAbsoluteUri)
+            {
+                if (!String2.IsHttpUrl(args.RequestUriString))
+                {
+                    return default;
+                }
+            }
+        }
 
-        var result = await SendAsync<TResponseBody>(args, cancellationToken);
-        return result;
+        var client = args.GetHttpClient() ?? CreateClient();
+        var isPolly = args.NumRetries > 0;
+        if (isPolly)
+        {
+            var result = await Policy.HandleResult<SendResultWrapper<TResponseBody>>(
+                    static x => x.Value == null && !x.IsStopped)
+                .WaitAndRetryAsync(args.NumRetries, args.PollyRetryAttempt)
+                .ExecuteAsync(_SendCoreAsync, cancellationToken);
+            return result.Value;
+            async Task<SendResultWrapper<TResponseBody>> _SendCoreAsync(CancellationToken cancellationToken)
+            {
+                var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+                return result;
+            }
+        }
+        else
+        {
+            var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+            return result.Value;
+        }
     }
 
     /// <summary>
@@ -328,13 +204,40 @@ partial class WebApiClientBaseService
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [Obsolete(SerializableExtensions.Obsolete_UseAsync)]
-    public virtual TResponseBody? Send<TResponseBody, TRequestBody>(SendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull
+    [Obsolete(Obsolete_UseAsync)]
+    public virtual TResponseBody? Send<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull
     {
-        args.GetRequestContentDelegate = (s, args, cancellationToken) => s.GetRequestContent(args, requestBody, cancellationToken);
+        if (args.VerifyRequestUri)
+        {
+            if (args.RequestUri.IsAbsoluteUri)
+            {
+                if (!String2.IsHttpUrl(args.RequestUriString))
+                {
+                    return default;
+                }
+            }
+        }
 
-        var result = Send<TResponseBody>(args, cancellationToken);
-        return result;
+        var client = args.GetHttpClient() ?? CreateClient();
+        var isPolly = args.NumRetries > 0;
+        if (isPolly)
+        {
+            var result = Policy.HandleResult<SendResultWrapper<TResponseBody>>(
+                    static x => x.Value == null && !x.IsStopped)
+                .WaitAndRetry(args.NumRetries, args.PollyRetryAttempt)
+                .Execute(_SendCore, cancellationToken);
+            return result.Value;
+            SendResultWrapper<TResponseBody> _SendCore(CancellationToken cancellationToken)
+            {
+                var result = SendCore<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+                return result;
+            }
+        }
+        else
+        {
+            var result = SendCore<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+            return result.Value;
+        }
     }
 
     #endregion
@@ -348,7 +251,7 @@ partial class WebApiClientBaseService
     /// <param name="args"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<TRequestBody>(SendArgs args, CancellationToken cancellationToken = default) where TRequestBody : notnull
+    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<TRequestBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TRequestBody : notnull
     {
         var result = await SendAsync<HttpStatusCode>(args, cancellationToken);
         return result;
@@ -362,7 +265,7 @@ partial class WebApiClientBaseService
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<TRequestBody>(SendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TRequestBody : notnull
+    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TRequestBody : notnull
     {
         var result = await SendAsync<HttpStatusCode, TRequestBody>(args, requestBody, cancellationToken);
         return result;
@@ -381,11 +284,15 @@ partial class WebApiClientBaseService
     /// </list>
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
+    /// <typeparam name="TRequestBody"></typeparam>
     /// <param name="client"></param>
     /// <param name="args"></param>
+    /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual async Task<SendResultWrapper<TResponseBody>> SendCoreAsync<TResponseBody>(HttpClient client, SendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual async Task<SendResultWrapper<TResponseBody>> SendCoreAsync<TResponseBody, TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+        where TRequestBody : notnull
+        where TResponseBody : notnull
     {
         var disposeResponseMessage = true;
         HttpRequestMessage? requestMessage = null;
@@ -394,6 +301,16 @@ partial class WebApiClientBaseService
         try
         {
             requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
+            if (requestMessage.Content == null)
+            {
+                var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
+                if (requestContent.Value is not null)
+                {
+                    return requestContent.Value;
+                }
+                requestMessage.Content = requestContent.Content;
+            }
+
             HttpClientExtensions.UseDefault(client, requestMessage);
             responseMessage = await client.SendAsync(requestMessage,
                 HttpCompletionOption.ResponseHeadersRead, cancellationToken);
@@ -427,7 +344,11 @@ partial class WebApiClientBaseService
                     return (TResponseBody)(object)result;
                 }
                 TResponseBody? deserializeResult = default;
-                var mime = responseMessage.Content.Headers.ContentType?.MediaType ?? args.Accept;
+                var mime = responseMessage.Content.Headers.ContentType?.MediaType;
+                if (string.IsNullOrWhiteSpace(mime))
+                    mime = args.Accept;
+                if (string.IsNullOrWhiteSpace(mime))
+                    mime = Accept;
 #pragma warning disable CS0618 // 类型或成员已过时
                 switch (mime)
                 {
@@ -488,11 +409,15 @@ partial class WebApiClientBaseService
     /// </list>
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
+    /// <typeparam name="TRequestBody"></typeparam>
     /// <param name="client"></param>
     /// <param name="args"></param>
+    /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual SendResultWrapper<TResponseBody> SendCore<TResponseBody>(HttpClient client, SendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual SendResultWrapper<TResponseBody> SendCore<TResponseBody, TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+        where TRequestBody : notnull
+        where TResponseBody : notnull
     {
         var disposeResponseMessage = true;
         HttpRequestMessage? requestMessage = null;
@@ -501,6 +426,16 @@ partial class WebApiClientBaseService
         try
         {
             requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
+            if (requestMessage.Content == null)
+            {
+                var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
+                if (requestContent.Value is not null)
+                {
+                    return requestContent.Value;
+                }
+                requestMessage.Content = requestContent.Content;
+            }
+
             HttpClientExtensions.UseDefault(client, requestMessage);
             responseMessage = client.Send(requestMessage,
                 HttpCompletionOption.ResponseHeadersRead, cancellationToken);
@@ -596,17 +531,22 @@ partial class WebApiClientBaseService
     /// <item>application/x-www-form-urlencoded</item>
     /// </list>
     /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
     /// <typeparam name="TRequestBody"></typeparam>
     /// <param name="args"></param>
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    HttpContent? GetRequestContent<TRequestBody>(SendArgs args, TRequestBody requestBody, CancellationToken cancellationToken) where TRequestBody : notnull
+    protected virtual HttpContentWrapper<TResponseBody> GetRequestContent<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken)
+        where TRequestBody : notnull
+        where TResponseBody : notnull
     {
         if (typeof(TRequestBody) == typeof(nil))
-            return null;
+            return default;
         var mime = args.Accept;
-        HttpContent? result;
+        if (string.IsNullOrWhiteSpace(mime))
+            mime = Accept;
+        HttpContentWrapper<TResponseBody> result;
 #pragma warning disable CS0618 // 类型或成员已过时
         switch (mime)
         {
@@ -614,10 +554,10 @@ partial class WebApiClientBaseService
                 switch (args.JsonImplType)
                 {
                     case Serializable.JsonImplType.NewtonsoftJson:
-                        result = GetNJsonContent(requestBody);
+                        result = GetNJsonContent<TResponseBody, TRequestBody>(requestBody);
                         return result;
                     case Serializable.JsonImplType.SystemTextJson:
-                        result = GetSJsonContent(requestBody);
+                        result = GetSJsonContent<TResponseBody, TRequestBody>(requestBody);
                         return result;
                     default:
                         throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
@@ -625,7 +565,7 @@ partial class WebApiClientBaseService
             case MediaTypeNames.XML:
             case MediaTypeNames.XML_APP:
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                result = GetXmlContent(requestBody);
+                result = GetXmlContent<TResponseBody, TRequestBody>(requestBody);
                 return result;
             case MediaTypeNames.FormUrlEncoded:
                 if (requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection)
@@ -633,7 +573,7 @@ partial class WebApiClientBaseService
                 result = new FormUrlEncodedContent(nameValueCollection);
                 return result;
             default:
-                result = GetCustomSerializeContent(args, requestBody, mime, cancellationToken);
+                result = GetCustomSerializeContent<TResponseBody, TRequestBody>(args, requestBody, mime, cancellationToken);
                 return result;
         }
 #pragma warning restore CS0618 // 类型或成员已过时
@@ -642,17 +582,20 @@ partial class WebApiClientBaseService
     /// <summary>
     /// 可重写自定义其他 MIME 的序列化
     /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
     /// <typeparam name="TRequestBody"></typeparam>
     /// <param name="args"></param>
     /// <param name="requestBody"></param>
     /// <param name="mime"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual HttpContent? GetCustomSerializeContent<TRequestBody>(
-        SendArgs args,
+    protected virtual HttpContentWrapper<TResponseBody> GetCustomSerializeContent<TResponseBody, TRequestBody>(
+        WebApiClientSendArgs args,
         TRequestBody requestBody,
         string? mime,
-        CancellationToken cancellationToken) where TRequestBody : notnull
+        CancellationToken cancellationToken)
+        where TRequestBody : notnull
+        where TResponseBody : notnull
     {
         throw ThrowHelper.GetArgumentOutOfRangeException(mime);
     }
@@ -681,7 +624,6 @@ partial class WebApiClientBaseService
     /// <param name="mime"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [Obsolete(SerializableExtensions.Obsolete_UseAsync)]
     protected virtual TResponseBody ReadFromCustomDeserialize<TResponseBody>(
         HttpResponseMessage responseMessage,
         string? mime,
@@ -693,13 +635,13 @@ partial class WebApiClientBaseService
     /// <summary>
     /// 发送 HTTP 请求结果包装类型
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    protected readonly record struct SendResultWrapper<T> where T : notnull
+    /// <typeparam name="TResponseBody"></typeparam>
+    protected readonly record struct SendResultWrapper<TResponseBody> where TResponseBody : notnull
     {
         /// <summary>
         /// 发送请求响应的结果值
         /// </summary>
-        public T? Value { get; init; }
+        public TResponseBody? Value { get; init; }
 
         /// <summary>
         /// 请求是否中止，比如取消，停止重试等
@@ -707,60 +649,41 @@ partial class WebApiClientBaseService
         public required bool IsStopped { get; init; }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator SendResultWrapper<T>(bool isStopped) => isStopped ? new()
+        public static implicit operator SendResultWrapper<TResponseBody>(bool isStopped) => isStopped ? new()
         {
             IsStopped = true,
         } : default;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator SendResultWrapper<T>(T? value) => new()
+        public static implicit operator SendResultWrapper<TResponseBody>(TResponseBody? value) => new()
         {
             IsStopped = true,
             Value = value,
         };
     }
 
-    /// <summary>
-    /// 包装 Http 响应正文流，流释放时候跟随释放响应消息
-    /// </summary>
-    /// <param name="responseMessage"></param>
-    /// <param name="inner"></param>
-    protected sealed class HttpResponseMessageContentStream(HttpResponseMessage responseMessage, Stream inner) : DelegatingStream(inner)
+    protected readonly record struct HttpContentWrapper<TResponseBody> where TResponseBody : notnull
     {
-        HttpResponseMessage? responseMessage = responseMessage;
+        /// <summary>
+        /// 发送请求响应的结果值
+        /// </summary>
+        public TResponseBody? Value { get; init; }
 
-        /// <inheritdoc/>
-        protected override void Dispose(bool disposing)
+        /// <inheritdoc cref="HttpContent"/>
+        public HttpContent? Content { get; init; }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator HttpContentWrapper<TResponseBody>(HttpContent content) => new()
         {
-            if (disposing)
-            {
-                // 释放托管状态(托管对象)
-                responseMessage?.Dispose();
-            }
+            Content = content,
+        };
 
-            // 释放未托管的资源(未托管的对象)并重写终结器
-            // 将大型字段设置为 null
-            responseMessage = null;
-        }
-
-        /// <inheritdoc cref="HttpContent.ReadAsStreamAsync(CancellationToken)"/>
-        public static async Task<Stream> ReadAsStreamAsync(
-            HttpResponseMessage responseMessage,
-            CancellationToken cancellationToken = default)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator HttpContentWrapper<TResponseBody>(TResponseBody? value) => new()
         {
-            var stream = await responseMessage.Content.ReadAsStreamAsync(cancellationToken);
-            var result = new HttpResponseMessageContentStream(responseMessage, stream);
-            return result;
-        }
-
-        /// <inheritdoc cref="HttpContent.ReadAsStream(CancellationToken)"/>
-        public static Stream ReadAsStream(
-            HttpResponseMessage responseMessage,
-            CancellationToken cancellationToken = default)
-        {
-            var stream = responseMessage.Content.ReadAsStream(cancellationToken);
-            var result = new HttpResponseMessageContentStream(responseMessage, stream);
-            return result;
-        }
+            Value = value,
+        };
     }
+
+    #endregion
 }

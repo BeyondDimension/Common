@@ -1,4 +1,5 @@
-namespace BD.Common8.Ipc.Server.Extensions;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.Common8.Ipc;
 
 public static partial class IpcServiceCollectionServiceExtensions
 {
@@ -13,10 +14,10 @@ public static partial class IpcServiceCollectionServiceExtensions
     /// <returns>A reference to this instance after the operation has completed.</returns>
     /// <seealso cref="ServiceLifetime.Singleton"/>
     public static IServiceCollection AddSingletonWithIpc<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this IServiceCollection services)
-        where TService : class, IEndpointRouteMapGroup
-        where TImplementation : class, TService
+        where TService : class
+        where TImplementation : class, TService, IEndpointRouteMapGroup
     {
-        IpcAppBuilderOptions.OnMapGroupEvent += TService.OnMapGroup;
+        IpcServerService.OnMapGroupEvent += TImplementation.OnMapGroup;
         return services.AddSingleton(typeof(TService), typeof(TImplementation));
     }
 }

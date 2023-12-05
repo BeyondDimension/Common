@@ -82,9 +82,9 @@ public static partial class ProgramHelper
             else if (OperatingSystem.IsLinux())
             {
                 const string filePath = "/proc/cpuinfo";
-                if (IOFile.Exists(filePath))
+                if (File.Exists(filePath))
                 {
-                    using var fs = IOFile.OpenRead(filePath);
+                    using var fs = File.OpenRead(filePath);
                     using var sr = new StreamReader(fs);
                     while (sr.Peek() >= 0)
                     {

@@ -133,4 +133,13 @@ public static partial class IOPath
 
         return Environment.ExpandEnvironmentVariables(path);
     }
+
+    /// <inheritdoc cref="Path.GetTempPath"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetTempPath()
+    {
+        // TODO：Win 上在某些情况下返回 C:\Windows\Temp，然后没有权限写入抛出异常
+        var result = Path.GetTempPath();
+        return result;
+    }
 }

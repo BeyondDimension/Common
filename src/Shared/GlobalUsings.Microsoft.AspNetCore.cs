@@ -24,4 +24,3 @@ global using Microsoft.AspNetCore.Server.Kestrel.Core;
 global using Microsoft.AspNetCore.Authentication;
 global using Microsoft.AspNetCore.Authorization.Policy;
 global using Microsoft.AspNetCore.Connections;
-global using IOFile = System.IO.File;

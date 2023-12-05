@@ -7,6 +7,8 @@
 		<UseAspNetCore>true</UseAspNetCore>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseCommon8Ipc>true</UseCommon8Ipc>
+		<UseDotNextThreading>true</UseDotNextThreading>
+		<UseSignalR>true</UseSignalR>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

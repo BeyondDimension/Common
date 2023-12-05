@@ -5,11 +5,11 @@
 		<PackageVersion Include="ApprovalTests" Version="5.9.0" />
 		<PackageVersion Include="Avalonia" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Android" Version="11.0.5" />
-		<PackageVersion Include="Avalonia.iOS" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.AvaloniaEdit" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Controls.DataGrid" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Desktop" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Diagnostics" Version="11.0.5" />
+		<PackageVersion Include="Avalonia.iOS" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Native" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.ReactiveUI" Version="11.0.5" />
 		<PackageVersion Include="Avalonia.Skia" Version="11.0.5" />
@@ -22,6 +22,8 @@
 		<PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.2.1" />
 		<PackageVersion Include="coverlet.collector" Version="6.0.0" />
 		<PackageVersion Include="Crc32.NET" Version="1.2.0" />
+		<PackageVersion Include="DotNext" Version="4.15.2" />
+		<PackageVersion Include="DotNext.Threading" Version="4.15.2" />
 		<PackageVersion Include="DynamicData" Version="8.1.1" />
 		<PackageVersion Include="FluentAvaloniaUI" Version="2.0.4" />
 		<PackageVersion Include="fusillade" Version="2.6.1" />
@@ -45,12 +47,14 @@
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.0.3" />
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 		<PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.49-beta" />
+		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="8.0.0" />
 		<PackageVersion Include="MonoMac.NetStandard" Version="0.0.4" />
 		<PackageVersion Include="Moq" Version="4.20.69" />
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
@@ -81,7 +85,5 @@
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0" />
 		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.6.0.2" />
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.0.0-rc.2.23480.1-02" />
-		<PackageVersion Include="DotNext" Version="4.15.2" />
-		<PackageVersion Include="DotNext.Threading" Version="4.15.2" />
 	</ItemGroup>
 </Project>

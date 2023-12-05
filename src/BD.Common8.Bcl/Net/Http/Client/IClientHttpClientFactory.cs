@@ -97,4 +97,43 @@ public interface IClientHttpClientFactory
         addHttpClientDelegateValue.ThrowIsNull();
         addHttpClientDelegateValue(services, typeof(TClient));
     }
+
+    /// <summary>
+    /// <see cref="HttpClientHandler.AutomaticDecompression"/> 的默认值
+    /// </summary>
+    const DecompressionMethods DefaultAutomaticDecompression = DecompressionMethods.Brotli | DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+    /// <summary>
+    /// 创建默认的处理程序
+    /// </summary>
+    /// <param name="useCookies"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static HttpMessageHandler CreateHandler(bool useCookies = false)
+    {
+        HttpClientHandler handler = new()
+        {
+            UseCookies = useCookies,
+            AutomaticDecompression = DefaultAutomaticDecompression,
+        };
+        return handler;
+    }
+
+    /// <summary>
+    /// 创建一个 <see cref="HttpClient"/> 实例并设置默认超时时间
+    /// </summary>
+    /// <param name="handler"></param>
+    /// <returns></returns>
+    static HttpClient CreateClient(HttpMessageHandler handler)
+    {
+        var client = new HttpClient(handler);
+        try
+        {
+            client.Timeout = DefaultTimeout;
+        }
+        catch
+        {
+        }
+        return client;
+    }
 }

@@ -1,4 +1,4 @@
-namespace BD.Common8.Ipc.Client.Helpers;
+namespace BD.Common8.Ipc.Helpers;
 
 /// <summary>
 /// Ipc 应用程序连接字符串助手类
@@ -21,7 +21,7 @@ public static partial class IpcAppConnectionStringHelper
     /// <param name="connectionString">连接字符串</param>
     /// <param name="ignoreRemoteCertificateValidation">是否忽略服务端证书验证</param>
     /// <returns></returns>
-    public static (string baseAddress, HttpMessageHandler handler) GetHttpMessageHandler(IpcAppConnectionString connectionString,
+    public static (string baseAddress, SocketsHttpHandler handler) GetHttpMessageHandler(IpcAppConnectionString connectionString,
         bool ignoreRemoteCertificateValidation = true)
     {
         var connectionStringType = connectionString.Type;
@@ -62,17 +62,17 @@ public static partial class IpcAppConnectionStringHelper
     /// <param name="ignoreRemoteCertificateValidation">是否忽略服务端证书验证</param>
     /// <param name="timeoutFromSeconds">超时时间，单位秒</param>
     /// <returns></returns>
-    public static HttpClient GetHttpClient(IpcAppConnectionString connectionString,
+    public static (HttpClient httpClient, SocketsHttpHandler handler) GetHttpClient(IpcAppConnectionString connectionString,
         bool ignoreRemoteCertificateValidation = true,
         double timeoutFromSeconds = TimeoutFromSeconds)
     {
-        (string baseAddress, HttpMessageHandler handler) = GetHttpMessageHandler(connectionString, ignoreRemoteCertificateValidation);
+        (var baseAddress, var handler) = GetHttpMessageHandler(connectionString, ignoreRemoteCertificateValidation);
         HttpClient client = new(handler)
         {
             DefaultRequestVersion = HttpVersion.Version20,
             BaseAddress = new(baseAddress),
             Timeout = TimeSpan.FromSeconds(timeoutFromSeconds),
         };
-        return client;
+        return (client, handler);
     }
 }

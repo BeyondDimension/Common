@@ -1,0 +1,79 @@
+namespace BD.Common8.Http.ClientFactory.Services;
+
+partial class WebApiClientService
+{
+    /// <summary>
+    /// 将请求模型类序列化为 <see cref="HttpContent"/>（catch 时将返回 <see langword="null"/> ），使用 XML
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <typeparam name="TRequestBody"></typeparam>
+    /// <param name="inputValue"></param>
+    /// <param name="encoding"></param>
+    /// <param name="mediaType"></param>
+    /// <returns></returns>
+    [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+    protected virtual HttpContentWrapper<TResponseBody> GetXmlContent<TResponseBody, TRequestBody>(TRequestBody inputValue, Encoding? encoding = null, MediaTypeHeaderValue? mediaType = null)
+        where TRequestBody : notnull
+        where TResponseBody : notnull
+    {
+        try
+        {
+            throw new NotImplementedException();
+        }
+        catch (Exception ex)
+        {
+            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: true, typeof(TRequestBody));
+        }
+    }
+
+    /// <summary>
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 XML
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="content"></param>
+    /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+    protected async Task<TResponseBody?> ReadFromXmlAsync<TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    {
+        try
+        {
+            encoding ??= DefaultEncoding;
+            using var contentStream = await content.ReadAsStreamAsync(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+            using var contentStreamReader = new StreamReader(contentStream, encoding);
+            var result = Serializable.DXml<TResponseBody>(contentStreamReader);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
+        }
+    }
+
+    /// <summary>
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 XML
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="content"></param>
+    /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+    [Obsolete(Obsolete_UseAsync)]
+    protected virtual TResponseBody? ReadFromXml<TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    {
+        try
+        {
+            encoding ??= DefaultEncoding;
+            using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+            using var contentStreamReader = new StreamReader(contentStream, encoding);
+            var result = Serializable.DXml<TResponseBody>(contentStreamReader);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
+        }
+    }
+}

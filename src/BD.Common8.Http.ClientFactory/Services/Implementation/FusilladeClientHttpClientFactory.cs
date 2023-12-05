@@ -24,7 +24,7 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
     /// 初始化 <see cref="FusilladeClientHttpClientFactory"/> 的实例
     /// </summary>
     /// <param name="registerConstant">是否将 <see cref="HttpMessageHandler"/> 注册到服务定位器</param>
-    public FusilladeClientHttpClientFactory(bool registerConstant = true) : this(CreateHandler(), registerConstant)
+    public FusilladeClientHttpClientFactory(bool registerConstant = true) : this(IClientHttpClientFactory.CreateHandler(), registerConstant)
     {
     }
 
@@ -41,32 +41,11 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
     }
 
     /// <summary>
-    /// 创建默认的处理程序
-    /// </summary>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static HttpMessageHandler CreateHandler()
-    {
-        HttpClientHandler handler = new()
-        {
-            UseCookies = false,
-            AutomaticDecompression = DecompressionMethods.Brotli | DecompressionMethods.GZip | DecompressionMethods.Deflate,
-        };
-        return handler;
-    }
-
-    /// <summary>
     /// 创建一个 <see cref="HttpClient"/> 实例并设置默认超时时间
     /// </summary>
     protected virtual HttpClient CreateClient(HttpMessageHandler handler)
     {
-        var client = new HttpClient(handler);
-        try
-        {
-            client.Timeout = IClientHttpClientFactory.DefaultTimeout;
-        }
-        catch
-        {
-        }
+        var client = IClientHttpClientFactory.CreateClient(handler);
         return client;
     }
 
