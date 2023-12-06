@@ -189,6 +189,73 @@ public abstract partial class WebApiClientService(
     }
 
     /// <summary>
+    /// 以异步操作发送 HTTP 请求，仅响应正文，返回异步迭代器
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="args"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public virtual IAsyncEnumerable<TResponseBody?> SendAsAsyncEnumerable<TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    {
+        var result = SendAsAsyncEnumerable<TResponseBody, nil>(args, default, cancellationToken);
+        return result;
+    }
+
+    /// <summary>
+    /// 以异步操作发送 HTTP 请求，响应正文与请求正文，返回异步迭代器
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <typeparam name="TRequestBody"></typeparam>
+    /// <param name="args"></param>
+    /// <param name="requestBody"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public virtual IAsyncEnumerable<TResponseBody?> SendAsAsyncEnumerable<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+        where TResponseBody : notnull
+        where TRequestBody : notnull
+    {
+        if (args.VerifyRequestUri)
+        {
+            if (args.RequestUri.IsAbsoluteUri)
+            {
+                if (!String2.IsHttpUrl(args.RequestUriString))
+                {
+                    return default(EmptyAsyncEnumerable<TResponseBody?>);
+                }
+            }
+        }
+
+        var client = args.GetHttpClient() ?? CreateClient();
+        //var isPolly = args.NumRetries > 0;
+        //if (isPolly)
+        //{
+        //    var result = await Policy.HandleResult<SendResultWrapper<IAsyncEnumerable<TResponseBody?>>>(
+        //            static x => x.Value == null && !x.IsStopped)
+        //        .WaitAndRetryAsync(args.NumRetries, args.PollyRetryAttempt)
+        //        .ExecuteAsync(_SendCoreAsync, cancellationToken);
+        //    return result.Value;
+        //    async Task<SendResultWrapper<TResponseBody>> _SendCoreAsync(CancellationToken cancellationToken)
+        //    {
+        //        var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+        //        return result;
+        //    }
+        //}
+        //else
+        //{
+        return _SendCoreAsAsyncEnumerable();
+        //}
+
+        async IAsyncEnumerable<TResponseBody?> _SendCoreAsAsyncEnumerable()
+        {
+            var result = await SendCoreAsAsyncEnumerable<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+            await foreach (var item in result.Value ?? default(EmptyAsyncEnumerable<TResponseBody>))
+            {
+                yield return item;
+            }
+        }
+    }
+
+    /// <summary>
     /// 以同步操作发送 HTTP 请求，响应正文与请求正文
     /// <list type="bullet">
     /// <item><see cref="nil"/></item>
@@ -272,6 +339,8 @@ public abstract partial class WebApiClientService(
     }
 
     #endregion
+
+    #region SendCoreX
 
     /// <summary>
     /// 以异步操作发送 HTTP 请求
@@ -386,6 +455,103 @@ public abstract partial class WebApiClientService(
         {
             logger.LogError(e,
                 $"{nameof(SendCoreAsync)} fail, method: {{method}}, requestUrl: {{requestUrl}}.", args.Method, args.RequestUriString);
+            return false; // 可重试
+        }
+        finally
+        {
+            requestMessage?.Dispose();
+            if (disposeResponseMessage)
+            {
+                responseMessage?.Dispose();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 以异步操作发送 HTTP 请求，返回异步迭代器
+    /// <list type="bullet">
+    /// <item><see cref="nil"/></item>
+    /// <item><see cref="HttpStatusCode"/></item>
+    /// <item><see cref="string"/></item>
+    /// <item><see cref="byte"/> 数组</item>
+    /// <item><see cref="Stream"/></item>
+    /// </list>
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <typeparam name="TRequestBody"></typeparam>
+    /// <param name="client"></param>
+    /// <param name="args"></param>
+    /// <param name="requestBody"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    protected virtual async Task<SendResultWrapper<IAsyncEnumerable<TResponseBody?>>> SendCoreAsAsyncEnumerable<TResponseBody, TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+        where TRequestBody : notnull
+        where TResponseBody : notnull
+    {
+        var disposeResponseMessage = true;
+        HttpRequestMessage? requestMessage = null;
+        HttpResponseMessage? responseMessage = null;
+
+        try
+        {
+            requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
+            if (requestMessage.Content == null)
+            {
+                var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
+                if (requestContent.Value is not null)
+                {
+                    return SendResultWrapper<IAsyncEnumerable<TResponseBody?>>.Parse(ToAsyncEnumerable(requestContent.Value));
+                }
+                requestMessage.Content = requestContent.Content;
+            }
+
+            HttpClientExtensions.UseDefault(client, requestMessage);
+            responseMessage = await client.SendAsync(requestMessage,
+                HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+
+            var responseContentType = typeof(TResponseBody);
+            if (responseContentType == typeof(HttpStatusCode))
+            {
+                var result = Convert2.Convert<TResponseBody, HttpStatusCode>(responseMessage.StatusCode);
+                return SendResultWrapper<IAsyncEnumerable<TResponseBody?>>.Parse(ToAsyncEnumerable(result));
+            }
+            if (responseContentType == typeof(nil))
+            {
+                return true;
+            }
+            if (responseMessage.Content != null)
+            {
+                IAsyncEnumerable<TResponseBody?> deserializeResult = default(EmptyAsyncEnumerable<TResponseBody>);
+                var mime = responseMessage.Content.Headers.ContentType?.MediaType;
+                if (string.IsNullOrWhiteSpace(mime))
+                    mime = args.Accept;
+                if (string.IsNullOrWhiteSpace(mime))
+                    mime = Accept;
+                switch (mime)
+                {
+                    case MediaTypeNames.JSON:
+                        switch (args.JsonImplType)
+                        {
+                            case Serializable.JsonImplType.SystemTextJson:
+                                deserializeResult = ReadFromSJsonAsAsyncEnumerable<TResponseBody>(
+                                    responseMessage.Content, null, cancellationToken);
+                                return SendResultWrapper<TResponseBody>.Parse(deserializeResult, responseMessage, ref disposeResponseMessage);
+                            default:
+                                throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
+                        }
+                    default:
+                        throw ThrowHelper.GetArgumentOutOfRangeException(mime);
+                        //deserializeResult = await ReadFromCustomDeserializeAsync<TResponseBody>(
+                        //    responseMessage, mime, cancellationToken: cancellationToken);
+                        //return deserializeResult;
+                }
+            }
+            return true;
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e,
+                $"{nameof(SendCoreAsAsyncEnumerable)} fail, method: {{method}}, requestUrl: {{requestUrl}}.", args.Method, args.RequestUriString);
             return false; // 可重试
         }
         finally
@@ -523,6 +689,8 @@ public abstract partial class WebApiClientService(
         }
     }
 
+    #endregion
+
     /// <summary>
     /// 将模型类转换为 HTTP 请求内容，支持以下类型
     /// <list type="bullet">
@@ -648,18 +816,70 @@ public abstract partial class WebApiClientService(
         /// </summary>
         public required bool IsStopped { get; init; }
 
+        /// <summary>
+        /// 将 <see cref="bool"/> isStopped 转换为 <see cref="SendResultWrapper{TResponseBody}"/>
+        /// </summary>
+        /// <param name="isStopped"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator SendResultWrapper<TResponseBody>(bool isStopped) => isStopped ? new()
+        public static SendResultWrapper<TResponseBody> Parse(bool isStopped) => isStopped ? new()
         {
             IsStopped = true,
         } : default;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator SendResultWrapper<TResponseBody>(TResponseBody? value) => new()
+        public static implicit operator SendResultWrapper<TResponseBody>(bool isStopped) => Parse(isStopped);
+
+        /// <summary>
+        /// 将 TResponseBody 转换为 <see cref="SendResultWrapper{TResponseBody}"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static SendResultWrapper<TResponseBody> Parse(TResponseBody? value) => new()
         {
             IsStopped = true,
             Value = value,
         };
+
+        /// <summary>
+        /// 将 TResponseBody 转换为 <see cref="SendResultWrapper{TResponseBody}"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="httpResponseMessage"></param>
+        /// <param name="disposeResponseMessage"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static SendResultWrapper<IAsyncEnumerable<TResponseBody?>> Parse(IAsyncEnumerable<TResponseBody?>? value, HttpResponseMessage httpResponseMessage, ref bool disposeResponseMessage)
+        {
+            if (value == null)
+            {
+                disposeResponseMessage = true;
+                value = default(EmptyAsyncEnumerable<TResponseBody?>);
+            }
+            else
+            {
+                if (value is EmptyAsyncEnumerable<TResponseBody?>)
+                {
+                    disposeResponseMessage = true;
+                }
+                else
+                {
+                    disposeResponseMessage = false;
+                    value = new HttpResponseMessageContentAsyncEnumerable<TResponseBody?>(value, httpResponseMessage);
+                }
+            }
+
+            var result = new SendResultWrapper<IAsyncEnumerable<TResponseBody?>>()
+            {
+                IsStopped = true,
+                Value = value,
+            };
+            return result;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator SendResultWrapper<TResponseBody>(TResponseBody? value) => Parse(value);
     }
 
     protected readonly record struct HttpContentWrapper<TResponseBody> where TResponseBody : notnull

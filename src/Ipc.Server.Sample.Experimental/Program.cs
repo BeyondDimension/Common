@@ -1,5 +1,3 @@
-
-
 namespace Ipc.Server.Sample.Experimental;
 
 #pragma warning disable SA1600 // Elements should be documented
@@ -19,18 +17,10 @@ static partial class Program
         {
             if (item.ParameterType == typeof(CancellationToken))
                 continue;
-            dict.Add(item.ParameterType.Name, CreateInstance(item.ParameterType));
+            dict.Add(item.ParameterType.Name, SamplePathHelper.GetRandomValue(item.ParameterType));
         }
         var result = Serializable.SJSON(dict, writeIndented: true);
         Console.WriteLine(result);
-    }
-
-    static object? CreateInstance(Type type)
-    {
-        if (type == typeof(Uri))
-            return new Uri("https://github.com/BeyondDimension");
-        var result = Activator.CreateInstance(type);
-        return result;
     }
 
     static async Task<int> Main()
@@ -128,20 +118,6 @@ sealed partial class TodoServiceImpl : ITodoService
         return Task.FromResult(result);
     }
 
-    public Task<ApiRspImpl> SimpleTypes2(bool p0, byte p1, sbyte p2,
-        /*DateOnly p4,*/ /*DateTime p5,*/
-        /*DateTimeOffset p6,*/ decimal p7, double p8,
-        ProcessorArchitecture p9, Guid p10, short p11,
-        int p12, long p13, float p14,
-        TimeOnly p15, TimeSpan p16, ushort p17,
-        uint p18, ulong p19, Uri p20,
-        Version p21, CancellationToken cancellationToken = default)
-    {
-        var result = ApiRspHelper.Ok();
-        result.InternalMessage = $"{p0}/{p1}/{p2}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}";
-        return Task.FromResult(result);
-    }
-
     public Task<ApiRspImpl> BodyTest(ITodoService.Todo todo, CancellationToken cancellationToken = default)
     {
         var result = ApiRspHelper.Ok();
@@ -151,13 +127,21 @@ sealed partial class TodoServiceImpl : ITodoService
 
     public async IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        foreach (var item in todos)
+        for (int i = 0; i < len; i++)
         {
-            await Task.Delay(Random.Shared.Next(1, 1500), cancellationToken);
-            yield return item;
+            var millisecondsDelay = Random.Shared.Next(1, 199);
+            Console.WriteLine($"异步迭代器[{i}]，随机等待毫秒：{millisecondsDelay}");
+            await Task.Delay(millisecondsDelay, cancellationToken); // 模拟循环中耗时操作
+            if (i < todos.Length)
+            {
+                yield return todos[i];
+            }
+            yield return todos[^1]; // 超出长度返回最后一个
         }
     }
 }
+
+#region 可使用源生成服务的调用实现
 
 partial class TodoServiceImpl : IEndpointRouteMapGroup
 {
@@ -165,9 +149,13 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder endpoints)
     {
+#pragma warning disable IDE0004 // 删除不必要的强制转换
         var builder = endpoints.MapGroup("/ITodoService");
+        // 测试 Get 方法
         builder.MapGet("/All", (Delegate)(static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted)));
         builder.MapPost("/All", (Delegate)(static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted)));
+        // 测试 Get 方法，路由使用 string 类型
+        builder.MapGet("/GetById/{id}", (Delegate)(static async (HttpContext ctx, [FromRoute] string id) => await Ioc.Get<ITodoService>().GetById(int.Parse(id), ctx.RequestAborted)));
         builder.MapPost("/GetById/{id}", (Delegate)(static async (HttpContext ctx, [FromRoute] int id) => await Ioc.Get<ITodoService>().GetById(id, ctx.RequestAborted)));
         builder.MapPost("/SimpleTypes/{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}",
             (Delegate)(static async (HttpContext ctx,
@@ -189,26 +177,11 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
                     p18, p19, p20,
                     p21,
                     ctx.RequestAborted)));
-        builder.MapPost("/SimpleTypes2/{p0}/{p1}/{p2}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}",
-            (Delegate)(static async (HttpContext ctx,
-            [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2,
-            /*[FromRoute] DateOnly p4,*/ /*[FromRoute] DateTime p5,*/
-            /*[FromRoute] DateTimeOffset p6,*/ [FromRoute] decimal p7, [FromRoute] double p8,
-            [FromRoute] ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11,
-            [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14,
-            [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17,
-            [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20,
-            [FromRoute] Version p21)
-            => await Ioc.Get<ITodoService>().SimpleTypes2(
-                p0, p1, p2,
-                /*p4,*/ /*p5, p6,*/
-                p7, p8,
-                p9, p10, p11,
-                p12, p13, p14,
-                p15, p16, p17,
-                p18, p19, p20,
-                p21,
-                ctx.RequestAborted)));
         builder.MapPost("/BodyTest", (Delegate)(static async (HttpContext ctx, [FromBody] ITodoService.Todo todo) => await Ioc.Get<ITodoService>().BodyTest(todo, ctx.RequestAborted)));
+        builder.MapGet("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] string len) => Ioc.Get<ITodoService>().AsyncEnumerable(int.Parse(len), ctx.RequestAborted)));
+        builder.MapPost("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] int len) => Ioc.Get<ITodoService>().AsyncEnumerable(len, ctx.RequestAborted)));
+#pragma warning restore IDE0004 // 删除不必要的强制转换
     }
 }
+
+#endregion

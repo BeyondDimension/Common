@@ -48,6 +48,7 @@ public static partial class TypeHelper
                     case "UInt64":
                     case "Uri":
                     case "Version":
+                    case "String":
                         return true;
                 }
                 break;

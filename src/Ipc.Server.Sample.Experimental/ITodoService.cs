@@ -46,15 +46,6 @@ public partial interface ITodoService
         uint p18, ulong p19, Uri p20,
         Version p21, CancellationToken cancellationToken = default);
 
-    Task<ApiRspImpl> SimpleTypes2(bool p0, byte p1, sbyte p2,
-        /*DateOnly p4,*/ /*DateTime p5,*/
-        /*DateTimeOffset p6,*/ decimal p7, double p8,
-        ProcessorArchitecture p9, Guid p10, short p11,
-        int p12, long p13, float p14,
-        TimeOnly p15, TimeSpan p16, ushort p17,
-        uint p18, ulong p19, Uri p20,
-        Version p21, CancellationToken cancellationToken = default);
-
     Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
@@ -203,6 +194,122 @@ public static class SamplePathHelper
     public static void Dispose()
     {
         IOPath.DirTryDelete(TempDirPath);
+    }
+
+    /// <summary>
+    /// 根据类型生成随机值，用于模拟的假数据
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static object? GetRandomValue(Type type)
+    {
+        if (type == typeof(int))
+        {
+            return Random.Shared.Next(int.MaxValue);
+        }
+        else if (type == typeof(ITodoService.Todo))
+        {
+            return new ITodoService.Todo(Random.Shared.Next(3, 9), Random2.GenerateRandomString(64));
+        }
+        else if (type == typeof(char))
+        {
+            return 'A';
+        }
+        else if (type == typeof(byte))
+        {
+            return (byte)25;
+        }
+        else if (type == typeof(sbyte))
+        {
+            return (sbyte)26;
+        }
+        else if (type == typeof(DateOnly))
+        {
+            return DateOnly.FromDateTime(DateTime.Today);
+        }
+        else if (type == typeof(DateTime))
+        {
+            return DateTime.UtcNow;
+        }
+        else if (type == typeof(DateTimeOffset))
+        {
+            return DateTimeOffset.Now;
+        }
+        else if (type == typeof(decimal))
+        {
+            return 27.1m;
+        }
+        else if (type == typeof(double))
+        {
+            return 27.1d;
+        }
+        else if (type == typeof(ProcessorArchitecture))
+        {
+            return ProcessorArchitecture.MSIL;
+        }
+        else if (type == typeof(Guid))
+        {
+            return Guid.NewGuid();
+        }
+        else if (type == typeof(short))
+        {
+            return (short)28;
+        }
+        else if (type == typeof(int))
+        {
+            return 29;
+        }
+        else if (type == typeof(long))
+        {
+            return 9223372036854775806L;
+        }
+        else if (type == typeof(float))
+        {
+            return 30.9f;
+        }
+        else if (type == typeof(TimeOnly))
+        {
+            return TimeOnly.FromDateTime(DateTime.Now);
+        }
+        else if (type == typeof(TimeSpan))
+        {
+            return TimeSpan.FromHours(3);
+        }
+        else if (type == typeof(ushort))
+        {
+            return (ushort)31;
+        }
+        else if (type == typeof(uint))
+        {
+            return 32u;
+        }
+        else if (type == typeof(ulong))
+        {
+            return 33ul;
+        }
+        else if (type == typeof(Uri))
+        {
+            return new Uri("http://github.com/BeyondDimension");
+        }
+        else if (type == typeof(Version))
+        {
+            return new Version("10.0.10240");
+        }
+        else if (type == typeof(CancellationToken))
+        {
+            return CancellationToken.None;
+        }
+        else
+        {
+            if (type.IsClass)
+            {
+                return null;
+            }
+            else
+            {
+                return Activator.CreateInstance(type);
+            }
+        }
     }
 }
 
