@@ -133,9 +133,13 @@
       "dest": "api/BD.Common8.Crawler"
     },
     {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.SmsSender/**/BD.Common8.SmsSender.dll"]}],
+      "dest": "api/BD.Common8.SmsSender"
+    },
+    {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Toast/**/BD.Common8.Toast.dll"]}],
       "dest": "api/BD.Common8.Toast"
-    }    
+    }
   ],
   "build": {
     "content": [
