@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class WebApiClientFactoryService
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class WebApiClientFactoryService
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService">
+
+
+
+  <h1 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService" class="text-break">
+    Class WebApiClientFactoryService
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Http.html">Http</a>.<a class="xref" href="BD.Common8.Http.ClientFactory.html">ClientFactory</a>.<a class="xref" href="BD.Common8.Http.ClientFactory.Services.html">Services</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Http.ClientFactory.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>使用 <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> 工厂构建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> 的 WebApiClient 基类服务，继承自 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a></p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class WebApiClientFactoryService : WebApiClientService, Log.I</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a></div>
+      <div><span class="xref">WebApiClientFactoryService</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Log.cs">Log</a>.<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Log.cs">I</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Obsolete_GetNJsonContent">WebApiClientService.Obsolete_GetNJsonContent</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Obsolete_ReadFromNJsonAsync">WebApiClientService.Obsolete_ReadFromNJsonAsync</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Obsolete_UseAsync">WebApiClientService.Obsolete_UseAsync</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_httpPlatformHelper">WebApiClientService.httpPlatformHelper</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_logger">WebApiClientService.logger</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_">WebApiClientService.OnSerializerError&lt;T&gt;(Exception, bool, Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_">WebApiClientService.SendAsync&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Send__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_">WebApiClientService.Send&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsync__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.SendAsync&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Send__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.Send&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendFromStatusCodeAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendFromStatusCodeAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___0_System_Threading_CancellationToken_">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsync__2_System_Net_Http_HttpClient_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.SendCoreAsync&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCore__2_System_Net_Http_HttpClient_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.SendCore&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetRequestContent__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.GetRequestContent&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetCustomSerializeContent__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_String_System_Threading_CancellationToken_">WebApiClientService.GetCustomSerializeContent&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromCustomDeserializeAsync__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_">WebApiClientService.ReadFromCustomDeserializeAsync&lt;TResponseBody&gt;(HttpResponseMessage, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromCustomDeserialize__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_">WebApiClientService.ReadFromCustomDeserialize&lt;TResponseBody&gt;(HttpResponseMessage, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetMemoryPackContent__2___1_System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetMemoryPackContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromMemoryPackAsync__1_System_Net_Http_HttpContent_System_Threading_CancellationToken_">WebApiClientService.ReadFromMemoryPackAsync&lt;TResponseBody&gt;(HttpContent, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetNJsonContent__2___1_System_Text_Encoding_System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetNJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, Encoding, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromNJsonAsync__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromNJsonAsync&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromNJson__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromNJson&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetSJsonContent__2___1_System_Text_Json_Serialization_Metadata_JsonTypeInfo___1__System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetSJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, JsonTypeInfo&lt;TRequestBody&gt;, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsync__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_">WebApiClientService.ReadFromSJsonAsync&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJson__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_">WebApiClientService.ReadFromSJson&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetXmlContent__2___1_System_Text_Encoding_System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetXmlContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, Encoding, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromXmlAsync__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromXmlAsync&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromXml__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromXml&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Accept">WebApiClientService.Accept</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_DefaultEncoding">WebApiClientService.DefaultEncoding</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_NewtonsoftJsonSerializer">WebApiClientService.NewtonsoftJsonSerializer</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_RequiredJsonSerializerContext">WebApiClientService.RequiredJsonSerializerContext</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerContext">WebApiClientService.JsonSerializerContext</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_Microsoft_Extensions_Logging_ILogger_System_Net_Http_IHttpPlatformHelperService_System_Net_Http_Client_IClientHttpClientFactory_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor(Microsoft.Extensions.Logging.ILogger,System.Net.Http.IHttpPlatformHelperService,System.Net.Http.Client.IClientHttpClientFactory)">
+  WebApiClientFactoryService(ILogger, IHttpPlatformHelperService, IClientHttpClientFactory?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用 <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> 工厂构建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> 的 WebApiClient 基类服务，继承自 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected WebApiClientFactoryService(ILogger logger, IHttpPlatformHelperService httpPlatformHelper, IClientHttpClientFactory? clientHttpClientFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger">ILogger</a></dt>
+    <dd></dd>
+    <dt><code>httpPlatformHelper</code> <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.IHttpPlatformHelperService.html">IHttpPlatformHelperService</a></dt>
+    <dd></dd>
+    <dt><code>clientHttpClientFactory</code> <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_clientHttpClientFactory" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.clientHttpClientFactory">
+  clientHttpClientFactory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A factory abstraction for a component that can create <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instances with custom
+configuration for a given logical name.</p>
+<p>适用于客户端的 HttpClient 工厂接口</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IClientHttpClientFactory? clientHttpClientFactory</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_clientHttpClientFactory_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>A default <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> can be registered in an <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a>
+The default <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> will be registered in the service collection as a singleton.</p>
+</div>
+
+
+
+
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_httpClient" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.httpClient">
+  httpClient
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected HttpClient? httpClient</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_Category_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.Category*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_Category" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.Category">
+  Category
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HttpHandler 类别，默认为 <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.HttpHandlerCategory.html#System_Net_Http_Client_HttpHandlerCategory_Default">Default</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual HttpHandlerCategory Category { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.HttpHandlerCategory.html">HttpHandlerCategory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_ClientName_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.ClientName*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_ClientName" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.ClientName">
+  ClientName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>服务名称，通常使用 TAG，格式规范应为 typeName.TrimStart(I).TrimEnd(Impl).TrimEnd(Service)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract string ClientName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient">
+  CreateClient()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates and configures an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance using the configuration that corresponds
+to the logical name specified by <code class="paramref">name</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override HttpClient CreateClient()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd><p>A new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+            Each call to <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html#System_Net_Http_Client_IClientHttpClientFactory_CreateClient_System_String_System_Net_Http_Client_HttpHandlerCategory_">CreateClient(string, HttpHandlerCategory)</a> is guaranteed to return a new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>
+            instance. It is generally not necessary to dispose of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> as the
+            <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> tracks and disposes resources used by the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>.
+            </p>
+<p>
+            Callers are also free to mutate the returned <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance's public properties
+            as desired.
+            </p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

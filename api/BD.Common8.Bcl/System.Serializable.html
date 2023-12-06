@@ -73,13 +73,6 @@
       </div>
 
       <div class="content">
-        <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
-
-          <nav id="breadcrumb"></nav>
-        </div>
 
         <article data-uid="System.Serializable">
 
@@ -91,7 +84,7 @@
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="System.html">System</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="../BD.Common8.Bcl.Compat/System.html">System</a></dd></dl>
   <dl><dt>Assembly</dt><dd>BD.Common8.Bcl.dll</dd></dl>
   </div>
 
@@ -1042,6 +1035,48 @@
 
 
 
+  <a id="System_Serializable_DXml_" data-uid="System.Serializable.DXml*"></a>
+
+  <h3 id="System_Serializable_DXml__1_System_IO_TextReader_" data-uid="System.Serializable.DXml``1(System.IO.TextReader)">
+  DXml&lt;T&gt;(TextReader)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Serializable.Deserialize.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>(Deserialize)Xml</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T? DXml&lt;T&gt;(TextReader textReader)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>textReader</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.textreader">TextReader</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="System_Serializable_GetIndented_" data-uid="System.Serializable.GetIndented*"></a>
 
   <h3 id="System_Serializable_GetIndented_System_IO_Stream_System_Serializable_JsonImplType_" data-uid="System.Serializable.GetIndented(System.IO.Stream,System.Serializable.JsonImplType)">
@@ -1146,6 +1181,43 @@
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Serializable_GetXmlSerializer_" data-uid="System.Serializable.GetXmlSerializer*"></a>
+
+  <h3 id="System_Serializable_GetXmlSerializer_System_Type_" data-uid="System.Serializable.GetXmlSerializer(System.Type)">
+  GetXmlSerializer(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Serializable.Xml.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据类型获取 <span class="xref">System.Xml.Serialization.XmlSerializer</span></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static XmlSerializer GetXmlSerializer(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">XmlSerializer</span></dt>
     <dd></dd>
   </dl>
 
@@ -1816,6 +1888,45 @@ but the compression ratio is slightly sacrificed.</p>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
     <dd></dd>
   </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Serializable_SXml_" data-uid="System.Serializable.SXml*"></a>
+
+  <h3 id="System_Serializable_SXml__1_System_IO_TextWriter___0_" data-uid="System.Serializable.SXml``1(System.IO.TextWriter,``0)">
+  SXml&lt;T&gt;(TextWriter, T?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Serializable.Serialize.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>(Serialize)Xml</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SXml&lt;T&gt;(TextWriter textWriter, T? value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>textWriter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.textwriter">TextWriter</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">

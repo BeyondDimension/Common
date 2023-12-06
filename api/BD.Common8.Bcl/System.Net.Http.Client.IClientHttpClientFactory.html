@@ -73,13 +73,6 @@
       </div>
 
       <div class="content">
-        <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
-
-          <nav id="breadcrumb"></nav>
-        </div>
 
         <article data-uid="System.Net.Http.Client.IClientHttpClientFactory">
 
@@ -133,6 +126,37 @@ The default <a class="xref" href="System.Net.Http.Client.IClientHttpClientFactor
 
   <h2 class="section" id="fields">Fields
 </h2>
+
+
+
+  <h3 id="System_Net_Http_Client_IClientHttpClientFactory_DefaultAutomaticDecompression" data-uid="System.Net.Http.Client.IClientHttpClientFactory.DefaultAutomaticDecompression">
+  DefaultAutomaticDecompression
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Net/Http/Client/IClientHttpClientFactory.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclienthandler.automaticdecompression">AutomaticDecompression</a> 的默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const DecompressionMethods DefaultAutomaticDecompression = GZip | Deflate | Brotli</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.decompressionmethods">DecompressionMethods</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
 
 
 
@@ -309,6 +333,43 @@ can be retrieved from <a class="xref" href="https://learn.microsoft.com/dotnet/a
 
   <a id="System_Net_Http_Client_IClientHttpClientFactory_CreateClient_" data-uid="System.Net.Http.Client.IClientHttpClientFactory.CreateClient*"></a>
 
+  <h3 id="System_Net_Http_Client_IClientHttpClientFactory_CreateClient_System_Net_Http_HttpMessageHandler_" data-uid="System.Net.Http.Client.IClientHttpClientFactory.CreateClient(System.Net.Http.HttpMessageHandler)">
+  CreateClient(HttpMessageHandler)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Net/Http/Client/IClientHttpClientFactory.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建一个 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> 实例并设置默认超时时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static HttpClient CreateClient(HttpMessageHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpmessagehandler">HttpMessageHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Net_Http_Client_IClientHttpClientFactory_CreateClient_" data-uid="System.Net.Http.Client.IClientHttpClientFactory.CreateClient*"></a>
+
   <h3 id="System_Net_Http_Client_IClientHttpClientFactory_CreateClient_System_String_System_Net_Http_Client_HttpHandlerCategory_" data-uid="System.Net.Http.Client.IClientHttpClientFactory.CreateClient(System.String,System.Net.Http.Client.HttpHandlerCategory)">
   CreateClient(string, HttpHandlerCategory)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Net/Http/Client/IClientHttpClientFactory.cs"><i class="bi bi-code-slash"></i></a>
@@ -356,6 +417,43 @@ Callers are also free to mutate the returned <a class="xref" href="https://learn
 as desired.
 </p>
 </div>
+
+
+
+
+  <a id="System_Net_Http_Client_IClientHttpClientFactory_CreateHandler_" data-uid="System.Net.Http.Client.IClientHttpClientFactory.CreateHandler*"></a>
+
+  <h3 id="System_Net_Http_Client_IClientHttpClientFactory_CreateHandler_System_Boolean_" data-uid="System.Net.Http.Client.IClientHttpClientFactory.CreateHandler(System.Boolean)">
+  CreateHandler(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Net/Http/Client/IClientHttpClientFactory.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建默认的处理程序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static HttpMessageHandler CreateHandler(bool useCookies = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>useCookies</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpmessagehandler">HttpMessageHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
 
 
 

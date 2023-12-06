@@ -1,0 +1,564 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3">
+
+
+
+  <h1 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3" class="text-break">
+    Class SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Settings5.html">Settings5</a>.<a class="xref" href="BD.Common8.Settings5.Infrastructure.html">Infrastructure</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Settings5.Frontend.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>设置属性，<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a></p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt; : SettingsProperty&lt;TEnumerable, TSettingsModel&gt;, INotifyPropertyChanged, IDisposable, ICollection&lt;TValue&gt;, IEnumerable&lt;TValue&gt;, IEnumerable where TEnumerable : class, ICollection&lt;TValue&gt;, new() where TSettingsModel : new()</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+    <dt><code>TEnumerable</code></dt>
+    <dd></dd>
+    <dt><code>TSettingsModel</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html">SettingsProperty</a></div>
+      <div><a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html">SettingsProperty</a>&lt;TEnumerable, TSettingsModel&gt;</div>
+      <div><span class="xref">SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;TValue&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TValue&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty-4.html">SettingsDictionaryProperty&lt;TKey, TValue, TDictionary, TSettingsModel&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_DAMT_M">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.DAMT_M</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_setter">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.setter</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_getter">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.getter</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_disposable">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.disposable</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_monitor">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.monitor</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_disposedValue">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.disposedValue</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_value">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.value</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Equals__0__0_">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.Equals(TEnumerable, TEnumerable)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Subscribe_System_Action__0__System_Boolean_">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.Subscribe(Action&lt;TEnumerable&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_OnValueChanged__0__0_">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.OnValueChanged(TEnumerable, TEnumerable)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_SetValue__0_System_Boolean_">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.SetValue(TEnumerable, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_RaiseValueChanged_System_Boolean_">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.RaiseValueChanged(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Reset">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.Reset()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ToString">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Dispose_System_Boolean_">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Dispose">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ModelValue">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.ModelValue</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Value">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.Value</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Default">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.Default</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ValueChanged">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.ValueChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_DefaultAutoSave">SettingsProperty.DefaultAutoSave</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_RaiseValueChanged_System_Boolean_">SettingsProperty.RaiseValueChanged(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_Reset">SettingsProperty.Reset()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_PropertyName">SettingsProperty.PropertyName</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_AutoSave">SettingsProperty.AutoSave</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Initializes a new instance of the <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.html">SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt;</a> class.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3__ctor_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.#ctor*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3__ctor__1_System_Boolean_System_String_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.#ctor(`1,System.Boolean,System.String)">
+  SettingsCollectionProperty(TEnumerable?, bool, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置属性，<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SettingsCollectionProperty(TEnumerable? @default = null, bool autoSave = true, string? propertyName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>default</code> <span class="xref">TEnumerable</span></dt>
+    <dd></dd>
+    <dt><code>autoSave</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>propertyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3__ctor__1_System_Boolean_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Initializes a new instance of the <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.html">SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt;</a> class.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Add_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Add*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Add__0_System_Boolean_System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Add(`0,System.Boolean,System.Boolean)">
+  Add(TValue, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Add(TValue item, bool raiseValueChanged = true, bool notSave = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+    <dt><code>raiseValueChanged</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>notSave</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_AddRange_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.AddRange*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_AddRange_System_Collections_Generic_IEnumerable__0__System_Boolean_System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.AddRange(System.Collections.Generic.IEnumerable{`0},System.Boolean,System.Boolean)">
+  AddRange(IEnumerable&lt;TValue&gt;, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void AddRange(IEnumerable&lt;TValue&gt; items, bool raiseValueChanged = true, bool notSave = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>items</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>raiseValueChanged</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>notSave</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Clear_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Clear*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Clear_System_Boolean_System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Clear(System.Boolean,System.Boolean)">
+  Clear(bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Clear(bool raiseValueChanged = true, bool notSave = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>raiseValueChanged</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>notSave</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Contains_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Contains*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Contains__0_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Contains(`0)">
+  Contains(TValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Contains(TValue item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Equals_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Equals*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Equals__1__1_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Equals(`1,`1)">
+  Equals(TEnumerable?, TEnumerable?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool Equals(TEnumerable? left, TEnumerable? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <span class="xref">TEnumerable</span></dt>
+    <dd></dd>
+    <dt><code>right</code> <span class="xref">TEnumerable</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Remove_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Remove*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_Remove__0_System_Boolean_System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.Remove(`0,System.Boolean,System.Boolean)">
+  Remove(TValue, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Remove(TValue item, bool raiseValueChanged = true, bool notSave = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+    <dt><code>raiseValueChanged</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>notSave</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_ToString_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.ToString*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsCollectionProperty_3_ToString" data-uid="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty`3.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5.Frontend/Infrastructure/SettingsCollectionProperty.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,618 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class IpcClientService
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class IpcClientService
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService">
+
+
+
+  <h1 id="BD_Common8_Ipc_Services_Implementation_IpcClientService" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService" class="text-break">
+    Class IpcClientService
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Ipc.html">Ipc</a>.<a class="xref" href="BD.Common8.Ipc.Services.html">Services</a>.<a class="xref" href="BD.Common8.Ipc.Services.Implementation.html">Implementation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Ipc.Client.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Ipc 客户端连接服务实现</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class IpcClientService : WebApiClientService, Log.I, IIpcClientService, IAsyncDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a></div>
+      <div><span class="xref">IpcClientService</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Log.cs">Log</a>.<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Log.cs">I</a></div>
+      <div><a class="xref" href="BD.Common8.Ipc.Services.IIpcClientService.html">IIpcClientService</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Obsolete_GetNJsonContent">WebApiClientService.Obsolete_GetNJsonContent</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Obsolete_ReadFromNJsonAsync">WebApiClientService.Obsolete_ReadFromNJsonAsync</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Obsolete_UseAsync">WebApiClientService.Obsolete_UseAsync</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_httpPlatformHelper">WebApiClientService.httpPlatformHelper</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_logger">WebApiClientService.logger</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_">WebApiClientService.OnSerializerError&lt;T&gt;(Exception, bool, Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_">WebApiClientService.SendAsync&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Send__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_">WebApiClientService.Send&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsync__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.SendAsync&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Send__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.Send&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendFromStatusCodeAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendFromStatusCodeAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___0_System_Threading_CancellationToken_">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsync__2_System_Net_Http_HttpClient_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.SendCoreAsync&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCore__2_System_Net_Http_HttpClient_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.SendCore&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetRequestContent__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_">WebApiClientService.GetRequestContent&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetCustomSerializeContent__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_String_System_Threading_CancellationToken_">WebApiClientService.GetCustomSerializeContent&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromCustomDeserializeAsync__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_">WebApiClientService.ReadFromCustomDeserializeAsync&lt;TResponseBody&gt;(HttpResponseMessage, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromCustomDeserialize__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_">WebApiClientService.ReadFromCustomDeserialize&lt;TResponseBody&gt;(HttpResponseMessage, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetMemoryPackContent__2___1_System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetMemoryPackContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromMemoryPackAsync__1_System_Net_Http_HttpContent_System_Threading_CancellationToken_">WebApiClientService.ReadFromMemoryPackAsync&lt;TResponseBody&gt;(HttpContent, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetNJsonContent__2___1_System_Text_Encoding_System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetNJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, Encoding, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromNJsonAsync__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromNJsonAsync&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromNJson__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromNJson&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetSJsonContent__2___1_System_Text_Json_Serialization_Metadata_JsonTypeInfo___1__System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetSJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, JsonTypeInfo&lt;TRequestBody&gt;, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsync__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_">WebApiClientService.ReadFromSJsonAsync&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJson__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_">WebApiClientService.ReadFromSJson&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetXmlContent__2___1_System_Text_Encoding_System_Net_Http_Headers_MediaTypeHeaderValue_">WebApiClientService.GetXmlContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, Encoding, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromXmlAsync__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromXmlAsync&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromXml__1_System_Net_Http_HttpContent_System_Text_Encoding_System_Threading_CancellationToken_">WebApiClientService.ReadFromXml&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_Accept">WebApiClientService.Accept</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_DefaultEncoding">WebApiClientService.DefaultEncoding</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_NewtonsoftJsonSerializer">WebApiClientService.NewtonsoftJsonSerializer</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_RequiredJsonSerializerContext">WebApiClientService.RequiredJsonSerializerContext</a>
+    </div>
+    <div>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerContext">WebApiClientService.JsonSerializerContext</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService__ctor_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.#ctor*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService__ctor_BD_Common8_Ipc_Models_IpcAppConnectionString_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.#ctor(BD.Common8.Ipc.Models.IpcAppConnectionString)">
+  IpcClientService(IpcAppConnectionString)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ipc 客户端连接服务实现</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IpcClientService(IpcAppConnectionString connectionString)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectionString</code> <a class="xref" href="../BD.Common8.Ipc/BD.Common8.Ipc.Models.IpcAppConnectionString.html">IpcAppConnectionString</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_connectionString" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.connectionString">
+  connectionString
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Ipc 应用程序连接字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IpcAppConnectionString connectionString</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.Common8.Ipc/BD.Common8.Ipc.Models.IpcAppConnectionString.html">IpcAppConnectionString</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureSocketsHttpHandler_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureSocketsHttpHandler*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureSocketsHttpHandler_System_Net_Http_SocketsHttpHandler_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureSocketsHttpHandler(System.Net.Http.SocketsHttpHandler)">
+  ConfigureSocketsHttpHandler(SocketsHttpHandler)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配置 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.socketshttphandler">SocketsHttpHandler</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ConfigureSocketsHttpHandler(SocketsHttpHandler handler)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.socketshttphandler">SocketsHttpHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_CreateClient_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.CreateClient*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_CreateClient" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.CreateClient">
+  CreateClient()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates and configures an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance using the configuration that corresponds
+to the logical name specified by <code class="paramref">name</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed HttpClient CreateClient()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd><p>A new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Ipc_Services_Implementation_IpcClientService_CreateClient_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+            Each call to <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html#System_Net_Http_Client_IClientHttpClientFactory_CreateClient_System_String_System_Net_Http_Client_HttpHandlerCategory_">CreateClient(string, HttpHandlerCategory)</a> is guaranteed to return a new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>
+            instance. It is generally not necessary to dispose of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> as the
+            <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> tracks and disposes resources used by the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>.
+            </p>
+<p>
+            Callers are also free to mutate the returned <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance's public properties
+            as desired.
+            </p>
+</div>
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_DisposeAsync_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.DisposeAsync*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_DisposeAsync" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.DisposeAsync">
+  DisposeAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ValueTask DisposeAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_DisposeAsyncCore_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.DisposeAsyncCore*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_DisposeAsyncCore" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.DisposeAsyncCore">
+  DisposeAsyncCore()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask DisposeAsyncCore()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_GetHubConnAsync_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_GetHubConnAsync" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync">
+  GetHubConnAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>异步获取 SignalR Hub 连接</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ValueTask&lt;HubConnection&gt; GetHubConnAsync()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection">HubConnection</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnected_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.HubConnection_Reconnected*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnected_System_String_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.HubConnection_Reconnected(System.String)">
+  HubConnection_Reconnected(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection">HubConnection</a> successfully reconnects after losing its underlying connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task HubConnection_Reconnected(string? arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arg</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnected_System_String__examples">Examples</h4>
+  <p>The following example attaches a handler to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection.reconnected">Reconnected</a> event, and checks the provided argument to log the ConnectionId.</p>
+<pre><code class="lang-csharp">connection.Reconnected += (connectionId) =&gt;
+{
+    Console.WriteLine($"Connection successfully reconnected. The ConnectionId is now: {connectionId}");
+};</code></pre>
+
+
+  <h4 class="section" id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnected_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> parameter will be the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection">HubConnection</a>'s new ConnectionId or null if negotiation was skipped.</p>
+</div>
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnecting_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.HubConnection_Reconnecting*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnecting_System_Exception_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.HubConnection_Reconnecting(System.Exception)">
+  HubConnection_Reconnecting(Exception?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Occurs when the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection">HubConnection</a> starts reconnecting after losing its underlying connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task HubConnection_Reconnecting(Exception? arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>arg</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnecting_System_Exception__examples">Examples</h4>
+  <p>The following example attaches a handler to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection.reconnecting">Reconnecting</a> event, and checks the provided argument to log the error.</p>
+<pre><code class="lang-csharp">connection.Reconnecting += (exception) =&gt;
+{
+    Console.WriteLine($"Connection started reconnecting due to an error: {exception}");
+};</code></pre>
+
+
+  <h4 class="section" id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnecting_System_Exception__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a> that occurred will be passed in as the sole argument to this handler.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

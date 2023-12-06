@@ -1343,6 +1343,119 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Extensions.StreamExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Extensions.StreamExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Extensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.OperatingSystem2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.OperatingSystem2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.OSPlatformCompatAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.OSPlatformCompatAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.SupportedOSPlatformAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.SupportedOSPlatformAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.SupportedOSPlatformGuardAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.SupportedOSPlatformGuardAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.UnsupportedOSPlatformAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.UnsupportedOSPlatformAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.UnsupportedOSPlatformGuardAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.UnsupportedOSPlatformGuardAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Runtime.Versioning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
         ".html": {
@@ -1697,6 +1810,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Bcl/System.Extensions.CookieContainerExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Extensions.CookieExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Extensions.CookieExtensions.html"
         }
       },
       "version": ""
@@ -2223,6 +2346,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Log.I.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Log.I.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Log.yml",
       "output": {
         ".html": {
@@ -2283,6 +2416,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.HttpResponseMessageContentStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.HttpResponseMessageContentStream.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.AddHttpClientDelegate.yml",
       "output": {
         ".html": {
@@ -2297,6 +2440,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.IsolatedCookieContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.IsolatedCookieContainer.html"
         }
       },
       "version": ""
@@ -4795,96 +4948,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Models.Abstractions.IFusilladeHttpClientBuilder.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Models.Abstractions.IFusilladeHttpClientBuilder.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Models.Abstractions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Models.Abstractions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.Implementation.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.WebApiClientBaseService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.WebApiClientBaseService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Services.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Http.ClientFactory.Server/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
       "output": {
         ".html": {
@@ -4912,6 +4975,418 @@
         },
         ".json": {
           "relative_path": "api/BD.Common8.Http.ClientFactory.Server/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.Abstractions.IFusilladeHttpClientBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.Abstractions.IFusilladeHttpClientBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.Abstractions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.Abstractions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.HttpContentWrapper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.HttpContentWrapper-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendResultWrapper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendResultWrapper-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/Microsoft.Extensions.DependencyInjection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Ipc.Client/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IEndpointRouteMapGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IEndpointRouteMapGroup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Ipc.Server/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.OperationContractAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.OperationContractAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Enums.IpcAppConnectionStringType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Enums.IpcAppConnectionStringType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Enums.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Models.IpcAppConnectionString.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Models.IpcAppConnectionString.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Models.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Ipc/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Ipc/toc.json"
         }
       },
       "version": ""
@@ -6850,6 +7325,185 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.SettingsLoadBackendService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.SettingsLoadBackendService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Settings5.Backend/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Backend/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Settings5.Backend/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty-4.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.ValueChangedEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.ValueChangedEventListener.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyGeneratedAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyGeneratedAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyValueChangedEventArgs-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyValueChangedEventArgs-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.SettingsLoadFrontendService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.SettingsLoadFrontendService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Settings5.Frontend/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Settings5.Frontend/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.ISettingsLoadService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.ISettingsLoadService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Settings5/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Settings5/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions.yml",
       "output": {
         ".html": {
@@ -7347,6 +8001,249 @@
         },
         ".json": {
           "relative_path": "api/BD.Common8.SmsSender/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.AttributeDataHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.AttributeDataHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.SourceTextHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.SourceTextHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.TypeHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.TypeHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.TypeStringImpl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.TypeStringImpl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.GetSourceModelArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.GetSourceModelArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.ISourceModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.ISourceModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.ObjectExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.ObjectExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.StreamExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.StreamExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.OperatingSystem2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.OperatingSystem2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.OSPlatformCompatAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.OSPlatformCompatAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.SupportedOSPlatformAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.SupportedOSPlatformAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.SupportedOSPlatformGuardAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.SupportedOSPlatformGuardAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.UnsupportedOSPlatformAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.UnsupportedOSPlatformAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.UnsupportedOSPlatformGuardAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.UnsupportedOSPlatformGuardAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Runtime.Versioning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.StringExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.ThrowHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.ThrowHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/toc.json"
         }
       },
       "version": ""
