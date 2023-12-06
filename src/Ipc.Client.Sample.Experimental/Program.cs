@@ -1,3 +1,5 @@
+using DotNext.Reflection;
+
 namespace Ipc.Client.Sample.Experimental;
 
 #pragma warning disable SA1600 // Elements should be documented
@@ -35,6 +37,140 @@ static partial class Program
             ipcClientServices.Add(ipcClientService);
         }
 
+        var methods = (from m in typeof(ITodoService).GetMethods()
+                       where m.ReturnType.IsGenericType && m.ReturnType.GetGenericTypeDefinition() == typeof(Task<>)
+                       select m).ToArray();
+
+        static object?[]? GetMethodParas(MethodInfo method)
+        {
+            var types = method.GetParameterTypes();
+            if (types != null && types.Length != 0)
+            {
+                return GetMethodParas(types).ToArray();
+                static IEnumerable<object?> GetMethodParas(IEnumerable<Type> types)
+                {
+                    foreach (var type in types)
+                    {
+                        if (type == typeof(int))
+                        {
+                            yield return Random.Shared.Next(int.MaxValue);
+                        }
+                        else if (type == typeof(ITodoService.Todo))
+                        {
+                            yield return new ITodoService.Todo(Random.Shared.Next(3, 9), Random2.GenerateRandomString(64));
+                        }
+                        else if (type == typeof(char))
+                        {
+                            yield return 'A';
+                        }
+                        else if (type == typeof(byte))
+                        {
+                            yield return (byte)25;
+                        }
+                        else if (type == typeof(sbyte))
+                        {
+                            yield return (sbyte)26;
+                        }
+                        else if (type == typeof(DateOnly))
+                        {
+                            yield return DateOnly.FromDateTime(DateTime.Today);
+                        }
+                        else if (type == typeof(DateTime))
+                        {
+                            yield return DateTime.UtcNow;
+                        }
+                        else if (type == typeof(DateTimeOffset))
+                        {
+                            yield return DateTimeOffset.Now;
+                        }
+                        else if (type == typeof(decimal))
+                        {
+                            yield return 27.1m;
+                        }
+                        else if (type == typeof(double))
+                        {
+                            yield return 27.1d;
+                        }
+                        else if (type == typeof(ProcessorArchitecture))
+                        {
+                            yield return ProcessorArchitecture.MSIL;
+                        }
+                        else if (type == typeof(Guid))
+                        {
+                            yield return Guid.NewGuid();
+                        }
+                        else if (type == typeof(short))
+                        {
+                            yield return (short)28;
+                        }
+                        else if (type == typeof(int))
+                        {
+                            yield return 29;
+                        }
+                        else if (type == typeof(long))
+                        {
+                            yield return 9223372036854775806L;
+                        }
+                        else if (type == typeof(float))
+                        {
+                            yield return 30.9f;
+                        }
+                        else if (type == typeof(TimeOnly))
+                        {
+                            yield return TimeOnly.FromDateTime(DateTime.Now);
+                        }
+                        else if (type == typeof(TimeSpan))
+                        {
+                            yield return TimeSpan.FromHours(3);
+                        }
+                        else if (type == typeof(ushort))
+                        {
+                            yield return (ushort)31;
+                        }
+                        else if (type == typeof(uint))
+                        {
+                            yield return 32u;
+                        }
+                        else if (type == typeof(ulong))
+                        {
+                            yield return 33ul;
+                        }
+                        else if (type == typeof(Uri))
+                        {
+                            yield return new Uri("http://github.com/BeyondDimension");
+                        }
+                        else if (type == typeof(Version))
+                        {
+                            yield return new Version("10.0.10240");
+                        }
+                        else if (type == typeof(CancellationToken))
+                        {
+                            yield return CancellationToken.None;
+                        }
+                        else
+                        {
+                            if (type.IsClass)
+                            {
+                                yield return null;
+                            }
+                            else
+                            {
+                                yield return Activator.CreateInstance(type);
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        static Task MethodInvoke(MethodInfo method, ITodoService todoService)
+        {
+            var paras = GetMethodParas(method);
+            var result = method.Invoke(todoService, paras);
+            return (Task)result!;
+        }
+
         while (true) // 循环向服务端请求
         {
             foreach (var ipcClientService in ipcClientServices)
@@ -42,25 +178,34 @@ static partial class Program
                 Console.WriteLine($"{ipcClientService.Title}: ");
                 if (ipcClientService is ITodoService todoService)
                 {
-                    var resultAll = await todoService.All();
-                    Console.WriteLine($"{nameof(ITodoService.All)}: ");
-                    Console.WriteLine(Serializable.SJSON_Original(resultAll, NewtonsoftJsonFormatting.Indented));
+                    //var resultAll = await todoService.All();
+                    //Console.WriteLine($"{nameof(ITodoService.All)}: ");
+                    //Console.WriteLine(Serializable.SJSON_Original(resultAll, NewtonsoftJsonFormatting.Indented));
 
-                    var resultGetById = await todoService.GetById(Random.Shared.Next(int.MaxValue));
-                    Console.WriteLine($"{nameof(ITodoService.GetById)}: ");
-                    Console.WriteLine(Serializable.SJSON_Original(resultGetById, NewtonsoftJsonFormatting.Indented));
+                    //var resultGetById = await todoService.GetById(Random.Shared.Next(int.MaxValue));
+                    //Console.WriteLine($"{nameof(ITodoService.GetById)}: ");
+                    //Console.WriteLine(Serializable.SJSON_Original(resultGetById, NewtonsoftJsonFormatting.Indented));
 
-                    var resultSimpleTypes = await todoService.SimpleTypes(true, 2, 3, '4', DateOnly.FromDateTime(DateTime.Today), DateTime.UtcNow, DateTimeOffset.Now, 7.1m, 8.2d, ProcessorArchitecture.MSIL, Guid.NewGuid(), 11, 12, long.MaxValue, 14.5f, TimeOnly.FromDateTime(DateTime.Now), TimeSpan.FromHours(3), 17, 18, 19, new Uri("http://github.com/BeyondDimension"), new Version(9, 12));
-                    Console.WriteLine($"{nameof(ITodoService.SimpleTypes)}: ");
-                    Console.WriteLine(Serializable.SJSON_Original(resultSimpleTypes, NewtonsoftJsonFormatting.Indented));
+                    //var resultSimpleTypes = await todoService.SimpleTypes(true, 2, 3, '4', DateOnly.FromDateTime(DateTime.Today), DateTime.UtcNow, DateTimeOffset.Now, 7.1m, 8.2d, ProcessorArchitecture.MSIL, Guid.NewGuid(), 11, 12, long.MaxValue, 14.5f, TimeOnly.FromDateTime(DateTime.Now), TimeSpan.FromHours(3), 17, 18, 19, new Uri("http://github.com/BeyondDimension"), new Version(9, 12));
+                    //Console.WriteLine($"{nameof(ITodoService.SimpleTypes)}: ");
+                    //Console.WriteLine(Serializable.SJSON_Original(resultSimpleTypes, NewtonsoftJsonFormatting.Indented));
 
-                    var resultSimple2Types = await todoService.SimpleTypes2(2, 3, 7.1m, 8.2d, 11, 12, long.MaxValue, 14.5f, 17, 18, 19);
-                    Console.WriteLine($"{nameof(ITodoService.SimpleTypes2)}: ");
-                    Console.WriteLine(Serializable.SJSON_Original(resultSimple2Types, NewtonsoftJsonFormatting.Indented));
+                    //var resultSimple2Types = await todoService.SimpleTypes2(true, 2, 3, /*DateTime.UtcNow, DateTimeOffset.Now,*/ 7.1m, 8.2d, ProcessorArchitecture.MSIL, Guid.NewGuid(), 11, 12, long.MaxValue, 14.5f, TimeOnly.FromDateTime(DateTime.Now), TimeSpan.FromHours(3), 17, 18, 19, new Uri("http://github.com/BeyondDimension"), new Version(9, 12));
+                    //Console.WriteLine($"{nameof(ITodoService.SimpleTypes2)}: ");
+                    //Console.WriteLine(Serializable.SJSON_Original(resultSimple2Types, NewtonsoftJsonFormatting.Indented));
 
-                    var resultBodyTest = await todoService.BodyTest(new(9, Random2.GenerateRandomString(64)));
-                    Console.WriteLine($"{nameof(ITodoService.BodyTest)}: ");
-                    Console.WriteLine(Serializable.SJSON_Original(resultBodyTest, NewtonsoftJsonFormatting.Indented));
+                    //var resultBodyTest = await todoService.BodyTest(new(9, Random2.GenerateRandomString(64)));
+                    //Console.WriteLine($"{nameof(ITodoService.BodyTest)}: ");
+                    //Console.WriteLine(Serializable.SJSON_Original(resultBodyTest, NewtonsoftJsonFormatting.Indented));
+
+                    foreach (var method in methods)
+                    {
+                        var resultMethod = MethodInvoke(method, todoService);
+                        await resultMethod;
+                        Console.WriteLine($"{method.Name}: ");
+                        var resultValue = resultMethod.GetType().GetProperty(nameof(Task<object>.Result))?.GetValue(resultMethod);
+                        Console.WriteLine(Serializable.SJSON_Original(resultValue, NewtonsoftJsonFormatting.Indented));
+                    }
                 }
             }
             Console.WriteLine("键入回车再次发送请求。");
@@ -113,7 +258,14 @@ static partial class Program
             return result!;
         }
 
-        public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21, CancellationToken cancellationToken = default)
+        public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
+            char p3, DateOnly p4, DateTime p5,
+            DateTimeOffset p6, decimal p7, double p8,
+            ProcessorArchitecture p9, Guid p10, short p11,
+            int p12, long p13, float p14,
+            TimeOnly p15, TimeSpan p16, ushort p17,
+            uint p18, ulong p19, Uri p20,
+            Version p21, CancellationToken cancellationToken = default)
         {
             WebApiClientSendArgs args = new($"/ITodoService/SimpleTypes/{WebUtility.UrlEncode(p0.ToString())}/{WebUtility.UrlEncode(p1.ToString())}/{WebUtility.UrlEncode(p2.ToString())}/{WebUtility.UrlEncode(p3.ToString())}/{WebUtility.UrlEncode(p4.ToString())}/{WebUtility.UrlEncode(p5.ToString())}/{WebUtility.UrlEncode(p6.ToString())}/{WebUtility.UrlEncode(p7.ToString())}/{WebUtility.UrlEncode(p8.ToString())}/{WebUtility.UrlEncode(((int)p9).ToString())}/{WebUtility.UrlEncode(p10.ToString())}/{WebUtility.UrlEncode(p11.ToString())}/{WebUtility.UrlEncode(p12.ToString())}/{WebUtility.UrlEncode(p13.ToString())}/{WebUtility.UrlEncode(p14.ToString())}/{WebUtility.UrlEncode(p15.ToString())}/{WebUtility.UrlEncode(p16.ToString())}/{WebUtility.UrlEncode(p17.ToString())}/{WebUtility.UrlEncode(p18.ToString())}/{WebUtility.UrlEncode(p19.ToString())}/{WebUtility.UrlEncode(p20.ToString())}/{WebUtility.UrlEncode(p21.ToString())}")
             {
@@ -123,9 +275,16 @@ static partial class Program
             return result!;
         }
 
-        public async Task<ApiRspImpl> SimpleTypes2(byte p1, sbyte p2, decimal p7, double p8, short p11, int p12, long p13, float p14, ushort p17, uint p18, ulong p19, CancellationToken cancellationToken = default)
+        public async Task<ApiRspImpl> SimpleTypes2(bool p0, byte p1, sbyte p2,
+            /*DateOnly p4,*/ /*DateTime p5,*/
+            /*DateTimeOffset p6,*/ decimal p7, double p8,
+            ProcessorArchitecture p9, Guid p10, short p11,
+            int p12, long p13, float p14,
+            TimeOnly p15, TimeSpan p16, ushort p17,
+            uint p18, ulong p19, Uri p20,
+            Version p21, CancellationToken cancellationToken = default)
         {
-            WebApiClientSendArgs args = new($"/ITodoService/SimpleTypes2/{WebUtility.UrlEncode(p1.ToString())}/{WebUtility.UrlEncode(p2.ToString())}/{WebUtility.UrlEncode(p7.ToString())}/{WebUtility.UrlEncode(p8.ToString())}/{WebUtility.UrlEncode(p11.ToString())}/{WebUtility.UrlEncode(p12.ToString())}/{WebUtility.UrlEncode(p13.ToString())}/{WebUtility.UrlEncode(p14.ToString())}/{WebUtility.UrlEncode(p17.ToString())}/{WebUtility.UrlEncode(p18.ToString())}/{WebUtility.UrlEncode(p19.ToString())}")
+            WebApiClientSendArgs args = new($"/ITodoService/SimpleTypes2/{WebUtility.UrlEncode(p0.ToLowerString())}/{WebUtility.UrlEncode(p1.ToString())}/{WebUtility.UrlEncode(p2.ToString())}/{WebUtility.UrlEncode(p7.ToString())}/{WebUtility.UrlEncode(p8.ToString())}/{WebUtility.UrlEncode(p9.ToString()/*.ToLowerInvariant()*/)}/{WebUtility.UrlEncode(p10.ToString())}/{WebUtility.UrlEncode(p11.ToString())}/{WebUtility.UrlEncode(p12.ToString())}/{WebUtility.UrlEncode(p13.ToString())}/{WebUtility.UrlEncode(p14.ToString())}/{WebUtility.UrlEncode(p15.ToString())}/{WebUtility.UrlEncode(p16.ToString())}/{WebUtility.UrlEncode(p17.ToString())}/{WebUtility.UrlEncode(p18.ToString())}/{WebUtility.UrlEncode(p19.ToString())}/{WebUtility.UrlEncode(p20.ToString())}/{WebUtility.UrlEncode(p21.ToString())}")
             {
                 Method = HttpMethod.Post,
             };

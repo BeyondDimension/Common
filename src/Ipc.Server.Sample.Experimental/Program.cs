@@ -1,3 +1,5 @@
+
+
 namespace Ipc.Server.Sample.Experimental;
 
 #pragma warning disable SA1600 // Elements should be documented
@@ -9,9 +11,32 @@ static partial class Program
 {
     static readonly TaskCompletionSource tcs = new();
 
-    static async Task Main()
+    static void TestSimpleTypes()
+    {
+        var paras = typeof(ITodoService).GetMethod(nameof(ITodoService.SimpleTypes))!.GetParameters();
+        Dictionary<string, object?> dict = new();
+        foreach (var item in paras)
+        {
+            if (item.ParameterType == typeof(CancellationToken))
+                continue;
+            dict.Add(item.ParameterType.Name, CreateInstance(item.ParameterType));
+        }
+        var result = Serializable.SJSON(dict, writeIndented: true);
+        Console.WriteLine(result);
+    }
+
+    static object? CreateInstance(Type type)
+    {
+        if (type == typeof(Uri))
+            return new Uri("https://github.com/BeyondDimension");
+        var result = Activator.CreateInstance(type);
+        return result;
+    }
+
+    static async Task<int> Main()
     {
         Console.WriteLine("Ipc 服务端示例【已启动】");
+        TestSimpleTypes();
         try
         {
             Ioc.ConfigureServices(static s =>
@@ -40,6 +65,16 @@ static partial class Program
             Console.WriteLine("正在释放资源");
             SamplePathHelper.Dispose();
         }
+
+        return (int)ExitCode.Ok;
+    }
+
+    /// <summary>
+    /// 定义服务端进程退出码
+    /// </summary>
+    enum ExitCode
+    {
+        Ok = 0,
     }
 }
 
@@ -50,6 +85,8 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
     protected override bool ListenNamedPipe => true;
 
     protected override bool ListenUnixSocket => true;
+
+    protected override IJsonTypeInfoResolver? JsonTypeInfoResolver => SampleJsonSerializerContext.Default;
 }
 
 sealed partial class TodoServiceImpl : ITodoService
@@ -65,9 +102,10 @@ sealed partial class TodoServiceImpl : ITodoService
     public async Task<ApiRspImpl<ITodoService.Todo[]?>> All(CancellationToken cancellationToken = default)
     {
         await Task.Delay(1, cancellationToken);
-        return todos.Concat([
+        var result = todos.Concat([
             new ITodoService.Todo(6, DateTimeOffset.Now.ToString()),
         ]).ToArray();
+        return result;
     }
 
     public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id, CancellationToken cancellationToken = default)
@@ -76,17 +114,31 @@ sealed partial class TodoServiceImpl : ITodoService
         return todos.FirstOrDefault(x => x.Id == id);
     }
 
-    public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21, CancellationToken cancellationToken = default)
+    public Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
+        char p3, DateOnly p4, DateTime p5,
+        DateTimeOffset p6, decimal p7, double p8,
+        ProcessorArchitecture p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong p19, Uri p20,
+        Version p21, CancellationToken cancellationToken = default)
     {
         var result = ApiRspHelper.Ok();
-        result.InternalMessage = $"{p0}/{p1}/{p2}/{p3}/{p4},{p5},{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}";
+        result.InternalMessage = $"{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}";
         return Task.FromResult(result);
     }
 
-    public Task<ApiRspImpl> SimpleTypes2(byte p1, sbyte p2, decimal p7, double p8, short p11, int p12, long p13, float p14, ushort p17, uint p18, ulong p19, CancellationToken cancellationToken = default)
+    public Task<ApiRspImpl> SimpleTypes2(bool p0, byte p1, sbyte p2,
+        /*DateOnly p4,*/ /*DateTime p5,*/
+        /*DateTimeOffset p6,*/ decimal p7, double p8,
+        ProcessorArchitecture p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong p19, Uri p20,
+        Version p21, CancellationToken cancellationToken = default)
     {
         var result = ApiRspHelper.Ok();
-        result.InternalMessage = $"{p1}/{p2}/{p7}/{p8}/{p11}/{p12}/{p13}/{p14}/{p17}/{p18}/{p19}";
+        result.InternalMessage = $"{p0}/{p1}/{p2}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}";
         return Task.FromResult(result);
     }
 
@@ -114,10 +166,49 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
     static void IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder endpoints)
     {
         var builder = endpoints.MapGroup("/ITodoService");
-        builder.MapPost("/All", static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted));
-        builder.MapPost("/GetById/{id}", static async (HttpContext ctx, [FromRoute] int id) => await Ioc.Get<ITodoService>().GetById(id, ctx.RequestAborted));
-        builder.MapPost("/SimpleTypes/{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}", static async (HttpContext ctx, [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2, [FromRoute] char p3, [FromRoute] DateOnly p4, [FromRoute] DateTime p5, [FromRoute] DateTimeOffset p6, [FromRoute] decimal p7, [FromRoute] double p8, [FromRoute] ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11, [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14, [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17, [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20, [FromRoute] Version p21) => await Ioc.Get<ITodoService>().SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, ctx.RequestAborted));
-        builder.MapPost("/SimpleTypes2/{p1}/{p2}/{p7}/{p8}/{p11}/{p12}/{p13}/{p14}/{p17}/{p18}/{p19}", static async (HttpContext ctx, [FromRoute] byte p1, [FromRoute] sbyte p2, [FromRoute] decimal p7, [FromRoute] double p8, [FromRoute] short p11, [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14, [FromRoute] ushort p17, [FromRoute] uint p18, [FromRoute] ulong p19) => await Ioc.Get<ITodoService>().SimpleTypes2(p1, p2, p7, p8, p11, p12, p13, p14, p17, p18, p19, ctx.RequestAborted));
-        builder.MapPost("/BodyTest", static async (HttpContext ctx, [FromBody] ITodoService.Todo todo) => await Ioc.Get<ITodoService>().BodyTest(todo, ctx.RequestAborted));
+        builder.MapGet("/All", (Delegate)(static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted)));
+        builder.MapPost("/All", (Delegate)(static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted)));
+        builder.MapPost("/GetById/{id}", (Delegate)(static async (HttpContext ctx, [FromRoute] int id) => await Ioc.Get<ITodoService>().GetById(id, ctx.RequestAborted)));
+        builder.MapPost("/SimpleTypes/{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}",
+            (Delegate)(static async (HttpContext ctx,
+            [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2,
+            [FromRoute] char p3, [FromRoute] DateOnly p4, [FromRoute] DateTime p5,
+            [FromRoute] DateTimeOffset p6, [FromRoute] decimal p7, [FromRoute] double p8,
+            [FromRoute] ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11,
+            [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14,
+            [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17,
+            [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20,
+            [FromRoute] Version p21)
+                => await Ioc.Get<ITodoService>().SimpleTypes(
+                    p0, p1, p2,
+                    p3, p4, p5,
+                    p6, p7, p8,
+                    p9, p10, p11,
+                    p12, p13, p14,
+                    p15, p16, p17,
+                    p18, p19, p20,
+                    p21,
+                    ctx.RequestAborted)));
+        builder.MapPost("/SimpleTypes2/{p0}/{p1}/{p2}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}",
+            (Delegate)(static async (HttpContext ctx,
+            [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2,
+            /*[FromRoute] DateOnly p4,*/ /*[FromRoute] DateTime p5,*/
+            /*[FromRoute] DateTimeOffset p6,*/ [FromRoute] decimal p7, [FromRoute] double p8,
+            [FromRoute] ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11,
+            [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14,
+            [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17,
+            [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20,
+            [FromRoute] Version p21)
+            => await Ioc.Get<ITodoService>().SimpleTypes2(
+                p0, p1, p2,
+                /*p4,*/ /*p5, p6,*/
+                p7, p8,
+                p9, p10, p11,
+                p12, p13, p14,
+                p15, p16, p17,
+                p18, p19, p20,
+                p21,
+                ctx.RequestAborted)));
+        builder.MapPost("/BodyTest", (Delegate)(static async (HttpContext ctx, [FromBody] ITodoService.Todo todo) => await Ioc.Get<ITodoService>().BodyTest(todo, ctx.RequestAborted)));
     }
 }

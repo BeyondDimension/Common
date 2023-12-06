@@ -37,9 +37,23 @@ public partial interface ITodoService
     /// <param name="p21"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2, char p3, DateOnly p4, DateTime p5, DateTimeOffset p6, decimal p7, double p8, ProcessorArchitecture p9, Guid p10, short p11, int p12, long p13, float p14, TimeOnly p15, TimeSpan p16, ushort p17, uint p18, ulong p19, Uri p20, Version p21, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
+        char p3, DateOnly p4, DateTime p5,
+        DateTimeOffset p6, decimal p7, double p8,
+        ProcessorArchitecture p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong p19, Uri p20,
+        Version p21, CancellationToken cancellationToken = default);
 
-    Task<ApiRspImpl> SimpleTypes2(byte p1, sbyte p2, decimal p7, double p8, short p11, int p12, long p13, float p14, ushort p17, uint p18, ulong p19, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl> SimpleTypes2(bool p0, byte p1, sbyte p2,
+        /*DateOnly p4,*/ /*DateTime p5,*/
+        /*DateTimeOffset p6,*/ decimal p7, double p8,
+        ProcessorArchitecture p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong p19, Uri p20,
+        Version p21, CancellationToken cancellationToken = default);
 
     Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
     {
@@ -136,7 +150,7 @@ public static class SamplePathHelper
     });
 
     /// <summary>
-    /// 测试用的根证书
+    /// 测试用的根证书，每次由服务端启动时生成新的，退出时删除缓存文件，可加上证书密码作为鉴权
     /// </summary>
     public static X509Certificate2 RootCertificate => _RootCertificate.Value;
 
@@ -182,7 +196,7 @@ public static class SamplePathHelper
     });
 
     /// <summary>
-    /// 测试用的服务器证书
+    /// 测试用的服务器证书，每次由服务端启动时生成新的，退出时删除缓存文件，可加上证书密码作为鉴权
     /// </summary>
     public static X509Certificate2 ServerCertificate => _ServerCertificate.Value;
 
