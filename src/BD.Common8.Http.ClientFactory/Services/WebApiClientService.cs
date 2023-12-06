@@ -59,29 +59,141 @@ public abstract partial class WebApiClientService(
     #endregion
 
     /// <summary>
+    /// 将响应正文泛型转换为 <see cref="ApiRspBase"/>
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <returns></returns>
+    protected virtual ApiRspBase? GetApiRspBase<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>()
+    {
+        ApiRspBase? apiRspBase = null;
+        var typeResponseBody = typeof(TResponseBody);
+        if (typeResponseBody.IsGenericType)
+        {
+            var typeResponseBodyGenericDef = typeResponseBody.GetGenericTypeDefinition();
+            if (typeResponseBodyGenericDef == typeof(ApiRspImpl<>))
+            {
+                apiRspBase = ((ApiRspBase)Activator.CreateInstance(typeResponseBody)!)!;
+            }
+        }
+        else if (typeResponseBody == typeof(ApiRspImpl))
+        {
+            apiRspBase = new ApiRspImpl();
+        }
+        return apiRspBase;
+    }
+
+    /// <summary>
     /// 当序列化出现错误时
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TResponseBody"></typeparam>
     /// <param name="ex"></param>
     /// <param name="isSerializeOrDeserialize">是序列化还是反序列化</param>
     /// <param name="modelType">模型类型</param>
-    protected virtual T? OnSerializerError<T>(Exception ex,
+    protected virtual TResponseBody? OnSerializerError<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        Exception ex,
         bool isSerializeOrDeserialize,
-        Type modelType) where T : notnull
+        Type modelType) where TResponseBody : notnull
     {
         // 记录错误时，不需要带上 requestUrl 等敏感信息
+        string msg;
         if (isSerializeOrDeserialize)
         {
-            logger.LogError(ex,
-                "Error serializing request model class. (Parameter '{type}')",
-                modelType);
+            msg = $"Error serializing request model class. (Parameter '{modelType}')";
         }
         else
         {
-            logger.LogError(ex,
-                "Error reading and deserializing the response content into an instance. (Parameter '{type}')",
-                modelType);
+            msg = $"Error reading and deserializing the response content into an instance. (Parameter '{modelType}')";
         }
+#pragma warning disable CA2254 // 模板应为静态表达式
+        logger.LogError(ex, msg);
+#pragma warning restore CA2254 // 模板应为静态表达式
+
+        var apiRspBase = GetApiRspBase<TResponseBody>();
+        if (apiRspBase != null)
+        {
+            apiRspBase.Code = ApiRspCode.ClientDeserializeFail;
+            apiRspBase.ClientException = ex;
+            apiRspBase.InternalMessage = msg.Replace("{type}", modelType.ToString());
+            return (TResponseBody?)(object)apiRspBase;
+        }
+
+        return default;
+    }
+
+    /// <summary>
+    /// 是否启用日志当请求出现错误时
+    /// </summary>
+    protected virtual bool EnableLogOnError { get; } = true;
+
+    /// <summary>
+    /// 根据客户端 <see cref="Exception"/> 获取错误码
+    /// </summary>
+    /// <param name="ex"></param>
+    /// <returns></returns>
+    protected virtual ApiRspCode GetApiRspCodeByClientException(Exception ex)
+    {
+        if (ex is HttpRequestException && ex.InnerException is SocketException socketException)
+        {
+            if (socketException.SocketErrorCode == SocketError.ConnectionRefused)
+            {
+                // System.Net.Http.HttpRequestException: 由于目标计算机积极拒绝，无法连接。 (localhost:443)
+                // ---> System.Net.Sockets.SocketException (10061): 由于目标计算机积极拒绝，无法连接。
+                // at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+                return ApiRspCode.Timeout;
+            }
+        }
+
+        if (ex is TaskCanceledException && ex.InnerException is TimeoutException)
+        {
+            // System.Threading.Tasks.TaskCanceledException: The request was canceled due to the configured HttpClient.Timeout of 2.9 seconds elapsing.
+            // ---> System.TimeoutException: A task was canceled.
+            // ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+            // at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+            // at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+            return ApiRspCode.Timeout;
+        }
+
+        return ex.GetKnownType() switch
+        {
+            ExceptionKnownType.Canceled => ApiRspCode.Canceled,
+            ExceptionKnownType.TaskCanceled => ApiRspCode.TaskCanceled,
+            ExceptionKnownType.OperationCanceled => ApiRspCode.OperationCanceled,
+            ExceptionKnownType.CertificateNotYetValid => ApiRspCode.CertificateNotYetValid,
+            _ => ApiRspCode.ClientException,
+        };
+    }
+
+    /// <summary>
+    /// 当请求出现错误时
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="ex"></param>
+    /// <param name="args"></param>
+    /// <param name="callerMemberName"></param>
+    /// <returns></returns>
+    protected virtual TResponseBody? OnError<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        Exception ex,
+        WebApiClientSendArgs args,
+        [CallerMemberName] string callerMemberName = "") where TResponseBody : notnull
+    {
+        if (EnableLogOnError)
+        {
+            logger.LogError(ex,
+                $"{{callerMemberName}} fail, method: {{method}}, requestUrl: {{requestUrl}}.",
+                callerMemberName,
+                args.Method,
+                args.RequestUriString);
+        }
+
+        var apiRspBase = GetApiRspBase<TResponseBody>();
+        if (apiRspBase != null)
+        {
+            apiRspBase.Code = GetApiRspCodeByClientException(ex);
+            apiRspBase.ClientException = ex;
+            apiRspBase.InternalMessage = apiRspBase.GetMessage();
+            return (TResponseBody?)(object)apiRspBase;
+        }
+
         return default;
     }
 
@@ -107,7 +219,7 @@ public abstract partial class WebApiClientService(
     /// <param name="args"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<TResponseBody?> SendAsync<TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    public virtual async Task<TResponseBody?> SendAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         var result = await SendAsync<TResponseBody, nil>(args, default, cancellationToken);
         return result;
@@ -129,7 +241,7 @@ public abstract partial class WebApiClientService(
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [Obsolete(Obsolete_UseAsync)]
-    public virtual TResponseBody? Send<TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    public virtual TResponseBody? Send<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         var result = Send<TResponseBody, nil>(args, default, cancellationToken);
         return result;
@@ -151,7 +263,7 @@ public abstract partial class WebApiClientService(
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<TResponseBody?> SendAsync<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+    public virtual async Task<TResponseBody?> SendAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
         where TResponseBody : notnull
         where TRequestBody : notnull
     {
@@ -167,25 +279,8 @@ public abstract partial class WebApiClientService(
         }
 
         var client = args.GetHttpClient() ?? CreateClient();
-        var isPolly = args.NumRetries > 0;
-        if (isPolly)
-        {
-            var result = await Policy.HandleResult<SendResultWrapper<TResponseBody>>(
-                    static x => x.Value == null && !x.IsStopped)
-                .WaitAndRetryAsync(args.NumRetries, args.PollyRetryAttempt)
-                .ExecuteAsync(_SendCoreAsync, cancellationToken);
-            return result.Value;
-            async Task<SendResultWrapper<TResponseBody>> _SendCoreAsync(CancellationToken cancellationToken)
-            {
-                var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
-                return result;
-            }
-        }
-        else
-        {
-            var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
-            return result.Value;
-        }
+        var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+        return result;
     }
 
     /// <summary>
@@ -195,7 +290,7 @@ public abstract partial class WebApiClientService(
     /// <param name="args"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual IAsyncEnumerable<TResponseBody?> SendAsAsyncEnumerable<TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    public virtual IAsyncEnumerable<TResponseBody?> SendAsAsyncEnumerable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         var result = SendAsAsyncEnumerable<TResponseBody, nil>(args, default, cancellationToken);
         return result;
@@ -210,7 +305,7 @@ public abstract partial class WebApiClientService(
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual IAsyncEnumerable<TResponseBody?> SendAsAsyncEnumerable<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+    public virtual IAsyncEnumerable<TResponseBody?> SendAsAsyncEnumerable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
         where TResponseBody : notnull
         where TRequestBody : notnull
     {
@@ -226,29 +321,12 @@ public abstract partial class WebApiClientService(
         }
 
         var client = args.GetHttpClient() ?? CreateClient();
-        //var isPolly = args.NumRetries > 0;
-        //if (isPolly)
-        //{
-        //    var result = await Policy.HandleResult<SendResultWrapper<IAsyncEnumerable<TResponseBody?>>>(
-        //            static x => x.Value == null && !x.IsStopped)
-        //        .WaitAndRetryAsync(args.NumRetries, args.PollyRetryAttempt)
-        //        .ExecuteAsync(_SendCoreAsync, cancellationToken);
-        //    return result.Value;
-        //    async Task<SendResultWrapper<TResponseBody>> _SendCoreAsync(CancellationToken cancellationToken)
-        //    {
-        //        var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
-        //        return result;
-        //    }
-        //}
-        //else
-        //{
         return _SendCoreAsAsyncEnumerable();
-        //}
 
         async IAsyncEnumerable<TResponseBody?> _SendCoreAsAsyncEnumerable()
         {
             var result = await SendCoreAsAsyncEnumerable<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
-            await foreach (var item in result.Value ?? default(EmptyAsyncEnumerable<TResponseBody>))
+            await foreach (var item in result)
             {
                 yield return item;
             }
@@ -272,7 +350,7 @@ public abstract partial class WebApiClientService(
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [Obsolete(Obsolete_UseAsync)]
-    public virtual TResponseBody? Send<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull
+    public virtual TResponseBody? Send<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull
     {
         if (args.VerifyRequestUri)
         {
@@ -286,25 +364,8 @@ public abstract partial class WebApiClientService(
         }
 
         var client = args.GetHttpClient() ?? CreateClient();
-        var isPolly = args.NumRetries > 0;
-        if (isPolly)
-        {
-            var result = Policy.HandleResult<SendResultWrapper<TResponseBody>>(
-                    static x => x.Value == null && !x.IsStopped)
-                .WaitAndRetry(args.NumRetries, args.PollyRetryAttempt)
-                .Execute(_SendCore, cancellationToken);
-            return result.Value;
-            SendResultWrapper<TResponseBody> _SendCore(CancellationToken cancellationToken)
-            {
-                var result = SendCore<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
-                return result;
-            }
-        }
-        else
-        {
-            var result = SendCore<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
-            return result.Value;
-        }
+        var result = SendCore<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+        return result;
     }
 
     #endregion
@@ -318,7 +379,7 @@ public abstract partial class WebApiClientService(
     /// <param name="args"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<TRequestBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TRequestBody : notnull
+    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TRequestBody : notnull
     {
         var result = await SendAsync<HttpStatusCode>(args, cancellationToken);
         return result;
@@ -332,7 +393,7 @@ public abstract partial class WebApiClientService(
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TRequestBody : notnull
+    public virtual async Task<HttpStatusCode> SendFromStatusCodeAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TRequestBody : notnull
     {
         var result = await SendAsync<HttpStatusCode, TRequestBody>(args, requestBody, cancellationToken);
         return result;
@@ -359,7 +420,7 @@ public abstract partial class WebApiClientService(
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual async Task<SendResultWrapper<TResponseBody>> SendCoreAsync<TResponseBody, TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+    protected virtual async Task<TResponseBody?> SendCoreAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -392,7 +453,7 @@ public abstract partial class WebApiClientService(
             }
             if (responseContentType == typeof(nil))
             {
-                return true;
+                return default;
             }
             if (responseMessage.Content != null)
             {
@@ -449,13 +510,12 @@ public abstract partial class WebApiClientService(
                 }
 #pragma warning restore CS0618 // 类型或成员已过时
             }
-            return true;
+            return default;
         }
         catch (Exception e)
         {
-            logger.LogError(e,
-                $"{nameof(SendCoreAsync)} fail, method: {{method}}, requestUrl: {{requestUrl}}.", args.Method, args.RequestUriString);
-            return false; // 可重试
+            var errorResult = OnError<TResponseBody>(e, args);
+            return errorResult;
         }
         finally
         {
@@ -484,7 +544,7 @@ public abstract partial class WebApiClientService(
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual async Task<SendResultWrapper<IAsyncEnumerable<TResponseBody?>>> SendCoreAsAsyncEnumerable<TResponseBody, TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+    protected virtual async Task<IAsyncEnumerable<TResponseBody?>> SendCoreAsAsyncEnumerable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -500,7 +560,7 @@ public abstract partial class WebApiClientService(
                 var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
                 if (requestContent.Value is not null)
                 {
-                    return SendResultWrapper<IAsyncEnumerable<TResponseBody?>>.Parse(ToAsyncEnumerable(requestContent.Value));
+                    return EmptyAsyncEnumerable<TResponseBody>.ToAsyncEnumerable(requestContent.Value);
                 }
                 requestMessage.Content = requestContent.Content;
             }
@@ -513,11 +573,11 @@ public abstract partial class WebApiClientService(
             if (responseContentType == typeof(HttpStatusCode))
             {
                 var result = Convert2.Convert<TResponseBody, HttpStatusCode>(responseMessage.StatusCode);
-                return SendResultWrapper<IAsyncEnumerable<TResponseBody?>>.Parse(ToAsyncEnumerable(result));
+                return EmptyAsyncEnumerable<TResponseBody>.ToAsyncEnumerable(result);
             }
             if (responseContentType == typeof(nil))
             {
-                return true;
+                return default(EmptyAsyncEnumerable<TResponseBody?>);
             }
             if (responseMessage.Content != null)
             {
@@ -535,7 +595,7 @@ public abstract partial class WebApiClientService(
                             case Serializable.JsonImplType.SystemTextJson:
                                 deserializeResult = ReadFromSJsonAsAsyncEnumerable<TResponseBody>(
                                     responseMessage.Content, null, cancellationToken);
-                                return SendResultWrapper<TResponseBody>.Parse(deserializeResult, responseMessage, ref disposeResponseMessage);
+                                return HttpResponseMessageContentAsyncEnumerable<TResponseBody>.Parse(deserializeResult, responseMessage, ref disposeResponseMessage);
                             default:
                                 throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
                         }
@@ -546,13 +606,14 @@ public abstract partial class WebApiClientService(
                         //return deserializeResult;
                 }
             }
-            return true;
+            return default(EmptyAsyncEnumerable<TResponseBody?>);
         }
         catch (Exception e)
         {
-            logger.LogError(e,
-                $"{nameof(SendCoreAsAsyncEnumerable)} fail, method: {{method}}, requestUrl: {{requestUrl}}.", args.Method, args.RequestUriString);
-            return false; // 可重试
+            var errorResult = OnError<TResponseBody>(e, args);
+            return errorResult is null ?
+                default(EmptyAsyncEnumerable<TResponseBody?>) :
+                EmptyAsyncEnumerable<TResponseBody>.ToAsyncEnumerable(errorResult);
         }
         finally
         {
@@ -581,7 +642,7 @@ public abstract partial class WebApiClientService(
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual SendResultWrapper<TResponseBody> SendCore<TResponseBody, TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
+    protected virtual TResponseBody? SendCore<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -614,7 +675,7 @@ public abstract partial class WebApiClientService(
             }
             if (responseContentType == typeof(nil))
             {
-                return true;
+                return default;
             }
             if (responseMessage.Content != null)
             {
@@ -671,13 +732,12 @@ public abstract partial class WebApiClientService(
                 }
 #pragma warning restore CS0618 // 类型或成员已过时
             }
-            return true;
+            return default;
         }
         catch (Exception e)
         {
-            logger.LogError(e,
-                $"{nameof(SendCore)} fail, method: {{method}}, requestUrl: {{requestUrl}}.", args.Method, args.RequestUriString);
-            return false; // 可重试
+            var errorResult = OnError<TResponseBody>(e, args);
+            return errorResult;
         }
         finally
         {
@@ -705,7 +765,7 @@ public abstract partial class WebApiClientService(
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual HttpContentWrapper<TResponseBody> GetRequestContent<TResponseBody, TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken)
+    protected virtual HttpContentWrapper<TResponseBody> GetRequestContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -757,7 +817,7 @@ public abstract partial class WebApiClientService(
     /// <param name="mime"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual HttpContentWrapper<TResponseBody> GetCustomSerializeContent<TResponseBody, TRequestBody>(
+    protected virtual HttpContentWrapper<TResponseBody> GetCustomSerializeContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(
         WebApiClientSendArgs args,
         TRequestBody requestBody,
         string? mime,
@@ -776,7 +836,7 @@ public abstract partial class WebApiClientService(
     /// <param name="mime"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual Task<TResponseBody> ReadFromCustomDeserializeAsync<TResponseBody>(
+    protected virtual Task<TResponseBody> ReadFromCustomDeserializeAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
         HttpResponseMessage responseMessage,
         string? mime,
         CancellationToken cancellationToken = default) where TResponseBody : notnull
@@ -792,7 +852,7 @@ public abstract partial class WebApiClientService(
     /// <param name="mime"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual TResponseBody ReadFromCustomDeserialize<TResponseBody>(
+    protected virtual TResponseBody ReadFromCustomDeserialize<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
         HttpResponseMessage responseMessage,
         string? mime,
         CancellationToken cancellationToken = default) where TResponseBody : notnull
@@ -800,89 +860,7 @@ public abstract partial class WebApiClientService(
         throw ThrowHelper.GetArgumentOutOfRangeException(mime);
     }
 
-    /// <summary>
-    /// 发送 HTTP 请求结果包装类型
-    /// </summary>
-    /// <typeparam name="TResponseBody"></typeparam>
-    protected readonly record struct SendResultWrapper<TResponseBody> where TResponseBody : notnull
-    {
-        /// <summary>
-        /// 发送请求响应的结果值
-        /// </summary>
-        public TResponseBody? Value { get; init; }
-
-        /// <summary>
-        /// 请求是否中止，比如取消，停止重试等
-        /// </summary>
-        public required bool IsStopped { get; init; }
-
-        /// <summary>
-        /// 将 <see cref="bool"/> isStopped 转换为 <see cref="SendResultWrapper{TResponseBody}"/>
-        /// </summary>
-        /// <param name="isStopped"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static SendResultWrapper<TResponseBody> Parse(bool isStopped) => isStopped ? new()
-        {
-            IsStopped = true,
-        } : default;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator SendResultWrapper<TResponseBody>(bool isStopped) => Parse(isStopped);
-
-        /// <summary>
-        /// 将 TResponseBody 转换为 <see cref="SendResultWrapper{TResponseBody}"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static SendResultWrapper<TResponseBody> Parse(TResponseBody? value) => new()
-        {
-            IsStopped = true,
-            Value = value,
-        };
-
-        /// <summary>
-        /// 将 TResponseBody 转换为 <see cref="SendResultWrapper{TResponseBody}"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="httpResponseMessage"></param>
-        /// <param name="disposeResponseMessage"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static SendResultWrapper<IAsyncEnumerable<TResponseBody?>> Parse(IAsyncEnumerable<TResponseBody?>? value, HttpResponseMessage httpResponseMessage, ref bool disposeResponseMessage)
-        {
-            if (value == null)
-            {
-                disposeResponseMessage = true;
-                value = default(EmptyAsyncEnumerable<TResponseBody?>);
-            }
-            else
-            {
-                if (value is EmptyAsyncEnumerable<TResponseBody?>)
-                {
-                    disposeResponseMessage = true;
-                }
-                else
-                {
-                    disposeResponseMessage = false;
-                    value = new HttpResponseMessageContentAsyncEnumerable<TResponseBody?>(value, httpResponseMessage);
-                }
-            }
-
-            var result = new SendResultWrapper<IAsyncEnumerable<TResponseBody?>>()
-            {
-                IsStopped = true,
-                Value = value,
-            };
-            return result;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator SendResultWrapper<TResponseBody>(TResponseBody? value) => Parse(value);
-    }
-
-    protected readonly record struct HttpContentWrapper<TResponseBody> where TResponseBody : notnull
+    protected readonly record struct HttpContentWrapper<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody> where TResponseBody : notnull
     {
         /// <summary>
         /// 发送请求响应的结果值

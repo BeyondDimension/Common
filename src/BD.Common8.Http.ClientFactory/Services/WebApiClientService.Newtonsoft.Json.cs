@@ -12,7 +12,7 @@ partial class WebApiClientService
     /// <param name="mediaType"></param>
     /// <returns></returns>
     [Obsolete(Obsolete_GetNJsonContent)]
-    protected virtual HttpContentWrapper<TResponseBody> GetNJsonContent<TResponseBody, TRequestBody>(TRequestBody inputValue, Encoding? encoding = null, MediaTypeHeaderValue? mediaType = null)
+    protected virtual HttpContentWrapper<TResponseBody> GetNJsonContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(TRequestBody inputValue, Encoding? encoding = null, MediaTypeHeaderValue? mediaType = null)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -45,7 +45,7 @@ partial class WebApiClientService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [Obsolete(Obsolete_ReadFromNJsonAsync)]
-    protected virtual async Task<TResponseBody?> ReadFromNJsonAsync<TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual async Task<TResponseBody?> ReadFromNJsonAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         try
         {
@@ -72,7 +72,7 @@ partial class WebApiClientService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [Obsolete(Obsolete_UseAsync)]
-    protected virtual TResponseBody? ReadFromNJson<TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual TResponseBody? ReadFromNJson<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         try
         {

@@ -10,7 +10,7 @@ partial class WebApiClientService
     /// <param name="inputValue"></param>
     /// <param name="mediaType"></param>
     /// <returns></returns>
-    protected virtual HttpContentWrapper<TResponseBody> GetMemoryPackContent<TResponseBody, TRequestBody>(TRequestBody inputValue, MediaTypeHeaderValue? mediaType = null)
+    protected virtual HttpContentWrapper<TResponseBody> GetMemoryPackContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(TRequestBody inputValue, MediaTypeHeaderValue? mediaType = null)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -31,7 +31,7 @@ partial class WebApiClientService
     /// <param name="content"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual async Task<TResponseBody?> ReadFromMemoryPackAsync<TResponseBody>(HttpContent content, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual async Task<TResponseBody?> ReadFromMemoryPackAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         try
         {

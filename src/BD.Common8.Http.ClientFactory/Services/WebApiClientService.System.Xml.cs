@@ -12,7 +12,7 @@ partial class WebApiClientService
     /// <param name="mediaType"></param>
     /// <returns></returns>
     [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
-    protected virtual HttpContentWrapper<TResponseBody> GetXmlContent<TResponseBody, TRequestBody>(TRequestBody inputValue, Encoding? encoding = null, MediaTypeHeaderValue? mediaType = null)
+    protected virtual HttpContentWrapper<TResponseBody> GetXmlContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(TRequestBody inputValue, Encoding? encoding = null, MediaTypeHeaderValue? mediaType = null)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -35,7 +35,7 @@ partial class WebApiClientService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
-    protected async Task<TResponseBody?> ReadFromXmlAsync<TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected async Task<TResponseBody?> ReadFromXmlAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         try
         {
@@ -61,7 +61,7 @@ partial class WebApiClientService
     /// <returns></returns>
     [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
     [Obsolete(Obsolete_UseAsync)]
-    protected virtual TResponseBody? ReadFromXml<TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual TResponseBody? ReadFromXml<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         try
         {

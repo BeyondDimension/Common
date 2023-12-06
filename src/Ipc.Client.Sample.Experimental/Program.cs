@@ -132,6 +132,9 @@ abstract class IpcClientService2(IpcAppConnectionString connectionString) : IpcC
     /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerContext? JsonSerializerContext
         => SampleJsonSerializerContext.Default;
+
+    /// <inheritdoc/>
+    protected sealed override bool EnableLogOnError => false;
 }
 
 #region 可使用源生成服务的调用实现

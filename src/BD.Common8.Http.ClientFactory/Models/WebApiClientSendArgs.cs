@@ -97,12 +97,6 @@ public record class WebApiClientSendArgs
     /// </summary>
     public Action<HttpRequestMessage, WebApiClientSendArgs, CancellationToken>? ConfigureRequestMessage { get; init; }
 
-    // 不需要自定义处理响应
-    ///// <summary>
-    ///// 自定义处理响应消息委托
-    ///// </summary>
-    //public Action<HttpResponseMessage, SendArgs, CancellationToken>? ConfigureResponseMessage { get; set; }
-
     /// <summary>
     /// 是否验证 RequestUri 是否为 Http 地址
     /// </summary>
@@ -128,25 +122,6 @@ public record class WebApiClientSendArgs
     /// 是否使用空的 UserAgent 值
     /// </summary>
     public bool EmptyUserAgent { get; init; }
-
-    /// <summary>
-    /// 重试请求，最大重试次数，为 0 时不重试，默认值 0
-    /// </summary>
-    public int NumRetries { get; init; }
-
-    /// <summary>
-    /// 用于重试的间隔时间计算
-    /// </summary>
-    /// <param name="attemptNumber"></param>
-    /// <returns></returns>
-    public virtual TimeSpan PollyRetryAttempt(int attemptNumber)
-    {
-        var powY = attemptNumber % NumRetries;
-        var timeSpan = TimeSpan.FromMilliseconds(Math.Pow(2, powY));
-        var addS = attemptNumber / NumRetries;
-        if (addS > 0) timeSpan = timeSpan.Add(TimeSpan.FromSeconds(addS));
-        return timeSpan;
-    }
 
     /// <inheritdoc cref="IsolatedCookieContainer"/>
     public IsolatedCookieContainer? IsolatedCookie { get; set; }

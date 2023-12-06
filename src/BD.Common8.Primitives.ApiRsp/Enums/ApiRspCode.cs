@@ -25,6 +25,11 @@ public enum ApiRspCode
 
     BadGateway = 502,
 
+    /// <summary>
+    /// 服务不可用，服务器停机维护或者已超载
+    /// </summary>
+    ServiceUnavailable = 503,
+
     #endregion
 
     #region 通用状态码，1000~1999
@@ -168,6 +173,11 @@ public enum ApiRspCode
 
     /// <inheritdoc cref="OperationCanceledException"/>
     OperationCanceled = 5003,
+
+    /// <summary>
+    /// 请求超时
+    /// </summary>
+    Timeout = 5004,
 
     #endregion
 

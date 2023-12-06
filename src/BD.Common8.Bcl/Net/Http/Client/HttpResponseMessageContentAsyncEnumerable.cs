@@ -12,6 +12,34 @@ public sealed class HttpResponseMessageContentAsyncEnumerable<T>(IAsyncEnumerabl
         return new HttpResponseMessageContentAsyncEnumerator<T>(
             enumerable.GetAsyncEnumerator(cancellationToken), httpResponseMessage);
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IAsyncEnumerable<TResponseBody?> Parse<TResponseBody>(
+        IAsyncEnumerable<TResponseBody?>? value,
+        HttpResponseMessage httpResponseMessage,
+        ref bool disposeResponseMessage)
+        where TResponseBody : notnull
+    {
+        if (value == null)
+        {
+            disposeResponseMessage = true;
+            value = default(EmptyAsyncEnumerable<TResponseBody?>);
+        }
+        else
+        {
+            if (value is EmptyAsyncEnumerable<TResponseBody?>)
+            {
+                disposeResponseMessage = true;
+            }
+            else
+            {
+                disposeResponseMessage = false;
+                value = new HttpResponseMessageContentAsyncEnumerable<TResponseBody?>(value, httpResponseMessage);
+            }
+        }
+
+        return value;
+    }
 }
 
 sealed class HttpResponseMessageContentAsyncEnumerator<T>(IAsyncEnumerator<T> enumerator, HttpResponseMessage httpResponseMessage) : IAsyncEnumerator<T>

@@ -14,6 +14,17 @@ public static partial class ApiRspExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsClientExceptionOrServerException(ApiRspCode code) => code switch
     {
+        ApiRspCode.ClientDeserializeFail => true,
+        ApiRspCode.NetworkConnectionInterruption => true,
+        ApiRspCode.EmptyUserAgent => true,
+        ApiRspCode.RequiredSecurityKey => true,
+        ApiRspCode.IsNotOfficialChannelPackage => true,
+        ApiRspCode.EmptyDbAppVersion => true,
+        ApiRspCode.RSADecryptFail => true,
+        ApiRspCode.AesKeyIsNull => true,
+        ApiRspCode.TaskCanceled => true,
+        ApiRspCode.OperationCanceled => true,
+        ApiRspCode.Timeout => true,
         ApiRspCode.ClientException => true,
         _ => false,
     };
@@ -47,25 +58,29 @@ public static partial class ApiRspExtensions
             else
                 errorFormat = IsClientExceptionOrServerException(code) ? ClientError__ : ServerError__;
         if (notErrorAppendText)
-            message = errorFormat.Format((int)code);
+            message = errorFormat.Format($"{(int)code}({code})");
         else
-            message = errorFormat.Format((int)code, errorAppendText);
+            message = errorFormat.Format($"{(int)code}({code})", errorAppendText);
         return message;
     }
 
     /// <summary>
     /// 获取 <see cref="IApiRsp"/> 对应的错误消息
     /// </summary>
-    internal static string GetMessage(this IApiRsp response, string? errorAppendText = null, string? errorFormat = null)
+    public static string GetMessage(this IApiRsp response, string? errorAppendText = null, string? errorFormat = null)
     {
         var message = ApiRspHelper.GetInternalMessage(response);
         if (string.IsNullOrWhiteSpace(message))
         {
-            if (response.Code == ApiRspCode.ClientException && response is ApiRspBase impl && impl.ClientException != null)
+            if (response.Code == ApiRspCode.ClientException &&
+                response is ApiRspBase impl &&
+                impl.ClientException != null)
             {
                 var exMsg = impl.ClientException.GetAllMessage();
-                if (string.IsNullOrWhiteSpace(errorAppendText)) errorAppendText = exMsg;
-                else errorAppendText = $"{errorAppendText}{Environment.NewLine}{exMsg}";
+                if (string.IsNullOrWhiteSpace(errorAppendText))
+                    errorAppendText = exMsg;
+                else
+                    errorAppendText = $"{errorAppendText}{Environment.NewLine}{exMsg}";
             }
             message = response.Code.GetMessage(errorAppendText, errorFormat);
         }

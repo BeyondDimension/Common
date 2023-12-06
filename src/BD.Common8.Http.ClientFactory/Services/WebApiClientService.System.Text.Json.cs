@@ -11,7 +11,7 @@ partial class WebApiClientService
     /// <param name="jsonTypeInfo"></param>
     /// <param name="mediaType"></param>
     /// <returns></returns>
-    protected virtual HttpContentWrapper<TResponseBody> GetSJsonContent<TResponseBody, TRequestBody>(TRequestBody inputValue, JsonTypeInfo<TRequestBody>? jsonTypeInfo = null, MediaTypeHeaderValue? mediaType = null)
+    protected virtual HttpContentWrapper<TResponseBody> GetSJsonContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(TRequestBody inputValue, JsonTypeInfo<TRequestBody>? jsonTypeInfo = null, MediaTypeHeaderValue? mediaType = null)
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
@@ -128,7 +128,7 @@ partial class WebApiClientService
     /// <param name="jsonTypeInfo"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual async Task<TResponseBody?> ReadFromSJsonAsync<TResponseBody>(HttpContent content, JsonTypeInfo<TResponseBody>? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual async Task<TResponseBody?> ReadFromSJsonAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, JsonTypeInfo<TResponseBody>? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         var modelType = typeof(TResponseBody);
         try
@@ -163,53 +163,6 @@ partial class WebApiClientService
     }
 
     /// <summary>
-    /// 空的异步迭代器
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    readonly struct EmptyAsyncEnumerable<T> : IAsyncEnumerable<T>, IAsyncEnumerator<T>
-    {
-        public readonly T Current => default!;
-
-        public readonly ValueTask DisposeAsync()
-        {
-            return ValueTask.CompletedTask;
-        }
-
-        public readonly IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = default)
-        {
-            return this;
-        }
-
-        public readonly ValueTask<bool> MoveNextAsync()
-        {
-            return new(false);
-        }
-    }
-
-    /// <summary>
-    /// 将迭代器转换为异步迭代器
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="values"></param>
-    /// <returns></returns>
-    protected static async IAsyncEnumerable<T> ToAsyncEnumerable<T>(IEnumerable<T> values)
-    {
-        await ValueTask.CompletedTask;
-        foreach (var item in values)
-        {
-            yield return item;
-        }
-    }
-
-    /// <summary>
-    /// 将数组转换为异步迭代器
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="values"></param>
-    /// <returns></returns>
-    protected static IAsyncEnumerable<T> ToAsyncEnumerable<T>(params T[] values) => ToAsyncEnumerable(values.AsEnumerable());
-
-    /// <summary>
     /// 将响应内容读取并反序列化成异步迭代器（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
     /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="SystemTextJsonObject"/></para>
     /// </summary>
@@ -218,7 +171,7 @@ partial class WebApiClientService
     /// <param name="jsonTypeInfo"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual IAsyncEnumerable<TResponseBody?> ReadFromSJsonAsAsyncEnumerable<TResponseBody>(HttpContent content, JsonTypeInfo<TResponseBody>? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual IAsyncEnumerable<TResponseBody?> ReadFromSJsonAsAsyncEnumerable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, JsonTypeInfo<TResponseBody>? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         var modelType = typeof(TResponseBody);
         try
@@ -255,7 +208,7 @@ partial class WebApiClientService
             }
             else
             {
-                return ToAsyncEnumerable(resultItem);
+                return EmptyAsyncEnumerable<TResponseBody>.ToAsyncEnumerable(resultItem);
             }
         }
     }
@@ -270,7 +223,7 @@ partial class WebApiClientService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [Obsolete(Obsolete_UseAsync)]
-    protected virtual TResponseBody? ReadFromSJson<TResponseBody>(HttpContent content, JsonTypeInfo<TResponseBody>? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull
+    protected virtual TResponseBody? ReadFromSJson<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, JsonTypeInfo<TResponseBody>? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         try
         {
