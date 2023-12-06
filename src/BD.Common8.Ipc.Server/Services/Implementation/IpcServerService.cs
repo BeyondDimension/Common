@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http.Connections;
 using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 namespace BD.Common8.Ipc.Services.Implementation;
@@ -120,7 +121,7 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         builder.Services.AddRoutingCore();
         builder.Services.AddLogging(ConfigureLogging);
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
-        builder.Services.AddSignalR(ConfigureSignalR);
+        builder.Services.AddSignalR(ConfigureSignalR).AddJsonProtocol();
 
         ConfigureServices(builder.Services);
 
@@ -251,6 +252,18 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         }
     }
 
+    protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
+    {
+        var resolver = JsonTypeInfoResolver;
+        if (resolver != null)
+        {
+            // 添加源生成的 Json 解析器
+            options.PayloadSerializerOptions.TypeInfoResolverChain.Insert(0, resolver);
+        }
+        // 添加默认的 Json 解析器，用作简单类型的解析
+        options.PayloadSerializerOptions.TypeInfoResolverChain.Add(new DefaultJsonTypeInfoResolver());
+    }
+
     protected virtual void ConfigureSignalR(HubOptions options)
     {
         options.ClientTimeoutInterval = TimeSpan.FromSeconds(10);
@@ -275,6 +288,16 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         app.UseWelcomePage("/");
         app.UseExceptionHandler(builder => builder.Run(OnError));
         OnMapGroupEvent?.Invoke(app);
+    }
+
+    protected virtual void ConfigureHub(HttpConnectionDispatcherOptions options)
+    {
+        options.Transports = HttpTransportType.WebSockets;
+    }
+
+    protected HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
+    {
+        return app!.MapHub<THub>(pattern, ConfigureHub);
     }
 
     protected virtual async Task OnError(HttpContext ctx)
@@ -363,4 +386,17 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     }
 
     #endregion
+}
+
+public abstract class IpcServerHub : Hub
+{
+    public virtual CancellationToken RequestAborted
+    {
+        get
+        {
+            var httpContext = Context.GetHttpContext();
+            if (httpContext == null) return default;
+            return httpContext.RequestAborted;
+        }
+    }
 }

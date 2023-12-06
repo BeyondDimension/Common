@@ -77,6 +77,12 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
     protected override bool ListenUnixSocket => true;
 
     protected override IJsonTypeInfoResolver? JsonTypeInfoResolver => SampleJsonSerializerContext.Default;
+
+    protected override void Configure(WebApplication app)
+    {
+        base.Configure(app);
+        MapHub<TodoServiceImpl_Hub>("/ITodoService_Hub");
+    }
 }
 
 sealed partial class TodoServiceImpl : ITodoService
@@ -181,6 +187,46 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
         builder.MapGet("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] string len) => Ioc.Get<ITodoService>().AsyncEnumerable(int.Parse(len), ctx.RequestAborted)));
         builder.MapPost("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] int len) => Ioc.Get<ITodoService>().AsyncEnumerable(len, ctx.RequestAborted)));
 #pragma warning restore IDE0004 // 删除不必要的强制转换
+    }
+}
+
+sealed class TodoServiceImpl_Hub : IpcServerHub
+{
+    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All()
+    {
+        var result = await Ioc.Get<ITodoService>().All(RequestAborted);
+        return result;
+    }
+
+    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id)
+    {
+        var result = await Ioc.Get<ITodoService>().GetById(id, RequestAborted);
+        return result;
+    }
+
+    public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
+        char p3, DateOnly p4, DateTime p5,
+        DateTimeOffset p6, decimal p7, double p8,
+        ProcessorArchitecture p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong p19, Uri p20,
+        Version p21)
+    {
+        var result = await Ioc.Get<ITodoService>().SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, RequestAborted);
+        return result;
+    }
+
+    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo)
+    {
+        var result = await Ioc.Get<ITodoService>().BodyTest(todo, RequestAborted);
+        return result;
+    }
+
+    public IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len)
+    {
+        var result = Ioc.Get<ITodoService>().AsyncEnumerable(len, RequestAborted);
+        return result;
     }
 }
 

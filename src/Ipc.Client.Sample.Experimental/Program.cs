@@ -35,6 +35,9 @@ static partial class Program
         {
             IpcClientService2 ipcClientService = new TodoService_WebApi(connectionString);
             ipcClientServices.Add(ipcClientService);
+
+            ipcClientService = new TodoService_SignalR(connectionString);
+            ipcClientServices.Add(ipcClientService);
         }
 
         var methods = (from m in typeof(ITodoService).GetMethods()
@@ -193,6 +196,53 @@ sealed class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcCl
     }
 }
 
-//sealed class TodoService_SignalR(IIpcClientService ipcClientService)
+sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcClientService2(connectionString), ITodoService
+{
+    protected override string HubName => "ITodoService_Hub";
+
+    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All(CancellationToken cancellationToken = default)
+    {
+        var conn = await GetHubConnAsync();
+        var result = await conn.InvokeAsync<ApiRspImpl<ITodoService.Todo[]?>>("All", cancellationToken);
+        return result!;
+    }
+
+    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id, CancellationToken cancellationToken = default)
+    {
+        var conn = await GetHubConnAsync();
+        var result = await conn.InvokeAsync<ApiRspImpl<ITodoService.Todo?>>("GetById", id, cancellationToken);
+        return result!;
+    }
+
+    public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
+        char p3, DateOnly p4, DateTime p5,
+        DateTimeOffset p6, decimal p7, double p8,
+        ProcessorArchitecture p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong p19, Uri p20,
+        Version p21, CancellationToken cancellationToken = default)
+    {
+        var conn = await GetHubConnAsync();
+        var result = await conn.InvokeCoreAsync<ApiRspImpl>("SimpleTypes", [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21], cancellationToken);
+        return result!;
+    }
+
+    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo, CancellationToken cancellationToken = default)
+    {
+        var conn = await GetHubConnAsync();
+        var result = await conn.InvokeAsync<ApiRspImpl>("BodyTest", todo, cancellationToken);
+        return result!;
+    }
+
+    public async IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var conn = await GetHubConnAsync();
+        await foreach (var item in conn.StreamAsync<ITodoService.Todo>("AsyncEnumerable", len, cancellationToken))
+        {
+            yield return item;
+        }
+    }
+}
 
 #endregion

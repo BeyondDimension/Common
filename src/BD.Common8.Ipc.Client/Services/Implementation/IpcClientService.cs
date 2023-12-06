@@ -30,6 +30,9 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
         return httpClient;
     }
 
+    /// <inheritdoc cref="IpcAppConnectionStringHelper.HubName"/>
+    protected virtual string HubName => IpcAppConnectionStringHelper.HubName;
+
     /// <summary>
     /// 异步获取 SignalR Hub 连接
     /// </summary>
@@ -58,9 +61,11 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
                     {
                         o.HttpVersion = HttpVersion.Version20;
                     };
-                    opt.Url = new Uri($"{baseAddress}/{IpcAppConnectionStringHelper.HubName}");
+                    opt.Url = new Uri($"{baseAddress}/{HubName}");
                 })
                 .WithAutomaticReconnect();
+
+            builder.AddJsonProtocol(ConfigureJsonHubProtocolOptions);
 
             hubConnection = builder.Build();
             hubConnection.Reconnected += HubConnection_Reconnected;
@@ -71,6 +76,18 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
             await hubConnection.StartAsync(cts.Token);
         }
         return hubConnection;
+    }
+
+    protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
+    {
+        var resolver = JsonSerializerContext;
+        if (resolver != null)
+        {
+            // 添加源生成的 Json 解析器
+            options.PayloadSerializerOptions.TypeInfoResolverChain.Insert(0, resolver);
+        }
+        // 添加默认的 Json 解析器，用作简单类型的解析
+        options.PayloadSerializerOptions.TypeInfoResolverChain.Add(new DefaultJsonTypeInfoResolver());
     }
 
     /// <summary>
