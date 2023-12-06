@@ -14,6 +14,7 @@ items:
     - name: BD.Common8.Bcl
       href: BD.Common8.Bcl/toc.yml
     - name: BD.Common8.Bcl.Compat
+      href: BD.Common8.Bcl.Compat/toc.yml
   - name: Essentials
     items:
     - name: BD.Common8.Essentials
@@ -21,16 +22,21 @@ items:
     - name: BD.Common8.Essentials.Implementation
       href: BD.Common8.Essentials.Implementation/toc.yml
     - name: BD.Common8.Essentials.Implementation.Avalonia
+      href: BD.Common8.Essentials.Implementation.Avalonia/toc.yml
   - name: Http
     items:
     - name: BD.Common8.Http.ClientFactory
+      href: BD.Common8.Http.ClientFactory/toc.yml
     - name: BD.Common8.Http.ClientFactory.Server
       href: BD.Common8.Http.ClientFactory.Server/toc.yml
   - name: Ipc
     items: 
     - name: BD.Common8.Ipc
+      href: BD.Common8.Ipc/toc.yml
     - name: BD.Common8.Ipc.Client
+      href: BD.Common8.Ipc.Client/toc.yml
     - name: BD.Common8.Ipc.Server
+      href: BD.Common8.Ipc.Server/toc.yml
   - name: Orm
     items:
     - name: BD.Common8.Orm.EFCore
@@ -73,6 +79,11 @@ items:
     items:
     - name: BD.Common8.Security
       href: BD.Common8.Security/toc.yml
+  - name: Settings
+    items:
+    - name: BD.Common8.Settings5
+    - name: BD.Common8.Settings5.Backend
+    - name: BD.Common8.Settings5.Frontend
   - name: Sms
     items:
     - name: BD.Common8.SmsSender
@@ -85,13 +96,18 @@ items:
     items:
     - name: BD.Common8.UserInput.ModelValidator
       href: BD.Common8.UserInput.ModelValidator/toc.yml
+  - name: WebApi
+    items:
+    - name: BD.Common8.Crawler
 - name: SourceGenerator 源生成器
   items:
   - name: BD.Common8.SourceGenerator.Shared
+    href: BD.Common8.SourceGenerator.Shared/toc.yml
 - name: Tools 工具
   items:
-  - name: BD.Common8.Tools.DocFX
-  - name: BD.Common8.Tools.Sort.PackageVersion
+  - name: Tools.Build
+  - name: Tools.DocFX
+  - name: Tools.Sort.PackageVersion
 - name : UnitTest 单元测试
   items:
   - name: BD.Common8.UnitTest

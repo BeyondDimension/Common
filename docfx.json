@@ -37,10 +37,6 @@
       "dest": "api/BD.Common8.Primitives.PersonalData.BirthDate"
     },
     {
-      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.PersonalData.BirthDate/**/BD.Common8.Primitives.PersonalData.BirthDate.dll"]}],
-      "dest": "api/BD.Common8.Primitives.PersonalData.BirthDate"
-    },
-    {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.PersonalData.PhoneNumber/**/BD.Common8.Primitives.PersonalData.PhoneNumber.dll"]}],
       "dest": "api/BD.Common8.Primitives.PersonalData.PhoneNumber"
     },
@@ -63,18 +59,6 @@
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.SourceGenerator.Shared/**/BD.Common8.SourceGenerator.Shared.dll"]}],
       "dest": "api/BD.Common8.SourceGenerator.Shared"
-    },
-    {
-      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Tools.DocFX/**/BD.Common8.Tools.DocFX.dll"]}],
-      "dest": "api/BD.Common8.Tools.DocFX"
-    },
-    {
-      "src": [{"files": [ "src/artifacts/bin/BD.Common8.Tools.Sort.PackageVersion/**/BD.Common8.Tools.Sort.PackageVersion.dll"]}],
-      "dest": "api/BD.Common8.Tools.Sort.PackageVersion"
-    },
-    {
-      "src": [{ "files": ["src/artifacts/bin/BD.Common8.UnitTest/**/BD.Common8.UnitTest.dll"]}],
-      "dest": "api/BD.Common8.UnitTest"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Pinyin/**/BD.Common8.Pinyin.dll"]}],
@@ -114,7 +98,7 @@
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Http.ClientFactory/**/BD.Common8.Http.ClientFactory.dll"]}],
-      "dest": "api/BD.Common8.Http.ClientFactory.Server"
+      "dest": "api/BD.Common8.Http.ClientFactory"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Http.ClientFactory.Server/**/BD.Common8.Http.ClientFactory.Server.dll"]}],
@@ -133,13 +117,25 @@
       "dest": "api/BD.Common8.Repositories.SQLitePCL"
     },
     {
-      "src": [{ "files": ["src/artifacts/bin/BD.Common8.SmsSender/**/BD.Common8.SmsSender.dll"]}],
-      "dest": "api/BD.Common8.SmsSender"
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Settings5/**/BD.Common8.Settings5.dll"]}],
+      "dest": "api/BD.Common8.Settings5"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Settings5.Backend/**/BD.Common8.Settings5.Backend.dll"]}],
+      "dest": "api/BD.Common8.Settings5.Backend"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Settings5.Frontend/**/BD.Common8.Settings5.Frontend.dll"]}],
+      "dest": "api/BD.Common8.Settings5.Frontend"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Crawler/**/BD.Common8.Crawler.dll"]}],
+      "dest": "api/BD.Common8.Crawler"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Toast/**/BD.Common8.Toast.dll"]}],
       "dest": "api/BD.Common8.Toast"
-    }      
+    }    
   ],
   "build": {
     "content": [
@@ -184,16 +180,16 @@
       "_appTitle": "BD.Common8 文档",
       "_appName": "Common8",
       "_appLogoPath": "res/DocFXIcon.png",
-      "_appFooter": "©️ 江苏蒸汽凡星科技有限公司. All rights reserved."
+      "_appFooter": "©️ 江苏蒸汽凡星科技有限公司. All rights reserved.",
+      "_disableBreadcrumb": true
     },
-    
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
       "default",
-      "modern"
+      "modern",
+      "templates/default"
     ],
-    "postProcessors": [],
     "keepFileLink": false,
     "disableGitFeatures": false
   }

@@ -1,5 +1,4 @@
 #if ANDROID
-using Activity = Android.App.Activity;
 using Application = Android.App.Application;
 using Context = Android.Content.Context;
 
