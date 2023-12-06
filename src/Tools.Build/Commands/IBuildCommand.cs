@@ -39,6 +39,17 @@ interface IBuildCommand : ICommand
                 "BD.Common8.SourceGenerator.ResX",
 
                 "BD.Common8.Bcl",
+                "BD.Common8.Bcl.Compat",
+
+                "BD.Common8.Ipc",
+                "BD.Common8.Ipc.Client",
+                "BD.Common8.Ipc.Server",
+
+                "BD.Common8.Settings5",
+                "BD.Common8.Settings5.Backend",
+                "BD.Common8.Settings5.Frontend",
+
+                "BD.Common8.SourceGenerator.Shared",
 
                 "BD.Common8.Primitives",
                 "BD.Common8.Primitives.District",

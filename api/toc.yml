@@ -82,8 +82,11 @@ items:
   - name: Settings
     items:
     - name: BD.Common8.Settings5
+      href: BD.Common8.Settings5/toc.yml
     - name: BD.Common8.Settings5.Backend
+      href: BD.Common8.Settings5.Backend/toc.yml
     - name: BD.Common8.Settings5.Frontend
+      href: BD.Common8.Settings5.Frontend/toc.yml
   - name: Sms
     items:
     - name: BD.Common8.SmsSender
