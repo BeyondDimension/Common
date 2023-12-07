@@ -63,10 +63,9 @@ public abstract partial class WebApiClientService(
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
     /// <returns></returns>
-    protected virtual ApiRspBase? GetApiRspBase<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>()
+    protected virtual ApiRspBase? GetApiRspBase<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type typeResponseBody)
     {
         ApiRspBase? apiRspBase = null;
-        var typeResponseBody = typeof(TResponseBody);
         if (typeResponseBody.IsGenericType)
         {
             var typeResponseBodyGenericDef = typeResponseBody.GetGenericTypeDefinition();
@@ -108,7 +107,11 @@ public abstract partial class WebApiClientService(
         logger.LogError(ex, msg);
 #pragma warning restore CA2254 // 模板应为静态表达式
 
-        var apiRspBase = GetApiRspBase<TResponseBody>();
+        var typeResponseBody = typeof(TResponseBody);
+        if (typeResponseBody == typeof(nil))
+            return default;
+
+        var apiRspBase = GetApiRspBase<TResponseBody>(typeResponseBody);
         if (apiRspBase != null)
         {
             apiRspBase.Code = ApiRspCode.ClientDeserializeFail;
@@ -185,7 +188,11 @@ public abstract partial class WebApiClientService(
                 args.RequestUriString);
         }
 
-        var apiRspBase = GetApiRspBase<TResponseBody>();
+        var typeResponseBody = typeof(TResponseBody);
+        if (typeResponseBody == typeof(nil))
+            return default;
+
+        var apiRspBase = GetApiRspBase<TResponseBody>(typeResponseBody);
         if (apiRspBase != null)
         {
             apiRspBase.Code = GetApiRspCodeByClientException(ex);

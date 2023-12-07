@@ -12,10 +12,10 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
     WebApiClientService(Log.Factory.CreateLogger<IpcClientService>(), null!),
     IIpcClientService, IAsyncDisposable
 {
-    SocketsHttpHandler? httpHandler;
+    IpcAppConnDelegatingHandler? httpHandler;
     HttpClient? httpClient;
-    SocketsHttpHandler? hubConnHandler;
-    HubConnection? hubConnection;
+    IpcAppConnDelegatingHandler? hubConnHandler;
+    protected HubConnection? hubConnection;
 
     /// <inheritdoc cref="IpcAppConnectionString"/>
     protected readonly IpcAppConnectionString connectionString = connectionString;
@@ -25,7 +25,7 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
         if (httpClient == null)
         {
             (httpClient, httpHandler) = IpcAppConnectionStringHelper.GetHttpClient(connectionString);
-            ConfigureSocketsHttpHandler(httpHandler);
+            ConfigureSocketsHttpHandler(httpHandler.InnerHandler);
         }
         return httpClient;
     }
@@ -40,42 +40,80 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
     protected async ValueTask<HubConnection> GetHubConnAsync()
     {
         if (hubConnection != null)
+        {
+            if (hubConnection.State == HubConnectionState.Disconnected)
+            {
+                await TryStartAsync();
+            }
             return hubConnection;
+        }
         var @lock = new AsyncExclusiveLock();
         using (await @lock.AcquireLockAsync(CancellationToken.None))
         {
-            (var baseAddress, hubConnHandler) =
-                IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
-            ConfigureSocketsHttpHandler(hubConnHandler);
+            hubConnHandler = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
+            ConfigureSocketsHttpHandler(hubConnHandler.InnerHandler);
 
             var builder = new HubConnectionBuilder()
-                .WithUrl(baseAddress, opt =>
+                //.WithServerTimeout()
+                .WithUrl(hubConnHandler.BaseAddress, opt =>
                 {
                     opt.Transports = HttpTransportType.WebSockets;
                     opt.HttpMessageHandlerFactory = (oldHandler) =>
                     {
                         oldHandler.Dispose(); // 传过来的 Handler 丢弃，使用根据连接字符串解析的
+                        if (hubConnHandler.Disposed)
+                        {
+#if DEBUG
+                            Console.WriteLine("已重新创建 HubConnDelegatingHandler");
+#endif
+                            hubConnHandler = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
+                            ConfigureSocketsHttpHandler(hubConnHandler.InnerHandler);
+                        }
                         return hubConnHandler;
                     };
                     opt.WebSocketConfiguration = static o =>
                     {
                         o.HttpVersion = HttpVersion.Version20;
                     };
-                    opt.Url = new Uri($"{baseAddress}/{HubName}");
+                    opt.Url = new Uri($"{hubConnHandler.BaseAddress}/{HubName}");
                 })
                 .WithAutomaticReconnect();
 
             builder.AddJsonProtocol(ConfigureJsonHubProtocolOptions);
 
+            ConfigureHubConnectionBuilder(builder);
+
             hubConnection = builder.Build();
             hubConnection.Reconnected += HubConnection_Reconnected;
             hubConnection.Reconnecting += HubConnection_Reconnecting;
 
-            using var cts = new CancellationTokenSource();
-            cts.CancelAfter(TimeSpan.FromSeconds(IpcAppConnectionStringHelper.TimeoutFromSeconds));
-            await hubConnection.StartAsync(cts.Token);
+            await TryStartAsync();
         }
         return hubConnection;
+    }
+
+    async Task TryStartAsync()
+    {
+        if (hubConnection == null)
+            return;
+
+        var @lock = new AsyncExclusiveLock();
+        using (await @lock.AcquireLockAsync(CancellationToken.None))
+        {
+            try
+            {
+                using var cts = new CancellationTokenSource();
+                cts.CancelAfter(TimeSpan.FromSeconds(IpcAppConnectionStringHelper.TimeoutFromSeconds));
+                await hubConnection.StartAsync(cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+            }
+        }
+    }
+
+    protected virtual void ConfigureHubConnectionBuilder(IHubConnectionBuilder builder)
+    {
     }
 
     protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
@@ -128,5 +166,48 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
         hubConnHandler = null;
         httpClient = null;
         hubConnection = null;
+    }
+
+    /// <summary>
+    /// 当请求出现错误时
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="ex"></param>
+    /// <param name="hubConnection"></param>
+    /// <param name="callerMemberName"></param>
+    /// <returns></returns>
+    protected virtual TResponseBody? OnError<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        Exception ex,
+        HubConnection? hubConnection,
+        [CallerMemberName] string callerMemberName = "") where TResponseBody : notnull
+    {
+        if (EnableLogOnError)
+        {
+            logger.LogError(ex,
+                $"{{callerMemberName}} fail, connId: {{connectionId}}.",
+                callerMemberName,
+                hubConnection?.ConnectionId);
+        }
+
+        var typeResponseBody = typeof(TResponseBody);
+        if (typeResponseBody == typeof(nil))
+            return default;
+
+        ApiRspCode apiRspCode = default;
+        if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
+        {
+            apiRspCode = ApiRspCode.Timeout;
+        }
+
+        var apiRspBase = GetApiRspBase<TResponseBody>(typeResponseBody);
+        if (apiRspBase != null)
+        {
+            apiRspBase.Code = apiRspCode == default ? GetApiRspCodeByClientException(ex) : apiRspCode;
+            apiRspBase.ClientException = ex;
+            apiRspBase.InternalMessage = apiRspBase.GetMessage();
+            return (TResponseBody?)(object)apiRspBase;
+        }
+
+        return default;
     }
 }

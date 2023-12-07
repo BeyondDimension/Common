@@ -21,38 +21,19 @@ public static partial class IpcAppConnectionStringHelper
     /// <param name="connectionString">连接字符串</param>
     /// <param name="ignoreRemoteCertificateValidation">是否忽略服务端证书验证</param>
     /// <returns></returns>
-    public static (string baseAddress, SocketsHttpHandler handler) GetHttpMessageHandler(IpcAppConnectionString connectionString,
+    public static IpcAppConnDelegatingHandler GetHttpMessageHandler(IpcAppConnectionString connectionString,
         bool ignoreRemoteCertificateValidation = true)
     {
         var connectionStringType = connectionString.Type;
-        string baseAddress = "https://localhost";
-        Func<SocketsHttpConnectionContext, CancellationToken, ValueTask<Stream>>? connectCallback = null;
-        switch (connectionStringType)
-        {
-            case IpcAppConnectionStringType.Https:
-                baseAddress = $"https://localhost:{connectionString.Int32Value}";
-                break;
-
-            case IpcAppConnectionStringType.UnixSocket:
-                connectCallback = UnixDomainSocketsConnectionFactory.GetConnectCallback(connectionString.StringValue.ThrowIsNull());
-                break;
-
-            case IpcAppConnectionStringType.NamedPipe:
-                connectCallback = NamedPipesConnectionFactory.GetConnectCallback(connectionString.StringValue.ThrowIsNull());
-                break;
-
-            default:
-                throw ThrowHelper.GetArgumentOutOfRangeException(connectionStringType);
-        }
-        SocketsHttpHandler handler = new()
+        SocketsHttpHandler innerHandler = new()
         {
             UseProxy = false,
             UseCookies = false,
-            ConnectCallback = connectCallback,
         };
+        IpcAppConnDelegatingHandler delegatingHandler = new(connectionString, innerHandler);
         if (ignoreRemoteCertificateValidation)
-            handler.SslOptions.RemoteCertificateValidationCallback = (_, _, _, _) => true;
-        return (baseAddress, handler);
+            innerHandler.SslOptions.RemoteCertificateValidationCallback = (_, _, _, _) => true;
+        return delegatingHandler;
     }
 
     /// <summary>
@@ -62,15 +43,15 @@ public static partial class IpcAppConnectionStringHelper
     /// <param name="ignoreRemoteCertificateValidation">是否忽略服务端证书验证</param>
     /// <param name="timeoutFromSeconds">超时时间，单位秒</param>
     /// <returns></returns>
-    public static (HttpClient httpClient, SocketsHttpHandler handler) GetHttpClient(IpcAppConnectionString connectionString,
+    public static (HttpClient httpClient, IpcAppConnDelegatingHandler handler) GetHttpClient(IpcAppConnectionString connectionString,
         bool ignoreRemoteCertificateValidation = true,
         double timeoutFromSeconds = TimeoutFromSeconds)
     {
-        (var baseAddress, var handler) = GetHttpMessageHandler(connectionString, ignoreRemoteCertificateValidation);
+        var handler = GetHttpMessageHandler(connectionString, ignoreRemoteCertificateValidation);
         HttpClient client = new(handler)
         {
             DefaultRequestVersion = HttpVersion.Version20,
-            BaseAddress = new(baseAddress),
+            BaseAddress = new(handler.BaseAddress),
             Timeout = TimeSpan.FromSeconds(timeoutFromSeconds),
         };
         return (client, handler);

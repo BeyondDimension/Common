@@ -266,11 +266,24 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
 
     protected virtual void ConfigureSignalR(HubOptions options)
     {
-        options.ClientTimeoutInterval = TimeSpan.FromSeconds(10);
-        options.HandshakeTimeout = TimeSpan.FromSeconds(5);
-        options.KeepAliveInterval = TimeSpan.FromSeconds(5);
+        // 如果在此间隔时间内未收到消息（包括保持连接状态），服务器将认为客户端已断开连接。
+        // 由于实现方式的不同，将客户端标记为断开连接可能需要更长的超时间隔时间。
+        // 建议的值为 KeepAliveInterval 值的两倍。
+        // 默认值：30 秒
+        //options.ClientTimeoutInterval = TimeSpan.MaxValue;
+
+        // 如果客户端在此时间间隔内未发送初始握手消息，则连接将关闭。
+        // 这是一个高级设置，只应在由于严重的网络延迟而发生握手超时错误时才考虑修改。
+        // 有关握手过程的更多详细信息，请参阅 SignalR 中心协议规范。
+        // 默认值：15 秒
+        //options.HandshakeTimeout = TimeSpan.FromSeconds(5);
+
+        // 如果服务器在此间隔内未发送消息，将自动发送 ping 消息以保持连接处于开启状态。
+        // 更改 KeepAliveInterval 时，请更改客户端上的 ServerTimeout 或 serverTimeoutInMilliseconds 设置。 建议的 ServerTimeout 或 serverTimeoutInMilliseconds 值是 KeepAliveInterval 值的两倍。
+        // 默认值：15 秒
+        //options.KeepAliveInterval = TimeSpan.FromSeconds(5);
 #if DEBUG
-        options.EnableDetailedErrors = true;
+        //options.EnableDetailedErrors = true;
 #endif
     }
 
