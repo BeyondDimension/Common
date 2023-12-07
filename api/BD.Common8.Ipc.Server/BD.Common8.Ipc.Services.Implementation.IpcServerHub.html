@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ApiRspExtensions
+      <title>Class IpcServerHub
  | BD.Common8 文档 </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ApiRspExtensions
+      <meta name="title" content="Class IpcServerHub
  | BD.Common8 文档 ">
       
       <link rel="icon" href="../../favicon.ico">
@@ -74,26 +74,25 @@
 
       <div class="content">
 
-        <article data-uid="BD.Common8.Extensions.ApiRspExtensions">
+        <article data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerHub">
 
 
 
-  <h1 id="BD_Common8_Extensions_ApiRspExtensions" data-uid="BD.Common8.Extensions.ApiRspExtensions" class="text-break">
-    Class ApiRspExtensions
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Extensions/ApiRspExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  <h1 id="BD_Common8_Ipc_Services_Implementation_IpcServerHub" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerHub" class="text-break">
+    Class IpcServerHub
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Extensions.html">Extensions</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>BD.Common8.Primitives.ApiRsp.dll</dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Ipc.html">Ipc</a>.<a class="xref" href="BD.Common8.Ipc.Services.html">Services</a>.<a class="xref" href="BD.Common8.Ipc.Services.Implementation.html">Implementation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Ipc.Server.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>提供了 <a class="xref" href="BD.Common8.Enums.ApiRspCode.html">ApiRspCode</a> 对象的扩展方法</p>
-</div>
+  <div class="markdown summary"></div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ApiRspExtensions</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class IpcServerHub : Hub, IDisposable</code></pre>
   </div>
 
 
@@ -103,15 +102,43 @@
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">ApiRspExtensions</span></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub">Hub</a></div>
+      <div><span class="xref">IpcServerHub</span></div>
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist derived">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.onconnectedasync">Hub.OnConnectedAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.ondisconnectedasync">Hub.OnDisconnectedAsync(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.dispose#microsoft-aspnetcore-signalr-hub-dispose(system-boolean)">Hub.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.dispose#microsoft-aspnetcore-signalr-hub-dispose">Hub.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.clients">Hub.Clients</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.context">Hub.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.groups">Hub.Groups</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
@@ -140,40 +167,24 @@
 
 
 
-  <h2 class="section" id="methods">Methods
+  <h2 class="section" id="constructors">Constructors
 </h2>
 
 
-  <a id="BD_Common8_Extensions_ApiRspExtensions_GetMessage_" data-uid="BD.Common8.Extensions.ApiRspExtensions.GetMessage*"></a>
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerHub__ctor_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerHub.#ctor*"></a>
 
-  <h3 id="BD_Common8_Extensions_ApiRspExtensions_GetMessage_BD_Common8_Enums_ApiRspCode_System_String_System_String_" data-uid="BD.Common8.Extensions.ApiRspExtensions.GetMessage(BD.Common8.Enums.ApiRspCode,System.String,System.String)">
-  GetMessage(ApiRspCode, string?, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Extensions/ApiRspExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerHub__ctor" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerHub.#ctor">
+  IpcServerHub()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取 <a class="xref" href="BD.Common8.Enums.ApiRspCode.html">ApiRspCode</a> 对应的错误消息</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string GetMessage(this ApiRspCode code, string? errorAppendText = null, string? errorFormat = null)</code></pre>
+    <pre><code class="lang-csharp hljs">protected IpcServerHub()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>code</code> <a class="xref" href="BD.Common8.Enums.ApiRspCode.html">ApiRspCode</a></dt>
-    <dd></dd>
-    <dt><code>errorAppendText</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>errorFormat</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -185,39 +196,34 @@
 
 
 
-  <a id="BD_Common8_Extensions_ApiRspExtensions_GetMessage_" data-uid="BD.Common8.Extensions.ApiRspExtensions.GetMessage*"></a>
 
-  <h3 id="BD_Common8_Extensions_ApiRspExtensions_GetMessage_BD_Common8_Models_Abstractions_IApiRsp_System_String_System_String_" data-uid="BD.Common8.Extensions.ApiRspExtensions.GetMessage(BD.Common8.Models.Abstractions.IApiRsp,System.String,System.String)">
-  GetMessage(IApiRsp, string?, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Extensions/ApiRspExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerHub_RequestAborted_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerHub.RequestAborted*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerHub_RequestAborted" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerHub.RequestAborted">
+  RequestAborted
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取 <a class="xref" href="BD.Common8.Models.Abstractions.IApiRsp.html">IApiRsp</a> 对应的错误消息</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string GetMessage(this IApiRsp response, string? errorAppendText = null, string? errorFormat = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual CancellationToken RequestAborted { get; }</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
+
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><code>response</code> <a class="xref" href="BD.Common8.Models.Abstractions.IApiRsp.html">IApiRsp</a></dt>
-    <dd></dd>
-    <dt><code>errorAppendText</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>errorFormat</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
 
 
 
@@ -230,7 +236,7 @@
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/Extensions/ApiRspExtensions.cs" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs" class="edit-link">Edit this page</a>
         </div>
 
 

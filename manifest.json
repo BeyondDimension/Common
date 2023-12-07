@@ -1616,6 +1616,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Collections.Generic.EmptyAsyncEnumerable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Collections.Generic.EmptyAsyncEnumerable-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Collections.Generic.SortedList-1.yml",
       "output": {
         ".html": {
@@ -2410,6 +2420,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.HttpHandlerCategory.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.HttpResponseMessageContentAsyncEnumerable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Net.Http.Client.HttpResponseMessageContentAsyncEnumerable-1.html"
         }
       },
       "version": ""
@@ -5091,16 +5111,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendResultWrapper-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendResultWrapper-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.yml",
       "output": {
         ".html": {
@@ -5251,6 +5261,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerHub.html"
         }
       },
       "version": ""

@@ -423,6 +423,38 @@
 
 
 
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_EnableLogOnError_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_EnableLogOnError" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError">
+  EnableLogOnError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否启用日志当请求出现错误时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool EnableLogOnError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerContext_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.JsonSerializerContext*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerContext" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.JsonSerializerContext">
@@ -569,6 +601,80 @@ to the logical name specified by <code class="paramref">name</code>.</p>
 
 
 
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase__1" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase``1">
+  GetApiRspBase&lt;TResponseBody&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将响应正文泛型转换为 <a class="xref" href="../BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.ApiRspBase.html">ApiRspBase</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ApiRspBase? GetApiRspBase&lt;TResponseBody&gt;()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.ApiRspBase.html">ApiRspBase</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspCodeByClientException_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspCodeByClientException*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspCodeByClientException_System_Exception_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspCodeByClientException(System.Exception)">
+  GetApiRspCodeByClientException(Exception)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据客户端 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a> 获取错误码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ApiRspCode GetApiRspCodeByClientException(Exception ex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html">ApiRspCode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetCustomSerializeContent_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetCustomSerializeContent*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetCustomSerializeContent__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_String_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetCustomSerializeContent``2(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,``1,System.String,System.Threading.CancellationToken)">
@@ -609,6 +715,44 @@ to the logical name specified by <code class="paramref">name</code>.</p>
     <dt><code>TRequestBody</code></dt>
     <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetEncoding_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetEncoding*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetEncoding_System_Net_Http_HttpContent_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetEncoding(System.Net.Http.HttpContent)">
+  GetEncoding(HttpContent)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据 Http 内容获取编码</p>
+<p>https://github.com/dotnet/runtime/blob/v8.0.0/src/libraries/System.Net.Http.Json/src/System/Net/Http/Json/JsonHelpers.cs#L32</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static Encoding? GetEncoding(HttpContent content)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpcontent">HttpContent</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.encoding">Encoding</a></dt>
+    <dd></dd>
+  </dl>
+
 
 
 
@@ -859,10 +1003,56 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
 
 
 
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnError_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnError*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnError__1_System_Exception_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_String_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnError``1(System.Exception,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.String)">
+  OnError&lt;TResponseBody&gt;(Exception, WebApiClientSendArgs, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当请求出现错误时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual TResponseBody? OnError&lt;TResponseBody&gt;(Exception ex, WebApiClientSendArgs args, string callerMemberName = &quot;&quot;) where TResponseBody : notnull</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+    <dt><code>args</code> <a class="xref" href="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html">WebApiClientSendArgs</a></dt>
+    <dd></dd>
+    <dt><code>callerMemberName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TResponseBody</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError``1(System.Exception,System.Boolean,System.Type)">
-  OnSerializerError&lt;T&gt;(Exception, bool, Type)
+  OnSerializerError&lt;TResponseBody&gt;(Exception, bool, Type)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -871,7 +1061,7 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual T? OnSerializerError&lt;T&gt;(Exception ex, bool isSerializeOrDeserialize, Type modelType) where T : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual TResponseBody? OnSerializerError&lt;TResponseBody&gt;(Exception ex, bool isSerializeOrDeserialize, Type modelType) where TResponseBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -888,13 +1078,13 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
+    <dt><span class="xref">TResponseBody</span></dt>
     <dd></dd>
   </dl>
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
-    <dt><code>T</code></dt>
+    <dt><code>TResponseBody</code></dt>
     <dd></dd>
   </dl>
 
@@ -1139,6 +1329,53 @@ protected virtual TResponseBody? ReadFromNJson&lt;TResponseBody&gt;(HttpContent 
 
 
 
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsAsyncEnumerable_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsAsyncEnumerable*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsAsyncEnumerable__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsAsyncEnumerable``1(System.Net.Http.HttpContent,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)">
+  ReadFromSJsonAsAsyncEnumerable&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将响应内容读取并反序列化成异步迭代器（catch 时将返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> ），推荐使用 Json 源生成，即传递 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo">JsonTypeInfo</a> 对象</p>
+<p>如果需要使用 Linq to Json 操作，则将泛型定义为 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual IAsyncEnumerable&lt;TResponseBody?&gt; ReadFromSJsonAsAsyncEnumerable&lt;TResponseBody&gt;(HttpContent content, JsonTypeInfo&lt;TResponseBody&gt;? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpcontent">HttpContent</a></dt>
+    <dd></dd>
+    <dt><code>jsonTypeInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;TResponseBody&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TResponseBody&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsync*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsync__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsync``1(System.Net.Http.HttpContent,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)">
@@ -1327,6 +1564,98 @@ protected virtual TResponseBody? ReadFromXml&lt;TResponseBody&gt;(HttpContent co
 
 
 
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsAsyncEnumerable_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendAsAsyncEnumerable*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsAsyncEnumerable__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendAsAsyncEnumerable``1(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.Threading.CancellationToken)">
+  SendAsAsyncEnumerable&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以异步操作发送 HTTP 请求，仅响应正文，返回异步迭代器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAsyncEnumerable&lt;TResponseBody?&gt; SendAsAsyncEnumerable&lt;TResponseBody&gt;(WebApiClientSendArgs args, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html">WebApiClientSendArgs</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TResponseBody&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsAsyncEnumerable_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendAsAsyncEnumerable*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsAsyncEnumerable__2_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendAsAsyncEnumerable``2(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,``1,System.Threading.CancellationToken)">
+  SendAsAsyncEnumerable&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以异步操作发送 HTTP 请求，响应正文与请求正文，返回异步迭代器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAsyncEnumerable&lt;TResponseBody?&gt; SendAsAsyncEnumerable&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html">WebApiClientSendArgs</a></dt>
+    <dd></dd>
+    <dt><code>requestBody</code> <span class="xref">TRequestBody</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TResponseBody&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+    <dt><code>TRequestBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendAsync*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendAsync``1(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.Threading.CancellationToken)">
@@ -1422,20 +1751,20 @@ protected virtual TResponseBody? ReadFromXml&lt;TResponseBody&gt;(HttpContent co
 
 
 
-  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendCoreAsync*"></a>
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsAsyncEnumerable_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendCoreAsAsyncEnumerable*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsync__2_System_Net_Http_HttpClient_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendCoreAsync``2(System.Net.Http.HttpClient,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,``1,System.Threading.CancellationToken)">
-  SendCoreAsync&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsAsyncEnumerable__2_System_Net_Http_HttpClient_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendCoreAsAsyncEnumerable``2(System.Net.Http.HttpClient,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,``1,System.Threading.CancellationToken)">
+  SendCoreAsAsyncEnumerable&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>以异步操作发送 HTTP 请求</p>
+  <div class="markdown level1 summary"><p>以异步操作发送 HTTP 请求，返回异步迭代器</p>
 <ul><li><a class="xref" href="../BD.Common8.Bcl/System.nil.html">nil</a></li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.httpstatuscode">HttpStatusCode</a></li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a> 数组</li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></li></ul>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task&lt;WebApiClientService.SendResultWrapper&lt;TResponseBody&gt;&gt; SendCoreAsync&lt;TResponseBody, TRequestBody&gt;(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;IAsyncEnumerable&lt;TResponseBody?&gt;&gt; SendCoreAsAsyncEnumerable&lt;TResponseBody, TRequestBody&gt;(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1452,7 +1781,58 @@ protected virtual TResponseBody? ReadFromXml&lt;TResponseBody&gt;(HttpContent co
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a>.<a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendResultWrapper-1.html">SendResultWrapper</a>&lt;TResponseBody&gt;&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;TResponseBody&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+    <dt><code>TRequestBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendCoreAsync*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_SendCoreAsync__2_System_Net_Http_HttpClient_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendCoreAsync``2(System.Net.Http.HttpClient,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,``1,System.Threading.CancellationToken)">
+  SendCoreAsync&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>以异步操作发送 HTTP 请求</p>
+<ul><li><a class="xref" href="../BD.Common8.Bcl/System.nil.html">nil</a></li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.httpstatuscode">HttpStatusCode</a></li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a> 数组</li><li><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></li></ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;TResponseBody?&gt; SendCoreAsync&lt;TResponseBody, TRequestBody&gt;(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>client</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd></dd>
+    <dt><code>args</code> <a class="xref" href="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html">WebApiClientSendArgs</a></dt>
+    <dd></dd>
+    <dt><code>requestBody</code> <span class="xref">TRequestBody</span></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TResponseBody&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -1486,7 +1866,7 @@ protected virtual TResponseBody? ReadFromXml&lt;TResponseBody&gt;(HttpContent co
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual WebApiClientService.SendResultWrapper&lt;TResponseBody&gt; SendCore&lt;TResponseBody, TRequestBody&gt;(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual TResponseBody? SendCore&lt;TResponseBody, TRequestBody&gt;(HttpClient client, WebApiClientSendArgs args, TRequestBody requestBody, CancellationToken cancellationToken = default) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1503,7 +1883,7 @@ protected virtual TResponseBody? ReadFromXml&lt;TResponseBody&gt;(HttpContent co
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a>.<a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.SendResultWrapper-1.html">SendResultWrapper</a>&lt;TResponseBody&gt;</dt>
+    <dt><span class="xref">TResponseBody</span></dt>
     <dd></dd>
   </dl>
 
