@@ -60,7 +60,7 @@
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageVersion Include="Nito.Comparers" Version="6.2.2" />
 		<PackageVersion Include="NLog" Version="5.2.7" />
-		<PackageVersion Include="NLog.Extensions.Logging" Version="5.3.5" />
+		<PackageVersion Include="NLog.Extensions.Logging" Version="5.3.7" />
 		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.3.5" />
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-rc.2" />
 		<PackageVersion Include="NUnit" Version="3.13.3" />
