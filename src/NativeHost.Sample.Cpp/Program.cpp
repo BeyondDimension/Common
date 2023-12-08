@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 	//
 	// STEP 1: Load HostFxr and get exported hosting functions
 	//
-	const string_t hostfxr_path = L"C:\\Program Files\\dotnet\\host\\fxr\\8.0.0-rc.2.23479.6\\hostfxr.dll";
+	const string_t hostfxr_path = L"C:\\Program Files\\dotnet\\host\\fxr\\8.0.0\\hostfxr.dll";
 	if (!load_hostfxr(hostfxr_path.c_str()))
 	{
 		assert(false && "Failure: load_hostfxr()");

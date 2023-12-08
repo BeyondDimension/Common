@@ -11,7 +11,7 @@ global using System.Text.Json.Serialization;
 global using System.Text.Json.Serialization.Metadata;
 global using System.Text.Encodings.Web;
 global using System.Text.Unicode;
-// TODO: using SystemTextJsonXXX 缩减为 SJsonXXX
+
 global using SystemTextJsonIgnore = System.Text.Json.Serialization.JsonIgnoreAttribute;
 global using SystemTextJsonProperty = System.Text.Json.Serialization.JsonPropertyNameAttribute;
 global using SystemTextJsonSerializer = System.Text.Json.JsonSerializer;
