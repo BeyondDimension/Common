@@ -62,7 +62,7 @@
 		<PackageVersion Include="NLog" Version="5.2.7" />
 		<PackageVersion Include="NLog.Extensions.Logging" Version="5.3.7" />
 		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.3.7" />
-		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-rc.2" />
+		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
 		<PackageVersion Include="NUnit" Version="3.13.3" />
 		<PackageVersion Include="NUnit.Analyzers" Version="3.8.0" />
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
