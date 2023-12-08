@@ -137,7 +137,7 @@
       <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_logger">WebApiClientService.logger</a>
     </div>
     <div>
-      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase__1">WebApiClientService.GetApiRspBase&lt;TResponseBody&gt;()</a>
+      <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase__1_System_Type_">WebApiClientService.GetApiRspBase&lt;TResponseBody&gt;(Type)</a>
     </div>
     <div>
       <a class="xref" href="../BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_">WebApiClientService.OnSerializerError&lt;TResponseBody&gt;(Exception, bool, Type)</a>
@@ -349,6 +349,36 @@
 
 
 
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_hubConnection" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.hubConnection">
+  hubConnection
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected HubConnection? hubConnection</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection">HubConnection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
 
@@ -387,6 +417,37 @@
 
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureHubConnectionBuilder_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureHubConnectionBuilder_Microsoft_AspNetCore_SignalR_Client_IHubConnectionBuilder_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder(Microsoft.AspNetCore.SignalR.Client.IHubConnectionBuilder)">
+  ConfigureHubConnectionBuilder(IHubConnectionBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ConfigureHubConnectionBuilder(IHubConnectionBuilder builder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.ihubconnectionbuilder">IHubConnectionBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
 
 
   <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureJsonHubProtocolOptions_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureJsonHubProtocolOptions*"></a>
@@ -681,6 +742,52 @@ to the logical name specified by <code class="paramref">name</code>.</p>
   <h4 class="section" id="BD_Common8_Ipc_Services_Implementation_IpcClientService_HubConnection_Reconnecting_System_Exception__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a> that occurred will be passed in as the sole argument to this handler.</p>
 </div>
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_OnError_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_OnError__1_System_Exception_Microsoft_AspNetCore_SignalR_Client_HubConnection_System_String_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError``1(System.Exception,Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)">
+  OnError&lt;TResponseBody&gt;(Exception, HubConnection?, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当请求出现错误时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual TResponseBody? OnError&lt;TResponseBody&gt;(Exception ex, HubConnection? hubConnection, string callerMemberName = &quot;&quot;) where TResponseBody : notnull</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+    <dt><code>hubConnection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.client.hubconnection">HubConnection</a></dt>
+    <dd></dd>
+    <dt><code>callerMemberName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TResponseBody</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
 
 
 

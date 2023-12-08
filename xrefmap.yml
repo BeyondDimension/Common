@@ -14376,15 +14376,15 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase
   nameWithType: WebApiClientService.GetApiRspBase
-- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase``1
-  name: GetApiRspBase<TResponseBody>()
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase__1
-  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase``1
-  name.vb: GetApiRspBase(Of TResponseBody)()
-  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase<TResponseBody>()
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase(Of TResponseBody)()
-  nameWithType: WebApiClientService.GetApiRspBase<TResponseBody>()
-  nameWithType.vb: WebApiClientService.GetApiRspBase(Of TResponseBody)()
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase``1(System.Type)
+  name: GetApiRspBase<TResponseBody>(Type)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase__1_System_Type_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase``1(System.Type)
+  name.vb: GetApiRspBase(Of TResponseBody)(Type)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase<TResponseBody>(System.Type)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase(Of TResponseBody)(System.Type)
+  nameWithType: WebApiClientService.GetApiRspBase<TResponseBody>(Type)
+  nameWithType.vb: WebApiClientService.GetApiRspBase(Of TResponseBody)(Type)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspCodeByClientException(System.Exception)
   name: GetApiRspCodeByClientException(Exception)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspCodeByClientException_System_Exception_
@@ -15157,6 +15157,81 @@ references:
   commentId: N:BD.Common8.Ipc.Helpers
   fullName: BD.Common8.Ipc.Helpers
   nameWithType: BD.Common8.Ipc.Helpers
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler
+  name: IpcAppConnDelegatingHandler
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html
+  commentId: T:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler
+  nameWithType: IpcAppConnDelegatingHandler
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.#ctor(BD.Common8.Ipc.Models.IpcAppConnectionString,System.Net.Http.SocketsHttpHandler)
+  name: IpcAppConnDelegatingHandler(IpcAppConnectionString, SocketsHttpHandler)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler__ctor_BD_Common8_Ipc_Models_IpcAppConnectionString_System_Net_Http_SocketsHttpHandler_
+  commentId: M:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.#ctor(BD.Common8.Ipc.Models.IpcAppConnectionString,System.Net.Http.SocketsHttpHandler)
+  name.vb: New(IpcAppConnectionString, SocketsHttpHandler)
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.IpcAppConnDelegatingHandler(BD.Common8.Ipc.Models.IpcAppConnectionString, System.Net.Http.SocketsHttpHandler)
+  fullName.vb: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.New(BD.Common8.Ipc.Models.IpcAppConnectionString, System.Net.Http.SocketsHttpHandler)
+  nameWithType: IpcAppConnDelegatingHandler.IpcAppConnDelegatingHandler(IpcAppConnectionString, SocketsHttpHandler)
+  nameWithType.vb: IpcAppConnDelegatingHandler.New(IpcAppConnectionString, SocketsHttpHandler)
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.#ctor*
+  name: IpcAppConnDelegatingHandler
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler__ctor_
+  commentId: Overload:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.#ctor
+  name.vb: New
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.IpcAppConnDelegatingHandler
+  fullName.vb: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.New
+  nameWithType: IpcAppConnDelegatingHandler.IpcAppConnDelegatingHandler
+  nameWithType.vb: IpcAppConnDelegatingHandler.New
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.BaseAddress
+  name: BaseAddress
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_BaseAddress
+  commentId: P:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.BaseAddress
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.BaseAddress
+  nameWithType: IpcAppConnDelegatingHandler.BaseAddress
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.BaseAddress*
+  name: BaseAddress
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_BaseAddress_
+  commentId: Overload:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.BaseAddress
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.BaseAddress
+  nameWithType: IpcAppConnDelegatingHandler.BaseAddress
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_Dispose_System_Boolean_
+  commentId: M:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Dispose(bool)
+  fullName.vb: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Dispose(Boolean)
+  nameWithType: IpcAppConnDelegatingHandler.Dispose(bool)
+  nameWithType.vb: IpcAppConnDelegatingHandler.Dispose(Boolean)
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Dispose*
+  name: Dispose
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_Dispose_
+  commentId: Overload:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Dispose
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Dispose
+  nameWithType: IpcAppConnDelegatingHandler.Dispose
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Disposed
+  name: Disposed
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_Disposed
+  commentId: P:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Disposed
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Disposed
+  nameWithType: IpcAppConnDelegatingHandler.Disposed
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Disposed*
+  name: Disposed
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_Disposed_
+  commentId: Overload:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Disposed
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.Disposed
+  nameWithType: IpcAppConnDelegatingHandler.Disposed
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.InnerHandler
+  name: InnerHandler
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_InnerHandler
+  commentId: P:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.InnerHandler
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.InnerHandler
+  nameWithType: IpcAppConnDelegatingHandler.InnerHandler
+- uid: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.InnerHandler*
+  name: InnerHandler
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html#BD_Common8_Ipc_Helpers_IpcAppConnDelegatingHandler_InnerHandler_
+  commentId: Overload:BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.InnerHandler
+  fullName: BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.InnerHandler
+  nameWithType: IpcAppConnDelegatingHandler.InnerHandler
 - uid: BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper
   name: IpcAppConnectionStringHelper
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.html
@@ -15428,6 +15503,18 @@ references:
   fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.New
   nameWithType: IpcClientService.IpcClientService
   nameWithType.vb: IpcClientService.New
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder(Microsoft.AspNetCore.SignalR.Client.IHubConnectionBuilder)
+  name: ConfigureHubConnectionBuilder(IHubConnectionBuilder)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureHubConnectionBuilder_Microsoft_AspNetCore_SignalR_Client_IHubConnectionBuilder_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder(Microsoft.AspNetCore.SignalR.Client.IHubConnectionBuilder)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder(Microsoft.AspNetCore.SignalR.Client.IHubConnectionBuilder)
+  nameWithType: IpcClientService.ConfigureHubConnectionBuilder(IHubConnectionBuilder)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder*
+  name: ConfigureHubConnectionBuilder
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureHubConnectionBuilder_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureHubConnectionBuilder
+  nameWithType: IpcClientService.ConfigureHubConnectionBuilder
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
   name: ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions)
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_ConfigureJsonHubProtocolOptions_Microsoft_AspNetCore_SignalR_JsonHubProtocolOptions_
@@ -15542,12 +15629,33 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.HubName
   fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubName
   nameWithType: IpcClientService.HubName
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError*
+  name: OnError
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnError_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError
+  nameWithType: IpcClientService.OnError
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError``1(System.Exception,Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)
+  name: OnError<TResponseBody>(Exception, HubConnection?, string)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnError__1_System_Exception_Microsoft_AspNetCore_SignalR_Client_HubConnection_System_String_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError``1(System.Exception,Microsoft.AspNetCore.SignalR.Client.HubConnection,System.String)
+  name.vb: OnError(Of TResponseBody)(Exception, HubConnection, String)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError<TResponseBody>(System.Exception, Microsoft.AspNetCore.SignalR.Client.HubConnection?, string)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError(Of TResponseBody)(System.Exception, Microsoft.AspNetCore.SignalR.Client.HubConnection, String)
+  nameWithType: IpcClientService.OnError<TResponseBody>(Exception, HubConnection?, string)
+  nameWithType.vb: IpcClientService.OnError(Of TResponseBody)(Exception, HubConnection, String)
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.connectionString
   name: connectionString
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_connectionString
   commentId: F:BD.Common8.Ipc.Services.Implementation.IpcClientService.connectionString
   fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.connectionString
   nameWithType: IpcClientService.connectionString
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.hubConnection
+  name: hubConnection
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_hubConnection
+  commentId: F:BD.Common8.Ipc.Services.Implementation.IpcClientService.hubConnection
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.hubConnection
+  nameWithType: IpcClientService.hubConnection
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerHub
   name: IpcServerHub
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerHub.html

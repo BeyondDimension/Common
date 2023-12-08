@@ -222,7 +222,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (HttpClient httpClient, SocketsHttpHandler handler) GetHttpClient(IpcAppConnectionString connectionString, bool ignoreRemoteCertificateValidation = true, double timeoutFromSeconds = 2.9)</code></pre>
+    <pre><code class="lang-csharp hljs">public static (HttpClient httpClient, IpcAppConnDelegatingHandler handler) GetHttpClient(IpcAppConnectionString connectionString, bool ignoreRemoteCertificateValidation = true, double timeoutFromSeconds = 2.9)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -240,7 +240,7 @@
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.net.http.httpclient,system.net.http.socketshttphandler-.httpclient">httpClient</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.socketshttphandler">SocketsHttpHandler</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.net.http.httpclient,system.net.http.socketshttphandler-.handler">handler</a>)</dt>
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.net.http.httpclient,bd.common8.ipc.helpers.ipcappconndelegatinghandler-.httpclient">httpClient</a>, <a class="xref" href="BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html">IpcAppConnDelegatingHandler</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.net.http.httpclient,bd.common8.ipc.helpers.ipcappconndelegatinghandler-.handler">handler</a>)</dt>
     <dd></dd>
   </dl>
 
@@ -266,7 +266,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (string baseAddress, SocketsHttpHandler handler) GetHttpMessageHandler(IpcAppConnectionString connectionString, bool ignoreRemoteCertificateValidation = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IpcAppConnDelegatingHandler GetHttpMessageHandler(IpcAppConnectionString connectionString, bool ignoreRemoteCertificateValidation = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -281,7 +281,7 @@
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.net.http.socketshttphandler-.baseaddress">baseAddress</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.socketshttphandler">SocketsHttpHandler</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.net.http.socketshttphandler-.handler">handler</a>)</dt>
+    <dt><a class="xref" href="BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html">IpcAppConnDelegatingHandler</a></dt>
     <dd></dd>
   </dl>
 

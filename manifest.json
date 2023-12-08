@@ -5164,6 +5164,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnDelegatingHandler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.yml",
       "output": {
         ".html": {
