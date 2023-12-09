@@ -31,7 +31,7 @@ jobs:
 
       - name: Setup .NET
         if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
@@ -94,7 +94,7 @@ jobs:
 
       - name: Setup .NET
         if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
