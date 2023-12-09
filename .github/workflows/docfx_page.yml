@@ -14,7 +14,7 @@ jobs:
         os: [ aigio-win10ltsc-vm ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: dev8
 
@@ -64,7 +64,7 @@ jobs:
         run: docfx ./docfx.json
 
       - name: Checkout docs
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: docs
