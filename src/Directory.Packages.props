@@ -86,6 +86,6 @@
 		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0" />
 		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.7.0.1" />
-		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.0.0-rc.2.23480.1-02" />
+		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.101.1.1" />
 	</ItemGroup>
 </Project>
