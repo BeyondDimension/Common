@@ -1,6 +1,3 @@
-using BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
-using BD.Common8.SmsSender.Services;
-using BD.Common8.SmsSender.Services.Implementation.SmsSender;
 using static BD.Common8.UnitTest.Constants;
 using HuaWeiCloudSmsSenderProvider = BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.HuaweiCloud.SmsSenderProvider;
 
@@ -22,12 +19,12 @@ public sealed class SmsSenderTest
         }
 
         var sendSmsResult = await smsSender.SendSmsAsync(sms_phone_number, message!, 0);
-        Assert.IsTrue(sendSmsResult.IsSuccess);
+        Assert.That(sendSmsResult.IsSuccess);
         TestContext.WriteLine($"HttpStatusCode: {sendSmsResult.HttpStatusCode}");
         TestContext.WriteLine($"Record: {sendSmsResult.Result?.GetRecord()}");
 
         //var checkSmsResult = await smsSender.CheckSmsAsync(sms_phone_number, message!);
-        //Assert.IsTrue(checkSmsResult.IsCheckSuccess);
+        //Assert.That(checkSmsResult.IsCheckSuccess);
     }
 
     /// <summary>
