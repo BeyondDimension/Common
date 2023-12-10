@@ -93,6 +93,7 @@ public static partial class ProjectUtils
     "-macos";
 #else
     "";
+#endif
 
     static readonly bool isCI;
 
@@ -101,5 +102,4 @@ public static partial class ProjectUtils
     /// </summary>
     /// <returns></returns>
     public static bool IsCI() => isCI;
-#endif
 }

@@ -20,6 +20,7 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
     /// <inheritdoc cref="IpcAppConnectionString"/>
     protected readonly IpcAppConnectionString connectionString = connectionString;
 
+    /// <inheritdoc/>
     protected sealed override HttpClient CreateClient()
     {
         if (httpClient == null)
@@ -32,6 +33,9 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
 
     /// <inheritdoc cref="IpcAppConnectionStringHelper.HubName"/>
     protected virtual string HubName => IpcAppConnectionStringHelper.HubName;
+
+    AsyncExclusiveLock lock_GetHubConnAsync = new();
+    AsyncExclusiveLock lock_TryStartAsync = new();
 
     /// <summary>
     /// 异步获取 SignalR Hub 连接
@@ -47,8 +51,7 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
             }
             return hubConnection;
         }
-        var @lock = new AsyncExclusiveLock();
-        using (await @lock.AcquireLockAsync(CancellationToken.None))
+        using (await lock_GetHubConnAsync.AcquireLockAsync(CancellationToken.None))
         {
             hubConnHandler = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
             ConfigureSocketsHttpHandler(hubConnHandler.InnerHandler);
@@ -97,8 +100,7 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
         if (hubConnection == null)
             return;
 
-        var @lock = new AsyncExclusiveLock();
-        using (await @lock.AcquireLockAsync(CancellationToken.None))
+        using (await lock_TryStartAsync.AcquireLockAsync(CancellationToken.None))
         {
             try
             {
@@ -161,6 +163,16 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
         if (hubConnection is not null)
         {
             await hubConnection.DisposeAsync().ConfigureAwait(false);
+        }
+        if (lock_GetHubConnAsync is not null)
+        {
+            await lock_GetHubConnAsync.DisposeAsync().ConfigureAwait(false);
+            lock_GetHubConnAsync = null!;
+        }
+        if (lock_TryStartAsync is not null)
+        {
+            await lock_TryStartAsync.DisposeAsync().ConfigureAwait(false);
+            lock_TryStartAsync = null!;
         }
 
         hubConnHandler = null;

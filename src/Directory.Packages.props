@@ -45,6 +45,7 @@
 		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0" />

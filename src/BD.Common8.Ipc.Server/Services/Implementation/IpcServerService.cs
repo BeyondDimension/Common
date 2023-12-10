@@ -30,6 +30,8 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         OperatingSystem.IsWindows();
 #endif
 
+    AsyncExclusiveLock lock_RunAsync = new();
+
     /// <summary>
     /// 是否监听 Unix 套接字
     /// </summary>
@@ -46,8 +48,7 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         if (app != null)
             return;
 
-        var @lock = new AsyncExclusiveLock();
-        using (await @lock.AcquireLockAsync(CancellationToken.None))
+        using (await lock_RunAsync.AcquireLockAsync(CancellationToken.None))
         {
             Build();
         }
@@ -350,6 +351,11 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         {
             await app.DisposeAsync().ConfigureAwait(false);
         }
+        if (lock_RunAsync is not null)
+        {
+            await lock_RunAsync.DisposeAsync().ConfigureAwait(false);
+            lock_RunAsync = null!;
+        }
 
         if (serverCertificate != null)
         {
@@ -375,6 +381,12 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
             {
                 disposable_app.Dispose();
                 app = null;
+            }
+
+            if (lock_RunAsync is not null)
+            {
+                lock_RunAsync.Dispose();
+                lock_RunAsync = null!;
             }
 
             if (serverCertificate != null)
