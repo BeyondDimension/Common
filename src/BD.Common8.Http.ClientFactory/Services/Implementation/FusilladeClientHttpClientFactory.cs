@@ -50,7 +50,7 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
     }
 
     /// <summary>
-    /// 创建基于给定名称和分类的 HttpClient 实例
+    /// 创建或获取基于给定名称和分类的 HttpClient 实例
     /// </summary>
     HttpClient IClientHttpClientFactory.CreateClient(string name, HttpHandlerCategory category)
     {
@@ -63,6 +63,11 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
             return result;
 
         HttpMessageHandler? handler = default;
+
+        if (Builders.TryGetValue(name, out var builder))
+            if (builder.ConfigureHandler != null)
+                handler = builder.ConfigureHandler(GetHandler);
+
         HttpMessageHandler GetHandler()
         {
             HttpMessageHandler handler = category switch
@@ -75,10 +80,6 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
             };
             return handler;
         }
-
-        if (Builders.TryGetValue(name, out var builder))
-            if (builder.ConfigureHandler != null)
-                handler = builder.ConfigureHandler(GetHandler);
 
         handler ??= GetHandler();
         var client = CreateClient(handler);
@@ -175,6 +176,11 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
         };
         FusilladeClientHttpClientFactory factory = handler == null ? new(registerConstant) :
             new(handler, registerConstant);
-        return services.AddSingleton<IClientHttpClientFactory>(factory);
+        services.AddSingleton(factory);
+        services.AddSingleton<IClientHttpClientFactory>(factory);
+
+        services.AddSingleton<CookieClientHttpClientFactory>();
+
+        return services;
     }
 }

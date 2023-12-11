@@ -6,7 +6,7 @@ namespace BD.Common8.Http.ClientFactory.Services;
 /// </summary>
 /// <param name="logger"></param>
 /// <param name="httpPlatformHelper"></param>
-/// <param name="newtonsoftJsonSerializer"></param>
+/// <param name="newtonsoftJsonSerializer">如果需要使用 <see cref="Newtonsoft.Json"/> 则需要传递自定义实例或通过直接 new()，否则应保持为 <see langword="null"/></param>
 public abstract partial class WebApiClientService(
     ILogger logger,
     IHttpPlatformHelperService? httpPlatformHelper,
@@ -79,6 +79,17 @@ public abstract partial class WebApiClientService(
             apiRspBase = new ApiRspImpl();
         }
         return apiRspBase;
+    }
+
+    /// <inheritdoc cref="OnSerializerError{TResponseBody}(Exception, bool, Type)"/>
+    protected virtual TResponseBody OnSerializerErrorReApiRspBase<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        Exception ex,
+        bool isSerializeOrDeserialize,
+        Type modelType) where TResponseBody : ApiRspBase
+    {
+        var errorResult = OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize, modelType);
+        errorResult.ThrowIsNull(); // 泛型为 ApiRspBase 派生时不返回 null
+        return errorResult;
     }
 
     /// <summary>
@@ -164,6 +175,18 @@ public abstract partial class WebApiClientService(
             ExceptionKnownType.CertificateNotYetValid => ApiRspCode.CertificateNotYetValid,
             _ => ApiRspCode.ClientException,
         };
+    }
+
+    /// <inheritdoc cref="OnError{TResponseBody}(Exception, WebApiClientSendArgs, string)"/>
+    protected virtual TResponseBody OnErrorReApiRspBase<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        Exception ex,
+        WebApiClientSendArgs args,
+        [CallerMemberName] string callerMemberName = "") where TResponseBody : ApiRspBase
+    {
+        var errorResult = OnError<TResponseBody>(ex, args, callerMemberName);
+        errorResult.ThrowIsNull(); // 泛型为 ApiRspBase 派生时不返回 null
+
+        return errorResult;
     }
 
     /// <summary>
@@ -474,11 +497,16 @@ public abstract partial class WebApiClientService(
                     var result = await responseMessage.Content.ReadAsByteArrayAsync(cancellationToken);
                     return (TResponseBody)(object)result;
                 }
-                else if (responseContentType == typeof(Stream))
+                else if (responseContentType == typeof(Stream) || responseContentType == typeof(HttpResponseMessageContentStream))
                 {
                     disposeResponseMessage = false;
                     var result = await HttpResponseMessageContentStream.ReadAsStreamAsync(responseMessage, cancellationToken);
                     return (TResponseBody)(object)result;
+                }
+                else if (responseContentType == typeof(HttpResponseMessage))
+                {
+                    disposeResponseMessage = false;
+                    return (TResponseBody)(object)responseMessage;
                 }
                 TResponseBody? deserializeResult = default;
                 var mime = responseMessage.Content.Headers.ContentType?.MediaType;
@@ -700,11 +728,16 @@ public abstract partial class WebApiClientService(
                     var result = contentReadStream.ToByteArray();
                     return (TResponseBody)(object)result;
                 }
-                else if (responseContentType == typeof(Stream))
+                else if (responseContentType == typeof(Stream) || responseContentType == typeof(HttpResponseMessageContentStream))
                 {
                     disposeResponseMessage = false;
                     var result = HttpResponseMessageContentStream.ReadAsStream(responseMessage, cancellationToken);
                     return (TResponseBody)(object)result;
+                }
+                else if (responseContentType == typeof(HttpResponseMessage))
+                {
+                    disposeResponseMessage = false;
+                    return (TResponseBody)(object)responseMessage;
                 }
                 TResponseBody? deserializeResult = default;
                 var mime = responseMessage.Content.Headers.ContentType?.MediaType ?? args.Accept;
@@ -778,9 +811,9 @@ public abstract partial class WebApiClientService(
     {
         if (typeof(TRequestBody) == typeof(nil))
             return default;
-        var mime = args.Accept;
+        var mime = args.ContentType;
         if (string.IsNullOrWhiteSpace(mime))
-            mime = Accept;
+            mime = MediaTypeNames.JSON;
         HttpContentWrapper<TResponseBody> result;
 #pragma warning disable CS0618 // 类型或成员已过时
         switch (mime)

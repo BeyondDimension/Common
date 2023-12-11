@@ -3,6 +3,7 @@ namespace System.Net.Http.Client;
 /// <summary>
 /// Cookie 隔离容器
 /// </summary>
+[Obsolete("use CookieClientHttpClientFactory")]
 public sealed record class IsolatedCookieContainer : IDisposable
 {
     /// <summary>
@@ -43,11 +44,23 @@ public sealed record class IsolatedCookieContainer : IDisposable
     /// <summary>
     /// Cookie 容器，可使用 <see cref="CookieExtensions.WriteTo(CookieContainer?, Stream)"/> 将数据保存到流中
     /// </summary>
+    [SystemTextJsonConverter(typeof(CookieContainerConverter))]
     public CookieContainer Container { get; set; } = new();
 
     /// <summary>
     /// 二进制数据的 <see cref="Container"/>
     /// </summary>
+    [IgnoreDataMember]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [MPIgnore]
+#endif
+#if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+    [MP2Ignore]
+#endif
+    [NewtonsoftJsonIgnore]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [SystemTextJsonIgnore]
+#endif
     public byte[] BinaryContainer
     {
         get => Container.ToByteArray();
@@ -69,6 +82,17 @@ public sealed record class IsolatedCookieContainer : IDisposable
     bool disposedValue;
 
     /// <inheritdoc cref="HttpMessageHandler"/>
+    [IgnoreDataMember]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [MPIgnore]
+#endif
+#if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+    [MP2Ignore]
+#endif
+    [NewtonsoftJsonIgnore]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [SystemTextJsonIgnore]
+#endif
     public HttpMessageHandler Handler
     {
         get
@@ -83,6 +107,17 @@ public sealed record class IsolatedCookieContainer : IDisposable
     }
 
     /// <inheritdoc cref="HttpClient"/>
+    [IgnoreDataMember]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [MPIgnore]
+#endif
+#if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+    [MP2Ignore]
+#endif
+    [NewtonsoftJsonIgnore]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [SystemTextJsonIgnore]
+#endif
     public HttpClient Client
     {
         get

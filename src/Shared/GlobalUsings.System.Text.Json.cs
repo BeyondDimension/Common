@@ -24,3 +24,4 @@ global using SystemTextJsonExtensionData = System.Text.Json.Serialization.JsonEx
 global using SystemTextJsonSerializable = System.Text.Json.Serialization.JsonSerializableAttribute;
 global using SystemTextJsonSerializerContext = System.Text.Json.Serialization.JsonSerializerContext;
 global using SystemTextJsonConverter = System.Text.Json.Serialization.JsonConverterAttribute;
+global using SystemTextJsonConverterBase = System.Text.Json.Serialization.JsonConverter;

@@ -4,7 +4,7 @@ namespace BD.Common8.Http.ClientFactory.Models;
 /// 发送 HTTP 请求的参数，此类型不支持序列化
 /// <para>用于 <see cref="WebApiClientService"/> 服务中的发送</para>
 /// </summary>
-public record class WebApiClientSendArgs
+public record class WebApiClientSendArgs : IDisposable
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="WebApiClientSendArgs"/> class.
@@ -12,16 +12,18 @@ public record class WebApiClientSendArgs
     /// <param name="requestUriString"></param>
     public WebApiClientSendArgs([StringSyntax(StringSyntaxAttribute.Uri)] string requestUriString)
     {
-        RequestUriString = requestUriString;
+        _RequestUriString = requestUriString;
     }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="WebApiClientSendArgs"/> class.
     /// </summary>
     /// <param name="requestUri"></param>
-    public WebApiClientSendArgs(Uri requestUri)
+    /// <param name="requestUriString"></param>
+    public WebApiClientSendArgs(Uri requestUri, [StringSyntax(StringSyntaxAttribute.Uri)] string? requestUriString = null)
     {
-        RequestUri = requestUri;
+        _RequestUri = requestUri;
+        _RequestUriString = requestUriString;
     }
 
     string? _RequestUriString;
@@ -109,6 +111,12 @@ public record class WebApiClientSendArgs
     public string? Accept { get; init; }
 
     /// <summary>
+    /// Content-Type 实体头部用于指示资源的 MIME 类型 media type 。
+    /// <para>https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type</para>
+    /// </summary>
+    public string? ContentType { get; init; }
+
+    /// <summary>
     /// 选择 Json 序列化的实现，默认值 <see cref="Serializable.JsonImplType.SystemTextJson"/>
     /// </summary>
     public Serializable.JsonImplType JsonImplType { get; init; } = Serializable.JsonImplType.SystemTextJson;
@@ -123,7 +131,11 @@ public record class WebApiClientSendArgs
     /// </summary>
     public bool EmptyUserAgent { get; init; }
 
+    HttpClient? client;
+    bool disposedValue;
+
     /// <inheritdoc cref="IsolatedCookieContainer"/>
+    [Obsolete("use CookieClientHttpClientFactory")]
     public IsolatedCookieContainer? IsolatedCookie { get; set; }
 
     /// <summary>
@@ -132,8 +144,43 @@ public record class WebApiClientSendArgs
     /// <returns></returns>
     public virtual HttpClient? GetHttpClient()
     {
+        if (client != null)
+            return client;
+
         if (IsolatedCookie != null)
             return IsolatedCookie.Client;
+
         return null;
+    }
+
+    /// <summary>
+    /// 设置用作发送的 <see cref="HttpClient"/>
+    /// </summary>
+    /// <param name="httpClient"></param>
+    public virtual void SetHttpClient(HttpClient httpClient) => client = httpClient;
+
+    /// <inheritdoc cref="IDisposable.Dispose"/>
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                // 释放托管状态(托管对象)
+            }
+
+            // 释放未托管的资源(未托管的对象)并重写终结器
+            // 将大型字段设置为 null
+            client = null; // HttpClient 由工厂管理，此处释放仅取消引用
+            disposedValue = true;
+        }
+    }
+
+    /// <inheritdoc/>
+    public void Dispose()
+    {
+        // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
     }
 }

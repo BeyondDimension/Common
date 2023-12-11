@@ -23,6 +23,9 @@ public sealed class HttpResponseMessageContentStream(HttpResponseMessage respons
         responseMessage = null;
     }
 
+    /// <inheritdoc cref="HttpStatusCode"/>
+    public HttpStatusCode StatusCode => responseMessage is null ? default : responseMessage.StatusCode;
+
     /// <inheritdoc cref="HttpContent.ReadAsStreamAsync(CancellationToken)"/>
     public static async Task<Stream> ReadAsStreamAsync(
         HttpResponseMessage responseMessage,
