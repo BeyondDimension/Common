@@ -93,7 +93,8 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed record IsolatedCookieContainer : IDisposable, IEquatable&lt;IsolatedCookieContainer&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;use CookieClientHttpClientFactory&quot;)]
+public sealed record IsolatedCookieContainer : IDisposable, IEquatable&lt;IsolatedCookieContainer&gt;</code></pre>
   </div>
 
 
@@ -269,7 +270,12 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public byte[] BinaryContainer { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[MemoryPackIgnore]
+[JsonIgnore]
+[JsonIgnore]
+public byte[] BinaryContainer { get; set; }</code></pre>
   </div>
 
 
@@ -300,7 +306,12 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HttpClient Client { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[MemoryPackIgnore]
+[JsonIgnore]
+[JsonIgnore]
+public HttpClient Client { get; set; }</code></pre>
   </div>
 
 
@@ -332,7 +343,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CookieContainer Container { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonConverter(typeof(CookieContainerConverter))]
+public CookieContainer Container { get; set; }</code></pre>
   </div>
 
 
@@ -363,7 +375,12 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HttpMessageHandler Handler { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[MemoryPackIgnore]
+[JsonIgnore]
+[JsonIgnore]
+public HttpMessageHandler Handler { get; set; }</code></pre>
   </div>
 
 

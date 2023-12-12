@@ -3536,6 +3536,46 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieContainerConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieContainerConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.StringToDecimalConverter.yml",
       "output": {
         ".html": {
@@ -5045,6 +5085,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html"
         }
       },
       "version": ""

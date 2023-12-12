@@ -181,7 +181,8 @@
     <dt><code>httpPlatformHelper</code> <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.IHttpPlatformHelperService.html">IHttpPlatformHelperService</a></dt>
     <dd></dd>
     <dt><code>newtonsoftJsonSerializer</code> <span class="xref">JsonSerializer</span></dt>
-    <dd></dd>
+    <dd><p>如果需要使用 <span class="xref">Newtonsoft.Json</span> 则需要传递自定义实例或通过直接 new()，否则应保持为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
+</dd>
   </dl>
 
 
@@ -1008,6 +1009,52 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
 
 
 
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnErrorReApiRspBase_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnErrorReApiRspBase__1_System_Exception_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_String_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase``1(System.Exception,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.String)">
+  OnErrorReApiRspBase&lt;TResponseBody&gt;(Exception, WebApiClientSendArgs, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当请求出现错误时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual TResponseBody OnErrorReApiRspBase&lt;TResponseBody&gt;(Exception ex, WebApiClientSendArgs args, string callerMemberName = &quot;&quot;) where TResponseBody : ApiRspBase</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+    <dt><code>args</code> <a class="xref" href="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html">WebApiClientSendArgs</a></dt>
+    <dd></dd>
+    <dt><code>callerMemberName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TResponseBody</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnError_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnError*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnError__1_System_Exception_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_String_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnError``1(System.Exception,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.String)">
@@ -1031,6 +1078,54 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
     <dd></dd>
     <dt><code>callerMemberName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TResponseBody</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponseBody</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerErrorReApiRspBase_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerErrorReApiRspBase__1_System_Exception_System_Boolean_System_Type_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase``1(System.Exception,System.Boolean,System.Type)">
+  OnSerializerErrorReApiRspBase&lt;TResponseBody&gt;(Exception, bool, Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当序列化出现错误时</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual TResponseBody OnSerializerErrorReApiRspBase&lt;TResponseBody&gt;(Exception ex, bool isSerializeOrDeserialize, Type modelType) where TResponseBody : ApiRspBase</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+    <dt><code>isSerializeOrDeserialize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是序列化还是反序列化</p>
+</dd>
+    <dt><code>modelType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd><p>模型类型</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>

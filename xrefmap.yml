@@ -13773,15 +13773,15 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.New(String)
   nameWithType: WebApiClientSendArgs.WebApiClientSendArgs(string)
   nameWithType.vb: WebApiClientSendArgs.New(String)
-- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor(System.Uri)
-  name: WebApiClientSendArgs(Uri)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs__ctor_System_Uri_
-  commentId: M:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor(System.Uri)
-  name.vb: New(Uri)
-  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.WebApiClientSendArgs(System.Uri)
-  fullName.vb: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.New(System.Uri)
-  nameWithType: WebApiClientSendArgs.WebApiClientSendArgs(Uri)
-  nameWithType.vb: WebApiClientSendArgs.New(Uri)
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor(System.Uri,System.String)
+  name: WebApiClientSendArgs(Uri, string?)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs__ctor_System_Uri_System_String_
+  commentId: M:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor(System.Uri,System.String)
+  name.vb: New(Uri, String)
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.WebApiClientSendArgs(System.Uri, string?)
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.New(System.Uri, String)
+  nameWithType: WebApiClientSendArgs.WebApiClientSendArgs(Uri, string?)
+  nameWithType.vb: WebApiClientSendArgs.New(Uri, String)
 - uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor*
   name: WebApiClientSendArgs
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs__ctor_
@@ -13815,6 +13815,39 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ConfigureRequestMessage
   fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ConfigureRequestMessage
   nameWithType: WebApiClientSendArgs.ConfigureRequestMessage
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType
+  name: ContentType
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_ContentType
+  commentId: P:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType
+  nameWithType: WebApiClientSendArgs.ContentType
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType*
+  name: ContentType
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_ContentType_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType
+  nameWithType: WebApiClientSendArgs.ContentType
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose
+  name: Dispose()
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Dispose
+  commentId: M:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose()
+  nameWithType: WebApiClientSendArgs.Dispose()
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Dispose_System_Boolean_
+  commentId: M:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose(bool)
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose(Boolean)
+  nameWithType: WebApiClientSendArgs.Dispose(bool)
+  nameWithType.vb: WebApiClientSendArgs.Dispose(Boolean)
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose*
+  name: Dispose
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Dispose_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose
+  nameWithType: WebApiClientSendArgs.Dispose
 - uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.EmptyUserAgent
   name: EmptyUserAgent
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_EmptyUserAgent
@@ -13971,6 +14004,18 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.RequestUriString
   fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.RequestUriString
   nameWithType: WebApiClientSendArgs.RequestUriString
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient(System.Net.Http.HttpClient)
+  name: SetHttpClient(HttpClient)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_SetHttpClient_System_Net_Http_HttpClient_
+  commentId: M:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient(System.Net.Http.HttpClient)
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient(System.Net.Http.HttpClient)
+  nameWithType: WebApiClientSendArgs.SetHttpClient(HttpClient)
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient*
+  name: SetHttpClient
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_SetHttpClient_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient
+  nameWithType: WebApiClientSendArgs.SetHttpClient
 - uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ToString
   name: ToString()
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_ToString
@@ -14094,6 +14139,144 @@ references:
   commentId: N:BD.Common8.Http.ClientFactory.Services.Implementation
   fullName: BD.Common8.Http.ClientFactory.Services.Implementation
   nameWithType: BD.Common8.Http.ClientFactory.Services.Implementation
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory
+  name: CookieClientHttpClientFactory
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html
+  commentId: T:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory
+  nameWithType: CookieClientHttpClientFactory
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.#ctor
+  name: CookieClientHttpClientFactory()
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory__ctor
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.#ctor
+  name.vb: New()
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CookieClientHttpClientFactory()
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.New()
+  nameWithType: CookieClientHttpClientFactory.CookieClientHttpClientFactory()
+  nameWithType.vb: CookieClientHttpClientFactory.New()
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.#ctor*
+  name: CookieClientHttpClientFactory
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory__ctor_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.#ctor
+  name.vb: New
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CookieClientHttpClientFactory
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.New
+  nameWithType: CookieClientHttpClientFactory.CookieClientHttpClientFactory
+  nameWithType.vb: CookieClientHttpClientFactory.New
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.Net.Http.HttpMessageHandler)
+  name: CreateClient(HttpMessageHandler)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClient_System_Net_Http_HttpMessageHandler_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.Net.Http.HttpMessageHandler)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.Net.Http.HttpMessageHandler)
+  nameWithType: CookieClientHttpClientFactory.CreateClient(HttpMessageHandler)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object)
+  name: CreateClient(string, object)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClient_System_String_System_Object_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object)
+  name.vb: CreateClient(String, Object)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(string, object)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(String, Object)
+  nameWithType: CookieClientHttpClientFactory.CreateClient(string, object)
+  nameWithType.vb: CookieClientHttpClientFactory.CreateClient(String, Object)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Collections.Generic.IEnumerable{System.Net.Cookie})
+  name: CreateClient(string, object, IEnumerable<Cookie>)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClient_System_String_System_Object_System_Collections_Generic_IEnumerable_System_Net_Cookie__
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Collections.Generic.IEnumerable{System.Net.Cookie})
+  name.vb: CreateClient(String, Object, IEnumerable(Of Cookie))
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(string, object, System.Collections.Generic.IEnumerable<System.Net.Cookie>)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(String, Object, System.Collections.Generic.IEnumerable(Of System.Net.Cookie))
+  nameWithType: CookieClientHttpClientFactory.CreateClient(string, object, IEnumerable<Cookie>)
+  nameWithType.vb: CookieClientHttpClientFactory.CreateClient(String, Object, IEnumerable(Of Cookie))
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Net.CookieCollection)
+  name: CreateClient(string, object, CookieCollection)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClient_System_String_System_Object_System_Net_CookieCollection_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Net.CookieCollection)
+  name.vb: CreateClient(String, Object, CookieCollection)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(string, object, System.Net.CookieCollection)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(String, Object, System.Net.CookieCollection)
+  nameWithType: CookieClientHttpClientFactory.CreateClient(string, object, CookieCollection)
+  nameWithType.vb: CookieClientHttpClientFactory.CreateClient(String, Object, CookieCollection)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Net.CookieContainer)
+  name: CreateClient(string, object, CookieContainer)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClient_System_String_System_Object_System_Net_CookieContainer_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Net.CookieContainer)
+  name.vb: CreateClient(String, Object, CookieContainer)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(string, object, System.Net.CookieContainer)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(String, Object, System.Net.CookieContainer)
+  nameWithType: CookieClientHttpClientFactory.CreateClient(string, object, CookieContainer)
+  nameWithType.vb: CookieClientHttpClientFactory.CreateClient(String, Object, CookieContainer)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Net.Cookie[])
+  name: CreateClient(string, object, params Cookie[])
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClient_System_String_System_Object_System_Net_Cookie___
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(System.String,System.Object,System.Net.Cookie[])
+  name.vb: CreateClient(String, Object, ParamArray Cookie())
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(string, object, params System.Net.Cookie[])
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient(String, Object, ParamArray System.Net.Cookie())
+  nameWithType: CookieClientHttpClientFactory.CreateClient(string, object, params Cookie[])
+  nameWithType.vb: CookieClientHttpClientFactory.CreateClient(String, Object, ParamArray Cookie())
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient*
+  name: CreateClient
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClient_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClient
+  nameWithType: CookieClientHttpClientFactory.CreateClient
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClientCore(System.String,System.Object)
+  name: CreateClientCore(string, object)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClientCore_System_String_System_Object_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClientCore(System.String,System.Object)
+  name.vb: CreateClientCore(String, Object)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClientCore(string, object)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClientCore(String, Object)
+  nameWithType: CookieClientHttpClientFactory.CreateClientCore(string, object)
+  nameWithType.vb: CookieClientHttpClientFactory.CreateClientCore(String, Object)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClientCore*
+  name: CreateClientCore
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_CreateClientCore_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClientCore
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.CreateClientCore
+  nameWithType: CookieClientHttpClientFactory.CreateClientCore
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose
+  name: Dispose()
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_Dispose
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose()
+  nameWithType: CookieClientHttpClientFactory.Dispose()
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose(System.String,System.Object)
+  name: Dispose(string, object)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_Dispose_System_String_System_Object_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose(System.String,System.Object)
+  name.vb: Dispose(String, Object)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose(string, object)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose(String, Object)
+  nameWithType: CookieClientHttpClientFactory.Dispose(string, object)
+  nameWithType.vb: CookieClientHttpClientFactory.Dispose(String, Object)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose*
+  name: Dispose
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_Dispose_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.Dispose
+  nameWithType: CookieClientHttpClientFactory.Dispose
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer(System.Net.Http.HttpMessageHandler)
+  name: GetCookieContainer(HttpMessageHandler)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_GetCookieContainer_System_Net_Http_HttpMessageHandler_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer(System.Net.Http.HttpMessageHandler)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer(System.Net.Http.HttpMessageHandler)
+  nameWithType: CookieClientHttpClientFactory.GetCookieContainer(HttpMessageHandler)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer(System.String,System.Object)
+  name: GetCookieContainer(string, object)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_GetCookieContainer_System_String_System_Object_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer(System.String,System.Object)
+  name.vb: GetCookieContainer(String, Object)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer(string, object)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer(String, Object)
+  nameWithType: CookieClientHttpClientFactory.GetCookieContainer(string, object)
+  nameWithType.vb: CookieClientHttpClientFactory.GetCookieContainer(String, Object)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer*
+  name: GetCookieContainer
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_GetCookieContainer_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.GetCookieContainer
+  nameWithType: CookieClientHttpClientFactory.GetCookieContainer
 - uid: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory
   name: FusilladeClientHttpClientFactory
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.html
@@ -14232,15 +14415,15 @@ references:
   commentId: T:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService
   nameWithType: WebApiClientFactoryService
-- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor(Microsoft.Extensions.Logging.ILogger,System.Net.Http.IHttpPlatformHelperService,System.Net.Http.Client.IClientHttpClientFactory)
-  name: WebApiClientFactoryService(ILogger, IHttpPlatformHelperService, IClientHttpClientFactory?)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_Microsoft_Extensions_Logging_ILogger_System_Net_Http_IHttpPlatformHelperService_System_Net_Http_Client_IClientHttpClientFactory_
-  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor(Microsoft.Extensions.Logging.ILogger,System.Net.Http.IHttpPlatformHelperService,System.Net.Http.Client.IClientHttpClientFactory)
-  name.vb: New(ILogger, IHttpPlatformHelperService, IClientHttpClientFactory)
-  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.WebApiClientFactoryService(Microsoft.Extensions.Logging.ILogger, System.Net.Http.IHttpPlatformHelperService, System.Net.Http.Client.IClientHttpClientFactory?)
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.New(Microsoft.Extensions.Logging.ILogger, System.Net.Http.IHttpPlatformHelperService, System.Net.Http.Client.IClientHttpClientFactory)
-  nameWithType: WebApiClientFactoryService.WebApiClientFactoryService(ILogger, IHttpPlatformHelperService, IClientHttpClientFactory?)
-  nameWithType.vb: WebApiClientFactoryService.New(ILogger, IHttpPlatformHelperService, IClientHttpClientFactory)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor(Microsoft.Extensions.Logging.ILogger,System.IServiceProvider)
+  name: WebApiClientFactoryService(ILogger, IServiceProvider)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_Microsoft_Extensions_Logging_ILogger_System_IServiceProvider_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor(Microsoft.Extensions.Logging.ILogger,System.IServiceProvider)
+  name.vb: New(ILogger, IServiceProvider)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.WebApiClientFactoryService(Microsoft.Extensions.Logging.ILogger, System.IServiceProvider)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.New(Microsoft.Extensions.Logging.ILogger, System.IServiceProvider)
+  nameWithType: WebApiClientFactoryService.WebApiClientFactoryService(ILogger, IServiceProvider)
+  nameWithType.vb: WebApiClientFactoryService.New(ILogger, IServiceProvider)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor*
   name: WebApiClientFactoryService
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_
@@ -14280,24 +14463,48 @@ references:
   commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient()
   nameWithType: WebApiClientFactoryService.CreateClient()
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient(System.Object)
+  name: CreateClient(object)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient_System_Object_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient(System.Object)
+  name.vb: CreateClient(Object)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient(object)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient(Object)
+  nameWithType: WebApiClientFactoryService.CreateClient(object)
+  nameWithType.vb: WebApiClientFactoryService.CreateClient(Object)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient*
   name: CreateClient
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient_
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient
   nameWithType: WebApiClientFactoryService.CreateClient
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer(System.Object)
+  name: GetCookieContainer(object)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_GetCookieContainer_System_Object_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer(System.Object)
+  name.vb: GetCookieContainer(Object)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer(object)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer(Object)
+  nameWithType: WebApiClientFactoryService.GetCookieContainer(object)
+  nameWithType.vb: WebApiClientFactoryService.GetCookieContainer(Object)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer*
+  name: GetCookieContainer
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_GetCookieContainer_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer
+  nameWithType: WebApiClientFactoryService.GetCookieContainer
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.clientHttpClientFactory
   name: clientHttpClientFactory
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_clientHttpClientFactory
   commentId: F:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.clientHttpClientFactory
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.clientHttpClientFactory
   nameWithType: WebApiClientFactoryService.clientHttpClientFactory
-- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.httpClient
-  name: httpClient
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_httpClient
-  commentId: F:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.httpClient
-  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.httpClient
-  nameWithType: WebApiClientFactoryService.httpClient
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.cookieClientHttpClientFactory
+  name: cookieClientHttpClientFactory
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_cookieClientHttpClientFactory
+  commentId: F:BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.cookieClientHttpClientFactory
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.cookieClientHttpClientFactory
+  nameWithType: WebApiClientFactoryService.cookieClientHttpClientFactory
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService
   name: WebApiClientService
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html
@@ -14710,6 +14917,21 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnError
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnError
   nameWithType: WebApiClientService.OnError
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase*
+  name: OnErrorReApiRspBase
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnErrorReApiRspBase_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase
+  nameWithType: WebApiClientService.OnErrorReApiRspBase
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase``1(System.Exception,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.String)
+  name: OnErrorReApiRspBase<TResponseBody>(Exception, WebApiClientSendArgs, string)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnErrorReApiRspBase__1_System_Exception_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_String_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase``1(System.Exception,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.String)
+  name.vb: OnErrorReApiRspBase(Of TResponseBody)(Exception, WebApiClientSendArgs, String)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase<TResponseBody>(System.Exception, BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs, string)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnErrorReApiRspBase(Of TResponseBody)(System.Exception, BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs, String)
+  nameWithType: WebApiClientService.OnErrorReApiRspBase<TResponseBody>(Exception, WebApiClientSendArgs, string)
+  nameWithType.vb: WebApiClientService.OnErrorReApiRspBase(Of TResponseBody)(Exception, WebApiClientSendArgs, String)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnError``1(System.Exception,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.String)
   name: OnError<TResponseBody>(Exception, WebApiClientSendArgs, string)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnError__1_System_Exception_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_String_
@@ -14725,6 +14947,21 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError
   nameWithType: WebApiClientService.OnSerializerError
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase*
+  name: OnSerializerErrorReApiRspBase
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerErrorReApiRspBase_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase
+  nameWithType: WebApiClientService.OnSerializerErrorReApiRspBase
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase``1(System.Exception,System.Boolean,System.Type)
+  name: OnSerializerErrorReApiRspBase<TResponseBody>(Exception, bool, Type)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerErrorReApiRspBase__1_System_Exception_System_Boolean_System_Type_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase``1(System.Exception,System.Boolean,System.Type)
+  name.vb: OnSerializerErrorReApiRspBase(Of TResponseBody)(Exception, Boolean, Type)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase<TResponseBody>(System.Exception, bool, System.Type)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerErrorReApiRspBase(Of TResponseBody)(System.Exception, Boolean, System.Type)
+  nameWithType: WebApiClientService.OnSerializerErrorReApiRspBase<TResponseBody>(Exception, bool, Type)
+  nameWithType.vb: WebApiClientService.OnSerializerErrorReApiRspBase(Of TResponseBody)(Exception, Boolean, Type)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError``1(System.Exception,System.Boolean,System.Type)
   name: OnSerializerError<TResponseBody>(Exception, bool, Type)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_
@@ -35860,6 +36097,18 @@ references:
   commentId: Overload:System.Net.Http.Client.HttpResponseMessageContentStream.ReadAsStreamAsync
   fullName: System.Net.Http.Client.HttpResponseMessageContentStream.ReadAsStreamAsync
   nameWithType: HttpResponseMessageContentStream.ReadAsStreamAsync
+- uid: System.Net.Http.Client.HttpResponseMessageContentStream.StatusCode
+  name: StatusCode
+  href: api/BD.Common8.Bcl/System.Net.Http.Client.HttpResponseMessageContentStream.html#System_Net_Http_Client_HttpResponseMessageContentStream_StatusCode
+  commentId: P:System.Net.Http.Client.HttpResponseMessageContentStream.StatusCode
+  fullName: System.Net.Http.Client.HttpResponseMessageContentStream.StatusCode
+  nameWithType: HttpResponseMessageContentStream.StatusCode
+- uid: System.Net.Http.Client.HttpResponseMessageContentStream.StatusCode*
+  name: StatusCode
+  href: api/BD.Common8.Bcl/System.Net.Http.Client.HttpResponseMessageContentStream.html#System_Net_Http_Client_HttpResponseMessageContentStream_StatusCode_
+  commentId: Overload:System.Net.Http.Client.HttpResponseMessageContentStream.StatusCode
+  fullName: System.Net.Http.Client.HttpResponseMessageContentStream.StatusCode
+  nameWithType: HttpResponseMessageContentStream.StatusCode
 - uid: System.Net.Http.Client.IClientHttpClientFactory
   name: IClientHttpClientFactory
   href: api/BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html
@@ -45428,6 +45677,191 @@ references:
   commentId: N:System.Text.Json.Serialization
   fullName: System.Text.Json.Serialization
   nameWithType: System.Text.Json.Serialization
+- uid: System.Text.Json.Serialization.CookieCollectionConverter
+  name: CookieCollectionConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.html
+  commentId: T:System.Text.Json.Serialization.CookieCollectionConverter
+  fullName: System.Text.Json.Serialization.CookieCollectionConverter
+  nameWithType: CookieCollectionConverter
+- uid: System.Text.Json.Serialization.CookieCollectionConverter.#ctor
+  name: CookieCollectionConverter()
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.html#System_Text_Json_Serialization_CookieCollectionConverter__ctor
+  commentId: M:System.Text.Json.Serialization.CookieCollectionConverter.#ctor
+  name.vb: New()
+  fullName: System.Text.Json.Serialization.CookieCollectionConverter.CookieCollectionConverter()
+  fullName.vb: System.Text.Json.Serialization.CookieCollectionConverter.New()
+  nameWithType: CookieCollectionConverter.CookieCollectionConverter()
+  nameWithType.vb: CookieCollectionConverter.New()
+- uid: System.Text.Json.Serialization.CookieCollectionConverter.#ctor*
+  name: CookieCollectionConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.html#System_Text_Json_Serialization_CookieCollectionConverter__ctor_
+  commentId: Overload:System.Text.Json.Serialization.CookieCollectionConverter.#ctor
+  name.vb: New
+  fullName: System.Text.Json.Serialization.CookieCollectionConverter.CookieCollectionConverter
+  fullName.vb: System.Text.Json.Serialization.CookieCollectionConverter.New
+  nameWithType: CookieCollectionConverter.CookieCollectionConverter
+  nameWithType.vb: CookieCollectionConverter.New
+- uid: System.Text.Json.Serialization.CookieCollectionConverter.MemoryPackFormatter
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.html#System_Text_Json_Serialization_CookieCollectionConverter_MemoryPackFormatter
+  commentId: P:System.Text.Json.Serialization.CookieCollectionConverter.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.CookieCollectionConverter.MemoryPackFormatter
+  nameWithType: CookieCollectionConverter.MemoryPackFormatter
+- uid: System.Text.Json.Serialization.CookieCollectionConverter.MemoryPackFormatter*
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.html#System_Text_Json_Serialization_CookieCollectionConverter_MemoryPackFormatter_
+  commentId: Overload:System.Text.Json.Serialization.CookieCollectionConverter.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.CookieCollectionConverter.MemoryPackFormatter
+  nameWithType: CookieCollectionConverter.MemoryPackFormatter
+- uid: System.Text.Json.Serialization.CookieContainerConverter
+  name: CookieContainerConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieContainerConverter.html
+  commentId: T:System.Text.Json.Serialization.CookieContainerConverter
+  fullName: System.Text.Json.Serialization.CookieContainerConverter
+  nameWithType: CookieContainerConverter
+- uid: System.Text.Json.Serialization.CookieContainerConverter.#ctor
+  name: CookieContainerConverter()
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieContainerConverter.html#System_Text_Json_Serialization_CookieContainerConverter__ctor
+  commentId: M:System.Text.Json.Serialization.CookieContainerConverter.#ctor
+  name.vb: New()
+  fullName: System.Text.Json.Serialization.CookieContainerConverter.CookieContainerConverter()
+  fullName.vb: System.Text.Json.Serialization.CookieContainerConverter.New()
+  nameWithType: CookieContainerConverter.CookieContainerConverter()
+  nameWithType.vb: CookieContainerConverter.New()
+- uid: System.Text.Json.Serialization.CookieContainerConverter.#ctor*
+  name: CookieContainerConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieContainerConverter.html#System_Text_Json_Serialization_CookieContainerConverter__ctor_
+  commentId: Overload:System.Text.Json.Serialization.CookieContainerConverter.#ctor
+  name.vb: New
+  fullName: System.Text.Json.Serialization.CookieContainerConverter.CookieContainerConverter
+  fullName.vb: System.Text.Json.Serialization.CookieContainerConverter.New
+  nameWithType: CookieContainerConverter.CookieContainerConverter
+  nameWithType.vb: CookieContainerConverter.New
+- uid: System.Text.Json.Serialization.CookieContainerConverter.MemoryPackFormatter
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieContainerConverter.html#System_Text_Json_Serialization_CookieContainerConverter_MemoryPackFormatter
+  commentId: P:System.Text.Json.Serialization.CookieContainerConverter.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.CookieContainerConverter.MemoryPackFormatter
+  nameWithType: CookieContainerConverter.MemoryPackFormatter
+- uid: System.Text.Json.Serialization.CookieContainerConverter.MemoryPackFormatter*
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieContainerConverter.html#System_Text_Json_Serialization_CookieContainerConverter_MemoryPackFormatter_
+  commentId: Overload:System.Text.Json.Serialization.CookieContainerConverter.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.CookieContainerConverter.MemoryPackFormatter
+  nameWithType: CookieContainerConverter.MemoryPackFormatter
+- uid: System.Text.Json.Serialization.CookieConverter
+  name: CookieConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieConverter.html
+  commentId: T:System.Text.Json.Serialization.CookieConverter
+  fullName: System.Text.Json.Serialization.CookieConverter
+  nameWithType: CookieConverter
+- uid: System.Text.Json.Serialization.CookieConverter.#ctor
+  name: CookieConverter()
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieConverter.html#System_Text_Json_Serialization_CookieConverter__ctor
+  commentId: M:System.Text.Json.Serialization.CookieConverter.#ctor
+  name.vb: New()
+  fullName: System.Text.Json.Serialization.CookieConverter.CookieConverter()
+  fullName.vb: System.Text.Json.Serialization.CookieConverter.New()
+  nameWithType: CookieConverter.CookieConverter()
+  nameWithType.vb: CookieConverter.New()
+- uid: System.Text.Json.Serialization.CookieConverter.#ctor*
+  name: CookieConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieConverter.html#System_Text_Json_Serialization_CookieConverter__ctor_
+  commentId: Overload:System.Text.Json.Serialization.CookieConverter.#ctor
+  name.vb: New
+  fullName: System.Text.Json.Serialization.CookieConverter.CookieConverter
+  fullName.vb: System.Text.Json.Serialization.CookieConverter.New
+  nameWithType: CookieConverter.CookieConverter
+  nameWithType.vb: CookieConverter.New
+- uid: System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieConverter.html#System_Text_Json_Serialization_CookieConverter_MemoryPackFormatter
+  commentId: P:System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter
+  nameWithType: CookieConverter.MemoryPackFormatter
+- uid: System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter*
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieConverter.html#System_Text_Json_Serialization_CookieConverter_MemoryPackFormatter_
+  commentId: Overload:System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter
+  nameWithType: CookieConverter.MemoryPackFormatter
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1
+  name: MemoryPackToJsonConverter<T>
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html
+  commentId: T:System.Text.Json.Serialization.MemoryPackToJsonConverter`1
+  name.vb: MemoryPackToJsonConverter(Of T)
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T)
+  nameWithType: MemoryPackToJsonConverter<T>
+  nameWithType.vb: MemoryPackToJsonConverter(Of T)
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.#ctor
+  name: MemoryPackToJsonConverter()
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1__ctor
+  commentId: M:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.#ctor
+  name.vb: New()
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.MemoryPackToJsonConverter()
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).New()
+  nameWithType: MemoryPackToJsonConverter<T>.MemoryPackToJsonConverter()
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).New()
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.#ctor*
+  name: MemoryPackToJsonConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1__ctor_
+  commentId: Overload:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.#ctor
+  name.vb: New
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.MemoryPackToJsonConverter
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).New
+  nameWithType: MemoryPackToJsonConverter<T>.MemoryPackToJsonConverter
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).New
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.MemoryPackFormatter
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1_MemoryPackFormatter
+  commentId: P:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.MemoryPackFormatter
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).MemoryPackFormatter
+  nameWithType: MemoryPackToJsonConverter<T>.MemoryPackFormatter
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).MemoryPackFormatter
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.MemoryPackFormatter*
+  name: MemoryPackFormatter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1_MemoryPackFormatter_
+  commentId: Overload:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.MemoryPackFormatter
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.MemoryPackFormatter
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).MemoryPackFormatter
+  nameWithType: MemoryPackToJsonConverter<T>.MemoryPackFormatter
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).MemoryPackFormatter
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  name: Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_
+  commentId: M:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  name.vb: Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).Read(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType: MemoryPackToJsonConverter<T>.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).Read(Utf8JsonReader, Type, JsonSerializerOptions)
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Read*
+  name: Read
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1_Read_
+  commentId: Overload:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Read
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.Read
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).Read
+  nameWithType: MemoryPackToJsonConverter<T>.Read
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).Read
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  name: Write(Utf8JsonWriter, T?, JsonSerializerOptions)
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1_Write_System_Text_Json_Utf8JsonWriter__0_System_Text_Json_JsonSerializerOptions_
+  commentId: M:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)
+  name.vb: Write(Utf8JsonWriter, T, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.Write(System.Text.Json.Utf8JsonWriter, T?, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).Write(System.Text.Json.Utf8JsonWriter, T, System.Text.Json.JsonSerializerOptions)
+  nameWithType: MemoryPackToJsonConverter<T>.Write(Utf8JsonWriter, T?, JsonSerializerOptions)
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).Write(Utf8JsonWriter, T, JsonSerializerOptions)
+- uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Write*
+  name: Write
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html#System_Text_Json_Serialization_MemoryPackToJsonConverter_1_Write_
+  commentId: Overload:System.Text.Json.Serialization.MemoryPackToJsonConverter`1.Write
+  fullName: System.Text.Json.Serialization.MemoryPackToJsonConverter<T>.Write
+  fullName.vb: System.Text.Json.Serialization.MemoryPackToJsonConverter(Of T).Write
+  nameWithType: MemoryPackToJsonConverter<T>.Write
+  nameWithType.vb: MemoryPackToJsonConverter(Of T).Write
 - uid: System.Text.Json.Serialization.StringToDecimalConverter
   name: StringToDecimalConverter
   href: api/BD.Common8.Bcl/System.Text.Json.Serialization.StringToDecimalConverter.html

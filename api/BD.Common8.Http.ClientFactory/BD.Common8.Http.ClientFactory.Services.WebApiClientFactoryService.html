@@ -138,10 +138,16 @@
       <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase__1_System_Type_">WebApiClientService.GetApiRspBase&lt;TResponseBody&gt;(Type)</a>
     </div>
     <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerErrorReApiRspBase__1_System_Exception_System_Boolean_System_Type_">WebApiClientService.OnSerializerErrorReApiRspBase&lt;TResponseBody&gt;(Exception, bool, Type)</a>
+    </div>
+    <div>
       <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_">WebApiClientService.OnSerializerError&lt;TResponseBody&gt;(Exception, bool, Type)</a>
     </div>
     <div>
       <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspCodeByClientException_System_Exception_">WebApiClientService.GetApiRspCodeByClientException(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnErrorReApiRspBase__1_System_Exception_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_String_">WebApiClientService.OnErrorReApiRspBase&lt;TResponseBody&gt;(Exception, WebApiClientSendArgs, string)</a>
     </div>
     <div>
       <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnError__1_System_Exception_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_String_">WebApiClientService.OnError&lt;TResponseBody&gt;(Exception, WebApiClientSendArgs, string)</a>
@@ -282,8 +288,8 @@
 
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_Microsoft_Extensions_Logging_ILogger_System_Net_Http_IHttpPlatformHelperService_System_Net_Http_Client_IClientHttpClientFactory_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor(Microsoft.Extensions.Logging.ILogger,System.Net.Http.IHttpPlatformHelperService,System.Net.Http.Client.IClientHttpClientFactory)">
-  WebApiClientFactoryService(ILogger, IHttpPlatformHelperService, IClientHttpClientFactory?)
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService__ctor_Microsoft_Extensions_Logging_ILogger_System_IServiceProvider_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.#ctor(Microsoft.Extensions.Logging.ILogger,System.IServiceProvider)">
+  WebApiClientFactoryService(ILogger, IServiceProvider)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -292,16 +298,14 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected WebApiClientFactoryService(ILogger logger, IHttpPlatformHelperService httpPlatformHelper, IClientHttpClientFactory? clientHttpClientFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">protected WebApiClientFactoryService(ILogger logger, IServiceProvider serviceProvider)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger">ILogger</a></dt>
     <dd></dd>
-    <dt><code>httpPlatformHelper</code> <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.IHttpPlatformHelperService.html">IHttpPlatformHelperService</a></dt>
-    <dd></dd>
-    <dt><code>clientHttpClientFactory</code> <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a></dt>
+    <dt><code>serviceProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
     <dd></dd>
   </dl>
 
@@ -358,16 +362,18 @@ The default <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClie
 
 
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_httpClient" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.httpClient">
-  httpClient
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_cookieClientHttpClientFactory" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.cookieClientHttpClientFactory">
+  cookieClientHttpClientFactory
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>使用 Cookie 的 HttpClientFactory</p>
+<p>对于需要使用 Cookie 的场景，定义一个唯一键 object id，由此工厂创建与复用 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> 并且调用 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_Dispose_System_String_System_Object_">Dispose(string, object)</a> 进行释放</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected HttpClient? httpClient</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly CookieClientHttpClientFactory? cookieClientHttpClientFactory</code></pre>
   </div>
 
 
@@ -375,7 +381,7 @@ The default <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClie
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dt><a class="xref" href="BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html">CookieClientHttpClientFactory</a></dt>
     <dd></dd>
   </dl>
 
@@ -466,8 +472,7 @@ The default <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClie
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates and configures an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance using the configuration that corresponds
-to the logical name specified by <code class="paramref">name</code>.</p>
+  <div class="markdown level1 summary"><p>创建或获取【不需要】使用 Cookie 的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -479,8 +484,7 @@ to the logical name specified by <code class="paramref">name</code>.</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
-    <dd><p>A new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -489,17 +493,80 @@ to the logical name specified by <code class="paramref">name</code>.</p>
 
 
 
-  <h4 class="section" id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>
-            Each call to <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html#System_Net_Http_Client_IClientHttpClientFactory_CreateClient_System_String_System_Net_Http_Client_HttpHandlerCategory_">CreateClient(string, HttpHandlerCategory)</a> is guaranteed to return a new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>
-            instance. It is generally not necessary to dispose of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> as the
-            <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> tracks and disposes resources used by the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>.
-            </p>
-<p>
-            Callers are also free to mutate the returned <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance's public properties
-            as desired.
-            </p>
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_CreateClient_System_Object_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.CreateClient(System.Object)">
+  CreateClient(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建或获取【需要】使用 Cookie 的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>，状态由 id 对应字典保存</p>
 </div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual HttpClient CreateClient(object id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_GetCookieContainer_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientFactoryService_GetCookieContainer_System_Object_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.GetCookieContainer(System.Object)">
+  GetCookieContainer(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据状态 id 获取对应的 Cookie 容器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CookieContainer GetCookieContainer(object id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.cookiecontainer">CookieContainer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
 
 
 

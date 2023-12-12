@@ -94,7 +94,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record WebApiClientSendArgs : IEquatable&lt;WebApiClientSendArgs&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public record WebApiClientSendArgs : IDisposable, IEquatable&lt;WebApiClientSendArgs&gt;</code></pre>
   </div>
 
 
@@ -111,6 +111,7 @@
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html">WebApiClientSendArgs</a>&gt;</div>
     </dd>
   </dl>
@@ -207,8 +208,8 @@
 
   <a id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs__ctor_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs__ctor_System_Uri_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor(System.Uri)">
-  WebApiClientSendArgs(Uri)
+  <h3 id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs__ctor_System_Uri_System_String_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.#ctor(System.Uri,System.String)">
+  WebApiClientSendArgs(Uri, string?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Models/WebApiClientSendArgs.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -217,12 +218,14 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public WebApiClientSendArgs(Uri requestUri)</code></pre>
+    <pre><code class="lang-csharp hljs">public WebApiClientSendArgs(Uri requestUri, string? requestUriString = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>requestUri</code> <span class="xref">Uri</span></dt>
+    <dd></dd>
+    <dt><code>requestUriString</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -296,6 +299,39 @@
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-3">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestmessage">HttpRequestMessage</a>, <a class="xref" href="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html">WebApiClientSendArgs</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_ContentType_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_ContentType" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ContentType">
+  ContentType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Models/WebApiClientSendArgs.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Content-Type 实体头部用于指示资源的 MIME 类型 media type 。</p>
+<p>https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ContentType { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
@@ -381,7 +417,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IsolatedCookieContainer? IsolatedCookie { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;use CookieClientHttpClientFactory&quot;)]
+public IsolatedCookieContainer? IsolatedCookie { get; set; }</code></pre>
   </div>
 
 
@@ -597,6 +634,63 @@
 </h2>
 
 
+  <a id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Dispose_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Dispose" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Models/WebApiClientSendArgs.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Dispose_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Dispose_System_Boolean_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Dispose(System.Boolean)">
+  Dispose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Models/WebApiClientSendArgs.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Equals_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Equals*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_Equals_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Equals(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs)">
@@ -796,6 +890,38 @@
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_SetHttpClient_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_SetHttpClient_System_Net_Http_HttpClient_" data-uid="BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient(System.Net.Http.HttpClient)">
+  SetHttpClient(HttpClient)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Models/WebApiClientSendArgs.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置用作发送的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SetHttpClient(HttpClient httpClient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>httpClient</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a></dt>
+    <dd></dd>
+  </dl>
+
 
 
 
