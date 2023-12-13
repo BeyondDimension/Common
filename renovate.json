@@ -10,9 +10,9 @@
   "git-submodules": {
     "enabled": true
   },
-  "baseBranches": ["dev8"],
+  "baseBranches": ["renovatebot/dev8"],
   "ignoreTests": true,
   "platformAutomerge": true,
   "timezone": "Asia/Shanghai",
-  "schedule": ["before 2am","before 5am","before 9am","before 11pm"]
+  "schedule": ["before 1am","before 5am","before 9am"]
 }
