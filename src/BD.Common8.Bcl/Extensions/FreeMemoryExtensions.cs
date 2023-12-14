@@ -1,7 +1,5 @@
 #if WINDOWS7_0_OR_GREATER
-#pragma warning disable CS8981
-using winmdroot = Windows.Win32;
-#pragma warning restore CS8981
+using CsWin32 = Windows.Win32;
 
 namespace System.Extensions;
 
@@ -15,7 +13,7 @@ internal static partial class FreeMemoryExtensions
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static unsafe void FreeMemory(
-        this winmdroot.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo)
+        this CsWin32.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo)
     {
         char* lpszProxy = proxyInfo.lpszProxy;
         Marshal.FreeHGlobal((nint)lpszProxy);
@@ -29,7 +27,7 @@ internal static partial class FreeMemoryExtensions
     /// </summary>
     /// <param name="proxyConfig">代理配置信息</param>
     internal static unsafe void FreeMemory(
-        this winmdroot.Networking.WinHttp.WINHTTP_CURRENT_USER_IE_PROXY_CONFIG proxyConfig)
+        this CsWin32.Networking.WinHttp.WINHTTP_CURRENT_USER_IE_PROXY_CONFIG proxyConfig)
     {
         char* lpszAutoConfigUrl = proxyConfig.lpszAutoConfigUrl;
         Marshal.FreeHGlobal((nint)lpszAutoConfigUrl);

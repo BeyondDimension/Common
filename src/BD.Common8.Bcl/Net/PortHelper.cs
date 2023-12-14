@@ -2,9 +2,7 @@
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 
 #if WINDOWS7_0_OR_GREATER
-#pragma warning disable CS8981
-using winmdroot = Windows.Win32;
-#pragma warning restore CS8981
+using CsWin32 = Windows.Win32;
 #endif
 
 namespace System.Net;
@@ -77,8 +75,8 @@ public static partial class PortHelper
         uint bufferSize = 0;
 
         // Getting the size of TCP table, that is returned in 'bufferSize' variable.
-        _ = winmdroot.PInvoke.GetExtendedTcpTable(default, ref bufferSize, true, (uint)AddressFamily.InterNetwork,
-            winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+        _ = CsWin32.PInvoke.GetExtendedTcpTable(default, ref bufferSize, true, (uint)AddressFamily.InterNetwork,
+            CsWin32.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
         // Allocating memory from the unmanaged memory of the process by using the
         // specified number of bytes in 'bufferSize' variable.
@@ -89,8 +87,8 @@ public static partial class PortHelper
             // The size of the table returned in 'bufferSize' variable in previous
             // call must be used in this subsequent call to 'GetExtendedTcpTable'
             // function in order to successfully retrieve the table.
-            var result = winmdroot.PInvoke.GetExtendedTcpTable((void*)tcpTableRecordsPtr, ref bufferSize, true,
-               (uint)AddressFamily.InterNetwork, winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+            var result = CsWin32.PInvoke.GetExtendedTcpTable((void*)tcpTableRecordsPtr, ref bufferSize, true,
+               (uint)AddressFamily.InterNetwork, CsWin32.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
             // Non-zero value represent the function 'GetExtendedTcpTable' failed,
             // hence empty list is returned to the caller function.
@@ -164,8 +162,8 @@ public static partial class PortHelper
         List<TcpProcessRecord> tcpTableRecords = [];
 
         // 正在获取 TCP 表的大小，该大小在“bufferSize”变量中返回
-        _ = winmdroot.PInvoke.GetExtendedTcpTable(default, ref bufferSize, true, (uint)AddressFamily.InterNetwork,
-            winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+        _ = CsWin32.PInvoke.GetExtendedTcpTable(default, ref bufferSize, true, (uint)AddressFamily.InterNetwork,
+            CsWin32.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
         // Allocating memory from the unmanaged memory of the process by using the
         // specified number of bytes in 'bufferSize' variable.
@@ -176,8 +174,8 @@ public static partial class PortHelper
             // The size of the table returned in 'bufferSize' variable in previous
             // call must be used in this subsequent call to 'GetExtendedTcpTable'
             // function in order to successfully retrieve the table.
-            var result = winmdroot.PInvoke.GetExtendedTcpTable((void*)tcpTableRecordsPtr, ref bufferSize, true,
-                (uint)AddressFamily.InterNetwork, winmdroot.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
+            var result = CsWin32.PInvoke.GetExtendedTcpTable((void*)tcpTableRecordsPtr, ref bufferSize, true,
+                (uint)AddressFamily.InterNetwork, CsWin32.NetworkManagement.IpHelper.TCP_TABLE_CLASS.TCP_TABLE_OWNER_PID_ALL, 0);
 
             // Non-zero value represent the function 'GetExtendedTcpTable' failed,
             // hence empty list is returned to the caller function.

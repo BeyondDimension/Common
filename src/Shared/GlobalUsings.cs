@@ -53,9 +53,13 @@ global using System.Xml.Serialization;
 global using System.Xml.XPath;
 global using IPAddress = System.Net.IPAddress;
 global using Path = System.IO.Path;
+global using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 #if ANDROID
 global using Android.Runtime;
 global using AToastLength = Android.Widget.ToastLength;
 global using AndroidApplication = Android.App.Application;
 global using Activity = Android.App.Activity;
+global using JavaObject = Java.Lang.Object;
+global using JavaThread = Java.Lang.Thread;
+global using JavaThrowable = Java.Lang.Throwable;
 #endif

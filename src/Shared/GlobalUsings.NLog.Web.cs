@@ -5,12 +5,4 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using NLog;
-global using NLog.Common;
-global using NLog.Config;
-global using NLog.Targets;
-global using NLog.Extensions.Logging;
-global using NLogLevel = NLog.LogLevel;
-global using NInternalLogger = NLog.Common.InternalLogger;
-global using NLogManager = NLog.LogManager;
-global using NLogger = NLog.Logger;
+global using NLog.Web;

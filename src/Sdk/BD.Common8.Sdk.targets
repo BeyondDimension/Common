@@ -196,6 +196,9 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.NLog.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
+		<Compile Condition="$(UseAspNetCore) == 'true'" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.NLog.Web.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 		<PackageReference Include="NLog" />
 		<PackageReference Include="NLog.Extensions.Logging" />
 		<PackageReference Condition="$(UseAspNetCore) == 'true'" Include="NLog.Web.AspNetCore" />
@@ -203,6 +206,9 @@
 
 	<!-- 是否包引用 Microsoft.Extensions.Logging.Console -->
 	<ItemGroup Condition="$(UseMicrosoftExtensionsLoggingConsole) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Logging.Console.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" />
 	</ItemGroup>
 

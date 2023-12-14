@@ -8,6 +8,7 @@
 global using DynamicData;
 global using DynamicData.Binding;
 
+global using System.Reactive;
 global using System.Reactive.Subjects;
 global using System.Reactive.Linq;
 global using System.Reactive.Disposables;

@@ -4,9 +4,7 @@
 #if WINDOWS
 using static System.String;
 using ErrorEventArgs = System.IO.ErrorEventArgs;
-#pragma warning disable CS8981
-using winmdroot = Windows.Win32;
-#pragma warning restore CS8981
+using CsWin32 = Windows.Win32;
 
 namespace System.Net;
 
@@ -130,7 +128,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         readonly List<IPAddress>? _localIp;
         ICredentials? _credentials;
         readonly WinInetProxyHelper _proxyHelper;
-        winmdroot.Networking.WinHttp.SafeHINTERNET? _sessionHandle;
+        CsWin32.Networking.WinHttp.SafeHINTERNET? _sessionHandle;
         bool _disposed;
 
         /// <summary>
@@ -143,7 +141,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         {
             // This will get basic proxy setting from system using existing
             // WinInetProxyHelper functions. If no proxy is enabled, it will return null.
-            winmdroot.Networking.WinHttp.SafeHINTERNET? sessionHandle = null;
+            CsWin32.Networking.WinHttp.SafeHINTERNET? sessionHandle = null;
             proxy = null;
 
             WinInetProxyHelper proxyHelper = new();
@@ -154,8 +152,8 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
 
             if (proxyHelper.AutoSettingsUsed)
             {
-                sessionHandle = winmdroot.PInvoke.WinHttpOpen(null,
-                    winmdroot.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY,
+                sessionHandle = CsWin32.PInvoke.WinHttpOpen(null,
+                    CsWin32.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY,
                     Interop.WinHttp.WINHTTP_NO_PROXY_NAME,
                     Interop.WinHttp.WINHTTP_NO_PROXY_BYPASS,
                     WINHTTP_FLAG_ASYNC
@@ -173,7 +171,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             return true;
         }
 
-        private HttpWindowsProxy(WinInetProxyHelper proxyHelper, winmdroot.Networking.WinHttp.SafeHINTERNET? sessionHandle)
+        private HttpWindowsProxy(WinInetProxyHelper proxyHelper, CsWin32.Networking.WinHttp.SafeHINTERNET? sessionHandle)
         {
             _proxyHelper = proxyHelper;
             _sessionHandle = sessionHandle;
@@ -306,7 +304,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             // won't actually discover a PAC file on the network since WPAD protocol isn't configured.
             if (_proxyHelper.AutoSettingsUsed && !_proxyHelper.RecentAutoDetectionFailure)
             {
-                winmdroot.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo = default;
+                CsWin32.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo = default;
                 try
                 {
                     if (_proxyHelper.GetProxyForUrl(_sessionHandle, uri, out proxyInfo))
@@ -868,7 +866,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
     {
         #region P/Invoke
 
-        private const winmdroot.System.Registry.REG_SAM_FLAGS STANDARD_RIGHTS_READ = (winmdroot.System.Registry.REG_SAM_FLAGS)0x00020000;
+        private const CsWin32.System.Registry.REG_SAM_FLAGS STANDARD_RIGHTS_READ = (CsWin32.System.Registry.REG_SAM_FLAGS)0x00020000;
 
         #endregion
 
@@ -930,11 +928,11 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         private bool _disposed = false;
         private readonly ManualResetEvent _eventTerminate = new(false);
 
-        private winmdroot.System.Registry.REG_NOTIFY_FILTER _regFilter =
-            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_NAME |
-            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_ATTRIBUTES |
-            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_LAST_SET |
-            winmdroot.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_SECURITY;
+        private CsWin32.System.Registry.REG_NOTIFY_FILTER _regFilter =
+            CsWin32.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_NAME |
+            CsWin32.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_ATTRIBUTES |
+            CsWin32.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_LAST_SET |
+            CsWin32.System.Registry.REG_NOTIFY_FILTER.REG_NOTIFY_CHANGE_SECURITY;
 
         #endregion
 
@@ -961,7 +959,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         /// <summary>
         /// Gets or sets the <see cref="RegChangeNotifyFilter">RegChangeNotifyFilter</see>.
         /// </summary>
-        public winmdroot.System.Registry.REG_NOTIFY_FILTER RegChangeNotifyFilter
+        public CsWin32.System.Registry.REG_NOTIFY_FILTER RegChangeNotifyFilter
         {
             get => _regFilter;
             set
@@ -1065,15 +1063,15 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             AutoResetEvent? eventNotify = null;
             try
             {
-                var result = winmdroot.PInvoke.RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | winmdroot.System.Registry.REG_SAM_FLAGS.KEY_QUERY_VALUE | winmdroot.System.Registry.REG_SAM_FLAGS.KEY_NOTIFY, out registryKey);
-                if (result != winmdroot.Foundation.WIN32_ERROR.ERROR_SUCCESS)
+                var result = CsWin32.PInvoke.RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | CsWin32.System.Registry.REG_SAM_FLAGS.KEY_QUERY_VALUE | CsWin32.System.Registry.REG_SAM_FLAGS.KEY_NOTIFY, out registryKey);
+                if (result != CsWin32.Foundation.WIN32_ERROR.ERROR_SUCCESS)
                     throw new Win32Exception((int)result);
 
                 eventNotify = new AutoResetEvent(false);
                 WaitHandle[] waitHandles = [eventNotify, _eventTerminate];
                 while (!_eventTerminate.WaitOne(0, true))
                 {
-                    result = winmdroot.PInvoke.RegNotifyChangeKeyValue(registryKey, true, _regFilter, eventNotify.SafeWaitHandle, true);
+                    result = CsWin32.PInvoke.RegNotifyChangeKeyValue(registryKey, true, _regFilter, eventNotify.SafeWaitHandle, true);
                     if (result != 0)
                         throw new Win32Exception((int)result);
 
@@ -1120,11 +1118,11 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
 
         public WinInetProxyHelper()
         {
-            winmdroot.Networking.WinHttp.WINHTTP_CURRENT_USER_IE_PROXY_CONFIG proxyConfig = default;
+            CsWin32.Networking.WinHttp.WINHTTP_CURRENT_USER_IE_PROXY_CONFIG proxyConfig = default;
 
             try
             {
-                if (winmdroot.PInvoke.WinHttpGetIEProxyConfigForCurrentUser(ref proxyConfig))
+                if (CsWin32.PInvoke.WinHttpGetIEProxyConfigForCurrentUser(ref proxyConfig))
                 {
                     _autoConfigUrl = proxyConfig.lpszAutoConfigUrl.ToString();
                     _autoDetect = proxyConfig.fAutoDetect;
@@ -1186,11 +1184,11 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         const uint WINHTTP_AUTOPROXY_CONFIG_URL = 0x00000002;
 
         public unsafe bool GetProxyForUrl(
-            winmdroot.Networking.WinHttp.SafeHINTERNET? sessionHandle,
+            CsWin32.Networking.WinHttp.SafeHINTERNET? sessionHandle,
             Uri uri,
-            out winmdroot.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo)
+            out CsWin32.Networking.WinHttp.WINHTTP_PROXY_INFO proxyInfo)
         {
-            proxyInfo.dwAccessType = winmdroot.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY;
+            proxyInfo.dwAccessType = CsWin32.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NO_PROXY;
             proxyInfo.lpszProxy = default;
             proxyInfo.lpszProxyBypass = default;
 
@@ -1200,7 +1198,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
             }
 
             bool useProxy = false;
-            winmdroot.Networking.WinHttp.WINHTTP_AUTOPROXY_OPTIONS autoProxyOptions;
+            CsWin32.Networking.WinHttp.WINHTTP_AUTOPROXY_OPTIONS autoProxyOptions;
             fixed (char* lpszAutoConfigUrl = &Runtime.InteropServices.Marshalling.Utf16StringMarshaller.GetPinnableReference(AutoConfigUrl))
             {
                 autoProxyOptions.lpszAutoConfigUrl = lpszAutoConfigUrl;
@@ -1243,7 +1241,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                 do
                 {
                     _autoDetectionFailed = false;
-                    if (winmdroot.PInvoke.WinHttpGetProxyForUrl(
+                    if (CsWin32.PInvoke.WinHttpGetProxyForUrl(
                         sessionHandle!,
                         destination,
                         ref autoProxyOptions,
@@ -1288,7 +1286,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                 // Fall back to manual settings if available.
                 if (!useProxy && !IsNullOrEmpty(Proxy))
                 {
-                    proxyInfo.dwAccessType = winmdroot.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NAMED_PROXY;
+                    proxyInfo.dwAccessType = CsWin32.Networking.WinHttp.WINHTTP_ACCESS_TYPE.WINHTTP_ACCESS_TYPE_NAMED_PROXY;
                     proxyInfo.lpszProxy = (char*)Marshal.StringToHGlobalUni(Proxy);
                     proxyInfo.lpszProxyBypass = IsNullOrEmpty(ProxyBypass) ?
                         default : (char*)Marshal.StringToHGlobalUni(ProxyBypass);
