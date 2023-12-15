@@ -9,12 +9,14 @@ namespace BD.Common8.SourceGenerator.Helpers;
 [DebuggerDisplay("{FullName,nq}")]
 public sealed class TypeStringImpl(string fullName) : Type
 {
-    readonly ITypeSymbol? typeSymbol;
+    ITypeSymbol? typeSymbol;
 
     public TypeStringImpl(ITypeSymbol typeSymbol) : this(typeSymbol.ToDisplayString())
     {
         this.typeSymbol = typeSymbol;
     }
+
+    public ITypeSymbol? TypeSymbol { get => typeSymbol; set => typeSymbol = value; }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TypeStringImpl? Parse(string? fullName) =>
@@ -22,7 +24,7 @@ public sealed class TypeStringImpl(string fullName) : Type
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static TypeStringImpl Parse(ITypeSymbol typeSymbol) =>
-        new TypeStringImpl(typeSymbol);
+        new(typeSymbol);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ITypeSymbol? GetTypeSymbol(Type type)
@@ -31,6 +33,21 @@ public sealed class TypeStringImpl(string fullName) : Type
             return typeStringImpl.typeSymbol;
         return null;
     }
+
+    public bool IsSystemBoolean => FullName == "System.Boolean" || FullName == "bool";
+
+    public bool IsSystemString => FullName == "System.String" || FullName == "string";
+
+    public bool IsSystemDateOnly => FullName == "System.DateOnly" || FullName == "DateOnly";
+
+    public bool IsSystemDateTime => FullName == "System.DateTime" || FullName == "DateTime";
+
+    public bool IsSystemDateTimeOffset => FullName == "System.DateTimeOffset" || FullName == "DateTimeOffset";
+
+    public bool IsSystemThreadingCancellationToken => FullName == "System.Threading.CancellationToken" || FullName == "CancellationToken";
+
+    public bool IsSystemCollectionsGenericIAsyncEnumerable =>
+        FullName.StartsWith("System.Collections.Generic.IAsyncEnumerable<") && FullName.EndsWith(">");
 
     public string DictionaryKey
     {

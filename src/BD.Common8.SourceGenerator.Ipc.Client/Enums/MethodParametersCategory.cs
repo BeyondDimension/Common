@@ -24,10 +24,28 @@ public enum MethodParametersCategory : byte
     /// 单个参数作为模型类，从 Body 中传递
     /// </summary>
     FromBody,
+
+    /// <summary>
+    /// 尝试将多个参数生成模型类，然后使用 Body 传递
+    /// </summary>
+    GeneratorModelFromBody,
 }
 
 public static partial class MethodParametersCategoryEnumExtensions
 {
+    static bool IsSimpleTypes(ImmutableArray<IParameterSymbol> parameters)
+    {
+        for (int i = 0; i < parameters.Length; i++)
+        {
+            if (!parameters[i].Type.IsSimpleTypes())
+            {
+                if (i != parameters.Length - 1)
+                    return false;
+            }
+        }
+        return true;
+    }
+
     /// <summary>
     /// 根据 <see cref="IMethodSymbol"/> 解析 <see cref="MethodParametersCategory"/>
     /// </summary>
@@ -35,14 +53,18 @@ public static partial class MethodParametersCategoryEnumExtensions
     /// <returns></returns>
     public static MethodParametersCategory GetMethodParametersCategory(this IMethodSymbol method)
     {
-        if (method.Parameters.Length == 0) // 无参数函数
+        if (method.Parameters.Length == 0 ||
+            (method.Parameters.Length == 1 &&
+           new TypeStringImpl(method.Parameters[0].Type).IsSystemThreadingCancellationToken)) // 无参数函数
             return MethodParametersCategory.None;
-        else if (method.Parameters.All(x => x.Type.IsSimpleTypes())) // 参数全部为简单类型，使用路由
+        else if (IsSimpleTypes(method.Parameters)) // 参数全部为简单类型，使用路由
             return MethodParametersCategory.SimpleTypes;
         else if (method.Parameters.Length == 1)
             return MethodParametersCategory.FromBody;
-
-        return MethodParametersCategory.Unknown;
+        else if (method.Parameters.Length == 2 &&
+           new TypeStringImpl(method.Parameters[1].Type).IsSystemThreadingCancellationToken)
+            return MethodParametersCategory.FromBody;
+        return MethodParametersCategory.GeneratorModelFromBody;
     }
 
     /// <summary>
@@ -60,6 +82,8 @@ public static partial class MethodParametersCategoryEnumExtensions
         {
             typeString = typeString.TrimStart("System.");
         }
+        if (typeString == "System.Threading.CancellationToken")
+            return "CancellationToken";
         return typeString;
     }
 }

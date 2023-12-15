@@ -19,6 +19,9 @@
 		<Compile Include="..\BD.Common8.Ipc\Attributes\*.cs">
 			<LinkBase>_SourceReference\Attributes</LinkBase>
 		</Compile>
+		<Compile Include="..\BD.Common8.Ipc\Enums\IpcGeneratorType.cs">
+			<LinkBase>_SourceReference\Enums</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 </Project>

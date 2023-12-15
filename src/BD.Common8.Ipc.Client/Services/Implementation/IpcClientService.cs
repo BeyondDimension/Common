@@ -89,10 +89,15 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
             hubConnection = builder.Build();
             hubConnection.Reconnected += HubConnection_Reconnected;
             hubConnection.Reconnecting += HubConnection_Reconnecting;
+            OnBuildHubConnection(hubConnection);
 
             await TryStartAsync();
         }
         return hubConnection;
+    }
+
+    protected virtual void OnBuildHubConnection(HubConnection connection)
+    {
     }
 
     async Task TryStartAsync()

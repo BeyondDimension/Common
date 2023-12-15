@@ -1,17 +1,37 @@
-#pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable CA1050 // 在命名空间中声明类型
+#pragma warning disable SA1600 // Elements should be documented
 
-[ServiceContract]
+/// <summary>
+/// 模拟业务服务
+/// </summary>
 public partial interface ITodoService
 {
-    record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
-
+    /// <summary>
+    /// 获取所有模型数据
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// 根据 Id 获取模型数据
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 测试 https://learn.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-8.0#simple-types 路由绑定简单类型
+    /// 测试 https://learn.microsoft.com/zh-cn/aspnet/core/mvc/models/model-binding?view=aspnetcore-8.0#simple-types 路由绑定简单类型
+    /// <list type="bullet">
+    /// <item>日期时间类型需要使用往返（“O”、“o”）格式</item>
+    /// <item>https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/standard-date-and-time-format-strings#the-round-trip-o-o-format-specifier</item>
+    /// <item>“O”或“o”标准格式说明符表示使用保留时区信息的模式的自定义日期和时间格式字符串，并发出符合 ISO8601 的结果字符串。</item>
+    /// <item>对于 DateTime 值，“O”或“o”标准格式说明符对应于“yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK”自定义格式字符串，对于 DateTimeOffset 值，“O”或“o”标准格式说明符则对应于“yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffzzz”自定义格式字符串。 在此字符串中，分隔各个字符（例如连字符、冒号和字母“T”）的单引号标记对指示各个字符是不能更改的文本。 撇号不会出现在输出字符串中。</item>
+    /// <item>System.Text.Json 中的 DateTime 和 DateTimeOffset 支持 ISO 8601-1:2019 格式</item>
+    /// <item>https://learn.microsoft.com/zh-cn/dotnet/standard/datetime/system-text-json-support</item>
+    /// <item>https://github.com/dotnet/runtime/blob/v8.0.0/src/libraries/System.Text.Json/src/System/Text/Json/JsonHelpers.Date.cs</item>
+    /// </list>
     /// </summary>
     /// <param name="p0"></param>
     /// <param name="p1"></param>
@@ -46,13 +66,35 @@ public partial interface ITodoService
         uint p18, ulong p19, Uri p20,
         Version p21, CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// 使用 Request Body 的接口案例
+    /// </summary>
+    /// <param name="todo"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
     Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// 异步迭代器案例
+    /// </summary>
+    /// <param name="len"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     IAsyncEnumerable<Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default);
 }
+
+/// <summary>
+/// 模拟的业务模型类
+/// </summary>
+/// <param name="Id"></param>
+/// <param name="Title"></param>
+/// <param name="DueBy"></param>
+/// <param name="IsComplete"></param>
+public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
 
 /// <summary>
 /// 示例路径助手类
@@ -207,9 +249,9 @@ public static class SamplePathHelper
         {
             return Random.Shared.Next(int.MaxValue);
         }
-        else if (type == typeof(ITodoService.Todo))
+        else if (type == typeof(Todo))
         {
-            return new ITodoService.Todo(Random.Shared.Next(3, 9), Random2.GenerateRandomString(64));
+            return new Todo(Random.Shared.Next(3, 9), Random2.GenerateRandomString(64));
         }
         else if (type == typeof(char))
         {
@@ -313,8 +355,11 @@ public static class SamplePathHelper
     }
 }
 
-[JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo[]>))]
-[JsonSerializable(typeof(ApiRspImpl<ITodoService.Todo>))]
+/// <summary>
+/// <see cref="ITodoService"/> 的 Json 源生成类型信息
+/// </summary>
+[JsonSerializable(typeof(ApiRspImpl<Todo[]>))]
+[JsonSerializable(typeof(ApiRspImpl<Todo>))]
 [JsonSerializable(typeof(ApiRspImpl))]
 [JsonSerializable(typeof(ApiRspImpl<nil>))]
 internal sealed partial class SampleJsonSerializerContext : SystemTextJsonSerializerContext

@@ -8,7 +8,7 @@ namespace BD.Common8.SourceGenerator.Ipc.Templates;
 [Generator]
 public sealed class MinimalAPIsTemplate :
     GeneratedAttributeTemplateBase<
-        ServiceContractAttribute,
+        ServiceContractImplAttribute,
         MinimalAPIsTemplate.SourceModel>
 {
     protected override string Id =>
@@ -19,7 +19,7 @@ public sealed class MinimalAPIsTemplate :
 
     protected override string FileId => "MinimalAPIs";
 
-    protected override ServiceContractAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override ServiceContractImplAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
     {
         return null!;
     }
@@ -47,8 +47,8 @@ public sealed class MinimalAPIsTemplate :
         /// </summary>
         public required ImmutableArray<IMethodSymbol> Methods { get; init; }
 
-        /// <inheritdoc cref="ServiceContractAttribute"/>
-        public required ServiceContractAttribute Attribute { get; init; }
+        /// <inheritdoc cref="ServiceContractImplAttribute"/>
+        public required ServiceContractImplAttribute Attribute { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)

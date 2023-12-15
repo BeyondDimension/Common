@@ -87,7 +87,7 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
 
 sealed partial class TodoServiceImpl : ITodoService
 {
-    readonly ITodoService.Todo[] todos = [
+    readonly Todo[] todos = [
         new(1, "Walk the dog"),
         new(2, "Do the dishes", DateOnly.FromDateTime(DateTime.Now)),
         new(3, "Do the laundry", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
@@ -95,16 +95,16 @@ sealed partial class TodoServiceImpl : ITodoService
         new(5, "Clean the car", DateOnly.FromDateTime(DateTime.Now.AddDays(2))),
     ];
 
-    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
     {
         await Task.Delay(1, cancellationToken);
         var result = todos.Concat([
-            new ITodoService.Todo(6, DateTimeOffset.Now.ToString()),
+            new Todo(6, DateTimeOffset.Now.ToString()),
         ]).ToArray();
         return result;
     }
 
-    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
     {
         await Task.Delay(1, cancellationToken);
         return todos.FirstOrDefault(x => x.Id == id);
@@ -124,14 +124,14 @@ sealed partial class TodoServiceImpl : ITodoService
         return Task.FromResult(result);
     }
 
-    public Task<ApiRspImpl> BodyTest(ITodoService.Todo todo, CancellationToken cancellationToken = default)
+    public Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
     {
         var result = ApiRspHelper.Ok();
         result.InternalMessage = todo.Title;
         return Task.FromResult(result);
     }
 
-    public async IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         for (int i = 0; i < len; i++)
         {
@@ -183,7 +183,7 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
                     p18, p19, p20,
                     p21,
                     ctx.RequestAborted)));
-        builder.MapPost("/BodyTest", (Delegate)(static async (HttpContext ctx, [FromBody] ITodoService.Todo todo) => await Ioc.Get<ITodoService>().BodyTest(todo, ctx.RequestAborted)));
+        builder.MapPost("/BodyTest", (Delegate)(static async (HttpContext ctx, [FromBody] Todo todo) => await Ioc.Get<ITodoService>().BodyTest(todo, ctx.RequestAborted)));
         builder.MapGet("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] string len) => Ioc.Get<ITodoService>().AsyncEnumerable(int.Parse(len), ctx.RequestAborted)));
         builder.MapPost("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] int len) => Ioc.Get<ITodoService>().AsyncEnumerable(len, ctx.RequestAborted)));
 #pragma warning restore IDE0004 // 删除不必要的强制转换
@@ -192,14 +192,16 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
 
 sealed class TodoServiceImpl_Hub : IpcServerHub
 {
-    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All()
+    public async Task<ApiRspImpl<Todo[]?>> All()
     {
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(All), RequestAborted);
         var result = await Ioc.Get<ITodoService>().All(RequestAborted);
         return result;
     }
 
-    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id)
+    public async Task<ApiRspImpl<Todo?>> GetById(int id)
     {
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(GetById), RequestAborted);
         var result = await Ioc.Get<ITodoService>().GetById(id, RequestAborted);
         return result;
     }
@@ -213,17 +215,19 @@ sealed class TodoServiceImpl_Hub : IpcServerHub
         uint p18, ulong p19, Uri p20,
         Version p21)
     {
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted);
         var result = await Ioc.Get<ITodoService>().SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, RequestAborted);
         return result;
     }
 
-    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo)
+    public async Task<ApiRspImpl> BodyTest(Todo todo)
     {
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(BodyTest), RequestAborted);
         var result = await Ioc.Get<ITodoService>().BodyTest(todo, RequestAborted);
         return result;
     }
 
-    public IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len)
+    public IAsyncEnumerable<Todo> AsyncEnumerable(int len)
     {
         var result = Ioc.Get<ITodoService>().AsyncEnumerable(len, RequestAborted);
         return result;

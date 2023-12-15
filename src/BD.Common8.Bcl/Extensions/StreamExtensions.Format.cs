@@ -24,6 +24,7 @@ public static partial class StreamExtensions // Format
 
     /// <summary>
     /// 将 Utf8String 像 <see cref="string.Format(string, object[])"/> 一样格式化并写入流中
+    /// <para>已知问题：模板字符串中不能含有 { 字符</para>
     /// </summary>
     /// <param name="stream"></param>
     /// <param name="utf8String"></param>

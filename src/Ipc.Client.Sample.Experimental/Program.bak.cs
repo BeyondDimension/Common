@@ -157,19 +157,19 @@
 
 //    protected override string ClientName => TAG;
 
-//    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All()
+//    public async Task<ApiRspImpl<Todo[]?>> All()
 //    {
 //        var client = CreateClient();
 //        using var rsp = await client.PostAsync("/All", null);
-//        var r = await ReadFromAsync<ApiRspImpl<ITodoService.Todo[]?>>(rsp.Content);
+//        var r = await ReadFromAsync<ApiRspImpl<Todo[]?>>(rsp.Content);
 //        return r!;
 //    }
 
-//    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id)
+//    public async Task<ApiRspImpl<Todo?>> GetById(int id)
 //    {
 //        var client = CreateClient();
 //        using var rsp = await client.PostAsync($"/GetById/{id}", null);
-//        var r = await ReadFromAsync<ApiRspImpl<ITodoService.Todo?>>(rsp.Content);
+//        var r = await ReadFromAsync<ApiRspImpl<Todo?>>(rsp.Content);
 //        return r!;
 //    }
 
@@ -178,7 +178,7 @@
 //        throw new NotImplementedException();
 //    }
 
-//    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo)
+//    public async Task<ApiRspImpl> BodyTest(Todo todo)
 //    {
 //        var client = CreateClient();
 //        using var content = GetHttpContent(todo);

@@ -95,6 +95,8 @@ static partial class Program
 
                     foreach (var method in methods)
                     {
+                        Console.WriteLine($"ThreadId: {Environment.CurrentManagedThreadId}");
+
                         var resultMethod = MethodInvoke(method, todoService);
                         await resultMethod;
                         Console.WriteLine($"{method.Name}: ");
@@ -143,23 +145,23 @@ abstract class IpcClientService2(IpcAppConnectionString connectionString) : IpcC
 
 sealed class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcClientService2(connectionString), ITodoService
 {
-    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
     {
         WebApiClientSendArgs args = new("/ITodoService/All")
         {
             Method = HttpMethod.Post,
         };
-        var result = await SendAsync<ApiRspImpl<ITodoService.Todo[]?>>(args, cancellationToken);
+        var result = await SendAsync<ApiRspImpl<Todo[]?>>(args, cancellationToken);
         return result!;
     }
 
-    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
     {
         WebApiClientSendArgs args = new($"/ITodoService/GetById/{id}")
         {
             Method = HttpMethod.Post,
         };
-        var result = await SendAsync<ApiRspImpl<ITodoService.Todo?>>(args, cancellationToken);
+        var result = await SendAsync<ApiRspImpl<Todo?>>(args, cancellationToken);
         return result!;
     }
 
@@ -180,23 +182,23 @@ sealed class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcCl
         return result!;
     }
 
-    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
     {
         WebApiClientSendArgs args = new("/ITodoService/BodyTest")
         {
             Method = HttpMethod.Post,
         };
-        var result = await SendAsync<ApiRspImpl, ITodoService.Todo>(args, todo, cancellationToken);
+        var result = await SendAsync<ApiRspImpl, Todo>(args, todo, cancellationToken);
         return result!;
     }
 
-    public IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default)
+    public IAsyncEnumerable<Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default)
     {
         WebApiClientSendArgs args = new($"/ITodoService/AsyncEnumerable/{len}")
         {
             Method = HttpMethod.Post,
         };
-        var result = SendAsAsyncEnumerable<ITodoService.Todo>(args, cancellationToken);
+        var result = SendAsAsyncEnumerable<Todo>(args, cancellationToken);
         return result!;
     }
 }
@@ -205,34 +207,42 @@ sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcC
 {
     protected override string HubName => "ITodoService_Hub";
 
-    public async Task<ApiRspImpl<ITodoService.Todo[]?>> All(CancellationToken cancellationToken = default)
+    protected override void OnBuildHubConnection(HubConnection connection)
+    {
+        connection.On<string>(nameof(ITodoService), s =>
+        {
+            Console.WriteLine($"收到服务器消息：{s}, ThreadId: {Environment.CurrentManagedThreadId}");
+        });
+    }
+
+    public async Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
     {
         HubConnection? conn = null;
         try
         {
             conn = await GetHubConnAsync();
-            var result = await conn.InvokeAsync<ApiRspImpl<ITodoService.Todo[]?>>("All", cancellationToken);
+            var result = await conn.InvokeAsync<ApiRspImpl<Todo[]?>>("All", cancellationToken);
             return result!;
         }
         catch (Exception e)
         {
-            var result = OnError<ApiRspImpl<ITodoService.Todo[]?>>(e, conn);
+            var result = OnError<ApiRspImpl<Todo[]?>>(e, conn);
             return result!;
         }
     }
 
-    public async Task<ApiRspImpl<ITodoService.Todo?>> GetById(int id, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
     {
         HubConnection? conn = null;
         try
         {
             conn = await GetHubConnAsync();
-            var result = await conn.InvokeAsync<ApiRspImpl<ITodoService.Todo?>>("GetById", id, cancellationToken);
+            var result = await conn.InvokeAsync<ApiRspImpl<Todo?>>("GetById", id, cancellationToken);
             return result!;
         }
         catch (Exception e)
         {
-            var result = OnError<ApiRspImpl<ITodoService.Todo?>>(e, conn);
+            var result = OnError<ApiRspImpl<Todo?>>(e, conn);
             return result!;
         }
     }
@@ -260,7 +270,7 @@ sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcC
         }
     }
 
-    public async Task<ApiRspImpl> BodyTest(ITodoService.Todo todo, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
     {
         HubConnection? conn = null;
         try
@@ -276,13 +286,13 @@ sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcC
         }
     }
 
-    public async IAsyncEnumerable<ITodoService.Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        IAsyncEnumerable<ITodoService.Todo>? result = default;
+        IAsyncEnumerable<Todo>? result = default;
         try
         {
             var conn = await GetHubConnAsync();
-            result = conn.StreamAsync<ITodoService.Todo>("AsyncEnumerable", len, cancellationToken);
+            result = conn.StreamAsync<Todo>("AsyncEnumerable", len, cancellationToken);
         }
         catch (Exception e)
         {
@@ -292,7 +302,7 @@ sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcC
         if (result != default)
         {
             await using var enumerator = result.GetAsyncEnumerator(cancellationToken);
-            ITodoService.Todo item = default!;
+            Todo item = default!;
             bool hasItem = true;
             while (hasItem)
             {
