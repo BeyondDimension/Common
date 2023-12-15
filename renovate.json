@@ -3,16 +3,16 @@
   "extends": [
     "config:recommended",
     ":automergeAll",
+    ":automergeDigest",
     ":disableDependencyDashboard",
     ":disableRateLimiting",
+    "automergeMinor",
     ":label(🤖 Automatic)"
   ],
   "git-submodules": {
     "enabled": true
   },
-  "baseBranches": ["renovatebot/dev8"],
-  "ignoreTests": true,
-  "platformAutomerge": true,
+  "baseBranches": ["dev8"],
   "timezone": "Asia/Shanghai",
   "schedule": ["before 1am","before 5am","before 9am"]
 }
