@@ -18,4 +18,11 @@
 		</Compile>
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
 </Project>

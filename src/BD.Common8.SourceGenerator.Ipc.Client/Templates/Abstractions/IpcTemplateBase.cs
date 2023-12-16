@@ -176,4 +176,20 @@ public abstract class IpcTemplateBase :
         }
         return methodParas;
     }
+
+    /// <summary>
+    /// 根据方法参数返回请求方法
+    /// </summary>
+    /// <param name="category"></param>
+    /// <returns></returns>
+    protected string GetRequestMethod(MethodParametersCategory category)
+    {
+        var requestMethod = category switch
+        {
+            MethodParametersCategory.FromBody or
+            MethodParametersCategory.GeneratorModelFromBody => nameof(HttpMethod.Post),
+            _ => nameof(HttpMethod.Get),
+        };
+        return requestMethod;
+    }
 }

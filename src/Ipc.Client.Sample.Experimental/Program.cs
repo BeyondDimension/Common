@@ -141,73 +141,6 @@ abstract class IpcClientService2(IpcAppConnectionString connectionString) : IpcC
 
     /// <inheritdoc/>
     protected sealed override bool EnableLogOnError => false;
-}
-
-#region 可使用源生成服务的调用实现
-
-sealed class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcClientService2(connectionString), ITodoService
-{
-    public async Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
-    {
-        WebApiClientSendArgs args = new("/ITodoService/All")
-        {
-            Method = HttpMethod.Post,
-        };
-        var result = await SendAsync<ApiRspImpl<Todo[]?>>(args, cancellationToken);
-        return result!;
-    }
-
-    public async Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
-    {
-        WebApiClientSendArgs args = new($"/ITodoService/GetById/{id}")
-        {
-            Method = HttpMethod.Post,
-        };
-        var result = await SendAsync<ApiRspImpl<Todo?>>(args, cancellationToken);
-        return result!;
-    }
-
-    public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
-        char p3, DateOnly p4, DateTime p5,
-        DateTimeOffset p6, decimal p7, double p8,
-        ProcessorArchitecture p9, Guid p10, short p11,
-        int p12, long p13, float p14,
-        TimeOnly p15, TimeSpan p16, ushort p17,
-        uint p18, ulong p19, Uri p20,
-        Version p21, CancellationToken cancellationToken = default)
-    {
-        WebApiClientSendArgs args = new($"/ITodoService/SimpleTypes/{WebUtility.UrlEncode(p0.ToLowerString())}/{WebUtility.UrlEncode(p1.ToString())}/{WebUtility.UrlEncode(p2.ToString())}/{WebUtility.UrlEncode(p3.ToString())}/{WebUtility.UrlEncode(p4.ToString("O"))}/{WebUtility.UrlEncode(p5.ToString("O"))}/{WebUtility.UrlEncode(p6.ToString("O"))}/{WebUtility.UrlEncode(p7.ToString())}/{WebUtility.UrlEncode(p8.ToString())}/{WebUtility.UrlEncode(((int)p9).ToString())}/{WebUtility.UrlEncode(p10.ToString())}/{WebUtility.UrlEncode(p11.ToString())}/{WebUtility.UrlEncode(p12.ToString())}/{WebUtility.UrlEncode(p13.ToString())}/{WebUtility.UrlEncode(p14.ToString())}/{WebUtility.UrlEncode(p15.ToString())}/{WebUtility.UrlEncode(p16.ToString())}/{WebUtility.UrlEncode(p17.ToString())}/{WebUtility.UrlEncode(p18.ToString())}/{WebUtility.UrlEncode(p19.ToString())}/{WebUtility.UrlEncode(p20.ToString())}/{WebUtility.UrlEncode(p21.ToString())}")
-        {
-            Method = HttpMethod.Post,
-        };
-        var result = await SendAsync<ApiRspImpl>(args, cancellationToken);
-        return result!;
-    }
-
-    public async Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
-    {
-        WebApiClientSendArgs args = new("/ITodoService/BodyTest")
-        {
-            Method = HttpMethod.Post,
-        };
-        var result = await SendAsync<ApiRspImpl, Todo>(args, todo, cancellationToken);
-        return result!;
-    }
-
-    public IAsyncEnumerable<Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default)
-    {
-        WebApiClientSendArgs args = new($"/ITodoService/AsyncEnumerable/{len}")
-        {
-            Method = HttpMethod.Post,
-        };
-        var result = SendAsAsyncEnumerable<Todo>(args, cancellationToken);
-        return result!;
-    }
-}
-
-sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcClientService2(connectionString), ITodoService
-{
-    protected override string HubName => "/Hubs/ITodoService";
 
     protected override void OnBuildHubConnection(HubConnection connection)
     {
@@ -216,48 +149,14 @@ sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcC
             Console.WriteLine($"收到服务器消息：{s}, ThreadId: {Environment.CurrentManagedThreadId}");
         });
     }
-
-    public async Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
-    {
-        const string methodName = "All";
-        var result = await HubSendAsync<ApiRspImpl<Todo[]?>>(methodName, cancellationToken: cancellationToken);
-        return result!;
-    }
-
-    public async Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
-    {
-        const string methodName = "GetById";
-        var result = await HubSendAsync<ApiRspImpl<Todo?>>(methodName, [id], cancellationToken: cancellationToken);
-        return result!;
-    }
-
-    public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
-        char p3, DateOnly p4, DateTime p5,
-        DateTimeOffset p6, decimal p7, double p8,
-        ProcessorArchitecture p9, Guid p10, short p11,
-        int p12, long p13, float p14,
-        TimeOnly p15, TimeSpan p16, ushort p17,
-        uint p18, ulong p19, Uri p20,
-        Version p21, CancellationToken cancellationToken = default)
-    {
-        const string methodName = "SimpleTypes";
-        var result = await HubSendAsync<ApiRspImpl>(methodName, [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21], cancellationToken: cancellationToken);
-        return result!;
-    }
-
-    public async Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
-    {
-        const string methodName = "BodyTest";
-        var result = await HubSendAsync<ApiRspImpl>(methodName, [todo], cancellationToken: cancellationToken);
-        return result!;
-    }
-
-    public IAsyncEnumerable<Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default)
-    {
-        const string methodName = "AsyncEnumerable";
-        var result = HubSendAsAsyncEnumerable<Todo>(methodName, [len], cancellationToken: cancellationToken);
-        return result!;
-    }
 }
 
-#endregion
+[ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientWebApi)]
+partial class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcClientService2(connectionString)
+{
+}
+
+[ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientSignalR)]
+partial class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcClientService2(connectionString)
+{
+}

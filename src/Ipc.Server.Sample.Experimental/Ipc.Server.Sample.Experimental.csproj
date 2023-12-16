@@ -13,4 +13,11 @@
 		<UseSwagger>true</UseSwagger>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
 </Project>

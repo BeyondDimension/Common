@@ -2,7 +2,7 @@ namespace BD.Common8.Ipc.Services;
 
 /// <summary>
 /// 用于定义以指定 prefix 为前缀的所有终结点。
-/// <para>Ipc 服务接口必须继承此接口，且调用 <see cref="IpcServiceCollectionServiceExtensions.AddSingletonWithIpc{TService, TImplementation}(IServiceCollection)"/> 添加到 <see cref="Ioc"/></para>
+/// <para>Ipc 服务接口必须继承此接口，且调用 <see cref="IpcServiceCollectionServiceExtensions.AddSingletonWithIpcServer{TService, TImplementation}(IServiceCollection)"/> 添加到 <see cref="Ioc"/></para>
 /// </summary>
 public partial interface IEndpointRouteMapGroup
 {

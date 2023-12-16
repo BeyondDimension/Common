@@ -123,6 +123,7 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         builder.Services.AddLogging(ConfigureLogging);
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
         builder.Services.AddSignalR(ConfigureSignalR).AddJsonProtocol();
+        builder.Services.AddHttpContextAccessor();
 
         ConfigureServices(builder.Services);
 
@@ -305,8 +306,46 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         options.Transports = HttpTransportType.WebSockets;
     }
 
-    public HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
+    public IServiceProvider Services => app.ThrowIsNull().Services;
+
+    readonly Dictionary<Type, Type> serviceToHubs = [];
+
+    /// <summary>
+    /// 根据服务接口类型值获取对应的 <see cref="IHubContext"/>
+    /// </summary>
+    /// <param name="serviceType"></param>
+    /// <returns></returns>
+    public IHubContext GetHubContext(Type serviceType)
     {
+        if (!serviceToHubs.TryGetValue(serviceType, out var hubType))
+        {
+            // 服务接口类型，没有找到对应的 Hub 类型，抛出异常
+            throw ThrowHelper.GetArgumentOutOfRangeException(serviceType);
+        }
+
+        var hubContextType = typeof(IHubContext<>).MakeGenericType(hubType);
+        var hubContext = app.ThrowIsNull().Services.GetRequiredService(hubContextType);
+        if (hubContext is IHubContext hubContext_)
+        {
+            return hubContext_;
+        }
+        // IHubContext 泛型与非泛型都应为 Microsoft.AspNetCore.SignalR.Internal.HubContext<THub> 实现
+        // https://github.com/dotnet/aspnetcore/blob/v8.0.0/src/SignalR/server/Core/src/Internal/HubContext.cs
+        ThrowHelper.ThrowArgumentNullException(nameof(hubContext_));
+        return null!;
+    }
+
+    /// <summary>
+    /// 根据服务接口类型泛型获取对应的 <see cref="IHubContext"/>
+    /// </summary>
+    /// <typeparam name="TService"></typeparam>
+    /// <returns></returns>
+    public IHubContext GetHubContext<TService>() where TService : class
+        => GetHubContext(typeof(TService));
+
+    public HubEndpointConventionBuilder MapHub<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
+    {
+        serviceToHubs.TryAdd(typeof(TService), typeof(THub));
         return app!.MapHub<THub>(pattern, ConfigureHub);
     }
 

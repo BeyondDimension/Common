@@ -85,6 +85,8 @@ public abstract class TemplateBase
     /// <inheritdoc cref="System.Random"/>
     protected static Random Random => random ??= new(Guid.NewGuid().GetHashCode());
 
+    const string random_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
     /// <summary>
     /// 获取随机字段名
     /// </summary>
@@ -94,11 +96,42 @@ public abstract class TemplateBase
         var fieldName = "k__BackingField".ToCharArray();
         for (int i = 0; i < fieldName.Length / 2; i++)
         {
-            const string random_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             var index = Random.Next(fieldName.Length);
             fieldName[index] = random_chars[Random.Next(random_chars.Length)];
         }
         return new(fieldName);
+    }
+
+    /// <summary>
+    /// 生成随机字符串，长度为固定传入字符串
+    /// </summary>
+    /// <param name="length">要生成的字符串长度</param>
+    /// <param name="randomChars">随机字符串字符集</param>
+    /// <returns></returns>
+    protected static string GenerateRandomString(int length = 6,
+        string randomChars = random_chars)
+    {
+        var random = Random;
+        var result = new char[length];
+        if (random.Next(256) % 2 == 0)
+            for (var i = length - 1; i >= 0; i--) // 5 4 3 2 1 0
+                EachGenerate(i);
+        else
+            for (var i = 0; i < length; i++) // 0 1 2 3 4 5
+                EachGenerate(i);
+        return new string(result);
+        void EachGenerate(int i)
+        {
+            var index = random.Next(0, randomChars.Length);
+            var temp = RandomCharAt(randomChars, index);
+            static char RandomCharAt(string s, int index)
+            {
+                if (index == s.Length) index = 0;
+                else if (index > s.Length) index %= s.Length;
+                return s[index];
+            }
+            result[i] = temp;
+        }
     }
 }
 
@@ -265,8 +298,6 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
             case "IpcClient":
                 break;
             case "IpcServer":
-                break;
-            case "MinimalAPIs":
                 break;
             case "Designer": // ResXGeneratedCodeAttribute
                 break;

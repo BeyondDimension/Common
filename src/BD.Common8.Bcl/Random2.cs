@@ -55,14 +55,6 @@ public static partial class Random2
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static double NextDouble() => Shared().NextDouble();
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static char RandomCharAt(string s, int index)
-    {
-        if (index == s.Length) index = 0;
-        else if (index > s.Length) index %= s.Length;
-        return s[index];
-    }
-
     /// <summary>
     /// 生成随机字符串，长度为固定传入字符串
     /// </summary>
@@ -85,6 +77,12 @@ public static partial class Random2
         {
             var index = random.Next(0, randomChars.Length);
             var temp = RandomCharAt(randomChars, index);
+            static char RandomCharAt(string s, int index)
+            {
+                if (index == s.Length) index = 0;
+                else if (index > s.Length) index %= s.Length;
+                return s[index];
+            }
             result[i] = temp;
         }
     }

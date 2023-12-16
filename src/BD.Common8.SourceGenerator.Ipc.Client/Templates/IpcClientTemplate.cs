@@ -216,12 +216,7 @@ sealed partial class {0} : {1}
 ";
 
 """u8);
-                var requestMethod = category switch
-                {
-                    MethodParametersCategory.FromBody or
-                    MethodParametersCategory.GeneratorModelFromBody => nameof(HttpMethod.Post),
-                    _ => nameof(HttpMethod.Get),
-                };
+                var requestMethod = GetRequestMethod(category);
                 stream.WriteFormat(
 """
         var requestMethod = HttpMethod.{0};
@@ -411,5 +406,6 @@ sealed partial class {0} : {1}
         }
 
         stream.WriteCurlyBracketRight();
+        stream.WriteNewLine();
     }
 }
