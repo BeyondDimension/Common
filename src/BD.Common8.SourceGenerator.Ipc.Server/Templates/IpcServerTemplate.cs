@@ -3,73 +3,30 @@ namespace BD.Common8.SourceGenerator.Ipc.Templates;
 #pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
-/// 用于服务端的 Minimal APIs 源文件模板
+/// 用于 Ipc 服务端调用的源文件模板
 /// </summary>
 [Generator]
-public sealed class MinimalAPIsTemplate :
-    GeneratedAttributeTemplateBase<
-        ServiceContractImplAttribute,
-        MinimalAPIsTemplate.SourceModel>
+public sealed class IpcServerTemplate : IpcTemplateBase
 {
-    protected override string Id =>
-        "ServiceContract";
+    protected override string FileId => "IpcServer";
 
-    protected override string AttrName =>
-        "BD.Common8.Ipc.Attributes.ServiceContractAttribute";
-
-    protected override string FileId => "MinimalAPIs";
-
+    /// <inheritdoc/>
     protected override ServiceContractImplAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
     {
-        return null!;
-    }
-
-    /// <summary>
-    /// 从源码中读取并分析生成器所需要的模型
-    /// </summary>
-    public readonly record struct SourceModel : ISourceModel
-    {
-        /// <inheritdoc cref="INamedTypeSymbol"/>
-        public required INamedTypeSymbol NamedTypeSymbol { get; init; }
-
-        /// <summary>
-        /// 命名空间
-        /// </summary>
-        public required string Namespace { get; init; }
-
-        /// <summary>
-        /// 类型名
-        /// </summary>
-        public required string TypeName { get; init; }
-
-        /// <summary>
-        /// 方法，函数
-        /// </summary>
-        public required ImmutableArray<IMethodSymbol> Methods { get; init; }
-
-        /// <inheritdoc cref="ServiceContractImplAttribute"/>
-        public required ServiceContractImplAttribute Attribute { get; init; }
-    }
-
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
-    {
-        var methods = args.symbol.GetMembers().OfType<IMethodSymbol>().ToImmutableArray();
-
-        SourceModel model = new()
+        var attr = base.GetAttribute(attributes);
+        switch (attr.GeneratorType)
         {
-            NamedTypeSymbol = args.symbol,
-            Namespace = args.@namespace,
-            TypeName = args.typeName,
-            Attribute = args.attr,
-            Methods = methods,
-        };
-        return model;
+            case IpcGeneratorType.Server:
+                break;
+            default:
+                IgnoreExecute = true; // 非服务端生成类型直接跳过
+                return null!;
+        }
+        return attr;
     }
 
     protected override void WriteFile(Stream stream, SourceModel m)
     {
-        if (m.Methods.Length == 0) return;
-
         WriteFileHeader(stream);
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);

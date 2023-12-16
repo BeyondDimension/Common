@@ -3,8 +3,8 @@
 
 #if WINDOWS
 using static System.String;
-using ErrorEventArgs = System.IO.ErrorEventArgs;
 using CsWin32 = Windows.Win32;
+using ErrorEventArgs = System.IO.ErrorEventArgs;
 
 namespace System.Net;
 

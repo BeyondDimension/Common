@@ -8,7 +8,7 @@ namespace BD.Common8.Ipc.Services.Implementation;
 /// Ipc 客户端连接服务实现
 /// </summary>
 /// <param name="connectionString"></param>
-public class IpcClientService(IpcAppConnectionString connectionString) :
+public partial class IpcClientService(IpcAppConnectionString connectionString) :
     WebApiClientService(Log.Factory.CreateLogger<IpcClientService>(), null!),
     IIpcClientService, IAsyncDisposable
 {
@@ -78,7 +78,14 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
                     {
                         o.HttpVersion = HttpVersion.Version20;
                     };
-                    opt.Url = new Uri($"{hubConnHandler.BaseAddress}/{HubName}");
+                    string GetHubUrl()
+                    {
+                        if (HubName.StartsWith('/'))
+                            return $"{hubConnHandler.BaseAddress}{HubName}";
+                        else
+                            return $"{hubConnHandler.BaseAddress}/{HubName}";
+                    }
+                    opt.Url = new Uri(GetHubUrl());
                 })
                 .WithAutomaticReconnect();
 
@@ -125,14 +132,7 @@ public class IpcClientService(IpcAppConnectionString connectionString) :
 
     protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
     {
-        var resolver = JsonSerializerContext;
-        if (resolver != null)
-        {
-            // 添加源生成的 Json 解析器
-            options.PayloadSerializerOptions.TypeInfoResolverChain.Insert(0, resolver);
-        }
-        // 添加默认的 Json 解析器，用作简单类型的解析
-        options.PayloadSerializerOptions.TypeInfoResolverChain.Add(new DefaultJsonTypeInfoResolver());
+        JsonSerializerOptions.CopyTypeInfoResolverChainTo(options.PayloadSerializerOptions);
     }
 
     /// <summary>

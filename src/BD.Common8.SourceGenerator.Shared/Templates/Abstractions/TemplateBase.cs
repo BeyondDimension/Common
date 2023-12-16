@@ -264,6 +264,8 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
                 break;
             case "IpcClient":
                 break;
+            case "IpcServer":
+                break;
             case "MinimalAPIs":
                 break;
             case "Designer": // ResXGeneratedCodeAttribute
@@ -318,7 +320,7 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
             ConsoleWriteSourceText(sourceTextString);
 #endif
         }
-        spc.AddSource($"{m.Namespace}.{m.TypeName}.{FileId}.g.cs", sourceText);
+        spc.AddSource($"{(string.IsNullOrEmpty(m.Namespace) ? "global_namespace" : m.Namespace)}.{m.TypeName}.{FileId}.g.cs", sourceText);
     }
 
     /// <summary>

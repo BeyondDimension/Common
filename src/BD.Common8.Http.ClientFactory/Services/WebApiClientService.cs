@@ -47,14 +47,14 @@ public abstract partial class WebApiClientService(
     protected NewtonsoftJsonSerializer NewtonsoftJsonSerializer => newtonsoftJsonSerializer ??= new();
 
     /// <summary>
-    /// 序列化是否必须使用 <see cref="SystemTextJsonSerializerContext"/>，即源生成的类型信息数据，避免运行时反射
+    /// 用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写
     /// </summary>
-    protected virtual bool RequiredJsonSerializerContext => true;
-
-    /// <summary>
-    /// 用于序列化的类型信息，由 Json 源生成
-    /// </summary>
-    protected virtual SystemTextJsonSerializerContext? JsonSerializerContext { get; }
+    protected virtual SystemTextJsonSerializerOptions JsonSerializerOptions
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        => SystemTextJsonSerializerOptions.Default;
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 
     #endregion
 
@@ -526,7 +526,7 @@ public abstract partial class WebApiClientService(
                                 return deserializeResult;
                             case Serializable.JsonImplType.SystemTextJson:
                                 deserializeResult = await ReadFromSJsonAsync<TResponseBody>(
-                                    responseMessage.Content, null, cancellationToken);
+                                    responseMessage.Content, cancellationToken);
                                 return deserializeResult;
                             default:
                                 throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
@@ -629,7 +629,7 @@ public abstract partial class WebApiClientService(
                         {
                             case Serializable.JsonImplType.SystemTextJson:
                                 deserializeResult = ReadFromSJsonAsAsyncEnumerable<TResponseBody>(
-                                    responseMessage.Content, null, cancellationToken);
+                                    responseMessage.Content, cancellationToken);
                                 return HttpResponseMessageContentAsyncEnumerable<TResponseBody>.Parse(deserializeResult, responseMessage, ref disposeResponseMessage);
                             default:
                                 throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
@@ -753,7 +753,7 @@ public abstract partial class WebApiClientService(
                                 return deserializeResult;
                             case Serializable.JsonImplType.SystemTextJson:
                                 deserializeResult = ReadFromSJson<TResponseBody>(
-                                    responseMessage.Content, null, cancellationToken);
+                                    responseMessage.Content, cancellationToken);
                                 return deserializeResult;
                             default:
                                 throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);

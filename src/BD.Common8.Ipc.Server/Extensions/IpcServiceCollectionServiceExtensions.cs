@@ -15,9 +15,10 @@ public static partial class IpcServiceCollectionServiceExtensions
     /// <seealso cref="ServiceLifetime.Singleton"/>
     public static IServiceCollection AddSingletonWithIpc<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this IServiceCollection services)
         where TService : class
-        where TImplementation : class, TService, IEndpointRouteMapGroup
+        where TImplementation : class, TService, IEndpointRouteMapGroup, IHubEndpointRouteMapHub
     {
         IpcServerService.OnMapGroupEvent += TImplementation.OnMapGroup;
+        IpcServerService.OnMapHubEvent += TImplementation.OnMapHub;
         return services.AddSingleton(typeof(TService), typeof(TImplementation));
     }
 }

@@ -133,9 +133,11 @@ abstract class IpcClientService2(IpcAppConnectionString connectionString) : IpcC
         handler.SslOptions.ClientCertificates.Add(SamplePathHelper.ServerCertificate);
     }
 
+    static readonly Lazy<SystemTextJsonSerializerOptions> _JsonSerializerOptions =
+        new(SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver);
+
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerContext? JsonSerializerContext
-        => SampleJsonSerializerContext.Default;
+    protected override SystemTextJsonSerializerOptions JsonSerializerOptions => _JsonSerializerOptions.Value;
 
     /// <inheritdoc/>
     protected sealed override bool EnableLogOnError => false;
@@ -205,7 +207,7 @@ sealed class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcCl
 
 sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcClientService2(connectionString), ITodoService
 {
-    protected override string HubName => "ITodoService_Hub";
+    protected override string HubName => "/Hubs/ITodoService";
 
     protected override void OnBuildHubConnection(HubConnection connection)
     {
@@ -217,34 +219,16 @@ sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcC
 
     public async Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
     {
-        HubConnection? conn = null;
-        try
-        {
-            conn = await GetHubConnAsync();
-            var result = await conn.InvokeAsync<ApiRspImpl<Todo[]?>>("All", cancellationToken);
-            return result!;
-        }
-        catch (Exception e)
-        {
-            var result = OnError<ApiRspImpl<Todo[]?>>(e, conn);
-            return result!;
-        }
+        const string methodName = "All";
+        var result = await HubSendAsync<ApiRspImpl<Todo[]?>>(methodName, cancellationToken: cancellationToken);
+        return result!;
     }
 
     public async Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
     {
-        HubConnection? conn = null;
-        try
-        {
-            conn = await GetHubConnAsync();
-            var result = await conn.InvokeAsync<ApiRspImpl<Todo?>>("GetById", id, cancellationToken);
-            return result!;
-        }
-        catch (Exception e)
-        {
-            var result = OnError<ApiRspImpl<Todo?>>(e, conn);
-            return result!;
-        }
+        const string methodName = "GetById";
+        var result = await HubSendAsync<ApiRspImpl<Todo?>>(methodName, [id], cancellationToken: cancellationToken);
+        return result!;
     }
 
     public async Task<ApiRspImpl> SimpleTypes(bool p0, byte p1, sbyte p2,
@@ -256,77 +240,23 @@ sealed class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcC
         uint p18, ulong p19, Uri p20,
         Version p21, CancellationToken cancellationToken = default)
     {
-        HubConnection? conn = null;
-        try
-        {
-            conn = await GetHubConnAsync();
-            var result = await conn.InvokeCoreAsync<ApiRspImpl>("SimpleTypes", [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21], cancellationToken);
-            return result!;
-        }
-        catch (Exception e)
-        {
-            var result = OnError<ApiRspImpl>(e, conn);
-            return result!;
-        }
+        const string methodName = "SimpleTypes";
+        var result = await HubSendAsync<ApiRspImpl>(methodName, [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21], cancellationToken: cancellationToken);
+        return result!;
     }
 
     public async Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
     {
-        HubConnection? conn = null;
-        try
-        {
-            conn = await GetHubConnAsync();
-            var result = await conn.InvokeAsync<ApiRspImpl>("BodyTest", todo, cancellationToken);
-            return result!;
-        }
-        catch (Exception e)
-        {
-            var result = OnError<ApiRspImpl>(e, conn);
-            return result!;
-        }
+        const string methodName = "BodyTest";
+        var result = await HubSendAsync<ApiRspImpl>(methodName, [todo], cancellationToken: cancellationToken);
+        return result!;
     }
 
-    public async IAsyncEnumerable<Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public IAsyncEnumerable<Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default)
     {
-        IAsyncEnumerable<Todo>? result = default;
-        try
-        {
-            var conn = await GetHubConnAsync();
-            result = conn.StreamAsync<Todo>("AsyncEnumerable", len, cancellationToken);
-        }
-        catch (Exception e)
-        {
-            OnError<nil>(e, hubConnection);
-        }
-
-        if (result != default)
-        {
-            await using var enumerator = result.GetAsyncEnumerator(cancellationToken);
-            Todo item = default!;
-            bool hasItem = true;
-            while (hasItem)
-            {
-                try
-                {
-                    hasItem = await enumerator.MoveNextAsync().ConfigureAwait(false);
-                    if (hasItem)
-                    {
-                        item = enumerator.Current;
-                    }
-                    else
-                    {
-                        result = default;
-                    }
-                }
-                catch (Exception e)
-                {
-                    OnError<nil>(e, hubConnection);
-                    break;
-                }
-                if (hasItem)
-                    yield return item;
-            }
-        }
+        const string methodName = "AsyncEnumerable";
+        var result = HubSendAsAsyncEnumerable<Todo>(methodName, [len], cancellationToken: cancellationToken);
+        return result!;
     }
 }
 

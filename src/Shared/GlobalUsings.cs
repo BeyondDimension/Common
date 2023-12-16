@@ -53,7 +53,9 @@ global using System.Xml.Serialization;
 global using System.Xml.XPath;
 global using IPAddress = System.Net.IPAddress;
 global using Path = System.IO.Path;
+#if !NETFRAMEWORK
 global using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+#endif
 #if ANDROID
 global using Android.Runtime;
 global using AToastLength = Android.Widget.ToastLength;

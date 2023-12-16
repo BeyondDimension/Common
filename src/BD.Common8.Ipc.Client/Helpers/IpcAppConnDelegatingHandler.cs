@@ -1,5 +1,3 @@
-using System.Security.AccessControl;
-
 namespace BD.Common8.Ipc.Helpers;
 
 #pragma warning disable SA1600 // Elements should be documented

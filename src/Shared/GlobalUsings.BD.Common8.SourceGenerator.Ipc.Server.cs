@@ -10,3 +10,4 @@ global using BD.Common8.Ipc.Enums;
 global using BD.Common8.SourceGenerator.Ipc;
 global using BD.Common8.SourceGenerator.Ipc.Enums;
 global using BD.Common8.SourceGenerator.Ipc.Templates;
+global using BD.Common8.SourceGenerator.Ipc.Templates.Abstractions;

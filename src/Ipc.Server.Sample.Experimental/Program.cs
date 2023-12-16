@@ -76,12 +76,33 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
 
     protected override bool ListenUnixSocket => true;
 
-    protected override IJsonTypeInfoResolver? JsonTypeInfoResolver => SampleJsonSerializerContext.Default;
+    static readonly Lazy<SystemTextJsonSerializerOptions> _JsonSerializerOptions = new(SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver);
+
+    protected override SystemTextJsonSerializerOptions JsonSerializerOptions
+        => _JsonSerializerOptions.Value;
+
+    static bool UseSwagger => true;
+
+    protected override void ConfigureServices(IServiceCollection services)
+    {
+        base.ConfigureServices(services);
+
+        if (UseSwagger)
+        {
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+        }
+    }
 
     protected override void Configure(WebApplication app)
     {
         base.Configure(app);
-        MapHub<TodoServiceImpl_Hub>("/ITodoService_Hub");
+
+        if (UseSwagger)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
     }
 }
 
@@ -149,7 +170,7 @@ sealed partial class TodoServiceImpl : ITodoService
 
 #region 可使用源生成服务的调用实现
 
-partial class TodoServiceImpl : IEndpointRouteMapGroup
+partial class TodoServiceImpl : IEndpointRouteMapGroup, IHubEndpointRouteMapHub
 {
     /// <inheritdoc cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -158,7 +179,9 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
 #pragma warning disable IDE0004 // 删除不必要的强制转换
         var builder = endpoints.MapGroup("/ITodoService");
         // 测试 Get 方法
-        builder.MapGet("/All", (Delegate)(static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted)));
+        builder.MapGet("/All", (Delegate)(static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted)))
+            //.WithName("All")
+            /*.WithOpenApi()*/;
         builder.MapPost("/All", (Delegate)(static async (HttpContext ctx) => await Ioc.Get<ITodoService>().All(ctx.RequestAborted)));
         // 测试 Get 方法，路由使用 string 类型
         builder.MapGet("/GetById/{id}", (Delegate)(static async (HttpContext ctx, [FromRoute] string id) => await Ioc.Get<ITodoService>().GetById(int.Parse(id), ctx.RequestAborted)));
@@ -188,21 +211,28 @@ partial class TodoServiceImpl : IEndpointRouteMapGroup
         builder.MapPost("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] int len) => Ioc.Get<ITodoService>().AsyncEnumerable(len, ctx.RequestAborted)));
 #pragma warning restore IDE0004 // 删除不必要的强制转换
     }
+
+    /// <inheritdoc cref="IHubEndpointRouteMapHub.OnMapHub(IpcServerService)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static void IHubEndpointRouteMapHub.OnMapHub(IpcServerService ipcServerService)
+    {
+        ipcServerService.MapHub<TodoServiceImpl_Hub>("/Hubs/ITodoService");
+    }
 }
 
-sealed class TodoServiceImpl_Hub : IpcServerHub
+file sealed class TodoServiceImpl_Hub : Hub
 {
     public async Task<ApiRspImpl<Todo[]?>> All()
     {
-        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(All), RequestAborted);
-        var result = await Ioc.Get<ITodoService>().All(RequestAborted);
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(All), this.RequestAborted());
+        var result = await Ioc.Get<ITodoService>().All(this.RequestAborted());
         return result;
     }
 
     public async Task<ApiRspImpl<Todo?>> GetById(int id)
     {
-        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(GetById), RequestAborted);
-        var result = await Ioc.Get<ITodoService>().GetById(id, RequestAborted);
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(GetById), this.RequestAborted());
+        var result = await Ioc.Get<ITodoService>().GetById(id, this.RequestAborted());
         return result;
     }
 
@@ -215,21 +245,21 @@ sealed class TodoServiceImpl_Hub : IpcServerHub
         uint p18, ulong p19, Uri p20,
         Version p21)
     {
-        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted);
-        var result = await Ioc.Get<ITodoService>().SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, RequestAborted);
-        return result;
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(SimpleTypes), this.RequestAborted());
+        var result = await Ioc.Get<ITodoService>().SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, this.RequestAborted());
+        return result!;
     }
 
     public async Task<ApiRspImpl> BodyTest(Todo todo)
     {
-        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(BodyTest), RequestAborted);
-        var result = await Ioc.Get<ITodoService>().BodyTest(todo, RequestAborted);
+        await Clients.Caller.SendAsync(nameof(ITodoService), nameof(BodyTest), this.RequestAborted());
+        var result = await Ioc.Get<ITodoService>().BodyTest(todo, this.RequestAborted());
         return result;
     }
 
     public IAsyncEnumerable<Todo> AsyncEnumerable(int len)
     {
-        var result = Ioc.Get<ITodoService>().AsyncEnumerable(len, RequestAborted);
+        var result = Ioc.Get<ITodoService>().AsyncEnumerable(len, this.RequestAborted());
         return result;
     }
 }

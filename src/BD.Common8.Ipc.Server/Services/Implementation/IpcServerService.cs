@@ -240,29 +240,19 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     }
 
     /// <summary>
-    /// Json 源生成的解析器
+    /// 用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写
     /// </summary>
-    protected virtual IJsonTypeInfoResolver? JsonTypeInfoResolver => null;
+    protected virtual SystemTextJsonSerializerOptions JsonSerializerOptions
+        => SystemTextJsonSerializerOptions.Default;
 
     protected virtual void ConfigureHttpJsonOptions(AspNetCoreHttpJsonOptions options)
     {
-        var resolver = JsonTypeInfoResolver;
-        if (resolver != null)
-        {
-            options.SerializerOptions.TypeInfoResolverChain.Insert(0, resolver);
-        }
+        JsonSerializerOptions.CopyTypeInfoResolverChainTo(options.SerializerOptions);
     }
 
     protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
     {
-        var resolver = JsonTypeInfoResolver;
-        if (resolver != null)
-        {
-            // 添加源生成的 Json 解析器
-            options.PayloadSerializerOptions.TypeInfoResolverChain.Insert(0, resolver);
-        }
-        // 添加默认的 Json 解析器，用作简单类型的解析
-        options.PayloadSerializerOptions.TypeInfoResolverChain.Add(new DefaultJsonTypeInfoResolver());
+        JsonSerializerOptions.CopyTypeInfoResolverChainTo(options.PayloadSerializerOptions);
     }
 
     protected virtual void ConfigureSignalR(HubOptions options)
@@ -297,11 +287,17 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     /// </summary>
     internal static event Action<IEndpointRouteBuilder>? OnMapGroupEvent;
 
+    /// <summary>
+    /// <see cref="IHubEndpointRouteMapHub.OnMapHub(IpcServerService)"/> 的事件
+    /// </summary>
+    internal static event Action<IpcServerService>? OnMapHubEvent;
+
     protected virtual void Configure(WebApplication app)
     {
         app.UseWelcomePage("/");
         app.UseExceptionHandler(builder => builder.Run(OnError));
         OnMapGroupEvent?.Invoke(app);
+        OnMapHubEvent?.Invoke(this);
     }
 
     protected virtual void ConfigureHub(HttpConnectionDispatcherOptions options)
@@ -309,7 +305,7 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         options.Transports = HttpTransportType.WebSockets;
     }
 
-    protected HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
+    public HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
     {
         return app!.MapHub<THub>(pattern, ConfigureHub);
     }
@@ -411,17 +407,4 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     }
 
     #endregion
-}
-
-public abstract class IpcServerHub : Hub
-{
-    public virtual CancellationToken RequestAborted
-    {
-        get
-        {
-            var httpContext = Context.GetHttpContext();
-            if (httpContext == null) return default;
-            return httpContext.RequestAborted;
-        }
-    }
 }

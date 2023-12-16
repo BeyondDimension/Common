@@ -25,6 +25,9 @@
 		<Compile Include="..\BD.Common8.Ipc\Enums\IpcGeneratorType.cs">
 			<LinkBase>_SourceReference\Enums</LinkBase>
 		</Compile>
+		<Compile Include="..\BD.Common8.SourceGenerator.Ipc.Client\Templates\Abstractions\IpcTemplateBase.cs">
+			<LinkBase>Templates\Abstractions</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 </Project>

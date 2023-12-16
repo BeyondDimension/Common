@@ -9,6 +9,8 @@
 		<UseCommon8IpcServer>true</UseCommon8IpcServer>
 		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
 		<UseProjectUtils>true</UseProjectUtils>
+		<UseAspNetCore>true</UseAspNetCore>
+		<UseSwagger>true</UseSwagger>
 	</PropertyGroup>
 
 </Project>
