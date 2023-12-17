@@ -1,7 +1,5 @@
 namespace BD.Common8.SourceGenerator.Ipc.Templates;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 用于 Ipc 服务端调用的源文件模板
 /// </summary>
@@ -55,7 +53,7 @@ partial class {0} : IEndpointRouteMapGroup, IHubEndpointRouteMapHub
 """u8);
         stream.WriteFormat(
 """
-        var builder = endpoints.MapGroup("/{0}");
+        var builder = endpoints.MapGroup("/{0}").RequireAuthorization();
 """u8, m.Attribute.ServiceType);
         stream.WriteNewLine();
 
@@ -256,6 +254,7 @@ ctx.RequestAborted)));
         stream.WriteNewLine();
         stream.WriteFormat(
 """
+[Authorize]
 file sealed class {0} : Hub
 """u8, hubTypeName);
         stream.WriteNewLine();

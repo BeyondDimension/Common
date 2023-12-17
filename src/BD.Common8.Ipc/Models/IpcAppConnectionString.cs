@@ -5,6 +5,11 @@ namespace BD.Common8.Ipc.Models;
 /// </summary>
 public readonly struct IpcAppConnectionString
 {
+    /// <summary>
+    /// The name of this scheme.
+    /// </summary>
+    public const string AuthenticationScheme = "Ipc";
+
     /// <inheritdoc cref="IpcAppConnectionStringType"/>
     public readonly IpcAppConnectionStringType Type { get; init; }
 
@@ -18,13 +23,23 @@ public readonly struct IpcAppConnectionString
     /// </summary>
     public readonly int Int32Value { get; init; }
 
+    /// <inheritdoc cref="Environment.TickCount64"/>
+    public readonly long TickCount64 { get; init; }
+
+    /// <inheritdoc cref="Environment.ProcessId"/>
+    public readonly int ProcessId { get; init; }
+
     /// <summary>
     /// 将连接字符串写入指定的流中
     /// </summary>
     public void Write(Stream stream)
     {
+        const byte formatType = 0;
+        stream.WriteByte(formatType);
         var connectionStringType = Type;
         stream.WriteByte((byte)connectionStringType);
+        stream.Write(BitConverter.GetBytes(TickCount64));
+        stream.Write(BitConverter.GetBytes(ProcessId));
         switch (connectionStringType)
         {
             case IpcAppConnectionStringType.Https:
@@ -64,26 +79,70 @@ public readonly struct IpcAppConnectionString
     };
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static implicit operator IpcAppConnectionString(byte[] buffer)
+    public static implicit operator IpcAppConnectionString?(byte[] buffer)
     {
-        var connectionStringType = (IpcAppConnectionStringType)buffer[0];
-        return connectionStringType switch
+        try
         {
-            IpcAppConnectionStringType.Https => new()
+            //var formatType = buffer[0];
+            var connectionStringType = (IpcAppConnectionStringType)buffer[1];
+            int startIndex = 2;
+            var tickCount64 = BitConverter.ToInt64(buffer, startIndex);
+            startIndex += sizeof(long);
+            var processId = BitConverter.ToInt32(buffer, startIndex);
+            startIndex += sizeof(int);
+            return connectionStringType switch
             {
-                Type = connectionStringType,
-                Int32Value = BitConverter.ToInt32(buffer, 1),
-            },
-            IpcAppConnectionStringType.UnixSocket or IpcAppConnectionStringType.NamedPipe => new()
-            {
-                Type = connectionStringType,
-                StringValue = Encoding.UTF8.GetString(buffer, 1, buffer.Length - 1),
-            },
-            _ => throw ThrowHelper.GetArgumentOutOfRangeException(connectionStringType),
-        };
+                IpcAppConnectionStringType.Https => new()
+                {
+                    Type = connectionStringType,
+                    Int32Value = BitConverter.ToInt32(buffer, startIndex),
+                    TickCount64 = tickCount64,
+                    ProcessId = processId,
+                },
+                IpcAppConnectionStringType.UnixSocket or IpcAppConnectionStringType.NamedPipe => new()
+                {
+                    Type = connectionStringType,
+                    StringValue = Encoding.UTF8.GetString(buffer, startIndex, buffer.Length - startIndex),
+                    TickCount64 = tickCount64,
+                    ProcessId = processId,
+                },
+                _ => throw ThrowHelper.GetArgumentOutOfRangeException(connectionStringType),
+            };
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator byte[](IpcAppConnectionString connectionString)
         => connectionString.ToByteArray();
+
+    /// <summary>
+    /// 写入身份验证令牌
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="tickCount64"></param>
+    /// <param name="processId"></param>
+    public static void WriteAccessToken(Stream stream, long tickCount64, int processId)
+    {
+        stream.Write(BitConverter.GetBytes(tickCount64));
+        stream.Write(BitConverter.GetBytes(processId));
+        stream.Write("-----"u8);
+        stream.WriteUtf16StrToUtf8OrCustom(Environment.OSVersion.VersionString);
+        stream.Position = 0;
+    }
+
+    /// <summary>
+    /// 获取身份验证令牌
+    /// </summary>
+    /// <returns></returns>
+    public string GetAccessToken()
+    {
+        using var stream = new MemoryStream();
+        WriteAccessToken(stream, TickCount64, ProcessId);
+        var accessToken = Hashs.String.SHA256(stream, false);
+        return $"{AuthenticationScheme} {accessToken}";
+    }
 }

@@ -18,21 +18,14 @@ partial class WebApiClientService
     {
         if (inputValue == null)
             return default;
-        try
-        {
-            encoding ??= DefaultEncoding;
-            var stream = new MemoryStream(); // 使用内存流，避免 byte[] 块，与字符串 utf16 开销
-            using var streamWriter = new StreamWriter(stream, encoding, leaveOpen: true);
-            using var jsonWriter = new JsonTextWriter(streamWriter);
-            NewtonsoftJsonSerializer.Serialize(jsonWriter, inputValue, typeof(TRequestBody));
-            var content = new StreamContent(stream);
-            content.Headers.ContentType = mediaType ?? new MediaTypeHeaderValue(MediaTypeNames.JSON, encoding.WebName);
-            return content;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: true, typeof(TRequestBody));
-        }
+        encoding ??= DefaultEncoding;
+        var stream = new MemoryStream(); // 使用内存流，避免 byte[] 块，与字符串 utf16 开销
+        using var streamWriter = new StreamWriter(stream, encoding, leaveOpen: true);
+        using var jsonWriter = new JsonTextWriter(streamWriter);
+        NewtonsoftJsonSerializer.Serialize(jsonWriter, inputValue, typeof(TRequestBody));
+        var content = new StreamContent(stream);
+        content.Headers.ContentType = mediaType ?? new MediaTypeHeaderValue(MediaTypeNames.JSON, encoding.WebName);
+        return content;
     }
 
     /// <summary>
@@ -47,19 +40,12 @@ partial class WebApiClientService
     [Obsolete(Obsolete_ReadFromNJsonAsync)]
     protected virtual async Task<TResponseBody?> ReadFromNJsonAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        try
-        {
-            encoding ??= DefaultEncoding;
-            using var contentStream = await content.ReadAsStreamAsync(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
-            using var contentStreamReader = new StreamReader(contentStream, encoding);
-            using var contentJsonTextReader = new JsonTextReader(contentStreamReader);
-            var result = NewtonsoftJsonSerializer.Deserialize<TResponseBody>(contentJsonTextReader);
-            return result;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
-        }
+        encoding ??= DefaultEncoding;
+        using var contentStream = await content.ReadAsStreamAsync(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+        using var contentStreamReader = new StreamReader(contentStream, encoding);
+        using var contentJsonTextReader = new JsonTextReader(contentStreamReader);
+        var result = NewtonsoftJsonSerializer.Deserialize<TResponseBody>(contentJsonTextReader);
+        return result;
     }
 
     /// <summary>
@@ -74,18 +60,11 @@ partial class WebApiClientService
     [Obsolete(Obsolete_UseAsync)]
     protected virtual TResponseBody? ReadFromNJson<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        try
-        {
-            encoding ??= DefaultEncoding;
-            using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
-            using var contentStreamReader = new StreamReader(contentStream, encoding);
-            using var contentJsonTextReader = new JsonTextReader(contentStreamReader);
-            var result = NewtonsoftJsonSerializer.Deserialize<TResponseBody>(contentJsonTextReader);
-            return result;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
-        }
+        encoding ??= DefaultEncoding;
+        using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+        using var contentStreamReader = new StreamReader(contentStream, encoding);
+        using var contentJsonTextReader = new JsonTextReader(contentStreamReader);
+        var result = NewtonsoftJsonSerializer.Deserialize<TResponseBody>(contentJsonTextReader);
+        return result;
     }
 }

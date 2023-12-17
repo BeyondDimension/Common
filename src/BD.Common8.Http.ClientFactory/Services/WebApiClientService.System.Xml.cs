@@ -16,14 +16,7 @@ partial class WebApiClientService
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
-        try
-        {
-            throw new NotImplementedException();
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: true, typeof(TRequestBody));
-        }
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -37,18 +30,11 @@ partial class WebApiClientService
     [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
     protected async Task<TResponseBody?> ReadFromXmlAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        try
-        {
-            encoding ??= DefaultEncoding;
-            using var contentStream = await content.ReadAsStreamAsync(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
-            using var contentStreamReader = new StreamReader(contentStream, encoding);
-            var result = Serializable.DXml<TResponseBody>(contentStreamReader);
-            return result;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
-        }
+        encoding ??= DefaultEncoding;
+        using var contentStream = await content.ReadAsStreamAsync(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+        using var contentStreamReader = new StreamReader(contentStream, encoding);
+        var result = Serializable.DXml<TResponseBody>(contentStreamReader);
+        return result;
     }
 
     /// <summary>
@@ -63,17 +49,10 @@ partial class WebApiClientService
     [Obsolete(Obsolete_UseAsync)]
     protected virtual TResponseBody? ReadFromXml<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        try
-        {
-            encoding ??= DefaultEncoding;
-            using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
-            using var contentStreamReader = new StreamReader(contentStream, encoding);
-            var result = Serializable.DXml<TResponseBody>(contentStreamReader);
-            return result;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
-        }
+        encoding ??= DefaultEncoding;
+        using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+        using var contentStreamReader = new StreamReader(contentStream, encoding);
+        var result = Serializable.DXml<TResponseBody>(contentStreamReader);
+        return result;
     }
 }

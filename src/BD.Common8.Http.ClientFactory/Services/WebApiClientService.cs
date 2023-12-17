@@ -81,7 +81,7 @@ public abstract partial class WebApiClientService(
         return apiRspBase;
     }
 
-    /// <inheritdoc cref="OnSerializerError{TResponseBody}(Exception, bool, Type)"/>
+    /// <inheritdoc cref="OnSerializerError{TResponseBody}(Exception, bool, Type, bool?, HttpStatusCode?, bool)"/>
     protected virtual TResponseBody OnSerializerErrorReApiRspBase<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
         Exception ex,
         bool isSerializeOrDeserialize,
@@ -99,10 +99,16 @@ public abstract partial class WebApiClientService(
     /// <param name="ex"></param>
     /// <param name="isSerializeOrDeserialize">是序列化还是反序列化</param>
     /// <param name="modelType">模型类型</param>
+    /// <param name="isSuccessStatusCode"></param>
+    /// <param name="statusCode"></param>
+    /// <param name="showLog"></param>
     protected virtual TResponseBody? OnSerializerError<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
         Exception ex,
         bool isSerializeOrDeserialize,
-        Type modelType) where TResponseBody : notnull
+        Type modelType,
+        bool? isSuccessStatusCode = null,
+        HttpStatusCode? statusCode = null,
+        bool showLog = true) where TResponseBody : notnull
     {
         // 记录错误时，不需要带上 requestUrl 等敏感信息
         string msg;
@@ -114,24 +120,44 @@ public abstract partial class WebApiClientService(
         {
             msg = $"Error reading and deserializing the response content into an instance. (Parameter '{modelType}')";
         }
-#pragma warning disable CA2254 // 模板应为静态表达式
-        logger.LogError(ex, msg);
-#pragma warning restore CA2254 // 模板应为静态表达式
 
-        var typeResponseBody = typeof(TResponseBody);
-        if (typeResponseBody == typeof(nil))
-            return default;
-
-        var apiRspBase = GetApiRspBase<TResponseBody>(typeResponseBody);
-        if (apiRspBase != null)
+        try
         {
-            apiRspBase.Code = ApiRspCode.ClientDeserializeFail;
-            apiRspBase.ClientException = ex;
-            apiRspBase.InternalMessage = msg.Replace("{type}", modelType.ToString());
-            return (TResponseBody?)(object)apiRspBase;
-        }
+            var typeResponseBody = typeof(TResponseBody);
+            if (typeResponseBody == typeof(nil))
+                return default;
 
-        return default;
+            var apiRspBase = GetApiRspBase<TResponseBody>(typeResponseBody);
+            if (apiRspBase != null)
+            {
+                if (isSuccessStatusCode.HasValue && statusCode.HasValue)
+                {
+                    if (!isSuccessStatusCode.Value)
+                    {
+                        showLog = false;
+                        apiRspBase.Code = (ApiRspCode)statusCode.Value;
+                        apiRspBase.InternalMessage = apiRspBase.GetMessage();
+                        return (TResponseBody?)(object)apiRspBase;
+                    }
+                }
+
+                apiRspBase.Code = ApiRspCode.ClientDeserializeFail;
+                apiRspBase.ClientException = ex;
+                apiRspBase.InternalMessage = msg.Replace("{type}", modelType.ToString());
+                return (TResponseBody?)(object)apiRspBase;
+            }
+
+            return default;
+        }
+        finally
+        {
+#pragma warning disable CA2254 // 模板应为静态表达式
+            if (showLog)
+            {
+                logger.LogError(ex, msg);
+            }
+#pragma warning restore CA2254 // 模板应为静态表达式
+        }
     }
 
     /// <summary>
@@ -356,9 +382,43 @@ public abstract partial class WebApiClientService(
         async IAsyncEnumerable<TResponseBody?> _SendCoreAsAsyncEnumerable()
         {
             var result = await SendCoreAsAsyncEnumerable<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
-            await foreach (var item in result)
+
+            await using var enumerator = result.GetAsyncEnumerator(cancellationToken);
+            TResponseBody? item = default!;
+            bool hasItem = true;
+            while (hasItem)
             {
-                yield return item;
+                try
+                {
+                    hasItem = await enumerator.MoveNextAsync().ConfigureAwait(false);
+                    if (hasItem)
+                    {
+                        item = enumerator.Current;
+                    }
+                    else
+                    {
+                        result = default;
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (result is HttpResponseMessageContentAsyncEnumerable<TResponseBody> hrmcae)
+                    {
+                        OnSerializerError<TResponseBody>(e,
+                            isSerializeOrDeserialize: false,
+                            typeof(TResponseBody),
+                            hrmcae.Response.IsSuccessStatusCode,
+                            hrmcae.Response.StatusCode,
+                            showLog: false);
+                    }
+                    else
+                    {
+                        OnError<TResponseBody>(e, args);
+                    }
+                    break;
+                }
+                if (hasItem)
+                    yield return item;
             }
         }
     }
@@ -509,41 +569,54 @@ public abstract partial class WebApiClientService(
                     return (TResponseBody)(object)responseMessage;
                 }
                 TResponseBody? deserializeResult = default;
-                var mime = responseMessage.Content.Headers.ContentType?.MediaType;
-                if (string.IsNullOrWhiteSpace(mime))
-                    mime = args.Accept;
-                if (string.IsNullOrWhiteSpace(mime))
-                    mime = Accept;
-#pragma warning disable CS0618 // 类型或成员已过时
-                switch (mime)
+                try
                 {
-                    case MediaTypeNames.JSON:
-                        switch (args.JsonImplType)
-                        {
-                            case Serializable.JsonImplType.NewtonsoftJson:
-                                deserializeResult = await ReadFromNJsonAsync<TResponseBody>(
-                                    responseMessage.Content, cancellationToken: cancellationToken);
-                                return deserializeResult;
-                            case Serializable.JsonImplType.SystemTextJson:
-                                deserializeResult = await ReadFromSJsonAsync<TResponseBody>(
-                                    responseMessage.Content, cancellationToken);
-                                return deserializeResult;
-                            default:
-                                throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
-                        }
-                    case MediaTypeNames.XML:
-                    case MediaTypeNames.XML_APP:
+                    var mime = responseMessage.Content.Headers.ContentType?.MediaType;
+                    if (string.IsNullOrWhiteSpace(mime))
+                        mime = args.Accept;
+                    if (string.IsNullOrWhiteSpace(mime))
+                        mime = Accept;
+#pragma warning disable CS0618 // 类型或成员已过时
+                    switch (mime)
+                    {
+                        case MediaTypeNames.JSON:
+                            switch (args.JsonImplType)
+                            {
+                                case Serializable.JsonImplType.NewtonsoftJson:
+                                    deserializeResult = await ReadFromNJsonAsync<TResponseBody>(
+                                        responseMessage.Content, cancellationToken: cancellationToken);
+                                    return deserializeResult;
+                                case Serializable.JsonImplType.SystemTextJson:
+                                    deserializeResult = await ReadFromSJsonAsync<TResponseBody>(
+                                        responseMessage.Content, cancellationToken);
+                                    return deserializeResult;
+                                default:
+                                    throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
+                            }
+                        case MediaTypeNames.XML:
+                        case MediaTypeNames.XML_APP:
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                        deserializeResult = await ReadFromXmlAsync<TResponseBody>(
-                            responseMessage.Content, cancellationToken: cancellationToken);
+                            deserializeResult = await ReadFromXmlAsync<TResponseBody>(
+                                responseMessage.Content, cancellationToken: cancellationToken);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                        return deserializeResult;
-                    default:
-                        deserializeResult = await ReadFromCustomDeserializeAsync<TResponseBody>(
-                            responseMessage, mime, cancellationToken: cancellationToken);
-                        return deserializeResult;
-                }
+                            return deserializeResult;
+                        default:
+                            deserializeResult = await ReadFromCustomDeserializeAsync<TResponseBody>(
+                                responseMessage, mime, cancellationToken: cancellationToken);
+                            return deserializeResult;
+                    }
 #pragma warning restore CS0618 // 类型或成员已过时
+                }
+                catch (Exception ex)
+                {
+                    deserializeResult = OnSerializerError<TResponseBody>(
+                        ex,
+                        isSerializeOrDeserialize: false,
+                        typeof(TResponseBody),
+                        responseMessage.IsSuccessStatusCode,
+                        responseMessage.StatusCode);
+                }
+                return deserializeResult;
             }
             return default;
         }
@@ -630,16 +703,18 @@ public abstract partial class WebApiClientService(
                             case Serializable.JsonImplType.SystemTextJson:
                                 deserializeResult = ReadFromSJsonAsAsyncEnumerable<TResponseBody>(
                                     responseMessage.Content, cancellationToken);
-                                return HttpResponseMessageContentAsyncEnumerable<TResponseBody>.Parse(deserializeResult, responseMessage, ref disposeResponseMessage);
+                                break;
                             default:
                                 throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
                         }
+                        break;
                     default:
                         throw ThrowHelper.GetArgumentOutOfRangeException(mime);
                         //deserializeResult = await ReadFromCustomDeserializeAsync<TResponseBody>(
                         //    responseMessage, mime, cancellationToken: cancellationToken);
                         //return deserializeResult;
                 }
+                return HttpResponseMessageContentAsyncEnumerable<TResponseBody>.Parse(deserializeResult, responseMessage, ref disposeResponseMessage);
             }
             return default(EmptyAsyncEnumerable<TResponseBody?>);
         }
@@ -740,37 +815,51 @@ public abstract partial class WebApiClientService(
                     return (TResponseBody)(object)responseMessage;
                 }
                 TResponseBody? deserializeResult = default;
-                var mime = responseMessage.Content.Headers.ContentType?.MediaType ?? args.Accept;
-#pragma warning disable CS0618 // 类型或成员已过时
-                switch (mime)
+                try
                 {
-                    case MediaTypeNames.JSON:
-                        switch (args.JsonImplType)
-                        {
-                            case Serializable.JsonImplType.NewtonsoftJson:
-                                deserializeResult = ReadFromNJson<TResponseBody>(
-                                    responseMessage.Content, cancellationToken: cancellationToken);
-                                return deserializeResult;
-                            case Serializable.JsonImplType.SystemTextJson:
-                                deserializeResult = ReadFromSJson<TResponseBody>(
-                                    responseMessage.Content, cancellationToken);
-                                return deserializeResult;
-                            default:
-                                throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
-                        }
-                    case MediaTypeNames.XML:
-                    case MediaTypeNames.XML_APP:
+                    var mime = responseMessage.Content.Headers.ContentType?.MediaType ?? args.Accept;
+#pragma warning disable CS0618 // 类型或成员已过时
+                    switch (mime)
+                    {
+                        case MediaTypeNames.JSON:
+                            switch (args.JsonImplType)
+                            {
+                                case Serializable.JsonImplType.NewtonsoftJson:
+                                    deserializeResult = ReadFromNJson<TResponseBody>(
+                                        responseMessage.Content, cancellationToken: cancellationToken);
+                                    break;
+                                case Serializable.JsonImplType.SystemTextJson:
+                                    deserializeResult = ReadFromSJson<TResponseBody>(
+                                        responseMessage.Content, cancellationToken);
+                                    break;
+                                default:
+                                    throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
+                            }
+                            break;
+                        case MediaTypeNames.XML:
+                        case MediaTypeNames.XML_APP:
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                        deserializeResult = ReadFromXml<TResponseBody>(
-                            responseMessage.Content, cancellationToken: cancellationToken);
+                            deserializeResult = ReadFromXml<TResponseBody>(
+                                responseMessage.Content, cancellationToken: cancellationToken);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                        return deserializeResult;
-                    default:
-                        deserializeResult = ReadFromCustomDeserialize<TResponseBody>(
-                            responseMessage, mime, cancellationToken: cancellationToken);
-                        return deserializeResult;
-                }
+                            break;
+                        default:
+                            deserializeResult = ReadFromCustomDeserialize<TResponseBody>(
+                                responseMessage, mime, cancellationToken: cancellationToken);
+                            break;
+                    }
 #pragma warning restore CS0618 // 类型或成员已过时
+                }
+                catch (Exception ex)
+                {
+                    deserializeResult = OnSerializerError<TResponseBody>(
+                        ex,
+                        isSerializeOrDeserialize: false,
+                        typeof(TResponseBody),
+                        responseMessage.IsSuccessStatusCode,
+                        responseMessage.StatusCode);
+                }
+                return deserializeResult;
             }
             return default;
         }
@@ -814,37 +903,46 @@ public abstract partial class WebApiClientService(
         var mime = args.ContentType;
         if (string.IsNullOrWhiteSpace(mime))
             mime = MediaTypeNames.JSON;
-        HttpContentWrapper<TResponseBody> result;
-#pragma warning disable CS0618 // 类型或成员已过时
-        switch (mime)
+        try
         {
-            case MediaTypeNames.JSON:
-                switch (args.JsonImplType)
-                {
-                    case Serializable.JsonImplType.NewtonsoftJson:
-                        result = GetNJsonContent<TResponseBody, TRequestBody>(requestBody);
-                        return result;
-                    case Serializable.JsonImplType.SystemTextJson:
-                        result = GetSJsonContent<TResponseBody, TRequestBody>(requestBody);
-                        return result;
-                    default:
-                        throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
-                }
-            case MediaTypeNames.XML:
-            case MediaTypeNames.XML_APP:
+#pragma warning disable CS0618 // 类型或成员已过时
+            HttpContentWrapper<TResponseBody> result;
+            switch (mime)
+            {
+                case MediaTypeNames.JSON:
+                    switch (args.JsonImplType)
+                    {
+                        case Serializable.JsonImplType.NewtonsoftJson:
+                            result = GetNJsonContent<TResponseBody, TRequestBody>(requestBody);
+                            return result;
+                        case Serializable.JsonImplType.SystemTextJson:
+                            result = GetSJsonContent<TResponseBody, TRequestBody>(requestBody);
+                            return result;
+                        default:
+                            throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
+                    }
+                case MediaTypeNames.XML:
+                case MediaTypeNames.XML_APP:
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                result = GetXmlContent<TResponseBody, TRequestBody>(requestBody);
-                return result;
-            case MediaTypeNames.FormUrlEncoded:
-                if (requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection)
-                    throw new NotSupportedException("requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection.");
-                result = new FormUrlEncodedContent(nameValueCollection);
-                return result;
-            default:
-                result = GetCustomSerializeContent<TResponseBody, TRequestBody>(args, requestBody, mime, cancellationToken);
-                return result;
-        }
+                    result = GetXmlContent<TResponseBody, TRequestBody>(requestBody);
+                    return result;
+                case MediaTypeNames.FormUrlEncoded:
+                    if (requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection)
+                        throw new NotSupportedException("requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection.");
+                    result = new FormUrlEncodedContent(nameValueCollection);
+                    return result;
+                default:
+                    result = GetCustomSerializeContent<TResponseBody, TRequestBody>(args, requestBody, mime, cancellationToken);
+                    return result;
+            }
 #pragma warning restore CS0618 // 类型或成员已过时
+        }
+        catch (Exception ex)
+        {
+            return OnSerializerError<TResponseBody>(ex,
+                isSerializeOrDeserialize: true,
+                typeof(TRequestBody));
+        }
     }
 
     /// <summary>

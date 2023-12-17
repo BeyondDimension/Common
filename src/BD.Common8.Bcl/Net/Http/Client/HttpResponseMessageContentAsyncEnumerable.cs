@@ -7,6 +7,8 @@ public sealed class HttpResponseMessageContentAsyncEnumerable<T>(IAsyncEnumerabl
     readonly IAsyncEnumerable<T> enumerable = enumerable;
     readonly HttpResponseMessage httpResponseMessage = httpResponseMessage;
 
+    public HttpResponseMessage Response => httpResponseMessage;
+
     public IAsyncEnumerator<T> GetAsyncEnumerator(CancellationToken cancellationToken = default)
     {
         return new HttpResponseMessageContentAsyncEnumerator<T>(

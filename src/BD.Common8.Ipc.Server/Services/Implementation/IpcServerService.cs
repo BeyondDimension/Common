@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.Extensions.Primitives;
 using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 namespace BD.Common8.Ipc.Services.Implementation;
@@ -8,6 +9,8 @@ namespace BD.Common8.Ipc.Services.Implementation;
 
 public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpcServerService, IDisposable, IAsyncDisposable
 {
+    static readonly long tickCount64 = long.MaxValue / 2; // 不可修改！！！
+
     WebApplication? app;
 
     /// <summary>
@@ -124,6 +127,7 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
         builder.Services.AddSignalR(ConfigureSignalR).AddJsonProtocol();
         builder.Services.AddHttpContextAccessor();
+        ConfigureAuthentication(builder.Services.AddAuthentication(DefaultAuthenticationScheme));
 
         ConfigureServices(builder.Services);
 
@@ -163,6 +167,8 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
                 {
                     Type = IpcAppConnectionStringType.Https,
                     Int32Value = Http2Port,
+                    TickCount64 = tickCount64,
+                    ProcessId = Environment.ProcessId,
                 };
             case IpcAppConnectionStringType.UnixSocket:
                 if (!ListenUnixSocket)
@@ -172,6 +178,8 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
                 {
                     Type = IpcAppConnectionStringType.UnixSocket,
                     StringValue = UnixSocketPath,
+                    TickCount64 = tickCount64,
+                    ProcessId = Environment.ProcessId,
                 };
             case IpcAppConnectionStringType.NamedPipe:
                 if (!ListenNamedPipe)
@@ -181,6 +189,8 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
                 {
                     Type = IpcAppConnectionStringType.NamedPipe,
                     StringValue = PipeName,
+                    TickCount64 = tickCount64,
+                    ProcessId = Environment.ProcessId,
                 };
             default:
                 throw ThrowHelper.GetArgumentOutOfRangeException(type);
@@ -283,6 +293,17 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     {
     }
 
+    protected virtual string DefaultAuthenticationScheme => IpcAppConnectionString.AuthenticationScheme;
+
+    protected virtual void ConfigureAuthentication(AuthenticationBuilder builder)
+    {
+        builder.AddScheme<IpcAuthenticationSchemeOptions, IpcAuthenticationHandler>(
+            DefaultAuthenticationScheme, options =>
+            {
+                options.IpcServerService = this;
+            });
+    }
+
     /// <summary>
     /// <see cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件
     /// </summary>
@@ -296,6 +317,9 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     protected virtual void Configure(WebApplication app)
     {
         app.UseWelcomePage("/");
+        //app.UseCors();
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.UseExceptionHandler(builder => builder.Run(OnError));
         OnMapGroupEvent?.Invoke(app);
         OnMapHubEvent?.Invoke(this);
@@ -370,6 +394,27 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         Console.WriteLine(exceptionHandlerPathFeature?.Error);
 #endif
     }
+
+    protected byte[]? _AccessToken;
+
+    /// <summary>
+    /// 获取持有者令牌身份验证
+    /// <para>https://learn.microsoft.com/zh-cn/aspnet/core/signalr/authn-and-authz?view=aspnetcore-8.0#bearer-token-authentication</para>
+    /// </summary>
+    /// <returns></returns>
+    protected virtual byte[] GetAccessToken()
+    {
+        if (_AccessToken == null)
+        {
+            using var stream = new MemoryStream();
+            IpcAppConnectionString.WriteAccessToken(stream, tickCount64, Environment.ProcessId);
+            _AccessToken = Hashs.ByteArray.SHA256(stream);
+        }
+        return _AccessToken;
+    }
+
+    /// <inheritdoc cref="GetAccessToken"/>
+    internal byte[] AccessToken => GetAccessToken();
 
     #region 同时实现释放模式和异步释放模式 https://learn.microsoft.com/zh-cn/dotnet/standard/garbage-collection/implementing-disposeasync#implement-both-dispose-and-async-dispose-patterns
 
@@ -446,4 +491,68 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     }
 
     #endregion
+}
+
+file sealed class IpcAuthenticationSchemeOptions : AuthenticationSchemeOptions
+{
+    public IpcServerService IpcServerService { get; set; } = null!;
+}
+
+file sealed class IpcAuthenticationHandler(IOptionsMonitor<IpcAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder) : AuthenticationHandler<IpcAuthenticationSchemeOptions>(options, logger, encoder)
+{
+    AuthenticateResult HandleAuthenticate()
+    {
+        var accessToken = Request.Headers.Authorization;
+        var path = Request.Path;
+
+        if (StringValues.IsNullOrEmpty(accessToken) &&
+            path.StartsWithSegments("/Hubs"))
+        {
+            // 在标准 Web API 中，持有者令牌在 HTTP 标头中发送。
+            // 但是，当使用某些传输时，SignalR 无法在浏览器中设置这些标头。
+            // 使用 WebSocket 和服务器发送的事件时，令牌作为查询字符串参数传输。
+            // https://learn.microsoft.com/zh-cn/aspnet/core/signalr/authn-and-authz?view=aspnetcore-8.0#built-in-jwt-authentication
+            accessToken = Request.Query["access_token"];
+        }
+
+        if (!StringValues.IsNullOrEmpty(accessToken))
+        {
+            string accessTokenString = accessToken!;
+            const string authenticationSchemePrefix =
+                $"{IpcAppConnectionString.AuthenticationScheme} ";
+            const string authenticationSchemePrefix2 = // SignalR 中授权头会填充一个 Bearer
+                $"Bearer {IpcAppConnectionString.AuthenticationScheme} ";
+
+            ReadOnlySpan<char> hexString = default;
+            if (accessTokenString.StartsWith(authenticationSchemePrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                hexString = accessTokenString
+                    .AsSpan()[authenticationSchemePrefix.Length..];
+            }
+            else if (accessTokenString.StartsWith(authenticationSchemePrefix2, StringComparison.OrdinalIgnoreCase))
+            {
+                hexString = accessTokenString
+                    .AsSpan()[authenticationSchemePrefix2.Length..];
+            }
+            if (hexString.Length == Hashs.String.Lengths.SHA256)
+            {
+                var accessTokenBytes = Convert.FromHexString(hexString);
+                if (accessTokenBytes.SequenceEqual(Options.IpcServerService.AccessToken))
+                {
+                    var identity = new ClaimsIdentity(IpcAppConnectionString.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+                    AuthenticationTicket ticket = new(principal, null, IpcAppConnectionString.AuthenticationScheme);
+                    return AuthenticateResult.Success(ticket);
+                }
+            }
+        }
+        return AuthenticateResult.Fail("The accessToken is incorrect.");
+    }
+
+    /// <inheritdoc/>
+    protected override Task<AuthenticateResult> HandleAuthenticateAsync()
+    {
+        var result = HandleAuthenticate();
+        return Task.FromResult(result);
+    }
 }

@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+
 namespace Ipc.Server.Sample.Experimental;
 
 #pragma warning disable SA1600 // Elements should be documented
@@ -92,7 +94,31 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
         if (UseSwagger)
         {
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                var scheme = new OpenApiSecurityScheme
+                {
+                    Description = $"{IpcAppConnectionString.AuthenticationScheme} {GetAccessToken().ToHexString()}",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = IpcAppConnectionString.AuthenticationScheme,
+                };
+                options.AddSecurityDefinition(IpcAppConnectionString.AuthenticationScheme, scheme);
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = IpcAppConnectionString.AuthenticationScheme,
+                            },
+                        },
+                        Array.Empty<string>()
+                    },
+                });
+            });
         }
     }
 

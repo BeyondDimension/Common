@@ -25,7 +25,10 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
     {
         if (httpClient == null)
         {
-            (httpClient, httpHandler) = IpcAppConnectionStringHelper.GetHttpClient(connectionString);
+            (httpClient, httpHandler) =
+                IpcAppConnectionStringHelper.GetHttpClient(connectionString);
+            httpClient.DefaultRequestHeaders.Authorization =
+                AuthenticationHeaderValue.Parse(GetAccessToken());
             ConfigureSocketsHttpHandler(httpHandler.InnerHandler);
         }
         return httpClient;
@@ -36,6 +39,25 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
 
     AsyncExclusiveLock lock_GetHubConnAsync = new();
     AsyncExclusiveLock lock_TryStartAsync = new();
+
+    protected string? _AccessToken;
+
+    /// <summary>
+    /// 获取持有者令牌身份验证
+    /// <para>https://learn.microsoft.com/zh-cn/aspnet/core/signalr/authn-and-authz?view=aspnetcore-8.0#bearer-token-authentication</para>
+    /// </summary>
+    /// <returns></returns>
+    protected virtual string GetAccessToken()
+    {
+        _AccessToken ??= connectionString.GetAccessToken();
+        return _AccessToken;
+    }
+
+    Task<string?> GetAccessTokenAsync()
+    {
+        var accessToken = GetAccessToken();
+        return Task.FromResult(accessToken)!;
+    }
 
     /// <summary>
     /// 异步获取 SignalR Hub 连接
@@ -86,6 +108,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
                             return $"{hubConnHandler.BaseAddress}/{HubName}";
                     }
                     opt.Url = new Uri(GetHubUrl());
+                    opt.AccessTokenProvider = GetAccessTokenAsync; // 授权头不正确将返回超时
                 })
                 .WithAutomaticReconnect();
 

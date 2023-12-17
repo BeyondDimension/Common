@@ -120,9 +120,9 @@ public static class SamplePathHelper
             var buffer2 = Serializable.DMP2<byte[][]>(buffer);
             return buffer2.ThrowIsNull().Select(static x =>
             {
-                IpcAppConnectionString r = x;
+                IpcAppConnectionString? r = x;
                 return r;
-            }).ToArray();
+            }).Where(static x => x.HasValue).Select(static x => x!.Value).ToArray();
         }
         catch
         {
@@ -362,6 +362,10 @@ public static class SamplePathHelper
 [JsonSerializable(typeof(ApiRspImpl<Todo>))]
 [JsonSerializable(typeof(ApiRspImpl))]
 [JsonSerializable(typeof(ApiRspImpl<nil>))]
+[JsonSourceGenerationOptions(
+    AllowTrailingCommas = true, // 忽略最后的逗号
+    PropertyNameCaseInsensitive = true // 忽略大小写键名
+    )]
 internal sealed partial class SampleJsonSerializerContext : SystemTextJsonSerializerContext
 {
 }

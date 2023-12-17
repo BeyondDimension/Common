@@ -14,14 +14,7 @@ partial class WebApiClientService
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
-        try
-        {
-            throw new NotImplementedException();
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: true, typeof(TRequestBody));
-        }
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -33,14 +26,7 @@ partial class WebApiClientService
     /// <returns></returns>
     protected virtual async Task<TResponseBody?> ReadFromMemoryPackAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        try
-        {
-            await Task.CompletedTask;
-            throw new NotImplementedException();
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
-        }
+        await Task.CompletedTask;
+        throw new NotImplementedException();
     }
 }

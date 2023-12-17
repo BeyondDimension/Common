@@ -33,9 +33,9 @@ static partial class Program
         List<IIpcClientService2> ipcClientServices = [];
         foreach (var connectionString in connectionStrings)
         {
-            // WebApi 实现的 Ipc 调用
-            IpcClientService2 ipcClientService = new TodoService_WebApi(connectionString);
-            ipcClientServices.Add(ipcClientService);
+            //// WebApi 实现的 Ipc 调用
+            //IpcClientService2 ipcClientService = new TodoService_WebApi(connectionString);
+            //ipcClientServices.Add(ipcClientService);
 
             // SignalR 实现的 Ipc 调用
             IpcClientService2 ipcClientService2 = new TodoService_SignalR(connectionString);

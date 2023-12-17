@@ -18,21 +18,14 @@ partial class WebApiClientService
     {
         if (inputValue == null)
             return default;
-        try
-        {
-            JsonContent content;
+        JsonContent content;
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            // JsonSerializerOptions 应使用 源生成 的 类型解析器
-            content = JsonContent.Create(inputValue, mediaType, JsonSerializerOptions);
+        // JsonSerializerOptions 应使用 源生成 的 类型解析器
+        content = JsonContent.Create(inputValue, mediaType, JsonSerializerOptions);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            return content;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: true, typeof(TRequestBody));
-        }
+        return content;
     }
 
     /// <summary>
@@ -125,21 +118,14 @@ partial class WebApiClientService
         CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         var modelType = typeof(TResponseBody);
-        try
-        {
-            TResponseBody? result;
+        TResponseBody? result;
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            // JsonSerializerOptions 应使用 源生成 的 类型解析器
-            result = await content.ReadFromJsonAsync<TResponseBody>(JsonSerializerOptions, cancellationToken);
+        // JsonSerializerOptions 应使用 源生成 的 类型解析器
+        result = await content.ReadFromJsonAsync<TResponseBody>(JsonSerializerOptions, cancellationToken);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            return result;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, modelType);
-        }
+        return result;
     }
 
     /// <summary>
@@ -154,30 +140,14 @@ partial class WebApiClientService
         HttpContent content,
         CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        var modelType = typeof(TResponseBody);
-        try
-        {
-            IAsyncEnumerable<TResponseBody?> result;
+        IAsyncEnumerable<TResponseBody?> result;
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            // JsonSerializerOptions 应使用 源生成 的 类型解析器
-            result = content.ReadFromJsonAsAsyncEnumerable<TResponseBody>(JsonSerializerOptions, cancellationToken);
+        // JsonSerializerOptions 应使用 源生成 的 类型解析器
+        result = content.ReadFromJsonAsAsyncEnumerable<TResponseBody>(JsonSerializerOptions, cancellationToken);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            return result;
-        }
-        catch (Exception ex)
-        {
-            var resultItem = OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, modelType);
-            if (resultItem == null)
-            {
-                return default(EmptyAsyncEnumerable<TResponseBody>);
-            }
-            else
-            {
-                return EmptyAsyncEnumerable<TResponseBody>.ToAsyncEnumerable(resultItem);
-            }
-        }
+        return result;
     }
 
     /// <summary>
@@ -193,21 +163,14 @@ partial class WebApiClientService
         HttpContent content,
         CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
-        try
-        {
-            TResponseBody? result;
-            using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+        TResponseBody? result;
+        using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            // JsonSerializerOptions 应使用 源生成 的 类型解析器
-            result = SystemTextJsonSerializer.Deserialize<TResponseBody>(contentStream, JsonSerializerOptions);
+        // JsonSerializerOptions 应使用 源生成 的 类型解析器
+        result = SystemTextJsonSerializer.Deserialize<TResponseBody>(contentStream, JsonSerializerOptions);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            return result;
-        }
-        catch (Exception ex)
-        {
-            return OnSerializerError<TResponseBody>(ex, isSerializeOrDeserialize: false, typeof(TResponseBody));
-        }
+        return result;
     }
 }
