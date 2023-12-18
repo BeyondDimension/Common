@@ -192,4 +192,40 @@ public abstract class IpcTemplateBase :
         };
         return requestMethod;
     }
+
+    /// <summary>
+    /// 写入 <see cref="Tuple"/>
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="methodParas"></param>
+    protected void WriteTuple(Stream stream, MethodPara[] methodParas)
+    {
+        Tuple<int, int, int, int, int, int, int, Tuple<int, int>> a = default;
+        int endLen = 0;
+        for (int i = 0; i < methodParas.Length; i++)
+        {
+            var (paraType, _, _) = methodParas[i];
+            if (i == methodParas.Length - 1)
+            {
+                if (paraType.IsSystemThreadingCancellationToken)
+                {
+                    break;
+                }
+            }
+            if (i != 0)
+            {
+                stream.Write(", "u8);
+            }
+            if (i % 7 == 0)
+            {
+                stream.Write("Tuple<"u8);
+                endLen++;
+            }
+            stream.WriteUtf16StrToUtf8OrCustom(paraType.ToString());
+        }
+        for (int i = 0; i < endLen; i++)
+        {
+            stream.Write(">"u8);
+        }
+    }
 }

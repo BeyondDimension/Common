@@ -22,7 +22,7 @@ public static partial class TypeHelper
         if (typeSymbol.IsEnum())
             return true;
 
-        switch (typeSymbol.ContainingNamespace.Name)
+        switch (typeSymbol.ContainingNamespace?.Name)
         {
             case "System":
                 switch (typeSymbol.Name)

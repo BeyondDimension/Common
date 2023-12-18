@@ -64,7 +64,11 @@ public static partial class MethodParametersCategoryEnumExtensions
         else if (method.Parameters.Length == 2 &&
            new TypeStringImpl(method.Parameters[1].Type).IsSystemThreadingCancellationToken)
             return MethodParametersCategory.FromBody;
-        return MethodParametersCategory.GeneratorModelFromBody;
+        if (method.Parameters.Length <= 21 ||
+            (method.Parameters.Length == 22 &&
+            new TypeStringImpl(method.Parameters[21].Type).IsSystemThreadingCancellationToken))
+            return MethodParametersCategory.GeneratorModelFromBody; // global::System.TupleExtensions.ToTuple 泛型仅支持最多 21 个参数
+        return MethodParametersCategory.None;
     }
 
     /// <summary>

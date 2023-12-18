@@ -146,13 +146,25 @@ partial class {0} : IEndpointRouteMapGroup, IHubEndpointRouteMapHub
                     }
                     break;
                 case MethodParametersCategory.FromBody:
-                case MethodParametersCategory.GeneratorModelFromBody:
                     {
                         var (paraType, paraName, _) = methodParas[0];
                         stream.WriteFormat(
 """
 , [FromBody] {0} {1}
 """u8, paraType, paraName);
+                    }
+                    break;
+                case MethodParametersCategory.GeneratorModelFromBody:
+                    {
+                        stream.Write(
+"""
+, [FromBody] 
+"""u8);
+                        WriteTuple(stream, methodParas);
+                        stream.Write(
+"""
+ body
+"""u8);
                     }
                     break;
             }
@@ -199,10 +211,44 @@ partial class {0} : IEndpointRouteMapGroup, IHubEndpointRouteMapHub
                     }
                     break;
                 case MethodParametersCategory.FromBody:
-                case MethodParametersCategory.GeneratorModelFromBody:
                     {
                         var (_, paraName, _) = methodParas[0];
                         stream.WriteUtf16StrToUtf8OrCustom(paraName);
+                        isFirstMapMethodArg = false;
+                    }
+                    break;
+                case MethodParametersCategory.GeneratorModelFromBody:
+                    {
+                        for (int i = 0; i < methodParas.Length; i++)
+                        {
+                            var (paraType, _, _) = methodParas[i];
+                            if (i == methodParas.Length - 1)
+                            {
+                                if (paraType.IsSystemThreadingCancellationToken)
+                                {
+                                    break;
+                                }
+                            }
+
+                            // body.Item1, body.Item2, body.Item3, body.Item4, body.Item5, body.Item6, body.Item7,
+                            // body.Rest.Item1, body.Rest.Item2, body.Rest.Item3, body.Rest.Item4, body.Rest.Item5, body.Rest.Item6, body.Rest.Item7,
+                            // body.Rest.Rest.Item1, body.Rest.Rest.Item2, body.Rest.Rest.Item3, body.Rest.Rest.Item4
+                            if (i != 0)
+                            {
+                                stream.Write(", "u8);
+                            }
+
+                            stream.Write("body"u8);
+
+                            var v = i / 7;
+                            for (int j = 0; j < v; j++)
+                            {
+                                stream.Write(".Rest"u8);
+                            }
+                            stream.Write(".Item"u8);
+
+                            stream.WriteUtf16StrToUtf8OrCustom((i - (v * 7) + 1).ToString());
+                        }
                         isFirstMapMethodArg = false;
                     }
                     break;

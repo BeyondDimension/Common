@@ -263,6 +263,8 @@ sealed partial class {0} : {1}
 """u8, methodParas[0].ParaType);
                         break;
                     case MethodParametersCategory.GeneratorModelFromBody:
+                        stream.Write(", "u8);
+                        WriteTuple(stream, methodParas);
                         break;
                 }
 
@@ -309,6 +311,59 @@ sealed partial class {0} : {1}
                         }
                         break;
                     case MethodParametersCategory.GeneratorModelFromBody:
+                        stream.Write(
+"""
+, global::System.TupleExtensions.ToTuple<
+"""u8);
+                        for (int i = 0; i < methodParas.Length; i++)
+                        {
+                            var (paraType, _, _) = methodParas[i];
+                            if (i == methodParas.Length - 1)
+                            {
+                                if (paraType.IsSystemThreadingCancellationToken)
+                                {
+                                    break;
+                                }
+                            }
+                            if (i != 0)
+                            {
+                                stream.Write(
+"""
+, 
+"""u8);
+                            }
+                            stream.WriteUtf16StrToUtf8OrCustom(paraType.ToString());
+                        }
+                        stream.Write(
+"""
+>((
+"""u8);
+                        for (int i = 0; i < methodParas.Length; i++)
+                        {
+                            var (paraType, paraName, _) = methodParas[i];
+                            if (i == methodParas.Length - 1)
+                            {
+                                if (paraType.IsSystemThreadingCancellationToken)
+                                {
+                                    break;
+                                }
+                            }
+                            if (i == 0)
+                            {
+                                stream.WriteUtf16StrToUtf8OrCustom(paraName);
+                            }
+                            else
+                            {
+                                stream.WriteFormat(
+"""
+, {0}
+"""u8, paraName);
+                            }
+                        }
+                        stream.Write(
+"""
+)), cancellationToken: cancellationToken
+"""u8);
                         break;
                 }
 

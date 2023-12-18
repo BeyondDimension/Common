@@ -131,6 +131,12 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        // 测试元组 Tuple，System.Text.Json 不支持 ValueTuple
+        //var a = System.TupleExtensions.ToTuple((1, 2, 3));
+        app.MapGroup("/Test")
+            .MapPost("Tuple",
+                (Delegate)(([FromBody] Tuple<int, string, string, string, string, string, string, Tuple<string, string, string, string, string, string, string, Tuple<string, string, string, string, string, string, string>>> body) => body));
     }
 }
 
@@ -240,5 +246,19 @@ sealed partial class TodoServiceImpl : ITodoService
             }
             yield return todos[^1]; // 超出长度返回最后一个
         }
+    }
+
+    public async Task<ApiRspImpl> Tuple(bool p0, byte p1, sbyte p2,
+        char p3, DateOnly p4, DateTime p5,
+        DateTimeOffset p6, decimal p7, double p8,
+        ProcessorArchitecture[] p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong[] p19, Uri p20, CancellationToken cancellationToken = default)
+    {
+        await Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
+        var result = ApiRspHelper.Ok();
+        result.InternalMessage = $"{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{string.Join(", ", p9 ?? [])}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{string.Join(", ", p19 ?? [])}/{p20}";
+        return result;
     }
 }

@@ -85,6 +85,41 @@ public partial interface ITodoService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     IAsyncEnumerable<Todo> AsyncEnumerable(int len, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 测试使用 <see cref="Tuple{T1, T2, T3, T4, T5, T6, T7, TRest}"/>
+    /// </summary>
+    /// <param name="p0"></param>
+    /// <param name="p1"></param>
+    /// <param name="p2"></param>
+    /// <param name="p3"></param>
+    /// <param name="p4"></param>
+    /// <param name="p5"></param>
+    /// <param name="p6"></param>
+    /// <param name="p7"></param>
+    /// <param name="p8"></param>
+    /// <param name="p9"></param>
+    /// <param name="p10"></param>
+    /// <param name="p11"></param>
+    /// <param name="p12"></param>
+    /// <param name="p13"></param>
+    /// <param name="p14"></param>
+    /// <param name="p15"></param>
+    /// <param name="p16"></param>
+    /// <param name="p17"></param>
+    /// <param name="p18"></param>
+    /// <param name="p19"></param>
+    /// <param name="p20"></param>
+    /// <param name="p21"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl> Tuple(bool p0, byte p1, sbyte p2,
+        char p3, DateOnly p4, DateTime p5,
+        DateTimeOffset p6, decimal p7, double p8,
+        ProcessorArchitecture[] p9, Guid p10, short p11,
+        int p12, long p13, float p14,
+        TimeOnly p15, TimeSpan p16, ushort p17,
+        uint p18, ulong[] p19, Uri p20, CancellationToken cancellationToken = default);
 }
 
 /// <summary>

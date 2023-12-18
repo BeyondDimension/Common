@@ -3,8 +3,7 @@ try
     Console.WriteLine($"Environment.Version: {Environment.Version}");
     // 从低版本的运行时中加载高版本的程序集
     var libPath = string.Join(Path.DirectorySeparatorChar.ToString(),
-        new string[]
-        {
+        [
             ProjPath.TrimEnd(Path.DirectorySeparatorChar),
             "src",
             "artifacts",
@@ -12,7 +11,7 @@ try
             "AssemblyLoad.Sample.Library",
             "debug",
             "AssemblyLoad.Sample.Library.dll",
-        });
+        ]);
     var assembly = Assembly.LoadFile(libPath);
     var program = assembly.GetType("AssemblyLoad.Sample.Library.Program", true);
     var main = program.GetMethod("Main", BindingFlags.Static | BindingFlags.NonPublic);
