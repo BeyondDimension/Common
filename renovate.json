@@ -3,10 +3,8 @@
   "extends": [
     "config:recommended",
     ":automergeAll",
-    ":automergeDigest",
     ":disableDependencyDashboard",
     ":disableRateLimiting",
-    "automergeMinor",
     ":label(🤖 Automatic)"
   ],
   "git-submodules": {
