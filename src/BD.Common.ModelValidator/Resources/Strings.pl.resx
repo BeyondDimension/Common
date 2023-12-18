@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UnsupportedPhoneNumberSegment_" xml:space="preserve">
-    <value>不受支援的手機號碼號段（{0}）</value>
+  <data name="内容值不能为空或不正确" xml:space="preserve">
+    <value>内容值不能为空或不正确</value>
+  </data>
+  <data name="昵称最大长度不能超过_" xml:space="preserve">
+    <value>昵称最大长度不能超过{0}个字</value>
+  </data>
+  <data name="短信验证码不正确" xml:space="preserve">
+    <value>短信验证码不正确</value>
+  </data>
+  <data name="请输入手机号码哦" xml:space="preserve">
+    <value>请输入手机号码哦</value>
+  </data>
+  <data name="请输入昵称" xml:space="preserve">
+    <value>请输入昵称</value>
+  </data>
+  <data name="请输入正确的手机号码哦" xml:space="preserve">
+    <value>请输入正确的手机号码哦</value>
+  </data>
+  <data name="请输入短信验证码哦" xml:space="preserve">
+    <value>请输入短信验证码哦</value>
+  </data>
+  <data name="请选择头像" xml:space="preserve">
+    <value>请选择头像</value>
   </data>
 </root>
