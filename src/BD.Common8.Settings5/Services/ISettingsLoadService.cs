@@ -8,38 +8,27 @@ public interface ISettingsLoadService
     /// <summary>
     /// 获取当前单例服务
     /// </summary>
-    static ISettingsLoadService Current { get; protected set; } = null!;
+    static ISettingsLoadService Current => SettingsLoadServiceImpl.Current;
 
     /// <summary>
-    /// 设置项模型的 <see cref="DynamicallyAccessedMembersAttribute"/> 标注值
-    /// </summary>
-    const DynamicallyAccessedMemberTypes DAMT_M = DynamicallyAccessedMemberTypes.PublicParameterlessConstructor;
-
-    /// <summary>
-    /// 后端加载设置项，返回是否已经加载过
+    /// 加载设置项，返回是否已经加载过
     /// </summary>
     /// <typeparam name="TSettingsModel">设置项模型</typeparam>
     /// <param name="configureServices">返回配置该设置项的服务配置委托</param>
     /// <param name="options">设置项监听接口</param>
-    /// <param name="settingsFileDirectoryExists">设置项保存文件所在文件夹是否存在，传递此值以防止多次计算</param>
     /// <param name="settingsFileDirectory">设置项保存文件所在文件夹，默认将取 <see cref="IOPath.AppDataDirectory"/></param>
     /// <returns></returns>
-    bool BackendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
+    (bool isInvalid, Exception? ex, string settingsFileNameWithoutExtension) Load<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(
         out Action<IServiceCollection>? configureServices,
         out IOptionsMonitor<TSettingsModel>? options,
-        bool settingsFileDirectoryExists,
         string? settingsFileDirectory = null) where TSettingsModel : class, new();
 
     /// <summary>
-    /// 前端加载设置项，返回是否已经加载过
+    /// 获取依赖注入服务
     /// </summary>
-    /// <typeparam name="TSettingsModel">设置项模型</typeparam>
-    /// <param name="configureServices">返回配置该设置项的服务配置委托</param>
-    /// <param name="options">设置项监听接口</param>
+    /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    bool FrontendLoad<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(
-        out Action<IServiceCollection>? configureServices,
-        out IOptionsMonitor<TSettingsModel>? options) where TSettingsModel : class, new();
+    T Get<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>() where T : notnull;
 
     /// <summary>
     /// 保存配置项到文件
@@ -47,5 +36,5 @@ public interface ISettingsLoadService
     /// <typeparam name="TSettingsModel"></typeparam>
     /// <param name="settingsModel">新的值</param>
     /// <param name="force">是否忽略比较相等，强制保存写入文件，默认值：<see langword="true"/></param>
-    void Save<[DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(TSettingsModel settingsModel, bool force = true) where TSettingsModel : class, new();
+    void Save<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TSettingsModel settingsModel, bool force = true) where TSettingsModel : class, new();
 }

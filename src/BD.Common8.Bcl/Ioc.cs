@@ -43,7 +43,7 @@ public static partial class Ioc
     /// <summary>
     /// 是否已配置 Ioc
     /// </summary>
-    internal static bool IsConfigured => value != null;
+    public static bool IsConfigured => value != null;
 
     /// <inheritdoc cref="IDisposable.Dispose"/>
     public static void Dispose()

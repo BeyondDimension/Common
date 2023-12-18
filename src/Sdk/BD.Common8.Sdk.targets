@@ -471,8 +471,6 @@
 	<Import Condition="$(UseCommon8RepositoriesSQLitePCL) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Repositories.SQLitePCL.props" />
 	<Import Condition="$(UseCommon8Security) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Security.props" />
 	<Import Condition="$(UseCommon8Settings5) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Settings5.props" />
-	<Import Condition="$(UseCommon8Settings5Backend) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Settings5.Backend.props" />
-	<Import Condition="$(UseCommon8Settings5Frontend) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Settings5.Frontend.props" />
 	<Import Condition="$(UseCommon8SmsSender) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.SmsSender.props" />
 	<Import Condition="$(UseCommon8Toast) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.Toast.props" />
 	<Import Condition="$(UseCommon8UserInputModelValidator) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.UserInput.ModelValidator.props" />

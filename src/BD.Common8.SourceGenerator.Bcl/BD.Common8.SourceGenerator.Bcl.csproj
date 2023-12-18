@@ -17,7 +17,7 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Runtime\CompilerServices\*GeneratedAttribute.cs">
 			<LinkBase>Attributes</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5.Frontend\Infrastructure\*GeneratedAttribute.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5\Infrastructure\*GeneratedAttribute.cs">
 			<LinkBase>Attributes</LinkBase>
 		</Compile>
 	</ItemGroup>

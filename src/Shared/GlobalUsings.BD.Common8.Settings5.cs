@@ -6,3 +6,5 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
 global using BD.Common8.Settings5.Services;
+global using BD.Common8.Settings5.Services.Implementation;
+global using BD.Common8.Settings5.Infrastructure;

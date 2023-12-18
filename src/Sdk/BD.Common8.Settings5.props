@@ -5,7 +5,13 @@
 
 	<PropertyGroup>
 		<UseMicrosoftExtensionsOptions>true</UseMicrosoftExtensionsOptions>
+		<UseMicrosoftExtensionsConfiguration>true</UseMicrosoftExtensionsConfiguration>
+		<UseMicrosoftExtensionsConfigurationJson>true</UseMicrosoftExtensionsConfigurationJson>
+		<UseMicrosoftExtensionsOptionsConfigurationExtensions>true</UseMicrosoftExtensionsOptionsConfigurationExtensions>
+		<UseReactiveUI>true</UseReactiveUI>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Essentials>true</UseCommon8Essentials>
+		<UseCommon8PrimitivesEssentials>true</UseCommon8PrimitivesEssentials>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

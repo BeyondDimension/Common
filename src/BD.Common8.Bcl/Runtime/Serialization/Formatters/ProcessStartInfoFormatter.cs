@@ -125,9 +125,12 @@ public readonly partial record struct ProcessStartInfoPackable
             psi.PasswordInClearText = value.PasswordInClearText;
             psi.Domain = value.Domain;
         }
-        if (value.ArgumentList.Any())
+        if (value.ArgumentList.Length != 0)
         {
-            psi.ArgumentList.AddRange(value.ArgumentList);
+            for (int i = 0; i < value.ArgumentList.Length; i++)
+            {
+                psi.ArgumentList.Add(value.ArgumentList[i]);
+            }
         }
         else if (!string.IsNullOrEmpty(value.Arguments))
         {
