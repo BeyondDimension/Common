@@ -185,7 +185,7 @@ public static class SamplePathHelper
     static readonly Lazy<X509Certificate2> _RootCertificate = new(() =>
     {
         X509Certificate2? certificate = null;
-        var filePath = Path.Combine(TempDirPath, "RootCertificate.pfx");
+        var filePath = Path.Combine(TempDirPath, "IpcRootCertificate.pfx");
 
         if (Directory.Exists(TempDirPath))
         {
@@ -218,14 +218,14 @@ public static class SamplePathHelper
     });
 
     /// <summary>
-    /// 测试用的根证书，每次由服务端启动时生成新的，退出时删除缓存文件，可加上证书密码作为鉴权
+    /// Ipc 使用的根证书，每次由后端启动时生成新的，退出时删除缓存文件，可加上证书密码作为鉴权
     /// </summary>
     public static X509Certificate2 RootCertificate => _RootCertificate.Value;
 
     static readonly Lazy<X509Certificate2> _ServerCertificate = new(() =>
     {
         X509Certificate2? certificate = null;
-        var filePath = Path.Combine(TempDirPath, "ServerCertificate.pfx");
+        var filePath = Path.Combine(TempDirPath, "IpcServerCertificate.pfx");
 
         if (Directory.Exists(TempDirPath))
         {
@@ -264,7 +264,7 @@ public static class SamplePathHelper
     });
 
     /// <summary>
-    /// 测试用的服务器证书，每次由服务端启动时生成新的，退出时删除缓存文件，可加上证书密码作为鉴权
+    /// Ipc 用的服务器证书，每次由后端启动时生成新的，退出时删除缓存文件，可加上证书密码作为鉴权
     /// </summary>
     public static X509Certificate2 ServerCertificate => _ServerCertificate.Value;
 

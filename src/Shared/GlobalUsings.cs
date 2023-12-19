@@ -46,6 +46,7 @@ global using System.Security.Cryptography.X509Certificates;
 global using System.Security.Principal;
 global using System.Text;
 global using System.Text.RegularExpressions;
+global using Match = System.Text.RegularExpressions.Match;
 global using System.Web;
 global using System.Xml;
 global using System.Xml.Linq;

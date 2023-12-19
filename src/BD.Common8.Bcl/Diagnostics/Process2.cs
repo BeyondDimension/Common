@@ -51,6 +51,28 @@ public static partial class Process2
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static void SetArguments(this ProcessStartInfo p, object? arguments = null)
+    {
+        if (arguments != null)
+        {
+            if (arguments is IEnumerable<string> arguments_enumerable)
+            {
+                foreach (var argument in arguments_enumerable)
+                {
+                    p.ArgumentList.Add(argument);
+                }
+            }
+            else if (arguments is string arguments_string)
+            {
+                if (!string.IsNullOrEmpty(arguments_string))
+                {
+                    p.Arguments = arguments_string;
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// 获取用于启动进程的 ProcessStartInfo 对象
     /// </summary>
@@ -61,13 +83,11 @@ public static partial class Process2
     /// <param name="environment">要传递给进程环境变量的键值对</param>
     /// <returns>用于启动进程的 ProcessStartInfo 对象</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static ProcessStartInfo GetProcessStartInfo(string fileName, string? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
+    static ProcessStartInfo GetProcessStartInfo(string fileName, object? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
     {
         var p = new ProcessStartInfo(fileName);
-        if (!string.IsNullOrEmpty(arguments))
-        {
-            p.Arguments = arguments;
-        }
+
+        SetArguments(p, arguments);
 
         if (environment != null)
         {
@@ -110,9 +130,10 @@ public static partial class Process2
     /// </exception>
     /// <exception cref="PlatformNotSupportedException">不支持 shell 的操作系统（如，仅适用于.NET Core 的 Nano Server）不支持此方法</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Process? Start(string fileName, string? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
+    public static Process? Start(string fileName, object? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
     {
-        if (string.IsNullOrEmpty(fileName)) return null;
+        if (string.IsNullOrEmpty(fileName))
+            return null;
         var p = GetProcessStartInfo(fileName, arguments, useShellExecute, workingDirectory, environment);
         try
         {
@@ -186,5 +207,28 @@ public static partial class Process2
             onError?.Invoke(e);
         }
         return string.Empty;
+    }
+
+    /// <summary>
+    /// 进程是否活着
+    /// </summary>
+    /// <param name="process"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAlive(Process? process)
+    {
+        if (process == null)
+            return false;
+
+        try
+        {
+            if (process.HasExited)
+                return false;
+        }
+        catch
+        {
+        }
+
+        return true;
     }
 }

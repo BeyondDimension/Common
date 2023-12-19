@@ -2,6 +2,7 @@
 using Android.Content.Res;
 using Android.OS;
 using Android.Provider;
+using Application = Android.App.Application;
 #elif WINDOWS
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.System.Profile;
@@ -166,7 +167,7 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
 #elif IOS || MACCATALYST || __WATCHOS__
             return UIDevice.CurrentDevice.SystemVersion ?? string.Empty;
 #else
-            return string.Empty;
+            return Environment.OSVersion.VersionString;
 #endif
         }
     }
@@ -205,6 +206,8 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
 #elif IOS
             return Runtime.Arch == Arch.DEVICE ? DeviceType.Physical : DeviceType.Virtual;
 #else
+            if (OperatingSystem.IsLinux())
+                return DeviceType.Physical;
             return DeviceType.Unknown;
 #endif
         }
@@ -315,6 +318,8 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
 #elif __TVOS__
 			return DeviceIdiom.TV;
 #else
+            if (OperatingSystem.IsLinux())
+                return DeviceIdiom.Desktop;
             return DeviceIdiom.Unknown;
 #endif
         }

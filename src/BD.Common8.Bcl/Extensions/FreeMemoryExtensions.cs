@@ -1,6 +1,4 @@
 #if WINDOWS7_0_OR_GREATER
-using CsWin32 = Windows.Win32;
-
 namespace System.Extensions;
 
 /// <summary>

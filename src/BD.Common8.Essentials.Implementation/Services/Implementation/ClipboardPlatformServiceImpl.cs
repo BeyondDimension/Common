@@ -2,6 +2,7 @@
 using Android.Content;
 using static Android.Content.ClipboardManager;
 using Context = Android.Content.Context;
+using Application = Android.App.Application;
 #elif WINDOWS
 using Windows.ApplicationModel.DataTransfer;
 using WindowsClipboard = Windows.ApplicationModel.DataTransfer.Clipboard;

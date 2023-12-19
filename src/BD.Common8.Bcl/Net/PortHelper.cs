@@ -1,10 +1,6 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 
-#if WINDOWS7_0_OR_GREATER
-using CsWin32 = Windows.Win32;
-#endif
-
 namespace System.Net;
 
 /// <summary>

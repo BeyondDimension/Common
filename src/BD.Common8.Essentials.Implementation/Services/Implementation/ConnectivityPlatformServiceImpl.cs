@@ -12,6 +12,7 @@ using CoreTelephony;
 using CoreFoundation;
 using SystemConfiguration;
 #endif
+using NetworkAccess = BD.Common8.Enums.NetworkAccess;
 
 namespace BD.Common8.Essentials.Services.Implementation;
 
