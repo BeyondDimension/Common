@@ -11,13 +11,7 @@
 		<UseProjectUtils>true</UseProjectUtils>
 		<UseAspNetCore>true</UseAspNetCore>
 		<UseSwagger>true</UseSwagger>
+		<UseSourceGeneratorIpcServer>true</UseSourceGeneratorIpcServer>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-	</ItemGroup>
 
 </Project>

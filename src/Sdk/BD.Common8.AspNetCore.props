@@ -1,6 +1,6 @@
 <Project>
 	<!-- 褰撳墠椤圭洰 鎴?婧愮爜寮曠敤姝ら」鐩?-->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8AspNetCore_Ref) == 'code'">
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8AspNetCore) == 'src'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
@@ -32,7 +32,7 @@
 	</ItemGroup>
 
 	<!-- 婧愮爜寮曠敤姝ら」鐩?-->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore_Ref) == 'code'">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore) == 'src'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -41,7 +41,7 @@
 	</ItemGroup>
 
 	<!-- 椤圭洰寮曠敤姝ら」鐩?-->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore_Ref) == ''">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCore) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
 	</ItemGroup>
 </Project>

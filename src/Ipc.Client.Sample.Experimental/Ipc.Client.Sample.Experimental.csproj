@@ -10,19 +10,13 @@
 		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
 		<UseProjectUtils>true</UseProjectUtils>
 		<UseMicrosoftExtensionsLoggingConsole>true</UseMicrosoftExtensionsLoggingConsole>
+		<UseSourceGeneratorIpcClient>true</UseSourceGeneratorIpcClient>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Include="..\Ipc.Server.Sample.Experimental\ITodoService.cs">
 			<LinkBase>Services</LinkBase>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
 	</ItemGroup>
 
 </Project>

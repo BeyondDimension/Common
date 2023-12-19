@@ -1,6 +1,6 @@
 <Project>
 	<!-- i18n 资源(当前项目 或 源码引用此项目) -->
-	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8PrimitivesApiRsp_Ref) == 'code'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
+	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8PrimitivesApiRsp) == 'src'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
 
 	<PropertyGroup>
 		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
@@ -18,7 +18,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PrimitivesApiRsp_Ref) == 'code'">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PrimitivesApiRsp) == 'src'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PrimitivesApiRsp_Ref) == ''">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PrimitivesApiRsp) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
 	</ItemGroup>
 </Project>

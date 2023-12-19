@@ -11,19 +11,13 @@
 		<UseCommon8IpcClient>true</UseCommon8IpcClient>
 		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
 		<UseCommon8HttpClientFactory>true</UseCommon8HttpClientFactory>
+		<UseSourceGeneratorIpcClient>true</UseSourceGeneratorIpcClient>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Include="..\Ipc.Server.Sample.Experimental\ITodoService.cs">
 			<LinkBase>Services</LinkBase>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
 	</ItemGroup>
 
 </Project>

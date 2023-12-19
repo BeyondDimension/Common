@@ -1,12 +1,12 @@
 <Project>
 	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl_Ref) == 'code'">
+	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl) == 'src'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseMicrosoftWindowsCsWin32>true</UseMicrosoftWindowsCsWin32>
 	</PropertyGroup>
 
 	<!-- i18n 资源(当前项目 或 源码引用此项目) -->
-	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl_Ref) == 'code'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
+	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl) == 'src'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
 
 	<PropertyGroup>
 		<UseSystemDrawingCommon>true</UseSystemDrawingCommon>
@@ -44,7 +44,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl_Ref) == 'code'">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl) == 'src'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -53,7 +53,7 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl_Ref) == ''">
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
 	</ItemGroup>
 </Project>
