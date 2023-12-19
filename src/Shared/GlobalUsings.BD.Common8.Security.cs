@@ -7,7 +7,6 @@
 
 global using BD.Common8.Security;
 global using BD.Common8.Security.Enums;
-global using BD.Common8.Security.Extensions;
 global using BD.Common8.Security.Helpers;
 global using BD.Common8.Security.Services;
 global using BD.Common8.Security.Services.Implementation;
