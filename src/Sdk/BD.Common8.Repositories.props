@@ -1,11 +1,18 @@
-<Project>
-	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Repositories) == 'src'">
+<Project TreatAsLocalProperty="_UseCommon8Repositories_Ref_This;_UseCommon8Repositories_Ref_Src;_UseCommon8Repositories_Ref_Proj;_UseCommon8Repositories_Ref_Pkg">
+	<PropertyGroup>
+		<_UseCommon8Repositories_Ref_This Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)">true</_UseCommon8Repositories_Ref_This>
+		<_UseCommon8Repositories_Ref_Src Condition="$(UseCommon8Repositories) == 'src'">true</_UseCommon8Repositories_Ref_Src>
+		<_UseCommon8Repositories_Ref_Proj Condition="$(UseCommon8Repositories) == 'true'">true</_UseCommon8Repositories_Ref_Proj>
+		<_UseCommon8Repositories_Ref_Pkg Condition="$(UseCommon8Repositories) == 'pkg'">true</_UseCommon8Repositories_Ref_Pkg>
 	</PropertyGroup>
 
+	<!-- 当前项目 或 源码引用此项目 -->
+	<!--<PropertyGroup Condition="$(_UseCommon8Repositories_Ref_This) == 'true' OR $(_UseCommon8Repositories_Ref_Src) == 'true'">
+	</PropertyGroup>-->
+
 	<PropertyGroup>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseCommon8Bcl Condition="$(UseCommon8Bcl) == ''">true</UseCommon8Bcl>
+		<UseCommon8Primitives Condition="$(UseCommon8Primitives) == ''">true</UseCommon8Primitives>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->
@@ -19,7 +26,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Repositories) == 'src'">
+	<ItemGroup Condition="$(_UseCommon8Repositories_Ref_This) != 'true' AND $(_UseCommon8Repositories_Ref_Src) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -28,7 +35,12 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Repositories) == 'true'">
+	<ItemGroup Condition="$(_UseCommon8Repositories_Ref_This) != 'true' AND $(_UseCommon8Repositories_Ref_Proj) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+
+	<!-- 包引用此项目 -->
+	<ItemGroup Condition="$(_UseCommon8Repositories_Ref_This) != 'true' AND $(_UseCommon8Repositories_Ref_Pkg) == 'true'">
+		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 </Project>

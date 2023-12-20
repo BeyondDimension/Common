@@ -1,12 +1,19 @@
-<Project>
+<Project TreatAsLocalProperty="_UseCommon8Bcl_Ref_This;_UseCommon8Bcl_Ref_Src;_UseCommon8Bcl_Ref_Proj;_UseCommon8Bcl_Ref_Pkg">
+	<PropertyGroup>
+		<_UseCommon8Bcl_Ref_This Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)">true</_UseCommon8Bcl_Ref_This>
+		<_UseCommon8Bcl_Ref_Src Condition="$(UseCommon8Bcl) == 'src'">true</_UseCommon8Bcl_Ref_Src>
+		<_UseCommon8Bcl_Ref_Proj Condition="$(UseCommon8Bcl) == 'true'">true</_UseCommon8Bcl_Ref_Proj>
+		<_UseCommon8Bcl_Ref_Pkg Condition="$(UseCommon8Bcl) == 'pkg'">true</_UseCommon8Bcl_Ref_Pkg>
+	</PropertyGroup>
+
 	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl) == 'src'">
+	<PropertyGroup Condition="$(_UseCommon8Bcl_Ref_This) == 'true' OR $(_UseCommon8Bcl_Ref_Src) == 'true'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseMicrosoftWindowsCsWin32>true</UseMicrosoftWindowsCsWin32>
 	</PropertyGroup>
 
 	<!-- i18n 资源(当前项目 或 源码引用此项目) -->
-	<Import Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Bcl) == 'src'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
+	<Import Condition="$(_UseCommon8Bcl_Ref_This) == 'true' OR $(_UseCommon8Bcl_Ref_Src) == 'true'" Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
 
 	<PropertyGroup>
 		<UseSystemDrawingCommon>true</UseSystemDrawingCommon>
@@ -44,7 +51,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl) == 'src'">
+	<ItemGroup Condition="$(_UseCommon8Bcl_Ref_This) != 'true' AND $(_UseCommon8Bcl_Ref_Src) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -53,7 +60,12 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Bcl) == 'true'">
+	<ItemGroup Condition="$(_UseCommon8Bcl_Ref_This) != 'true' AND $(_UseCommon8Bcl_Ref_Proj) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+
+	<!-- 包引用此项目 -->
+	<ItemGroup Condition="$(_UseCommon8Bcl_Ref_This) != 'true' AND $(_UseCommon8Bcl_Ref_Pkg) == 'true'">
+		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 </Project>

@@ -1,14 +1,21 @@
-<Project>
+<Project TreatAsLocalProperty="_UseCommon8OrmEFCore_Ref_This;_UseCommon8OrmEFCore_Ref_Src;_UseCommon8OrmEFCore_Ref_Proj;_UseCommon8OrmEFCore_Ref_Pkg">
+	<PropertyGroup>
+		<_UseCommon8OrmEFCore_Ref_This Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)">true</_UseCommon8OrmEFCore_Ref_This>
+		<_UseCommon8OrmEFCore_Ref_Src Condition="$(UseCommon8OrmEFCore) == 'src'">true</_UseCommon8OrmEFCore_Ref_Src>
+		<_UseCommon8OrmEFCore_Ref_Proj Condition="$(UseCommon8OrmEFCore) == 'true'">true</_UseCommon8OrmEFCore_Ref_Proj>
+		<_UseCommon8OrmEFCore_Ref_Pkg Condition="$(UseCommon8OrmEFCore) == 'pkg'">true</_UseCommon8OrmEFCore_Ref_Pkg>
+	</PropertyGroup>
+
 	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8OrmEFCore) == 'src'">
+	<PropertyGroup Condition="$(_UseCommon8OrmEFCore_Ref_This) == 'true' OR $(_UseCommon8OrmEFCore_Ref_Src) == 'true'">
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<UseEFCore>true</UseEFCore>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
-		<UseCommon8PrimitivesPersonalDataPhoneNumber>true</UseCommon8PrimitivesPersonalDataPhoneNumber>
-		<UseCommon8PrimitivesPersonalDataBirthDate>true</UseCommon8PrimitivesPersonalDataBirthDate>
+		<UseCommon8Bcl Condition="$(UseCommon8Bcl) == ''">true</UseCommon8Bcl>
+		<UseCommon8Primitives Condition="$(UseCommon8Primitives) == ''">true</UseCommon8Primitives>
+		<UseCommon8PrimitivesPersonalDataPhoneNumber Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == ''">true</UseCommon8PrimitivesPersonalDataPhoneNumber>
+		<UseCommon8PrimitivesPersonalDataBirthDate Condition="$(UseCommon8PrimitivesPersonalDataBirthDate) == ''">true</UseCommon8PrimitivesPersonalDataBirthDate>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->
@@ -22,7 +29,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8OrmEFCore) == 'src'">
+	<ItemGroup Condition="$(_UseCommon8OrmEFCore_Ref_This) != 'true' AND $(_UseCommon8OrmEFCore_Ref_Src) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -31,7 +38,12 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8OrmEFCore) == 'true'">
+	<ItemGroup Condition="$(_UseCommon8OrmEFCore_Ref_This) != 'true' AND $(_UseCommon8OrmEFCore_Ref_Proj) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+
+	<!-- 包引用此项目 -->
+	<ItemGroup Condition="$(_UseCommon8OrmEFCore_Ref_This) != 'true' AND $(_UseCommon8OrmEFCore_Ref_Pkg) == 'true'">
+		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 </Project>

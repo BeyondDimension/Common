@@ -1,18 +1,25 @@
-<Project>
-	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8AspNetCoreIdentityBackManage) == 'src'">
+<Project TreatAsLocalProperty="_UseCommon8AspNetCoreIdentityBackManage_Ref_This;_UseCommon8AspNetCoreIdentityBackManage_Ref_Src;_UseCommon8AspNetCoreIdentityBackManage_Ref_Proj;_UseCommon8AspNetCoreIdentityBackManage_Ref_Pkg">
+	<PropertyGroup>
+		<_UseCommon8AspNetCoreIdentityBackManage_Ref_This Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)">true</_UseCommon8AspNetCoreIdentityBackManage_Ref_This>
+		<_UseCommon8AspNetCoreIdentityBackManage_Ref_Src Condition="$(UseCommon8AspNetCoreIdentityBackManage) == 'src'">true</_UseCommon8AspNetCoreIdentityBackManage_Ref_Src>
+		<_UseCommon8AspNetCoreIdentityBackManage_Ref_Proj Condition="$(UseCommon8AspNetCoreIdentityBackManage) == 'true'">true</_UseCommon8AspNetCoreIdentityBackManage_Ref_Proj>
+		<_UseCommon8AspNetCoreIdentityBackManage_Ref_Pkg Condition="$(UseCommon8AspNetCoreIdentityBackManage) == 'pkg'">true</_UseCommon8AspNetCoreIdentityBackManage_Ref_Pkg>
 	</PropertyGroup>
+
+	<!-- 当前项目 或 源码引用此项目 -->
+	<!--<PropertyGroup Condition="$(_UseCommon8AspNetCoreIdentityBackManage_Ref_This) == 'true' OR $(_UseCommon8AspNetCoreIdentityBackManage_Ref_Src) == 'true'">
+	</PropertyGroup>-->
 	
 	<PropertyGroup>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
-		<UseCommon8PrimitivesEssentials>true</UseCommon8PrimitivesEssentials>
-		<UseCommon8OrmEFCore>true</UseCommon8OrmEFCore>
-		<UseCommon8RepositoriesEFCore>true</UseCommon8RepositoriesEFCore>
-		<UseCommon8AspNetCore>true</UseCommon8AspNetCore>
-		<UseCommon8AspNetCoreIdentity>true</UseCommon8AspNetCoreIdentity>
-		<UseCommon8PrimitivesApiResponse>true</UseCommon8PrimitivesApiResponse>
-		<UseCommon8PrimitivesPersonalDataPhoneNumber>true</UseCommon8PrimitivesPersonalDataPhoneNumber>
+		<UseCommon8Bcl Condition="$(UseCommon8Bcl) == ''">true</UseCommon8Bcl>
+		<UseCommon8Primitives Condition="$(UseCommon8Primitives) == ''">true</UseCommon8Primitives>
+		<UseCommon8PrimitivesEssentials Condition="$(UseCommon8PrimitivesEssentials) == ''">true</UseCommon8PrimitivesEssentials>
+		<UseCommon8OrmEFCore Condition="$(UseCommon8OrmEFCore) == ''">true</UseCommon8OrmEFCore>
+		<UseCommon8RepositoriesEFCore Condition="$(UseCommon8RepositoriesEFCore) == ''">true</UseCommon8RepositoriesEFCore>
+		<UseCommon8AspNetCore Condition="$(UseCommon8AspNetCore) == ''">true</UseCommon8AspNetCore>
+		<UseCommon8AspNetCoreIdentity Condition="$(UseCommon8AspNetCoreIdentity) == ''">true</UseCommon8AspNetCoreIdentity>
+		<UseCommon8PrimitivesApiResponse Condition="$(UseCommon8PrimitivesApiResponse) == ''">true</UseCommon8PrimitivesApiResponse>
+		<UseCommon8PrimitivesPersonalDataPhoneNumber Condition="$(UseCommon8PrimitivesPersonalDataPhoneNumber) == ''">true</UseCommon8PrimitivesPersonalDataPhoneNumber>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->
@@ -26,7 +33,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCoreIdentityBackManage) == 'src'">
+	<ItemGroup Condition="$(_UseCommon8AspNetCoreIdentityBackManage_Ref_This) != 'true' AND $(_UseCommon8AspNetCoreIdentityBackManage_Ref_Src) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -35,7 +42,12 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8AspNetCoreIdentityBackManage) == 'true'">
+	<ItemGroup Condition="$(_UseCommon8AspNetCoreIdentityBackManage_Ref_This) != 'true' AND $(_UseCommon8AspNetCoreIdentityBackManage_Ref_Proj) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+
+	<!-- 包引用此项目 -->
+	<ItemGroup Condition="$(_UseCommon8AspNetCoreIdentityBackManage_Ref_This) != 'true' AND $(_UseCommon8AspNetCoreIdentityBackManage_Ref_Pkg) == 'true'">
+		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 </Project>

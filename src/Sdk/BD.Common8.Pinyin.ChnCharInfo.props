@@ -1,11 +1,18 @@
-<Project>
-	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8PinyinChnCharInfo) == 'src'">
+<Project TreatAsLocalProperty="_UseCommon8PinyinChnCharInfo_Ref_This;_UseCommon8PinyinChnCharInfo_Ref_Src;_UseCommon8PinyinChnCharInfo_Ref_Proj;_UseCommon8PinyinChnCharInfo_Ref_Pkg">
+	<PropertyGroup>
+		<_UseCommon8PinyinChnCharInfo_Ref_This Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)">true</_UseCommon8PinyinChnCharInfo_Ref_This>
+		<_UseCommon8PinyinChnCharInfo_Ref_Src Condition="$(UseCommon8PinyinChnCharInfo) == 'src'">true</_UseCommon8PinyinChnCharInfo_Ref_Src>
+		<_UseCommon8PinyinChnCharInfo_Ref_Proj Condition="$(UseCommon8PinyinChnCharInfo) == 'true'">true</_UseCommon8PinyinChnCharInfo_Ref_Proj>
+		<_UseCommon8PinyinChnCharInfo_Ref_Pkg Condition="$(UseCommon8PinyinChnCharInfo) == 'pkg'">true</_UseCommon8PinyinChnCharInfo_Ref_Pkg>
 	</PropertyGroup>
 
+	<!-- 当前项目 或 源码引用此项目 -->
+	<!--<PropertyGroup Condition="$(_UseCommon8PinyinChnCharInfo_Ref_This) == 'true' OR $(_UseCommon8PinyinChnCharInfo_Ref_Src) == 'true'">
+	</PropertyGroup>-->
+
 	<PropertyGroup>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Pinyin>true</UseCommon8Pinyin>
+		<UseCommon8Bcl Condition="$(UseCommon8Bcl) == ''">true</UseCommon8Bcl>
+		<UseCommon8Pinyin Condition="$(UseCommon8Pinyin) == ''">true</UseCommon8Pinyin>
 	</PropertyGroup>
 
 	<!-- 当前项目 或 源码引用此项目(ItemGroup) -->
@@ -50,7 +57,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PinyinChnCharInfo) == 'src'">
+	<ItemGroup Condition="$(_UseCommon8PinyinChnCharInfo_Ref_This) != 'true' AND $(_UseCommon8PinyinChnCharInfo_Ref_Src) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -59,7 +66,12 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8PinyinChnCharInfo) == 'true'">
+	<ItemGroup Condition="$(_UseCommon8PinyinChnCharInfo_Ref_This) != 'true' AND $(_UseCommon8PinyinChnCharInfo_Ref_Proj) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+
+	<!-- 包引用此项目 -->
+	<ItemGroup Condition="$(_UseCommon8PinyinChnCharInfo_Ref_This) != 'true' AND $(_UseCommon8PinyinChnCharInfo_Ref_Pkg) == 'true'">
+		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 </Project>

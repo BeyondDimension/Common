@@ -1,11 +1,18 @@
-<Project>
+<Project TreatAsLocalProperty="_UseCommon8Security_Ref_This;_UseCommon8Security_Ref_Src;_UseCommon8Security_Ref_Proj;_UseCommon8Security_Ref_Pkg">
+	<PropertyGroup>
+		<_UseCommon8Security_Ref_This Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)">true</_UseCommon8Security_Ref_This>
+		<_UseCommon8Security_Ref_Src Condition="$(UseCommon8Security) == 'src'">true</_UseCommon8Security_Ref_Src>
+		<_UseCommon8Security_Ref_Proj Condition="$(UseCommon8Security) == 'true'">true</_UseCommon8Security_Ref_Proj>
+		<_UseCommon8Security_Ref_Pkg Condition="$(UseCommon8Security) == 'pkg'">true</_UseCommon8Security_Ref_Pkg>
+	</PropertyGroup>
+
 	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Security) == 'src'">
+	<PropertyGroup Condition="$(_UseCommon8Security_Ref_This) == 'true' OR $(_UseCommon8Security_Ref_Src) == 'true'">
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Bcl Condition="$(UseCommon8Bcl) == ''">true</UseCommon8Bcl>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->
@@ -19,7 +26,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Security) == 'src'">
+	<ItemGroup Condition="$(_UseCommon8Security_Ref_This) != 'true' AND $(_UseCommon8Security_Ref_Src) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -28,7 +35,12 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Security) == 'true'">
+	<ItemGroup Condition="$(_UseCommon8Security_Ref_This) != 'true' AND $(_UseCommon8Security_Ref_Proj) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+
+	<!-- 包引用此项目 -->
+	<ItemGroup Condition="$(_UseCommon8Security_Ref_This) != 'true' AND $(_UseCommon8Security_Ref_Pkg) == 'true'">
+		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 </Project>

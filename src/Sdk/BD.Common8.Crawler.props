@@ -1,11 +1,18 @@
-<Project>
-	<!-- 当前项目 或 源码引用此项目 -->
-	<PropertyGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseCommon8Crawler) == 'src'">
+<Project TreatAsLocalProperty="_UseCommon8Crawler_Ref_This;_UseCommon8Crawler_Ref_Src;_UseCommon8Crawler_Ref_Proj;_UseCommon8Crawler_Ref_Pkg">
+	<PropertyGroup>
+		<_UseCommon8Crawler_Ref_This Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)">true</_UseCommon8Crawler_Ref_This>
+		<_UseCommon8Crawler_Ref_Src Condition="$(UseCommon8Crawler) == 'src'">true</_UseCommon8Crawler_Ref_Src>
+		<_UseCommon8Crawler_Ref_Proj Condition="$(UseCommon8Crawler) == 'true'">true</_UseCommon8Crawler_Ref_Proj>
+		<_UseCommon8Crawler_Ref_Pkg Condition="$(UseCommon8Crawler) == 'pkg'">true</_UseCommon8Crawler_Ref_Pkg>
 	</PropertyGroup>
+
+	<!-- 当前项目 或 源码引用此项目 -->
+	<!--<PropertyGroup Condition="$(_UseCommon8Crawler_Ref_This) == 'true' OR $(_UseCommon8Crawler_Ref_Src) == 'true'">
+	</PropertyGroup>-->
 	
 	<PropertyGroup>
 		<UseAngleSharp>true</UseAngleSharp>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Bcl Condition="$(UseCommon8Bcl) == ''">true</UseCommon8Bcl>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->
@@ -19,7 +26,7 @@
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Crawler) == 'src'">
+	<ItemGroup Condition="$(_UseCommon8Crawler_Ref_This) != 'true' AND $(_UseCommon8Crawler_Ref_Src) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\**\*.cs">
 			<LinkBase>_SourceReference\$(MSBuildThisFileName)</LinkBase>
 		</Compile>
@@ -28,7 +35,12 @@
 	</ItemGroup>
 
 	<!-- 项目引用此项目 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName) AND $(UseCommon8Crawler) == 'true'">
+	<ItemGroup Condition="$(_UseCommon8Crawler_Ref_This) != 'true' AND $(_UseCommon8Crawler_Ref_Proj) == 'true'">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
+	</ItemGroup>
+
+	<!-- 包引用此项目 -->
+	<ItemGroup Condition="$(_UseCommon8Crawler_Ref_This) != 'true' AND $(_UseCommon8Crawler_Ref_Pkg) == 'true'">
+		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 </Project>
