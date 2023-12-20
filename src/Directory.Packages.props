@@ -93,5 +93,6 @@
 		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
 		<PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageVersion Include="TaskScheduler" Version="2.10.1" />
+		<PackageVersion Include="Portable.BouncyCastle" Version="1.9.0" />
 	</ItemGroup>
 </Project>
