@@ -9,3 +9,4 @@ global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Logging.Abstractions;
 
 global using LogLevel = Microsoft.Extensions.Logging.LogLevel;
+global using ILogger = Microsoft.Extensions.Logging.ILogger;
