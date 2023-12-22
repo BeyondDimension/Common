@@ -1,3 +1,3 @@
 ---
-redirect_url: "articles/Code-Style.html" 
+redirect_url: "articles/" 
 ---

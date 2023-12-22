@@ -44,7 +44,7 @@ function transformModel(model) {
                     else if (namespaceArry.length > 1 && namespaceArry[1].indexOf("BD.Common8") != -1)
                         item.href = namespaceArry[1] + item.href.substring(nindex, item.href.length);
                     
-                    else
+                    else if(namespaceArry.length > 2)
                         item.href = namespaceArry[2] + item.href.substring(nindex, item.href.length);
                 }
             }

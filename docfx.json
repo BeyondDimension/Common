@@ -155,12 +155,6 @@
       },
       {
         "files": [
-          "topnav.html"
-        ],
-        "rootTocPath": "topnav.html" 
-      },
-      {
-        "files": [
           "api/**.yml",
           "api/index.md",
           "api/**/**.yml"
@@ -174,8 +168,7 @@
           "res/DocFXIcon.png",
           "articles/aes.html",
           "articles/rsa.html",
-          "topnav.html",
-          "topnav.json"
+          "README.md"
         ]
       }
     ],

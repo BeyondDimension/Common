@@ -23,14 +23,14 @@ exports.preTransform = function (model) {
 
         var nindex = item.topicHref.indexOf("/");
         if (nindex != -1) {
-          
+
           if (namespaceArry.length > 0 && namespaceArry[0].indexOf("BD.Common8") != -1)
             item.topicHref = namespaceArry[0] + item.topicHref.substring(nindex, item.topicHref.length);
 
           else if (namespaceArry.length > 1 && namespaceArry[1].indexOf("BD.Common8") != -1)
             item.topicHref = namespaceArry[1] + item.topicHref.substring(nindex, item.topicHref.length);
 
-          else
+          else if (namespaceArry.length > 2)
             item.topicHref = namespaceArry[2] + item.topicHref.substring(nindex, item.topicHref.length);
         }
       }

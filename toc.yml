@@ -1,22 +1,5 @@
-- name: 代码风格 与 编码规范
-  href: articles/Code-Style.md
-- name: 压缩与打包(归档)
-  href: articles/Compression-And-Packaging.md
-- name: 文案指南 / 中西文混排
-  href: articles/Copywriting-Guide.md
-- name: C# 中的新增功能 与 重大更改
-  href: articles/CSharp.md
-- name: DbContext 生存期、配置和初始化
-  href: articles/Entity-Framework-Core.md
-- name: Git 提交规范
-  href: articles/Git-Commit-Message-Standard.md
-- name: 项目结构
-  href: articles/Project-Structure.md
-- name: Redis/分布式缓存
-  href: articles/Redis.md
-- name: 序列化与反序列化
-  href: articles/Serializable-And-Deserialize.md
-- name: AES
-  href: articles/aes.html
-- name: RSA
-  href: articles/rsa.html
+- name: 文章
+  href: articles/
+- name: API 文档
+  href: api/
+  homepage: api/index.md
