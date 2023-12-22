@@ -166,8 +166,7 @@
         "files": [
           "images/**",
           "res/DocFXIcon.png",
-          "articles/aes.html",
-          "articles/rsa.html",
+          "articles/*.html",
           "README.md"
         ]
       }
