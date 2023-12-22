@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SettingsLoadServiceImpl
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SettingsLoadServiceImpl
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl">
+
+
+
+  <h1 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl" class="text-break">
+    Class SettingsLoadServiceImpl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Settings5.html">Settings5</a>.<a class="xref" href="BD.Common8.Settings5.Services.html">Services</a>.<a class="xref" href="BD.Common8.Settings5.Services.Implementation.html">Implementation</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Settings5.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p><a class="xref" href="BD.Common8.Settings5.Services.ISettingsLoadService.html">ISettingsLoadService</a> 的实现</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SettingsLoadServiceImpl : ISettingsLoadService</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SettingsLoadServiceImpl</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.Settings5.Services.ISettingsLoadService.html">ISettingsLoadService</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl__ctor_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.#ctor*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl__ctor_System_Text_Json_JsonSerializerOptions_System_Boolean_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.#ctor(System.Text.Json.JsonSerializerOptions,System.Boolean)">
+  SettingsLoadServiceImpl(JsonSerializerOptions, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html">SettingsLoadServiceImpl</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SettingsLoadServiceImpl(JsonSerializerOptions options, bool isReadOnly = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
+    <dd></dd>
+    <dt><code>isReadOnly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Current_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Current*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Current" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Current">
+  Current
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取当前单例服务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SettingsLoadServiceImpl Current { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html">SettingsLoadServiceImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsModelType_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsModelType*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsModelType_System_String_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsModelType(System.String)">
+  GetSettingsModelType(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据文件名不包含扩展名获取模型类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type? GetSettingsModelType(string settingsFileNameWithoutExtension)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settingsFileNameWithoutExtension</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Get_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Get*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Get__1" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Get``1">
+  Get&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取依赖注入服务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Get&lt;T&gt;() where T : notnull</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Load_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Load*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Load__1_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection___Microsoft_Extensions_Options_IOptionsMonitor___0___System_String_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Load``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}@,Microsoft.Extensions.Options.IOptionsMonitor{``0}@,System.String)">
+  Load&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;?, out IOptionsMonitor&lt;TSettingsModel&gt;?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>加载设置项，返回是否已经加载过</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public (bool isInvalid, Exception? ex, string settingsFileNameWithoutExtension) Load&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;? configureServices, out IOptionsMonitor&lt;TSettingsModel&gt;? options, string? settingsFileDirectory = null) where TSettingsModel : class, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>configureServices</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a>&gt;</dt>
+    <dd><p>返回配置该设置项的服务配置委托</p>
+</dd>
+    <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1">IOptionsMonitor</a>&lt;TSettingsModel&gt;</dt>
+    <dd><p>设置项监听接口</p>
+</dd>
+    <dt><code>settingsFileDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>设置项保存文件所在文件夹，默认将取 <a class="xref" href="../BD.Common8.Bcl/System.IOPath.html#System_IOPath_AppDataDirectory">AppDataDirectory</a></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.exception,system.string-.isinvalid">isInvalid</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.exception,system.string-.ex">ex</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.exception,system.string-.settingsfilenamewithoutextension">settingsFileNameWithoutExtension</a>)</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSettingsModel</code></dt>
+    <dd><p>设置项模型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save__1___0_System_Boolean_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save``1(``0,System.Boolean)">
+  Save&lt;TSettingsModel&gt;(TSettingsModel, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存配置项到文件</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Save&lt;TSettingsModel&gt;(TSettingsModel settingsModel, bool force = true) where TSettingsModel : class, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settingsModel</code> <span class="xref">TSettingsModel</span></dt>
+    <dd><p>新的值</p>
+</dd>
+    <dt><code>force</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否忽略比较相等，强制保存写入文件，默认值：<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSettingsModel</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

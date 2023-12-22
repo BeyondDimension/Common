@@ -13,6 +13,16 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "README.md",
+      "output": {
+        "resource": {
+          "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Columns.ICreateUser.yml",
       "output": {
@@ -3536,6 +3546,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.JsonSerializerOptionsExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.JsonSerializerOptionsExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.CookieCollectionConverter.yml",
       "output": {
         ".html": {
@@ -3600,6 +3620,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Bcl/System.Text.Json.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.ValueStringBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.ValueStringBuilder.html"
         }
       },
       "version": ""
@@ -3753,6 +3783,39 @@
         },
         ".json": {
           "relative_path": "api/BD.Common8.Bcl/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Crawler/BD.Common8.Crawler.Helpers.HtmlParseHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Crawler/BD.Common8.Crawler.Helpers.HtmlParseHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Crawler/BD.Common8.Crawler.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Crawler/BD.Common8.Crawler.Helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Crawler/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Crawler/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Crawler/toc.json"
         }
       },
       "version": ""
@@ -5317,20 +5380,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.yml",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IHubEndpointRouteMapHub.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html"
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IHubEndpointRouteMapHub.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerHub.yml",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerHub.html"
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html"
         }
       },
       "version": ""
@@ -5376,6 +5439,26 @@
       "version": ""
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/Microsoft.AspNetCore.SignalR.HubExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/Microsoft.AspNetCore.SignalR.HubExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/Microsoft.AspNetCore.SignalR.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc.Server/Microsoft.AspNetCore.SignalR.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "api/BD.Common8.Ipc.Server/toc.yml",
       "output": {
@@ -5400,10 +5483,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractAttribute.yml",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractAttribute.html"
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html"
         }
       },
       "version": ""
@@ -5424,6 +5507,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Enums.IpcAppConnectionStringType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Enums.IpcGeneratorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Enums.IpcGeneratorType.html"
         }
       },
       "version": ""
@@ -6094,6 +6187,169 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.BrowserLaunchFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.BrowserLaunchFlags.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.BrowserLaunchMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.BrowserLaunchMode.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.BrowserTitleMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.BrowserTitleMode.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.ConnectionProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.ConnectionProfile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DeviceIdiom.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DeviceIdiom.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DevicePlatform2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DevicePlatform2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DevicePlatform2EnumExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DevicePlatform2EnumExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DeviceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DeviceType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DeviceTypeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.DeviceTypeExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.EmailBodyFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.EmailBodyFormat.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.IdiomEnumExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.IdiomEnumExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.NetworkAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.NetworkAccess.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.PermissionStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.PermissionStatus.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.ThreadingDispatcherPriority.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.ThreadingDispatcherPriority.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Primitives.Essentials/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Primitives.Essentials/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Columns.IBirthDate.yml",
       "output": {
         ".html": {
@@ -6224,6 +6480,49 @@
         },
         ".json": {
           "relative_path": "api/BD.Common8.Primitives.PersonalData.PhoneNumber/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Toast/BD.Common8.Enums.ToastIcon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Toast/BD.Common8.Enums.ToastIcon.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Toast/BD.Common8.Enums.ToastLength.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Toast/BD.Common8.Enums.ToastLength.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Primitives.Toast/BD.Common8.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Toast/BD.Common8.Enums.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.Primitives.Toast/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Primitives.Toast/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.Primitives.Toast/toc.json"
         }
       },
       "version": ""
@@ -7172,26 +7471,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Security/BD.Common8.Security.Extensions.ServiceCollectionExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Security/BD.Common8.Security.Extensions.ServiceCollectionExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Security/BD.Common8.Security.Extensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Security/BD.Common8.Security.Extensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Security/BD.Common8.Security.Helpers.MachineUniqueIdentifier.yml",
       "output": {
         ".html": {
@@ -7391,6 +7670,26 @@
       "version": ""
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Security/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Security/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Security/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Security/Microsoft.Extensions.DependencyInjection.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "api/BD.Common8.Security/toc.yml",
       "output": {
@@ -7405,146 +7704,80 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.SettingsLoadBackendService.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.SettingsLoadBackendService.html"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty-4.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Backend/BD.Common8.Settings5.Services.Implementation.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "api/BD.Common8.Settings5.Backend/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Backend/toc.html"
-        },
-        ".json": {
-          "relative_path": "api/BD.Common8.Settings5.Backend/toc.json"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty-4.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.ValueChangedEventListener.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.html"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.ValueChangedEventListener.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty-4.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty-4.html"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.ValueChangedEventListener.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.ValueChangedEventListener.html"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsPropertyGeneratedAttribute.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsPropertyGeneratedAttribute.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsPropertyValueChangedEventArgs-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsProperty.html"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsPropertyValueChangedEventArgs-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyGeneratedAttribute.yml",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyGeneratedAttribute.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyValueChangedEventArgs-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.SettingsPropertyValueChangedEventArgs-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Infrastructure.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.SettingsLoadFrontendService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.SettingsLoadFrontendService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/BD.Common8.Settings5.Services.Implementation.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "api/BD.Common8.Settings5.Frontend/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/toc.html"
-        },
-        ".json": {
-          "relative_path": "api/BD.Common8.Settings5.Frontend/toc.json"
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.html"
         }
       },
       "version": ""
@@ -7555,6 +7788,26 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.ISettingsLoadService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.html"
         }
       },
       "version": ""
@@ -8699,26 +8952,6 @@
         },
         ".json": {
           "relative_path": "toc.json"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "topnav.html",
-      "output": {
-        "resource": {
-          "relative_path": "topnav.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "topnav.json",
-      "output": {
-        "resource": {
-          "relative_path": "topnav.json"
         }
       },
       "version": ""

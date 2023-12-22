@@ -11,7 +11,7 @@
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
-      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:navrel" content="../../toc.html">
       <meta name="docfx:tocrel" content="../toc.html">
       
       
@@ -143,10 +143,54 @@
 </h2>
 
 
-  <a id="BD_Common8_Ipc_IpcServiceCollectionServiceExtensions_AddSingletonWithIpc_" data-uid="BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.AddSingletonWithIpc*"></a>
+  <a id="BD_Common8_Ipc_IpcServiceCollectionServiceExtensions_AddIpcServer_" data-uid="BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.AddIpcServer*"></a>
 
-  <h3 id="BD_Common8_Ipc_IpcServiceCollectionServiceExtensions_AddSingletonWithIpc__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.AddSingletonWithIpc``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-  AddSingletonWithIpc&lt;TService, TImplementation&gt;(IServiceCollection)
+  <h3 id="BD_Common8_Ipc_IpcServiceCollectionServiceExtensions_AddIpcServer__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.AddIpcServer``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  AddIpcServer&lt;TService, TImplementation&gt;(IServiceCollection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Extensions/IpcServiceCollectionServiceExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加 Ipc 服务器配置接口与实现类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddIpcServer&lt;TService, TImplementation&gt;(this IServiceCollection services) where TService : class where TImplementation : class, TService, IEndpointRouteMapGroup, IHubEndpointRouteMapHub</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TService</code></dt>
+    <dd></dd>
+    <dt><code>TImplementation</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_IpcServiceCollectionServiceExtensions_AddSingletonWithIpcServer_" data-uid="BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.AddSingletonWithIpcServer*"></a>
+
+  <h3 id="BD_Common8_Ipc_IpcServiceCollectionServiceExtensions_AddSingletonWithIpcServer__2_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.AddSingletonWithIpcServer``2(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  AddSingletonWithIpcServer&lt;TService, TImplementation&gt;(IServiceCollection)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Extensions/IpcServiceCollectionServiceExtensions.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -157,7 +201,7 @@ specified <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IServiceCollection AddSingletonWithIpc&lt;TService, TImplementation&gt;(this IServiceCollection services) where TService : class where TImplementation : class, TService, IEndpointRouteMapGroup</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddSingletonWithIpcServer&lt;TService, TImplementation&gt;(this IServiceCollection services) where TService : class where TImplementation : class, TService, IEndpointRouteMapGroup, IHubEndpointRouteMapHub</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

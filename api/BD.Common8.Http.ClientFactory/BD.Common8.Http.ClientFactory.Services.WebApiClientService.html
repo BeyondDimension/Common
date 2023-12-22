@@ -11,7 +11,7 @@
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
-      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:navrel" content="../../toc.html">
       <meta name="docfx:tocrel" content="../toc.html">
       
       
@@ -456,19 +456,19 @@
 
 
 
-  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerContext_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.JsonSerializerContext*"></a>
+  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerOptions_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.JsonSerializerOptions*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerContext" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.JsonSerializerContext">
-  JsonSerializerContext
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_JsonSerializerOptions" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.JsonSerializerOptions">
+  JsonSerializerOptions
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>用于序列化的类型信息，由 Json 源生成</p>
+  <div class="markdown level1 summary"><p>用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual JsonSerializerContext? JsonSerializerContext { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual JsonSerializerOptions JsonSerializerOptions { get; }</code></pre>
   </div>
 
 
@@ -477,7 +477,7 @@
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
     <dd></dd>
   </dl>
 
@@ -511,38 +511,6 @@ The <span class="xref">Newtonsoft.Json.JsonSerializer</span> enables you to cont
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><span class="xref">JsonSerializer</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_RequiredJsonSerializerContext_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.RequiredJsonSerializerContext*"></a>
-
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_RequiredJsonSerializerContext" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.RequiredJsonSerializerContext">
-  RequiredJsonSerializerContext
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>序列化是否必须使用 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.jsonserializercontext">JsonSerializerContext</a>，即源生成的类型信息数据，避免运行时反射</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool RequiredJsonSerializerContext { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -915,24 +883,22 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
 
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetSJsonContent_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetSJsonContent*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetSJsonContent__2___1_System_Text_Json_Serialization_Metadata_JsonTypeInfo___1__System_Net_Http_Headers_MediaTypeHeaderValue_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetSJsonContent``2(``1,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``1},System.Net.Http.Headers.MediaTypeHeaderValue)">
-  GetSJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, JsonTypeInfo&lt;TRequestBody&gt;?, MediaTypeHeaderValue?)
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetSJsonContent__2___1_System_Net_Http_Headers_MediaTypeHeaderValue_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetSJsonContent``2(``1,System.Net.Http.Headers.MediaTypeHeaderValue)">
+  GetSJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, MediaTypeHeaderValue?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>将请求模型类序列化为 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpcontent">HttpContent</a>（catch 时将返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> ），推荐使用 Json 源生成，即传递 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo">JsonTypeInfo</a> 对象</p>
+  <div class="markdown level1 summary"><p>将请求模型类序列化为 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpcontent">HttpContent</a>（catch 时将返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> ）</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; GetSJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody inputValue, JsonTypeInfo&lt;TRequestBody&gt;? jsonTypeInfo = null, MediaTypeHeaderValue? mediaType = null) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; GetSJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody inputValue, MediaTypeHeaderValue? mediaType = null) where TResponseBody : notnull where TRequestBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>inputValue</code> <span class="xref">TRequestBody</span></dt>
-    <dd></dd>
-    <dt><code>jsonTypeInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;TRequestBody&gt;</dt>
     <dd></dd>
     <dt><code>mediaType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.headers.mediatypeheadervalue">MediaTypeHeaderValue</a></dt>
     <dd></dd>
@@ -1151,8 +1117,8 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
 
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError``1(System.Exception,System.Boolean,System.Type)">
-  OnSerializerError&lt;TResponseBody&gt;(Exception, bool, Type)
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_OnSerializerError__1_System_Exception_System_Boolean_System_Type_System_Nullable_System_Boolean__System_Nullable_System_Net_HttpStatusCode__System_Boolean_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.OnSerializerError``1(System.Exception,System.Boolean,System.Type,System.Nullable{System.Boolean},System.Nullable{System.Net.HttpStatusCode},System.Boolean)">
+  OnSerializerError&lt;TResponseBody&gt;(Exception, bool, Type, bool?, HttpStatusCode?, bool)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1161,7 +1127,7 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual TResponseBody? OnSerializerError&lt;TResponseBody&gt;(Exception ex, bool isSerializeOrDeserialize, Type modelType) where TResponseBody : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual TResponseBody? OnSerializerError&lt;TResponseBody&gt;(Exception ex, bool isSerializeOrDeserialize, Type modelType, bool? isSuccessStatusCode = null, HttpStatusCode? statusCode = null, bool showLog = true) where TResponseBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1174,6 +1140,12 @@ protected virtual WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt; Ge
     <dt><code>modelType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
     <dd><p>模型类型</p>
 </dd>
+    <dt><code>isSuccessStatusCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
+    <dd></dd>
+    <dt><code>statusCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.httpstatuscode">HttpStatusCode</a>?</dt>
+    <dd></dd>
+    <dt><code>showLog</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -1431,8 +1403,8 @@ protected virtual TResponseBody? ReadFromNJson&lt;TResponseBody&gt;(HttpContent 
 
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsAsyncEnumerable_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsAsyncEnumerable*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsAsyncEnumerable__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsAsyncEnumerable``1(System.Net.Http.HttpContent,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)">
-  ReadFromSJsonAsAsyncEnumerable&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;?, CancellationToken)
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsAsyncEnumerable__1_System_Net_Http_HttpContent_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsAsyncEnumerable``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+  ReadFromSJsonAsAsyncEnumerable&lt;TResponseBody&gt;(HttpContent, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1442,14 +1414,12 @@ protected virtual TResponseBody? ReadFromNJson&lt;TResponseBody&gt;(HttpContent 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual IAsyncEnumerable&lt;TResponseBody?&gt; ReadFromSJsonAsAsyncEnumerable&lt;TResponseBody&gt;(HttpContent content, JsonTypeInfo&lt;TResponseBody&gt;? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual IAsyncEnumerable&lt;TResponseBody?&gt; ReadFromSJsonAsAsyncEnumerable&lt;TResponseBody&gt;(HttpContent content, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpcontent">HttpContent</a></dt>
-    <dd></dd>
-    <dt><code>jsonTypeInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;TResponseBody&gt;</dt>
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
@@ -1478,8 +1448,8 @@ protected virtual TResponseBody? ReadFromNJson&lt;TResponseBody&gt;(HttpContent 
 
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsync*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsync__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsync``1(System.Net.Http.HttpContent,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)">
-  ReadFromSJsonAsync&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;?, CancellationToken)
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJsonAsync__1_System_Net_Http_HttpContent_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJsonAsync``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+  ReadFromSJsonAsync&lt;TResponseBody&gt;(HttpContent, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1489,14 +1459,12 @@ protected virtual TResponseBody? ReadFromNJson&lt;TResponseBody&gt;(HttpContent 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task&lt;TResponseBody?&gt; ReadFromSJsonAsync&lt;TResponseBody&gt;(HttpContent content, JsonTypeInfo&lt;TResponseBody&gt;? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;TResponseBody?&gt; ReadFromSJsonAsync&lt;TResponseBody&gt;(HttpContent content, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpcontent">HttpContent</a></dt>
-    <dd></dd>
-    <dt><code>jsonTypeInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;TResponseBody&gt;</dt>
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
@@ -1525,8 +1493,8 @@ protected virtual TResponseBody? ReadFromNJson&lt;TResponseBody&gt;(HttpContent 
 
   <a id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJson_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJson*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJson__1_System_Net_Http_HttpContent_System_Text_Json_Serialization_Metadata_JsonTypeInfo___0__System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJson``1(System.Net.Http.HttpContent,System.Text.Json.Serialization.Metadata.JsonTypeInfo{``0},System.Threading.CancellationToken)">
-  ReadFromSJson&lt;TResponseBody&gt;(HttpContent, JsonTypeInfo&lt;TResponseBody&gt;?, CancellationToken)
+  <h3 id="BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromSJson__1_System_Net_Http_HttpContent_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromSJson``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+  ReadFromSJson&lt;TResponseBody&gt;(HttpContent, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1537,14 +1505,12 @@ protected virtual TResponseBody? ReadFromNJson&lt;TResponseBody&gt;(HttpContent 
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Obsolete(&quot;无特殊情况下应使用 Async 异步的函数版本&quot;)]
-protected virtual TResponseBody? ReadFromSJson&lt;TResponseBody&gt;(HttpContent content, JsonTypeInfo&lt;TResponseBody&gt;? jsonTypeInfo, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
+protected virtual TResponseBody? ReadFromSJson&lt;TResponseBody&gt;(HttpContent content, CancellationToken cancellationToken = default) where TResponseBody : notnull</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpcontent">HttpContent</a></dt>
-    <dd></dd>
-    <dt><code>jsonTypeInfo</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;TResponseBody&gt;</dt>
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>

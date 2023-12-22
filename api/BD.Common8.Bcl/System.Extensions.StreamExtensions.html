@@ -11,7 +11,7 @@
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
-      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:navrel" content="../../toc.html">
       <meta name="docfx:tocrel" content="../toc.html">
       
       
@@ -793,6 +793,7 @@ public static void Write(this Stream stream, string s, Encoding? encoding = null
   </h3>
 
   <div class="markdown level1 summary"><p>将 Utf8String 像 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string.format#system-string-format(system-string-system-object())">Format(string, params object[])</a> 一样格式化并写入流中</p>
+<p>已知问题：模板字符串中不能含有 { 字符</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

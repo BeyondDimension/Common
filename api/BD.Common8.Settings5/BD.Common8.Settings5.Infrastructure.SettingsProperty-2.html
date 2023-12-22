@@ -1,0 +1,916 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SettingsProperty&lt;TValue, TSettingsModel&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SettingsProperty&lt;TValue, TSettingsModel&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2">
+
+
+
+  <h1 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2" class="text-break">
+    Class SettingsProperty&lt;TValue, TSettingsModel&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.Settings5.html">Settings5</a>.<a class="xref" href="BD.Common8.Settings5.Infrastructure.html">Infrastructure</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.Settings5.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>设置属性</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SettingsProperty&lt;TValue, TSettingsModel&gt; : SettingsProperty, INotifyPropertyChanged, IDisposable where TSettingsModel : new()</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TValue</code></dt>
+    <dd></dd>
+    <dt><code>TSettingsModel</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html">SettingsProperty</a></div>
+      <div><span class="xref">SettingsProperty&lt;TValue, TSettingsModel&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty-3.html">SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_DefaultAutoSave">SettingsProperty.DefaultAutoSave</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_PropertyName">SettingsProperty.PropertyName</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_AutoSave">SettingsProperty.AutoSave</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2__ctor_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.#ctor*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2__ctor__0_System_Boolean_System_String_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.#ctor(`0,System.Boolean,System.String)">
+  SettingsProperty(TValue?, bool, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html">SettingsProperty&lt;TValue, TSettingsModel&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SettingsProperty(TValue? @default = default, bool autoSave = true, string? propertyName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>default</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+    <dt><code>autoSave</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>propertyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_DAMT_M" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.DAMT_M">
+  DAMT_M
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected const DynamicallyAccessedMemberTypes DAMT_M = PublicProperties</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.codeanalysis.dynamicallyaccessedmembertypes">DynamicallyAccessedMemberTypes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_disposable" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.disposable">
+  disposable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IDisposable? disposable</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_disposedValue" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.disposedValue">
+  disposedValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool disposedValue</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_getter" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.getter">
+  getter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;TSettingsModel, TValue?&gt; getter</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TSettingsModel, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_monitor" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.monitor">
+  monitor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IOptionsMonitor&lt;TSettingsModel&gt; monitor</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1">IOptionsMonitor</a>&lt;TSettingsModel&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_setter" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.setter">
+  setter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Action&lt;TSettingsModel, TValue?&gt; setter</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;TSettingsModel, TValue&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_value" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.value">
+  value
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前设置的值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TValue? value</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Default_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Default*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Default" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Default">
+  Default
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前属性的默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TValue? Default { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ModelValue_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.ModelValue*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ModelValue" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.ModelValue">
+  ModelValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取模型上的值，在 OnChange 时，模型上的值为新值，字段上的为旧值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual TValue? ModelValue { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Value_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Value*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Value" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Value">
+  Value
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>当前属性值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual TValue? Value { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Dispose_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Dispose*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Dispose" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Dispose_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Dispose*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Dispose_System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Dispose(System.Boolean)">
+  Dispose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>disposing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Equals_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Equals*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Equals__0__0_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Equals(`0,`0)">
+  Equals(TValue?, TValue?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool Equals(TValue? left, TValue? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+    <dt><code>right</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_OnValueChanged_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.OnValueChanged*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_OnValueChanged__0__0_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.OnValueChanged(`0,`0)">
+  OnValueChanged(TValue?, TValue?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnValueChanged(TValue? oldValue, TValue? newValue)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>oldValue</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+    <dt><code>newValue</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_RaiseValueChanged_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.RaiseValueChanged*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_RaiseValueChanged_System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.RaiseValueChanged(System.Boolean)">
+  RaiseValueChanged(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>触发属性通知</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void RaiseValueChanged(bool notSave = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>notSave</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Reset_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Reset*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Reset" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Reset">
+  Reset()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>重置值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Reset()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_SetValue_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.SetValue*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_SetValue__0_System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.SetValue(`0,System.Boolean)">
+  SetValue(TValue?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void SetValue(TValue? value, bool save = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">TValue</span></dt>
+    <dd></dd>
+    <dt><code>save</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Subscribe_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Subscribe*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Subscribe_System_Action__0__System_Boolean_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Subscribe(System.Action{`0},System.Boolean)">
+  Subscribe(Action&lt;TValue?&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IDisposable Subscribe(Action&lt;TValue?&gt; listener, bool notifyOnInitialValue = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>listener</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TValue&gt;</dt>
+    <dd></dd>
+    <dt><code>notifyOnInitialValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ToString_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.ToString*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ToString" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_ValueChanged" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.ValueChanged">
+  ValueChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;SettingsPropertyValueChangedEventArgs&lt;TValue&gt;&gt;? ValueChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsPropertyValueChangedEventArgs-1.html">SettingsPropertyValueChangedEventArgs</a>&lt;TValue&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_op_Implicit_" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.op_Implicit*"></a>
+
+  <h3 id="BD_Common8_Settings5_Infrastructure_SettingsProperty_2_op_Implicit_BD_Common8_Settings5_Infrastructure_SettingsProperty__0__1____0" data-uid="BD.Common8.Settings5.Infrastructure.SettingsProperty`2.op_Implicit(BD.Common8.Settings5.Infrastructure.SettingsProperty{`0,`1})~`0">
+  implicit operator TValue?(SettingsProperty&lt;TValue?, TSettingsModel&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator TValue?(SettingsProperty&lt;TValue?, TSettingsModel&gt; property)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>property</code> <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html">SettingsProperty</a>&lt;TValue, TSettingsModel&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Infrastructure/SettingsProperty%602.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

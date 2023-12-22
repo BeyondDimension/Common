@@ -11,7 +11,7 @@
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
-      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:navrel" content="../../toc.html">
       <meta name="docfx:tocrel" content="../toc.html">
       
       
@@ -182,8 +182,73 @@
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService__AccessToken" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService._AccessToken">
+  _AccessToken
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected byte[]? _AccessToken</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_DefaultAuthenticationScheme_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_DefaultAuthenticationScheme" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme">
+  DefaultAuthenticationScheme
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string DefaultAuthenticationScheme { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
 
 
   <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_Http2Port_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.Http2Port*"></a>
@@ -218,19 +283,19 @@
 
 
 
-  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_JsonTypeInfoResolver_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonTypeInfoResolver*"></a>
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_JsonSerializerOptions_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions*"></a>
 
-  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_JsonTypeInfoResolver" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonTypeInfoResolver">
-  JsonTypeInfoResolver
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_JsonSerializerOptions" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions">
+  JsonSerializerOptions
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Json 源生成的解析器</p>
+  <div class="markdown level1 summary"><p>用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual IJsonTypeInfoResolver? JsonTypeInfoResolver { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual JsonSerializerOptions JsonSerializerOptions { get; }</code></pre>
   </div>
 
 
@@ -239,7 +304,7 @@
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.ijsontypeinforesolver">IJsonTypeInfoResolver</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
     <dd></dd>
   </dl>
 
@@ -378,6 +443,37 @@
 
 
 
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_Services_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.Services*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_Services" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.Services">
+  Services
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IServiceProvider Services { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_UnixSocketPath_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath*"></a>
 
   <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_UnixSocketPath" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath">
@@ -431,6 +527,37 @@
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>app</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplication">WebApplication</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureAuthentication_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureAuthentication_Microsoft_AspNetCore_Authentication_AuthenticationBuilder_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)">
+  ConfigureAuthentication(AuthenticationBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ConfigureAuthentication(AuthenticationBuilder builder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.authentication.authenticationbuilder">AuthenticationBuilder</a></dt>
     <dd></dd>
   </dl>
 
@@ -751,6 +878,39 @@
 
 
 
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetAccessToken_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetAccessToken" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken">
+  GetAccessToken()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取持有者令牌身份验证</p>
+<p>https://learn.microsoft.com/zh-cn/aspnet/core/signalr/authn-and-authz?view=aspnetcore-8.0#bearer-token-authentication</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual byte[] GetAccessToken()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetConnectionString_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString*"></a>
 
   <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetConnectionString_System_Nullable_BD_Common8_Ipc_Enums_IpcAppConnectionStringType__" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString(System.Nullable{BD.Common8.Ipc.Enums.IpcAppConnectionStringType})">
@@ -778,6 +938,80 @@
     <dd></dd>
   </dl>
 
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetHubContext_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContext*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetHubContext_System_Type_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContext(System.Type)">
+  GetHubContext(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据服务接口类型值获取对应的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext">IHubContext</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IHubContext GetHubContext(Type serviceType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serviceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext">IHubContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetHubContext_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContext*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_GetHubContext__1" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContext``1">
+  GetHubContext&lt;TService&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据服务接口类型泛型获取对应的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext">IHubContext</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IHubContext GetHubContext&lt;TService&gt;() where TService : class</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext">IHubContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TService</code></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -822,8 +1056,8 @@
 
   <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_MapHub_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub*"></a>
 
-  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_MapHub__1_System_String_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub``1(System.String)">
-  MapHub&lt;THub&gt;(string)
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_MapHub__2_System_String_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub``2(System.String)">
+  MapHub&lt;TService, THub&gt;(string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -831,7 +1065,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected HubEndpointConventionBuilder MapHub&lt;THub&gt;(string pattern) where THub : Hub</code></pre>
+    <pre><code class="lang-csharp hljs">public HubEndpointConventionBuilder MapHub&lt;TService, THub&gt;(string pattern) where THub : Hub</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -848,6 +1082,8 @@
 
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
+    <dt><code>TService</code></dt>
+    <dd></dd>
     <dt><code>THub</code></dt>
     <dd></dd>
   </dl>

@@ -11,7 +11,7 @@
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
       <link rel="stylesheet" href="../../public/main.css">
-      <meta name="docfx:navrel" content="../../topnav.html">
+      <meta name="docfx:navrel" content="../../toc.html">
       <meta name="docfx:tocrel" content="../toc.html">
       
       
@@ -108,41 +108,6 @@
 
 
 
-  <h2 class="section" id="fields">Fields
-</h2>
-
-
-
-  <h3 id="BD_Common8_Settings5_Services_ISettingsLoadService_DAMT_M" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.DAMT_M">
-  DAMT_M
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/ISettingsLoadService.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>设置项模型的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.codeanalysis.dynamicallyaccessedmembersattribute">DynamicallyAccessedMembersAttribute</a> 标注值</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const DynamicallyAccessedMemberTypes DAMT_M = PublicParameterlessConstructor</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.codeanalysis.dynamicallyaccessedmembertypes">DynamicallyAccessedMemberTypes</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
   <h2 class="section" id="properties">Properties
 </h2>
 
@@ -159,7 +124,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ISettingsLoadService Current { get; protected set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static ISettingsLoadService Current { get; }</code></pre>
   </div>
 
 
@@ -183,19 +148,56 @@
 </h2>
 
 
-  <a id="BD_Common8_Settings5_Services_ISettingsLoadService_BackendLoad_" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.BackendLoad*"></a>
+  <a id="BD_Common8_Settings5_Services_ISettingsLoadService_Get_" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.Get*"></a>
 
-  <h3 id="BD_Common8_Settings5_Services_ISettingsLoadService_BackendLoad__1_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection___Microsoft_Extensions_Options_IOptionsMonitor___0___System_Boolean_System_String_" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.BackendLoad``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}@,Microsoft.Extensions.Options.IOptionsMonitor{``0}@,System.Boolean,System.String)">
-  BackendLoad&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;?, out IOptionsMonitor&lt;TSettingsModel&gt;?, bool, string?)
+  <h3 id="BD_Common8_Settings5_Services_ISettingsLoadService_Get__1" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.Get``1">
+  Get&lt;T&gt;()
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/ISettingsLoadService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>后端加载设置项，返回是否已经加载过</p>
+  <div class="markdown level1 summary"><p>获取依赖注入服务</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool BackendLoad&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;? configureServices, out IOptionsMonitor&lt;TSettingsModel&gt;? options, bool settingsFileDirectoryExists, string? settingsFileDirectory = null) where TSettingsModel : class, new()</code></pre>
+    <pre><code class="lang-csharp hljs">T Get&lt;T&gt;() where T : notnull</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_ISettingsLoadService_Load_" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.Load*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_ISettingsLoadService_Load__1_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection___Microsoft_Extensions_Options_IOptionsMonitor___0___System_String_" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.Load``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}@,Microsoft.Extensions.Options.IOptionsMonitor{``0}@,System.String)">
+  Load&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;?, out IOptionsMonitor&lt;TSettingsModel&gt;?, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/ISettingsLoadService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>加载设置项，返回是否已经加载过</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">(bool isInvalid, Exception? ex, string settingsFileNameWithoutExtension) Load&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;? configureServices, out IOptionsMonitor&lt;TSettingsModel&gt;? options, string? settingsFileDirectory = null) where TSettingsModel : class, new()</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -205,9 +207,6 @@
 </dd>
     <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1">IOptionsMonitor</a>&lt;TSettingsModel&gt;</dt>
     <dd><p>设置项监听接口</p>
-</dd>
-    <dt><code>settingsFileDirectoryExists</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>设置项保存文件所在文件夹是否存在，传递此值以防止多次计算</p>
 </dd>
     <dt><code>settingsFileDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>设置项保存文件所在文件夹，默认将取 <a class="xref" href="../BD.Common8.Bcl/System.IOPath.html#System_IOPath_AppDataDirectory">AppDataDirectory</a></p>
@@ -216,54 +215,7 @@
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TSettingsModel</code></dt>
-    <dd><p>设置项模型</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_Common8_Settings5_Services_ISettingsLoadService_FrontendLoad_" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.FrontendLoad*"></a>
-
-  <h3 id="BD_Common8_Settings5_Services_ISettingsLoadService_FrontendLoad__1_System_Action_Microsoft_Extensions_DependencyInjection_IServiceCollection___Microsoft_Extensions_Options_IOptionsMonitor___0___" data-uid="BD.Common8.Settings5.Services.ISettingsLoadService.FrontendLoad``1(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection}@,Microsoft.Extensions.Options.IOptionsMonitor{``0}@)">
-  FrontendLoad&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;?, out IOptionsMonitor&lt;TSettingsModel&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/ISettingsLoadService.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>前端加载设置项，返回是否已经加载过</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool FrontendLoad&lt;TSettingsModel&gt;(out Action&lt;IServiceCollection&gt;? configureServices, out IOptionsMonitor&lt;TSettingsModel&gt;? options) where TSettingsModel : class, new()</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>configureServices</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a>&gt;</dt>
-    <dd><p>返回配置该设置项的服务配置委托</p>
-</dd>
-    <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1">IOptionsMonitor</a>&lt;TSettingsModel&gt;</dt>
-    <dd><p>设置项监听接口</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.exception,system.string-.isinvalid">isInvalid</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.exception,system.string-.ex">ex</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.exception,system.string-.settingsfilenamewithoutextension">settingsFileNameWithoutExtension</a>)</dt>
     <dd></dd>
   </dl>
 
