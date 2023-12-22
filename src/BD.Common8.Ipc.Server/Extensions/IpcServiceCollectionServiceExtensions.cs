@@ -13,10 +13,10 @@ public static partial class IpcServiceCollectionServiceExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddIpcServer<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this IServiceCollection services)
         where TService : class
-        where TImplementation : class, TService, IEndpointRouteMapGroup, IHubEndpointRouteMapHub
+        where TImplementation : class, TService, IEndpointRouteMapGroup/*, IHubEndpointRouteMapHub*/
     {
         IpcServerService.OnMapGroupEvent += TImplementation.OnMapGroup;
-        IpcServerService.OnMapHubEvent += TImplementation.OnMapHub;
+        //IpcServerService.OnMapHubEvent += TImplementation.OnMapHub;
         return services;
     }
 
@@ -33,7 +33,7 @@ public static partial class IpcServiceCollectionServiceExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSingletonWithIpcServer<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this IServiceCollection services)
         where TService : class
-        where TImplementation : class, TService, IEndpointRouteMapGroup, IHubEndpointRouteMapHub
+        where TImplementation : class, TService, IEndpointRouteMapGroup/*, IHubEndpointRouteMapHub*/
     {
         services.AddIpcServer<TService, TImplementation>();
         return services.AddSingleton(typeof(TService), typeof(TImplementation));

@@ -98,6 +98,11 @@
 	- ```Crc32.NET```
   - UseNewtonsoftJson
 	- ```Newtonsoft.Json```
+- UseXYZ
+  - ```true``` 项目引用，GlobalUsings
+  - ```pkg``` 包引用，GlobalUsings
+  - ```src``` 源码引用，GlobalUsings，XmlnsDefinition
+  - ```using``` GlobalUsings
 
 ## SharedLibrary 共享库
 

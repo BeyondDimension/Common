@@ -10,6 +10,11 @@ public readonly struct IpcAppConnectionString
     /// </summary>
     public const string AuthenticationScheme = "Ipc";
 
+    /// <summary>
+    /// SignalR 的 HubUrl
+    /// </summary>
+    public const string HubUrl = "/Hubs/Ipc";
+
     /// <inheritdoc cref="IpcAppConnectionStringType"/>
     public readonly IpcAppConnectionStringType Type { get; init; }
 

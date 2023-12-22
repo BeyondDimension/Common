@@ -34,11 +34,15 @@ public sealed class IpcServerTemplate : IpcTemplateBase
 
 """u8);
         stream.WriteNewLine();
-        WriteNamespace(stream, m.Namespace);
-        stream.WriteNewLine();
+        WriteNamespace(stream, m.Namespace, isFileNamespace: false);
+        if (!string.IsNullOrWhiteSpace(m.Namespace))
+        {
+            stream.WriteCurlyBracketLeft();
+            stream.WriteNewLine();
+        }
         stream.WriteFormat(
 """
-partial class {0} : IEndpointRouteMapGroup, IHubEndpointRouteMapHub
+partial class {0} : IEndpointRouteMapGroup
 """u8, m.TypeName);
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
@@ -274,35 +278,50 @@ ctx.RequestAborted)));
     }
 """u8);
         stream.WriteNewLine();
-        stream.WriteNewLine();
-        stream.Write(
-"""
-    /// <inheritdoc cref="IHubEndpointRouteMapHub.OnMapHub(IpcServerService)"/>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static void IHubEndpointRouteMapHub.OnMapHub(IpcServerService ipcServerService)
-    {
+        //stream.WriteNewLine();
+        //        stream.Write(
+        //"""
+        //    /// <inheritdoc cref="IHubEndpointRouteMapHub.OnMapHub(IpcServerService)"/>
+        //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        //    static void IHubEndpointRouteMapHub.OnMapHub(IpcServerService ipcServerService)
+        //    {
 
-"""u8);
-        var hubTypeName = Encoding.UTF8.GetBytes(
-            $"{m.TypeName}_{GenerateRandomString(Random.Next(24, 32))}_Hub");
-        stream.WriteFormat(
-"""
-        ipcServerService.MapHub<{0}, {1}>("/Hubs/{0}");
-"""u8, m.Attribute.ServiceType, hubTypeName);
-        stream.Write(
-"""
+        //"""u8);
+        //        var hubTypeName = Encoding.UTF8.GetBytes(
+        //            $"{m.TypeName}_{GenerateRandomString(Random.Next(24, 32))}_Hub");
+        //        stream.WriteFormat(
+        //"""
+        //        ipcServerService.MapHub<{0}, {1}>("/Hubs/{0}");
+        //"""u8, m.Attribute.ServiceType, hubTypeName);
+        //        stream.Write(
+        //"""
 
-    }
+        //    }
 
-"""u8);
+        //"""u8);
         stream.WriteCurlyBracketRight();
         stream.WriteNewLine();
+        if (!string.IsNullOrWhiteSpace(m.Namespace))
+        {
+            stream.WriteCurlyBracketRight();
+            stream.WriteNewLine();
+        }
+        WriteNamespace(stream, "BD.Common8.SourceGenerator.Ipc.Server", isFileNamespace: false, isFirstWriteNamespace: false);
+        stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
+        //        stream.WriteFormat(
+        //"""
+        //[Authorize]
+        //file sealed class {0} : Hub
+        //"""u8, hubTypeName);
+        //        stream.WriteFormat(
+        //"""
+        //sealed partial class {0} : Hub
+        //"""u8, hubTypeName);
         stream.WriteFormat(
 """
-[Authorize]
-file sealed class {0} : Hub
-"""u8, hubTypeName);
+partial class IpcHub : Hub
+"""u8);
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
@@ -315,13 +334,14 @@ file sealed class {0} : Hub
                 var returnType,
                 var isApiRspImplByReturnType,
                 var isAsyncEnumerableByReturnType) = methodData.Value;
+            var hubMethodName = $"{m.Attribute.ServiceType}_{method.Name}";
 
             if (isAsyncEnumerableByReturnType)
             {
                 stream.WriteFormat(
 """
     public IAsyncEnumerable<{0}> {1}(
-"""u8, returnType.GenericT, method.Name);
+"""u8, returnType.GenericT, hubMethodName);
                 WriteParameters();
                 stream.Write(
 """
@@ -333,7 +353,7 @@ file sealed class {0} : Hub
                 stream.WriteFormat(
 """
     public async Task<ApiRspImpl> {0}(
-"""u8, method.Name);
+"""u8, hubMethodName);
                 WriteParameters();
                 stream.Write(
 """
@@ -345,7 +365,7 @@ file sealed class {0} : Hub
                 stream.WriteFormat(
 """
     public async Task<ApiRspImpl<{0}>> {1}(
-"""u8, returnType, method.Name);
+"""u8, returnType, hubMethodName);
 
                 WriteParameters();
                 stream.Write(
@@ -451,6 +471,9 @@ this.RequestAborted());
             stream.WriteNewLine();
             stream.WriteNewLine();
         }
+
+        stream.WriteCurlyBracketRight();
+        stream.WriteNewLine();
 
         stream.WriteCurlyBracketRight();
         stream.WriteNewLine();

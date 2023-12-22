@@ -1,5 +1,6 @@
 using BD.Common8.SourceGenerator.Bcl.Test;
 
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable IDE1006 // 命名样式
 

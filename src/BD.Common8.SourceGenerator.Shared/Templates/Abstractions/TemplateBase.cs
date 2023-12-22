@@ -48,23 +48,33 @@ public abstract class TemplateBase
     /// </summary>
     /// <param name="stream"></param>
     /// <param name="namespace"></param>
-    /// <param name="cancellationToken"></param>
+    /// <param name="isFileNamespace"></param>
+    /// <param name="isFirstWriteNamespace"></param>
     protected static void WriteNamespace(
         Stream stream,
-        string @namespace)
+        string @namespace,
+        bool isFileNamespace = true,
+        bool isFirstWriteNamespace = true)
     {
-        stream.Write(
-"""
+        if (isFirstWriteNamespace)
+        {
+            stream.Write(
+    """
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 
 """u8);
+        }
+        else
+        {
+            stream.WriteNewLine();
+        }
         if (!string.IsNullOrWhiteSpace(@namespace))
         {
             stream.WriteFormat(
 """
-﻿namespace {0};
+﻿namespace {0}{1}
 
-"""u8, @namespace);
+"""u8, @namespace, isFileNamespace ? ";" : "");
         }
     }
 

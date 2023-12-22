@@ -34,8 +34,8 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
         return httpClient;
     }
 
-    /// <inheritdoc cref="IpcAppConnectionStringHelper.HubName"/>
-    protected virtual string HubName => IpcAppConnectionStringHelper.HubName;
+    /// <inheritdoc cref="IpcAppConnectionString.HubUrl"/>
+    protected virtual string HubUrl => IpcAppConnectionString.HubUrl;
 
     AsyncExclusiveLock lock_GetHubConnAsync = new();
     AsyncExclusiveLock lock_TryStartAsync = new();
@@ -102,10 +102,10 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
                     };
                     string GetHubUrl()
                     {
-                        if (HubName.StartsWith('/'))
-                            return $"{hubConnHandler.BaseAddress}{HubName}";
+                        if (HubUrl.StartsWith('/'))
+                            return $"{hubConnHandler.BaseAddress}{HubUrl}";
                         else
-                            return $"{hubConnHandler.BaseAddress}/{HubName}";
+                            return $"{hubConnHandler.BaseAddress}/{HubUrl}";
                     }
                     opt.Url = new Uri(GetHubUrl());
                     opt.AccessTokenProvider = GetAccessTokenAsync; // 授权头不正确将返回超时

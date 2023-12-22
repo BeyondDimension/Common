@@ -2,11 +2,11 @@
 Console.WriteLine("Hello, World!");
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientWebApi)]
-sealed partial class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcClientService(connectionString)
+sealed partial class TodoService_WebApi
 {
 }
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientSignalR)]
-sealed partial class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcClientService(connectionString)
+sealed partial class TodoService_SignalR
 {
 }

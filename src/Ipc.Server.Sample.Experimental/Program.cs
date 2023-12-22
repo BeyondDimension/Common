@@ -25,7 +25,7 @@ static partial class Program
         Console.WriteLine(result);
     }
 
-    internal static IpcServerService IpcServerService = null!;
+    internal static IpcServerService2 IpcServerService = null!;
 
     static async Task<int> Main()
     {
@@ -72,7 +72,7 @@ static partial class Program
     }
 }
 
-sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerService(serverCertificate)
+sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerService<IpcHub>(serverCertificate)
 {
     protected override bool ListenLocalhost => true;
 
@@ -155,7 +155,7 @@ sealed partial class TodoServiceImpl : ITodoService
     {
         get
         {
-            var hubContext = Program.IpcServerService.GetHubContext<ITodoService>();
+            var hubContext = Program.IpcServerService.HubContext;
             return hubContext;
         }
     }
@@ -261,4 +261,9 @@ sealed partial class TodoServiceImpl : ITodoService
         result.InternalMessage = $"{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{string.Join(", ", p9 ?? [])}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{string.Join(", ", p19 ?? [])}/{p20}";
         return result;
     }
+}
+
+[Authorize]
+sealed class IpcHub : BD.Common8.SourceGenerator.Ipc.Server.IpcHub
+{
 }

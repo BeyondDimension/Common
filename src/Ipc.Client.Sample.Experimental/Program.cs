@@ -30,15 +30,17 @@ static partial class Program
             Console.ReadLine();
         }
 
-        List<IIpcClientService2> ipcClientServices = [];
+        List<ITodoService> ipcClientServices = [];
         foreach (var connectionString in connectionStrings)
         {
-            //// WebApi 实现的 Ipc 调用
-            //IpcClientService2 ipcClientService = new TodoService_WebApi(connectionString);
-            //ipcClientServices.Add(ipcClientService);
+            IpcClientService2 ipcClient = new(connectionString);
+
+            // WebApi 实现的 Ipc 调用
+            var ipcClientService = new TodoService_WebApi(ipcClient);
+            ipcClientServices.Add(ipcClientService);
 
             // SignalR 实现的 Ipc 调用
-            IpcClientService2 ipcClientService2 = new TodoService_SignalR(connectionString);
+            var ipcClientService2 = new TodoService_SignalR(ipcClient);
             ipcClientServices.Add(ipcClientService2);
         }
 
@@ -74,7 +76,7 @@ static partial class Program
         {
             foreach (var ipcClientService in ipcClientServices)
             {
-                Console.WriteLine($"{ipcClientService.Title}: ");
+                Console.WriteLine($"{((IIpcClientService2)ipcClientService).Title}: ");
                 if (ipcClientService is ITodoService todoService)
                 {
                     //var resultAll = await todoService.All();
@@ -117,14 +119,16 @@ static partial class Program
     }
 }
 
-interface IIpcClientService2 : IIpcClientService
+interface IIpcClientService2
 {
     string Title { get; }
 }
 
-abstract class IpcClientService2(IpcAppConnectionString connectionString) : IpcClientService(connectionString), IIpcClientService2
+sealed class IpcClientService2(IpcAppConnectionString connectionString) : IpcClientService(connectionString), IIpcClientService2
 {
     public string Title => $"{connectionString.Type}_{GetType().Name}";
+
+    public IpcAppConnectionStringType Type => connectionString.Type;
 
     /// <inheritdoc/>
     protected sealed override void ConfigureSocketsHttpHandler(SocketsHttpHandler handler)
@@ -152,11 +156,13 @@ abstract class IpcClientService2(IpcAppConnectionString connectionString) : IpcC
 }
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientWebApi)]
-partial class TodoService_WebApi(IpcAppConnectionString connectionString) : IpcClientService2(connectionString)
+partial class TodoService_WebApi : IIpcClientService2
 {
+    public string Title => $"{((IpcClientService2)ipcClientService).Type}_{GetType().Name}";
 }
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientSignalR)]
-partial class TodoService_SignalR(IpcAppConnectionString connectionString) : IpcClientService2(connectionString)
+partial class TodoService_SignalR : IIpcClientService2
 {
+    public string Title => $"{((IpcClientService2)ipcClientService).Type}_{GetType().Name}";
 }

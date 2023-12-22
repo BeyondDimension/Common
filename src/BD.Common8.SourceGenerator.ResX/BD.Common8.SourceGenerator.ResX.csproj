@@ -4,7 +4,7 @@
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.23.11130.11721</Version>
+		<Version>8.23.11222.11900</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<LinkResXGeneratedCodeAttribute>true</LinkResXGeneratedCodeAttribute>

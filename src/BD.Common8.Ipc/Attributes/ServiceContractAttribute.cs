@@ -5,7 +5,7 @@ namespace BD.Common8.Ipc.Attributes;
 /// </summary>
 /// <param name="serviceType"></param>
 /// <param name="generatorType"></param>
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
 public sealed class ServiceContractImplAttribute(Type serviceType, IpcGeneratorType generatorType) : Attribute
 {
     /// <summary>

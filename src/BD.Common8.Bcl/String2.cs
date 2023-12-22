@@ -4,6 +4,16 @@ namespace System;
 public static partial class String2
 {
     /// <summary>
+    /// char …
+    /// </summary>
+    public const char EllipsisChar = '…';
+
+    /// <summary>
+    /// string …
+    /// </summary>
+    public const string Ellipsis = "…";
+
+    /// <summary>
     /// 数字
     /// </summary>
     public const string Digits = "0123456789";
@@ -72,6 +82,16 @@ public static partial class String2
     /// file:///
     /// </summary>
     public const string Prefix_File = "file:///";
+
+    /// <summary>
+    /// <see langword="true"/> 的小写字母常量字符串
+    /// </summary>
+    public const string TrueLowerString = "true";
+
+    /// <summary>
+    /// <see langword="false"/> 的小写字母常量字符串
+    /// </summary>
+    public const string FalseLowerString = "false";
 
     /// <summary>
     /// 判断字符串是否为 Http Url

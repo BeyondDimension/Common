@@ -39,15 +39,15 @@ public sealed class IpcClientTemplate : IpcTemplateBase
         stream.WriteNewLine();
         stream.WriteFormat(
 """
-sealed partial class {0} : {1}
+sealed partial class {0}(IIpcClientService ipcClientService) : {1}
 """u8, m.TypeName, m.Attribute.ServiceType);
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
-        stream.WriteFormat(
+        stream.Write(
 """
-    protected sealed override string HubName => "/Hubs/{0}";
-"""u8, m.Attribute.ServiceType);
+    readonly IIpcClientService ipcClientService = ipcClientService;
+"""u8);
         stream.WriteNewLine();
         stream.WriteNewLine();
 
@@ -236,21 +236,21 @@ sealed partial class {0} : {1}
                 {
                     stream.Write(
 """
-        var result = await SendAsync<ApiRspImpl
+        var result = await ipcClientService.SendAsync<ApiRspImpl
 """u8);
                 }
                 else if (isAsyncEnumerableByReturnType)
                 {
                     stream.WriteFormat(
 """
-        var result = SendAsAsyncEnumerable<{0}
+        var result = ipcClientService.SendAsAsyncEnumerable<{0}
 """u8, returnType.GenericT);
                 }
                 else
                 {
                     stream.WriteFormat(
 """
-        var result = await SendAsync<ApiRspImpl<{0}>
+        var result = await ipcClientService.SendAsync<ApiRspImpl<{0}>
 """u8, returnType);
                 }
 
@@ -379,8 +379,8 @@ sealed partial class {0} : {1}
             {
                 stream.WriteFormat(
 """
-        const string methodName = "{0}
-"""u8, method.Name);
+        const string methodName = "{0}_{1}
+"""u8, m.Attribute.ServiceType, method.Name);
 
                 stream.Write(
 """
@@ -392,21 +392,21 @@ sealed partial class {0} : {1}
                 {
                     stream.Write(
 """
-        var result = await HubSendAsync<ApiRspImpl
+        var result = await ipcClientService.HubSendAsync<ApiRspImpl
 """u8);
                 }
                 else if (isAsyncEnumerableByReturnType)
                 {
                     stream.WriteFormat(
 """
-        var result = HubSendAsAsyncEnumerable<{0}
+        var result = ipcClientService.HubSendAsAsyncEnumerable<{0}
 """u8, returnType.GenericT);
                 }
                 else
                 {
                     stream.WriteFormat(
 """
-        var result = await HubSendAsync<ApiRspImpl<{0}>
+        var result = await ipcClientService.HubSendAsync<ApiRspImpl<{0}>
 """u8, returnType);
                 }
 

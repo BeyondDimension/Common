@@ -6,11 +6,6 @@ namespace BD.Common8.Ipc.Helpers;
 public static partial class IpcAppConnectionStringHelper
 {
     /// <summary>
-    /// SignalR 的 Hub 名称
-    /// </summary>
-    public const string HubName = "IpcHub";
-
-    /// <summary>
     /// 超时时间
     /// </summary>
     public const double TimeoutFromSeconds = 2.9;

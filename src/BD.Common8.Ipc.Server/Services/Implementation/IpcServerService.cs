@@ -7,7 +7,17 @@ namespace BD.Common8.Ipc.Services.Implementation;
 
 #pragma warning disable SA1600 // Elements should be documented
 
-public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpcServerService, IDisposable, IAsyncDisposable
+public partial class IpcServerService
+{
+    /// <summary>
+    /// <see cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件
+    /// </summary>
+    internal static event Action<IEndpointRouteBuilder>? OnMapGroupEvent;
+
+    protected static void OnMapGroup(IEndpointRouteBuilder builder) => OnMapGroupEvent?.Invoke(builder);
+}
+
+public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>(X509Certificate2 serverCertificate) : IpcServerService, IIpcServerService, IDisposable, IAsyncDisposable where THub : Hub
 {
     static readonly long tickCount64 = long.MaxValue / 2; // 不可修改！！！
 
@@ -297,22 +307,15 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
 
     protected virtual void ConfigureAuthentication(AuthenticationBuilder builder)
     {
-        builder.AddScheme<IpcAuthenticationSchemeOptions, IpcAuthenticationHandler>(
+        builder.AddScheme<IpcAuthenticationSchemeOptions<THub>, IpcAuthenticationHandler<THub>>(
             DefaultAuthenticationScheme, options =>
             {
                 options.IpcServerService = this;
             });
     }
 
-    /// <summary>
-    /// <see cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件
-    /// </summary>
-    internal static event Action<IEndpointRouteBuilder>? OnMapGroupEvent;
-
-    /// <summary>
-    /// <see cref="IHubEndpointRouteMapHub.OnMapHub(IpcServerService)"/> 的事件
-    /// </summary>
-    internal static event Action<IpcServerService>? OnMapHubEvent;
+    /// <inheritdoc cref="IpcAppConnectionString.HubUrl"/>
+    protected virtual string HubUrl => IpcAppConnectionString.HubUrl;
 
     protected virtual void Configure(WebApplication app)
     {
@@ -321,8 +324,8 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseExceptionHandler(builder => builder.Run(OnError));
-        OnMapGroupEvent?.Invoke(app);
-        OnMapHubEvent?.Invoke(this);
+        OnMapGroup(app);
+        app.MapHub<THub>(HubUrl, ConfigureHub);
     }
 
     protected virtual void ConfigureHub(HttpConnectionDispatcherOptions options)
@@ -332,46 +335,12 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
 
     public IServiceProvider Services => app.ThrowIsNull().Services;
 
-    readonly Dictionary<Type, Type> serviceToHubs = [];
+    public IHubContext HubContext => (IHubContext)Services.GetRequiredService<IHubContext<THub>>();
 
-    /// <summary>
-    /// 根据服务接口类型值获取对应的 <see cref="IHubContext"/>
-    /// </summary>
-    /// <param name="serviceType"></param>
-    /// <returns></returns>
-    public IHubContext GetHubContext(Type serviceType)
-    {
-        if (!serviceToHubs.TryGetValue(serviceType, out var hubType))
-        {
-            // 服务接口类型，没有找到对应的 Hub 类型，抛出异常
-            throw ThrowHelper.GetArgumentOutOfRangeException(serviceType);
-        }
-
-        var hubContextType = typeof(IHubContext<>).MakeGenericType(hubType);
-        var hubContext = app.ThrowIsNull().Services.GetRequiredService(hubContextType);
-        if (hubContext is IHubContext hubContext_)
-        {
-            return hubContext_;
-        }
-        // IHubContext 泛型与非泛型都应为 Microsoft.AspNetCore.SignalR.Internal.HubContext<THub> 实现
-        // https://github.com/dotnet/aspnetcore/blob/v8.0.0/src/SignalR/server/Core/src/Internal/HubContext.cs
-        ThrowHelper.ThrowArgumentNullException(nameof(hubContext_));
-        return null!;
-    }
-
-    /// <summary>
-    /// 根据服务接口类型泛型获取对应的 <see cref="IHubContext"/>
-    /// </summary>
-    /// <typeparam name="TService"></typeparam>
-    /// <returns></returns>
-    public IHubContext GetHubContext<TService>() where TService : class
-        => GetHubContext(typeof(TService));
-
-    public HubEndpointConventionBuilder MapHub<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
-    {
-        serviceToHubs.TryAdd(typeof(TService), typeof(THub));
-        return app!.MapHub<THub>(pattern, ConfigureHub);
-    }
+    //public HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
+    //{
+    //    return app!.MapHub<THub>(pattern, ConfigureHub);
+    //}
 
     protected virtual async Task OnError(HttpContext ctx)
     {
@@ -493,12 +462,14 @@ public partial class IpcServerService(X509Certificate2 serverCertificate) : IIpc
     #endregion
 }
 
-file sealed class IpcAuthenticationSchemeOptions : AuthenticationSchemeOptions
+file sealed class IpcAuthenticationSchemeOptions<THub> : AuthenticationSchemeOptions where THub : Hub
 {
-    public IpcServerService IpcServerService { get; set; } = null!;
+    public IpcServerService<THub> IpcServerService { get; set; } = null!;
 }
 
-file sealed class IpcAuthenticationHandler(IOptionsMonitor<IpcAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder) : AuthenticationHandler<IpcAuthenticationSchemeOptions>(options, logger, encoder)
+file sealed class IpcAuthenticationHandler<THub>(IOptionsMonitor<IpcAuthenticationSchemeOptions<THub>> options, ILoggerFactory logger, UrlEncoder encoder)
+    : AuthenticationHandler<IpcAuthenticationSchemeOptions<THub>>(options, logger, encoder)
+    where THub : Hub
 {
     AuthenticateResult HandleAuthenticate()
     {

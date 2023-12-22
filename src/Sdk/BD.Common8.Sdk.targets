@@ -465,6 +465,14 @@
 		<PackageReference Include="TaskScheduler" />
 	</ItemGroup>
 
+	<!-- 是否包引用 System.Management -->
+	<ItemGroup Condition="$(UseSystemManagement) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Management.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<PackageReference Include="System.Management" />
+	</ItemGroup>
+
 	<!---->
 
 	<!-- ## PackageReference End -->
