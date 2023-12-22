@@ -49,6 +49,14 @@
       "dest": "api/BD.Common8.Primitives.District"
     },
     {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.Essentials/**/BD.Common8.Primitives.Essentials.dll"]}],
+      "dest": "api/BD.Common8.Primitives.Essentials"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Primitives.Toast/**/BD.Common8.Primitives.Toast.dll"]}],
+      "dest": "api/BD.Common8.Primitives.Toast"
+    },
+    {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Security/**/BD.Common8.Security.dll"]}],
       "dest": "api/BD.Common8.Security"
     },
@@ -119,14 +127,6 @@
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Settings5/**/BD.Common8.Settings5.dll"]}],
       "dest": "api/BD.Common8.Settings5"
-    },
-    {
-      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Settings5.Backend/**/BD.Common8.Settings5.Backend.dll"]}],
-      "dest": "api/BD.Common8.Settings5.Backend"
-    },
-    {
-      "src": [{ "files": ["src/artifacts/bin/BD.Common8.Settings5.Frontend/**/BD.Common8.Settings5.Frontend.dll"]}],
-      "dest": "api/BD.Common8.Settings5.Frontend"
     },
     {
       "src": [{ "files": ["src/artifacts/bin/BD.Common8.Crawler/**/BD.Common8.Crawler.dll"]}],

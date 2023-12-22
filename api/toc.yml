@@ -67,6 +67,10 @@ items:
       href: BD.Common8.Primitives/toc.yml
     - name: BD.Common8.Primitives.District
       href: BD.Common8.Primitives.District/toc.yml
+    - name: BD.Common8.Primitives.Essentials
+      href: BD.Common8.Primitives.Essentials/toc.yml
+    - name: BD.Common8.Primitives.Toast
+      href: BD.Common8.Primitives.Toast/toc.yml
   - name: Repositories
     items:
     - name: BD.Common8.Repositories
@@ -83,10 +87,6 @@ items:
     items:
     - name: BD.Common8.Settings5
       href: BD.Common8.Settings5/toc.yml
-    - name: BD.Common8.Settings5.Backend
-      href: BD.Common8.Settings5.Backend/toc.yml
-    - name: BD.Common8.Settings5.Frontend
-      href: BD.Common8.Settings5.Frontend/toc.yml
   - name: Sms
     items:
     - name: BD.Common8.SmsSender
@@ -102,6 +102,7 @@ items:
   - name: WebApi
     items:
     - name: BD.Common8.Crawler
+      href: BD.Common8.Crawler/toc.yml
 - name: SourceGenerator 源生成器
   items:
   - name: BD.Common8.SourceGenerator.Shared

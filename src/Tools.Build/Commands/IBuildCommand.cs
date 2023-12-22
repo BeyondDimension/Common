@@ -45,9 +45,9 @@ interface IBuildCommand : ICommand
                 "BD.Common8.Ipc.Client",
                 "BD.Common8.Ipc.Server",
 
+                "BD.Common8.Crawler",
+
                 "BD.Common8.Settings5",
-                "BD.Common8.Settings5.Backend",
-                "BD.Common8.Settings5.Frontend",
 
                 "BD.Common8.SourceGenerator.Shared",
 
@@ -57,6 +57,8 @@ interface IBuildCommand : ICommand
                 "BD.Common8.Primitives.ApiResponse",
                 "BD.Common8.Primitives.PersonalData.BirthDate",
                 "BD.Common8.Primitives.PersonalData.PhoneNumber",
+                "BD.Common8.Primitives.Essentials",
+                "BD.Common8.Primitives.Toast",
 
                 "BD.Common8.Orm.EFCore",
 
