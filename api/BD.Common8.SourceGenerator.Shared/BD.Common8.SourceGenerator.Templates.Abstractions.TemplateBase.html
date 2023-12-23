@@ -361,8 +361,8 @@
 
   <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_WriteNamespace_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.WriteNamespace*"></a>
 
-  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_WriteNamespace_System_IO_Stream_System_String_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.WriteNamespace(System.IO.Stream,System.String)">
-  WriteNamespace(Stream, string)
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_WriteNamespace_System_IO_Stream_System_String_System_Boolean_System_Boolean_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.WriteNamespace(System.IO.Stream,System.String,System.Boolean,System.Boolean)">
+  WriteNamespace(Stream, string, bool, bool)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -371,7 +371,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static void WriteNamespace(Stream stream, string @namespace)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static void WriteNamespace(Stream stream, string @namespace, bool isFileNamespace = true, bool isFirstWriteNamespace = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -379,6 +379,10 @@
     <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
     <dd></dd>
     <dt><code>namespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>isFileNamespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>isFirstWriteNamespace</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 

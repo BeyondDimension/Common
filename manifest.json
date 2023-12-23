@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Resource",
       "source_relative_path": "README.md",
       "output": {
         "resource": {
           "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -5380,20 +5380,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IHubEndpointRouteMapHub.yml",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IHubEndpointRouteMapHub.html"
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.yml",
+      "source_relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html"
+          "relative_path": "api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html"
         }
       },
       "version": ""
