@@ -234,12 +234,27 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
     protected virtual string? UnixSocketPath { get; private set; }
 
     /// <summary>
+    ///  获取 Unix 套接字文件夹路径，默认值 %TEMP%\BD.Common8.Ipc
+    /// </summary>
+    /// <returns></returns>
+    protected virtual string GetUnixSocketDirPath()
+    {
+        const string dirName = "BD.Common8.Ipc";
+        // The length must be between 1 and 108 characters, inclusive.
+        var dirPath = Path.Combine(IOPath.CacheDirectory, dirName);
+        if (dirPath.Length <= 108)
+            return dirPath;
+        dirPath = Path.Combine(IOPath.GetTempPath(), dirName);
+        return dirPath;
+    }
+
+    /// <summary>
     /// 获取 Unix 套接字文件路径，默认值 %TEMP%\BD.Common8.Ipc\{Hashs.String.Crc32(PipeName)}.uds
     /// </summary>
     /// <returns></returns>
     protected virtual string GetUnixSocketPath()
     {
-        var dirPath = Path.Combine(IOPath.GetTempPath(), "BD.Common8.Ipc");
+        var dirPath = GetUnixSocketDirPath();
         IOPath.DirCreateByNotExists(dirPath);
         var filePath = Path.Combine(dirPath, $"{Hashs.String.Crc32(PipeName)}.uds"); // Unix Domain Socket
         IOPath.FileTryDelete(filePath);
@@ -414,11 +429,9 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
 
         app = null;
 
-        if (UnixSocketPath != null)
-        {
-            IOPath.FileTryDelete(UnixSocketPath);
-            UnixSocketPath = null;
-        }
+        UnixSocketPath ??= GetUnixSocketPath();
+        IOPath.FileTryDelete(UnixSocketPath);
+        UnixSocketPath = null;
     }
 
     protected virtual void Dispose(bool disposing)
