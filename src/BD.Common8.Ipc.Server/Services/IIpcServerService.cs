@@ -15,5 +15,5 @@ public interface IIpcServerService
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    IpcAppConnectionString GetConnectionString(IpcAppConnectionStringType? type = null);
+    IpcAppConnectionString GetConnectionString(IpcAppConnectionStringType/*?*/ type/* = null*/);
 }

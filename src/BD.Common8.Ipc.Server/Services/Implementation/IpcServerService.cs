@@ -1,13 +1,15 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
 using Microsoft.Extensions.Primitives;
+using System.Security.AccessControl;
 using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 namespace BD.Common8.Ipc.Services.Implementation;
 
 #pragma warning disable SA1600 // Elements should be documented
 
-public partial class IpcServerService
+public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIpcServerService, IDisposable, IAsyncDisposable
 {
     /// <summary>
     /// <see cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件
@@ -15,10 +17,7 @@ public partial class IpcServerService
     internal static event Action<IEndpointRouteBuilder>? OnMapGroupEvent;
 
     protected static void OnMapGroup(IEndpointRouteBuilder builder) => OnMapGroupEvent?.Invoke(builder);
-}
 
-public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>(X509Certificate2 serverCertificate) : IpcServerService, IIpcServerService, IDisposable, IAsyncDisposable where THub : Hub
-{
     static readonly long tickCount64 = long.MaxValue / 2; // 不可修改！！！
 
     WebApplication? app;
@@ -132,6 +131,29 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
             }
         });
 
+        if (ListenNamedPipe &&
+            OperatingSystem.IsWindows() &&
+            Environment.IsPrivilegedProcess)
+        {
+            builder.Services.Configure<NamedPipeTransportOptions>(static options =>
+            {
+                // 在 Windows 上允许不同用户连接到命名管道
+#pragma warning disable CA1416 // 验证平台兼容性
+                SecurityIdentifier securityIdentifier = new(WellKnownSidType.AuthenticatedUserSid, null);
+                PipeSecurity pipeSecurity = new();
+                pipeSecurity.AddAccessRule(new PipeAccessRule(securityIdentifier,
+                    PipeAccessRights.ReadWrite | PipeAccessRights.CreateNewInstance,
+                    AccessControlType.Allow));
+                options.CurrentUserOnly = false;
+                options.PipeSecurity = pipeSecurity;
+#pragma warning restore CA1416 // 验证平台兼容性
+            });
+        }
+
+        builder.Services.Configure<KestrelServerOptions>(static options =>
+        {
+            options.AddServerHeader = false;
+        });
         builder.Services.AddRoutingCore();
         builder.Services.AddLogging(ConfigureLogging);
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
@@ -145,29 +167,29 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
         Configure(app);
     }
 
-    /// <summary>
-    /// 获取优先使用的连接字符串类型
-    /// </summary>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static IpcAppConnectionStringType GetFirstIpcAppConnectionStringType()
-    {
-        if (OperatingSystem.IsWindows())
-        {
-            return IpcAppConnectionStringType.NamedPipe;
-        }
-        return IpcAppConnectionStringType.UnixSocket;
-    }
+    ///// <summary>
+    ///// 获取优先使用的连接字符串类型
+    ///// </summary>
+    ///// <returns></returns>
+    //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+    //static IpcAppConnectionStringType GetFirstIpcAppConnectionStringType()
+    //{
+    //    if (OperatingSystem.IsWindows())
+    //    {
+    //        return IpcAppConnectionStringType.NamedPipe;
+    //    }
+    //    return IpcAppConnectionStringType.UnixSocket;
+    //}
 
     /// <inheritdoc/>
-    public IpcAppConnectionString GetConnectionString(IpcAppConnectionStringType? type = null)
+    public IpcAppConnectionString GetConnectionString(IpcAppConnectionStringType/*?*/ type/* = null*/)
     {
         if (app == null)
             throw new InvalidOperationException("The service has not been started yet.");
 
-        type ??= GetFirstIpcAppConnectionStringType();
+        //type ??= GetFirstIpcAppConnectionStringType();
 
-        switch (type.Value)
+        switch (type/*.Value*/)
         {
             case IpcAppConnectionStringType.Https:
                 if (!ListenLocalhost)
@@ -322,7 +344,7 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
 
     protected virtual void ConfigureAuthentication(AuthenticationBuilder builder)
     {
-        builder.AddScheme<IpcAuthenticationSchemeOptions<THub>, IpcAuthenticationHandler<THub>>(
+        builder.AddScheme<IpcAuthenticationSchemeOptions, IpcAuthenticationHandler>(
             DefaultAuthenticationScheme, options =>
             {
                 options.IpcServerService = this;
@@ -340,7 +362,6 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
         app.UseAuthorization();
         app.UseExceptionHandler(builder => builder.Run(OnError));
         OnMapGroup(app);
-        app.MapHub<THub>(HubUrl, ConfigureHub);
     }
 
     protected virtual void ConfigureHub(HttpConnectionDispatcherOptions options)
@@ -350,7 +371,7 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
 
     public IServiceProvider Services => app.ThrowIsNull().Services;
 
-    public IHubContext HubContext => (IHubContext)Services.GetRequiredService<IHubContext<THub>>();
+    public abstract IHubContext HubContext { get; }
 
     //public HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
     //{
@@ -409,6 +430,16 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
         GC.SuppressFinalize(this);
     }
 
+    void DeleteUnixSocketFile()
+    {
+        if (ListenUnixSocket)
+        {
+            UnixSocketPath ??= GetUnixSocketPath();
+            IOPath.FileTryDelete(UnixSocketPath);
+            UnixSocketPath = null;
+        }
+    }
+
     protected virtual async ValueTask DisposeAsyncCore()
     {
         if (app is not null)
@@ -429,9 +460,7 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
 
         app = null;
 
-        UnixSocketPath ??= GetUnixSocketPath();
-        IOPath.FileTryDelete(UnixSocketPath);
-        UnixSocketPath = null;
+        DeleteUnixSocketFile();
     }
 
     protected virtual void Dispose(bool disposing)
@@ -457,11 +486,7 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
                 serverCertificate = null!;
             }
 
-            if (UnixSocketPath != null)
-            {
-                IOPath.FileTryDelete(UnixSocketPath);
-                UnixSocketPath = null;
-            }
+            DeleteUnixSocketFile();
         }
     }
 
@@ -475,14 +500,24 @@ public partial class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAcc
     #endregion
 }
 
-file sealed class IpcAuthenticationSchemeOptions<THub> : AuthenticationSchemeOptions where THub : Hub
+public class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>(X509Certificate2 serverCertificate) : IpcServerService(serverCertificate) where THub : Hub
 {
-    public IpcServerService<THub> IpcServerService { get; set; } = null!;
+    public override IHubContext HubContext => (IHubContext)Services.GetRequiredService<IHubContext<THub>>();
+
+    protected override void Configure(WebApplication app)
+    {
+        base.Configure(app);
+        app.MapHub<THub>(HubUrl, ConfigureHub);
+    }
 }
 
-file sealed class IpcAuthenticationHandler<THub>(IOptionsMonitor<IpcAuthenticationSchemeOptions<THub>> options, ILoggerFactory logger, UrlEncoder encoder)
-    : AuthenticationHandler<IpcAuthenticationSchemeOptions<THub>>(options, logger, encoder)
-    where THub : Hub
+file sealed class IpcAuthenticationSchemeOptions : AuthenticationSchemeOptions
+{
+    public IpcServerService IpcServerService { get; set; } = null!;
+}
+
+file sealed class IpcAuthenticationHandler(IOptionsMonitor<IpcAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder)
+    : AuthenticationHandler<IpcAuthenticationSchemeOptions>(options, logger, encoder)
 {
     AuthenticateResult HandleAuthenticate()
     {
