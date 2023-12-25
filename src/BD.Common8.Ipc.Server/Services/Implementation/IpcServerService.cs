@@ -373,10 +373,23 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     public abstract IHubContext HubContext { get; }
 
-    //public HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string pattern) where THub : Hub
-    //{
-    //    return app!.MapHub<THub>(pattern, ConfigureHub);
-    //}
+    readonly Dictionary<string, Type> hubTypes = [];
+
+    public IHubContext? GetHubContextByHubUrl(string? hubUrl = null)
+    {
+        if (hubTypes.TryGetValue(hubUrl ?? HubUrl, out var hubType))
+        {
+            var hubContextType = typeof(IHubContext<>).MakeGenericType(hubType);
+            return (IHubContext)Services.GetRequiredService(hubContextType);
+        }
+        return null;
+    }
+
+    public HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string hubUrl) where THub : Hub
+    {
+        hubTypes.Add(hubUrl, typeof(THub));
+        return app!.MapHub<THub>(hubUrl, ConfigureHub);
+    }
 
     protected virtual async Task OnError(HttpContext ctx)
     {
@@ -498,17 +511,6 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     }
 
     #endregion
-}
-
-public class IpcServerService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>(X509Certificate2 serverCertificate) : IpcServerService(serverCertificate) where THub : Hub
-{
-    public override IHubContext HubContext => (IHubContext)Services.GetRequiredService<IHubContext<THub>>();
-
-    protected override void Configure(WebApplication app)
-    {
-        base.Configure(app);
-        app.MapHub<THub>(HubUrl, ConfigureHub);
-    }
 }
 
 file sealed class IpcAuthenticationSchemeOptions : AuthenticationSchemeOptions
