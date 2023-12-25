@@ -17110,6 +17110,22 @@ references:
   fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetConnectionString
   nameWithType: IpcServerService<THub>.GetConnectionString
   nameWithType.vb: IpcServerService(Of THub).GetConnectionString
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath
+  name: GetUnixSocketDirPath()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetUnixSocketDirPath
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetUnixSocketDirPath()
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetUnixSocketDirPath()
+  nameWithType: IpcServerService<THub>.GetUnixSocketDirPath()
+  nameWithType.vb: IpcServerService(Of THub).GetUnixSocketDirPath()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath*
+  name: GetUnixSocketDirPath
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetUnixSocketDirPath_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetUnixSocketDirPath
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetUnixSocketDirPath
+  nameWithType: IpcServerService<THub>.GetUnixSocketDirPath
+  nameWithType.vb: IpcServerService(Of THub).GetUnixSocketDirPath
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketPath
   name: GetUnixSocketPath()
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetUnixSocketPath
@@ -29907,6 +29923,15 @@ references:
   fullName.vb: System.Diagnostics.Process2.IsAlive(System.Diagnostics.Process)
   nameWithType: Process2.IsAlive(Process?)
   nameWithType.vb: Process2.IsAlive(Process)
+- uid: System.Diagnostics.Process2.IsAlive(System.Int32)
+  name: IsAlive(int)
+  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_IsAlive_System_Int32_
+  commentId: M:System.Diagnostics.Process2.IsAlive(System.Int32)
+  name.vb: IsAlive(Integer)
+  fullName: System.Diagnostics.Process2.IsAlive(int)
+  fullName.vb: System.Diagnostics.Process2.IsAlive(Integer)
+  nameWithType: Process2.IsAlive(int)
+  nameWithType.vb: Process2.IsAlive(Integer)
 - uid: System.Diagnostics.Process2.IsAlive*
   name: IsAlive
   href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_IsAlive_
