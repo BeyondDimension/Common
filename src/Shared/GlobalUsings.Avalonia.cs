@@ -8,6 +8,7 @@
 global using Avalonia;
 global using Avalonia.Input;
 global using Avalonia.Layout;
+global using Avalonia.LogicalTree;
 global using Avalonia.Interactivity;
 global using Avalonia.Animation;
 global using Avalonia.Animation.Easings;
