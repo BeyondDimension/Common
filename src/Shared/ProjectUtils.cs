@@ -1,10 +1,9 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0005 // Using 指令是不需要的。
-global using static BD.Common8.ProjectUtils;
+global using static ProjectUtils;
 #pragma warning restore IDE0005 // Using 指令是不需要的。
 #pragma warning restore IDE0079 // 请删除不必要的忽略
-
-namespace BD.Common8;
+#pragma warning disable CA1050 // 在命名空间中声明类型
 
 /// <summary>
 /// 项目工具类

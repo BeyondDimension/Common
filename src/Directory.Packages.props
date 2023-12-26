@@ -1,6 +1,7 @@
 <Project>
 	<!-- NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
 	<ItemGroup>
+		<PackageVersion Include="7-Zip.NativeAssets.Win32" Version="22.1.0" />
 		<PackageVersion Include="AngleSharp" Version="1.0.7" />
 		<PackageVersion Include="ApprovalTests" Version="6.0.0" />
 		<PackageVersion Include="Avalonia" Version="11.0.6" />
@@ -76,11 +77,13 @@
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.31" />
 		<PackageVersion Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.7" />
+		<PackageVersion Include="Squid-Box.SevenZipSharp.Lite" Version="1.6.1.23" />
 		<PackageVersion Include="StackExchange.Redis" Version="2.7.10" />
 		<PackageVersion Include="SteamKit2" Version="2.5.0" />
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.507" />
 		<PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+		<PackageVersion Include="System.Composition" Version="8.0.0" />
 		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
 		<PackageVersion Include="System.Drawing.Common" Version="8.0.0" />
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0" />

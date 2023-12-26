@@ -200,7 +200,6 @@ public abstract class IpcTemplateBase :
     /// <param name="methodParas"></param>
     protected void WriteTuple(Stream stream, MethodPara[] methodParas)
     {
-        Tuple<int, int, int, int, int, int, int, Tuple<int, int>> a = default;
         int endLen = 0;
         for (int i = 0; i < methodParas.Length; i++)
         {
