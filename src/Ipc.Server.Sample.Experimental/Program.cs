@@ -72,7 +72,7 @@ static partial class Program
     }
 }
 
-sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerService<IpcHub>(serverCertificate)
+sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerService(serverCertificate)
 {
     protected override bool ListenLocalhost => true;
 
@@ -86,6 +86,8 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
         => _JsonSerializerOptions.Value;
 
     static bool UseSwagger => true;
+
+    public override IHubContext HubContext => GetHubContextByHubUrl()!;
 
     protected override void ConfigureServices(IServiceCollection services)
     {
@@ -125,6 +127,7 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
     protected override void Configure(WebApplication app)
     {
         base.Configure(app);
+        MapHub<IpcHub>(HubUrl);
 
         if (UseSwagger)
         {

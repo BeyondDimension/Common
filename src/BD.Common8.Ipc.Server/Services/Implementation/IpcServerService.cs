@@ -263,9 +263,14 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     {
         const string dirName = "BD.Common8.Ipc";
         // The length must be between 1 and 108 characters, inclusive.
-        var dirPath = Path.Combine(IOPath.CacheDirectory, dirName);
-        if (dirPath.Length <= 108)
-            return dirPath;
+        string dirPath;
+        try
+        {
+            dirPath = Path.Combine(IOPath.CacheDirectory, dirName);
+            if (dirPath.Length <= 108)
+                return dirPath;
+        }
+        catch { }
         dirPath = Path.Combine(IOPath.GetTempPath(), dirName);
         return dirPath;
     }
