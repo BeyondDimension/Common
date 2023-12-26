@@ -16547,12 +16547,12 @@ references:
   commentId: T:BD.Common8.Ipc.Services.IIpcServerService
   fullName: BD.Common8.Ipc.Services.IIpcServerService
   nameWithType: IIpcServerService
-- uid: BD.Common8.Ipc.Services.IIpcServerService.GetConnectionString(System.Nullable{BD.Common8.Ipc.Enums.IpcAppConnectionStringType})
-  name: GetConnectionString(IpcAppConnectionStringType?)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html#BD_Common8_Ipc_Services_IIpcServerService_GetConnectionString_System_Nullable_BD_Common8_Ipc_Enums_IpcAppConnectionStringType__
-  commentId: M:BD.Common8.Ipc.Services.IIpcServerService.GetConnectionString(System.Nullable{BD.Common8.Ipc.Enums.IpcAppConnectionStringType})
-  fullName: BD.Common8.Ipc.Services.IIpcServerService.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType?)
-  nameWithType: IIpcServerService.GetConnectionString(IpcAppConnectionStringType?)
+- uid: BD.Common8.Ipc.Services.IIpcServerService.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType)
+  name: GetConnectionString(IpcAppConnectionStringType)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html#BD_Common8_Ipc_Services_IIpcServerService_GetConnectionString_BD_Common8_Ipc_Enums_IpcAppConnectionStringType_
+  commentId: M:BD.Common8.Ipc.Services.IIpcServerService.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType)
+  fullName: BD.Common8.Ipc.Services.IIpcServerService.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType)
+  nameWithType: IIpcServerService.GetConnectionString(IpcAppConnectionStringType)
 - uid: BD.Common8.Ipc.Services.IIpcServerService.GetConnectionString*
   name: GetConnectionString
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.IIpcServerService.html#BD_Common8_Ipc_Services_IIpcServerService_GetConnectionString_
@@ -16820,15 +16820,15 @@ references:
   commentId: T:BD.Common8.Ipc.Services.Implementation.IpcServerService
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService
   nameWithType: IpcServerService
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor
-  name: IpcServerService()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor
-  name.vb: New()
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.IpcServerService()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.New()
-  nameWithType: IpcServerService.IpcServerService()
-  nameWithType.vb: IpcServerService.New()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
+  name: IpcServerService(X509Certificate2)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_System_Security_Cryptography_X509Certificates_X509Certificate2_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
+  name.vb: New(X509Certificate2)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.IpcServerService(System.Security.Cryptography.X509Certificates.X509Certificate2)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.New(System.Security.Cryptography.X509Certificates.X509Certificate2)
+  nameWithType: IpcServerService.IpcServerService(X509Certificate2)
+  nameWithType.vb: IpcServerService.New(X509Certificate2)
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor*
   name: IpcServerService
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_
@@ -16838,6 +16838,339 @@ references:
   fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.New
   nameWithType: IpcServerService.IpcServerService
   nameWithType.vb: IpcServerService.New
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Configure(Microsoft.AspNetCore.Builder.WebApplication)
+  name: Configure(WebApplication)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Configure_Microsoft_AspNetCore_Builder_WebApplication_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.Configure(Microsoft.AspNetCore.Builder.WebApplication)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Configure(Microsoft.AspNetCore.Builder.WebApplication)
+  nameWithType: IpcServerService.Configure(WebApplication)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Configure*
+  name: Configure
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Configure_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.Configure
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Configure
+  nameWithType: IpcServerService.Configure
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)
+  name: ConfigureAuthentication(AuthenticationBuilder)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureAuthentication_Microsoft_AspNetCore_Authentication_AuthenticationBuilder_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)
+  nameWithType: IpcServerService.ConfigureAuthentication(AuthenticationBuilder)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication*
+  name: ConfigureAuthentication
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureAuthentication_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureAuthentication
+  nameWithType: IpcServerService.ConfigureAuthentication
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHttpJsonOptions(Microsoft.AspNetCore.Http.Json.JsonOptions)
+  name: ConfigureHttpJsonOptions(JsonOptions)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureHttpJsonOptions_Microsoft_AspNetCore_Http_Json_JsonOptions_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHttpJsonOptions(Microsoft.AspNetCore.Http.Json.JsonOptions)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHttpJsonOptions(Microsoft.AspNetCore.Http.Json.JsonOptions)
+  nameWithType: IpcServerService.ConfigureHttpJsonOptions(JsonOptions)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHttpJsonOptions*
+  name: ConfigureHttpJsonOptions
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureHttpJsonOptions_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHttpJsonOptions
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHttpJsonOptions
+  nameWithType: IpcServerService.ConfigureHttpJsonOptions
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHub(Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions)
+  name: ConfigureHub(HttpConnectionDispatcherOptions)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureHub_Microsoft_AspNetCore_Http_Connections_HttpConnectionDispatcherOptions_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHub(Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHub(Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions)
+  nameWithType: IpcServerService.ConfigureHub(HttpConnectionDispatcherOptions)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHub*
+  name: ConfigureHub
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureHub_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHub
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureHub
+  nameWithType: IpcServerService.ConfigureHub
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
+  name: ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureJsonHubProtocolOptions_Microsoft_AspNetCore_SignalR_JsonHubProtocolOptions_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
+  nameWithType: IpcServerService.ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureJsonHubProtocolOptions*
+  name: ConfigureJsonHubProtocolOptions
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureJsonHubProtocolOptions_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureJsonHubProtocolOptions
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureJsonHubProtocolOptions
+  nameWithType: IpcServerService.ConfigureJsonHubProtocolOptions
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)
+  name: ConfigureLogging(ILoggingBuilder)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureLogging_Microsoft_Extensions_Logging_ILoggingBuilder_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)
+  nameWithType: IpcServerService.ConfigureLogging(ILoggingBuilder)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging*
+  name: ConfigureLogging
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureLogging_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging
+  nameWithType: IpcServerService.ConfigureLogging
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: ConfigureServices(IServiceCollection)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: IpcServerService.ConfigureServices(IServiceCollection)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureServices*
+  name: ConfigureServices
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureServices_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureServices
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureServices
+  nameWithType: IpcServerService.ConfigureServices
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalR(Microsoft.AspNetCore.SignalR.HubOptions)
+  name: ConfigureSignalR(HubOptions)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureSignalR_Microsoft_AspNetCore_SignalR_HubOptions_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalR(Microsoft.AspNetCore.SignalR.HubOptions)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalR(Microsoft.AspNetCore.SignalR.HubOptions)
+  nameWithType: IpcServerService.ConfigureSignalR(HubOptions)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalR*
+  name: ConfigureSignalR
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureSignalR_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalR
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalR
+  nameWithType: IpcServerService.ConfigureSignalR
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme
+  name: DefaultAuthenticationScheme
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_DefaultAuthenticationScheme
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme
+  nameWithType: IpcServerService.DefaultAuthenticationScheme
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme*
+  name: DefaultAuthenticationScheme
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_DefaultAuthenticationScheme_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme
+  nameWithType: IpcServerService.DefaultAuthenticationScheme
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose
+  name: Dispose()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Dispose
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose()
+  nameWithType: IpcServerService.Dispose()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Dispose_System_Boolean_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose(bool)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose(Boolean)
+  nameWithType: IpcServerService.Dispose(bool)
+  nameWithType.vb: IpcServerService.Dispose(Boolean)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose*
+  name: Dispose
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Dispose_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose
+  nameWithType: IpcServerService.Dispose
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsync
+  name: DisposeAsync()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_DisposeAsync
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsync()
+  nameWithType: IpcServerService.DisposeAsync()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsync*
+  name: DisposeAsync
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_DisposeAsync_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsync
+  nameWithType: IpcServerService.DisposeAsync
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsyncCore
+  name: DisposeAsyncCore()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_DisposeAsyncCore
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsyncCore
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsyncCore()
+  nameWithType: IpcServerService.DisposeAsyncCore()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsyncCore*
+  name: DisposeAsyncCore
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_DisposeAsyncCore_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsyncCore
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.DisposeAsyncCore
+  nameWithType: IpcServerService.DisposeAsyncCore
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken
+  name: GetAccessToken()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetAccessToken
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken()
+  nameWithType: IpcServerService.GetAccessToken()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken*
+  name: GetAccessToken
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetAccessToken_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetAccessToken
+  nameWithType: IpcServerService.GetAccessToken
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType)
+  name: GetConnectionString(IpcAppConnectionStringType)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetConnectionString_BD_Common8_Ipc_Enums_IpcAppConnectionStringType_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType)
+  nameWithType: IpcServerService.GetConnectionString(IpcAppConnectionStringType)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString*
+  name: GetConnectionString
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetConnectionString_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetConnectionString
+  nameWithType: IpcServerService.GetConnectionString
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContextByHubUrl(System.String)
+  name: GetHubContextByHubUrl(string?)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetHubContextByHubUrl_System_String_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContextByHubUrl(System.String)
+  name.vb: GetHubContextByHubUrl(String)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContextByHubUrl(string?)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContextByHubUrl(String)
+  nameWithType: IpcServerService.GetHubContextByHubUrl(string?)
+  nameWithType.vb: IpcServerService.GetHubContextByHubUrl(String)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContextByHubUrl*
+  name: GetHubContextByHubUrl
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetHubContextByHubUrl_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContextByHubUrl
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetHubContextByHubUrl
+  nameWithType: IpcServerService.GetHubContextByHubUrl
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketDirPath
+  name: GetUnixSocketDirPath()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetUnixSocketDirPath
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketDirPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketDirPath()
+  nameWithType: IpcServerService.GetUnixSocketDirPath()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketDirPath*
+  name: GetUnixSocketDirPath
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetUnixSocketDirPath_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketDirPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketDirPath
+  nameWithType: IpcServerService.GetUnixSocketDirPath
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketPath
+  name: GetUnixSocketPath()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetUnixSocketPath
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketPath()
+  nameWithType: IpcServerService.GetUnixSocketPath()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketPath*
+  name: GetUnixSocketPath
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_GetUnixSocketPath_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.GetUnixSocketPath
+  nameWithType: IpcServerService.GetUnixSocketPath
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Http2Port
+  name: Http2Port
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Http2Port
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.Http2Port
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Http2Port
+  nameWithType: IpcServerService.Http2Port
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Http2Port*
+  name: Http2Port
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Http2Port_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.Http2Port
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Http2Port
+  nameWithType: IpcServerService.Http2Port
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubContext
+  name: HubContext
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_HubContext
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.HubContext
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubContext
+  nameWithType: IpcServerService.HubContext
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubContext*
+  name: HubContext
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_HubContext_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.HubContext
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubContext
+  nameWithType: IpcServerService.HubContext
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubUrl
+  name: HubUrl
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_HubUrl
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.HubUrl
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubUrl
+  nameWithType: IpcServerService.HubUrl
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubUrl*
+  name: HubUrl
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_HubUrl_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.HubUrl
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.HubUrl
+  nameWithType: IpcServerService.HubUrl
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions
+  name: JsonSerializerOptions
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_JsonSerializerOptions
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions
+  nameWithType: IpcServerService.JsonSerializerOptions
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions*
+  name: JsonSerializerOptions
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_JsonSerializerOptions_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.JsonSerializerOptions
+  nameWithType: IpcServerService.JsonSerializerOptions
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenLocalhost
+  name: ListenLocalhost
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ListenLocalhost
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenLocalhost
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenLocalhost
+  nameWithType: IpcServerService.ListenLocalhost
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenLocalhost*
+  name: ListenLocalhost
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ListenLocalhost_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenLocalhost
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenLocalhost
+  nameWithType: IpcServerService.ListenLocalhost
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenNamedPipe
+  name: ListenNamedPipe
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ListenNamedPipe
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenNamedPipe
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenNamedPipe
+  nameWithType: IpcServerService.ListenNamedPipe
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenNamedPipe*
+  name: ListenNamedPipe
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ListenNamedPipe_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenNamedPipe
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenNamedPipe
+  nameWithType: IpcServerService.ListenNamedPipe
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenUnixSocket
+  name: ListenUnixSocket
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ListenUnixSocket
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenUnixSocket
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenUnixSocket
+  nameWithType: IpcServerService.ListenUnixSocket
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenUnixSocket*
+  name: ListenUnixSocket
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ListenUnixSocket_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenUnixSocket
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ListenUnixSocket
+  nameWithType: IpcServerService.ListenUnixSocket
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub*
+  name: MapHub
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_MapHub_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub
+  nameWithType: IpcServerService.MapHub
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub``1(System.String)
+  name: MapHub<THub>(string)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_MapHub__1_System_String_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub``1(System.String)
+  name.vb: MapHub(Of THub)(String)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub<THub>(string)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.MapHub(Of THub)(String)
+  nameWithType: IpcServerService.MapHub<THub>(string)
+  nameWithType.vb: IpcServerService.MapHub(Of THub)(String)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError(Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature)
+  name: OnError(IExceptionHandlerFeature)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_OnError_Microsoft_AspNetCore_Diagnostics_IExceptionHandlerFeature_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError(Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError(Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature)
+  nameWithType: IpcServerService.OnError(IExceptionHandlerFeature)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError(Microsoft.AspNetCore.Http.HttpContext)
+  name: OnError(HttpContext)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_OnError_Microsoft_AspNetCore_Http_HttpContext_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError(Microsoft.AspNetCore.Http.HttpContext)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError(Microsoft.AspNetCore.Http.HttpContext)
+  nameWithType: IpcServerService.OnError(HttpContext)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError*
+  name: OnError
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_OnError_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError
+  nameWithType: IpcServerService.OnError
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnMapGroup(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)
   name: OnMapGroup(IEndpointRouteBuilder)
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_OnMapGroup_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_
@@ -16850,506 +17183,60 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.OnMapGroup
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnMapGroup
   nameWithType: IpcServerService.OnMapGroup
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1
-  name: IpcServerService<THub>
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html
-  commentId: T:BD.Common8.Ipc.Services.Implementation.IpcServerService`1
-  name.vb: IpcServerService(Of THub)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub)
-  nameWithType: IpcServerService<THub>
-  nameWithType.vb: IpcServerService(Of THub)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  name: IpcServerService(X509Certificate2)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1__ctor_System_Security_Cryptography_X509Certificates_X509Certificate2_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  name.vb: New(X509Certificate2)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.IpcServerService(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).New(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  nameWithType: IpcServerService<THub>.IpcServerService(X509Certificate2)
-  nameWithType.vb: IpcServerService(Of THub).New(X509Certificate2)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.#ctor*
-  name: IpcServerService
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1__ctor_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.#ctor
-  name.vb: New
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.IpcServerService
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).New
-  nameWithType: IpcServerService<THub>.IpcServerService
-  nameWithType.vb: IpcServerService(Of THub).New
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Configure(Microsoft.AspNetCore.Builder.WebApplication)
-  name: Configure(WebApplication)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Configure_Microsoft_AspNetCore_Builder_WebApplication_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Configure(Microsoft.AspNetCore.Builder.WebApplication)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Configure(Microsoft.AspNetCore.Builder.WebApplication)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Configure(Microsoft.AspNetCore.Builder.WebApplication)
-  nameWithType: IpcServerService<THub>.Configure(WebApplication)
-  nameWithType.vb: IpcServerService(Of THub).Configure(WebApplication)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Configure*
-  name: Configure
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Configure_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Configure
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Configure
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Configure
-  nameWithType: IpcServerService<THub>.Configure
-  nameWithType.vb: IpcServerService(Of THub).Configure
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)
-  name: ConfigureAuthentication(AuthenticationBuilder)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureAuthentication_Microsoft_AspNetCore_Authentication_AuthenticationBuilder_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureAuthentication(Microsoft.AspNetCore.Authentication.AuthenticationBuilder)
-  nameWithType: IpcServerService<THub>.ConfigureAuthentication(AuthenticationBuilder)
-  nameWithType.vb: IpcServerService(Of THub).ConfigureAuthentication(AuthenticationBuilder)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureAuthentication*
-  name: ConfigureAuthentication
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureAuthentication_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureAuthentication
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureAuthentication
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureAuthentication
-  nameWithType: IpcServerService<THub>.ConfigureAuthentication
-  nameWithType.vb: IpcServerService(Of THub).ConfigureAuthentication
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHttpJsonOptions(Microsoft.AspNetCore.Http.Json.JsonOptions)
-  name: ConfigureHttpJsonOptions(JsonOptions)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureHttpJsonOptions_Microsoft_AspNetCore_Http_Json_JsonOptions_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHttpJsonOptions(Microsoft.AspNetCore.Http.Json.JsonOptions)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureHttpJsonOptions(Microsoft.AspNetCore.Http.Json.JsonOptions)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureHttpJsonOptions(Microsoft.AspNetCore.Http.Json.JsonOptions)
-  nameWithType: IpcServerService<THub>.ConfigureHttpJsonOptions(JsonOptions)
-  nameWithType.vb: IpcServerService(Of THub).ConfigureHttpJsonOptions(JsonOptions)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHttpJsonOptions*
-  name: ConfigureHttpJsonOptions
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureHttpJsonOptions_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHttpJsonOptions
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureHttpJsonOptions
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureHttpJsonOptions
-  nameWithType: IpcServerService<THub>.ConfigureHttpJsonOptions
-  nameWithType.vb: IpcServerService(Of THub).ConfigureHttpJsonOptions
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHub(Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions)
-  name: ConfigureHub(HttpConnectionDispatcherOptions)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureHub_Microsoft_AspNetCore_Http_Connections_HttpConnectionDispatcherOptions_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHub(Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureHub(Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureHub(Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions)
-  nameWithType: IpcServerService<THub>.ConfigureHub(HttpConnectionDispatcherOptions)
-  nameWithType.vb: IpcServerService(Of THub).ConfigureHub(HttpConnectionDispatcherOptions)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHub*
-  name: ConfigureHub
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureHub_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureHub
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureHub
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureHub
-  nameWithType: IpcServerService<THub>.ConfigureHub
-  nameWithType.vb: IpcServerService(Of THub).ConfigureHub
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
-  name: ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureJsonHubProtocolOptions_Microsoft_AspNetCore_SignalR_JsonHubProtocolOptions_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureJsonHubProtocolOptions(Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions)
-  nameWithType: IpcServerService<THub>.ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions)
-  nameWithType.vb: IpcServerService(Of THub).ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureJsonHubProtocolOptions*
-  name: ConfigureJsonHubProtocolOptions
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureJsonHubProtocolOptions_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureJsonHubProtocolOptions
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureJsonHubProtocolOptions
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureJsonHubProtocolOptions
-  nameWithType: IpcServerService<THub>.ConfigureJsonHubProtocolOptions
-  nameWithType.vb: IpcServerService(Of THub).ConfigureJsonHubProtocolOptions
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)
-  name: ConfigureLogging(ILoggingBuilder)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureLogging_Microsoft_Extensions_Logging_ILoggingBuilder_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)
-  nameWithType: IpcServerService<THub>.ConfigureLogging(ILoggingBuilder)
-  nameWithType.vb: IpcServerService(Of THub).ConfigureLogging(ILoggingBuilder)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureLogging*
-  name: ConfigureLogging
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureLogging_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureLogging
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureLogging
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureLogging
-  nameWithType: IpcServerService<THub>.ConfigureLogging
-  nameWithType.vb: IpcServerService(Of THub).ConfigureLogging
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  name: ConfigureServices(IServiceCollection)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
-  nameWithType: IpcServerService<THub>.ConfigureServices(IServiceCollection)
-  nameWithType.vb: IpcServerService(Of THub).ConfigureServices(IServiceCollection)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureServices*
-  name: ConfigureServices
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureServices_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureServices
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureServices
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureServices
-  nameWithType: IpcServerService<THub>.ConfigureServices
-  nameWithType.vb: IpcServerService(Of THub).ConfigureServices
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureSignalR(Microsoft.AspNetCore.SignalR.HubOptions)
-  name: ConfigureSignalR(HubOptions)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureSignalR_Microsoft_AspNetCore_SignalR_HubOptions_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureSignalR(Microsoft.AspNetCore.SignalR.HubOptions)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureSignalR(Microsoft.AspNetCore.SignalR.HubOptions)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureSignalR(Microsoft.AspNetCore.SignalR.HubOptions)
-  nameWithType: IpcServerService<THub>.ConfigureSignalR(HubOptions)
-  nameWithType.vb: IpcServerService(Of THub).ConfigureSignalR(HubOptions)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureSignalR*
-  name: ConfigureSignalR
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ConfigureSignalR_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ConfigureSignalR
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ConfigureSignalR
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ConfigureSignalR
-  nameWithType: IpcServerService<THub>.ConfigureSignalR
-  nameWithType.vb: IpcServerService(Of THub).ConfigureSignalR
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DefaultAuthenticationScheme
-  name: DefaultAuthenticationScheme
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_DefaultAuthenticationScheme
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DefaultAuthenticationScheme
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.DefaultAuthenticationScheme
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).DefaultAuthenticationScheme
-  nameWithType: IpcServerService<THub>.DefaultAuthenticationScheme
-  nameWithType.vb: IpcServerService(Of THub).DefaultAuthenticationScheme
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DefaultAuthenticationScheme*
-  name: DefaultAuthenticationScheme
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_DefaultAuthenticationScheme_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DefaultAuthenticationScheme
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.DefaultAuthenticationScheme
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).DefaultAuthenticationScheme
-  nameWithType: IpcServerService<THub>.DefaultAuthenticationScheme
-  nameWithType.vb: IpcServerService(Of THub).DefaultAuthenticationScheme
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Dispose
-  name: Dispose()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Dispose
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Dispose
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Dispose()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Dispose()
-  nameWithType: IpcServerService<THub>.Dispose()
-  nameWithType.vb: IpcServerService(Of THub).Dispose()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Dispose(System.Boolean)
-  name: Dispose(bool)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Dispose_System_Boolean_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Dispose(System.Boolean)
-  name.vb: Dispose(Boolean)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Dispose(bool)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Dispose(Boolean)
-  nameWithType: IpcServerService<THub>.Dispose(bool)
-  nameWithType.vb: IpcServerService(Of THub).Dispose(Boolean)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Dispose*
-  name: Dispose
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Dispose_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Dispose
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Dispose
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Dispose
-  nameWithType: IpcServerService<THub>.Dispose
-  nameWithType.vb: IpcServerService(Of THub).Dispose
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsync
-  name: DisposeAsync()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_DisposeAsync
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsync
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.DisposeAsync()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).DisposeAsync()
-  nameWithType: IpcServerService<THub>.DisposeAsync()
-  nameWithType.vb: IpcServerService(Of THub).DisposeAsync()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsync*
-  name: DisposeAsync
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_DisposeAsync_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsync
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.DisposeAsync
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).DisposeAsync
-  nameWithType: IpcServerService<THub>.DisposeAsync
-  nameWithType.vb: IpcServerService(Of THub).DisposeAsync
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsyncCore
-  name: DisposeAsyncCore()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_DisposeAsyncCore
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsyncCore
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.DisposeAsyncCore()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).DisposeAsyncCore()
-  nameWithType: IpcServerService<THub>.DisposeAsyncCore()
-  nameWithType.vb: IpcServerService(Of THub).DisposeAsyncCore()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsyncCore*
-  name: DisposeAsyncCore
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_DisposeAsyncCore_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.DisposeAsyncCore
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.DisposeAsyncCore
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).DisposeAsyncCore
-  nameWithType: IpcServerService<THub>.DisposeAsyncCore
-  nameWithType.vb: IpcServerService(Of THub).DisposeAsyncCore
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetAccessToken
-  name: GetAccessToken()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetAccessToken
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetAccessToken
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetAccessToken()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetAccessToken()
-  nameWithType: IpcServerService<THub>.GetAccessToken()
-  nameWithType.vb: IpcServerService(Of THub).GetAccessToken()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetAccessToken*
-  name: GetAccessToken
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetAccessToken_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetAccessToken
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetAccessToken
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetAccessToken
-  nameWithType: IpcServerService<THub>.GetAccessToken
-  nameWithType.vb: IpcServerService(Of THub).GetAccessToken
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetConnectionString(System.Nullable{BD.Common8.Ipc.Enums.IpcAppConnectionStringType})
-  name: GetConnectionString(IpcAppConnectionStringType?)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetConnectionString_System_Nullable_BD_Common8_Ipc_Enums_IpcAppConnectionStringType__
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetConnectionString(System.Nullable{BD.Common8.Ipc.Enums.IpcAppConnectionStringType})
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType?)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetConnectionString(BD.Common8.Ipc.Enums.IpcAppConnectionStringType?)
-  nameWithType: IpcServerService<THub>.GetConnectionString(IpcAppConnectionStringType?)
-  nameWithType.vb: IpcServerService(Of THub).GetConnectionString(IpcAppConnectionStringType?)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetConnectionString*
-  name: GetConnectionString
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetConnectionString_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetConnectionString
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetConnectionString
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetConnectionString
-  nameWithType: IpcServerService<THub>.GetConnectionString
-  nameWithType.vb: IpcServerService(Of THub).GetConnectionString
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath
-  name: GetUnixSocketDirPath()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetUnixSocketDirPath
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetUnixSocketDirPath()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetUnixSocketDirPath()
-  nameWithType: IpcServerService<THub>.GetUnixSocketDirPath()
-  nameWithType.vb: IpcServerService(Of THub).GetUnixSocketDirPath()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath*
-  name: GetUnixSocketDirPath
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetUnixSocketDirPath_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketDirPath
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetUnixSocketDirPath
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetUnixSocketDirPath
-  nameWithType: IpcServerService<THub>.GetUnixSocketDirPath
-  nameWithType.vb: IpcServerService(Of THub).GetUnixSocketDirPath
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketPath
-  name: GetUnixSocketPath()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetUnixSocketPath
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketPath
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetUnixSocketPath()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetUnixSocketPath()
-  nameWithType: IpcServerService<THub>.GetUnixSocketPath()
-  nameWithType.vb: IpcServerService(Of THub).GetUnixSocketPath()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketPath*
-  name: GetUnixSocketPath
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_GetUnixSocketPath_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.GetUnixSocketPath
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.GetUnixSocketPath
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).GetUnixSocketPath
-  nameWithType: IpcServerService<THub>.GetUnixSocketPath
-  nameWithType.vb: IpcServerService(Of THub).GetUnixSocketPath
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Http2Port
-  name: Http2Port
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Http2Port
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Http2Port
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Http2Port
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Http2Port
-  nameWithType: IpcServerService<THub>.Http2Port
-  nameWithType.vb: IpcServerService(Of THub).Http2Port
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Http2Port*
-  name: Http2Port
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Http2Port_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Http2Port
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Http2Port
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Http2Port
-  nameWithType: IpcServerService<THub>.Http2Port
-  nameWithType.vb: IpcServerService(Of THub).Http2Port
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubContext
-  name: HubContext
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_HubContext
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubContext
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.HubContext
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).HubContext
-  nameWithType: IpcServerService<THub>.HubContext
-  nameWithType.vb: IpcServerService(Of THub).HubContext
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubContext*
-  name: HubContext
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_HubContext_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubContext
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.HubContext
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).HubContext
-  nameWithType: IpcServerService<THub>.HubContext
-  nameWithType.vb: IpcServerService(Of THub).HubContext
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubUrl
-  name: HubUrl
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_HubUrl
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubUrl
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.HubUrl
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).HubUrl
-  nameWithType: IpcServerService<THub>.HubUrl
-  nameWithType.vb: IpcServerService(Of THub).HubUrl
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubUrl*
-  name: HubUrl
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_HubUrl_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.HubUrl
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.HubUrl
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).HubUrl
-  nameWithType: IpcServerService<THub>.HubUrl
-  nameWithType.vb: IpcServerService(Of THub).HubUrl
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.JsonSerializerOptions
-  name: JsonSerializerOptions
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_JsonSerializerOptions
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.JsonSerializerOptions
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.JsonSerializerOptions
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).JsonSerializerOptions
-  nameWithType: IpcServerService<THub>.JsonSerializerOptions
-  nameWithType.vb: IpcServerService(Of THub).JsonSerializerOptions
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.JsonSerializerOptions*
-  name: JsonSerializerOptions
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_JsonSerializerOptions_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.JsonSerializerOptions
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.JsonSerializerOptions
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).JsonSerializerOptions
-  nameWithType: IpcServerService<THub>.JsonSerializerOptions
-  nameWithType.vb: IpcServerService(Of THub).JsonSerializerOptions
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenLocalhost
-  name: ListenLocalhost
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ListenLocalhost
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenLocalhost
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ListenLocalhost
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ListenLocalhost
-  nameWithType: IpcServerService<THub>.ListenLocalhost
-  nameWithType.vb: IpcServerService(Of THub).ListenLocalhost
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenLocalhost*
-  name: ListenLocalhost
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ListenLocalhost_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenLocalhost
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ListenLocalhost
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ListenLocalhost
-  nameWithType: IpcServerService<THub>.ListenLocalhost
-  nameWithType.vb: IpcServerService(Of THub).ListenLocalhost
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenNamedPipe
-  name: ListenNamedPipe
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ListenNamedPipe
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenNamedPipe
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ListenNamedPipe
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ListenNamedPipe
-  nameWithType: IpcServerService<THub>.ListenNamedPipe
-  nameWithType.vb: IpcServerService(Of THub).ListenNamedPipe
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenNamedPipe*
-  name: ListenNamedPipe
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ListenNamedPipe_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenNamedPipe
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ListenNamedPipe
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ListenNamedPipe
-  nameWithType: IpcServerService<THub>.ListenNamedPipe
-  nameWithType.vb: IpcServerService(Of THub).ListenNamedPipe
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenUnixSocket
-  name: ListenUnixSocket
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ListenUnixSocket
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenUnixSocket
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ListenUnixSocket
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ListenUnixSocket
-  nameWithType: IpcServerService<THub>.ListenUnixSocket
-  nameWithType.vb: IpcServerService(Of THub).ListenUnixSocket
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenUnixSocket*
-  name: ListenUnixSocket
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_ListenUnixSocket_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.ListenUnixSocket
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.ListenUnixSocket
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).ListenUnixSocket
-  nameWithType: IpcServerService<THub>.ListenUnixSocket
-  nameWithType.vb: IpcServerService(Of THub).ListenUnixSocket
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.OnError(Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature)
-  name: OnError(IExceptionHandlerFeature)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_OnError_Microsoft_AspNetCore_Diagnostics_IExceptionHandlerFeature_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.OnError(Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.OnError(Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).OnError(Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature)
-  nameWithType: IpcServerService<THub>.OnError(IExceptionHandlerFeature)
-  nameWithType.vb: IpcServerService(Of THub).OnError(IExceptionHandlerFeature)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.OnError(Microsoft.AspNetCore.Http.HttpContext)
-  name: OnError(HttpContext)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_OnError_Microsoft_AspNetCore_Http_HttpContext_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.OnError(Microsoft.AspNetCore.Http.HttpContext)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.OnError(Microsoft.AspNetCore.Http.HttpContext)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).OnError(Microsoft.AspNetCore.Http.HttpContext)
-  nameWithType: IpcServerService<THub>.OnError(HttpContext)
-  nameWithType.vb: IpcServerService(Of THub).OnError(HttpContext)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.OnError*
-  name: OnError
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_OnError_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.OnError
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.OnError
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).OnError
-  nameWithType: IpcServerService<THub>.OnError
-  nameWithType.vb: IpcServerService(Of THub).OnError
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.PipeName
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.PipeName
   name: PipeName
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_PipeName
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.PipeName
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.PipeName
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).PipeName
-  nameWithType: IpcServerService<THub>.PipeName
-  nameWithType.vb: IpcServerService(Of THub).PipeName
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.PipeName*
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_PipeName
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.PipeName
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.PipeName
+  nameWithType: IpcServerService.PipeName
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.PipeName*
   name: PipeName
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_PipeName_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.PipeName
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.PipeName
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).PipeName
-  nameWithType: IpcServerService<THub>.PipeName
-  nameWithType.vb: IpcServerService(Of THub).PipeName
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.RunAsync
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_PipeName_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.PipeName
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.PipeName
+  nameWithType: IpcServerService.PipeName
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.RunAsync
   name: RunAsync()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_RunAsync
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.RunAsync
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.RunAsync()
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).RunAsync()
-  nameWithType: IpcServerService<THub>.RunAsync()
-  nameWithType.vb: IpcServerService(Of THub).RunAsync()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.RunAsync*
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_RunAsync
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.RunAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.RunAsync()
+  nameWithType: IpcServerService.RunAsync()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.RunAsync*
   name: RunAsync
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_RunAsync_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.RunAsync
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.RunAsync
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).RunAsync
-  nameWithType: IpcServerService<THub>.RunAsync
-  nameWithType.vb: IpcServerService(Of THub).RunAsync
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Services
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_RunAsync_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.RunAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.RunAsync
+  nameWithType: IpcServerService.RunAsync
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Services
   name: Services
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Services
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Services
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Services
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Services
-  nameWithType: IpcServerService<THub>.Services
-  nameWithType.vb: IpcServerService(Of THub).Services
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Services*
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Services
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.Services
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Services
+  nameWithType: IpcServerService.Services
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.Services*
   name: Services
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_Services_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.Services
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.Services
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).Services
-  nameWithType: IpcServerService<THub>.Services
-  nameWithType.vb: IpcServerService(Of THub).Services
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.UnixSocketPath
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_Services_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.Services
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Services
+  nameWithType: IpcServerService.Services
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
   name: UnixSocketPath
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_UnixSocketPath
-  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.UnixSocketPath
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.UnixSocketPath
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).UnixSocketPath
-  nameWithType: IpcServerService<THub>.UnixSocketPath
-  nameWithType.vb: IpcServerService(Of THub).UnixSocketPath
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1.UnixSocketPath*
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_UnixSocketPath
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
+  nameWithType: IpcServerService.UnixSocketPath
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath*
   name: UnixSocketPath
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1_UnixSocketPath_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService`1.UnixSocketPath
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>.UnixSocketPath
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub).UnixSocketPath
-  nameWithType: IpcServerService<THub>.UnixSocketPath
-  nameWithType.vb: IpcServerService(Of THub).UnixSocketPath
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService`1._AccessToken
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_UnixSocketPath_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
+  nameWithType: IpcServerService.UnixSocketPath
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService._AccessToken
   name: _AccessToken
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService-1.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_1__AccessToken
-  commentId: F:BD.Common8.Ipc.Services.Implementation.IpcServerService`1._AccessToken
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService<THub>._AccessToken
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService(Of THub)._AccessToken
-  nameWithType: IpcServerService<THub>._AccessToken
-  nameWithType.vb: IpcServerService(Of THub)._AccessToken
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__AccessToken
+  commentId: F:BD.Common8.Ipc.Services.Implementation.IpcServerService._AccessToken
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService._AccessToken
+  nameWithType: IpcServerService._AccessToken
 - uid: BD.Common8.Models
   name: BD.Common8.Models
   href: api/BD.Common8.Primitives.ApiResponse/BD.Common8.Models.html
