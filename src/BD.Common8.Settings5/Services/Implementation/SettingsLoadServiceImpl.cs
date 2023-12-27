@@ -27,6 +27,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
     public SettingsLoadServiceImpl(SystemTextJsonSerializerOptions options, bool isReadOnly = false)
     {
         this.isReadOnly = isReadOnly;
+        options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
         this.options = options;
         Current = this;
     }
