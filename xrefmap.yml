@@ -38970,6 +38970,18 @@ references:
   commentId: Overload:System.OSHelper.IsPublishToStore
   fullName: System.OSHelper.IsPublishToStore
   nameWithType: OSHelper.IsPublishToStore
+- uid: System.OSHelper.IsRunningAsUwp
+  name: IsRunningAsUwp
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsRunningAsUwp
+  commentId: P:System.OSHelper.IsRunningAsUwp
+  fullName: System.OSHelper.IsRunningAsUwp
+  nameWithType: OSHelper.IsRunningAsUwp
+- uid: System.OSHelper.IsRunningAsUwp*
+  name: IsRunningAsUwp
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsRunningAsUwp_
+  commentId: Overload:System.OSHelper.IsRunningAsUwp
+  fullName: System.OSHelper.IsRunningAsUwp
+  nameWithType: OSHelper.IsRunningAsUwp
 - uid: System.OSHelper.IsWindows11AtLeast
   name: IsWindows11AtLeast()
   href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsWindows11AtLeast

@@ -217,6 +217,39 @@
 
 
 
+  <a id="System_OSHelper_IsRunningAsUwp_" data-uid="System.OSHelper.IsRunningAsUwp*"></a>
+
+  <h3 id="System_OSHelper_IsRunningAsUwp" data-uid="System.OSHelper.IsRunningAsUwp">
+  IsRunningAsUwp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/OSHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过判断进程含有包标识返回 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>，从 Windows 10 版本 2004 开始，可以通过生成稀疏包并将其注册到应用，向未打包到 MSIX 包中的桌面应用授予包标识符。</p>
+<p>https://docs.microsoft.com/zh-cn/windows/apps/desktop/modernize/grant-identity-to-nonpackaged-apps</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsRunningAsUwp { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
