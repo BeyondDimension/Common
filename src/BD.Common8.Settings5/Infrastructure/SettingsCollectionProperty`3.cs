@@ -15,13 +15,13 @@ namespace BD.Common8.Settings5.Infrastructure;
 [method: RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
 public class SettingsCollectionProperty<TValue,
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TEnumerable,
-    [DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(TEnumerable? @default = default,
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TEnumerable? @default = default,
      bool autoSave = SettingsProperty.DefaultAutoSave,
      [CallerMemberName] string? propertyName = null)
     : SettingsProperty<TEnumerable, TSettingsModel>(@default, autoSave, propertyName),
     ICollection<TValue>
     where TEnumerable : class, ICollection<TValue>, new()
-    where TSettingsModel : new()
+    where TSettingsModel : class, new()
 {
     /// <inheritdoc/>
     int ICollection<TValue>.Count => value?.Count ?? 0;

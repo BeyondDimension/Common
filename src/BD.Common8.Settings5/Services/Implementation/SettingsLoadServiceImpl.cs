@@ -280,9 +280,12 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
         if (settingsModelType != null)
         {
-#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
-            var monitor = Get(settingsModelType);
-#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+            var typeOptionsMonitor = typeof(IOptionsMonitor<>).MakeGenericType(settingsModelType);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+            var monitor = Get(typeOptionsMonitor);
             if (monitor is IInternalOptionsMonitor monitor2)
             {
                 monitor2.Save(bytes);
@@ -295,9 +298,12 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
         if (settingsModelType != null)
         {
-#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
-            var monitor = Get(settingsModelType);
-#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+            var typeOptionsMonitor = typeof(IOptionsMonitor<>).MakeGenericType(settingsModelType);
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+            var monitor = Get(typeOptionsMonitor);
             if (monitor is IInternalOptionsMonitor monitor2)
             {
                 monitor2.Change(bytes);
@@ -305,8 +311,19 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         }
     }
 
+    public void ForceSave<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(
+        IOptionsMonitor<TSettingsModel> monitor) where TSettingsModel : class, new()
+    {
+        if (monitor is OptionsMonitor<TSettingsModel> monitor2)
+        {
+            monitor2.Save();
+        }
+    }
+
     /// <inheritdoc/>
-    public void Save<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TSettingsModel settingsModel, bool force = true) where TSettingsModel : class, new()
+    public void Save<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(
+        TSettingsModel settingsModel,
+        bool force = true) where TSettingsModel : class, new()
     {
         var monitor = Get<OptionsMonitor<TSettingsModel>>();
         if (force)
@@ -355,12 +372,16 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             settingsDirPath.ThrowIsNull();
             SettingsModel = settingsModel;
 #if !(ANDROID || IOS)
-            fileProvider = settingsLoadService.isWriteFile ? null! : new(settingsDirPath);
+            fileProvider = !settingsLoadService.isWriteFile ? null! : new(settingsDirPath);
 #endif
             settingsFileName = Path.GetFileName(settingsFilePath);
         }
 
-        public virtual TSettingsModel SettingsModel { get; set; }
+        public TSettingsModel SettingsModel { get; set; }
+
+        protected virtual void UpdateSettingsModel(TSettingsModel value)
+        {
+        }
 
         public void Save(byte[] bytes)
         {
@@ -423,7 +444,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
 
         public virtual void Save()
         {
-            if (settingsLoadService.isWriteFile)
+            if (!settingsLoadService.isWriteFile)
             {
                 return;
             }
@@ -505,7 +526,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
 #if ANDROID || IOS
             return null;
 #else
-            if (settingsLoadService.isWriteFile)
+            if (fileProvider == null)
             {
                 return null;
             }
@@ -528,6 +549,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                         return;
 
                     SettingsModel = settingsModel;
+                    UpdateSettingsModel(settingsModel);
                     listener.Invoke(settingsModel, settingsFileNameWithoutExtension);
                 }
             }

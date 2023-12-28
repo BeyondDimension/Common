@@ -9,12 +9,10 @@ namespace BD.Common8.Settings5.Infrastructure;
 /// <typeparam name="TSettingsModel"></typeparam>
 [DebuggerDisplay("Value={value}, ModelValue={ModelValue}, ModelValueIsNull={ModelValueIsNull}, Default={Default}, PropertyName={PropertyName}, AutoSave={AutoSave}")]
 public class SettingsProperty<TValue,
-    [DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>
     : SettingsProperty, INotifyPropertyChanged, IDisposable
-    where TSettingsModel : new()
+    where TSettingsModel : class, new()
 {
-    protected const DynamicallyAccessedMemberTypes DAMT_M = DynamicallyAccessedMemberTypes.PublicProperties;
-
     protected readonly Action<TSettingsModel, TValue?> setter;
     protected readonly Func<TSettingsModel, TValue?> getter;
     protected IDisposable? disposable;
@@ -96,6 +94,9 @@ public class SettingsProperty<TValue,
         getter = Expression.Lambda<Func<TSettingsModel, TValue?>>(property, parameter).Compile();
         monitor = ISettingsLoadService.Current.Get<IOptionsMonitor<TSettingsModel>>();
         this.value = ModelValue;
+#if DEBUG && SETTINGS_TRACK
+        Console.WriteLine($"已初始化设置项属性：{settingsType}.{propertyName}");
+#endif
         disposable = monitor.OnChange(OnChange);
     }
 
@@ -219,7 +220,7 @@ public class SettingsProperty<TValue,
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     void Save()
     {
-        // ISettings.TrySave(typeof(TSettings), monitor, true);
+        SettingsLoadServiceImpl.Current.ForceSave(monitor);
     }
 
     public override void RaiseValueChanged(bool notSave = false)

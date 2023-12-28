@@ -17,11 +17,11 @@ namespace BD.Common8.Settings5.Infrastructure;
 public class SettingsDictionaryProperty<TKey,
     TValue,
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TDictionary,
-    [DynamicallyAccessedMembers(DAMT_M)] TSettingsModel>(TDictionary? @default = default, bool autoSave = true, [CallerMemberName] string? propertyName = null)
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TDictionary? @default = default, bool autoSave = true, [CallerMemberName] string? propertyName = null)
     : SettingsCollectionProperty<KeyValuePair<TKey, TValue>, TDictionary, TSettingsModel>(@default, autoSave, propertyName),
     IDictionary<TKey, TValue>
     where TDictionary : class, IDictionary<TKey, TValue>, new()
-    where TSettingsModel : new()
+    where TSettingsModel : class, new()
 {
     /// <inheritdoc/>
     TValue IDictionary<TKey, TValue>.this[TKey key]

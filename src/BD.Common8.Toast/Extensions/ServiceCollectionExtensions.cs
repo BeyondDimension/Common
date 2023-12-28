@@ -14,6 +14,7 @@ public static partial class ServiceCollectionExtensions
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TToastImpl>(
         this IServiceCollection services) where TToastImpl : ToastBaseImpl
     {
+        services.TryAddSingleton<TToastImpl>();
         services.TryAddSingleton<IToastIntercept, NoneToastIntercept>();
         services.TryAddSingleton<IToast>(static s => s.GetRequiredService<TToastImpl>());
         return services;
