@@ -1,32 +1,36 @@
 using Microsoft.Extensions.FileProviders;
+#if !(ANDROID || IOS)
 using Microsoft.Extensions.Primitives;
+#endif
 
 namespace BD.Common8.Settings5.Services.Implementation;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
 /// <see cref="ISettingsLoadService"/> 的实现
 /// </summary>
-public sealed class SettingsLoadServiceImpl : ISettingsLoadService
+public class SettingsLoadServiceImpl : ISettingsLoadService
 {
     /// <summary>
     /// 设置项文件存放文件夹名
     /// </summary>
     const string DirName = "Settings";
 
-    readonly bool isReadOnly;
-    readonly SystemTextJsonSerializerOptions options;
-    readonly HashSet<Type> SettingsModelTypes = [];
-    readonly ConcurrentDictionary<Type, (string Name, string FilePath)> CacheSettingsFilePaths = [];
-    readonly ConcurrentDictionary<Type, object> optionsMonitors = [];
+    protected readonly bool isWriteFile;
+    protected readonly SystemTextJsonSerializerOptions options;
+    protected readonly HashSet<Type> SettingsModelTypes = [];
+    protected readonly ConcurrentDictionary<Type, (string Name, string FilePath)> CacheSettingsFilePaths = [];
+    protected readonly ConcurrentDictionary<Type, object> optionsMonitors = [];
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SettingsLoadServiceImpl"/> class.
     /// </summary>
     /// <param name="options"></param>
-    /// <param name="isReadOnly"></param>
-    public SettingsLoadServiceImpl(SystemTextJsonSerializerOptions options, bool isReadOnly = false)
+    /// <param name="isWriteFile"></param>
+    public SettingsLoadServiceImpl(SystemTextJsonSerializerOptions options, bool isWriteFile = true)
     {
-        this.isReadOnly = isReadOnly;
+        this.isWriteFile = isWriteFile;
         options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
         this.options = options;
         Current = this;
@@ -45,7 +49,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
     /// <param name="settingsModelType"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static string GetSettingsFileNameWithoutExtensionByType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType)
+    protected static string GetSettingsFileNameWithoutExtensionByType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType)
         => settingsModelType.Name.TrimEnd("Model");
 
     /// <summary>
@@ -73,7 +77,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
     /// <param name="settingsFileNameWithoutExtension"></param>
     /// <param name="settingsFileDirectory"></param>
     /// <returns></returns>
-    string GetSettingsFilePath([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType, string settingsFileNameWithoutExtension, string? settingsFileDirectory = null)
+    protected string GetSettingsFilePath([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType, string settingsFileNameWithoutExtension, string? settingsFileDirectory = null)
     {
         if (CacheSettingsFilePaths.TryGetValue(settingsModelType, out var result))
             return result.FilePath;
@@ -97,7 +101,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
     /// <param name="settingsFileNameWithoutExtension"></param>
     /// <param name="utf8Json"></param>
     /// <param name="options"></param>
-    static void Save(object settingsModel, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType, string settingsFileNameWithoutExtension, Stream utf8Json, SystemTextJsonSerializerOptions options)
+    protected static void Save(object settingsModel, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType, string settingsFileNameWithoutExtension, Stream utf8Json, SystemTextJsonSerializerOptions options)
     {
         utf8Json.Position = 0;
         utf8Json.Write("{\""u8);
@@ -113,7 +117,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
         utf8Json.Flush();
     }
 
-    static TSettingsModel? Deserialize<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(string settingsFilePath, string settingsFileNameWithoutExtension, SystemTextJsonSerializerOptions options)
+    protected static TSettingsModel? Deserialize<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(string settingsFilePath, string settingsFileNameWithoutExtension, SystemTextJsonSerializerOptions options)
     {
         SystemTextJsonObject? jobj;
         using var readStream = new FileStream(
@@ -157,7 +161,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
         var settingsFilePath = GetSettingsFilePath(settingsModelType, settingsFileNameWithoutExtension, settingsFileDirectory);
 
         bool writeFile = false;
-        if (!isReadOnly)
+        if (isWriteFile)
         {
             if (!File.Exists(settingsFilePath))
             {
@@ -167,7 +171,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
 
         var isInvalid = false;
         Exception? exception = null;
-        if (!isReadOnly && writeFile)
+        if (isWriteFile && writeFile)
         {
             bool fileCreateMark = false;
             try
@@ -213,7 +217,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
                 settingsModel = new();
                 isInvalid = true;
 
-                if (!isReadOnly)
+                if (isWriteFile)
                 {
                     // 尝试将错误的配置保存为 .json.i.bak 防止启动软件当前配置被覆盖
                     var settingsFilePath_i_bak = $"{settingsFilePath}.i.bak";
@@ -228,7 +232,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
             }
         }
 
-        var monitor = new OptionsMonitor<TSettingsModel>(settingsFilePath, settingsFileNameWithoutExtension, settingsModel, this);
+        var monitor = CreateOptionsMonitor(settingsFilePath, settingsFileNameWithoutExtension, settingsModel, this);
         optionsMonitors.TryAdd(typeof(IOptions<TSettingsModel>), monitor);
         optionsMonitors.TryAdd(typeof(IOptionsMonitor<TSettingsModel>), monitor);
         configureServices = s =>
@@ -241,6 +245,17 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
         return (isInvalid, exception, settingsFileNameWithoutExtension);
     }
 
+    protected virtual OptionsMonitor<TSettingsModel> CreateOptionsMonitor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(
+        string settingsFilePath,
+        string settingsFileNameWithoutExtension,
+        TSettingsModel settingsModel,
+        SettingsLoadServiceImpl settingsLoadService)
+        where TSettingsModel : class, new()
+    {
+        OptionsMonitor<TSettingsModel> monitor = new(settingsFilePath, settingsFileNameWithoutExtension, settingsModel, settingsLoadService);
+        return monitor;
+    }
+
     /// <inheritdoc/>
     public T Get<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>() where T : notnull
     {
@@ -251,10 +266,49 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
         return Ioc.Get<T>();
     }
 
+    object? Get([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type typeOptionsMonitor)
+    {
+        if (optionsMonitors.TryGetValue(typeOptionsMonitor, out var value))
+        {
+            return value;
+        }
+        return Ioc.Get(typeOptionsMonitor);
+    }
+
+    public void Save(string typeFullName, byte[] bytes)
+    {
+        var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
+        if (settingsModelType != null)
+        {
+#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+            var monitor = Get(settingsModelType);
+#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+            if (monitor is IInternalOptionsMonitor monitor2)
+            {
+                monitor2.Save(bytes);
+            }
+        }
+    }
+
+    public void Change(string typeFullName, byte[] bytes)
+    {
+        var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
+        if (settingsModelType != null)
+        {
+#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+            var monitor = Get(settingsModelType);
+#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+            if (monitor is IInternalOptionsMonitor monitor2)
+            {
+                monitor2.Change(bytes);
+            }
+        }
+    }
+
     /// <inheritdoc/>
     public void Save<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TSettingsModel settingsModel, bool force = true) where TSettingsModel : class, new()
     {
-        var monitor = ISettingsLoadService.Current.Get<OptionsMonitor<TSettingsModel>>();
+        var monitor = Get<OptionsMonitor<TSettingsModel>>();
         if (force)
         {
             monitor.SettingsModel = settingsModel;
@@ -264,18 +318,35 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
             monitor.UpdateSettingsModel(settingsModel, save: true);
     }
 
-    sealed class OptionsMonitor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel> : IOptionsMonitor<TSettingsModel>, IOptions<TSettingsModel> where TSettingsModel : class, new()
+    interface IInternalOptionsMonitor
     {
-        readonly string settingsFileName;
-        readonly string settingsFilePath;
-        readonly PhysicalFileProvider fileProvider;
-        readonly string settingsFileNameWithoutExtension;
-        readonly SettingsLoadServiceImpl settingsLoadService;
+        void Save(byte[] bytes);
 
-        bool isSaveing;
-        TSettingsModel? beforeSavingSettingsModel = null;
+        void Change(byte[] bytes);
+    }
 
-        internal OptionsMonitor(string settingsFilePath, string settingsFileNameWithoutExtension, TSettingsModel settingsModel, SettingsLoadServiceImpl settingsLoadService)
+    protected class OptionsMonitor<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel> :
+        IOptionsMonitor<TSettingsModel>,
+        IOptions<TSettingsModel>,
+        IInternalOptionsMonitor
+        where TSettingsModel : class, new()
+    {
+        protected readonly string settingsFileName;
+        protected readonly string settingsFilePath;
+#if !(ANDROID || IOS)
+        protected readonly PhysicalFileProvider fileProvider;
+#endif
+        protected readonly string settingsFileNameWithoutExtension;
+        protected readonly SettingsLoadServiceImpl settingsLoadService;
+
+        protected bool isSaveing;
+        protected TSettingsModel? beforeSavingSettingsModel = null;
+
+        public OptionsMonitor(string settingsFilePath,
+            string settingsFileNameWithoutExtension,
+            TSettingsModel settingsModel,
+            SettingsLoadServiceImpl settingsLoadService)
         {
             this.settingsFileNameWithoutExtension = settingsFileNameWithoutExtension;
             this.settingsLoadService = settingsLoadService;
@@ -283,18 +354,39 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
             var settingsDirPath = Path.GetDirectoryName(settingsFilePath);
             settingsDirPath.ThrowIsNull();
             SettingsModel = settingsModel;
-            fileProvider = settingsLoadService.isReadOnly ? null! : new(settingsDirPath);
+#if !(ANDROID || IOS)
+            fileProvider = settingsLoadService.isWriteFile ? null! : new(settingsDirPath);
+#endif
             settingsFileName = Path.GetFileName(settingsFilePath);
         }
 
-        internal TSettingsModel SettingsModel { get; set; }
+        public virtual TSettingsModel SettingsModel { get; set; }
+
+        public void Save(byte[] bytes)
+        {
+            TSettingsModel? settingsModel = null;
+            try
+            {
+                settingsModel = Serializable.DMP2<TSettingsModel>(bytes);
+            }
+            catch
+            {
+            }
+            if (settingsModel != null)
+            {
+                SettingsModel = settingsModel;
+                Save();
+            }
+        }
+
+        public virtual void Change(byte[] bytes) { }
 
         /// <summary>
         /// 更新设置模型，会检查值是否相等，相等则跳过赋值与保存
         /// </summary>
         /// <param name="settingsModel"></param>
         /// <param name="save">是否保存到文件，默认值：<see langword="true"/></param>
-        internal void UpdateSettingsModel(TSettingsModel settingsModel, bool save = true)
+        public void UpdateSettingsModel(TSettingsModel settingsModel, bool save = true)
         {
             var newSettingsData = Serializable.SMP2(settingsModel);
             var oldSettingsData = Serializable.SMP2(SettingsModel);
@@ -308,7 +400,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static FileStream? OpenOrCreate(string path)
+        protected static FileStream? OpenOrCreate(string path)
         {
             try
             {
@@ -327,11 +419,11 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
             }
         }
 
-        const int saveRetryCount = 3;
+        protected const int saveRetryCount = 3;
 
-        internal void Save()
+        public virtual void Save()
         {
-            if (settingsLoadService.isReadOnly)
+            if (settingsLoadService.isWriteFile)
             {
                 return;
             }
@@ -382,20 +474,20 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static bool Equals(TSettingsModel l, TSettingsModel r)
+        protected static bool Equals(TSettingsModel l, TSettingsModel r)
         {
             var l2 = Serializable.SMP2(l);
             var r2 = Serializable.SMP2(r);
             return l2.SequenceEqual(r2);
         }
 
-        TSettingsModel IOptionsMonitor<TSettingsModel>.CurrentValue => SettingsModel;
+        public virtual TSettingsModel CurrentValue => SettingsModel;
 
-        TSettingsModel IOptions<TSettingsModel>.Value => SettingsModel;
+        public virtual TSettingsModel Value => SettingsModel;
 
-        TSettingsModel IOptionsMonitor<TSettingsModel>.Get(string? name) => SettingsModel;
+        public virtual TSettingsModel Get(string? name) => SettingsModel;
 
-        TSettingsModel? Deserialize()
+        protected virtual TSettingsModel? Deserialize()
         {
             try
             {
@@ -408,9 +500,12 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
             }
         }
 
-        IDisposable? IOptionsMonitor<TSettingsModel>.OnChange(Action<TSettingsModel, string?> listener)
+        public virtual IDisposable? OnChange(Action<TSettingsModel, string?> listener)
         {
-            if (settingsLoadService.isReadOnly)
+#if ANDROID || IOS
+            return null;
+#else
+            if (settingsLoadService.isWriteFile)
             {
                 return null;
             }
@@ -437,6 +532,7 @@ public sealed class SettingsLoadServiceImpl : ISettingsLoadService
                 }
             }
             return ChangeToken.OnChange(() => fileProvider.Watch(settingsFileName), OnChange);
+#endif
         }
     }
 }
