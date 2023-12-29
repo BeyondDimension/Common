@@ -22534,14 +22534,6 @@ references:
   fullName.vb: BD.Common8.Settings5.Infrastructure.SettingsProperty(Of TValue, TSettingsModel).New
   nameWithType: SettingsProperty<TValue, TSettingsModel>.SettingsProperty
   nameWithType.vb: SettingsProperty(Of TValue, TSettingsModel).New
-- uid: BD.Common8.Settings5.Infrastructure.SettingsProperty`2.DAMT_M
-  name: DAMT_M
-  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_DAMT_M
-  commentId: F:BD.Common8.Settings5.Infrastructure.SettingsProperty`2.DAMT_M
-  fullName: BD.Common8.Settings5.Infrastructure.SettingsProperty<TValue, TSettingsModel>.DAMT_M
-  fullName.vb: BD.Common8.Settings5.Infrastructure.SettingsProperty(Of TValue, TSettingsModel).DAMT_M
-  nameWithType: SettingsProperty<TValue, TSettingsModel>.DAMT_M
-  nameWithType.vb: SettingsProperty(Of TValue, TSettingsModel).DAMT_M
 - uid: BD.Common8.Settings5.Infrastructure.SettingsProperty`2.Default
   name: Default
   href: api/BD.Common8.Settings5/BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_Default
@@ -22949,6 +22941,42 @@ references:
   fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.New
   nameWithType: SettingsLoadServiceImpl.SettingsLoadServiceImpl
   nameWithType.vb: SettingsLoadServiceImpl.New
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CacheSettingsFilePaths
+  name: CacheSettingsFilePaths
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_CacheSettingsFilePaths
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CacheSettingsFilePaths
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CacheSettingsFilePaths
+  nameWithType: SettingsLoadServiceImpl.CacheSettingsFilePaths
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change(System.String,System.Byte[])
+  name: Change(string, byte[])
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Change_System_String_System_Byte___
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change(System.String,System.Byte[])
+  name.vb: Change(String, Byte())
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change(string, byte[])
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change(String, Byte())
+  nameWithType: SettingsLoadServiceImpl.Change(string, byte[])
+  nameWithType.vb: SettingsLoadServiceImpl.Change(String, Byte())
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change*
+  name: Change
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Change_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change
+  nameWithType: SettingsLoadServiceImpl.Change
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor*
+  name: CreateOptionsMonitor
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_CreateOptionsMonitor_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor
+  nameWithType: SettingsLoadServiceImpl.CreateOptionsMonitor
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor``1(System.String,System.String,``0,BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  name: CreateOptionsMonitor<TSettingsModel>(string, string, TSettingsModel, SettingsLoadServiceImpl)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_CreateOptionsMonitor__1_System_String_System_String___0_BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor``1(System.String,System.String,``0,BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  name.vb: CreateOptionsMonitor(Of TSettingsModel)(String, String, TSettingsModel, SettingsLoadServiceImpl)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor<TSettingsModel>(string, string, TSettingsModel, BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor(Of TSettingsModel)(String, String, TSettingsModel, BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  nameWithType: SettingsLoadServiceImpl.CreateOptionsMonitor<TSettingsModel>(string, string, TSettingsModel, SettingsLoadServiceImpl)
+  nameWithType.vb: SettingsLoadServiceImpl.CreateOptionsMonitor(Of TSettingsModel)(String, String, TSettingsModel, SettingsLoadServiceImpl)
 - uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Current
   name: Current
   href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Current
@@ -22961,12 +22989,69 @@ references:
   commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Current
   fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Current
   nameWithType: SettingsLoadServiceImpl.Current
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize*
+  name: Deserialize
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Deserialize_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize
+  nameWithType: SettingsLoadServiceImpl.Deserialize
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize``1(System.String,System.String,System.Text.Json.JsonSerializerOptions)
+  name: Deserialize<TSettingsModel>(string, string, JsonSerializerOptions)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Deserialize__1_System_String_System_String_System_Text_Json_JsonSerializerOptions_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize``1(System.String,System.String,System.Text.Json.JsonSerializerOptions)
+  name.vb: Deserialize(Of TSettingsModel)(String, String, JsonSerializerOptions)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize<TSettingsModel>(string, string, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize(Of TSettingsModel)(String, String, System.Text.Json.JsonSerializerOptions)
+  nameWithType: SettingsLoadServiceImpl.Deserialize<TSettingsModel>(string, string, JsonSerializerOptions)
+  nameWithType.vb: SettingsLoadServiceImpl.Deserialize(Of TSettingsModel)(String, String, JsonSerializerOptions)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave*
+  name: ForceSave
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_ForceSave_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave
+  nameWithType: SettingsLoadServiceImpl.ForceSave
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave``1(Microsoft.Extensions.Options.IOptionsMonitor{``0})
+  name: ForceSave<TSettingsModel>(IOptionsMonitor<TSettingsModel>)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_ForceSave__1_Microsoft_Extensions_Options_IOptionsMonitor___0__
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave``1(Microsoft.Extensions.Options.IOptionsMonitor{``0})
+  name.vb: ForceSave(Of TSettingsModel)(IOptionsMonitor(Of TSettingsModel))
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave<TSettingsModel>(Microsoft.Extensions.Options.IOptionsMonitor<TSettingsModel>)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave(Of TSettingsModel)(Microsoft.Extensions.Options.IOptionsMonitor(Of TSettingsModel))
+  nameWithType: SettingsLoadServiceImpl.ForceSave<TSettingsModel>(IOptionsMonitor<TSettingsModel>)
+  nameWithType.vb: SettingsLoadServiceImpl.ForceSave(Of TSettingsModel)(IOptionsMonitor(Of TSettingsModel))
 - uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Get*
   name: Get
   href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Get_
   commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Get
   fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Get
   nameWithType: SettingsLoadServiceImpl.Get
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType(System.Type)
+  name: GetSettingsFileNameWithoutExtensionByType(Type)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFileNameWithoutExtensionByType_System_Type_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType(System.Type)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType(System.Type)
+  nameWithType: SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType(Type)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType*
+  name: GetSettingsFileNameWithoutExtensionByType
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFileNameWithoutExtensionByType_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType
+  nameWithType: SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath(System.Type,System.String,System.String)
+  name: GetSettingsFilePath(Type, string, string?)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFilePath_System_Type_System_String_System_String_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath(System.Type,System.String,System.String)
+  name.vb: GetSettingsFilePath(Type, String, String)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath(System.Type, string, string?)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath(System.Type, String, String)
+  nameWithType: SettingsLoadServiceImpl.GetSettingsFilePath(Type, string, string?)
+  nameWithType.vb: SettingsLoadServiceImpl.GetSettingsFilePath(Type, String, String)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath*
+  name: GetSettingsFilePath
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFilePath_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath
+  nameWithType: SettingsLoadServiceImpl.GetSettingsFilePath
 - uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsModelType(System.String)
   name: GetSettingsModelType(string)
   href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsModelType_System_String_
@@ -23006,6 +23091,313 @@ references:
   fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Load(Of TSettingsModel)(System.Action(Of Microsoft.Extensions.DependencyInjection.IServiceCollection), Microsoft.Extensions.Options.IOptionsMonitor(Of TSettingsModel), String)
   nameWithType: SettingsLoadServiceImpl.Load<TSettingsModel>(out Action<IServiceCollection>?, out IOptionsMonitor<TSettingsModel>?, string?)
   nameWithType.vb: SettingsLoadServiceImpl.Load(Of TSettingsModel)(Action(Of IServiceCollection), IOptionsMonitor(Of TSettingsModel), String)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1
+  name: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html
+  commentId: T:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1
+  name.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel)
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.#ctor(System.String,System.String,`0,BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  name: OptionsMonitor(string, string, TSettingsModel, SettingsLoadServiceImpl)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1__ctor_System_String_System_String__0_BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.#ctor(System.String,System.String,`0,BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  name.vb: New(String, String, TSettingsModel, SettingsLoadServiceImpl)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OptionsMonitor(string, string, TSettingsModel, BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).New(String, String, TSettingsModel, BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OptionsMonitor(string, string, TSettingsModel, SettingsLoadServiceImpl)
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).New(String, String, TSettingsModel, SettingsLoadServiceImpl)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.#ctor*
+  name: OptionsMonitor
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1__ctor_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.#ctor
+  name.vb: New
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OptionsMonitor
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).New
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OptionsMonitor
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).New
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Change(System.Byte[])
+  name: Change(byte[])
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Change_System_Byte___
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Change(System.Byte[])
+  name.vb: Change(Byte())
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Change(byte[])
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Change(Byte())
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Change(byte[])
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Change(Byte())
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Change*
+  name: Change
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Change_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Change
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Change
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Change
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Change
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Change
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.CurrentValue
+  name: CurrentValue
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_CurrentValue
+  commentId: P:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.CurrentValue
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.CurrentValue
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).CurrentValue
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.CurrentValue
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).CurrentValue
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.CurrentValue*
+  name: CurrentValue
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_CurrentValue_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.CurrentValue
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.CurrentValue
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).CurrentValue
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.CurrentValue
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).CurrentValue
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Deserialize
+  name: Deserialize()
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Deserialize
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Deserialize
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Deserialize()
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Deserialize()
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Deserialize()
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Deserialize()
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Deserialize*
+  name: Deserialize
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Deserialize_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Deserialize
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Deserialize
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Deserialize
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Deserialize
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Deserialize
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Equals(`0,`0)
+  name: Equals(TSettingsModel, TSettingsModel)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Equals__0__0_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Equals(`0,`0)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Equals(TSettingsModel, TSettingsModel)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Equals(TSettingsModel, TSettingsModel)
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Equals(TSettingsModel, TSettingsModel)
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Equals(TSettingsModel, TSettingsModel)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Equals*
+  name: Equals
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Equals_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Equals
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Equals
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Equals
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Equals
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Equals
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Get(System.String)
+  name: Get(string?)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Get_System_String_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Get(System.String)
+  name.vb: Get(String)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Get(string?)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Get(String)
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Get(string?)
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Get(String)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Get*
+  name: Get
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Get_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Get
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Get
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Get
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Get
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Get
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OnChange(System.Action{`0,System.String})
+  name: OnChange(Action<TSettingsModel, string?>)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_OnChange_System_Action__0_System_String__
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OnChange(System.Action{`0,System.String})
+  name.vb: OnChange(Action(Of TSettingsModel, String))
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OnChange(System.Action<TSettingsModel, string?>)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OnChange(System.Action(Of TSettingsModel, String))
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OnChange(Action<TSettingsModel, string?>)
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OnChange(Action(Of TSettingsModel, String))
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OnChange*
+  name: OnChange
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_OnChange_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OnChange
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OnChange
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OnChange
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OnChange
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OnChange
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OpenOrCreate(System.String)
+  name: OpenOrCreate(string)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_OpenOrCreate_System_String_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OpenOrCreate(System.String)
+  name.vb: OpenOrCreate(String)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OpenOrCreate(string)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OpenOrCreate(String)
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OpenOrCreate(string)
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OpenOrCreate(String)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OpenOrCreate*
+  name: OpenOrCreate
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_OpenOrCreate_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.OpenOrCreate
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OpenOrCreate
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OpenOrCreate
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.OpenOrCreate
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).OpenOrCreate
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Save
+  name: Save()
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Save
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Save
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Save()
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Save()
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Save()
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Save()
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Save(System.Byte[])
+  name: Save(byte[])
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Save_System_Byte___
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Save(System.Byte[])
+  name.vb: Save(Byte())
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Save(byte[])
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Save(Byte())
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Save(byte[])
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Save(Byte())
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Save*
+  name: Save
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Save_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Save
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Save
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Save
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Save
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Save
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.SettingsModel
+  name: SettingsModel
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_SettingsModel
+  commentId: P:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.SettingsModel
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.SettingsModel
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).SettingsModel
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.SettingsModel
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).SettingsModel
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.SettingsModel*
+  name: SettingsModel
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_SettingsModel_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.SettingsModel
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.SettingsModel
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).SettingsModel
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.SettingsModel
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).SettingsModel
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.UpdateSettingsModel(`0)
+  name: UpdateSettingsModel(TSettingsModel)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_UpdateSettingsModel__0_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.UpdateSettingsModel(`0)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.UpdateSettingsModel(TSettingsModel)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).UpdateSettingsModel(TSettingsModel)
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.UpdateSettingsModel(TSettingsModel)
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).UpdateSettingsModel(TSettingsModel)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.UpdateSettingsModel(`0,System.Boolean)
+  name: UpdateSettingsModel(TSettingsModel, bool)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_UpdateSettingsModel__0_System_Boolean_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.UpdateSettingsModel(`0,System.Boolean)
+  name.vb: UpdateSettingsModel(TSettingsModel, Boolean)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.UpdateSettingsModel(TSettingsModel, bool)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).UpdateSettingsModel(TSettingsModel, Boolean)
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.UpdateSettingsModel(TSettingsModel, bool)
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).UpdateSettingsModel(TSettingsModel, Boolean)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.UpdateSettingsModel*
+  name: UpdateSettingsModel
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_UpdateSettingsModel_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.UpdateSettingsModel
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.UpdateSettingsModel
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).UpdateSettingsModel
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.UpdateSettingsModel
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).UpdateSettingsModel
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Value
+  name: Value
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Value
+  commentId: P:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Value
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Value
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Value
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Value
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Value
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Value*
+  name: Value
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_Value_
+  commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.Value
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Value
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Value
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.Value
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).Value
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.beforeSavingSettingsModel
+  name: beforeSavingSettingsModel
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_beforeSavingSettingsModel
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.beforeSavingSettingsModel
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.beforeSavingSettingsModel
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).beforeSavingSettingsModel
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.beforeSavingSettingsModel
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).beforeSavingSettingsModel
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.fileProvider
+  name: fileProvider
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_fileProvider
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.fileProvider
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.fileProvider
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).fileProvider
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.fileProvider
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).fileProvider
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.isSaveing
+  name: isSaveing
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_isSaveing
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.isSaveing
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.isSaveing
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).isSaveing
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.isSaveing
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).isSaveing
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.saveRetryCount
+  name: saveRetryCount
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_saveRetryCount
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.saveRetryCount
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.saveRetryCount
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).saveRetryCount
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.saveRetryCount
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).saveRetryCount
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsFileName
+  name: settingsFileName
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_settingsFileName
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsFileName
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsFileName
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsFileName
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsFileName
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsFileName
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsFileNameWithoutExtension
+  name: settingsFileNameWithoutExtension
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_settingsFileNameWithoutExtension
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsFileNameWithoutExtension
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsFileNameWithoutExtension
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsFileNameWithoutExtension
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsFileNameWithoutExtension
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsFileNameWithoutExtension
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsFilePath
+  name: settingsFilePath
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_settingsFilePath
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsFilePath
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsFilePath
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsFilePath
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsFilePath
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsFilePath
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsLoadService
+  name: settingsLoadService
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_OptionsMonitor_1_settingsLoadService
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor`1.settingsLoadService
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsLoadService
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsLoadService
+  nameWithType: SettingsLoadServiceImpl.OptionsMonitor<TSettingsModel>.settingsLoadService
+  nameWithType.vb: SettingsLoadServiceImpl.OptionsMonitor(Of TSettingsModel).settingsLoadService
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(System.Object,System.Type,System.String,System.IO.Stream,System.Text.Json.JsonSerializerOptions)
+  name: Save(object, Type, string, Stream, JsonSerializerOptions)
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_System_Object_System_Type_System_String_System_IO_Stream_System_Text_Json_JsonSerializerOptions_
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(System.Object,System.Type,System.String,System.IO.Stream,System.Text.Json.JsonSerializerOptions)
+  name.vb: Save(Object, Type, String, Stream, JsonSerializerOptions)
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(object, System.Type, string, System.IO.Stream, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(Object, System.Type, String, System.IO.Stream, System.Text.Json.JsonSerializerOptions)
+  nameWithType: SettingsLoadServiceImpl.Save(object, Type, string, Stream, JsonSerializerOptions)
+  nameWithType.vb: SettingsLoadServiceImpl.Save(Object, Type, String, Stream, JsonSerializerOptions)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(System.String,System.Byte[])
+  name: Save(string, byte[])
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_System_String_System_Byte___
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(System.String,System.Byte[])
+  name.vb: Save(String, Byte())
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(string, byte[])
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(String, Byte())
+  nameWithType: SettingsLoadServiceImpl.Save(string, byte[])
+  nameWithType.vb: SettingsLoadServiceImpl.Save(String, Byte())
 - uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save*
   name: Save
   href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_
@@ -23021,6 +23413,30 @@ references:
   fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(Of TSettingsModel)(TSettingsModel, Boolean)
   nameWithType: SettingsLoadServiceImpl.Save<TSettingsModel>(TSettingsModel, bool)
   nameWithType.vb: SettingsLoadServiceImpl.Save(Of TSettingsModel)(TSettingsModel, Boolean)
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.SettingsModelTypes
+  name: SettingsModelTypes
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_SettingsModelTypes
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.SettingsModelTypes
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.SettingsModelTypes
+  nameWithType: SettingsLoadServiceImpl.SettingsModelTypes
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.isWriteFile
+  name: isWriteFile
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_isWriteFile
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.isWriteFile
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.isWriteFile
+  nameWithType: SettingsLoadServiceImpl.isWriteFile
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.options
+  name: options
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_options
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.options
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.options
+  nameWithType: SettingsLoadServiceImpl.options
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.optionsMonitors
+  name: optionsMonitors
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_optionsMonitors
+  commentId: F:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.optionsMonitors
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.optionsMonitors
+  nameWithType: SettingsLoadServiceImpl.optionsMonitors
 - uid: BD.Common8.SmsSender.Models.SmsSender
   name: BD.Common8.SmsSender.Models.SmsSender
   href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.html

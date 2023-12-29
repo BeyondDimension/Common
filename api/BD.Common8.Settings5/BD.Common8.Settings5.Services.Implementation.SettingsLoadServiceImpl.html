@@ -93,7 +93,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class SettingsLoadServiceImpl : ISettingsLoadService</code></pre>
+    <pre><code class="lang-csharp hljs">public class SettingsLoadServiceImpl : ISettingsLoadService</code></pre>
   </div>
 
 
@@ -120,6 +120,9 @@
     <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
@@ -159,19 +162,173 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SettingsLoadServiceImpl(JsonSerializerOptions options, bool isReadOnly = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public SettingsLoadServiceImpl(JsonSerializerOptions options, bool isWriteFile = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
     <dd></dd>
-    <dt><code>isReadOnly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><code>isWriteFile</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
 
 
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_CacheSettingsFilePaths" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CacheSettingsFilePaths">
+  CacheSettingsFilePaths
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;Type, (string Name, string FilePath)&gt; CacheSettingsFilePaths</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string-.name">Name</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.string,system.string-.filepath">FilePath</a>)&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_SettingsModelTypes" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.SettingsModelTypes">
+  SettingsModelTypes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly HashSet&lt;Type&gt; SettingsModelTypes</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.hashset-1">HashSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_isWriteFile" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.isWriteFile">
+  isWriteFile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly bool isWriteFile</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_options" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.options">
+  options
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly JsonSerializerOptions options</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_optionsMonitors" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.optionsMonitors">
+  optionsMonitors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ConcurrentDictionary&lt;Type, object&gt; optionsMonitors</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentdictionary-2">ConcurrentDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -219,6 +376,245 @@
 
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Change_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Change_System_String_System_Byte___" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Change(System.String,System.Byte[])">
+  Change(string, byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Change(string typeFullName, byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>typeFullName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_CreateOptionsMonitor_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_CreateOptionsMonitor__1_System_String_System_String___0_BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.CreateOptionsMonitor``1(System.String,System.String,``0,BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl)">
+  CreateOptionsMonitor&lt;TSettingsModel&gt;(string, string, TSettingsModel, SettingsLoadServiceImpl)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual SettingsLoadServiceImpl.OptionsMonitor&lt;TSettingsModel&gt; CreateOptionsMonitor&lt;TSettingsModel&gt;(string settingsFilePath, string settingsFileNameWithoutExtension, TSettingsModel settingsModel, SettingsLoadServiceImpl settingsLoadService) where TSettingsModel : class, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settingsFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>settingsFileNameWithoutExtension</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>settingsModel</code> <span class="xref">TSettingsModel</span></dt>
+    <dd></dd>
+    <dt><code>settingsLoadService</code> <a class="xref" href="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html">SettingsLoadServiceImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html">SettingsLoadServiceImpl</a>.<a class="xref" href="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html">OptionsMonitor</a>&lt;TSettingsModel&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSettingsModel</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Deserialize_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Deserialize__1_System_String_System_String_System_Text_Json_JsonSerializerOptions_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Deserialize``1(System.String,System.String,System.Text.Json.JsonSerializerOptions)">
+  Deserialize&lt;TSettingsModel&gt;(string, string, JsonSerializerOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static TSettingsModel? Deserialize&lt;TSettingsModel&gt;(string settingsFilePath, string settingsFileNameWithoutExtension, JsonSerializerOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settingsFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>settingsFileNameWithoutExtension</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TSettingsModel</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSettingsModel</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_ForceSave_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_ForceSave__1_Microsoft_Extensions_Options_IOptionsMonitor___0__" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave``1(Microsoft.Extensions.Options.IOptionsMonitor{``0})">
+  ForceSave&lt;TSettingsModel&gt;(IOptionsMonitor&lt;TSettingsModel&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ForceSave&lt;TSettingsModel&gt;(IOptionsMonitor&lt;TSettingsModel&gt; monitor) where TSettingsModel : class, new()</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>monitor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptionsmonitor-1">IOptionsMonitor</a>&lt;TSettingsModel&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TSettingsModel</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFileNameWithoutExtensionByType_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFileNameWithoutExtensionByType_System_Type_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFileNameWithoutExtensionByType(System.Type)">
+  GetSettingsFileNameWithoutExtensionByType(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据设置模型类型获取文件名不包含扩展名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string GetSettingsFileNameWithoutExtensionByType(Type settingsModelType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settingsModelType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFilePath_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsFilePath_System_Type_System_String_System_String_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsFilePath(System.Type,System.String,System.String)">
+  GetSettingsFilePath(Type, string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取设置项保存的文件路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string GetSettingsFilePath(Type settingsModelType, string settingsFileNameWithoutExtension, string? settingsFileDirectory = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settingsModelType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>settingsFileNameWithoutExtension</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>settingsFileDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
 
 
   <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_GetSettingsModelType_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.GetSettingsModelType*"></a>
@@ -335,6 +731,79 @@
     <dd><p>设置项模型</p>
 </dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_System_Object_System_Type_System_String_System_IO_Stream_System_Text_Json_JsonSerializerOptions_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(System.Object,System.Type,System.String,System.IO.Stream,System.Text.Json.JsonSerializerOptions)">
+  Save(object, Type, string, Stream, JsonSerializerOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>保存设置项数据到流中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static void Save(object settingsModel, Type settingsModelType, string settingsFileNameWithoutExtension, Stream utf8Json, JsonSerializerOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>settingsModel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+    <dt><code>settingsModelType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>settingsFileNameWithoutExtension</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>utf8Json</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save*"></a>
+
+  <h3 id="BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_Save_System_String_System_Byte___" data-uid="BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.Save(System.String,System.Byte[])">
+  Save(string, byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Settings5/Services/Implementation/SettingsLoadServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Save(string typeFullName, byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>typeFullName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
 
 
 

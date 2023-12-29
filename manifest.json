@@ -7784,6 +7784,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.OptionsMonitor-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.yml",
       "output": {
         ".html": {

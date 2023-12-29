@@ -93,7 +93,7 @@
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt; : SettingsProperty&lt;TEnumerable, TSettingsModel&gt;, INotifyPropertyChanged, IDisposable, ICollection&lt;TValue&gt;, IEnumerable&lt;TValue&gt;, IEnumerable where TEnumerable : class, ICollection&lt;TValue&gt;, new() where TSettingsModel : new()</code></pre>
+    <pre><code class="lang-csharp hljs">public class SettingsCollectionProperty&lt;TValue, TEnumerable, TSettingsModel&gt; : SettingsProperty&lt;TEnumerable, TSettingsModel&gt;, INotifyPropertyChanged, IDisposable, ICollection&lt;TValue&gt;, IEnumerable&lt;TValue&gt;, IEnumerable where TEnumerable : class, ICollection&lt;TValue&gt;, new() where TSettingsModel : class, new()</code></pre>
   </div>
 
 
@@ -139,9 +139,6 @@
   <dl class="typelist derived">
     <dt>Inherited Members</dt>
     <dd>
-    <div>
-      <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_DAMT_M">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.DAMT_M</a>
-    </div>
     <div>
       <a class="xref" href="BD.Common8.Settings5.Infrastructure.SettingsProperty-2.html#BD_Common8_Settings5_Infrastructure_SettingsProperty_2_setter">SettingsProperty&lt;TEnumerable, TSettingsModel&gt;.setter</a>
     </div>
