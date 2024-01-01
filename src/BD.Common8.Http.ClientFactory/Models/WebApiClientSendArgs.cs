@@ -134,10 +134,6 @@ public record class WebApiClientSendArgs : IDisposable
     HttpClient? client;
     bool disposedValue;
 
-    /// <inheritdoc cref="IsolatedCookieContainer"/>
-    [Obsolete("use CookieClientHttpClientFactory")]
-    public IsolatedCookieContainer? IsolatedCookie { get; set; }
-
     /// <summary>
     /// 获取 <see cref="HttpClient"/>, 如果返回 <see langword="null"/> 将使用服务上的 <see cref="IClientHttpClientFactory.CreateClient(string, HttpHandlerCategory)"/>
     /// </summary>
@@ -147,11 +143,14 @@ public record class WebApiClientSendArgs : IDisposable
         if (client != null)
             return client;
 
-        if (IsolatedCookie != null)
-            return IsolatedCookie.Client;
-
         return null;
     }
+
+    /// <inheritdoc cref="HttpStatusCode"/>
+    public HttpStatusCode StatusCode { get; set; }
+
+    /// <inheritdoc cref="HttpResponseMessage.IsSuccessStatusCode"/>
+    public bool IsSuccessStatusCode => ((int)StatusCode >= 200) && ((int)StatusCode <= 299);
 
     /// <summary>
     /// 设置用作发送的 <see cref="HttpClient"/>

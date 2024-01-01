@@ -534,6 +534,7 @@ public abstract partial class WebApiClientService(
             HttpClientExtensions.UseDefault(client, requestMessage);
             responseMessage = await client.SendAsync(requestMessage,
                 HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            args.StatusCode = responseMessage.StatusCode;
 
             var responseContentType = typeof(TResponseBody);
             if (responseContentType == typeof(HttpStatusCode))
@@ -676,6 +677,7 @@ public abstract partial class WebApiClientService(
             HttpClientExtensions.UseDefault(client, requestMessage);
             responseMessage = await client.SendAsync(requestMessage,
                 HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            args.StatusCode = responseMessage.StatusCode;
 
             var responseContentType = typeof(TResponseBody);
             if (responseContentType == typeof(HttpStatusCode))
@@ -776,6 +778,7 @@ public abstract partial class WebApiClientService(
             HttpClientExtensions.UseDefault(client, requestMessage);
             responseMessage = client.Send(requestMessage,
                 HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            args.StatusCode = responseMessage.StatusCode;
 
             var responseContentType = typeof(TResponseBody);
             if (responseContentType == typeof(HttpStatusCode))
