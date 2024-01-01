@@ -6,7 +6,7 @@
 		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.23.11226.12230</Version>
+		<Version>8.24.10101.11435</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 	</PropertyGroup>
