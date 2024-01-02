@@ -14607,18 +14607,18 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.GetHttpRequestMessage
   fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.GetHttpRequestMessage
   nameWithType: WebApiClientSendArgs.GetHttpRequestMessage
-- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsolatedCookie
-  name: IsolatedCookie
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_IsolatedCookie
-  commentId: P:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsolatedCookie
-  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsolatedCookie
-  nameWithType: WebApiClientSendArgs.IsolatedCookie
-- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsolatedCookie*
-  name: IsolatedCookie
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_IsolatedCookie_
-  commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsolatedCookie
-  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsolatedCookie
-  nameWithType: WebApiClientSendArgs.IsolatedCookie
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsSuccessStatusCode
+  name: IsSuccessStatusCode
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_IsSuccessStatusCode
+  commentId: P:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsSuccessStatusCode
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsSuccessStatusCode
+  nameWithType: WebApiClientSendArgs.IsSuccessStatusCode
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsSuccessStatusCode*
+  name: IsSuccessStatusCode
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_IsSuccessStatusCode_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsSuccessStatusCode
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.IsSuccessStatusCode
+  nameWithType: WebApiClientSendArgs.IsSuccessStatusCode
 - uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.JsonImplType
   name: JsonImplType
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_JsonImplType
@@ -14691,6 +14691,18 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient
   fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.SetHttpClient
   nameWithType: WebApiClientSendArgs.SetHttpClient
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.StatusCode
+  name: StatusCode
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_StatusCode
+  commentId: P:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.StatusCode
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.StatusCode
+  nameWithType: WebApiClientSendArgs.StatusCode
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.StatusCode*
+  name: StatusCode
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_StatusCode_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.StatusCode
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.StatusCode
+  nameWithType: WebApiClientSendArgs.StatusCode
 - uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.ToString
   name: ToString()
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_ToString
