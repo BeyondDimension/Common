@@ -16,9 +16,42 @@ public static partial class ProjectUtils
     /// </summary>
     public static readonly string ProjPath;
 
+    /// <summary>
+    /// 当前项目的顶级绝对路径（通常作为子模块返回仓库的项目路径）
+    /// </summary>
+    public static readonly string ROOT_ProjPath;
+
+    /// <summary>
+    /// 用于测试的数据存储的路径
+    /// </summary>
+    public static readonly string DataPath = "";
+
     static ProjectUtils()
     {
         ProjPath = GetProjectPath();
+        ROOT_ProjPath = ProjPath;
+        if (!string.IsNullOrWhiteSpace(ROOT_ProjPath))
+        {
+            var mROOT_ProjPath = ROOT_ProjPath;
+            var mROOT_ProjPath2 = mROOT_ProjPath;
+            while (true)
+            {
+                mROOT_ProjPath = Path.Combine(mROOT_ProjPath, "..");
+                mROOT_ProjPath = GetProjectPath(mROOT_ProjPath);
+                if (string.IsNullOrWhiteSpace(mROOT_ProjPath))
+                {
+                    ROOT_ProjPath = mROOT_ProjPath2;
+                    break;
+                }
+                mROOT_ProjPath2 = mROOT_ProjPath;
+            }
+        }
+        if (!string.IsNullOrWhiteSpace(ROOT_ProjPath))
+        {
+            DataPath = ROOT_ProjPath.Contains("actions-runner") ? Path.Combine(ROOT_ProjPath, "..", "..") : Path.Combine(ROOT_ProjPath, "..");
+            DataPath = Path.GetFullPath(DataPath);
+        }
+
         // https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
         isCI = bool.TryParse(Environment.GetEnvironmentVariable("CI"), out var result) && result;
     }

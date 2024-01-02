@@ -91,6 +91,9 @@ interface IBuildCommand : ICommand
             ],
             "BD.SteamClient8" => [
                 "BD.SteamClient8",
+                "BD.SteamClient8.Impl",
+                "BD.SteamClient8.Models",
+                "BD.SteamClient8.Primitives",
             ],
             _ => [],
         };
