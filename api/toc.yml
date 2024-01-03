@@ -107,6 +107,8 @@ items:
   items:
   - name: BD.Common8.SourceGenerator.Shared
     href: BD.Common8.SourceGenerator.Shared/toc.yml
+  - name: BD.Common8.SourceGenerator.ResX
+    href: BD.Common8.SourceGenerator.ResX/toc.yml
 - name: Tools 工具
   items:
   - name: Tools.Build
