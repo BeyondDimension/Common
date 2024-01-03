@@ -65,6 +65,27 @@ public static partial class ApiRspExtensions
     }
 
     /// <summary>
+    /// 创建 <see cref="IApiRsp"/> 对应的错误消息
+    /// </summary>
+
+    public static string CreateMessage(this IApiRsp response, string? errorAppendText = null, string? errorFormat = null)
+    {
+        string message = string.Empty;
+        if (response.Code == ApiRspCode.ClientException &&
+               response is ApiRspBase impl &&
+               impl.ClientException != null)
+        {
+            var exMsg = impl.ClientException.GetAllMessage();
+            if (string.IsNullOrWhiteSpace(errorAppendText))
+                errorAppendText = exMsg;
+            else
+                errorAppendText = $"{errorAppendText}{Environment.NewLine}{exMsg}";
+        }
+        message = response.Code.GetMessage(errorAppendText, errorFormat);
+        return message;
+    }
+
+    /// <summary>
     /// 获取 <see cref="IApiRsp"/> 对应的错误消息
     /// </summary>
     public static string GetMessage(this IApiRsp response, string? errorAppendText = null, string? errorFormat = null)
@@ -72,17 +93,7 @@ public static partial class ApiRspExtensions
         var message = ApiRspHelper.GetInternalMessage(response);
         if (string.IsNullOrWhiteSpace(message))
         {
-            if (response.Code == ApiRspCode.ClientException &&
-                response is ApiRspBase impl &&
-                impl.ClientException != null)
-            {
-                var exMsg = impl.ClientException.GetAllMessage();
-                if (string.IsNullOrWhiteSpace(errorAppendText))
-                    errorAppendText = exMsg;
-                else
-                    errorAppendText = $"{errorAppendText}{Environment.NewLine}{exMsg}";
-            }
-            message = response.Code.GetMessage(errorAppendText, errorFormat);
+            message = CreateMessage(response, errorAppendText, errorFormat);
         }
         return message;
     }

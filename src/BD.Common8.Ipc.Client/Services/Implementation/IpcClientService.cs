@@ -244,7 +244,6 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
         {
             apiRspBase.Code = apiRspCode == default ? GetApiRspCodeByClientException(ex) : apiRspCode;
             apiRspBase.ClientException = ex;
-            apiRspBase.InternalMessage = apiRspBase.GetMessage();
             return (TResponseBody?)(object)apiRspBase;
         }
 

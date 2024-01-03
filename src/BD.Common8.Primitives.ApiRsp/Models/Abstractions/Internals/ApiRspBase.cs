@@ -46,6 +46,8 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
         }
     }
 
+    string? internalMessage;
+
     /// <summary>
     /// <see cref="IApiRspBase.Message"/> 的内部值
     /// </summary>
@@ -59,7 +61,7 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonProperty(JsonPropertyName_Message)]
 #endif
-    public string? InternalMessage { get; set; }
+    public string? InternalMessage { get => internalMessage ??= this.CreateMessage(); set => internalMessage = value; }
 
     /// <inheritdoc/>
     [IgnoreDataMember]

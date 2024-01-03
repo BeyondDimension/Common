@@ -136,7 +136,6 @@ public abstract partial class WebApiClientService(
                     {
                         showLog = false;
                         apiRspBase.Code = (ApiRspCode)statusCode.Value;
-                        apiRspBase.InternalMessage = apiRspBase.GetMessage();
                         return (TResponseBody?)(object)apiRspBase;
                     }
                 }
@@ -246,7 +245,6 @@ public abstract partial class WebApiClientService(
         {
             apiRspBase.Code = GetApiRspCodeByClientException(ex);
             apiRspBase.ClientException = ex;
-            apiRspBase.InternalMessage = apiRspBase.GetMessage();
             return (TResponseBody?)(object)apiRspBase;
         }
 
