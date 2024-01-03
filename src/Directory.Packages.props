@@ -73,7 +73,7 @@
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
 		<PackageVersion Include="Polly" Version="8.2.0" />
 		<PackageVersion Include="Portable.BouncyCastle" Version="1.9.0" />
-		<PackageVersion Include="ReactiveUI" Version="19.5.31" />
+		<PackageVersion Include="ReactiveUI" Version="19.5.39" />
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.31" />
 		<PackageVersion Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.7" />
