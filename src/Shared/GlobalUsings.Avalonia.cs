@@ -67,3 +67,5 @@ global using AvaNotificationType = Avalonia.Controls.Notifications.NotificationT
 global using AvaControls = Avalonia.Controls.Controls;
 global using AvaRectangle = Avalonia.Controls.Shapes.Rectangle;
 global using AvaImage = Avalonia.Controls.Image;
+global using AvaHorizontalAlignment = Avalonia.Layout.HorizontalAlignment;
+global using AvaVerticalAlignment = Avalonia.Layout.VerticalAlignment;

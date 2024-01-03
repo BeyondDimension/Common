@@ -366,7 +366,7 @@
 		<AdditionalFiles Include="$(MSBuildProjectDirectory)\..\NativeMethods.txt" />
 	</ItemGroup>
 	
-	<ItemGroup Condition="$(UseMicrosoftWindowsCsWin32) == 'true' OR $(UseCommon8Bcl) == 'true'">
+	<ItemGroup Condition="$(UseMicrosoftWindowsCsWin32) == 'true' OR $(UseCommon8Bcl) != ''">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Windows.CsWin32.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
