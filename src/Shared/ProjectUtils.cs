@@ -46,14 +46,17 @@ public static partial class ProjectUtils
                 mROOT_ProjPath2 = mROOT_ProjPath;
             }
         }
+
+        bool contains_actions_runner = false;
         if (!string.IsNullOrWhiteSpace(ROOT_ProjPath))
         {
-            DataPath = ROOT_ProjPath.Contains("actions-runner") ? Path.Combine(ROOT_ProjPath, "..", "..") : Path.Combine(ROOT_ProjPath, "..");
+            contains_actions_runner = ROOT_ProjPath.Contains("actions-runner");
+            DataPath = contains_actions_runner ? Path.Combine(ROOT_ProjPath, "..", "..") : Path.Combine(ROOT_ProjPath, "..");
             DataPath = Path.GetFullPath(DataPath);
         }
 
         // https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
-        isCI = bool.TryParse(Environment.GetEnvironmentVariable("CI"), out var result) && result;
+        isCI = contains_actions_runner || (bool.TryParse(Environment.GetEnvironmentVariable("CI"), out var result) && result);
     }
 #endif
 
