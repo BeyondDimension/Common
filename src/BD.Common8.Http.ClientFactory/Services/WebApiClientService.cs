@@ -521,7 +521,7 @@ public abstract partial class WebApiClientService(
         try
         {
             requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
-            if (requestMessage.Content == null)
+            if (typeof(TRequestBody) != typeof(nil) && requestMessage.Content == null)
             {
                 var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
                 if (requestContent.Value is not null)
@@ -664,7 +664,7 @@ public abstract partial class WebApiClientService(
         try
         {
             requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
-            if (requestMessage.Content == null)
+            if (typeof(TRequestBody) != typeof(nil) && requestMessage.Content == null)
             {
                 var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
                 if (requestContent.Value is not null)
@@ -765,7 +765,7 @@ public abstract partial class WebApiClientService(
         try
         {
             requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
-            if (requestMessage.Content == null)
+            if (typeof(TRequestBody) != typeof(nil) && requestMessage.Content == null)
             {
                 var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
                 if (requestContent.Value is not null)
@@ -933,6 +933,32 @@ public abstract partial class WebApiClientService(
                     if (requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection)
                         throw new NotSupportedException("requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection.");
                     result = new FormUrlEncodedContent(nameValueCollection);
+                    return result;
+                case MediaTypeNames.Binary:
+                    if (requestBody is not byte[] byteArray)
+                    {
+                        if (requestBody is ReadOnlyMemory<byte> readOnlyMemoryByte)
+                        {
+                            byteArray = readOnlyMemoryByte.ToArray();
+                        }
+                        if (requestBody is Memory<byte> memoryByte)
+                        {
+                            byteArray = memoryByte.ToArray();
+                        }
+                        if (requestBody is IEnumerable<byte> bytes)
+                        {
+                            byteArray = bytes.ToArray();
+                        }
+                        if (requestBody is Stream stream)
+                        {
+                            byteArray = stream.ToByteArray();
+                        }
+                        else
+                        {
+                            throw new NotSupportedException("requestBody is not byte[] byteArray.");
+                        }
+                    }
+                    result = new ByteArrayContent(byteArray);
                     return result;
                 default:
                     result = GetCustomSerializeContent<TResponseBody, TRequestBody>(args, requestBody, mime, cancellationToken);
