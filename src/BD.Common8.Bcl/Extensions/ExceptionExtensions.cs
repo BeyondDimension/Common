@@ -52,8 +52,8 @@ public static partial class ExceptionExtensions
     public static string GetAllMessage(this Exception e, string? msg = null, params object?[] args)
     {
         var has_msg = !string.IsNullOrWhiteSpace(msg);
-        var has_args = args.Any_Nullable();
-        return GetAllMessageCore(e, has_msg, has_args, msg, args);
+        var has_args = args != null && args.Length != 0;
+        return GetAllMessageCore(e, has_msg, has_args, msg, args!);
     }
 
     static string GetAllMessageCore(Exception e,
@@ -94,7 +94,7 @@ public static partial class ExceptionExtensions
             var exception_message = exception.Message;
             if (!string.IsNullOrWhiteSpace(exception_message))
             {
-                sb.AppendLine(exception_message);
+                sb.AppendLine(exception.ToString());
             }
             exception = exception.InnerException;
         }

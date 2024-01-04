@@ -66,7 +66,7 @@ jobs:
         run: dotnet --info
 
       - name: Test
-        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false --nologo -v q /property:WarningLevel=1
+        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
 
   build:
     name: Build
@@ -130,7 +130,7 @@ jobs:
         run: dotnet --info
 
       - name: Build tools
-        run: dotnet build -c Release src\BD.Common8.Tools.Build\BD.Common8.Tools.Build.csproj --nologo -v q /property:WarningLevel=1
+        run: dotnet build -c Release src\BD.Common8.Tools.Build\BD.Common8.Tools.Build.csproj --nologo -v q /property:WarningLevel=0
 
       - name: Build projects
         run: .\src\artifacts\bin\BD.Common8.Tools.Build\release\BD.Common8.Tools.Build.exe build
