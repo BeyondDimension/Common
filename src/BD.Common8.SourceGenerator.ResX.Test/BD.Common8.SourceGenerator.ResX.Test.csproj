@@ -6,6 +6,7 @@
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
 		<LinkResXGeneratedCodeAttribute>true</LinkResXGeneratedCodeAttribute>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -9,3 +9,11 @@ global using BD.Common8.Ipc;
 global using BD.Common8.Ipc.Attributes;
 global using BD.Common8.Ipc.Enums;
 global using BD.Common8.Ipc.Models;
+global using BD.Common8.Ipc.Protocol;
+
+global using System.Runtime.ExceptionServices;
+
+global using Microsoft.Extensions.Options;
+global using Microsoft.AspNetCore.Connections;
+global using Microsoft.AspNetCore.SignalR;
+global using Microsoft.AspNetCore.SignalR.Protocol;

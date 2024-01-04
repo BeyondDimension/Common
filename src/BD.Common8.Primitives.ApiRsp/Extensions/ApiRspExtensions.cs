@@ -67,7 +67,6 @@ public static partial class ApiRspExtensions
     /// <summary>
     /// 创建 <see cref="IApiRsp"/> 对应的错误消息
     /// </summary>
-
     public static string CreateMessage(this IApiRsp response, string? errorAppendText = null, string? errorFormat = null)
     {
         string message = string.Empty;

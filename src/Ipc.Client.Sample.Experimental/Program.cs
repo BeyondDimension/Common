@@ -36,8 +36,8 @@ static partial class Program
             IpcClientService2 ipcClient = new(connectionString);
 
             // WebApi 实现的 Ipc 调用
-            var ipcClientService = new TodoService_WebApi(ipcClient);
-            ipcClientServices.Add(ipcClientService);
+            //var ipcClientService = new TodoService_WebApi(ipcClient);
+            //ipcClientServices.Add(ipcClientService);
 
             // SignalR 实现的 Ipc 调用
             var ipcClientService2 = new TodoService_SignalR(ipcClient);
@@ -58,7 +58,7 @@ static partial class Program
                 {
                     foreach (var type in types)
                     {
-                        yield return SamplePathHelper.GetRandomValue(type);
+                        yield return GeneratorRandomValueByType(type);
                     }
                 }
             }
@@ -103,13 +103,29 @@ static partial class Program
                         await resultMethod;
                         Console.WriteLine($"{method.Name}: ");
                         var resultValue = resultMethod.GetType().GetProperty(nameof(Task<object>.Result))?.GetValue(resultMethod);
-                        Console.WriteLine(Serializable.SJSON_Original(resultValue, NewtonsoftJsonFormatting.Indented));
+                        Console.WriteLine(Serializable.SJSON_Original(
+                            resultValue, NewtonsoftJsonFormatting.Indented));
                     }
 
                     Console.WriteLine($"{nameof(ITodoService.AsyncEnumerable)}: ");
-                    await foreach (var resultAsyncEnumerableItem in todoService.AsyncEnumerable(5))
+                    await foreach (var item in todoService.AsyncEnumerable(5))
                     {
-                        Console.WriteLine(Serializable.SJSON_Original(resultAsyncEnumerableItem, NewtonsoftJsonFormatting.Indented));
+                        Console.WriteLine(Serializable.SJSON_Original(
+                            item, NewtonsoftJsonFormatting.Indented));
+                    }
+
+                    Console.WriteLine($"{nameof(ITodoService.Exception2)}: ");
+                    await foreach (var item in todoService.Exception2())
+                    {
+                        Console.WriteLine(Serializable.SJSON_Original(
+                            item, NewtonsoftJsonFormatting.Indented));
+                    }
+
+                    Console.WriteLine($"{nameof(ITodoService.Exception3)}: ");
+                    await foreach (var item in todoService.Exception3())
+                    {
+                        Console.WriteLine(Serializable.SJSON_Original(
+                            item, NewtonsoftJsonFormatting.Indented));
                     }
                 }
             }
@@ -153,6 +169,8 @@ sealed class IpcClientService2(IpcAppConnectionString connectionString) : IpcCli
             Console.WriteLine($"收到服务器消息：{s}, ThreadId: {Environment.CurrentManagedThreadId}");
         });
     }
+
+    protected override bool UseMemoryPack => false;
 }
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientWebApi)]

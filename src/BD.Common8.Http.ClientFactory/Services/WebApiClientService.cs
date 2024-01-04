@@ -402,7 +402,7 @@ public abstract partial class WebApiClientService(
                 {
                     if (result is HttpResponseMessageContentAsyncEnumerable<TResponseBody> hrmcae)
                     {
-                        OnSerializerError<TResponseBody>(e,
+                        item = OnSerializerError<TResponseBody>(e,
                             isSerializeOrDeserialize: false,
                             typeof(TResponseBody),
                             hrmcae.Response.IsSuccessStatusCode,
@@ -411,9 +411,14 @@ public abstract partial class WebApiClientService(
                     }
                     else
                     {
-                        OnError<TResponseBody>(e, args);
+                        item = OnError<TResponseBody>(e, args);
                     }
-                    break;
+                    if (EqualityComparer<TResponseBody>.Default
+                        .Equals(item, default))
+                    {
+                        break;
+                    }
+                    hasItem = true;
                 }
                 if (hasItem)
                     yield return item;

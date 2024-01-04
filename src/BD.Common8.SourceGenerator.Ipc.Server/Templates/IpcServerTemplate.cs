@@ -31,6 +31,7 @@ public sealed class IpcServerTemplate : IpcTemplateBase
         stream.Write(
 """
 #pragma warning disable IDE0004 // 删除不必要的强制转换
+#pragma warning disable CS8619 // 值中的引用类型的为 Null 性与目标类型不匹配。
 
 """u8);
         stream.WriteNewLine();
@@ -69,10 +70,16 @@ partial class {0} : IEndpointRouteMapGroup
             var returnType = GetReturnType(method,
                 out var isApiRspImplByReturnType,
                 out var isAsyncEnumerableByReturnType);
+            var apiRspImplType = returnType.GenericT.ToString();
+            if (!apiRspImplType.StartsWith("ApiRspImpl"))
+            {
+                apiRspImplType = $"ApiRspImpl<{apiRspImplType}>";
+            }
 
             return (methodParas,
                 category,
                 returnType,
+                apiRspImplType,
                 isApiRspImplByReturnType,
                 isAsyncEnumerableByReturnType);
         });
@@ -83,6 +90,7 @@ partial class {0} : IEndpointRouteMapGroup
             (var methodParas,
                 var category,
                 var returnType,
+                var apiRspImplType,
                 var isApiRspImplByReturnType,
                 var isAsyncEnumerableByReturnType) = methodData.Value;
 
@@ -130,6 +138,7 @@ partial class {0} : IEndpointRouteMapGroup
 ", (Delegate)(static async (HttpContext ctx
 """u8);
             }
+
             switch (category)
             {
                 case MethodParametersCategory.SimpleTypes:
@@ -154,7 +163,7 @@ partial class {0} : IEndpointRouteMapGroup
                         var (paraType, paraName, _) = methodParas[0];
                         stream.WriteFormat(
 """
-, [FromBody] {0} {1}
+, [FromBody] {0}? {1}
 """u8, paraType, paraName);
                     }
                     break;
@@ -172,6 +181,7 @@ partial class {0} : IEndpointRouteMapGroup
                     }
                     break;
             }
+
             if (isAsyncEnumerableByReturnType)
             {
                 stream.WriteFormat(
@@ -181,11 +191,29 @@ partial class {0} : IEndpointRouteMapGroup
             }
             else
             {
+                stream.Write(
+"""
+) =>
+        {
+
+"""u8);
                 stream.WriteFormat(
 """
-) => await Ioc.Get<{0}>().{1}(
+            {0} result;
+
+"""u8, apiRspImplType);
+                stream.Write(
+"""
+            try
+            {
+
+"""u8);
+                stream.WriteFormat(
+"""
+                result = await Ioc.Get<{0}>().{1}(
 """u8, m.Attribute.ServiceType, method.Name);
             }
+
             bool isFirstMapMethodArg = true;
             switch (category)
             {
@@ -267,11 +295,29 @@ partial class {0} : IEndpointRouteMapGroup
 , 
 """u8);
             }
-            stream.Write(
+            if (!isAsyncEnumerableByReturnType)
+            {
+                stream.Write(
+"""
+ctx.RequestAborted);
+            }
+            catch (Exception ex)
+            {
+                result = ex;
+            }
+            return result;
+        }));
+
+"""u8);
+            }
+            else
+            {
+                stream.Write(
 """
 ctx.RequestAborted)));
 
 """u8);
+            }
         }
         stream.Write(
 """
@@ -332,6 +378,7 @@ partial class IpcHub : Hub
             (var methodParas,
                 var category,
                 var returnType,
+                var apiRspImplType,
                 var isApiRspImplByReturnType,
                 var isAsyncEnumerableByReturnType) = methodData.Value;
             var hubMethodName = $"{m.Attribute.ServiceType}_{method.Name}";
@@ -418,7 +465,18 @@ partial class IpcHub : Hub
                 {
                     stream.WriteFormat(
 """
-        var result = await Ioc.Get<{0}>().
+        {0} result;
+
+"""u8, apiRspImplType);
+                    stream.Write(
+"""
+        try
+        {
+
+"""u8);
+                    stream.WriteFormat(
+"""
+            result = await Ioc.Get<{0}>().
 """u8, m.Attribute.ServiceType);
                 }
 
@@ -454,12 +512,29 @@ partial class IpcHub : Hub
 """u8);
                 }
 
-                stream.Write(
+                if (isAsyncEnumerableByReturnType)
+                {
+                    stream.Write(
 """
 this.RequestAborted());
         return result!;
 
 """u8);
+                }
+                else
+                {
+                    stream.Write(
+"""
+this.RequestAborted());
+        }
+        catch (Exception ex)
+        {
+            result = ex;
+        }
+        return result;
+
+"""u8);
+                }
             }
 
             WriteMethodBody();

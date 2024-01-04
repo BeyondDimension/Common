@@ -157,7 +157,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         builder.Services.AddRoutingCore();
         builder.Services.AddLogging(ConfigureLogging);
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
-        builder.Services.AddSignalR(ConfigureSignalR).AddJsonProtocol();
+        ConfigureSignalRProtocol(builder.Services.AddSignalR(ConfigureSignalR));
         builder.Services.AddHttpContextAccessor();
         ConfigureAuthentication(builder.Services.AddAuthentication(DefaultAuthenticationScheme));
 
@@ -339,6 +339,17 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 #if DEBUG
         //options.EnableDetailedErrors = true;
 #endif
+    }
+
+    protected virtual void ConfigureSignalRProtocol(ISignalRServerBuilder builder)
+    {
+        AddMemoryPackProtocol(builder);
+    }
+
+    protected void AddMemoryPackProtocol(ISignalRServerBuilder builder)
+    {
+        builder.Services.TryAddEnumerable(
+            ServiceDescriptor.Singleton<IHubProtocol, MemoryPackHubProtocol>());
     }
 
     protected virtual void ConfigureServices(IServiceCollection services)

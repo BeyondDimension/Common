@@ -59,6 +59,8 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
         return Task.FromResult(accessToken)!;
     }
 
+    protected virtual bool UseMemoryPack => true;
+
     /// <summary>
     /// 异步获取 SignalR Hub 连接
     /// </summary>
@@ -112,7 +114,15 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
                 })
                 .WithAutomaticReconnect();
 
-            builder.AddJsonProtocol(ConfigureJsonHubProtocolOptions);
+            if (UseMemoryPack)
+            {
+                builder.Services.TryAddEnumerable(
+                    ServiceDescriptor.Singleton<IHubProtocol, MemoryPackHubProtocol>());
+            }
+            else
+            {
+                builder.AddJsonProtocol(ConfigureJsonHubProtocolOptions);
+            }
 
             ConfigureHubConnectionBuilder(builder);
 

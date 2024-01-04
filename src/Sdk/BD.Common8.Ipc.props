@@ -22,6 +22,7 @@
 		<Compile Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Common" />
 	</ItemGroup>
 
 	<!-- 源码引用此项目 -->

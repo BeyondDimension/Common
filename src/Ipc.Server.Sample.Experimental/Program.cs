@@ -19,7 +19,7 @@ static partial class Program
         {
             if (item.ParameterType == typeof(CancellationToken))
                 continue;
-            dict.Add(item.ParameterType.Name, SamplePathHelper.GetRandomValue(item.ParameterType));
+            dict.Add(item.ParameterType.Name, GeneratorRandomValueByType(item.ParameterType));
         }
         var result = Serializable.SJSON(dict, writeIndented: true);
         Console.WriteLine(result);
@@ -146,6 +146,49 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.Server)]
 sealed partial class TodoServiceImpl : ITodoService
 {
+    static void OnMapGroup2(IEndpointRouteBuilder endpoints)
+    {
+        var builder = endpoints.MapGroup("/ITodoService").RequireAuthorization();
+        builder.MapGet("/All", (Delegate)(static async (HttpContext ctx) =>
+        {
+            ApiRspImpl<Todo[]?> result;
+            try
+            {
+                result = await Ioc.Get<ITodoService>().All(ctx.RequestAborted);
+            }
+            catch (Exception ex)
+            {
+                result = ex;
+            }
+            return result;
+        }));
+        builder.MapGet("/GetById/{id}", (Delegate)(static async (HttpContext ctx, [FromRoute] int id)
+            => await Ioc.Get<ITodoService>().GetById(id, ctx.RequestAborted)));
+        builder.MapGet("/SimpleTypes/{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}", (Delegate)(static async (HttpContext ctx, [FromRoute] bool p0, [FromRoute] byte p1, [FromRoute] sbyte p2, [FromRoute] char p3, [FromRoute] DateOnly p4, [FromRoute] DateTime p5, [FromRoute] DateTimeOffset p6, [FromRoute] decimal p7, [FromRoute] double p8, [FromRoute] ProcessorArchitecture p9, [FromRoute] Guid p10, [FromRoute] short p11, [FromRoute] int p12, [FromRoute] long p13, [FromRoute] float p14, [FromRoute] TimeOnly p15, [FromRoute] TimeSpan p16, [FromRoute] ushort p17, [FromRoute] uint p18, [FromRoute] ulong p19, [FromRoute] Uri p20, [FromRoute] Version p21)
+            => await Ioc.Get<ITodoService>().SimpleTypes(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, ctx.RequestAborted)));
+        builder.MapPost("/BodyTest", (Delegate)(static async (HttpContext ctx, [FromBody] Todo? todo)
+            => await Ioc.Get<ITodoService>().BodyTest(todo, ctx.RequestAborted)));
+        builder.MapGet("/AsyncEnumerable/{len}", (Delegate)(static (HttpContext ctx, [FromRoute] int len)
+            => Ioc.Get<ITodoService>().AsyncEnumerable(len, ctx.RequestAborted)));
+        builder.MapPost("/Tuple", (Delegate)(static async (HttpContext ctx, [FromBody] Tuple<bool, byte, sbyte, char, DateOnly, DateTime, DateTimeOffset, Tuple<decimal, double, ProcessorArchitecture[], Guid, short, int, long, Tuple<float, TimeOnly, TimeSpan, ushort, uint, ulong[], Uri>>> body)
+            => await Ioc.Get<ITodoService>().Tuple(body.Item1, body.Item2, body.Item3, body.Item4, body.Item5, body.Item6, body.Item7, body.Rest.Item1, body.Rest.Item2, body.Rest.Item3, body.Rest.Item4, body.Rest.Item5, body.Rest.Item6, body.Rest.Item7, body.Rest.Rest.Item1, body.Rest.Rest.Item2, body.Rest.Rest.Item3, body.Rest.Rest.Item4, body.Rest.Rest.Item5, body.Rest.Rest.Item6, body.Rest.Rest.Item7, ctx.RequestAborted)));
+        builder.MapGet("/Exception1", (Delegate)(static async (HttpContext ctx)
+            => await Ioc.Get<ITodoService>().Exception1(ctx.RequestAborted)));
+        builder.MapGet("/Exception2", (Delegate)(static (HttpContext ctx)
+            => Ioc.Get<ITodoService>().Exception2(ctx.RequestAborted)));
+        builder.MapGet("/Exception3", (Delegate)(static (HttpContext ctx)
+            => Ioc.Get<ITodoService>().Exception3(ctx.RequestAborted)));
+        //builder.MapGet("/Exception3", (Delegate)(static async (HttpContext ctx) =>
+        //{
+        //    var result = Ioc.Get<ITodoService>().Exception3(ctx.RequestAborted);
+        //    await foreach (var item in result)
+        //    {
+        //        yield return item;
+        //    }
+        //    return result;
+        //}));
+    }
+
     readonly Todo[] todos = [
         new(1, "Walk the dog"),
         new(2, "Do the dishes", DateOnly.FromDateTime(DateTime.Now)),
@@ -227,11 +270,14 @@ sealed partial class TodoServiceImpl : ITodoService
         return result;
     }
 
-    public async Task<ApiRspImpl> BodyTest(Todo todo, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl> BodyTest(Todo? todo, CancellationToken cancellationToken = default)
     {
+        Console.WriteLine("BodyTest");
         await Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
         var result = ApiRspHelper.Ok();
-        result.InternalMessage = todo.Title;
+        result.InternalMessage = todo == null ? "todo is null!" : todo.Title;
+        var a = Serializable.SMP2(result);
+        Console.WriteLine("BodyTest result: " + a.ToHexString());
         return result;
     }
 
@@ -240,7 +286,7 @@ sealed partial class TodoServiceImpl : ITodoService
         await Clients.All.SendAsync(nameof(ITodoService), nameof(AsyncEnumerable), RequestAborted());
         for (int i = 0; i < len; i++)
         {
-            var millisecondsDelay = Random.Shared.Next(1, 199);
+            var millisecondsDelay = Random.Shared.Next(199, 819);
             Console.WriteLine($"异步迭代器[{i}]，随机等待毫秒：{millisecondsDelay}");
             await Task.Delay(millisecondsDelay, cancellationToken); // 模拟循环中耗时操作
             if (i < todos.Length)
@@ -264,9 +310,53 @@ sealed partial class TodoServiceImpl : ITodoService
         result.InternalMessage = $"{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{string.Join(", ", p9 ?? [])}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{string.Join(", ", p19 ?? [])}/{p20}";
         return result;
     }
+
+    public Task<ApiRspImpl> Exception1(CancellationToken cancellationToken = default)
+    {
+        throw new ApplicationException("test by Exception1.");
+    }
+
+    public IAsyncEnumerable<Todo> Exception2(CancellationToken cancellationToken = default)
+    {
+        throw new ApplicationException("test by Exception2.");
+    }
+
+    public async IAsyncEnumerable<ApiRspImpl<Todo>> Exception3(CancellationToken cancellationToken = default)
+    {
+        await Task.Delay(31, cancellationToken);
+        ApiRspImpl<Todo> result;
+        try
+        {
+            throw new ApplicationException("test by Exception3.");
+        }
+        catch (Exception ex)
+        {
+            result = ex;
+        }
+        yield return result;
+    }
 }
 
 [Authorize]
 sealed class IpcHub : BD.Common8.SourceGenerator.Ipc.Server.IpcHub
 {
+    public async Task<ApiRspImpl<Todo[]?>> ITodoService_All_1()
+    {
+        var result = await Ioc.Get<ITodoService>().All(this.RequestAborted());
+        return result!;
+    }
+
+    //public async Task<ApiRspImpl<Todo[]?>> ITodoService_All_2()
+    //{
+    //    ApiRspImpl<Todo[]> result;
+    //    try
+    //    {
+    //        result = await Ioc.Get<ITodoService>().All(this.RequestAborted());
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        result = ex;
+    //    }
+    //    return result;
+    //}
 }

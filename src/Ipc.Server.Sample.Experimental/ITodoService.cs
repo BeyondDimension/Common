@@ -120,6 +120,27 @@ public partial interface ITodoService
         int p12, long p13, float p14,
         TimeOnly p15, TimeSpan p16, ushort p17,
         uint p18, ulong[] p19, Uri p20, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 用于测试抛出异常时是否能返回错误的结果
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl> Exception1(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 用于测试抛出异常时是否能返回错误的结果，异步迭代器版本
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    IAsyncEnumerable<Todo> Exception2(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 用于测试抛出异常时是否能返回错误的结果，异步迭代器 + ApiRspImpl 版本
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    IAsyncEnumerable<ApiRspImpl<Todo>> Exception3(CancellationToken cancellationToken = default);
 }
 
 /// <summary>
@@ -129,7 +150,8 @@ public partial interface ITodoService
 /// <param name="Title"></param>
 /// <param name="DueBy"></param>
 /// <param name="IsComplete"></param>
-public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
+[MP2Obj]
+public partial record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
 
 /// <summary>
 /// 示例路径助手类
@@ -271,122 +293,6 @@ public static class SamplePathHelper
     public static void Dispose()
     {
         IOPath.DirTryDelete(TempDirPath);
-    }
-
-    /// <summary>
-    /// 根据类型生成随机值，用于模拟的假数据
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    public static object? GetRandomValue(Type type)
-    {
-        if (type == typeof(int))
-        {
-            return Random.Shared.Next(int.MaxValue);
-        }
-        else if (type == typeof(Todo))
-        {
-            return new Todo(Random.Shared.Next(3, 9), Random2.GenerateRandomString(64));
-        }
-        else if (type == typeof(char))
-        {
-            return 'A';
-        }
-        else if (type == typeof(byte))
-        {
-            return (byte)25;
-        }
-        else if (type == typeof(sbyte))
-        {
-            return (sbyte)26;
-        }
-        else if (type == typeof(DateOnly))
-        {
-            return DateOnly.FromDateTime(DateTime.Today);
-        }
-        else if (type == typeof(DateTime))
-        {
-            return DateTime.UtcNow;
-        }
-        else if (type == typeof(DateTimeOffset))
-        {
-            return DateTimeOffset.Now;
-        }
-        else if (type == typeof(decimal))
-        {
-            return 27.1m;
-        }
-        else if (type == typeof(double))
-        {
-            return 27.1d;
-        }
-        else if (type == typeof(ProcessorArchitecture))
-        {
-            return ProcessorArchitecture.MSIL;
-        }
-        else if (type == typeof(Guid))
-        {
-            return Guid.NewGuid();
-        }
-        else if (type == typeof(short))
-        {
-            return (short)28;
-        }
-        else if (type == typeof(int))
-        {
-            return 29;
-        }
-        else if (type == typeof(long))
-        {
-            return 9223372036854775806L;
-        }
-        else if (type == typeof(float))
-        {
-            return 30.9f;
-        }
-        else if (type == typeof(TimeOnly))
-        {
-            return TimeOnly.FromDateTime(DateTime.Now);
-        }
-        else if (type == typeof(TimeSpan))
-        {
-            return TimeSpan.FromHours(3);
-        }
-        else if (type == typeof(ushort))
-        {
-            return (ushort)31;
-        }
-        else if (type == typeof(uint))
-        {
-            return 32u;
-        }
-        else if (type == typeof(ulong))
-        {
-            return 33ul;
-        }
-        else if (type == typeof(Uri))
-        {
-            return new Uri("http://github.com/BeyondDimension");
-        }
-        else if (type == typeof(Version))
-        {
-            return new Version("10.0.10240");
-        }
-        else if (type == typeof(CancellationToken))
-        {
-            return CancellationToken.None;
-        }
-        else
-        {
-            if (type.IsClass)
-            {
-                return null;
-            }
-            else
-            {
-                return Activator.CreateInstance(type);
-            }
-        }
     }
 }
 

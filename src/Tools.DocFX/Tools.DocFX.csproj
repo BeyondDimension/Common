@@ -4,6 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
 
 </Project>

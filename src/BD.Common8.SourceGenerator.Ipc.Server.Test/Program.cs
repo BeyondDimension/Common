@@ -16,6 +16,21 @@ sealed partial class TodoServiceImpl : ITodoService
         throw new NotImplementedException();
     }
 
+    public Task<ApiRspImpl> Exception1(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IAsyncEnumerable<Todo> Exception2(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IAsyncEnumerable<ApiRspImpl<Todo>> Exception3(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
