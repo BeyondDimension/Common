@@ -152,6 +152,15 @@ public sealed class ViewModelWrapperTemplate :
         //var isMP2 = modelAttrs.Any(static x => x.ClassNameEquals("MemoryPack.MemoryPackableAttribute"));
         bool isMP2 = false; // TODO
 
+        var debuggerDisplayProperty = modelTypeSymbol.GetMembers()
+            .OfType<IPropertySymbol>()
+            .Where(x => x.DeclaredAccessibility == Accessibility.Public &&
+                x.Name == "DebuggerDisplay" && TypeStringImpl.Parse(x.Type).IsSystemString).FirstOrDefault();
+        var debuggerDisplayMethod = debuggerDisplayProperty == null ? modelTypeSymbol.GetMembers()
+            .OfType<IMethodSymbol>()
+            .Where(x => x.DeclaredAccessibility == Accessibility.Public &&
+                (x.Name == "DebuggerDisplay" || x.Name == "GetDebuggerDisplay") && TypeStringImpl.Parse(x.ReturnType).IsSystemString).FirstOrDefault() : null;
+
         WriteFileHeader(stream);
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);
@@ -159,6 +168,36 @@ public sealed class ViewModelWrapperTemplate :
         var vmBaseType = m.Attribute.ViewModelBaseType?.Name ?? "ReactiveObject";
         var modelType = m.Attribute.ModelType?.Name;
         modelType.ThrowIsNull();
+
+        stream.WriteFormat(
+"""
+/// <summary>
+/// <see cref="{0}"/> 的视图模型
+/// </summary>
+
+"""u8, modelType);
+
+        if (debuggerDisplayProperty != null)
+        {
+            stream.Write(
+"""
+[DebuggerDisplay("{DebuggerDisplay,nq}")]
+
+"""u8);
+        }
+        else if (debuggerDisplayMethod != null)
+        {
+            stream.Write(
+"""
+[DebuggerDisplay("{
+"""u8);
+            stream.WriteUtf16StrToUtf8OrCustom(debuggerDisplayMethod.Name);
+            stream.Write(
+"""
+(),nq}")]
+
+"""u8);
+        }
         if (m.Attribute.Constructor)
         {
             stream.WriteFormat(m.Attribute.IsSealed ?
@@ -193,6 +232,28 @@ partial class {0} : {1}
         stream.WriteNewLine();
 
         #region Body
+
+        if (debuggerDisplayProperty != null)
+        {
+            stream.WriteFormat(
+"""
+    /// <inheritdoc cref="DebuggerDisplayAttribute"/>
+    [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
+    public string DebuggerDisplay => Model.DebuggerDisplay!;
+
+
+"""u8);
+        }
+        else if (debuggerDisplayMethod != null)
+        {
+            stream.WriteFormat(
+"""
+    /// <inheritdoc cref="DebuggerDisplayAttribute"/>
+    public string {0}() => Model.{0}()!;
+
+
+"""u8, debuggerDisplayMethod.Name);
+        }
 
         if (m.Attribute.Constructor)
         {
@@ -248,10 +309,16 @@ partial class {0} : {1}
             stream.WriteNewLine();
         }
 
-        var vmProperties = m.NamedTypeSymbol.GetMembers()
-            .OfType<IPropertySymbol>().ToImmutableArray(); // 视图模型的属性
-        var mProperties = modelTypeSymbol.GetMembers()
-            .OfType<IPropertySymbol>().ToImmutableArray(); // 模型的属性
+        static ImmutableArray<IPropertySymbol> GetVMMProperties(ImmutableArray<ISymbol> symbols)
+        {
+            var properties = symbols.OfType<IPropertySymbol>();
+            properties = properties.Where(x
+                => x.DeclaredAccessibility == Accessibility.Public);
+            return properties.ToImmutableArray();
+        }
+
+        var vmProperties = GetVMMProperties(m.NamedTypeSymbol.GetMembers()); // 视图模型的属性
+        var mProperties = GetVMMProperties(modelTypeSymbol.GetMembers()); // 模型的属性
 
         stream.WriteNewLine();
         foreach (var property in mProperties)
@@ -438,7 +505,7 @@ partial class {0} : {1}
 """
 
     /// <inheritdoc />
-    public override string ToString() => Model.ToString();
+    public override string ToString() => Model.ToString()!;
 """u8);
             }
         }

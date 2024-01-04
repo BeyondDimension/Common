@@ -45,9 +45,16 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
         public bool B { get; set; }
     }
 
-    //[MP2Obj(MP2SerializeLayout.Sequential)]
-    public sealed partial record class TodoModel : IFixedSizeMemoryPackable
+    public interface ITodoModel1
     {
+        string A { get; }
+    }
+
+    //[MP2Obj(MP2SerializeLayout.Sequential)]
+    public sealed partial record class TodoModel : IFixedSizeMemoryPackable, ITodoModel1
+    {
+        string ITodoModel1.A => string.Empty;
+
         public Dictionary<TestEnum, Dictionary<TestEnum, Dictionary<TestEnum, string>>>? C { get; set; }
 
         public string D { get; set; } = "";
