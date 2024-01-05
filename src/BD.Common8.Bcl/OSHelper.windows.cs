@@ -13,6 +13,6 @@ partial class OSHelper
 #else
         _IsWindows11AtLeast.Value;
 
-    static readonly Lazy<bool> _IsWindows11AtLeast = new(OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000));
+    static readonly Lazy<bool> _IsWindows11AtLeast = new(() => OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000));
 #endif
 }
