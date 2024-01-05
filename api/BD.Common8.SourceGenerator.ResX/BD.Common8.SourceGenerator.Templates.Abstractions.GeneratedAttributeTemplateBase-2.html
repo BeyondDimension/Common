@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2">
+
+
+
+  <h1 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2" class="text-break">
+    Class GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.SourceGenerator.html">SourceGenerator</a>.<a class="xref" href="BD.Common8.SourceGenerator.Templates.html">Templates</a>.<a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.SourceGenerator.ResX.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>基于 GeneratedAttribute 的源生成模板</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt; : TemplateBase, IIncrementalGenerator where TGeneratedAttribute : notnull where TSourceModel : GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;.ISourceModel</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TGeneratedAttribute</code></dt>
+    <dd><p>生成特性模型</p>
+</dd>
+    <dt><code>TSourceModel</code></dt>
+    <dd><p>生成源文件参数模型</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html">TemplateBase</a></div>
+      <div><span class="xref">GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IIncrementalGenerator</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.html">DesignerTemplate</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html#BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_WriteFileHeader_System_IO_Stream_">TemplateBase.WriteFileHeader(Stream)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html#BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_WriteNamespace_System_IO_Stream_System_String_System_Boolean_System_Boolean_">TemplateBase.WriteNamespace(Stream, string, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html#BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomFieldName">TemplateBase.GetRandomFieldName()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html#BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GenerateRandomString_System_Int32_System_String_">TemplateBase.GenerateRandomString(int, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html#BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_FileVersion">TemplateBase.FileVersion</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html#BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_Random">TemplateBase.Random</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="../BD.Common8.Bcl/System.Extensions.ObjectExtensions.html#System_Extensions_ObjectExtensions_ThrowIsNull__1___0_System_String_">ObjectExtensions.ThrowIsNull&lt;T&gt;(T?, string?)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2__ctor_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.#ctor*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2__ctor" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.#ctor">
+  GeneratedAttributeTemplateBase()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected GeneratedAttributeTemplateBase()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_AttrName_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.AttrName*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_AttrName" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.AttrName">
+  AttrName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>typeof(TGeneratedAttribute).FullName</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string AttrName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_FileId_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.FileId*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_FileId" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.FileId">
+  FileId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>该模板生成源文件名中的唯一名称，默认使用 <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.html#BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_Id">Id</a>，可重写替换</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string FileId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_Id_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.Id*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_Id" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>typeof(TGeneratedAttribute).Name.TrimEnd(&quot;GeneratedAttribute&quot;)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string Id { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_IgnoreExecute_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.IgnoreExecute*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_IgnoreExecute" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.IgnoreExecute">
+  IgnoreExecute
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否跳过生成器执行函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IgnoreExecute { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_Execute_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.Execute*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_Execute_Microsoft_CodeAnalysis_SourceProductionContext_Microsoft_CodeAnalysis_GeneratorAttributeSyntaxContext_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.Execute(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext)">
+  Execute(SourceProductionContext, GeneratorAttributeSyntaxContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通用增量源生成器执行函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Execute(SourceProductionContext spc, GeneratorAttributeSyntaxContext m)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spc</code> <span class="xref">SourceProductionContext</span></dt>
+    <dd></dd>
+    <dt><code>m</code> <span class="xref">GeneratorAttributeSyntaxContext</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_ExecuteCore_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.ExecuteCore*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_ExecuteCore_Microsoft_CodeAnalysis_SourceProductionContext__1_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.ExecuteCore(Microsoft.CodeAnalysis.SourceProductionContext,`1)">
+  ExecuteCore(SourceProductionContext, TSourceModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通用增量源生成器执行函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ExecuteCore(SourceProductionContext spc, TSourceModel m)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spc</code> <span class="xref">SourceProductionContext</span></dt>
+    <dd></dd>
+    <dt><code>m</code> <span class="xref">TSourceModel</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_GetAttribute_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.GetAttribute*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_GetAttribute_System_Collections_Immutable_ImmutableArray_Microsoft_CodeAnalysis_AttributeData__" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.GetAttribute(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData})">
+  GetAttribute(ImmutableArray&lt;AttributeData&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据 <span class="xref">Microsoft.CodeAnalysis.AttributeData</span> 还原 TGeneratedAttribute 数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract TGeneratedAttribute GetAttribute(ImmutableArray&lt;AttributeData&gt; attributes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attributes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<span class="xref">AttributeData</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TGeneratedAttribute</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_GetSourceModel_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.GetSourceModel*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_GetSourceModel_BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase__0__1__GetSourceModelArgs_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.GetSourceModel(BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase{`0,`1}.GetSourceModelArgs)">
+  GetSourceModel(GetSourceModelArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>业务实现获取 <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.ISourceModel.html">GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;.ISourceModel</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract TSourceModel GetSourceModel(GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;.GetSourceModelArgs args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.html">GeneratedAttributeTemplateBase</a>&lt;TGeneratedAttribute, TSourceModel&gt;.<a class="xref" href="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.GetSourceModelArgs.html">GetSourceModelArgs</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TSourceModel</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_WriteFile_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.WriteFile*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_WriteFile_System_IO_Stream__1_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.WriteFile(System.IO.Stream,`1)">
+  WriteFile(Stream, TSourceModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>源生成器写入文件流执行逻辑</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void WriteFile(Stream stream, TSourceModel m)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+    <dt><code>m</code> <span class="xref">TSourceModel</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

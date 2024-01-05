@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Resource",
       "source_relative_path": "README.md",
       "output": {
         "resource": {
           "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -5542,6 +5542,26 @@
       "version": ""
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.MemoryPackHubProtocol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.MemoryPackHubProtocol.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "api/BD.Common8.Ipc/toc.yml",
       "output": {
@@ -8334,6 +8354,299 @@
         },
         ".json": {
           "relative_path": "api/BD.Common8.SmsSender/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.AttributeDataHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.AttributeDataHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.SourceTextHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.SourceTextHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.TypeHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.TypeHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.TypeStringImpl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.TypeStringImpl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.SourceModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.SourceModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.GetSourceModelArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.GetSourceModelArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.ISourceModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.ISourceModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase-2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.CodeDom.Compiler.ResXGeneratedCodeAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.CodeDom.Compiler.ResXGeneratedCodeAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.CodeDom.Compiler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.CodeDom.Compiler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.ObjectExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.ObjectExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.StreamExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.StreamExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.OperatingSystem2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.OperatingSystem2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.OSPlatformCompatAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.OSPlatformCompatAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.SupportedOSPlatformAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.SupportedOSPlatformAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.SupportedOSPlatformGuardAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.SupportedOSPlatformGuardAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.UnsupportedOSPlatformAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.UnsupportedOSPlatformAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.UnsupportedOSPlatformGuardAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.UnsupportedOSPlatformGuardAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Runtime.Versioning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.StringExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.ThrowHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.ThrowHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/toc.json"
         }
       },
       "version": ""

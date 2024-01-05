@@ -1,0 +1,2457 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class TypeStringImpl
+ | BD.Common8 文档 </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class TypeStringImpl
+ | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl">
+
+
+
+  <h1 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl" class="text-break">
+    Class TypeStringImpl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.SourceGenerator.html">SourceGenerator</a>.<a class="xref" href="BD.Common8.SourceGenerator.Helpers.html">Helpers</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.SourceGenerator.ResX.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>包装 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> 或 <span class="xref">Microsoft.CodeAnalysis.ITypeSymbol</span> 到 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> 的类型转换</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class TypeStringImpl : Type, ICustomAttributeProvider, IReflect</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo">MemberInfo</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></div>
+      <div><span class="xref">TypeStringImpl</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.icustomattributeprovider">ICustomAttributeProvider</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.ireflect">IReflect</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.delimiter">Type.Delimiter</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.emptytypes">Type.EmptyTypes</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.missing">Type.Missing</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.filterattribute">Type.FilterAttribute</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.filtername">Type.FilterName</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.filternameignorecase">Type.FilterNameIgnoreCase</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string-system-boolean-system-boolean)">Type.GetType(string, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string-system-boolean)">Type.GetType(string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string)">Type.GetType(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string-system-func((system-reflection-assemblyname-system-reflection-assembly))-system-func((system-reflection-assembly-system-string-system-boolean-system-type)))">Type.GetType(string, Func&lt;AssemblyName, Assembly&gt;, Func&lt;Assembly, string, bool, Type&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string-system-func((system-reflection-assemblyname-system-reflection-assembly))-system-func((system-reflection-assembly-system-string-system-boolean-system-type))-system-boolean)">Type.GetType(string, Func&lt;AssemblyName, Assembly&gt;, Func&lt;Assembly, string, bool, Type&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype(system-string-system-func((system-reflection-assemblyname-system-reflection-assembly))-system-func((system-reflection-assembly-system-string-system-boolean-system-type))-system-boolean-system-boolean)">Type.GetType(string, Func&lt;AssemblyName, Assembly&gt;, Func&lt;Assembly, string, bool, Type&gt;, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromhandle">Type.GetTypeFromHandle(RuntimeTypeHandle)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettype#system-type-gettype">Type.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getarrayrank">Type.GetArrayRank()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getgenerictypedefinition">Type.GetGenericTypeDefinition()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getgenericarguments">Type.GetGenericArguments()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getgenericparameterconstraints">Type.GetGenericParameterConstraints()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isassignableto">Type.IsAssignableTo(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getconstructor#system-type-getconstructor(system-type())">Type.GetConstructor(Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getconstructor#system-type-getconstructor(system-reflection-bindingflags-system-type())">Type.GetConstructor(BindingFlags, Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getconstructor#system-type-getconstructor(system-reflection-bindingflags-system-reflection-binder-system-type()-system-reflection-parametermodifier())">Type.GetConstructor(BindingFlags, Binder, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getconstructor#system-type-getconstructor(system-reflection-bindingflags-system-reflection-binder-system-reflection-callingconventions-system-type()-system-reflection-parametermodifier())">Type.GetConstructor(BindingFlags, Binder, CallingConventions, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getconstructors#system-type-getconstructors">Type.GetConstructors()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getevent#system-type-getevent(system-string)">Type.GetEvent(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getevents#system-type-getevents">Type.GetEvents()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getfield#system-type-getfield(system-string)">Type.GetField(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getfields#system-type-getfields">Type.GetFields()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmember#system-type-getmember(system-string)">Type.GetMember(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmember#system-type-getmember(system-string-system-reflection-bindingflags)">Type.GetMember(string, BindingFlags)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmember#system-type-getmember(system-string-system-reflection-membertypes-system-reflection-bindingflags)">Type.GetMember(string, MemberTypes, BindingFlags)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmembers#system-type-getmembers">Type.GetMembers()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmemberwithsamemetadatadefinitionas">Type.GetMemberWithSameMetadataDefinitionAs(MemberInfo)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string)">Type.GetMethod(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-reflection-bindingflags)">Type.GetMethod(string, BindingFlags)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-reflection-bindingflags-system-type())">Type.GetMethod(string, BindingFlags, Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-type())">Type.GetMethod(string, Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-type()-system-reflection-parametermodifier())">Type.GetMethod(string, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-reflection-bindingflags-system-reflection-binder-system-type()-system-reflection-parametermodifier())">Type.GetMethod(string, BindingFlags, Binder, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-reflection-bindingflags-system-reflection-binder-system-reflection-callingconventions-system-type()-system-reflection-parametermodifier())">Type.GetMethod(string, BindingFlags, Binder, CallingConventions, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-int32-system-type())">Type.GetMethod(string, int, Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-int32-system-type()-system-reflection-parametermodifier())">Type.GetMethod(string, int, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-int32-system-reflection-bindingflags-system-reflection-binder-system-type()-system-reflection-parametermodifier())">Type.GetMethod(string, int, BindingFlags, Binder, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethod#system-type-getmethod(system-string-system-int32-system-reflection-bindingflags-system-reflection-binder-system-reflection-callingconventions-system-type()-system-reflection-parametermodifier())">Type.GetMethod(string, int, BindingFlags, Binder, CallingConventions, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getmethods#system-type-getmethods">Type.GetMethods()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getnestedtype#system-type-getnestedtype(system-string)">Type.GetNestedType(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getnestedtypes#system-type-getnestedtypes">Type.GetNestedTypes()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperty#system-type-getproperty(system-string)">Type.GetProperty(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperty#system-type-getproperty(system-string-system-reflection-bindingflags)">Type.GetProperty(string, BindingFlags)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperty#system-type-getproperty(system-string-system-type)">Type.GetProperty(string, Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperty#system-type-getproperty(system-string-system-type())">Type.GetProperty(string, Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperty#system-type-getproperty(system-string-system-type-system-type())">Type.GetProperty(string, Type, Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperty#system-type-getproperty(system-string-system-type-system-type()-system-reflection-parametermodifier())">Type.GetProperty(string, Type, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperty#system-type-getproperty(system-string-system-reflection-bindingflags-system-reflection-binder-system-type-system-type()-system-reflection-parametermodifier())">Type.GetProperty(string, BindingFlags, Binder, Type, Type[], ParameterModifier[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getproperties#system-type-getproperties">Type.GetProperties()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getdefaultmembers">Type.GetDefaultMembers()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypehandle">Type.GetTypeHandle(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypearray">Type.GetTypeArray(object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypecode">Type.GetTypeCode(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromclsid#system-type-gettypefromclsid(system-guid)">Type.GetTypeFromCLSID(Guid)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromclsid#system-type-gettypefromclsid(system-guid-system-boolean)">Type.GetTypeFromCLSID(Guid, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromclsid#system-type-gettypefromclsid(system-guid-system-string)">Type.GetTypeFromCLSID(Guid, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromclsid#system-type-gettypefromclsid(system-guid-system-string-system-boolean)">Type.GetTypeFromCLSID(Guid, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromprogid#system-type-gettypefromprogid(system-string)">Type.GetTypeFromProgID(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromprogid#system-type-gettypefromprogid(system-string-system-boolean)">Type.GetTypeFromProgID(string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromprogid#system-type-gettypefromprogid(system-string-system-string)">Type.GetTypeFromProgID(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gettypefromprogid#system-type-gettypefromprogid(system-string-system-string-system-boolean)">Type.GetTypeFromProgID(string, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.invokemember#system-type-invokemember(system-string-system-reflection-bindingflags-system-reflection-binder-system-object-system-object())">Type.InvokeMember(string, BindingFlags, Binder, object, object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.invokemember#system-type-invokemember(system-string-system-reflection-bindingflags-system-reflection-binder-system-object-system-object()-system-globalization-cultureinfo)">Type.InvokeMember(string, BindingFlags, Binder, object, object[], CultureInfo)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getinterface#system-type-getinterface(system-string)">Type.GetInterface(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getinterfacemap">Type.GetInterfaceMap(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isinstanceoftype">Type.IsInstanceOfType(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isequivalentto">Type.IsEquivalentTo(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getenumunderlyingtype">Type.GetEnumUnderlyingType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getenumvalues">Type.GetEnumValues()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.makearraytype#system-type-makearraytype">Type.MakeArrayType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.makearraytype#system-type-makearraytype(system-int32)">Type.MakeArrayType(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.makebyreftype">Type.MakeByRefType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.makegenerictype">Type.MakeGenericType(params Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.makepointertype">Type.MakePointerType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.makegenericsignaturetype">Type.MakeGenericSignatureType(Type, params Type[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.makegenericmethodparameter">Type.MakeGenericMethodParameter(int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.equals#system-type-equals(system-object)">Type.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.gethashcode">Type.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.equals#system-type-equals(system-type)">Type.Equals(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.reflectiononlygettype">Type.ReflectionOnlyGetType(string, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isenumdefined">Type.IsEnumDefined(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getenumname">Type.GetEnumName(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.getenumnames">Type.GetEnumNames()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.findinterfaces">Type.FindInterfaces(TypeFilter, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.findmembers">Type.FindMembers(MemberTypes, BindingFlags, MemberFilter, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.issubclassof">Type.IsSubclassOf(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isassignablefrom">Type.IsAssignableFrom(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isinterface">Type.IsInterface</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.membertype">Type.MemberType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnested">Type.IsNested</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.declaringtype">Type.DeclaringType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.declaringmethod">Type.DeclaringMethod</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.reflectedtype">Type.ReflectedType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.istypedefinition">Type.IsTypeDefinition</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isarray">Type.IsArray</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isbyref">Type.IsByRef</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.ispointer">Type.IsPointer</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isconstructedgenerictype">Type.IsConstructedGenericType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isgenericparameter">Type.IsGenericParameter</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isgenerictypeparameter">Type.IsGenericTypeParameter</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isgenericmethodparameter">Type.IsGenericMethodParameter</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isgenerictype">Type.IsGenericType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isgenerictypedefinition">Type.IsGenericTypeDefinition</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isszarray">Type.IsSZArray</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isvariableboundarray">Type.IsVariableBoundArray</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isbyreflike">Type.IsByRefLike</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.haselementtype">Type.HasElementType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.generictypearguments">Type.GenericTypeArguments</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.genericparameterposition">Type.GenericParameterPosition</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.genericparameterattributes">Type.GenericParameterAttributes</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.attributes">Type.Attributes</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isabstract">Type.IsAbstract</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isimport">Type.IsImport</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.issealed">Type.IsSealed</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isspecialname">Type.IsSpecialName</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isclass">Type.IsClass</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnestedassembly">Type.IsNestedAssembly</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnestedfamandassem">Type.IsNestedFamANDAssem</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnestedfamily">Type.IsNestedFamily</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnestedfamorassem">Type.IsNestedFamORAssem</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnestedprivate">Type.IsNestedPrivate</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnestedpublic">Type.IsNestedPublic</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isnotpublic">Type.IsNotPublic</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.ispublic">Type.IsPublic</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isautolayout">Type.IsAutoLayout</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isexplicitlayout">Type.IsExplicitLayout</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.islayoutsequential">Type.IsLayoutSequential</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isansiclass">Type.IsAnsiClass</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isautoclass">Type.IsAutoClass</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isunicodeclass">Type.IsUnicodeClass</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.iscomobject">Type.IsCOMObject</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.iscontextful">Type.IsContextful</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isenum">Type.IsEnum</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.ismarshalbyref">Type.IsMarshalByRef</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isprimitive">Type.IsPrimitive</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isvaluetype">Type.IsValueType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.issignaturetype">Type.IsSignatureType</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.issecuritycritical">Type.IsSecurityCritical</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.issecuritysafecritical">Type.IsSecuritySafeCritical</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.issecuritytransparent">Type.IsSecurityTransparent</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.structlayoutattribute">Type.StructLayoutAttribute</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.typeinitializer">Type.TypeInitializer</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.typehandle">Type.TypeHandle</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.defaultbinder">Type.DefaultBinder</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isserializable">Type.IsSerializable</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.containsgenericparameters">Type.ContainsGenericParameters</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type.isvisible">Type.IsVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo.hassamemetadatadefinitionas">MemberInfo.HasSameMetadataDefinitionAs(MemberInfo)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo.getcustomattributesdata">MemberInfo.GetCustomAttributesData()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo.customattributes">MemberInfo.CustomAttributes</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo.iscollectible">MemberInfo.IsCollectible</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo.metadatatoken">MemberInfo.MetadataToken</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="../BD.Common8.Bcl/System.Extensions.ObjectExtensions.html#System_Extensions_ObjectExtensions_ThrowIsNull__1___0_System_String_">ObjectExtensions.ThrowIsNull&lt;T&gt;(T?, string?)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl__ctor_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.#ctor*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl__ctor_Microsoft_CodeAnalysis_ITypeSymbol_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.#ctor(Microsoft.CodeAnalysis.ITypeSymbol)">
+  TypeStringImpl(ITypeSymbol)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TypeStringImpl(ITypeSymbol typeSymbol)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>typeSymbol</code> <span class="xref">ITypeSymbol</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl__ctor_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.#ctor*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl__ctor_System_String_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.#ctor(System.String)">
+  TypeStringImpl(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>包装 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> 或 <span class="xref">Microsoft.CodeAnalysis.ITypeSymbol</span> 到 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a> 的类型转换</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TypeStringImpl(string fullName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fullName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Assembly_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Assembly*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Assembly" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Assembly">
+  Assembly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Assembly Assembly { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_AssemblyQualifiedName_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.AssemblyQualifiedName*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_AssemblyQualifiedName" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.AssemblyQualifiedName">
+  AssemblyQualifiedName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string AssemblyQualifiedName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_BaseType_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.BaseType*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_BaseType" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.BaseType">
+  BaseType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type BaseType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_DictionaryKey_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.DictionaryKey*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_DictionaryKey" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.DictionaryKey">
+  DictionaryKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DictionaryKey { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_DictionaryValue_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.DictionaryValue*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_DictionaryValue" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.DictionaryValue">
+  DictionaryValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DictionaryValue { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_FullName_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.FullName*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_FullName" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.FullName">
+  FullName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string FullName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GUID_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GUID*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GUID" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GUID">
+  GUID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Guid GUID { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GenericT_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GenericT*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GenericT" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GenericT">
+  GenericT
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GenericT { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemBoolean_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemBoolean*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemBoolean" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemBoolean">
+  IsSystemBoolean
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSystemBoolean { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemCollectionsGenericIAsyncEnumerable_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemCollectionsGenericIAsyncEnumerable*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemCollectionsGenericIAsyncEnumerable" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemCollectionsGenericIAsyncEnumerable">
+  IsSystemCollectionsGenericIAsyncEnumerable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSystemCollectionsGenericIAsyncEnumerable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemDateOnly_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemDateOnly*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemDateOnly" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemDateOnly">
+  IsSystemDateOnly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSystemDateOnly { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemDateTime_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemDateTime*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemDateTime" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemDateTime">
+  IsSystemDateTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSystemDateTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemDateTimeOffset_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemDateTimeOffset*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemDateTimeOffset" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemDateTimeOffset">
+  IsSystemDateTimeOffset
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSystemDateTimeOffset { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemString_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemString*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemString" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemString">
+  IsSystemString
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSystemString { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemThreadingCancellationToken_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemThreadingCancellationToken*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsSystemThreadingCancellationToken" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsSystemThreadingCancellationToken">
+  IsSystemThreadingCancellationToken
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSystemThreadingCancellationToken { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Module_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Module*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Module" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Module">
+  Module
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Module Module { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.module">Module</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Name_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Name*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Name" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Name { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Namespace_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Namespace*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Namespace" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Namespace">
+  Namespace
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string Namespace { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_TypeSymbol_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.TypeSymbol*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_TypeSymbol" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.TypeSymbol">
+  TypeSymbol
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ITypeSymbol? TypeSymbol { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ITypeSymbol</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_UnderlyingSystemType_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.UnderlyingSystemType*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_UnderlyingSystemType" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.UnderlyingSystemType">
+  UnderlyingSystemType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type UnderlyingSystemType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetAttributeFlagsImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetAttributeFlagsImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetAttributeFlagsImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetAttributeFlagsImpl">
+  GetAttributeFlagsImpl()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override TypeAttributes GetAttributeFlagsImpl()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.typeattributes">TypeAttributes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetConstructorImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetConstructorImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetConstructorImpl_System_Reflection_BindingFlags_System_Reflection_Binder_System_Reflection_CallingConventions_System_Type___System_Reflection_ParameterModifier___" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetConstructorImpl(System.Reflection.BindingFlags,System.Reflection.Binder,System.Reflection.CallingConventions,System.Type[],System.Reflection.ParameterModifier[])">
+  GetConstructorImpl(BindingFlags, Binder, CallingConventions, Type[], ParameterModifier[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ConstructorInfo GetConstructorImpl(BindingFlags bindingAttr, Binder binder, CallingConventions callConvention, Type[] types, ParameterModifier[] modifiers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+    <dt><code>binder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.binder">Binder</a></dt>
+    <dd></dd>
+    <dt><code>callConvention</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.callingconventions">CallingConventions</a></dt>
+    <dd></dd>
+    <dt><code>types</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</dt>
+    <dd></dd>
+    <dt><code>modifiers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parametermodifier">ParameterModifier</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.constructorinfo">ConstructorInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetConstructors_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetConstructors*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetConstructors_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetConstructors(System.Reflection.BindingFlags)">
+  GetConstructors(BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ConstructorInfo[] GetConstructors(BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.constructorinfo">ConstructorInfo</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetCustomAttributes_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetCustomAttributes*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetCustomAttributes_System_Boolean_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetCustomAttributes(System.Boolean)">
+  GetCustomAttributes(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override object[] GetCustomAttributes(bool inherit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>inherit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetCustomAttributes_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetCustomAttributes*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetCustomAttributes_System_Type_System_Boolean_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetCustomAttributes(System.Type,System.Boolean)">
+  GetCustomAttributes(Type, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override object[] GetCustomAttributes(Type attributeType, bool inherit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attributeType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>inherit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetElementType_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetElementType*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetElementType" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetElementType">
+  GetElementType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type GetElementType()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetEvent_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetEvent*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetEvent_System_String_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetEvent(System.String,System.Reflection.BindingFlags)">
+  GetEvent(string, BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override EventInfo GetEvent(string name, BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.eventinfo">EventInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetEvents_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetEvents*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetEvents_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetEvents(System.Reflection.BindingFlags)">
+  GetEvents(BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override EventInfo[] GetEvents(BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.eventinfo">EventInfo</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetField_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetField*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetField_System_String_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetField(System.String,System.Reflection.BindingFlags)">
+  GetField(string, BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override FieldInfo GetField(string name, BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetFields_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetFields*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetFields_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetFields(System.Reflection.BindingFlags)">
+  GetFields(BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override FieldInfo[] GetFields(BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetInterface_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetInterface*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetInterface_System_String_System_Boolean_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetInterface(System.String,System.Boolean)">
+  GetInterface(string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type GetInterface(string name, bool ignoreCase)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>ignoreCase</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetInterfaces_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetInterfaces*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetInterfaces" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetInterfaces">
+  GetInterfaces()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type[] GetInterfaces()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetMembers_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetMembers*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetMembers_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetMembers(System.Reflection.BindingFlags)">
+  GetMembers(BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override MemberInfo[] GetMembers(BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.memberinfo">MemberInfo</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetMethodImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetMethodImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetMethodImpl_System_String_System_Reflection_BindingFlags_System_Reflection_Binder_System_Reflection_CallingConventions_System_Type___System_Reflection_ParameterModifier___" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetMethodImpl(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Reflection.CallingConventions,System.Type[],System.Reflection.ParameterModifier[])">
+  GetMethodImpl(string, BindingFlags, Binder, CallingConventions, Type[], ParameterModifier[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override MethodInfo GetMethodImpl(string name, BindingFlags bindingAttr, Binder binder, CallingConventions callConvention, Type[] types, ParameterModifier[] modifiers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+    <dt><code>binder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.binder">Binder</a></dt>
+    <dd></dd>
+    <dt><code>callConvention</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.callingconventions">CallingConventions</a></dt>
+    <dd></dd>
+    <dt><code>types</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</dt>
+    <dd></dd>
+    <dt><code>modifiers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parametermodifier">ParameterModifier</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetMethods_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetMethods*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetMethods_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetMethods(System.Reflection.BindingFlags)">
+  GetMethods(BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override MethodInfo[] GetMethods(BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetNestedType_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetNestedType*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetNestedType_System_String_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetNestedType(System.String,System.Reflection.BindingFlags)">
+  GetNestedType(string, BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type GetNestedType(string name, BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetNestedTypes_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetNestedTypes*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetNestedTypes_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetNestedTypes(System.Reflection.BindingFlags)">
+  GetNestedTypes(BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Type[] GetNestedTypes(BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetProperties_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetProperties*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetProperties_System_Reflection_BindingFlags_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetProperties(System.Reflection.BindingFlags)">
+  GetProperties(BindingFlags)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override PropertyInfo[] GetProperties(BindingFlags bindingAttr)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetPropertyImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetPropertyImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetPropertyImpl_System_String_System_Reflection_BindingFlags_System_Reflection_Binder_System_Type_System_Type___System_Reflection_ParameterModifier___" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetPropertyImpl(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Type,System.Type[],System.Reflection.ParameterModifier[])">
+  GetPropertyImpl(string, BindingFlags, Binder, Type, Type[], ParameterModifier[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override PropertyInfo GetPropertyImpl(string name, BindingFlags bindingAttr, Binder binder, Type returnType, Type[] types, ParameterModifier[] modifiers)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>bindingAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+    <dt><code>binder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.binder">Binder</a></dt>
+    <dd></dd>
+    <dt><code>returnType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>types</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</dt>
+    <dd></dd>
+    <dt><code>modifiers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parametermodifier">ParameterModifier</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.propertyinfo">PropertyInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetTypeSymbol_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetTypeSymbol*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_GetTypeSymbol_System_Type_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.GetTypeSymbol(System.Type)">
+  GetTypeSymbol(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ITypeSymbol? GetTypeSymbol(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ITypeSymbol</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_HasElementTypeImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.HasElementTypeImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_HasElementTypeImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.HasElementTypeImpl">
+  HasElementTypeImpl()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool HasElementTypeImpl()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_InvokeMember_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.InvokeMember*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_InvokeMember_System_String_System_Reflection_BindingFlags_System_Reflection_Binder_System_Object_System_Object___System_Reflection_ParameterModifier___System_Globalization_CultureInfo_System_String___" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.InvokeMember(System.String,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object,System.Object[],System.Reflection.ParameterModifier[],System.Globalization.CultureInfo,System.String[])">
+  InvokeMember(string, BindingFlags, Binder, object, object[], ParameterModifier[], CultureInfo, string[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override object InvokeMember(string name, BindingFlags invokeAttr, Binder binder, object target, object[] args, ParameterModifier[] modifiers, CultureInfo culture, string[] namedParameters)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>invokeAttr</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.bindingflags">BindingFlags</a></dt>
+    <dd></dd>
+    <dt><code>binder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.binder">Binder</a></dt>
+    <dd></dd>
+    <dt><code>target</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+    <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
+    <dd></dd>
+    <dt><code>modifiers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parametermodifier">ParameterModifier</a>[]</dt>
+    <dd></dd>
+    <dt><code>culture</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></dt>
+    <dd></dd>
+    <dt><code>namedParameters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsArrayImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsArrayImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsArrayImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsArrayImpl">
+  IsArrayImpl()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool IsArrayImpl()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsByRefImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsByRefImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsByRefImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsByRefImpl">
+  IsByRefImpl()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool IsByRefImpl()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsCOMObjectImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsCOMObjectImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsCOMObjectImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsCOMObjectImpl">
+  IsCOMObjectImpl()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool IsCOMObjectImpl()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsDefined_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsDefined*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsDefined_System_Type_System_Boolean_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsDefined(System.Type,System.Boolean)">
+  IsDefined(Type, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool IsDefined(Type attributeType, bool inherit)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attributeType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>inherit</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsPointerImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsPointerImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsPointerImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsPointerImpl">
+  IsPointerImpl()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool IsPointerImpl()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsPrimitiveImpl_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsPrimitiveImpl*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_IsPrimitiveImpl" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.IsPrimitiveImpl">
+  IsPrimitiveImpl()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool IsPrimitiveImpl()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Parse_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Parse*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Parse_Microsoft_CodeAnalysis_ITypeSymbol_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Parse(Microsoft.CodeAnalysis.ITypeSymbol)">
+  Parse(ITypeSymbol)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TypeStringImpl Parse(ITypeSymbol typeSymbol)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>typeSymbol</code> <span class="xref">ITypeSymbol</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.html">TypeStringImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Parse_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Parse*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_Parse_System_String_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.Parse(System.String)">
+  Parse(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TypeStringImpl? Parse(string? fullName)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fullName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.html">TypeStringImpl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_ToString_" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.ToString*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Helpers_TypeStringImpl_ToString" data-uid="BD.Common8.SourceGenerator.Helpers.TypeStringImpl.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Helpers/TypeStringImpl.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
