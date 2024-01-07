@@ -67,7 +67,7 @@ jobs:
         run: dotnet --info
 
       - name: Test
-        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false;AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
+        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
 
   build:
     name: Build
