@@ -19,7 +19,9 @@ public static partial class ServiceCollectionExtensions
         {
             services.AddSingleton<IClipboardPlatformService, AvaloniaClipboardPlatformServiceImpl>();
         }
-        services.TryAddEssentials<TApplicationVersionServiceImpl, AvaloniaFilePickerPlatformServiceImpl, AvaloniaMainThreadPlatformServiceImpl>();
+        services.TryAddEssentials<TApplicationVersionServiceImpl, 
+            AvaloniaFilePickerPlatformServiceImpl, 
+            AvaloniaMainThreadPlatformServiceImpl>();
         return services;
     }
 }

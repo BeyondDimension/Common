@@ -14,3 +14,4 @@ public static partial class ServiceCollectionExtensions
         return services;
     }
 }
+
