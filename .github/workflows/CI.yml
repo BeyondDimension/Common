@@ -128,6 +128,7 @@ jobs:
 #        run: dotnet workload restore
 
       - name: Verify dotnet info
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
         run: dotnet --info
 
       - name: Build tools
