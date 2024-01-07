@@ -130,13 +130,13 @@ jobs:
         run: dotnet --info
 
       - name: Build tools
-        run: dotnet build -c Release src\BD.Common8.Tools.Build\BD.Common8.Tools.Build.csproj --nologo -v q /property:WarningLevel=0;AnalysisLevel=none
+        run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0;AnalysisLevel=none
 
       - name: Build projects
-        run: .\src\artifacts\bin\BD.Common8.Tools.Build\release\BD.Common8.Tools.Build.exe build
+        run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe build
 
       - name: Push NuGet packages
-        run: .\src\artifacts\bin\BD.Common8.Tools.Build\release\BD.Common8.Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}
+        run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}
 
       - name: Delete nuget packages
         if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}
