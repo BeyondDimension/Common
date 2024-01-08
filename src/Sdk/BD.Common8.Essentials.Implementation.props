@@ -12,8 +12,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<!--<UseSQLitePCL>$(UseCommon8EssentialsImplementation)</UseSQLitePCL>-->
-		<!--<UseCommon8RepositoriesSQLitePCL>$(UseCommon8EssentialsImplementation)</UseCommon8RepositoriesSQLitePCL>-->
 		<UseAndroidXBrowser>true</UseAndroidXBrowser>
 		<UseCommon8Bcl Condition="$(UseCommon8Bcl) == ''">true</UseCommon8Bcl>
 		<UseCommon8PrimitivesToast Condition="$(UseCommon8PrimitivesToast) == ''">true</UseCommon8PrimitivesToast>
@@ -21,6 +19,8 @@
 		<UseCommon8PrimitivesEssentials Condition="$(UseCommon8PrimitivesEssentials) == ''">true</UseCommon8PrimitivesEssentials>
 		<UseCommon8Essentials Condition="$(UseCommon8Essentials) == ''">true</UseCommon8Essentials>
 		<UseCommon8Primitives Condition="$(UseCommon8Primitives) == ''">true</UseCommon8Primitives>
+		<UseSQLitePCL Condition="$(UseSQLitePCL) == ''">true</UseSQLitePCL>
+		<UseCommon8RepositoriesSQLitePCL Condition="$(UseCommon8RepositoriesSQLitePCL) == ''">true</UseCommon8RepositoriesSQLitePCL>
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->

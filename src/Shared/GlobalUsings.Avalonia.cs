@@ -48,8 +48,6 @@ global using Avalonia.Android;
 global using Avalonia.iOS;
 #endif
 
-global using SkiaSharp;
-
 global using AvaColor = Avalonia.Media.Color;
 global using AvaSize = Avalonia.Size;
 global using AvaPoint = Avalonia.Point;

@@ -160,6 +160,9 @@
 
 	<!-- 是否包引用 Avalonia.Skia -->
 	<ItemGroup Condition="$(UseAvaloniaSkia) == 'true'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.Skia.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 		<PackageReference Include="Avalonia.Skia" />
 	</ItemGroup>
 

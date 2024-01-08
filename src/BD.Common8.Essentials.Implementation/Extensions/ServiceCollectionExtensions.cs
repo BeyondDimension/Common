@@ -32,7 +32,7 @@ public static partial class ServiceCollectionExtensions
         services.AddSingleton<IPermissionsPlatformService, PermissionsPlatformServiceImpl>();
 #pragma warning restore CA1416 // 验证平台兼容性
 #pragma warning restore IDE0079 // 请删除不必要的忽略
-        //services.TryAddSingleton<IPreferencesPlatformService, PreferencesPlatformServiceImpl>();
+        services.TryAddSingleton<IPreferencesPlatformService, PreferencesPlatformServiceImpl>();
         services.TryAddSingleton<IFilePickerPlatformService, TFilePickerPlatformServiceImpl>();
         services.TryAddSingleton(s => s.GetRequiredService<IFilePickerPlatformService>().OpenFileDialogService);
         services.TryAddSingleton(s => s.GetRequiredService<IFilePickerPlatformService>().SaveFileDialogService);

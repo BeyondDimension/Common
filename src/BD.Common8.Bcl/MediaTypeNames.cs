@@ -14,6 +14,11 @@ public static partial class MediaTypeNames
     public const string JSON = "application/json";
 
     /// <summary>
+    /// application/vnd.sapi+x-json
+    /// </summary>
+    public const string JSONSecurity = "application/vnd.sapi+x-json";
+
+    /// <summary>
     /// text/javascript
     /// </summary>
     public const string JS = "text/javascript";
@@ -22,6 +27,21 @@ public static partial class MediaTypeNames
     /// application/x-msgpack
     /// </summary>
     public const string MessagePack = "application/x-msgpack";
+
+    /// <summary>
+    /// application/vnd.sapi+x-msgpack
+    /// </summary>
+    public const string MessagePackSecurity = "application/vnd.sapi+x-msgpack";
+
+    /// <summary>
+    /// application/x-memorypack
+    /// </summary>
+    public const string MemoryPack = "application/x-memorypack";
+
+    /// <summary>
+    /// application/vnd.sapi+x-memorypack
+    /// </summary>
+    public const string MemoryPackSecurity = "application/vnd.sapi+x-memorypack";
 
     /// <summary>
     /// image/bmp
