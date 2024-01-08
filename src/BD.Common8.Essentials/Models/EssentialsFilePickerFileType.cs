@@ -29,6 +29,7 @@ public sealed class EssentialsFilePickerFileType : IFilePickerFileType
         Values = values;
     }
 
+    /// <inheritdoc cref="EssentialsFilePickerFileType.EssentialsFilePickerFileType(Item[])"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator EssentialsFilePickerFileType(Item[] values) => new(values);
 
