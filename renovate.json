@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":automergeAll",
+    ":disableDependencyDashboard",
+    ":disableRateLimiting",
+    ":label(🤖 Automatic)"
+  ],
+  "timezone": "Asia/Shanghai",
+  "schedule": ["before 1am","before 5am","before 9am"]
+}
