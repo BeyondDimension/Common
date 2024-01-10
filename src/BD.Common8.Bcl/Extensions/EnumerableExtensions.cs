@@ -51,6 +51,13 @@ public static partial class EnumerableExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddRange<T>(this IList<T> ts, IEnumerable<T> collection)
     {
+        ts.AddRangeByCommon(collection);
+    }
+
+    /// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void AddRangeByCommon<T>(this IList<T> ts, IEnumerable<T> collection)
+    {
         if (ts is List<T> list)
             list.AddRange(collection);
         else
