@@ -128,6 +128,7 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
     {
         base.Configure(app);
         MapHub<IpcHub>(HubUrl);
+        MapHub<IpcHub2>(IpcHub2.HubUrl);
 
         if (UseSwagger)
         {
@@ -286,7 +287,7 @@ sealed partial class TodoServiceImpl : ITodoService
         await Clients.All.SendAsync(nameof(ITodoService), nameof(AsyncEnumerable), RequestAborted());
         for (int i = 0; i < len; i++)
         {
-            var millisecondsDelay = Random.Shared.Next(199, 819);
+            var millisecondsDelay = Random.Shared.Next(199, 419);
             Console.WriteLine($"异步迭代器[{i}]，随机等待毫秒：{millisecondsDelay}");
             await Task.Delay(millisecondsDelay, cancellationToken); // 模拟循环中耗时操作
             if (i < todos.Length)
@@ -359,4 +360,34 @@ sealed class IpcHub : BD.Common8.SourceGenerator.Ipc.Server.IpcHub
     //    }
     //    return result;
     //}
+}
+
+[Authorize]
+sealed class IpcHub2 : IpcHub2Base
+{
+    /// <summary>
+    /// SignalR 的 HubUrl
+    /// </summary>
+    public const string HubUrl = "/Hubs/GameTools";
+}
+
+class IpcHub2Base : Hub
+{
+    public async IAsyncEnumerable<ApiRspImpl<NativeWindowModel?>> INativeWindowServices_GetMoveMouseDownWindow()
+    {
+        Console.WriteLine("IpcHub2Base");
+        await Task.CompletedTask;
+        ApiRspImpl<NativeWindowModel> result;
+        try
+        {
+            result = new NativeWindowModel(2551, "title", "default", 1, default, default)
+            {
+            }!;
+        }
+        catch (Exception ex)
+        {
+            result = ex!;
+        }
+        yield return result!;
+    }
 }

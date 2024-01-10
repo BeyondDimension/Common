@@ -15,7 +15,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
     IpcAppConnDelegatingHandler? httpHandler;
     HttpClient? httpClient;
     IpcAppConnDelegatingHandler? hubConnHandler;
-    protected HubConnection? hubConnection;
+    ConcurrentDictionary<string, HubConnection> hubConnections = [];
 
     /// <inheritdoc cref="IpcAppConnectionString"/>
     protected readonly IpcAppConnectionString connectionString = connectionString;
@@ -40,7 +40,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
     AsyncExclusiveLock lock_GetHubConnAsync = new();
     AsyncExclusiveLock lock_TryStartAsync = new();
 
-    protected string? _AccessToken;
+    string? _AccessToken;
 
     /// <summary>
     /// 获取持有者令牌身份验证
@@ -59,32 +59,41 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
         return Task.FromResult(accessToken)!;
     }
 
-    protected virtual bool UseMemoryPack => true;
+    protected virtual bool UseMemoryPack => false;
 
     /// <summary>
     /// 异步获取 SignalR Hub 连接
     /// </summary>
     /// <returns></returns>
-    protected async ValueTask<HubConnection> GetHubConnAsync()
+    protected async ValueTask<HubConnection> GetHubConnAsync(string? hubUrl = null)
     {
-        if (hubConnection != null)
+        hubUrl ??= HubUrl;
+
+        if (hubConnections.TryGetValue(hubUrl, out var hubConnection))
         {
             if (hubConnection.State == HubConnectionState.Disconnected)
             {
-                await TryStartAsync();
+                await TryStartAsync(hubConnection);
             }
             return hubConnection;
         }
+
         using (await lock_GetHubConnAsync.AcquireLockAsync(CancellationToken.None))
         {
             hubConnHandler = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
             ConfigureSocketsHttpHandler(hubConnHandler.InnerHandler);
 
+            string GetHubUrl()
+            {
+                if (hubUrl.StartsWith('/'))
+                    return $"{hubConnHandler.BaseAddress}{hubUrl}";
+                else
+                    return $"{hubConnHandler.BaseAddress}/{hubUrl}";
+            }
+            var url = new Uri(GetHubUrl());
             var builder = new HubConnectionBuilder()
-                //.WithServerTimeout()
-                .WithUrl(hubConnHandler.BaseAddress, opt =>
+                .WithUrl(url, HttpTransportType.WebSockets, opt =>
                 {
-                    opt.Transports = HttpTransportType.WebSockets;
                     opt.HttpMessageHandlerFactory = (oldHandler) =>
                     {
                         oldHandler.Dispose(); // 传过来的 Handler 丢弃，使用根据连接字符串解析的
@@ -102,14 +111,6 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
                     {
                         o.HttpVersion = HttpVersion.Version20;
                     };
-                    string GetHubUrl()
-                    {
-                        if (HubUrl.StartsWith('/'))
-                            return $"{hubConnHandler.BaseAddress}{HubUrl}";
-                        else
-                            return $"{hubConnHandler.BaseAddress}/{HubUrl}";
-                    }
-                    opt.Url = new Uri(GetHubUrl());
                     opt.AccessTokenProvider = GetAccessTokenAsync; // 授权头不正确将返回超时
                 })
                 .WithAutomaticReconnect();
@@ -130,8 +131,9 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
             hubConnection.Reconnected += HubConnection_Reconnected;
             hubConnection.Reconnecting += HubConnection_Reconnecting;
             OnBuildHubConnection(hubConnection);
+            hubConnections.TryAdd(hubUrl, hubConnection);
 
-            await TryStartAsync();
+            await TryStartAsync(hubConnection);
         }
         return hubConnection;
     }
@@ -140,7 +142,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
     {
     }
 
-    async Task TryStartAsync()
+    async Task TryStartAsync(HubConnection hubConnection)
     {
         if (hubConnection == null)
             return;
@@ -166,6 +168,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
     protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
     {
         JsonSerializerOptions.CopyTypeInfoResolverChainTo(options.PayloadSerializerOptions);
+        options.PayloadSerializerOptions = Serializable.CreateOptions(options.PayloadSerializerOptions);
     }
 
     /// <summary>
@@ -188,6 +191,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
         return Task.CompletedTask;
     }
 
+    /// <inheritdoc/>
     public async ValueTask DisposeAsync()
     {
         await DisposeAsyncCore().ConfigureAwait(false);
@@ -198,10 +202,12 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
     {
         hubConnHandler?.Dispose();
         httpClient?.Dispose();
-        if (hubConnection is not null)
+
+        foreach (var hubConnection in hubConnections.Values)
         {
             await hubConnection.DisposeAsync().ConfigureAwait(false);
         }
+
         if (lock_GetHubConnAsync is not null)
         {
             await lock_GetHubConnAsync.DisposeAsync().ConfigureAwait(false);
@@ -215,7 +221,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
 
         hubConnHandler = null;
         httpClient = null;
-        hubConnection = null;
+        hubConnections = null!;
     }
 
     /// <summary>

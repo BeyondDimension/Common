@@ -22,7 +22,7 @@ partial class WebApiClientService
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        content = JsonContent.Create(inputValue, mediaType, JsonSerializerOptions);
+        content = JsonContent.Create(inputValue, mediaType, UseJsonSerializerOptions);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return content;
@@ -122,7 +122,7 @@ partial class WebApiClientService
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        result = await content.ReadFromJsonAsync<TResponseBody>(JsonSerializerOptions, cancellationToken);
+        result = await content.ReadFromJsonAsync<TResponseBody>(UseJsonSerializerOptions, cancellationToken);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
@@ -144,7 +144,7 @@ partial class WebApiClientService
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        result = content.ReadFromJsonAsAsyncEnumerable<TResponseBody>(JsonSerializerOptions, cancellationToken);
+        result = content.ReadFromJsonAsAsyncEnumerable<TResponseBody>(UseJsonSerializerOptions, cancellationToken);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
@@ -168,7 +168,7 @@ partial class WebApiClientService
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        result = SystemTextJsonSerializer.Deserialize<TResponseBody>(contentStream, JsonSerializerOptions);
+        result = SystemTextJsonSerializer.Deserialize<TResponseBody>(contentStream, UseJsonSerializerOptions);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;

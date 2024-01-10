@@ -52,14 +52,35 @@ public interface IIpcClientService : IAsyncDisposable
         where TResponseBody : notnull
         where TRequestBody : notnull;
 
+    /// <summary>
+    /// 以异步操作发送到 Hub 的请求
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="hubUrl"></param>
+    /// <param name="methodName"></param>
+    /// <param name="args"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     Task<TResponseBody?> HubSendAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
-          string methodName,
-          object?[]? args = null,
-          CancellationToken cancellationToken = default)
-          where TResponseBody : notnull;
-
-    IAsyncEnumerable<TResponseBody?> HubSendAsAsyncEnumerable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        string? hubUrl,
         string methodName,
         object?[]? args = null,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken = default)
+        where TResponseBody : notnull;
+
+    /// <summary>
+    /// 以异步操作发送到 Hub 的请求，返回异步迭代器
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="hubUrl"></param>
+    /// <param name="methodName"></param>
+    /// <param name="args"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    IAsyncEnumerable<TResponseBody?> HubSendAsAsyncEnumerable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        string? hubUrl,
+        string methodName,
+        object?[]? args = null,
+        CancellationToken cancellationToken = default)
+        where TResponseBody : notnull;
 }

@@ -46,7 +46,25 @@ public abstract class IpcTemplateBase :
             return null!;
         }
 
-        return new(serviceType, generatorType);
+        ServiceContractImplAttribute attr = new(serviceType, generatorType);
+
+        foreach (var item in attribute.NamedArguments)
+        {
+            var value = item.Value.GetObjectValue();
+            switch (item.Key)
+            {
+                case nameof(ServiceContractImplAttribute.HubUrl):
+                    attr.HubUrl = value?.ToString();
+                    break;
+                case nameof(ServiceContractImplAttribute.HubTypeFullName):
+                    attr.HubTypeFullName = value?.ToString()!;
+                    if (string.IsNullOrWhiteSpace(attr.HubTypeFullName))
+                        attr.HubTypeFullName = ServiceContractImplAttribute.DefaultHubTypeFullName;
+                    break;
+            }
+        }
+
+        return attr;
     }
 
     /// <summary>

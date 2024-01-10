@@ -56,6 +56,24 @@ public abstract partial class WebApiClientService(
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 
+    SystemTextJsonSerializerOptions? _JsonSerializerOptions;
+
+    /// <summary>
+    /// 使用的 <see cref="SystemTextJsonSerializerOptions"/>
+    /// </summary>
+    protected SystemTextJsonSerializerOptions UseJsonSerializerOptions
+    {
+        get
+        {
+            if (_JsonSerializerOptions == null)
+            {
+                var baseOptions = JsonSerializerOptions;
+                _JsonSerializerOptions = Serializable.CreateOptions(baseOptions);
+            }
+            return _JsonSerializerOptions;
+        }
+    }
+
     #endregion
 
     /// <summary>

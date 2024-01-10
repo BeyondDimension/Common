@@ -253,4 +253,28 @@ public static partial class Process2
         }
         return IsAlive(process);
     }
+
+    /// <summary>
+    /// 进程是否活着
+    /// </summary>
+    /// <param name="pid"></param>
+    /// <param name="process"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAlive(int pid, [NotNullWhen(true)] out Process? process)
+    {
+        process = null;
+
+        if (pid <= 0)
+            return false;
+
+        try
+        {
+            process = Process.GetProcessById(pid);
+        }
+        catch
+        {
+        }
+        return IsAlive(process);
+    }
 }

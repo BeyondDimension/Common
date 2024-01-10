@@ -10,6 +10,36 @@ namespace System
     public static partial class Serializable
     {
         /// <summary>
+        /// 根据已有 Json 设置项添加或重新创建带有预设的配置
+        /// </summary>
+        /// <param name="baseOptions"></param>
+        /// <param name="isReadOnly"></param>
+        /// <returns></returns>
+        public static SystemTextJsonSerializerOptions CreateOptions(
+            SystemTextJsonSerializerOptions? baseOptions = null,
+            bool isReadOnly = false)
+        {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+            baseOptions ??= SystemTextJsonSerializerOptions.Default;
+            baseOptions = baseOptions.AddDefaultJsonTypeInfoResolver(isReadOnly);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+            if (!isReadOnly && baseOptions.IsReadOnly)
+            {
+                baseOptions = new(baseOptions);
+            }
+
+            baseOptions.Converters.Add(new CookieConverter());
+            baseOptions.Converters.Add(new CookieCollectionConverter());
+            baseOptions.Converters.Add(new CookieContainerConverter());
+            baseOptions.Converters.Add(new IntPtrConverter());
+            baseOptions.Converters.Add(new UIntPtrConverter());
+
+            return baseOptions;
+        }
+
+        /// <summary>
         /// 序列化程式实现种类
         /// </summary>
         public enum ImplType

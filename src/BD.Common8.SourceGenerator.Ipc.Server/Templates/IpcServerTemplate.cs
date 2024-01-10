@@ -70,16 +70,10 @@ partial class {0} : IEndpointRouteMapGroup
             var returnType = GetReturnType(method,
                 out var isApiRspImplByReturnType,
                 out var isAsyncEnumerableByReturnType);
-            var apiRspImplType = returnType.GenericT.ToString();
-            if (!apiRspImplType.StartsWith("ApiRspImpl"))
-            {
-                apiRspImplType = $"ApiRspImpl<{apiRspImplType}>";
-            }
 
             return (methodParas,
                 category,
                 returnType,
-                apiRspImplType,
                 isApiRspImplByReturnType,
                 isAsyncEnumerableByReturnType);
         });
@@ -90,7 +84,6 @@ partial class {0} : IEndpointRouteMapGroup
             (var methodParas,
                 var category,
                 var returnType,
-                var apiRspImplType,
                 var isApiRspImplByReturnType,
                 var isAsyncEnumerableByReturnType) = methodData.Value;
 
@@ -161,10 +154,21 @@ partial class {0} : IEndpointRouteMapGroup
                 case MethodParametersCategory.FromBody:
                     {
                         var (paraType, paraName, _) = methodParas[0];
-                        stream.WriteFormat(
+                        var isStruct = TypeStringImpl.GetTypeSymbol(paraType)?.TypeKind == TypeKind.Struct;
+                        if (isStruct)
+                        {
+                            stream.WriteFormat(
+"""
+, [FromBody] {0} {1}
+"""u8, paraType, paraName);
+                        }
+                        else
+                        {
+                            stream.WriteFormat(
 """
 , [FromBody] {0}? {1}
 """u8, paraType, paraName);
+                        }
                     }
                     break;
                 case MethodParametersCategory.GeneratorModelFromBody:
@@ -197,11 +201,22 @@ partial class {0} : IEndpointRouteMapGroup
         {
 
 """u8);
-                stream.WriteFormat(
+                if (isApiRspImplByReturnType)
+                {
+                    stream.Write(
 """
-            {0} result;
+            ApiRspImpl result;
 
-"""u8, apiRspImplType);
+"""u8);
+                }
+                else
+                {
+                    stream.WriteFormat(
+"""
+            ApiRspImpl<{0}> result;
+
+"""u8, returnType);
+                }
                 stream.Write(
 """
             try
@@ -352,7 +367,23 @@ ctx.RequestAborted)));
             stream.WriteCurlyBracketRight();
             stream.WriteNewLine();
         }
-        WriteNamespace(stream, "BD.Common8.SourceGenerator.Ipc.Server", isFileNamespace: false, isFirstWriteNamespace: false);
+
+        (string hubTypeNamespace, string hubTypeName) = GetHubTypeInfo(m.Attribute.HubTypeFullName);
+        static (string hubTypeNamespace, string hubTypeName) GetHubTypeInfo(string hubTypeFullName)
+        {
+            hubTypeFullName = hubTypeFullName.TrimEnd('.');
+            var lastIndexOfHubTypeFullNameD = hubTypeFullName.LastIndexOf('.');
+            if (lastIndexOfHubTypeFullNameD != -1)
+            {
+                var hubTypeNamespace = hubTypeFullName[..lastIndexOfHubTypeFullNameD];
+                var hubTypeName = hubTypeFullName[(lastIndexOfHubTypeFullNameD + 1)..];
+                return (hubTypeNamespace, hubTypeName);
+            }
+
+            return (hubTypeFullName, hubTypeFullName);
+        }
+
+        WriteNamespace(stream, hubTypeNamespace, isFileNamespace: false, isFirstWriteNamespace: false);
         stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
         //        stream.WriteFormat(
@@ -366,8 +397,8 @@ ctx.RequestAborted)));
         //"""u8, hubTypeName);
         stream.WriteFormat(
 """
-partial class IpcHub : Hub
-"""u8);
+partial class {0} : Hub
+"""u8, hubTypeName);
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
@@ -378,7 +409,6 @@ partial class IpcHub : Hub
             (var methodParas,
                 var category,
                 var returnType,
-                var apiRspImplType,
                 var isApiRspImplByReturnType,
                 var isAsyncEnumerableByReturnType) = methodData.Value;
             var hubMethodName = $"{m.Attribute.ServiceType}_{method.Name}";
@@ -463,11 +493,22 @@ partial class IpcHub : Hub
                 }
                 else
                 {
-                    stream.WriteFormat(
+                    if (isApiRspImplByReturnType)
+                    {
+                        stream.Write(
 """
-        {0} result;
+        ApiRspImpl result;
 
-"""u8, apiRspImplType);
+"""u8);
+                    }
+                    else
+                    {
+                        stream.WriteFormat(
+"""
+        ApiRspImpl<{0}> result;
+
+"""u8, returnType);
+                    }
                     stream.Write(
 """
         try

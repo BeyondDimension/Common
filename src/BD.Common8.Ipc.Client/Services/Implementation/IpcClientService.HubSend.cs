@@ -4,7 +4,9 @@ namespace BD.Common8.Ipc.Services.Implementation;
 
 partial class IpcClientService
 {
+    /// <inheritdoc/>
     public virtual async Task<TResponseBody?> HubSendAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        string? hubUrl,
         string methodName,
         object?[]? args = null,
         CancellationToken cancellationToken = default)
@@ -13,7 +15,7 @@ partial class IpcClientService
         HubConnection? conn = null;
         try
         {
-            conn = await GetHubConnAsync();
+            conn = await GetHubConnAsync(hubUrl);
             var result = await conn.InvokeCoreAsync<TResponseBody>(methodName,
                 args ?? [],
                 cancellationToken);
@@ -26,7 +28,9 @@ partial class IpcClientService
         }
     }
 
+    /// <inheritdoc/>
     public virtual async IAsyncEnumerable<TResponseBody?> HubSendAsAsyncEnumerable<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        string? hubUrl,
         string methodName,
         object?[]? args = null,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -36,14 +40,14 @@ partial class IpcClientService
         HubConnection? conn = null;
         try
         {
-            conn = await GetHubConnAsync();
+            conn = await GetHubConnAsync(hubUrl);
             result = conn.StreamAsyncCore<TResponseBody>(methodName,
                 args ?? [],
                 cancellationToken);
         }
         catch (Exception e)
         {
-            OnError<nil>(e, hubConnection);
+            OnError<nil>(e, conn);
         }
         if (result != default)
         {
@@ -66,7 +70,7 @@ partial class IpcClientService
                 }
                 catch (Exception e)
                 {
-                    OnError<nil>(e, hubConnection);
+                    OnError<nil>(e, conn);
                     break;
                 }
                 if (hasItem)

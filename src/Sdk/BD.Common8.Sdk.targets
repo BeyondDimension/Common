@@ -366,7 +366,8 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<AdditionalFiles Include="$(MSBuildProjectDirectory)\..\NativeMethods.txt" />
+		<AdditionalFiles Condition=" Exists('$(MSBuildProjectDirectory)\NativeMethods.txt') " Include="$(MSBuildProjectDirectory)\NativeMethods.txt" />
+		<AdditionalFiles Condition=" !Exists('$(MSBuildProjectDirectory)\NativeMethods.txt') AND Exists('$(MSBuildProjectDirectory)\..\NativeMethods.txt') " Include="$(MSBuildProjectDirectory)\..\NativeMethods.txt" />
 	</ItemGroup>
 	
 	<ItemGroup Condition="$(UseMicrosoftWindowsCsWin32) == 'true' OR $(UseCommon8Bcl) != ''">

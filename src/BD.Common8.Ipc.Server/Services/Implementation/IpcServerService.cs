@@ -311,11 +311,13 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     protected virtual void ConfigureHttpJsonOptions(AspNetCoreHttpJsonOptions options)
     {
         JsonSerializerOptions.CopyTypeInfoResolverChainTo(options.SerializerOptions);
+        Serializable.CreateOptions(options.SerializerOptions, isReadOnly: true);
     }
 
     protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
     {
         JsonSerializerOptions.CopyTypeInfoResolverChainTo(options.PayloadSerializerOptions);
+        options.PayloadSerializerOptions = Serializable.CreateOptions(options.PayloadSerializerOptions);
     }
 
     protected virtual void ConfigureSignalR(HubOptions options)

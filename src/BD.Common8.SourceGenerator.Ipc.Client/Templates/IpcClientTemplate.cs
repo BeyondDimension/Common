@@ -410,10 +410,10 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
 """u8, returnType);
                 }
 
-                stream.Write(
+                stream.WriteFormat(
 """
->(methodName, [
-"""u8);
+>({0}, methodName, [
+"""u8, string.IsNullOrWhiteSpace(m.Attribute.HubUrl) ? "null" : $"\"{m.Attribute.HubUrl}\"");
 
                 for (int i = 0; i < methodParas.Length; i++)
                 {

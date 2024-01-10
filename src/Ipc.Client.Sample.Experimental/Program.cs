@@ -31,6 +31,7 @@ static partial class Program
         }
 
         List<ITodoService> ipcClientServices = [];
+        List<TodoService_SignalR2> ipcClientService2_newHubs = [];
         foreach (var connectionString in connectionStrings)
         {
             IpcClientService2 ipcClient = new(connectionString);
@@ -42,6 +43,9 @@ static partial class Program
             // SignalR 实现的 Ipc 调用
             var ipcClientService2 = new TodoService_SignalR(ipcClient);
             ipcClientServices.Add(ipcClientService2);
+
+            var ipcClientService2_newHub = new TodoService_SignalR2(ipcClient);
+            ipcClientService2_newHubs.Add(ipcClientService2_newHub);
         }
 
         var methods = (from m in typeof(ITodoService).GetMethods()
@@ -97,6 +101,7 @@ static partial class Program
 
                     foreach (var method in methods)
                     {
+                        break;
                         Console.WriteLine($"ThreadId: {Environment.CurrentManagedThreadId}");
 
                         var resultMethod = MethodInvoke(method, todoService);
@@ -129,6 +134,19 @@ static partial class Program
                     }
                 }
             }
+
+            foreach (var ipcClientService in ipcClientService2_newHubs)
+            {
+                Console.WriteLine($"ThreadId: {Environment.CurrentManagedThreadId}");
+
+                await foreach (var resultValue in ipcClientService.All())
+                {
+                    Console.WriteLine($"{TodoService_SignalR2.HubUrl} All: ");
+                    Console.WriteLine(Serializable.SJSON_Original(
+                        resultValue, NewtonsoftJsonFormatting.Indented));
+                }
+            }
+
             Console.WriteLine("键入回车再次发送请求。");
             Console.ReadLine();
         }
@@ -183,4 +201,24 @@ partial class TodoService_WebApi : IIpcClientService2
 partial class TodoService_SignalR : IIpcClientService2
 {
     public string Title => $"{((IpcClientService2)ipcClientService).Type}_{GetType().Name}";
+}
+
+sealed partial class TodoService_SignalR2(IIpcClientService ipcClientService)
+{
+    /// <summary>
+    /// SignalR 的 HubUrl
+    /// </summary>
+    public const string HubUrl = "/Hubs/GameTools";
+
+    readonly IIpcClientService ipcClientService = ipcClientService;
+
+    public IAsyncEnumerable<ApiRspImpl<NativeWindowModel?>> All(CancellationToken cancellationToken = default)
+    {
+        const string methodName = "INativeWindowServices_GetMoveMouseDownWindow";
+        var result = ipcClientService.HubSendAsAsyncEnumerable<ApiRspImpl<NativeWindowModel?>>(HubUrl, methodName, [], cancellationToken: cancellationToken);
+
+        var r2 = result.ToBlockingEnumerable().ToArray();
+
+        return result;
+    }
 }

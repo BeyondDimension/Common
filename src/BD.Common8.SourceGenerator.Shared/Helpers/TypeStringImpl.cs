@@ -161,6 +161,13 @@ public sealed class TypeStringImpl(string fullName) : Type
 
     static string GetNameByFullName(string fullName)
     {
+        foreach (var item in KeepFullNames)
+        {
+            if (fullName.Contains(item))
+            {
+                return fullName;
+            }
+        }
         try
         {
             var split = fullName.Split(['<', '>', ',']);
@@ -246,4 +253,25 @@ public sealed class TypeStringImpl(string fullName) : Type
     protected override bool IsPrimitiveImpl() => throw new NotImplementedException();
 
     public override string ToString() => Name;
+
+    static readonly string[] KeepFullNames = [
+        "Color",
+        "Size",
+        "Point",
+        "Vector",
+        "Bitmap",
+        "Visual",
+        "Orientation",
+        "Brushes",
+        "FontFamily",
+        "PixelFormat",
+        "MouseButton",
+        "ProgressBar",
+        "Button",
+        "Notification",
+        "Controls",
+        "Rectangle",
+        "HorizontalAlignment",
+        "VerticalAlignment",
+        ];
 }

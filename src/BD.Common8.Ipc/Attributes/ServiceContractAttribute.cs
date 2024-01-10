@@ -15,4 +15,19 @@ public sealed class ServiceContractImplAttribute(Type serviceType, IpcGeneratorT
 
     /// <inheritdoc cref="IpcGeneratorType"/>
     public IpcGeneratorType GeneratorType { get; } = generatorType;
+
+    /// <summary>
+    /// <see cref="HubTypeFullName"/> 的默认值
+    /// </summary>
+    public const string DefaultHubTypeFullName = "BD.Common8.SourceGenerator.Ipc.Server.IpcHub";
+
+    /// <summary>
+    /// 自定义生成的服务端 Hub 类型命名空间与类型名
+    /// </summary>
+    public string HubTypeFullName { get; set; } = DefaultHubTypeFullName;
+
+    /// <summary>
+    /// 自定义生成的客户端调用 Hub 地址
+    /// </summary>
+    public string? HubUrl { get; set; } = null;
 }
