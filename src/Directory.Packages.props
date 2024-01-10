@@ -29,7 +29,7 @@
 		<PackageVersion Include="FluentAvaloniaUI" Version="2.0.4" />
 		<PackageVersion Include="fusillade" Version="2.6.1" />
 		<PackageVersion Include="gfoidl.Base64" Version="2.0.0" />
-		<PackageVersion Include="Google.Protobuf" Version="3.25.1" />
+		<PackageVersion Include="Google.Protobuf" Version="3.25.2" />
 		<PackageVersion Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
 		<PackageVersion Include="MemoryPack" Version="1.10.0" />
 		<PackageVersion Include="MemoryPack.AspNetCoreMvcFormatter" Version="1.10.0" />
