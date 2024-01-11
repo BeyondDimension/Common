@@ -51,14 +51,15 @@ public sealed class ImageHttpClientServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<MemoryStream?> GetImageMemoryStreamAsync(
-        string requestUri,
-        bool isPolly,
-        bool cache,
-        bool cacheFirst,
-        HttpHandlerCategory category,
+    public async Task<MemoryStream?> GetImageMemoryStreamAsync(GetImageArgs args,
         CancellationToken cancellationToken)
     {
+        string requestUri = args.RequestUri;
+        bool isPolly = args.IsPolly;
+        bool cache = args.UseCache;
+        bool cacheFirst = args.CacheFirst;
+        HttpHandlerCategory category = args.Category;
+
         if (!String2.IsHttpUrl(requestUri))
             return default;
 
@@ -72,7 +73,6 @@ public sealed class ImageHttpClientServiceImpl(
         }
 
         ImageMemoryStreamWrapper response = default;
-
         if (cacheFirst && category != HttpHandlerCategory.Offline && cache)
         {
             // 如果缓存优先，则先从缓存中取
@@ -132,12 +132,34 @@ public sealed class ImageHttpClientServiceImpl(
 
         return null;
 
+        ImageHttpRequestMessage GetImageHttpRequestMessage(HttpHandlerCategory category)
+        {
+            var request = new ImageHttpRequestMessage(HttpMethod.Get, requestUri);
+            if (category == HttpHandlerCategory.Offline)
+            {
+                if (!string.IsNullOrWhiteSpace(args.HashValue))
+                {
+                    const string hashsBaseUrl = "https://local.steampp.net/bd.common8.http.clientfactory/hashs/";
+                    request.OriginalRequestUri = args.HashValue.Length switch
+                    {
+                        Hashs.String.Lengths.MD5 => $"{hashsBaseUrl}md5/{args.HashValue}",
+                        Hashs.String.Lengths.SHA1 => $"{hashsBaseUrl}sha1/{args.HashValue}",
+                        Hashs.String.Lengths.SHA256 => $"{hashsBaseUrl}sha256/{args.HashValue}",
+                        Hashs.String.Lengths.SHA384 => $"{hashsBaseUrl}sha384/{args.HashValue}",
+                        Hashs.String.Lengths.SHA512 => $"{hashsBaseUrl}sha512/{args.HashValue}",
+                        _ => $"{hashsBaseUrl}{args.HashValue.Length}/{args.HashValue}",
+                    };
+                }
+            }
+            return request;
+        }
+
         async Task<ImageMemoryStreamWrapper> _GetImageMemoryStreamCoreAsync(CancellationToken cancellationToken)
         {
             try
             {
                 var r = await GetImageMemoryStreamCoreAsync(
-                    requestUri,
+                    GetImageHttpRequestMessage(category),
                     category,
                     cancellationToken);
                 return r;
@@ -157,7 +179,7 @@ public sealed class ImageHttpClientServiceImpl(
             try
             {
                 var r = await GetImageMemoryStreamCoreAsync(
-                    requestUri,
+                    GetImageHttpRequestMessage(HttpHandlerCategory.Offline),
                     HttpHandlerCategory.Offline,
                     cancellationToken);
                 return r;
@@ -212,15 +234,14 @@ public sealed class ImageHttpClientServiceImpl(
         /// <summary>
         /// 原始请求地址，因某些请求 301/302 跳转会改变地址
         /// </summary>
-        public string OriginalRequestUri { get; } = requestUri;
+        public string OriginalRequestUri { get; internal set; } = requestUri;
     }
 
     async Task<ImageMemoryStreamWrapper> GetImageMemoryStreamCoreAsync(
-        string requestUri,
+        ImageHttpRequestMessage request,
         HttpHandlerCategory category,
         CancellationToken cancellationToken = default)
     {
-        var request = new ImageHttpRequestMessage(HttpMethod.Get, requestUri);
         request.Headers.Accept.ParseAdd(httpPlatformHelper.AcceptImages);
         request.Headers.UserAgent.ParseAdd(httpPlatformHelper.UserAgent);
         var client = clientFactory.CreateClient(TAG, category);

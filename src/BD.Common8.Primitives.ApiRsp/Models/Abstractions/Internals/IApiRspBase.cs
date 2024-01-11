@@ -26,4 +26,9 @@ public partial interface IApiRspBase
     /// 用于在客户端上纪录本次请求的 Url
     /// </summary>
     string? Url { get; }
+
+    /// <summary>
+    /// 是否已经在 UI 上显示过
+    /// </summary>
+    bool IsDisplayed { get; }
 }

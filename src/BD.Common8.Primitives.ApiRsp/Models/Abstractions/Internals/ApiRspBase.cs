@@ -132,4 +132,18 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     [SystemTextJsonIgnore]
 #endif
     public string? Url { get; set; }
+
+    /// <inheritdoc/>
+    [IgnoreDataMember]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [MPIgnore]
+#endif
+#if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+    [MP2Ignore]
+#endif
+    [NewtonsoftJsonIgnore]
+#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+    [SystemTextJsonIgnore]
+#endif
+    public bool IsDisplayed { get; set; }
 }

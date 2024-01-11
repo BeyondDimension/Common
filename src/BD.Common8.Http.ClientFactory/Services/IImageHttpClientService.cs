@@ -8,7 +8,7 @@ public interface IImageHttpClientService
     /// <summary>
     /// <see cref="HttpHandlerCategory"/> 的默认值
     /// </summary>
-    protected const HttpHandlerCategory DefaultHttpHandlerCategory = HttpHandlerCategory.UserInitiated;
+    protected const HttpHandlerCategory DefaultHttpHandlerCategory = GetImageArgs.DefaultHttpHandlerCategory;
 
     /// <summary>
     /// 通过 Get 请求 Image <see cref="MemoryStream"/>
@@ -26,5 +26,21 @@ public interface IImageHttpClientService
         bool cache = false,
         bool cacheFirst = false,
         HttpHandlerCategory category = DefaultHttpHandlerCategory,
+        CancellationToken cancellationToken = default) => GetImageMemoryStreamAsync(new()
+        {
+            RequestUri = requestUri,
+            IsPolly = isPolly,
+            UseCache = cache,
+            CacheFirst = cacheFirst,
+            Category = category,
+        }, cancellationToken);
+
+    /// <summary>
+    /// 通过 Get 请求 Image <see cref="MemoryStream"/>
+    /// </summary>
+    /// <param name="args"></param>
+    /// <param name="cancellationToken">取消操作标记</param>
+    /// <returns></returns>
+    Task<MemoryStream?> GetImageMemoryStreamAsync(GetImageArgs args,
         CancellationToken cancellationToken = default);
 }
