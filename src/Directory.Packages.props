@@ -24,7 +24,7 @@
 		<PackageVersion Include="coverlet.collector" Version="6.0.0" />
 		<PackageVersion Include="Crc32.NET" Version="1.2.0" />
 		<PackageVersion Include="DotNext" Version="5.0.0" />
-		<PackageVersion Include="DotNext.Threading" Version="4.15.2" />
+		<PackageVersion Include="DotNext.Threading" Version="5.0.0" />
 		<PackageVersion Include="DynamicData" Version="8.3.27" />
 		<PackageVersion Include="FluentAvaloniaUI" Version="2.0.5" />
 		<PackageVersion Include="fusillade" Version="2.6.1" />
