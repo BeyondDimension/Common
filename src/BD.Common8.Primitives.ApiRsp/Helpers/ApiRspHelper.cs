@@ -252,6 +252,83 @@ public static partial class ApiRspHelper
     /// <param name="rsp"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ApiRspImpl<T?> Create<T>(IApiRsp rsp) =>
-        rsp is ApiRspImpl<T?> rspT2 ? rspT2 : Code(rsp.Code, GetInternalMessage(rsp), rsp is IApiRsp<T?> rspT ? rspT.Content : default, rsp is ApiRspBase b ? b.ClientException : default);
+    public static ApiRspImpl<T?> Create<T>(IApiRsp rsp)
+    {
+        ApiRspImpl<T?>? result = null;
+        try
+        {
+            if (rsp is ApiRspImpl<T?> apiRspImplT)
+            {
+                result = apiRspImplT;
+            }
+            else if (rsp is IApiRsp<T?> apiRspT)
+            {
+                result = Code(rsp.Code, rsp.Message, apiRspT.Content);
+            }
+            result = Code<T>(rsp.Code, rsp.Message);
+            return result;
+        }
+        finally
+        {
+            if (result != null && rsp is ApiRspBase apiRspBase)
+            {
+                result.Url = apiRspBase.Url;
+                result.IsDisplayed = apiRspBase.IsDisplayed;
+                result.ClientException = apiRspBase.ClientException;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 根据 <see cref="IApiRsp"/> 创建一个新的 <see cref="ApiRspImpl"/> 实例
+    /// </summary>
+    /// <param name="rsp"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ApiRspImpl Create(IApiRsp rsp)
+    {
+        ApiRspImpl? result = null;
+        try
+        {
+            if (rsp is ApiRspImpl apiRspImpl)
+            {
+                result = apiRspImpl;
+            }
+            result = Code(rsp.Code, rsp.Message);
+            return result;
+        }
+        finally
+        {
+            if (result != null && rsp is ApiRspBase apiRspBase)
+            {
+                result.Url = apiRspBase.Url;
+                result.IsDisplayed = apiRspBase.IsDisplayed;
+                result.ClientException = apiRspBase.ClientException;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 根据泛型构建一个实例，并且复制 <see cref="IApiRsp"/> 上的数据
+    /// </summary>
+    /// <param name="apiRspImplTType"></param>
+    /// <param name="rsp"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static object? Set([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type apiRspImplTType, IApiRsp rsp)
+    {
+        object? result = Activator.CreateInstance(apiRspImplTType);
+        if (result is ApiRspBase apiRspBase)
+        {
+            apiRspBase.Code = rsp.Code;
+            apiRspBase.InternalMessage = rsp.Message;
+            if (rsp is ApiRspBase apiRspImpl)
+            {
+                apiRspBase.Url = apiRspImpl.Url;
+                apiRspBase.IsDisplayed = apiRspImpl.IsDisplayed;
+                apiRspBase.ClientException = apiRspImpl.ClientException;
+            }
+        }
+        return result;
+    }
 }

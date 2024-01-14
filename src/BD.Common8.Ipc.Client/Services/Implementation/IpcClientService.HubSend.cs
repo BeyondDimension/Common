@@ -13,18 +13,29 @@ partial class IpcClientService
         where TResponseBody : notnull
     {
         HubConnection? conn = null;
+        TResponseBody? result = default;
         try
         {
-            conn = await GetHubConnAsync(hubUrl);
-            var result = await conn.InvokeCoreAsync<TResponseBody>(methodName,
-                args ?? [],
-                cancellationToken);
-            return result!;
+            try
+            {
+                conn = await GetHubConnAsync(hubUrl);
+                result = await conn.InvokeCoreAsync<TResponseBody>(methodName,
+                    args ?? [],
+                    cancellationToken);
+                return result!;
+            }
+            catch (Exception e)
+            {
+                result = OnError<TResponseBody>(e, conn);
+                return result!;
+            }
         }
-        catch (Exception e)
+        finally
         {
-            var result = OnError<TResponseBody>(e, conn);
-            return result!;
+            if (result is ApiRspBase apiRspBase)
+            {
+                apiRspBase.Url = hubUrl;
+            }
         }
     }
 
@@ -74,7 +85,13 @@ partial class IpcClientService
                     break;
                 }
                 if (hasItem)
+                {
+                    if (item is ApiRspBase apiRspBase)
+                    {
+                        apiRspBase.Url = hubUrl;
+                    }
                     yield return item;
+                }
             }
         }
     }

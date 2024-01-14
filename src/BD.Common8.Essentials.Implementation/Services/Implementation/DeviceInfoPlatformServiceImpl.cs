@@ -533,6 +533,18 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
         get
         {
 #if ANDROID
+            if (OSHelper.IsRunningOnWSA())
+            {
+                return DevicePlatform2.WSA;
+            }
+            else if (IsChromeOS)
+            {
+                return DevicePlatform2.ChromeOS;
+            }
+            else if (DeviceType == DeviceType.Virtual)
+            {
+                return DevicePlatform2.AndroidVirtual;
+            }
             var idiom = Idiom;
             return idiom switch
             {
@@ -544,7 +556,14 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
                 _ => DevicePlatform2.AndroidUnknown,
             };
 #elif WINDOWS
-            return DevicePlatform2.Windows;
+            if (OSHelper.IsPublishToStore)
+            {
+                return DevicePlatform2.WindowsDesktopBridge;
+            }
+            else
+            {
+                return DevicePlatform2.Windows;
+            }
 #elif IOS
             return DevicePlatform2.iOS;
 #elif MACOS
@@ -567,13 +586,34 @@ public partial class DeviceInfoPlatformServiceImpl : IDeviceInfoPlatformService
             {
                 return DevicePlatform2.macOS;
             }
+#elif LINUX
+            return DevicePlatform2.Linux;
 #else
             if (OperatingSystem.IsWindows())
             {
-                return DevicePlatform2.Windows;
+                if (OSHelper.IsPublishToStore)
+                {
+                    return DevicePlatform2.WindowsDesktopBridge;
+                }
+                else
+                {
+                    return DevicePlatform2.Windows;
+                }
             }
             else if (OperatingSystem.IsAndroid())
             {
+                if (OSHelper.IsRunningOnWSA())
+                {
+                    return DevicePlatform2.WSA;
+                }
+                else if (IsChromeOS)
+                {
+                    return DevicePlatform2.ChromeOS;
+                }
+                else if (DeviceType == DeviceType.Virtual)
+                {
+                    return DevicePlatform2.AndroidVirtual;
+                }
                 var idiom = Idiom;
                 return idiom switch
                 {

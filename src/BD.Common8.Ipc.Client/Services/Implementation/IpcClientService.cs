@@ -237,13 +237,13 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
         HubConnection? hubConnection,
         [CallerMemberName] string callerMemberName = "") where TResponseBody : notnull
     {
-        if (EnableLogOnError)
-        {
-            logger.LogError(ex,
-                $"{{callerMemberName}} fail, connId: {{connectionId}}.",
-                callerMemberName,
-                hubConnection?.ConnectionId);
-        }
+        //if (EnableLogOnError)
+        //{
+        //    logger.LogError(ex,
+        //        $"{{callerMemberName}} fail, connId: {{connectionId}}.",
+        //        callerMemberName,
+        //        hubConnection?.ConnectionId);
+        //}
 
         var typeResponseBody = typeof(TResponseBody);
         if (typeResponseBody == typeof(nil))

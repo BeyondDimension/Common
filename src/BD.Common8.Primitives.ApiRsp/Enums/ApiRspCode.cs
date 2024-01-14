@@ -159,6 +159,16 @@ public enum ApiRspCode
     /// </summary>
     AesKeyIsNull = 1024,
 
+    /// <summary>
+    /// 设置登录响应结果到用户管理失败
+    /// </summary>
+    SetLoginResponseToUserManagerFail = 1025,
+
+    /// <summary>
+    /// 保存用户登录凭证到用户管理失败
+    /// </summary>
+    SaveAuthTokenToUserManagerFail = 1026,
+
     #endregion
 
     #region 错误状态码 5000~5999
@@ -178,6 +188,9 @@ public enum ApiRspCode
     /// 请求超时
     /// </summary>
     Timeout = 5004,
+
+    /// <inheritdoc cref="SocketError.ConnectionRefused"/>
+    ConnectionRefused = 5005,
 
     #endregion
 

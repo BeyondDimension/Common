@@ -12,11 +12,20 @@ public abstract partial class WebApiClientService(
     IHttpPlatformHelperService? httpPlatformHelper,
     NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : Log.I
 {
-#pragma warning disable SA1600 // Elements should be documented
+    /// <summary>
+    /// 无特殊情况下应使用 GetSJsonContent，即 System.Text.Json
+    /// </summary>
     protected const string Obsolete_GetNJsonContent = "无特殊情况下应使用 GetSJsonContent，即 System.Text.Json";
+
+    /// <summary>
+    /// 无特殊情况下应使用 ReadFromSJsonAsync，即 System.Text.Json
+    /// </summary>
     protected const string Obsolete_ReadFromNJsonAsync = "无特殊情况下应使用 ReadFromSJsonAsync，即 System.Text.Json";
+
+    /// <summary>
+    /// 无特殊情况下应使用 Async 异步的函数版本
+    /// </summary>
     protected const string Obsolete_UseAsync = "无特殊情况下应使用 Async 异步的函数版本";
-#pragma warning restore SA1600 // Elements should be documented
 
     /// <inheritdoc cref="IHttpPlatformHelperService"/>
     protected readonly IHttpPlatformHelperService? httpPlatformHelper = httpPlatformHelper;
@@ -61,7 +70,7 @@ public abstract partial class WebApiClientService(
     /// <summary>
     /// 使用的 <see cref="SystemTextJsonSerializerOptions"/>
     /// </summary>
-    protected SystemTextJsonSerializerOptions UseJsonSerializerOptions
+    public SystemTextJsonSerializerOptions UseJsonSerializerOptions
     {
         get
         {
@@ -177,10 +186,10 @@ public abstract partial class WebApiClientService(
         }
     }
 
-    /// <summary>
-    /// 是否启用日志当请求出现错误时
-    /// </summary>
-    protected virtual bool EnableLogOnError { get; } = true;
+    ///// <summary>
+    ///// 是否启用日志当请求出现错误时
+    ///// </summary>
+    //protected virtual bool EnableLogOnError { get; }
 
     /// <summary>
     /// 根据客户端 <see cref="Exception"/> 获取错误码
@@ -191,12 +200,17 @@ public abstract partial class WebApiClientService(
     {
         if (ex is HttpRequestException && ex.InnerException is SocketException socketException)
         {
-            if (socketException.SocketErrorCode == SocketError.ConnectionRefused)
+            switch (socketException.SocketErrorCode)
             {
-                // System.Net.Http.HttpRequestException: 由于目标计算机积极拒绝，无法连接。 (localhost:443)
-                // ---> System.Net.Sockets.SocketException (10061): 由于目标计算机积极拒绝，无法连接。
-                // at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
-                return ApiRspCode.Timeout;
+                case SocketError.TimedOut:
+                    return ApiRspCode.Timeout;
+                case SocketError.ConnectionRefused:
+                    {
+                        // System.Net.Http.HttpRequestException: 由于目标计算机积极拒绝，无法连接。 (localhost:443)
+                        // ---> System.Net.Sockets.SocketException (10061): 由于目标计算机积极拒绝，无法连接。
+                        // at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+                        return ApiRspCode.ConnectionRefused;
+                    }
             }
         }
 
@@ -245,14 +259,14 @@ public abstract partial class WebApiClientService(
         WebApiClientSendArgs args,
         [CallerMemberName] string callerMemberName = "") where TResponseBody : notnull
     {
-        if (EnableLogOnError)
-        {
-            logger.LogError(ex,
-                $"{{callerMemberName}} fail, method: {{method}}, requestUrl: {{requestUrl}}.",
-                callerMemberName,
-                args.Method,
-                args.RequestUriString);
-        }
+        //if (EnableLogOnError)
+        //{
+        //    logger.LogError(ex,
+        //        $"{{callerMemberName}} fail, method: {{method}}, requestUrl: {{requestUrl}}.",
+        //        callerMemberName,
+        //        args.Method,
+        //        args.RequestUriString);
+        //}
 
         var typeResponseBody = typeof(TResponseBody);
         if (typeResponseBody == typeof(nil))
@@ -352,6 +366,10 @@ public abstract partial class WebApiClientService(
 
         var client = args.GetHttpClient() ?? CreateClient();
         var result = await SendCoreAsync<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+        if (result is ApiRspBase apiRspBase)
+        {
+            apiRspBase.Url = args.RequestUriString;
+        }
         return result;
     }
 
@@ -439,7 +457,13 @@ public abstract partial class WebApiClientService(
                     hasItem = true;
                 }
                 if (hasItem)
+                {
+                    if (item is ApiRspBase apiRspBase)
+                    {
+                        apiRspBase.Url = args.RequestUriString;
+                    }
                     yield return item;
+                }
             }
         }
     }
@@ -476,6 +500,10 @@ public abstract partial class WebApiClientService(
 
         var client = args.GetHttpClient() ?? CreateClient();
         var result = SendCore<TResponseBody, TRequestBody>(client, args, requestBody, cancellationToken);
+        if (result is ApiRspBase apiRspBase)
+        {
+            apiRspBase.Url = args.RequestUriString;
+        }
         return result;
     }
 
@@ -515,6 +543,28 @@ public abstract partial class WebApiClientService(
     #region SendCoreX
 
     /// <summary>
+    /// 可重写拦截自定义处理响应
+    /// </summary>
+    /// <typeparam name="TResponseBody"></typeparam>
+    /// <typeparam name="TRequestBody"></typeparam>
+    /// <param name="response"></param>
+    /// <param name="args"></param>
+    /// <param name="requestBody"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    protected virtual async Task<(bool isIntercept, TResponseBody? responseBody)> HandleHttpResponseMessage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(
+        HttpResponseMessage response,
+        WebApiClientSendArgs args,
+        TRequestBody requestBody,
+        CancellationToken cancellationToken = default)
+        where TRequestBody : notnull
+        where TResponseBody : notnull
+    {
+        await Task.CompletedTask;
+        return (false, default);
+    }
+
+    /// <summary>
     /// 以异步操作发送 HTTP 请求
     /// <list type="bullet">
     /// <item><see cref="nil"/></item>
@@ -541,7 +591,7 @@ public abstract partial class WebApiClientService(
 
         try
         {
-            requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
+            requestMessage = await args.GetHttpRequestMessage(this, cancellationToken);
             if (typeof(TRequestBody) != typeof(nil) && requestMessage.Content == null)
             {
                 var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
@@ -556,6 +606,12 @@ public abstract partial class WebApiClientService(
             responseMessage = await client.SendAsync(requestMessage,
                 HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             args.StatusCode = responseMessage.StatusCode;
+
+            (bool isIntercept, TResponseBody? responseBody) = await HandleHttpResponseMessage<TResponseBody, TRequestBody>(responseMessage, args, requestBody, cancellationToken);
+            if (isIntercept)
+            {
+                return responseBody;
+            }
 
             var responseContentType = typeof(TResponseBody);
             if (responseContentType == typeof(HttpStatusCode))
@@ -622,9 +678,17 @@ public abstract partial class WebApiClientService(
                                 responseMessage.Content, cancellationToken: cancellationToken);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
                             return deserializeResult;
+                        case MediaTypeNames.MessagePack:
+                            deserializeResult = await ReadFromMessagePackAsync<TResponseBody>(
+                                responseMessage.Content, cancellationToken: cancellationToken);
+                            return deserializeResult;
+                        case MediaTypeNames.MemoryPack:
+                            deserializeResult = await ReadFromMemoryPackAsync<TResponseBody>(
+                                responseMessage.Content, cancellationToken: cancellationToken);
+                            return deserializeResult;
                         default:
                             deserializeResult = await ReadFromCustomDeserializeAsync<TResponseBody>(
-                                responseMessage, mime, cancellationToken: cancellationToken);
+                                args, responseMessage, mime, cancellationToken: cancellationToken);
                             return deserializeResult;
                     }
 #pragma warning restore CS0618 // 类型或成员已过时
@@ -684,7 +748,7 @@ public abstract partial class WebApiClientService(
 
         try
         {
-            requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
+            requestMessage = await args.GetHttpRequestMessage(this, cancellationToken);
             if (typeof(TRequestBody) != typeof(nil) && requestMessage.Content == null)
             {
                 var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
@@ -785,7 +849,7 @@ public abstract partial class WebApiClientService(
 
         try
         {
-            requestMessage = args.GetHttpRequestMessage(this, cancellationToken);
+            requestMessage = args.GetHttpRequestMessage(this, cancellationToken).GetAwaiter().GetResult();
             if (typeof(TRequestBody) != typeof(nil) && requestMessage.Content == null)
             {
                 var requestContent = GetRequestContent<TResponseBody, TRequestBody>(args, requestBody, cancellationToken);
@@ -800,6 +864,12 @@ public abstract partial class WebApiClientService(
             responseMessage = client.Send(requestMessage,
                 HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             args.StatusCode = responseMessage.StatusCode;
+
+            (bool isIntercept, TResponseBody? responseBody) = HandleHttpResponseMessage<TResponseBody, TRequestBody>(responseMessage, args, requestBody, cancellationToken).GetAwaiter().GetResult();
+            if (isIntercept)
+            {
+                return responseBody;
+            }
 
             var responseContentType = typeof(TResponseBody);
             if (responseContentType == typeof(HttpStatusCode))
@@ -981,6 +1051,12 @@ public abstract partial class WebApiClientService(
                     }
                     result = new ByteArrayContent(byteArray);
                     return result;
+                case MediaTypeNames.MessagePack:
+                    result = GetMessagePackContent<TResponseBody, TRequestBody>(requestBody, cancellationToken: cancellationToken);
+                    return result;
+                case MediaTypeNames.MemoryPack:
+                    result = GetMemoryPackContent<TResponseBody, TRequestBody>(requestBody);
+                    return result;
                 default:
                     result = GetCustomSerializeContent<TResponseBody, TRequestBody>(args, requestBody, mime, cancellationToken);
                     return result;
@@ -1020,11 +1096,13 @@ public abstract partial class WebApiClientService(
     /// 可重写自定义其他 MIME 的反序列化
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
+    /// <param name="args"></param>
     /// <param name="responseMessage"></param>
     /// <param name="mime"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual Task<TResponseBody> ReadFromCustomDeserializeAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+    protected virtual Task<TResponseBody?> ReadFromCustomDeserializeAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(
+        WebApiClientSendArgs args,
         HttpResponseMessage responseMessage,
         string? mime,
         CancellationToken cancellationToken = default) where TResponseBody : notnull

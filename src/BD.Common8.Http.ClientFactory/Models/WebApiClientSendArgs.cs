@@ -73,7 +73,7 @@ public record class WebApiClientSendArgs : IDisposable
     /// <param name="s"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public virtual HttpRequestMessage GetHttpRequestMessage(WebApiClientService s, CancellationToken cancellationToken = default)
+    public virtual async Task<HttpRequestMessage> GetHttpRequestMessage(WebApiClientService s, CancellationToken cancellationToken = default)
     {
         HttpRequestMessage httpRequestMessage = new(Method, RequestUri);
 
@@ -89,7 +89,10 @@ public record class WebApiClientSendArgs : IDisposable
                 httpRequestMessage.Headers.UserAgent.ParseAdd(userAgent);
         }
 
-        ConfigureRequestMessage?.Invoke(httpRequestMessage, this, cancellationToken);
+        if (ConfigureRequestMessage != null)
+        {
+            await ConfigureRequestMessage(httpRequestMessage, this, cancellationToken);
+        }
 
         return httpRequestMessage;
     }
@@ -97,24 +100,30 @@ public record class WebApiClientSendArgs : IDisposable
     /// <summary>
     /// 自定义处理请求消息委托
     /// </summary>
-    public Action<HttpRequestMessage, WebApiClientSendArgs, CancellationToken>? ConfigureRequestMessage { get; init; }
+    public Func<HttpRequestMessage, WebApiClientSendArgs, CancellationToken, Task>? ConfigureRequestMessage { get; init; }
 
     /// <summary>
     /// 是否验证 RequestUri 是否为 Http 地址
     /// </summary>
     public bool VerifyRequestUri { get; init; } = true;
 
+    /// <inheritdoc cref="Accept"/>
+    protected string? mAccept;
+
     /// <summary>
     /// Accept 请求头用来告知（服务器）客户端可以处理的内容类型，这种内容类型用 MIME 类型来表示。
     /// <para>https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Accept</para>
     /// </summary>
-    public string? Accept { get; init; }
+    public string? Accept { get => mAccept; init => mAccept = value; }
+
+    /// <inheritdoc cref="ContentType"/>
+    protected string? mContentType;
 
     /// <summary>
     /// Content-Type 实体头部用于指示资源的 MIME 类型 media type 。
     /// <para>https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type</para>
     /// </summary>
-    public string? ContentType { get; init; }
+    public string? ContentType { get => mContentType; init => mContentType = value; }
 
     /// <summary>
     /// 选择 Json 序列化的实现，默认值 <see cref="Serializable.JsonImplType.SystemTextJson"/>
