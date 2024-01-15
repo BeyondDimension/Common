@@ -235,6 +235,33 @@ public static partial class Process2
     /// <summary>
     /// 进程是否活着
     /// </summary>
+    /// <param name="process"></param>
+    /// <param name="exception"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAlive(Process? process, out Exception? exception)
+    {
+        exception = null;
+
+        if (process == null)
+            return false;
+
+        try
+        {
+            if (process.HasExited)
+                return false;
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 进程是否活着
+    /// </summary>
     /// <param name="pid"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -252,6 +279,32 @@ public static partial class Process2
         {
         }
         return IsAlive(process);
+    }
+
+    /// <summary>
+    /// 进程是否活着
+    /// </summary>
+    /// <param name="pid"></param>
+    /// <param name="exception"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAlive(int pid, out Exception? exception)
+    {
+        exception = null;
+
+        if (pid <= 0)
+            return false;
+
+        Process? process = null;
+        try
+        {
+            process = Process.GetProcessById(pid);
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+        return IsAlive(process, out exception);
     }
 
     /// <summary>
@@ -276,5 +329,32 @@ public static partial class Process2
         {
         }
         return IsAlive(process);
+    }
+
+    /// <summary>
+    /// 进程是否活着
+    /// </summary>
+    /// <param name="pid"></param>
+    /// <param name="process"></param>
+    /// <param name="exception"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsAlive(int pid, [NotNullWhen(true)] out Process? process, out Exception? exception)
+    {
+        exception = null;
+        process = null;
+
+        if (pid <= 0)
+            return false;
+
+        try
+        {
+            process = Process.GetProcessById(pid);
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+        return IsAlive(process, out exception);
     }
 }

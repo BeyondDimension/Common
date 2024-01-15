@@ -3,7 +3,7 @@ namespace System;
 /// <summary>
 /// 常用日期时间格式化字符串
 /// </summary>
-public static partial class DateTimeStringFormat
+public static partial class DateTimeFormat
 {
     /// <summary>
     /// 年月日时分秒 7 位毫秒

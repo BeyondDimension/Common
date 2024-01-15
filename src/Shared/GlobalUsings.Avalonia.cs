@@ -71,3 +71,4 @@ global using AvaRectangle = Avalonia.Controls.Shapes.Rectangle;
 global using AvaImage = Avalonia.Controls.Image;
 global using AvaHorizontalAlignment = Avalonia.Layout.HorizontalAlignment;
 global using AvaVerticalAlignment = Avalonia.Layout.VerticalAlignment;
+global using AvaCheckBox = Avalonia.Controls.CheckBox;
