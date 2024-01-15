@@ -6,7 +6,7 @@ namespace BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;
 public abstract class Repository : IRepository
 {
     #region https://codetraveler.io/2019/11/26/efficiently-initializing-sqlite-database/
-    static string? dataBaseDirectory;
+    static string? dataBaseDirectory = IOPath.AppDataDirectory;
 
     /// <summary>
     /// 获取或设定数据库目录
