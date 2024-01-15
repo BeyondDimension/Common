@@ -24,6 +24,22 @@ public static partial class ProcessExtensions
     }
 
     /// <summary>
+    /// 尝试获取关联进程的主模块文件路径
+    /// </summary>
+    /// <param name="process"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string? TryGetMainModuleFileName(this Process process)
+    {
+        var mainModule = process.TryGetMainModule();
+        if (mainModule != null)
+        {
+            return mainModule.FileName;
+        }
+        return null;
+    }
+
+    /// <summary>
     /// 立即停止关联的进程，并停止其子/后代进程。
     /// </summary>
     /// <param name="process"></param>

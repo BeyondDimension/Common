@@ -235,33 +235,6 @@ public static partial class Process2
     /// <summary>
     /// 进程是否活着
     /// </summary>
-    /// <param name="process"></param>
-    /// <param name="exception"></param>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAlive(Process? process, out Exception? exception)
-    {
-        exception = null;
-
-        if (process == null)
-            return false;
-
-        try
-        {
-            if (process.HasExited)
-                return false;
-        }
-        catch (Exception ex)
-        {
-            exception = ex;
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    /// 进程是否活着
-    /// </summary>
     /// <param name="pid"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -279,32 +252,6 @@ public static partial class Process2
         {
         }
         return IsAlive(process);
-    }
-
-    /// <summary>
-    /// 进程是否活着
-    /// </summary>
-    /// <param name="pid"></param>
-    /// <param name="exception"></param>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAlive(int pid, out Exception? exception)
-    {
-        exception = null;
-
-        if (pid <= 0)
-            return false;
-
-        Process? process = null;
-        try
-        {
-            process = Process.GetProcessById(pid);
-        }
-        catch (Exception ex)
-        {
-            exception = ex;
-        }
-        return IsAlive(process, out exception);
     }
 
     /// <summary>
@@ -331,30 +278,33 @@ public static partial class Process2
         return IsAlive(process);
     }
 
+#if WINDOWS
     /// <summary>
-    /// 进程是否活着
+    /// 根据进程 Id 获取进程文件路径
     /// </summary>
-    /// <param name="pid"></param>
-    /// <param name="process"></param>
-    /// <param name="exception"></param>
+    /// <param name="dwProcessId"></param>
     /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsAlive(int pid, [NotNullWhen(true)] out Process? process, out Exception? exception)
+    public static unsafe string? GetPathByDwProcessId(uint dwProcessId)
     {
-        exception = null;
-        process = null;
-
-        if (pid <= 0)
-            return false;
-
-        try
+        using var hProcess = CsWin32.PInvoke.OpenProcess_SafeHandle(
+            CsWin32.System.Threading.PROCESS_ACCESS_RIGHTS.PROCESS_QUERY_LIMITED_INFORMATION,
+            false,
+            dwProcessId);
+        fixed (char* lpExeName = stackalloc char[1024])
         {
-            process = Process.GetProcessById(pid);
+            uint lpdwSize = default;
+            CsWin32.Foundation.PWSTR lpExeNamePWSTR = new(lpExeName);
+            bool isOK = CsWin32.PInvoke.QueryFullProcessImageName(
+                hProcess,
+                CsWin32.System.Threading.PROCESS_NAME_FORMAT.PROCESS_NAME_WIN32,
+                lpExeNamePWSTR,
+                ref lpdwSize);
+            if (isOK && lpdwSize > 0)
+            {
+                return new string(lpExeName, 0, (int)lpdwSize);
+            }
         }
-        catch (Exception ex)
-        {
-            exception = ex;
-        }
-        return IsAlive(process, out exception);
+        return default;
     }
+#endif
 }

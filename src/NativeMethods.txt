@@ -5,3 +5,5 @@ WinHttpOpen
 WinHttpCloseHandle
 WinHttpGetProxyForUrl
 WinHttpGetIEProxyConfigForCurrentUser
+QueryFullProcessImageName
+OpenProcess
