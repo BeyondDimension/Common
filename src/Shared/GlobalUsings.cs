@@ -57,6 +57,7 @@ global using Path = System.IO.Path;
 #if !NETFRAMEWORK
 global using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 #endif
+global using Timeout = System.Threading.Timeout;
 #if ANDROID
 global using Android.Runtime;
 global using AToastLength = Android.Widget.ToastLength;
