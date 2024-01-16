@@ -454,6 +454,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     #region 同时实现释放模式和异步释放模式 https://learn.microsoft.com/zh-cn/dotnet/standard/garbage-collection/implementing-disposeasync#implement-both-dispose-and-async-dispose-patterns
 
+    /// <inheritdoc/>
     public async ValueTask DisposeAsync()
     {
         await DisposeAsyncCore().ConfigureAwait(false);
@@ -471,6 +472,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         }
     }
 
+    /// <inheritdoc cref="IAsyncDisposable.DisposeAsync"/>
     protected virtual async ValueTask DisposeAsyncCore()
     {
         if (app is not null)
@@ -494,6 +496,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         DeleteUnixSocketFile();
     }
 
+    /// <inheritdoc cref="IDisposable.Dispose"/>
     protected virtual void Dispose(bool disposing)
     {
         if (disposing)
@@ -521,6 +524,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         }
     }
 
+    /// <inheritdoc/>
     public void Dispose()
     {
         // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
