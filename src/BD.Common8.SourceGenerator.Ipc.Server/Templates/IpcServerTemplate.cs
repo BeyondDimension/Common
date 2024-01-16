@@ -154,8 +154,10 @@ partial class {0} : IEndpointRouteMapGroup
                 case MethodParametersCategory.FromBody:
                     {
                         var (paraType, paraName, _) = methodParas[0];
-                        var isStruct = TypeStringImpl.GetTypeSymbol(paraType)?.TypeKind == TypeKind.Struct;
-                        if (isStruct)
+                        var type = TypeStringImpl.GetTypeSymbol(paraType);
+                        var isStruct = type?.TypeKind == TypeKind.Struct;
+
+                        if (isStruct || type?.NullableAnnotation == NullableAnnotation.Annotated)
                         {
                             stream.WriteFormat(
 """
