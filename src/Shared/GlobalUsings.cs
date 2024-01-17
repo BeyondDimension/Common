@@ -66,4 +66,7 @@ global using Activity = Android.App.Activity;
 global using JavaObject = Java.Lang.Object;
 global using JavaThread = Java.Lang.Thread;
 global using JavaThrowable = Java.Lang.Throwable;
+global using AndroidEnvironment = Android.OS.Environment;
+
 #endif
+global using Environment = System.Environment;
