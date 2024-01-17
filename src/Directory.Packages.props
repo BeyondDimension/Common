@@ -5,7 +5,7 @@
 		<PackageVersion Include="AngleSharp" Version="1.0.7" />
 		<PackageVersion Include="ApprovalTests" Version="6.0.0" />
 		<PackageVersion Include="Avalonia" Version="11.0.7" />
-		<PackageVersion Include="Avalonia.Android" Version="11.0.6" />
+		<PackageVersion Include="Avalonia.Android" Version="11.0.7" />
 		<PackageVersion Include="Avalonia.AvaloniaEdit" Version="11.0.6" />
 		<PackageVersion Include="Avalonia.Controls.DataGrid" Version="11.0.6" />
 		<PackageVersion Include="Avalonia.Desktop" Version="11.0.6" />
