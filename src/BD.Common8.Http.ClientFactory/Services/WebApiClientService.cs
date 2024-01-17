@@ -999,69 +999,7 @@ public abstract partial class WebApiClientService(
             mime = MediaTypeNames.JSON;
         try
         {
-#pragma warning disable CS0618 // 类型或成员已过时
-            HttpContentWrapper<TResponseBody> result;
-            switch (mime)
-            {
-                case MediaTypeNames.JSON:
-                    switch (args.JsonImplType)
-                    {
-                        case Serializable.JsonImplType.NewtonsoftJson:
-                            result = GetNJsonContent<TResponseBody, TRequestBody>(requestBody);
-                            return result;
-                        case Serializable.JsonImplType.SystemTextJson:
-                            result = GetSJsonContent<TResponseBody, TRequestBody>(requestBody);
-                            return result;
-                        default:
-                            throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
-                    }
-                case MediaTypeNames.XML:
-                case MediaTypeNames.XML_APP:
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                    result = GetXmlContent<TResponseBody, TRequestBody>(requestBody);
-                    return result;
-                case MediaTypeNames.FormUrlEncoded:
-                    if (requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection)
-                        throw new NotSupportedException("requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection.");
-                    result = new FormUrlEncodedContent(nameValueCollection);
-                    return result;
-                case MediaTypeNames.Binary:
-                    if (requestBody is not byte[] byteArray)
-                    {
-                        if (requestBody is ReadOnlyMemory<byte> readOnlyMemoryByte)
-                        {
-                            byteArray = readOnlyMemoryByte.ToArray();
-                        }
-                        if (requestBody is Memory<byte> memoryByte)
-                        {
-                            byteArray = memoryByte.ToArray();
-                        }
-                        if (requestBody is IEnumerable<byte> bytes)
-                        {
-                            byteArray = bytes.ToArray();
-                        }
-                        if (requestBody is Stream stream)
-                        {
-                            byteArray = stream.ToByteArray();
-                        }
-                        else
-                        {
-                            throw new NotSupportedException("requestBody is not byte[] byteArray.");
-                        }
-                    }
-                    result = new ByteArrayContent(byteArray);
-                    return result;
-                case MediaTypeNames.MessagePack:
-                    result = GetMessagePackContent<TResponseBody, TRequestBody>(requestBody, cancellationToken: cancellationToken);
-                    return result;
-                case MediaTypeNames.MemoryPack:
-                    result = GetMemoryPackContent<TResponseBody, TRequestBody>(requestBody);
-                    return result;
-                default:
-                    result = GetCustomSerializeContent<TResponseBody, TRequestBody>(args, requestBody, mime, cancellationToken);
-                    return result;
-            }
-#pragma warning restore CS0618 // 类型或成员已过时
+            return GetCustomSerializeContent<TResponseBody, TRequestBody>(args, requestBody, mime, cancellationToken);
         }
         catch (Exception ex)
         {
@@ -1089,7 +1027,68 @@ public abstract partial class WebApiClientService(
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
-        throw ThrowHelper.GetArgumentOutOfRangeException(mime);
+        HttpContentWrapper<TResponseBody> result;
+        switch (mime)
+        {
+            case MediaTypeNames.JSON:
+                switch (args.JsonImplType)
+                {
+                    case Serializable.JsonImplType.NewtonsoftJson:
+#pragma warning disable CS0618 // 类型或成员已过时
+                        result = GetNJsonContent<TResponseBody, TRequestBody>(requestBody);
+#pragma warning restore CS0618 // 类型或成员已过时
+                        return result;
+                    case Serializable.JsonImplType.SystemTextJson:
+                        result = GetSJsonContent<TResponseBody, TRequestBody>(requestBody);
+                        return result;
+                    default:
+                        throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
+                }
+            case MediaTypeNames.XML:
+            case MediaTypeNames.XML_APP:
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                result = GetXmlContent<TResponseBody, TRequestBody>(requestBody);
+                return result;
+            case MediaTypeNames.FormUrlEncoded:
+                if (requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection)
+                    throw new NotSupportedException("requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection.");
+                result = new FormUrlEncodedContent(nameValueCollection);
+                return result;
+            case MediaTypeNames.Binary:
+                if (requestBody is not byte[] byteArray)
+                {
+                    if (requestBody is ReadOnlyMemory<byte> readOnlyMemoryByte)
+                    {
+                        byteArray = readOnlyMemoryByte.ToArray();
+                    }
+                    if (requestBody is Memory<byte> memoryByte)
+                    {
+                        byteArray = memoryByte.ToArray();
+                    }
+                    if (requestBody is IEnumerable<byte> bytes)
+                    {
+                        byteArray = bytes.ToArray();
+                    }
+                    if (requestBody is Stream stream)
+                    {
+                        byteArray = stream.ToByteArray();
+                    }
+                    else
+                    {
+                        throw new NotSupportedException("requestBody is not byte[] byteArray.");
+                    }
+                }
+                result = new ByteArrayContent(byteArray);
+                return result;
+            case MediaTypeNames.MessagePack:
+                result = GetMessagePackContent<TResponseBody, TRequestBody>(requestBody, cancellationToken: cancellationToken);
+                return result;
+            case MediaTypeNames.MemoryPack:
+                result = GetMemoryPackContent<TResponseBody, TRequestBody>(requestBody);
+                return result;
+            default:
+                throw ThrowHelper.GetArgumentOutOfRangeException(mime);
+        }
     }
 
     /// <summary>
