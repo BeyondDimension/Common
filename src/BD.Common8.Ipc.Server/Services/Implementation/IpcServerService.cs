@@ -135,7 +135,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
             OperatingSystem.IsWindows() &&
             Environment.IsPrivilegedProcess)
         {
-            builder.Services.Configure<NamedPipeTransportOptions>(static options =>
+            builder.WebHost.UseNamedPipes(static options =>
             {
                 // 在 Windows 上允许不同用户连接到命名管道
 #pragma warning disable CA1416 // 验证平台兼容性
@@ -343,9 +343,12 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 #endif
     }
 
+    protected virtual bool UseMemoryPack => false;
+
     protected virtual void ConfigureSignalRProtocol(ISignalRServerBuilder builder)
     {
-        AddMemoryPackProtocol(builder);
+        if (UseMemoryPack)
+            AddMemoryPackProtocol(builder);
     }
 
     protected void AddMemoryPackProtocol(ISignalRServerBuilder builder)
@@ -384,7 +387,6 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     protected virtual void ConfigureHub(HttpConnectionDispatcherOptions options)
     {
-        options.Transports = HttpTransportType.WebSockets;
     }
 
     public IServiceProvider Services => app.ThrowIsNull().Services;
@@ -431,6 +433,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 #endif
     }
 
+    /// <inheritdoc cref="GetAccessToken"/>
     protected byte[]? _AccessToken;
 
     /// <summary>
@@ -445,6 +448,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
             using var stream = new MemoryStream();
             IpcAppConnectionString.WriteAccessToken(stream, tickCount64, Environment.ProcessId);
             _AccessToken = Hashs.ByteArray.SHA256(stream);
+            Console.WriteLine($"Server，GetAccessToken：{_AccessToken.ToHexString()}, tickCount64: {tickCount64}, pid: {Environment.ProcessId}");
         }
         return _AccessToken;
     }

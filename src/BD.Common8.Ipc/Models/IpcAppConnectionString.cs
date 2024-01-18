@@ -135,7 +135,7 @@ public readonly struct IpcAppConnectionString
         stream.Write(BitConverter.GetBytes(tickCount64));
         stream.Write(BitConverter.GetBytes(processId));
         stream.Write("-----"u8);
-        stream.WriteUtf16StrToUtf8OrCustom(Environment.OSVersion.VersionString);
+        stream.WriteUtf16StrToUtf8OrCustom(Environment.NewLine);
         stream.Position = 0;
     }
 
