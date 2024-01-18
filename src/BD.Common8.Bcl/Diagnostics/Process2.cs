@@ -306,5 +306,73 @@ public static partial class Process2
         }
         return default;
     }
+
+    /// <summary>
+    /// 检查指定的进程是否以管理员权限运行
+    /// </summary>
+    /// <param name="process"></param>
+    /// <returns></returns>
+    public static unsafe bool IsProcessElevated(Process process)
+    {
+        try
+        {
+            var handle = process.SafeHandle;
+
+            // IsPrivilegedProcess
+            // https://github.com/dotnet/runtime/pull/77355/files#diff-1c6f0e5208d48036e96fcc9c0243d93595f3ce16f2d1a50f51ba604d930ca69dR87
+            SafeFileHandle? token = null;
+            try
+            {
+                if (CsWin32.PInvoke.OpenProcessToken(handle,
+                     CsWin32.Security.TOKEN_ACCESS_MASK.TOKEN_READ,
+                    out token))
+                {
+                    TOKEN_ELEVATION elevation = default;
+                    if (CsWin32.PInvoke.GetTokenInformation(
+                        token,
+                        CsWin32.Security.TOKEN_INFORMATION_CLASS.TokenElevation,
+                        &elevation,
+                        (uint)sizeof(TOKEN_ELEVATION),
+                        out _))
+                    {
+                        return elevation.TokenIsElevated;
+                    }
+                }
+            }
+            finally
+            {
+                token?.Dispose();
+            }
+
+            var error = Marshal.GetLastPInvokeError();
+            throw new Win32Exception(error);
+
+            //using WindowsIdentity identity = new(handle);
+            //WindowsPrincipal principal = new(identity);
+            //return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+        catch (Win32Exception ex)
+        {
+            /* “process.Handle”引发了类型“System.ComponentModel.Win32Exception”的异常
+             * Data: {System.Collections.ListDictionaryInternal}
+             * ErrorCode: -2147467259
+             * HResult: -2147467259
+             * HelpLink: null
+             * InnerException: null
+             * Message: "拒绝访问。"
+             * NativeErrorCode: 5
+             * Source: "System.Diagnostics.Process"
+             */
+            if (ex.NativeErrorCode == 5)
+                return true;
+        }
+        return false;
+    }
+
+    // https://msdn.microsoft.com/en-us/library/windows/desktop/bb530717.aspx
+    struct TOKEN_ELEVATION
+    {
+        public CsWin32.Foundation.BOOL TokenIsElevated;
+    }
 #endif
 }

@@ -7,3 +7,5 @@ WinHttpGetProxyForUrl
 WinHttpGetIEProxyConfigForCurrentUser
 QueryFullProcessImageName
 OpenProcess
+OpenProcessToken
+GetTokenInformation
