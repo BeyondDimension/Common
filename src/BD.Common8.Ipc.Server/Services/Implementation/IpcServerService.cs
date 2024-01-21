@@ -154,6 +154,12 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         {
             options.AddServerHeader = false;
         });
+        builder.Services.Configure<HostOptions>(static options =>
+        {
+            // 忽略后台服务中的异常避免整个 Host 中止
+            options.BackgroundServiceExceptionBehavior =
+                BackgroundServiceExceptionBehavior.Ignore;
+        });
         builder.Services.AddRoutingCore();
         builder.Services.AddLogging(ConfigureLogging);
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
