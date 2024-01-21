@@ -216,4 +216,43 @@ public static partial class Registry2
 
 #endif
 }
+
+partial class Registry2
+{
+    /// <summary>
+    /// %windir%
+    /// </summary>
+    static readonly Lazy<string> _windir = new(() =>
+    {
+        var windir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+        return windir.ThrowIsNull();
+    });
+
+    static readonly Lazy<string> _regedit_exe = new(() =>
+    {
+        var regedit_exe = Path.Combine(_windir!.Value, "regedit.exe");
+        return regedit_exe;
+    });
+
+    /// <summary>
+    /// %windir%\regedit.exe
+    /// </summary>
+    public static string Regedit => _regedit_exe.Value;
+
+    /// <summary>
+    /// 带参数(可选/null)启动 %windir%\regedit.exe 并等待退出后删除文件
+    /// </summary>
+    public static async Task StartProcessRegeditAsync(
+        string path,
+        string contents,
+        int millisecondsDelay = 3700,
+        string? markKey = null,
+        string? markValue = null)
+    {
+        File.WriteAllText(path, contents, Encoding.UTF8);
+        var args = $"/s \"{path}\"";
+        var p = Process2.Start(Regedit, args, workingDirectory: _windir.Value);
+        await IOPath.TryDeleteInDelayAsync(p, path, millisecondsDelay, millisecondsDelay);
+    }
+}
 #endif
