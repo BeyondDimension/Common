@@ -21,12 +21,19 @@ public sealed class ViewModelWrapperTemplate :
 
         /// <inheritdoc cref="ViewModelWrapperGeneratedAttribute"/>
         public required ViewModelWrapperGeneratedAttribute Attribute { get; init; }
+
+        /// <summary>
+        /// 类型是否支持 MemoryPack
+        /// </summary>
+        public required bool IsMemoryPack { get; init; }
     }
 
     protected override AttributeModel GetAttribute(ImmutableArray<AttributeData> attributes)
     {
         var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
         attribute.ThrowIsNull();
+
+        var isMemoryPack = attributes.Any(x => x.ClassNameEquals("MemoryPack.MemoryPackableAttribute"));
 
         if (attribute.ConstructorArguments.FirstOrDefault().GetObjectValue()
             is not INamedTypeSymbol modelType)
@@ -74,6 +81,7 @@ public sealed class ViewModelWrapperTemplate :
         {
             Attribute = attr,
             DictProperties = dictProperties,
+            IsMemoryPack = isMemoryPack,
         };
     }
 
@@ -165,7 +173,7 @@ public sealed class ViewModelWrapperTemplate :
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();
-        var vmBaseType = m.Attribute.ViewModelBaseType?.Name ?? "ReactiveObject";
+        var vmBaseType = m.Attribute.ViewModelBaseType?.Name ?? (m.AttrModel.IsMemoryPack ? "ReactiveSerializationObject" : "ReactiveObject");
         var modelType = m.Attribute.ModelType?.Name;
         modelType.ThrowIsNull();
 
@@ -233,9 +241,33 @@ partial class {0} : {1}
 
         #region Body
 
-        if (debuggerDisplayProperty != null)
+        if (m.AttrModel.IsMemoryPack)
         {
             stream.WriteFormat(
+"""
+    /// <summary>
+    /// Initializes a new instance of the <see cref="{0}"/> class.
+"""u8, m.TypeName);
+            stream.WriteFormat(
+"""
+
+    /// </summary>
+    [MP2Constructor, SystemTextJsonConstructor]
+    public {0}() : this(new())
+
+"""u8, m.TypeName);
+            stream.Write(
+"""
+    {
+    }
+
+
+"""u8);
+        }
+
+        if (debuggerDisplayProperty != null)
+        {
+            stream.Write(
 """
     /// <inheritdoc cref="DebuggerDisplayAttribute"/>
     [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
@@ -257,11 +289,23 @@ partial class {0} : {1}
 
         if (m.Attribute.Constructor)
         {
-            stream.WriteFormat(
+            if (m.AttrModel.IsMemoryPack)
+            {
+                stream.WriteFormat(
+"""
+    /// <inheritdoc cref="{0}"/>
+    [MP2Key(0), JsonPropertyOrder(0)]
+    public {0} Model { get; } = model;
+"""u8, modelType);
+            }
+            else
+            {
+                stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}"/>
     public {0} Model { get; } = model;
 """u8, modelType);
+            }
         }
         else
         {
@@ -398,6 +442,7 @@ partial class {0} : {1}
                     stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}.{1}"/>
+    [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
     public {2} {1}
 """u8, modelType, p.Key, p.Value);
                     stream.Write(
@@ -461,6 +506,7 @@ partial class {0} : {1}
                 stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}.{1}"/>
+    [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
     public {2} {1} 
 """u8, modelType, p.Key, p.Value);
                 stream.Write("{"u8);

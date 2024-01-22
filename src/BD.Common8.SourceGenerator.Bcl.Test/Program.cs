@@ -92,6 +92,7 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
     {
     }
 
+    [MP2Obj]
     [ViewModelWrapperGenerated(typeof(TodoModel),
         Properties = [
             nameof(TodoModel.C),

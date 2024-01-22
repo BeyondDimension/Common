@@ -172,13 +172,10 @@ sealed class IpcClientService2(IpcAppConnectionString connectionString) : IpcCli
     }
 
     static readonly Lazy<SystemTextJsonSerializerOptions> _JsonSerializerOptions =
-        new(SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver);
+        new(() => SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver());
 
     /// <inheritdoc/>
     protected override SystemTextJsonSerializerOptions JsonSerializerOptions => _JsonSerializerOptions.Value;
-
-    /// <inheritdoc/>
-    protected sealed override bool EnableLogOnError => false;
 
     protected override void OnBuildHubConnection(HubConnection connection)
     {

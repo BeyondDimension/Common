@@ -325,7 +325,7 @@ public static partial class Process2
             {
                 if (CsWin32.PInvoke.OpenProcessToken(handle,
                      CsWin32.Security.TOKEN_ACCESS_MASK.TOKEN_READ,
-                    out token))
+                     out token))
                 {
                     TOKEN_ELEVATION elevation = default;
                     if (CsWin32.PInvoke.GetTokenInformation(

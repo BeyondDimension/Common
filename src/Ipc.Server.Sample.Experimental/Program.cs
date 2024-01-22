@@ -80,7 +80,7 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
 
     protected override bool ListenUnixSocket => true;
 
-    static readonly Lazy<SystemTextJsonSerializerOptions> _JsonSerializerOptions = new(SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver);
+    static readonly Lazy<SystemTextJsonSerializerOptions> _JsonSerializerOptions = new(() => SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver());
 
     protected override SystemTextJsonSerializerOptions JsonSerializerOptions
         => _JsonSerializerOptions.Value;
