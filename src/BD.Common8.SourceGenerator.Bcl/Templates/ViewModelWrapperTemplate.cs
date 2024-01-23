@@ -287,29 +287,23 @@ partial class {0} : {1}
 """u8, debuggerDisplayMethod.Name);
         }
 
+        var anyModel = m.AttrModel.IsMemoryPack || m.NamedTypeSymbol.GetMembers()
+            .OfType<IPropertySymbol>()
+            .Any(x => x.Name == "Model");
+
         if (m.Attribute.Constructor)
         {
-            if (m.AttrModel.IsMemoryPack)
-            {
-                stream.WriteFormat(
-"""
-    /// <inheritdoc cref="{0}"/>
-    [MP2Key(0), JsonPropertyOrder(0)]
-    public {0} Model { get; } = model;
-"""u8, modelType);
-            }
-            else
-            {
+            if (!anyModel)
                 stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}"/>
     public {0} Model { get; } = model;
 """u8, modelType);
-            }
         }
         else
         {
-            stream.WriteFormat(
+            if (!anyModel)
+                stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}"/>
     public {0} Model { get; }
