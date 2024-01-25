@@ -100,9 +100,10 @@ public abstract class IpcTemplateBase :
         var serviceType = TypeStringImpl.GetTypeSymbol(args.attr.ServiceType);
         serviceType.ThrowIsNull();
 
-        var methods = serviceType.GetMembers().OfType<IMethodSymbol>()
+        var methods = serviceType.GetMembers().OfType<IMethodSymbol>().Where(static m => !m.IsStatic).ToImmutableArray();
+        methods = methods.AddRange(serviceType.AllInterfaces.SelectMany(s => s.GetMembers().OfType<IMethodSymbol>()
             .Where(static m => !m.IsStatic)
-            .ToImmutableArray();
+            ).ToImmutableArray());
 
         if (methods.Length == 0)
         {
