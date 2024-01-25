@@ -335,6 +335,13 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             monitor.UpdateSettingsModel(settingsModel, save: true);
     }
 
+    /// <inheritdoc/>
+    public void ForceSave<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>() where TSettingsModel : class, new()
+    {
+        var monitor = Get<OptionsMonitor<TSettingsModel>>();
+        monitor.Save();
+    }
+
     interface IInternalOptionsMonitor
     {
         void Save(byte[] bytes);

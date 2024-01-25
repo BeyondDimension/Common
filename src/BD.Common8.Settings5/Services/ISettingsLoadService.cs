@@ -37,4 +37,10 @@ public interface ISettingsLoadService
     /// <param name="settingsModel">新的值</param>
     /// <param name="force">是否忽略比较相等，强制保存写入文件，默认值：<see langword="true"/></param>
     void Save<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TSettingsModel settingsModel, bool force = true) where TSettingsModel : class, new();
+
+    /// <summary>
+    /// 强制保存配置项到文件
+    /// </summary>
+    /// <typeparam name="TSettingsModel"></typeparam>
+    void ForceSave<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>() where TSettingsModel : class, new();
 }
