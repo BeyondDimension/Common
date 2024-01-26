@@ -6,11 +6,6 @@ namespace BD.Common8.Ipc.Helpers;
 public static partial class IpcAppConnectionStringHelper
 {
     /// <summary>
-    /// 超时时间
-    /// </summary>
-    public const double TimeoutFromSeconds = 2.9;
-
-    /// <summary>
     /// 根据 Ipc 应用程序连接字符串创建 <see cref="HttpMessageHandler"/>
     /// </summary>
     /// <param name="connectionString">连接字符串</param>
@@ -40,7 +35,7 @@ public static partial class IpcAppConnectionStringHelper
     /// <returns></returns>
     public static (HttpClient httpClient, IpcAppConnDelegatingHandler handler) GetHttpClient(IpcAppConnectionString connectionString,
         bool ignoreRemoteCertificateValidation = true,
-        double timeoutFromSeconds = TimeoutFromSeconds)
+        double timeoutFromSeconds = IClientHttpClientFactory.DefaultLocalTimeoutFromSeconds)
     {
         var handler = GetHttpMessageHandler(connectionString, ignoreRemoteCertificateValidation);
         HttpClient client = new(handler)

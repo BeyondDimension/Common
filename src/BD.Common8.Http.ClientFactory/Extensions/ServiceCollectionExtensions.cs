@@ -8,14 +8,12 @@ public static partial class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <param name="handler"></param>
-    /// <param name="registerConstant">是否调用 <see cref="Splat.DependencyResolverMixins.RegisterConstant(Splat.IMutableDependencyResolver, object?, Type?, string?)"/>，默认值为 <see langword="true"/></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddFusilladeHttpClientFactory(
         this IServiceCollection services,
-        HttpMessageHandler? handler = null,
-        bool registerConstant = true)
-        => FusilladeClientHttpClientFactory.AddFusilladeHttpClientFactory(services, handler, registerConstant);
+        HttpMessageHandler? handler = null)
+        => FusilladeClientHttpClientFactory.AddFusilladeHttpClientFactory(services, handler);
 
     /// <summary>
     /// 根据名称配置使用 Fusillade 实现的 <see cref="HttpClient"/>

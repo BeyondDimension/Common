@@ -37,12 +37,17 @@ public interface IClientHttpClientFactory
     HttpClient CreateClient(string name, HttpHandlerCategory category = default);
 
     /// <summary>
-    /// 默认超时时间，45 秒
+    /// 默认超时时间，25 秒
     /// </summary>
     static readonly TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(DefaultTimeoutMilliseconds);
 
     /// <inheritdoc cref="DefaultTimeout"/>
-    const int DefaultTimeoutMilliseconds = 45000;
+    const int DefaultTimeoutMilliseconds = 25000;
+
+    /// <summary>
+    /// 默认本地超时时间，单位秒
+    /// </summary>
+    public const double DefaultLocalTimeoutFromSeconds = 4.99;
 
     /// <inheritdoc cref="AddHttpClientDelegate"/>
     protected static AddHttpClientDelegate? AddHttpClientDelegateValue { private get; set; }

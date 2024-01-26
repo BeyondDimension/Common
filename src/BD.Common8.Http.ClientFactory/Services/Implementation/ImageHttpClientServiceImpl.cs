@@ -235,6 +235,34 @@ public sealed class ImageHttpClientServiceImpl(
         /// 原始请求地址，因某些请求 301/302 跳转会改变地址
         /// </summary>
         public string OriginalRequestUri { get; internal set; } = requestUri;
+
+        /// <summary>
+        /// 默认请求地址
+        /// </summary>
+        public const string DefaultRequestUri = "/";
+
+        /// <summary>
+        /// 从请求消息中获取原始请求地址
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="defaultRequestUri"></param>
+        /// <returns></returns>
+        public static string GetOriginalRequestUri(HttpRequestMessage request, string defaultRequestUri = DefaultRequestUri)
+        {
+            string? originalRequestUri;
+            if (request is ImageHttpClientServiceImpl.ImageHttpRequestMessage request2)
+            {
+                // 对于一些重定向的 Url 使用原始 Url 进行唯一性的计算
+                originalRequestUri = request2.OriginalRequestUri;
+            }
+            else
+            {
+                originalRequestUri = request.RequestUri?.ToString()!;
+            }
+            if (string.IsNullOrEmpty(originalRequestUri))
+                originalRequestUri = defaultRequestUri;
+            return originalRequestUri;
+        }
     }
 
     async Task<ImageMemoryStreamWrapper> GetImageMemoryStreamCoreAsync(
