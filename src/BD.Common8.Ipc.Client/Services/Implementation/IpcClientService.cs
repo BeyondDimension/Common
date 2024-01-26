@@ -152,7 +152,7 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
             try
             {
                 using var cts = new CancellationTokenSource();
-                cts.CancelAfter(TimeSpan.FromSeconds(IpcAppConnectionStringHelper.TimeoutFromSeconds));
+                cts.CancelAfter(TimeSpan.FromSeconds(IClientHttpClientFactory.DefaultLocalTimeoutFromSeconds));
                 await hubConnection.StartAsync(cts.Token);
             }
             catch (OperationCanceledException)
