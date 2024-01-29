@@ -485,10 +485,11 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     /// <inheritdoc cref="IAsyncDisposable.DisposeAsync"/>
     protected virtual async ValueTask DisposeAsyncCore()
     {
-        if (app is not null)
-        {
-            await app.DisposeAsync().ConfigureAwait(false);
-        }
+        //if (app is not null)
+        //{
+        //    await app.StopAsync().ConfigureAwait(false);
+        //    await app.DisposeAsync().ConfigureAwait(false);
+        //}
         if (lock_RunAsync is not null)
         {
             await lock_RunAsync.DisposeAsync().ConfigureAwait(false);
@@ -512,11 +513,16 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         if (disposing)
         {
             // 释放托管状态(托管对象)
-            if (app is IDisposable disposable_app)
-            {
-                disposable_app.Dispose();
-                app = null;
-            }
+            //if (app != null)
+            //{
+            //    app.StopAsync().GetAwaiter().GetResult();
+
+            //    if (app is IDisposable disposable_app)
+            //    {
+            //        disposable_app.Dispose();
+            //        app = null;
+            //    }
+            //}
 
             if (lock_RunAsync is not null)
             {
