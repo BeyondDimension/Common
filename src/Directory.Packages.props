@@ -61,7 +61,7 @@
 		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.1" />
 		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
-		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.2.0" />
+		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.3.0" />
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
