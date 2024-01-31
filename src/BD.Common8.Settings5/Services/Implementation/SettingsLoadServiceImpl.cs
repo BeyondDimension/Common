@@ -235,6 +235,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         var monitor = CreateOptionsMonitor(settingsFilePath, settingsFileNameWithoutExtension, settingsModel, this);
         optionsMonitors.TryAdd(typeof(IOptions<TSettingsModel>), monitor);
         optionsMonitors.TryAdd(typeof(IOptionsMonitor<TSettingsModel>), monitor);
+        optionsMonitors.TryAdd(typeof(OptionsMonitor<TSettingsModel>), monitor);
         configureServices = s =>
         {
             s.AddSingleton(_ => monitor);
