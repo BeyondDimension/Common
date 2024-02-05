@@ -344,8 +344,9 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         // 更改 KeepAliveInterval 时，请更改客户端上的 ServerTimeout 或 serverTimeoutInMilliseconds 设置。 建议的 ServerTimeout 或 serverTimeoutInMilliseconds 值是 KeepAliveInterval 值的两倍。
         // 默认值：15 秒
         //options.KeepAliveInterval = TimeSpan.FromSeconds(5);
+        options.MaximumReceiveMessageSize = 1024 * 1000 * 100;
 #if DEBUG
-        //options.EnableDetailedErrors = true;
+        options.EnableDetailedErrors = true;
 #endif
     }
 
