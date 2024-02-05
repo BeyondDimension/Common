@@ -84,7 +84,7 @@
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.41" />
 		<PackageVersion Include="SharpZipLib" Version="1.4.2" />
 		<PackageVersion Include="sqlite-net-pcl" Version="1.8.116" />
-		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.7" />
+		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
 		<PackageVersion Include="Squid-Box.SevenZipSharp.Lite" Version="1.6.1.23" />
 		<PackageVersion Include="StackExchange.Redis" Version="2.7.17" />
 		<PackageVersion Include="SteamKit2" Version="2.5.0" />
