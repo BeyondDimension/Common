@@ -10,7 +10,7 @@
 		<PackageVersion Include="Avalonia" Version="11.0.9" />
 		<PackageVersion Include="Avalonia.Android" Version="11.0.9" />
 		<PackageVersion Include="Avalonia.AvaloniaEdit" Version="11.0.6" />
-		<PackageVersion Include="Avalonia.Controls.DataGrid" Version="11.0.8" />
+		<PackageVersion Include="Avalonia.Controls.DataGrid" Version="11.0.9" />
 		<PackageVersion Include="Avalonia.Desktop" Version="11.0.9" />
 		<PackageVersion Include="Avalonia.Diagnostics" Version="11.0.9" />
 		<PackageVersion Include="Avalonia.iOS" Version="11.0.7" />
