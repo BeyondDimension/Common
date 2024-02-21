@@ -3,12 +3,14 @@ namespace System;
 public static partial class Serializable // GetIndented(格式化缩进)
 {
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static string ToString(JsonDocument document, JsonWriterOptions options = default)
     {
         using var stream = new MemoryStream();
         using var writer = new Utf8JsonWriter(stream, options);
         document.WriteTo(writer);
+        writer.Flush();
         var bytes = stream.ToArray();
         var result = Encoding.UTF8.GetString(bytes);
         return result;
@@ -37,6 +39,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
         var newJsonStr = ToString(jsonDoc, JsonSerializerCompatOptions.Writer.WriteIndented);
         return newJsonStr;
     }
+
 #endif
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
