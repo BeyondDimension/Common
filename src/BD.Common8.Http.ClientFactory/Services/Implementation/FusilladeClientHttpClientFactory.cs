@@ -300,7 +300,7 @@ sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority
     public static string UniqueKeyForRequest(HttpRequestMessage request)
     {
         var requestUriString = ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(request);
-        return UniqueKeyForRequest(requestUriString, request); ;
+        return UniqueKeyForRequest(requestUriString, request);
     }
 
     /// <inheritdoc />
@@ -351,9 +351,9 @@ sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority
 
         lock (_inflightResponses)
         {
-            if (_inflightResponses.ContainsKey(key))
+            if (_inflightResponses.TryGetValue(key, out var value))
             {
-                var val = _inflightResponses[key];
+                var val = value;
                 val.AddRef();
                 cancellationToken.Register(val.Cancel);
 
