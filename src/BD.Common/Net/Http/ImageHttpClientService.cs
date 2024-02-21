@@ -170,6 +170,34 @@ public sealed partial class ImageHttpClientService : GeneralHttpClientFactory, I
         }
 
         public string OriginalRequestUri { get; }
+
+        /// <summary>
+        /// 默认请求地址
+        /// </summary>
+        public const string DefaultRequestUri = "/";
+
+        /// <summary>
+        /// 从请求消息中获取原始请求地址
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="defaultRequestUri"></param>
+        /// <returns></returns>
+        public static string GetOriginalRequestUri(HttpRequestMessage request, string defaultRequestUri = DefaultRequestUri)
+        {
+            string? originalRequestUri;
+            if (request is ImageHttpRequestMessage request2)
+            {
+                // 对于一些重定向的 Url 使用原始 Url 进行唯一性的计算
+                originalRequestUri = request2.OriginalRequestUri;
+            }
+            else
+            {
+                originalRequestUri = request.RequestUri?.ToString()!;
+            }
+            if (string.IsNullOrEmpty(originalRequestUri))
+                originalRequestUri = defaultRequestUri;
+            return originalRequestUri;
+        }
     }
 
     async Task<MemoryStream?> GetImageMemoryStreamCoreAsync(
