@@ -16,10 +16,68 @@ public static partial class Log
     static ILoggerFactory? factory;
 
     /// <inheritdoc cref="ILoggerFactory"/>
-    public static ILoggerFactory Factory => factory ??= (Ioc.IsConfigured ? Ioc.Get<ILoggerFactory>() : null) ?? LoggerFactory?.Invoke() ?? throw new ArgumentNullException(nameof(LoggerFactory));
+    public static ILoggerFactory Factory
+    {
+        get
+        {
+            try
+            {
+                var value = factory ??= (Ioc.IsConfigured ? Ioc.Get<ILoggerFactory>() : null) ?? LoggerFactory?.Invoke() ?? new EmptyLoggerFactory();
+                return value;
+            }
+            catch (ObjectDisposedException)
+            {
+                return new EmptyLoggerFactory();
+            }
+        }
+    }
 
     /// <inheritdoc cref="ILoggerFactory.CreateLogger(string)"/>
-    public static ILogger CreateLogger(string tag) => Factory.CreateLogger(tag);
+    public static ILogger CreateLogger(string tag)
+    {
+        try
+        {
+            var logger = Factory.CreateLogger(tag);
+            return logger;
+        }
+        catch (ObjectDisposedException)
+        {
+            return new EmptyLogger();
+        }
+    }
+
+    sealed class EmptyLogger : ILogger
+    {
+        IDisposable? ILogger.BeginScope<TState>(TState state)
+        {
+            return null;
+        }
+
+        bool ILogger.IsEnabled(LogLevel logLevel)
+        {
+            return false;
+        }
+
+        void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+        {
+        }
+    }
+
+    sealed class EmptyLoggerFactory : ILoggerFactory
+    {
+        void ILoggerFactory.AddProvider(ILoggerProvider provider)
+        {
+        }
+
+        ILogger ILoggerFactory.CreateLogger(string categoryName)
+        {
+            return new EmptyLogger();
+        }
+
+        void IDisposable.Dispose()
+        {
+        }
+    }
 
 #pragma warning disable CA2254 // 模板应为静态表达式
 
