@@ -499,6 +499,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             finally
             {
                 isSaveing = false;
+                ChangeListener?.Invoke(savingSettingsModel, settingsFileNameWithoutExtension);
             }
         }
 
@@ -529,6 +530,8 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             }
         }
 
+        event Action<TSettingsModel, string?>? ChangeListener;
+
         public virtual IDisposable? OnChange(Action<TSettingsModel, string?> listener)
         {
 #if ANDROID || IOS
@@ -539,6 +542,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                 return null;
             }
 
+            ChangeListener += listener;
             void OnChange()
             {
                 // 需要防止保存时修改文件，触发文件变更，死循环
@@ -561,7 +565,14 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                     listener.Invoke(settingsModel, settingsFileNameWithoutExtension);
                 }
             }
-            return ChangeToken.OnChange(() => fileProvider.Watch(settingsFileName), OnChange);
+            var changeToken = ChangeToken.OnChange(() => fileProvider.Watch(settingsFileName), OnChange);
+            CompositeDisposable disposables = new();
+            disposables.Add(changeToken);
+            disposables.Add(Disposable.Create(() =>
+            {
+                ChangeListener -= listener;
+            }));
+            return disposables;
 #endif
         }
     }
