@@ -102,12 +102,12 @@ partial class {0}
             m.Attribute.Summary;
         stream.WriteFormat(
 """
-    static {0}? {1};
+    static readonly Lazy<{0}> {1} = new(() => new(), LazyThreadSafetyMode.ExecutionAndPublication);
 
     /// <summary>
     /// {3}
     /// </summary>
-    public static {0} {2} => {1} ??= new();
+    public static {0} {2} => {1}.Value;
 """u8, m.TypeName, GetRandomFieldName(), currentPropertyName, summary);
         stream.WriteNewLine();
 
