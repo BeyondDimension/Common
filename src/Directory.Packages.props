@@ -28,7 +28,7 @@
 		<PackageVersion Include="Crc32.NET" Version="1.2.0" />
 		<PackageVersion Include="DNS" Version="7.0.0" />
 		<PackageVersion Include="DnsClient" Version="1.7.0" />
-		<PackageVersion Include="DotNext" Version="5.3.0" />
+		<PackageVersion Include="DotNext" Version="5.3.1" />
 		<PackageVersion Include="DotNext.Threading" Version="5.3.0" />
 		<PackageVersion Include="DynamicData" Version="8.3.93" />
 		<PackageVersion Include="FluentAvaloniaUI" Version="2.0.5" />
