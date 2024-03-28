@@ -1,3 +1,3 @@
 ---
-redirect_url: "articles/" 
+redirect_url: "doc/" 
 ---

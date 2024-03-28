@@ -149,10 +149,10 @@
     "content": [
       {
         "files": [
-          "articles/**.md",
-          "articles/**.html",
+          "doc/**.md",
+          "src/WebRoot/**.html",
           "*.html",
-          "articles/**/toc.yml",
+          "doc/**/toc.yml",
           "toc.yml",
           "*.md"
         ]
@@ -170,7 +170,7 @@
         "files": [
           "images/**",
           "res/DocFXIcon.png",
-          "articles/*.html",
+          "src/WebRoot/**.html",
           "README.md"
         ]
       }
