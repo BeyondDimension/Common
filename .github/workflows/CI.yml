@@ -153,20 +153,20 @@ jobs:
         shell: cmd
         run: del pkg /f /q
 
-  release:
-    name: Release
-    needs: build
-    runs-on: ubuntu-latest
+  # release:
+  #   name: Release
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Changelog
-        uses: glennawatson/ChangeLog@v1
-        id: changelog
+  #   steps:
+  #     - name: Changelog
+  #       uses: glennawatson/ChangeLog@v1
+  #       id: changelog
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.RMBADMIN_TOKEN }}
-          body: ${{ steps.changelog.outputs.commitLog }}
-          draft: false
-          prerelease: false
+  #     - name: Create Release
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         token: ${{ secrets.RMBADMIN_TOKEN }}
+  #         body: ${{ steps.changelog.outputs.commitLog }}
+  #         draft: false
+  #         prerelease: false
