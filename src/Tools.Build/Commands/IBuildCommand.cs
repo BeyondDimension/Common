@@ -14,7 +14,7 @@ interface IBuildCommand : ICommand
     static Command ICommand.GetCommand()
     {
         var test = new Option<bool>("--test");
-        var no_err = new Option<bool>("--no-err");
+        var no_err = new Option<bool>("--no_err");
         var command = new Command(CommandName, "构建当前仓库源代码命令")
         {
             test, no_err,
