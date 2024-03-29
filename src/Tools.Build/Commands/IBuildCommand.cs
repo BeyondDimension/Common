@@ -114,6 +114,9 @@ interface IBuildCommand : ICommand
                 // UserInput
                 "BD.Common8.UserInput.ModelValidator",
             ],
+            "BD.Avalonia8" => [
+                "BD.Avalonia8.Image2",
+            ],
             "BD.SteamClient8" => [
                 "BD.SteamClient8",
                 "BD.SteamClient8.Impl",
