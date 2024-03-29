@@ -1,25 +1,25 @@
 files:
-  - source: /res/i18n/Resources/BD.Common8.Bcl.resx
+  - source: /res/i18n/BD.Common8.Bcl.resx
     ignore:
       - '*.cs'
-    translation: /res/i18n/Resources/BD.Common8.Bcl.%two_letters_code%.resx
-  - source: /res/i18n/Resources/BD.Common8.Primitives.ApiRsp.resx
+    translation: /res/i18n/BD.Common8.Bcl.%two_letters_code%.resx
+  - source: /res/i18n/BD.Common8.Primitives.ApiRsp.resx
     ignore:
       - '*.cs'
-    translation: /res/i18n/Resources/BD.Common8.Primitives.ApiRsp.%two_letters_code%.resx
-  - source: /res/i18n/Resources/BD.Common8.Primitives.PersonalData.BirthDate.resx
+    translation: /res/i18n/BD.Common8.Primitives.ApiRsp.%two_letters_code%.resx
+  - source: /res/i18n/BD.Common8.Primitives.PersonalData.BirthDate.resx
     ignore:
       - '*.cs'
-    translation: /res/i18n/Resources/BD.Common8.Primitives.PersonalData.BirthDate.%two_letters_code%.resx
-  - source: /res/i18n/Resources/BD.Common8.Primitives.PersonalData.PhoneNumber.resx
+    translation: /res/i18n/BD.Common8.Primitives.PersonalData.BirthDate.%two_letters_code%.resx
+  - source: /res/i18n/BD.Common8.Primitives.PersonalData.PhoneNumber.resx
     ignore:
       - '*.cs'
-    translation: /res/i18n/Resources/BD.Common8.Primitives.PersonalData.PhoneNumber.%two_letters_code%.resx
-  - source: /res/i18n/Resources/BD.Common8.Primitives.resx
+    translation: /res/i18n/BD.Common8.Primitives.PersonalData.PhoneNumber.%two_letters_code%.resx
+  - source: /res/i18n/BD.Common8.Primitives.resx
     ignore:
       - '*.cs'
-    translation: /res/i18n/Resources/BD.Common8.Primitives.%two_letters_code%.resx
-  - source: /res/i18n/Resources/BD.Common8.UserInput.ModelValidator.resx
+    translation: /res/i18n/BD.Common8.Primitives.%two_letters_code%.resx
+  - source: /res/i18n/BD.Common8.UserInput.ModelValidator.resx
     ignore:
       - '*.cs'
-    translation: /res/i18n/Resources/BD.Common8.UserInput.ModelValidator.%two_letters_code%.resx
+    translation: /res/i18n/BD.Common8.UserInput.ModelValidator.%two_letters_code%.resx
