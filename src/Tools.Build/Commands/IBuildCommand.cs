@@ -14,12 +14,13 @@ interface IBuildCommand : ICommand
     static Command ICommand.GetCommand()
     {
         var test = new Option<bool>("--test");
+        var no_err = new Option<bool>("--no-err");
         var command = new Command(CommandName, "构建当前仓库源代码命令")
         {
-            test,
+            test, no_err,
         };
         command.AddAlias("b"); // 单个字母的命令名简写
-        command.SetHandler(Handler, test);
+        command.SetHandler(Handler, test, no_err);
         return command;
     }
 
@@ -141,7 +142,7 @@ interface IBuildCommand : ICommand
     /// <summary>
     /// 命令的逻辑实现
     /// </summary>
-    internal static async Task<int> Handler(bool test)
+    internal static async Task<int> Handler(bool test, bool no_err)
     {
         bool hasError = false;
         var repoPath = ProjPath;
@@ -168,7 +169,13 @@ interface IBuildCommand : ICommand
         }
 
         if (hasError)
+        {
+            if (no_err)
+            {
+                return 0;
+            }
             return 500;
+        }
         Console.WriteLine("🆗");
         Console.WriteLine("OK");
         return 0;
@@ -232,7 +239,7 @@ interface IBuildCommand : ICommand
                 {
                     if (hasError != true)
                         hasError = true;
-                    Console.WriteLine($"构建失败({config})：{projectName}");
+                    Console.WriteLine($"构建失败({config})：{projectName}, exitCode:{exitCode}");
                 }
             }
             finally
