@@ -9,6 +9,6 @@
 	<ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj') AND $(MSBuildProjectName) != $(MSBuildThisFileName)">
 		<ProjectReference Include="$(MSBuildThisFileDirectory)..\..\$(MSBuildThisFileName)\$(MSBuildThisFileName).csproj" />
 	</ItemGroup>
-	<Import Project="$(MSBuildThisFileDirectory)..\ProjectReference\BD.Common8.SourceGenerator.ResX.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\ProjectReference\BD.Common8.Bcl.props" />
+	<!--<Import Project="$(MSBuildThisFileDirectory)..\ProjectReference\BD.Common8.SourceGenerator.ResX.props" />-->
+	<!--<Import Project="$(MSBuildThisFileDirectory)..\ProjectReference\BD.Common8.Bcl.props" />-->
 </Project>
