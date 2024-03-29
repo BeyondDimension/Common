@@ -1,0 +1,5 @@
+files:
+  - source: /res/i18n/Resources/*.resx
+    ignore:
+      - '*.cs'
+    translation: /res/i18n/Resources/*.%two_letters_code%.resx
