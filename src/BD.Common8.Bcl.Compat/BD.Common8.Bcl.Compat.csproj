@@ -6,6 +6,6 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<Import Project="..\Sdk\BD.Common8.Bcl.Compat.Reference.props" />
+	<Import Project="..\Sdk\BD.Common8.Bcl\Reference.Compat.props" />
 
 </Project>

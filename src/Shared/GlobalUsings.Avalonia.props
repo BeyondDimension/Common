@@ -1,0 +1,66 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Avalonia" />
+		<Using Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'" Include="Avalonia.iOS" />
+		<Using Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" Include="Avalonia.Android" />
+		<Using Include="Avalonia.Input" />
+		<Using Include="Avalonia.Layout" />
+		<Using Include="Avalonia.LogicalTree" />
+		<Using Include="Avalonia.Interactivity" />
+		<Using Include="Avalonia.Animation" />
+		<Using Include="Avalonia.Animation.Easings" />
+		<Using Include="Avalonia.Automation.Peers" />
+		<Using Include="Avalonia.Styling" />
+		<Using Include="Avalonia.Controls" />
+		<Using Include="Avalonia.Controls.Primitives" />
+		<Using Include="Avalonia.Controls.ApplicationLifetimes" />
+		<Using Include="Avalonia.Controls.Templates" />
+		<Using Include="Avalonia.Controls.Shapes" />
+		<Using Include="Avalonia.Controls.Documents" />
+		<Using Include="Avalonia.Controls.Notifications" />
+		<Using Include="Avalonia.Controls.Metadata" />
+		<Using Include="Avalonia.Controls.Presenters" />
+		<Using Include="Avalonia.Controls.Mixins" />
+		<Using Include="Avalonia.Data" />
+		<Using Include="Avalonia.Data.Converters" />
+		<Using Include="Avalonia.Media" />
+		<Using Include="Avalonia.Media.Imaging" />
+		<Using Include="Avalonia.Media.Transformation" />
+		<Using Include="Avalonia.Threading" />
+		<Using Include="Avalonia.Platform" />
+		<Using Include="Avalonia.Platform.Storage" />
+		<Using Include="Avalonia.Metadata" />
+		<Using Include="Avalonia.Rendering.Composition" />
+		<Using Include="Avalonia.Rendering.Composition.Animations" />
+		<Using Include="Avalonia.VisualTree" />
+		<Using Include="Avalonia.Logging" />
+		<Using Include="Avalonia.Markup.Xaml" />
+		<Using Include="Avalonia.Markup.Xaml.MarkupExtensions" />
+		<Using Include="Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings" />
+		<Using Include="Avalonia.Utilities" />
+		<Using Alias="AvaColor" Include="Avalonia.Media.Color" />
+		<Using Alias="AvaSize" Include="Avalonia.Size" />
+		<Using Alias="AvaPoint" Include="Avalonia.Point" />
+		<Using Alias="AvaVector" Include="Avalonia.Vector" />
+		<Using Alias="AvaRect" Include="Avalonia.Rect" />
+		<Using Alias="AvaBitmap" Include="Avalonia.Media.Imaging.Bitmap" />
+		<Using Alias="AvaApplication" Include="Avalonia.Application" />
+		<Using Alias="AvaVisual" Include="Avalonia.Visual" />
+		<Using Alias="AvaInputKey" Include="Avalonia.Input.Key" />
+		<Using Alias="AvaOrientation" Include="Avalonia.Layout.Orientation" />
+		<Using Alias="AvaBrushes" Include="Avalonia.Media.Brushes" />
+		<Using Alias="AvaFontFamily" Include="Avalonia.Media.FontFamily" />
+		<Using Alias="AvaPixelFormat" Include="Avalonia.Platform.PixelFormat" />
+		<Using Alias="AvaMouseButton" Include="Avalonia.Input.MouseButton" />
+		<Using Alias="AvaProgressBar" Include="Avalonia.Controls.ProgressBar" />
+		<Using Alias="AvaButton" Include="Avalonia.Controls.Button" />
+		<Using Alias="AvaNotification" Include="Avalonia.Controls.Notifications.Notification" />
+		<Using Alias="AvaNotificationType" Include="Avalonia.Controls.Notifications.NotificationType" />
+		<Using Alias="AvaControls" Include="Avalonia.Controls.Controls" />
+		<Using Alias="AvaRectangle" Include="Avalonia.Controls.Shapes.Rectangle" />
+		<Using Alias="AvaImage" Include="Avalonia.Controls.Image" />
+		<Using Alias="AvaHorizontalAlignment" Include="Avalonia.Layout.HorizontalAlignment" />
+		<Using Alias="AvaVerticalAlignment" Include="Avalonia.Layout.VerticalAlignment" />
+		<Using Alias="AvaCheckBox" Include="Avalonia.Controls.CheckBox" />
+	</ItemGroup>
+</Project>

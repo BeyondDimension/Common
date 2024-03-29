@@ -1,0 +1,7 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Repositories.Data" />
+		<Using Include="BD.Common8.Repositories.Enums" />
+		<Using Include="BD.Common8.Repositories.Repositories.Abstractions" />
+	</ItemGroup>
+</Project>

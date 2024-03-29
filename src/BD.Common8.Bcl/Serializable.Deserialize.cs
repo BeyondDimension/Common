@@ -15,7 +15,7 @@ public static partial class Serializable // Deserialize(反序列化)
     [RequiresUnreferencedCode(SerializationUnreferencedCodeMessage)]
     [RequiresDynamicCode(SerializationRequiresDynamicCodeMessage)]
 #endif
-    public static T DJSON<T>(JsonImplType implType, string value)
+    public static T DJSON<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(JsonImplType implType, string value)
     {
         return implType switch
         {
@@ -38,7 +38,7 @@ public static partial class Serializable // Deserialize(反序列化)
     [RequiresUnreferencedCode(SerializationUnreferencedCodeMessage)]
     [RequiresDynamicCode(SerializationRequiresDynamicCodeMessage)]
 #endif
-    public static T DJSON<T>(string value) => DJSON<T>(DefaultJsonImplType, value);
+    public static T DJSON<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string value) => DJSON<T>(DefaultJsonImplType, value);
 
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
 
@@ -51,12 +51,12 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <returns></returns>
     [return: MaybeNull]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T DMP<T>(byte[] buffer, CancellationToken cancellationToken = default)
+    public static T DMP<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(byte[] buffer, CancellationToken cancellationToken = default)
         => MessagePackSerializer.Deserialize<T>(buffer, options: Lz4Options(), cancellationToken: cancellationToken);
 
     /// <inheritdoc cref="DMP{T}(byte[], CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static object? DMP(Type type, byte[] buffer, CancellationToken cancellationToken = default)
+    public static object? DMP([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, byte[] buffer, CancellationToken cancellationToken = default)
      => MessagePackSerializer.Deserialize(type, buffer, options: Lz4Options(), cancellationToken: cancellationToken);
 
     /// <summary>
@@ -68,17 +68,17 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <returns></returns>
     [return: MaybeNull]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T DMP<T>(Stream buffer, CancellationToken cancellationToken = default)
+    public static T DMP<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(Stream buffer, CancellationToken cancellationToken = default)
         => MessagePackSerializer.Deserialize<T>(buffer, options: Lz4Options(), cancellationToken: cancellationToken);
 
     /// <inheritdoc cref="DMP{T}(Stream, CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static object? DMP(Type type, Stream buffer, CancellationToken cancellationToken = default)
+    public static object? DMP([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, Stream buffer, CancellationToken cancellationToken = default)
         => MessagePackSerializer.Deserialize(type, buffer, options: Lz4Options(), cancellationToken: cancellationToken);
 
     /// <inheritdoc cref="DMP{T}(Stream, CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static async ValueTask<T?> DMPAsync<T>(Stream buffer, CancellationToken cancellationToken = default)
+    public static async ValueTask<T?> DMPAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(Stream buffer, CancellationToken cancellationToken = default)
     {
         T? r = await MessagePackSerializer.DeserializeAsync<T>(buffer, options: Lz4Options(), cancellationToken: cancellationToken);
         return r;
@@ -86,7 +86,7 @@ public static partial class Serializable // Deserialize(反序列化)
 
     /// <inheritdoc cref="DMP{T}(Stream, CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ValueTask<object?> DMPAsync(Type type, Stream buffer, CancellationToken cancellationToken = default)
+    public static ValueTask<object?> DMPAsync([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, Stream buffer, CancellationToken cancellationToken = default)
         => MessagePackSerializer.DeserializeAsync(type, buffer, options: Lz4Options(), cancellationToken: cancellationToken);
 
     /// <summary>
@@ -98,7 +98,7 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <returns></returns>
     [return: MaybeNull]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T DMPB64U<T>(string? value, CancellationToken cancellationToken = default)
+    public static T DMPB64U<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string? value, CancellationToken cancellationToken = default)
     {
         if (!string.IsNullOrWhiteSpace(value))
         {
@@ -110,7 +110,7 @@ public static partial class Serializable // Deserialize(反序列化)
 
     /// <inheritdoc cref="DMPB64U{T}(string?, CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static object? DMPB64U(Type type, string? value, CancellationToken cancellationToken = default)
+    public static object? DMPB64U([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, string? value, CancellationToken cancellationToken = default)
     {
         if (!string.IsNullOrWhiteSpace(value))
         {
@@ -132,12 +132,12 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <returns></returns>
     [return: MaybeNull]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T DMP2<T>(byte[] buffer)
+    public static T DMP2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(byte[] buffer)
         => MemoryPackSerializer.Deserialize<T>(buffer);
 
     /// <inheritdoc cref="DMP2{T}(byte[])"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static object? DMP2(Type type, byte[] buffer)
+    public static object? DMP2([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, byte[] buffer)
      => MemoryPackSerializer.Deserialize(type, buffer);
 
     /// <summary>
@@ -148,7 +148,7 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static async ValueTask<T?> DMP2Async<T>(Stream buffer, CancellationToken cancellationToken = default)
+    public static async ValueTask<T?> DMP2Async<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(Stream buffer, CancellationToken cancellationToken = default)
     {
         T? r = await MemoryPackSerializer.DeserializeAsync<T>(buffer, cancellationToken: cancellationToken);
         return r;
@@ -156,7 +156,7 @@ public static partial class Serializable // Deserialize(反序列化)
 
     /// <inheritdoc cref="DMP2Async{T}(Stream, CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ValueTask<object?> DMP2Async(Type type, Stream buffer, CancellationToken cancellationToken = default)
+    public static ValueTask<object?> DMP2Async([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, Stream buffer, CancellationToken cancellationToken = default)
         => MemoryPackSerializer.DeserializeAsync(type, buffer, cancellationToken: cancellationToken);
 
     /// <summary>
@@ -167,7 +167,7 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <returns></returns>
     [return: MaybeNull]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T DMP2B64U<T>(string? value)
+    public static T DMP2B64U<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string? value)
     {
         if (!string.IsNullOrWhiteSpace(value))
         {
@@ -179,7 +179,7 @@ public static partial class Serializable // Deserialize(反序列化)
 
     /// <inheritdoc cref="DMP2B64U{T}(string?)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static object? DMP2B64U(Type type, string? value)
+    public static object? DMP2B64U([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, string? value)
     {
         if (!string.IsNullOrWhiteSpace(value))
         {

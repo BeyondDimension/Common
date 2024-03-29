@@ -1,12 +1,9 @@
 #if !NETSTANDARD
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Microsoft.Win32;
 
 public static partial class Registry2
 {
-#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable CA1416 // 验证平台兼容性
-
     /// <inheritdoc cref="RegistryView.Default"/>
     public const RegistryView DefaultRegistryView = RegistryView.Default;
 
@@ -25,9 +22,7 @@ public static partial class Registry2
         "HKPD" => RegistryHive.PerformanceData,
         _ => default,
     };
-
 #pragma warning restore CA1416 // 验证平台兼容性
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 
 #if WINDOWS
 
@@ -245,9 +240,7 @@ partial class Registry2
     public static async Task StartProcessRegeditAsync(
         string path,
         string contents,
-        int millisecondsDelay = 3700,
-        string? markKey = null,
-        string? markValue = null)
+        int millisecondsDelay = 3700)
     {
         File.WriteAllText(path, contents, Encoding.UTF8);
         var args = $"/s \"{path}\"";

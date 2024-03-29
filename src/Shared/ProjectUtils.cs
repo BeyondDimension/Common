@@ -1,15 +1,11 @@
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable IDE0005 // Using 指令是不需要的。
-global using static ProjectUtils;
-#pragma warning restore IDE0005 // Using 指令是不需要的。
 #pragma warning disable CA1050 // 在命名空间中声明类型
-#pragma warning disable IDE0079 // 请删除不必要的忽略
+
+global using static ProjectUtils;
 
 /// <summary>
 /// 项目工具类
 /// </summary>
 public static partial class ProjectUtils
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 {
 #if !SOURCE_GENERATOR
     /// <summary>

@@ -2,16 +2,19 @@
 
 	<PropertyGroup>
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
-		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
-		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.24.10107.12310</Version>
+		<Version>$(Version_SourceGenerator_Resx)</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<LinkResXGeneratedCodeAttribute>true</LinkResXGeneratedCodeAttribute>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<IsPackable>true</IsPackable>
-	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
+			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
 </Project>

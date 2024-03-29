@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>OBS</RootNamespace>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<Version>$(Version_HuaweiCloud_SDK_Obs)</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="..\..\LICENSE" />
+		<None Remove="..\..\README.md" />
+		<None Update="LICENSE" Pack="true" PackagePath="" Visible="false" />
+		<None Update="README.md" Pack="true" PackagePath="" Visible="false" />
+		<None Update="README_CN.md" Pack="true" PackagePath="" Visible="false" />
+		<None Update="Notice.md" Pack="true" PackagePath="" Visible="false" />
+		<None Update="Help on License" Pack="true" PackagePath="" Visible="false" />
+		<Compile Include="..\..\ref\huaweicloud-sdk-dotnet-obs\**\*.cs" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
+
+</Project>

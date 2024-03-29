@@ -1,0 +1,11 @@
+<Project>
+	<ItemGroup>
+		<Using Include="MemoryPack" />
+		<Using Alias="MP2Constructor" Include="MemoryPack.MemoryPackConstructorAttribute" />
+		<Using Alias="MP2Ignore" Include="MemoryPack.MemoryPackIgnoreAttribute" />
+		<Using Alias="MP2Key" Include="MemoryPack.MemoryPackOrderAttribute" />
+		<Using Alias="MP2Obj" Include="MemoryPack.MemoryPackableAttribute" />
+		<Using Alias="MP2Union" Include="MemoryPack.MemoryPackUnionAttribute" />
+		<Using Alias="MP2SerializeLayout" Include="MemoryPack.SerializeLayout" />
+	</ItemGroup>
+</Project>

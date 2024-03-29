@@ -1,0 +1,10 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.AspNetCore.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Options.props" />
+	</ImportGroup>
+</Project>

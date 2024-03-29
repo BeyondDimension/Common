@@ -1,6 +1,3 @@
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
-
 namespace System.Net;
 
 /// <summary>
@@ -219,6 +216,7 @@ public static partial class PortHelper
         return tcpTableRecords;
     }
 
+#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
     /// <summary>
     /// 该结构包含描述 IPv4 TCP 连接的信息
     /// IPv4地址、TCP连接使用的端口以及与连接关联的特定进程ID（PID）
@@ -246,6 +244,7 @@ public static partial class PortHelper
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
         public MIB_TCPROW_OWNER_PID[] table;
     }
+#pragma warning restore SA1307 // Accessible fields should begin with upper-case letter
 
     /// <summary>
     /// 此类提供访问 IPv4 TCP 连接地址和端口及其关联的进程 ID 和名称

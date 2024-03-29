@@ -4,7 +4,8 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
+	
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
 
 </Project>

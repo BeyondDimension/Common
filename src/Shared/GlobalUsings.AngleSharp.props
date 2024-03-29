@@ -1,0 +1,7 @@
+<Project>
+	<ItemGroup>
+		<Using Include="AngleSharp" />
+		<Using Include="AngleSharp.Dom" />
+		<Using Include="AngleSharp.Html.Parser" />
+	</ItemGroup>
+</Project>

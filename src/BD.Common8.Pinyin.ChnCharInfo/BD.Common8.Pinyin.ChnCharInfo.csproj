@@ -1,14 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<RootNamespace>BD.Common8.Pinyin</RootNamespace>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<IsPackable>true</IsPackable>
-	</PropertyGroup>
-
-	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
 </Project>

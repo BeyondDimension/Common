@@ -4,8 +4,6 @@ using Context = Android.Content.Context;
 
 namespace BD.Common8.Essentials.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// Represents a manager object that can handle <see cref="Activity"/> states.
 /// <para>https://github.com/dotnet/maui/blob/8.0.0-rc.2.9373/src/Essentials/src/Platform/ActivityStateManager.android.cs</para>

@@ -1,7 +1,5 @@
 namespace BD.Common8.Settings5.Infrastructure;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 设置属性
 /// </summary>

@@ -1,9 +1,5 @@
 using BD.Common8.SourceGenerator.Bcl.Test;
 
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable SA1600 // Elements should be documented
-#pragma warning disable IDE1006 // 命名样式
-
 // https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/mvvm/generators/observableproperty
 
 //Console.WriteLine(typeof(TodoService).FullName);
@@ -92,14 +88,21 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
     {
     }
 
-    [MP2Obj]
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TodoViewModel"/> class.
+    /// </summary>
+    /// <param name="model"></param>
     [ViewModelWrapperGenerated(typeof(TodoModel),
+        Constructor = false,
         Properties = [
             nameof(TodoModel.C),
             nameof(TodoModel.D),
         ])]
-    partial class TodoViewModel
+    partial class TodoViewModel(TodoModel model)
     {
+        [MPIgnore, MP2Ignore]
+        public TodoModel Model { get; } = model;
+
         /// <inheritdoc cref="TodoModel.D"/>
         [MinLength(2)]
         public string D { get => _D(); set => _D(value); }
@@ -108,5 +111,23 @@ namespace BD.Common8.SourceGenerator.Bcl.Test
     [SettingsPropertyGenerated(typeof(TodoModel))]
     public static partial class TodoSettings
     {
+    }
+
+    /// <summary>
+    /// <see cref="ReactiveObject"/> 的序列化忽略基类
+    /// </summary>
+    public abstract class ReactiveSerializationObject : ReactiveObject
+    {
+        /// <inheritdoc cref="ReactiveObject.Changing" />
+        [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
+        public new IObservable<IReactivePropertyChangedEventArgs<IReactiveObject>> Changing => base.Changing;
+
+        /// <inheritdoc cref="ReactiveObject.Changed" />
+        [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
+        public new IObservable<IReactivePropertyChangedEventArgs<IReactiveObject>> Changed => base.Changed;
+
+        /// <inheritdoc cref="ReactiveObject.ThrownExceptions" />
+        [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
+        public new IObservable<Exception> ThrownExceptions => base.ThrownExceptions;
     }
 }

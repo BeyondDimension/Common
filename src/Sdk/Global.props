@@ -1,0 +1,35 @@
+<Project>
+	<!-- 全局 -->
+	<PropertyGroup>
+		<Deterministic>true</Deterministic>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<AndroidSdkDirectory Condition="$([MSBuild]::IsOSPlatform('windows')) And Exists('C:\Users\Aigio\AppData\Local\Android\Sdk')">C:\Users\Aigio\AppData\Local\Android\Sdk</AndroidSdkDirectory>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+		<NeutralLanguage>zh-Hans</NeutralLanguage>
+		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011</NoWarn>
+	</PropertyGroup>
+
+	<!-- 静态本机编译 & 剪裁 | AOT & Trimmable -->
+	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
+		<IsTrimmable>true</IsTrimmable>
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>true</EnableAotAnalyzer>
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 源代码分析 | Code Style -->
+	<ItemGroup>
+		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
+	</ItemGroup>
+</Project>

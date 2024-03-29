@@ -4,17 +4,11 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
-		<UseSourceGeneratorResx>true</UseSourceGeneratorResx>
-		<LinkResXGeneratedCodeAttribute>true</LinkResXGeneratedCodeAttribute>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.System.Extensions.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\ProjectUtils.cs">
-			<LinkBase>Properties</LinkBase>
+		<Compile Include="..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
+			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
@@ -31,5 +25,7 @@
 	</ItemGroup>
 
 	<Import Project="..\..\res\i18n\BD.Common8.Bcl.props" />
+	<Import Project="..\Shared\GlobalUsings.System.Extensions.props" />
+	<Import Project="..\Sdk\ProjectReference\BD.Common8.SourceGenerator.ResX.props" />
 
 </Project>

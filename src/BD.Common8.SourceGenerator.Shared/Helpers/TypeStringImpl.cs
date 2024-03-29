@@ -1,7 +1,5 @@
 namespace BD.Common8.SourceGenerator.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 包装 <see cref="string"/> 或 <see cref="ITypeSymbol"/> 到 <see cref="Type"/> 的类型转换
 /// </summary>

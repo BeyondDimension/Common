@@ -1,10 +1,7 @@
 #if DEBUG
 using DeviceIdiomEnum = BD.Common8.Enums.DeviceIdiom;
 
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace System.Runtime.Devices;
-
-#pragma warning disable SA1600 // Elements should be documented
 
 [Obsolete("use BD.Common8.Essentials.Enums.DeviceIdiom")]
 public static partial class DeviceIdiom

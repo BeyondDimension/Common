@@ -4,10 +4,7 @@
 // https://github.com/dotnet/wpf/blob/v6.0.6/src/Microsoft.DotNet.Wpf/src/PresentationFramework/System/Windows/MessageBox.cs
 // MessageBox 在 NETFRAMEWORK 中直接引用 Wpf 的 PresentationFramework 库而不使用下面的代码
 
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Microsoft.Win32;
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 
 #if !NETFRAMEWORK && WINDOWS
 

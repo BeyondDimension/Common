@@ -1,0 +1,6 @@
+<Project>
+	<!-- 依赖包引用 -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Http" />
+	</ItemGroup>
+</Project>

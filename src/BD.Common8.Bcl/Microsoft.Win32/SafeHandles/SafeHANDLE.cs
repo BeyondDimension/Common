@@ -1,10 +1,7 @@
 // https://github.com/dahall/Vanara/blob/v3.4.17/PInvoke/Shared/Handles/SafeHANDLE.cs
 
 #if WINDOWS7_0_OR_GREATER
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Microsoft.Win32.SafeHandles;
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 
 /// <summary>Base class for all native handles.</summary>
 /// <seealso cref="SafeHandleZeroOrMinusOneIsInvalid"/>

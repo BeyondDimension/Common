@@ -1,0 +1,8 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Ipc" />
+		<Using Include="BD.Common8.Ipc.Helpers" />
+		<Using Include="BD.Common8.Ipc.Services" />
+		<Using Include="BD.Common8.Ipc.Services.Implementation" />
+	</ItemGroup>
+</Project>

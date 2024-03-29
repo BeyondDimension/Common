@@ -1,0 +1,8 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Z.EntityFramework.Plus.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.props" />
+	</ImportGroup>
+</Project>

@@ -4,12 +4,10 @@
 		<RootNamespace>BD.Common8.Essentials</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<IsPackable>true</IsPackable>
-	</PropertyGroup>
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
-	<Import Project="..\Sdk\$(MSBuildProjectName).props" />
-	
 </Project>

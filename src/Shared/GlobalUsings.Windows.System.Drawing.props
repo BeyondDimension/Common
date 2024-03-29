@@ -1,0 +1,8 @@
+<Project>
+	<ItemGroup>
+		<Using Alias="SDBitmap" Include="System.Drawing.Bitmap" />
+		<Using Alias="SDRectangle" Include="System.Drawing.Rectangle" />
+		<Using Alias="SDPixelFormat" Include="System.Drawing.Imaging.PixelFormat" />
+		<Using Alias="SDImageFormat" Include="System.Drawing.Imaging.ImageFormat" />
+	</ItemGroup>
+</Project>

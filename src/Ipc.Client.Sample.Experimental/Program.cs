@@ -1,8 +1,4 @@
-using DotNext.Reflection;
-
 namespace Ipc.Client.Sample.Experimental;
-
-#pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
 /// Ipc 客户端示例

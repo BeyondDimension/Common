@@ -1,0 +1,6 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="Microsoft.OpenApi.Models"/>
+	</ItemGroup>
+</Project>

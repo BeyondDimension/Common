@@ -1,7 +1,5 @@
 namespace BD.Common8.Ipc.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 partial class IpcClientService
 {
     /// <inheritdoc/>

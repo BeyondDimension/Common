@@ -4,4 +4,10 @@
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<None Include="../Shared/**/*">
+			<LinkBase>Shared</LinkBase>
+		</None>
+	</ItemGroup>
+
 </Project>

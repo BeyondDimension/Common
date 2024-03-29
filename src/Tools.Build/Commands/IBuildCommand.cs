@@ -13,13 +13,13 @@ interface IBuildCommand : ICommand
     /// <inheritdoc cref="ICommand.GetCommand"/>
     static Command ICommand.GetCommand()
     {
+        var test = new Option<bool>("--test");
         var command = new Command(CommandName, "构建当前仓库源代码命令")
         {
-            // 之后可以添加一些参数，例如将项目名称字符串数组通过参数传递
-            // 指定是 Debug 还是 Release
+            test,
         };
         command.AddAlias("b"); // 单个字母的命令名简写
-        command.SetHandler(Handler);
+        command.SetHandler(Handler, test);
         return command;
     }
 
@@ -36,58 +36,82 @@ interface IBuildCommand : ICommand
         return slnFileName switch
         {
             "BD.Common8" => [
+                // 3.SourceGenerator
                 "BD.Common8.SourceGenerator.ResX",
-
-                "BD.Common8.Bcl",
-                "BD.Common8.Bcl.Compat",
-
-                "BD.Common8.Ipc",
-                "BD.Common8.Ipc.Client",
-                "BD.Common8.Ipc.Server",
-
-                "BD.Common8.Crawler",
-
-                "BD.Common8.Settings5",
-
+                //"BD.Common8.SourceGenerator.ResX.Test",
+                "BD.Common8.SourceGenerator.Bcl",
+                "BD.Common8.SourceGenerator.Bcl.Test",
+                "BD.Common8.SourceGenerator.Ipc.Client",
+                "BD.Common8.SourceGenerator.Ipc.Client.Test",
+                "BD.Common8.SourceGenerator.Ipc.Server",
+                "BD.Common8.SourceGenerator.Ipc.Server.Test",
                 "BD.Common8.SourceGenerator.Shared",
 
-                "BD.Common8.Primitives",
-                "BD.Common8.Primitives.District",
-                "BD.Common8.Primitives.ApiRsp",
-                "BD.Common8.Primitives.ApiResponse",
-                "BD.Common8.Primitives.PersonalData.BirthDate",
-                "BD.Common8.Primitives.PersonalData.PhoneNumber",
-                "BD.Common8.Primitives.Essentials",
-                "BD.Common8.Primitives.Toast",
-
-                "BD.Common8.Orm.EFCore",
-
-                "BD.Common8.UserInput.ModelValidator",
-
+                // AspNetCore
                 "BD.Common8.AspNetCore",
                 "BD.Common8.AspNetCore.Identity",
                 "BD.Common8.AspNetCore.Identity.BackManage",
 
-                "BD.Common8.SmsSender",
+                // Bcl
+                "BD.Common8.Bcl",
+                "BD.Common8.Bcl.Compat",
 
-                "BD.Common8.Repositories",
-                "BD.Common8.Repositories.EFCore",
-                "BD.Common8.Repositories.SQLitePCL",
+                // Crawler
+                "BD.Common8.Crawler",
 
+                // Essentials
+                "BD.Common8.Essentials",
+                "BD.Common8.Essentials.Implementation",
+                "BD.Common8.Essentials.Implementation.Avalonia",
+
+                // Http
+                "BD.Common8.Http.ClientFactory",
+                "BD.Common8.Http.ClientFactory.Server",
+
+                // HuaweiCloud
+
+                // Ipc
+                "BD.Common8.Ipc",
+                "BD.Common8.Ipc.Client",
+                "BD.Common8.Ipc.Server",
+
+                // Orm
+                "BD.Common8.Orm.EFCore",
+
+                // Pinyin
                 "BD.Common8.Pinyin",
                 "BD.Common8.Pinyin.ChnCharInfo",
                 "BD.Common8.Pinyin.CoreFoundation",
 
-                "BD.Common8.Http.ClientFactory",
-                "BD.Common8.Http.ClientFactory.Server",
+                // Primitives
+                "BD.Common8.Primitives",
+                "BD.Common8.Primitives.District",
+                "BD.Common8.Primitives.PersonalData.BirthDate",
+                "BD.Common8.Primitives.PersonalData.PhoneNumber",
+                "BD.Common8.Primitives.Essentials",
+                "BD.Common8.Primitives.Toast",
+                "BD.Common8.Primitives.ApiRsp",
+                "BD.Common8.Primitives.ApiResponse",
 
+                // Repositories
+                "BD.Common8.Repositories",
+                "BD.Common8.Repositories.EFCore",
+                "BD.Common8.Repositories.SQLitePCL",
+
+                // Security
                 "BD.Common8.Security",
 
+                // Settings
+                "BD.Common8.Settings5",
+
+                // Sms
+                "BD.Common8.SmsSender",
+
+                // Toast
                 "BD.Common8.Toast",
 
-                "BD.Common8.Essentials",
-                "BD.Common8.Essentials.Implementation",
-                "BD.Common8.Essentials.Implementation.Avalonia",
+                // UserInput
+                "BD.Common8.UserInput.ModelValidator",
             ],
             "BD.SteamClient8" => [
                 "BD.SteamClient8",
@@ -117,13 +141,13 @@ interface IBuildCommand : ICommand
     /// <summary>
     /// 命令的逻辑实现
     /// </summary>
-    internal static async Task<int> Handler()
+    internal static async Task<int> Handler(bool test)
     {
         bool hasError = false;
         var repoPath = ProjPath;
 
         using CancellationTokenSource cts = new();
-        cts.CancelAfter(TimeSpan.FromMinutes(5.5D)); // 设置超时时间
+        cts.CancelAfter(TimeSpan.FromMinutes(11.5D)); // 设置超时时间
 
         var pkgPath = Path.Combine(repoPath, "pkg");
         IOPath.DirTryDelete(pkgPath, true);
@@ -133,10 +157,14 @@ interface IBuildCommand : ICommand
         //await Handler("BD.Common8.SourceGenerator.ResX", cts.Token);
         //await Parallel.ForEachAsync(projectNames, cts.Token, Handler); // 并行化构建相关项目
 
-        foreach (var projectName in projectNames)
+        string[] configs = test ? ["Debug", "Release"] : ["Release"];
+        foreach (var config in configs)
         {
-            // 顺序循环构建相关项目，并行化会导致文件占用冲突
-            await Handler(projectName, cts.Token);
+            foreach (var projectName in projectNames)
+            {
+                // 顺序循环构建相关项目，并行化会导致文件占用冲突
+                await Handler(projectName, config, test, cts.Token);
+            }
         }
 
         if (hasError)
@@ -145,7 +173,7 @@ interface IBuildCommand : ICommand
         Console.WriteLine("OK");
         return 0;
 
-        async ValueTask Handler(string projectName, CancellationToken cancellationToken)
+        async ValueTask Handler(string projectName, string config, bool test, CancellationToken cancellationToken)
         {
             var projPath = Path.Combine(repoPath, "src", projectName);
             Clean(projPath);
@@ -153,14 +181,14 @@ interface IBuildCommand : ICommand
             ProcessStartInfo psi = new()
             {
                 FileName = "dotnet",
-                Arguments = $"build -c Release {projectName}.csproj --nologo -v q /property:WarningLevel=1",
+                Arguments = $"build -c {config} {projectName}.csproj --no-incremental --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")}",
                 WorkingDirectory = projPath,
             };
             var process = Process.Start(psi);
             if (process == null)
                 return;
 
-            Console.WriteLine($"开始构建：{projectName}");
+            Console.WriteLine($"开始构建({config})：{projectName}");
 
             bool isKillProcess = false;
             void KillProcess()
@@ -198,13 +226,13 @@ interface IBuildCommand : ICommand
 
                 if (exitCode == 0)
                 {
-                    Console.WriteLine($"构建成功：{projectName}");
+                    Console.WriteLine($"构建成功({config})：{projectName}");
                 }
                 else
                 {
                     if (hasError != true)
                         hasError = true;
-                    Console.WriteLine($"构建失败：{projectName}");
+                    Console.WriteLine($"构建失败({config})：{projectName}");
                 }
             }
             finally

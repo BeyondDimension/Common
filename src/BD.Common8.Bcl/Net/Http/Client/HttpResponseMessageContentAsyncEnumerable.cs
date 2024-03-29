@@ -1,7 +1,5 @@
 namespace System.Net.Http.Client;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public sealed class HttpResponseMessageContentAsyncEnumerable<T>(IAsyncEnumerable<T> enumerable, HttpResponseMessage httpResponseMessage) : IAsyncEnumerable<T>
 {
     readonly IAsyncEnumerable<T> enumerable = enumerable;

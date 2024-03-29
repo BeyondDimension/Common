@@ -1,6 +1,3 @@
-#pragma warning disable SA1600 // Elements should be documented
-
-// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.Server)]

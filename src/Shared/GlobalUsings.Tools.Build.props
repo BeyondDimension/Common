@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Tools.Build.Commands" />
+		<Using Include="Tools.Build.Commands.Abstractions" />
+	</ItemGroup>
+</Project>

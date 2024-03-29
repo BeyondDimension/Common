@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="System.Formats" />
+		<Using Alias="ImageFormat" Include="System.Formats.ImageFormat" />
+	</ItemGroup>
+</Project>

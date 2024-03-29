@@ -1,7 +1,6 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0005 // 删除不必要的 using 指令
 #pragma warning disable IDE0161 // 转换为文件范围限定的 namespace
-
 namespace System
 {
     public static partial class Serializable // Original(使用原键名)
@@ -45,7 +44,6 @@ namespace System
     }
 }
 
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Newtonsoft.Json.Serialization
 {
     /// <summary>

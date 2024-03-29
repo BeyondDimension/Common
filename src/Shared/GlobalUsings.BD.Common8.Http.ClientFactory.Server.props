@@ -1,0 +1,5 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Http.ClientFactory.Server.Services.Implementation" />
+	</ItemGroup>
+</Project>

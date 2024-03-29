@@ -1,0 +1,8 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.Extensions.Logging" />
+		<Using Include="Microsoft.Extensions.Logging.Abstractions" />
+		<Using Alias="LogLevel" Include="Microsoft.Extensions.Logging.LogLevel" />
+		<Using Alias="ILogger" Include="Microsoft.Extensions.Logging.ILogger" />
+	</ItemGroup>
+</Project>

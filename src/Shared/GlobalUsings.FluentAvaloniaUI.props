@@ -1,0 +1,15 @@
+<Project>
+	<ItemGroup>
+		<Using Include="FluentAvalonia" />
+		<Using Include="FluentAvalonia.Interop" />
+		<Using Include="FluentAvalonia.Styling" />
+		<Using Include="FluentAvalonia.Core" />
+		<Using Include="FluentAvalonia.UI" />
+		<Using Include="FluentAvalonia.UI.Controls" />
+		<Using Include="FluentAvalonia.UI.Windowing" />
+		<Using Include="FluentAvalonia.UI.Media" />
+		<Using Include="FluentAvalonia.UI.Media.Animation" />
+		<Using Include="FluentAvalonia.UI.Navigation" />
+		<Using Alias="FAvaFrame" Include="FluentAvalonia.UI.Controls.Frame" />
+	</ItemGroup>
+</Project>

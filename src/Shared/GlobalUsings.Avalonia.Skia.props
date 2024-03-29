@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="SkiaSharp" />
+		<Using Include="Avalonia.Skia" />
+	</ItemGroup>
+</Project>

@@ -1,17 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<RootNamespace>BD.Common8.SourceGenerator.Ipc</RootNamespace>
 		<OutputType>Exe</OutputType>
+		<RootNamespace>BD.Common8.SourceGenerator.Ipc</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<UseAspNetCore>true</UseAspNetCore>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 		<UseProjectUtils>true</UseProjectUtils>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Ipc>true</UseCommon8Ipc>
-		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
-		<UseCommon8IpcServer>true</UseCommon8IpcServer>
-		<UseSourceGeneratorIpcServer>true</UseSourceGeneratorIpcServer>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,5 +13,17 @@
 			<LinkBase>Services</LinkBase>
 		</Compile>
 	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Ipc.Sample" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.SourceGenerator.Ipc.Server.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.Server.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.ApiRsp.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.AspNetCore\GlobalUsings.AspNetCore.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.AspNetCore\Reference.AspNetCore.props" />
 
 </Project>

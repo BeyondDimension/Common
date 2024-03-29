@@ -85,7 +85,7 @@ public partial interface ISecureStorage
     Task<bool> RemoveAsync(string key);
 
     /// <inheritdoc cref="GetAsync(string)"/>
-    async Task<TValue?> GetAsync<TValue>(string key)
+    async Task<TValue?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TValue>(string key)
     {
         try
         {

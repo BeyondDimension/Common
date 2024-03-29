@@ -10,9 +10,6 @@ using WindowsClipboard = Windows.ApplicationModel.DataTransfer.Clipboard;
 
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable CA1822 // 将成员标记为 static
-
 /// <summary>
 /// 剪贴板平台服务实现
 /// https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Clipboard

@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.Extensions.DependencyInjection" />
+		<Using Include="Microsoft.Extensions.DependencyInjection.Extensions" />
+	</ItemGroup>
+</Project>

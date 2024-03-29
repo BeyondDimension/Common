@@ -1,16 +1,12 @@
 <Project>
+	<Import Project="$(MSBuildThisFileDirectory)Sdk\Global.props" />
+	<Import Project="$(MSBuildThisFileDirectory)Sdk\Version.props" />
+
+	<!-- 其他 | Other -->
 	<PropertyGroup>
-		<DotNet_Version>8.0</DotNet_Version>
-		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
-		<SourceGenerator_TargetFramework>netstandard2.0</SourceGenerator_TargetFramework>
-		<NoWarn>$(NoWarn);NU1507;SA1612;MSB4011;NETSDK1086</NoWarn>
-		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
+		<Version>$(Version_Common8Bcl)</Version>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 		<ImplicitUsings>true</ImplicitUsings>
-		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.24.10107.12310</Version>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
 		<RepositoryType>git</RepositoryType>
 		<Company>江苏蒸汽凡星科技有限公司</Company>
@@ -18,41 +14,13 @@
 		<Authors>$(Company)</Authors>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<NeutralLanguage>zh-Hans</NeutralLanguage>
-		<AndroidSdkDirectory Condition="$([MSBuild]::IsOSPlatform('windows')) And Exists('C:\Users\Aigio\AppData\Local\Android\Sdk')">C:\Users\Aigio\AppData\Local\Android\Sdk</AndroidSdkDirectory>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<UseArtifactsOutput>true</UseArtifactsOutput>
-		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
-		<IsCommon8Project>true</IsCommon8Project>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<Deterministic>true</Deterministic>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
-		<!-- AOT & Trimmable -->
-		<IsTrimmable>true</IsTrimmable>
-		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
-		<EnableAotAnalyzer>true</EnableAotAnalyzer>
-		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)Shared\GlobalUsings.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Condition="$(IsTestProject) != 'true' AND $(IsCommon8Project) == 'true'" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs">
+		<Compile Condition="$(MSBuildProjectName) != 'BD.Common8.UnitTest' AND $(IsTestProject) != 'true'" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs">
 			<LinkBase>Properties\InternalsVisibleTo</LinkBase>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
 	</ItemGroup>
 
 </Project>

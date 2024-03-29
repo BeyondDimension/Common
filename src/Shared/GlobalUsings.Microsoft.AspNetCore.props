@@ -1,0 +1,23 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.AspNetCore.Hosting" />
+		<Using Include="Microsoft.AspNetCore.Routing" />
+		<Using Include="Microsoft.AspNetCore.Authorization" />
+		<Using Include="Microsoft.AspNetCore.Builder" />
+		<Using Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" />
+		<Using Include="Microsoft.AspNetCore.Http" />
+		<Using Include="Microsoft.AspNetCore.HttpOverrides" />
+		<Using Include="Microsoft.AspNetCore.Identity" />
+		<Using Include="Microsoft.AspNetCore.Mvc" />
+		<Using Include="Microsoft.AspNetCore.Mvc.ApplicationParts" />
+		<Using Include="Microsoft.AspNetCore.Mvc.Controllers" />
+		<Using Include="Microsoft.AspNetCore.Mvc.Razor.TagHelpers" />
+		<Using Include="Microsoft.AspNetCore.Mvc.ViewComponents" />
+		<Using Include="Microsoft.AspNetCore.Mvc.Filters" />
+		<Using Include="Microsoft.AspNetCore.Mvc.Authorization" />
+		<Using Include="Microsoft.AspNetCore.Server.Kestrel.Core" />
+		<Using Include="Microsoft.AspNetCore.Authentication" />
+		<Using Include="Microsoft.AspNetCore.Authorization.Policy" />
+		<Using Include="Microsoft.AspNetCore.Connections" />
+	</ItemGroup>
+</Project>

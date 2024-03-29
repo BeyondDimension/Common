@@ -9,7 +9,6 @@ public abstract class TemplateBase
     /// 写入文件头
     /// </summary>
     /// <param name="stream"></param>
-    /// <param name="cancellationToken"></param>
     protected void WriteFileHeader(
         Stream stream)
     {
@@ -279,7 +278,9 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
                 return;
             ExecuteCore(spc, model);
         }
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
         catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量，但从未使用过
         {
 #if DEBUG
             Console.WriteLine(ex);
@@ -392,7 +393,9 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
             Console.WriteLine($"{thisTypeName} Initialized, AttrName: {AttrName}, Id: {Id}, FileId: {FileId}.");
 #endif
         }
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
         catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量，但从未使用过
         {
 #if DEBUG
             Console.WriteLine(ex);

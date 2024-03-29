@@ -15,7 +15,7 @@ try
     var assembly = Assembly.LoadFile(libPath);
     var program = assembly.GetType("AssemblyLoad.Sample.Library.Program", true);
     var main = program.GetMethod("Main", BindingFlags.Static | BindingFlags.NonPublic);
-    var exitCode = Convert.ToInt32(main.Invoke(null, default, default, new object?[] { args }, null));
+    var exitCode = Convert.ToInt32(main.Invoke(null, default, default, [args], null));
     Console.WriteLine($"ExitCode: {exitCode}");
 }
 catch (Exception e)

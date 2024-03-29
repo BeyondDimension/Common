@@ -15,7 +15,7 @@ public sealed class SmsSenderTest
     {
         if (generateRandomNum)
         {
-            message ??= string.Join(null, new char[Sms_length].Select(x => '6'));
+            message ??= string.Join(null, new char[sms_length].Select(x => '6'));
         }
 
         var sendSmsResult = await smsSender.SendSmsAsync(sms_phone_number, message!, 0);
@@ -39,13 +39,16 @@ public sealed class SmsSenderTest
     }
 
     /// <summary>
-    ///  华为云短信发送程序提供程序测试
+    /// 华为云短信发送程序提供程序测试
     /// </summary>
     /// <returns></returns>
     [Test]
     public async Task HuaWeiCloudSmsSenderProviderTest()
     {
-        if (!enable_HuaWeiCloudSmsSenderProviderTest)
+        if (!enable_HuaWeiCloudSmsSenderProviderTest
+            || string.IsNullOrWhiteSpace(hwc_app_key)
+            || string.IsNullOrWhiteSpace(hwc_app_secret)
+            || string.IsNullOrWhiteSpace(hwc_signature))
             return;
 
         using var httpClient = new HttpClient();

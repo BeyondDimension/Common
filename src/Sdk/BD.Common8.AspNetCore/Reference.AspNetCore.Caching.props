@@ -1,0 +1,7 @@
+<Project>
+	<!-- 依赖包引用 -->
+	<ItemGroup>
+		<PackageReference Include="StackExchange.Redis" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+	</ItemGroup>
+</Project>

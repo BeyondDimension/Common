@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="DotNext" />
+		<Using Include="DotNext.Threading" />
+	</ItemGroup>
+</Project>

@@ -1,7 +1,5 @@
 namespace BD.Common8.Ipc.Services;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// Ipc 客户端连接服务
 /// </summary>

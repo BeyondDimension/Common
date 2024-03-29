@@ -1,0 +1,4 @@
+<Project>
+	<!-- 依赖包引用 -->
+	<Import Project="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\Reference.AspNetCore.props" />
+</Project>

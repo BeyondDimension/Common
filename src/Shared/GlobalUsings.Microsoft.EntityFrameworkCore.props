@@ -1,0 +1,10 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Microsoft.EntityFrameworkCore.Infrastructure" />
+		<Using Include="Microsoft.EntityFrameworkCore.Metadata" />
+		<Using Include="Microsoft.EntityFrameworkCore.Metadata.Builders" />
+		<Using Include="Microsoft.EntityFrameworkCore.ChangeTracking" />
+		<Using Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+	</ItemGroup>
+</Project>

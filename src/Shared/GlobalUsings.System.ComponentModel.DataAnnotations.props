@@ -1,0 +1,8 @@
+<Project>
+	<ItemGroup>
+		<Using Include="System.ComponentModel.DataAnnotations" />
+		<Using Include="System.ComponentModel.DataAnnotations.Schema" />
+		<Using Alias="DescriptionAttribute" Include="System.ComponentModel.DescriptionAttribute" />
+		<Using Alias="KeyAttribute" Include="System.ComponentModel.DataAnnotations.KeyAttribute" />
+	</ItemGroup>
+</Project>

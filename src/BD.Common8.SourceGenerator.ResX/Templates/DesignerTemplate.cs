@@ -2,8 +2,6 @@ using static BD.Common8.SourceGenerator.ResX.Constants;
 
 namespace BD.Common8.SourceGenerator.ResX.Templates;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// Designer.cs 源文件模板
 /// </summary>
@@ -291,5 +289,17 @@ static partial class {0}
 
         stream.WriteCurlyBracketRight(); // }
         stream.WriteNewLine();
+    }
+}
+
+[Generator]
+public class HelloSourceGenerator : ISourceGenerator
+{
+    public void Execute(GeneratorExecutionContext context)
+    {
+    }
+
+    public void Initialize(GeneratorInitializationContext context)
+    {
     }
 }

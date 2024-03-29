@@ -1,0 +1,13 @@
+<Project>
+	<ItemGroup>
+		<Using Include="NLog" />
+		<Using Include="NLog.Common" />
+		<Using Include="NLog.Config" />
+		<Using Include="NLog.Targets" />
+		<Using Include="NLog.Extensions.Logging" />
+		<Using Alias="NLogLevel" Include="NLog.LogLevel" />
+		<Using Alias="NInternalLogger" Include="NLog.Common.InternalLogger" />
+		<Using Alias="NLogManager" Include="NLog.LogManager" />
+		<Using Alias="NLogger" Include="NLog.Logger" />
+	</ItemGroup>
+</Project>

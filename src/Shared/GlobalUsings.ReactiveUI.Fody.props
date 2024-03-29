@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="ReactiveUI.Fody" />
+		<Using Include="ReactiveUI.Fody.Helpers" />
+	</ItemGroup>
+</Project>

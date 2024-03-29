@@ -1,22 +1,5 @@
 <Project>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.CodeAnalysis.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Collections.Immutable.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SourceGenerator.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
 			<LinkBase>_SourceReference\Compat</LinkBase>
 		</Compile>
@@ -44,4 +27,16 @@
 			<LinkBase>_SourceReference\Resources</LinkBase>
 		</Compile>
 	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+	</ItemGroup>
+	
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.CodeAnalysis.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SourceGenerator.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Collections.Immutable.props" />
 </Project>

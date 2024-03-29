@@ -4,8 +4,6 @@
 
 namespace System.Text;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public ref partial struct ValueStringBuilder
 {
     private char[]? _arrayToReturnToPool;

@@ -1,0 +1,5 @@
+<Project>
+	<ItemGroup>
+		<Using Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Alias="CsWin32" Include="Windows.Win32" />
+	</ItemGroup>
+</Project>

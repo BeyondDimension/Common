@@ -1,0 +1,5 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Avalonia.ReactiveUI" />
+	</ItemGroup>
+</Project>

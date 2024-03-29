@@ -1,0 +1,9 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.ReactiveUI.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.ReactiveUI.Fody.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Options.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.props" />
+	</ImportGroup>
+</Project>

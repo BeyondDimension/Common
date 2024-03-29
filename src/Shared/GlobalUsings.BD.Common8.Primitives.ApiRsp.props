@@ -1,0 +1,10 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Extensions" />
+		<Using Include="BD.Common8.Enums" />
+		<Using Include="BD.Common8.Helpers" />
+		<Using Include="BD.Common8.Models" />
+		<Using Include="BD.Common8.Models.Abstractions" />
+		<Using Include="BD.Common8.Models.Abstractions.Internals" />
+	</ItemGroup>
+</Project>

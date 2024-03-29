@@ -1,0 +1,7 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.CodeAnalysis" />
+		<Using Include="Microsoft.CodeAnalysis.Diagnostics" />
+		<Using Include="Microsoft.CodeAnalysis.Text" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="System.Net.Http" />
+		<Using Include="System.Net.Http.Headers" />
+	</ItemGroup>
+</Project>

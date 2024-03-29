@@ -1,0 +1,7 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.NLog.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.NLog.Web.props" />
+	</ImportGroup>
+</Project>

@@ -108,7 +108,6 @@ public static partial class IOPath
     /// <param name="inputFolder">Folder to copy files recursively from</param>
     /// <param name="outputFolder">Destination folder</param>
     /// <param name="overwrite">Whether to overwrite files or not</param>
-    /// <param name="throwOnError">When false, error is only logged (default)</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void CopyFilesRecursive(string? inputFolder, string outputFolder, bool overwrite = true)
     {

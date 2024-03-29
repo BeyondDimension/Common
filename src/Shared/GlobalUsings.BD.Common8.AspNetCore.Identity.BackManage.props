@@ -1,0 +1,13 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.AspNetCore.Columns" />
+		<Using Include="BD.Common8.AspNetCore.Enums" />
+		<Using Include="BD.Common8.AspNetCore.Controllers" />
+		<Using Include="BD.Common8.AspNetCore.Controllers.Abstractions" />
+		<Using Include="BD.Common8.AspNetCore.Data" />
+		<Using Include="BD.Common8.AspNetCore.Entities" />
+		<Using Include="BD.Common8.AspNetCore.Entities.Abstractions" />
+		<Using Include="BD.Common8.AspNetCore.Models" />
+		<Using Include="BD.Common8.AspNetCore.Services" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Essentials" />
+		<Using Include="BD.Common8.Essentials.Services.Implementation" />
+	</ItemGroup>
+</Project>

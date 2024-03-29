@@ -1,0 +1,10 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.AspNetCore.Data" />
+		<Using Include="BD.Common8.AspNetCore.Data.Abstractions" />
+		<Using Include="BD.Common8.AspNetCore.Entities" />
+		<Using Include="BD.Common8.AspNetCore.Entities.Abstractions" />
+		<Using Include="BD.Common8.AspNetCore.Identity" />
+		<Using Include="BD.Common8.AspNetCore.Identity.Abstractions" />
+	</ItemGroup>
+</Project>

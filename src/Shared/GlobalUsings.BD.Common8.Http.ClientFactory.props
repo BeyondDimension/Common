@@ -1,0 +1,8 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Http.ClientFactory.Services" />
+		<Using Include="BD.Common8.Http.ClientFactory.Services.Implementation" />
+		<Using Include="BD.Common8.Http.ClientFactory.Models" />
+		<Using Include="BD.Common8.Http.ClientFactory.Models.Abstractions" />
+	</ItemGroup>
+</Project>

@@ -3,11 +3,18 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<UseReactiveUI>true</UseReactiveUI>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Settings5>true</UseCommon8Settings5>
-		<UseCommon8Settings5Frontend>true</UseCommon8Settings5Frontend>
-		<UseSourceGeneratorBcl>true</UseSourceGeneratorBcl>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ReactiveUI" />
+		<PackageReference Include="ReactiveUI.Fody" />
+	</ItemGroup>
+
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ReactiveUI.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ReactiveUI.Fody.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.SourceGenerator.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Settings5.props" />
 
 </Project>

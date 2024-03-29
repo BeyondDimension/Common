@@ -1,7 +1,5 @@
 namespace BD.Common8.UnitTest.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 [MP2Obj(MP2SerializeLayout.Explicit)]
 public sealed partial class X509CertificateModel
 {

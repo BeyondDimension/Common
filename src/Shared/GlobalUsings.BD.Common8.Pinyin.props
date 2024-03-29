@@ -1,0 +1,8 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Pinyin" />
+		<Using Include="BD.Common8.Pinyin.Helpers" />
+		<Using Include="BD.Common8.Pinyin.Enums" />
+		<Using Include="BD.Common8.Pinyin.Services" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+<Project>
+	<PropertyGroup>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<ArtifactsPath>$(MSBuildThisFileDirectory)..\..\src\artifacts</ArtifactsPath>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
+
+</Project>

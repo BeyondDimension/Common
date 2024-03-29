@@ -1,0 +1,5 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.Extensions.FileProviders" />
+	</ItemGroup>
+</Project>

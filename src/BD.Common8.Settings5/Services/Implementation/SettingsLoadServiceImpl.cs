@@ -5,8 +5,6 @@ using Microsoft.Extensions.Primitives;
 
 namespace BD.Common8.Settings5.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// <see cref="ISettingsLoadService"/> 的实现
 /// </summary>

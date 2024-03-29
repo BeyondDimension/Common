@@ -116,7 +116,7 @@ namespace System
         /// <param name="obj"></param>
         /// <returns></returns>
         [return: NotNullIfNotNull(nameof(obj))]
-        public static T? Clone<T>(T? obj) where T : notnull
+        public static T? Clone<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(T? obj) where T : notnull
         {
             if (EqualityComparer<T?>.Default.Equals(obj, default))
                 return default;
@@ -163,7 +163,7 @@ namespace System
     {
         /// <inheritdoc cref="Serializable.Clone{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T Clone<T>(this T obj) where T : ICloneableSerializable => Serializable.Clone(obj);
+        public static T Clone<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(this T obj) where T : ICloneableSerializable => Serializable.Clone(obj);
 
         /// <summary>
         /// 将 [序列化程式实现种类] 转换为 [JSON 序列化程式实现种类]

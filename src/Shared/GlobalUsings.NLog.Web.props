@@ -1,0 +1,5 @@
+<Project>
+	<ItemGroup>
+		<Using Include="NLog.Web" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.AngleSharp.props" />
+	</ImportGroup>
+</Project>

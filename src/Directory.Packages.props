@@ -109,4 +109,11 @@
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.102.2.1" />
 		<PackageVersion Include="JumpLists.Win32.Avalonia" Version="1.23.10209.11223" />
 	</ItemGroup>
+	<ItemGroup>
+		<PackageVersion Include="BD.Common8.SourceGenerator.Bcl" Version="$(Version_SourceGenerator_Bcl)" />
+		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Client" Version="$(Version_SourceGenerator_Ipc_Client)" />
+		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Server" Version="$(Version_SourceGenerator_Ipc_Server)" />
+		<PackageVersion Include="BD.Common8.SourceGenerator.ResX" Version="$(Version_SourceGenerator_Resx)" />
+		<PackageVersion Include="BD.Common8.Bcl" Version="$(Version_Common8Bcl)" />
+	</ItemGroup>
 </Project>

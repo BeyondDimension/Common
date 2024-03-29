@@ -1,0 +1,12 @@
+<Project>
+	<ItemGroup>
+		<Using Include="MessagePack" />
+		<Using Include="MessagePack.Resolvers" />
+		<Using Include="MessagePack.Formatters" />
+		<Using Alias="MPConstructor" Include="MessagePack.SerializationConstructorAttribute" />
+		<Using Alias="MPIgnore" Include="MessagePack.IgnoreMemberAttribute" />
+		<Using Alias="MPKey" Include="MessagePack.KeyAttribute" />
+		<Using Alias="MPObj" Include="MessagePack.MessagePackObjectAttribute" />
+		<Using Alias="MPUnion" Include="MessagePack.UnionAttribute" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Newtonsoft.Json" />
+		<Using Include="Newtonsoft.Json.Converters" />
+		<Using Include="Newtonsoft.Json.Serialization" />
+		<Using Include="Newtonsoft.Json.Linq" />
+		<Using Alias="NewtonsoftJsonConverter" Include="Newtonsoft.Json.JsonConverter" />
+		<Using Alias="NewtonsoftJsonIgnore" Include="Newtonsoft.Json.JsonIgnoreAttribute" />
+		<Using Alias="NewtonsoftJsonProperty" Include="Newtonsoft.Json.JsonPropertyAttribute" />
+		<Using Alias="NewtonsoftJsonSerializer" Include="Newtonsoft.Json.JsonSerializer" />
+		<Using Alias="NewtonsoftJsonFormatting" Include="Newtonsoft.Json.Formatting" />
+		<Using Alias="NewtonsoftJsonConvert" Include="Newtonsoft.Json.JsonConvert" />
+		<Using Alias="NewtonsoftJsonSerializerSettings" Include="Newtonsoft.Json.JsonSerializerSettings" />
+		<Using Alias="NewtonsoftJsonConstructor" Include="Newtonsoft.Json.JsonConstructorAttribute" />
+		<Using Alias="NewtonsoftJsonObject" Include="Newtonsoft.Json.Linq.JObject" />
+		<Using Alias="NewtonsoftJsonPropertyClass" Include="Newtonsoft.Json.Serialization.JsonProperty" />
+		<Using Alias="NewtonsoftJsonExtensionData" Include="Newtonsoft.Json.JsonExtensionDataAttribute" />
+	</ItemGroup>
+</Project>

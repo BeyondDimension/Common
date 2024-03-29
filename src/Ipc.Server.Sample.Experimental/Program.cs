@@ -1,8 +1,4 @@
-using Microsoft.OpenApi.Models;
-
-namespace Ipc.Server.Sample.Experimental;
-
-#pragma warning disable SA1600 // Elements should be documented
+namespace Ipc.Sample;
 
 /// <summary>
 /// Ipc 服务端示例

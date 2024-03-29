@@ -1,0 +1,10 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Ipc.Attributes" />
+		<Using Include="BD.Common8.Ipc.Enums" />
+		<Using Include="BD.Common8.SourceGenerator.Ipc" />
+		<Using Include="BD.Common8.SourceGenerator.Ipc.Enums" />
+		<Using Include="BD.Common8.SourceGenerator.Ipc.Templates" />
+		<Using Include="BD.Common8.SourceGenerator.Ipc.Templates.Abstractions" />
+	</ItemGroup>
+</Project>

@@ -4,8 +4,6 @@
 
 namespace System.Text;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 ref partial struct ValueStringBuilder
 {
     public void AppendSpanFormattable<T>(T value, string? format = null, IFormatProvider? provider = null) where T : ISpanFormattable

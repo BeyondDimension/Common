@@ -1,0 +1,14 @@
+<Project>
+	<ItemGroup>
+		<Using Include="DynamicData" />
+		<Using Include="DynamicData.Binding" />
+		<Using Include="System.Reactive" />
+		<Using Include="System.Reactive.Subjects" />
+		<Using Include="System.Reactive.Linq" />
+		<Using Include="System.Reactive.Disposables" />
+		<Using Include="System.Windows.Input" />
+		<Using Alias="CompositeDisposable" Include="System.Reactive.Disposables.CompositeDisposable" />
+		<Using Alias="Disposable" Include="System.Reactive.Disposables.Disposable" />
+		<Using Include="ReactiveUI" />
+	</ItemGroup>
+</Project>

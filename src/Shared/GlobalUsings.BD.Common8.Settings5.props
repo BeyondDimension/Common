@@ -1,0 +1,7 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Settings5.Services" />
+		<Using Include="BD.Common8.Settings5.Services.Implementation" />
+		<Using Include="BD.Common8.Settings5.Infrastructure" />
+	</ItemGroup>
+</Project>

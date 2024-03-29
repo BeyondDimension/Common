@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Pinyin.Services.Implementation" />
+		<Using Alias="ChineseChar" Include="Microsoft.International.Converters.PinYinConverter.ChineseChar" />
+	</ItemGroup>
+</Project>

@@ -2,8 +2,6 @@ using BD.Common8.Settings5.Infrastructure;
 
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 [Generator]
 public sealed class SettingsPropertyTemplate :
     GeneratedAttributeTemplateBase<
@@ -132,6 +130,8 @@ static partial class {0}
         {
             if (property.IsGeneratorProperty())
                 continue; // 如果模型类为 record 则会生成该属性，跳过
+            if (property.DeclaredAccessibility != Accessibility.Public)
+                continue;
 
             var propertyType = TypeStringImpl.Parse(property.Type);
             var propertyTypeInterfaces = property.Type.Interfaces;

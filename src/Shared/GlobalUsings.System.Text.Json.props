@@ -1,0 +1,23 @@
+<Project>
+	<ItemGroup>
+		<Using Include="System.Text.Json" />
+		<Using Include="System.Text.Json.Nodes" />
+		<Using Include="System.Text.Json.Serialization" />
+		<Using Include="System.Text.Json.Serialization.Metadata" />
+		<Using Include="System.Text.Encodings.Web" />
+		<Using Include="System.Text.Unicode" />
+		<Using Alias="SystemTextJsonIgnore" Include="System.Text.Json.Serialization.JsonIgnoreAttribute" />
+		<Using Alias="SystemTextJsonProperty" Include="System.Text.Json.Serialization.JsonPropertyNameAttribute" />
+		<Using Alias="SystemTextJsonSerializer" Include="System.Text.Json.JsonSerializer" />
+		<Using Alias="SystemTextJsonSerializerOptions" Include="System.Text.Json.JsonSerializerOptions" />
+		<Using Alias="SystemTextJsonIgnoreCondition" Include="System.Text.Json.Serialization.JsonIgnoreCondition" />
+		<Using Alias="SystemTextJsonConstructor" Include="System.Text.Json.Serialization.JsonConstructorAttribute" />
+		<Using Alias="SystemTextJsonObject" Include="System.Text.Json.Nodes.JsonObject" />
+		<Using Alias="SystemTextJsonPropertyStruct" Include="System.Text.Json.JsonProperty" />
+		<Using Alias="SystemTextJsonExtensionData" Include="System.Text.Json.Serialization.JsonExtensionDataAttribute" />
+		<Using Alias="SystemTextJsonSerializable" Include="System.Text.Json.Serialization.JsonSerializableAttribute" />
+		<Using Alias="SystemTextJsonSerializerContext" Include="System.Text.Json.Serialization.JsonSerializerContext" />
+		<Using Alias="SystemTextJsonConverter" Include="System.Text.Json.Serialization.JsonConverterAttribute" />
+		<Using Alias="SystemTextJsonConverterBase" Include="System.Text.Json.Serialization.JsonConverter" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Crawler" />
+		<Using Include="BD.Common8.Crawler.Helpers" />
+	</ItemGroup>
+</Project>

@@ -1,6 +1,5 @@
 using static BD.Common8.Orm.EFCore.Data.SqlConstants;
 
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Microsoft.EntityFrameworkCore;
 
 public static partial class ModelBuilderExtensions

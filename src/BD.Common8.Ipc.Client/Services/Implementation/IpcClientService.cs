@@ -2,8 +2,6 @@ using HttpTransportType = Microsoft.AspNetCore.Http.Connections.HttpTransportTyp
 
 namespace BD.Common8.Ipc.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// Ipc 客户端连接服务实现
 /// </summary>

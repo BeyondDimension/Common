@@ -1,6 +1,4 @@
 #if DEBUG
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System.Runtime;
 
 [Obsolete("use System.OSHelper", true)]

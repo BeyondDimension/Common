@@ -1,11 +1,10 @@
 namespace BD.Common8.UnitTest;
 
-#pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 
 static partial class Constants
 {
-    public const int Sms_length = 6;
+    public const int sms_length = 6;
 
     public const string sms_phone_number = "+8611112211";
 

@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Enums" />
+		<Using Alias="ToastLength" Include="BD.Common8.Enums.ToastLength" />
+	</ItemGroup>
+</Project>

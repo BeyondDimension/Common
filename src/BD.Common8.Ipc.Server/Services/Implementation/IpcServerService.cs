@@ -7,8 +7,6 @@ using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 namespace BD.Common8.Ipc.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIpcServerService, IDisposable, IAsyncDisposable
 {
     /// <summary>

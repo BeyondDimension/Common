@@ -1,6 +1,5 @@
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
-#pragma warning disable SA1600 // Elements should be documented
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
 
 [Generator]

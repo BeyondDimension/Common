@@ -1,0 +1,6 @@
+<Project>
+	<!-- 依赖包引用 -->
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+</Project>

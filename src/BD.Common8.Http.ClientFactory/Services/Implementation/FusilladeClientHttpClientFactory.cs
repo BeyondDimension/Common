@@ -205,7 +205,7 @@ sealed class InflightRequest(Action onFullyCancelled)
 {
     int _refCount = 1;
 
-    public AsyncSubject<HttpResponseMessage> Response { get; protected set; }
+    public AsyncSubject<HttpResponseMessage> Response { get; set; }
         = new AsyncSubject<HttpResponseMessage>();
 
     public void AddRef() => Interlocked.Increment(ref _refCount);
@@ -365,7 +365,7 @@ sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority
 
         cancellationToken.Register(ret.Cancel);
 
-        var queue = new OperationQueue();
+        var queue = opQueue ?? NetCache.OperationQueue;
 
         queue.Enqueue(
             _priority,

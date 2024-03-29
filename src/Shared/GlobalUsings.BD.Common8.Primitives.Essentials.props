@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Enums" />
+		<Using Alias="EssConnectionProfile" Include="BD.Common8.Enums.ConnectionProfile" />
+	</ItemGroup>
+</Project>

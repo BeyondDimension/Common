@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.AspNetCore.SignalR" />
+		<Using Include="Microsoft.AspNetCore.SignalR.Client" />
+	</ItemGroup>
+</Project>

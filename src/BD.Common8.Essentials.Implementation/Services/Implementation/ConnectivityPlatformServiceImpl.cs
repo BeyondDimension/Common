@@ -16,8 +16,6 @@ using NetworkAccess = BD.Common8.Enums.NetworkAccess;
 
 namespace BD.Common8.Essentials.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// https://github.com/dotnet/maui/tree/8.0.0-rc.2.9373/src/Essentials/src/Connectivity
 /// </summary>

@@ -1,0 +1,5 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Z.EntityFramework.Plus" />
+	</ItemGroup>
+</Project>

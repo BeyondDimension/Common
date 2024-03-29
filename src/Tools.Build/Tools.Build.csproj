@@ -3,10 +3,15 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<UseProjectUtils>true</UseProjectUtils>
-		<UseSystemCommandLine>true</UseSystemCommandLine>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.CommandLine" />
+	</ItemGroup>
+	
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.CommandLine.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
 
 </Project>

@@ -3,7 +3,7 @@
 namespace System.Text.Json;
 
 /// <summary>
-/// 提供兼容性选项，用于配置  JSON 序列化器
+/// 提供兼容性选项，用于配置 JSON 序列化器
 /// </summary>
 public static partial class JsonSerializerCompatOptions
 {

@@ -1,5 +1,4 @@
-#pragma warning disable CA1050 // 在命名空间中声明类型
-#pragma warning disable SA1600 // Elements should be documented
+namespace Ipc.Sample;
 
 /// <summary>
 /// 模拟业务服务
@@ -110,7 +109,6 @@ public partial interface ITodoService
     /// <param name="p18"></param>
     /// <param name="p19"></param>
     /// <param name="p20"></param>
-    /// <param name="p21"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl> Tuple(bool p0, byte p1, sbyte p2,

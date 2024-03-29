@@ -1,7 +1,4 @@
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace Microsoft.Extensions.Caching;
-
-#pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
 /// 缓存扩展类

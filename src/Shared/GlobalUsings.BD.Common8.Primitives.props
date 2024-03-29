@@ -1,0 +1,11 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Extensions" />
+		<Using Include="BD.Common8.Columns" />
+		<Using Include="BD.Common8.Entities" />
+		<Using Include="BD.Common8.Entities.Abstractions" />
+		<Using Include="BD.Common8.Enums" />
+		<Using Include="BD.Common8.Models" />
+		<Using Include="BD.Common8.Models.Abstractions" />
+	</ItemGroup>
+</Project>

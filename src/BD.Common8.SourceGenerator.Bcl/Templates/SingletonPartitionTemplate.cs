@@ -1,7 +1,5 @@
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 [Generator]
 public sealed class SingletonPartitionTemplate :
     GeneratedAttributeTemplateBase<

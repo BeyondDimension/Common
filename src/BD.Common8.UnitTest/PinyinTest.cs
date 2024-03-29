@@ -1,4 +1,3 @@
-using Microsoft.International.Converters.PinYinConverter;
 using ChnCharInfoAssemblyResource = Microsoft.International.Converters.PinYinConverter.AssemblyResource;
 using Common8SR = BD.Common8.Resources.SR;
 

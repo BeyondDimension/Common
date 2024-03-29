@@ -1,0 +1,7 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.Extensions.Caching" />
+		<Using Include="Microsoft.Extensions.Caching.Memory" />
+		<Using Include="Microsoft.Extensions.Caching.Distributed" />
+	</ItemGroup>
+</Project>

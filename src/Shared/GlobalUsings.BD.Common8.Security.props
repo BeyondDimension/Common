@@ -1,0 +1,9 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.Security" />
+		<Using Include="BD.Common8.Security.Enums" />
+		<Using Include="BD.Common8.Security.Helpers" />
+		<Using Include="BD.Common8.Security.Services" />
+		<Using Include="BD.Common8.Security.Services.Implementation" />
+	</ItemGroup>
+</Project>

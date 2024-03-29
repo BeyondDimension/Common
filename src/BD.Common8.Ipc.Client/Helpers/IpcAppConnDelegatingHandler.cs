@@ -1,7 +1,5 @@
 namespace BD.Common8.Ipc.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public sealed class IpcAppConnDelegatingHandler : DelegatingHandler
 {
     volatile bool _disposed;
@@ -69,7 +67,9 @@ public sealed class IpcAppConnDelegatingHandler : DelegatingHandler
             return new NetworkStream(socket, true);
         }
 #if DEBUG
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
         catch (Exception e)
+#pragma warning restore CS0168 // 声明了变量，但从未使用过
 #else
         catch
 #endif
@@ -112,7 +112,9 @@ public sealed class IpcAppConnDelegatingHandler : DelegatingHandler
             return clientStream;
         }
 #if DEBUG
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
         catch (Exception e)
+#pragma warning restore CS0168 // 声明了变量，但从未使用过
 #else
         catch
 #endif
