@@ -21,7 +21,7 @@
 		<PackageVersion Include="Avalonia.Win32" Version="11.0.10" />
 		<PackageVersion Include="Avalonia.X11" Version="11.0.10" />
 		<PackageVersion Include="Avalonia.Xaml.Behaviors" Version="11.0.10.2" />
-		<PackageVersion Include="Avalonia.Xaml.Interactivity" Version="11.0.10.1" />
+		<PackageVersion Include="Avalonia.Xaml.Interactivity" Version="11.0.10.2" />
 		<PackageVersion Include="BD.Common.XmlnsDefinition.Avalonia" Version="0.0.0" />
 		<PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.2.2" />
 		<PackageVersion Include="coverlet.collector" Version="6.0.2" />
