@@ -157,7 +157,7 @@ interface IBuildCommand : ICommand
         //await Handler("BD.Common8.SourceGenerator.ResX", cts.Token);
         //await Parallel.ForEachAsync(projectNames, cts.Token, Handler); // 并行化构建相关项目
 
-        string[] configs = test ? ["Debug", "Release"] : ["Release"];
+        string[] configs = test ? ["Release", "Debug"] : ["Release"];
         foreach (var config in configs)
         {
             foreach (var projectName in projectNames)
@@ -181,7 +181,7 @@ interface IBuildCommand : ICommand
             ProcessStartInfo psi = new()
             {
                 FileName = "dotnet",
-                Arguments = $"build -c {config} {projectName}.csproj --no-incremental --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")}",
+                Arguments = $"build -c {config} {projectName}.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")}",
                 WorkingDirectory = projPath,
             };
             var process = Process.Start(psi);

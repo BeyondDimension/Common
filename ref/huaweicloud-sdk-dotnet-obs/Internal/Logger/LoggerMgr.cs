@@ -73,7 +73,7 @@ sealed class EmptyLoggerMgr : ILoggerMgr
     }
 }
 
-internal static class LoggerMgr
+static class LoggerMgr
 {
     internal static bool IsDebugEnabled => ILoggerMgr.Instance.IsDebugEnabled;
 
