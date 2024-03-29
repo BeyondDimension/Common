@@ -36,7 +36,7 @@ interface INuGetPushCommand : ICommand
         GitHub,
     }
 
-    private record struct JobItem(PushSource PushSource, string PushFileName);
+    private record struct JobItem(PushSource PushSource, (string nupkg, string? snupkg) PushFileName);
 
     /// <summary>
     /// 命令的逻辑实现
@@ -53,7 +53,7 @@ interface INuGetPushCommand : ICommand
         cts.CancelAfter(TimeSpan.FromMinutes(9.5D)); // 设置超时时间
 
         var pkgPath = Path.Combine(repoPath, "pkg");
-        IEnumerable<string> GetPushFileNames(string projectName)
+        IEnumerable<(string nupkg, string? snupkg)> GetPushFileNames(string projectName)
         {
             //// 版本号不确定，使用通配符匹配，在 build 命令时会删除 pkg 文件夹，所以不用考虑一个包有多个版本的情况
             var nupkg = $"{projectName}*.nupkg";
@@ -62,15 +62,7 @@ interface INuGetPushCommand : ICommand
             if (nupkg != null)
             {
                 snupkg = Directory.GetFiles(pkgPath, snupkg).FirstOrDefault();
-                if (snupkg == null) // snupkg 符号包可选，有就推，没有就忽略
-                {
-                    yield return nupkg;
-                }
-                else
-                {
-                    yield return nupkg;
-                    yield return snupkg;
-                }
+                yield return (nupkg, snupkg);
             }
         }
         var projectNames = GetProjectNames();
@@ -108,66 +100,73 @@ interface INuGetPushCommand : ICommand
             if (string.IsNullOrWhiteSpace(token))
                 return;
 
-            ProcessStartInfo psi = new()
-            {
-                FileName = "dotnet",
-                Arguments = $"nuget push {jobItem.PushFileName} -s {url_nuget_push} -k {token} --skip-duplicate",
-                WorkingDirectory = pkgPath,
-            };
-            var process = Process.Start(psi);
-            if (process == null)
-                return;
+            string[] pushFileNames = string.IsNullOrWhiteSpace(jobItem.PushFileName.snupkg)
+                ? [jobItem.PushFileName.nupkg]
+                : [jobItem.PushFileName.nupkg, jobItem.PushFileName.snupkg];
 
-            Console.WriteLine($"开始推送({jobItem.PushSource})：{jobItem.PushFileName}");
-
-            bool isKillProcess = false;
-            void KillProcess()
+            foreach (var pushFileName in pushFileNames)
             {
-                if (isKillProcess)
+                ProcessStartInfo psi = new()
+                {
+                    FileName = "dotnet",
+                    Arguments = $"nuget push {pushFileName} -s {url_nuget_push} -k {token} --skip-duplicate",
+                    WorkingDirectory = pkgPath,
+                };
+                var process = Process.Start(psi);
+                if (process == null)
                     return;
 
-                isKillProcess = true;
+                Console.WriteLine($"开始推送({jobItem.PushSource})：{pushFileName}");
+
+                bool isKillProcess = false;
+                void KillProcess()
+                {
+                    if (isKillProcess)
+                        return;
+
+                    isKillProcess = true;
+
+                    try
+                    {
+                        process.Kill(true); // 避免进程残留未结束
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                }
 
                 try
                 {
-                    process.Kill(true); // 避免进程残留未结束
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-            }
+                    cancellationToken.Register(KillProcess);
 
-            try
-            {
-                cancellationToken.Register(KillProcess);
+                    await process.WaitForExitAsync(cancellationToken);
 
-                await process.WaitForExitAsync(cancellationToken);
+                    int exitCode = -1;
+                    try
+                    {
+                        exitCode = process.ExitCode;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
 
-                int exitCode = -1;
-                try
-                {
-                    exitCode = process.ExitCode;
+                    if (exitCode == 0)
+                    {
+                        Console.WriteLine($"推送成功({jobItem.PushSource})：{pushFileName}");
+                    }
+                    else
+                    {
+                        if (hasError != true)
+                            hasError = true;
+                        Console.WriteLine($"推送失败({jobItem.PushSource})：{pushFileName}");
+                    }
                 }
-                catch (Exception ex)
+                finally
                 {
-                    Console.WriteLine(ex);
+                    KillProcess();
                 }
-
-                if (exitCode == 0)
-                {
-                    Console.WriteLine($"推送成功({jobItem.PushSource})：{jobItem.PushFileName}");
-                }
-                else
-                {
-                    if (hasError != true)
-                        hasError = true;
-                    Console.WriteLine($"推送失败({jobItem.PushSource})：{jobItem.PushFileName}");
-                }
-            }
-            finally
-            {
-                KillProcess();
             }
         }
     }
