@@ -144,7 +144,7 @@ jobs:
         run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false
 
       - name: Build projects
-        run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe build --no_err
+        run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe build
 
       - name: Push NuGet packages
         run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}

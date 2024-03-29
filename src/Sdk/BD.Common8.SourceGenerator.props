@@ -8,6 +8,7 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<IncludeSymbols>false</IncludeSymbols>
+		<ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
