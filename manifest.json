@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Resource",
-      "source_relative_path": "README.md",
-      "output": {
-        "resource": {
-          "relative_path": "README.md"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "README.md",
+      "output": {
+        "resource": {
+          "relative_path": "README.md"
         }
       },
       "version": ""
@@ -1706,10 +1706,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Bcl/System.DateTimeFormat.yml",
+      "source_relative_path": "api/BD.Common8.Bcl/System.DateTimeStringFormat.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Bcl/System.DateTimeFormat.html"
+          "relative_path": "api/BD.Common8.Bcl/System.DateTimeStringFormat.html"
         }
       },
       "version": ""
@@ -3586,6 +3586,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.yml",
       "output": {
         ".html": {
@@ -3600,6 +3610,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.StringToDecimalConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html"
         }
       },
       "version": ""
@@ -4728,6 +4748,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.yml",
       "output": {
         ".html": {
@@ -5118,6 +5148,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.Abstractions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html"
         }
       },
       "version": ""
@@ -8430,6 +8470,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.yml",
       "output": {
         ".html": {
@@ -9095,143 +9145,123 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/CSharp.md",
+      "source_relative_path": "doc/CSharp.md",
       "output": {
         ".html": {
-          "relative_path": "articles/CSharp.html"
+          "relative_path": "doc/CSharp.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Code-Style.md",
+      "source_relative_path": "doc/Code-Style.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Code-Style.html"
+          "relative_path": "doc/Code-Style.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Compression-And-Packaging.md",
+      "source_relative_path": "doc/Compression-And-Packaging.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Compression-And-Packaging.html"
+          "relative_path": "doc/Compression-And-Packaging.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Copywriting-Guide.md",
+      "source_relative_path": "doc/Copywriting-Guide.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Copywriting-Guide.html"
+          "relative_path": "doc/Copywriting-Guide.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Entity-Framework-Core.md",
+      "source_relative_path": "doc/Entity-Framework-Core.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Entity-Framework-Core.html"
+          "relative_path": "doc/Entity-Framework-Core.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Git-Commit-Message-Standard.md",
+      "source_relative_path": "doc/Git-Commit-Message-Standard.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Git-Commit-Message-Standard.html"
+          "relative_path": "doc/Git-Commit-Message-Standard.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Project-Structure.md",
+      "source_relative_path": "doc/Project-Structure.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Project-Structure.html"
+          "relative_path": "doc/Project-Structure.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Redis.md",
+      "source_relative_path": "doc/Redis.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Redis.html"
+          "relative_path": "doc/Redis.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Serializable-And-Deserialize.md",
+      "source_relative_path": "doc/Serializable-And-Deserialize.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Serializable-And-Deserialize.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "articles/aes.html",
-      "output": {
-        "resource": {
-          "relative_path": "articles/aes.html"
+          "relative_path": "doc/Serializable-And-Deserialize.html"
         }
       },
       "version": ""
     },
     {
       "type": "Redirection",
-      "source_relative_path": "articles/index.md",
+      "source_relative_path": "doc/index.md",
       "output": {
         ".html": {
-          "relative_path": "articles/index.html"
+          "relative_path": "doc/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/intro.md",
+      "source_relative_path": "doc/intro.md",
       "output": {
         ".html": {
-          "relative_path": "articles/intro.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "articles/rsa.html",
-      "output": {
-        "resource": {
-          "relative_path": "articles/rsa.html"
+          "relative_path": "doc/intro.html"
         }
       },
       "version": ""
     },
     {
       "type": "Toc",
-      "source_relative_path": "articles/toc.yml",
+      "source_relative_path": "doc/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/toc.html"
+          "relative_path": "doc/toc.html"
         },
         ".json": {
-          "relative_path": "articles/toc.json"
+          "relative_path": "doc/toc.json"
         }
       },
       "version": ""
@@ -9252,6 +9282,26 @@
       "output": {
         "resource": {
           "relative_path": "res/DocFXIcon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "src/WebRoot/aes.html",
+      "output": {
+        "resource": {
+          "relative_path": "src/WebRoot/aes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "src/WebRoot/rsa.html",
+      "output": {
+        "resource": {
+          "relative_path": "src/WebRoot/rsa.html"
         }
       },
       "version": ""

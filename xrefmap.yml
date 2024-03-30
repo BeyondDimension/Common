@@ -7791,6 +7791,15 @@ references:
   commentId: Overload:BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable
   fullName: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable
   nameWithType: HtmlParseHelper.ParseSimpleTable
+- uid: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable``1(AngleSharp.Dom.IDocument,System.String,System.String,System.Func{AngleSharp.Dom.IElement,System.Threading.Tasks.ValueTask{``0}})
+  name: ParseSimpleTable<TTableRow>(IDocument, string, string, Func<IElement, ValueTask<TTableRow>>)
+  href: api/BD.Common8.Crawler/BD.Common8.Crawler.Helpers.HtmlParseHelper.html#BD_Common8_Crawler_Helpers_HtmlParseHelper_ParseSimpleTable__1_AngleSharp_Dom_IDocument_System_String_System_String_System_Func_AngleSharp_Dom_IElement_System_Threading_Tasks_ValueTask___0___
+  commentId: M:BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable``1(AngleSharp.Dom.IDocument,System.String,System.String,System.Func{AngleSharp.Dom.IElement,System.Threading.Tasks.ValueTask{``0}})
+  name.vb: ParseSimpleTable(Of TTableRow)(IDocument, String, String, Func(Of IElement, ValueTask(Of TTableRow)))
+  fullName: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable<TTableRow>(AngleSharp.Dom.IDocument, string, string, System.Func<AngleSharp.Dom.IElement, System.Threading.Tasks.ValueTask<TTableRow>>)
+  fullName.vb: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable(Of TTableRow)(AngleSharp.Dom.IDocument, String, String, System.Func(Of AngleSharp.Dom.IElement, System.Threading.Tasks.ValueTask(Of TTableRow)))
+  nameWithType: HtmlParseHelper.ParseSimpleTable<TTableRow>(IDocument, string, string, Func<IElement, ValueTask<TTableRow>>)
+  nameWithType.vb: HtmlParseHelper.ParseSimpleTable(Of TTableRow)(IDocument, String, String, Func(Of IElement, ValueTask(Of TTableRow)))
 - uid: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable``1(AngleSharp.Dom.IElement,System.Boolean,System.Func{AngleSharp.Dom.IElement,System.Threading.Tasks.ValueTask{``0}})
   name: ParseSimpleTable<TTableRow>(IElement?, bool, Func<IElement, ValueTask<TTableRow>>)
   href: api/BD.Common8.Crawler/BD.Common8.Crawler.Helpers.HtmlParseHelper.html#BD_Common8_Crawler_Helpers_HtmlParseHelper_ParseSimpleTable__1_AngleSharp_Dom_IElement_System_Boolean_System_Func_AngleSharp_Dom_IElement_System_Threading_Tasks_ValueTask___0___
@@ -7800,15 +7809,6 @@ references:
   fullName.vb: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable(Of TTableRow)(AngleSharp.Dom.IElement, Boolean, System.Func(Of AngleSharp.Dom.IElement, System.Threading.Tasks.ValueTask(Of TTableRow)))
   nameWithType: HtmlParseHelper.ParseSimpleTable<TTableRow>(IElement?, bool, Func<IElement, ValueTask<TTableRow>>)
   nameWithType.vb: HtmlParseHelper.ParseSimpleTable(Of TTableRow)(IElement, Boolean, Func(Of IElement, ValueTask(Of TTableRow)))
-- uid: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable``1(System.IO.Stream,System.String,System.String,System.Func{AngleSharp.Dom.IElement,System.Threading.Tasks.ValueTask{``0}})
-  name: ParseSimpleTable<TTableRow>(Stream, string, string, Func<IElement, ValueTask<TTableRow>>)
-  href: api/BD.Common8.Crawler/BD.Common8.Crawler.Helpers.HtmlParseHelper.html#BD_Common8_Crawler_Helpers_HtmlParseHelper_ParseSimpleTable__1_System_IO_Stream_System_String_System_String_System_Func_AngleSharp_Dom_IElement_System_Threading_Tasks_ValueTask___0___
-  commentId: M:BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable``1(System.IO.Stream,System.String,System.String,System.Func{AngleSharp.Dom.IElement,System.Threading.Tasks.ValueTask{``0}})
-  name.vb: ParseSimpleTable(Of TTableRow)(Stream, String, String, Func(Of IElement, ValueTask(Of TTableRow)))
-  fullName: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable<TTableRow>(System.IO.Stream, string, string, System.Func<AngleSharp.Dom.IElement, System.Threading.Tasks.ValueTask<TTableRow>>)
-  fullName.vb: BD.Common8.Crawler.Helpers.HtmlParseHelper.ParseSimpleTable(Of TTableRow)(System.IO.Stream, String, String, System.Func(Of AngleSharp.Dom.IElement, System.Threading.Tasks.ValueTask(Of TTableRow)))
-  nameWithType: HtmlParseHelper.ParseSimpleTable<TTableRow>(Stream, string, string, Func<IElement, ValueTask<TTableRow>>)
-  nameWithType.vb: HtmlParseHelper.ParseSimpleTable(Of TTableRow)(Stream, String, String, Func(Of IElement, ValueTask(Of TTableRow)))
 - uid: BD.Common8.Entities.Abstractions
   name: BD.Common8.Entities.Abstractions
   href: api/BD.Common8.Primitives/BD.Common8.Entities.Abstractions.html
@@ -8006,6 +8006,12 @@ references:
   commentId: F:BD.Common8.Enums.ApiRspCode.ClientException
   fullName: BD.Common8.Enums.ApiRspCode.ClientException
   nameWithType: ApiRspCode.ClientException
+- uid: BD.Common8.Enums.ApiRspCode.ConnectionRefused
+  name: ConnectionRefused
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_ConnectionRefused
+  commentId: F:BD.Common8.Enums.ApiRspCode.ConnectionRefused
+  fullName: BD.Common8.Enums.ApiRspCode.ConnectionRefused
+  nameWithType: ApiRspCode.ConnectionRefused
 - uid: BD.Common8.Enums.ApiRspCode.EmptyDbAppVersion
   name: EmptyDbAppVersion
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_EmptyDbAppVersion
@@ -8114,12 +8120,24 @@ references:
   commentId: F:BD.Common8.Enums.ApiRspCode.SMSServerError
   fullName: BD.Common8.Enums.ApiRspCode.SMSServerError
   nameWithType: ApiRspCode.SMSServerError
+- uid: BD.Common8.Enums.ApiRspCode.SaveAuthTokenToUserManagerFail
+  name: SaveAuthTokenToUserManagerFail
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_SaveAuthTokenToUserManagerFail
+  commentId: F:BD.Common8.Enums.ApiRspCode.SaveAuthTokenToUserManagerFail
+  fullName: BD.Common8.Enums.ApiRspCode.SaveAuthTokenToUserManagerFail
+  nameWithType: ApiRspCode.SaveAuthTokenToUserManagerFail
 - uid: BD.Common8.Enums.ApiRspCode.ServiceUnavailable
   name: ServiceUnavailable
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_ServiceUnavailable
   commentId: F:BD.Common8.Enums.ApiRspCode.ServiceUnavailable
   fullName: BD.Common8.Enums.ApiRspCode.ServiceUnavailable
   nameWithType: ApiRspCode.ServiceUnavailable
+- uid: BD.Common8.Enums.ApiRspCode.SetLoginResponseToUserManagerFail
+  name: SetLoginResponseToUserManagerFail
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_SetLoginResponseToUserManagerFail
+  commentId: F:BD.Common8.Enums.ApiRspCode.SetLoginResponseToUserManagerFail
+  fullName: BD.Common8.Enums.ApiRspCode.SetLoginResponseToUserManagerFail
+  nameWithType: ApiRspCode.SetLoginResponseToUserManagerFail
 - uid: BD.Common8.Enums.ApiRspCode.TaskCanceled
   name: TaskCanceled
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_TaskCanceled
@@ -9917,6 +9935,345 @@ references:
   commentId: T:BD.Common8.Essentials.Helpers.Permissions2.Vibrate
   fullName: BD.Common8.Essentials.Helpers.Permissions2.Vibrate
   nameWithType: Permissions2.Vibrate
+- uid: BD.Common8.Essentials.Helpers.Preferences2
+  name: Preferences2
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html
+  commentId: T:BD.Common8.Essentials.Helpers.Preferences2
+  fullName: BD.Common8.Essentials.Helpers.Preferences2
+  nameWithType: Preferences2
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Clear
+  name: Clear()
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Clear
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Clear
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Clear()
+  nameWithType: Preferences2.Clear()
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Clear(System.String)
+  name: Clear(string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Clear_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Clear(System.String)
+  name.vb: Clear(String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Clear(string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Clear(String)
+  nameWithType: Preferences2.Clear(string?)
+  nameWithType.vb: Preferences2.Clear(String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Clear*
+  name: Clear
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Clear_
+  commentId: Overload:BD.Common8.Essentials.Helpers.Preferences2.Clear
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Clear
+  nameWithType: Preferences2.Clear
+- uid: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(System.String)
+  name: ContainsKey(string)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_ContainsKey_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(System.String)
+  name.vb: ContainsKey(String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(string)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(String)
+  nameWithType: Preferences2.ContainsKey(string)
+  nameWithType.vb: Preferences2.ContainsKey(String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(System.String,System.String)
+  name: ContainsKey(string, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_ContainsKey_System_String_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(System.String,System.String)
+  name.vb: ContainsKey(String, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(string, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey(String, String)
+  nameWithType: Preferences2.ContainsKey(string, string?)
+  nameWithType.vb: Preferences2.ContainsKey(String, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey*
+  name: ContainsKey
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_ContainsKey_
+  commentId: Overload:BD.Common8.Essentials.Helpers.Preferences2.ContainsKey
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.ContainsKey
+  nameWithType: Preferences2.ContainsKey
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Boolean)
+  name: Get(string, bool)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Boolean_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Boolean)
+  name.vb: Get(String, Boolean)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, bool)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Boolean)
+  nameWithType: Preferences2.Get(string, bool)
+  nameWithType.vb: Preferences2.Get(String, Boolean)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Boolean,System.String)
+  name: Get(string, bool, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Boolean_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Boolean,System.String)
+  name.vb: Get(String, Boolean, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, bool, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Boolean, String)
+  nameWithType: Preferences2.Get(string, bool, string?)
+  nameWithType.vb: Preferences2.Get(String, Boolean, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.DateTime)
+  name: Get(string, DateTime)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_DateTime_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.DateTime)
+  name.vb: Get(String, Date)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, System.DateTime)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Date)
+  nameWithType: Preferences2.Get(string, DateTime)
+  nameWithType.vb: Preferences2.Get(String, Date)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.DateTime,System.String)
+  name: Get(string, DateTime, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_DateTime_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.DateTime,System.String)
+  name.vb: Get(String, Date, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, System.DateTime, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Date, String)
+  nameWithType: Preferences2.Get(string, DateTime, string?)
+  nameWithType.vb: Preferences2.Get(String, Date, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Double)
+  name: Get(string, double)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Double_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Double)
+  name.vb: Get(String, Double)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, double)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Double)
+  nameWithType: Preferences2.Get(string, double)
+  nameWithType.vb: Preferences2.Get(String, Double)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Double,System.String)
+  name: Get(string, double, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Double_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Double,System.String)
+  name.vb: Get(String, Double, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, double, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Double, String)
+  nameWithType: Preferences2.Get(string, double, string?)
+  nameWithType.vb: Preferences2.Get(String, Double, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int32)
+  name: Get(string, int)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Int32_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int32)
+  name.vb: Get(String, Integer)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, int)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Integer)
+  nameWithType: Preferences2.Get(string, int)
+  nameWithType.vb: Preferences2.Get(String, Integer)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int32,System.String)
+  name: Get(string, int, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Int32_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int32,System.String)
+  name.vb: Get(String, Integer, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, int, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Integer, String)
+  nameWithType: Preferences2.Get(string, int, string?)
+  nameWithType.vb: Preferences2.Get(String, Integer, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int64)
+  name: Get(string, long)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Int64_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int64)
+  name.vb: Get(String, Long)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, long)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Long)
+  nameWithType: Preferences2.Get(string, long)
+  nameWithType.vb: Preferences2.Get(String, Long)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int64,System.String)
+  name: Get(string, long, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Int64_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Int64,System.String)
+  name.vb: Get(String, Long, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, long, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Long, String)
+  nameWithType: Preferences2.Get(string, long, string?)
+  nameWithType.vb: Preferences2.Get(String, Long, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Single)
+  name: Get(string, float)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Single_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Single)
+  name.vb: Get(String, Single)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, float)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Single)
+  nameWithType: Preferences2.Get(string, float)
+  nameWithType.vb: Preferences2.Get(String, Single)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Single,System.String)
+  name: Get(string, float, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_Single_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.Single,System.String)
+  name.vb: Get(String, Single, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, float, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, Single, String)
+  nameWithType: Preferences2.Get(string, float, string?)
+  nameWithType.vb: Preferences2.Get(String, Single, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.String)
+  name: Get(string, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.String)
+  name.vb: Get(String, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, String)
+  nameWithType: Preferences2.Get(string, string?)
+  nameWithType.vb: Preferences2.Get(String, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.String,System.String)
+  name: Get(string, string?, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_System_String_System_String_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Get(System.String,System.String,System.String)
+  name.vb: Get(String, String, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get(string, string?, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Get(String, String, String)
+  nameWithType: Preferences2.Get(string, string?, string?)
+  nameWithType.vb: Preferences2.Get(String, String, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Get*
+  name: Get
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Get_
+  commentId: Overload:BD.Common8.Essentials.Helpers.Preferences2.Get
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Get
+  nameWithType: Preferences2.Get
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Remove(System.String)
+  name: Remove(string)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Remove_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Remove(System.String)
+  name.vb: Remove(String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Remove(string)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Remove(String)
+  nameWithType: Preferences2.Remove(string)
+  nameWithType.vb: Preferences2.Remove(String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Remove(System.String,System.String)
+  name: Remove(string, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Remove_System_String_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Remove(System.String,System.String)
+  name.vb: Remove(String, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Remove(string, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Remove(String, String)
+  nameWithType: Preferences2.Remove(string, string?)
+  nameWithType.vb: Preferences2.Remove(String, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Remove*
+  name: Remove
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Remove_
+  commentId: Overload:BD.Common8.Essentials.Helpers.Preferences2.Remove
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Remove
+  nameWithType: Preferences2.Remove
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Boolean)
+  name: Set(string, bool)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Boolean_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Boolean)
+  name.vb: Set(String, Boolean)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, bool)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Boolean)
+  nameWithType: Preferences2.Set(string, bool)
+  nameWithType.vb: Preferences2.Set(String, Boolean)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Boolean,System.String)
+  name: Set(string, bool, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Boolean_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Boolean,System.String)
+  name.vb: Set(String, Boolean, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, bool, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Boolean, String)
+  nameWithType: Preferences2.Set(string, bool, string?)
+  nameWithType.vb: Preferences2.Set(String, Boolean, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.DateTime)
+  name: Set(string, DateTime)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_DateTime_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.DateTime)
+  name.vb: Set(String, Date)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, System.DateTime)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Date)
+  nameWithType: Preferences2.Set(string, DateTime)
+  nameWithType.vb: Preferences2.Set(String, Date)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.DateTime,System.String)
+  name: Set(string, DateTime, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_DateTime_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.DateTime,System.String)
+  name.vb: Set(String, Date, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, System.DateTime, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Date, String)
+  nameWithType: Preferences2.Set(string, DateTime, string?)
+  nameWithType.vb: Preferences2.Set(String, Date, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Double)
+  name: Set(string, double)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Double_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Double)
+  name.vb: Set(String, Double)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, double)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Double)
+  nameWithType: Preferences2.Set(string, double)
+  nameWithType.vb: Preferences2.Set(String, Double)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Double,System.String)
+  name: Set(string, double, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Double_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Double,System.String)
+  name.vb: Set(String, Double, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, double, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Double, String)
+  nameWithType: Preferences2.Set(string, double, string?)
+  nameWithType.vb: Preferences2.Set(String, Double, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int32)
+  name: Set(string, int)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Int32_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int32)
+  name.vb: Set(String, Integer)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, int)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Integer)
+  nameWithType: Preferences2.Set(string, int)
+  nameWithType.vb: Preferences2.Set(String, Integer)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int32,System.String)
+  name: Set(string, int, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Int32_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int32,System.String)
+  name.vb: Set(String, Integer, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, int, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Integer, String)
+  nameWithType: Preferences2.Set(string, int, string?)
+  nameWithType.vb: Preferences2.Set(String, Integer, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int64)
+  name: Set(string, long)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Int64_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int64)
+  name.vb: Set(String, Long)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, long)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Long)
+  nameWithType: Preferences2.Set(string, long)
+  nameWithType.vb: Preferences2.Set(String, Long)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int64,System.String)
+  name: Set(string, long, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Int64_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Int64,System.String)
+  name.vb: Set(String, Long, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, long, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Long, String)
+  nameWithType: Preferences2.Set(string, long, string?)
+  nameWithType.vb: Preferences2.Set(String, Long, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Single)
+  name: Set(string, float)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Single_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Single)
+  name.vb: Set(String, Single)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, float)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Single)
+  nameWithType: Preferences2.Set(string, float)
+  nameWithType.vb: Preferences2.Set(String, Single)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Single,System.String)
+  name: Set(string, float, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_Single_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.Single,System.String)
+  name.vb: Set(String, Single, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, float, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, Single, String)
+  nameWithType: Preferences2.Set(string, float, string?)
+  nameWithType.vb: Preferences2.Set(String, Single, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.String)
+  name: Set(string, string)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.String)
+  name.vb: Set(String, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, string)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, String)
+  nameWithType: Preferences2.Set(string, string)
+  nameWithType.vb: Preferences2.Set(String, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.String,System.String)
+  name: Set(string, string, string?)
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_System_String_System_String_System_String_
+  commentId: M:BD.Common8.Essentials.Helpers.Preferences2.Set(System.String,System.String,System.String)
+  name.vb: Set(String, String, String)
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set(string, string, string?)
+  fullName.vb: BD.Common8.Essentials.Helpers.Preferences2.Set(String, String, String)
+  nameWithType: Preferences2.Set(string, string, string?)
+  nameWithType.vb: Preferences2.Set(String, String, String)
+- uid: BD.Common8.Essentials.Helpers.Preferences2.Set*
+  name: Set
+  href: api/BD.Common8.Essentials/BD.Common8.Essentials.Helpers.Preferences2.html#BD_Common8_Essentials_Helpers_Preferences2_Set_
+  commentId: Overload:BD.Common8.Essentials.Helpers.Preferences2.Set
+  fullName: BD.Common8.Essentials.Helpers.Preferences2.Set
+  nameWithType: Preferences2.Set
 - uid: BD.Common8.Essentials.Helpers.WindowStateManager
   name: WindowStateManager
   href: api/BD.Common8.Essentials.Implementation/BD.Common8.Essentials.Helpers.WindowStateManager.html
@@ -14058,6 +14415,12 @@ references:
   fullName.vb: BD.Common8.Helpers.ApiRspHelper.Code(Of T)(BD.Common8.Enums.ApiRspCode, String, T, System.Exception)
   nameWithType: ApiRspHelper.Code<T>(ApiRspCode, string?, T?, Exception?)
   nameWithType.vb: ApiRspHelper.Code(Of T)(ApiRspCode, String, T, Exception)
+- uid: BD.Common8.Helpers.ApiRspHelper.Create(BD.Common8.Models.Abstractions.IApiRsp)
+  name: Create(IApiRsp)
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.ApiRspHelper.html#BD_Common8_Helpers_ApiRspHelper_Create_BD_Common8_Models_Abstractions_IApiRsp_
+  commentId: M:BD.Common8.Helpers.ApiRspHelper.Create(BD.Common8.Models.Abstractions.IApiRsp)
+  fullName: BD.Common8.Helpers.ApiRspHelper.Create(BD.Common8.Models.Abstractions.IApiRsp)
+  nameWithType: ApiRspHelper.Create(IApiRsp)
 - uid: BD.Common8.Helpers.ApiRspHelper.Create*
   name: Create
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.ApiRspHelper.html#BD_Common8_Helpers_ApiRspHelper_Create_
@@ -14211,6 +14574,18 @@ references:
   fullName.vb: BD.Common8.Helpers.ApiRspHelper.Ok(Of T)(T)
   nameWithType: ApiRspHelper.Ok<T>(T?)
   nameWithType.vb: ApiRspHelper.Ok(Of T)(T)
+- uid: BD.Common8.Helpers.ApiRspHelper.Set(System.Type,BD.Common8.Models.Abstractions.IApiRsp)
+  name: Set(Type, IApiRsp)
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.ApiRspHelper.html#BD_Common8_Helpers_ApiRspHelper_Set_System_Type_BD_Common8_Models_Abstractions_IApiRsp_
+  commentId: M:BD.Common8.Helpers.ApiRspHelper.Set(System.Type,BD.Common8.Models.Abstractions.IApiRsp)
+  fullName: BD.Common8.Helpers.ApiRspHelper.Set(System.Type, BD.Common8.Models.Abstractions.IApiRsp)
+  nameWithType: ApiRspHelper.Set(Type, IApiRsp)
+- uid: BD.Common8.Helpers.ApiRspHelper.Set*
+  name: Set
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.ApiRspHelper.html#BD_Common8_Helpers_ApiRspHelper_Set_
+  commentId: Overload:BD.Common8.Helpers.ApiRspHelper.Set
+  fullName: BD.Common8.Helpers.ApiRspHelper.Set
+  nameWithType: ApiRspHelper.Set
 - uid: BD.Common8.Helpers.ApiRspHelper.TryGetContent*
   name: TryGetContent
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Helpers.ApiRspHelper.html#BD_Common8_Helpers_ApiRspHelper_TryGetContent_
@@ -14439,6 +14814,189 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.Abstractions.IFusilladeHttpClientBuilder.Services
   fullName: BD.Common8.Http.ClientFactory.Models.Abstractions.IFusilladeHttpClientBuilder.Services
   nameWithType: IFusilladeHttpClientBuilder.Services
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs
+  name: GetImageArgs
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html
+  commentId: T:BD.Common8.Http.ClientFactory.Models.GetImageArgs
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs
+  nameWithType: GetImageArgs
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.#ctor
+  name: GetImageArgs()
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs__ctor
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.#ctor
+  name.vb: New()
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetImageArgs()
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.New()
+  nameWithType: GetImageArgs.GetImageArgs()
+  nameWithType.vb: GetImageArgs.New()
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.#ctor*
+  name: GetImageArgs
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs__ctor_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.#ctor
+  name.vb: New
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetImageArgs
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.New
+  nameWithType: GetImageArgs.GetImageArgs
+  nameWithType.vb: GetImageArgs.New
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.CacheFirst
+  name: CacheFirst
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_CacheFirst
+  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.CacheFirst
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.CacheFirst
+  nameWithType: GetImageArgs.CacheFirst
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.CacheFirst*
+  name: CacheFirst
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_CacheFirst_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.CacheFirst
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.CacheFirst
+  nameWithType: GetImageArgs.CacheFirst
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category
+  name: Category
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_Category
+  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category
+  nameWithType: GetImageArgs.Category
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category*
+  name: Category
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_Category_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category
+  nameWithType: GetImageArgs.Category
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.DefaultHttpHandlerCategory
+  name: DefaultHttpHandlerCategory
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_DefaultHttpHandlerCategory
+  commentId: F:BD.Common8.Http.ClientFactory.Models.GetImageArgs.DefaultHttpHandlerCategory
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.DefaultHttpHandlerCategory
+  nameWithType: GetImageArgs.DefaultHttpHandlerCategory
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  name: Equals(GetImageArgs)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_Equals_BD_Common8_Http_ClientFactory_Models_GetImageArgs_
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  nameWithType: GetImageArgs.Equals(GetImageArgs)
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(System.Object)
+  name: Equals(object)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_Equals_System_Object_
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(object)
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(Object)
+  nameWithType: GetImageArgs.Equals(object)
+  nameWithType.vb: GetImageArgs.Equals(Object)
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals*
+  name: Equals
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_Equals_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals
+  nameWithType: GetImageArgs.Equals
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetHashCode
+  name: GetHashCode()
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_GetHashCode
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetHashCode
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetHashCode()
+  nameWithType: GetImageArgs.GetHashCode()
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetHashCode*
+  name: GetHashCode
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_GetHashCode_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetHashCode
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.GetHashCode
+  nameWithType: GetImageArgs.GetHashCode
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue
+  name: HashValue
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_HashValue
+  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue
+  nameWithType: GetImageArgs.HashValue
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue*
+  name: HashValue
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_HashValue_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue
+  nameWithType: GetImageArgs.HashValue
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
+  name: IsPolly
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPolly
+  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
+  nameWithType: GetImageArgs.IsPolly
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly*
+  name: IsPolly
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPolly_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
+  nameWithType: GetImageArgs.IsPolly
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.RequestUri
+  name: RequestUri
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_RequestUri
+  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.RequestUri
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.RequestUri
+  nameWithType: GetImageArgs.RequestUri
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.RequestUri*
+  name: RequestUri
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_RequestUri_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.RequestUri
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.RequestUri
+  nameWithType: GetImageArgs.RequestUri
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.ToString
+  name: ToString()
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_ToString
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.ToString
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.ToString()
+  nameWithType: GetImageArgs.ToString()
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.ToString*
+  name: ToString
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_ToString_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.ToString
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.ToString
+  nameWithType: GetImageArgs.ToString
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.UseCache
+  name: UseCache
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_UseCache
+  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.UseCache
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.UseCache
+  nameWithType: GetImageArgs.UseCache
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.UseCache*
+  name: UseCache
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_UseCache_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.UseCache
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.UseCache
+  nameWithType: GetImageArgs.UseCache
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Equality(BD.Common8.Http.ClientFactory.Models.GetImageArgs,BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  name: operator ==(GetImageArgs, GetImageArgs)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_op_Equality_BD_Common8_Http_ClientFactory_Models_GetImageArgs_BD_Common8_Http_ClientFactory_Models_GetImageArgs_
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Equality(BD.Common8.Http.ClientFactory.Models.GetImageArgs,BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  name.vb: =(GetImageArgs, GetImageArgs)
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.operator ==(BD.Common8.Http.ClientFactory.Models.GetImageArgs, BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.=(BD.Common8.Http.ClientFactory.Models.GetImageArgs, BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  nameWithType: GetImageArgs.operator ==(GetImageArgs, GetImageArgs)
+  nameWithType.vb: GetImageArgs.=(GetImageArgs, GetImageArgs)
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Equality*
+  name: operator ==
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_op_Equality_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Equality
+  name.vb: =
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.operator ==
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.=
+  nameWithType: GetImageArgs.operator ==
+  nameWithType.vb: GetImageArgs.=
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Inequality(BD.Common8.Http.ClientFactory.Models.GetImageArgs,BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  name: operator !=(GetImageArgs, GetImageArgs)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_op_Inequality_BD_Common8_Http_ClientFactory_Models_GetImageArgs_BD_Common8_Http_ClientFactory_Models_GetImageArgs_
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Inequality(BD.Common8.Http.ClientFactory.Models.GetImageArgs,BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  name.vb: <>(GetImageArgs, GetImageArgs)
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.operator !=(BD.Common8.Http.ClientFactory.Models.GetImageArgs, BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.<>(BD.Common8.Http.ClientFactory.Models.GetImageArgs, BD.Common8.Http.ClientFactory.Models.GetImageArgs)
+  nameWithType: GetImageArgs.operator !=(GetImageArgs, GetImageArgs)
+  nameWithType.vb: GetImageArgs.<>(GetImageArgs, GetImageArgs)
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Inequality*
+  name: operator !=
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_op_Inequality_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.op_Inequality
+  name.vb: <>
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.operator !=
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.<>
+  nameWithType: GetImageArgs.operator !=
+  nameWithType.vb: GetImageArgs.<>
 - uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs
   name: WebApiClientSendArgs
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html
@@ -14754,6 +15312,18 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.VerifyRequestUri
   fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.VerifyRequestUri
   nameWithType: WebApiClientSendArgs.VerifyRequestUri
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.mAccept
+  name: mAccept
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_mAccept
+  commentId: F:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.mAccept
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.mAccept
+  nameWithType: WebApiClientSendArgs.mAccept
+- uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.mContentType
+  name: mContentType
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_mContentType
+  commentId: F:BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.mContentType
+  fullName: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.mContentType
+  nameWithType: WebApiClientSendArgs.mContentType
 - uid: BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.op_Equality(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs)
   name: operator ==(WebApiClientSendArgs?, WebApiClientSendArgs?)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.html#BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_op_Equality_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_
@@ -14820,6 +15390,12 @@ references:
   commentId: F:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.DefaultHttpHandlerCategory
   fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.DefaultHttpHandlerCategory
   nameWithType: IImageHttpClientService.DefaultHttpHandlerCategory
+- uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  name: GetImageMemoryStreamAsync(GetImageArgs, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_GetImageMemoryStreamAsync_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Threading.CancellationToken)
+  nameWithType: IImageHttpClientService.GetImageMemoryStreamAsync(GetImageArgs, CancellationToken)
 - uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageMemoryStreamAsync(System.String,System.Boolean,System.Boolean,System.Boolean,System.Net.Http.Client.HttpHandlerCategory,System.Threading.CancellationToken)
   name: GetImageMemoryStreamAsync(string, bool, bool, bool, HttpHandlerCategory, CancellationToken)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_GetImageMemoryStreamAsync_System_String_System_Boolean_System_Boolean_System_Boolean_System_Net_Http_Client_HttpHandlerCategory_System_Threading_CancellationToken_
@@ -14994,15 +15570,15 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.New(Boolean)
   nameWithType: FusilladeClientHttpClientFactory.FusilladeClientHttpClientFactory(bool)
   nameWithType.vb: FusilladeClientHttpClientFactory.New(Boolean)
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.#ctor(System.Net.Http.HttpMessageHandler,System.Boolean)
-  name: FusilladeClientHttpClientFactory(HttpMessageHandler, bool)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_FusilladeClientHttpClientFactory__ctor_System_Net_Http_HttpMessageHandler_System_Boolean_
-  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.#ctor(System.Net.Http.HttpMessageHandler,System.Boolean)
-  name.vb: New(HttpMessageHandler, Boolean)
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.FusilladeClientHttpClientFactory(System.Net.Http.HttpMessageHandler, bool)
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.New(System.Net.Http.HttpMessageHandler, Boolean)
-  nameWithType: FusilladeClientHttpClientFactory.FusilladeClientHttpClientFactory(HttpMessageHandler, bool)
-  nameWithType.vb: FusilladeClientHttpClientFactory.New(HttpMessageHandler, Boolean)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.#ctor(System.Net.Http.HttpMessageHandler)
+  name: FusilladeClientHttpClientFactory(HttpMessageHandler)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_FusilladeClientHttpClientFactory__ctor_System_Net_Http_HttpMessageHandler_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.#ctor(System.Net.Http.HttpMessageHandler)
+  name.vb: New(HttpMessageHandler)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.FusilladeClientHttpClientFactory(System.Net.Http.HttpMessageHandler)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.New(System.Net.Http.HttpMessageHandler)
+  nameWithType: FusilladeClientHttpClientFactory.FusilladeClientHttpClientFactory(HttpMessageHandler)
+  nameWithType.vb: FusilladeClientHttpClientFactory.New(HttpMessageHandler)
 - uid: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.#ctor*
   name: FusilladeClientHttpClientFactory
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_FusilladeClientHttpClientFactory__ctor_
@@ -15060,15 +15636,12 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.New
   nameWithType: ImageHttpClientServiceImpl.ImageHttpClientServiceImpl
   nameWithType.vb: ImageHttpClientServiceImpl.New
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(System.String,System.Boolean,System.Boolean,System.Boolean,System.Net.Http.Client.HttpHandlerCategory,System.Threading.CancellationToken)
-  name: GetImageMemoryStreamAsync(string, bool, bool, bool, HttpHandlerCategory, CancellationToken)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageMemoryStreamAsync_System_String_System_Boolean_System_Boolean_System_Boolean_System_Net_Http_Client_HttpHandlerCategory_System_Threading_CancellationToken_
-  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(System.String,System.Boolean,System.Boolean,System.Boolean,System.Net.Http.Client.HttpHandlerCategory,System.Threading.CancellationToken)
-  name.vb: GetImageMemoryStreamAsync(String, Boolean, Boolean, Boolean, HttpHandlerCategory, CancellationToken)
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(string, bool, bool, bool, System.Net.Http.Client.HttpHandlerCategory, System.Threading.CancellationToken)
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(String, Boolean, Boolean, Boolean, System.Net.Http.Client.HttpHandlerCategory, System.Threading.CancellationToken)
-  nameWithType: ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(string, bool, bool, bool, HttpHandlerCategory, CancellationToken)
-  nameWithType.vb: ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(String, Boolean, Boolean, Boolean, HttpHandlerCategory, CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  name: GetImageMemoryStreamAsync(GetImageArgs, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageMemoryStreamAsync_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Threading.CancellationToken)
+  nameWithType: ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(GetImageArgs, CancellationToken)
 - uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync*
   name: GetImageMemoryStreamAsync
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageMemoryStreamAsync_
@@ -15099,6 +15672,27 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.New
   nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.ImageHttpRequestMessage
   nameWithType.vb: ImageHttpClientServiceImpl.ImageHttpRequestMessage.New
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
+  name: DefaultRequestUri
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_DefaultRequestUri
+  commentId: F:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
+  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage,System.String)
+  name: GetOriginalRequestUri(HttpRequestMessage, string)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_GetOriginalRequestUri_System_Net_Http_HttpRequestMessage_System_String_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage,System.String)
+  name.vb: GetOriginalRequestUri(HttpRequestMessage, String)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage, string)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage, String)
+  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(HttpRequestMessage, string)
+  nameWithType.vb: ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(HttpRequestMessage, String)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri*
+  name: GetOriginalRequestUri
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_GetOriginalRequestUri_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri
+  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri
 - uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
   name: OriginalRequestUri
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_OriginalRequestUri
@@ -15267,18 +15861,6 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.DefaultEncoding
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.DefaultEncoding
   nameWithType: WebApiClientService.DefaultEncoding
-- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError
-  name: EnableLogOnError
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_EnableLogOnError
-  commentId: P:BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError
-  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError
-  nameWithType: WebApiClientService.EnableLogOnError
-- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError*
-  name: EnableLogOnError
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_EnableLogOnError_
-  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError
-  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.EnableLogOnError
-  nameWithType: WebApiClientService.EnableLogOnError
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetApiRspBase*
   name: GetApiRspBase
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetApiRspBase_
@@ -15348,6 +15930,21 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMemoryPackContent(Of TResponseBody, TRequestBody)(TRequestBody, System.Net.Http.Headers.MediaTypeHeaderValue)
   nameWithType: WebApiClientService.GetMemoryPackContent<TResponseBody, TRequestBody>(TRequestBody, MediaTypeHeaderValue?)
   nameWithType.vb: WebApiClientService.GetMemoryPackContent(Of TResponseBody, TRequestBody)(TRequestBody, MediaTypeHeaderValue)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMessagePackContent*
+  name: GetMessagePackContent
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetMessagePackContent_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMessagePackContent
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMessagePackContent
+  nameWithType: WebApiClientService.GetMessagePackContent
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMessagePackContent``2(``1,System.Net.Http.Headers.MediaTypeHeaderValue,System.Threading.CancellationToken)
+  name: GetMessagePackContent<TResponseBody, TRequestBody>(TRequestBody, MediaTypeHeaderValue?, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetMessagePackContent__2___1_System_Net_Http_Headers_MediaTypeHeaderValue_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMessagePackContent``2(``1,System.Net.Http.Headers.MediaTypeHeaderValue,System.Threading.CancellationToken)
+  name.vb: GetMessagePackContent(Of TResponseBody, TRequestBody)(TRequestBody, MediaTypeHeaderValue, CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMessagePackContent<TResponseBody, TRequestBody>(TRequestBody, System.Net.Http.Headers.MediaTypeHeaderValue?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetMessagePackContent(Of TResponseBody, TRequestBody)(TRequestBody, System.Net.Http.Headers.MediaTypeHeaderValue, System.Threading.CancellationToken)
+  nameWithType: WebApiClientService.GetMessagePackContent<TResponseBody, TRequestBody>(TRequestBody, MediaTypeHeaderValue?, CancellationToken)
+  nameWithType.vb: WebApiClientService.GetMessagePackContent(Of TResponseBody, TRequestBody)(TRequestBody, MediaTypeHeaderValue, CancellationToken)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetNJsonContent*
   name: GetNJsonContent
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_GetNJsonContent_
@@ -15408,6 +16005,21 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.GetXmlContent(Of TResponseBody, TRequestBody)(TRequestBody, System.Text.Encoding, System.Net.Http.Headers.MediaTypeHeaderValue)
   nameWithType: WebApiClientService.GetXmlContent<TResponseBody, TRequestBody>(TRequestBody, Encoding?, MediaTypeHeaderValue?)
   nameWithType.vb: WebApiClientService.GetXmlContent(Of TResponseBody, TRequestBody)(TRequestBody, Encoding, MediaTypeHeaderValue)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.HandleHttpResponseMessage*
+  name: HandleHttpResponseMessage
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_HandleHttpResponseMessage_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.HandleHttpResponseMessage
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.HandleHttpResponseMessage
+  nameWithType: WebApiClientService.HandleHttpResponseMessage
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.HandleHttpResponseMessage``2(System.Net.Http.HttpResponseMessage,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,``1,System.Threading.CancellationToken)
+  name: HandleHttpResponseMessage<TResponseBody, TRequestBody>(HttpResponseMessage, WebApiClientSendArgs, TRequestBody, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_HandleHttpResponseMessage__2_System_Net_Http_HttpResponseMessage_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs___1_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.HandleHttpResponseMessage``2(System.Net.Http.HttpResponseMessage,BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,``1,System.Threading.CancellationToken)
+  name.vb: HandleHttpResponseMessage(Of TResponseBody, TRequestBody)(HttpResponseMessage, WebApiClientSendArgs, TRequestBody, CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.HandleHttpResponseMessage<TResponseBody, TRequestBody>(System.Net.Http.HttpResponseMessage, BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs, TRequestBody, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.HandleHttpResponseMessage(Of TResponseBody, TRequestBody)(System.Net.Http.HttpResponseMessage, BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs, TRequestBody, System.Threading.CancellationToken)
+  nameWithType: WebApiClientService.HandleHttpResponseMessage<TResponseBody, TRequestBody>(HttpResponseMessage, WebApiClientSendArgs, TRequestBody, CancellationToken)
+  nameWithType.vb: WebApiClientService.HandleHttpResponseMessage(Of TResponseBody, TRequestBody)(HttpResponseMessage, WebApiClientSendArgs, TRequestBody, CancellationToken)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.HttpContentWrapper`1
   name: WebApiClientService.HttpContentWrapper<TResponseBody>
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.HttpContentWrapper-1.html
@@ -15685,15 +16297,15 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync
   nameWithType: WebApiClientService.ReadFromCustomDeserializeAsync
-- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
-  name: ReadFromCustomDeserializeAsync<TResponseBody>(HttpResponseMessage, string?, CancellationToken)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromCustomDeserializeAsync__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_
-  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
-  name.vb: ReadFromCustomDeserializeAsync(Of TResponseBody)(HttpResponseMessage, String, CancellationToken)
-  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync<TResponseBody>(System.Net.Http.HttpResponseMessage, string?, System.Threading.CancellationToken)
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync(Of TResponseBody)(System.Net.Http.HttpResponseMessage, String, System.Threading.CancellationToken)
-  nameWithType: WebApiClientService.ReadFromCustomDeserializeAsync<TResponseBody>(HttpResponseMessage, string?, CancellationToken)
-  nameWithType.vb: WebApiClientService.ReadFromCustomDeserializeAsync(Of TResponseBody)(HttpResponseMessage, String, CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync``1(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
+  name: ReadFromCustomDeserializeAsync<TResponseBody>(WebApiClientSendArgs, HttpResponseMessage, string?, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromCustomDeserializeAsync__1_BD_Common8_Http_ClientFactory_Models_WebApiClientSendArgs_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync``1(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs,System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
+  name.vb: ReadFromCustomDeserializeAsync(Of TResponseBody)(WebApiClientSendArgs, HttpResponseMessage, String, CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync<TResponseBody>(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs, System.Net.Http.HttpResponseMessage, string?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserializeAsync(Of TResponseBody)(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs, System.Net.Http.HttpResponseMessage, String, System.Threading.CancellationToken)
+  nameWithType: WebApiClientService.ReadFromCustomDeserializeAsync<TResponseBody>(WebApiClientSendArgs, HttpResponseMessage, string?, CancellationToken)
+  nameWithType.vb: WebApiClientService.ReadFromCustomDeserializeAsync(Of TResponseBody)(WebApiClientSendArgs, HttpResponseMessage, String, CancellationToken)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromCustomDeserialize``1(System.Net.Http.HttpResponseMessage,System.String,System.Threading.CancellationToken)
   name: ReadFromCustomDeserialize<TResponseBody>(HttpResponseMessage, string?, CancellationToken)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromCustomDeserialize__1_System_Net_Http_HttpResponseMessage_System_String_System_Threading_CancellationToken_
@@ -15709,15 +16321,30 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync
   fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync
   nameWithType: WebApiClientService.ReadFromMemoryPackAsync
-- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)
-  name: ReadFromMemoryPackAsync<TResponseBody>(HttpContent, CancellationToken)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromMemoryPackAsync__1_System_Net_Http_HttpContent_System_Threading_CancellationToken_
-  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)
-  name.vb: ReadFromMemoryPackAsync(Of TResponseBody)(HttpContent, CancellationToken)
-  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync<TResponseBody>(System.Net.Http.HttpContent, System.Threading.CancellationToken)
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync(Of TResponseBody)(System.Net.Http.HttpContent, System.Threading.CancellationToken)
-  nameWithType: WebApiClientService.ReadFromMemoryPackAsync<TResponseBody>(HttpContent, CancellationToken)
-  nameWithType.vb: WebApiClientService.ReadFromMemoryPackAsync(Of TResponseBody)(HttpContent, CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync``1(System.Net.Http.HttpContent,System.Security.Cryptography.Aes,System.Threading.CancellationToken)
+  name: ReadFromMemoryPackAsync<TResponseBody>(HttpContent, Aes?, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromMemoryPackAsync__1_System_Net_Http_HttpContent_System_Security_Cryptography_Aes_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync``1(System.Net.Http.HttpContent,System.Security.Cryptography.Aes,System.Threading.CancellationToken)
+  name.vb: ReadFromMemoryPackAsync(Of TResponseBody)(HttpContent, Aes, CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync<TResponseBody>(System.Net.Http.HttpContent, System.Security.Cryptography.Aes?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMemoryPackAsync(Of TResponseBody)(System.Net.Http.HttpContent, System.Security.Cryptography.Aes, System.Threading.CancellationToken)
+  nameWithType: WebApiClientService.ReadFromMemoryPackAsync<TResponseBody>(HttpContent, Aes?, CancellationToken)
+  nameWithType.vb: WebApiClientService.ReadFromMemoryPackAsync(Of TResponseBody)(HttpContent, Aes, CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMessagePackAsync*
+  name: ReadFromMessagePackAsync
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromMessagePackAsync_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMessagePackAsync
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMessagePackAsync
+  nameWithType: WebApiClientService.ReadFromMessagePackAsync
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMessagePackAsync``1(System.Net.Http.HttpContent,System.Security.Cryptography.Aes,System.Threading.CancellationToken)
+  name: ReadFromMessagePackAsync<TResponseBody>(HttpContent, Aes?, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromMessagePackAsync__1_System_Net_Http_HttpContent_System_Security_Cryptography_Aes_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMessagePackAsync``1(System.Net.Http.HttpContent,System.Security.Cryptography.Aes,System.Threading.CancellationToken)
+  name.vb: ReadFromMessagePackAsync(Of TResponseBody)(HttpContent, Aes, CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMessagePackAsync<TResponseBody>(System.Net.Http.HttpContent, System.Security.Cryptography.Aes?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromMessagePackAsync(Of TResponseBody)(System.Net.Http.HttpContent, System.Security.Cryptography.Aes, System.Threading.CancellationToken)
+  nameWithType: WebApiClientService.ReadFromMessagePackAsync<TResponseBody>(HttpContent, Aes?, CancellationToken)
+  nameWithType.vb: WebApiClientService.ReadFromMessagePackAsync(Of TResponseBody)(HttpContent, Aes, CancellationToken)
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.ReadFromNJson*
   name: ReadFromNJson
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_ReadFromNJson_
@@ -15964,6 +16591,18 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Services.WebApiClientService.Send(Of TResponseBody, TRequestBody)(BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs, TRequestBody, System.Threading.CancellationToken)
   nameWithType: WebApiClientService.Send<TResponseBody, TRequestBody>(WebApiClientSendArgs, TRequestBody, CancellationToken)
   nameWithType.vb: WebApiClientService.Send(Of TResponseBody, TRequestBody)(WebApiClientSendArgs, TRequestBody, CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.UseJsonSerializerOptions
+  name: UseJsonSerializerOptions
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_UseJsonSerializerOptions
+  commentId: P:BD.Common8.Http.ClientFactory.Services.WebApiClientService.UseJsonSerializerOptions
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.UseJsonSerializerOptions
+  nameWithType: WebApiClientService.UseJsonSerializerOptions
+- uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.UseJsonSerializerOptions*
+  name: UseJsonSerializerOptions
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_UseJsonSerializerOptions_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.WebApiClientService.UseJsonSerializerOptions
+  fullName: BD.Common8.Http.ClientFactory.Services.WebApiClientService.UseJsonSerializerOptions
+  nameWithType: WebApiClientService.UseJsonSerializerOptions
 - uid: BD.Common8.Http.ClientFactory.Services.WebApiClientService.httpPlatformHelper
   name: httpPlatformHelper
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_httpPlatformHelper
@@ -16048,6 +16687,12 @@ references:
   fullName.vb: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.New
   nameWithType: ServiceContractImplAttribute.ServiceContractImplAttribute
   nameWithType.vb: ServiceContractImplAttribute.New
+- uid: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.DefaultHubTypeFullName
+  name: DefaultHubTypeFullName
+  href: api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_DefaultHubTypeFullName
+  commentId: F:BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.DefaultHubTypeFullName
+  fullName: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.DefaultHubTypeFullName
+  nameWithType: ServiceContractImplAttribute.DefaultHubTypeFullName
 - uid: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.GeneratorType
   name: GeneratorType
   href: api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_GeneratorType
@@ -16060,6 +16705,30 @@ references:
   commentId: Overload:BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.GeneratorType
   fullName: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.GeneratorType
   nameWithType: ServiceContractImplAttribute.GeneratorType
+- uid: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName
+  name: HubTypeFullName
+  href: api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubTypeFullName
+  commentId: P:BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName
+  fullName: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName
+  nameWithType: ServiceContractImplAttribute.HubTypeFullName
+- uid: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName*
+  name: HubTypeFullName
+  href: api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubTypeFullName_
+  commentId: Overload:BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName
+  fullName: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName
+  nameWithType: ServiceContractImplAttribute.HubTypeFullName
+- uid: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl
+  name: HubUrl
+  href: api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubUrl
+  commentId: P:BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl
+  fullName: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl
+  nameWithType: ServiceContractImplAttribute.HubUrl
+- uid: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl*
+  name: HubUrl
+  href: api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubUrl_
+  commentId: Overload:BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl
+  fullName: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl
+  nameWithType: ServiceContractImplAttribute.HubUrl
 - uid: BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.ServiceType
   name: ServiceType
   href: api/BD.Common8.Ipc/BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_ServiceType
@@ -16243,12 +16912,6 @@ references:
   commentId: Overload:BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.GetHttpMessageHandler
   fullName: BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.GetHttpMessageHandler
   nameWithType: IpcAppConnectionStringHelper.GetHttpMessageHandler
-- uid: BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.TimeoutFromSeconds
-  name: TimeoutFromSeconds
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.html#BD_Common8_Ipc_Helpers_IpcAppConnectionStringHelper_TimeoutFromSeconds
-  commentId: F:BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.TimeoutFromSeconds
-  fullName: BD.Common8.Ipc.Helpers.IpcAppConnectionStringHelper.TimeoutFromSeconds
-  nameWithType: IpcAppConnectionStringHelper.TimeoutFromSeconds
 - uid: BD.Common8.Ipc.IpcServiceCollectionServiceExtensions
   name: IpcServiceCollectionServiceExtensions
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.IpcServiceCollectionServiceExtensions.html
@@ -16619,30 +17282,30 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable
   fullName: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable
   nameWithType: IIpcClientService.HubSendAsAsyncEnumerable
-- uid: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name: HubSendAsAsyncEnumerable<TResponseBody>(string, object?[]?, CancellationToken)
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.html#BD_Common8_Ipc_Services_IIpcClientService_HubSendAsAsyncEnumerable__1_System_String_System_Object___System_Threading_CancellationToken_
-  commentId: M:BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name.vb: HubSendAsAsyncEnumerable(Of TResponseBody)(String, Object(), CancellationToken)
-  fullName: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string, object?[]?, System.Threading.CancellationToken)
-  fullName.vb: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, Object(), System.Threading.CancellationToken)
-  nameWithType: IIpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string, object?[]?, CancellationToken)
-  nameWithType.vb: IIpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, Object(), CancellationToken)
+- uid: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name: HubSendAsAsyncEnumerable<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.html#BD_Common8_Ipc_Services_IIpcClientService_HubSendAsAsyncEnumerable__1_System_String_System_String_System_Object___System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name.vb: HubSendAsAsyncEnumerable(Of TResponseBody)(String, String, Object(), CancellationToken)
+  fullName: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string?, string, object?[]?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, String, Object(), System.Threading.CancellationToken)
+  nameWithType: IIpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  nameWithType.vb: IIpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, String, Object(), CancellationToken)
 - uid: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync*
   name: HubSendAsync
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.html#BD_Common8_Ipc_Services_IIpcClientService_HubSendAsync_
   commentId: Overload:BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync
   fullName: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync
   nameWithType: IIpcClientService.HubSendAsync
-- uid: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name: HubSendAsync<TResponseBody>(string, object?[]?, CancellationToken)
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.html#BD_Common8_Ipc_Services_IIpcClientService_HubSendAsync__1_System_String_System_Object___System_Threading_CancellationToken_
-  commentId: M:BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name.vb: HubSendAsync(Of TResponseBody)(String, Object(), CancellationToken)
-  fullName: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync<TResponseBody>(string, object?[]?, System.Threading.CancellationToken)
-  fullName.vb: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync(Of TResponseBody)(String, Object(), System.Threading.CancellationToken)
-  nameWithType: IIpcClientService.HubSendAsync<TResponseBody>(string, object?[]?, CancellationToken)
-  nameWithType.vb: IIpcClientService.HubSendAsync(Of TResponseBody)(String, Object(), CancellationToken)
+- uid: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name: HubSendAsync<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.html#BD_Common8_Ipc_Services_IIpcClientService_HubSendAsync__1_System_String_System_String_System_Object___System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name.vb: HubSendAsync(Of TResponseBody)(String, String, Object(), CancellationToken)
+  fullName: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync<TResponseBody>(string?, string, object?[]?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Ipc.Services.IIpcClientService.HubSendAsync(Of TResponseBody)(String, String, Object(), System.Threading.CancellationToken)
+  nameWithType: IIpcClientService.HubSendAsync<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  nameWithType.vb: IIpcClientService.HubSendAsync(Of TResponseBody)(String, String, Object(), CancellationToken)
 - uid: BD.Common8.Ipc.Services.IIpcClientService.SendAsAsyncEnumerable*
   name: SendAsAsyncEnumerable
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.IIpcClientService.html#BD_Common8_Ipc_Services_IIpcClientService_SendAsAsyncEnumerable_
@@ -16835,12 +17498,15 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.GetAccessToken
   fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.GetAccessToken
   nameWithType: IpcClientService.GetAccessToken
-- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync
-  name: GetHubConnAsync()
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_GetHubConnAsync
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync()
-  nameWithType: IpcClientService.GetHubConnAsync()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync(System.String)
+  name: GetHubConnAsync(string?)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_GetHubConnAsync_System_String_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync(System.String)
+  name.vb: GetHubConnAsync(String)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync(string?)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync(String)
+  nameWithType: IpcClientService.GetHubConnAsync(string?)
+  nameWithType.vb: IpcClientService.GetHubConnAsync(String)
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.GetHubConnAsync*
   name: GetHubConnAsync
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_GetHubConnAsync_
@@ -16883,30 +17549,30 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable
   fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable
   nameWithType: IpcClientService.HubSendAsAsyncEnumerable
-- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name: HubSendAsAsyncEnumerable<TResponseBody>(string, object?[]?, CancellationToken)
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_HubSendAsAsyncEnumerable__1_System_String_System_Object___System_Threading_CancellationToken_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name.vb: HubSendAsAsyncEnumerable(Of TResponseBody)(String, Object(), CancellationToken)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string, object?[]?, System.Threading.CancellationToken)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, Object(), System.Threading.CancellationToken)
-  nameWithType: IpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string, object?[]?, CancellationToken)
-  nameWithType.vb: IpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, Object(), CancellationToken)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name: HubSendAsAsyncEnumerable<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_HubSendAsAsyncEnumerable__1_System_String_System_String_System_Object___System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name.vb: HubSendAsAsyncEnumerable(Of TResponseBody)(String, String, Object(), CancellationToken)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string?, string, object?[]?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, String, Object(), System.Threading.CancellationToken)
+  nameWithType: IpcClientService.HubSendAsAsyncEnumerable<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  nameWithType.vb: IpcClientService.HubSendAsAsyncEnumerable(Of TResponseBody)(String, String, Object(), CancellationToken)
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync*
   name: HubSendAsync
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_HubSendAsync_
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync
   fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync
   nameWithType: IpcClientService.HubSendAsync
-- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name: HubSendAsync<TResponseBody>(string, object?[]?, CancellationToken)
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_HubSendAsync__1_System_String_System_Object___System_Threading_CancellationToken_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync``1(System.String,System.Object[],System.Threading.CancellationToken)
-  name.vb: HubSendAsync(Of TResponseBody)(String, Object(), CancellationToken)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync<TResponseBody>(string, object?[]?, System.Threading.CancellationToken)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync(Of TResponseBody)(String, Object(), System.Threading.CancellationToken)
-  nameWithType: IpcClientService.HubSendAsync<TResponseBody>(string, object?[]?, CancellationToken)
-  nameWithType.vb: IpcClientService.HubSendAsync(Of TResponseBody)(String, Object(), CancellationToken)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name: HubSendAsync<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_HubSendAsync__1_System_String_System_String_System_Object___System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync``1(System.String,System.String,System.Object[],System.Threading.CancellationToken)
+  name.vb: HubSendAsync(Of TResponseBody)(String, String, Object(), CancellationToken)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync<TResponseBody>(string?, string, object?[]?, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubSendAsync(Of TResponseBody)(String, String, Object(), System.Threading.CancellationToken)
+  nameWithType: IpcClientService.HubSendAsync<TResponseBody>(string?, string, object?[]?, CancellationToken)
+  nameWithType.vb: IpcClientService.HubSendAsync(Of TResponseBody)(String, String, Object(), CancellationToken)
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.HubUrl
   name: HubUrl
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_HubUrl
@@ -16958,24 +17624,12 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.UseMemoryPack
   fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.UseMemoryPack
   nameWithType: IpcClientService.UseMemoryPack
-- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService._AccessToken
-  name: _AccessToken
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService__AccessToken
-  commentId: F:BD.Common8.Ipc.Services.Implementation.IpcClientService._AccessToken
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService._AccessToken
-  nameWithType: IpcClientService._AccessToken
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.connectionString
   name: connectionString
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_connectionString
   commentId: F:BD.Common8.Ipc.Services.Implementation.IpcClientService.connectionString
   fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.connectionString
   nameWithType: IpcClientService.connectionString
-- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.hubConnection
-  name: hubConnection
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_hubConnection
-  commentId: F:BD.Common8.Ipc.Services.Implementation.IpcClientService.hubConnection
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.hubConnection
-  nameWithType: IpcClientService.hubConnection
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService
   name: IpcServerService
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html
@@ -17417,6 +18071,18 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
   nameWithType: IpcServerService.UnixSocketPath
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.UseMemoryPack
+  name: UseMemoryPack
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_UseMemoryPack
+  commentId: P:BD.Common8.Ipc.Services.Implementation.IpcServerService.UseMemoryPack
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.UseMemoryPack
+  nameWithType: IpcServerService.UseMemoryPack
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.UseMemoryPack*
+  name: UseMemoryPack
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_UseMemoryPack_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.UseMemoryPack
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.UseMemoryPack
+  nameWithType: IpcServerService.UseMemoryPack
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService._AccessToken
   name: _AccessToken
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__AccessToken
@@ -17878,6 +18544,18 @@ references:
   commentId: Overload:BD.Common8.Models.Abstractions.Internals.ApiRspBase.InternalMessage
   fullName: BD.Common8.Models.Abstractions.Internals.ApiRspBase.InternalMessage
   nameWithType: ApiRspBase.InternalMessage
+- uid: BD.Common8.Models.Abstractions.Internals.ApiRspBase.IsDisplayed
+  name: IsDisplayed
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.ApiRspBase.html#BD_Common8_Models_Abstractions_Internals_ApiRspBase_IsDisplayed
+  commentId: P:BD.Common8.Models.Abstractions.Internals.ApiRspBase.IsDisplayed
+  fullName: BD.Common8.Models.Abstractions.Internals.ApiRspBase.IsDisplayed
+  nameWithType: ApiRspBase.IsDisplayed
+- uid: BD.Common8.Models.Abstractions.Internals.ApiRspBase.IsDisplayed*
+  name: IsDisplayed
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.ApiRspBase.html#BD_Common8_Models_Abstractions_Internals_ApiRspBase_IsDisplayed_
+  commentId: Overload:BD.Common8.Models.Abstractions.Internals.ApiRspBase.IsDisplayed
+  fullName: BD.Common8.Models.Abstractions.Internals.ApiRspBase.IsDisplayed
+  nameWithType: ApiRspBase.IsDisplayed
 - uid: BD.Common8.Models.Abstractions.Internals.ApiRspBase.IsSuccess
   name: IsSuccess
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.ApiRspBase.html#BD_Common8_Models_Abstractions_Internals_ApiRspBase_IsSuccess
@@ -17980,6 +18658,18 @@ references:
   commentId: Overload:BD.Common8.Models.Abstractions.Internals.IApiRspBase.Content
   fullName: BD.Common8.Models.Abstractions.Internals.IApiRspBase.Content
   nameWithType: IApiRspBase.Content
+- uid: BD.Common8.Models.Abstractions.Internals.IApiRspBase.IsDisplayed
+  name: IsDisplayed
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.IApiRspBase.html#BD_Common8_Models_Abstractions_Internals_IApiRspBase_IsDisplayed
+  commentId: P:BD.Common8.Models.Abstractions.Internals.IApiRspBase.IsDisplayed
+  fullName: BD.Common8.Models.Abstractions.Internals.IApiRspBase.IsDisplayed
+  nameWithType: IApiRspBase.IsDisplayed
+- uid: BD.Common8.Models.Abstractions.Internals.IApiRspBase.IsDisplayed*
+  name: IsDisplayed
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.IApiRspBase.html#BD_Common8_Models_Abstractions_Internals_IApiRspBase_IsDisplayed_
+  commentId: Overload:BD.Common8.Models.Abstractions.Internals.IApiRspBase.IsDisplayed
+  fullName: BD.Common8.Models.Abstractions.Internals.IApiRspBase.IsDisplayed
+  nameWithType: IApiRspBase.IsDisplayed
 - uid: BD.Common8.Models.Abstractions.Internals.IApiRspBase.IsSuccess
   name: IsSuccess
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Models.Abstractions.Internals.IApiRspBase.html#BD_Common8_Models_Abstractions_Internals_IApiRspBase_IsSuccess
@@ -23052,6 +23742,21 @@ references:
   commentId: Overload:BD.Common8.Settings5.Services.ISettingsLoadService.Current
   fullName: BD.Common8.Settings5.Services.ISettingsLoadService.Current
   nameWithType: ISettingsLoadService.Current
+- uid: BD.Common8.Settings5.Services.ISettingsLoadService.ForceSave*
+  name: ForceSave
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.ISettingsLoadService.html#BD_Common8_Settings5_Services_ISettingsLoadService_ForceSave_
+  commentId: Overload:BD.Common8.Settings5.Services.ISettingsLoadService.ForceSave
+  fullName: BD.Common8.Settings5.Services.ISettingsLoadService.ForceSave
+  nameWithType: ISettingsLoadService.ForceSave
+- uid: BD.Common8.Settings5.Services.ISettingsLoadService.ForceSave``1
+  name: ForceSave<TSettingsModel>()
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.ISettingsLoadService.html#BD_Common8_Settings5_Services_ISettingsLoadService_ForceSave__1
+  commentId: M:BD.Common8.Settings5.Services.ISettingsLoadService.ForceSave``1
+  name.vb: ForceSave(Of TSettingsModel)()
+  fullName: BD.Common8.Settings5.Services.ISettingsLoadService.ForceSave<TSettingsModel>()
+  fullName.vb: BD.Common8.Settings5.Services.ISettingsLoadService.ForceSave(Of TSettingsModel)()
+  nameWithType: ISettingsLoadService.ForceSave<TSettingsModel>()
+  nameWithType.vb: ISettingsLoadService.ForceSave(Of TSettingsModel)()
 - uid: BD.Common8.Settings5.Services.ISettingsLoadService.Get*
   name: Get
   href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.ISettingsLoadService.html#BD_Common8_Settings5_Services_ISettingsLoadService_Get_
@@ -23196,6 +23901,15 @@ references:
   commentId: Overload:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave
   fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave
   nameWithType: SettingsLoadServiceImpl.ForceSave
+- uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave``1
+  name: ForceSave<TSettingsModel>()
+  href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_ForceSave__1
+  commentId: M:BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave``1
+  name.vb: ForceSave(Of TSettingsModel)()
+  fullName: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave<TSettingsModel>()
+  fullName.vb: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave(Of TSettingsModel)()
+  nameWithType: SettingsLoadServiceImpl.ForceSave<TSettingsModel>()
+  nameWithType.vb: SettingsLoadServiceImpl.ForceSave(Of TSettingsModel)()
 - uid: BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.ForceSave``1(Microsoft.Extensions.Options.IOptionsMonitor{``0})
   name: ForceSave<TSettingsModel>(IOptionsMonitor<TSettingsModel>)
   href: api/BD.Common8.Settings5/BD.Common8.Settings5.Services.Implementation.SettingsLoadServiceImpl.html#BD_Common8_Settings5_Services_Implementation_SettingsLoadServiceImpl_ForceSave__1_Microsoft_Extensions_Options_IOptionsMonitor___0__
@@ -27072,6 +27786,54 @@ references:
   commentId: Overload:BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.WriteFile
   fullName: BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.WriteFile
   nameWithType: DesignerTemplate.WriteFile
+- uid: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator
+  name: HelloSourceGenerator
+  href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html
+  commentId: T:BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator
+  fullName: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator
+  nameWithType: HelloSourceGenerator
+- uid: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.#ctor
+  name: HelloSourceGenerator()
+  href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html#BD_Common8_SourceGenerator_ResX_Templates_HelloSourceGenerator__ctor
+  commentId: M:BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.#ctor
+  name.vb: New()
+  fullName: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.HelloSourceGenerator()
+  fullName.vb: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.New()
+  nameWithType: HelloSourceGenerator.HelloSourceGenerator()
+  nameWithType.vb: HelloSourceGenerator.New()
+- uid: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.#ctor*
+  name: HelloSourceGenerator
+  href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html#BD_Common8_SourceGenerator_ResX_Templates_HelloSourceGenerator__ctor_
+  commentId: Overload:BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.#ctor
+  name.vb: New
+  fullName: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.HelloSourceGenerator
+  fullName.vb: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.New
+  nameWithType: HelloSourceGenerator.HelloSourceGenerator
+  nameWithType.vb: HelloSourceGenerator.New
+- uid: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
+  name: Execute(GeneratorExecutionContext)
+  href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html#BD_Common8_SourceGenerator_ResX_Templates_HelloSourceGenerator_Execute_Microsoft_CodeAnalysis_GeneratorExecutionContext_
+  commentId: M:BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
+  fullName: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Execute(Microsoft.CodeAnalysis.GeneratorExecutionContext)
+  nameWithType: HelloSourceGenerator.Execute(GeneratorExecutionContext)
+- uid: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Execute*
+  name: Execute
+  href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html#BD_Common8_SourceGenerator_ResX_Templates_HelloSourceGenerator_Execute_
+  commentId: Overload:BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Execute
+  fullName: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Execute
+  nameWithType: HelloSourceGenerator.Execute
+- uid: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  name: Initialize(GeneratorInitializationContext)
+  href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html#BD_Common8_SourceGenerator_ResX_Templates_HelloSourceGenerator_Initialize_Microsoft_CodeAnalysis_GeneratorInitializationContext_
+  commentId: M:BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  fullName: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Initialize(Microsoft.CodeAnalysis.GeneratorInitializationContext)
+  nameWithType: HelloSourceGenerator.Initialize(GeneratorInitializationContext)
+- uid: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Initialize*
+  name: Initialize
+  href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html#BD_Common8_SourceGenerator_ResX_Templates_HelloSourceGenerator_Initialize_
+  commentId: Overload:BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Initialize
+  fullName: BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.Initialize
+  nameWithType: HelloSourceGenerator.Initialize
 - uid: BD.Common8.SourceGenerator.Templates.Abstractions
   name: BD.Common8.SourceGenerator.Templates.Abstractions
   href: api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.html
@@ -28723,15 +29485,15 @@ references:
   commentId: Overload:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClient
   fullName: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClient
   nameWithType: ServiceCollectionExtensions.AddFusilladeHttpClient
-- uid: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Net.Http.HttpMessageHandler,System.Boolean)
-  name: AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler?, bool)
-  href: api/BD.Common8.Http.ClientFactory/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddFusilladeHttpClientFactory_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Net_Http_HttpMessageHandler_System_Boolean_
-  commentId: M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Net.Http.HttpMessageHandler,System.Boolean)
-  name.vb: AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler, Boolean)
-  fullName: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Net.Http.HttpMessageHandler?, bool)
-  fullName.vb: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Net.Http.HttpMessageHandler, Boolean)
-  nameWithType: ServiceCollectionExtensions.AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler?, bool)
-  nameWithType.vb: ServiceCollectionExtensions.AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler, Boolean)
+- uid: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Net.Http.HttpMessageHandler)
+  name: AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler?)
+  href: api/BD.Common8.Http.ClientFactory/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddFusilladeHttpClientFactory_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Net_Http_HttpMessageHandler_
+  commentId: M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Net.Http.HttpMessageHandler)
+  name.vb: AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler)
+  fullName: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Net.Http.HttpMessageHandler?)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Net.Http.HttpMessageHandler)
+  nameWithType: ServiceCollectionExtensions.AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler?)
+  nameWithType.vb: ServiceCollectionExtensions.AddFusilladeHttpClientFactory(IServiceCollection, HttpMessageHandler)
 - uid: Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddFusilladeHttpClientFactory*
   name: AddFusilladeHttpClientFactory
   href: api/BD.Common8.Http.ClientFactory/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddFusilladeHttpClientFactory_
@@ -29560,6 +30322,18 @@ references:
   commentId: Overload:Microsoft.Win32.Registry2.ReadRegistryKey
   fullName: Microsoft.Win32.Registry2.ReadRegistryKey
   nameWithType: Registry2.ReadRegistryKey
+- uid: Microsoft.Win32.Registry2.Regedit
+  name: Regedit
+  href: api/BD.Common8.Bcl/Microsoft.Win32.Registry2.html#Microsoft_Win32_Registry2_Regedit
+  commentId: P:Microsoft.Win32.Registry2.Regedit
+  fullName: Microsoft.Win32.Registry2.Regedit
+  nameWithType: Registry2.Regedit
+- uid: Microsoft.Win32.Registry2.Regedit*
+  name: Regedit
+  href: api/BD.Common8.Bcl/Microsoft.Win32.Registry2.html#Microsoft_Win32_Registry2_Regedit_
+  commentId: Overload:Microsoft.Win32.Registry2.Regedit
+  fullName: Microsoft.Win32.Registry2.Regedit
+  nameWithType: Registry2.Regedit
 - uid: Microsoft.Win32.Registry2.SetRegistryKey(System.String,Microsoft.Win32.RegistryView,System.String)
   name: SetRegistryKey(string, RegistryView, string?)
   href: api/BD.Common8.Bcl/Microsoft.Win32.Registry2.html#Microsoft_Win32_Registry2_SetRegistryKey_System_String_Microsoft_Win32_RegistryView_System_String_
@@ -29584,6 +30358,21 @@ references:
   commentId: Overload:Microsoft.Win32.Registry2.SetRegistryKey
   fullName: Microsoft.Win32.Registry2.SetRegistryKey
   nameWithType: Registry2.SetRegistryKey
+- uid: Microsoft.Win32.Registry2.StartProcessRegeditAsync(System.String,System.String,System.Int32)
+  name: StartProcessRegeditAsync(string, string, int)
+  href: api/BD.Common8.Bcl/Microsoft.Win32.Registry2.html#Microsoft_Win32_Registry2_StartProcessRegeditAsync_System_String_System_String_System_Int32_
+  commentId: M:Microsoft.Win32.Registry2.StartProcessRegeditAsync(System.String,System.String,System.Int32)
+  name.vb: StartProcessRegeditAsync(String, String, Integer)
+  fullName: Microsoft.Win32.Registry2.StartProcessRegeditAsync(string, string, int)
+  fullName.vb: Microsoft.Win32.Registry2.StartProcessRegeditAsync(String, String, Integer)
+  nameWithType: Registry2.StartProcessRegeditAsync(string, string, int)
+  nameWithType.vb: Registry2.StartProcessRegeditAsync(String, String, Integer)
+- uid: Microsoft.Win32.Registry2.StartProcessRegeditAsync*
+  name: StartProcessRegeditAsync
+  href: api/BD.Common8.Bcl/Microsoft.Win32.Registry2.html#Microsoft_Win32_Registry2_StartProcessRegeditAsync_
+  commentId: Overload:Microsoft.Win32.Registry2.StartProcessRegeditAsync
+  fullName: Microsoft.Win32.Registry2.StartProcessRegeditAsync
+  nameWithType: Registry2.StartProcessRegeditAsync
 - uid: Microsoft.Win32.Registry2.TryReadRegistryKey(System.String,Microsoft.Win32.RegistryView,System.Object@)
   name: TryReadRegistryKey(string, RegistryView, out object?)
   href: api/BD.Common8.Bcl/Microsoft.Win32.Registry2.html#Microsoft_Win32_Registry2_TryReadRegistryKey_System_String_Microsoft_Win32_RegistryView_System_Object__
@@ -30522,108 +31311,108 @@ references:
   commentId: Overload:System.Convert2.FromHexString
   fullName: System.Convert2.FromHexString
   nameWithType: Convert2.FromHexString
-- uid: System.DateTimeFormat
-  name: DateTimeFormat
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html
-  commentId: T:System.DateTimeFormat
-  fullName: System.DateTimeFormat
-  nameWithType: DateTimeFormat
-- uid: System.DateTimeFormat.Complete
+- uid: System.DateTimeStringFormat
+  name: DateTimeStringFormat
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html
+  commentId: T:System.DateTimeStringFormat
+  fullName: System.DateTimeStringFormat
+  nameWithType: DateTimeStringFormat
+- uid: System.DateTimeStringFormat.Complete
   name: Complete
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Complete
-  commentId: F:System.DateTimeFormat.Complete
-  fullName: System.DateTimeFormat.Complete
-  nameWithType: DateTimeFormat.Complete
-- uid: System.DateTimeFormat.Connect
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Complete
+  commentId: F:System.DateTimeStringFormat.Complete
+  fullName: System.DateTimeStringFormat.Complete
+  nameWithType: DateTimeStringFormat.Complete
+- uid: System.DateTimeStringFormat.Connect
   name: Connect
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Connect
-  commentId: F:System.DateTimeFormat.Connect
-  fullName: System.DateTimeFormat.Connect
-  nameWithType: DateTimeFormat.Connect
-- uid: System.DateTimeFormat.Date
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Connect
+  commentId: F:System.DateTimeStringFormat.Connect
+  fullName: System.DateTimeStringFormat.Connect
+  nameWithType: DateTimeStringFormat.Connect
+- uid: System.DateTimeStringFormat.Date
   name: Date
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Date
-  commentId: F:System.DateTimeFormat.Date
-  fullName: System.DateTimeFormat.Date
-  nameWithType: DateTimeFormat.Date
-- uid: System.DateTimeFormat.DateCN
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Date
+  commentId: F:System.DateTimeStringFormat.Date
+  fullName: System.DateTimeStringFormat.Date
+  nameWithType: DateTimeStringFormat.Date
+- uid: System.DateTimeStringFormat.DateCN
   name: DateCN
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_DateCN
-  commentId: F:System.DateTimeFormat.DateCN
-  fullName: System.DateTimeFormat.DateCN
-  nameWithType: DateTimeFormat.DateCN
-- uid: System.DateTimeFormat.DateCN2
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_DateCN
+  commentId: F:System.DateTimeStringFormat.DateCN
+  fullName: System.DateTimeStringFormat.DateCN
+  nameWithType: DateTimeStringFormat.DateCN
+- uid: System.DateTimeStringFormat.DateCN2
   name: DateCN2
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_DateCN2
-  commentId: F:System.DateTimeFormat.DateCN2
-  fullName: System.DateTimeFormat.DateCN2
-  nameWithType: DateTimeFormat.DateCN2
-- uid: System.DateTimeFormat.Debug
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_DateCN2
+  commentId: F:System.DateTimeStringFormat.DateCN2
+  fullName: System.DateTimeStringFormat.DateCN2
+  nameWithType: DateTimeStringFormat.DateCN2
+- uid: System.DateTimeStringFormat.Debug
   name: Debug
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Debug
-  commentId: F:System.DateTimeFormat.Debug
-  fullName: System.DateTimeFormat.Debug
-  nameWithType: DateTimeFormat.Debug
-- uid: System.DateTimeFormat.Debug2
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Debug
+  commentId: F:System.DateTimeStringFormat.Debug
+  fullName: System.DateTimeStringFormat.Debug
+  nameWithType: DateTimeStringFormat.Debug
+- uid: System.DateTimeStringFormat.Debug2
   name: Debug2
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Debug2
-  commentId: F:System.DateTimeFormat.Debug2
-  fullName: System.DateTimeFormat.Debug2
-  nameWithType: DateTimeFormat.Debug2
-- uid: System.DateTimeFormat.Debug3
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Debug2
+  commentId: F:System.DateTimeStringFormat.Debug2
+  fullName: System.DateTimeStringFormat.Debug2
+  nameWithType: DateTimeStringFormat.Debug2
+- uid: System.DateTimeStringFormat.Debug3
   name: Debug3
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Debug3
-  commentId: F:System.DateTimeFormat.Debug3
-  fullName: System.DateTimeFormat.Debug3
-  nameWithType: DateTimeFormat.Debug3
-- uid: System.DateTimeFormat.Debug4
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Debug3
+  commentId: F:System.DateTimeStringFormat.Debug3
+  fullName: System.DateTimeStringFormat.Debug3
+  nameWithType: DateTimeStringFormat.Debug3
+- uid: System.DateTimeStringFormat.Debug4
   name: Debug4
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Debug4
-  commentId: F:System.DateTimeFormat.Debug4
-  fullName: System.DateTimeFormat.Debug4
-  nameWithType: DateTimeFormat.Debug4
-- uid: System.DateTimeFormat.Debug5
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Debug4
+  commentId: F:System.DateTimeStringFormat.Debug4
+  fullName: System.DateTimeStringFormat.Debug4
+  nameWithType: DateTimeStringFormat.Debug4
+- uid: System.DateTimeStringFormat.Debug5
   name: Debug5
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Debug5
-  commentId: F:System.DateTimeFormat.Debug5
-  fullName: System.DateTimeFormat.Debug5
-  nameWithType: DateTimeFormat.Debug5
-- uid: System.DateTimeFormat.F3
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Debug5
+  commentId: F:System.DateTimeStringFormat.Debug5
+  fullName: System.DateTimeStringFormat.Debug5
+  nameWithType: DateTimeStringFormat.Debug5
+- uid: System.DateTimeStringFormat.F3
   name: F3
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_F3
-  commentId: F:System.DateTimeFormat.F3
-  fullName: System.DateTimeFormat.F3
-  nameWithType: DateTimeFormat.F3
-- uid: System.DateTimeFormat.File
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_F3
+  commentId: F:System.DateTimeStringFormat.F3
+  fullName: System.DateTimeStringFormat.F3
+  nameWithType: DateTimeStringFormat.F3
+- uid: System.DateTimeStringFormat.File
   name: File
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_File
-  commentId: F:System.DateTimeFormat.File
-  fullName: System.DateTimeFormat.File
-  nameWithType: DateTimeFormat.File
-- uid: System.DateTimeFormat.NoYearNoSecond
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_File
+  commentId: F:System.DateTimeStringFormat.File
+  fullName: System.DateTimeStringFormat.File
+  nameWithType: DateTimeStringFormat.File
+- uid: System.DateTimeStringFormat.NoYearNoSecond
   name: NoYearNoSecond
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_NoYearNoSecond
-  commentId: F:System.DateTimeFormat.NoYearNoSecond
-  fullName: System.DateTimeFormat.NoYearNoSecond
-  nameWithType: DateTimeFormat.NoYearNoSecond
-- uid: System.DateTimeFormat.RFC1123
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_NoYearNoSecond
+  commentId: F:System.DateTimeStringFormat.NoYearNoSecond
+  fullName: System.DateTimeStringFormat.NoYearNoSecond
+  nameWithType: DateTimeStringFormat.NoYearNoSecond
+- uid: System.DateTimeStringFormat.RFC1123
   name: RFC1123
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_RFC1123
-  commentId: F:System.DateTimeFormat.RFC1123
-  fullName: System.DateTimeFormat.RFC1123
-  nameWithType: DateTimeFormat.RFC1123
-- uid: System.DateTimeFormat.Standard
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_RFC1123
+  commentId: F:System.DateTimeStringFormat.RFC1123
+  fullName: System.DateTimeStringFormat.RFC1123
+  nameWithType: DateTimeStringFormat.RFC1123
+- uid: System.DateTimeStringFormat.Standard
   name: Standard
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_Standard
-  commentId: F:System.DateTimeFormat.Standard
-  fullName: System.DateTimeFormat.Standard
-  nameWithType: DateTimeFormat.Standard
-- uid: System.DateTimeFormat.YearMonth
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_Standard
+  commentId: F:System.DateTimeStringFormat.Standard
+  fullName: System.DateTimeStringFormat.Standard
+  nameWithType: DateTimeStringFormat.Standard
+- uid: System.DateTimeStringFormat.YearMonth
   name: YearMonth
-  href: api/BD.Common8.Bcl/System.DateTimeFormat.html#System_DateTimeFormat_YearMonth
-  commentId: F:System.DateTimeFormat.YearMonth
-  fullName: System.DateTimeFormat.YearMonth
-  nameWithType: DateTimeFormat.YearMonth
+  href: api/BD.Common8.Bcl/System.DateTimeStringFormat.html#System_DateTimeStringFormat_YearMonth
+  commentId: F:System.DateTimeStringFormat.YearMonth
+  fullName: System.DateTimeStringFormat.YearMonth
+  nameWithType: DateTimeStringFormat.YearMonth
 - uid: System.Diagnostics
   name: System.Diagnostics
   href: api/BD.Common8.Bcl/System.Diagnostics.html
@@ -30693,6 +31482,21 @@ references:
   commentId: Overload:System.Diagnostics.Process2.BuildArguments
   fullName: System.Diagnostics.Process2.BuildArguments
   nameWithType: Process2.BuildArguments
+- uid: System.Diagnostics.Process2.GetPathByDwProcessId(System.UInt32)
+  name: GetPathByDwProcessId(uint)
+  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_GetPathByDwProcessId_System_UInt32_
+  commentId: M:System.Diagnostics.Process2.GetPathByDwProcessId(System.UInt32)
+  name.vb: GetPathByDwProcessId(UInteger)
+  fullName: System.Diagnostics.Process2.GetPathByDwProcessId(uint)
+  fullName.vb: System.Diagnostics.Process2.GetPathByDwProcessId(UInteger)
+  nameWithType: Process2.GetPathByDwProcessId(uint)
+  nameWithType.vb: Process2.GetPathByDwProcessId(UInteger)
+- uid: System.Diagnostics.Process2.GetPathByDwProcessId*
+  name: GetPathByDwProcessId
+  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_GetPathByDwProcessId_
+  commentId: Overload:System.Diagnostics.Process2.GetPathByDwProcessId
+  fullName: System.Diagnostics.Process2.GetPathByDwProcessId
+  nameWithType: Process2.GetPathByDwProcessId
 - uid: System.Diagnostics.Process2.IsAlive(System.Diagnostics.Process)
   name: IsAlive(Process?)
   href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_IsAlive_System_Diagnostics_Process_
@@ -30711,12 +31515,33 @@ references:
   fullName.vb: System.Diagnostics.Process2.IsAlive(Integer)
   nameWithType: Process2.IsAlive(int)
   nameWithType.vb: Process2.IsAlive(Integer)
+- uid: System.Diagnostics.Process2.IsAlive(System.Int32,System.Diagnostics.Process@)
+  name: IsAlive(int, out Process?)
+  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_IsAlive_System_Int32_System_Diagnostics_Process__
+  commentId: M:System.Diagnostics.Process2.IsAlive(System.Int32,System.Diagnostics.Process@)
+  name.vb: IsAlive(Integer, Process)
+  fullName: System.Diagnostics.Process2.IsAlive(int, out System.Diagnostics.Process?)
+  fullName.vb: System.Diagnostics.Process2.IsAlive(Integer, System.Diagnostics.Process)
+  nameWithType: Process2.IsAlive(int, out Process?)
+  nameWithType.vb: Process2.IsAlive(Integer, Process)
 - uid: System.Diagnostics.Process2.IsAlive*
   name: IsAlive
   href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_IsAlive_
   commentId: Overload:System.Diagnostics.Process2.IsAlive
   fullName: System.Diagnostics.Process2.IsAlive
   nameWithType: Process2.IsAlive
+- uid: System.Diagnostics.Process2.IsProcessElevated(System.Diagnostics.Process)
+  name: IsProcessElevated(Process)
+  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_IsProcessElevated_System_Diagnostics_Process_
+  commentId: M:System.Diagnostics.Process2.IsProcessElevated(System.Diagnostics.Process)
+  fullName: System.Diagnostics.Process2.IsProcessElevated(System.Diagnostics.Process)
+  nameWithType: Process2.IsProcessElevated(Process)
+- uid: System.Diagnostics.Process2.IsProcessElevated*
+  name: IsProcessElevated
+  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_IsProcessElevated_
+  commentId: Overload:System.Diagnostics.Process2.IsProcessElevated
+  fullName: System.Diagnostics.Process2.IsProcessElevated
+  nameWithType: Process2.IsProcessElevated
 - uid: System.Diagnostics.Process2.OpenCoreByProcess(System.String,System.Action{System.String})
   name: OpenCoreByProcess(string, Action<string>?)
   href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_OpenCoreByProcess_System_String_System_Action_System_String__
@@ -31990,6 +32815,21 @@ references:
   commentId: Overload:System.Extensions.EnumerableExtensions.AddRange
   fullName: System.Extensions.EnumerableExtensions.AddRange
   nameWithType: EnumerableExtensions.AddRange
+- uid: System.Extensions.EnumerableExtensions.AddRangeByCommon*
+  name: AddRangeByCommon
+  href: api/BD.Common8.Bcl/System.Extensions.EnumerableExtensions.html#System_Extensions_EnumerableExtensions_AddRangeByCommon_
+  commentId: Overload:System.Extensions.EnumerableExtensions.AddRangeByCommon
+  fullName: System.Extensions.EnumerableExtensions.AddRangeByCommon
+  nameWithType: EnumerableExtensions.AddRangeByCommon
+- uid: System.Extensions.EnumerableExtensions.AddRangeByCommon``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})
+  name: AddRangeByCommon<T>(IList<T>, IEnumerable<T>)
+  href: api/BD.Common8.Bcl/System.Extensions.EnumerableExtensions.html#System_Extensions_EnumerableExtensions_AddRangeByCommon__1_System_Collections_Generic_IList___0__System_Collections_Generic_IEnumerable___0__
+  commentId: M:System.Extensions.EnumerableExtensions.AddRangeByCommon``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})
+  name.vb: AddRangeByCommon(Of T)(IList(Of T), IEnumerable(Of T))
+  fullName: System.Extensions.EnumerableExtensions.AddRangeByCommon<T>(System.Collections.Generic.IList<T>, System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: System.Extensions.EnumerableExtensions.AddRangeByCommon(Of T)(System.Collections.Generic.IList(Of T), System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: EnumerableExtensions.AddRangeByCommon<T>(IList<T>, IEnumerable<T>)
+  nameWithType.vb: EnumerableExtensions.AddRangeByCommon(Of T)(IList(Of T), IEnumerable(Of T))
 - uid: System.Extensions.EnumerableExtensions.AddRange``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})
   name: AddRange<T>(IList<T>, IEnumerable<T>)
   href: api/BD.Common8.Bcl/System.Extensions.EnumerableExtensions.html#System_Extensions_EnumerableExtensions_AddRange__1_System_Collections_Generic_IList___0__System_Collections_Generic_IEnumerable___0__
@@ -32524,6 +33364,18 @@ references:
   commentId: Overload:System.Extensions.ProcessExtensions.TryGetMainModule
   fullName: System.Extensions.ProcessExtensions.TryGetMainModule
   nameWithType: ProcessExtensions.TryGetMainModule
+- uid: System.Extensions.ProcessExtensions.TryGetMainModuleFileName(System.Diagnostics.Process)
+  name: TryGetMainModuleFileName(Process)
+  href: api/BD.Common8.Bcl/System.Extensions.ProcessExtensions.html#System_Extensions_ProcessExtensions_TryGetMainModuleFileName_System_Diagnostics_Process_
+  commentId: M:System.Extensions.ProcessExtensions.TryGetMainModuleFileName(System.Diagnostics.Process)
+  fullName: System.Extensions.ProcessExtensions.TryGetMainModuleFileName(System.Diagnostics.Process)
+  nameWithType: ProcessExtensions.TryGetMainModuleFileName(Process)
+- uid: System.Extensions.ProcessExtensions.TryGetMainModuleFileName*
+  name: TryGetMainModuleFileName
+  href: api/BD.Common8.Bcl/System.Extensions.ProcessExtensions.html#System_Extensions_ProcessExtensions_TryGetMainModuleFileName_
+  commentId: Overload:System.Extensions.ProcessExtensions.TryGetMainModuleFileName
+  fullName: System.Extensions.ProcessExtensions.TryGetMainModuleFileName
+  nameWithType: ProcessExtensions.TryGetMainModuleFileName
 - uid: System.Extensions.ProcessExtensions.TryWaitForExit(System.Diagnostics.Process,System.Int32)
   name: TryWaitForExit(Process, int)
   href: api/BD.Common8.Bcl/System.Extensions.ProcessExtensions.html#System_Extensions_ProcessExtensions_TryWaitForExit_System_Diagnostics_Process_System_Int32_
@@ -37629,6 +38481,12 @@ references:
   commentId: F:System.MediaTypeNames.JSON
   fullName: System.MediaTypeNames.JSON
   nameWithType: MediaTypeNames.JSON
+- uid: System.MediaTypeNames.JSONSecurity
+  name: JSONSecurity
+  href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_JSONSecurity
+  commentId: F:System.MediaTypeNames.JSONSecurity
+  fullName: System.MediaTypeNames.JSONSecurity
+  nameWithType: MediaTypeNames.JSONSecurity
 - uid: System.MediaTypeNames.MP3
   name: MP3
   href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MP3
@@ -37659,12 +38517,30 @@ references:
   commentId: F:System.MediaTypeNames.Markdown
   fullName: System.MediaTypeNames.Markdown
   nameWithType: MediaTypeNames.Markdown
+- uid: System.MediaTypeNames.MemoryPack
+  name: MemoryPack
+  href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MemoryPack
+  commentId: F:System.MediaTypeNames.MemoryPack
+  fullName: System.MediaTypeNames.MemoryPack
+  nameWithType: MediaTypeNames.MemoryPack
+- uid: System.MediaTypeNames.MemoryPackSecurity
+  name: MemoryPackSecurity
+  href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MemoryPackSecurity
+  commentId: F:System.MediaTypeNames.MemoryPackSecurity
+  fullName: System.MediaTypeNames.MemoryPackSecurity
+  nameWithType: MediaTypeNames.MemoryPackSecurity
 - uid: System.MediaTypeNames.MessagePack
   name: MessagePack
   href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MessagePack
   commentId: F:System.MediaTypeNames.MessagePack
   fullName: System.MediaTypeNames.MessagePack
   nameWithType: MediaTypeNames.MessagePack
+- uid: System.MediaTypeNames.MessagePackSecurity
+  name: MessagePackSecurity
+  href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MessagePackSecurity
+  commentId: F:System.MediaTypeNames.MessagePackSecurity
+  fullName: System.MediaTypeNames.MessagePackSecurity
+  nameWithType: MediaTypeNames.MessagePackSecurity
 - uid: System.MediaTypeNames.PDF
   name: PDF
   href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_PDF
@@ -38302,6 +39178,12 @@ references:
   commentId: F:System.Net.Http.Client.IClientHttpClientFactory.DefaultAutomaticDecompression
   fullName: System.Net.Http.Client.IClientHttpClientFactory.DefaultAutomaticDecompression
   nameWithType: IClientHttpClientFactory.DefaultAutomaticDecompression
+- uid: System.Net.Http.Client.IClientHttpClientFactory.DefaultLocalTimeoutFromSeconds
+  name: DefaultLocalTimeoutFromSeconds
+  href: api/BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html#System_Net_Http_Client_IClientHttpClientFactory_DefaultLocalTimeoutFromSeconds
+  commentId: F:System.Net.Http.Client.IClientHttpClientFactory.DefaultLocalTimeoutFromSeconds
+  fullName: System.Net.Http.Client.IClientHttpClientFactory.DefaultLocalTimeoutFromSeconds
+  nameWithType: IClientHttpClientFactory.DefaultLocalTimeoutFromSeconds
 - uid: System.Net.Http.Client.IClientHttpClientFactory.DefaultTimeout
   name: DefaultTimeout
   href: api/BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html#System_Net_Http_Client_IClientHttpClientFactory_DefaultTimeout
@@ -39874,6 +40756,18 @@ references:
   commentId: Overload:System.OSHelper.IsRunningAsUwp
   fullName: System.OSHelper.IsRunningAsUwp
   nameWithType: OSHelper.IsRunningAsUwp
+- uid: System.OSHelper.IsRunningOnWSA
+  name: IsRunningOnWSA()
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsRunningOnWSA
+  commentId: M:System.OSHelper.IsRunningOnWSA
+  fullName: System.OSHelper.IsRunningOnWSA()
+  nameWithType: OSHelper.IsRunningOnWSA()
+- uid: System.OSHelper.IsRunningOnWSA*
+  name: IsRunningOnWSA
+  href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsRunningOnWSA_
+  commentId: Overload:System.OSHelper.IsRunningOnWSA
+  fullName: System.OSHelper.IsRunningOnWSA
+  nameWithType: OSHelper.IsRunningOnWSA
 - uid: System.OSHelper.IsWindows11AtLeast
   name: IsWindows11AtLeast()
   href: api/BD.Common8.Bcl/System.OSHelper.html#System_OSHelper_IsWindows11AtLeast
@@ -45823,6 +46717,21 @@ references:
   fullName.vb: System.Serializable.Clone(Of T)(T)
   nameWithType: Serializable.Clone<T>(T?)
   nameWithType.vb: Serializable.Clone(Of T)(T)
+- uid: System.Serializable.CreateOptions(System.Text.Json.JsonSerializerOptions,System.Boolean)
+  name: CreateOptions(JsonSerializerOptions?, bool)
+  href: api/BD.Common8.Bcl/System.Serializable.html#System_Serializable_CreateOptions_System_Text_Json_JsonSerializerOptions_System_Boolean_
+  commentId: M:System.Serializable.CreateOptions(System.Text.Json.JsonSerializerOptions,System.Boolean)
+  name.vb: CreateOptions(JsonSerializerOptions, Boolean)
+  fullName: System.Serializable.CreateOptions(System.Text.Json.JsonSerializerOptions?, bool)
+  fullName.vb: System.Serializable.CreateOptions(System.Text.Json.JsonSerializerOptions, Boolean)
+  nameWithType: Serializable.CreateOptions(JsonSerializerOptions?, bool)
+  nameWithType.vb: Serializable.CreateOptions(JsonSerializerOptions, Boolean)
+- uid: System.Serializable.CreateOptions*
+  name: CreateOptions
+  href: api/BD.Common8.Bcl/System.Serializable.html#System_Serializable_CreateOptions_
+  commentId: Overload:System.Serializable.CreateOptions
+  fullName: System.Serializable.CreateOptions
+  nameWithType: Serializable.CreateOptions
 - uid: System.Serializable.DJSON*
   name: DJSON
   href: api/BD.Common8.Bcl/System.Serializable.html#System_Serializable_DJSON_
@@ -47768,12 +48677,15 @@ references:
   commentId: T:System.Text.Json.JsonSerializerOptionsExtensions
   fullName: System.Text.Json.JsonSerializerOptionsExtensions
   nameWithType: JsonSerializerOptionsExtensions
-- uid: System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(System.Text.Json.JsonSerializerOptions)
-  name: AddDefaultJsonTypeInfoResolver(JsonSerializerOptions)
-  href: api/BD.Common8.Bcl/System.Text.Json.JsonSerializerOptionsExtensions.html#System_Text_Json_JsonSerializerOptionsExtensions_AddDefaultJsonTypeInfoResolver_System_Text_Json_JsonSerializerOptions_
-  commentId: M:System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(System.Text.Json.JsonSerializerOptions)
-  fullName: System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(System.Text.Json.JsonSerializerOptions)
-  nameWithType: JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(JsonSerializerOptions)
+- uid: System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(System.Text.Json.JsonSerializerOptions,System.Boolean)
+  name: AddDefaultJsonTypeInfoResolver(JsonSerializerOptions, bool)
+  href: api/BD.Common8.Bcl/System.Text.Json.JsonSerializerOptionsExtensions.html#System_Text_Json_JsonSerializerOptionsExtensions_AddDefaultJsonTypeInfoResolver_System_Text_Json_JsonSerializerOptions_System_Boolean_
+  commentId: M:System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(System.Text.Json.JsonSerializerOptions,System.Boolean)
+  name.vb: AddDefaultJsonTypeInfoResolver(JsonSerializerOptions, Boolean)
+  fullName: System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(System.Text.Json.JsonSerializerOptions, bool)
+  fullName.vb: System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(System.Text.Json.JsonSerializerOptions, Boolean)
+  nameWithType: JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(JsonSerializerOptions, bool)
+  nameWithType.vb: JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver(JsonSerializerOptions, Boolean)
 - uid: System.Text.Json.JsonSerializerOptionsExtensions.AddDefaultJsonTypeInfoResolver*
   name: AddDefaultJsonTypeInfoResolver
   href: api/BD.Common8.Bcl/System.Text.Json.JsonSerializerOptionsExtensions.html#System_Text_Json_JsonSerializerOptionsExtensions_AddDefaultJsonTypeInfoResolver_
@@ -47906,6 +48818,60 @@ references:
   commentId: Overload:System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter
   fullName: System.Text.Json.Serialization.CookieConverter.MemoryPackFormatter
   nameWithType: CookieConverter.MemoryPackFormatter
+- uid: System.Text.Json.Serialization.IntPtrConverter
+  name: IntPtrConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html
+  commentId: T:System.Text.Json.Serialization.IntPtrConverter
+  fullName: System.Text.Json.Serialization.IntPtrConverter
+  nameWithType: IntPtrConverter
+- uid: System.Text.Json.Serialization.IntPtrConverter.#ctor
+  name: IntPtrConverter()
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html#System_Text_Json_Serialization_IntPtrConverter__ctor
+  commentId: M:System.Text.Json.Serialization.IntPtrConverter.#ctor
+  name.vb: New()
+  fullName: System.Text.Json.Serialization.IntPtrConverter.IntPtrConverter()
+  fullName.vb: System.Text.Json.Serialization.IntPtrConverter.New()
+  nameWithType: IntPtrConverter.IntPtrConverter()
+  nameWithType.vb: IntPtrConverter.New()
+- uid: System.Text.Json.Serialization.IntPtrConverter.#ctor*
+  name: IntPtrConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html#System_Text_Json_Serialization_IntPtrConverter__ctor_
+  commentId: Overload:System.Text.Json.Serialization.IntPtrConverter.#ctor
+  name.vb: New
+  fullName: System.Text.Json.Serialization.IntPtrConverter.IntPtrConverter
+  fullName.vb: System.Text.Json.Serialization.IntPtrConverter.New
+  nameWithType: IntPtrConverter.IntPtrConverter
+  nameWithType.vb: IntPtrConverter.New
+- uid: System.Text.Json.Serialization.IntPtrConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  name: Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html#System_Text_Json_Serialization_IntPtrConverter_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_
+  commentId: M:System.Text.Json.Serialization.IntPtrConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  name.vb: Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.IntPtrConverter.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.IntPtrConverter.Read(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType: IntPtrConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType.vb: IntPtrConverter.Read(Utf8JsonReader, Type, JsonSerializerOptions)
+- uid: System.Text.Json.Serialization.IntPtrConverter.Read*
+  name: Read
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html#System_Text_Json_Serialization_IntPtrConverter_Read_
+  commentId: Overload:System.Text.Json.Serialization.IntPtrConverter.Read
+  fullName: System.Text.Json.Serialization.IntPtrConverter.Read
+  nameWithType: IntPtrConverter.Read
+- uid: System.Text.Json.Serialization.IntPtrConverter.Write(System.Text.Json.Utf8JsonWriter,System.IntPtr,System.Text.Json.JsonSerializerOptions)
+  name: Write(Utf8JsonWriter, nint, JsonSerializerOptions)
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html#System_Text_Json_Serialization_IntPtrConverter_Write_System_Text_Json_Utf8JsonWriter_System_IntPtr_System_Text_Json_JsonSerializerOptions_
+  commentId: M:System.Text.Json.Serialization.IntPtrConverter.Write(System.Text.Json.Utf8JsonWriter,System.IntPtr,System.Text.Json.JsonSerializerOptions)
+  name.vb: Write(Utf8JsonWriter, IntPtr, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.IntPtrConverter.Write(System.Text.Json.Utf8JsonWriter, nint, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.IntPtrConverter.Write(System.Text.Json.Utf8JsonWriter, System.IntPtr, System.Text.Json.JsonSerializerOptions)
+  nameWithType: IntPtrConverter.Write(Utf8JsonWriter, nint, JsonSerializerOptions)
+  nameWithType.vb: IntPtrConverter.Write(Utf8JsonWriter, IntPtr, JsonSerializerOptions)
+- uid: System.Text.Json.Serialization.IntPtrConverter.Write*
+  name: Write
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.IntPtrConverter.html#System_Text_Json_Serialization_IntPtrConverter_Write_
+  commentId: Overload:System.Text.Json.Serialization.IntPtrConverter.Write
+  fullName: System.Text.Json.Serialization.IntPtrConverter.Write
+  nameWithType: IntPtrConverter.Write
 - uid: System.Text.Json.Serialization.MemoryPackToJsonConverter`1
   name: MemoryPackToJsonConverter<T>
   href: api/BD.Common8.Bcl/System.Text.Json.Serialization.MemoryPackToJsonConverter-1.html
@@ -48037,6 +49003,60 @@ references:
   commentId: Overload:System.Text.Json.Serialization.StringToDecimalConverter.Write
   fullName: System.Text.Json.Serialization.StringToDecimalConverter.Write
   nameWithType: StringToDecimalConverter.Write
+- uid: System.Text.Json.Serialization.UIntPtrConverter
+  name: UIntPtrConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html
+  commentId: T:System.Text.Json.Serialization.UIntPtrConverter
+  fullName: System.Text.Json.Serialization.UIntPtrConverter
+  nameWithType: UIntPtrConverter
+- uid: System.Text.Json.Serialization.UIntPtrConverter.#ctor
+  name: UIntPtrConverter()
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html#System_Text_Json_Serialization_UIntPtrConverter__ctor
+  commentId: M:System.Text.Json.Serialization.UIntPtrConverter.#ctor
+  name.vb: New()
+  fullName: System.Text.Json.Serialization.UIntPtrConverter.UIntPtrConverter()
+  fullName.vb: System.Text.Json.Serialization.UIntPtrConverter.New()
+  nameWithType: UIntPtrConverter.UIntPtrConverter()
+  nameWithType.vb: UIntPtrConverter.New()
+- uid: System.Text.Json.Serialization.UIntPtrConverter.#ctor*
+  name: UIntPtrConverter
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html#System_Text_Json_Serialization_UIntPtrConverter__ctor_
+  commentId: Overload:System.Text.Json.Serialization.UIntPtrConverter.#ctor
+  name.vb: New
+  fullName: System.Text.Json.Serialization.UIntPtrConverter.UIntPtrConverter
+  fullName.vb: System.Text.Json.Serialization.UIntPtrConverter.New
+  nameWithType: UIntPtrConverter.UIntPtrConverter
+  nameWithType.vb: UIntPtrConverter.New
+- uid: System.Text.Json.Serialization.UIntPtrConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  name: Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html#System_Text_Json_Serialization_UIntPtrConverter_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_
+  commentId: M:System.Text.Json.Serialization.UIntPtrConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  name.vb: Read(Utf8JsonReader, Type, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.UIntPtrConverter.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.UIntPtrConverter.Read(System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType: UIntPtrConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType.vb: UIntPtrConverter.Read(Utf8JsonReader, Type, JsonSerializerOptions)
+- uid: System.Text.Json.Serialization.UIntPtrConverter.Read*
+  name: Read
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html#System_Text_Json_Serialization_UIntPtrConverter_Read_
+  commentId: Overload:System.Text.Json.Serialization.UIntPtrConverter.Read
+  fullName: System.Text.Json.Serialization.UIntPtrConverter.Read
+  nameWithType: UIntPtrConverter.Read
+- uid: System.Text.Json.Serialization.UIntPtrConverter.Write(System.Text.Json.Utf8JsonWriter,System.UIntPtr,System.Text.Json.JsonSerializerOptions)
+  name: Write(Utf8JsonWriter, nuint, JsonSerializerOptions)
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html#System_Text_Json_Serialization_UIntPtrConverter_Write_System_Text_Json_Utf8JsonWriter_System_UIntPtr_System_Text_Json_JsonSerializerOptions_
+  commentId: M:System.Text.Json.Serialization.UIntPtrConverter.Write(System.Text.Json.Utf8JsonWriter,System.UIntPtr,System.Text.Json.JsonSerializerOptions)
+  name.vb: Write(Utf8JsonWriter, UIntPtr, JsonSerializerOptions)
+  fullName: System.Text.Json.Serialization.UIntPtrConverter.Write(System.Text.Json.Utf8JsonWriter, nuint, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: System.Text.Json.Serialization.UIntPtrConverter.Write(System.Text.Json.Utf8JsonWriter, System.UIntPtr, System.Text.Json.JsonSerializerOptions)
+  nameWithType: UIntPtrConverter.Write(Utf8JsonWriter, nuint, JsonSerializerOptions)
+  nameWithType.vb: UIntPtrConverter.Write(Utf8JsonWriter, UIntPtr, JsonSerializerOptions)
+- uid: System.Text.Json.Serialization.UIntPtrConverter.Write*
+  name: Write
+  href: api/BD.Common8.Bcl/System.Text.Json.Serialization.UIntPtrConverter.html#System_Text_Json_Serialization_UIntPtrConverter_Write_
+  commentId: Overload:System.Text.Json.Serialization.UIntPtrConverter.Write
+  fullName: System.Text.Json.Serialization.UIntPtrConverter.Write
+  nameWithType: UIntPtrConverter.Write
 - uid: System.Text.ValueStringBuilder
   name: ValueStringBuilder
   href: api/BD.Common8.Bcl/System.Text.ValueStringBuilder.html

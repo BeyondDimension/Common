@@ -2,11 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ServiceContractImplAttribute
- | BD.Common8 文档 </title>
+      <title>Class ServiceContractImplAttribute | BD.Common8 文档 </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ServiceContractImplAttribute
- | BD.Common8 文档 ">
+      <meta name="title" content="Class ServiceContractImplAttribute | BD.Common8 文档 ">
       
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
@@ -79,8 +77,7 @@
 
 
   <h1 id="BD_Common8_Ipc_Attributes_ServiceContractImplAttribute" data-uid="BD.Common8.Ipc.Attributes.ServiceContractImplAttribute" class="text-break">
-    Class ServiceContractImplAttribute
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc/Attributes/ServiceContractAttribute.cs"><i class="bi bi-code-slash"></i></a>
+Class ServiceContractImplAttribute  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc/Attributes/ServiceContractAttribute.cs"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -111,7 +108,7 @@ public sealed class ServiceContractImplAttribute : Attribute</code></pre>
 
 
 
-  <dl class="typelist derived">
+  <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
     <div>
@@ -282,6 +279,41 @@ public sealed class ServiceContractImplAttribute : Attribute</code></pre>
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_DefaultHubTypeFullName" data-uid="BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.DefaultHubTypeFullName">
+  DefaultHubTypeFullName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc/Attributes/ServiceContractAttribute.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p><a class="xref" href="BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.html#BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubTypeFullName">HubTypeFullName</a> 的默认值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string DefaultHubTypeFullName = &quot;BD.Common8.SourceGenerator.Ipc.Server.IpcHub&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
 
@@ -308,6 +340,70 @@ public sealed class ServiceContractImplAttribute : Attribute</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="BD.Common8.Ipc.Enums.IpcGeneratorType.html">IpcGeneratorType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubTypeFullName_" data-uid="BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName*"></a>
+
+  <h3 id="BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubTypeFullName" data-uid="BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubTypeFullName">
+  HubTypeFullName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc/Attributes/ServiceContractAttribute.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>自定义生成的服务端 Hub 类型命名空间与类型名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string HubTypeFullName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubUrl_" data-uid="BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl*"></a>
+
+  <h3 id="BD_Common8_Ipc_Attributes_ServiceContractImplAttribute_HubUrl" data-uid="BD.Common8.Ipc.Attributes.ServiceContractImplAttribute.HubUrl">
+  HubUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc/Attributes/ServiceContractAttribute.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>自定义生成的客户端调用 Hub 地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? HubUrl { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
