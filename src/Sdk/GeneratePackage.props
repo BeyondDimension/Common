@@ -7,7 +7,7 @@
 		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
 		<RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryBranch>main</RepositoryBranch>
+		<RepositoryBranch>dev8</RepositoryBranch>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageOutputPath>$(MSBuildProjectDirectory)\..\..\pkg</PackageOutputPath>
