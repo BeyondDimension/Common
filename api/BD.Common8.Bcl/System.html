@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Namespace System | BD.Common8 文档 </title>
+      <title>文档 | BD.Common8</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Namespace System | BD.Common8 文档 ">
       
@@ -118,11 +118,11 @@ The first step to use this feature is to declare some services, for instance:</p
 <pre><code class="lang-csharp">public interface ILogger
 {
     void Log(string text);
-}</code></pre>
-<pre><code class="lang-csharp">public class ConsoleLogger : ILogger
-{
-    void Log(string text) =&gt; Console.WriteLine(text);
-}</code></pre>
+}</code></pre><pre><code class="lang-csharp">public class ConsoleLogger : ILogger
+<pre><code>   {
+       void Log(string text) =&gt; Console.WriteLine(text);
+   }&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 <p>Then the services configuration should then be done at startup, by calling the <a class="xref" href="System.Ioc.html#System_Ioc_ConfigureServices_System_IServiceProvider_">ConfigureServices(IServiceProvider)</a>
 method and passing an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a> instance with the services to use. That instance can
 be from any library offering dependency injection functionality, such as Microsoft.Extensions.DependencyInjection.
@@ -134,14 +134,12 @@ For instance, using that library, <a class="xref" href="System.Ioc.html#System_I
 <p>Finally, you can use the <a class="xref" href="System.Ioc.html">Ioc</a> instance (which implements <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a>)
 to retrieve the service instances from anywhere in your application, by doing as follows:</p>
 <pre><code class="lang-csharp">Ioc.Default.GetService&lt;ILogger&gt;().Log("Hello world!");</code></pre>
-</dd>
+</code></pre></dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="System.Log.html">Log</a></dt>
       <dd><p>日志</p>
-<p>使用说明：</p>
-<p>在类中定义 const string TAG = 类名(长度小于等于23)</p>
-<p>使用 Log.Debug(TAG,... / Log.Info(TAG,... / Log.Warn(TAG,... / Log.Error(TAG,...</p>
+<p>使用说明：</p><p>在类中定义 const string TAG = 类名(长度小于等于23)</p><p>使用 Log.Debug(TAG,... / Log.Info(TAG,... / Log.Warn(TAG,... / Log.Error(TAG,...</p>
 </dd>
     </dl>
     <dl class="jumplist">

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class ViewModelWrapperGeneratedAttribute | BD.Common8 文档 </title>
+      <title>文档 | BD.Common8</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ViewModelWrapperGeneratedAttribute | BD.Common8 文档 ">
       
@@ -364,8 +364,7 @@ public sealed class ViewModelWrapperGeneratedAttribute : Attribute</code></pre>
   </h3>
 
   <div class="markdown level1 summary"><p>生成的隐式转换是否不考虑 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>，默认值为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>。</p>
-<p>生成示例：</p>
-<ul><li>TViewModel(TModel m) =&gt; new(m);</li><li>TViewModel?([NotNullIfNotNull(nameof(m))] TModel? m) =&gt; m is null ? null : new(m);</li></ul>
+<p>生成示例：</p><ul><li>TViewModel(TModel m) =&gt; new(m);</li><li>TViewModel?([NotNullIfNotNull(nameof(m))] TModel? m) =&gt; m is null ? null : new(m);</li></ul>
 </div>
   <div class="markdown level1 conceptual"></div>
 

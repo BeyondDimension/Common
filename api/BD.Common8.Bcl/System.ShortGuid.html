@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Struct ShortGuid | BD.Common8 文档 </title>
+      <title>文档 | BD.Common8</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Struct ShortGuid | BD.Common8 文档 ">
       
@@ -124,11 +124,9 @@ or removed (==).</p>
 strings to ensure they haven't been tampered with, i.e. allowing the end of a Base64 string to be tweaked
 where it still produces that same byte array to create the underlying Guid. Effectively there is "unused
 space" in the Base64 string which is ignored, but will now result in an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.formatexception">FormatException</a> being
-thrown.</p>
-<p>ShortGuid will never produce an invalid string, however if one is supplied it, could result in an
+thrown.</p><p>ShortGuid will never produce an invalid string, however if one is supplied it, could result in an
 unintended collision where multiple URL-safe Base64 strings can point to the same Guid. To avoid this
-uncertainty, a round-trip check is performed to ensure a 1-1 match with the input string.</p>
-<p>Stick with version 1.1.0 if you require the old behaviour with opt-in strict parsing.</p>
+uncertainty, a round-trip check is performed to ensure a 1-1 match with the input string.</p><p>Stick with version 1.1.0 if you require the old behaviour with opt-in strict parsing.</p>
 </div>
 
 
@@ -351,8 +349,7 @@ to <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid.empt
   </h3>
 
   <div class="markdown level1 summary"><p>Decodes the given value from a 22 character URL-safe Base64 string to a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</p>
-<p>Supports: ShortGuid format only.</p>
-<p>See also <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a> or <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a>.</p>
+<p>Supports: ShortGuid format only.</p><p>See also <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a> or <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -616,12 +613,18 @@ some non-URL safe characters replaced, and padding removed, resulting in a 22 ch
 
   <div class="markdown level1 summary"><p>Supports ShortGuid format only.</p>
 <p>Attempts to decode the given value from a 22 character URL-safe Base64 string to
-a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</p>
+        a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</p>
 <p>The difference between TryParse and TryDecode:</p>
-<ol><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
-        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
-        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a></span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
-        <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, but outputs the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> - this method.</li></ol>
+<ol><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a>
+    </span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</li><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a>
+    </span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a>
+    </span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
+                <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, but outputs the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> - this method.</li></ol>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -665,12 +668,18 @@ a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid
 
   <div class="markdown level1 summary"><p>Supports ShortGuid &amp; Guid formats.</p>
 <p>Tries to parse the value either a 22 character URL-safe Base64 string or
-<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> string, and outputs the <a class="xref" href="System.ShortGuid.html#System_ShortGuid_Guid">Guid</a> value.</p>
+        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> string, and outputs the <a class="xref" href="System.ShortGuid.html#System_ShortGuid_Guid">Guid</a> value.</p>
 <p>The difference between TryParse and TryDecode:</p>
-<ol><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
-        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
-        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> - this method.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a></span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
-        <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, outputting the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li></ol>
+<ol><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a>
+    </span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</li><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a>
+    </span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> - this method.</li><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a>
+    </span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
+                <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, outputting the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li></ol>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -714,12 +723,18 @@ a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid
 
   <div class="markdown level1 summary"><p>Supports ShortGuid &amp; Guid formats.</p>
 <p>Tries to parse the value from either a 22 character URL-safe Base64 string or
-a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> string, and outputs a <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</p>
+        a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> string, and outputs a <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance.</p>
 <p>The difference between TryParse and TryDecode:</p>
-<ol><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a></span>Supports: Guid &amp; ShortGuid; Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
-        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance - this method.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a></span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
-        <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li><li><span class="term"><a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a></span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
-        <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, but outputs the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li></ol>
+<ol><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_ShortGuid__">TryParse(string?, out ShortGuid)</a>
+    </span>Supports: Guid &amp; ShortGuid; Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="System.ShortGuid.html">ShortGuid</a> instance - this method.</li><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryParse_System_String_System_Guid__">TryParse(string?, out Guid)</a>
+    </span>Supports: Guid &amp; ShortGuid;Tries to parse first as a <a class="xref" href="System.ShortGuid.html">ShortGuid</a>, then as a
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>, outputs the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li><li><span class="term">
+      <a class="xref" href="System.ShortGuid.html#System_ShortGuid_TryDecode_System_String_System_Guid__">TryDecode(string?, out Guid)</a>
+    </span>Supports: ShortGuid;Tries to decode a 22 character URL-safe Base64 string as a
+                <a class="xref" href="System.ShortGuid.html">ShortGuid</a> only, but outputs the result as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>.</li></ol>
 </div>
   <div class="markdown level1 conceptual"></div>
 

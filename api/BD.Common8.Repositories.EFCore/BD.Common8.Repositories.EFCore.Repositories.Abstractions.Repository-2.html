@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class Repository&lt;TDbContext, TEntity&gt; | BD.Common8 文档 </title>
+      <title>文档 | BD.Common8</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class Repository&lt;TDbContext, TEntity&gt; | BD.Common8 文档 ">
       
@@ -100,7 +100,7 @@ Class Repository&lt;TDbContext, TEntity&gt;  <a class="header-action link-second
     <dt><code>TDbContext</code></dt>
     <dd></dd>
     <dt><code>TEntity</code></dt>
-    <dd>由 EntityFrameworkCore 实现的仓储层</dd>
+    <dd></dd>
   </dl>
 
   <dl class="typelist inheritance">
@@ -237,7 +237,7 @@ Class Repository&lt;TDbContext, TEntity&gt;  <a class="header-action link-second
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Repositories.EFCore/Repositories/Abstractions/Repository%602.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> can be used to query and save instances of TEntity.
+  <div class="markdown level1 summary"><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> can be used to query and save instances of <code class="typeparamref">TEntity</code>.
 LINQ queries against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> will be translated into queries against the database.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -261,32 +261,32 @@ LINQ queries against a <a class="xref" href="https://learn.microsoft.com/dotnet/
 
   <h4 class="section" id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_Entity_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>
-                    The results of a LINQ query against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> will contain the results
-                    returned from the database and may not reflect changes made in the context that have not
-                    been persisted to the database. For example, the results will not contain newly added entities
-                    and may still contain entities that are marked for deletion.
-                </p>
+                The results of a LINQ query against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> will contain the results
+                returned from the database and may not reflect changes made in the context that have not
+                been persisted to the database. For example, the results will not contain newly added entities
+                and may still contain entities that are marked for deletion.
+            </p>
 <p>
-                    Depending on the database being used, some parts of a LINQ query against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a>
-                    may be evaluated in memory rather than being translated into a database query.
-                </p>
+                Depending on the database being used, some parts of a LINQ query against a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a>
+                may be evaluated in memory rather than being translated into a database query.
+            </p>
 <p>
   <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> objects are usually obtained from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a>
-                    property on a derived <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a> or from the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.set#microsoft-entityframeworkcore-dbcontext-set-1">Set&lt;TEntity&gt;()</a>
-                    method.
-                </p>
+                property on a derived <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a> or from the <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.set#microsoft-entityframeworkcore-dbcontext-set-1">Set&lt;TEntity&gt;()</a>
+                method.
+            </p>
 <p>
-                    Entity Framework Core does not support multiple parallel operations being run on the same <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a>
-                    instance. This includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
-                    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
-                    in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more information
-                    and examples.
-                </p>
+                Entity Framework Core does not support multiple parallel operations being run on the same <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a>
+                instance. This includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more information
+                and examples.
+            </p>
 <p>
-                    See <a href="https://aka.ms/efcore-docs-dbcontext">DbContext lifetime, configuration, and initialization</a>,
-                    <a href="https://aka.ms/efcore-docs-query">Querying data with EF Core</a>, and
-                    <a href="https://aka.ms/efcore-docs-change-tracking">Changing tracking</a> for more information and examples.
-                </p>
+                See <a href="https://aka.ms/efcore-docs-dbcontext">DbContext lifetime, configuration, and initialization</a>,
+                <a href="https://aka.ms/efcore-docs-query">Querying data with EF Core</a>, and
+                <a href="https://aka.ms/efcore-docs-change-tracking">Changing tracking</a> for more information and examples.
+            </p>
 </div>
 
 
@@ -325,21 +325,21 @@ entity instances are modified, this will not be detected by the change tracker a
 
   <h4 class="section" id="BD_Common8_Repositories_EFCore_Repositories_Abstractions_Repository_2_EntityNoTracking_remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>
-                    Disabling change tracking is useful for read-only scenarios because it avoids the overhead of setting
-                    up change tracking for each entity instance. You should not disable change tracking if you want to
-                    manipulate entity instances and persist those changes to the database using
-                    <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges#microsoft-entityframeworkcore-dbcontext-savechanges">SaveChanges()</a>.
-                </p>
+                Disabling change tracking is useful for read-only scenarios because it avoids the overhead of setting
+                up change tracking for each entity instance. You should not disable change tracking if you want to
+                manipulate entity instances and persist those changes to the database using
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges#microsoft-entityframeworkcore-dbcontext-savechanges">SaveChanges()</a>.
+            </p>
 <p>
-                    Identity resolution will be performed to ensure that all occurrences of an entity with a given key
-                    in the result set are represented by the same entity instance.
-                </p>
+                Identity resolution will be performed to ensure that all occurrences of an entity with a given key
+                in the result set are represented by the same entity instance.
+            </p>
 <p>
-                    The default tracking behavior for queries can be controlled by <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.querytrackingbehavior">QueryTrackingBehavior</a>.
-                </p>
+                The default tracking behavior for queries can be controlled by <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.querytrackingbehavior">QueryTrackingBehavior</a>.
+            </p>
 <p>
-                    See <a href="https://aka.ms/efcore-docs-query-tracking">No-tracking queries in EF Core</a> for more information and examples.
-                </p>
+                See <a href="https://aka.ms/efcore-docs-query-tracking">No-tracking queries in EF Core</a> for more information and examples.
+            </p>
 </div>
 
   <h4 class="section">Exceptions</h4>
