@@ -85,7 +85,7 @@
 		<PackageVersion Include="SharpZipLib" Version="1.4.2" />
 		<PackageVersion Include="sqlite-net-pcl" Version="1.9.172" />
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
-		<PackageVersion Include="Squid-Box.SevenZipSharp.Lite" Version="1.6.1.23" />
+		<PackageVersion Include="Squid-Box.SevenZipSharp.Lite" Version="1.6.2.24" />
 		<PackageVersion Include="StackExchange.Redis" Version="2.7.33" />
 		<PackageVersion Include="SteamKit2" Version="2.5.0" />
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
