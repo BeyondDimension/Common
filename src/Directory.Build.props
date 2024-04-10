@@ -15,6 +15,7 @@
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
