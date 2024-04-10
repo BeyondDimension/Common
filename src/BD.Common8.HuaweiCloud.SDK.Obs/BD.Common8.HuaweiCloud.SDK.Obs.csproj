@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<RootNamespace>OBS</RootNamespace>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<TargetFrameworks>net$(DotNet_Version);net7.0</TargetFrameworks>
 		<Version>$(Version_HuaweiCloud_SDK_Obs)</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
