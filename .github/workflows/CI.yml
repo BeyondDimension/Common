@@ -68,16 +68,16 @@ jobs:
         run: dotnet --info
 
       - name: Build tools
-        run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false
+        run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false /nowarn:MSB4011,NU5048,NU5104
 
       - name: Test projects
         run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe build --test
 
       - name: UnitTest(Debug)
-        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Debug -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
+        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Debug -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults" /nowarn:MSB4011,NU5048,NU5104
 
       - name: UnitTest(Release)
-        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
+        run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults" /nowarn:MSB4011,NU5048,NU5104
 
   build:
     name: Build
@@ -140,7 +140,7 @@ jobs:
         run: dotnet --info
 
       - name: Build tools
-        run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false
+        run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false /nowarn:MSB4011,NU5048,NU5104
 
       - name: Build projects
         run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe build

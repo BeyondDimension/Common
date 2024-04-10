@@ -191,7 +191,7 @@ interface IBuildCommand : ICommand
             ProcessStartInfo psi = new()
             {
                 FileName = "dotnet",
-                Arguments = $"build -c {config} {projectName}.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")}",
+                Arguments = $"build -c {config} {projectName}.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")} /nowarn:MSB4011,NU5048,NU5104",
                 WorkingDirectory = projPath,
             };
             var process = Process.Start(psi);
