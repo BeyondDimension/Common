@@ -40,17 +40,17 @@
 		<PackageVersion Include="MemoryPack.AspNetCoreMvcFormatter" Version="1.21.0" />
 		<PackageVersion Include="MemoryPack.Streaming" Version="1.21.0" />
 		<PackageVersion Include="MessagePack" Version="2.5.140" />
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.3" />
-		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.3" />
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.3" />
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.4" />
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.4" />
 		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
 		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.3" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3" />
-		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.3" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4" />
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.4" />
 		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
