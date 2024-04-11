@@ -401,8 +401,8 @@ namespace OBS.Internal
     internal static class HttpWebRequestFactory
     {
         private static readonly object _lock = new object();
-        private static volatile MethodInfo _addHeaderInternal;
-        private static string AddHeaderInternalMethodName = "AddInternal";
+        private static volatile MethodInfo _addHeaderPublic;
+        private static string AddHeaderPublicMethodName = "Add";
 
 
         public static bool ValidateCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
@@ -434,19 +434,19 @@ namespace OBS.Internal
 
         private static MethodInfo GetAddHeaderInternal()
         {
-            if (_addHeaderInternal == null)
+            if (_addHeaderPublic == null)
             {
                 lock (_lock)
                 {
-                    if (_addHeaderInternal == null)
+                    if (_addHeaderPublic == null)
                     {
-                        _addHeaderInternal = typeof(WebHeaderCollection).GetMethod(AddHeaderInternalMethodName, BindingFlags.NonPublic | BindingFlags.Instance,
+                        _addHeaderPublic = typeof(WebHeaderCollection).GetMethod(AddHeaderPublicMethodName, BindingFlags.Public | BindingFlags.Instance,
                             null, new Type[] { typeof(string), typeof(string) }, null);
                     }
                 }
             }
 
-            return _addHeaderInternal;
+            return _addHeaderPublic;
         }
 
 

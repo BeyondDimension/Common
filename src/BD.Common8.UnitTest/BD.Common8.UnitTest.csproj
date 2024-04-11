@@ -6,6 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
+		<UserSecretsId>3ca41323-7e26-4b3e-8730-2e839c58c39c</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -41,5 +42,5 @@
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.District.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Security.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.SmsSender.props" />
-
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.HuaweiCloud.SDK.Obs.props" />
 </Project>
