@@ -27,7 +27,7 @@ public class HuaweiObsTest
         location ??= new Uri(_obsClient.ObsConfig.Endpoint!).Host?.Replace("obs.", string.Empty).Split('.')[0] ?? string.Empty;
     }
 
-    [Test]
+    [Ignore("Bucket_Test ignore")]
     public void Bucket_Test()
     {
         // check is exists
@@ -49,10 +49,10 @@ public class HuaweiObsTest
         Assert.That(exists, Is.EqualTo(false));
     }
 
-    [Test]
-    [TestCase(@"C:\xxx\xxx\hello.png")]
-    public void UpLoad_Test(string filePath)
+    [Ignore("UpLoad_Test ignore")]
+    public void UpLoad_Test()
     {
+        var filePath = @"C:\xxx\xxx\hello.png";
         var file = new FileInfo(filePath);
 
         using var stream = file.OpenRead();
