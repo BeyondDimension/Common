@@ -3,7 +3,7 @@ namespace Tools.Build.Commands;
 /// <summary>
 /// 构建当前仓库源代码命令
 /// </summary>
-interface IBuildCommand : ICommand
+partial interface IBuildCommand : ICommand
 {
     /// <summary>
     /// 命令名
@@ -34,97 +34,7 @@ interface IBuildCommand : ICommand
         slnFileName.ThrowIsNull();
         slnFileName = Path.GetFileNameWithoutExtension(slnFileName);
 
-        return slnFileName switch
-        {
-            "BD.Common8" => [
-                // 3.SourceGenerator
-                "BD.Common8.SourceGenerator.ResX",
-                //"BD.Common8.SourceGenerator.ResX.Test",
-                "BD.Common8.SourceGenerator.Bcl",
-                "BD.Common8.SourceGenerator.Bcl.Test",
-                "BD.Common8.SourceGenerator.Ipc.Client",
-                "BD.Common8.SourceGenerator.Ipc.Client.Test",
-                "BD.Common8.SourceGenerator.Ipc.Server",
-                "BD.Common8.SourceGenerator.Ipc.Server.Test",
-                "BD.Common8.SourceGenerator.Shared",
-
-                // AspNetCore
-                "BD.Common8.AspNetCore",
-                "BD.Common8.AspNetCore.Identity",
-                "BD.Common8.AspNetCore.Identity.BackManage",
-
-                // Bcl
-                "BD.Common8.Bcl",
-                "BD.Common8.Bcl.Compat",
-
-                // Crawler
-                "BD.Common8.Crawler",
-
-                // Essentials
-                "BD.Common8.Essentials",
-                "BD.Common8.Essentials.Implementation",
-                "BD.Common8.Essentials.Implementation.Avalonia",
-
-                // Http
-                "BD.Common8.Http.ClientFactory",
-                "BD.Common8.Http.ClientFactory.Server",
-
-                // HuaweiCloud
-
-                // Ipc
-                "BD.Common8.Ipc",
-                "BD.Common8.Ipc.Client",
-                "BD.Common8.Ipc.Server",
-
-                // Orm
-                "BD.Common8.Orm.EFCore",
-
-                // Pinyin
-                "BD.Common8.Pinyin",
-                "BD.Common8.Pinyin.ChnCharInfo",
-                "BD.Common8.Pinyin.CoreFoundation",
-
-                // Primitives
-                "BD.Common8.Primitives",
-                "BD.Common8.Primitives.District",
-                "BD.Common8.Primitives.PersonalData.BirthDate",
-                "BD.Common8.Primitives.PersonalData.PhoneNumber",
-                "BD.Common8.Primitives.Essentials",
-                "BD.Common8.Primitives.Toast",
-                "BD.Common8.Primitives.ApiRsp",
-                "BD.Common8.Primitives.ApiResponse",
-
-                // Repositories
-                "BD.Common8.Repositories",
-                "BD.Common8.Repositories.EFCore",
-                "BD.Common8.Repositories.SQLitePCL",
-
-                // Security
-                "BD.Common8.Security",
-
-                // Settings
-                "BD.Common8.Settings5",
-
-                // Sms
-                "BD.Common8.SmsSender",
-
-                // Toast
-                "BD.Common8.Toast",
-
-                // UserInput
-                "BD.Common8.UserInput.ModelValidator",
-            ],
-            "BD.Avalonia8" => [
-                "BD.Avalonia8.Image2",
-            ],
-            "BD.SteamClient8" => [
-                "BD.SteamClient8",
-                "BD.SteamClient8.Impl",
-                "BD.SteamClient8.Models",
-                "BD.SteamClient8.Primitives",
-            ],
-            _ => [],
-        };
+        return GetProjectNamesCore(slnFileName);
     }
 
     /// <summary>

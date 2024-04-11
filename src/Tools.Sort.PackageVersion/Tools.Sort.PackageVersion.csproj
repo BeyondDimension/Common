@@ -5,7 +5,13 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
 	</PropertyGroup>
-	
+
+	<ItemGroup>
+		<Compile Include="..\Tools.Build\Commands\IBuildCommand.GetProjectNamesCore.cs">
+			<LinkBase>_SourceReference\Tools.Build\Commands</LinkBase>
+		</Compile>
+	</ItemGroup>
+
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
 
 </Project>

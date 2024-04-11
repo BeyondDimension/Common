@@ -1,57 +1,136 @@
+using Tools.Build.Commands;
+
 // NuGet 包清单排序
 
 var filePath = Path.Combine(ProjPath, "src", "Directory.Packages.props");
 var lines = await File.ReadAllLinesAsync(filePath);
-SortedDictionary<string, string> dict = [];
-List<string> startLines = [], endLines = [];
+
+List<PackageVersionItemGroup> pvigs = new();
+PackageVersionItemGroup pvig = new();
+var slnFileNames = IBuildCommand.GetSlnFileNames();
+bool isForProjectLine = false;
 for (int i = 0; i < lines.Length; i++)
 {
-    var line = lines[i];
+    var line = lines[i].Trim();
+    if (string.IsNullOrWhiteSpace(line))
+        continue;
+
+    if (string.Equals(line, "<Project>", StringComparison.OrdinalIgnoreCase))
+    {
+        isForProjectLine = true;
+        continue;
+    }
+
+    if (!isForProjectLine)
+        continue;
+
     try
     {
-        var element = XElement.Parse(line.Trim().TrimStart("<!--").TrimEnd("-->"));
+        if (line.StartsWith("<!--"))
+        {
+            line = line.TrimStart("<!--").TrimEnd("-->").Trim();
+            pvig.Comments = line;
+            if (slnFileNames.Contains(line))
+            {
+                pvig.Pairs = new Dictionary<string, string>();
+            }
+            continue;
+        }
+        else if (line.Equals("<ItemGroup>", StringComparison.OrdinalIgnoreCase))
+        {
+            if (pvig.LineNumber == -1)
+            {
+                pvig.LineNumber = i;
+            }
+            else
+            {
+                pvigs.Add(pvig);
+                pvig = new();
+            }
+        }
+        else if (line.Equals("</ItemGroup>", StringComparison.OrdinalIgnoreCase))
+        {
+            pvigs.Add(pvig);
+            pvig = new();
+        }
+        var element = XElement.Parse(line);
         if (element.Name == "PackageVersion" ||
-            element.Name == "PackageReference")
+           element.Name == "PackageReference")
         {
             var include = element.Attribute("Include")!.Value;
             var version = element.Attribute("Version")!.Value;
-            dict.Add(include, version);
+            pvig.Pairs.Add(include, version);
             continue;
         }
     }
     catch
     {
     }
+}
+if (pvig.LineNumber != -1)
+    pvigs.Add(pvig);
 
-    (dict.Count > 0 ? endLines : startLines).Add(line);
-}
-static void WriteLines(Stream stream, IEnumerable<string> lines)
-{
-    foreach (var line in lines)
-    {
-        stream.Write(Encoding.UTF8.GetBytes(line));
-        stream.Write("\r\n"u8);
-    }
-}
 using MemoryStream stream = new();
-WriteLines(stream, startLines);
-foreach (var pair in dict)
+stream.Write(
+"""
+<!-- NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
+<Project>
+
+"""u8);
+
+foreach (var pvig_item in pvigs)
 {
+    if (!string.IsNullOrWhiteSpace(pvig_item.Comments))
+    {
+        stream.WriteFormat(
+"""
+	<!-- {0} -->
+
+"""u8, pvig_item.Comments);
+    }
     stream.Write(
+"""
+	<ItemGroup>
+
+"""u8);
+    foreach (var pair in pvig_item.Pairs)
+    {
+        stream.Write(
 """
 		<PackageVersion Include="
 """u8);
-    stream.Write(Encoding.UTF8.GetBytes(pair.Key));
-    stream.Write(
+        stream.Write(Encoding.UTF8.GetBytes(pair.Key));
+        stream.Write(
 """
 " Version="
 """u8);
-    stream.Write(Encoding.UTF8.GetBytes(pair.Value));
-    stream.Write(
+        stream.Write(Encoding.UTF8.GetBytes(pair.Value));
+        stream.Write(
 """
 " />
+
 """u8);
-    stream.Write("\r\n"u8);
+    }
+    stream.Write(
+"""
+	</ItemGroup>
+
+"""u8);
 }
-WriteLines(stream, endLines);
+
+stream.Write(
+"""
+</Project>
+
+"""u8);
+
 await File.WriteAllBytesAsync(filePath, stream.ToArray());
+
+sealed class PackageVersionItemGroup
+{
+    public IDictionary<string, string> Pairs { get; set; } = new SortedDictionary<string, string>();
+
+    public string? Comments { get; set; }
+
+    public int LineNumber { get; set; } = -1;
+}

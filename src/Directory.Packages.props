@@ -1,5 +1,5 @@
+<!-- NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
 <Project>
-	<!-- NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
 	<ItemGroup>
 		<PackageVersion Include="7-Zip.NativeAssets.Win32" Version="22.1.0" />
 		<PackageVersion Include="Ae.Dns.Client" Version="3.0.0" />
@@ -35,6 +35,7 @@
 		<PackageVersion Include="fusillade" Version="2.6.1" />
 		<PackageVersion Include="gfoidl.Base64" Version="2.0.0" />
 		<PackageVersion Include="Google.Protobuf" Version="3.26.1" />
+		<PackageVersion Include="JumpLists.Win32.Avalonia" Version="1.23.10209.11223" />
 		<PackageVersion Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
 		<PackageVersion Include="MemoryPack" Version="1.21.0" />
 		<PackageVersion Include="MemoryPack.AspNetCoreMvcFormatter" Version="1.21.0" />
@@ -105,15 +106,75 @@
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0" />
 		<PackageVersion Include="TaskScheduler" Version="2.10.1" />
 		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
+		<PackageVersion Include="xunit" Version="2.5.3" />
+		<PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3" />
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0" />
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.102.2.1" />
-		<PackageVersion Include="JumpLists.Win32.Avalonia" Version="1.23.10209.11223" />
 	</ItemGroup>
+	<!-- BD.Common8 -->
 	<ItemGroup>
 		<PackageVersion Include="BD.Common8.SourceGenerator.Bcl" Version="$(Version_SourceGenerator_Bcl)" />
 		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Client" Version="$(Version_SourceGenerator_Ipc_Client)" />
 		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Server" Version="$(Version_SourceGenerator_Ipc_Server)" />
 		<PackageVersion Include="BD.Common8.SourceGenerator.ResX" Version="$(Version_SourceGenerator_Resx)" />
 		<PackageVersion Include="BD.Common8.Bcl" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.AspNetCore" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.AspNetCore.Identity" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.AspNetCore.Identity.BackManage" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Crawler" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Essentials" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Essentials.Implementation" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Essentials.Implementation.Avalonia" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Http.ClientFactory" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Http.ClientFactory.Server" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.HuaweiCloud.SDK.Obs" Version="$(Version_HuaweiCloud_SDK_Obs)" />
+		<PackageVersion Include="BD.Common8.Ipc" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Ipc.Client" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Ipc.Server" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Orm.EFCore" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Pinyin" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Pinyin.ChnCharInfo" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Pinyin.CoreFoundation" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives.District" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives.PersonalData.BirthDate" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives.PersonalData.PhoneNumber" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives.Essentials" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives.Toast" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives.ApiRsp" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Primitives.ApiResponse" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Repositories" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Repositories.EFCore" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Repositories.SQLitePCL" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Security" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Settings5" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.SmsSender" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.Toast" Version="$(Version_Common8Bcl)" />
+		<PackageVersion Include="BD.Common8.UserInput.ModelValidator" Version="$(Version_Common8Bcl)" />
+	</ItemGroup>
+	<!-- BD.Avalonia8 -->
+	<ItemGroup>
+		<PackageVersion Include="BD.Avalonia8.Image2" Version="8.24.10401.11000" />
+	</ItemGroup>
+	<!-- BD.SteamClient8 -->
+	<ItemGroup>
+		<PackageVersion Include="BD.SteamClient8" Version="8.24.10409.11855" />
+		<PackageVersion Include="BD.SteamClient8.Impl" Version="8.24.10409.11855" />
+		<PackageVersion Include="BD.SteamClient8.Models" Version="8.24.10409.11855" />
+		<PackageVersion Include="BD.SteamClient8.Primitives" Version="8.24.10409.11855" />
+	</ItemGroup>
+	<!-- .NET Aspire（阿斯拜尔） -->
+	<ItemGroup>
+		<PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.5.24201.12" />
+		<PackageVersion Include="Aspire.Hosting.Redis" Version="8.0.0-preview.5.24201.12" />
+		<PackageVersion Include="Aspire.Hosting.Testing" Version="8.0.0-preview.5.24201.12" />
+		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="8.0.0-preview.5.24201.12" />
+		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.3.0" />
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.5.24201.12" />
+		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
+		<PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+		<PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.1" />
+		<PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.7.1" />
+		<PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.7.0" />
 	</ItemGroup>
 </Project>
