@@ -1,0 +1,5 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.AutoMapper.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.AutoMapper.Collection.props" />
+</Project>

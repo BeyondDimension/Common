@@ -1,0 +1,7 @@
+<Project>
+	<!-- 依赖包引用 -->
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="AutoMapper.Collection" />
+	</ItemGroup>
+</Project>

@@ -5,7 +5,7 @@ namespace BD.Common8.Models;
 /// </summary>
 [MPObj]
 [MP2Obj(MP2SerializeLayout.Explicit)]
-public partial class SelectItemDTO : ITitle, IDisable
+public partial class SelectItemModel : ITitle, IDisable
 {
     /// <summary>
     /// 标题
@@ -38,7 +38,7 @@ public partial class SelectItemDTO : ITitle, IDisable
 /// <typeparam name="T"></typeparam>
 [MPObj]
 [MP2Obj(MP2SerializeLayout.Explicit)]
-public partial class SelectItemDTO<T> : SelectItemDTO
+public partial class SelectItemModel<T> : SelectItemModel
 {
     /// <summary>
     /// 数据源项的 Id

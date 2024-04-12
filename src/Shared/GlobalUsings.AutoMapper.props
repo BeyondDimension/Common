@@ -1,5 +1,5 @@
 <Project>
 	<ItemGroup>
-		<Using Include="BD.Common8" />
+		<Using Include="AutoMapper" />
 	</ItemGroup>
 </Project>

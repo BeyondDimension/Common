@@ -1,5 +1,6 @@
 <Project>
 	<ItemGroup>
+		<Using Include="BD.Common8.AspNetCore" />
 		<Using Include="BD.Common8.AspNetCore.Filters" />
 		<Using Include="BD.Common8.AspNetCore.Helpers" />
 		<Using Include="BD.Common8.AspNetCore.Hosting" />

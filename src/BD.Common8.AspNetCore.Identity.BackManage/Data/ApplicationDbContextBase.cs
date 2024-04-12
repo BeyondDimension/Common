@@ -1,12 +1,18 @@
 namespace BD.Common8.AspNetCore.Data;
 
 /// <summary>
-/// 应用程序数据上下文的基础实现
+/// Initializes a new instance of the <see cref="ApplicationDbContextBase"/> class.
 /// </summary>
-[method: RequiresUnreferencedCode("EF Core isn't fully compatible with trimming, and running the application may generate unexpected runtime failures. Some specific coding pattern are usually required to make trimming work properly, see https://aka.ms/efcore-docs-trimming for more details.")]
-[method: RequiresDynamicCode("EF Core isn't fully compatible with NativeAOT, and running the application may generate unexpected runtime failures.")]
-public abstract class ApplicationDbContextBase(DbContextOptions options) : DbContext(options), IApplicationDbContext
+/// <param name="httpContextAccessor"></param>
+/// <param name="options"></param>
+public abstract class ApplicationDbContextBase(
+    IHttpContextAccessor httpContextAccessor,
+    DbContextOptions options) : DbContext(options), IDbContext, IApplicationDbContext
 {
+    DbContext IDbContext.Thiz => this;
+
+    readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+
     /// <inheritdoc cref="SysUser"/>
     public DbSet<SysUser> Users { get; set; } = null!;
 
@@ -73,4 +79,68 @@ public abstract class ApplicationDbContextBase(DbContextOptions options) : DbCon
     /// 操作实体的用户属性类型 <see cref="IOperatorUser"/>
     /// </summary>
     public static readonly Type POperatorUser = typeof(IOperatorUser);
+
+    protected virtual Guid GetCurrentlyLoggedInUserId()
+    {
+        var ctx = httpContextAccessor.HttpContext;
+        if (ctx != null)
+        {
+            var uid = UserIsLockedOutFilterAttribute.GetUserId(ctx);
+            return uid;
+        }
+        return default;
+    }
+
+    public static bool IgnoreOnSaveChanges { get; protected set; }
+
+    void OnSaveChanges()
+    {
+        if (IgnoreOnSaveChanges)
+            return;
+
+        foreach (var entity in ChangeTracker.Entries())
+        {
+            switch (entity.State)
+            {
+                case EntityState.Modified:
+                    if (entity.Entity is IUpdateTime u) // 设置更新时间
+                    {
+                        u.UpdateTime = DateTimeOffset.Now;
+                    }
+                    if (entity.Entity is IOperatorUserId operatorUserId) // 设置操作人
+                    {
+                        var uid = GetCurrentlyLoggedInUserId();
+                        if (uid != default)
+                            operatorUserId.OperatorUserId = uid;
+                    }
+                    break;
+                case EntityState.Added:
+                    if (entity.Entity is ICreateUserId createUserId) // 设置创建人
+                    {
+                        var uid = GetCurrentlyLoggedInUserId();
+                        if (uid != default)
+                            createUserId.CreateUserId = uid;
+                    }
+                    else if (entity.Entity is ICreateUserIdNullable createUserIdNullable)
+                    {
+                        var uid = GetCurrentlyLoggedInUserId();
+                        if (uid != default)
+                            createUserIdNullable.CreateUserId = uid;
+                    }
+                    break;
+            }
+        }
+    }
+
+    public sealed override int SaveChanges(bool acceptAllChangesOnSuccess)
+    {
+        OnSaveChanges();
+        return base.SaveChanges(acceptAllChangesOnSuccess);
+    }
+
+    public sealed override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    {
+        OnSaveChanges();
+        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
 }

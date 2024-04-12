@@ -1,0 +1,6 @@
+<Project>
+	<ItemGroup>
+		<Using Include="AutoMapper" />
+		<Using Include="AutoMapper.EquivalencyExpression" />
+	</ItemGroup>
+</Project>

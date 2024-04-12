@@ -4,6 +4,10 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+	
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />

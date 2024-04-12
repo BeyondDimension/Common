@@ -2,10 +2,164 @@ namespace BD.Common8.AspNetCore.Helpers;
 
 public static partial class ProgramHelper
 {
+    const string VersionZero = "0.0.0.0";
+
     /// <summary>
     /// 当前 Program 版本号
     /// </summary>
-    public static string Version { get; private set; } = string.Empty;
+    public static string Version { get; private set; } = VersionZero;
+
+    public static string ProjectName { get; private set; } = string.Empty;
+
+    static void CalcVersion(Assembly? callingAssembly = default)
+    {
+        if (callingAssembly == default)
+        {
+            try
+            {
+                callingAssembly = Assembly.GetCallingAssembly();
+            }
+            catch
+            {
+            }
+        }
+        Version = callingAssembly?.GetName()?.Version?.ToString() ?? VersionZero;
+    }
+
+    public static void ConsoleWriteInfo(string? projectName = default)
+    {
+        if (!string.IsNullOrWhiteSpace(projectName))
+            ProjectName = projectName;
+
+        #region 项目代号和版本信息
+
+        if (!string.IsNullOrWhiteSpace(projectName))
+        {
+            Console.Write("Project ");
+            Console.Write(projectName.TrimStart("Project"));
+            const string version_f = $" [{nameof(Version)} ";
+            Console.Write(version_f);
+
+            if (string.IsNullOrWhiteSpace(Version) || Version == VersionZero)
+            {
+                Assembly? callingAssembly = default;
+                try
+                {
+                    callingAssembly = Assembly.GetCallingAssembly();
+                }
+                catch
+                {
+                }
+                CalcVersion(callingAssembly);
+            }
+
+            Console.Write(Version);
+            Console.Write(" / Runtime ");
+            Console.Write(Environment.Version);
+            Console.Write(']');
+            Console.Write('\n');
+            Console.Write('\n');
+        }
+
+        #endregion
+
+        #region 当前运行的计算机 CPU 显示名称
+
+        if (!string.IsNullOrEmpty(CentralProcessorName))
+        {
+            Console.Write("CentralProcessorName: ");
+            Console.Write(CentralProcessorName);
+            Console.Write(" x");
+            Console.Write(Environment.ProcessorCount);
+            Console.Write('\n');
+        }
+
+        #endregion
+
+        #region 本地时间与当前系统设置区域
+
+        Console.Write("LocalTime: ");
+        Console.Write(DateTimeOffset.Now.ToLocalTime());
+        Console.Write('\n');
+
+        Console.Write("CurrentCulture: ");
+        Console.Write(CultureInfo.CurrentCulture.Name);
+        Console.Write(' ');
+        Console.Write(CultureInfo.CurrentCulture.EnglishName);
+        Console.Write('\n');
+
+        #endregion
+
+        #region ShowInfo
+
+        Console.Write("BaseDirectory: ");
+        Console.Write(AppContext.BaseDirectory);
+        Console.Write('\n');
+
+        Console.Write("OSArchitecture: ");
+        Console.Write(RuntimeInformation.OSArchitecture);
+        Console.Write('\n');
+
+        Console.Write("ProcessArchitecture: ");
+        Console.Write(RuntimeInformation.ProcessArchitecture);
+        Console.Write('\n');
+
+        Console.Write("ProcessId: ");
+        Console.Write(Environment.ProcessId);
+        Console.Write('\n');
+
+        Console.Write("ProcessorCount: ");
+        Console.Write(Environment.ProcessorCount);
+        Console.Write('\n');
+
+        Console.Write("CurrentManagedThreadId: ");
+        Console.Write(Environment.CurrentManagedThreadId);
+        Console.Write('\n');
+
+        Console.Write("RuntimeVersion: ");
+        Console.Write(Environment.Version);
+        Console.Write('\n');
+
+        Console.Write("OSVersion: ");
+        Console.Write(Environment.OSVersion.Version);
+        Console.Write('\n');
+
+        Console.Write("OSVersionString: ");
+        Console.Write(Environment.OSVersion.VersionString);
+        Console.Write('\n');
+
+        Console.Write("UserInteractive: ");
+        Console.Write(Environment.UserInteractive);
+        Console.Write('\n');
+
+        Console.Write("MachineName: ");
+        Console.Write(Environment.MachineName);
+        Console.Write('\n');
+
+        Console.Write("UserName: ");
+        Console.Write(Environment.UserName);
+        Console.Write('\n');
+
+        Console.Write("UserDomainName: ");
+        Console.Write(Environment.UserDomainName);
+        Console.Write('\n');
+
+        Console.Write("IsPrivilegedProcess: ");
+        Console.Write(Environment.IsPrivilegedProcess);
+        Console.Write('\n');
+
+        Console.Write("Is64BitOperatingSystem: ");
+        Console.Write(Environment.Is64BitOperatingSystem);
+        Console.Write('\n');
+
+        Console.Write("Is64BitProcess: ");
+        Console.Write(Environment.Is64BitProcess);
+        Console.Write('\n');
+
+        #endregion
+
+        Console.Write('\n');
+    }
 
     /// <summary>
     /// 适用于 ASP.NET Core 6.0+ 中新的最小托管模型的代码
@@ -25,6 +179,9 @@ public static partial class ProgramHelper
        WebApplicationBuilder? builder = default,
        IJsonTypeInfoResolver? jsonTypeInfoResolver = default)
     {
+        if (!string.IsNullOrWhiteSpace(projectName))
+            ProjectName = projectName;
+
         Assembly? callingAssembly = default;
         try
         {
@@ -69,103 +226,9 @@ public static partial class ProgramHelper
                 configure(app);
 
             Console.OutputEncoding = Encoding.Unicode; // 使用 UTF16 编码输出控制台文字
-            Version = callingAssembly?.GetName()?.Version?.ToString() ?? string.Empty;
+            CalcVersion(callingAssembly);
 
-            #region 项目代号和版本信息
-
-            Console.Write("Project ");
-            Console.Write(projectName.TrimStart("Project"));
-            const string version_f = $" [{nameof(Version)} ";
-            Console.Write(version_f);
-            Console.Write(Version);
-            Console.Write(" / Runtime ");
-            Console.Write(Environment.Version);
-            Console.Write(']');
-            Console.WriteLine();
-            Console.WriteLine();
-
-            #endregion
-
-            #region 当前运行的计算机 CPU 显示名称
-
-            if (!string.IsNullOrEmpty(CentralProcessorName))
-            {
-                Console.Write("CentralProcessorName: ");
-                Console.Write(CentralProcessorName);
-                Console.Write(" x");
-                Console.Write(Environment.ProcessorCount);
-                Console.WriteLine();
-            }
-
-            #endregion
-
-            #region 本地时间与当前系统设置区域
-
-            Console.Write("LocalTime: ");
-            Console.Write(DateTimeOffset.Now.ToLocalTime());
-            Console.WriteLine();
-
-            Console.Write("CurrentCulture: ");
-            Console.Write(CultureInfo.CurrentCulture.Name);
-            Console.Write(' ');
-            Console.Write(CultureInfo.CurrentCulture.EnglishName);
-            Console.WriteLine();
-
-            #endregion
-
-            #region ShowInfo
-
-            Console.Write("BaseDirectory: ");
-            Console.WriteLine(AppContext.BaseDirectory);
-
-            Console.Write("OSArchitecture: ");
-            Console.WriteLine(RuntimeInformation.OSArchitecture);
-
-            Console.Write("ProcessArchitecture: ");
-            Console.WriteLine(RuntimeInformation.ProcessArchitecture);
-
-            Console.Write("ProcessId: ");
-            Console.WriteLine(Environment.ProcessId);
-
-            Console.Write("ProcessorCount: ");
-            Console.WriteLine(Environment.ProcessorCount);
-
-            Console.Write("CurrentManagedThreadId: ");
-            Console.WriteLine(Environment.CurrentManagedThreadId);
-
-            Console.Write("RuntimeVersion: ");
-            Console.WriteLine(Environment.Version);
-
-            Console.Write("OSVersion: ");
-            Console.WriteLine(Environment.OSVersion.Version);
-
-            Console.Write("OSVersionString: ");
-            Console.WriteLine(Environment.OSVersion.VersionString);
-
-            Console.Write("UserInteractive: ");
-            Console.WriteLine(Environment.UserInteractive);
-
-            Console.Write("MachineName: ");
-            Console.WriteLine(Environment.MachineName);
-
-            Console.Write("UserName: ");
-            Console.WriteLine(Environment.UserName);
-
-            Console.Write("UserDomainName: ");
-            Console.WriteLine(Environment.UserDomainName);
-
-            Console.Write("IsPrivilegedProcess: ");
-            Console.WriteLine(Environment.IsPrivilegedProcess);
-
-            Console.Write("Is64BitOperatingSystem: ");
-            Console.WriteLine(Environment.Is64BitOperatingSystem);
-
-            Console.Write("Is64BitProcess: ");
-            Console.WriteLine(Environment.Is64BitProcess);
-
-            #endregion
-
-            Console.WriteLine();
+            ConsoleWriteInfo(projectName);
 
             app.Run();
         }

@@ -3,7 +3,7 @@ namespace BD.Common8.AspNetCore.Models;
 /// <summary>
 /// 后台用户，查询表格模型类
 /// </summary>
-public partial class UserInfoModel : KeyModel<Guid>
+public partial class BMUserInfoModel : KeyModel<Guid>
 {
     /// <summary>
     /// 用户名
@@ -17,9 +17,9 @@ public partial class UserInfoModel : KeyModel<Guid>
     public IList<string>? Roles { get; set; }
 
     /// <summary>
-    /// 用于将 <see cref="SysUser"/> 实体映射为 <see cref="UserInfoModel"/> 实例
+    /// 用于将 <see cref="SysUser"/> 实体映射为 <see cref="BMUserInfoModel"/> 实例
     /// </summary>
-    public static readonly Expression<Func<SysUser, UserInfoModel>> Expression = x => new()
+    public static readonly Expression<Func<SysUser, BMUserInfoModel>> Expression = x => new()
     {
         Id = x.Id,
         UserName = x.UserName,
@@ -29,7 +29,7 @@ public partial class UserInfoModel : KeyModel<Guid>
 /// <summary>
 /// 当前登录的后台用户信息模型类
 /// </summary>
-public partial class CurrentUserInfoModel
+public partial class CurrentBMUserInfoModel
 {
     /// <summary>
     /// 用户名
@@ -66,7 +66,7 @@ public partial class CurrentUserInfoModel
 /// <summary>
 /// 编辑当前登录的后台用户信息模型类
 /// </summary>
-public partial class EditCurrentUserInfoModel
+public partial class EditCurrentBMUserInfoModel
 {
     /// <summary>
     /// 用户名
@@ -78,7 +78,7 @@ public partial class EditCurrentUserInfoModel
 /// <summary>
 /// 添加或编辑后台用户模型
 /// </summary>
-public partial interface IAddOrEditUserModel
+public partial interface IAddOrEditBMUserModel
 {
     /// <summary>
     /// 用户名
@@ -95,7 +95,7 @@ public partial interface IAddOrEditUserModel
 /// <summary>
 /// 新增后台用户模型类
 /// </summary>
-public partial class AddBMUserModel : IAddOrEditUserModel
+public partial class AddBMUserModel : IAddOrEditBMUserModel
 {
     /// <inheritdoc/>
     [Required]
@@ -120,7 +120,7 @@ public partial class AddBMUserModel : IAddOrEditUserModel
 /// <summary>
 /// 编辑后台用户模型类
 /// </summary>
-public partial class EditUserModel : IAddOrEditUserModel
+public partial class EditBMUserModel : IAddOrEditBMUserModel
 {
     /// <inheritdoc/>
     [Required]
@@ -130,11 +130,11 @@ public partial class EditUserModel : IAddOrEditUserModel
     public IList<string>? Roles { get; set; }
 
     /// <summary>
-    /// 将用户信息模型 <see cref="UserInfoModel"/> 转换为 <see cref="IAddOrEditUserModel"/>
+    /// 将用户信息模型 <see cref="BMUserInfoModel"/> 转换为 <see cref="IAddOrEditBMUserModel"/>
     /// </summary>
-    public static IAddOrEditUserModel Parse(UserInfoModel value)
+    public static IAddOrEditBMUserModel Parse(BMUserInfoModel value)
     {
-        IAddOrEditUserModel result = new EditUserModel
+        IAddOrEditBMUserModel result = new EditBMUserModel
         {
             UserName = value.UserName,
             Roles = value.Roles == null ? null : new List<string>(value.Roles),
