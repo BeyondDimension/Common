@@ -14,39 +14,157 @@ public static partial class ProgramHelper
     /// <param name="args"></param>
     /// <param name="configureServices"></param>
     /// <param name="configure"></param>
+    /// <param name="builder"></param>
+    /// <param name="jsonTypeInfoResolver"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void Main(
+    public static unsafe void Main(
        string projectName,
        string[] args,
-       Action<WebApplicationBuilder>? configureServices = null,
-       Action<WebApplication>? configure = null)
+       delegate* managed<WebApplicationBuilder, void> configureServices = default,
+       delegate* managed<WebApplication, void> configure = default,
+       WebApplicationBuilder? builder = default,
+       IJsonTypeInfoResolver? jsonTypeInfoResolver = default)
     {
-        var logger = LogManager.Setup().RegisterNLogWeb().LoadConfiguration(InitNLogConfig()).GetCurrentClassLogger();
+        Assembly? callingAssembly = default;
+        try
+        {
+            callingAssembly = Assembly.GetCallingAssembly();
+        }
+        catch
+        {
+        }
+
+        var logger = NLogManager.Setup()
+                                .RegisterNLogWeb()
+                                .LoadConfiguration(InitNLogConfig())
+                                .GetCurrentClassLogger();
         try
         {
             // https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-6
             logger.Debug("init main");
-            var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+            builder ??= WebApplication.CreateBuilder(new WebApplicationOptions
             {
                 Args = args,
                 ContentRootPath = AppContext.BaseDirectory,
                 WebRootPath = Path.Combine(AppContext.BaseDirectory, "wwwroot"),
             });
+            builder.WebHost.ConfigureKestrel(static o =>
+            {
+                o.AddServerHeader = false;
+            });
+            if (jsonTypeInfoResolver != default)
+            {
+                builder.Services.ConfigureHttpJsonOptions(options =>
+                {
+                    options.SerializerOptions.TypeInfoResolverChain.Insert(0, jsonTypeInfoResolver);
+                });
+            }
             builder.Host.UseNLog();
-            configureServices?.Invoke(builder);
+            if (configureServices != default)
+                configureServices(builder);
             var app = builder.Build();
-            configure?.Invoke(app);
+            InitFileSystem(app.Environment);
+            Ioc.ConfigureServices(app.Services);
+            if (configure != default)
+                configure(app);
 
             Console.OutputEncoding = Encoding.Unicode; // 使用 UTF16 编码输出控制台文字
-            Version = ((configureServices?.Method ?? configure?.Method)?.Module.Assembly ?? Assembly.GetCallingAssembly()).GetName().Version?.ToString() ?? string.Empty;
+            Version = callingAssembly?.GetName()?.Version?.ToString() ?? string.Empty;
 
-            // 项目代号和版本信息
-            Console.WriteLine($"Project {projectName.TrimStart("Project")} [{nameof(Version)} {Version} / Runtime {Environment.Version}]{Environment.NewLine}");
+            #region 项目代号和版本信息
+
+            Console.Write("Project ");
+            Console.Write(projectName.TrimStart("Project"));
+            const string version_f = $" [{nameof(Version)} ";
+            Console.Write(version_f);
+            Console.Write(Version);
+            Console.Write(" / Runtime ");
+            Console.Write(Environment.Version);
+            Console.Write(']');
+            Console.WriteLine();
+            Console.WriteLine();
+
+            #endregion
+
+            #region 当前运行的计算机 CPU 显示名称
+
             if (!string.IsNullOrEmpty(CentralProcessorName))
-                Console.WriteLine($"CentralProcessorName: {CentralProcessorName} x{Environment.ProcessorCount}");
-            Console.WriteLine($"LocalTime: {DateTimeOffset.Now.ToLocalTime()}");
-            // 输出当前系统设置区域
-            Console.WriteLine($"CurrentCulture: {CultureInfo.CurrentCulture.Name} {CultureInfo.CurrentCulture.EnglishName}");
+            {
+                Console.Write("CentralProcessorName: ");
+                Console.Write(CentralProcessorName);
+                Console.Write(" x");
+                Console.Write(Environment.ProcessorCount);
+                Console.WriteLine();
+            }
+
+            #endregion
+
+            #region 本地时间与当前系统设置区域
+
+            Console.Write("LocalTime: ");
+            Console.Write(DateTimeOffset.Now.ToLocalTime());
+            Console.WriteLine();
+
+            Console.Write("CurrentCulture: ");
+            Console.Write(CultureInfo.CurrentCulture.Name);
+            Console.Write(' ');
+            Console.Write(CultureInfo.CurrentCulture.EnglishName);
+            Console.WriteLine();
+
+            #endregion
+
+            #region ShowInfo
+
+            Console.Write("BaseDirectory: ");
+            Console.WriteLine(AppContext.BaseDirectory);
+
+            Console.Write("OSArchitecture: ");
+            Console.WriteLine(RuntimeInformation.OSArchitecture);
+
+            Console.Write("ProcessArchitecture: ");
+            Console.WriteLine(RuntimeInformation.ProcessArchitecture);
+
+            Console.Write("ProcessId: ");
+            Console.WriteLine(Environment.ProcessId);
+
+            Console.Write("ProcessorCount: ");
+            Console.WriteLine(Environment.ProcessorCount);
+
+            Console.Write("CurrentManagedThreadId: ");
+            Console.WriteLine(Environment.CurrentManagedThreadId);
+
+            Console.Write("RuntimeVersion: ");
+            Console.WriteLine(Environment.Version);
+
+            Console.Write("OSVersion: ");
+            Console.WriteLine(Environment.OSVersion.Version);
+
+            Console.Write("OSVersionString: ");
+            Console.WriteLine(Environment.OSVersion.VersionString);
+
+            Console.Write("UserInteractive: ");
+            Console.WriteLine(Environment.UserInteractive);
+
+            Console.Write("MachineName: ");
+            Console.WriteLine(Environment.MachineName);
+
+            Console.Write("UserName: ");
+            Console.WriteLine(Environment.UserName);
+
+            Console.Write("UserDomainName: ");
+            Console.WriteLine(Environment.UserDomainName);
+
+            Console.Write("IsPrivilegedProcess: ");
+            Console.WriteLine(Environment.IsPrivilegedProcess);
+
+            Console.Write("Is64BitOperatingSystem: ");
+            Console.WriteLine(Environment.Is64BitOperatingSystem);
+
+            Console.Write("Is64BitProcess: ");
+            Console.WriteLine(Environment.Is64BitProcess);
+
+            #endregion
+
             Console.WriteLine();
 
             app.Run();
@@ -60,7 +178,7 @@ public static partial class ProgramHelper
         finally
         {
             // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-            LogManager.Shutdown();
+            NLogManager.Shutdown();
         }
     }
 
@@ -187,15 +305,15 @@ public static partial class ProgramHelper
         var logsPath = Path.Combine(AppContext.BaseDirectory, "logs");
         CreateDirectory(logsPath);
 
-        InternalLogger.LogFile = $"logs{Path.DirectorySeparatorChar}internal-nlog.txt";
-        InternalLogger.LogLevel =
+        NInternalLogger.LogFile = $"logs{Path.DirectorySeparatorChar}internal-nlog.txt";
+        NInternalLogger.LogLevel =
 #if DEBUG
             NLogLevel.Info;
 #else
             NLogLevel.Error;
 #endif
         // enable asp.net core layout renderers
-        LogManager.Setup().SetupExtensions(s => s.RegisterAssembly("NLog.Web.AspNetCore"));
+        NLogManager.Setup().SetupExtensions(s => s.RegisterAssembly("NLog.Web.AspNetCore"));
 
         var objConfig = new LoggingConfiguration();
         // File Target for all log messages with basic details
