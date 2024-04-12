@@ -4,7 +4,7 @@
 		<DotNet_Version>8.0</DotNet_Version>
 		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version_Common8Bcl>8.24.10412.11701</Version_Common8Bcl>
+		<Version_Common8Bcl>8.24.10412.11932</Version_Common8Bcl>
 		<Version_SourceGenerator_Bcl>8.24.10409.11855</Version_SourceGenerator_Bcl>
 		<Version_SourceGenerator_Ipc_Client>8.24.10409.11855</Version_SourceGenerator_Ipc_Client>
 		<Version_SourceGenerator_Ipc_Server>8.24.10409.11855</Version_SourceGenerator_Ipc_Server>
