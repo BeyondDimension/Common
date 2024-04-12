@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace BD.Common.Repositories.SourceGenerator.Annotations;
 
 /// <summary>
@@ -6,6 +8,9 @@ namespace BD.Common.Repositories.SourceGenerator.Annotations;
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
 public sealed class BackManageFieldAttribute : Attribute
 {
+    [JsonIgnore]
+    public override object TypeId => base.TypeId;
+
     /// <summary>
     /// 指示该字段需要在后台管理中添加，默认值为：<see langword="true"/>
     /// </summary>

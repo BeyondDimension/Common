@@ -14,8 +14,8 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
         // 阻止在开发过程中源生成器自动执行，
         // 仅在开发人员主动使用调试的方式运行此项目时才执行源生成。
-        if (!Debugger.IsAttached)
-            return;
+        //if (!Debugger.IsAttached)
+        //    return;
 
 #endif
 
@@ -60,6 +60,14 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
                         generateRepositories.ModuleName = sourceFilePathArray[^2];
                     }
+
+                    //tasks.Add(InBackground(() =>
+                    //{
+                    //    JsonEntityDesignMetadataTemplate.Instance.AddSource(sourceProductionContext, symbol,
+                    //        new(@namespace, symbol.Name, className,
+                    //        GenerateRepositoriesAttribute: generateRepositories),
+                    //        properties);
+                    //}));
 
                     if (generateRepositories.Entity)
                     {
@@ -137,7 +145,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                 properties);
                         }));
                     }
-                    Task.WaitAll(tasks.ToArray());
+                    await Task.WhenAll([.. tasks]);
                     GeneratorConfig.Save();
                 }
             }

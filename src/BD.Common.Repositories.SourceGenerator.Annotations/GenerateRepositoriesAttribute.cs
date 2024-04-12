@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace BD.Common.Repositories.SourceGenerator.Annotations;
 
 /// <summary>
@@ -8,6 +10,9 @@ public sealed class GenerateRepositoriesAttribute : Attribute
 {
     private string? apiRoutePrefix;
     private string? dbContextBaseInterface;
+
+    [JsonIgnore]
+    public override object TypeId => base.TypeId;
 
     /// <summary>
     /// 是否需要生成【表实体】模型，默认值为：<see langword="true"/>
