@@ -13,5 +13,5 @@
 	</ItemGroup>
 	<Import Project="$(MSBuildThisFileDirectory)..\ProjectReference\BD.Common8.SourceGenerator.ResX.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.ApiResponse.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.ApiRsp.props" />
 </Project>
