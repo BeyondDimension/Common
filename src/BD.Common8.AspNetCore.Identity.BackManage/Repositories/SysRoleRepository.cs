@@ -1,11 +1,16 @@
 namespace BD.Common8.AspNetCore.Repositories;
 
-sealed class SysRoleRepository<TDbContext> : Repository<TDbContext, SysRole, Guid>, ISysRoleRepository where TDbContext : DbContext, IApplicationDbContext
+/// <summary>
+/// <see cref="ISysRoleRepository"/> 的实现类
+/// </summary>
+/// <typeparam name="TDbContext"></typeparam>
+/// <remarks>
+/// Initializes a new instance of the <see cref="SysRoleRepository{TDbContext}"/> class.
+/// </remarks>
+/// <param name="dbContext"></param>
+/// <param name="requestAbortedProvider"></param>
+sealed class SysRoleRepository<TDbContext>(TDbContext dbContext, IRequestAbortedProvider requestAbortedProvider) : Repository<TDbContext, SysRole, Guid>(dbContext, requestAbortedProvider), ISysRoleRepository where TDbContext : DbContext, IApplicationDbContext
 {
-    public SysRoleRepository(TDbContext dbContext, IRequestAbortedProvider requestAbortedProvider) : base(dbContext, requestAbortedProvider)
-    {
-    }
-
     public async Task<PagedModel<SysRoleModel>> QueryAsync(
             string? name,
             int current = IPagedModel.DefaultCurrent,

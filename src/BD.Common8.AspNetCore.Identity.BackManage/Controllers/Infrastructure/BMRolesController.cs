@@ -92,7 +92,7 @@ public sealed class BMRolesController : BaseAuthorizeController<BMRolesControlle
     public async Task<ActionResult<ApiResponse<bool>>> Put([FromBody] AddOrEditM model)
     {
         var role = await roleManager.FindByIdAsync(model.Id);
-        if (role == null || role.TenantId != TenantConstants.RootTenantIdG) 
+        if (role == null || role.TenantId != TenantConstants.RootTenantIdG)
             return NotFound();
 
         //role.OperatorUserId = userId;

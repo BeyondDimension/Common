@@ -1,13 +1,18 @@
 namespace BD.Common8.AspNetCore.Repositories;
 
-sealed class SysUserRepository<TDbContext> : Repository<TDbContext, SysUser, Guid>, ISysUserRepository where TDbContext : DbContext, IApplicationDbContext
+/// <summary>
+/// <see cref="ISysUserRepository"/> 的实现类
+/// </summary>
+/// <typeparam name="TDbContext"></typeparam>
+/// <remarks>
+/// Initializes a new instance of the <see cref="SysUserRepository{TDbContext}"/> class.
+/// </remarks>
+/// <param name="dbContext"></param>
+/// <param name="requestAbortedProvider"></param>
+sealed class SysUserRepository<TDbContext>(
+    TDbContext dbContext,
+    IRequestAbortedProvider requestAbortedProvider) : Repository<TDbContext, SysUser, Guid>(dbContext, requestAbortedProvider), ISysUserRepository where TDbContext : DbContext, IApplicationDbContext
 {
-    public SysUserRepository(
-        TDbContext dbContext,
-        IRequestAbortedProvider requestAbortedProvider) : base(dbContext, requestAbortedProvider)
-    {
-    }
-
     //public static readonly Expression<Func<SysUser, SysUserTableItem>> ExpressionTable = x => new()
     //{
     //    Id = x.Id,
@@ -53,5 +58,4 @@ sealed class SysUserRepository<TDbContext> : Repository<TDbContext, SysUser, Gui
             query = query.Where(x => x.UserName.Contains(userName));
         return await query.PagingAsync(current, pageSize, RequestAborted);
     }
-
 }

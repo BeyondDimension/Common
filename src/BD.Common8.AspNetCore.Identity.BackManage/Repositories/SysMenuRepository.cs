@@ -2,7 +2,17 @@ namespace BD.Common8.AspNetCore.Repositories;
 
 using EditModel = BD.Common8.AspNetCore.Models.SysMenuEdit;
 
-sealed class SysMenuRepository<TDbContext> : Repository<TDbContext, SysMenu, Guid>, ISysMenuRepository where TDbContext : DbContext, IApplicationDbContext
+/// <summary>
+/// <see cref="ISysMenuRepository"/> 的实现类
+/// </summary>
+/// <typeparam name="TDbContext"></typeparam>
+/// <remarks>
+/// Initializes a new instance of the <see cref="SysMenuRepository{TDbContext}"/> class.
+/// </remarks>
+/// <param name="mapper"></param>
+/// <param name="dbContext"></param>
+/// <param name="requestAbortedProvider"></param>
+sealed class SysMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, IRequestAbortedProvider requestAbortedProvider) : Repository<TDbContext, SysMenu, Guid>(dbContext, requestAbortedProvider), ISysMenuRepository where TDbContext : DbContext, IApplicationDbContext
 {
     //public static readonly Expression<Func<SysMenu, SysMenuTreeItem>> ExpressionTree = x => new()
     //{
@@ -16,13 +26,7 @@ sealed class SysMenuRepository<TDbContext> : Repository<TDbContext, SysMenu, Gui
     //        ParentId = x.ParentId
     //    }).ToArray() : null
     //};
-    readonly IMapper mapper;
-
-    public SysMenuRepository(IMapper mapper, TDbContext dbContext, IRequestAbortedProvider requestAbortedProvider) : base(dbContext, requestAbortedProvider)
-    {
-        this.mapper = mapper;
-    }
-
+    readonly IMapper mapper = mapper;
     static Comparison<SysMenu> menuComparisonByOrder = (a, b) => (int)(a.Order - b.Order);
 
     public async Task<SysMenuTreeItem[]> GetTreeAsync()
@@ -579,13 +583,6 @@ sealed class SysMenuRepository<TDbContext> : Repository<TDbContext, SysMenu, Gui
         return true;
     }
 
-    /// <summary>
-    /// 删除菜单
-    /// </summary>
-    /// <param name="userId"></param>
-    /// <param name="menuId"></param>
-    /// <param name="tenantId"></param>
-    /// <returns></returns>
     public async Task<bool> DeleteMenuAsync(
         Guid menuId,
         Guid tenantId)
