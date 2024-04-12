@@ -55,6 +55,8 @@ public static partial class ServiceCollectionExtensions
         TBMAppSettings appSettings)
         where TBMAppSettings : BMAppSettings
     {
+        var isDevelopment = app.Environment.IsDevelopment();
+
         app.UseExceptionHandler(exceptionHandlerApp => // https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling
         {
             exceptionHandlerApp.Run(async context =>
@@ -70,7 +72,10 @@ public static partial class ServiceCollectionExtensions
             });
         });
 
-        app.UseResponseCompression();
+        if (!isDevelopment)
+        {
+            app.UseResponseCompression();
+        }
 
         if (!appSettings.NotUseForwardedHeaders)
         {
