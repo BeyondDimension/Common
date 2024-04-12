@@ -28,7 +28,7 @@ public static partial class ServiceCollectionExtensions
         }).ConfigureApplicationPartManager(apm =>
         {
             apm.ApplicationParts.Add(
-                new AssemblyPart(typeof(InfoController).GetTypeInfo().Assembly));
+                new AssemblyPart(typeof(BMLoginController).GetTypeInfo().Assembly));
             if (configureApplicationPartManager != default)
                 configureApplicationPartManager(apm);
         });
