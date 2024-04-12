@@ -8,15 +8,20 @@ public static partial class ServiceCollectionExtensions
     /// <typeparam name="TBMAppSettings"></typeparam>
     /// <typeparam name="TContext"></typeparam>
     /// <param name="builder"></param>
+    /// <param name="privateKey"></param>
     /// <param name="appSettings"></param>
     /// <param name="configureApplicationPartManager"></param>
     public static unsafe void AddBMS<TBMAppSettings, [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(
         this WebApplicationBuilder builder,
+        byte[] privateKey,
         TBMAppSettings appSettings,
         delegate* managed<ApplicationPartManager, void> configureApplicationPartManager = default)
         where TBMAppSettings : BMAppSettings
         where TContext : ApplicationDbContextBase
     {
+        MemoryPackFormatterProvider.Register(RSAParametersFormatterAttribute.Formatter.Default);
+        ServerSecurity.RSA = Serializable.DMP2<RSAParameters>(privateKey).Create();
+
         builder.Services.AddSingleton<IOptions<BMAppSettings>>(static s => s.GetRequiredService<IOptions<TBMAppSettings>>());
 
         HashSet<Assembly> assembliesAutoMapper = new();

@@ -28,7 +28,7 @@ public static partial class ServerSecurity
 
     static RSA? _RSA;
 
-    public static RSA RSA { get => _RSA.ThrowIsNull(); set => _RSA = value; }
+    internal static RSA RSA { get => _RSA.ThrowIsNull(); set => _RSA = value; }
 
     /// <summary>
     /// 用于 JS 前端数据的 RSA 解密
