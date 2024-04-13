@@ -39,7 +39,7 @@
 		<PackageVersion Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
 		<PackageVersion Include="MemoryPack" Version="1.21.1" />
 		<PackageVersion Include="MemoryPack.AspNetCoreMvcFormatter" Version="1.21.1" />
-		<PackageVersion Include="MemoryPack.Streaming" Version="1.21.0" />
+		<PackageVersion Include="MemoryPack.Streaming" Version="1.21.1" />
 		<PackageVersion Include="MessagePack" Version="2.5.140" />
 		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
 		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
