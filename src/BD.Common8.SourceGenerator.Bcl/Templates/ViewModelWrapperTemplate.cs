@@ -1,5 +1,8 @@
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
+/// <summary>
+/// 用于标注视图模型(ViewModel)包装模型(Model)的源生成器与模板
+/// </summary>
 [Generator]
 public sealed class ViewModelWrapperTemplate :
     GeneratedAttributeTemplateBase<

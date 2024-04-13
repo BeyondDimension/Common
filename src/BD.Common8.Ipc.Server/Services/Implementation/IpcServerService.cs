@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Connections;
-using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
 using Microsoft.Extensions.Primitives;
 using System.Security.AccessControl;
 using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;

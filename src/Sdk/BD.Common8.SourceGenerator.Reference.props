@@ -17,6 +17,12 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Trim.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.OICEquals.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.NumberLetter.cs">
+			<LinkBase>_SourceReference\Extensions</LinkBase>
+		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>

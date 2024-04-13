@@ -9,6 +9,7 @@
 		<Version_SourceGenerator_Ipc_Client>8.24.10409.11855</Version_SourceGenerator_Ipc_Client>
 		<Version_SourceGenerator_Ipc_Server>8.24.10409.11855</Version_SourceGenerator_Ipc_Server>
 		<Version_SourceGenerator_Resx>8.24.10409.11855</Version_SourceGenerator_Resx>
+		<Version_SourceGenerator_Repositories>8.24.10413.11203</Version_SourceGenerator_Repositories>
 		<Version_HuaweiCloud_SDK_Obs>8.24.10411.11524</Version_HuaweiCloud_SDK_Obs>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>

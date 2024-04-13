@@ -1,0 +1,18 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Newtonsoft.Json" />
+		<Using Include="Humanizer" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Extensions" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Handlers" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Handlers.Attributes" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Handlers.Attributes.Abstractions" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Handlers.Properties" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Handlers.Properties.Abstractions" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Enums" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Helpers" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Models" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Templates" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Templates.Abstractions" />
+	</ItemGroup>
+</Project>

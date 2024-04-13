@@ -1,5 +1,8 @@
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
+/// <summary>
+/// 用于标注需要使用单例(Singleton)模式的服务类源生成器与模板
+/// </summary>
 [Generator]
 public sealed class SingletonPartitionTemplate :
     GeneratedAttributeTemplateBase<

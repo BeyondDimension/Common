@@ -2,6 +2,9 @@ using BD.Common8.Settings5.Infrastructure;
 
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
+/// <summary>
+/// 用于标注设置静态类的源生成器与模板
+/// </summary>
 [Generator]
 public sealed class SettingsPropertyTemplate :
     GeneratedAttributeTemplateBase<

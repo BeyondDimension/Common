@@ -25,6 +25,7 @@ partial interface IBuildCommand
                 "BD.Common8.SourceGenerator.Ipc.Client.Test",
                 "BD.Common8.SourceGenerator.Ipc.Server",
                 "BD.Common8.SourceGenerator.Ipc.Server.Test",
+                "BD.Common8.SourceGenerator.Repositories",
                 "BD.Common8.SourceGenerator.Shared",
 
                 // AspNetCore

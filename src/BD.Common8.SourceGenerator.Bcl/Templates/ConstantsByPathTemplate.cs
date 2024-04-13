@@ -2,6 +2,9 @@ namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
 
+/// <summary>
+/// 用于标注需要根据路径生成常量的源生成器与模板
+/// </summary>
 [Generator]
 public sealed class ConstantsByPathTemplate :
     GeneratedAttributeTemplateBase<
