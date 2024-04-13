@@ -172,6 +172,37 @@ Class ProgramHelper  <a class="header-action link-secondary" title="View source"
 
 
 
+  <a id="BD_Common8_AspNetCore_Helpers_ProgramHelper_ProjectName_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.ProjectName*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Helpers_ProgramHelper_ProjectName" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.ProjectName">
+  ProjectName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Helpers/ProgramHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ProjectName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_Common8_AspNetCore_Helpers_ProgramHelper_Version_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.Version*"></a>
 
   <h3 id="BD_Common8_AspNetCore_Helpers_ProgramHelper_Version" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.Version">
@@ -208,6 +239,37 @@ Class ProgramHelper  <a class="header-action link-secondary" title="View source"
 </h2>
 
 
+  <a id="BD_Common8_AspNetCore_Helpers_ProgramHelper_ConsoleWriteInfo_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.ConsoleWriteInfo*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Helpers_ProgramHelper_ConsoleWriteInfo_System_String_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.ConsoleWriteInfo(System.String)">
+  ConsoleWriteInfo(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Helpers/ProgramHelper.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ConsoleWriteInfo(string? projectName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>projectName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_AspNetCore_Helpers_ProgramHelper_InitFileSystem_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.InitFileSystem*"></a>
 
   <h3 id="BD_Common8_AspNetCore_Helpers_ProgramHelper_InitFileSystem_Microsoft_AspNetCore_Hosting_IWebHostEnvironment_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.InitFileSystem(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
@@ -242,8 +304,8 @@ Class ProgramHelper  <a class="header-action link-secondary" title="View source"
 
   <a id="BD_Common8_AspNetCore_Helpers_ProgramHelper_Main_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.Main*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Helpers_ProgramHelper_Main_System_String_System_String___System_Action_Microsoft_AspNetCore_Builder_WebApplicationBuilder__System_Action_Microsoft_AspNetCore_Builder_WebApplication__" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.Main(System.String,System.String[],System.Action{Microsoft.AspNetCore.Builder.WebApplicationBuilder},System.Action{Microsoft.AspNetCore.Builder.WebApplication})">
-  Main(string, string[], Action&lt;WebApplicationBuilder&gt;?, Action&lt;WebApplication&gt;?)
+  <h3 id="BD_Common8_AspNetCore_Helpers_ProgramHelper_Main_System_String_System_String_____Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Text_Json_Serialization_Metadata_IJsonTypeInfoResolver_" data-uid="BD.Common8.AspNetCore.Helpers.ProgramHelper.Main(System.String,System.String[],,,Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver)">
+  Main(string, string[], delegate*&lt;WebApplicationBuilder, void&gt;, delegate*&lt;WebApplication, void&gt;, WebApplicationBuilder?, IJsonTypeInfoResolver?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Helpers/ProgramHelper.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -252,7 +314,7 @@ Class ProgramHelper  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Main(string projectName, string[] args, Action&lt;WebApplicationBuilder&gt;? configureServices = null, Action&lt;WebApplication&gt;? configure = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void Main(string projectName, string[] args, delegate*&lt;WebApplicationBuilder, void&gt; configureServices = default, delegate*&lt;WebApplication, void&gt; configure = default, WebApplicationBuilder? builder = null, IJsonTypeInfoResolver? jsonTypeInfoResolver = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -261,9 +323,13 @@ Class ProgramHelper  <a class="header-action link-secondary" title="View source"
     <dd></dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
     <dd></dd>
-    <dt><code>configureServices</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a>&gt;</dt>
+    <dt><code>configureServices</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
     <dd></dd>
-    <dt><code>configure</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplication">WebApplication</a>&gt;</dt>
+    <dt><code>configure</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplication">WebApplication</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
+    <dd></dd>
+    <dt><code>jsonTypeInfoResolver</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.ijsontypeinforesolver">IJsonTypeInfoResolver</a></dt>
     <dd></dd>
   </dl>
 

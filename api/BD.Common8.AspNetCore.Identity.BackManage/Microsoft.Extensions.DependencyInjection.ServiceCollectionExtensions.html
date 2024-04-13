@@ -77,7 +77,7 @@
 
 
   <h1 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions" class="text-break">
-Class ServiceCollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory.cs"><i class="bi bi-code-slash"></i></a>
+Class ServiceCollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMIdentity.cs"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -140,6 +140,175 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 </h2>
 
 
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMIdentity_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMIdentity*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMIdentity__2_Microsoft_Extensions_DependencyInjection_IServiceCollection___0_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMIdentity``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,``0)">
+  AddBMIdentity&lt;TBMAppSettings, TBMDbContext&gt;(IServiceCollection, TBMAppSettings)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMIdentity.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加后台管理系统的身份验证相关</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddBMIdentity&lt;TBMAppSettings, TBMDbContext&gt;(this IServiceCollection services, TBMAppSettings appSettings) where TBMAppSettings : BMAppSettings where TBMDbContext : DbContext, IApplicationDbContext, IApplicationDbContext&lt;SysUser&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+    <dt><code>TBMDbContext</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMRepositories_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMRepositories*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMRepositories__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMRepositories``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  AddBMRepositories&lt;TDbContext&gt;(IServiceCollection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMRepositories.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加 后端管理 仓储层</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddBMRepositories&lt;TDbContext&gt;(this IServiceCollection services) where TDbContext : DbContext, IApplicationDbContext</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDbContext</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMS_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMS*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMS__2_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Byte_____0__" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMS``2(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Byte[],``0,)">
+  AddBMS&lt;TBMAppSettings, TContext&gt;(WebApplicationBuilder, byte[], TBMAppSettings, delegate*&lt;ApplicationPartManager, void&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMS.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加后台管理系统</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddBMS&lt;TBMAppSettings, TContext&gt;(this WebApplicationBuilder builder, byte[] privateKey, TBMAppSettings appSettings, delegate*&lt;ApplicationPartManager, void&gt; configureApplicationPartManager = default) where TBMAppSettings : BMAppSettings where TContext : ApplicationDbContextBase</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
+    <dd></dd>
+    <dt><code>privateKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+    <dt><code>configureApplicationPartManager</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager">ApplicationPartManager</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+    <dt><code>TContext</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMWebApi_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMWebApi*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddBMWebApi__1_Microsoft_Extensions_DependencyInjection_IServiceCollection___0__" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddBMWebApi``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,``0,)">
+  AddBMWebApi&lt;TBMAppSettings&gt;(IServiceCollection, TBMAppSettings, delegate*&lt;ApplicationPartManager, void&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMWebApi.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加后台管理系统的 WebApi</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddBMWebApi&lt;TBMAppSettings&gt;(this IServiceCollection services, TBMAppSettings appSettings, delegate*&lt;ApplicationPartManager, void&gt; configureApplicationPartManager = default) where TBMAppSettings : BMAppSettings</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+    <dt><code>configureApplicationPartManager</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager">ApplicationPartManager</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory*"></a>
 
   <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Mvc_ApiBehaviorOptions__" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Mvc.ApiBehaviorOptions})">
@@ -179,11 +348,50 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
 
 
+  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_UseBMS_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.UseBMS*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_UseBMS__1_Microsoft_AspNetCore_Builder_WebApplication___0_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.UseBMS``1(Microsoft.AspNetCore.Builder.WebApplication,``0)">
+  UseBMS&lt;TBMAppSettings&gt;(WebApplication, TBMAppSettings)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMS.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用后台管理系统</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UseBMS&lt;TBMAppSettings&gt;(this WebApplication app, TBMAppSettings appSettings) where TBMAppSettings : BMAppSettings</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>app</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplication">WebApplication</a></dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory.cs" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMIdentity.cs" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>文档 | BD.Common8</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface ISysRoleRepository | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository">
+
+
+
+  <h1 id="BD_Common8_AspNetCore_Repositories_Abstractions_ISysRoleRepository" data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository" class="text-break">
+Interface ISysRoleRepository  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Repositories/Abstractions/ISysRoleRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.AspNetCore.html">AspNetCore</a>.<a class="xref" href="BD.Common8.AspNetCore.Repositories.html">Repositories</a>.<a class="xref" href="BD.Common8.AspNetCore.Repositories.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ISysRoleRepository</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Repositories_Abstractions_ISysRoleRepository_GetRoleMenus_" data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.GetRoleMenus*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Repositories_Abstractions_ISysRoleRepository_GetRoleMenus_System_Guid_System_Nullable_System_Guid__" data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.GetRoleMenus(System.Guid,System.Nullable{System.Guid})">
+  GetRoleMenus(Guid, Guid?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Repositories/Abstractions/ISysRoleRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>传入权限查询拥有的菜单Id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;Guid[]&gt; GetRoleMenus(Guid roleId, Guid? tenantId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>roleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+    <dt><code>tenantId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>?</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Repositories_Abstractions_ISysRoleRepository_GetSelectAsync_" data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.GetSelectAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Repositories_Abstractions_ISysRoleRepository_GetSelectAsync_System_Int32_" data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.GetSelectAsync(System.Int32)">
+  GetSelectAsync(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Repositories/Abstractions/ISysRoleRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>下拉列表获取</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;SelectItemModel&lt;Guid&gt;[]&gt; GetSelectAsync(int takeCount = 100)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>takeCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>要获取的最大数量限制，默认值：<a class="xref" href="../BD.Common8.Primitives/BD.Common8.Models.SelectItemModel.html#BD_Common8_Models_SelectItemModel_Count">Count</a></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/SelectItemModel.cs">SelectItemModel</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a>&gt;[]&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Repositories_Abstractions_ISysRoleRepository_QueryAsync_" data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.QueryAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Repositories_Abstractions_ISysRoleRepository_QueryAsync_System_String_System_Int32_System_Int32_" data-uid="BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.QueryAsync(System.String,System.Int32,System.Int32)">
+  QueryAsync(string?, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Repositories/Abstractions/ISysRoleRepository.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>查询角色表格</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PagedModel&lt;SysRoleModel&gt;&gt; QueryAsync(string? name, int current = 1, int pageSize = 10)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>current</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>pageSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/PagedModel.cs">PagedModel</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Models.SysRoleModel.html">SysRoleModel</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Repositories/Abstractions/ISysRoleRepository.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

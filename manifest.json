@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Resource",
-      "source_relative_path": "README.md",
-      "output": {
-        "resource": {
-          "relative_path": "README.md"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "README.md",
+      "output": {
+        "resource": {
+          "relative_path": "README.md"
         }
       },
       "version": ""
@@ -84,6 +84,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.Abstractions.BaseAuthorizeController-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.Abstractions.BaseAuthorizeController-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.Abstractions.yml",
       "output": {
         ".html": {
@@ -108,6 +118,76 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.AuthorizeApiController-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMLoginController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMLoginController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMMenusController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMMenusController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMRolesController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMRolesController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMUserController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMUserController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMUsersController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.BMUsersController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.IPController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.IPController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.TestController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Controllers.TestController.html"
         }
       },
       "version": ""
@@ -554,6 +634,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Filters.UserIsLockedOutFilterAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Filters.UserIsLockedOutFilterAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Filters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Filters.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.AddBMUserModel.yml",
       "output": {
         ".html": {
@@ -604,6 +704,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.BMAppSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.BMAppSettings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.BMUserInfoModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.BMUserInfoModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.ChangePasswordRequestModel.yml",
       "output": {
         ".html": {
@@ -614,20 +734,30 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.CurrentUserInfoModel.yml",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.CurrentBMUserInfoModel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.CurrentUserInfoModel.html"
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.CurrentBMUserInfoModel.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditCurrentUserInfoModel.yml",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditBMUserModel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditCurrentUserInfoModel.html"
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditBMUserModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditCurrentBMUserInfoModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditCurrentBMUserInfoModel.html"
         }
       },
       "version": ""
@@ -644,16 +774,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditUserModel.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EditUserModel.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.EntitiesExtensions.yml",
       "output": {
         ".html": {
@@ -664,10 +784,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.IAddOrEditUserModel.yml",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.IAddOrEditBMUserModel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.IAddOrEditUserModel.html"
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.IAddOrEditBMUserModel.html"
         }
       },
       "version": ""
@@ -694,6 +814,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysMenuEdit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysMenuEdit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysMenuModel.yml",
       "output": {
         ".html": {
@@ -708,6 +838,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysMenuModel2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysMenuTreeItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysMenuTreeItem.html"
         }
       },
       "version": ""
@@ -744,10 +884,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.UserInfoModel.yml",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysUserTableItem.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.UserInfoModel.html"
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.SysUserTableItem.html"
         }
       },
       "version": ""
@@ -798,6 +938,66 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Permissions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Profiles.SysMenuProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Profiles.SysMenuProfile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Profiles.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Profiles.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.ISysMenuRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.ISysMenuRepository.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.ISysRoleRepository.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.ISysUserRepository.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.ISysUserRepository.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Repositories.Abstractions.html"
         }
       },
       "version": ""
@@ -904,6 +1104,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.TenantConstants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.TenantConstants.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/Microsoft.AspNetCore.Http.HttpContextExtensions.yml",
       "output": {
         ".html": {
@@ -948,6 +1168,26 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/Microsoft.Extensions.DependencyInjection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/System.Security.Cryptography.ServerSecurity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/System.Security.Cryptography.ServerSecurity.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/System.Security.Cryptography.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/System.Security.Cryptography.html"
         }
       },
       "version": ""
@@ -1091,6 +1331,26 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.AspNetCore.Identity/Microsoft.AspNetCore.Identity.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity/Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity/Microsoft.Extensions.DependencyInjection.html"
         }
       },
       "version": ""
@@ -7089,20 +7349,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO-1.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemModel-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO-1.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemModel-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO.yml",
+      "source_relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemModel.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemDTO.html"
+          "relative_path": "api/BD.Common8.Primitives/BD.Common8.Models.SelectItemModel.html"
         }
       },
       "version": ""

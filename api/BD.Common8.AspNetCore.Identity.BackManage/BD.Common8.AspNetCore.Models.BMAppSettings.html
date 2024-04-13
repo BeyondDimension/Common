@@ -1,0 +1,693 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>文档 | BD.Common8</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BMAppSettings | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.AspNetCore.Models.BMAppSettings">
+
+
+
+  <h1 id="BD_Common8_AspNetCore_Models_BMAppSettings" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings" class="text-break">
+Class BMAppSettings  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.AspNetCore.html">AspNetCore</a>.<a class="xref" href="BD.Common8.AspNetCore.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>后台系统的 AppSettings 配置</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">BMAppSettings</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="../BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Models.Abstractions.IJWTAppSettings.html">IJWTAppSettings</a></div>
+      <div><a class="xref" href="../BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.html">INotUseForwardedHeaders</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings__ctor_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.#ctor*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings__ctor" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.#ctor">
+  BMAppSettings()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected BMAppSettings()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_AccessExpiration_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.AccessExpiration*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_AccessExpiration" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.AccessExpiration">
+  AccessExpiration
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>过期时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual TimeSpan AccessExpiration { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_AdminPassword_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.AdminPassword*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_AdminPassword" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.AdminPassword">
+  AdminPassword
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于创建一个默认管理员账号的密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string AdminPassword { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_AdminUserName_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.AdminUserName*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_AdminUserName" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.AdminUserName">
+  AdminUserName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于创建一个默认管理员账号的用户名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string AdminUserName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_Audience_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.Audience*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_Audience" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.Audience">
+  Audience
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>受众</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string Audience { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_DisabledApiDoc_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.DisabledApiDoc*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_DisabledApiDoc" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.DisabledApiDoc">
+  DisabledApiDoc
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否禁用 API 文档</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DisabledApiDoc { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_ForwardedHeadersKnownProxies_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.ForwardedHeadersKnownProxies*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_ForwardedHeadersKnownProxies" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.ForwardedHeadersKnownProxies">
+  ForwardedHeadersKnownProxies
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ForwardedHeadersKnownProxies { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_InitSystemSecuritySalt_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.InitSystemSecuritySalt*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_InitSystemSecuritySalt" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.InitSystemSecuritySalt">
+  InitSystemSecuritySalt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>初始化后台系统的哈希盐值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string? InitSystemSecuritySalt { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_Issuer_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.Issuer*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_Issuer" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.Issuer">
+  Issuer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发行者</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string Issuer { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_NotUseForwardedHeaders_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.NotUseForwardedHeaders*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_NotUseForwardedHeaders" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.NotUseForwardedHeaders">
+  NotUseForwardedHeaders
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>不启用反向代理</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool NotUseForwardedHeaders { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_RefreshExpiration_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.RefreshExpiration*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_RefreshExpiration" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.RefreshExpiration">
+  RefreshExpiration
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>刷新时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual TimeSpan RefreshExpiration { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_SecretKey_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.SecretKey*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_SecretKey" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.SecretKey">
+  SecretKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>JWT 密钥</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string SecretKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_SigningCredentials_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.SigningCredentials*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_SigningCredentials" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.SigningCredentials">
+  SigningCredentials
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置签名凭证</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[JsonIgnore]
+[JsonIgnore]
+public SigningCredentials? SigningCredentials { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.identitymodel.tokens.signingcredentials">SigningCredentials</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_UseCors_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.UseCors*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_UseCors" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.UseCors">
+  UseCors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否使用跨域访问，调用了 AddCors</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[JsonIgnore]
+[JsonIgnore]
+public bool UseCors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_ViewsUrl_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.ViewsUrl*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_ViewsUrl" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.ViewsUrl">
+  ViewsUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配置允许跨域访问的 Web UI 地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual string ViewsUrl { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Models_BMAppSettings_GetInitSystemSecuritySalt_" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.GetInitSystemSecuritySalt*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_BMAppSettings_GetInitSystemSecuritySalt" data-uid="BD.Common8.AspNetCore.Models.BMAppSettings.GetInitSystemSecuritySalt">
+  GetInitSystemSecuritySalt()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract string GetInitSystemSecuritySalt()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Models/BMAppSettings.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
