@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{7650E995-C86A-4C48-81D9-8CCF33DB7560}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		crowdin.yml = crowdin.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -36,7 +37,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{C3049690-C716-4F52-B307-1A625589719F}"
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
-		crowdin.yml = crowdin.yml
 		src\Directory.Build.props = src\Directory.Build.props
 		src\Directory.Build.targets = src\Directory.Build.targets
 		src\Directory.Packages.props = src\Directory.Packages.props
@@ -225,6 +225,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{0EC69413-11EA-4847-A176-BCEE6DCAC4D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.SourceGenerator.Repositories", "src\BD.Common8.SourceGenerator.Repositories\BD.Common8.SourceGenerator.Repositories.csproj", "{1128BC28-5820-49DC-A7CA-4448B428474A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.SourceGenerator.Repositories.Test", "src\BD.Common8.SourceGenerator.Repositories.Test\BD.Common8.SourceGenerator.Repositories.Test.csproj", "{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1118,6 +1120,22 @@ Global
 		{1128BC28-5820-49DC-A7CA-4448B428474A}.Release|x64.Build.0 = Release|Any CPU
 		{1128BC28-5820-49DC-A7CA-4448B428474A}.Release|x86.ActiveCfg = Release|Any CPU
 		{1128BC28-5820-49DC-A7CA-4448B428474A}.Release|x86.Build.0 = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|ARM64EC.ActiveCfg = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|ARM64EC.Build.0 = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|x64.Build.0 = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Debug|x86.Build.0 = Debug|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|ARM64EC.ActiveCfg = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|ARM64EC.Build.0 = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|x64.ActiveCfg = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|x64.Build.0 = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|x86.ActiveCfg = Release|Any CPU
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1214,6 +1232,7 @@ Global
 		{4ADCA711-3203-4C22-A128-912CDBD686B5} = {8C1849ED-5F3F-455A-AA79-C1694C34A239}
 		{0EC69413-11EA-4847-A176-BCEE6DCAC4D8} = {0B0258A0-F9D6-476A-A783-C7221DC60CBB}
 		{1128BC28-5820-49DC-A7CA-4448B428474A} = {0EC69413-11EA-4847-A176-BCEE6DCAC4D8}
+		{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF} = {0EC69413-11EA-4847-A176-BCEE6DCAC4D8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CA7F767-BBA3-4E1F-90E7-DAB32105B027}
