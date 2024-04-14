@@ -13,11 +13,13 @@ public static partial class ServiceCollectionExtensions
     /// <param name="privateKey"></param>
     /// <param name="appSettings"></param>
     /// <param name="configureApplicationPartManager"></param>
+    /// <param name="addDbContext"></param>
     public static unsafe void AddBMS<TBMAppSettings, [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(
         this WebApplicationBuilder builder,
         byte[] privateKey,
         TBMAppSettings appSettings,
-        delegate* managed<ApplicationPartManager, void> configureApplicationPartManager = default)
+        delegate* managed<ApplicationPartManager, void> configureApplicationPartManager = default,
+        bool addDbContext = DefaultValue_addDbContext)
         where TBMAppSettings : BMAppSettings
         where TContext : ApplicationDbContextBase
     {
@@ -36,7 +38,7 @@ public static partial class ServiceCollectionExtensions
             cfg.AddProfile<SysMenuProfile>();
         }, assembliesAutoMapper.ToArray());
 
-        builder.AddDbContext<ApplicationDbContextBase, TContext>();
+        builder.AddDbContext<ApplicationDbContextBase, TContext>(addDbContext: addDbContext);
         builder.Services.AddTenantIdentity<TContext>();
         builder.Services.AddHttpContextRequestAbortedProvider();
         builder.Services.AddBMRepositories<TContext>();

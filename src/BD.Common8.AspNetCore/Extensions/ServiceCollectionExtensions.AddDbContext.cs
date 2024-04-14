@@ -5,6 +5,10 @@ namespace Microsoft.Extensions.DependencyInjection;
 /// </summary>
 public static partial class ServiceCollectionExtensions
 {
+    const string DefaultValue_databaseProvider = SqlConstants.PostgreSQL;
+    const string DefaultValue_connectionStringKeyName = "DefaultConnection";
+    const bool DefaultValue_addDbContext = true;
+
     /// <summary>
     /// 添加 DbContext 到应用程序
     /// </summary>
@@ -13,12 +17,14 @@ public static partial class ServiceCollectionExtensions
     /// <param name="o">配置 DbContextOptionsBuilder 的可选操作</param>
     /// <param name="databaseProvider">数据库提供程序名称</param>
     /// <param name="connectionStringKeyName">连接字符串键的名称</param>
+    /// <param name="addDbContext"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddDbContext<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(
         this WebApplicationBuilder builder,
         Action<DbContextOptionsBuilder>? o = null,
-        string databaseProvider = SqlConstants.PostgreSQL,
-        string connectionStringKeyName = "DefaultConnection")
+        string databaseProvider = DefaultValue_databaseProvider,
+        string connectionStringKeyName = DefaultValue_connectionStringKeyName,
+        bool addDbContext = DefaultValue_addDbContext)
         where TContext : DbContext
     {
         SqlConstants.DatabaseProvider = databaseProvider;
@@ -27,23 +33,26 @@ public static partial class ServiceCollectionExtensions
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
-        var connectionString = builder.Configuration.GetConnectionString(connectionStringKeyName);
-        connectionString.ThrowIsNull();
-        builder.Services.AddDbContext<TContext>(options =>
+        if (addDbContext)
         {
-            switch (databaseProvider)
+            var connectionString = builder.Configuration.GetConnectionString(connectionStringKeyName);
+            connectionString.ThrowIsNull();
+            builder.Services.AddDbContext<TContext>(options =>
             {
-                case SqlConstants.PostgreSQL:
-                    options.UseNpgsql(connectionString);
-                    break;
-                case SqlConstants.SqlServer:
-                    options.UseSqlServer(connectionString);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(databaseProvider), databaseProvider);
-            }
-            o?.Invoke(options);
-        });
+                switch (databaseProvider)
+                {
+                    case SqlConstants.PostgreSQL:
+                        options.UseNpgsql(connectionString);
+                        break;
+                    case SqlConstants.SqlServer:
+                        options.UseSqlServer(connectionString);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(databaseProvider), databaseProvider);
+                }
+                o?.Invoke(options);
+            });
+        }
     }
 
     /// <summary>
@@ -55,15 +64,17 @@ public static partial class ServiceCollectionExtensions
     /// <param name="o">配置 DbContextOptionsBuilder 的可选操作</param>
     /// <param name="databaseProvider">数据库提供程序名称</param>
     /// <param name="connectionStringKeyName">连接字符串键的名称</param>
+    /// <param name="addDbContext"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddDbContext<TService, [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(this WebApplicationBuilder builder,
         Action<DbContextOptionsBuilder>? o = null,
-        string databaseProvider = SqlConstants.PostgreSQL,
-        string connectionStringKeyName = "DefaultConnection")
+        string databaseProvider = DefaultValue_databaseProvider,
+        string connectionStringKeyName = DefaultValue_connectionStringKeyName,
+        bool addDbContext = DefaultValue_addDbContext)
         where TContext : DbContext, TService
         where TService : class
     {
-        builder.AddDbContext<TContext>(o, databaseProvider, connectionStringKeyName);
+        builder.AddDbContext<TContext>(o, databaseProvider, connectionStringKeyName, addDbContext);
         builder.Services.AddScoped<TService>(s => s.GetRequiredService<TContext>());
     }
 }
