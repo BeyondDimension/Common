@@ -8840,6 +8840,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.StringExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.yml",
       "output": {
         ".html": {
@@ -9077,6 +9087,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.StreamExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Extensions.StringExtensions.html"
         }
       },
       "version": ""
