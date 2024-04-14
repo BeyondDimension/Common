@@ -3,11 +3,11 @@ namespace Microsoft.Extensions.DependencyInjection;
 /// <summary>
 /// 提供用于配置和添加 DbContext 到应用程序的扩展方法
 /// </summary>
-public static partial class ServiceCollectionExtensions
+public static partial class AddDbContext_ServiceCollectionExtensions
 {
-    const string DefaultValue_databaseProvider = SqlConstants.PostgreSQL;
-    const string DefaultValue_connectionStringKeyName = "DefaultConnection";
-    const bool DefaultValue_addDbContext = true;
+    public const string DefaultValue_databaseProvider = SqlConstants.PostgreSQL;
+    public const string DefaultValue_connectionStringKeyName = "DefaultConnection";
+    public const bool DefaultValue_addDbContext = true;
 
     /// <summary>
     /// 添加 DbContext 到应用程序

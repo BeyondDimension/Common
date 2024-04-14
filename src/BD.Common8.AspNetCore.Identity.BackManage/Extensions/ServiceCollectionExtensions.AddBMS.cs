@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
+using static Microsoft.Extensions.DependencyInjection.AddDbContext_ServiceCollectionExtensions;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
