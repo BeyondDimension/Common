@@ -77,7 +77,7 @@
 
 
   <h1 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions" class="text-break">
-Class ServiceCollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs"><i class="bi bi-code-slash"></i></a>
+Class ServiceCollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddStackExchangeRedisCache.cs"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -85,8 +85,7 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
   <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>提供用于配置和添加 DbContext 到应用程序的扩展方法</p>
-</div>
+  <div class="markdown summary"></div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -139,105 +138,6 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
   <h2 class="section" id="methods">Methods
 </h2>
-
-
-  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext*"></a>
-
-  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext__1_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Action_Microsoft_EntityFrameworkCore_DbContextOptionsBuilder__System_String_System_String_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext``1(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.String,System.String)">
-  AddDbContext&lt;TContext&gt;(WebApplicationBuilder, Action&lt;DbContextOptionsBuilder&gt;?, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>添加 DbContext 到应用程序</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AddDbContext&lt;TContext&gt;(this WebApplicationBuilder builder, Action&lt;DbContextOptionsBuilder&gt;? o = null, string databaseProvider = &quot;Npgsql.EntityFrameworkCore.PostgreSQL&quot;, string connectionStringKeyName = &quot;DefaultConnection&quot;) where TContext : DbContext</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
-    <dd><p>WebApplicationBuilder 实例</p>
-</dd>
-    <dt><code>o</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder">DbContextOptionsBuilder</a>&gt;</dt>
-    <dd><p>配置 DbContextOptionsBuilder 的可选操作</p>
-</dd>
-    <dt><code>databaseProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>数据库提供程序名称</p>
-</dd>
-    <dt><code>connectionStringKeyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>连接字符串键的名称</p>
-</dd>
-  </dl>
-
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TContext</code></dt>
-    <dd><p>要添加的 DbContext 类型</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-  <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext*"></a>
-
-  <h3 id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddDbContext__2_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Action_Microsoft_EntityFrameworkCore_DbContextOptionsBuilder__System_String_System_String_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddDbContext``2(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.String,System.String)">
-  AddDbContext&lt;TService, TContext&gt;(WebApplicationBuilder, Action&lt;DbContextOptionsBuilder&gt;?, string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>添加 DbContext 作为 TService 到应用程序并配置服务的生命周期为 Scoped</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AddDbContext&lt;TService, TContext&gt;(this WebApplicationBuilder builder, Action&lt;DbContextOptionsBuilder&gt;? o = null, string databaseProvider = &quot;Npgsql.EntityFrameworkCore.PostgreSQL&quot;, string connectionStringKeyName = &quot;DefaultConnection&quot;) where TService : class where TContext : DbContext, TService</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
-    <dd><p>WebApplicationBuilder 实例</p>
-</dd>
-    <dt><code>o</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder">DbContextOptionsBuilder</a>&gt;</dt>
-    <dd><p>配置 DbContextOptionsBuilder 的可选操作</p>
-</dd>
-    <dt><code>databaseProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>数据库提供程序名称</p>
-</dd>
-    <dt><code>connectionStringKeyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>连接字符串键的名称</p>
-</dd>
-  </dl>
-
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TService</code></dt>
-    <dd><p>要添加的服务类型</p>
-</dd>
-    <dt><code>TContext</code></dt>
-    <dd><p>要添加的 DbContext 类型</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
 
 
   <a id="Microsoft_Extensions_DependencyInjection_ServiceCollectionExtensions_AddHttpContextRequestAbortedProvider_" data-uid="Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddHttpContextRequestAbortedProvider*"></a>
@@ -397,7 +297,7 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddDbContext.cs" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Extensions/ServiceCollectionExtensions.AddStackExchangeRedisCache.cs" class="edit-link">Edit this page</a>
         </div>
 
 
