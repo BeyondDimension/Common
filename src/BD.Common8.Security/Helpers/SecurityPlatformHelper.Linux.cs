@@ -1,3 +1,4 @@
+#if LINUX
 namespace BD.Common8.Security.Helpers;
 
 static partial class SecurityPlatformHelper
@@ -8,7 +9,9 @@ static partial class SecurityPlatformHelper
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
     [MethodImpl(MethodImplOptions.NoInlining)]
+#if !LINUX
     [SupportedOSPlatform("linux")]
+#endif
     public static string GetEtcMachineId()
     {
         // 禁止反射调用此函数
@@ -21,3 +24,4 @@ static partial class SecurityPlatformHelper
         return value;
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if WINDOWS
 namespace BD.Common8.Security.Helpers;
 
 static partial class SecurityPlatformHelper
@@ -26,3 +27,4 @@ static partial class SecurityPlatformHelper
         return string.Empty;
     }
 }
+#endif

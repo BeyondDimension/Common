@@ -38,6 +38,7 @@ public abstract class TemplateBase
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 #pragma warning disable SA1600 // Elements should be documented
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
 
 """u8);
     }
@@ -58,7 +59,7 @@ public abstract class TemplateBase
         if (isFirstWriteNamespace)
         {
             stream.Write(
-    """
+"""
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 
 """u8);

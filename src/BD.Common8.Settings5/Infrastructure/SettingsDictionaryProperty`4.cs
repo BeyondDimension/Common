@@ -20,6 +20,7 @@ public class SettingsDictionaryProperty<TKey,
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TDictionary? @default = default, bool autoSave = true, [CallerMemberName] string? propertyName = null)
     : SettingsCollectionProperty<KeyValuePair<TKey, TValue>, TDictionary, TSettingsModel>(@default, autoSave, propertyName),
     IDictionary<TKey, TValue>
+    where TKey : notnull
     where TDictionary : class, IDictionary<TKey, TValue>, new()
     where TSettingsModel : class, new()
 {

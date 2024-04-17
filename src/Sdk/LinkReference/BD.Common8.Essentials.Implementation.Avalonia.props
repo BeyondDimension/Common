@@ -12,12 +12,12 @@
 		<Compile Remove="$(MSBuildThisFileDirectory)..\..\$(MSBuildThisFileName)\obj\**" />
 	</ItemGroup>
 	<Import Project="$(MSBuildThisFileDirectory)..\ProjectReference\BD.Common8.SourceGenerator.ResX.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.Essentials.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.Toast.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Toast.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Essentials.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Repositories.SQLitePCL.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Essentials.Implementation.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Primitives.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Primitives.Essentials.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Primitives.Toast.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Toast.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Essentials.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Repositories.SQLitePCL.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Essentials.Implementation.props" />
 </Project>

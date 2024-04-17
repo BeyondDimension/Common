@@ -57,7 +57,7 @@ public abstract class LocalDataProtectionProviderBase : ILocalDataProtectionProv
             var r = AESUtils.Create(machineSecretKey.Key,
                 machineSecretKey.IV, mode, PaddingMode.PKCS7);
             return r;
-        });
+        }, LazyThreadSafetyMode.ExecutionAndPublication);
     }
 
     /// <summary>

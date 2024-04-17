@@ -113,8 +113,11 @@ partial class {0}
 
                 stream.WriteFormat(
 """
+    /// <summary>
+    /// {1}
+    /// </summary>
     public const string {0}
-"""u8, m.Attribute.NamePrefix);
+"""u8, m.Attribute.NamePrefix, relativePathStr);
                 bool upper = true;
                 for (int i = 0; i < relativePath.Length; i++)
                 {
@@ -176,6 +179,7 @@ partial class {0}
 """
 ";
 """u8);
+                stream.WriteNewLine();
                 stream.WriteNewLine();
             }
         }

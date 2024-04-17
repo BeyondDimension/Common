@@ -25,7 +25,6 @@ public static partial class Registry2
 #pragma warning restore CA1416 // 验证平台兼容性
 
 #if WINDOWS
-
     /// <summary>
     /// 根据字符串，例如 HKCR/HKCU/HKLM/HKCC/HKPD 获取对应的 <see cref="RegistryKey"/>，如果找不到对应的则返回 <see langword="null"/>
     /// </summary>
@@ -212,6 +211,7 @@ public static partial class Registry2
 #endif
 }
 
+#if WINDOWS
 partial class Registry2
 {
     /// <summary>
@@ -248,4 +248,5 @@ partial class Registry2
         await IOPath.TryDeleteInDelayAsync(p, path, millisecondsDelay, millisecondsDelay);
     }
 }
+#endif
 #endif

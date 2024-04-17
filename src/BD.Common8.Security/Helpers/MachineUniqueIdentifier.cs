@@ -26,7 +26,7 @@ public static partial class MachineUniqueIdentifier
     static Lazy<AESUtils.KeyIV> GetMachineSecretKeyLazy(Func<AESUtils.KeyIV> func)
     {
         isGetMachineSecretKeyLazy = true;
-        return new(func);
+        return new(func, LazyThreadSafetyMode.ExecutionAndPublication);
     }
 
     static Lazy<AESUtils.KeyIV> GetMachineSecretKey(Func<string?> action) => GetMachineSecretKeyLazy(() =>
@@ -56,12 +56,25 @@ public static partial class MachineUniqueIdentifier
         return GetMachineSecretKey(value);
     });
 
+    const string KEY_MACHINE_SECRET = "KEY_MACHINE_SECRET_2105";
+
     static AESUtils.KeyIV GetMachineSecretKeyBySecureStorage()
     {
-        const string KEY_MACHINE_SECRET = "KEY_MACHINE_SECRET_2105";
         var guid = GetMachineSecretKeyGuid();
         static Guid GetMachineSecretKeyGuid()
         {
+#if ANDROID || IOS
+            // https://github.com/xamarin/Essentials/blob/1.8.1/Xamarin.Essentials/SecureStorage/SecureStorage.android.cs
+            // https://github.com/xamarin/Essentials/blob/1.8.1/Xamarin.Essentials/SecureStorage/SecureStorage.ios.tvos.watchos.macos.cs
+            var secureStorage = Microsoft.Maui.Storage.SecureStorage.Default;
+            var guidStr = secureStorage.GetAsync(KEY_MACHINE_SECRET).GetAwaiter().GetResult();
+            if (Guid.TryParse(guidStr, out var guid))
+                return guid;
+            guid = Guid.NewGuid();
+            guidStr = guid.ToString();
+            secureStorage.SetAsync(KEY_MACHINE_SECRET, guidStr).GetAwaiter().GetResult();
+            return guid;
+#else
             var secureStorage = ISecureStorage.Instance;
             Func<Task<string?>> getAsync = () => secureStorage.GetAsync(KEY_MACHINE_SECRET);
             var guidStr = getAsync.RunSync();
@@ -72,6 +85,7 @@ public static partial class MachineUniqueIdentifier
             Func<Task> setAsync = () => secureStorage.SetAsync(KEY_MACHINE_SECRET, guidStr);
             setAsync.RunSync();
             return guid;
+#endif
         }
         var r = AESUtils.GetParameters(guid.ToByteArray());
         return r;
@@ -81,22 +95,15 @@ public static partial class MachineUniqueIdentifier
 
     static MachineUniqueIdentifier()
     {
-        if (OperatingSystem.IsWindows())
-        {
-            mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.GetMachineGuid);
-        }
-        else if (OperatingSystem.IsMacOS())
-        {
-            mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.MacOS.GetIOPlatformSerialNumber);
-        }
-        else if (OperatingSystem.IsLinux())
-        {
-            mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.GetEtcMachineId);
-        }
-        else
-        {
-            mMachineSecretKey = new(GetMachineSecretKeyBySecureStorage);
-        }
+#if WINDOWS
+        mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.GetMachineGuid);
+#elif MACOS
+        mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.MacOS.GetIOPlatformSerialNumber);
+#elif LINUX
+        mMachineSecretKey = GetMachineSecretKey(SecurityPlatformHelper.GetEtcMachineId);
+#else
+        mMachineSecretKey = new(GetMachineSecretKeyBySecureStorage, LazyThreadSafetyMode.ExecutionAndPublication);
+#endif
 
         _MachineId = new(() =>
         {

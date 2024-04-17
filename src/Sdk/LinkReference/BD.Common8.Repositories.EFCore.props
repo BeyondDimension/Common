@@ -12,10 +12,10 @@
 		<Compile Remove="$(MSBuildThisFileDirectory)..\..\$(MSBuildThisFileName)\obj\**" />
 	</ItemGroup>
 	<Import Project="$(MSBuildThisFileDirectory)..\ProjectReference\BD.Common8.SourceGenerator.ResX.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Repositories.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Orm.EFCore.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.PersonalData.BirthDate.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\LinkReference\BD.Common8.Primitives.PersonalData.PhoneNumber.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Primitives.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Repositories.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Orm.EFCore.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Primitives.PersonalData.BirthDate.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\GlobalUsings\BD.Common8.Primitives.PersonalData.PhoneNumber.props" />
 </Project>

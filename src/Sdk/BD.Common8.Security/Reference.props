@@ -1,0 +1,7 @@
+<Project>
+	<!-- 依赖包引用 -->
+	<!-- 平台 == ios,android -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<PackageReference Include="Microsoft.Maui.Essentials" />
+	</ItemGroup>
+</Project>

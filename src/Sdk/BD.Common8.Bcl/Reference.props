@@ -11,6 +11,7 @@
 		<PackageReference Include="DotNext.Threading" />
 	</ItemGroup>
 
+	<!-- 平台 == windows -->
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 		<PackageReference Include="Microsoft.Windows.CsWin32">
 			<PrivateAssets>all</PrivateAssets>
