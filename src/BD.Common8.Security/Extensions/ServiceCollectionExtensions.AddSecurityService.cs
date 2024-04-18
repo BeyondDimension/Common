@@ -12,7 +12,7 @@ public static partial class ServiceCollectionExtensions
     /// <typeparam name="TLocal"></typeparam>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection AddSecurityService<TEmbeddedAes, TLocal>(this IServiceCollection services)
+    public static IServiceCollection AddSecurityService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] TEmbeddedAes, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] TLocal>(this IServiceCollection services)
         where TEmbeddedAes : EmbeddedAesDataProtectionProviderBase
         where TLocal : class, ILocalDataProtectionProvider
     {
