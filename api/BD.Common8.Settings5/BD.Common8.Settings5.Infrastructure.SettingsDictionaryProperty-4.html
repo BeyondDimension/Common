@@ -90,7 +90,7 @@ Class SettingsDictionaryProperty&lt;TKey, TValue, TDictionary, TSettingsModel&gt
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SettingsDictionaryProperty&lt;TKey, TValue, TDictionary, TSettingsModel&gt; : SettingsCollectionProperty&lt;KeyValuePair&lt;TKey, TValue&gt;, TDictionary, TSettingsModel&gt;, INotifyPropertyChanged, IDisposable, IDictionary&lt;TKey, TValue&gt;, ICollection&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;, IEnumerable where TDictionary : class, IDictionary&lt;TKey, TValue&gt;, new() where TSettingsModel : class, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public class SettingsDictionaryProperty&lt;TKey, TValue, TDictionary, TSettingsModel&gt; : SettingsCollectionProperty&lt;KeyValuePair&lt;TKey, TValue&gt;, TDictionary, TSettingsModel&gt;, INotifyPropertyChanged, IDisposable, IDictionary&lt;TKey, TValue&gt;, ICollection&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;, IEnumerable where TKey : notnull where TDictionary : class, IDictionary&lt;TKey, TValue&gt;, new() where TSettingsModel : class, new()</code></pre>
   </div>
 
 

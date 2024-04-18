@@ -7811,6 +7811,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Security/BD.Common8.Security.Resource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Security/BD.Common8.Security.Resource.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Security/BD.Common8.Security.Services.IEmbeddedAesDataProtectionProvider.yml",
       "output": {
         ".html": {
@@ -7985,6 +7995,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Security/BD.Common8.Security.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Security/BD.Common8.Security.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Security/BD.Common8.Security.html"
         }
       },
       "version": ""
