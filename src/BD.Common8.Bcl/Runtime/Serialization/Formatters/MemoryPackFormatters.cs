@@ -6,11 +6,6 @@ namespace System.Runtime.Serialization.Formatters;
 public sealed class MemoryPackFormatters : IMemoryPackFormatterRegister
 {
     /// <summary>
-    /// 注册完成时的事件委托
-    /// </summary>
-    public static Action<Type>? OnRegister { get; set; }
-
-    /// <summary>
     /// 注册指定类型的格式化器
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -18,7 +13,6 @@ public sealed class MemoryPackFormatters : IMemoryPackFormatterRegister
     static void Register<T>(MemoryPackFormatter<T> formatter)
     {
         MemoryPackFormatterProvider.Register(formatter);
-        OnRegister?.Invoke(typeof(T));
     }
 
     /// <summary>

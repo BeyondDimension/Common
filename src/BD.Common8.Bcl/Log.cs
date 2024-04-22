@@ -1,7 +1,11 @@
-#if !NETFRAMEWORK || (NETSTANDARD && NETSTANDARD2_0_OR_GREATER)
+#if ANDROID
+using ALog = global::Android.Util.Log;
+using ALogPriority = global::Android.Util.LogPriority;
+#endif
 
 namespace System;
 
+#if !NETFRAMEWORK || (NETSTANDARD && NETSTANDARD2_0_OR_GREATER)
 /// <summary>
 /// 日志
 /// <para>使用说明：</para>
@@ -302,6 +306,221 @@ public static partial class Log
     {
         /// <inheritdoc cref="ILogger"/>
         ILogger Logger { get; }
+    }
+
+    /// <summary>
+    /// 客户端日志
+    /// <para>https://github.com/dotnet/extensions/blob/v3.1.5/src/Logging/Logging.Console/src/ConsoleLogger.cs</para>
+    /// </summary>
+    abstract class ClientLogger : ILogger
+    {
+        static readonly string _messagePadding;
+        static readonly string _newLineWithMessagePadding;
+
+        static ClientLogger()
+        {
+            _messagePadding = new string(' ', 6);
+            _newLineWithMessagePadding = Environment.NewLine + _messagePadding;
+        }
+
+        protected readonly string name;
+
+        public ClientLogger(string name) => this.name = name;
+
+        public virtual IDisposable BeginScope<TState>(TState state)
+        {
+            return NullScope.Instance;
+        }
+
+        public virtual bool IsEnabled(LogLevel logLevel) => logLevel != LogLevel.None;
+
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+        {
+            if (!IsEnabled(logLevel))
+            {
+                return;
+            }
+
+            if (formatter == null)
+            {
+                throw new ArgumentNullException(nameof(formatter));
+            }
+
+            var message = formatter(state, exception);
+
+            if (!string.IsNullOrEmpty(message) || exception != null)
+            {
+                WriteMessage(logLevel, name, eventId.Id, message, exception);
+            }
+        }
+
+        public virtual void WriteMessage(LogLevel logLevel, string logName, int eventId, string? message, Exception? exception)
+        {
+            var logBuilder = new StringBuilder();
+
+            CreateDefaultLogMessage(logBuilder, logName, eventId, message, exception);
+
+            var logMessage = logBuilder.ToString();
+            WriteMessage(logLevel, logMessage);
+        }
+
+        void CreateDefaultLogMessage(StringBuilder logBuilder, string logName, int eventId, string? message, Exception? exception)
+        {
+            // Example:
+            // INFO: ConsoleApp.Program[10]
+            //       Request received
+
+            // category and event id
+            logBuilder.Append(logName);
+            logBuilder.Append("[");
+            logBuilder.Append(eventId);
+            logBuilder.AppendLine("]");
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                // message
+                logBuilder.Append(_messagePadding);
+
+                var len = logBuilder.Length;
+                logBuilder.AppendLine(message);
+                logBuilder.Replace(Environment.NewLine, _newLineWithMessagePadding, len, message.Length);
+            }
+
+            // Example:
+            // System.InvalidOperationException
+            //    at Namespace.Class.Function() in File:line X
+            if (exception != null)
+            {
+                // exception message
+                logBuilder.AppendLine(exception.ToString());
+            }
+        }
+
+        public abstract void WriteMessage(LogLevel logLevel, string message);
+    }
+
+    /// <summary>
+    /// An empty scope without any logic
+    /// <para>https://github.com/dotnet/extensions/blob/v3.1.5/src/Logging/shared/NullScope.cs</para>
+    /// <para>https://github.com/dotnet/runtime/blob/v5.0.0-rtm.20519.4/src/libraries/Common/src/Extensions/Logging/NullScope.cs</para>
+    /// </summary>
+    class NullScope : IDisposable
+    {
+        public static NullScope Instance { get; } = new NullScope();
+
+        private NullScope()
+        {
+        }
+
+#pragma warning disable CA1816 // Dispose 方法应调用 SuppressFinalize
+        public void Dispose()
+#pragma warning restore CA1816 // Dispose 方法应调用 SuppressFinalize
+        {
+        }
+    }
+}
+#endif
+
+#if ANDROID
+static partial class Log
+{
+    /// <summary>
+    /// Android 的 Log Tag 名称最大长度
+    /// <para>如果超出此长度，会引发异常：</para>
+    /// <para>Java.Lang.IllegalArgumentException: Log tag "Microsoft.EntityFrameworkCore.Infrastructure" exceeds limit of 23 characters</para>
+    /// </summary>
+    public const int droid_tag_max_len = 23;
+    public const string Droid = "Droid";
+
+    static string CutDroidTag(string name)
+    {
+        var array = name.Split(['.'], StringSplitOptions.RemoveEmptyEntries);
+        var lastItem = array.LastOrDefault(x => !string.IsNullOrWhiteSpace(x));
+        if (lastItem != null)
+        {
+            if (lastItem.StartsWith(Droid, StringComparison.OrdinalIgnoreCase))
+            {
+                lastItem = lastItem[Droid.Length..];
+            }
+            if (lastItem.Length > droid_tag_max_len)
+            {
+                return lastItem[..droid_tag_max_len];
+            }
+            else
+            {
+                return lastItem;
+            }
+        }
+        else
+        {
+            return "Droid";
+        }
+    }
+
+    /// <summary>
+    /// 根据 Name 获取 Android Log Tag
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static string GetDroidTag(string name)
+    {
+        if (name.Length > droid_tag_max_len)
+        {
+            return CutDroidTag(name);
+        }
+        return name;
+    }
+
+    /// <summary>
+    /// 将MS扩展日志等级(<see cref="LogLevel"/>)转换为安卓日志等级(<see cref="ALogPriority"/>)
+    /// </summary>
+    /// <param name="level"></param>
+    /// <returns></returns>
+    public static ALogPriority ToLogPriority(this LogLevel level) => level switch
+    {
+        LogLevel.Trace => ALogPriority.Verbose,
+        LogLevel.Debug => ALogPriority.Debug,
+        LogLevel.Information => ALogPriority.Info,
+        LogLevel.Warning => ALogPriority.Warn,
+        LogLevel.Error => ALogPriority.Error,
+        LogLevel.Critical => ALogPriority.Assert,
+        _ => (ALogPriority)int.MaxValue,
+    };
+
+    /// <inheritdoc cref="ClientLogger"/>
+    class PlatformLogger(string name) : ClientLogger(name)
+    {
+        readonly string tag = GetDroidTag(name);
+
+        public override bool IsEnabled(LogLevel logLevel)
+        {
+            var priority = logLevel.ToLogPriority();
+            var result = ALog.IsLoggable(tag, priority);
+            return result;
+        }
+
+        public override void WriteMessage(LogLevel logLevel, string message)
+        {
+            var priority = logLevel.ToLogPriority();
+            ALog.WriteLine(priority, tag, message);
+        }
+    }
+
+    [ProviderAlias("Droid")]
+    public class PlatformLoggerProvider : ILoggerProvider
+    {
+        private PlatformLoggerProvider() { }
+
+        public ILogger CreateLogger(string name)
+        {
+            return new PlatformLogger(name);
+        }
+
+        void IDisposable.Dispose()
+        {
+        }
+
+        public static ILoggerProvider Instance { get; } = new PlatformLoggerProvider();
     }
 }
 #endif
