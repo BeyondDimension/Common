@@ -434,7 +434,7 @@ static partial class Log
 
     static string CutDroidTag(string name)
     {
-        var array = name.Split(['.'], StringSplitOptions.RemoveEmptyEntries);
+        var array = name.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
         var lastItem = array.LastOrDefault(x => !string.IsNullOrWhiteSpace(x));
         if (lastItem != null)
         {
