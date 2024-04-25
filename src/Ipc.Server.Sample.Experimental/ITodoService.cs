@@ -141,6 +141,24 @@ public partial interface ITodoService
     IAsyncEnumerable<ApiRspImpl<Todo>> Exception3(CancellationToken cancellationToken = default);
 }
 
+public partial interface ITodoService2<T> where T : notnull
+{
+    /// <summary>
+    /// 获取所有模型数据
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<T?>> All(CancellationToken cancellationToken = default);
+}
+
+public partial interface ITodoService3 : ITodoService2<Todo>
+{
+}
+
+public partial interface ITodoService4 : ITodoService2<Todo[]>
+{
+}
+
 /// <summary>
 /// 模拟的业务模型类
 /// </summary>

@@ -43,3 +43,21 @@ sealed partial class TodoServiceImpl : ITodoService
         throw new NotImplementedException();
     }
 }
+
+[ServiceContractImpl(typeof(ITodoService3), IpcGeneratorType.Server)]
+sealed partial class TodoServiceImpl3 : ITodoService3
+{
+    public Task<ApiRspImpl<Todo?>> All(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+[ServiceContractImpl(typeof(ITodoService4), IpcGeneratorType.Server)]
+sealed partial class TodoServiceImpl4 : ITodoService4
+{
+    public Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+}

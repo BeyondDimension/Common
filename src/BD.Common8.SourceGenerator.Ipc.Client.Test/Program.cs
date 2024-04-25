@@ -9,3 +9,13 @@ sealed partial class TodoService_WebApi
 sealed partial class TodoService_SignalR
 {
 }
+
+[ServiceContractImpl(typeof(ITodoService3), IpcGeneratorType.ClientSignalR)]
+sealed partial class TodoService3_SignalR
+{
+}
+
+[ServiceContractImpl(typeof(ITodoService4), IpcGeneratorType.ClientSignalR)]
+sealed partial class TodoService4_SignalR
+{
+}
