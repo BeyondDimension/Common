@@ -34,7 +34,7 @@
 		<PackageVersion Include="DotNext.Threading" Version="5.3.0" />
 		<PackageVersion Include="Downloader" Version="3.0.6" />
 		<PackageVersion Include="DynamicData" Version="8.4.1" />
-		<PackageVersion Include="FluentAvaloniaUI" Version="2.0.5" />
+		<PackageVersion Include="FluentAvaloniaUI" Version="2.1.0-preview2" />
 		<PackageVersion Include="fusillade" Version="2.6.1" />
 		<PackageVersion Include="gfoidl.Base64" Version="2.0.0" />
 		<PackageVersion Include="Google.Protobuf" Version="3.26.1" />
