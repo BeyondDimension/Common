@@ -181,7 +181,7 @@
 		<PackageVersion Include="Aspire.Hosting.Redis" Version="8.0.0-preview.6.24214.1" />
 		<PackageVersion Include="Aspire.Hosting.Testing" Version="8.0.0-preview.5.24201.12" />
 		<PackageVersion Include="Aspire.Npgsql" Version="8.0.0-preview.6.24214.1" />
-		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.5.24201.12" />
+		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.6.24214.1" />
 		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="8.0.0-preview.6.24214.1" />
 		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.4.0" />
 		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.6.24214.1" />
