@@ -53,9 +53,11 @@ public static partial class ServiceCollectionExtensions
     /// <typeparam name="TBMAppSettings"></typeparam>
     /// <param name="app"></param>
     /// <param name="appSettings"></param>
+    /// <param name="useRouteRoot"></param>
     public static void UseBMS<TBMAppSettings>(
         this WebApplication app,
-        TBMAppSettings appSettings)
+        TBMAppSettings appSettings,
+        bool useRouteRoot = true)
         where TBMAppSettings : BMAppSettings
     {
         var isDevelopment = app.Environment.IsDevelopment();
@@ -95,7 +97,10 @@ public static partial class ServiceCollectionExtensions
         {
             app.UseSwagger();
             app.UseSwaggerUI();
-            app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
+            if (useRouteRoot)
+            {
+                app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
+            }
         }
         else
         {
