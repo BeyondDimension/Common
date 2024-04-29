@@ -13,6 +13,13 @@ public sealed partial class MachineUniqueIdentifierTest
     [Test]
     public void GetMachineSecretKey()
     {
+#if WINDOWS
+        if (!OperatingSystem.IsWindows())
+            return;
+#else
+        if (OperatingSystem.IsWindows())
+            return;
+#endif
         var machineSecretKey = MachineUniqueIdentifier.MachineSecretKey;
         TestContext.WriteLine("Key:");
         TestContext.WriteLine(machineSecretKey.Key.ToHexString());
@@ -26,6 +33,13 @@ public sealed partial class MachineUniqueIdentifierTest
     [Test]
     public void GetMachineId()
     {
+#if WINDOWS
+        if (!OperatingSystem.IsWindows())
+            return;
+#else
+        if (OperatingSystem.IsWindows())
+            return;
+#endif
         string? machineIdString = null;
         try
         {
