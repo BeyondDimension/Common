@@ -229,11 +229,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.Repositories.Test", "src\BD.Common8.SourceGenerator.Repositories.Test\BD.Common8.SourceGenerator.Repositories.Test.csproj", "{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{79E54C2E-E20E-40D1-82F0-3F5FFC39B291}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
