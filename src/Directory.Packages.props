@@ -193,6 +193,6 @@
 	</ItemGroup>
 	<!-- AWS SDK for .NET -->
 	<ItemGroup>
-		<PackageVersion Include="AWSSDK.Translate" Version="3.7.300.75" />
+		<PackageVersion Include="AWSSDK.Translate" Version="3.7.300.83" />
 	</ItemGroup>
 </Project>
