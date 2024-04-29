@@ -89,7 +89,7 @@
 		<PackageVersion Include="Peachpie.AspNetCore.Web" Version="1.1.9" />
 		<PackageVersion Include="Polly" Version="8.3.1" />
 		<PackageVersion Include="Portable.BouncyCastle" Version="1.9.0" />
-		<PackageVersion Include="ReactiveUI" Version="19.6.1" />
+		<PackageVersion Include="ReactiveUI" Version="19.6.12" />
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.41" />
 		<PackageVersion Include="SharpZipLib" Version="1.4.2" />
 		<PackageVersion Include="SkiaSharp" Version="2.88.8" />
