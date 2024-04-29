@@ -10,7 +10,7 @@ public interface IRoleManager
     /// </summary>
     /// <param name="roleId"></param>
     /// <returns></returns>
-    Task<SysRole?> FindByIdAsync(Guid roleId);
+    Task<BMRole?> FindByIdAsync(Guid roleId);
 
     /// <summary>
     /// 根据角色名称和租户 Id 查找角色
@@ -18,12 +18,12 @@ public interface IRoleManager
     /// <param name="roleName"></param>
     /// <param name="tenantId"></param>
     /// <returns></returns>
-    Task<SysRole?> FindByNameAsync(string? roleName, Guid tenantId);
+    Task<BMRole?> FindByNameAsync(string? roleName, Guid tenantId);
 
     /// <summary>
     /// 创建角色
     /// </summary>
-    Task<IdentityResult> CreateAsync(SysRole role);
+    Task<IdentityResult> CreateAsync(BMRole role);
 
     /// <summary>
     /// 获取规范化表示形式
@@ -35,10 +35,10 @@ public interface IRoleManager
     /// <summary>
     /// 更新角色
     /// </summary>
-    Task<IdentityResult> UpdateAsync(SysRole role);
+    Task<IdentityResult> UpdateAsync(BMRole role);
 
     /// <summary>
     /// 删除角色
     /// </summary>
-    Task<IdentityResult> DeleteAsync(SysRole role);
+    Task<IdentityResult> DeleteAsync(BMRole role);
 }

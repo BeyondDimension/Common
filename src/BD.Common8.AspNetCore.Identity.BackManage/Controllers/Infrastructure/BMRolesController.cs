@@ -1,34 +1,25 @@
-using AddOrEditM = BD.Common8.AspNetCore.Models.SysRoleModel;
-using TableItemM = BD.Common8.AspNetCore.Models.SysRoleModel;
+using AddOrEditM = BD.Common8.AspNetCore.Models.BMRoleModel;
+using TableItemM = BD.Common8.AspNetCore.Models.BMRoleModel;
 
-namespace BD.Common8.AspNetCore.Controllers;
+namespace BD.Common8.AspNetCore.Controllers.Infrastructure;
 
 /// <summary>
 /// 后台管理 - 角色管理
 /// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="BMRolesController"/> class.
+/// </remarks>
+/// <param name="roleRepo"></param>
+/// <param name="roleManager"></param>
+/// <param name="logger"></param>
 [Route("bm/roles")]
-public sealed class BMRolesController : BaseAuthorizeController<BMRolesController>
+public sealed class BMRolesController(IBMRoleRepository roleRepo,
+    IRoleManager roleManager,
+    ILogger<BMRolesController> logger) : BaseAuthorizeController<BMRolesController>(logger)
 {
-    readonly ISysRoleRepository roleRepo;
-    readonly IRoleManager roleManager;
-    //readonly ISysMenuRepository menuRepo;
+    readonly IBMRoleRepository roleRepo = roleRepo;
+    readonly IRoleManager roleManager = roleManager;
     const string ControllerName = Controllers_RoleManage;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BMRolesController"/> class.
-    /// </summary>
-    /// <param name="roleRepo"></param>
-    /// <param name="roleManager"></param>
-    /// <param name="logger"></param>
-    public BMRolesController(ISysRoleRepository roleRepo,
-        //ISysMenuRepository menuRepo,
-        IRoleManager roleManager,
-        ILogger<BMRolesController> logger) : base(logger)
-    {
-        this.roleRepo = roleRepo;
-        //this.menuRepo = menuRepo;
-        this.roleManager = roleManager;
-    }
 
     /// <summary>
     /// Select 下拉列表
@@ -66,7 +57,7 @@ public sealed class BMRolesController : BaseAuthorizeController<BMRolesControlle
     [HttpPost, PermissionFilter(ControllerName + nameof(SysButtonType.Add))]
     public async Task<ActionResult<ApiResponse<bool>>> Post([FromBody] AddOrEditM model)
     {
-        var user = TryGetUserId(out Guid userId);
+        var user = TryGetUserId(out var userId);
         if (!user) return NotFound();
         var role = await roleManager.FindByNameAsync(model.Name, TenantConstants.RootTenantIdG);
         if (role != null) return Fail($"权限名 {role.Name} 已存在");

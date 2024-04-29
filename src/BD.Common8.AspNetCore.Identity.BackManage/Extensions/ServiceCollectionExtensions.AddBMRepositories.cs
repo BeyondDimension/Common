@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -9,11 +9,11 @@ public static partial class ServiceCollectionExtensions
     /// <param name="services"></param>
     /// <returns></returns>
     public static IServiceCollection AddBMRepositories<TDbContext>(this IServiceCollection services)
-        where TDbContext : DbContext, IApplicationDbContext
+        where TDbContext : DbContext, IBMDbContext
     {
-        services.AddScoped<ISysUserRepository, SysUserRepository<TDbContext>>();
-        services.AddScoped<ISysRoleRepository, SysRoleRepository<TDbContext>>();
-        services.AddScoped<ISysMenuRepository, SysMenuRepository<TDbContext>>();
+        services.AddScoped<IBMUserRepository, BMUserRepository<TDbContext>>();
+        services.AddScoped<IBMRoleRepository, BMRoleRepository<TDbContext>>();
+        services.AddScoped<IBMMenuRepository, BMMenuRepository<TDbContext>>();
         return services;
     }
 }

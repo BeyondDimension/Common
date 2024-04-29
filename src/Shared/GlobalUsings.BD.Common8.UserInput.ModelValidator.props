@@ -1,5 +1,6 @@
 <Project>
 	<ItemGroup>
+		<Using Include="BD.Common8.UserInput.ModelValidator.Extensions" />
 		<Using Include="BD.Common8.UserInput.ModelValidator.Services" />
 		<Using Include="BD.Common8.UserInput.ModelValidator.Services.Implementation" />
 	</ItemGroup>

@@ -1,15 +1,20 @@
 <Project>
 	<ItemGroup>
 		<Using Include="BD.Common8.AspNetCore" />
+		<Using Include="BD.Common8.AspNetCore.Extensions" />
 		<Using Include="BD.Common8.AspNetCore.Columns" />
 		<Using Include="BD.Common8.AspNetCore.Enums" />
 		<Using Include="BD.Common8.AspNetCore.Filters" />
 		<Using Include="BD.Common8.AspNetCore.Controllers" />
+		<Using Include="BD.Common8.AspNetCore.Controllers.Infrastructure" />
 		<Using Include="BD.Common8.AspNetCore.Controllers.Abstractions" />
 		<Using Include="BD.Common8.AspNetCore.Data" />
 		<Using Include="BD.Common8.AspNetCore.Entities" />
 		<Using Include="BD.Common8.AspNetCore.Entities.Abstractions" />
 		<Using Include="BD.Common8.AspNetCore.Models" />
+		<Using Include="BD.Common8.AspNetCore.Models.Menus" />
+		<Using Include="BD.Common8.AspNetCore.Models.Users" />
+		<Using Include="BD.Common8.AspNetCore.Models.Users.Abstractions" />
 		<Using Include="BD.Common8.AspNetCore.Permissions" />
 		<Using Include="BD.Common8.AspNetCore.Services" />
 		<Using Include="BD.Common8.AspNetCore.Profiles" />

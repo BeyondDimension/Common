@@ -1,5 +1,6 @@
 <Project>
 	<ItemGroup>
+		<Using Include="BD.Common8.Repositories.EFCore.Extensions" />
 		<Using Include="BD.Common8.Repositories.EFCore.Entities" />
 		<Using Include="BD.Common8.Repositories.EFCore.Repositories" />
 		<Using Include="BD.Common8.Repositories.EFCore.Repositories.Abstractions" />

@@ -7,7 +7,7 @@ namespace BD.Common8.AspNetCore.Services.Implementation;
 public class RoleManagerImpl<TDbContext>(
     TDbContext db,
     ILookupNormalizer lookupNormalizer,
-    IdentityErrorDescriber errors) : IRoleManager, IDisposable where TDbContext : DbContext, IApplicationDbContext
+    IdentityErrorDescriber errors) : IRoleManager, IDisposable where TDbContext : DbContext, IBMDbContext
 {
     bool _disposed;
 
@@ -35,7 +35,7 @@ public class RoleManagerImpl<TDbContext>(
     protected virtual CancellationToken CancellationToken => CancellationToken.None;
 
     /// <inheritdoc/>
-    public async Task<SysRole?> FindByIdAsync(Guid roleId)
+    public async Task<BMRole?> FindByIdAsync(Guid roleId)
     {
         ThrowIfDisposed();
         var role = await db.Roles.FindAsync(new object[] { roleId, }, CancellationToken);
@@ -43,7 +43,7 @@ public class RoleManagerImpl<TDbContext>(
     }
 
     /// <inheritdoc/>
-    public async Task<IdentityResult> CreateAsync(SysRole role)
+    public async Task<IdentityResult> CreateAsync(BMRole role)
     {
         ThrowIfDisposed();
         var result = await ValidateRoleAsync(role);
@@ -56,7 +56,7 @@ public class RoleManagerImpl<TDbContext>(
     }
 
     /// <inheritdoc/>
-    public async Task<SysRole?> FindByNameAsync(string? roleName, Guid tenantId)
+    public async Task<BMRole?> FindByNameAsync(string? roleName, Guid tenantId)
     {
         if (roleName == null) return null;
         ThrowIfDisposed();
@@ -73,7 +73,7 @@ public class RoleManagerImpl<TDbContext>(
     /// <summary>
     /// 验证角色对象的有效性
     /// </summary>
-    protected virtual ValueTask<IdentityResult> ValidateRoleAsync(SysRole role)
+    protected virtual ValueTask<IdentityResult> ValidateRoleAsync(BMRole role)
     {
         if (role.TenantId == default)
             return new(IdentityResult.Failed(new IdentityError[]
@@ -98,21 +98,21 @@ public class RoleManagerImpl<TDbContext>(
     /// <summary>
     /// 规范化更新角色名称
     /// </summary>
-    public virtual ValueTask UpdateNormalizedRoleNameAsync(SysRole role)
+    public virtual ValueTask UpdateNormalizedRoleNameAsync(BMRole role)
     {
         role.NormalizedName = NormalizeKey(role.Name);
         return ValueTask.CompletedTask;
     }
 
     /// <inheritdoc/>
-    public Task<IdentityResult> UpdateAsync(SysRole role)
+    public Task<IdentityResult> UpdateAsync(BMRole role)
     {
         ThrowIfDisposed();
         return UpdateRoleAsync(role);
     }
 
     /// <inheritdoc/>
-    public Task<IdentityResult> DeleteAsync(SysRole role)
+    public Task<IdentityResult> DeleteAsync(BMRole role)
     {
         ThrowIfDisposed();
         role.SoftDeleted = true;
@@ -122,7 +122,7 @@ public class RoleManagerImpl<TDbContext>(
     /// <summary>
     /// 更新角色信息
     /// </summary>
-    protected virtual async Task<IdentityResult> UpdateRoleAsync(SysRole role)
+    protected virtual async Task<IdentityResult> UpdateRoleAsync(BMRole role)
     {
         var result = await ValidateRoleAsync(role);
         if (!result.Succeeded)
@@ -176,7 +176,7 @@ public class RoleManagerImpl<TDbContext>(
 /// ASP.NET 应用程序中进行角色管理
 /// </summary>
 /// <typeparam name="TDbContext"></typeparam>
-public class AspNetRoleManager<TDbContext>(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer lookupNormalizer, IdentityErrorDescriber errors) : RoleManagerImpl<TDbContext>(db, lookupNormalizer, errors) where TDbContext : ApplicationDbContextBase
+public class AspNetRoleManager<TDbContext>(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer lookupNormalizer, IdentityErrorDescriber errors) : RoleManagerImpl<TDbContext>(db, lookupNormalizer, errors) where TDbContext : BMDbContextBase
 {
     /// <summary>
     /// 请求上下文的访问器

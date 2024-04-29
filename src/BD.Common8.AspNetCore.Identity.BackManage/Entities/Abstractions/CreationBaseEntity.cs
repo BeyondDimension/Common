@@ -20,7 +20,7 @@ public abstract class CreationBaseEntity<TPrimaryKey> :
     public Guid? CreateUserId { get; set; }
 
     /// <inheritdoc/>
-    public virtual SysUser? CreateUser { get; set; }
+    public virtual BMUser? CreateUser { get; set; }
 
     /// <summary>
     /// 配置实体类型

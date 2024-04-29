@@ -1,41 +1,31 @@
-namespace BD.Common8.AspNetCore.Controllers;
+namespace BD.Common8.AspNetCore.Controllers.Infrastructure;
 
 /// <summary>
 /// 后台管理系统用户登录
 /// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="BMLoginController"/> class.
+/// </remarks>
+/// <param name="userManager"></param>
+/// <param name="jwtValueProvider"></param>
+/// <param name="db"></param>
+/// <param name="optionsAccessor"></param>
+/// <param name="cache"></param>
+/// <param name="logger"></param>
 [Route("bm/login")]
-public sealed class BMLoginController : AllowAnonymousApiController<BMLoginController>
+public sealed class BMLoginController(
+    IUserManager userManager,
+    IJWTValueProvider jwtValueProvider,
+    BMDbContextBase db,
+    IOptions<IdentityOptions> optionsAccessor,
+    IDistributedCache cache,
+    ILogger<BMLoginController> logger) : AllowAnonymousApiController<BMLoginController>(logger)
 {
-    readonly IUserManager userManager;
-    readonly IJWTValueProvider jwtValueProvider;
-    readonly ApplicationDbContextBase db;
-    readonly IdentityOptions options;
-    readonly IDistributedCache cache;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BMLoginController"/> class.
-    /// </summary>
-    /// <param name="userManager"></param>
-    /// <param name="jwtValueProvider"></param>
-    /// <param name="db"></param>
-    /// <param name="optionsAccessor"></param>
-    /// <param name="cache"></param>
-    /// <param name="logger"></param>
-    public BMLoginController(
-        IUserManager userManager,
-        IJWTValueProvider jwtValueProvider,
-        ApplicationDbContextBase db,
-        IOptions<IdentityOptions> optionsAccessor,
-        IDistributedCache cache,
-        ILogger<BMLoginController> logger) : base(logger)
-    {
-        this.userManager = userManager;
-        this.jwtValueProvider = jwtValueProvider;
-        this.db = db;
-        this.cache = cache;
-        options = optionsAccessor?.Value ?? new();
-    }
-
+    readonly IUserManager userManager = userManager;
+    readonly IJWTValueProvider jwtValueProvider = jwtValueProvider;
+    readonly BMDbContextBase db = db;
+    readonly IdentityOptions options = optionsAccessor?.Value ?? new();
+    readonly IDistributedCache cache = cache;
     const string ResponseDataUserNameNotFoundOrPasswordInvalid = "错误：用户名不存在或密码错误";
     const int MaxIpAccessFailedCount = 10;
 
@@ -105,7 +95,7 @@ public sealed class BMLoginController : AllowAnonymousApiController<BMLoginContr
     [HttpPut("{refresh_token}")]
     public async Task<ActionResult<ApiResponse<JWTEntity?>>> Put([FromRoute] string refresh_token)
     {
-        var user = await ((IApplicationDbContext)db).Users.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.RefreshToken == refresh_token, HttpContext.RequestAborted);
+        var user = await ((IBMDbContext)db).Users.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.RefreshToken == refresh_token, HttpContext.RequestAborted);
         if (user == null) return NotFound();
 
         var now = DateTimeOffset.Now;
@@ -119,7 +109,7 @@ public sealed class BMLoginController : AllowAnonymousApiController<BMLoginContr
     }
 
     [NonAction]
-    async Task<JWTEntity?> GenerateTokenAsync(SysUser user)
+    async Task<JWTEntity?> GenerateTokenAsync(BMUser user)
     {
         IEnumerable<string>? roles = await userManager.GetRolesAsync(user);
 

@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.Repositories.EFCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {

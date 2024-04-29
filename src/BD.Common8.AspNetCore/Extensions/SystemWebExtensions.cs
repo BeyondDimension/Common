@@ -1,6 +1,6 @@
 using MediaTypeHeaderValue = Microsoft.Net.Http.Headers.MediaTypeHeaderValue;
 
-namespace Microsoft.AspNetCore.Http;
+namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>
 /// 提供 ASP.NET 的兼容
@@ -29,7 +29,6 @@ public static partial class SystemWebExtensions
     public static Encoding? ContentTextEncoding(this HttpResponse response)
     {
         if (MediaTypeHeaderValue.TryParse(response.ContentType, out var contentType))
-        {
             // https://github.com/dotnet/aspnetcore/blob/v6.0.6/src/Http/Headers/src/MediaTypeHeaderValue.cs#L113
             try
             {
@@ -38,7 +37,6 @@ public static partial class SystemWebExtensions
             catch
             {
             }
-        }
         // https://github.com/dotnet/runtime/blob/v6.0.6/src/libraries/System.Net.Http/src/System/Net/Http/HttpContent.cs#L24
         return null;
     }
@@ -126,9 +124,7 @@ public static partial class SystemWebExtensions
                .ToString();
         }
         else
-        {
             return url;
-        }
     }
 
     /// <summary>
@@ -145,8 +141,8 @@ public static partial class SystemWebExtensions
         try
         {
             return ipv4
-                ? (remoteIpAddress.AddressFamily == AddressFamily.InterNetwork ? remoteIpAddress.ToString() : remoteIpAddress.MapToIPv4().ToString())
-                : (remoteIpAddress.AddressFamily == AddressFamily.InterNetworkV6 ? remoteIpAddress.ToString() : remoteIpAddress.MapToIPv6().ToString());
+                ? remoteIpAddress.AddressFamily == AddressFamily.InterNetwork ? remoteIpAddress.ToString() : remoteIpAddress.MapToIPv4().ToString()
+                : remoteIpAddress.AddressFamily == AddressFamily.InterNetworkV6 ? remoteIpAddress.ToString() : remoteIpAddress.MapToIPv6().ToString();
         }
         catch
         {

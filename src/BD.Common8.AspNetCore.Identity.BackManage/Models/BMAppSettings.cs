@@ -8,7 +8,11 @@ public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders
     /// <inheritdoc/>
     public bool NotUseForwardedHeaders { get; set; }
 
+    /// <inheritdoc/>
     public string? ForwardedHeadersKnownProxies { get; set; }
+
+    /// <inheritdoc/>
+    public virtual List<IPAddress> GetForwardedHeadersKnownProxies() => INotUseForwardedHeaders.GetForwardedHeadersKnownProxies(ForwardedHeadersKnownProxies);
 
     /// <inheritdoc/>
     public abstract string SecretKey { get; set; }
@@ -39,6 +43,10 @@ public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders
     /// </summary>
     public abstract string? InitSystemSecuritySalt { get; set; }
 
+    /// <summary>
+    /// 获取初始化后台系统的哈希盐值
+    /// </summary>
+    /// <returns></returns>
     public abstract string GetInitSystemSecuritySalt();
 
     [IgnoreDataMember]

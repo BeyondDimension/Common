@@ -14,38 +14,38 @@ public interface IUserManager
     /// 根据 <see cref="string"/> 类型用户 Id 异步查找用户
     /// </summary>
     [Obsolete("use Guid userId", true)]
-    Task<SysUser?> FindByIdAsync(string? userId)
+    Task<BMUser?> FindByIdAsync(string? userId)
     {
-        if (userId == null) return Task.FromResult<SysUser?>(null);
+        if (userId == null) return Task.FromResult<BMUser?>(null);
         if (ShortGuid.TryParse(userId, out Guid useIdG))
             return FindByIdAsync(useIdG);
-        return Task.FromResult<SysUser?>(null);
+        return Task.FromResult<BMUser?>(null);
     }
 
     /// <summary>
     /// 根据 <see cref="Guid"/> 类型用户 Id 异步查找用户
     /// </summary>
-    Task<SysUser?> FindByIdAsync(Guid userId);
+    Task<BMUser?> FindByIdAsync(Guid userId);
 
     /// <summary>
     /// 异步获取用户的角色列表
     /// </summary>
-    Task<IList<string>> GetRolesAsync(SysUser user);
+    Task<IList<string>> GetRolesAsync(BMUser user);
 
     /// <summary>
     /// 根据用户名异步查找用户
     /// </summary>
-    Task<SysUser?> FindByNameAsync(string? userName);
+    Task<BMUser?> FindByNameAsync(string? userName);
 
     /// <summary>
     /// 根据用户名和租户 Id 异步查找用户
     /// </summary>
-    Task<SysUser?> FindByNameAsync(string? userName, Guid tenantId);
+    Task<BMUser?> FindByNameAsync(string? userName, Guid tenantId);
 
     /// <summary>
     /// 创建用户
     /// </summary>
-    Task<IdentityResult> CreateAsync(SysUser user, string password);
+    Task<IdentityResult> CreateAsync(BMUser user, string password);
 
     /// <summary>
     /// 尝试获取用户 Id
@@ -55,57 +55,57 @@ public interface IUserManager
     /// <summary>
     /// 获取用户名称
     /// </summary>
-    ValueTask<string> GetUserNameAsync(SysUser user);
+    ValueTask<string> GetUserNameAsync(BMUser user);
 
     /// <summary>
     /// 设置用户名称
     /// </summary>
-    ValueTask<IdentityResult> SetUserNameAsync(SysUser user, string userName);
+    ValueTask<IdentityResult> SetUserNameAsync(BMUser user, string userName);
 
     /// <summary>
     /// 从多个角色中删除用户
     /// </summary>
-    Task<IdentityResult> RemoveFromRolesAsync(SysUser user, IEnumerable<string> roles);
+    Task<IdentityResult> RemoveFromRolesAsync(BMUser user, IEnumerable<string> roles);
 
     /// <summary>
     /// 设置用户锁定的截止日期
     /// </summary>
-    Task<IdentityResult> SetLockoutEndDateAsync(SysUser user, DateTimeOffset? lockoutEnd);
+    Task<IdentityResult> SetLockoutEndDateAsync(BMUser user, DateTimeOffset? lockoutEnd);
 
     /// <summary>
     /// 更新用户
     /// </summary>
-    Task<IdentityResult> UpdateAsync(SysUser user);
+    Task<IdentityResult> UpdateAsync(BMUser user);
 
     /// <summary>
     /// 校验密码
     /// </summary>
-    ValueTask<bool> CheckPasswordAsync(SysUser user, string password);
+    ValueTask<bool> CheckPasswordAsync(BMUser user, string password);
 
     /// <summary>
     /// 检查用户是否被锁定
     /// </summary>
-    ValueTask<bool> IsLockedOutAsync(SysUser user);
+    ValueTask<bool> IsLockedOutAsync(BMUser user);
 
     /// <summary>
     /// 更改用户密码
     /// </summary>
-    Task<IdentityResult> ChangePasswordAsync(SysUser user, string currentPassword, string newPassword);
+    Task<IdentityResult> ChangePasswordAsync(BMUser user, string currentPassword, string newPassword);
 
     /// <summary>
     /// 根据 <see cref="ClaimsPrincipal"/> 获取用户
     /// </summary>
-    Task<SysUser?> GetUserAsync(ClaimsPrincipal principal);
+    Task<BMUser?> GetUserAsync(ClaimsPrincipal principal);
 
     /// <summary>
     /// 将用户添加到角色
     /// </summary>
-    Task<IdentityResult> AddToRoleAsync(SysUser user, string role) => AddToRolesAsync(user, role);
+    Task<IdentityResult> AddToRoleAsync(BMUser user, string role) => AddToRolesAsync(user, role);
 
     /// <summary>
     /// 将用户添加到多个角色中
     /// </summary>
-    Task<IdentityResult> AddToRolesAsync(SysUser user, params string[] roles)
+    Task<IdentityResult> AddToRolesAsync(BMUser user, params string[] roles)
     {
         IEnumerable<string> roles_ = roles;
         return AddToRolesAsync(user, roles_);
@@ -114,5 +114,5 @@ public interface IUserManager
     /// <summary>
     /// 将用户添加到多个角色中
     /// </summary>
-    Task<IdentityResult> AddToRolesAsync(SysUser user, IEnumerable<string> roles);
+    Task<IdentityResult> AddToRolesAsync(BMUser user, IEnumerable<string> roles);
 }

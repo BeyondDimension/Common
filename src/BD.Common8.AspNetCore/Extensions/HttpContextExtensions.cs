@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.Http;
+namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>
 /// 提供对 <see cref="HttpContext"/> 的扩展方法的访问

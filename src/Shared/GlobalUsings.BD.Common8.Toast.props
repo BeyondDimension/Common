@@ -1,5 +1,6 @@
 <Project>
 	<ItemGroup>
+		<Using Include="BD.Common8.Toast.Extensions" />
 		<Using Include="BD.Common8.Toast.Helpers" />
 		<Using Include="BD.Common8.Toast.Services" />
 		<Using Include="BD.Common8.Toast.Services.Implementation" />

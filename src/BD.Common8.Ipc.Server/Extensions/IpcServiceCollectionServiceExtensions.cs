@@ -1,4 +1,4 @@
-namespace BD.Common8.Ipc;
+namespace BD.Common8.Ipc.Extensions;
 
 public static partial class IpcServiceCollectionServiceExtensions
 {

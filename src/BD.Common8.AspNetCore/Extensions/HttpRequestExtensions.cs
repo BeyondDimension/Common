@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.Mvc;
+namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class HttpRequestExtensions
 {
@@ -37,7 +37,6 @@ public static partial class HttpRequestExtensions
         {
             string referrer = request.Headers.Referer!;
             if (referrer.StartsWith(customUrlScheme))
-            {
                 try
                 {
                     var uri = new Uri(referrer);
@@ -46,7 +45,6 @@ public static partial class HttpRequestExtensions
                 catch
                 {
                 }
-            }
         }
         var userAgent = request.Headers.UserAgent;
         if (!userAgent.IsNullOrEmpty())

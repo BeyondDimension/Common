@@ -1,26 +1,26 @@
-using AddM = BD.Common8.AspNetCore.Models.AddBMUserModel;
-using EditM = BD.Common8.AspNetCore.Models.EditBMUserModel;
-using TableItemM = BD.Common8.AspNetCore.Models.SysUserTableItem;
+using AddM = BD.Common8.AspNetCore.Models.Users.AddBMUserModel;
+using EditM = BD.Common8.AspNetCore.Models.Users.EditBMUserModel;
+using TableItemM = BD.Common8.AspNetCore.Models.Users.BMUserTableItem;
 
-namespace BD.Common8.AspNetCore.Controllers;
+namespace BD.Common8.AspNetCore.Controllers.Infrastructure;
 
 /// <summary>
 /// 后台管理 - 用户管理，分页查询表格，新增，编辑，删除
 /// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="BMUsersController"/> class.
+/// </remarks>
+/// <param name="userRepo"></param>
+/// <param name="userManager"></param>
+/// <param name="logger"></param>
 [Route("bm/users")]
-public sealed class BMUsersController : BaseAuthorizeController<BMUsersController>
+public sealed class BMUsersController(IBMUserRepository userRepo,
+    IUserManager userManager,
+    ILogger<BMUsersController> logger) : BaseAuthorizeController<BMUsersController>(logger)
 {
-    readonly ISysUserRepository userRepo;
-    readonly IUserManager userManager;
+    readonly IBMUserRepository userRepo = userRepo;
+    readonly IUserManager userManager = userManager;
     const string ControllerName = Controllers_SystemUser;
-
-    public BMUsersController(ISysUserRepository userRepo,
-        IUserManager userManager,
-        ILogger<BMUsersController> logger) : base(logger)
-    {
-        this.userRepo = userRepo;
-        this.userManager = userManager;
-    }
 
     /// <summary>
     /// 分页查询后台用户

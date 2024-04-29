@@ -1,6 +1,7 @@
 <Project>
 	<ItemGroup>
 		<Using Include="BD.Common8.Essentials" />
+		<Using Include="BD.Common8.Essentials.Extensions" />
 		<Using Include="BD.Common8.Essentials.Services.Implementation" />
 	</ItemGroup>
 </Project>

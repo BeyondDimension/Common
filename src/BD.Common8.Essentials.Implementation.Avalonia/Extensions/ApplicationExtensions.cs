@@ -1,4 +1,4 @@
-namespace Avalonia;
+namespace BD.Common8.Essentials.Extensions;
 
 public static partial class ApplicationExtensions
 {
@@ -15,9 +15,7 @@ public static partial class ApplicationExtensions
             {
                 var mainWindow = classicDesktopStyleApplicationLifetime.MainWindow;
                 if (mainWindow != null)
-                {
                     return mainWindow;
-                }
                 var windows = classicDesktopStyleApplicationLifetime.Windows;
                 if (windows != null)
                 {
@@ -26,9 +24,7 @@ public static partial class ApplicationExtensions
                     {
                         firstWindow ??= window;
                         if (window.IsActive)
-                        {
                             return window;
-                        }
                     }
                     return firstWindow;
                 }

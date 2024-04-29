@@ -4,12 +4,12 @@ namespace BD.Common8.AspNetCore.Columns;
 public interface IOperatorUser
 {
     /// <inheritdoc cref="IOperatorUserId.OperatorUserId"/>
-    SysUser? OperatorUser { get; set; }
+    BMUser? OperatorUser { get; set; }
 }
 
 /// <inheritdoc cref="ICreateUserId.CreateUserId"/>
 public interface ICreateUser
 {
     /// <inheritdoc cref="ICreateUserId.CreateUserId"/>
-    SysUser? CreateUser { get; set; }
+    BMUser? CreateUser { get; set; }
 }

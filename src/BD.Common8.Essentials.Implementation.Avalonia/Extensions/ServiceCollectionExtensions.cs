@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.Essentials.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -15,9 +15,7 @@ public static partial class ServiceCollectionExtensions
         where TApplicationVersionServiceImpl : class, IApplicationVersionService
     {
         if (OperatingSystem.IsLinux())
-        {
             services.AddSingleton<IClipboardPlatformService, AvaloniaClipboardPlatformServiceImpl>();
-        }
         services.TryAddEssentials<TApplicationVersionServiceImpl,
             AvaloniaFilePickerPlatformServiceImpl,
             AvaloniaMainThreadPlatformServiceImpl>();

@@ -1,6 +1,6 @@
 using static BD.Common8.Orm.EFCore.Data.SqlConstants;
 
-namespace Microsoft.EntityFrameworkCore;
+namespace BD.Common8.Orm.EFCore.Extensions;
 
 public static partial class ModelBuilderExtensions
 {

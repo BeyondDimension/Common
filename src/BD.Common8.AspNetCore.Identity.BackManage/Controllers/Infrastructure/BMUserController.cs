@@ -1,33 +1,23 @@
-using EditM = BD.Common8.AspNetCore.Models.EditCurrentBMUserInfoModel;
+using EditM = BD.Common8.AspNetCore.Models.Users.EditCurrentBMUserInfoModel;
 
-namespace BD.Common8.AspNetCore.Controllers;
+namespace BD.Common8.AspNetCore.Controllers.Infrastructure;
 
 /// <summary>
 /// 当前登录的后台用户管理个人资料
 /// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="BMUserController"/> class.
+/// </remarks>
+/// <param name="menuRepo"></param>
+/// <param name="userManager"></param>
+/// <param name="logger"></param>
 [Route("bm/user")]
-public sealed class BMUserController : BaseAuthorizeController<BMUserController>
+public sealed class BMUserController(IBMMenuRepository menuRepo,
+    IUserManager userManager,
+    ILogger<BMUserController> logger) : BaseAuthorizeController<BMUserController>(logger)
 {
-    readonly ApplicationDbContextBase db;
-    readonly IUserManager userManager;
-    readonly ISysMenuRepository menuRepo;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BMUserController"/> class.
-    /// </summary>
-    /// <param name="db"></param>
-    /// <param name="menuRepo"></param>
-    /// <param name="userManager"></param>
-    /// <param name="logger"></param>
-    public BMUserController(ApplicationDbContextBase db,
-        ISysMenuRepository menuRepo,
-        IUserManager userManager,
-        ILogger<BMUserController> logger) : base(logger)
-    {
-        this.db = db;
-        this.menuRepo = menuRepo;
-        this.userManager = userManager;
-    }
+    readonly IUserManager userManager = userManager;
+    readonly IBMMenuRepository menuRepo = menuRepo;
 
     /// <summary>
     /// 获取当前登录的个人资料

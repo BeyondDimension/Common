@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -13,7 +13,7 @@ public static partial class ServiceCollectionExtensions
     /// <param name="appSettings"></param>
     public static void AddBMIdentity<TBMAppSettings, TBMDbContext>(this IServiceCollection services, TBMAppSettings appSettings)
         where TBMAppSettings : BMAppSettings
-        where TBMDbContext : DbContext, IApplicationDbContext, IApplicationDbContext<SysUser>
+        where TBMDbContext : DbContext, IBMDbContext, IApplicationDbContext<BMUser>
     {
         services.Configure<IdentityOptions>(options =>
         {
@@ -48,7 +48,7 @@ public static partial class ServiceCollectionExtensions
             options.SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha384Signature);
         }));
 
-        services.AddScoped<IJWTValueProvider, JWTValueProvider<TBMAppSettings, TBMDbContext, SysUser>>();
+        services.AddScoped<IJWTValueProvider, JWTValueProvider<TBMAppSettings, TBMDbContext, BMUser>>();
 
         services.AddAuthentication(x =>
         {

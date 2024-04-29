@@ -4,7 +4,7 @@ namespace BD.Common8.AspNetCore.Services.Implementation;
 /// 用户管理
 /// </summary>
 /// <typeparam name="TDbContext"></typeparam>
-public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbContext : DbContext, IApplicationDbContext
+public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbContext : DbContext, IBMDbContext
 {
     bool _disposed;
 
@@ -21,7 +21,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 用于散列密码的 <see cref="IPasswordHasher{TUser}"/>
     /// </summary>
-    public IPasswordHasher<SysUser> PasswordHasher { get; set; }
+    public IPasswordHasher<BMUser> PasswordHasher { get; set; }
 
     /// <inheritdoc/>
     public IdentityOptions Options { get; set; }
@@ -53,7 +53,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     public UserManagerImpl(TDbContext db,
         ILookupNormalizer keyNormalizer,
         IOptions<IdentityOptions> optionsAccessor,
-        IPasswordHasher<SysUser> passwordHasher,
+        IPasswordHasher<BMUser> passwordHasher,
         IEnumerable<IPasswordValidator> passwordValidators,
         IdentityErrorDescriber errors)
     {
@@ -69,7 +69,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<SysUser?> FindByIdAsync(Guid userId)
+    public async Task<BMUser?> FindByIdAsync(Guid userId)
     {
         ThrowIfDisposed();
         var user = await db.Users.FindAsync(new object[] { userId, }, CancellationToken);
@@ -77,7 +77,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<IList<string>> GetRolesAsync(SysUser user)
+    public async Task<IList<string>> GetRolesAsync(BMUser user)
     {
         ThrowIfDisposed();
         var query = from userRole in db.UserRoles
@@ -90,7 +90,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<SysUser?> FindByNameAsync(string? userName)
+    public async Task<BMUser?> FindByNameAsync(string? userName)
     {
         if (userName == null) return null;
         ThrowIfDisposed();
@@ -101,7 +101,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<SysUser?> FindByNameAsync(string? userName, Guid tenantId)
+    public async Task<BMUser?> FindByNameAsync(string? userName, Guid tenantId)
     {
         if (userName == null) return null;
         ThrowIfDisposed();
@@ -112,7 +112,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<IdentityResult> CreateAsync(SysUser user, string password)
+    public async Task<IdentityResult> CreateAsync(BMUser user, string password)
     {
         ThrowIfDisposed();
         var result = await ValidateUserAsync(user);
@@ -136,7 +136,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <param name="newPassword">新密码</param>
     /// <param name="validatePassword">是否验证密码</param>
     /// <returns>密码是否已成功更新</returns>
-    protected virtual async ValueTask<IdentityResult> UpdatePasswordHash(SysUser user, string? newPassword, bool validatePassword = true)
+    protected virtual async ValueTask<IdentityResult> UpdatePasswordHash(BMUser user, string? newPassword, bool validatePassword = true)
     {
         if (validatePassword)
         {
@@ -155,7 +155,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <param name="user">用户</param>
     /// <param name="password">密码</param>
     /// <returns>返回 <see cref="IdentityResult"/>，表示验证是否成功</returns>
-    protected async ValueTask<IdentityResult> ValidatePasswordAsync(SysUser user, string? password)
+    protected async ValueTask<IdentityResult> ValidatePasswordAsync(BMUser user, string? password)
     {
         List<IdentityError>? errors = null;
         var isValid = true;
@@ -184,7 +184,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// </summary>
     /// <param name="user">用户</param>
     /// <returns>返回 <see cref="IdentityResult"/>，表示验证是否成功</returns>
-    protected ValueTask<IdentityResult> ValidateUserAsync(SysUser user)
+    protected ValueTask<IdentityResult> ValidateUserAsync(BMUser user)
     {
         if (user.TenantId == default)
             return new(IdentityResult.Failed(new IdentityError[]
@@ -215,10 +215,10 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public ValueTask<string> GetUserNameAsync(SysUser user) => new(user.UserName);
+    public ValueTask<string> GetUserNameAsync(BMUser user) => new(user.UserName);
 
     /// <inheritdoc/>
-    public async ValueTask<IdentityResult> SetUserNameAsync(SysUser user, string userName)
+    public async ValueTask<IdentityResult> SetUserNameAsync(BMUser user, string userName)
     {
         if (string.IsNullOrWhiteSpace(userName))
             return UserNameIsNullOrWhiteSpace();
@@ -228,7 +228,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public Task<IdentityResult> UpdateAsync(SysUser user)
+    public Task<IdentityResult> UpdateAsync(BMUser user)
     {
         ThrowIfDisposed();
         return UpdateUserAsync(user);
@@ -237,7 +237,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 更新用户
     /// </summary>
-    protected virtual async Task<IdentityResult> UpdateUserAsync(SysUser user)
+    protected virtual async Task<IdentityResult> UpdateUserAsync(BMUser user)
     {
         var result = await ValidateUserAsync(user);
         if (!result.Succeeded)
@@ -257,7 +257,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<SysUser?> GetUserAsync(ClaimsPrincipal principal)
+    public async Task<BMUser?> GetUserAsync(ClaimsPrincipal principal)
     {
         if (!TryGetUserId(principal, out var userId)) return null;
         var user = await FindByIdAsync(userId);
@@ -265,7 +265,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<IdentityResult> SetLockoutEndDateAsync(SysUser user, DateTimeOffset? lockoutEnd)
+    public async Task<IdentityResult> SetLockoutEndDateAsync(BMUser user, DateTimeOffset? lockoutEnd)
     {
         ThrowIfDisposed();
         if (!user.LockoutEnabled)
@@ -275,7 +275,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public ValueTask<bool> IsLockedOutAsync(SysUser user)
+    public ValueTask<bool> IsLockedOutAsync(BMUser user)
     {
         ThrowIfDisposed();
         if (!user.LockoutEnabled)
@@ -287,7 +287,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 校验密码
     /// </summary>
-    public async ValueTask<bool> CheckPasswordAsync(SysUser user, string password)
+    public async ValueTask<bool> CheckPasswordAsync(BMUser user, string password)
     {
         ThrowIfDisposed();
         var result = await VerifyPasswordAsync(user, password);
@@ -313,7 +313,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <returns>
     /// 返回异步操作，包含 <see cref="PasswordVerificationResult"/>
     /// </returns>
-    protected virtual ValueTask<PasswordVerificationResult> VerifyPasswordAsync(SysUser user, string password)
+    protected virtual ValueTask<PasswordVerificationResult> VerifyPasswordAsync(BMUser user, string password)
     {
         var hash = user.PasswordHash;
         if (hash == null)
@@ -322,7 +322,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     }
 
     /// <inheritdoc/>
-    public async Task<IdentityResult> ChangePasswordAsync(SysUser user, string currentPassword, string newPassword)
+    public async Task<IdentityResult> ChangePasswordAsync(BMUser user, string currentPassword, string newPassword)
     {
         ThrowIfDisposed();
         if (await VerifyPasswordAsync(user, currentPassword) != PasswordVerificationResult.Failed)
@@ -339,7 +339,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 判断用户是否属于指定角色
     /// </summary>
-    public async Task<bool> IsInRoleAsync(SysUser user, string role)
+    public async Task<bool> IsInRoleAsync(BMUser user, string role)
     {
         ThrowIfDisposed();
         var normalizedRole = NormalizeName(role);
@@ -350,7 +350,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 核心方法，判断用户是否属于指定角色
     /// </summary>
-    protected virtual async Task<(bool isInRole, Guid roleId, SysUserRole? userRole)> IsInRoleCoreAsync(SysUser user, string normalizedRole)
+    protected virtual async Task<(bool isInRole, Guid roleId, BMUserRole? userRole)> IsInRoleCoreAsync(BMUser user, string normalizedRole)
     {
         var role = await db.Roles.FirstOrDefaultAsync(x =>
             x.NormalizedName == normalizedRole && x.TenantId == user.TenantId, CancellationToken);
@@ -366,16 +366,16 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 将用户添加到角色
     /// </summary>
-    protected virtual async ValueTask AddToRoleAsync(SysUser user, Guid roleId)
+    protected virtual async ValueTask AddToRoleAsync(BMUser user, Guid roleId)
     {
-        var userRole = new SysUserRole { UserId = user.Id, RoleId = roleId, TenantId = user.TenantId };
+        var userRole = new BMUserRole { UserId = user.Id, RoleId = roleId, TenantId = user.TenantId };
         await db.UserRoles.AddAsync(userRole, CancellationToken);
     }
 
     /// <summary>
     /// 将用户添加到多个角色中
     /// </summary>
-    public async Task<IdentityResult> AddToRolesAsync(SysUser user, IEnumerable<string> roles)
+    public async Task<IdentityResult> AddToRolesAsync(BMUser user, IEnumerable<string> roles)
     {
         ThrowIfDisposed();
         foreach (var role in roles.Distinct())
@@ -392,7 +392,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 从角色中删除用户
     /// </summary>
-    protected virtual ValueTask RemoveFromRoleAsync(SysUserRole userRole)
+    protected virtual ValueTask RemoveFromRoleAsync(BMUserRole userRole)
     {
         db.UserRoles.Remove(userRole);
         return ValueTask.CompletedTask;
@@ -401,7 +401,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// <summary>
     /// 从多个角色中删除用户
     /// </summary>
-    public async Task<IdentityResult> RemoveFromRolesAsync(SysUser user, IEnumerable<string> roles)
+    public async Task<IdentityResult> RemoveFromRolesAsync(BMUser user, IEnumerable<string> roles)
     {
         ThrowIfDisposed();
         foreach (var role in roles.Distinct())
@@ -429,7 +429,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// </summary>
     /// <param name="user">应规范化和更新其用户名的用户</param>
     /// <returns>返回异步操作 <see cref="Task"/></returns>
-    public virtual ValueTask UpdateNormalizedUserNameAsync(SysUser user)
+    public virtual ValueTask UpdateNormalizedUserNameAsync(BMUser user)
     {
         var normalizedName = NormalizeName(user.UserName);
         user.NormalizedUserName = normalizedName;
@@ -471,7 +471,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
 ///  ASP.NET 应用程序中进行用户管理
 /// </summary>
 /// <typeparam name="TDbContext"></typeparam>
-public class AspNetUserManager<TDbContext> : UserManagerImpl<TDbContext> where TDbContext : ApplicationDbContextBase
+public class AspNetUserManager<TDbContext> : UserManagerImpl<TDbContext> where TDbContext : BMDbContextBase
 {
     /// <summary>
     /// 请求上下文的访问器
@@ -481,7 +481,7 @@ public class AspNetUserManager<TDbContext> : UserManagerImpl<TDbContext> where T
     /// <summary>
     /// 初始化 <see cref="AspNetUserManager{TDbContext}"/> 实例
     /// </summary>
-    public AspNetUserManager(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer keyNormalizer, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<SysUser> passwordHasher, IEnumerable<IPasswordValidator> passwordValidators, IdentityErrorDescriber errors) : base(db, keyNormalizer, optionsAccessor, passwordHasher, passwordValidators, errors)
+    public AspNetUserManager(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer keyNormalizer, IOptions<IdentityOptions> optionsAccessor, IPasswordHasher<BMUser> passwordHasher, IEnumerable<IPasswordValidator> passwordValidators, IdentityErrorDescriber errors) : base(db, keyNormalizer, optionsAccessor, passwordHasher, passwordValidators, errors)
     {
         this.contextAccessor = contextAccessor;
     }

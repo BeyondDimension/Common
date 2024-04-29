@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.SmsSender.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {

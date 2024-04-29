@@ -1,4 +1,4 @@
-namespace Microsoft.EntityFrameworkCore;
+namespace BD.Common8.Repositories.EFCore.Extensions;
 
 public static partial class DbContextExtensions
 {
@@ -57,13 +57,9 @@ public static partial class DbContextExtensions
         where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
     {
         if (upOrDown)
-        {
             query = query.Where(x => x.Order < entity.Order).SortDesc<TEntity, TPrimaryKey>();
-        }
         else
-        {
             query = query.Where(x => x.Order > entity.Order).Sort<TEntity, TPrimaryKey>();
-        }
 
         var entityVicinage = await query.FirstOrDefaultAsync(cancellationToken);
         if (entityVicinage == null) return false;

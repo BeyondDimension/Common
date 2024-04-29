@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.Identity;
+namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class IdentityExtensions
 {

@@ -20,7 +20,7 @@ public abstract class OperatorBaseEntity<TPrimaryKey> :
     public Guid? OperatorUserId { get; set; }
 
     /// <inheritdoc/>
-    public virtual SysUser? OperatorUser { get; set; }
+    public virtual BMUser? OperatorUser { get; set; }
 
     /// <inheritdoc cref="CreationBaseEntity{TPrimaryKey}.EntityTypeConfiguration{TEntity}"/>
     public new abstract class EntityTypeConfiguration<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : CreationBaseEntity<TPrimaryKey>.EntityTypeConfiguration<TEntity>

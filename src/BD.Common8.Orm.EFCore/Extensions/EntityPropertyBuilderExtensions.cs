@@ -1,4 +1,4 @@
-namespace Microsoft.EntityFrameworkCore;
+namespace BD.Common8.Orm.EFCore.Extensions;
 
 public static partial class EntityPropertyBuilderExtensions
 {

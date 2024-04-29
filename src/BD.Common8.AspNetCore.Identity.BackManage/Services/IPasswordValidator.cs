@@ -12,5 +12,5 @@ public interface IPasswordValidator
     /// <param name="user">The user whose password should be validated.</param>
     /// <param name="password">The password supplied for validation</param>
     /// <returns>The task object representing the asynchronous operation.</returns>
-    ValueTask<IdentityResult> ValidateAsync(IUserManager manager, SysUser user, string? password);
+    ValueTask<IdentityResult> ValidateAsync(IUserManager manager, BMUser user, string? password);
 }

@@ -1,7 +1,7 @@
 using static BD.Common8.Security.Services.ILocalDataProtectionProvider;
 using static BD.Common8.Security.Services.Implementation.LocalDataProtectionProviderBase;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.Security.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {

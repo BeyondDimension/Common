@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.UserInput.ModelValidator.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -9,7 +9,7 @@ public static partial class ServiceCollectionExtensions
     /// <returns></returns>
     public static IServiceCollection TryAddModelValidator(this IServiceCollection services)
     {
-        services.TryAddSingleton<IModelValidator, ModelValidator>();
+        services.TryAddSingleton<IModelValidator, ModelValidatorImpl>();
         return services;
     }
 }

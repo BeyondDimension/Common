@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.SignalR;
+namespace BD.Common8.Ipc.Extensions;
 
 public static partial class HubExtensions
 {

@@ -1,35 +1,29 @@
-using EditM = BD.Common8.AspNetCore.Models.SysMenuEdit;
+using EditM = BD.Common8.AspNetCore.Models.Menus.BMMenuEdit;
 
-namespace BD.Common8.AspNetCore.Controllers;
+namespace BD.Common8.AspNetCore.Controllers.Infrastructure;
 
 /// <summary>
 /// 后台管理 - 菜单管理
 /// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="BMMenusController"/> class.
+/// </remarks>
+/// <param name="menuRepo"></param>
+/// <param name="logger"></param>
 [Route("bm/menus")]
-public class BMMenusController : BaseAuthorizeController<BMMenusController>
+public class BMMenusController(IBMMenuRepository menuRepo,
+    ILogger<BMMenusController> logger) : BaseAuthorizeController<BMMenusController>(logger)
 {
-    readonly ISysMenuRepository menuRepo;
+    readonly IBMMenuRepository menuRepo = menuRepo;
     const string ControllerName = Controllers_SystemMenuManage;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BMMenusController"/> class.
-    /// </summary>
-    /// <param name="menuRepo"></param>
-    /// <param name="logger"></param>
-    public BMMenusController(ISysMenuRepository menuRepo,
-        ILogger<BMMenusController> logger) : base(logger)
-    {
-        this.menuRepo = menuRepo;
-    }
 
     /// <summary>
     /// 查询后台菜单树结构 只支持 2 级
     /// </summary>
     /// <returns></returns>
     [HttpGet("[action]"), PermissionFilter(ControllerName + nameof(SysButtonType.Query))]
-    public async Task<ApiResponse<SysMenuTreeItem[]>> Tree()
+    public async Task<ApiResponse<BMMenuTreeItem[]>> Tree()
     {
-        //HttpContext.RequestServices.GetRequiredService<IUserManager>().TryGetUserId
         var r = await menuRepo.GetTreeAsync();
         return r;
     }
@@ -40,7 +34,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     /// <param name="id">主键</param>
     /// <returns></returns>
     [HttpGet("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Detail))]
-    public async Task<ApiResponse<SysMenuModel2>> Get([FromRoute] Guid id)
+    public async Task<ApiResponse<BMMenuModel2>> Get([FromRoute] Guid id)
     {
         var r = await menuRepo.InfoAsync(id);
         return r;
@@ -54,7 +48,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     [HttpPost, PermissionFilter(ControllerName + nameof(SysButtonType.Add))]
     public async Task<ApiResponse<bool>> Post([FromBody] EditM model)
     {
-        if (!TryGetUserId(out Guid userId))
+        if (!TryGetUserId(out var userId))
             return false;
         var (rowCount, _) = await menuRepo.InsertOrUpdateAsync(model, userId, TenantConstants.RootTenantIdG);
         return rowCount > 0;
@@ -68,7 +62,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     [HttpDelete("{id}"), PermissionFilter(ControllerName + nameof(SysButtonType.Delete))]
     public async Task<ApiResponse<bool>> Delete([FromRoute] Guid id)
     {
-        if (!TryGetUserId(out Guid userId))
+        if (!TryGetUserId(out var userId))
             return false;
         var state = await menuRepo.DeleteMenuAsync(id, TenantConstants.RootTenantIdG);
         return state;
@@ -82,7 +76,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     [HttpPut, PermissionFilter(ControllerName + nameof(SysButtonType.Edit))]
     public async Task<ActionResult<ApiResponse<bool>>> Put([FromBody] EditM model)
     {
-        var user = TryGetUserId(out Guid userId);
+        var user = TryGetUserId(out var userId);
         if (!user) return NotFound();
         var (rowCount, _) = await menuRepo.InsertOrUpdateAsync(model, userId, TenantConstants.RootTenantIdG);
         return Ok(rowCount > 0);
@@ -95,7 +89,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     /// </summary>
     /// <returns></returns>
     [HttpGet("[action]"), PermissionFilter(ControllerName + nameof(SysButtonType.Query))]
-    public async Task<ApiResponse<SysMenuModel2[]>> RoleTree()
+    public async Task<ApiResponse<BMMenuModel2[]>> RoleTree()
     {
         var r = await menuRepo.GetRoleTreeAsync();
         return r;
@@ -106,7 +100,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     /// </summary>
     /// <returns></returns>
     [HttpGet("bottons"), PermissionFilter(ControllerName + nameof(SysButtonType.Query))]
-    public async Task<ActionResult<ApiResponse<SysButtonModel[]>>> GetButtons()
+    public async Task<ActionResult<ApiResponse<BMButtonModel[]>>> GetButtons()
     {
         var r = await menuRepo.GetButtonsAsync();
         return Ok(r);
@@ -157,7 +151,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     /// <param name="menuId">菜单主键</param>
     /// <returns></returns>
     [HttpGet("bottons/{roleId}/{menuId}"), PermissionFilter(ControllerName + nameof(SysButtonType.Query))]
-    public async Task<ActionResult<ApiResponse<SysButtonModel[]>>> GetRoleMenuButtonsAsync([FromRoute] Guid roleId, [FromRoute] Guid menuId)
+    public async Task<ActionResult<ApiResponse<BMButtonModel[]>>> GetRoleMenuButtonsAsync([FromRoute] Guid roleId, [FromRoute] Guid menuId)
     {
         var r = await menuRepo.GetRoleMenuButtonsAsync(roleId, menuId, TenantConstants.RootTenantIdG);
         return Ok(r);
@@ -171,9 +165,9 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     /// <param name="buttons">按钮列表</param>
     /// <returns></returns>
     [HttpPost("menus/{roleId}/{menuId}"), PermissionFilter(ControllerName + nameof(SysButtonType.Add))]
-    public async Task<ActionResult<ApiResponse<bool>>> AddMenuButtons([FromRoute] Guid roleId, [FromRoute] Guid menuId, [FromBody] SysButtonModel[] buttons)
+    public async Task<ActionResult<ApiResponse<bool>>> AddMenuButtons([FromRoute] Guid roleId, [FromRoute] Guid menuId, [FromBody] BMButtonModel[] buttons)
     {
-        var user = TryGetUserId(out Guid userId);
+        var user = TryGetUserId(out var userId);
         if (!user) return NotFound();
         var r = await menuRepo.AddMenuButtonsAsync(userId, roleId, menuId, TenantConstants.RootTenantIdG, buttons);
         return Ok(r);
@@ -192,9 +186,9 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
         [FromRoute] Guid roleId,
         [FromRoute] Guid menuId,
         [FromQuery] string name,
-        [FromBody] SysButtonModel[] buttons)
+        [FromBody] BMButtonModel[] buttons)
     {
-        var user = TryGetUserId(out Guid userId);
+        var user = TryGetUserId(out var userId);
         if (!user) return NotFound();
         var r = await menuRepo.EditMenuButtonsAsync(name, userId, roleId, menuId, TenantConstants.RootTenantIdG, buttons);
         return Ok(r);
@@ -209,7 +203,7 @@ public class BMMenusController : BaseAuthorizeController<BMMenusController>
     [HttpDelete("menus/{roleId}/{menuId}"), PermissionFilter(ControllerName + nameof(SysButtonType.Edit))]
     public async Task<ActionResult<ApiResponse<bool>>> DeleteMenuButtons([FromRoute] Guid roleId, [FromRoute] Guid menuId)
     {
-        var user = TryGetUserId(out Guid userId);
+        var user = TryGetUserId(out var userId);
         if (!user) return NotFound();
         var r = await menuRepo.DeleteMenuButtonsAsync(userId, roleId, menuId, TenantConstants.RootTenantIdG);
         return Ok(r);

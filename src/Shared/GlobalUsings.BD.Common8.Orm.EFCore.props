@@ -1,5 +1,6 @@
 <Project>
 	<ItemGroup>
+		<Using Include="BD.Common8.Orm.EFCore.Extensions" />
 		<Using Include="BD.Common8.Orm.EFCore.Columns" />
 		<Using Include="BD.Common8.Orm.EFCore.Data" />
 		<Using Include="BD.Common8.Orm.EFCore.Data.Abstractions" />

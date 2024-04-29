@@ -6,7 +6,7 @@ namespace BD.Common8.AspNetCore.Permissions;
 /// <typeparam name="TDbContext"></typeparam>
 /// <param name="db"></param>
 /// <param name="userManager"></param>
-public sealed class PermissionAuthorizationHandler<TDbContext>(TDbContext db, IUserManager userManager) : AuthorizationHandler<PermissionAuthorizationRequirement> where TDbContext : IApplicationDbContext
+public sealed class PermissionAuthorizationHandler<TDbContext>(TDbContext db, IUserManager userManager) : AuthorizationHandler<PermissionAuthorizationRequirement> where TDbContext : IBMDbContext
 {
     /// <summary>
     /// 数据上下文对象

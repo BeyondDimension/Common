@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.Caching;
+namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>
 /// 缓存扩展类

@@ -1,12 +1,22 @@
-using Microsoft.AspNetCore.Diagnostics;
-using static Microsoft.Extensions.DependencyInjection.AddDbContext_ServiceCollectionExtensions;
+using static BD.Common8.AspNetCore.Extensions.AddDbContext_ServiceCollectionExtensions;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
     /// <summary>
     /// 添加后台管理系统
+    /// <list type="number">
+    /// <item>配置服务器安全密钥</item>
+    /// <item>添加 <see cref="BMAppSettings"/> 的 <see cref="IOptions{TOptions}"/> 服务</item>
+    /// <item>配置 AutoMapper</item>
+    /// <item>AddDbContext</item>
+    /// <item>AddTenantIdentity</item>
+    /// <item>AddHttpContextRequestAbortedProvider</item>
+    /// <item>AddBMRepositories</item>
+    /// <item>AddBMIdentity</item>
+    /// <item>AddBMWebApi</item>
+    /// </list>
     /// </summary>
     /// <typeparam name="TBMAppSettings"></typeparam>
     /// <typeparam name="TContext"></typeparam>
@@ -22,98 +32,40 @@ public static partial class ServiceCollectionExtensions
         delegate* managed<ApplicationPartManager, void> configureApplicationPartManager = default,
         bool addDbContext = DefaultValue_addDbContext)
         where TBMAppSettings : BMAppSettings
-        where TContext : ApplicationDbContextBase
+        where TContext : BMDbContextBase
     {
+        #region 配置服务器安全密钥
+
         MemoryPackFormatterProvider.Register(RSAParametersFormatterAttribute.Formatter.Default);
         ServerSecurity.RSA = Serializable.DMP2<RSAParameters>(privateKey).Create();
 
+        #endregion
+
+        #region 添加 BMAppSettings 的 IOptions<TOptions> 服务
+
         builder.Services.AddSingleton<IOptions<BMAppSettings>>(static s => s.GetRequiredService<IOptions<TBMAppSettings>>());
 
+        #endregion
+
+        #region 配置 AutoMapper
+
         HashSet<Assembly> assembliesAutoMapper = new();
-        assembliesAutoMapper.Add(typeof(SysMenuTreeItem).Assembly);
-        assembliesAutoMapper.Add(typeof(SysMenu).Assembly);
+        assembliesAutoMapper.Add(typeof(BMMenuTreeItem).Assembly);
+        assembliesAutoMapper.Add(typeof(BMMenu).Assembly);
 
         builder.Services.AddAutoMapper((serviceProvider, cfg) =>
         {
             cfg.AddCollectionMappers();
-            cfg.AddProfile<SysMenuProfile>();
+            cfg.AddProfile<BMMenuProfile>();
         }, assembliesAutoMapper.ToArray());
 
-        builder.AddDbContext<ApplicationDbContextBase, TContext>(addDbContext: addDbContext);
+        #endregion
+
+        builder.AddDbContext<BMDbContextBase, TContext>(addDbContext: addDbContext);
         builder.Services.AddTenantIdentity<TContext>();
         builder.Services.AddHttpContextRequestAbortedProvider();
         builder.Services.AddBMRepositories<TContext>();
         builder.Services.AddBMIdentity<TBMAppSettings, TContext>(appSettings);
         builder.Services.AddBMWebApi(appSettings, configureApplicationPartManager);
-    }
-
-    /// <summary>
-    /// 使用后台管理系统
-    /// </summary>
-    /// <typeparam name="TBMAppSettings"></typeparam>
-    /// <param name="app"></param>
-    /// <param name="appSettings"></param>
-    /// <param name="useRouteRoot"></param>
-    public static void UseBMS<TBMAppSettings>(
-        this WebApplication app,
-        TBMAppSettings appSettings,
-        bool useRouteRoot = true)
-        where TBMAppSettings : BMAppSettings
-    {
-        var isDevelopment = app.Environment.IsDevelopment();
-
-        app.UseExceptionHandler(exceptionHandlerApp => // https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling
-        {
-            exceptionHandlerApp.Run(async context =>
-            {
-                context.Response.StatusCode = StatusCodes.Status200OK;
-                context.Response.ContentType = MediaTypeNames.JSON;
-                var exception = context.Features.Get<IExceptionHandlerPathFeature>()?.Error;
-                var rsp = new ApiResponse
-                {
-                    Messages = [exception?.ToString() ?? ""],
-                };
-                await context.Response.WriteAsJsonAsync(rsp);
-            });
-        });
-
-        if (!isDevelopment)
-        {
-            app.UseResponseCompression();
-        }
-
-        if (!appSettings.NotUseForwardedHeaders)
-        {
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
-                RequireHeaderSymmetry = false,
-                ForwardLimit = null,
-                KnownProxies = { IPAddress.Parse(string.IsNullOrWhiteSpace(appSettings.ForwardedHeadersKnownProxies) ? "::ffff:172.18.0.1" : appSettings.ForwardedHeadersKnownProxies), },
-            });
-        }
-
-        if (!appSettings.DisabledApiDoc)
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-            if (useRouteRoot)
-            {
-                app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
-            }
-        }
-        else
-        {
-            app.UseWelcomePage("/");
-        }
-
-        if (appSettings.UseCors)
-        {
-            app.UseCors();
-        }
-
-        app.UseAuthentication(); // 鉴权，检测有没有登录，登录的是谁，赋值给 User
-        app.UseAuthorization(); // 授权，检测权限
-        app.MapControllers();
     }
 }

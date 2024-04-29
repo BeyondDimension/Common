@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>
 /// 用于配置 Identity 服务到 <see cref="IServiceCollection"/>
@@ -13,12 +13,12 @@ public static class IdentityServiceCollectionExtensions
     /// <param name="setupAction"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IServiceCollection AddTenantIdentity<TDbContext>(this IServiceCollection services, Action<IdentityOptions>? setupAction = null) where TDbContext : DbContext, IApplicationDbContext
+    public static IServiceCollection AddTenantIdentity<TDbContext>(this IServiceCollection services, Action<IdentityOptions>? setupAction = null) where TDbContext : DbContext, IBMDbContext
     {
         // https://github.com/dotnet/aspnetcore/blob/v7.0.0-rc.2.22476.2/src/Identity/Extensions.Core/src/IdentityServiceCollectionExtensions.cs#L33
         // Services used by identity
         services.AddScoped<IPasswordValidator, PasswordValidatorImpl>();
-        services.AddScoped<IPasswordHasher<SysUser>, PasswordHasher<SysUser>>();
+        services.AddScoped<IPasswordHasher<BMUser>, PasswordHasher<BMUser>>();
         services.AddScoped<ILookupNormalizer, UpperInvariantLookupNormalizer>();
         // No interface for the error describer so we can add errors without rev'ing the interface
         services.AddScoped<IdentityErrorDescriber>();
@@ -27,9 +27,7 @@ public static class IdentityServiceCollectionExtensions
         services.AddScoped<IRoleManager, RoleManagerImpl<TDbContext>>();
 
         if (setupAction != null)
-        {
             services.Configure(setupAction);
-        }
 
         return services;
     }

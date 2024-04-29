@@ -1,4 +1,4 @@
-namespace Microsoft.AspNetCore.Http;
+namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class HttpContextExtensions
 {

@@ -22,7 +22,7 @@
  * ----------------------------------------------------------------------
  * 如果需要根据不同的模型类，进行输出不同的 errorMessage 原理同上
  */
-using static BD.Common8.UserInput.ModelValidator.Services.Implementation.ModelValidator;
+using static BD.Common8.UserInput.ModelValidator.Services.Implementation.ModelValidatorImpl;
 using SR = BD.Common8.UserInput.ModelValidator.Resources.SR;
 
 namespace BD.Common8.UserInput.ModelValidator.Services;

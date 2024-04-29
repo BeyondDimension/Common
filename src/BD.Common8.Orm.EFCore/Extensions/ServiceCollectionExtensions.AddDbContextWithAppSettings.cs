@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.Orm.EFCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -35,9 +35,7 @@ public static partial class ServiceCollectionExtensions
             {
                 var tableName = MigrationsHistory;
                 if (hasSuffix)
-                {
                     tableName = tableName + "_" + migrationsHistoryTableNameSuffix;
-                }
                 b.MigrationsHistoryTable(tableName);
             }
             Action<SqlServerDbContextOptionsBuilder>? sqlServerOptionsAction
@@ -46,9 +44,7 @@ public static partial class ServiceCollectionExtensions
                 => options.UseSqlServer(connectionString, sqlServerOptionsAction));
         }
         else
-        {
             ThrowHelper.ThrowArgumentNullException(nameof(connectionString));
-        }
         return (appSettings, connectionString);
     }
 }

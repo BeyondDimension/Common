@@ -1,4 +1,4 @@
-namespace System.Security.Cryptography;
+namespace BD.Common8.AspNetCore;
 
 public static partial class ServerSecurity
 {
@@ -13,8 +13,8 @@ public static partial class ServerSecurity
             return new byte[1];
         if (hex.Length % 2 == 1)
             hex = "0" + hex;
-        byte[] numArray = new byte[hex.Length / 2];
-        for (int index = 0; index < hex.Length / 2; ++index)
+        var numArray = new byte[hex.Length / 2];
+        for (var index = 0; index < hex.Length / 2; ++index)
             numArray[index] = byte.Parse(hex.Substring(2 * index, 2), NumberStyles.AllowHexSpecifier);
         return numArray;
     }
@@ -39,7 +39,7 @@ public static partial class ServerSecurity
     {
         var strArray = text.Split(new[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-        for (int i = 0; i < strArray.Length; i++)
+        for (var i = 0; i < strArray.Length; i++)
         {
             var data = HexStringToBytes(strArray[i]);
             data = RSA.Decrypt(data, RSAEncryptionPadding.Pkcs1);
@@ -69,7 +69,7 @@ public static partial class ServerSecurity
     /// <returns></returns>
     public static string DecryptBase64(string[] text)
     {
-        for (int i = 0; i < text.Length; i++)
+        for (var i = 0; i < text.Length; i++)
         {
             var data = RSA.Decrypt(Convert.FromBase64String(text[i]), RSAEncryptionPadding.Pkcs1);
             text[i] = Encoding.UTF8.GetString(data);

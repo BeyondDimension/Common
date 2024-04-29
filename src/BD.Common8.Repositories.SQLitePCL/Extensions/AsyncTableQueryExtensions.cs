@@ -1,4 +1,4 @@
-namespace System;
+namespace BD.Common8.Repositories.SQLitePCL.Extensions;
 
 /// <summary>
 /// 提供查询的扩展方法

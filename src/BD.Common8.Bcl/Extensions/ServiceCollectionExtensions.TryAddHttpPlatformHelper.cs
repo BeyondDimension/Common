@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace System.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {

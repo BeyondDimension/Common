@@ -1,6 +1,7 @@
 <Project>
 	<ItemGroup>
 		<Using Include="BD.Common8.AspNetCore" />
+		<Using Include="BD.Common8.AspNetCore.Extensions" />
 		<Using Include="BD.Common8.AspNetCore.Data" />
 		<Using Include="BD.Common8.AspNetCore.Data.Abstractions" />
 		<Using Include="BD.Common8.AspNetCore.Entities" />

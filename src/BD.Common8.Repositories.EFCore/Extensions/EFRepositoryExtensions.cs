@@ -1,4 +1,4 @@
-namespace Microsoft.EntityFrameworkCore;
+namespace BD.Common8.Repositories.EFCore.Extensions;
 
 public static partial class EFRepositoryExtensions
 {
@@ -20,7 +20,7 @@ public static partial class EFRepositoryExtensions
     /// <param name="enable"></param>
     public static int SetIdentityInsert(this IEFRepository repository, bool enable)
     {
-        var sql = GetSqlSetIdentityInsert(repository, enable);
+        var sql = repository.GetSqlSetIdentityInsert(enable);
         return repository.DbContext.Database.ExecuteSqlRaw(sql);
     }
 
@@ -33,7 +33,7 @@ public static partial class EFRepositoryExtensions
     /// <returns></returns>
     public static Task<int> SetIdentityInsertAsync(this IEFRepository repository, bool enable, CancellationToken cancellationToken = default)
     {
-        var sql = GetSqlSetIdentityInsert(repository, enable);
+        var sql = repository.GetSqlSetIdentityInsert(enable);
         return repository.DbContext.Database.ExecuteSqlRawAsync(sql, cancellationToken);
     }
 
@@ -48,9 +48,9 @@ public static partial class EFRepositoryExtensions
         repository.DbContext.Database.OpenConnection();
         try
         {
-            SetIdentityInsert(repository, true);
+            repository.SetIdentityInsert(true);
             result = repository.DbContext.SaveChanges();
-            SetIdentityInsert(repository, false);
+            repository.SetIdentityInsert(false);
         }
         finally
         {
@@ -71,9 +71,9 @@ public static partial class EFRepositoryExtensions
         await repository.DbContext.Database.OpenConnectionAsync(cancellationToken);
         try
         {
-            await SetIdentityInsertAsync(repository, true, cancellationToken);
+            await repository.SetIdentityInsertAsync(true, cancellationToken);
             result = await repository.DbContext.SaveChangesAsync(cancellationToken);
-            await SetIdentityInsertAsync(repository, false, cancellationToken);
+            await repository.SetIdentityInsertAsync(false, cancellationToken);
         }
         finally
         {
@@ -93,7 +93,7 @@ public static partial class EFRepositoryExtensions
         IEnumerable<TEntity> entities) where TEntity : class
     {
         repository.Entity.AddRange(entities);
-        var result = IdentityInsertSaveChanges(repository);
+        var result = repository.IdentityInsertSaveChanges();
         return result;
     }
 
@@ -110,7 +110,7 @@ public static partial class EFRepositoryExtensions
         CancellationToken cancellationToken = default) where TEntity : class
     {
         await repository.Entity.AddRangeAsync(entities, cancellationToken);
-        var result = await IdentityInsertSaveChangesAsync(repository, cancellationToken);
+        var result = await repository.IdentityInsertSaveChangesAsync(cancellationToken);
         return result;
     }
 

@@ -22,7 +22,7 @@ public class PasswordValidatorImpl(IdentityErrorDescriber? errors = null) : IPas
     /// <param name="user">The user whose password should be validated.</param>
     /// <param name="password">The password supplied for validation</param>
     /// <returns>The task object representing the asynchronous operation.</returns>
-    public virtual ValueTask<IdentityResult> ValidateAsync(IUserManager manager, SysUser user, string? password)
+    public virtual ValueTask<IdentityResult> ValidateAsync(IUserManager manager, BMUser user, string? password)
     {
         ArgumentNullException.ThrowIfNull(password);
         ArgumentNullException.ThrowIfNull(manager);

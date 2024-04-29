@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>
 /// 提供用于配置和添加 DbContext 到应用程序的扩展方法
@@ -30,9 +30,7 @@ public static partial class AddDbContext_ServiceCollectionExtensions
         SqlConstants.DatabaseProvider = databaseProvider;
         var isPostgreSQL = SqlConstants.DatabaseProvider == SqlConstants.PostgreSQL;
         if (isPostgreSQL)
-        {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-        }
         if (addDbContext)
         {
             var connectionString = builder.Configuration.GetConnectionString(connectionStringKeyName);

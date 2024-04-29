@@ -8,12 +8,18 @@ public static partial class ServiceCollectionExtensions
     {
         if (!appSettings.NotUseForwardedHeaders)
         {
-            // https://docs.microsoft.com/zh-cn/aspnet/core/host-and-deploy/linux-nginx#use-a-reverse-proxy-server
-            // Nginx 反向代理需要的配置，如果不适用反向代理部署则注释下面这行
-            builder.UseForwardedHeaders(new ForwardedHeadersOptions
+            ForwardedHeadersOptions o = new()
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
-            });
+                RequireHeaderSymmetry = false,
+                ForwardLimit = null,
+            };
+            var knownProxies = appSettings.GetForwardedHeadersKnownProxies();
+            foreach (var item in knownProxies)
+            {
+                o.KnownProxies.Add(item);
+            }
+            builder.UseForwardedHeaders(o);
         }
         return builder;
     }

@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.Common8.Http.ClientFactory.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -44,9 +44,7 @@ public static partial class ServiceCollectionExtensions
         Func<Func<HttpMessageHandler>, HttpMessageHandler> configureHandler)
     {
         if (builder is DefaultHttpClientBuilder b)
-        {
             b.ConfigureHandler = configureHandler;
-        }
         return builder;
     }
 }
