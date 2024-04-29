@@ -120,7 +120,7 @@
 		<PackageVersion Include="xunit" Version="2.7.1" />
 		<PackageVersion Include="xunit.runner.visualstudio" Version="2.5.8" />
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0" />
-		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.102.2.1" />
+		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.102.2.3" />
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>
