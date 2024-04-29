@@ -1,22 +1,5 @@
 <Project>
 	<Import Project="$(MSBuildThisFileDirectory)Sdk\Global.props" />
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\Version.props" />
-
-	<!-- 其他 | Other -->
-	<PropertyGroup>
-		<Version>$(Version_Common8Bcl)</Version>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<ImplicitUsings>true</ImplicitUsings>
-		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
-		<RepositoryType>git</RepositoryType>
-		<Company>江苏蒸汽凡星科技有限公司</Company>
-		<Copyright>©️ $(Company). All rights reserved.</Copyright>
-		<Authors>$(Company)</Authors>
-		<FileVersion>$(Version)</FileVersion>
-		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104</NoWarn>
-	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Condition="$(MSBuildProjectName) != 'BD.Common8.UnitTest' AND $(IsTestProject) != 'true'" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs">

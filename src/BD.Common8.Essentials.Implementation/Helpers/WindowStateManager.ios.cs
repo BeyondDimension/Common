@@ -21,7 +21,6 @@ public static partial class WindowStateManager
     /// <summary>
     /// Gets the currently presented <see cref="UIViewController"/>.
     /// </summary>
-    /// <param name="manager">The object to invoke this method on.</param>
     /// <param name="throwOnNull">Throws an exception if no current <see cref="UIViewController"/> can be found and this value is set to <see langword="true"/>, otherwise this method returns <see langword="null"/>.</param>
     /// <returns>The <see cref="UIViewController"/> object that is currently presented.</returns>
     /// <exception cref="NullReferenceException">Thrown if no current <see cref="UIViewController"/> can be found and <paramref name="throwOnNull"/> is set to <see langword="true"/>.</exception>
@@ -84,12 +83,9 @@ public static partial class WindowStateManager
             if (window != null && window.WindowLevel == UIWindowLevel.Normal)
                 return window;
 
-            if (window == null)
-            {
-                window = GetWindows()?
+            window ??= GetWindows()?
                     .OrderByDescending(w => w.WindowLevel)
                     .FirstOrDefault(w => w.RootViewController != null && w.WindowLevel == UIWindowLevel.Normal);
-            }
 
             return window;
         }

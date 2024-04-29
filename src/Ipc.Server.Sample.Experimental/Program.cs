@@ -318,7 +318,7 @@ sealed partial class TodoServiceImpl : ITodoService
         throw new ApplicationException("test by Exception2.");
     }
 
-    public async IAsyncEnumerable<ApiRspImpl<Todo>> Exception3(CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<ApiRspImpl<Todo>> Exception3([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         await Task.Delay(31, cancellationToken);
         ApiRspImpl<Todo> result;
@@ -328,7 +328,7 @@ sealed partial class TodoServiceImpl : ITodoService
         }
         catch (Exception ex)
         {
-            result = ex;
+            result = ex!;
         }
         yield return result;
     }

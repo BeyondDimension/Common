@@ -1,4 +1,5 @@
 #pragma warning disable CA1050 // 在命名空间中声明类型
+#pragma warning disable IDE0005 // Using directive is unnecessary.
 
 global using static ProjectUtils;
 

@@ -15,10 +15,29 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     /// </summary>
     const string DirName = "Settings";
 
+    /// <summary>
+    /// 是否写入文件
+    /// </summary>
     protected readonly bool isWriteFile;
+
+    /// <summary>
+    /// Json 序列化选项
+    /// </summary>
     protected readonly SystemTextJsonSerializerOptions options;
+
+    /// <summary>
+    /// 设置模型类型哈希集合
+    /// </summary>
     protected readonly HashSet<Type> SettingsModelTypes = [];
+
+    /// <summary>
+    /// 缓存设置文件路径字典
+    /// </summary>
     protected readonly ConcurrentDictionary<Type, (string Name, string FilePath)> CacheSettingsFilePaths = [];
+
+    /// <summary>
+    /// 设置项监视器字典
+    /// </summary>
     protected readonly ConcurrentDictionary<Type, object> optionsMonitors = [];
 
     /// <summary>
@@ -115,6 +134,14 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         utf8Json.Flush();
     }
 
+    /// <summary>
+    /// 根据设置文件保存路径反序列化实例
+    /// </summary>
+    /// <typeparam name="TSettingsModel"></typeparam>
+    /// <param name="settingsFilePath"></param>
+    /// <param name="settingsFileNameWithoutExtension"></param>
+    /// <param name="options"></param>
+    /// <returns></returns>
     protected static TSettingsModel? Deserialize<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(string settingsFilePath, string settingsFileNameWithoutExtension, SystemTextJsonSerializerOptions options)
     {
         SystemTextJsonObject? jobj;
@@ -244,6 +271,15 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         return (isInvalid, exception, settingsFileNameWithoutExtension);
     }
 
+    /// <summary>
+    /// 创建 <see cref="IOptionsMonitor{TOptions}"/>
+    /// </summary>
+    /// <typeparam name="TSettingsModel"></typeparam>
+    /// <param name="settingsFilePath"></param>
+    /// <param name="settingsFileNameWithoutExtension"></param>
+    /// <param name="settingsModel"></param>
+    /// <param name="settingsLoadService"></param>
+    /// <returns></returns>
     protected virtual OptionsMonitor<TSettingsModel> CreateOptionsMonitor<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(
         string settingsFilePath,
         string settingsFileNameWithoutExtension,
@@ -274,6 +310,11 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         return Ioc.Get(typeOptionsMonitor);
     }
 
+    /// <summary>
+    /// 根据类型名与模型值字节数组保存设置项
+    /// </summary>
+    /// <param name="typeFullName"></param>
+    /// <param name="bytes"></param>
     public void Save(string typeFullName, byte[] bytes)
     {
         var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
@@ -292,6 +333,11 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         }
     }
 
+    /// <summary>
+    /// 变更设置项
+    /// </summary>
+    /// <param name="typeFullName"></param>
+    /// <param name="bytes"></param>
     public void Change(string typeFullName, byte[] bytes)
     {
         var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
@@ -310,6 +356,11 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         }
     }
 
+    /// <summary>
+    /// 强制保存设置项
+    /// </summary>
+    /// <typeparam name="TSettingsModel"></typeparam>
+    /// <param name="monitor"></param>
     public void ForceSave<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(
         IOptionsMonitor<TSettingsModel> monitor) where TSettingsModel : class, new()
     {
@@ -348,6 +399,10 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         void Change(byte[] bytes);
     }
 
+    /// <summary>
+    /// <see cref="IOptionsMonitor{TOptions}"/> 的实现类
+    /// </summary>
+    /// <typeparam name="TSettingsModel"></typeparam>
     protected class OptionsMonitor<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel> :
         IOptionsMonitor<TSettingsModel>,
@@ -355,17 +410,49 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         IInternalOptionsMonitor
         where TSettingsModel : class, new()
     {
+        /// <summary>
+        /// 设置项保存文件名
+        /// </summary>
         protected readonly string settingsFileName;
+
+        /// <summary>
+        /// 设置项保存文件路径
+        /// </summary>
         protected readonly string settingsFilePath;
 #if !(ANDROID || IOS)
+        /// <summary>
+        /// 设置项保存文件提供者
+        /// </summary>
         protected readonly PhysicalFileProvider fileProvider;
 #endif
+
+        /// <summary>
+        /// 设置项保存文件名不包含扩展名
+        /// </summary>
         protected readonly string settingsFileNameWithoutExtension;
+
+        /// <summary>
+        /// 设置项加载服务
+        /// </summary>
         protected readonly SettingsLoadServiceImpl settingsLoadService;
 
+        /// <summary>
+        /// 是否正在保存中
+        /// </summary>
         protected bool isSaveing;
+
+        /// <summary>
+        /// 上一个保存中的设置模型项实例
+        /// </summary>
         protected TSettingsModel? beforeSavingSettingsModel = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionsMonitor{TSettingsModel}"/> class.
+        /// </summary>
+        /// <param name="settingsFilePath"></param>
+        /// <param name="settingsFileNameWithoutExtension"></param>
+        /// <param name="settingsModel"></param>
+        /// <param name="settingsLoadService"></param>
         public OptionsMonitor(string settingsFilePath,
             string settingsFileNameWithoutExtension,
             TSettingsModel settingsModel,
@@ -383,12 +470,23 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             settingsFileName = Path.GetFileName(settingsFilePath);
         }
 
+        /// <summary>
+        /// 当前设置项模型实例
+        /// </summary>
         public TSettingsModel SettingsModel { get; set; }
 
+        /// <summary>
+        /// 更新设置项模型
+        /// </summary>
+        /// <param name="value"></param>
         protected virtual void UpdateSettingsModel(TSettingsModel value)
         {
         }
 
+        /// <summary>
+        /// 保存设置项
+        /// </summary>
+        /// <param name="bytes"></param>
         public void Save(byte[] bytes)
         {
             TSettingsModel? settingsModel = null;
@@ -406,6 +504,10 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             }
         }
 
+        /// <summary>
+        /// 变更设置项
+        /// </summary>
+        /// <param name="bytes"></param>
         public virtual void Change(byte[] bytes) { }
 
         /// <summary>
@@ -426,6 +528,11 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                 Save();
         }
 
+        /// <summary>
+        /// 打开或创建文件流
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected static FileStream? OpenOrCreate(string path)
         {
@@ -437,7 +544,9 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                                 FileAccess.Write,
                                 FileShare.ReadWrite | FileShare.Delete);
             }
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
             catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量，但从未使用过
             {
 #if DEBUG
                 Console.WriteLine(ex);
@@ -446,8 +555,14 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             }
         }
 
+        /// <summary>
+        /// 保存重试次数
+        /// </summary>
         protected const int saveRetryCount = 3;
 
+        /// <summary>
+        /// 保存设置项
+        /// </summary>
         public virtual void Save()
         {
             if (!settingsLoadService.isWriteFile)
@@ -463,7 +578,9 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                 IOPath.FileTryDelete(settingsFilePath2);
                 File.Move(settingsFilePath, settingsFilePath2);
             }
+#pragma warning disable CS0168 // 声明了变量，但从未使用过
             catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量，但从未使用过
             {
 #if DEBUG
                 Console.WriteLine("bak settings file fail, ex: " + ex);
@@ -501,6 +618,12 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             }
         }
 
+        /// <summary>
+        /// 比较两个设置项是否相等
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected static bool Equals(TSettingsModel l, TSettingsModel r)
         {
@@ -509,12 +632,19 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             return l2.SequenceEqual(r2);
         }
 
+        /// <inheritdoc/>
         public virtual TSettingsModel CurrentValue => SettingsModel;
 
+        /// <inheritdoc/>
         public virtual TSettingsModel Value => SettingsModel;
 
+        /// <inheritdoc/>
         public virtual TSettingsModel Get(string? name) => SettingsModel;
 
+        /// <summary>
+        /// 根据当前设置文件保存路径反序列化实例
+        /// </summary>
+        /// <returns></returns>
         protected virtual TSettingsModel? Deserialize()
         {
             try
@@ -530,6 +660,11 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
 
         event Action<TSettingsModel, string?>? ChangeListener;
 
+        /// <summary>
+        /// 变更设置项时监听
+        /// </summary>
+        /// <param name="listener"></param>
+        /// <returns></returns>
         public virtual IDisposable? OnChange(Action<TSettingsModel, string?> listener)
         {
 #if ANDROID || IOS

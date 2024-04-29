@@ -27,7 +27,7 @@ sealed class SysMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext,
     //    }).ToArray() : null
     //};
     readonly IMapper mapper = mapper;
-    static Comparison<SysMenu> menuComparisonByOrder = (a, b) => (int)(a.Order - b.Order);
+    static readonly Comparison<SysMenu> menuComparisonByOrder = (a, b) => (int)(a.Order - b.Order);
 
     public async Task<SysMenuTreeItem[]> GetTreeAsync()
     {
@@ -156,7 +156,7 @@ sealed class SysMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext,
             x.Key,
             Buttons = x.Select(item => GetMenuSysButtonModel(sysButtonDis, item.ButtonId))
             .Where(x => x != null && !x.Disable)
-            .Select(x => x!)
+            .Select(x => x!),
         }).ToDictionary(x => x.Key, x => x.Buttons);
         var menus = await db.Menus
             .AsNoTrackingWithIdentityResolution()
@@ -169,7 +169,7 @@ sealed class SysMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext,
 
         return menus.Select(x => MapToTreeModel(dicMenuButton, x))
             .Where(x => x != null && x.Buttons != null)
-            .OrderBy(x => x.Order)
+            .OrderBy(x => x!.Order)
             .Select(x => x!).ToArray();
     }
 
@@ -191,9 +191,9 @@ sealed class SysMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext,
             Children = item.Children?
             .Select(citem => MapToTreeModel(dic, citem))
             .Where(citem => citem != null && citem?.Buttons != null)
-            .OrderBy(x => x.Order)
+            .OrderBy(x => x!.Order)
             .Select(x => x!)
-            .ToArray()
+            .ToArray(),
         };
         return destination;
     }
@@ -693,6 +693,7 @@ sealed class SysMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext,
 
     public async Task<SysMenuModel[]?> GetUserMenu2Async(Guid userId, Guid tenantId)
     {
+        await Task.CompletedTask;
         //var menuIds = await GetRoleMenus(userId, tenantId);
         //if (menuIds.Length > 0)
         //{

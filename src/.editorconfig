@@ -538,3 +538,9 @@ dotnet_diagnostic.CA1069.severity = silent
 
 # CA1822: 将成员标记为 static
 dotnet_diagnostic.CA1822.severity = none
+
+# SA1002: Semicolons should be spaced correctly
+dotnet_diagnostic.SA1002.severity = error
+
+# CA1834: 若适用，请考虑使用 "StringBuilder.Append(char)"
+dotnet_diagnostic.CA1834.severity = error

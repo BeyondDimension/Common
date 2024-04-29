@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{C30496
 		src\Directory.Build.targets = src\Directory.Build.targets
 		src\Directory.Packages.props = src\Directory.Packages.props
 		src\NativeMethods.txt = src\NativeMethods.txt
+		src\Version.props = src\Version.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.WebRoot", "1.WebRoot", "{20B2A606-1299-4264-8EF9-0FFE95CC83AC}"
@@ -224,9 +225,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.HuaweiCloud.SDK.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{0EC69413-11EA-4847-A176-BCEE6DCAC4D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.SourceGenerator.Repositories", "src\BD.Common8.SourceGenerator.Repositories\BD.Common8.SourceGenerator.Repositories.csproj", "{1128BC28-5820-49DC-A7CA-4448B428474A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.Repositories", "src\BD.Common8.SourceGenerator.Repositories\BD.Common8.SourceGenerator.Repositories.csproj", "{1128BC28-5820-49DC-A7CA-4448B428474A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common8.SourceGenerator.Repositories.Test", "src\BD.Common8.SourceGenerator.Repositories.Test\BD.Common8.SourceGenerator.Repositories.Test.csproj", "{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.Repositories.Test", "src\BD.Common8.SourceGenerator.Repositories.Test\BD.Common8.SourceGenerator.Repositories.Test.csproj", "{B14E7C8D-C53C-4276-8D6F-9E09C33EE9BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{79E54C2E-E20E-40D1-82F0-3F5FFC39B291}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

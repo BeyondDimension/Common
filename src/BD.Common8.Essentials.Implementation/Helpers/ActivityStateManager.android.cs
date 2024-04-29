@@ -15,7 +15,6 @@ public static partial class ActivityStateManager
     /// <summary>
     /// Gets the <see cref="Activity"/> object that represents the application's current activity.
     /// </summary>
-    /// <param name="manager">The object to invoke this method on.</param>
     /// <param name="throwOnNull">Throws an exception if no current <see cref="Activity"/> can be found and this value is set to <see langword="true"/>, otherwise this method returns <see langword="null"/>.</param>
     /// <exception cref="NullReferenceException">Thrown if no current <see cref="Activity"/> can be found and <paramref name="throwOnNull"/> is set to <see langword="true"/>.</exception>
     [SupportedOSPlatform("android")]

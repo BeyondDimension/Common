@@ -48,29 +48,29 @@ static partial class Program
                        where m.ReturnType.IsGenericType && m.ReturnType.GetGenericTypeDefinition() == typeof(Task<>)
                        select m).ToArray();
 
-        static object?[]? GetMethodParas(MethodInfo method)
-        {
-            var types = method.GetParameterTypes();
-            if (types != null && types.Length != 0)
-            {
-                return GetMethodParas(types).ToArray();
-                static IEnumerable<object?> GetMethodParas(IEnumerable<Type> types)
-                {
-                    foreach (var type in types)
-                    {
-                        yield return GeneratorRandomValueByType(type);
-                    }
-                }
-            }
-            return null;
-        }
+        //static object?[]? GetMethodParas(MethodInfo method)
+        //{
+        //    var types = method.GetParameterTypes();
+        //    if (types != null && types.Length != 0)
+        //    {
+        //        return GetMethodParas(types).ToArray();
+        //        static IEnumerable<object?> GetMethodParas(IEnumerable<Type> types)
+        //        {
+        //            foreach (var type in types)
+        //            {
+        //                yield return GeneratorRandomValueByType(type);
+        //            }
+        //        }
+        //    }
+        //    return null;
+        //}
 
-        static Task MethodInvoke(MethodInfo method, ITodoService todoService)
-        {
-            var paras = GetMethodParas(method);
-            var result = method.Invoke(todoService, paras);
-            return (Task)result!;
-        }
+        //static Task MethodInvoke(MethodInfo method, ITodoService todoService)
+        //{
+        //    var paras = GetMethodParas(method);
+        //    var result = method.Invoke(todoService, paras);
+        //    return (Task)result!;
+        //}
 
         while (true) // 循环向服务端请求
         {
@@ -98,14 +98,14 @@ static partial class Program
                     foreach (var method in methods)
                     {
                         break;
-                        Console.WriteLine($"ThreadId: {Environment.CurrentManagedThreadId}");
+                        //Console.WriteLine($"ThreadId: {Environment.CurrentManagedThreadId}");
 
-                        var resultMethod = MethodInvoke(method, todoService);
-                        await resultMethod;
-                        Console.WriteLine($"{method.Name}: ");
-                        var resultValue = resultMethod.GetType().GetProperty(nameof(Task<object>.Result))?.GetValue(resultMethod);
-                        Console.WriteLine(Serializable.SJSON_Original(
-                            resultValue, NewtonsoftJsonFormatting.Indented));
+                        //var resultMethod = MethodInvoke(method, todoService);
+                        //await resultMethod;
+                        //Console.WriteLine($"{method.Name}: ");
+                        //var resultValue = resultMethod.GetType().GetProperty(nameof(Task<object>.Result))?.GetValue(resultMethod);
+                        //Console.WriteLine(Serializable.SJSON_Original(
+                        //    resultValue, NewtonsoftJsonFormatting.Indented));
                     }
 
                     Console.WriteLine($"{nameof(ITodoService.AsyncEnumerable)}: ");
@@ -210,8 +210,8 @@ sealed partial class TodoService_SignalR2(IIpcClientService ipcClientService)
         const string methodName = "INativeWindowServices_GetMoveMouseDownWindow";
         var result = ipcClientService.HubSendAsAsyncEnumerable<ApiRspImpl<NativeWindowModel?>>(HubUrl, methodName, [], cancellationToken: cancellationToken);
 
-        var r2 = result.ToBlockingEnumerable().ToArray();
+        //var r2 = result.ToBlockingEnumerable(cancellationToken).ToArray();
 
-        return result;
+        return result!;
     }
 }

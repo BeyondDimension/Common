@@ -12,6 +12,22 @@
 		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011</NoWarn>
 	</PropertyGroup>
 
+	<!-- 其他 | Other -->
+	<PropertyGroup>
+		<Version>$(Version_Common8Bcl)</Version>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<ImplicitUsings>true</ImplicitUsings>
+		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
+		<RepositoryType>git</RepositoryType>
+		<Company>江苏蒸汽凡星科技有限公司</Company>
+		<Copyright>©️ $(Company). All rights reserved.</Copyright>
+		<Authors>$(Company)</Authors>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104</NoWarn>
+	</PropertyGroup>
+
 	<!-- 静态本机编译 & 剪裁 | AOT & Trimmable -->
 	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
 		<IsTrimmable>true</IsTrimmable>
@@ -32,4 +48,6 @@
 	<ItemGroup>
 		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
 	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Version.props" />
 </Project>

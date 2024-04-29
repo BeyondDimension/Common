@@ -4,13 +4,13 @@ using OBS.Model;
 
 namespace BD.Common8.UnitTest;
 
-public class HuaweiObsTest
+public sealed class HuaweiObsTest
 {
-    private static ObsClient _obsClient = null!;
+    static ObsClient _obsClient = null!;
 
-    private const string bucketName = "common8-testbucket";
+    const string bucketName = "common8-testbucket";
 
-    private string? location;
+    string location = null!;
 
     [SetUp]
     public void SetUp()
