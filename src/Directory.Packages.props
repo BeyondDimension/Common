@@ -84,7 +84,7 @@
 		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.3.8" />
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
 		<PackageVersion Include="NUnit" Version="4.1.0" />
-		<PackageVersion Include="NUnit.Analyzers" Version="4.1.0" />
+		<PackageVersion Include="NUnit.Analyzers" Version="4.2.0" />
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
 		<PackageVersion Include="Peachpie.AspNetCore.Web" Version="1.1.9" />
 		<PackageVersion Include="Polly" Version="8.3.1" />
