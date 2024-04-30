@@ -1,4 +1,6 @@
 <Project>
+	<Import Project="$(MSBuildThisFileDirectory)..\Version.props" />
+
 	<!-- 全局 -->
 	<PropertyGroup>
 		<Deterministic>true</Deterministic>
@@ -48,6 +50,4 @@
 	<ItemGroup>
 		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
 	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Version.props" />
 </Project>
