@@ -90,7 +90,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class UserManagerImpl&lt;TDbContext&gt; : IUserManager, IDisposable where TDbContext : DbContext, IApplicationDbContext</code></pre>
+    <pre><code class="lang-csharp hljs">public class UserManagerImpl&lt;TDbContext&gt; : IUserManager, IDisposable where TDbContext : DbContext, IBMDbContext</code></pre>
   </div>
 
 
@@ -161,8 +161,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1__ctor_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.#ctor*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1__ctor__0_Microsoft_AspNetCore_Identity_ILookupNormalizer_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_AspNetCore_Identity_IPasswordHasher_BD_Common8_AspNetCore_Entities_SysUser__System_Collections_Generic_IEnumerable_BD_Common8_AspNetCore_Services_IPasswordValidator__Microsoft_AspNetCore_Identity_IdentityErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.#ctor(`0,Microsoft.AspNetCore.Identity.ILookupNormalizer,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Identity.IdentityOptions},Microsoft.AspNetCore.Identity.IPasswordHasher{BD.Common8.AspNetCore.Entities.SysUser},System.Collections.Generic.IEnumerable{BD.Common8.AspNetCore.Services.IPasswordValidator},Microsoft.AspNetCore.Identity.IdentityErrorDescriber)">
-  UserManagerImpl(TDbContext, ILookupNormalizer, IOptions&lt;IdentityOptions&gt;, IPasswordHasher&lt;SysUser&gt;, IEnumerable&lt;IPasswordValidator&gt;, IdentityErrorDescriber)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1__ctor__0_Microsoft_AspNetCore_Identity_ILookupNormalizer_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_AspNetCore_Identity_IPasswordHasher_BD_Common8_AspNetCore_Entities_BMUser__System_Collections_Generic_IEnumerable_BD_Common8_AspNetCore_Services_IPasswordValidator__Microsoft_AspNetCore_Identity_IdentityErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.#ctor(`0,Microsoft.AspNetCore.Identity.ILookupNormalizer,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Identity.IdentityOptions},Microsoft.AspNetCore.Identity.IPasswordHasher{BD.Common8.AspNetCore.Entities.BMUser},System.Collections.Generic.IEnumerable{BD.Common8.AspNetCore.Services.IPasswordValidator},Microsoft.AspNetCore.Identity.IdentityErrorDescriber)">
+  UserManagerImpl(TDbContext, ILookupNormalizer, IOptions&lt;IdentityOptions&gt;, IPasswordHasher&lt;BMUser&gt;, IEnumerable&lt;IPasswordValidator&gt;, IdentityErrorDescriber)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -171,7 +171,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public UserManagerImpl(TDbContext db, ILookupNormalizer keyNormalizer, IOptions&lt;IdentityOptions&gt; optionsAccessor, IPasswordHasher&lt;SysUser&gt; passwordHasher, IEnumerable&lt;IPasswordValidator&gt; passwordValidators, IdentityErrorDescriber errors)</code></pre>
+    <pre><code class="lang-csharp hljs">public UserManagerImpl(TDbContext db, ILookupNormalizer keyNormalizer, IOptions&lt;IdentityOptions&gt; optionsAccessor, IPasswordHasher&lt;BMUser&gt; passwordHasher, IEnumerable&lt;IPasswordValidator&gt; passwordValidators, IdentityErrorDescriber errors)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -182,7 +182,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
     <dd></dd>
     <dt><code>optionsAccessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityoptions">IdentityOptions</a>&gt;</dt>
     <dd></dd>
-    <dt><code>passwordHasher</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dt><code>passwordHasher</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
     <dd></dd>
     <dt><code>passwordValidators</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Services.IPasswordValidator.html">IPasswordValidator</a>&gt;</dt>
     <dd></dd>
@@ -380,7 +380,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IPasswordHasher&lt;SysUser&gt; PasswordHasher { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IPasswordHasher&lt;BMUser&gt; PasswordHasher { get; set; }</code></pre>
   </div>
 
 
@@ -389,7 +389,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -438,8 +438,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRoleAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRoleAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Guid_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRoleAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Guid)">
-  AddToRoleAsync(SysUser, Guid)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRoleAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Guid_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRoleAsync(BD.Common8.AspNetCore.Entities.BMUser,System.Guid)">
+  AddToRoleAsync(BMUser, Guid)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -448,12 +448,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual ValueTask AddToRoleAsync(SysUser user, Guid roleId)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask AddToRoleAsync(BMUser user, Guid roleId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>roleId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
     <dd></dd>
@@ -477,8 +477,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRolesAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRolesAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Collections_Generic_IEnumerable_System_String__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRolesAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Collections.Generic.IEnumerable{System.String})">
-  AddToRolesAsync(SysUser, IEnumerable&lt;string&gt;)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRolesAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Collections_Generic_IEnumerable_System_String__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.AddToRolesAsync(BD.Common8.AspNetCore.Entities.BMUser,System.Collections.Generic.IEnumerable{System.String})">
+  AddToRolesAsync(BMUser, IEnumerable&lt;string&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -487,12 +487,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; AddToRolesAsync(SysUser user, IEnumerable&lt;string&gt; roles)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; AddToRolesAsync(BMUser user, IEnumerable&lt;string&gt; roles)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>roles</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
@@ -516,8 +516,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ChangePasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ChangePasswordAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ChangePasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ChangePasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String,System.String)">
-  ChangePasswordAsync(SysUser, string, string)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ChangePasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ChangePasswordAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String,System.String)">
+  ChangePasswordAsync(BMUser, string, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -526,12 +526,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; ChangePasswordAsync(SysUser user, string currentPassword, string newPassword)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; ChangePasswordAsync(BMUser user, string currentPassword, string newPassword)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>currentPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -557,8 +557,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CheckPasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CheckPasswordAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CheckPasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CheckPasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
-  CheckPasswordAsync(SysUser, string)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CheckPasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CheckPasswordAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String)">
+  CheckPasswordAsync(BMUser, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -567,12 +567,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ValueTask&lt;bool&gt; CheckPasswordAsync(SysUser user, string password)</code></pre>
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;bool&gt; CheckPasswordAsync(BMUser user, string password)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -596,8 +596,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CreateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CreateAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CreateAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CreateAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
-  CreateAsync(SysUser, string)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CreateAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.CreateAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String)">
+  CreateAsync(BMUser, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -606,12 +606,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; CreateAsync(SysUser user, string password)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; CreateAsync(BMUser user, string password)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -705,7 +705,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; FindByIdAsync(Guid userId)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;BMUser?&gt; FindByIdAsync(Guid userId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -716,7 +716,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -742,7 +742,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; FindByNameAsync(string? userName)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;BMUser?&gt; FindByNameAsync(string? userName)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -753,7 +753,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -779,7 +779,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; FindByNameAsync(string? userName, Guid tenantId)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;BMUser?&gt; FindByNameAsync(string? userName, Guid tenantId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -792,7 +792,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -808,8 +808,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetRolesAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetRolesAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetRolesAsync(BD.Common8.AspNetCore.Entities.SysUser)">
-  GetRolesAsync(SysUser)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetRolesAsync_BD_Common8_AspNetCore_Entities_BMUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetRolesAsync(BD.Common8.AspNetCore.Entities.BMUser)">
+  GetRolesAsync(BMUser)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -818,12 +818,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;string&gt;&gt; GetRolesAsync(SysUser user)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;string&gt;&gt; GetRolesAsync(BMUser user)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
   </dl>
 
@@ -855,7 +855,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;SysUser?&gt; GetUserAsync(ClaimsPrincipal principal)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;BMUser?&gt; GetUserAsync(ClaimsPrincipal principal)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -866,7 +866,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -882,8 +882,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetUserNameAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetUserNameAsync(BD.Common8.AspNetCore.Entities.SysUser)">
-  GetUserNameAsync(SysUser)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserNameAsync_BD_Common8_AspNetCore_Entities_BMUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.GetUserNameAsync(BD.Common8.AspNetCore.Entities.BMUser)">
+  GetUserNameAsync(BMUser)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -892,12 +892,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ValueTask&lt;string&gt; GetUserNameAsync(SysUser user)</code></pre>
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;string&gt; GetUserNameAsync(BMUser user)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
   </dl>
 
@@ -919,8 +919,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
-  IsInRoleAsync(SysUser, string)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String)">
+  IsInRoleAsync(BMUser, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -929,12 +929,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; IsInRoleAsync(SysUser user, string role)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; IsInRoleAsync(BMUser user, string role)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>role</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -958,8 +958,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleCoreAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleCoreAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleCoreAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleCoreAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
-  IsInRoleCoreAsync(SysUser, string)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleCoreAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsInRoleCoreAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String)">
+  IsInRoleCoreAsync(BMUser, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -968,12 +968,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task&lt;(bool isInRole, Guid roleId, SysUserRole? userRole)&gt; IsInRoleCoreAsync(SysUser user, string normalizedRole)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;(bool isInRole, Guid roleId, BMUserRole? userRole)&gt; IsInRoleCoreAsync(BMUser user, string normalizedRole)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>normalizedRole</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -981,7 +981,7 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.sysuserrole-.isinrole">isInRole</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.sysuserrole-.roleid">roleId</a>, <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserRole.html">SysUserRole</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.sysuserrole-.userrole">userRole</a>)&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.bmuserrole-.isinrole">isInRole</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.bmuserrole-.roleid">roleId</a>, <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUserRole.html">BMUserRole</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.boolean,system.guid,bd.common8.aspnetcore.entities.bmuserrole-.userrole">userRole</a>)&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -997,8 +997,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsLockedOutAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsLockedOutAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsLockedOutAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsLockedOutAsync(BD.Common8.AspNetCore.Entities.SysUser)">
-  IsLockedOutAsync(SysUser)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsLockedOutAsync_BD_Common8_AspNetCore_Entities_BMUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.IsLockedOutAsync(BD.Common8.AspNetCore.Entities.BMUser)">
+  IsLockedOutAsync(BMUser)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1007,12 +1007,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ValueTask&lt;bool&gt; IsLockedOutAsync(SysUser user)</code></pre>
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;bool&gt; IsLockedOutAsync(BMUser user)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
   </dl>
 
@@ -1073,8 +1073,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRoleAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRoleAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRoleAsync_BD_Common8_AspNetCore_Entities_SysUserRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRoleAsync(BD.Common8.AspNetCore.Entities.SysUserRole)">
-  RemoveFromRoleAsync(SysUserRole)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRoleAsync_BD_Common8_AspNetCore_Entities_BMUserRole_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRoleAsync(BD.Common8.AspNetCore.Entities.BMUserRole)">
+  RemoveFromRoleAsync(BMUserRole)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1083,12 +1083,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual ValueTask RemoveFromRoleAsync(SysUserRole userRole)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask RemoveFromRoleAsync(BMUserRole userRole)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>userRole</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUserRole.html">SysUserRole</a></dt>
+    <dt><code>userRole</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUserRole.html">BMUserRole</a></dt>
     <dd></dd>
   </dl>
 
@@ -1110,8 +1110,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRolesAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRolesAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Collections_Generic_IEnumerable_System_String__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRolesAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Collections.Generic.IEnumerable{System.String})">
-  RemoveFromRolesAsync(SysUser, IEnumerable&lt;string&gt;)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRolesAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Collections_Generic_IEnumerable_System_String__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.RemoveFromRolesAsync(BD.Common8.AspNetCore.Entities.BMUser,System.Collections.Generic.IEnumerable{System.String})">
+  RemoveFromRolesAsync(BMUser, IEnumerable&lt;string&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1120,12 +1120,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; RemoveFromRolesAsync(SysUser user, IEnumerable&lt;string&gt; roles)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; RemoveFromRolesAsync(BMUser user, IEnumerable&lt;string&gt; roles)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>roles</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
@@ -1149,8 +1149,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetLockoutEndDateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetLockoutEndDateAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetLockoutEndDateAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Nullable_System_DateTimeOffset__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetLockoutEndDateAsync(BD.Common8.AspNetCore.Entities.SysUser,System.Nullable{System.DateTimeOffset})">
-  SetLockoutEndDateAsync(SysUser, DateTimeOffset?)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetLockoutEndDateAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Nullable_System_DateTimeOffset__" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetLockoutEndDateAsync(BD.Common8.AspNetCore.Entities.BMUser,System.Nullable{System.DateTimeOffset})">
+  SetLockoutEndDateAsync(BMUser, DateTimeOffset?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1159,12 +1159,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; SetLockoutEndDateAsync(SysUser user, DateTimeOffset? lockoutEnd)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; SetLockoutEndDateAsync(BMUser user, DateTimeOffset? lockoutEnd)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>lockoutEnd</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a>?</dt>
     <dd></dd>
@@ -1188,8 +1188,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetUserNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetUserNameAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetUserNameAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
-  SetUserNameAsync(SysUser, string)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetUserNameAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.SetUserNameAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String)">
+  SetUserNameAsync(BMUser, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1198,12 +1198,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ValueTask&lt;IdentityResult&gt; SetUserNameAsync(SysUser user, string userName)</code></pre>
+    <pre><code class="lang-csharp hljs">public ValueTask&lt;IdentityResult&gt; SetUserNameAsync(BMUser user, string userName)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
     <dt><code>userName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
@@ -1298,8 +1298,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateAsync(BD.Common8.AspNetCore.Entities.SysUser)">
-  UpdateAsync(SysUser)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateAsync_BD_Common8_AspNetCore_Entities_BMUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateAsync(BD.Common8.AspNetCore.Entities.BMUser)">
+  UpdateAsync(BMUser)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1308,12 +1308,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; UpdateAsync(SysUser user)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;IdentityResult&gt; UpdateAsync(BMUser user)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
   </dl>
 
@@ -1335,8 +1335,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateNormalizedUserNameAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateNormalizedUserNameAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateNormalizedUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateNormalizedUserNameAsync(BD.Common8.AspNetCore.Entities.SysUser)">
-  UpdateNormalizedUserNameAsync(SysUser)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateNormalizedUserNameAsync_BD_Common8_AspNetCore_Entities_BMUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateNormalizedUserNameAsync(BD.Common8.AspNetCore.Entities.BMUser)">
+  UpdateNormalizedUserNameAsync(BMUser)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1345,12 +1345,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual ValueTask UpdateNormalizedUserNameAsync(SysUser user)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual ValueTask UpdateNormalizedUserNameAsync(BMUser user)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd><p>应规范化和更新其用户名的用户</p>
 </dd>
   </dl>
@@ -1374,8 +1374,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdatePasswordHash_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdatePasswordHash*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdatePasswordHash_BD_Common8_AspNetCore_Entities_SysUser_System_String_System_Boolean_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdatePasswordHash(BD.Common8.AspNetCore.Entities.SysUser,System.String,System.Boolean)">
-  UpdatePasswordHash(SysUser, string?, bool)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdatePasswordHash_BD_Common8_AspNetCore_Entities_BMUser_System_String_System_Boolean_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdatePasswordHash(BD.Common8.AspNetCore.Entities.BMUser,System.String,System.Boolean)">
+  UpdatePasswordHash(BMUser, string?, bool)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1384,12 +1384,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;IdentityResult&gt; UpdatePasswordHash(SysUser user, string? newPassword, bool validatePassword = true)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;IdentityResult&gt; UpdatePasswordHash(BMUser user, string? newPassword, bool validatePassword = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd><p>用户</p>
 </dd>
     <dt><code>newPassword</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
@@ -1419,8 +1419,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateUserAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateUserAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateUserAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateUserAsync(BD.Common8.AspNetCore.Entities.SysUser)">
-  UpdateUserAsync(SysUser)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateUserAsync_BD_Common8_AspNetCore_Entities_BMUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.UpdateUserAsync(BD.Common8.AspNetCore.Entities.BMUser)">
+  UpdateUserAsync(BMUser)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1429,12 +1429,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task&lt;IdentityResult&gt; UpdateUserAsync(SysUser user)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual Task&lt;IdentityResult&gt; UpdateUserAsync(BMUser user)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd></dd>
   </dl>
 
@@ -1456,8 +1456,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidatePasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidatePasswordAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidatePasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidatePasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
-  ValidatePasswordAsync(SysUser, string?)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidatePasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidatePasswordAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String)">
+  ValidatePasswordAsync(BMUser, string?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1466,12 +1466,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ValueTask&lt;IdentityResult&gt; ValidatePasswordAsync(SysUser user, string? password)</code></pre>
+    <pre><code class="lang-csharp hljs">protected ValueTask&lt;IdentityResult&gt; ValidatePasswordAsync(BMUser user, string? password)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd><p>用户</p>
 </dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
@@ -1498,8 +1498,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidateUserAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidateUserAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidateUserAsync_BD_Common8_AspNetCore_Entities_SysUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidateUserAsync(BD.Common8.AspNetCore.Entities.SysUser)">
-  ValidateUserAsync(SysUser)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidateUserAsync_BD_Common8_AspNetCore_Entities_BMUser_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.ValidateUserAsync(BD.Common8.AspNetCore.Entities.BMUser)">
+  ValidateUserAsync(BMUser)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1508,12 +1508,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ValueTask&lt;IdentityResult&gt; ValidateUserAsync(SysUser user)</code></pre>
+    <pre><code class="lang-csharp hljs">protected ValueTask&lt;IdentityResult&gt; ValidateUserAsync(BMUser user)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd><p>用户</p>
 </dd>
   </dl>
@@ -1537,8 +1537,8 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_VerifyPasswordAsync_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.VerifyPasswordAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_VerifyPasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.VerifyPasswordAsync(BD.Common8.AspNetCore.Entities.SysUser,System.String)">
-  VerifyPasswordAsync(SysUser, string)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_VerifyPasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_" data-uid="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl`1.VerifyPasswordAsync(BD.Common8.AspNetCore.Entities.BMUser,System.String)">
+  VerifyPasswordAsync(BMUser, string)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1547,12 +1547,12 @@ Class UserManagerImpl&lt;TDbContext&gt;  <a class="header-action link-secondary"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;PasswordVerificationResult&gt; VerifyPasswordAsync(SysUser user, string password)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual ValueTask&lt;PasswordVerificationResult&gt; VerifyPasswordAsync(BMUser user, string password)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a></dt>
+    <dt><code>user</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a></dt>
     <dd><p>应验证其密码的用户</p>
 </dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>

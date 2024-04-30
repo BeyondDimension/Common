@@ -109,6 +109,38 @@ Interface INotUseForwardedHeaders  <a class="header-action link-secondary" title
 </h2>
 
 
+  <a id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_ForwardedHeadersKnownProxies_" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.ForwardedHeadersKnownProxies*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_ForwardedHeadersKnownProxies" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.ForwardedHeadersKnownProxies">
+  ForwardedHeadersKnownProxies
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Models/Abstractions/INotUseForwardedHeaders.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配置 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions.knownproxies">KnownProxies</a>，使用英文分号分隔</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? ForwardedHeadersKnownProxies { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_NotUseForwardedHeaders_" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.NotUseForwardedHeaders*"></a>
 
   <h3 id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_NotUseForwardedHeaders" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.NotUseForwardedHeaders">
@@ -121,7 +153,7 @@ Interface INotUseForwardedHeaders  <a class="header-action link-secondary" title
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool NotUseForwardedHeaders { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">bool NotUseForwardedHeaders { get; }</code></pre>
   </div>
 
 
@@ -133,6 +165,78 @@ Interface INotUseForwardedHeaders  <a class="header-action link-secondary" title
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_GetForwardedHeadersKnownProxies_" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.GetForwardedHeadersKnownProxies*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_GetForwardedHeadersKnownProxies" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.GetForwardedHeadersKnownProxies">
+  GetForwardedHeadersKnownProxies()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Models/Abstractions/INotUseForwardedHeaders.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取用于 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.forwardedheadersoptions.knownproxies">KnownProxies</a> 的 IP 地址列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;IPAddress&gt; GetForwardedHeadersKnownProxies()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_GetForwardedHeadersKnownProxies_" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.GetForwardedHeadersKnownProxies*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Models_Abstractions_INotUseForwardedHeaders_GetForwardedHeadersKnownProxies_System_String_" data-uid="BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.GetForwardedHeadersKnownProxies(System.String)">
+  GetForwardedHeadersKnownProxies(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore/Models/Abstractions/INotUseForwardedHeaders.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;IPAddress&gt; GetForwardedHeadersKnownProxies(string? knownProxies)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>knownProxies</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.ipaddress">IPAddress</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
 
 
 

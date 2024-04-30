@@ -90,7 +90,7 @@ Class AspNetUserManager&lt;TDbContext&gt;  <a class="header-action link-secondar
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AspNetUserManager&lt;TDbContext&gt; : UserManagerImpl&lt;TDbContext&gt;, IUserManager, IDisposable where TDbContext : ApplicationDbContextBase</code></pre>
+    <pre><code class="lang-csharp hljs">public class AspNetUserManager&lt;TDbContext&gt; : UserManagerImpl&lt;TDbContext&gt;, IUserManager, IDisposable where TDbContext : BMDbContextBase</code></pre>
   </div>
 
 
@@ -129,7 +129,7 @@ Class AspNetUserManager&lt;TDbContext&gt;  <a class="header-action link-secondar
       <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByIdAsync_System_Guid_">UserManagerImpl&lt;TDbContext&gt;.FindByIdAsync(Guid)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_">UserManagerImpl&lt;TDbContext&gt;.GetRolesAsync(SysUser)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetRolesAsync_BD_Common8_AspNetCore_Entities_BMUser_">UserManagerImpl&lt;TDbContext&gt;.GetRolesAsync(BMUser)</a>
     </div>
     <div>
       <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByNameAsync_System_String_">UserManagerImpl&lt;TDbContext&gt;.FindByNameAsync(string)</a>
@@ -138,73 +138,73 @@ Class AspNetUserManager&lt;TDbContext&gt;  <a class="header-action link-secondar
       <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_FindByNameAsync_System_String_System_Guid_">UserManagerImpl&lt;TDbContext&gt;.FindByNameAsync(string, Guid)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CreateAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.CreateAsync(SysUser, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CreateAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.CreateAsync(BMUser, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdatePasswordHash_BD_Common8_AspNetCore_Entities_SysUser_System_String_System_Boolean_">UserManagerImpl&lt;TDbContext&gt;.UpdatePasswordHash(SysUser, string, bool)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdatePasswordHash_BD_Common8_AspNetCore_Entities_BMUser_System_String_System_Boolean_">UserManagerImpl&lt;TDbContext&gt;.UpdatePasswordHash(BMUser, string, bool)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidatePasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.ValidatePasswordAsync(SysUser, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidatePasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.ValidatePasswordAsync(BMUser, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidateUserAsync_BD_Common8_AspNetCore_Entities_SysUser_">UserManagerImpl&lt;TDbContext&gt;.ValidateUserAsync(SysUser)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ValidateUserAsync_BD_Common8_AspNetCore_Entities_BMUser_">UserManagerImpl&lt;TDbContext&gt;.ValidateUserAsync(BMUser)</a>
     </div>
     <div>
       <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_TryGetUserId_System_Security_Claims_ClaimsPrincipal_System_Guid__">UserManagerImpl&lt;TDbContext&gt;.TryGetUserId(ClaimsPrincipal, out Guid)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_">UserManagerImpl&lt;TDbContext&gt;.GetUserNameAsync(SysUser)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserNameAsync_BD_Common8_AspNetCore_Entities_BMUser_">UserManagerImpl&lt;TDbContext&gt;.GetUserNameAsync(BMUser)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.SetUserNameAsync(SysUser, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetUserNameAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.SetUserNameAsync(BMUser, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateAsync_BD_Common8_AspNetCore_Entities_SysUser_">UserManagerImpl&lt;TDbContext&gt;.UpdateAsync(SysUser)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateAsync_BD_Common8_AspNetCore_Entities_BMUser_">UserManagerImpl&lt;TDbContext&gt;.UpdateAsync(BMUser)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateUserAsync_BD_Common8_AspNetCore_Entities_SysUser_">UserManagerImpl&lt;TDbContext&gt;.UpdateUserAsync(SysUser)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateUserAsync_BD_Common8_AspNetCore_Entities_BMUser_">UserManagerImpl&lt;TDbContext&gt;.UpdateUserAsync(BMUser)</a>
     </div>
     <div>
       <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_GetUserAsync_System_Security_Claims_ClaimsPrincipal_">UserManagerImpl&lt;TDbContext&gt;.GetUserAsync(ClaimsPrincipal)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetLockoutEndDateAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Nullable_System_DateTimeOffset__">UserManagerImpl&lt;TDbContext&gt;.SetLockoutEndDateAsync(SysUser, DateTimeOffset?)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_SetLockoutEndDateAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Nullable_System_DateTimeOffset__">UserManagerImpl&lt;TDbContext&gt;.SetLockoutEndDateAsync(BMUser, DateTimeOffset?)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsLockedOutAsync_BD_Common8_AspNetCore_Entities_SysUser_">UserManagerImpl&lt;TDbContext&gt;.IsLockedOutAsync(SysUser)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsLockedOutAsync_BD_Common8_AspNetCore_Entities_BMUser_">UserManagerImpl&lt;TDbContext&gt;.IsLockedOutAsync(BMUser)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CheckPasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.CheckPasswordAsync(SysUser, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_CheckPasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.CheckPasswordAsync(BMUser, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_VerifyPasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.VerifyPasswordAsync(SysUser, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_VerifyPasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.VerifyPasswordAsync(BMUser, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ChangePasswordAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_System_String_">UserManagerImpl&lt;TDbContext&gt;.ChangePasswordAsync(SysUser, string, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_ChangePasswordAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_System_String_">UserManagerImpl&lt;TDbContext&gt;.ChangePasswordAsync(BMUser, string, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.IsInRoleAsync(SysUser, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.IsInRoleAsync(BMUser, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleCoreAsync_BD_Common8_AspNetCore_Entities_SysUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.IsInRoleCoreAsync(SysUser, string)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_IsInRoleCoreAsync_BD_Common8_AspNetCore_Entities_BMUser_System_String_">UserManagerImpl&lt;TDbContext&gt;.IsInRoleCoreAsync(BMUser, string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRoleAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Guid_">UserManagerImpl&lt;TDbContext&gt;.AddToRoleAsync(SysUser, Guid)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRoleAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Guid_">UserManagerImpl&lt;TDbContext&gt;.AddToRoleAsync(BMUser, Guid)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Collections_Generic_IEnumerable_System_String__">UserManagerImpl&lt;TDbContext&gt;.AddToRolesAsync(SysUser, IEnumerable&lt;string&gt;)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_AddToRolesAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Collections_Generic_IEnumerable_System_String__">UserManagerImpl&lt;TDbContext&gt;.AddToRolesAsync(BMUser, IEnumerable&lt;string&gt;)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRoleAsync_BD_Common8_AspNetCore_Entities_SysUserRole_">UserManagerImpl&lt;TDbContext&gt;.RemoveFromRoleAsync(SysUserRole)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRoleAsync_BD_Common8_AspNetCore_Entities_BMUserRole_">UserManagerImpl&lt;TDbContext&gt;.RemoveFromRoleAsync(BMUserRole)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRolesAsync_BD_Common8_AspNetCore_Entities_SysUser_System_Collections_Generic_IEnumerable_System_String__">UserManagerImpl&lt;TDbContext&gt;.RemoveFromRolesAsync(SysUser, IEnumerable&lt;string&gt;)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_RemoveFromRolesAsync_BD_Common8_AspNetCore_Entities_BMUser_System_Collections_Generic_IEnumerable_System_String__">UserManagerImpl&lt;TDbContext&gt;.RemoveFromRolesAsync(BMUser, IEnumerable&lt;string&gt;)</a>
     </div>
     <div>
       <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_NormalizeName_System_String_">UserManagerImpl&lt;TDbContext&gt;.NormalizeName(string)</a>
     </div>
     <div>
-      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateNormalizedUserNameAsync_BD_Common8_AspNetCore_Entities_SysUser_">UserManagerImpl&lt;TDbContext&gt;.UpdateNormalizedUserNameAsync(SysUser)</a>
+      <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_UpdateNormalizedUserNameAsync_BD_Common8_AspNetCore_Entities_BMUser_">UserManagerImpl&lt;TDbContext&gt;.UpdateNormalizedUserNameAsync(BMUser)</a>
     </div>
     <div>
       <a class="xref" href="BD.Common8.AspNetCore.Services.Implementation.UserManagerImpl-1.html#BD_Common8_AspNetCore_Services_Implementation_UserManagerImpl_1_Dispose">UserManagerImpl&lt;TDbContext&gt;.Dispose()</a>
@@ -264,8 +264,8 @@ Class AspNetUserManager&lt;TDbContext&gt;  <a class="header-action link-secondar
 
   <a id="BD_Common8_AspNetCore_Services_Implementation_AspNetUserManager_1__ctor_" data-uid="BD.Common8.AspNetCore.Services.Implementation.AspNetUserManager`1.#ctor*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_Implementation_AspNetUserManager_1__ctor_Microsoft_AspNetCore_Http_IHttpContextAccessor__0_Microsoft_AspNetCore_Identity_ILookupNormalizer_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_AspNetCore_Identity_IPasswordHasher_BD_Common8_AspNetCore_Entities_SysUser__System_Collections_Generic_IEnumerable_BD_Common8_AspNetCore_Services_IPasswordValidator__Microsoft_AspNetCore_Identity_IdentityErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.AspNetUserManager`1.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,`0,Microsoft.AspNetCore.Identity.ILookupNormalizer,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Identity.IdentityOptions},Microsoft.AspNetCore.Identity.IPasswordHasher{BD.Common8.AspNetCore.Entities.SysUser},System.Collections.Generic.IEnumerable{BD.Common8.AspNetCore.Services.IPasswordValidator},Microsoft.AspNetCore.Identity.IdentityErrorDescriber)">
-  AspNetUserManager(IHttpContextAccessor, TDbContext, ILookupNormalizer, IOptions&lt;IdentityOptions&gt;, IPasswordHasher&lt;SysUser&gt;, IEnumerable&lt;IPasswordValidator&gt;, IdentityErrorDescriber)
+  <h3 id="BD_Common8_AspNetCore_Services_Implementation_AspNetUserManager_1__ctor_Microsoft_AspNetCore_Http_IHttpContextAccessor__0_Microsoft_AspNetCore_Identity_ILookupNormalizer_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_AspNetCore_Identity_IPasswordHasher_BD_Common8_AspNetCore_Entities_BMUser__System_Collections_Generic_IEnumerable_BD_Common8_AspNetCore_Services_IPasswordValidator__Microsoft_AspNetCore_Identity_IdentityErrorDescriber_" data-uid="BD.Common8.AspNetCore.Services.Implementation.AspNetUserManager`1.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,`0,Microsoft.AspNetCore.Identity.ILookupNormalizer,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Identity.IdentityOptions},Microsoft.AspNetCore.Identity.IPasswordHasher{BD.Common8.AspNetCore.Entities.BMUser},System.Collections.Generic.IEnumerable{BD.Common8.AspNetCore.Services.IPasswordValidator},Microsoft.AspNetCore.Identity.IdentityErrorDescriber)">
+  AspNetUserManager(IHttpContextAccessor, TDbContext, ILookupNormalizer, IOptions&lt;IdentityOptions&gt;, IPasswordHasher&lt;BMUser&gt;, IEnumerable&lt;IPasswordValidator&gt;, IdentityErrorDescriber)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/Implementation/UserManagerImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -274,7 +274,7 @@ Class AspNetUserManager&lt;TDbContext&gt;  <a class="header-action link-secondar
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AspNetUserManager(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer keyNormalizer, IOptions&lt;IdentityOptions&gt; optionsAccessor, IPasswordHasher&lt;SysUser&gt; passwordHasher, IEnumerable&lt;IPasswordValidator&gt; passwordValidators, IdentityErrorDescriber errors)</code></pre>
+    <pre><code class="lang-csharp hljs">public AspNetUserManager(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer keyNormalizer, IOptions&lt;IdentityOptions&gt; optionsAccessor, IPasswordHasher&lt;BMUser&gt; passwordHasher, IEnumerable&lt;IPasswordValidator&gt; passwordValidators, IdentityErrorDescriber errors)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -287,7 +287,7 @@ Class AspNetUserManager&lt;TDbContext&gt;  <a class="header-action link-secondar
     <dd></dd>
     <dt><code>optionsAccessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityoptions">IdentityOptions</a>&gt;</dt>
     <dd></dd>
-    <dt><code>passwordHasher</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysUser.html">SysUser</a>&gt;</dt>
+    <dt><code>passwordHasher</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.ipasswordhasher-1">IPasswordHasher</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
     <dd></dd>
     <dt><code>passwordValidators</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Services.IPasswordValidator.html">IPasswordValidator</a>&gt;</dt>
     <dd></dd>

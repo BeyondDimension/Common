@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>文档 | BD.Common8</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ServiceCollectionExtensions | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions">
+
+
+
+  <h1 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions" class="text-break">
+Class ServiceCollectionExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMIdentity.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.AspNetCore.html">AspNetCore</a>.<a class="xref" href="BD.Common8.AspNetCore.Extensions.html">Extensions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ServiceCollectionExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ServiceCollectionExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMIdentity_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMIdentity*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMIdentity__2_Microsoft_Extensions_DependencyInjection_IServiceCollection___0_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMIdentity``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,``0)">
+  AddBMIdentity&lt;TBMAppSettings, TBMDbContext&gt;(IServiceCollection, TBMAppSettings)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMIdentity.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加后台管理系统的身份验证相关</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddBMIdentity&lt;TBMAppSettings, TBMDbContext&gt;(this IServiceCollection services, TBMAppSettings appSettings) where TBMAppSettings : BMAppSettings where TBMDbContext : DbContext, IBMDbContext, IApplicationDbContext&lt;BMUser&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+    <dt><code>TBMDbContext</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMRepositories_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMRepositories*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMRepositories__1_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMRepositories``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  AddBMRepositories&lt;TDbContext&gt;(IServiceCollection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMRepositories.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加 后端管理 仓储层</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddBMRepositories&lt;TDbContext&gt;(this IServiceCollection services) where TDbContext : DbContext, IBMDbContext</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TDbContext</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMS_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMS*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMS__2_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Byte_____0__System_Boolean_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMS``2(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Byte[],``0,,System.Boolean)">
+  AddBMS&lt;TBMAppSettings, TContext&gt;(WebApplicationBuilder, byte[], TBMAppSettings, delegate*&lt;ApplicationPartManager, void&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMS.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加后台管理系统</p>
+<ol><li>配置服务器安全密钥</li><li>添加 <a class="xref" href="BD.Common8.AspNetCore.Models.BMAppSettings.html">BMAppSettings</a> 的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions&lt;TOptions&gt;</a> 服务</li><li>配置 AutoMapper</li><li>AddDbContext</li><li>AddTenantIdentity</li><li>AddHttpContextRequestAbortedProvider</li><li>AddBMRepositories</li><li>AddBMIdentity</li><li>AddBMWebApi</li></ol>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddBMS&lt;TBMAppSettings, TContext&gt;(this WebApplicationBuilder builder, byte[] privateKey, TBMAppSettings appSettings, delegate*&lt;ApplicationPartManager, void&gt; configureApplicationPartManager = default, bool addDbContext = true) where TBMAppSettings : BMAppSettings where TContext : BMDbContextBase</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a></dt>
+    <dd></dd>
+    <dt><code>privateKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+    <dt><code>configureApplicationPartManager</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager">ApplicationPartManager</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>addDbContext</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+    <dt><code>TContext</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMWebApi_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMWebApi*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMWebApi__1_Microsoft_Extensions_DependencyInjection_IServiceCollection___0__" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMWebApi``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,``0,)">
+  AddBMWebApi&lt;TBMAppSettings&gt;(IServiceCollection, TBMAppSettings, delegate*&lt;ApplicationPartManager, void&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMWebApi.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加后台管理系统的 WebApi</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddBMWebApi&lt;TBMAppSettings&gt;(this IServiceCollection services, TBMAppSettings appSettings, delegate*&lt;ApplicationPartManager, void&gt; configureApplicationPartManager = default) where TBMAppSettings : BMAppSettings</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+    <dt><code>configureApplicationPartManager</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager">ApplicationPartManager</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Mvc_ApiBehaviorOptions__" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Mvc.ApiBehaviorOptions})">
+  ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory(IServiceCollection, Action&lt;ApiBehaviorOptions&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配置 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.invalidmodelstateresponsefactory">InvalidModelStateResponseFactory</a> 返回类型为 <a class="xref" href="../BD.Common8.Primitives.ApiResponse/BD.Common8.Models.ApiResponse.html">ApiResponse</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection ConfigureApiBehaviorOptionsInvalidModelStateResponseFactory(this IServiceCollection services, Action&lt;ApiBehaviorOptions&gt;? action = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions">ApiBehaviorOptions</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_UseBMS_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.UseBMS*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_UseBMS__1_Microsoft_AspNetCore_Builder_WebApplication___0_System_Boolean_System_Boolean_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.UseBMS``1(Microsoft.AspNetCore.Builder.WebApplication,``0,System.Boolean,System.Boolean)">
+  UseBMS&lt;TBMAppSettings&gt;(WebApplication, TBMAppSettings, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.UseBMS.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用后台管理系统</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UseBMS&lt;TBMAppSettings&gt;(this WebApplication app, TBMAppSettings appSettings, bool useRouteRoot = true, bool useDeveloperExceptionPage = false) where TBMAppSettings : BMAppSettings</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>app</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplication">WebApplication</a></dt>
+    <dd></dd>
+    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
+    <dd></dd>
+    <dt><code>useRouteRoot</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否注册根路由使用一些默认行为，开启 ApiDoc 时将跳转 /swagger/index.html，否则显示 WelcomePage</p>
+</dd>
+    <dt><code>useDeveloperExceptionPage</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否使用开发人员异常页 <a href="https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling?view=aspnetcore-8.0#developer-exception-page">https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling?view=aspnetcore-8.0#developer-exception-page</a></p>
+</dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBMAppSettings</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMIdentity.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

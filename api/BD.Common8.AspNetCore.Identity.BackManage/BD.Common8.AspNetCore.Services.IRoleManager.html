@@ -111,8 +111,8 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
 
   <a id="BD_Common8_AspNetCore_Services_IRoleManager_CreateAsync_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.CreateAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_IRoleManager_CreateAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.CreateAsync(BD.Common8.AspNetCore.Entities.SysRole)">
-  CreateAsync(SysRole)
+  <h3 id="BD_Common8_AspNetCore_Services_IRoleManager_CreateAsync_BD_Common8_AspNetCore_Entities_BMRole_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.CreateAsync(BD.Common8.AspNetCore.Entities.BMRole)">
+  CreateAsync(BMRole)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/IRoleManager.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -121,12 +121,12 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IdentityResult&gt; CreateAsync(SysRole role)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IdentityResult&gt; CreateAsync(BMRole role)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a></dt>
     <dd></dd>
   </dl>
 
@@ -148,8 +148,8 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
 
   <a id="BD_Common8_AspNetCore_Services_IRoleManager_DeleteAsync_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.DeleteAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_IRoleManager_DeleteAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.DeleteAsync(BD.Common8.AspNetCore.Entities.SysRole)">
-  DeleteAsync(SysRole)
+  <h3 id="BD_Common8_AspNetCore_Services_IRoleManager_DeleteAsync_BD_Common8_AspNetCore_Entities_BMRole_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.DeleteAsync(BD.Common8.AspNetCore.Entities.BMRole)">
+  DeleteAsync(BMRole)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/IRoleManager.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -158,12 +158,12 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IdentityResult&gt; DeleteAsync(SysRole role)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IdentityResult&gt; DeleteAsync(BMRole role)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a></dt>
     <dd></dd>
   </dl>
 
@@ -195,7 +195,7 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;SysRole?&gt; FindByIdAsync(Guid roleId)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;BMRole?&gt; FindByIdAsync(Guid roleId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -206,7 +206,7 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -232,7 +232,7 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;SysRole?&gt; FindByNameAsync(string? roleName, Guid tenantId)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;BMRole?&gt; FindByNameAsync(string? roleName, Guid tenantId)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -245,7 +245,7 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -261,8 +261,8 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
 
   <a id="BD_Common8_AspNetCore_Services_IRoleManager_UpdateAsync_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.UpdateAsync*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Services_IRoleManager_UpdateAsync_BD_Common8_AspNetCore_Entities_SysRole_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.UpdateAsync(BD.Common8.AspNetCore.Entities.SysRole)">
-  UpdateAsync(SysRole)
+  <h3 id="BD_Common8_AspNetCore_Services_IRoleManager_UpdateAsync_BD_Common8_AspNetCore_Entities_BMRole_" data-uid="BD.Common8.AspNetCore.Services.IRoleManager.UpdateAsync(BD.Common8.AspNetCore.Entities.BMRole)">
+  UpdateAsync(BMRole)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Services/IRoleManager.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -271,12 +271,12 @@ Interface IRoleManager  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;IdentityResult&gt; UpdateAsync(SysRole role)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;IdentityResult&gt; UpdateAsync(BMRole role)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.SysRole.html">SysRole</a></dt>
+    <dt><code>role</code> <a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a></dt>
     <dd></dd>
   </dl>
 
