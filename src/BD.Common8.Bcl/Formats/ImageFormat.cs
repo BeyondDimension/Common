@@ -4,9 +4,9 @@ namespace System.Formats;
 /// 图片格式
 /// <para>添加新格式操作说明：</para>
 /// <para>在 <see cref="ImageFormat"/> 添加新的格式</para>
-/// <para>在 <see cref="ImageFormatEnumExtensions.GetExtension(ImageFormat)"/> 添加新的 case</para>
-/// <para>在 <see cref="ImageFormatEnumExtensions.GetMIME(ImageFormat)"/> 添加新的 case</para>
-/// <para>在 <see cref="ImageFormatEnumExtensions.GetMagicNumber(ImageFormat)"/> 添加新的 case</para>
+/// <para>在 <see cref="FormatsExtensions.GetExtension(ImageFormat)"/> 添加新的 case</para>
+/// <para>在 <see cref="FormatsExtensions.GetMIME(ImageFormat)"/> 添加新的 case</para>
+/// <para>在 <see cref="FormatsExtensions.GetMagicNumber(ImageFormat)"/> 添加新的 case</para>
 /// </summary>
 public enum ImageFormat : byte
 {

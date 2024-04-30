@@ -61,11 +61,6 @@ static partial class SecurityPlatformHelper
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static string GetIOPlatformSerialNumber()
         {
-            // 禁止反射调用此函数
-            var caller = new StackTrace().GetFrame(1)?.GetMethod()?.DeclaringType;
-            if (typeof(MachineUniqueIdentifier).Assembly != caller?.Assembly)
-                throw new InvalidOperationException("Direct invocation of this method is not allowed.");
-
             var value = string.Empty;
             var matching = IOServiceMatching("IOPlatformExpertDevice");
             var platformExpert = IOServiceGetMatchingService(0, matching);
