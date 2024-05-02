@@ -113,7 +113,7 @@
 		<PackageVersion Include="System.Text.Json" Version="8.0.3" />
 		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0" />
-		<PackageVersion Include="TaskScheduler" Version="2.10.1" />
+		<PackageVersion Include="TaskScheduler" Version="2.11.0" />
 		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
 		<PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.6" />
 		<PackageVersion Include="Xamarin.Google.Android.Material" Version="1.10.0.3" />
