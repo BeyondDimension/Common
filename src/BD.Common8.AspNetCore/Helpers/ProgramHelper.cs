@@ -97,7 +97,7 @@ public static partial class ProgramHelper
         Console.Write('\n');
 
         Console.Write("OSArchitecture: ");
-        Console.Write(RuntimeInformation.OSArchitecture);
+        Console.Write(OSHelper.Architecture);
         Console.Write('\n');
 
         Console.Write("ProcessArchitecture: ");
@@ -164,12 +164,6 @@ public static partial class ProgramHelper
     /// <summary>
     /// 适用于 ASP.NET Core 6.0+ 中新的最小托管模型的代码
     /// </summary>
-    /// <param name="projectName"></param>
-    /// <param name="args"></param>
-    /// <param name="configureServices"></param>
-    /// <param name="configure"></param>
-    /// <param name="builder"></param>
-    /// <param name="jsonTypeInfoResolver"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static unsafe void Main(
        string projectName,
@@ -177,7 +171,8 @@ public static partial class ProgramHelper
        delegate* managed<WebApplicationBuilder, void> configureServices = default,
        delegate* managed<WebApplication, void> configure = default,
        WebApplicationBuilder? builder = default,
-       IJsonTypeInfoResolver? jsonTypeInfoResolver = default)
+       IJsonTypeInfoResolver? jsonTypeInfoResolver = default,
+       bool consoleWriteInfo = false)
     {
         if (!string.IsNullOrWhiteSpace(projectName))
             ProjectName = projectName;
@@ -228,7 +223,8 @@ public static partial class ProgramHelper
             Console.OutputEncoding = Encoding.Unicode; // 使用 UTF16 编码输出控制台文字
             CalcVersion(callingAssembly);
 
-            ConsoleWriteInfo(projectName);
+            if (consoleWriteInfo)
+                ConsoleWriteInfo(projectName);
 
             app.Run();
         }
