@@ -1,4 +1,4 @@
-namespace BD.Common8.SourceGenerator.Repositories.Models;
+namespace BD.Common8.SourceGenerator.Repositories.Models.Attributes;
 
 /// <summary>
 /// 配置式后台管理系统 CURD 增量源码生成特性

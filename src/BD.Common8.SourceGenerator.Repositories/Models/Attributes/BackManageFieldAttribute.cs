@@ -1,4 +1,4 @@
-namespace BD.Common8.SourceGenerator.Repositories.Models;
+namespace BD.Common8.SourceGenerator.Repositories.Models.Attributes;
 
 /// <summary>
 /// 用于后台管理添加或编辑的字段特性
