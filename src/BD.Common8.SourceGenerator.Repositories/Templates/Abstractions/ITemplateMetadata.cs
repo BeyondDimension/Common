@@ -1,4 +1,4 @@
-using GenerateRepositories = BD.Common8.SourceGenerator.Repositories.Models.GenerateRepositoriesAttribute;
+using GenerateRepositories = BD.Common8.SourceGenerator.Repositories.Models.Attributes.GenerateRepositoriesAttribute;
 
 namespace BD.Common8.SourceGenerator.Repositories.Templates.Abstractions;
 

@@ -12,6 +12,7 @@
 		<Using Include="BD.Common8.SourceGenerator.Repositories.Enums" />
 		<Using Include="BD.Common8.SourceGenerator.Repositories.Helpers" />
 		<Using Include="BD.Common8.SourceGenerator.Repositories.Models" />
+		<Using Include="BD.Common8.SourceGenerator.Repositories.Models.Attributes" />
 		<Using Include="BD.Common8.SourceGenerator.Repositories.Templates" />
 		<Using Include="BD.Common8.SourceGenerator.Repositories.Templates.Abstractions" />
 	</ItemGroup>
