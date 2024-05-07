@@ -60,8 +60,21 @@ public sealed class BackManageFieldAttribute : Attribute
                 Query = Convert.ToBoolean(value);
                 break;
             case nameof(QueryStringWhereType):
-                QueryStringWhereType = value == null ? default : (StringWhereType)value;
+                QueryStringWhereType = value == null ? default : TryParseStringWhereType(value);
                 break;
+        }
+    }
+
+    StringWhereType TryParseStringWhereType(object value)
+    {
+        try
+        {
+            return (StringWhereType)value;
+        }
+        catch
+        {
+            Enum.TryParse(value!.ToString(), out StringWhereType result);
+            return result;
         }
     }
 }

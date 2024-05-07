@@ -168,7 +168,7 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 BackManageCanDelete = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageAddMethodImplType):
-                BackManageAddMethodImplType = (RepositoryMethodImplType)value!;
+                BackManageAddMethodImplType = TryParseMethodImplType(value!);
                 break;
             case nameof(BackManageEditModel):
                 BackManageEditModel = Convert.ToBoolean(value);
@@ -180,7 +180,7 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 BackManageEditModelReadOnly = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageEditMethodImplType):
-                BackManageEditMethodImplType = (RepositoryMethodImplType)value!;
+                BackManageEditMethodImplType = TryParseMethodImplType(value!);
                 break;
             case nameof(BackManageTableModel):
                 BackManageTableModel = Convert.ToBoolean(value);
@@ -189,7 +189,7 @@ public sealed class GenerateRepositoriesAttribute : Attribute
                 BackManageCanTable = Convert.ToBoolean(value);
                 break;
             case nameof(BackManageTableMethodImplType):
-                BackManageTableMethodImplType = (RepositoryMethodImplType)value!;
+                BackManageTableMethodImplType = TryParseMethodImplType(value!);
                 break;
             case nameof(DefaultOrderBy):
                 DefaultOrderBy = value?.ToString();
@@ -224,6 +224,19 @@ public sealed class GenerateRepositoriesAttribute : Attribute
             case nameof(ModuleName):
                 ModuleName = value?.ToString() ?? throw new ArgumentNullException(nameof(value));
                 break;
+        }
+    }
+
+    RepositoryMethodImplType TryParseMethodImplType(object value)
+    {
+        try
+        {
+            return (RepositoryMethodImplType)value;
+        }
+        catch
+        {
+            Enum.TryParse(value!.ToString(), out RepositoryMethodImplType result);
+            return result;
         }
     }
 }
