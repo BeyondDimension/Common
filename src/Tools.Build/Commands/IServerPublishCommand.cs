@@ -18,11 +18,12 @@ public interface IServerPublishCommand : ICommand
         var input = new Option<string>("--input", "发布的项目组，输入 a、all 发布全部，使用逗号分隔符");
         var push_domain = new Option<string>("--push_domain", "推送的域名");
         var push_only = new Option<bool>("--push_only");
+        var tag_ver = new Option<string>("--tag_ver");
         var command = new Command(CommandName, "服务端发布命令")
         {
-            no_err, push_name, input, push_domain, push_only,
+            no_err, push_name, input, push_domain, push_only, tag_ver,
         };
-        command.SetHandler(Handler, no_err, push_name, input, push_domain, push_only);
+        command.SetHandler(Handler, no_err, push_name, input, push_domain, push_only, tag_ver);
         return command;
     }
 
@@ -30,7 +31,7 @@ public interface IServerPublishCommand : ICommand
 
     private static bool hasError = false;
 
-    static async Task<int> Handler(bool no_err, string push_name, string input, string push_domain, bool push_only)
+    static async Task<int> Handler(bool no_err, string push_name, string input, string push_domain, bool push_only, string tag_ver)
     {
         int exitCode = 0;
         try
@@ -43,7 +44,7 @@ public interface IServerPublishCommand : ICommand
                 cts.Cancel();
             };
 
-            await HandlerCore(push_name, input, push_domain, push_only, cts.Token);
+            await HandlerCore(push_name, input, push_domain, push_only, tag_ver, cts.Token);
         }
         finally
         {
@@ -62,7 +63,7 @@ public interface IServerPublishCommand : ICommand
 
     private static readonly string projPath = ROOT_ProjPath;
 
-    private static async Task HandlerCore(string push_name, string input, string push_domain, bool push_only, CancellationToken cancellationToken)
+    private static async Task HandlerCore(string push_name, string input, string push_domain, bool push_only, string tag_ver, CancellationToken cancellationToken)
     {
         ServerPublishConfig? config = null;
         MemoryStream? configMemoryStream = null;
@@ -82,7 +83,7 @@ public interface IServerPublishCommand : ICommand
 
             try
             {
-                await Publish(projPath, config, push_name, input, push_domain, push_only, cancellationToken);
+                await Publish(projPath, config, push_name, input, push_domain, push_only, tag_ver, cancellationToken);
             }
             finally
             {
@@ -158,7 +159,7 @@ public interface IServerPublishCommand : ICommand
 
     private static readonly char[] separator = [',', '，', '\\', '、', '|'];
 
-    private static async Task Publish(string projPath, ServerPublishConfig config, string push_name, string? input, string push_domain, bool push_only, CancellationToken cancellationToken)
+    private static async Task Publish(string projPath, ServerPublishConfig config, string push_name, string? input, string push_domain, bool push_only, string tag_ver, CancellationToken cancellationToken)
     {
         var projects = config.Projects;
         if (projects == null || projects.Length == 0)
@@ -446,8 +447,15 @@ public interface IServerPublishCommand : ICommand
 
         if (domains != null && domains.Length != 0)
         {
+            if (string.IsNullOrWhiteSpace(tag_ver))
+            {
+                tag_ver = "latest";
+            }
+
+            var tag_with_push_array = domains.SelectMany(domain => proj_datas.ToArray().Select(y => KeyValuePair.Create(y.Key, (y.Value, domain)))).ToArray();
+
             await ForEachAsync(
-                domains.SelectMany(domain => proj_datas.ToArray().Select(y => KeyValuePair.Create(y.Key, (y.Value, domain)))),
+                tag_with_push_array,
                 cancellationToken,
                 async (item, cancellationToken) =>
             {
@@ -458,7 +466,7 @@ public interface IServerPublishCommand : ICommand
                 var tagProcess = Process.Start(new ProcessStartInfo
                 {
                     FileName = "docker",
-                    Arguments = $"tag {dockerfileTag} {domain}/{push_name}/{dockerfileTag}:latest",
+                    Arguments = $"tag {dockerfileTag} {domain}/{push_name}/{dockerfileTag}:{tag_ver}",
                 });
                 tagProcess.ThrowIsNull();
                 try
@@ -473,7 +481,7 @@ public interface IServerPublishCommand : ICommand
                 var pushProcess = Process.Start(new ProcessStartInfo
                 {
                     FileName = "docker",
-                    Arguments = $"push {domain}/{push_name}/{dockerfileTag}:latest",
+                    Arguments = $"push {domain}/{push_name}/{dockerfileTag}:{tag_ver}",
                 });
                 pushProcess.ThrowIsNull();
                 try
