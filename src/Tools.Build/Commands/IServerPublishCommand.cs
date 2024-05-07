@@ -292,7 +292,7 @@ public interface IServerPublishCommand : ICommand
                 if (process == null)
                     return;
 
-                Console.WriteLine($"dotnet publish({configuration})：{proj.ProjectName}");
+                Console.WriteLine($"dotnet publish start({configuration})：{proj.ProjectName}");
 
                 bool isKillProcess = false;
                 void KillProcess()
@@ -330,13 +330,13 @@ public interface IServerPublishCommand : ICommand
 
                     if (exitCode == 0)
                     {
-                        Console.WriteLine($"dotnet publish({configuration})：{proj.ProjectName}");
+                        Console.WriteLine($"dotnet publish end({configuration})：{proj.ProjectName}");
                     }
                     else
                     {
                         if (hasError != true)
                             hasError = true;
-                        Console.WriteLine($"dotnet publish({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
+                        Console.WriteLine($"dotnet publish end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
                     }
                 }
                 finally
@@ -372,7 +372,7 @@ public interface IServerPublishCommand : ICommand
                     return;
 
                 var configuration = config.GetConfig();
-                Console.WriteLine($"docker build({configuration})：{proj.ProjectName}");
+                Console.WriteLine($"docker build start({configuration})：{proj.ProjectName}");
 
                 bool isKillProcess = false;
                 void KillProcess()
@@ -410,13 +410,13 @@ public interface IServerPublishCommand : ICommand
 
                     if (exitCode == 0)
                     {
-                        Console.WriteLine($"docker build({configuration})：{proj.ProjectName}");
+                        Console.WriteLine($"docker build end({configuration})：{proj.ProjectName}");
                     }
                     else
                     {
                         if (hasError != true)
                             hasError = true;
-                        Console.WriteLine($"docker build({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
+                        Console.WriteLine($"docker build end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
                     }
                 }
                 finally
@@ -547,8 +547,12 @@ EXPOSE 80
 EXPOSE 443
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
-COPY ["output*", "/app"]
 """u8);
+        stream.WriteUtf16StrToUtf8OrCustom(
+$"""
+        
+COPY ["./src/artifacts/publish/{project.ProjectName}/output*", "/app"]
+""");
 
         if (config.PublishSingleFile)
         {
