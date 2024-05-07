@@ -61,7 +61,8 @@ public interface IServerPublishCommand : ICommand
         return exitCode;
     }
 
-    private static readonly string projPath = ROOT_ProjPath;
+    //private static readonly string projPath = ROOT_ProjPath;
+    private static readonly string projPath = @"C:\Repos\WTTS";
 
     private static async Task HandlerCore(string push_name, string input, string push_domain, bool push_only, string tag_ver, CancellationToken cancellationToken)
     {
@@ -353,7 +354,8 @@ public interface IServerPublishCommand : ICommand
                 var proj = item.Key;
                 (var csprojPath, _, var dockerfileTag, var dockerfileDirPath) = item.Value;
 
-                using (var stream = new FileStream(Path.Combine(dockerfileDirPath, "Dockerfile"), FileMode.OpenOrCreate, FileAccess.Write))
+                var dockerfilePath = Path.Combine(dockerfileDirPath, "Dockerfile");
+                using (var stream = new FileStream(dockerfilePath, FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     await WriteDockerfile(stream, config, proj, csprojPath, cancellationToken);
                 }
@@ -361,8 +363,8 @@ public interface IServerPublishCommand : ICommand
                 ProcessStartInfo psi = new()
                 {
                     FileName = "docker",
-                    WorkingDirectory = dockerfileDirPath,
-                    Arguments = $"build -t {dockerfileTag} .",
+                    WorkingDirectory = projPath,
+                    Arguments = $"build -t {dockerfileTag} -f {dockerfilePath} .",
                 };
 
                 var process = Process.Start(psi);
@@ -518,11 +520,16 @@ WORKDIR /app
 
 RUN apt-get update
 """u8);
-            stream.WriteUtf16StrToUtf8OrCustom(
-$"""
+            stream.Write(
+"""
 
-COPY ["{Path.Combine(projPath, "ref", "google-chrome-stable", "google-chrome-stable_*_amd64.deb").Replace(@"\", "/")}", "."]
-""");
+COPY ["./ref/google-chrome-stable/google-chrome-stable_*_amd64.deb", "."]
+"""u8);
+            //            stream.WriteUtf16StrToUtf8OrCustom(
+            //$"""
+
+            //COPY ["{Path.Combine(projPath, "ref", "google-chrome-stable", "google-chrome-stable_*_amd64.deb").Replace(@"\", "/")}", "."]
+            //""");
             stream.Write(
 """
 

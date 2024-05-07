@@ -6,7 +6,7 @@
     },
     "Tools.Build(ServerPublish)": {
       "commandName": "Project",
-      "commandLineArgs": "spub --input ms-basic --push_domain docker.mossimo.net"
+      "commandLineArgs": "spub --input all --push_domain docker.mossimo.net"
     }
   }
 }
