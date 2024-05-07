@@ -1,8 +1,12 @@
 {
   "profiles": {
-    "BD.Common8.Tools.Build": {
+    "Tools.Build": {
       "commandName": "Project",
       "commandLineArgs": "b"
+    },
+    "Tools.Build(ServerPublish)": {
+      "commandName": "Project",
+      "commandLineArgs": "spub --input all --push_domain docker.mossimo.net"
     }
   }
 }
