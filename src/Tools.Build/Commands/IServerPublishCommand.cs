@@ -156,7 +156,7 @@ public interface IServerPublishCommand : ICommand
         }
     }
 
-    private static readonly char[] separator = [',', '，', '\\', '、', ' ', '|', '.', '。'];
+    private static readonly char[] separator = [',', '，', '\\', '、', '|'];
 
     private static async Task Publish(string projPath, ServerPublishConfig config, string push_name, string? input, string push_domain, bool push_only, CancellationToken cancellationToken)
     {
@@ -347,7 +347,7 @@ public interface IServerPublishCommand : ICommand
 
             #region docker build
 
-            await Parallel.ForEachAsync(proj_datas, cancellationToken, async (item, cancellationToken) =>
+            await ForEachAsync(proj_datas, cancellationToken, async (item, cancellationToken) =>
             {
                 var proj = item.Key;
                 (var csprojPath, _, var dockerfileTag, var dockerfileDirPath) = item.Value;
@@ -446,7 +446,7 @@ public interface IServerPublishCommand : ICommand
 
         if (domains != null && domains.Length != 0)
         {
-            await Parallel.ForEachAsync(
+            await ForEachAsync(
                 domains.SelectMany(domain => proj_datas.ToArray().Select(y => KeyValuePair.Create(y.Key, (y.Value, domain)))),
                 cancellationToken,
                 async (item, cancellationToken) =>
@@ -558,6 +558,14 @@ ENTRYPOINT ["dotnet", "{entryPoint}.dll"]
         }
         catch
         {
+        }
+    }
+
+    private static async Task ForEachAsync<TSource>(IEnumerable<TSource> source, CancellationToken cancellationToken, Func<TSource, CancellationToken, ValueTask> body)
+    {
+        foreach (var item in source)
+        {
+            await body(item, cancellationToken);
         }
     }
 }
