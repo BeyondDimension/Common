@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Tools.Sort.PackageVersion": {
+      "commandName": "Project"
+    },
+    "Tools.Sort.PackageVersion(CopyNupkg)": {
+      "commandName": "Project",
+      "commandLineArgs": "copypkg"
+    }
+  }
+}

@@ -1,5 +1,63 @@
 using Tools.Build.Commands;
 
+switch (args.FirstOrDefault())
+{
+    case "copypkg": // 复制 release 发布的 pkg 包到 library-packs 目录
+        {
+            try
+            {
+                var pkgPath = Path.Combine(ROOT_ProjPath, "pkg");
+                if (Directory.Exists(pkgPath))
+                {
+                    var files = Directory.GetFiles(pkgPath);
+                    foreach (var file in files)
+                    {
+                        var fileName = Path.GetFileName(file);
+                        File.Move(file, Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                            "dotnet",
+                            "library-packs",
+                            fileName), true);
+                    }
+                }
+            }
+            finally
+            {
+                Console.WriteLine("OK");
+            }
+        }
+        return;
+    case "packref_new_migrate":
+        {
+            var dirPath = Path.Combine(ProjPath, "src", "Sdk", "PackageReference");
+            foreach (var item in Directory.GetFiles(dirPath))
+            {
+                File.WriteAllBytes(item,
+"""
+<Project>
+	<!-- 包引用 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)">
+		<PackageReference Include="$(MSBuildThisFileName)" />
+		<PackageReference Include="BD.Common8.SourceGenerator.ResX" />
+	</ItemGroup>
+</Project>
+"""u8.ToArray());
+                var fileName = Path.GetFileName(item);
+                var filePath2 = Path.Combine(ProjPath, "src", "Sdk", "buildTransitive", fileName);
+                if (!File.Exists(filePath2))
+                {
+                    File.WriteAllBytes(filePath2,
+"""
+<Project>
+	<Import Project="$(MSBuildThisFileDirectory)GlobalUsings.$(MSBuildThisFileName).props" />
+</Project>
+"""u8.ToArray());
+                }
+            }
+        }
+        return;
+}
+
 // NuGet 包清单排序
 
 var filePath = Path.Combine(ProjPath, "src", "Directory.Packages.props");
@@ -126,7 +184,7 @@ stream.Write(
 
 await File.WriteAllBytesAsync(filePath, stream.ToArray());
 
-sealed class PackageVersionItemGroup
+sealed record class PackageVersionItemGroup
 {
     public IDictionary<string, string> Pairs { get; set; } = new SortedDictionary<string, string>();
 

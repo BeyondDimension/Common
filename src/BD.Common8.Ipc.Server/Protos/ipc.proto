@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "BD.Common8.Ipc.Services.Implementation";
+
+package ipc;
+
+service GrpcIpcService {
+  rpc Single (GrpcIpcServiceRequestModel) returns (GrpcIpcServiceResponseModel);
+  rpc Stream (stream GrpcIpcServiceRequestModel) returns (stream GrpcIpcServiceResponseModel);
+  rpc AsyncEnumerable (GrpcIpcServiceRequestModel) returns (stream GrpcIpcServiceResponseModel);
+  rpc BidirectionalStream (stream GrpcIpcServiceRequestModel) returns (stream GrpcIpcServiceResponseModel);
+}
+
+message GrpcIpcServiceRequestModel {
+  repeated string names = 1;
+  bytes data = 2;
+  int32 type = 3;
+  bytes authorization = 4;
+}
+
+message GrpcIpcServiceResponseModel {
+  bytes data = 1;
+  int32 type = 2;
+  int32 code = 3;
+}

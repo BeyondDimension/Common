@@ -3,6 +3,11 @@ using static System.Serializable;
 #pragma warning disable IDE0161 // 转换为文件范围限定的 namespace
 namespace System
 {
+    [JsonSerializable(typeof(string))]
+    internal partial class MyJsonContext : JsonSerializerContext
+    {
+    }
+
     /// <summary>
     /// 序列化、反序列化 助手类
     /// </summary>
@@ -35,9 +40,51 @@ namespace System
             baseOptions.Converters.Add(new CookieContainerConverter());
             baseOptions.Converters.Add(new IntPtrConverter());
             baseOptions.Converters.Add(new UIntPtrConverter());
+            baseOptions.Converters.Add(new ValueTupleConverter());
 
             return baseOptions;
         }
+
+        /// <summary>
+        /// 用于组合多个源生成器
+        /// <para>https://learn.microsoft.com/zh-cn/dotnet/standard/serialization/system-text-json/source-generation#combine-source-generators</para>
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void CombineTypeInfoResolvers(this SystemTextJsonSerializerOptions left, SystemTextJsonSerializerOptions right)
+            => left.CombineTypeInfoResolvers(right.TypeInfoResolverChain);
+
+        /// <summary>
+        /// 用于组合多个源生成器
+        /// <para>https://learn.microsoft.com/zh-cn/dotnet/standard/serialization/system-text-json/source-generation#combine-source-generators</para>
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="resolvers"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void CombineTypeInfoResolvers(this SystemTextJsonSerializerOptions options, IEnumerable<IJsonTypeInfoResolver> resolvers)
+        {
+            foreach (var resolver in resolvers)
+            {
+                if (resolver is DefaultJsonTypeInfoResolver)
+                    continue;
+
+                if (!options.TypeInfoResolverChain.Contains(resolver))
+                {
+                    options.TypeInfoResolverChain.Insert(0, resolver);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 用于组合多个源生成器
+        /// <para>https://learn.microsoft.com/zh-cn/dotnet/standard/serialization/system-text-json/source-generation#combine-source-generators</para>
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="resolvers"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void CombineTypeInfoResolvers(this SystemTextJsonSerializerOptions options, params IJsonTypeInfoResolver[] resolvers)
+            => options.CombineTypeInfoResolvers(resolvers.AsEnumerable());
 
         /// <summary>
         /// 序列化程式实现种类

@@ -5,12 +5,19 @@
 		<Version>$(Version_SourceGenerator_Resx)</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<PackageDescription>xyz.Designer.cs 源生成器</PackageDescription>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
 			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</None>
 	</ItemGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />

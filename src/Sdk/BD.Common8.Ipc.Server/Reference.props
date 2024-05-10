@@ -1,4 +1,8 @@
 <Project>
 	<!-- 依赖包引用 -->
+	<!--<ItemGroup>
+		<PackageReference Include="Google.Protobuf" />
+		<PackageReference Include="Grpc.AspNetCore" />
+	</ItemGroup>-->
 	<Import Project="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\Reference.AspNetCore.props" />
 </Project>

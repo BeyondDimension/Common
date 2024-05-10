@@ -9,6 +9,12 @@
 	<ItemGroup>
 		<PackageReference Include="System.CommandLine" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</None>
+	</ItemGroup>
 	
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.CommandLine.props" />

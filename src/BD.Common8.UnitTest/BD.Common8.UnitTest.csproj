@@ -23,18 +23,17 @@
 	<ItemGroup>
 		<PackageReference Include="MonoMac.NetStandard" />
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
+		<PackageReference Include="Google.Protobuf" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Using Include="NUnit.Framework" />
-		<Using Include="NUnit.Framework.Interfaces" />
-		<Using Include="NUnit.Framework.Internal" />
-		<Using Include="NUnit.Framework.Internal.Commands" />
-		<Using Include="BD.Common8.UnitTest" />
-		<Using Include="BD.Common8.UnitTest.Models" />
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</None>
 	</ItemGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.UnitTest.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.IdentityModel.Tokens.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Pinyin.props" />

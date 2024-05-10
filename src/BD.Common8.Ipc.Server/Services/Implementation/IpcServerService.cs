@@ -9,7 +9,7 @@ namespace BD.Common8.Ipc.Services.Implementation;
 public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIpcServerService, IDisposable, IAsyncDisposable
 {
     /// <summary>
-    /// <see cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/> 的事件
+    /// <see cref="IEndpointRouteMapGroup.OnMapGroup"/> 的事件
     /// </summary>
     internal static event Action<IEndpointRouteBuilder>? OnMapGroupEvent;
 
@@ -357,8 +357,8 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     protected void AddMemoryPackProtocol(ISignalRServerBuilder builder)
     {
-        builder.Services.TryAddEnumerable(
-            ServiceDescriptor.Singleton<IHubProtocol, MemoryPackHubProtocol>());
+        //builder.Services.TryAddEnumerable(
+        //    ServiceDescriptor.Singleton<IHubProtocol, MemoryPackHubProtocol>());
     }
 
     protected virtual void ConfigureServices(IServiceCollection services)

@@ -1,6 +1,6 @@
 <Project>
 	<!-- 依赖包引用 -->
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Common" />
+		<!--<PackageReference Include="Microsoft.AspNetCore.SignalR.Common" />-->
 	</ItemGroup>
 </Project>

@@ -1,0 +1,8 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)GlobalUsings.Bcl.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

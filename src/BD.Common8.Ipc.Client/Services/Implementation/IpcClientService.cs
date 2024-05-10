@@ -115,8 +115,8 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
 
             if (UseMemoryPack)
             {
-                builder.Services.TryAddEnumerable(
-                    ServiceDescriptor.Singleton<IHubProtocol, MemoryPackHubProtocol>());
+                //builder.Services.TryAddEnumerable(
+                //    ServiceDescriptor.Singleton<IHubProtocol, MemoryPackHubProtocol>());
             }
             else
             {

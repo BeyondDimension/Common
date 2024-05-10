@@ -1,0 +1,10 @@
+<Project>
+	<ItemGroup>
+		<Using Include="NUnit.Framework" />
+		<Using Include="NUnit.Framework.Interfaces" />
+		<Using Include="NUnit.Framework.Internal" />
+		<Using Include="NUnit.Framework.Internal.Commands" />
+		<Using Include="BD.Common8.UnitTest" />
+		<Using Include="BD.Common8.UnitTest.Models" />
+	</ItemGroup>
+</Project>

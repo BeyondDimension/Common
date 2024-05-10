@@ -6,6 +6,7 @@
 		<Version>$(Version_SourceGenerator_Ipc_Server)</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<PackageDescription>进程间通信 (IPC) 服务端源生成器</PackageDescription>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,6 +22,12 @@
 		<Compile Include="..\BD.Common8.SourceGenerator.Ipc.Client\Templates\Abstractions\IpcTemplateBase.cs">
 			<LinkBase>Templates\Abstractions</LinkBase>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</None>
 	</ItemGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />

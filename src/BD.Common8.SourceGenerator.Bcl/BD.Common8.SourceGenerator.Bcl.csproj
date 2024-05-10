@@ -5,6 +5,7 @@
 		<Version>$(Version_SourceGenerator_Bcl)</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<PackageDescription>基类库源生成器</PackageDescription>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -4,11 +4,5 @@
 		<Using Include="BD.Common8.Ipc.Attributes" />
 		<Using Include="BD.Common8.Ipc.Enums" />
 		<Using Include="BD.Common8.Ipc.Models" />
-		<Using Include="BD.Common8.Ipc.Protocol" />
-		<Using Include="System.Runtime.ExceptionServices" />
-		<Using Include="Microsoft.Extensions.Options" />
-		<Using Include="Microsoft.AspNetCore.Connections" />
-		<Using Include="Microsoft.AspNetCore.SignalR" />
-		<Using Include="Microsoft.AspNetCore.SignalR.Protocol" />
 	</ItemGroup>
 </Project>
