@@ -73,7 +73,7 @@
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
-		<PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.49-beta" />
+		<PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.106" />
 		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="8.0.0" />
 		<PackageVersion Include="MonoMac.NetStandard" Version="0.0.4" />
 		<PackageVersion Include="Moq" Version="4.20.70" />
