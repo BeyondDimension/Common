@@ -87,7 +87,7 @@
 		<PackageVersion Include="NUnit.Analyzers" Version="4.2.0" />
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
 		<PackageVersion Include="Peachpie.AspNetCore.Web" Version="1.1.9" />
-		<PackageVersion Include="Polly" Version="8.3.1" />
+		<PackageVersion Include="Polly" Version="8.4.0" />
 		<PackageVersion Include="Portable.BouncyCastle" Version="1.9.0" />
 		<PackageVersion Include="ReactiveUI" Version="20.0.1" />
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.41" />
