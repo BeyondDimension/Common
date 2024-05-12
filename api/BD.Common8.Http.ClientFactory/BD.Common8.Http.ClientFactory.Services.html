@@ -83,21 +83,26 @@
 Classes
 </h3>
     <dl class="jumplist">
+      <dt><a class="xref" href="BD.Common8.Http.ClientFactory.Services.SerializableService.html">SerializableService</a></dt>
+      <dd><p>序列化服务，提供统一的序列化处理</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html">WebApiClientFactoryService</a></dt>
       <dd><p>使用 <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> 工厂构建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> 的 WebApiClient 基类服务，继承自 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a></p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html">WebApiClientService</a></dt>
-      <dd><p>WebApiClient 基类服务，实现序列化相关，统一使用方式</p>
-<p>继承此类需要实现 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_CreateClient">CreateClient()</a></p>
+      <dd><p>WebApiClient 基类服务</p>
+<p>注意：继承此类需要实现 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.html#BD_Common8_Http_ClientFactory_Services_WebApiClientService_CreateClient">CreateClient()</a></p><p>对于使用 <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.IClientHttpClientFactory.html">IClientHttpClientFactory</a> 工厂构建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> 的服务基类应使用 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html">WebApiClientFactoryService</a></p>
 </dd>
     </dl>
     <h3 id="structs">
 Structs
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="BD.Common8.Http.ClientFactory.Services.WebApiClientService.HttpContentWrapper-1.html">WebApiClientService.HttpContentWrapper&lt;TResponseBody&gt;</a></dt>
+      <dt><a class="xref" href="BD.Common8.Http.ClientFactory.Services.SerializableService.HttpContentWrapper-1.html">SerializableService.HttpContentWrapper&lt;TResponseBody&gt;</a></dt>
       <dd></dd>
     </dl>
     <h3 id="interfaces">

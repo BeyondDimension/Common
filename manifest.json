@@ -3836,6 +3836,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.ValueTupleConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.ValueTupleConverter.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Text.Json.Serialization.yml",
       "output": {
         ".html": {
@@ -5464,20 +5474,30 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.yml",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.SerializableService.HttpContentWrapper-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html"
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.SerializableService.HttpContentWrapper-1.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.HttpContentWrapper-1.yml",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.SerializableService.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientService.HttpContentWrapper-1.html"
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.SerializableService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.WebApiClientFactoryService.html"
         }
       },
       "version": ""
@@ -5767,26 +5787,6 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Models.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.MemoryPackHubProtocol.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.MemoryPackHubProtocol.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Ipc/BD.Common8.Ipc.Protocol.html"
         }
       },
       "version": ""

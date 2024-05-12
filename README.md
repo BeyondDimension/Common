@@ -1,4 +1,4 @@
-# Common8 [![Crowdin](https://badges.crowdin.net/bdcommon8/localized.svg)](https://crowdin.com/project/bdcommon8)
+# Common8 [![Crowdin](https://badges.crowdin.net/bdcommon8/localized.svg)](https://crowdin.com/project/bdcommon8) [![NuGet](https://img.shields.io/nuget/v/BD.Common8.Bcl.svg)](https://www.nuget.org/packages/BD.Common8.Bcl) [![license](https://img.shields.io/badge/license-MIT%20License-yellow.svg)](https://github.com/BeyondDimension/Common/blob/dev8/LICENSE)
 [次元超越 .NET 8+ 通用类库文档](https://beyonddimension.github.io/Common)
 
 ## SharedLibrary 共享库
@@ -46,7 +46,7 @@ EFCore 相关的封装库
 使用 CoreFoundation 实现的汉语拼音库
 
 ### BD.Common8.Primitives.ApiResponse
-提供 Api 响应 (BackManage 后台管理) 类型的封装库
+提供 Api 响应 (后台管理) 类型的封装库
 
 ### BD.Common8.Primitives.ApiRsp
 提供 Api 响应类型的封装库
@@ -63,6 +63,30 @@ EFCore 相关的封装库
 ### BD.Common8.Primitives.District
 提供行政区域数据封装库
 
+### BD.Common8.Repositories
+仓储层封装库
+
+### BD.Common8.Repositories.EFCore
+仓储层 EFCore 实现库
+
+### BD.Common8.Repositories.SQLitePCL
+仓储层 sqlite-net-pcl 实现库
+
+### BD.Common8.Security
+安全相关封装库
+
+### BD.Common8.Settings
+设置项封装库
+
+### BD.Common8.SmsSender
+统一短信发送服务库
+
+### BD.Common8.Toast
+Toast 通知封装库
+
+### BD.Common8.UserInput.ModelValidator
+模型验证封装库
+
 ### BD.Common8.AspNetCore
 ASP.NET Core 的通用封装库
 
@@ -74,6 +98,9 @@ ASP.NET Core 实现的多租户后台管理系统通用封装库
 
 ## SourceGenerator 源生成器
 
+### BD.Common8.SourceGenerator.Bcl
+基类库源生成器
+
 ### BD.Common8.SourceGenerator.ResX
 xyz.Designer.cs 源生成器
 
@@ -82,6 +109,9 @@ xyz.Designer.cs 源生成器
 
 ### BD.Common8.SourceGenerator.Ipc.Server
 进程间通信 (IPC) 服务端源生成器
+
+### BD.Common8.SourceGenerator.Repositories
+仓储层源生成器
 
 ## Tools 工具
 
