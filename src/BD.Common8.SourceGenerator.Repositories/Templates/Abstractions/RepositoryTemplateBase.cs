@@ -293,7 +293,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                         }
                         break;
                     default:
-                        if (field.Field.Type.IsValueType)
+                        if (!Regex.Match(field.Field.TypeName!, @"^(string|\[]|object)$").Success)
                         {
                             stream.WriteFormat(
 """

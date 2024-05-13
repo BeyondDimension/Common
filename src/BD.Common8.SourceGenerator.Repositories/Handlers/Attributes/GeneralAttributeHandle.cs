@@ -187,49 +187,57 @@ sealed class GeneralAttributeHandle : IAttributeHandle
         }
     }
 
-    void Write(Stream s, AttributeData attribute)
+    void Write(Stream s, string? attributeValue)
     {
-        var anyConstructorArguments = attribute.ConstructorArguments.Any();
-        var anyNamedArguments = attribute.NamedArguments.Any();
-        if (anyConstructorArguments || anyNamedArguments)
-        {
-            s.Write("("u8);
-            if (anyConstructorArguments)
-            {
-                for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
-                {
-                    var item = attribute.ConstructorArguments[i];
-                    s.WriteObject(GetValue(item.GetObjectValue()));
-                    if (i != attribute.ConstructorArguments.Length - 1)
-                        s.Write(", "u8);
-                }
-            }
-            if (anyNamedArguments)
-            {
-                s.Write(", "u8);
-                for (int i = 0; i < attribute.NamedArguments.Length; i++)
-                {
-                    var item = attribute.NamedArguments[i];
-                    s.WriteUtf16StrToUtf8OrCustom(item.Key);
-                    s.Write(" = "u8);
-                    s.WriteObject(GetValue(item.Value.GetObjectValue()));
-                    if (i != attribute.ConstructorArguments.Length - 1)
-                        s.Write(", "u8);
-                }
-            }
-            s.Write(")"u8);
-        }
+        if (attributeValue == null)
+            return;
+
+        var formatStr =
+"""
+({0})
+"""u8;
+        s.WriteFormat(formatStr, attributeValue.Replace("'", "\""));
+        //var anyConstructorArguments = attribute.ConstructorArguments.Any();
+        //var anyNamedArguments = attribute.NamedArguments.Any();
+        //if (anyConstructorArguments || anyNamedArguments)
+        //{
+        //    s.Write("("u8);
+        //    if (anyConstructorArguments)
+        //    {
+        //        for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
+        //        {
+        //            var item = attribute.ConstructorArguments[i];
+        //            s.WriteObject(GetValue(item.GetObjectValue()));
+        //            if (i != attribute.ConstructorArguments.Length - 1)
+        //                s.Write(", "u8);
+        //        }
+        //    }
+        //    if (anyNamedArguments)
+        //    {
+        //        s.Write(", "u8);
+        //        for (int i = 0; i < attribute.NamedArguments.Length; i++)
+        //        {
+        //            var item = attribute.NamedArguments[i];
+        //            s.WriteUtf16StrToUtf8OrCustom(item.Key);
+        //            s.Write(" = "u8);
+        //            s.WriteObject(GetValue(item.Value.GetObjectValue()));
+        //            if (i != attribute.ConstructorArguments.Length - 1)
+        //                s.Write(", "u8);
+        //        }
+        //    }
+        //    s.Write(")"u8);
+        //}
     }
 
     string? IAttributeHandle.Write(AttributeHandleArguments args)
     {
-        if (GeneratorConfig.AttrTypeFullNames.TryGetValue(args.AttributeClassFullName, out var attrShortName))
+        if (GeneratorConfig.AttrTypeFullNames.TryGetValue(args.AttributeName, out var attributeClassFullName))
         {
             if (args.ClassType != ClassType.Entities)
             {
                 // 非实体类型不需要 EFCore 的特性
-                if (args.AttributeClassFullName.StartsWith("Microsoft.EntityFrameworkCore."))
-                    return args.AttributeClassFullName;
+                if (attributeClassFullName.StartsWith("Microsoft.EntityFrameworkCore."))
+                    return attributeClassFullName;
             }
 
             var template0 =
@@ -237,7 +245,7 @@ sealed class GeneralAttributeHandle : IAttributeHandle
             [
         """u8;
             args.Stream.Write(template0);
-            args.Stream.WriteUtf16StrToUtf8OrCustom(attrShortName);
+            args.Stream.WriteUtf16StrToUtf8OrCustom(args.AttributeName);
 
             //var value = args.Attribute.ToString()
             //    .Replace("System.ComponentModel.DataAnnotations.Schema.", string.Empty);
@@ -250,7 +258,10 @@ sealed class GeneralAttributeHandle : IAttributeHandle
             //        value.Length - l_brace_index);
             //    args.Stream.Write(bytes);
             //}
-            Write(args.Stream, args.Attribute);
+            if (args.AttributeValue != "True")
+            {
+                Write(args.Stream, args.AttributeValue);
+            }
 
             var template1 =
 """
@@ -258,7 +269,7 @@ sealed class GeneralAttributeHandle : IAttributeHandle
 
         """u8;
             args.Stream.Write(template1);
-            return args.AttributeClassFullName;
+            return attributeClassFullName;
         }
         return default;
     }

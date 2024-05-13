@@ -14,13 +14,13 @@ static class FixedPropertyHelper
     /// <param name="fieldHumanizeName"></param>
     /// <param name="fixedProperty"></param>
     public static void Analysis(
-        IFieldSymbol field,
+        string field,
         ref string propertyType,
         out string fieldName,
         out string fieldHumanizeName,
         out FixedProperty fixedProperty)
     {
-        fieldName = field.Name;
+        fieldName = field;
 
         if ("Id".OICEquals(fieldName))
         {

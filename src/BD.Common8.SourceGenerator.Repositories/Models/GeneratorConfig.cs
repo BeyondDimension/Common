@@ -131,7 +131,7 @@ public sealed record class GeneratorConfig(
 
         var attrTypeFullNames = typeof(TypeFullNames).
             GetFields(BindingFlags.Public | BindingFlags.Static).
-            ToDictionary(static x => x.GetValue(null).ToString(), static x => x.Name);
+            ToDictionary(static x => x.Name, static x => x.GetValue(null).ToString());
 
         var attrTypeFullNamesCfg = generatorConfig.AttributeTypeFullNames;
         if (attrTypeFullNamesCfg != null)

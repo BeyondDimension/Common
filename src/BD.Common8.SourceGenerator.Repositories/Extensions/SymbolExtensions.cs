@@ -33,15 +33,14 @@ static class SymbolExtensions
     /// 添加源生成的源码文件
     /// </summary>
     /// <param name="ctx"></param>
-    /// <param name="symbol"></param>
+    /// <param name="className"></param>
     /// <param name="partialFileName"></param>
     /// <param name="stream"></param>
     public static void AddSource(this SourceProductionContext ctx,
-        ISymbol symbol,
+        string className,
         string partialFileName,
         Stream stream)
     {
-        var hintName = symbol.GetSourceFileName(partialFileName);
-        ctx.AddSource(hintName, SourceText.From(stream, Encoding.UTF8, canBeEmbedded: true));
+        ctx.AddSource($"{className}.{partialFileName}", SourceText.From(stream, Encoding.UTF8, canBeEmbedded: true));
     }
 }

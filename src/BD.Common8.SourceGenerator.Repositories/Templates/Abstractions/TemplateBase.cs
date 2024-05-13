@@ -104,10 +104,10 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
     /// 添加当前源码模板生成的文件
     /// </summary>
     /// <param name="sourceProductionContext"></param>
-    /// <param name="symbol"></param>
+    /// <param name="additional"></param>
     /// <param name="metadata"></param>
     /// <param name="fields"></param>
-    public void AddSource(SourceProductionContext sourceProductionContext, ISymbol symbol, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
+    public void AddSource(SourceProductionContext sourceProductionContext, AdditionalText additional, TTemplateMetadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
         using var memoryStream = new MemoryStream();
         Write(memoryStream, metadata, fields);
@@ -148,7 +148,7 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
             var rootPath = ProjPathHelper.GetProjPath(null);
             var pathList = new List<string>(templatePath);
 
-            if (GeneratorConfig.Instance.GetModuleLevelConfig(symbol)
+            if (GeneratorConfig.Instance.GetModuleLevelConfig(additional)
                 ?.RelativeSourcePath?.TryGetValue(partialFileName, out var specifiedFolder) ?? false)
             {
                 pathList.Add(specifiedFolder);
@@ -188,6 +188,6 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
             return;
         }
 
-        sourceProductionContext.AddSource(symbol, partialFileName, memoryStream);
+        sourceProductionContext.AddSource(metadata.ClassName, partialFileName, memoryStream);
     }
 }

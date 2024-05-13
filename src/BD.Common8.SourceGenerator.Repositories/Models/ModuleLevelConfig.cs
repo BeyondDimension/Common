@@ -11,12 +11,12 @@ public sealed record class ModuleLevelConfig(Dictionary<string, string> Relative
 
 public static class GeneratorConfigExtensions
 {
-    public static ModuleLevelConfig? GetModuleLevelConfig(this GeneratorConfig generatorConfig, ISymbol symbol)
+    public static ModuleLevelConfig? GetModuleLevelConfig(this GeneratorConfig generatorConfig, AdditionalText additional)
     {
         if (generatorConfig == null)
             throw new ArgumentNullException(nameof(generatorConfig));
 
-        var moduleFolder = Path.GetDirectoryName(symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath);
+        var moduleFolder = Path.GetDirectoryName(additional.Path);
         var configPath = Path.Combine(moduleFolder, ModuleLevelConfig.ModuleConfigName);
 
         if (!File.Exists(configPath))

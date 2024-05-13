@@ -4,8 +4,7 @@ namespace BD.Common8.SourceGenerator.Repositories.Models;
 /// 属性元数据
 /// </summary>
 public record struct PropertyMetadata(
-    IFieldSymbol Field,
-    ImmutableArray<AttributeData> Attributes,
+    EntityDesignPropertyMetadata Field,
     string PropertyType,
     string Name,
     string HumanizeName,
@@ -86,28 +85,23 @@ public record struct PropertyMetadata(
     }
 
     /// <summary>
-    /// 从 <see cref="IFieldSymbol"/> 中读取属性元数据
+    /// 从 <see cref="EntityDesignPropertyMetadata"/> 中读取属性元数据
     /// </summary>
     /// <param name="field"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static PropertyMetadata Parse(IFieldSymbol field)
+    public static PropertyMetadata Parse(KeyValuePair<string, EntityDesignPropertyMetadata> field)
     {
-        // 从 IFieldSymbol 中解析需要的内容，通过此模型类去生成源码，解析仅执行一次
-        var propertyType = field.Type.ToDisplayString();
-        var indexOf = propertyType.LastIndexOf('.');
-        if (indexOf >= 0)
-            propertyType = propertyType[(indexOf + 1)..];
-
-        var attributes = field.GetAttributes();
-        var backManageField = attributes.GetBackManageFieldAttribute();
+        var propertyType = field.Value.TypeName!;
+        var backManageField = field.Value.Attribute;
         FixedPropertyHelper.Analysis(
-            field,
+            field.Value.Name!,
             ref propertyType,
             out var fieldName,
             out var fieldHumanizeName,
             out var fixedProperty);
-        PropertyMetadata metadata = new(field, attributes, propertyType,
+
+        PropertyMetadata metadata = new(field.Value, propertyType,
             fieldName, fieldHumanizeName, fixedProperty,
             backManageField);
         metadata.Calculate();
@@ -115,12 +109,12 @@ public record struct PropertyMetadata(
     }
 
     /// <summary>
-    /// 从多个 <see cref="IFieldSymbol"/> 中读取属性元数据
+    /// 从多个 <see cref="EntityDesignPropertyMetadata"/> 中读取属性元数据
     /// </summary>
     /// <param name="fields"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static ImmutableArray<PropertyMetadata> Parse(ImmutableArray<IFieldSymbol> fields)
+    public static ImmutableArray<PropertyMetadata> Parse(Dictionary<string, EntityDesignPropertyMetadata> fields)
         => fields.Select(Parse).ToImmutableArray();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -168,10 +162,9 @@ public record struct PropertyMetadata(
     /// </summary>
     public readonly void Write(Stream stream, ClassType classType, bool @override = false)
     {
-        var attributes = Attributes;
-        foreach (var handle in PropertyHandles.Value)
-            if (handle.Write(new(stream, attributes, this)))
-                return;
+        //foreach (var handle in PropertyHandles.Value)
+        //    if (handle.Write(new(stream, attributes, this)))
+        //        return;
 
         var humanizeName = HumanizeName;
 
@@ -193,23 +186,24 @@ public record struct PropertyMetadata(
 
 """u8;
         stream.WriteFormat(summary, humanizeName);
-
         HashSet<string> writeAttributes = new();
-        foreach (var attribute in attributes)
+
+        var properties = typeof(EntityDesignPropertyMetadata).GetProperties();
+        foreach (var pinfo in properties)
         {
-            var attributeClassFullName = attribute.GetClassFullName();
-            if (attributeClassFullName == null)
+            if (new string[] { "Name", "TypeName", "DefaultValue", "Attribute" }.Any(x => pinfo.Name.Contains(x)))
                 continue;
+
+            var attrvalue = pinfo.GetValue(Field);
+
+            if (attrvalue == null)
+                continue;
+
             var writeAttribute = GeneralAttributeHandle.Instance.Write(
-                new(classType, stream, attribute, attributeClassFullName, this));
+           new(classType, stream, pinfo.Name, attrvalue.ToString(), this));
+
             if (writeAttribute != null)
                 writeAttributes.Add(writeAttribute);
-            //foreach (var handle in attributeHandles.Value)
-            //{
-            //    var writeAttribute = handle.Write(new(stream, attribute, attributeClassFullName, this));
-            //    if (writeAttribute != null)
-            //        writeAttributes.Add(writeAttribute);
-            //}
         }
 
         switch (classType)
@@ -229,7 +223,8 @@ public record struct PropertyMetadata(
                 break;
         }
 
-        var constantValue = Field.IsConst ? Field.ConstantValue : null;
+        //var constantValue = Field.IsConst ? Field.ConstantValue : null;
+        var constantValue = Field.DefaultValue;
         var propertyType = PropertyType;
 
         #region String 类型特殊处理

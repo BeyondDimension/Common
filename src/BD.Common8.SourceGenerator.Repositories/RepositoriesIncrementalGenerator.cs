@@ -8,53 +8,37 @@ namespace BD.Common8.SourceGenerator.Repositories;
 [Generator]
 public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 {
-    const string namespaceSuffix = "Entities.Design";
-
     /// <inheritdoc/>
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        var attrs = context.SyntaxProvider.ForAttributeWithMetadataName(
-            typeof(GenerateRepositoriesAttribute).FullName!,
-            static (_, _) => true,
-            static (content, _) => content);
+        var jsonDatas = context.AdditionalTextsProvider
+                                .Where(text => text.Path.EndsWith(".json"))
+                                .Select((text, token) => text);
 
-        context.RegisterSourceOutput(attrs, async (sourceProductionContext, it) =>
+        context.RegisterSourceOutput(jsonDatas, async (sourceProductionContext, additional) =>
         {
-            if (it.TargetSymbol is not INamedTypeSymbol symbol)
+            var metadata = JsonConvert.DeserializeObject<EntityDesignMetadata>(additional.GetText()?.ToString()!);
+            var projPath = ProjPathHelper.GetProjPath(Path.GetDirectoryName(additional.Path));
+            var cfg = GeneratorConfig.Instance;
+            if (metadata == null)
                 return;
-
             try
             {
-                var filePath = symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath;
-                var projPath = ProjPathHelper.GetProjPath(Path.GetDirectoryName(filePath));
-
-                var fields = symbol.GetFields();
-                var properties = PropertyMetadata.Parse(fields);
-
-                var className = symbol.Name;
+                var properties = PropertyMetadata.Parse(metadata.Properties!);
+                var className = metadata.Name!;
                 className = GeneratorConfig.Translate(className);
-                var tableClassName = EntityTemplate.GetTableName(symbol);
-                var @namespace = symbol.ContainingNamespace.ToDisplayString().Replace(namespaceSuffix, "{0}");
+                var tableClassName = className;
 
-                var attrs = symbol.GetAttributes();
-                var generateRepositories = attrs.GetGenerateRepositoriesAttribute();
+                var @namespace = "SPP.{0}";
+
+                var generateRepositories = metadata.Attribute;
                 if (generateRepositories != null)
                 {
-                    List<Task> tasks = new(); // 不同类型的模板使用多线程并行化执行
-
+                    List<Task> tasks = new();
                     if (generateRepositories.ModuleName == string.Empty)
                     {
-                        // 未指定模块名时以所在目录作为模块名
-                        var sourceFilePath = symbol.Locations.FirstOrDefault()?.SourceTree?.FilePath;
-                        var sourceFilePathArray = sourceFilePath!.Split(Path.DirectorySeparatorChar);
-                        var moduleName = sourceFilePathArray[^3]; // Entities.Design/Plugin/插件包.cs
-
-                        if (!string.Equals("Entities.Design", moduleName, StringComparison.OrdinalIgnoreCase))
-                            throw new Exception("实体设计文件请放置在 Entities.Design 目录下的模块目录下");
-
-                        generateRepositories.ModuleName = sourceFilePathArray[^2];
+                        throw new Exception("模块名不能为空");
                     }
-
                     //tasks.Add(InBackground(() =>
                     //{
                     //    JsonEntityDesignMetadataTemplate.Instance.AddSource(sourceProductionContext, symbol,
@@ -66,8 +50,8 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     if (generateRepositories.Entity)
                         tasks.Add(InBackground(() =>
                         {
-                            EntityTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, tableClassName, className,
+                            EntityTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, tableClassName, className,
                                 generateRepositories),
                                 properties);
                         }));
@@ -76,8 +60,8 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                         generateRepositories.BackManageTableModel)
                         tasks.Add(InBackground(() =>
                         {
-                            BackManageModelTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            BackManageModelTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
@@ -85,15 +69,15 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     {
                         tasks.Add(InBackground(() =>
                         {
-                            RepositoryTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            RepositoryTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
                         tasks.Add(InBackground(() =>
                         {
-                            RepositoryImplTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            RepositoryImplTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
@@ -101,8 +85,8 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     if (generateRepositories.ApiController)
                         tasks.Add(InBackground(() =>
                         {
-                            BackManageControllerTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            BackManageControllerTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
@@ -110,25 +94,25 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     {
                         tasks.Add(InBackground(() =>
                         {
-                            ReactUI.BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            ReactUI.BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
 
-                            ReactUI.BackManageUIPageApiTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            ReactUI.BackManageUIPageApiTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
                         tasks.Add(InBackground(() =>
                         {
-                            ReactUI.BackManageUIPageIndexTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            ReactUI.BackManageUIPageIndexTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
 
-                            ReactUI.BackManageUIPageTypingsTemplate.Instance.AddSource(sourceProductionContext, symbol,
-                                new(@namespace, symbol.Name, className,
+                            ReactUI.BackManageUIPageTypingsTemplate.Instance.AddSource(sourceProductionContext, additional,
+                                new(@namespace, metadata.Name!, className,
                                 GenerateRepositoriesAttribute: generateRepositories),
                                 properties);
                         }));
@@ -139,7 +123,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
             }
             catch (Exception? ex)
             {
-                var hintName = symbol.GetSourceFileName(nameof(Exception));
+                var hintName = $"{metadata.Name}Generator_Exception";
                 byte counter = 0;
                 StringBuilder builder = new();
                 do
