@@ -5,4 +5,5 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
+	<Import Project="$(MSBuildThisFileDirectory)GlobalUsings.$(MSBuildThisFileName).props" />
 </Project>
