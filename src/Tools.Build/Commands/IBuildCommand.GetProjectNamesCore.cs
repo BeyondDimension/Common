@@ -66,14 +66,17 @@ partial interface IBuildCommand
                 "BD.Common8.Pinyin.CoreFoundation",
 
                 // Primitives
-                "BD.Common8.Primitives",
-                "BD.Common8.Primitives.District",
-                "BD.Common8.Primitives.PersonalData.BirthDate",
-                "BD.Common8.Primitives.PersonalData.PhoneNumber",
-                "BD.Common8.Primitives.Essentials",
-                "BD.Common8.Primitives.Toast",
                 "BD.Common8.Primitives.ApiRsp",
                 "BD.Common8.Primitives.ApiResponse",
+
+                "BD.Common8.Primitives.PersonalData.BirthDate",
+                "BD.Common8.Primitives.PersonalData.PhoneNumber",
+                "BD.Common8.Primitives.PersonalData.UserName",
+
+                "BD.Common8.Primitives",
+                "BD.Common8.Primitives.District",
+                "BD.Common8.Primitives.Essentials",
+                "BD.Common8.Primitives.Toast",
 
                 // Repositories
                 "BD.Common8.Repositories",

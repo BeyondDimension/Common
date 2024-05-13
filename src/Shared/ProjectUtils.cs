@@ -241,6 +241,10 @@ public static partial class ProjectUtils
         {
             return CancellationToken.None;
         }
+        else if (type == typeof(string))
+        {
+            return Random2.GenerateRandomString();
+        }
         else
         {
             if (type.IsClass)

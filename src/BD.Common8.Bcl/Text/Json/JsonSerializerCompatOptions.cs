@@ -15,10 +15,14 @@ public static partial class JsonSerializerCompatOptions
     /// <summary>
     /// 获取默认序列化选项
     /// </summary>
-    public static SystemTextJsonSerializerOptions Default => _Default ??= new()
+    public static SystemTextJsonSerializerOptions Default
     {
-        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-    };
+        get => _Default ??= Serializable.CreateOptions(new()
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+        });
+        set => _Default = value;
+    }
 
     /// <summary>
     /// 缩进格式的序列化选项
@@ -28,33 +32,49 @@ public static partial class JsonSerializerCompatOptions
     /// <summary>
     /// 获取缩进格式的序列化选项
     /// </summary>
-    public static SystemTextJsonSerializerOptions WriteIndented => _WriteIndented ??= new()
+    public static SystemTextJsonSerializerOptions WriteIndented
     {
-        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-        WriteIndented = true,
-    };
+        get => _WriteIndented ??= Serializable.CreateOptions(new()
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            WriteIndented = true,
+        });
+        set => _WriteIndented = value;
+    }
 
     /// <summary>
     /// JsonWriter 默认选项
     /// </summary>
     public static partial class Writer
     {
+        static JsonWriterOptions? _Default;
+
         /// <summary>
         /// 获取默认的 JsonWriter 选项
         /// </summary>
-        public static JsonWriterOptions Default => new()
+        public static JsonWriterOptions Default
         {
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-        };
+            get => _Default ??= new()
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+            };
+            set => _Default = value;
+        }
+
+        static JsonWriterOptions? _WriteIndented;
 
         /// <summary>
         /// 获取启用缩进的 JsonWriter 选项
         /// </summary>
-        public static JsonWriterOptions WriteIndented => new()
+        public static JsonWriterOptions WriteIndented
         {
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            Indented = true,
-        };
+            get => _WriteIndented ??= new()
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                Indented = true,
+            };
+            set => _WriteIndented = value;
+        }
     }
 }
 

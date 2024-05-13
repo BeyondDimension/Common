@@ -13,6 +13,7 @@ public sealed class EssentialsFilePickerFileType : IFilePickerFileType
     /// <summary>
     /// 接受一个 Item 对象集合作为参数
     /// </summary>
+    [SystemTextJsonConstructor]
     public EssentialsFilePickerFileType(
         IEnumerable<Item> values)
     {

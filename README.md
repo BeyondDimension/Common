@@ -1,4 +1,4 @@
-# Common8 [![Crowdin](https://badges.crowdin.net/bdcommon8/localized.svg)](https://crowdin.com/project/bdcommon8) [![NuGet](https://img.shields.io/nuget/v/BD.Common8.Bcl.svg)](https://www.nuget.org/packages/BD.Common8.Bcl) [![license](https://img.shields.io/badge/license-MIT%20License-yellow.svg)](https://github.com/BeyondDimension/Common/blob/dev8/LICENSE)
+# Common8 [![Crowdin](https://badges.crowdin.net/bdcommon8/localized.svg)](https://crowdin.com/project/bdcommon8) [![NuGet](https://img.shields.io/nuget/v/BD.Common8.Bcl.svg)](https://www.nuget.org/packages/BD.Common8.Bcl) [![license](https://img.shields.io/github/license/BeyondDimension/Common)](https://github.com/BeyondDimension/Common/blob/dev8/LICENSE)
 [次元超越 .NET 8+ 通用类库文档](https://beyonddimension.github.io/Common)
 
 ## SharedLibrary 共享库

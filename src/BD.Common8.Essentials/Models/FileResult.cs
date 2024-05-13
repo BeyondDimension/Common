@@ -8,6 +8,7 @@ public sealed class FileResult : FileBase, IFileResult
     /// <summary>
     /// 使用指定的完整路径初始化 <see cref="FileResult"/> 类的新实例
     /// </summary>
+    [SystemTextJsonConstructor]
     public FileResult(string fullPath) : base(fullPath)
     {
     }

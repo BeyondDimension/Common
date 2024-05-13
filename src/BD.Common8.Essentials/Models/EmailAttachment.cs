@@ -8,6 +8,7 @@ public sealed class EmailAttachment : FileBase, IEmailAttachment
     /// <summary>
     /// 使用指定的完整路径初始化 <see cref="EmailAttachment"/> 类的新实例
     /// </summary>
+    [SystemTextJsonConstructor]
     public EmailAttachment(string fullPath) : base(fullPath)
     {
     }

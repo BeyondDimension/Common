@@ -6,5 +6,6 @@
 		<Using Include="NUnit.Framework.Internal.Commands" />
 		<Using Include="BD.Common8.UnitTest" />
 		<Using Include="BD.Common8.UnitTest.Models" />
+		<Using Alias="Ignore" Include="NUnit.Framework.IgnoreAttribute" />
 	</ItemGroup>
 </Project>

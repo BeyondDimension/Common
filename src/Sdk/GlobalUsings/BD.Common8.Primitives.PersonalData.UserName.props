@@ -1,0 +1,5 @@
+<Project>
+	<!-- 源码引用 -->
+	<Import Condition="Exists('$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props')" Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props" />
+	<Import Condition="Exists('$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\GlobalUsings.props')" Project="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\GlobalUsings.props" />
+</Project>

@@ -32,14 +32,41 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Tools.Build\Tools.Build.csproj" />
+	</ItemGroup>
+
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.UnitTest.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.IdentityModel.Tokens.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Crawler.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Essentials.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Essentials.Implementation.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Essentials.Implementation.Avalonia.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Http.ClientFactory.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.Client.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.Server.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Orm.EFCore.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Pinyin.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Pinyin.ChnCharInfo.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.ApiResponse.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.ApiRsp.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.PersonalData.BirthDate.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.PersonalData.PhoneNumber.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.PersonalData.UserName.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.District.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.Essentials.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.Toast.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Repositories.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Repositories.EFCore.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Repositories.SQLitePCL.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Security.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Settings5.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.SmsSender.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Toast.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.UserInput.ModelValidator.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.HuaweiCloud.SDK.Obs.props" />
 </Project>
