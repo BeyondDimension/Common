@@ -1,0 +1,63 @@
+<Project>
+	<ItemGroup>
+		<Using Include="Microsoft.Win32" />
+		<Using Include="Microsoft.Win32.SafeHandles" />
+		<Using Include="System.CodeDom.Compiler" />
+		<Using Include="System.Collections" />
+		<Using Include="System.Collections.ObjectModel" />
+		<Using Include="System.Collections.Specialized" />
+		<Using Include="System.ComponentModel" />
+		<Using Include="System.Diagnostics" />
+		<Using Include="System.Diagnostics.CodeAnalysis" />
+		<Using Include="System.Globalization" />
+		<Using Include="System.IO.Compression" />
+		<Using Include="System.IO.Pipes" />
+		<Using Include="System.Linq" />
+		<Using Include="System.Linq.Expressions" />
+		<Using Include="System.Net" />
+		<Using Include="System.Net.NetworkInformation" />
+		<Using Include="System.Net.Security" />
+		<Using Include="System.Net.Sockets" />
+		<Using Include="System.Reflection" />
+		<Using Include="System.Resources" />
+		<Using Include="System.Runtime" />
+		<Using Include="System.Runtime.CompilerServices" />
+		<Using Include="System.Runtime.InteropServices" />
+		<Using Include="System.Runtime.Serialization" />
+		<Using Include="System.Runtime.Serialization.Formatters" />
+		<Using Include="System.Runtime.Versioning" />
+		<Using Include="System.Security" />
+		<Using Include="System.Security.Cryptography" />
+		<Using Include="System.Security.Cryptography.X509Certificates" />
+		<Using Include="System.Security.Principal" />
+		<Using Include="System.Text" />
+		<Using Include="System.Text.RegularExpressions" />
+		<Using Include="System.Web" />
+		<Using Include="System.Xml" />
+		<Using Include="System.Xml.Linq" />
+		<Using Include="System.Xml.Serialization" />
+		<Using Include="System.Xml.XPath" />
+		<Using Alias="Match" Include="System.Text.RegularExpressions.Match" />
+		<Using Alias="IPAddress" Include="System.Net.IPAddress" />
+		<Using Alias="Path" Include="System.IO.Path" />
+		<Using Alias="Timeout" Include="System.Threading.Timeout" />
+		<Using Alias="Environment" Include="System.Environment" />
+	</ItemGroup>
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net4')) OR !($(TargetFramework.StartsWith('net3')) OR $(TargetFramework.StartsWith('net4')))">
+		<Using Include="System.Collections.Concurrent" />
+		<Using Include="System.Numerics" />
+		<Using Include="System.Security.Claims" />
+	</ItemGroup>
+	<ItemGroup Condition="!($(TargetFramework.StartsWith('net3')) OR $(TargetFramework.StartsWith('net4')))">
+		<Using Alias="NotNullAttribute" Include="System.Diagnostics.CodeAnalysis.NotNullAttribute" />
+	</ItemGroup>
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<Using Include="Android.Runtime" />
+		<Using Alias="AToastLength" Include="Android.Widget.ToastLength" />
+		<Using Alias="AndroidApplication" Include="Android.App.Application" />
+		<Using Alias="Activity" Include="Android.App.Activity" />
+		<Using Alias="JavaObject" Include="Java.Lang.Object" />
+		<Using Alias="JavaThrowable" Include="Java.Lang.Throwable" />
+		<Using Alias="AndroidEnvironment" Include="Android.OS.Environment" />
+	</ItemGroup>
+</Project>

@@ -40,11 +40,7 @@
 	</PropertyGroup>
 
 	<!-- 全局 using | Global usings -->
-	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.props" />
 
 	<!-- 源代码分析 | Code Style -->
 	<ItemGroup>

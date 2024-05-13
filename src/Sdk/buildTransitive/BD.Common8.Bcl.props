@@ -1,9 +1,5 @@
 <Project>
 	<!-- 全局 using | Global usings -->
-	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)GlobalUsings.Bcl.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
+	<Import Project="$(MSBuildThisFileDirectory)GlobalUsings.Bcl.props" />
 	<Import Project="$(MSBuildThisFileDirectory)MSBuildThisFileName\GlobalUsings.props" />
 </Project>
