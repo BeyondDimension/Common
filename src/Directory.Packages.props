@@ -43,6 +43,7 @@
 		<PackageVersion Include="Humanizer.Core.zh-CN" Version="2.14.1" />
 		<PackageVersion Include="JumpLists.Win32.Avalonia" Version="1.23.10209.11223" />
 		<PackageVersion Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
+		<PackageVersion Include="Markdig" Version="0.37.0" />
 		<PackageVersion Include="MemoryPack" Version="1.21.1" />
 		<PackageVersion Include="MemoryPack.AspNetCoreMvcFormatter" Version="1.21.1" />
 		<PackageVersion Include="MemoryPack.Streaming" Version="1.21.1" />
@@ -63,6 +64,7 @@
 		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.4" />
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
@@ -84,6 +86,9 @@
 		<PackageVersion Include="NLog.Extensions.Logging" Version="5.3.11" />
 		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.3.11" />
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+		<PackageVersion Include="NuGet.Frameworks" Version="6.9.1" />
+		<PackageVersion Include="NuGet.Protocol" Version="6.9.1" />
+		<PackageVersion Include="NuGet.Versioning" Version="6.9.1" />
 		<PackageVersion Include="NUnit" Version="4.1.0" />
 		<PackageVersion Include="NUnit.Analyzers" Version="4.2.0" />
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
@@ -122,10 +127,6 @@
 		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.0" />
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0" />
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.102.2.4" />
-		<PackageVersion Include="NuGet.Protocol" Version="6.9.1" />
-		<PackageVersion Include="NuGet.Frameworks" Version="6.9.1" />
-		<PackageVersion Include="NuGet.Versioning" Version="6.9.1" />
-		<PackageVersion Include="Markdig" Version="0.37.0" />
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>

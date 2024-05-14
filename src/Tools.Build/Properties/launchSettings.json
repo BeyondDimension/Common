@@ -11,6 +11,10 @@
     "Tools.Build(Clean)": {
       "commandName": "Project",
       "commandLineArgs": "clean"
+    },
+    "Tools.Build(GenerateEmbeddedFilesManifest)": {
+      "commandName": "Project",
+      "commandLineArgs": "gefm --path C:\\inetpub\\wwwroot"
     }
   }
 }
