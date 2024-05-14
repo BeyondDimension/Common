@@ -39,6 +39,7 @@
 		<PackageVersion Include="gfoidl.Base64" Version="2.0.0" />
 		<PackageVersion Include="Google.Protobuf" Version="3.26.1" />
 		<PackageVersion Include="HarfBuzzSharp" Version="7.3.0.2" />
+		<PackageVersion Include="Humanizer" Version="2.14.1" />
 		<PackageVersion Include="Humanizer.Core.zh-CN" Version="2.14.1" />
 		<PackageVersion Include="JumpLists.Win32.Avalonia" Version="1.23.10209.11223" />
 		<PackageVersion Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc2" />
@@ -121,6 +122,10 @@
 		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.0" />
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0" />
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.102.2.4" />
+		<PackageVersion Include="NuGet.Protocol" Version="6.9.1" />
+		<PackageVersion Include="NuGet.Frameworks" Version="6.9.1" />
+		<PackageVersion Include="NuGet.Versioning" Version="6.9.1" />
+		<PackageVersion Include="Markdig" Version="0.37.0" />
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>
