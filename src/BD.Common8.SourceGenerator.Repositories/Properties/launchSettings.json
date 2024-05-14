@@ -3,6 +3,10 @@
     "BD.Common8.SourceGenerator.Repositories (DebugRoslynComponent)": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "..\\BD.Common8.SourceGenerator.Repositories.Test\\BD.Common8.SourceGenerator.Repositories.Test.csproj"
+    },
+    "SPP.Repositories (DebugRoslynComponent)": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\..\\..\\src\\SPP.Repositories\\SPP.Repositories.csproj"
     }
   }
 }

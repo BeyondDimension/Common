@@ -75,20 +75,6 @@ static class GlobalHelper
     }
 
     /// <summary>
-    /// 后缀文件类型
-    /// </summary>
-    /// <param name="partialFileName"></param>
-    /// <returns></returns>
-    public static string GeFilExtensiont(string partialFileName) => partialFileName switch
-    {
-        "BackManageUIPage" => "tsx",
-        "BackManageUIPageTypings" => "t.ts",
-        "BackManageUIPageIndex" => "i.ts",
-        "BackManageUIPageApi" => "a.ts",
-        _ => "g.cs",
-    };
-
-    /// <summary>
     /// 获取文件路径
     /// </summary>
     /// <param name="templateName"></param>

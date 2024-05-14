@@ -17,13 +17,13 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
         context.RegisterSourceOutput(jsonDatas, async (sourceProductionContext, additional) =>
         {
-            var metadata = JsonConvert.DeserializeObject<EntityDesignMetadata>(additional.GetText()?.ToString()!);
-            var projPath = ProjPathHelper.GetProjPath(Path.GetDirectoryName(additional.Path));
-            var cfg = GeneratorConfig.Instance;
-            if (metadata == null)
-                return;
             try
             {
+                var metadata = JsonConvert.DeserializeObject<EntityDesignMetadata>(additional.GetText()?.ToString()!);
+                var projPath = ProjPathHelper.GetProjPath(Path.GetDirectoryName(additional.Path));
+                var cfg = GeneratorConfig.Instance;
+                if (metadata == null)
+                    return;
                 var properties = PropertyMetadata.Parse(metadata.Properties!);
                 var className = metadata.Name!;
                 className = GeneratorConfig.Translate(className);
@@ -123,7 +123,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
             }
             catch (Exception? ex)
             {
-                var hintName = $"{metadata.Name}Generator_Exception";
+                var hintName = $"{Path.GetFileName(additional.Path)}_GeneratorException";
                 byte counter = 0;
                 StringBuilder builder = new();
                 do

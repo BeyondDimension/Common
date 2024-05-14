@@ -41,6 +41,6 @@ static class SymbolExtensions
         string partialFileName,
         Stream stream)
     {
-        ctx.AddSource($"{className}.{partialFileName}", SourceText.From(stream, Encoding.UTF8, canBeEmbedded: true));
+        ctx.AddSource($"{className}.{partialFileName}.g.cs", SourceText.From(stream, Encoding.UTF8, canBeEmbedded: true));
     }
 }

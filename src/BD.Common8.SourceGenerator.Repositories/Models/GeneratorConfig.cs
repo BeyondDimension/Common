@@ -57,7 +57,7 @@ public sealed record class GeneratorConfig(
     {
         var projPath = ProjPathHelper.GetProjPath(null);
         var configFilePath = Path.Combine(projPath, "src", configFileName);
-        var glossariesFilePath = Path.Combine(projPath, "..", "Glossaries", "Glossaries.json");
+        var glossariesFilePath = Path.Combine(projPath, "ref", "Glossaries", "Glossaries.json");
         return (configFilePath, glossariesFilePath);
     });
 
