@@ -234,6 +234,16 @@ public interface IServerPublishCommand : ICommand
                 (var csprojPath, var publishPath, var dockerfileTag, var dockerfileDirPath) = item.Value;
                 IOPath.DirTryDelete(publishPath);
 
+                bool useAlpineLinux;
+                if (proj.UseAlpineLinux.HasValue)
+                {
+                    useAlpineLinux = proj.UseAlpineLinux.Value;
+                }
+                else
+                {
+                    useAlpineLinux = !proj.InstallGoogleChrome;
+                }
+
                 #region dotnet publish
                 {
                     ProcessStartInfo psi = new()
@@ -279,7 +289,22 @@ public interface IServerPublishCommand : ICommand
 
                     psi.ArgumentList.Add($"-p:PublishReadyToRun={config.PublishReadyToRun.ToLowerString()}");
 
-                    psi.ArgumentList.Add($"-p:RuntimeIdentifier={config.GetRuntimeIdentifier()}");
+                    var runtimeIdentifier = config.GetRuntimeIdentifier();
+                    if (useAlpineLinux)
+                    {
+                        switch (runtimeIdentifier)
+                        {
+                            case "linux-x64":
+                                runtimeIdentifier = "linux-musl-x64";
+                                break;
+                            case "linux-arm64":
+                            case "linux-bionic-arm64":
+                                runtimeIdentifier = "linux-musl-arm64";
+                                break;
+                        }
+                    }
+
+                    psi.ArgumentList.Add($"-p:RuntimeIdentifier={runtimeIdentifier}");
 
                     //psi.ArgumentList.Add($"-p:AssemblyName={AssemblyName_ENTRYPOINT}");
 
@@ -351,7 +376,7 @@ public interface IServerPublishCommand : ICommand
                     var dockerfilePath = Path.Combine(dockerfileDirPath, "Dockerfile");
                     using (var stream = new FileStream(dockerfilePath, FileMode.OpenOrCreate, FileAccess.Write))
                     {
-                        await WriteDockerfile(stream, config, proj, csprojPath, cancellationToken);
+                        await WriteDockerfile(stream, config, proj, csprojPath, useAlpineLinux, cancellationToken);
                     }
 
                     ProcessStartInfo psi = new()
@@ -495,16 +520,30 @@ public interface IServerPublishCommand : ICommand
         #endregion
     }
 
-    private static async Task WriteDockerfile(Stream stream, ServerPublishConfig config, ServerPublishProject project, string csprojPath, CancellationToken cancellationToken)
+    private static async Task WriteDockerfile(Stream stream, ServerPublishConfig config, ServerPublishProject project, string csprojPath, bool useAlpineLinux, CancellationToken cancellationToken)
     {
         var entryPoint = Path.GetFileName(csprojPath);
         entryPoint.ThrowIsNull();
         entryPoint = entryPoint.TrimEnd(".csproj", StringComparison.OrdinalIgnoreCase);
+
         stream.Write(
 """
 # See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:
+"""u8);
+        stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Major.ToString());
+        stream.Write("."u8);
+        stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Minor.ToString());
+
+        if (useAlpineLinux)
+        {
+            stream.Write("-alpine"u8);
+        }
+
+        stream.Write(
+"""
+ AS runtime
 WORKDIR /app
 """u8);
 
@@ -593,6 +632,8 @@ sealed record class ServerPublishProject
     public string? DockerfileTag { get; set; }
 
     public bool InstallGoogleChrome { get; set; }
+
+    public bool? UseAlpineLinux { get; set; }
 
     internal (string csprojPath, string publishPath, string dockerfileTag, string dockerfileDirPath) GetData(string projPath)
     {
