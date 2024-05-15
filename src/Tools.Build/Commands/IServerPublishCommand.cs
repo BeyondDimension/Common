@@ -241,7 +241,7 @@ public interface IServerPublishCommand : ICommand
                 }
                 else
                 {
-                    useAlpineLinux = !proj.InstallGoogleChrome;
+                    useAlpineLinux = false;
                 }
 
                 #region dotnet publish
@@ -540,6 +540,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:
         {
             stream.Write("-alpine"u8);
         }
+        else
+        {
+            stream.Write("-jammy"u8);
+        }
 
         stream.Write(
 """
@@ -577,8 +581,7 @@ ENV PLAYWRIGHT_BROWSERS_PATH "/usr/bin/google-chrome-stable"
         stream.Write(
 """
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
 """u8);
