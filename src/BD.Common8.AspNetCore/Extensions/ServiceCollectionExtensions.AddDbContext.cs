@@ -42,9 +42,11 @@ public static partial class AddDbContext_ServiceCollectionExtensions
                     case SqlConstants.PostgreSQL:
                         options.UseNpgsql(connectionString);
                         break;
+#if HAS_SQLSERVER
                     case SqlConstants.SqlServer:
                         options.UseSqlServer(connectionString);
                         break;
+#endif
                     default:
                         throw new ArgumentOutOfRangeException(nameof(databaseProvider), databaseProvider);
                 }
