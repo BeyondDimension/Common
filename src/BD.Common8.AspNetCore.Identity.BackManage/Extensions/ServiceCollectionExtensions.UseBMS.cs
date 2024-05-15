@@ -4,6 +4,18 @@ namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
+    static async Task ExceptionHandler(HttpContext context)
+    {
+        context.Response.StatusCode = StatusCodes.Status200OK;
+        context.Response.ContentType = MediaTypeNames.JSON;
+        var exception = context.Features.Get<IExceptionHandlerPathFeature>()?.Error;
+        var rsp = new ApiResponse
+        {
+            Messages = [exception?.ToString() ?? ""],
+        };
+        await context.Response.WriteAsJsonAsync(rsp);
+    }
+
     /// <summary>
     /// 使用后台管理系统
     /// </summary>
@@ -12,35 +24,32 @@ public static partial class ServiceCollectionExtensions
     /// <param name="appSettings"></param>
     /// <param name="useRouteRoot">是否注册根路由使用一些默认行为，开启 ApiDoc 时将跳转 /swagger/index.html，否则显示 WelcomePage</param>
     /// <param name="useDeveloperExceptionPage">是否使用开发人员异常页 https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling?view=aspnetcore-8.0#developer-exception-page</param>
-    public static void UseBMS<TBMAppSettings>(
+    /// <param name="useSwagger"></param>
+    /// <param name="useExceptionHandler"></param>
+    public static unsafe void UseBMS<TBMAppSettings>(
         this WebApplication app,
         TBMAppSettings appSettings,
         bool useRouteRoot = true,
-        bool useDeveloperExceptionPage = false)
+        bool useDeveloperExceptionPage = false,
+        delegate* managed<WebApplication, void> useSwagger = default,
+        bool useExceptionHandler = true)
         where TBMAppSettings : BMAppSettings
     {
         var isDevelopment = app.Environment.IsDevelopment();
 
-        if (useDeveloperExceptionPage)
+        if (useExceptionHandler)
         {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler(exceptionHandlerApp => // https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling
+            if (useDeveloperExceptionPage)
             {
-                exceptionHandlerApp.Run(async context =>
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(exceptionHandlerApp => // https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling
                 {
-                    context.Response.StatusCode = StatusCodes.Status200OK;
-                    context.Response.ContentType = MediaTypeNames.JSON;
-                    var exception = context.Features.Get<IExceptionHandlerPathFeature>()?.Error;
-                    var rsp = new ApiResponse
-                    {
-                        Messages = [exception?.ToString() ?? ""],
-                    };
-                    await context.Response.WriteAsJsonAsync(rsp);
+                    exceptionHandlerApp.Run(ExceptionHandler);
                 });
-            });
+            }
         }
 
         if (!isDevelopment)
@@ -52,8 +61,10 @@ public static partial class ServiceCollectionExtensions
 
         if (!appSettings.DisabledApiDoc)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            if (useSwagger != default)
+            {
+                useSwagger(app);
+            }
             if (useRouteRoot)
             {
                 app.MapGet("/", () => Results.Redirect("/swagger/index.html"));

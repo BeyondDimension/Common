@@ -1,7 +1,6 @@
 <Project>
 	<!-- 依赖包引用 -->
 	<ItemGroup>
-		<PackageReference Include="Swashbuckle.AspNetCore" />
 		<PackageReference Include="AutoMapper" />
 		<PackageReference Include="AutoMapper.Collection" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />

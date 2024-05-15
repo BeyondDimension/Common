@@ -226,208 +226,203 @@ public interface IServerPublishCommand : ICommand
 
         var proj_datas = projects.ToDictionary(static x => x, y => y.GetData(projPath));
 
-        if (!push_only)
+        foreach (var item in proj_datas)
         {
-            foreach (var item in proj_datas)
+            if (!push_only)
             {
                 var proj = item.Key;
-                (var csprojPath, var publishPath, _, _) = item.Value;
+                (var csprojPath, var publishPath, var dockerfileTag, var dockerfileDirPath) = item.Value;
                 IOPath.DirTryDelete(publishPath);
 
                 #region dotnet publish
-
-                ProcessStartInfo psi = new()
                 {
-                    FileName = "dotnet",
-                    WorkingDirectory = projPath,
-                };
+                    ProcessStartInfo psi = new()
+                    {
+                        FileName = "dotnet",
+                        WorkingDirectory = projPath,
+                    };
 
-                psi.ArgumentList.Add("publish");
+                    psi.ArgumentList.Add("publish");
 
-                var configuration = config.GetConfig();
-                psi.ArgumentList.Add("-c");
-                psi.ArgumentList.Add(configuration);
+                    var configuration = config.GetConfig();
+                    psi.ArgumentList.Add("-c");
+                    psi.ArgumentList.Add(configuration);
 
-                psi.ArgumentList.Add(csprojPath);
-                psi.ArgumentList.Add("--nologo");
-                psi.ArgumentList.Add("-v");
-                psi.ArgumentList.Add("q");
-                psi.ArgumentList.Add("/property:WarningLevel=0");
-                psi.ArgumentList.Add("-p:AnalysisLevel=none");
-                psi.ArgumentList.Add("-p:GeneratePackageOnBuild=false");
-                psi.ArgumentList.Add("-p:DebugType=none");
-                psi.ArgumentList.Add("-p:DebugSymbols=false");
-                psi.ArgumentList.Add("-p:IsPackable=false");
-                psi.ArgumentList.Add("-p:GenerateDocumentationFile=true");
-                psi.ArgumentList.Add("/nowarn:MSB4011,NU5048,NU5104,NU1506");
-                psi.ArgumentList.Add("-maxcpucount");
+                    psi.ArgumentList.Add(csprojPath);
+                    psi.ArgumentList.Add("--nologo");
+                    psi.ArgumentList.Add("-v");
+                    psi.ArgumentList.Add("q");
+                    psi.ArgumentList.Add("/property:WarningLevel=0");
+                    psi.ArgumentList.Add("-p:AnalysisLevel=none");
+                    psi.ArgumentList.Add("-p:GeneratePackageOnBuild=false");
+                    psi.ArgumentList.Add("-p:DebugType=none");
+                    psi.ArgumentList.Add("-p:DebugSymbols=false");
+                    psi.ArgumentList.Add("-p:IsPackable=false");
+                    psi.ArgumentList.Add("-p:GenerateDocumentationFile=false");
+                    psi.ArgumentList.Add("/nowarn:MSB4011,NU5048,NU5104,NU1506");
+                    psi.ArgumentList.Add("-maxcpucount");
 
-                psi.ArgumentList.Add("-o");
-                psi.ArgumentList.Add(publishPath);
+                    psi.ArgumentList.Add("-o");
+                    psi.ArgumentList.Add(publishPath);
 
-                psi.ArgumentList.Add("-f");
-                psi.ArgumentList.Add($"net{Environment.Version.Major}.{Environment.Version.Minor}");
+                    psi.ArgumentList.Add("-f");
+                    psi.ArgumentList.Add($"net{Environment.Version.Major}.{Environment.Version.Minor}");
 
-                psi.ArgumentList.Add($"-p:SelfContained={config.SelfContained.ToLowerString()}");
+                    psi.ArgumentList.Add($"-p:SelfContained={config.SelfContained.ToLowerString()}");
 
-                if (!config.PublishSingleFile)
-                {
-                    psi.ArgumentList.Add("-p:UseAppHost=false");
-                }
+                    if (!config.PublishSingleFile)
+                    {
+                        psi.ArgumentList.Add("-p:UseAppHost=false");
+                    }
 
-                psi.ArgumentList.Add($"-p:PublishSingleFile={config.PublishSingleFile.ToLowerString()}");
+                    psi.ArgumentList.Add($"-p:PublishSingleFile={config.PublishSingleFile.ToLowerString()}");
 
-                psi.ArgumentList.Add($"-p:PublishReadyToRun={config.PublishReadyToRun.ToLowerString()}");
+                    psi.ArgumentList.Add($"-p:PublishReadyToRun={config.PublishReadyToRun.ToLowerString()}");
 
-                psi.ArgumentList.Add($"-p:RuntimeIdentifier={config.GetRuntimeIdentifier()}");
+                    psi.ArgumentList.Add($"-p:RuntimeIdentifier={config.GetRuntimeIdentifier()}");
 
-                //psi.ArgumentList.Add($"-p:AssemblyName={AssemblyName_ENTRYPOINT}");
+                    //psi.ArgumentList.Add($"-p:AssemblyName={AssemblyName_ENTRYPOINT}");
 
 #if DEBUG
-                var publish_args = psi.FileName + ' ' + string.Join(' ', psi.ArgumentList);
-                Debug.WriteLine(publish_args);
+                    var publish_args = psi.FileName + ' ' + string.Join(' ', psi.ArgumentList);
+                    Debug.WriteLine(publish_args);
 #endif
 
-                var process = Process.Start(psi);
-                if (process == null)
-                    return;
-
-                Console.WriteLine($"dotnet publish start({configuration})：{proj.ProjectName}");
-
-                bool isKillProcess = false;
-                void KillProcess()
-                {
-                    if (isKillProcess)
+                    var process = Process.Start(psi);
+                    if (process == null)
                         return;
 
-                    isKillProcess = true;
+                    Console.WriteLine($"dotnet publish start({configuration})：{proj.ProjectName}");
+
+                    bool isKillProcess = false;
+                    void KillProcess()
+                    {
+                        if (isKillProcess)
+                            return;
+
+                        isKillProcess = true;
+
+                        try
+                        {
+                            process.Kill(true); // 避免进程残留未结束
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
+                    }
 
                     try
                     {
-                        process.Kill(true); // 避免进程残留未结束
+                        cancellationToken.Register(KillProcess);
+
+                        await process.WaitForExitAsync(cancellationToken);
+
+                        int exitCode = -1;
+                        try
+                        {
+                            exitCode = process.ExitCode;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
+
+                        if (exitCode == 0)
+                        {
+                            Console.WriteLine($"dotnet publish end({configuration})：{proj.ProjectName}");
+                        }
+                        else
+                        {
+                            if (hasError != true)
+                                hasError = true;
+                            Console.WriteLine($"dotnet publish end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
+                        }
                     }
-                    catch (Exception ex)
+                    finally
                     {
-                        Console.WriteLine(ex);
+                        KillProcess();
                     }
                 }
+                #endregion
 
-                try
+                #region docker build
                 {
-                    cancellationToken.Register(KillProcess);
+                    var dockerfilePath = Path.Combine(dockerfileDirPath, "Dockerfile");
+                    using (var stream = new FileStream(dockerfilePath, FileMode.OpenOrCreate, FileAccess.Write))
+                    {
+                        await WriteDockerfile(stream, config, proj, csprojPath, cancellationToken);
+                    }
 
-                    await process.WaitForExitAsync(cancellationToken);
+                    ProcessStartInfo psi = new()
+                    {
+                        FileName = "docker",
+                        WorkingDirectory = projPath,
+                        Arguments = $"build -t {dockerfileTag} -f {dockerfilePath} .",
+                    };
 
-                    int exitCode = -1;
+                    var process = Process.Start(psi);
+                    if (process == null)
+                        return;
+
+                    var configuration = config.GetConfig();
+                    Console.WriteLine($"docker build start({configuration})：{proj.ProjectName}");
+
+                    bool isKillProcess = false;
+                    void KillProcess()
+                    {
+                        if (isKillProcess)
+                            return;
+
+                        isKillProcess = true;
+
+                        try
+                        {
+                            process.Kill(true); // 避免进程残留未结束
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
+                    }
+
                     try
                     {
-                        exitCode = process.ExitCode;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
+                        cancellationToken.Register(KillProcess);
 
-                    if (exitCode == 0)
-                    {
-                        Console.WriteLine($"dotnet publish end({configuration})：{proj.ProjectName}");
+                        await process.WaitForExitAsync(cancellationToken);
+
+                        int exitCode = -1;
+                        try
+                        {
+                            exitCode = process.ExitCode;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
+
+                        if (exitCode == 0)
+                        {
+                            Console.WriteLine($"docker build end({configuration})：{proj.ProjectName}");
+                        }
+                        else
+                        {
+                            if (hasError != true)
+                                hasError = true;
+                            Console.WriteLine($"docker build end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
+                        }
                     }
-                    else
+                    finally
                     {
-                        if (hasError != true)
-                            hasError = true;
-                        Console.WriteLine($"dotnet publish end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
+                        KillProcess();
                     }
-                }
-                finally
-                {
-                    KillProcess();
                 }
 
                 #endregion
             }
-
-            #region docker build
-
-            await ForEachAsync(proj_datas, cancellationToken, async (item, cancellationToken) =>
-            {
-                var proj = item.Key;
-                (var csprojPath, _, var dockerfileTag, var dockerfileDirPath) = item.Value;
-
-                var dockerfilePath = Path.Combine(dockerfileDirPath, "Dockerfile");
-                using (var stream = new FileStream(dockerfilePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    await WriteDockerfile(stream, config, proj, csprojPath, cancellationToken);
-                }
-
-                ProcessStartInfo psi = new()
-                {
-                    FileName = "docker",
-                    WorkingDirectory = projPath,
-                    Arguments = $"build -t {dockerfileTag} -f {dockerfilePath} .",
-                };
-
-                var process = Process.Start(psi);
-                if (process == null)
-                    return;
-
-                var configuration = config.GetConfig();
-                Console.WriteLine($"docker build start({configuration})：{proj.ProjectName}");
-
-                bool isKillProcess = false;
-                void KillProcess()
-                {
-                    if (isKillProcess)
-                        return;
-
-                    isKillProcess = true;
-
-                    try
-                    {
-                        process.Kill(true); // 避免进程残留未结束
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-                }
-
-                try
-                {
-                    cancellationToken.Register(KillProcess);
-
-                    await process.WaitForExitAsync(cancellationToken);
-
-                    int exitCode = -1;
-                    try
-                    {
-                        exitCode = process.ExitCode;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex);
-                    }
-
-                    if (exitCode == 0)
-                    {
-                        Console.WriteLine($"docker build end({configuration})：{proj.ProjectName}");
-                    }
-                    else
-                    {
-                        if (hasError != true)
-                            hasError = true;
-                        Console.WriteLine($"docker build end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
-                    }
-                }
-                finally
-                {
-                    KillProcess();
-                }
-            });
-
-            #endregion
-
         }
+
         #region docker tag/push
 
         // 并行化推送镜像
