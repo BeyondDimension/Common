@@ -105,7 +105,7 @@
 		<PackageVersion Include="StackExchange.Redis" Version="2.7.33" />
 		<PackageVersion Include="SteamKit2" Version="2.5.0" />
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
-		<PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageVersion Include="Swashbuckle.AspNetCore" Version="6.6.1" />
 		<PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
 		<PackageVersion Include="System.Composition" Version="8.0.0" />
 		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
