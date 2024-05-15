@@ -1,3 +1,4 @@
+#if HAS_SQLSERVER
 namespace BD.Common8.Orm.EFCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
@@ -48,3 +49,4 @@ public static partial class ServiceCollectionExtensions
         return (appSettings, connectionString);
     }
 }
+#endif
