@@ -525,7 +525,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         utf8String =
 """
 
-    public async Task<ApiResponse<Edit{1}DTO?>> EditById([FromRoute] {0} id)
+    public async Task<ApiResponse<Edit{1}Model?>> EditById([FromRoute] {0} id)
 """u8;
         stream.WriteFormat(utf8String,
             idField.PropertyType,
@@ -584,7 +584,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         utf8String =
 """
 
-    public async Task<ApiResponse<int>> Insert([FromBody] Add{0}DTO model)
+    public async Task<ApiResponse<int>> Insert([FromBody] Add{0}Model model)
 """u8;
         stream.WriteFormat(utf8String,
             metadata.ClassName);
@@ -645,7 +645,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
         utf8String =
 """
 
-    public async Task<ApiResponse<int>> Update([FromRoute] {1} id, [FromBody] Edit{0}DTO model)
+    public async Task<ApiResponse<int>> Update([FromRoute] {1} id, [FromBody] Edit{0}Model model)
 """u8;
         stream.WriteFormat(utf8String,
             metadata.ClassName,
@@ -728,7 +728,7 @@ public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controlle
 
     /// <returns>{0}</returns>
     [HttpGet, PermissionFilter(ControllerName + nameof(SysButtonType.Query))]
-    public async Task<ApiResponse<PagedModel<Table{1}DTO>>> QueryAsync(
+    public async Task<ApiResponse<PagedModel<Table{1}Model>>> QueryAsync(
 
 """u8;
         stream.WriteFormat(utf8String,

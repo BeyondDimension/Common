@@ -39,9 +39,9 @@ public record struct PropertyMetadata(
     public readonly byte[]? GetBaseEntityType(EntityBaseClassType baseClassType) => baseClassType switch
     {
         EntityBaseClassType.Entity => Encoding.UTF8.GetBytes($"Entity<{PropertyType}>"),
-        EntityBaseClassType.TenantBaseEntityV2 => Encoding.UTF8.GetBytes($"TenantBaseEntityV2<{PropertyType}>"),
-        EntityBaseClassType.OperatorBaseEntityV2 => Encoding.UTF8.GetBytes($"OperatorBaseEntityV2<{PropertyType}>"),
-        EntityBaseClassType.CreationBaseEntityV2 => Encoding.UTF8.GetBytes($"CreationBaseEntityV2<{PropertyType}>"),
+        EntityBaseClassType.TenantBaseEntityV2 => Encoding.UTF8.GetBytes($"TenantBaseEntity<{PropertyType}>"),
+        EntityBaseClassType.OperatorBaseEntityV2 => Encoding.UTF8.GetBytes($"OperatorBaseEntity<{PropertyType}>"),
+        EntityBaseClassType.CreationBaseEntityV2 => Encoding.UTF8.GetBytes($"CreationBaseEntity<{PropertyType}>"),
         _ => default,
     };
 

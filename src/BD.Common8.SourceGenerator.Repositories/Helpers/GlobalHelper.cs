@@ -87,19 +87,19 @@ static class GlobalHelper
         string pathTemplate = templateName switch
         {
             // c-sharp
-            "Entity" => "{module}/{entity}.g.cs",
-            "RepositoryImpl" => "{module}/{entity}Repository.g.cs",
-            "Repository" => "{module}/I{entity}Repository.g.cs",
-            "BackManageModel" => "{module}/{entity}DTOs.g.cs",
-            "BackManageController" => "MicroServices/{module}/{entity}Controller.g.cs",
+            "Entity" => "{entity}.g.cs",
+            "RepositoryImpl" => "{entity}Repository.g.cs",
+            "Repository" => "I{entity}Repository.g.cs",
+            "BackManageModel" => "{entity}Model.g.cs",
+            "BackManageController" => "{entity}Controller.g.cs",
 
             // services
-            "BackManageUIPageApi" => "{module}/{entity}/Generated/api.ts",
-            "BackManageUIPageIndex" => "{module}/{entity}/Generated/index.ts",
-            "BackManageUIPageTypings" => "{module}/{entity}/Generated/typings.d.ts",
+            "BackManageUIPageApi" => "{entity}/Generated/api.ts",
+            "BackManageUIPageIndex" => "{entity}/Generated/index.ts",
+            "BackManageUIPageTypings" => "{entity}/Generated/typings.d.ts",
 
             // pages
-            "BackManageUIPage" => "{module}/Generated/{entity}Manage.tsx",
+            "BackManageUIPage" => "Generated/{entity}Manage.tsx",
             _ => throw new ArgumentOutOfRangeException(nameof(templateName)),
         };
 

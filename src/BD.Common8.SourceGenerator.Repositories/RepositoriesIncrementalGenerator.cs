@@ -15,7 +15,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                                 .Where(text => text.Path.EndsWith(".json"))
                                 .Select((text, token) => text);
 
-        context.RegisterSourceOutput(jsonDatas, async (sourceProductionContext, additional) =>
+        context.RegisterSourceOutput(jsonDatas, (sourceProductionContext, additional) =>
         {
             try
             {
@@ -34,11 +34,6 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 var generateRepositories = metadata.Attribute;
                 if (generateRepositories != null)
                 {
-                    List<Task> tasks = new();
-                    if (generateRepositories.ModuleName == string.Empty)
-                    {
-                        throw new Exception("模块名不能为空");
-                    }
                     //tasks.Add(InBackground(() =>
                     //{
                     //    JsonEntityDesignMetadataTemplate.Instance.AddSource(sourceProductionContext, symbol,
@@ -48,76 +43,64 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     //}));
 
                     if (generateRepositories.Entity)
-                        tasks.Add(InBackground(() =>
-                        {
-                            EntityTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, tableClassName, className,
-                                generateRepositories),
-                                properties);
-                        }));
+                    {
+                        EntityTemplate.Instance.AddSource(sourceProductionContext, additional,
+                               new(@namespace, metadata.Name!, tableClassName, className,
+                               generateRepositories),
+                               properties);
+                    }
                     if (generateRepositories.BackManageAddModel ||
                         generateRepositories.BackManageEditModel ||
                         generateRepositories.BackManageTableModel)
-                        tasks.Add(InBackground(() =>
-                        {
-                            BackManageModelTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
-                        }));
+                    {
+                        BackManageModelTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
+                    }
+
                     if (generateRepositories.Repository)
                     {
-                        tasks.Add(InBackground(() =>
-                        {
-                            RepositoryTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
-                        }));
-                        tasks.Add(InBackground(() =>
-                        {
-                            RepositoryImplTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
-                        }));
+                        RepositoryTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
+
+                        RepositoryImplTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
                     }
                     if (generateRepositories.ApiController)
-                        tasks.Add(InBackground(() =>
-                        {
-                            BackManageControllerTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
-                        }));
+                    {
+                        BackManageControllerTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
+                    }
+
                     if (generateRepositories.BackManageUIPage)
                     {
-                        tasks.Add(InBackground(() =>
-                        {
-                            ReactUI.BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
+                        ReactUI.BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
 
-                            ReactUI.BackManageUIPageApiTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
-                        }));
-                        tasks.Add(InBackground(() =>
-                        {
-                            ReactUI.BackManageUIPageIndexTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
+                        ReactUI.BackManageUIPageApiTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
 
-                            ReactUI.BackManageUIPageTypingsTemplate.Instance.AddSource(sourceProductionContext, additional,
-                                new(@namespace, metadata.Name!, className,
-                                GenerateRepositoriesAttribute: generateRepositories),
-                                properties);
-                        }));
+                        ReactUI.BackManageUIPageIndexTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
+
+                        ReactUI.BackManageUIPageTypingsTemplate.Instance.AddSource(sourceProductionContext, additional,
+                            new(@namespace, metadata.Name!, className,
+                            GenerateRepositoriesAttribute: generateRepositories),
+                            properties);
                     }
-                    await Task.WhenAll([.. tasks]);
                     GeneratorConfig.Save();
                 }
             }

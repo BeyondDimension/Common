@@ -116,7 +116,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 """
 
     /// <returns>{0}</returns>
-    {1}Task<PagedModel<Table{2}DTO>> QueryAsync(
+    {1}Task<PagedModel<Table{2}Model>> QueryAsync(
 
 """u8;
         stream.WriteFormat(utf8String,
@@ -324,7 +324,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 """
 
         var r = await query
-            .Select(x => new Table{0}DTO()
+            .Select(x => new Table{0}Model()
 """u8, metadata.ClassName);
                     stream.Write(
 """
@@ -359,7 +359,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
 """
 
         var r = await query
-            .ProjectTo<Table{0}DTO>(mapper.ConfigurationProvider)
+            .ProjectTo<Table{0}Model>(mapper.ConfigurationProvider)
             .PagingAsync(current, pageSize, RequestAborted);
         return r;
 """u8, metadata.ClassName);
@@ -650,7 +650,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<Edit{1}DTO?> GetEditByIdAsync({2} id)
+    {0}Task<Edit{1}Model?> GetEditByIdAsync({2} id)
 """u8;
         var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
         stream.WriteFormat(utf8String,
@@ -681,7 +681,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                 case RepositoryMethodImplType.Expression:
                     stream.WriteFormat(
 """
-            .Select(static x => new Edit{0}DTO
+            .Select(static x => new Edit{0}Model
 """u8, metadata.ClassName);
                     stream.Write(
 """
@@ -709,7 +709,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                 case RepositoryMethodImplType.ProjectTo:
                     stream.WriteFormat(
 """
-            .ProjectTo<Edit{0}DTO>(mapper.ConfigurationProvider)
+            .ProjectTo<Edit{0}Model>(mapper.ConfigurationProvider)
 
 """u8, metadata.ClassName);
                     break;
@@ -748,7 +748,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<int> InsertAsync(Guid? createUserId, Add{1}DTO model)
+    {0}Task<int> InsertAsync(Guid? createUserId, Add{1}Model model)
 """u8;
         var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
         stream.WriteFormat(utf8String,
@@ -862,7 +862,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
         utf8String =
 """
 
-    {0}Task<int> UpdateAsync(Guid? operatorUserId, {2} id, Edit{1}DTO model)
+    {0}Task<int> UpdateAsync(Guid? operatorUserId, {2} id, Edit{1}Model model)
 """u8;
         var isCustomImpl = repositoryMethodImplType == RepositoryMethodImplType.Custom;
         stream.WriteFormat(utf8String,

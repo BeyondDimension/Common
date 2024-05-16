@@ -67,7 +67,7 @@ sealed class BackManageModelTemplate : TemplateBase<BackManageModelTemplate, Bac
 /// <summary>
 /// {1} - 后台管理添加模型
 /// </summary>
-public sealed partial class Add{2}DTO
+public sealed partial class Add{2}Model
 """u8;
         stream.WriteFormat(format, args);
 
@@ -111,7 +111,7 @@ public sealed partial class Add{2}DTO
 /// <summary>
 /// {1} - 后台管理编辑模型
 /// </summary>
-public sealed partial class Edit{2}DTO
+public sealed partial class Edit{2}Model
 """u8;
         stream.WriteFormat(format, args);
 
@@ -155,7 +155,7 @@ public sealed partial class Edit{2}DTO
 /// <summary>
 /// {1} - 后台管理表格查询模型
 /// </summary>
-public sealed partial class Table{2}DTO
+public sealed partial class Table{2}Model
 """u8;
         stream.WriteFormat(format, args);
 

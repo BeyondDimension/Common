@@ -139,55 +139,58 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
                 break;
         }
 #endif
-
-        // 可选通过配置将源码生成到文件
-        if (GeneratorConfig.Instance.SourcePath?.TryGetValue(partialFileName, out var templatePath) ?? false)
+        var hintName = GetFilePath(partialFileName, metadata.GenerateRepositoriesAttribute.ModuleName, metadata.ClassName);
+        if (hintName.EndsWith(".cs"))
         {
-            var hintName = GetFilePath(partialFileName, metadata.GenerateRepositoriesAttribute.ModuleName, metadata.ClassName);
-
-            var rootPath = ProjPathHelper.GetProjPath(null);
-            var pathList = new List<string>(templatePath);
-
-            if (GeneratorConfig.Instance.GetModuleLevelConfig(additional)
-                ?.RelativeSourcePath?.TryGetValue(partialFileName, out var specifiedFolder) ?? false)
+            sourceProductionContext.AddSource(hintName, SourceText.From(memoryStream, Encoding.UTF8, canBeEmbedded: true));
+        }
+        else
+        {
+            // 可选通过配置将源码生成到文件
+            if (GeneratorConfig.Instance.SourcePath?.TryGetValue(partialFileName, out var templatePath) ?? false)
             {
-                pathList.Add(specifiedFolder);
-            }
-            pathList.Add(hintName);
+                var rootPath = ProjPathHelper.GetProjPath(null);
+                var pathList = new List<string>(templatePath);
+
+                if (GeneratorConfig.Instance.GetModuleLevelConfig(additional)
+                    ?.RelativeSourcePath?.TryGetValue(partialFileName, out var specifiedFolder) ?? false)
+                {
+                    pathList.Add(specifiedFolder);
+                }
+                pathList.Add(hintName);
 
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
 
-            var filePath = Path.Combine(rootPath, ParseAgilePath(Path.Combine(pathList.ToArray())));
+                var filePath = Path.Combine(rootPath, ParseAgilePath(Path.Combine(pathList.ToArray())));
 
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
 
-            // 移除文件只读属性
-            if (File.Exists(filePath))
-            {
-                var attr = File.GetAttributes(filePath);
-                if (attr.HasFlag(FileAttributes.ReadOnly))
-                    File.SetAttributes(filePath, attr ^ FileAttributes.ReadOnly);
-            }
+                // 移除文件只读属性
+                if (File.Exists(filePath))
+                {
+                    var attr = File.GetAttributes(filePath);
+                    if (attr.HasFlag(FileAttributes.ReadOnly))
+                        File.SetAttributes(filePath, attr ^ FileAttributes.ReadOnly);
+                }
 
-            // 生成的内容写入文件
-            using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
-            memoryStream.Position = 0;
-            memoryStream.CopyTo(fileStream);
-            fileStream.Flush();
-            fileStream.SetLength(fileStream.Position);
+                // 生成的内容写入文件
+                using var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
+                memoryStream.Position = 0;
+                memoryStream.CopyTo(fileStream);
+                fileStream.Flush();
+                fileStream.SetLength(fileStream.Position);
 
-            // 设置文件只读属性
-            if (filePath.EndsWith(".g.cs"))
-            {
-                var attr = File.GetAttributes(filePath);
-                File.SetAttributes(filePath, attr | FileAttributes.ReadOnly);
-            }
+                // 设置文件只读属性
+                if (filePath.EndsWith(".g.cs"))
+                {
+                    var attr = File.GetAttributes(filePath);
+                    File.SetAttributes(filePath, attr | FileAttributes.ReadOnly);
+                }
 
 #pragma warning restore RS1035 // 不要使用禁用于分析器的 API
 
-            return;
+                return;
+            }
         }
-
-        sourceProductionContext.AddSource(metadata.ClassName, partialFileName, memoryStream);
     }
 }
