@@ -227,4 +227,12 @@
 		<PackageVersion Include="MagicOnion.Client" Version="6.1.3" />
 		<PackageVersion Include="MagicOnion.Server" Version="6.1.3" />
 	</ItemGroup>
+	<!-- PeachPie -->
+	<ItemGroup>
+		<PackageVersion Include="Peachpie.AspNetCore.Web" Version="1.1.9" />
+		<PackageVersion Include="Peachpie.Library" Version="1.1.9" />
+		<PackageVersion Include="Peachpie.Library.PDO.PgSQL" Version="1.1.9" />
+		<PackageVersion Include="Peachpie.Runtime" Version="1.1.9" />
+		<PackageVersion Include="PeachPied.WordPress.AspNetCore" Version="6.3.1-rc-016" />
+	</ItemGroup>
 </Project>
