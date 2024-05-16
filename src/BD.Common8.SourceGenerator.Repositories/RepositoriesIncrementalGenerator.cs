@@ -141,3 +141,13 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
         });
     }
 }
+
+public static class PackageReferenceTest
+{
+    public static void Assemblies()
+    {
+        Console.WriteLine(typeof(JsonSerializer));
+        Console.WriteLine(typeof(EnglishArticle));
+        Console.WriteLine("Sentence casing".Transform(To.LowerCase));
+    }
+}

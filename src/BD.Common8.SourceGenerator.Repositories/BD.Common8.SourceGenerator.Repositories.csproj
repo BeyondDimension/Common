@@ -16,6 +16,9 @@
 		<PackageReference Include="Humanizer.Core.zh-CN">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
+		<PackageReference Include="Costura.Fody">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -33,9 +36,9 @@
 	<Target Name="AddNuGetDlls" BeforeTargets="_GetPackageFiles">
 		<ItemGroup>
 			<!-- Update the collection of items to pack with the DLLs from the NuGet packages -->
-			<None Include="$(OutputPath)\Newtonsoft.Json.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-			<None Include="$(OutputPath)\Humanizer.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-			<None Include="$(OutputPath)\zh-CN\Humanizer.resources.dll" Pack="true" PackagePath="analyzers/dotnet/cs/zh-CN" Visible="false" />
+			<!--<None Include="$(OutputPath)\Newtonsoft.Json.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
+			<!--<None Include="$(OutputPath)\Humanizer.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
+			<!--<None Include="$(OutputPath)\zh-CN\Humanizer.resources.dll" Pack="true" PackagePath="analyzers/dotnet/cs/zh-CN" Visible="false" />-->
 
 			<!-- Add the DLL produced by the current project to the NuGet package -->
 			<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
