@@ -102,7 +102,7 @@
 		<PackageVersion Include="Polly" Version="8.4.0" />
 		<PackageVersion Include="Portable.BouncyCastle" Version="1.9.0" />
 		<PackageVersion Include="Quartz.AspNetCore" Version="3.9.0" />
-		<PackageVersion Include="ReactiveUI" Version="20.0.1" />
+		<PackageVersion Include="ReactiveUI" Version="20.1.1" />
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.41" />
 		<PackageVersion Include="SharpZipLib" Version="1.4.2" />
 		<PackageVersion Include="SkiaSharp" Version="2.88.8" />
