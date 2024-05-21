@@ -5,12 +5,14 @@ partial interface IBuildCommand
     const string slnFileName_Common8 = "BD.Common8";
     const string slnFileName_Avalonia8 = "BD.Avalonia8";
     const string slnFileName_SteamClient8 = "BD.SteamClient8";
+    const string slnFileName_SPPSDK = "SPP.SDK";
 
     static string[] GetSlnFileNames() =>
     [
         slnFileName_Common8,
         slnFileName_Avalonia8,
         slnFileName_SteamClient8,
+        slnFileName_SPPSDK,
     ];
 
     static string[] GetProjectNamesCore(string slnFileName) => slnFileName switch
@@ -99,15 +101,20 @@ partial interface IBuildCommand
                 "BD.Common8.UserInput.ModelValidator",
             ],
         slnFileName_Avalonia8 => [
-            "BD.Avalonia8.Image2",
+                "BD.Avalonia8.Image2",
             ],
         slnFileName_SteamClient8 => [
-            "BD.SteamClient8",
+                "BD.SteamClient8",
                 "BD.SteamClient8",
                 "BD.SteamClient8.Impl",
                 "BD.SteamClient8.Models",
                 "BD.SteamClient8.Primitives",
             ],
+        slnFileName_SPPSDK => [
+                "Mobius.Primitives",
+                "Mobius.Models",
+                "Mobius.SDK",
+        ],
         _ => [],
     };
 }
