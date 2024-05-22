@@ -542,7 +542,16 @@ FROM mcr.microsoft.com/dotnet/aspnet:
         }
         else
         {
-            stream.Write("-jammy"u8);
+            if (!string.IsNullOrWhiteSpace(config.DefaultBaseImageName))
+            {
+                stream.Write("-"u8);
+                stream.WriteUtf16StrToUtf8OrCustom(config.DefaultBaseImageName.TrimStart("-"));
+            }
+            else
+            {
+                stream.Write("-noble"u8); // Ubuntu 24.04 LTS(Noble Numbat)
+                //stream.Write("-jammy"u8);
+            }
         }
 
         stream.Write(
@@ -687,6 +696,8 @@ sealed record class ServerPublishConfig
     public bool PublishReadyToRun { get; set; } = true;
 
     public string? Config { get; set; }
+
+    public string? DefaultBaseImageName { get; set; }
 
     internal string GetConfig() => string.IsNullOrWhiteSpace(Config) ? "Release" : Config;
 
