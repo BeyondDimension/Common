@@ -188,7 +188,7 @@
 	<!-- BD.SteamClient8 -->
 	<ItemGroup>
 		<PackageVersion Include="BD.SteamClient8" Version="8.24.10513.11631" />
-		<PackageVersion Include="BD.SteamClient8.Impl" Version="8.24.10513.11631" />
+		<PackageVersion Include="BD.SteamClient8.Impl" Version="8.24.10521.11500" />
 		<PackageVersion Include="BD.SteamClient8.Models" Version="8.24.10513.11631" />
 		<PackageVersion Include="BD.SteamClient8.Primitives" Version="8.24.10513.11631" />
 	</ItemGroup>
