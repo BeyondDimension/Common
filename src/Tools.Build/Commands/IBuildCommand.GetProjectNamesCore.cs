@@ -7,6 +7,8 @@ partial interface IBuildCommand
     const string slnFileName_SteamClient8 = "BD.SteamClient8";
     const string slnFileName_SPPSDK = "SPP.SDK";
 
+    const string jsonConfigFileName = "build-projects.json";
+
     static string[] GetSlnFileNames() =>
     [
         slnFileName_Common8,
@@ -115,6 +117,25 @@ partial interface IBuildCommand
                 "Mobius.Models",
                 "Mobius.SDK",
         ],
-        _ => [],
+        _ => GetProjectNamesByJsonConfig(slnFileName),
     };
+
+    static string[] GetProjectNamesByJsonConfig(string slnFileName)
+    {
+        var projPath = ROOT_ProjPath;
+        if (File.Exists(Path.Combine(projPath, $"{slnFileName}.sln")))
+        {
+            var jsonConfigPath = Path.Combine(projPath, "src", jsonConfigFileName);
+            if (File.Exists(jsonConfigPath))
+            {
+                using var stream = new FileStream(jsonConfigPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+                var value = SystemTextJsonSerializer.Deserialize<string[]>(stream);
+                if (value != null)
+                {
+                    return value;
+                }
+            }
+        }
+        return [];
+    }
 }

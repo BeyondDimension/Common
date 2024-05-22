@@ -11,6 +11,8 @@
 		<Version_SourceGenerator_Resx>8.24.10521.11500</Version_SourceGenerator_Resx>
 		<Version_SourceGenerator_Repositories>8.24.10521.11500</Version_SourceGenerator_Repositories>
 		<Version_HuaweiCloud_SDK_Obs>8.24.10521.11500</Version_HuaweiCloud_SDK_Obs>
+		<Version_Avalonia8_Pkg>8.24.10521.11500</Version_Avalonia8_Pkg>
+		<Version_SteamClient8_Pkg>8.24.10521.11500</Version_SteamClient8_Pkg>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>

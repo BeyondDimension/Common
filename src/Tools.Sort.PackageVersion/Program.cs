@@ -94,6 +94,10 @@ for (int i = 0; i < lines.Length; i++)
             }
             continue;
         }
+        else if (line.Equals("</PackageVersion>", StringComparison.OrdinalIgnoreCase))
+        {
+            continue;
+        }
         else if (line.Equals("<ItemGroup>", StringComparison.OrdinalIgnoreCase))
         {
             if (pvig.LineNumber == -1)
@@ -110,6 +114,10 @@ for (int i = 0; i < lines.Length; i++)
         {
             pvigs.Add(pvig);
             pvig = new();
+        }
+        if (line.EndsWith(">") && !line.EndsWith("/>"))
+        {
+            line += "</PackageVersion>";
         }
         var element = XElement.Parse(line);
         if (element.Name == "PackageVersion" ||
@@ -165,7 +173,8 @@ foreach (var pvig_item in pvigs)
         stream.Write(Encoding.UTF8.GetBytes(pair.Value));
         stream.Write(
 """
-" />
+">
+		</PackageVersion>
 
 """u8);
     }
