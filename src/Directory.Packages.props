@@ -183,7 +183,7 @@
 	</ItemGroup>
 	<!-- BD.Avalonia8 -->
 	<ItemGroup>
-		<PackageVersion Include="BD.Avalonia8.Image2" Version="8.24.10513.11631" />
+		<PackageVersion Include="BD.Avalonia8.Image2" Version="8.24.10521.11500" />
 	</ItemGroup>
 	<!-- BD.SteamClient8 -->
 	<ItemGroup>
