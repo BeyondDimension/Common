@@ -7,6 +7,10 @@
     "SPP.Repositories (DebugRoslynComponent)": {
       "commandName": "DebugRoslynComponent",
       "targetProject": "..\\..\\..\\..\\src\\SPP.Repositories\\SPP.Repositories.csproj"
+    },
+    "SPP.Models (DebugRoslynComponent)": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\..\\..\\src\\SPP.Models\\SPP.Models.csproj"
     }
   }
 }

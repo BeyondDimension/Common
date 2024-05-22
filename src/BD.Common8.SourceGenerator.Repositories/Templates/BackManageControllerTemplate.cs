@@ -7,7 +7,7 @@ sealed class BackManageControllerTemplate : TemplateBase<BackManageControllerTem
 {
     public readonly record struct Metadata(
         string Namespace,
-        string Summary,
+        string? Summary,
         string ClassName,
         string? PrimaryKeyTypeName = null,
         GenerateRepositoriesAttribute GenerateRepositoriesAttribute = null!) : ITemplateMetadata
@@ -165,7 +165,7 @@ namespace {0};
 public sealed partial class {2}Controller : BaseAuthorizeController<{2}Controller>
 """u8;
         //, IAuthenticatorDbContext
-        args[0] = string.Format(args[0]!.ToString()!, "Controllers");
+        args[0] = $"{args[0]!.ToString()}.Controllers.{metadata.GenerateRepositoriesAttribute.ModuleName}";
         var classNamePluralize = metadata.ClassName.Pluralize();
         var routeNamePluralize = classNamePluralize.ToLowerInvariant();
         // 去除冗余的路由前缀

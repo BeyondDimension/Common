@@ -15,7 +15,7 @@ public interface ITemplateMetadata
     /// <summary>
     /// 类型注释
     /// </summary>
-    string Summary { get; }
+    string? Summary { get; }
 
     /// <summary>
     /// 类型名

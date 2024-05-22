@@ -1,4 +1,4 @@
-using ReactUI = BD.Common8.SourceGenerator.Repositories.Templates.ReactUI;
+//using ReactUI = BD.Common8.SourceGenerator.Repositories.Templates.ReactUI;
 
 namespace BD.Common8.SourceGenerator.Repositories;
 
@@ -27,9 +27,9 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 var properties = PropertyMetadata.Parse(metadata.Properties!);
                 var className = metadata.Name!;
                 className = GeneratorConfig.Translate(className);
-                var tableClassName = className;
+                var summary = metadata.Summary;
 
-                var @namespace = "SPP.{0}";
+                var @namespace = cfg.Namespace;
 
                 var generateRepositories = metadata.Attribute;
                 if (generateRepositories != null)
@@ -42,16 +42,17 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     //        properties);
                     //}));
 
-                    if (generateRepositories.Entity)
+                    if (generateRepositories.Entity && IsGenerator("Entity"))
                     {
                         EntityTemplate.Instance.AddSource(sourceProductionContext, additional,
-                               new(@namespace, metadata.Name!, tableClassName, className,
+                               new(@namespace, summary, metadata.Table, className,
                                generateRepositories),
                                properties);
                     }
-                    if (generateRepositories.BackManageAddModel ||
+                    if ((generateRepositories.BackManageAddModel ||
                         generateRepositories.BackManageEditModel ||
-                        generateRepositories.BackManageTableModel)
+                        generateRepositories.BackManageTableModel) &&
+                        IsGenerator("BackManageModel"))
                     {
                         BackManageModelTemplate.Instance.AddSource(sourceProductionContext, additional,
                             new(@namespace, metadata.Name!, className,
@@ -59,7 +60,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                             properties);
                     }
 
-                    if (generateRepositories.Repository)
+                    if (generateRepositories.Repository && IsGenerator("Repository"))
                     {
                         RepositoryTemplate.Instance.AddSource(sourceProductionContext, additional,
                             new(@namespace, metadata.Name!, className,
@@ -71,7 +72,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                             GenerateRepositoriesAttribute: generateRepositories),
                             properties);
                     }
-                    if (generateRepositories.ApiController)
+                    if (generateRepositories.ApiController && IsGenerator("BackManageController"))
                     {
                         BackManageControllerTemplate.Instance.AddSource(sourceProductionContext, additional,
                             new(@namespace, metadata.Name!, className,
@@ -81,27 +82,35 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
                     if (generateRepositories.BackManageUIPage)
                     {
-                        ReactUI.BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, additional,
-                            new(@namespace, metadata.Name!, className,
-                            GenerateRepositoriesAttribute: generateRepositories),
-                            properties);
+                        //ReactUI.BackManageUIPageTemplate.Instance.AddSource(sourceProductionContext, additional,
+                        //    new(@namespace, summary, className,
+                        //    GenerateRepositoriesAttribute: generateRepositories),
+                        //    properties);
 
-                        ReactUI.BackManageUIPageApiTemplate.Instance.AddSource(sourceProductionContext, additional,
-                            new(@namespace, metadata.Name!, className,
-                            GenerateRepositoriesAttribute: generateRepositories),
-                            properties);
+                        //ReactUI.BackManageUIPageApiTemplate.Instance.AddSource(sourceProductionContext, additional,
+                        //    new(@namespace, summary, className,
+                        //    GenerateRepositoriesAttribute: generateRepositories),
+                        //    properties);
 
-                        ReactUI.BackManageUIPageIndexTemplate.Instance.AddSource(sourceProductionContext, additional,
-                            new(@namespace, metadata.Name!, className,
-                            GenerateRepositoriesAttribute: generateRepositories),
-                            properties);
+                        //ReactUI.BackManageUIPageIndexTemplate.Instance.AddSource(sourceProductionContext, additional,
+                        //    new(@namespace, summary, className,
+                        //    GenerateRepositoriesAttribute: generateRepositories),
+                        //    properties);
 
-                        ReactUI.BackManageUIPageTypingsTemplate.Instance.AddSource(sourceProductionContext, additional,
-                            new(@namespace, metadata.Name!, className,
-                            GenerateRepositoriesAttribute: generateRepositories),
-                            properties);
+                        //ReactUI.BackManageUIPageTypingsTemplate.Instance.AddSource(sourceProductionContext, additional,
+                        //    new(@namespace, summary, className,
+                        //    GenerateRepositoriesAttribute: generateRepositories),
+                        //    properties);
                     }
                     GeneratorConfig.Save();
+
+                    bool IsGenerator(string template)
+                    {
+                        return cfg.SourcePath.TryGetValue(template, out var value)
+                                && value != null
+                                && value.Length >= 2
+                                && additional.Path.ToLowerInvariant().Contains(value[1].ToLowerInvariant());
+                    }
                 }
             }
             catch (Exception? ex)

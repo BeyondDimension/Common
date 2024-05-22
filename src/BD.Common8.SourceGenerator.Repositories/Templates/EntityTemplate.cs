@@ -7,8 +7,8 @@ sealed class EntityTemplate : TemplateBase<EntityTemplate, EntityTemplate.Metada
 {
     public readonly record struct Metadata(
         string Namespace,
-        string Summary,
-        string TableName,
+        string? Summary,
+        string? TableName,
         string ClassName,
         GenerateRepositoriesAttribute GenerateRepositoriesAttribute) : ITemplateMetadata
     {
@@ -37,13 +37,26 @@ sealed class EntityTemplate : TemplateBase<EntityTemplate, EntityTemplate.Metada
 """
 namespace {0};
 
-/// <summary>
-/// {1} - 表实体模型
-/// </summary>
-[Table("{2}")]
+{1}
+[Table({2})]
 public sealed partial class {3}
 """u8;
-        args[0] = string.Format(args[0]!.ToString()!, "Entities");
+        args[0] = $"{args[0]!.ToString()}.Entities.{metadata.GenerateRepositoriesAttribute.ModuleName}";
+        if (args[1] != null)
+            args[1] = Regex.Replace(args[1]!.ToString(), @"[ ]*///", "///");
+        else
+        {
+            var summary =
+"""
+/// <summary>
+/// {0} - 表实体模型
+/// </summary>
+""";
+            args[1] = string.Format(summary, metadata.ClassName);
+        }
+        if (args[2] == null)
+            args[2] = $"\"{metadata.ClassName}\"";
+
         stream.WriteFormat(format, args);
 
         var idField = fields.FirstOrDefault(x => x.FixedProperty == FixedProperty.Id);

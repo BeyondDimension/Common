@@ -162,9 +162,8 @@ public record struct PropertyMetadata(
     /// </summary>
     public readonly void Write(Stream stream, ClassType classType, bool @override = false)
     {
-        //foreach (var handle in PropertyHandles.Value)
-        //    if (handle.Write(new(stream, attributes, this)))
-        //        return;
+        foreach (var handle in PropertyHandles.Value)
+            handle.Write(new(stream, Field.PreprocessorDirective, this));
 
         var humanizeName = HumanizeName;
 
@@ -178,20 +177,35 @@ public record struct PropertyMetadata(
                 break;
         }
 
-        var summary =
+        if (Field.Summary != null)
+        {
+            var summary =
+"""
+{0}
+
+"""u8;
+            stream.WriteFormat(summary, Regex.Replace(Field.Summary, @"[ ]*///", "    ///"));
+        }
+        else
+        {
+            var summary =
 """
     /// <summary>
     /// {0}
     /// </summary>
 
 """u8;
-        stream.WriteFormat(summary, humanizeName);
+            stream.WriteFormat(summary, humanizeName);
+        }
+
         HashSet<string> writeAttributes = new();
 
         var properties = typeof(EntityDesignPropertyMetadata).GetProperties();
         foreach (var pinfo in properties)
         {
-            if (new string[] { "Name", "TypeName", "DefaultValue", "Attribute" }.Any(x => pinfo.Name.Contains(x)))
+            if (new string[]
+                { "Name", "TypeName", "DefaultValue", "Attribute", "Summary", "PreprocessorDirective", "Modifier" }
+                .Any(x => pinfo.Name.Contains(x)))
                 continue;
 
             var attrvalue = pinfo.GetValue(Field);
@@ -228,23 +242,25 @@ public record struct PropertyMetadata(
         var propertyType = PropertyType;
 
         #region String 类型特殊处理
-
-        switch (propertyType)
+        if (constantValue == null)
         {
-            case "string": // 类型为 String 【不可】 null 的
-                constantValue = "\"\""; // 需要设置默认值空字符串
-                if (!writeAttributes.Contains(TypeFullNames.Required))
-                    // 并且数据库必填
-                    WriteRequired(stream);
-                break;
-            case "string?": // 类型为 String 【可】为 null 的
-                if (writeAttributes.Contains(TypeFullNames.Required)) // 但是有数据库必填
-                {
-                    // 将类型更改为不可 null，并设置默认值空字符串
-                    propertyType = "string";
-                    constantValue = "\"\"";
-                }
-                break;
+            switch (propertyType)
+            {
+                case "string": // 类型为 String 【不可】 null 的
+                    constantValue = "\"\""; // 需要设置默认值空字符串
+                    if (!writeAttributes.Contains(TypeFullNames.Required))
+                        // 并且数据库必填
+                        WriteRequired(stream);
+                    break;
+                case "string?": // 类型为 String 【可】为 null 的
+                    if (writeAttributes.Contains(TypeFullNames.Required)) // 但是有数据库必填
+                    {
+                        // 将类型更改为不可 null，并设置默认值空字符串
+                        propertyType = "string";
+                        constantValue = "\"\"";
+                    }
+                    break;
+            }
         }
 
         #endregion
@@ -256,8 +272,21 @@ public record struct PropertyMetadata(
 """
     public {0} {1} { get; set; }
 """u8;
+
         var propertyName = GeneratorConfig.Translate(Name);
-        stream.WriteFormat(property, propertyType, propertyName);
+        if (Field.Modifier != null)
+        {
+            property =
+"""
+    public {0} {1} {2}
+"""u8;
+            stream.WriteFormat(property, Field.Modifier, propertyType, propertyName);
+        }
+        else
+        {
+            stream.WriteFormat(property, propertyType, propertyName);
+        }
+
         if (constantValue != null)
         {
             var propertyConstantValue =

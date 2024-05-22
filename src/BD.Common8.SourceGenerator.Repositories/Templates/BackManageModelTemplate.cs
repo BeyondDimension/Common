@@ -7,7 +7,7 @@ sealed class BackManageModelTemplate : TemplateBase<BackManageModelTemplate, Bac
 {
     public readonly record struct Metadata(
         string Namespace,
-        string Summary,
+        string? Summary,
         string ClassName,
         GenerateRepositoriesAttribute GenerateRepositoriesAttribute) : ITemplateMetadata
     {
@@ -193,7 +193,7 @@ public sealed partial class Table{2}Model
 
     protected override void WriteCore(Stream stream, object?[] args, Metadata metadata, ImmutableArray<PropertyMetadata> fields)
     {
-        args[0] = string.Format(args[0]!.ToString()!, "Models");
+        args[0] = $"{args[0]!.ToString()}.Models.{metadata.GenerateRepositoriesAttribute.ModuleName}";
         WriteSourceHeader(stream);
         var format =
 """

@@ -140,6 +140,14 @@ static class FixedPropertyHelper
                 fieldHumanizeName = "标题";
                 return;
             }
+            else if (fieldName == "匹配域名地址数组")
+            {
+                fixedProperty = FixedProperty.MatchDomainNames;
+                propertyType = "string";
+                fieldName = "MatchDomainNames";
+                fieldHumanizeName = "匹配域名地址数组";
+                return;
+            }
         }
         else if (propertyType.IsGenderOrWithNullable())
         {

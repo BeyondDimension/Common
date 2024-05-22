@@ -7,7 +7,7 @@ sealed class RepositoryTemplate : RepositoryTemplateBase<RepositoryTemplate, Rep
 {
     public readonly record struct Metadata(
         string Namespace,
-        string Summary,
+        string? Summary,
         string ClassName,
         string? PrimaryKeyTypeName = null,
         GenerateRepositoriesAttribute GenerateRepositoriesAttribute = null!) : IRepositoryTemplateMetadata
@@ -41,7 +41,7 @@ namespace {0};
 /// </summary>
 public partial interface I{2}Repository : IRepository<{2}, {3}>, IEFRepository
 """u8;
-        args[0] = string.Format(args[0]!.ToString()!, "Repositories.Abstractions");
+        args[0] = $"{args[0]!.ToString()}.Repositories.Abstractions";
         args[3] = fields.Single(x => x.FixedProperty == FixedProperty.Id).PropertyType;
         stream.WriteFormat(format, args);
 

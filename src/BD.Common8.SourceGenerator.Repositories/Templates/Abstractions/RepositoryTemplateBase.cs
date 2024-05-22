@@ -293,7 +293,7 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                         }
                         break;
                     default:
-                        if (!Regex.Match(field.Field.TypeName!, @"^(string|\[]|object)$").Success)
+                        if (!new string[] { "string", "object", "[]" }.Any(x => field.Field.Name!.Contains(x)))
                         {
                             stream.WriteFormat(
 """

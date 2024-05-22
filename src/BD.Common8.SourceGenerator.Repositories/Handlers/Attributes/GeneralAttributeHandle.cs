@@ -196,37 +196,7 @@ sealed class GeneralAttributeHandle : IAttributeHandle
 """
 ({0})
 """u8;
-        s.WriteFormat(formatStr, attributeValue.Replace("'", "\""));
-        //var anyConstructorArguments = attribute.ConstructorArguments.Any();
-        //var anyNamedArguments = attribute.NamedArguments.Any();
-        //if (anyConstructorArguments || anyNamedArguments)
-        //{
-        //    s.Write("("u8);
-        //    if (anyConstructorArguments)
-        //    {
-        //        for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
-        //        {
-        //            var item = attribute.ConstructorArguments[i];
-        //            s.WriteObject(GetValue(item.GetObjectValue()));
-        //            if (i != attribute.ConstructorArguments.Length - 1)
-        //                s.Write(", "u8);
-        //        }
-        //    }
-        //    if (anyNamedArguments)
-        //    {
-        //        s.Write(", "u8);
-        //        for (int i = 0; i < attribute.NamedArguments.Length; i++)
-        //        {
-        //            var item = attribute.NamedArguments[i];
-        //            s.WriteUtf16StrToUtf8OrCustom(item.Key);
-        //            s.Write(" = "u8);
-        //            s.WriteObject(GetValue(item.Value.GetObjectValue()));
-        //            if (i != attribute.ConstructorArguments.Length - 1)
-        //                s.Write(", "u8);
-        //        }
-        //    }
-        //    s.Write(")"u8);
-        //}
+        s.WriteFormat(formatStr, attributeValue);
     }
 
     string? IAttributeHandle.Write(AttributeHandleArguments args)

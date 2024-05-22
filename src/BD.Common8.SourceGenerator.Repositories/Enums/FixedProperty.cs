@@ -21,4 +21,5 @@ public enum FixedProperty : ushort
     CreateUserId,
     OperatorUserId,
     Disable,
+    MatchDomainNames,
 }

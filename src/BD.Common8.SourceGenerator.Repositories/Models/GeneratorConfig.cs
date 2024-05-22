@@ -10,6 +10,7 @@ public sealed record class GeneratorConfig(
     ImmutableHashSet<string> AttributeTypeFullNames,
     string? ApiBaseUrlBackManageLocal,
     string? ApiBaseUrlBackManageDevelopment,
+    string Namespace,
     Dictionary<string, string[]> SourcePath)
 {
     static readonly Dictionary<string, string> DefTranslates = new()

@@ -7,6 +7,10 @@ public sealed record class EntityDesignMetadata
     public Dictionary<string, EntityDesignPropertyMetadata>? Properties { get; set; }
 
     public GenerateRepositoriesAttribute? Attribute { get; set; }
+
+    public string? Table { get; set; }
+
+    public string? Summary { get; set; }
 }
 
 public sealed record class EntityDesignPropertyMetadata
@@ -23,11 +27,9 @@ public sealed record class EntityDesignPropertyMetadata
 
     public int? MinLength { get; set; }
 
-    public string? Table { get; set; }
-
     public string? Description { get; set; }
 
-    public int? StringLength { get; set; }
+    public string? StringLength { get; set; }
 
     public bool? Url { get; set; }
 
@@ -42,6 +44,12 @@ public sealed record class EntityDesignPropertyMetadata
     public string? DatabaseGenerated { get; set; }
 
     public bool? EmailAddress { get; set; }
+
+    public string? Summary { get; set; }
+
+    public string? PreprocessorDirective { get; set; }
+
+    public string? Modifier { get; set; }
 
     public BackManageFieldAttribute? Attribute { get; set; }
 }
