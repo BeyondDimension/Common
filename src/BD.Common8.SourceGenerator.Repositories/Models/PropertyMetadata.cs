@@ -287,9 +287,9 @@ public record struct PropertyMetadata(
         {
             property =
 """
-    public {0} {1} {2}{3}
+    public {0} {1} {2} { get; set; }
 """u8;
-            stream.WriteFormat(property, Field.Modifier, propertyType, propertyName, Field.Modifier != "const" ? " { get; set; }" : string.Empty);
+            stream.WriteFormat(property, Field.Modifier, propertyType, propertyName);
         }
         else
         {
