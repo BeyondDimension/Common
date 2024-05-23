@@ -186,6 +186,15 @@ public record struct PropertyMetadata(
 """u8;
             stream.WriteFormat(summary, Regex.Replace(Field.Summary, @"[ ]*///", "    ///"));
         }
+        else if (FixedProperty != default)
+        {
+            var summary =
+"""
+    /// <inheritdoc/>
+
+"""u8;
+            stream.Write(summary);
+        }
         else
         {
             var summary =
@@ -278,9 +287,9 @@ public record struct PropertyMetadata(
         {
             property =
 """
-    public {0} {1} {2}
+    public {0} {1} {2}{3}
 """u8;
-            stream.WriteFormat(property, Field.Modifier, propertyType, propertyName);
+            stream.WriteFormat(property, Field.Modifier, propertyType, propertyName, Field.Modifier != "const" ? " { get; set; }" : string.Empty);
         }
         else
         {
