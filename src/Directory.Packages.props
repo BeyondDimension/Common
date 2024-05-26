@@ -269,9 +269,9 @@
 		</PackageVersion>
 		<PackageVersion Include="Xamarin.Google.Android.Material" Version="1.10.0.4">
 		</PackageVersion>
-		<PackageVersion Include="xunit" Version="2.8.0">
+		<PackageVersion Include="xunit" Version="2.8.1">
 		</PackageVersion>
-		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.0">
+		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.1">
 		</PackageVersion>
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0">
 		</PackageVersion>
