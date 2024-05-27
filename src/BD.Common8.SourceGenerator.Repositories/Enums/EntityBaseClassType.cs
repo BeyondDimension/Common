@@ -2,9 +2,9 @@ namespace BD.Common8.SourceGenerator.Repositories.Enums;
 
 public enum EntityBaseClassType : byte
 {
-    TenantBaseEntityV2 = 1,
-    OperatorBaseEntityV2,
-    CreationBaseEntityV2,
+    TenantBaseEntity = 1,
+    OperatorBaseEntity,
+    CreationBaseEntity,
     Entity,
 }
 
@@ -14,7 +14,7 @@ public static partial class EntityBaseClassTypeEnumExtensions
         = new Dictionary<EntityBaseClassType, ImmutableArray<FixedProperty>>
         {
             {
-                EntityBaseClassType.TenantBaseEntityV2, new FixedProperty[]
+                EntityBaseClassType.TenantBaseEntity, new FixedProperty[]
             {
                 FixedProperty.TenantId,
                 FixedProperty.SoftDeleted,
@@ -26,7 +26,7 @@ public static partial class EntityBaseClassTypeEnumExtensions
             }.ToImmutableArray()
             },
             {
-                EntityBaseClassType.OperatorBaseEntityV2, new FixedProperty[]
+                EntityBaseClassType.OperatorBaseEntity, new FixedProperty[]
             {
                 FixedProperty.UpdateTime,
                 FixedProperty.OperatorUserId,
@@ -36,7 +36,7 @@ public static partial class EntityBaseClassTypeEnumExtensions
             }.ToImmutableArray()
             },
             {
-                EntityBaseClassType.CreationBaseEntityV2, new FixedProperty[]
+                EntityBaseClassType.CreationBaseEntity, new FixedProperty[]
             {
                 FixedProperty.CreationTime,
                 FixedProperty.CreateUserId,

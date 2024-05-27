@@ -39,9 +39,9 @@ public record struct PropertyMetadata(
     public readonly byte[]? GetBaseEntityType(EntityBaseClassType baseClassType) => baseClassType switch
     {
         EntityBaseClassType.Entity => Encoding.UTF8.GetBytes($"Entity<{PropertyType}>"),
-        EntityBaseClassType.TenantBaseEntityV2 => Encoding.UTF8.GetBytes($"TenantBaseEntity<{PropertyType}>"),
-        EntityBaseClassType.OperatorBaseEntityV2 => Encoding.UTF8.GetBytes($"OperatorBaseEntity<{PropertyType}>"),
-        EntityBaseClassType.CreationBaseEntityV2 => Encoding.UTF8.GetBytes($"CreationBaseEntity<{PropertyType}>"),
+        EntityBaseClassType.TenantBaseEntity => Encoding.UTF8.GetBytes($"TenantBaseEntity<{PropertyType}>"),
+        EntityBaseClassType.OperatorBaseEntity => Encoding.UTF8.GetBytes($"OperatorBaseEntity<{PropertyType}>"),
+        EntityBaseClassType.CreationBaseEntity => Encoding.UTF8.GetBytes($"CreationBaseEntity<{PropertyType}>"),
         _ => default,
     };
 
@@ -212,8 +212,7 @@ public record struct PropertyMetadata(
         var properties = typeof(EntityDesignPropertyMetadata).GetProperties();
         foreach (var pinfo in properties)
         {
-            if (new string[]
-                { "Name", "TypeName", "DefaultValue", "Attribute", "Summary", "PreprocessorDirective", "Modifier" }
+            if (new[] { "Name", "TypeName", "DefaultValue", "Attribute", "Summary", "PreprocessorDirective", "Modifier" }
                 .Any(x => pinfo.Name.Contains(x)))
                 continue;
 
@@ -248,7 +247,7 @@ public record struct PropertyMetadata(
 
         //var constantValue = Field.IsConst ? Field.ConstantValue : null;
         var constantValue = Field.DefaultValue;
-        var propertyType = PropertyType;
+        var propertyType = Field.TypeName;
 
         #region String 类型特殊处理
         if (constantValue == null)
@@ -261,14 +260,14 @@ public record struct PropertyMetadata(
                         // 并且数据库必填
                         WriteRequired(stream);
                     break;
-                case "string?": // 类型为 String 【可】为 null 的
-                    if (writeAttributes.Contains(TypeFullNames.Required)) // 但是有数据库必填
-                    {
-                        // 将类型更改为不可 null，并设置默认值空字符串
-                        propertyType = "string";
-                        constantValue = "\"\"";
-                    }
-                    break;
+                    //case "string?": // 类型为 String 【可】为 null 的
+                    //    if (writeAttributes.Contains(TypeFullNames.Required)) // 但是有数据库必填
+                    //    {
+                    //        // 将类型更改为不可 null，并设置默认值空字符串
+                    //        propertyType = "string";
+                    //        constantValue = "\"\"";
+                    //    }
+                    //    break;
             }
         }
 

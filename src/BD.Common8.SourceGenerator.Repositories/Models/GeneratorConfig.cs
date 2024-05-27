@@ -136,17 +136,17 @@ public sealed record class GeneratorConfig(
 
         var attrTypeFullNamesCfg = generatorConfig.AttributeTypeFullNames;
         if (attrTypeFullNamesCfg != null)
-            foreach (var key_ in attrTypeFullNamesCfg)
+            foreach (var value_ in attrTypeFullNamesCfg)
             {
-                if (string.IsNullOrWhiteSpace(key_)) continue;
-                var key = key_;
+                if (string.IsNullOrWhiteSpace(value_)) continue;
+                var value = value_;
                 try
                 {
-                    if (!key.EndsWith("Attribute"))
-                        key = $"{key}Attribute";
-                    var indexD = key.LastIndexOf('.');
+                    if (!value.EndsWith("Attribute"))
+                        value = $"{value}Attribute";
+                    var indexD = value.LastIndexOf('.');
                     if (indexD == -1) continue;
-                    var value = key.Substring(indexD, key.Length - "Attribute".Length);
+                    var key = value.Substring(indexD, value.Length - "Attribute".Length);
                     if (!attrTypeFullNames.ContainsKey(key))
                         attrTypeFullNames.Add(key, value);
                 }
