@@ -38,7 +38,7 @@ sealed class EntityTemplate : TemplateBase<EntityTemplate, EntityTemplate.Metada
 namespace {0};
 
 {1}
-[Table({2})]
+[Table("{2}")]
 public sealed partial class {3}
 """u8;
         args[0] = $"{args[0]!.ToString()}.Entities.{metadata.GenerateRepositoriesAttribute.ModuleName}";
@@ -54,8 +54,7 @@ public sealed partial class {3}
 """;
             args[1] = string.Format(summary, metadata.ClassName);
         }
-        if (args[2] == null)
-            args[2] = $"\"{metadata.ClassName}\"";
+        args[2] = metadata.ClassName.Pluralize();
 
         stream.WriteFormat(format, args);
 

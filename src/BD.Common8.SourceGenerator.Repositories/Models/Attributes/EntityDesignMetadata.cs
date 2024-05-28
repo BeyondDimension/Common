@@ -8,8 +8,6 @@ public sealed record class EntityDesignMetadata
 
     public GenerateRepositoriesAttribute? Attribute { get; set; }
 
-    public string? Table { get; set; }
-
     public string? Summary { get; set; }
 }
 
@@ -47,7 +45,7 @@ public sealed record class EntityDesignPropertyMetadata
 
     public string? Summary { get; set; }
 
-    public string? PreprocessorDirective { get; set; }
+    public string[]? PreprocessorDirective { get; set; }
 
     public string? Modifier { get; set; }
 

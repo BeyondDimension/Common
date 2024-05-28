@@ -45,7 +45,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                     if (generateRepositories.Entity && IsGenerator("Entity"))
                     {
                         EntityTemplate.Instance.AddSource(sourceProductionContext, additional,
-                               new(@namespace, summary, metadata.Table, className,
+                               new(@namespace, summary, className, className,
                                generateRepositories),
                                properties);
                     }

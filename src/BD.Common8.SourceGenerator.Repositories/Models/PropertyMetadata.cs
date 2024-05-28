@@ -162,8 +162,7 @@ public record struct PropertyMetadata(
     /// </summary>
     public readonly void Write(Stream stream, ClassType classType, bool @override = false)
     {
-        foreach (var handle in PropertyHandles.Value)
-            handle.Write(new(stream, Field.PreprocessorDirective, this));
+        PropertyHandles.Value.First().Write(new(stream, Field.PreprocessorDirective, true, this));
 
         var humanizeName = HumanizeName;
 
@@ -247,7 +246,7 @@ public record struct PropertyMetadata(
 
         //var constantValue = Field.IsConst ? Field.ConstantValue : null;
         var constantValue = Field.DefaultValue;
-        var propertyType = Field.TypeName;
+        var propertyType = Field.TypeName!;
 
         #region String 类型特殊处理
         if (constantValue == null)
@@ -255,19 +254,20 @@ public record struct PropertyMetadata(
             switch (propertyType)
             {
                 case "string": // 类型为 String 【不可】 null 的
-                    constantValue = "\"\""; // 需要设置默认值空字符串
+                    Field.Modifier = "required";
+                    //constantValue = "\"\""; // 需要设置默认值空字符串
                     if (!writeAttributes.Contains(TypeFullNames.Required))
                         // 并且数据库必填
                         WriteRequired(stream);
                     break;
-                    //case "string?": // 类型为 String 【可】为 null 的
-                    //    if (writeAttributes.Contains(TypeFullNames.Required)) // 但是有数据库必填
-                    //    {
-                    //        // 将类型更改为不可 null，并设置默认值空字符串
-                    //        propertyType = "string";
-                    //        constantValue = "\"\"";
-                    //    }
-                    //    break;
+                case "string?": // 类型为 String 【可】为 null 的
+                    if (writeAttributes.Contains(TypeFullNames.Required)) // 但是有数据库必填
+                    {
+                        // 将类型更改为不可 null，并设置默认值空字符串
+                        propertyType = "string";
+                        Field.Modifier = "required";
+                    }
+                    break;
             }
         }
 
@@ -339,6 +339,7 @@ public record struct PropertyMetadata(
                 }
                 break;
         }
+        PropertyHandles.Value.First().Write(new(stream, Field.PreprocessorDirective, false, this));
     }
 
     /// <summary>
