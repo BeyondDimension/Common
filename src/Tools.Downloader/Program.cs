@@ -33,6 +33,7 @@ static partial class Program
         finally
         {
             Console.WriteLine("END");
+            Console.ReadLine();
         }
     }
 
@@ -106,15 +107,20 @@ static partial class Program
         Console.WriteLine($"Download cache directory: {cacheDir}");
         return
             [
+                //new DownloadItem
+                //{
+                //    FolderPath = cacheDir,
+                //    Url = DotNetRuntimeDownloadHelper.GetDownloadUrl(DotNetRuntimeDownloadHelper.DownloadType_DotNet, "win-x64"),
+                //},
+                //new DownloadItem
+                //{
+                //    FolderPath = cacheDir,
+                //    Url = DotNetRuntimeDownloadHelper.GetDownloadUrl(DotNetRuntimeDownloadHelper.DownloadType_AspNetCore, "win-x64"),
+                //},
                 new DownloadItem
                 {
                     FolderPath = cacheDir,
-                    Url = DotNetRuntimeDownloadHelper.GetDownloadUrl(DotNetRuntimeDownloadHelper.DownloadType_DotNet, "win-x64"),
-                },
-                new DownloadItem
-                {
-                    FolderPath = cacheDir,
-                    Url = DotNetRuntimeDownloadHelper.GetDownloadUrl(DotNetRuntimeDownloadHelper.DownloadType_AspNetCore, "win-x64"),
+                    Url = "https://download.visualstudio.microsoft.com/download/pr/77650902-a341-4f4c-934f-db7056cbfa78/176d961f8bbc798596f8d498ede4cc73/dotnet-runtime-8.0.5-win-x64.zip",
                 },
             ];
     }
@@ -206,7 +212,7 @@ static partial class Program
         else
         {
             ConsoleProgress.Message += " DONE";
-            Console.Title = "100%";
+            Console.Title = $"100% max: {max_speed.CalcMemoryMensurableUnit()}/s (avg: {avg_speed.CalcMemoryMensurableUnit()}/s)";
         }
 
         foreach (var child in ChildConsoleProgresses.Values)
@@ -235,6 +241,9 @@ static partial class Program
 
     static string CalcMemoryMensurableUnit(this double bytes) => IOPath.GetDisplayFileSizeString(bytes);
 
+    static double max_speed;
+    static double avg_speed;
+
     static void UpdateTitleInfo(this DownloadProgressChangedEventArgs e, bool isPaused)
     {
         int estimateTime = (int)Math.Ceiling((e.TotalBytesToReceive - e.ReceivedBytesSize) / e.AverageBytesPerSecondSpeed);
@@ -249,6 +258,13 @@ static partial class Program
         {
             estimateTime = 0;
         }
+
+        if (e.BytesPerSecondSpeed > max_speed)
+        {
+            max_speed = e.BytesPerSecondSpeed;
+        }
+
+        avg_speed = e.AverageBytesPerSecondSpeed;
 
         string avgSpeed = e.AverageBytesPerSecondSpeed.CalcMemoryMensurableUnit();
         string speed = e.BytesPerSecondSpeed.CalcMemoryMensurableUnit();
