@@ -241,7 +241,7 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Drawing.Common" Version="8.0.5">
+		<PackageVersion Include="System.Drawing.Common" Version="8.0.6">
 		</PackageVersion>
 		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="7.5.2">
 		</PackageVersion>
