@@ -103,33 +103,33 @@
 		</PackageVersion>
 		<PackageVersion Include="MessagePack" Version="2.5.140">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.5">
+		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5">
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.5">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5">
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.5">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.5">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.6">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.5">
+		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.5">
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5">
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.5">
+		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.6">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.5">
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.6">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0">
 		</PackageVersion>
@@ -139,7 +139,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.5">
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.6">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0">
 		</PackageVersion>
