@@ -57,108 +57,116 @@ partial interface IBuildCommand : ICommand
     /// </summary>
     internal static async Task<int> Handler(bool test, bool no_err)
     {
-        bool hasError = false;
-        var repoPath = ProjPath;
-
-        using CancellationTokenSource cts = new();
-        cts.CancelAfter(TimeSpan.FromMinutes(11.5D)); // 设置超时时间
-
-        var pkgPath = Path.Combine(repoPath, "pkg");
-        IOPath.DirTryDelete(pkgPath, true);
-
-        var projectNames = GetProjectNames();
-
-        //await Handler("BD.Common8.SourceGenerator.ResX", cts.Token);
-        //await Parallel.ForEachAsync(projectNames, cts.Token, Handler); // 并行化构建相关项目
-
-        string[] configs = test ? ["Release", "Debug"] : ["Release"];
-        foreach (var config in configs)
+        try
         {
-            foreach (var projectName in projectNames)
+            bool hasError = false;
+            var repoPath = ProjPath;
+
+            var projectNames = GetProjectNames();
+
+            using CancellationTokenSource cts = new();
+            cts.CancelAfter(TimeSpan.FromMinutes(11.5D * projectNames.Length)); // 设置超时时间
+
+            var pkgPath = Path.Combine(repoPath, "pkg");
+            IOPath.DirTryDelete(pkgPath, true);
+
+            //await Handler("BD.Common8.SourceGenerator.ResX", cts.Token);
+            //await Parallel.ForEachAsync(projectNames, cts.Token, Handler); // 并行化构建相关项目
+
+            string[] configs = test ? ["Release", "Debug"] : ["Release"];
+            foreach (var config in configs)
             {
-                // 顺序循环构建相关项目，并行化会导致文件占用冲突
-                await Handler(projectName, config, test, cts.Token);
+                foreach (var projectName in projectNames)
+                {
+                    // 顺序循环构建相关项目，并行化会导致文件占用冲突
+                    await Handler(projectName, config, test, cts.Token);
+                }
             }
-        }
 
-        if (hasError)
-        {
-            if (no_err)
+            if (hasError)
             {
-                return 0;
+                if (no_err)
+                {
+                    return 0;
+                }
+                return 500;
             }
-            return 500;
-        }
-        Console.WriteLine("🆗");
-        Console.WriteLine("OK");
-        return 0;
+            Console.WriteLine("🆗");
+            Console.WriteLine("OK");
+            return 0;
 
-        async ValueTask Handler(string projectName, string config, bool test, CancellationToken cancellationToken)
-        {
-            var projPath = Path.Combine(repoPath, "src", projectName);
-            Clean(projPath);
-
-            ProcessStartInfo psi = new()
+            async ValueTask Handler(string projectName, string config, bool test, CancellationToken cancellationToken)
             {
-                FileName = "dotnet",
-                Arguments = $"build -c {config} {projectName}.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")} /nowarn:MSB4011,NU5048,NU5104,NU1506 -maxcpucount",
-                WorkingDirectory = projPath,
-            };
-            var process = Process.Start(psi);
-            if (process == null)
-                return;
+                var projPath = Path.Combine(repoPath, "src", projectName);
+                Clean(projPath);
 
-            Console.WriteLine($"开始构建({config})：{projectName}");
-
-            bool isKillProcess = false;
-            void KillProcess()
-            {
-                if (isKillProcess)
+                ProcessStartInfo psi = new()
+                {
+                    FileName = "dotnet",
+                    Arguments = $"build -c {config} {projectName}.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")} /nowarn:MSB4011,NU5048,NU5104,NU1506 -maxcpucount",
+                    WorkingDirectory = projPath,
+                };
+                var process = Process.Start(psi);
+                if (process == null)
                     return;
 
-                isKillProcess = true;
+                Console.WriteLine($"开始构建({config})：{projectName}");
+
+                bool isKillProcess = false;
+                void KillProcess()
+                {
+                    if (isKillProcess)
+                        return;
+
+                    isKillProcess = true;
+
+                    try
+                    {
+                        process.Kill(true); // 避免进程残留未结束
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+                }
 
                 try
                 {
-                    process.Kill(true); // 避免进程残留未结束
+                    cancellationToken.Register(KillProcess);
+
+                    await process.WaitForExitAsync(cancellationToken);
+
+                    int exitCode = -1;
+                    try
+                    {
+                        exitCode = process.ExitCode;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
+
+                    if (exitCode == 0)
+                    {
+                        Console.WriteLine($"构建成功({config})：{projectName}");
+                    }
+                    else
+                    {
+                        if (hasError != true)
+                            hasError = true;
+                        Console.WriteLine($"构建失败({config})：{projectName}, exitCode:{exitCode}");
+                    }
                 }
-                catch (Exception ex)
+                finally
                 {
-                    Console.WriteLine(ex);
+                    KillProcess();
                 }
             }
-
-            try
-            {
-                cancellationToken.Register(KillProcess);
-
-                await process.WaitForExitAsync(cancellationToken);
-
-                int exitCode = -1;
-                try
-                {
-                    exitCode = process.ExitCode;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-
-                if (exitCode == 0)
-                {
-                    Console.WriteLine($"构建成功({config})：{projectName}");
-                }
-                else
-                {
-                    if (hasError != true)
-                        hasError = true;
-                    Console.WriteLine($"构建失败({config})：{projectName}, exitCode:{exitCode}");
-                }
-            }
-            finally
-            {
-                KillProcess();
-            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine(ex);
+            return 500;
         }
     }
 }
