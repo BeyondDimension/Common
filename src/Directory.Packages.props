@@ -19,6 +19,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia" Version="11.1.0-beta2">
 		</PackageVersion>
+		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.0-beta2">
+		</PackageVersion>
 		<PackageVersion Include="Avalonia.Android" Version="11.1.0-beta2">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.AvaloniaEdit" Version="11.0.6">
@@ -217,8 +219,6 @@
 		</PackageVersion>
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.8">
 		</PackageVersion>
-		<PackageVersion Include="Squid-Box.SevenZipSharp.Lite" Version="1.6.2.24">
-		</PackageVersion>
 		<PackageVersion Include="StackExchange.Redis" Version="2.7.33">
 		</PackageVersion>
 		<PackageVersion Include="StackExchange.Redis.Extensions.AspNetCore" Version="10.2.0">
@@ -362,6 +362,8 @@
 	<!-- BD.Avalonia8 -->
 	<ItemGroup>
 		<PackageVersion Include="BD.Avalonia8.Image2" Version="$(Version_Avalonia8_Pkg)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.24.10527.11800">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.SteamClient8 -->

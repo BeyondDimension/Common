@@ -58,6 +58,7 @@
 		<Using Alias="Activity" Include="Android.App.Activity" />
 		<Using Alias="JavaObject" Include="Java.Lang.Object" />
 		<Using Alias="JavaThrowable" Include="Java.Lang.Throwable" />
+		<Using Alias="JavaThread" Include="Java.Lang.Thread" />
 		<Using Alias="AndroidEnvironment" Include="Android.OS.Environment" />
 	</ItemGroup>
 </Project>
