@@ -211,7 +211,7 @@ public record struct PropertyMetadata(
         var properties = typeof(EntityDesignPropertyMetadata).GetProperties();
         foreach (var pinfo in properties)
         {
-            if (new[] { "Name", "TypeName", "DefaultValue", "Attribute", "Summary", "PreprocessorDirective", "Modifier" }
+            if (new[] { "Name", "TypeName", "DefaultValue", "Attribute", "Summary", "PreprocessorDirective", "Modifier", "IsValueType" }
                 .Any(x => pinfo.Name.Contains(x)))
                 continue;
 
@@ -246,7 +246,7 @@ public record struct PropertyMetadata(
 
         //var constantValue = Field.IsConst ? Field.ConstantValue : null;
         var constantValue = Field.DefaultValue;
-        var propertyType = Field.TypeName!;
+        var propertyType = PropertyType;
 
         #region String 类型特殊处理
         if (constantValue == null)
@@ -255,7 +255,6 @@ public record struct PropertyMetadata(
             {
                 case "string": // 类型为 String 【不可】 null 的
                     Field.Modifier = "required";
-                    //constantValue = "\"\""; // 需要设置默认值空字符串
                     if (!writeAttributes.Contains(TypeFullNames.Required))
                         // 并且数据库必填
                         WriteRequired(stream);
@@ -270,8 +269,12 @@ public record struct PropertyMetadata(
                     break;
             }
         }
-
         #endregion
+
+        if (writeAttributes.Contains(TypeFullNames.Required))
+        {
+            Field.Modifier = "required";
+        }
 
         var property = @override ?
 """
@@ -339,6 +342,7 @@ public record struct PropertyMetadata(
                 }
                 break;
         }
+
         PropertyHandles.Value.First().Write(new(stream, Field.PreprocessorDirective, false, this));
     }
 

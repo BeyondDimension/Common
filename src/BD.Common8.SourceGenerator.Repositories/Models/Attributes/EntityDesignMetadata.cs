@@ -49,5 +49,7 @@ public sealed record class EntityDesignPropertyMetadata
 
     public string? Modifier { get; set; }
 
+    public bool IsValueType { get; set; }
+
     public BackManageFieldAttribute? Attribute { get; set; }
 }

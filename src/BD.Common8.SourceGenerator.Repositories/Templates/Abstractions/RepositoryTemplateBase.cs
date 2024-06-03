@@ -293,23 +293,23 @@ public abstract class RepositoryTemplateBase<TTemplate, TTemplateMetadata> : Tem
                         }
                         break;
                     default:
-                        if (!new string[] { "string", "object", "[]" }.Any(x => field.Field.Name!.Contains(x)))
+                        if (field.Field.IsValueType)
                         {
                             stream.WriteFormat(
 """
 
-        if ({0}.HasValue)
-            query = query.Where(x => x.{1} == {0}.Value);
-"""u8, field.CamelizeName, field.TranslateName);
+                                if ({0}.HasValue)
+                                    query = query.Where(x => x.{1} == {0}.Value);
+                        """u8, field.CamelizeName, field.TranslateName);
                         }
                         else
                         {
                             stream.WriteFormat(
 """
 
-        if ({0} != null)
-            query = query.Where(x => x.{1} == {0});
-"""u8, field.CamelizeName, field.TranslateName);
+                                if ({0} != null)
+                                    query = query.Where(x => x.{1} == {0});
+                        """u8, field.CamelizeName, field.TranslateName);
                         }
                         break;
                 }
