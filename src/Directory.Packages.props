@@ -358,6 +358,8 @@
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.UserInput.ModelValidator" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
+		<PackageVersion Include="BD.Common8.SourceGenerator.Repositories" Version="$(Version_Common8Bcl)">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Avalonia8 -->
 	<ItemGroup>
