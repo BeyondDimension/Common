@@ -5,6 +5,14 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<RootNamespace>Ipc.Sample</RootNamespace>
 		<UseProjectUtils>true</UseProjectUtils>
+		<BeyondDimensionFeatures>
+			BD.Common8.Bcl;
+			BD.Common8.Ipc;
+			BD.Common8.Ipc.Client;
+			BD.Common8.Primitives;
+			BD.Common8.Primitives.ApiRsp;
+			BD.Common8.Http.ClientFactory;
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,13 +29,5 @@
 		<Using Include="DotNext.Reflection" />
 		<Using Include="Ipc.Sample" />
 	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Logging.Console.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.SourceGenerator.Ipc.Client.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.Client.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.ApiRsp.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Http.ClientFactory.props" />
 
 </Project>

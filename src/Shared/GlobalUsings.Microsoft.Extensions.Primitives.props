@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App')) OR @(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.Primitives'))" >
 		<Using Include="Microsoft.Extensions.Primitives" />
 	</ItemGroup>
 </Project>

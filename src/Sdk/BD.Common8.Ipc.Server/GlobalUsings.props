@@ -1,7 +1,0 @@
-<Project>
-	<!-- 全局 using | Global usings -->
-	<ImportGroup>
-		<Import Project="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\GlobalUsings.AspNetCore.props" />
-		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.AspNetCore.SignalR.props" />
-	</ImportGroup>
-</Project>

@@ -1,6 +1,0 @@
-<Project>
-	<!-- 依赖包引用 -->
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-		<PackageReference Include="Xamarin.AndroidX.Browser" />
-	</ItemGroup>
-</Project>

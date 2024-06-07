@@ -5,11 +5,15 @@
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 		<UseProjectUtils>true</UseProjectUtils>
+		<BeyondDimensionFeatures>
+			BD.Common8.Bcl;
+			BD.Common8.AspNetCore;
+			BD.Common8.AspNetCore.Identity;
+			BD.Common8.AspNetCore.Identity.BackManage;
+			BD.Common8.Repositories;
+			BD.Common8.Repositories.EFCore;
+			BD.Common8.Orm.EFCore;
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.SourceGenerator.Repositories.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.AspNetCore.Identity.BackManage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Repositories.EFCore.props" />
 
 </Project>

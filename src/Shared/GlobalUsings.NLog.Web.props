@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'NLog.Web.AspNetCore'))" >
 		<Using Include="NLog.Web" />
 	</ItemGroup>
 </Project>

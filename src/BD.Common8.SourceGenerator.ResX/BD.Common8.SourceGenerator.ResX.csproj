@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<Version>$(Version_SourceGenerator_Resx)</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<PackageDescription>xyz.Designer.cs 源生成器</PackageDescription>
+		<Description>xyz.Designer.cs 源生成器</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -13,15 +15,5 @@
 			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
 		</Compile>
 	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</None>
-	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
 </Project>

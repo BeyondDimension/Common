@@ -1,24 +1,17 @@
 <Project>
+	<!-- 📄 全局属性配置 -->
+
+	<!-- 👇 基础配置 -->
+	<Import Project="$(MSBuildThisFileDirectory)Global.Base.props" />
+
+	<!-- 👇 版本号配置 -->
 	<Import Project="$(MSBuildThisFileDirectory)..\Version.props" />
 
-	<!-- 全局 -->
+	<!-- 👇 全局属性 -->
 	<PropertyGroup>
-		<Deterministic>true</Deterministic>
-		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
-		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 		<AndroidSdkDirectory Condition="$([MSBuild]::IsOSPlatform('windows')) And Exists('C:\Users\Aigio\AppData\Local\Android\Sdk')">C:\Users\Aigio\AppData\Local\Android\Sdk</AndroidSdkDirectory>
-		<UseArtifactsOutput>true</UseArtifactsOutput>
-		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
 		<NeutralLanguage>zh-Hans</NeutralLanguage>
-		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011</NoWarn>
-	</PropertyGroup>
-
-	<!-- 其他 | Other -->
-	<PropertyGroup>
 		<Version>$(Version_Common8Bcl)</Version>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<ImplicitUsings>true</ImplicitUsings>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
 		<RepositoryType>git</RepositoryType>
 		<Company>江苏蒸汽凡星科技有限公司</Company>
@@ -26,11 +19,9 @@
 		<Authors>$(Company)</Authors>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104,NU1506</NoWarn>
 	</PropertyGroup>
 
-	<!-- 静态本机编译 & 剪裁 | AOT & Trimmable -->
+	<!-- 👇 静态本机编译 & 剪裁 | AOT & Trimmable -->
 	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
 		<IsTrimmable>true</IsTrimmable>
 		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
@@ -39,10 +30,10 @@
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
-	<!-- 全局 using | Global usings -->
+	<!-- 👇 全局 using | Global usings -->
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.props" />
 
-	<!-- 源代码分析 | Code Style -->
+	<!-- 👇 源代码分析 | Code Style -->
 	<ItemGroup>
 		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
 	</ItemGroup>

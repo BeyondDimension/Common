@@ -2,6 +2,8 @@ using PB = Google.Protobuf;
 
 namespace BD.Common8.UnitTest;
 
+#pragma warning disable SA1414 // Tuple types in signatures should have element names
+
 /// <summary>
 /// 提供对模型类的测试
 /// </summary>

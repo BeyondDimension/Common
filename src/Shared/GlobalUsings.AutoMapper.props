@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'AutoMapper'))" >
 		<Using Include="AutoMapper" />
 	</ItemGroup>
 </Project>

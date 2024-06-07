@@ -4,6 +4,9 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
+		<BeyondDimensionFeatures>
+			BD.Common8.Bcl;
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -11,7 +14,5 @@
 			<LinkBase>_SourceReference\Tools.Build\Commands</LinkBase>
 		</Compile>
 	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
 
 </Project>

@@ -1,4 +1,7 @@
 <Project>
+	<!-- 📄 源生成器项目引用配置 -->
+
+	<!-- 👇 .NET Standard，引用 Compat 兼容 CoreCLR/.NET 5+ 提供的 BCL API -->
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
 			<LinkBase>_SourceReference\Compat</LinkBase>
@@ -33,7 +36,8 @@
 			<LinkBase>_SourceReference\Resources</LinkBase>
 		</Compile>
 	</ItemGroup>
-	
+
+	<!-- 👇 .NET Compiler Platform (Roslyn) 分析器 -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
@@ -41,7 +45,8 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
 	</ItemGroup>
-	
+
+	<!-- 👇 全局命名空间引用 -->
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.CodeAnalysis.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SourceGenerator.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Collections.Immutable.props" />

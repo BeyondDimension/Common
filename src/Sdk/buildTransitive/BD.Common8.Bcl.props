@@ -1,5 +1,3 @@
 <Project>
-	<!-- 全局 using | Global usings -->
-	<Import Project="$(MSBuildThisFileDirectory)GlobalUsings.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)MSBuildThisFileName\GlobalUsings.props" />
+	<Import Project="$(MSBuildThisFileDirectory)src\Sdk\Global.Base.props" />
 </Project>

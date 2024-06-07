@@ -1,0 +1,280 @@
+<Project>
+	<!-- 📄 SDK 源码引用 -->
+
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat'">
+		<!-- 👇 Resx 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.ResX'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Bcl 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Ipc.Client 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Client;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Ipc.Client'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Ipc.Server 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Ipc.Server'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 类库项目源码引用 -->
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.AspNetCore</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore.Identity;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore.Identity'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.AspNetCore.Identity</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore.Identity.BackManage;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore.Identity.BackManage'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity.BackManage\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.AspNetCore.Identity.BackManage</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity.BackManage\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity.BackManage\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Bcl;')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Bcl</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Bcl.Compat;')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Bcl.Compat</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Crawler;')) AND $(MSBuildProjectName) != 'BD.Common8.Crawler'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Crawler\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Crawler</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Crawler\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Crawler\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Essentials</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials.Implementation;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials.Implementation'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Essentials.Implementation</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials.Implementation.Avalonia;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials.Implementation.Avalonia'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation.Avalonia\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Essentials.Implementation.Avalonia</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation.Avalonia\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation.Avalonia\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Http.ClientFactory;')) AND $(MSBuildProjectName) != 'BD.Common8.Http.ClientFactory'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Http.ClientFactory</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Http.ClientFactory.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.Http.ClientFactory.Server'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory.Server\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Http.ClientFactory.Server</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory.Server\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory.Server\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.HuaweiCloud.SDK.Obs;')) AND $(MSBuildProjectName) != 'BD.Common8.HuaweiCloud.SDK.Obs'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.HuaweiCloud.SDK.Obs\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.HuaweiCloud.SDK.Obs</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.HuaweiCloud.SDK.Obs\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.HuaweiCloud.SDK.Obs\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Ipc</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Client;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc.Client'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Client\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Ipc.Client</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Client\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Client\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc.Server'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Server\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Ipc.Server</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Server\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Server\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Orm.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.Orm.EFCore'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Orm.EFCore\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Orm.EFCore</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Orm.EFCore\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Orm.EFCore\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Pinyin</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin.ChnCharInfo;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin.ChnCharInfo'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.ChnCharInfo\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Pinyin.ChnCharInfo</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.ChnCharInfo\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.ChnCharInfo\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin.CoreFoundation;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin.CoreFoundation'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.CoreFoundation\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Pinyin.CoreFoundation</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.CoreFoundation\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.CoreFoundation\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.ApiRsp;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.ApiRsp'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.ApiRsp</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.ApiResponse;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.ApiResponse'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiResponse\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.ApiResponse</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiResponse\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiResponse\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.BirthDate;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.BirthDate'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.PersonalData.BirthDate</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.PhoneNumber;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.PhoneNumber'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.PersonalData.PhoneNumber</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.UserName;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.UserName'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.UserName\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.PersonalData.UserName</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.UserName\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.UserName\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.District;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.District'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.District</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.Essentials;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.Essentials'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.Essentials</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.Toast;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.Toast'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Primitives.Toast</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Repositories</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories.EFCore'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.EFCore\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Repositories.EFCore</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.EFCore\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.EFCore\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.SQLitePCL;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories.SQLitePCL'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.SQLitePCL\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Repositories.SQLitePCL</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.SQLitePCL\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.SQLitePCL\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Security;')) AND $(MSBuildProjectName) != 'BD.Common8.Security'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Security\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Security</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Security\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Security\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Settings5;')) AND $(MSBuildProjectName) != 'BD.Common8.Settings5'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Settings5</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.SmsSender;')) AND $(MSBuildProjectName) != 'BD.Common8.SmsSender'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SmsSender\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.SmsSender</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SmsSender\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SmsSender\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Toast;')) AND $(MSBuildProjectName) != 'BD.Common8.Toast'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Toast\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.Toast</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Toast\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Toast\obj\**" />
+		</ItemGroup>
+		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.UserInput.ModelValidator;')) AND $(MSBuildProjectName) != 'BD.Common8.UserInput.ModelValidator'">
+			<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.UserInput.ModelValidator\**\*.cs">
+				<LinkBase>_SourceReference\BD.Common8.UserInput.ModelValidator</LinkBase>
+			</Compile>
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.UserInput.ModelValidator\bin\**" />
+			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.UserInput.ModelValidator\obj\**" />
+		</ItemGroup>
+	</ItemGroup>
+
+</Project>

@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'ReactiveUI.Fody'))" >
 		<Using Include="ReactiveUI.Fody" />
 		<Using Include="ReactiveUI.Fody.Helpers" />
 	</ItemGroup>

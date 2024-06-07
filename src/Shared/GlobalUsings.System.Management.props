@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'System.Management'))" >
 		<Using Include="System.Management" />
 	</ItemGroup>
 </Project>

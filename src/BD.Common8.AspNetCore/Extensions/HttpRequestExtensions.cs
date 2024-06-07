@@ -33,7 +33,7 @@ public static partial class HttpRequestExtensions
         this HttpRequest request,
         string customUrlScheme = CUSTOM_URL_SCHEME)
     {
-        if (!request.Headers.Referer.IsNullOrEmpty())
+        if (!StringValues.IsNullOrEmpty(request.Headers.Referer))
         {
             string referrer = request.Headers.Referer!;
             if (referrer.StartsWith(customUrlScheme))
@@ -47,7 +47,7 @@ public static partial class HttpRequestExtensions
                 }
         }
         var userAgent = request.Headers.UserAgent;
-        if (!userAgent.IsNullOrEmpty())
+        if (!StringValues.IsNullOrEmpty(userAgent))
         {
             if (userAgent.Contains("Android"))
                 return DevicePlatform2.AndroidPhone;

@@ -1,7 +1,12 @@
 <Project>
-	<!-- 源生成器项目 -->
+	<!-- 📄 源生成器项目属性配置 -->
+
+	<!-- 👇 引用配置 -->
 	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.SourceGenerator.Reference.props" />
 
+	<Import Condition="Exists('$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).props')" Project="$(MSBuildThisFileDirectory)GlobalUsings.MSBuildProjectName.props" />
+
+	<!-- 👇 全局属性配置 -->
 	<PropertyGroup>
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
@@ -11,6 +16,7 @@
 		<ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
+	<!-- 👇 共享代码引用 -->
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\**\*.cs">
 			<LinkBase>_SourceReference\Shared</LinkBase>
@@ -20,8 +26,11 @@
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\obj\**" />
 	</ItemGroup>
 
+	<!-- 👇 NuGet 打包配置 -->
 	<ItemGroup>
+		<!-- 👇 源生成器的程序集需要放在 analyzers 文件夹内 -->
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<!-- 👇 放置 _._ 表示此包可用于的 TFM，定位最低版本可供任何版本使用 -->
 		<None Include="$(MSBuildThisFileDirectory)net35\_._" Pack="true" PackagePath="lib\net35" Visible="false" />
 		<None Include="$(MSBuildThisFileDirectory)net40\_._" Pack="true" PackagePath="lib\net40" Visible="false" />
 		<None Include="$(MSBuildThisFileDirectory)netstandard1.0\_._" Pack="true" PackagePath="lib\netstandard1.0" Visible="false" />

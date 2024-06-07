@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'AngleSharp'))" >
 		<Using Include="AngleSharp" />
 		<Using Include="AngleSharp.Dom" />
 		<Using Include="AngleSharp.Html.Parser" />

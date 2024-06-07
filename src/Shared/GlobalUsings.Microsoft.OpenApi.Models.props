@@ -1,0 +1,5 @@
+<Project>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.OpenApi')) OR @(PackageReference->AnyHaveMetadataValue('Identity', 'Swashbuckle.AspNetCore'))" >
+		<Using Include="Microsoft.OpenApi.Models" />
+	</ItemGroup>
+</Project>

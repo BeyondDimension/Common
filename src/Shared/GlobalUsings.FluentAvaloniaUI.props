@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'FluentAvaloniaUI'))" >
 		<Using Include="FluentAvalonia" />
 		<Using Include="FluentAvalonia.Interop" />
 		<Using Include="FluentAvalonia.Styling" />

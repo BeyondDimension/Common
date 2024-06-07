@@ -1,0 +1,45 @@
+<Project>
+	<!-- 📄 SDK 配置 -->
+	<!--## Common8Reference Start -->
+
+	<ImportGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat'">
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.AspNetCore.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore.Identity;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore.Identity'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.AspNetCore.Identity.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore.Identity.BackManage;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore.Identity.BackManage'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.AspNetCore.Identity.BackManage.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Bcl;')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Bcl.props" />
+		<!--<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Bcl.Compat;')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Bcl.Compat.props" />-->
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Crawler;')) AND $(MSBuildProjectName) != 'BD.Common8.Crawler'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Crawler.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Essentials.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials.Implementation;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials.Implementation'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Essentials.Implementation.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials.Implementation.Avalonia;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials.Implementation.Avalonia'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Essentials.Implementation.Avalonia.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Http.ClientFactory;')) AND $(MSBuildProjectName) != 'BD.Common8.Http.ClientFactory'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Http.ClientFactory.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Http.ClientFactory.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.Http.ClientFactory.Server'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Http.ClientFactory.Server.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.HuaweiCloud.SDK.Obs;')) AND $(MSBuildProjectName) != 'BD.Common8.HuaweiCloud.SDK.Obs'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.HuaweiCloud.SDK.Obs.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Ipc.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Client;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc.Client'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Ipc.Client.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc.Server'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Ipc.Server.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Orm.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.Orm.EFCore'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Orm.EFCore.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Pinyin.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin.ChnCharInfo;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin.ChnCharInfo'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Pinyin.ChnCharInfo.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin.CoreFoundation;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin.CoreFoundation'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Pinyin.CoreFoundation.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.ApiRsp;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.ApiRsp'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.ApiRsp.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.ApiResponse;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.ApiResponse'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.ApiResponse.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.BirthDate;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.BirthDate'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.PersonalData.BirthDate.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.PhoneNumber;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.PhoneNumber'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.PersonalData.PhoneNumber.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.UserName;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.UserName'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.PersonalData.UserName.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.District;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.District'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.District.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.Essentials;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.Essentials'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.Essentials.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.Toast;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.Toast'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Primitives.Toast.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Repositories.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories.EFCore'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Repositories.EFCore.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.SQLitePCL;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories.SQLitePCL'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Repositories.SQLitePCL.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Security;')) AND $(MSBuildProjectName) != 'BD.Common8.Security'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Security.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Settings5;')) AND $(MSBuildProjectName) != 'BD.Common8.Settings5'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Settings5.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.SmsSender;')) AND $(MSBuildProjectName) != 'BD.Common8.SmsSender'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.SmsSender.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Toast;')) AND $(MSBuildProjectName) != 'BD.Common8.Toast'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.Toast.props" />
+		<Import Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.UserInput.ModelValidator;')) AND $(MSBuildProjectName) != 'BD.Common8.UserInput.ModelValidator'" Project="$(MSBuildThisFileDirectory)Projects\BD.Common8.UserInput.ModelValidator.props" />
+	</ImportGroup>
+
+	<!-- ## Common8Reference End -->
+</Project>

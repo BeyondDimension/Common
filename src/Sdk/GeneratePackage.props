@@ -1,5 +1,7 @@
 <Project>
-	<!-- 配置 NuGet 包生成 -->
+	<!-- 📄 配置 NuGet 包生成 -->
+
+	<!-- 👇 生成包的全局属性 -->
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -11,18 +13,22 @@
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageOutputPath>$(MSBuildProjectDirectory)\..\..\pkg</PackageOutputPath>
-		<!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+		<!-- 可选：在 PDB 中嵌入源代码控制管理器未跟踪的源文件 -->
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+		<!-- 可选：构建符号包（.snupkg）以分发包含源代码链接的 PDB -->
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+
+	<!-- 👇 引用 SourceLink 包与 LICENSE/README 文件放置包内容内 -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+		<!-- 👇 优先取项目 csproj 目录上的文件 -->
 		<None Condition="Exists('$(MSBuildProjectDirectory)\LICENSE')" Include="$(MSBuildProjectDirectory)\LICENSE" Pack="true" PackagePath="" />
 		<None Condition="Exists('$(MSBuildProjectDirectory)\README.md')" Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath="" />
+		<!-- 👇 否则将取解决方案 sln 目录上的文件 -->
 		<None Condition="!Exists('$(MSBuildProjectDirectory)\LICENSE')" Include="$(MSBuildProjectDirectory)..\..\..\LICENSE" Pack="true" PackagePath="" Visible="false" />
 		<None Condition="!Exists('$(MSBuildProjectDirectory)\README.md')" Include="$(MSBuildProjectDirectory)..\..\..\README.md" Pack="true" PackagePath="" Visible="false" />
 	</ItemGroup>

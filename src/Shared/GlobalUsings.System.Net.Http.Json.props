@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'System.Net.Http.Json'))" >
 		<Using Include="System.Net.Http.Json" />
 	</ItemGroup>
 </Project>

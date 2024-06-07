@@ -1,0 +1,26 @@
+<Project>
+	<Import Condition="Exists('$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props')" Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props" />
+	<ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props')">
+		<None Include="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
+			<LinkBase>Properties</LinkBase>
+		</None>
+	</ItemGroup>
+	<PropertyGroup>
+		<!-- 👇 Common 库引用 -->
+		<BeyondDimensionFeatures>
+			$(BeyondDimensionFeatures)
+			BD.Common8.Bcl;
+			BD.Common8.Primitives;
+			BD.Common8.Primitives.Essentials;
+			BD.Common8.Orm.EFCore;
+			BD.Common8.Repositories;
+			BD.Common8.Repositories.EFCore;
+		</BeyondDimensionFeatures>
+		<!-- 👇 包引用（属性） -->
+		<UseAspNetCore>true</UseAspNetCore>
+		<UseNLog>true</UseNLog>
+		<UseRedis>true</UseRedis>
+		<UseEFCore>true</UseEFCore>
+		<UseJwt>true</UseJwt>
+	</PropertyGroup>
+</Project>

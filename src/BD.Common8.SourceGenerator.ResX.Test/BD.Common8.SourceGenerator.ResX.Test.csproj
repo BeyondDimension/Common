@@ -4,6 +4,11 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+		<UseProjectUtils>true</UseProjectUtils>
+		<DefineConstants>$(DefineConstants);NO_REF_COMMON8_BCL</DefineConstants>
+		<BeyondDimensionFeatures>
+			<!-- ⚠️ 此项目不可引用任何 Features 中的库 -->
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,8 +29,15 @@
 		</Compile>
 	</ItemGroup>
 
+	<ItemGroup>
+		<!-- 👇 Bcl 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
 	<Import Project="..\..\res\i18n\BD.Common8.Bcl.props" />
 	<Import Project="..\Shared\GlobalUsings.System.Extensions.props" />
-	<Import Project="..\Sdk\ProjectReference\BD.Common8.SourceGenerator.ResX.props" />
 
 </Project>

@@ -1,4 +1,4 @@
-using Microsoft.Extensions.FileProviders;
+using ManifestEmbeddedFileProvider = Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider;
 
 namespace Tools.Build.Commands;
 
@@ -156,7 +156,7 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
     <DebugType>none</DebugType>
     <Version>
 """u8);
-        stream.WriteUtf16StrToUtf8OrCustom(DateTime.Now.ToString($"{Environment.Version.Major.ToString()}.yy.1MMdd.HHmmss"));
+        stream.WriteUtf16StrToUtf8OrCustom(DateTime.Now.ToString($"{Environment.Version.Major}.yy.1MMdd.HHmmss"));
         stream.Write(
 """
 </Version>
@@ -164,7 +164,7 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="
 """u8);
-        var version = typeof(ManifestEmbeddedFileProvider).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion.Split('+').First();
+        var version = typeof(ManifestEmbeddedFileProvider).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()!.InformationalVersion.Split('+').First();
         stream.WriteUtf16StrToUtf8OrCustom(version);
         stream.Write(
 """

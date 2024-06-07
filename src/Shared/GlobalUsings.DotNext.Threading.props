@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'DotNext.Threading'))" >
 		<Using Include="DotNext" />
 		<Using Include="DotNext.Threading" />
 	</ItemGroup>

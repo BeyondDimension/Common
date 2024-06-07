@@ -1,14 +1,239 @@
 <Project>
+	<!-- 📄 SDK 配置 -->
+
 	<!-- MSBuild 保留属性和已知属性 https://learn.microsoft.com/zh-cn/visualstudio/msbuild/msbuild-reserved-and-well-known-properties?view=vs-2022 -->
 
-	<!-- .NET Framework 3.5 SDK 兼容 -->
+	<!-- 👇 .NET Framework 3.5 SDK 兼容 -->
 	<Import Condition="$(TargetFramework.StartsWith('net35'))" Project="$(MSBuildThisFileDirectory)net35.props" />
 
-	<!-- 是否源码引用 ProjectUtils -->
+	<!-- 👇 是否源码引用 ProjectUtils -->
 	<ItemGroup Condition="$(UseProjectUtils) == 'true'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\ProjectUtils.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 	</ItemGroup>
 
+	<!-- 👇 源生成器项目 -->
+	<Import Condition="$(IsSourceGeneratorProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.SourceGenerator.props" />
+
+	<!-- 👇 单元测试 -->
+	<Import Condition="$(IsTestProject) == 'true'" Project="$(MSBuildThisFileDirectory)BD.Common8.UnitTest.props" />
+
+	<!--## Common8Reference Start -->
+
+	<Import Project="$(MSBuildThisFileDirectory)BD.Common8.Sdk.Lib.targets" />
+
+	<!-- ## Common8Reference End -->
+
+	<!-- 👇 是否框架引用 ASP.NET Core 框架 -->
+	<ItemGroup Condition="$(UseAspNetCore) == 'true'">
+		<FrameworkReference Condition="!@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App'))" Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Caching.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Configuration.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.FileProviders.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Options.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Primitives.props" />
+	</ImportGroup>
+
+	<!-- 👇 是否包引用 EF Core 框架 -->
+	<ItemGroup Condition="$(UseEFCore) == 'true'">
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+		<!--<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />-->
+		<PackageReference Condition="'$(Configuration)'=='Debug'" Include="Microsoft.EntityFrameworkCore.Tools" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+		<PackageReference Include="Z.EntityFramework.Plus.EFCore" />
+	</ItemGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.EntityFrameworkCore.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Z.EntityFramework.Plus.props" />
+	</ImportGroup>
+
+	<!-- 👇 是否包引用 Microsoft.IdentityModel.Tokens -->
+	<ItemGroup Condition="$(UseJwt) == 'true'">
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
+		<PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+		<PackageReference Condition="$(UseAspNetCore) == 'true'" Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.IdentityModel.Tokens.props" />
+
+	<!-- 👇 是否包引用 Avalonia -->
+	<ItemGroup Condition="$(UseAvalonia) == 'true'">
+		<PackageReference Include="Avalonia" />
+		<PackageReference Condition="'$(Configuration)'=='Debug' OR $(UseAvaloniaDiagnostics) == 'true'" Include="Avalonia.Diagnostics" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" Include="Avalonia.Android" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'" Include="Avalonia.iOS" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'" Include="Avalonia.Native" />
+		<PackageReference Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Include="Avalonia.Win32" />
+		<PackageReference Condition="$(UseAvaloniaX11) == 'true'" Include="Avalonia.X11" />
+		<PackageReference Include="Avalonia.Skia" />
+		<PackageReference Condition="$(UseReactiveUI) == 'true' OR @(PackageReference->AnyHaveMetadataValue('Identity', 'ReactiveUI'))" Include="Avalonia.ReactiveUI" />
+	</ItemGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.Skia.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.ReactiveUI.props" />
+	</ImportGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Avalonia.Xaml.Interactivity.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.FluentAvaloniaUI.props" />
+
+	<!-- 👇 是否包引用 StackExchange.Redis/Microsoft.Extensions.Caching.StackExchangeRedis -->
+	<ItemGroup Condition="$(UseRedis) == 'true'">
+		<PackageReference Include="StackExchange.Redis" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Redis.props" />
+
+	<!-- 👇 是否包引用 NLog -->
+	<ItemGroup Condition="$(UseNLog) == 'true'">
+		<PackageReference Include="NLog" />
+		<PackageReference Include="NLog.Extensions.Logging" />
+		<PackageReference Condition="@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App'))" Include="NLog.Web.AspNetCore" />
+	</ItemGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.NLog.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.NLog.Web.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Extensions.Logging.Console.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Polly.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SQLitePCL.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.CommandLine.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ReactiveUI.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ReactiveUI.Fody.props" />
+	</ImportGroup>
+
+	<!-- 👇 是否包引用 Xamarin.AndroidX.Browser -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' AND $(UseAndroidXBrowser) == 'true'">
+		<PackageReference Include="Xamarin.AndroidX.Browser" />
+	</ItemGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Fusillade.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Moq.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Net.Http.Json.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.AngleSharp.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Drawing.props" />
+	</ImportGroup>
+
+	<!-- 👇 是否包引用 BD.Common.XmlnsDefinition.Avalonia -->
+	<ItemGroup Condition="$(UseAvaloniaXmlnsDefinition) == 'true'">
+		<PackageReference Condition="$(UseAvalonia) != 'true'" Include="BD.Common.XmlnsDefinition.Avalonia" />
+	</ItemGroup>
+
+	<!-- 👇 是否包引用 Microsoft.Windows.CsWin32 -->
+	<ItemGroup Condition="$(UseMicrosoftWindowsCsWin32) == 'true'">
+		<PackageReference Include="Microsoft.Windows.CsWin32">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<AdditionalFiles Condition=" Exists('$(MSBuildProjectDirectory)\NativeMethods.txt') " Include="$(MSBuildProjectDirectory)\NativeMethods.txt" />
+		<AdditionalFiles Condition=" !Exists('$(MSBuildProjectDirectory)\NativeMethods.txt') AND Exists('$(MSBuildProjectDirectory)\..\NativeMethods.txt') " Include="$(MSBuildProjectDirectory)\..\NativeMethods.txt" />
+	</ItemGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.Windows.CsWin32.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Nito.Comparers.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Newtonsoft.Json.props" />
+	</ImportGroup>
+
+	<!-- 👇 是否引用 Microsoft.AspNetCore.SignalR -->
+	<ImportGroup Condition="$(UseSignalR) == 'true'">
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.SignalR.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.AspNetCore.SignalR.Client.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.DotNext.props" />
+	</ImportGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.DotNext.Threading.props" />
+	</ImportGroup>
+
+	<!-- 👇 是否包引用 Microsoft.XmlSerializer.Generator -->
+	<ItemGroup Condition="$(UseXmlSerializerGenerator) == 'true'">
+		<DotNetCliToolReference Include="Microsoft.XmlSerializer.Generator" />
+	</ItemGroup>
+
+	<!-- 👇 是否包引用 MemoryPack.AspNetCoreMvcFormatter -->
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'MemoryPack')) AND @(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App'))">
+		<PackageReference Include="MemoryPack.AspNetCoreMvcFormatter" />
+	</ItemGroup>
+
+	<!-- 👇 是否包引用 Microsoft.Extensions.Configuration.UserSecrets -->
+	<ItemGroup Condition="$(UserSecretsId) != ''">
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+	</ItemGroup>
+
+	<!-- 👇 是否包引用 Microsoft.AspNetCore.OpenApi/Swashbuckle.AspNetCore -->
+	<ItemGroup Condition="($(UseAspNetCore) == 'true' OR @(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App'))) AND $(UseSwagger) == 'true'">
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+		<PackageReference Include="Swashbuckle.AspNetCore" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Microsoft.OpenApi.Models.props" />
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.Management.props" />
+	</ImportGroup>
+
+	<!-- 👇 是否包引用 AutoMapper -->
+	<ItemGroup Condition="$(UseAutoMapper) == 'true'">
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="AutoMapper.Collection" />
+	</ItemGroup>
+
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.AutoMapper.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.AutoMapper.Collection.props" />
+	</ImportGroup>
 </Project>

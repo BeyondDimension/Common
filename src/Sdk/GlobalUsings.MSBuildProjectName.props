@@ -1,0 +1,8 @@
+<Project>
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).props" />
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).props">
+			<LinkBase>Properties</LinkBase>
+		</None>
+	</ItemGroup>
+</Project>

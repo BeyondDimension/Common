@@ -1,9 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>OBS</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version);net7.0</TargetFrameworks>
-		<PackageDescription>华为云 OBS SDK</PackageDescription>
+		<Description>华为云 OBS SDK</Description>
+		<Version>$(Version_HuaweiCloud_SDK_Obs)</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -13,15 +18,5 @@
 		<Compile Include="..\..\ref\huaweicloud-sdk-dotnet-obs\**\*.cs" />
 		<PackageReference Remove="StyleCop.Analyzers" />
 	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
-
-	<PropertyGroup>
-		<Version>$(Version_HuaweiCloud_SDK_Obs)</Version>
-		<FileVersion>$(Version)</FileVersion>
-		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-	</PropertyGroup>
 
 </Project>

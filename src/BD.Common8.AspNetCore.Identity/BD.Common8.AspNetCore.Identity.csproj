@@ -1,24 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8.AspNetCore</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<PackageDescription>ASP.NET Core 的管理用户、密码、配置文件数据、角色、声明、令牌、电子邮件确认等封装库</PackageDescription>
+		<Description>ASP.NET Core 的管理用户、密码、配置文件数据、角色、声明、令牌、电子邮件确认等封装库</Description>
 	</PropertyGroup>
-	
-	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<!-- 👇 Nuget 包引用的 GlobalUsings 配置 -->
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</None>
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
 </Project>

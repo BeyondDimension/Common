@@ -19,13 +19,13 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia" Version="11.1.0-beta2">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.0-beta2">
-		</PackageVersion>
 		<PackageVersion Include="Avalonia.Android" Version="11.1.0-beta2">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.AvaloniaEdit" Version="11.0.6">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Controls.DataGrid" Version="11.1.0-beta2">
+		</PackageVersion>
+		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.0-beta2">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Desktop" Version="11.1.0-beta2">
 		</PackageVersion>
@@ -154,6 +154,8 @@
 		<PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.2">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0">
+		</PackageVersion>
+		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.6.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.6.0">
 		</PackageVersion>

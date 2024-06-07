@@ -1,7 +1,8 @@
 <Project>
-	<!-- 单元测试 -->
+	<!-- 📄 单元测试全局属性配置 -->
+
+	<!-- 👇 单元测试无需 AOT & Trimmable -->
 	<PropertyGroup>
-		<!-- 单元测试无需 AOT & Trimmable -->
 		<IsTrimmable>false</IsTrimmable>
 		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>
 		<EnableSingleFileAnalyzer>false</EnableSingleFileAnalyzer>
@@ -9,6 +10,7 @@
 		<IsAotCompatible>false</IsAotCompatible>
 	</PropertyGroup>
 
+	<!-- 👇 包引用 -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
 		<PackageReference Include="NUnit" />

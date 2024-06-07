@@ -1,0 +1,70 @@
+<Project>
+	<!-- 📄 SDK 项目引用 -->
+
+	<!-- 👇 源生成器 -->
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat' AND !$(TargetFramework.StartsWith('net3')) AND !$(TargetFramework.StartsWith('net4'))">
+		<!-- 👇 Resx 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.ResX'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Bcl 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Ipc.Client 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Client;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Ipc.Client'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Ipc.Server 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Ipc.Server'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Repositories.EFCore 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Ipc.Server'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\BD.Common8.SourceGenerator.Repositories.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 类库项目引用 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore.Identity;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore.Identity'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.AspNetCore.Identity.BackManage;')) AND $(MSBuildProjectName) != 'BD.Common8.AspNetCore.Identity.BackManage'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.AspNetCore.Identity.BackManage\BD.Common8.AspNetCore.Identity.BackManage.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Bcl;')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<!--<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Bcl.Compat;')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\BD.Common8.Bcl.Compat.csproj" />-->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Crawler;')) AND $(MSBuildProjectName) != 'BD.Common8.Crawler'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Crawler\BD.Common8.Crawler.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials.Implementation;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials.Implementation'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation\BD.Common8.Essentials.Implementation.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Essentials.Implementation.Avalonia;')) AND $(MSBuildProjectName) != 'BD.Common8.Essentials.Implementation.Avalonia'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Essentials.Implementation.Avalonia\BD.Common8.Essentials.Implementation.Avalonia.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Http.ClientFactory;')) AND $(MSBuildProjectName) != 'BD.Common8.Http.ClientFactory'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Http.ClientFactory.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.Http.ClientFactory.Server'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Http.ClientFactory.Server\BD.Common8.Http.ClientFactory.Server.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.HuaweiCloud.SDK.Obs;')) AND $(MSBuildProjectName) != 'BD.Common8.HuaweiCloud.SDK.Obs'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.HuaweiCloud.SDK.Obs\BD.Common8.HuaweiCloud.SDK.Obs.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Client;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc.Client'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Client\BD.Common8.Ipc.Client.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.Ipc.Server'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Orm.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.Orm.EFCore'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin\BD.Common8.Pinyin.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin.ChnCharInfo;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin.ChnCharInfo'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.ChnCharInfo\BD.Common8.Pinyin.ChnCharInfo.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Pinyin.CoreFoundation;')) AND $(MSBuildProjectName) != 'BD.Common8.Pinyin.CoreFoundation'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Pinyin.CoreFoundation\BD.Common8.Pinyin.CoreFoundation.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.ApiRsp;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.ApiRsp'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.ApiResponse;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.ApiResponse'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.BirthDate;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.BirthDate'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.PhoneNumber;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.PhoneNumber'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.PersonalData.UserName;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.PersonalData.UserName'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.PersonalData.UserName\BD.Common8.Primitives.PersonalData.UserName.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.District;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.District'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.Essentials;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.Essentials'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Primitives.Toast;')) AND $(MSBuildProjectName) != 'BD.Common8.Primitives.Toast'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Primitives.Toast\BD.Common8.Primitives.Toast.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories.EFCore'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.SQLitePCL;')) AND $(MSBuildProjectName) != 'BD.Common8.Repositories.SQLitePCL'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Repositories.SQLitePCL\BD.Common8.Repositories.SQLitePCL.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Security;')) AND $(MSBuildProjectName) != 'BD.Common8.Security'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Security\BD.Common8.Security.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Settings5;')) AND $(MSBuildProjectName) != 'BD.Common8.Settings5'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5\BD.Common8.Settings5.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.SmsSender;')) AND $(MSBuildProjectName) != 'BD.Common8.SmsSender'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SmsSender\BD.Common8.SmsSender.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Toast;')) AND $(MSBuildProjectName) != 'BD.Common8.Toast'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.Toast\BD.Common8.Toast.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.UserInput.ModelValidator;')) AND $(MSBuildProjectName) != 'BD.Common8.UserInput.ModelValidator'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.UserInput.ModelValidator\BD.Common8.UserInput.ModelValidator.csproj" />
+	</ItemGroup>
+
+</Project>

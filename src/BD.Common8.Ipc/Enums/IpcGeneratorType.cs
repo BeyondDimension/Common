@@ -8,13 +8,13 @@ public enum IpcGeneratorType : byte
     /// <summary>
     /// 生成使用 WebApi 的客户端调用实现
     /// </summary>
-    [Obsolete("use Grpc")]
+    //[Obsolete("use Grpc")]
     ClientWebApi = 1,
 
     /// <summary>
     /// 生成使用 SignalR 的客户端调用实现
     /// </summary>
-    [Obsolete("use Grpc")]
+    //[Obsolete("use Grpc")]
     ClientSignalR = 2,
 
     /// <summary>

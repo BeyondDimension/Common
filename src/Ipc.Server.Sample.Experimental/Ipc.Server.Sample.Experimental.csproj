@@ -6,20 +6,21 @@
 		<InvariantGlobalization>true</InvariantGlobalization>
 		<PublishAot>false</PublishAot>
 		<UseProjectUtils>true</UseProjectUtils>
+		<UseAspNetCore>true</UseAspNetCore>
+		<UseSwagger>true</UseSwagger>
+		<UseSignalR>true</UseSignalR>
+		<BeyondDimensionFeatures>
+			BD.Common8.Bcl;
+			BD.Common8.Ipc;
+			BD.Common8.Ipc.Server;
+			BD.Common8.Primitives;
+			BD.Common8.Primitives.ApiRsp;
+			BD.Common8.Http.ClientFactory;
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Using Include="Ipc.Sample" />
 	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.SourceGenerator.Ipc.Server.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Ipc.Server.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Primitives.ApiRsp.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.AspNetCore\Reference.AspNetCore.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.AspNetCore\Reference.AspNetCore.Swagge.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.AspNetCore\GlobalUsings.AspNetCore.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.AspNetCore\GlobalUsings.AspNetCore.Swagge.props" />
 
 </Project>

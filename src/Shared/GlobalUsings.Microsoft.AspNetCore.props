@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App'))">
 		<Using Include="Microsoft.AspNetCore.Hosting" />
 		<Using Include="Microsoft.AspNetCore.Routing" />
 		<Using Include="Microsoft.AspNetCore.Authorization" />

@@ -1,11 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net45;net461;net462;net47;netstandard2.0;netstandard2.1;net7.0;net7.0-windows$(WinSDK_Version);net8.0;net8.0-windows$(WinSDK_Version)</TargetFrameworks>
+		<TargetFrameworks>net45;net461;net462;net47;netstandard2.0;netstandard2.1;net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<RootNamespace>System</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<Import Project="..\Sdk\BD.Common8.Bcl\Reference.Compat.props" />
+	<!-- .NET Framework 4.5+ -->
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) AND !$(TargetFramework.StartsWith('net40')) ">
+		<Reference Include="System.Net.Http" />
+		<PackageReference Include="System.Memory" />
+		<PackageReference Include="System.Threading.Tasks.Extensions" />
+	</ItemGroup>
+
+	<!-- .NET Framework 4.5 ~ 4.6.2 -->
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) OR $(TargetFramework.StartsWith('net46')) ">
+		<PackageReference Include="System.ValueTuple" />
+	</ItemGroup>
+
+	<!-- .NET Standard 2.0 -->
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard2.0')) ">
+		<PackageReference Include="System.Memory" />
+		<PackageReference Include="System.Threading.Tasks.Extensions" />
+	</ItemGroup>
 
 </Project>

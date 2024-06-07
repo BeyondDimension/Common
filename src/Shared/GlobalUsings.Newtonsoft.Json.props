@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Newtonsoft.Json'))" >
 		<Using Include="Newtonsoft.Json" />
 		<Using Include="Newtonsoft.Json.Converters" />
 		<Using Include="Newtonsoft.Json.Serialization" />

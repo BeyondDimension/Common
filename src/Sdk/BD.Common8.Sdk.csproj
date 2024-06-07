@@ -5,13 +5,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="../Shared/**/*">
+		<None Include="..\Shared\**\*">
 			<LinkBase>Shared</LinkBase>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="..\Shared\GlobalUsings.BD.Common8.AspNetCore.BackManage.props" />
 	</ItemGroup>
 
 </Project>

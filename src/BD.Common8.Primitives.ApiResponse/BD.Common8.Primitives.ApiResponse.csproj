@@ -1,20 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<PackageDescription>提供 Api 响应 (后台管理) 类型的封装库</PackageDescription>
+		<Description>提供 Api 响应 (后台管理) 类型的封装库</Description>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<!-- 👇 Nuget 包引用的 GlobalUsings 配置 -->
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</None>
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
 </Project>

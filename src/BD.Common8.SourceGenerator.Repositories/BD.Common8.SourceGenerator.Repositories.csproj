@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<Version>$(Version_SourceGenerator_Repositories)</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-		<PackageDescription>仓储层源生成器</PackageDescription>
+		<Description>仓储层源生成器</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,29 +22,5 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</None>
-	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
-
-	<!-- 👇 Add a new target that runs before the task that lists all the files to include in the NuGet package.
-          This task must run after the packages resolution target -->
-	<Target Name="AddNuGetDlls" BeforeTargets="_GetPackageFiles">
-		<ItemGroup>
-			<!-- Update the collection of items to pack with the DLLs from the NuGet packages -->
-			<!--<None Include="$(OutputPath)\Newtonsoft.Json.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
-			<!--<None Include="$(OutputPath)\Humanizer.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
-			<!--<None Include="$(OutputPath)\zh-CN\Humanizer.resources.dll" Pack="true" PackagePath="analyzers/dotnet/cs/zh-CN" Visible="false" />-->
-
-			<!-- Add the DLL produced by the current project to the NuGet package -->
-			<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-		</ItemGroup>
-	</Target>
 
 </Project>

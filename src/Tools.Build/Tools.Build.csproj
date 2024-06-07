@@ -1,20 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsConsoleAppProject>true</IsConsoleAppProject>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
+		<BeyondDimensionFeatures>
+			BD.Common8.Bcl;
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</None>
-	</ItemGroup>
-
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildProjectName)\Reference.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildProjectName).props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.System.CommandLine.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.Common8.Bcl.props" />
+	<Import Project="..\Sdk\Tools\Tools.Build.props"/>
 
 </Project>

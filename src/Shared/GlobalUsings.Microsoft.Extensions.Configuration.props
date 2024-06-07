@@ -1,5 +1,8 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App')) OR 
+		@(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.Configuration')) OR 
+		@(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.EntityFrameworkCore')) OR 
+		$(UserSecretsId) != ''">
 		<Using Include="Microsoft.Extensions.Configuration" />
 	</ItemGroup>
 </Project>

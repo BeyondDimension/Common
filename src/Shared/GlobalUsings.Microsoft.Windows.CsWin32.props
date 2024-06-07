@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Windows.CsWin32'))" >
 		<Using Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'" Alias="CsWin32" Include="Windows.Win32" />
 	</ItemGroup>
 </Project>

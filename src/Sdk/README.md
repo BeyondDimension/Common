@@ -8,12 +8,11 @@
 
 #### 配置 NuGet 包生成的全局参数
 - GeneratePackage.props
+```
+<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
+```
+将在 Release 时生成 NuGet 包
 
 #### 源生成配置
 - BD.Common8.SourceGenerator.props
 - BD.Common8.SourceGenerator.Reference.props
-
-#### 库引用
-- LinkReference 源码引用
-- PackageReference 包引用
-- ProjectReference 项目引用

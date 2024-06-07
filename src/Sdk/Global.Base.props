@@ -1,0 +1,18 @@
+<Project>
+	<!-- 📄 全局属性基础配置 -->
+
+	<!-- 👇 全局属性 -->
+	<PropertyGroup>
+		<Deterministic>true</Deterministic>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011</NoWarn>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<ImplicitUsings Condition="!$(TargetFramework.StartsWith('net35'))">true</ImplicitUsings>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104,NU1506</NoWarn>
+	</PropertyGroup>
+</Project>

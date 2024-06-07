@@ -1,23 +1,51 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<RootNamespace>System</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<PackageDescription>提供对基类库的扩展</PackageDescription>
+		<Description>提供对基类库的扩展</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!-- 👇 Nuget 包引用的 GlobalUsings 配置 -->
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<!-- Reference GlobalUsings -->
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildThisFileName)\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\MSBuildThisFileName" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="Shared" Visible="false" />
+		<!-- 👇 Resx 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.ResX'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Bcl 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
 	</ItemGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
+
+	<!-- 👇 NuGet 打包配置 -->
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.Common8.Bcl.targets" Pack="true" PackagePath="buildTransitive" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.Common8.Bcl.props" Pack="true" PackagePath="buildTransitive" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\Projects\BD.Common8.*.props" Pack="true" PackagePath="buildTransitive\src\Sdk\Projects" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\Global.Base.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\GlobalUsings.MSBuildProjectName.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.Sdk.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.Sdk.Lib.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.Sdk.Ref.Package.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.Reference.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\net35.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
+		<None Remove="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Tools*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs" Pack="true" PackagePath="buildTransitive\src\BD.Common8.Bcl.Compat" Visible="false" />
+		<None Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\bin\**" Pack="true" PackagePath="buildTransitive\src\BD.Common8.Bcl.Compat" Visible="false" />
+		<None Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" Pack="true" PackagePath="buildTransitive\src\BD.Common8.Bcl.Compat" Visible="false" />
+		<!-- 👇 放置 _._ 表示此包可用于的 TFM，定位最低版本可供任何版本使用 -->
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\net35\_._" Pack="true" PackagePath="lib\net35" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\net40\_._" Pack="true" PackagePath="lib\net40" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\netstandard1.0\_._" Pack="true" PackagePath="lib\netstandard1.0" Visible="false" />
+	</ItemGroup>
 
 </Project>

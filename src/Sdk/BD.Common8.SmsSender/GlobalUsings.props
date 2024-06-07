@@ -1,7 +1,0 @@
-<Project>
-	<!-- 全局 using | Global usings -->
-	<ImportGroup>
-		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Options.props" />
-		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.Microsoft.Extensions.Hosting.props" />
-	</ImportGroup>
-</Project>

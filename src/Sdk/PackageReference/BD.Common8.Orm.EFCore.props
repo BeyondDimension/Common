@@ -1,7 +1,0 @@
-<Project>
-	<!-- 包引用 -->
-	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)">
-		<PackageReference Include="$(MSBuildThisFileName)" />
-		<PackageReference Include="BD.Common8.SourceGenerator.ResX" />
-	</ItemGroup>
-</Project>

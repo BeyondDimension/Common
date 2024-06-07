@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'ReactiveUI'))" >
 		<Using Include="DynamicData" />
 		<Using Include="DynamicData.Binding" />
 		<Using Include="System.Reactive" />

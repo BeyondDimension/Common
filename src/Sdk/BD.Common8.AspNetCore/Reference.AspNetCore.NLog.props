@@ -1,6 +1,0 @@
-<Project>
-	<!-- 依赖包引用 -->
-	<ItemGroup>
-		<PackageReference Include="NLog.Web.AspNetCore" />
-	</ItemGroup>
-</Project>

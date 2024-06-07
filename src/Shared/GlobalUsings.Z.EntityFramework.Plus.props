@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Z.EntityFramework.Plus.EFCore'))" >
 		<Using Include="Z.EntityFramework.Plus" />
 	</ItemGroup>
 </Project>

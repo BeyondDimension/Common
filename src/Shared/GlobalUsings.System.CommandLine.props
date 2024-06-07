@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'System.CommandLine'))" >
 		<Using Include="System.CommandLine" />
 	</ItemGroup>
 </Project>

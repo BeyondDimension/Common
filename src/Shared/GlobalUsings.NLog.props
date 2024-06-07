@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'NLog'))" >
 		<Using Include="NLog" />
 		<Using Include="NLog.Common" />
 		<Using Include="NLog.Config" />
