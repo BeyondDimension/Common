@@ -43,7 +43,7 @@ public sealed partial class District : IDistrict
         var districts = MemoryPackSerializer.Deserialize<District[]>((byte[])resourceManager.GetObject("AMap_adcode_citycode_20210406")!);
         ArgumentNullException.ThrowIfNull(districts);
         return districts;
-    });
+    }, LazyThreadSafetyMode.ExecutionAndPublication);
 
     /// <summary>
     /// 获取所有行政区域数据
