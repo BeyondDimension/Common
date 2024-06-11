@@ -1,3 +1,4 @@
 <Project>
+	<Import Project="$(MSBuildThisFileDirectory)src\Sdk\BD.Common8.Sdk.Ref.Package.targets" />
 	<Import Project="$(MSBuildThisFileDirectory)src\Sdk\BD.Common8.Sdk.targets" />
 </Project>
