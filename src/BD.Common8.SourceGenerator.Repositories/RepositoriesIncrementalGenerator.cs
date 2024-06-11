@@ -8,6 +8,33 @@ namespace BD.Common8.SourceGenerator.Repositories;
 [Generator]
 public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 {
+    static string? GetAssemblyName(SourceProductionContext spc)
+    {
+        try
+        {
+            {
+                var fieldCompilation = typeof(SourceProductionContext).GetField("Compilation", BindingFlags.NonPublic | BindingFlags.Instance)
+                     ?? typeof(SourceProductionContext).GetField("Compilation", BindingFlags.Public | BindingFlags.Instance);
+                if (fieldCompilation != null && fieldCompilation.GetValue(spc) is Compilation compilation)
+                {
+                    return compilation.AssemblyName;
+                }
+            }
+            {
+                var propertyCompilation = typeof(SourceProductionContext).GetProperty("Compilation", BindingFlags.NonPublic | BindingFlags.Instance)
+                     ?? typeof(SourceProductionContext).GetProperty("Compilation", BindingFlags.Public | BindingFlags.Instance);
+                if (propertyCompilation != null && propertyCompilation.GetValue(spc) is Compilation compilation)
+                {
+                    return compilation.AssemblyName;
+                }
+            }
+        }
+        catch
+        {
+        }
+        return null;
+    }
+
     /// <inheritdoc/>
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -106,10 +133,11 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
                     bool IsGenerator(string template)
                     {
+                        var assemblyName = GetAssemblyName(sourceProductionContext);
                         return cfg.SourcePath.TryGetValue(template, out var value)
                                 && value != null
                                 && value.Length >= 2
-                                && additional.Path.ToLowerInvariant().Contains(value[1].ToLowerInvariant());
+                                && (assemblyName == value[1] || additional.Path.ToLowerInvariant().Contains(value[1].ToLowerInvariant()));
                     }
                 }
             }
