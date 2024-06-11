@@ -140,6 +140,11 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
         }
 #endif
         var hintName = GetFilePath(partialFileName, metadata.GenerateRepositoriesAttribute.ModuleName, metadata.ClassName);
+        RepositoriesIncrementalGenerator.OnError($"""
+                {Process.GetCurrentProcess().MainModule.FileName}
+                hintName: {hintName}
+                memoryStream: {memoryStream.Length}
+                """);
         if (hintName.EndsWith(".cs"))
         {
             sourceProductionContext.AddSource(hintName, SourceText.From(memoryStream, Encoding.UTF8, canBeEmbedded: true));

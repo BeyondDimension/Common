@@ -8,8 +8,36 @@ namespace BD.Common8.SourceGenerator.Repositories;
 [Generator]
 public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 {
+    static readonly DateTime Time = DateTime.Now;
+
     /// <inheritdoc/>
     public void Initialize(IncrementalGeneratorInitializationContext context)
+    {
+        try
+        {
+            OnError($"""
+                {Time}
+                {Process.GetCurrentProcess().MainModule.FileName}
+                """);
+            InitializeCore(context);
+        }
+        catch (Exception ex)
+        {
+            OnError(ex?.ToString());
+        }
+    }
+
+    internal static void OnError(string? ex)
+    {
+#pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+        var logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Logs", Time.ToString("yyyyMMddHHmmssfffffff"));
+        if (!Directory.Exists(logPath))
+            Directory.CreateDirectory(logPath);
+        File.WriteAllText(Path.Combine(logPath, $"RepositoriesIncrementalGenerator{DateTime.Now:yyyyMMddHHmmssfffffff}.log"), ex ?? "");
+#pragma warning restore RS1035 // 不要使用禁用于分析器的 API
+    }
+
+    void InitializeCore(IncrementalGeneratorInitializationContext context)
     {
         var jsonDatas = context.AdditionalTextsProvider
                                 .Where(text => text.Path.EndsWith(".json"))
@@ -19,9 +47,16 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
         {
             try
             {
+                //sourceProductionContext.Compilation.AssemblyName
                 var metadata = JsonConvert.DeserializeObject<EntityDesignMetadata>(additional.GetText()?.ToString()!);
                 var projPath = ProjPathHelper.GetProjPath(Path.GetDirectoryName(additional.Path));
                 var cfg = GeneratorConfig.Instance;
+                OnError($"""
+                {Time}
+                {Process.GetCurrentProcess().MainModule.FileName}
+                {additional.GetText()?.ToString()}
+                {additional.Path}
+                """);
                 if (metadata == null)
                     return;
                 var properties = PropertyMetadata.Parse(metadata.Properties!);
@@ -31,6 +66,16 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
 
                 var @namespace = cfg.Namespace;
 
+                OnError($"""
+                {Time}
+                {Process.GetCurrentProcess().MainModule.FileName}
+                {projPath}
+                {additional.GetText()?.ToString()}
+                {className}
+                {summary}
+                {@namespace}
+                {JsonConvert.SerializeObject(cfg)}
+                """);
                 var generateRepositories = metadata.Attribute;
                 if (generateRepositories != null)
                 {
@@ -115,6 +160,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
             }
             catch (Exception? ex)
             {
+                OnError(ex.ToString());
                 var hintName = $"{Path.GetFileName(additional.Path)}_GeneratorException";
                 byte counter = 0;
                 StringBuilder builder = new();
