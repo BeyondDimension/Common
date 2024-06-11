@@ -65,7 +65,7 @@
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.UnitTest.props" />
 
-	<ItemGroup >
+	<ItemGroup>
 		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.Common8.UnitTest.props">
 			<LinkBase>Properties</LinkBase>
 		</None>
