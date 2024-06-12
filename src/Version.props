@@ -4,11 +4,11 @@
 		<DotNet_Version>8.0</DotNet_Version>
 		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version_Common8Bcl>8.24.10611.11400</Version_Common8Bcl>
+		<Version_Common8Bcl>8.24.10612.12100</Version_Common8Bcl>
 		<Version_SourceGenerator_Bcl>8.24.10611.11400</Version_SourceGenerator_Bcl>
 		<Version_SourceGenerator_Ipc_Client>8.24.10611.11400</Version_SourceGenerator_Ipc_Client>
 		<Version_SourceGenerator_Ipc_Server>8.24.10611.11400</Version_SourceGenerator_Ipc_Server>
-		<Version_SourceGenerator_Resx>8.24.10611.11400</Version_SourceGenerator_Resx>
+		<Version_SourceGenerator_Resx>8.24.10612.12100</Version_SourceGenerator_Resx>
 		<Version_SourceGenerator_Repositories>8.24.10611.11400</Version_SourceGenerator_Repositories>
 		<Version_HuaweiCloud_SDK_Obs>8.24.10611.11400</Version_HuaweiCloud_SDK_Obs>
 		<Version_Avalonia8_Pkg>8.24.10521.11500</Version_Avalonia8_Pkg>

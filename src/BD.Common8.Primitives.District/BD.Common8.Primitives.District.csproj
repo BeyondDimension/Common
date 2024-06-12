@@ -7,14 +7,4 @@
 		<Description>提供行政区域数据封装库</Description>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\..\res\AMap_adcode_citycode.resx">
-			<LinkBase>Properties</LinkBase>
-			<Generator></Generator>
-			<LastGenOutput></LastGenOutput>
-			<LogicalName>FxResources.BD.Common8.Primitives.District.Properties.Resources.resources</LogicalName>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-	</ItemGroup>
-
 </Project>

@@ -1,15 +1,14 @@
-using PropRes = BD.Common8.Primitives.PersonalData.UserName.Properties.Resources;
-
 namespace BD.Common8.Helpers;
 
 /// <summary>
 /// 用户名生成助手类
 /// </summary>
+[BinaryResource([@"..\..\..\res\f4_known_name"])]
 public static partial class UserNameGenerateHelper
 {
     static readonly Lazy<string[]> f4_known_name = new(() =>
     {
-        var f4_known_name = Serializable.DMP2<string[]>(PropRes.f4_known_name);
+        var f4_known_name = Serializable.DMP2<string[]>(F4KnownName);
         return f4_known_name.ThrowIsNull();
     }, LazyThreadSafetyMode.ExecutionAndPublication);
 

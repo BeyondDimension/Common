@@ -291,15 +291,3 @@ static partial class {0}
         stream.WriteNewLine();
     }
 }
-
-[Generator]
-public class HelloSourceGenerator : ISourceGenerator
-{
-    public void Execute(GeneratorExecutionContext context)
-    {
-    }
-
-    public void Initialize(GeneratorInitializationContext context)
-    {
-    }
-}

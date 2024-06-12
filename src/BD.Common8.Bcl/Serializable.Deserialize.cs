@@ -123,7 +123,6 @@ public static partial class Serializable // Deserialize(反序列化)
 #endif
 
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-
     /// <summary>
     /// (Deserialize)MemoryPack 反序列化
     /// </summary>
@@ -132,12 +131,12 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <returns></returns>
     [return: MaybeNull]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T DMP2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(byte[] buffer)
+    public static T DMP2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(ReadOnlySpan<byte> buffer)
         => MemoryPackSerializer.Deserialize<T>(buffer);
 
-    /// <inheritdoc cref="DMP2{T}(byte[])"/>
+    /// <inheritdoc cref="DMP2{T}(ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static object? DMP2([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, byte[] buffer)
+    public static object? DMP2([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, ReadOnlySpan<byte> buffer)
      => MemoryPackSerializer.Deserialize(type, buffer);
 
     /// <summary>

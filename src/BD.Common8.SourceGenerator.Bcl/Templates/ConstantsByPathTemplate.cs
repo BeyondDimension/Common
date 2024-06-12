@@ -118,39 +118,7 @@ partial class {0}
     /// </summary>
     public const string {0}
 """u8, m.Attribute.NamePrefix, relativePathStr);
-                bool upper = true;
-                for (int i = 0; i < relativePath.Length; i++)
-                {
-                    var item = relativePath[i];
-                    if (i == 0 && item == Path.DirectorySeparatorChar)
-                        continue;
-
-                    if (item == Path.DirectorySeparatorChar)
-                    {
-                        upper = true;
-                        stream.Write("_"u8);
-                        continue;
-                    }
-
-                    if (item == '-' || item == '_')
-                    {
-                        upper = true;
-                        continue;
-                    }
-
-                    if (item == '.')
-                        break; // 跳过扩展名，不允许文件名相同扩展名不同的资源
-
-                    if (upper)
-                    {
-                        if (!char.IsUpper(item))
-                        {
-                            relativePath[i] = item = char.ToUpperInvariant(item);
-                        }
-                        upper = false;
-                    }
-                    stream.Write(Encoding.UTF8.GetBytes(relativePath, i, 1));
-                }
+                WriteVariableName(stream, relativePath);
 
                 stream.Write(
 """

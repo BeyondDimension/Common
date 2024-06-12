@@ -4,6 +4,7 @@ namespace BD.Common8.Models;
 [MPObj]
 [MP2Obj(MP2SerializeLayout.Explicit)]
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
+[BinaryResource([@"..\..\..\res\AMap_adcode_citycode_20210406"])]
 public sealed partial class District : IDistrict
 {
     string DebuggerDisplay() => $"{Name}, {Id}";
@@ -38,9 +39,7 @@ public sealed partial class District : IDistrict
 
     static readonly Lazy<District[]> all = new(() =>
     {
-        const string baseName = "FxResources.BD.Common8.Primitives.District.Properties.Resources";
-        ResourceManager resourceManager = new(baseName, typeof(District).Assembly);
-        var districts = MemoryPackSerializer.Deserialize<District[]>((byte[])resourceManager.GetObject("AMap_adcode_citycode_20210406")!);
+        var districts = MemoryPackSerializer.Deserialize<District[]>(AMapAdcodeCitycode20210406);
         ArgumentNullException.ThrowIfNull(districts);
         return districts;
     }, LazyThreadSafetyMode.ExecutionAndPublication);

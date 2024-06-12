@@ -14,6 +14,9 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
 			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
 		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\BinaryResourceAttribute.cs">
+			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 </Project>
