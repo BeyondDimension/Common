@@ -159,7 +159,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.6.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Maui.Essentials" Version="8.0.40">
+		<PackageVersion Include="Microsoft.Maui.Essentials" Version="8.0.60">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.10.0">
 		</PackageVersion>
