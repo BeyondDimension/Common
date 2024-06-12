@@ -21,9 +21,9 @@ public sealed record class EntityDesignPropertyMetadata
 
     public string? Comment { get; set; }
 
-    public int? MaxLength { get; set; }
+    public string? MaxLength { get; set; }
 
-    public int? MinLength { get; set; }
+    public string? MinLength { get; set; }
 
     public string? Description { get; set; }
 
