@@ -40,7 +40,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{C30496
 		src\Directory.Build.props = src\Directory.Build.props
 		src\Directory.Build.targets = src\Directory.Build.targets
 		src\Directory.Packages.props = src\Directory.Packages.props
-		src\NativeMethods.txt = src\NativeMethods.txt
 		src\Version.props = src\Version.props
 	EndProjectSection
 EndProject
@@ -231,7 +230,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Primitives.PersonalData.UserName", "src\BD.Common8.Primitives.PersonalData.UserName\BD.Common8.Primitives.PersonalData.UserName.csproj", "{6808B554-E8EA-428D-B4C7-3C553058BB37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools.Downloader", "src\Tools.Downloader\Tools.Downloader.csproj", "{A4BBA24B-38F4-4893-9E09-09B85347EB13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Downloader", "src\Tools.Downloader\Tools.Downloader.csproj", "{A4BBA24B-38F4-4893-9E09-09B85347EB13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
