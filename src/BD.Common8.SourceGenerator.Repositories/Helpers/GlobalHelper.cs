@@ -38,6 +38,7 @@ static class GlobalHelper
         public const string DatabaseGenerated = "System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute";
         public const string Precision = "Microsoft.EntityFrameworkCore.PrecisionAttribute";
         public const string EmailAddress = "System.ComponentModel.DataAnnotations.EmailAddressAttribute";
+        public const string Column = "System.ComponentModel.DataAnnotations.Schema.ColumnAttribute";
     }
 
     public static string GetArgumentName(string argumentType)
