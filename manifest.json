@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Resource",
       "source_relative_path": "README.md",
       "output": {
         "resource": {
           "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -1820,6 +1820,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Bcl/Newtonsoft.Json.Serialization.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.CodeDom.Compiler.BinaryResourceAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.CodeDom.Compiler.BinaryResourceAttribute.html"
         }
       },
       "version": ""
@@ -8640,6 +8650,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.SourceModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.SourceModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.SourceModel.yml",
       "output": {
         ".html": {
@@ -8654,16 +8684,6 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.HelloSourceGenerator.html"
         }
       },
       "version": ""
@@ -8724,6 +8744,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.Templates.Abstractions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.CodeDom.Compiler.BinaryResourceAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.CodeDom.Compiler.BinaryResourceAttribute.html"
         }
       },
       "version": ""
