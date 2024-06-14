@@ -3,13 +3,28 @@ namespace BD.Common8.Helpers;
 /// <summary>
 /// 用户名生成助手类
 /// </summary>
-[BinaryResource([@"..\..\..\res\f4_known_name"])]
+[BinaryResource(
+"""
+[
+  {
+    "Path": "..\\..\\..\\res\\f4_known_name"
+  }
+]
+""")]
 public static partial class UserNameGenerateHelper
 {
     static readonly Lazy<string[]> f4_known_name = new(() =>
     {
-        var f4_known_name = Serializable.DMP2<string[]>(F4KnownName);
-        return f4_known_name.ThrowIsNull();
+        Span<byte> bytes = F4KnownName();
+        try
+        {
+            var f4_known_name = Serializable.DMP2<string[]>(bytes);
+            return f4_known_name.ThrowIsNull();
+        }
+        finally
+        {
+            bytes.Clear();
+        }
     }, LazyThreadSafetyMode.ExecutionAndPublication);
 
     /// <summary>

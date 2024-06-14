@@ -5,6 +5,24 @@ namespace BD.Common8.SourceGenerator.Templates.Abstractions;
 /// </summary>
 public abstract class TemplateBase
 {
+    readonly Lazy<bool> mIsDesignTimeBuild = new(static () =>
+    {
+        try
+        {
+            var fileName = Process.GetCurrentProcess().MainModule.FileName;
+            var fileNameWithoutEx = Path.GetFileNameWithoutExtension(fileName);
+            return string.Equals(fileNameWithoutEx, "ServiceHub.RoslynCodeAnalysisService", StringComparison.OrdinalIgnoreCase);
+            // build C:\Program Files\Microsoft Visual Studio\2022\XXX\MSBuild\Current\Bin\Roslyn\csc.exe
+            // design C:\Program Files\Microsoft Visual Studio\2022\XXX\Common7\ServiceHub\Hosts\ServiceHub.Host.dotnet.x64\ServiceHub.RoslynCodeAnalysisService.exe
+        }
+        catch
+        {
+        }
+        return false;
+    }, LazyThreadSafetyMode.ExecutionAndPublication);
+
+    protected bool IsDesignTimeBuild => mIsDesignTimeBuild.Value;
+
     /// <summary>
     /// 写入文件头
     /// </summary>
@@ -175,7 +193,7 @@ public abstract class TemplateBase
             {
                 if (!char.IsUpper(item))
                 {
-                    chars[i] = item = char.ToUpperInvariant(item);
+                    chars[i] = char.ToUpperInvariant(item);
                 }
                 upper = false;
             }

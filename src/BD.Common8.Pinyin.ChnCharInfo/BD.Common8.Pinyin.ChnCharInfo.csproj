@@ -4,6 +4,7 @@
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8.Pinyin</RootNamespace>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Description>使用 ChnCharInfo 实现的汉语拼音库</Description>
 	</PropertyGroup>
 

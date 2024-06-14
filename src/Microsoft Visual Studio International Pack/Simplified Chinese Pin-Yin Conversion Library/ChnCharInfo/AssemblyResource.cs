@@ -10,7 +10,7 @@ namespace Microsoft.International.Converters.PinYinConverter;
 [DebuggerNonUserCode]
 [CompilerGenerated]
 [GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
-static class AssemblyResource
+static partial class AssemblyResource
 {
     static ResourceManager? resourceMan;
     static CultureInfo? resourceCulture;

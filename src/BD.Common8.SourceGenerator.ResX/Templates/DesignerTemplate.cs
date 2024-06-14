@@ -45,11 +45,6 @@ public sealed class DesignerTemplate :
         public required string Path { get; init; }
 
         /// <summary>
-        /// 源文本
-        /// </summary>
-        public required SourceText? Text { get; init; }
-
-        /// <summary>
         /// 命名空间
         /// </summary>
         public required string Namespace { get; init; }
@@ -84,7 +79,6 @@ public sealed class DesignerTemplate :
             NamedTypeSymbol = args.symbol,
             Attribute = args.attr,
             Path = path,
-            Text = null,
             Namespace = args.@namespace,
             TypeName = args.typeName,
             ResourceBaseName = GetDefaultResourceBaseName(path),

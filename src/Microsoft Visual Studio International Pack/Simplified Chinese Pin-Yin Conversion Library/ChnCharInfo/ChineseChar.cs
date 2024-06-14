@@ -8,7 +8,28 @@
 namespace Microsoft.International.Converters.PinYinConverter;
 
 /// <summary>封装了简体中文的读音和笔画等基本信息。</summary>
-public sealed class ChineseChar
+[BinaryResource(
+"""
+[
+  {
+    "Path": "CharDictionary",
+    "Name": "_CharDictionary"
+  },
+  {
+    "Path": "HomophoneDictionary",
+    "Name": "_HomophoneDictionary"
+  },
+  {
+    "Path": "PinyinDictionary",
+    "Name": "_PinyinDictionary"
+  },
+  {
+    "Path": "StrokeDictionary",
+    "Name": "_StrokeDictionary"
+  }
+]
+""")]
+public sealed partial class ChineseChar
 {
     static readonly CharDictionary charDictionary;
     static readonly PinyinDictionary pinyinDictionary;
@@ -22,26 +43,49 @@ public sealed class ChineseChar
 
     static ChineseChar()
     {
-        Assembly executingAssembly = typeof(ChineseChar).Assembly;
-        using (var manifestResourceStream = executingAssembly.GetManifestResourceStream("Microsoft.International.Converters.PinYinConverter.PinyinDictionary.resources"))
+        unsafe
         {
-            using BinaryReader binaryReader = new BinaryReader(manifestResourceStream!);
-            pinyinDictionary = PinyinDictionary.Deserialize(binaryReader);
+            var bytes = _PinyinDictionary();
+            fixed (byte* ptr = bytes)
+            {
+                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                using BinaryReader binaryReader = new BinaryReader(stream);
+                pinyinDictionary = PinyinDictionary.Deserialize(binaryReader);
+                new Span<byte>(ptr, bytes.Length).Clear();
+            }
         }
-        using (var manifestResourceStream = executingAssembly.GetManifestResourceStream("Microsoft.International.Converters.PinYinConverter.CharDictionary.resources"))
+        unsafe
         {
-            using BinaryReader binaryReader = new BinaryReader(manifestResourceStream!);
-            charDictionary = CharDictionary.Deserialize(binaryReader);
+            var bytes = _CharDictionary();
+            fixed (byte* ptr = bytes)
+            {
+                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                using BinaryReader binaryReader = new BinaryReader(stream);
+                charDictionary = CharDictionary.Deserialize(binaryReader);
+                new Span<byte>(ptr, bytes.Length).Clear();
+            }
         }
-        using (var manifestResourceStream = executingAssembly.GetManifestResourceStream("Microsoft.International.Converters.PinYinConverter.HomophoneDictionary.resources"))
+        unsafe
         {
-            using BinaryReader binaryReader = new BinaryReader(manifestResourceStream!);
-            homophoneDictionary = HomophoneDictionary.Deserialize(binaryReader);
+            var bytes = _HomophoneDictionary();
+            fixed (byte* ptr = bytes)
+            {
+                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                using BinaryReader binaryReader = new BinaryReader(stream);
+                homophoneDictionary = HomophoneDictionary.Deserialize(binaryReader);
+                new Span<byte>(ptr, bytes.Length).Clear();
+            }
         }
-        using (var manifestResourceStream = executingAssembly.GetManifestResourceStream("Microsoft.International.Converters.PinYinConverter.StrokeDictionary.resources"))
+        unsafe
         {
-            using BinaryReader binaryReader = new BinaryReader(manifestResourceStream!);
-            strokeDictionary = StrokeDictionary.Deserialize(binaryReader);
+            var bytes = _StrokeDictionary();
+            fixed (byte* ptr = bytes)
+            {
+                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                using BinaryReader binaryReader = new BinaryReader(stream);
+                strokeDictionary = StrokeDictionary.Deserialize(binaryReader);
+                new Span<byte>(ptr, bytes.Length).Clear();
+            }
         }
     }
 

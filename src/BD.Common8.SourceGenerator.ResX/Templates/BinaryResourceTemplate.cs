@@ -21,9 +21,90 @@ public sealed class BinaryResourceTemplate :
     {
         var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
 
-        var args = attribute.ThrowIsNull().ConstructorArguments.First().Values.Select(x => x.Value?.ToString()).Where(static x => !string.IsNullOrWhiteSpace(x));
+        var args = attribute.ThrowIsNull().ConstructorArguments.First().Value?.ToString();
 
-        return new(args.ToArray()!);
+        return new(args!);
+    }
+
+    static bool TryGetValue<T>(NewtonsoftJsonObject obj, string propertyName, out T? value)
+    {
+        value = default;
+
+        if (obj.TryGetValue(propertyName, out var jToken))
+        {
+            try
+            {
+                switch (jToken.Type)
+                {
+                    case JTokenType.Null:
+                        break;
+                    default:
+                        value = jToken.Value<T>();
+                        break;
+                }
+                return true;
+            }
+            catch
+            {
+            }
+        }
+
+        return false;
+    }
+
+    static IEnumerable<BinaryResourceFileInfo> Deserialize(string json)
+    {
+        var array = JArray.Parse(json).OfType<NewtonsoftJsonObject>();
+        foreach (var item in array)
+        {
+            if (TryGetValue<string>(item, nameof(BinaryResourceFileInfo.Path), out var path))
+            {
+                if (!string.IsNullOrWhiteSpace(path))
+                {
+                    TryGetValue<string>(item, nameof(BinaryResourceFileInfo.Type), out var type);
+                    TryGetValue<string>(item, nameof(BinaryResourceFileInfo.Name), out var name);
+                    TryGetValue<bool>(item, nameof(BinaryResourceFileInfo.Reverse), out var reverse);
+                    yield return new(path!, (EGeneratedType)GetGeneratedType(type), name, reverse);
+                }
+            }
+        }
+    }
+
+    public enum EGeneratedType : byte
+    {
+        ByteArray = 0,
+        ReadOnlyMemoryStream = 1,
+    }
+
+    public const byte DefaultEGeneratedType = (byte)EGeneratedType.ByteArray;
+
+    static byte GetGeneratedType(string? value)
+    {
+        if (value != null)
+        {
+            if (byte.TryParse(value, out var b) && Enum.IsDefined(typeof(EGeneratedType), (EGeneratedType)b))
+            {
+                return b;
+            }
+            else if (Enum.TryParse<EGeneratedType>(value, true, out var e))
+            {
+                return (byte)e;
+            }
+        }
+        return DefaultEGeneratedType;
+    }
+
+    public sealed record class BinaryResourceFileInfo(string Path, EGeneratedType Type, string? Name, bool Reverse)
+    {
+        string? mFilePath;
+
+        public string FilePath => mFilePath.ThrowIsNull();
+
+        public BinaryResourceFileInfo SetFilePath(string value)
+        {
+            mFilePath = value;
+            return this;
+        }
     }
 
     /// <summary>
@@ -40,12 +121,7 @@ public sealed class BinaryResourceTemplate :
         /// <summary>
         /// 源码路径
         /// </summary>
-        public required string[] FilePaths { get; init; }
-
-        /// <summary>
-        /// 源文本
-        /// </summary>
-        public required SourceText? Text { get; init; }
+        public required BinaryResourceFileInfo[] FileInfos { get; init; }
 
         /// <summary>
         /// 命名空间
@@ -65,24 +141,23 @@ public sealed class BinaryResourceTemplate :
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
     {
-        if (args.attr.RelativeFilePaths == null || args.attr.RelativeFilePaths.Length == 0)
+        if (string.IsNullOrEmpty(args.attr.Arguments))
             return default;
 
-        var queryFilePaths = from x in args.attr.RelativeFilePaths
+        var queryFilePaths = from x in Deserialize(args.attr.Arguments)
                              let filePath = Path.GetFullPath(Path.Combine(
                                  [
                                      Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath),
-                            ..
-                            x.Split('\\')
+                                     ..
+                                     x.Path.Split('\\')
                                  ]))
-                             select filePath;
+                             select x.SetFilePath(filePath);
 
         SourceModel model = new()
         {
             NamedTypeSymbol = args.symbol,
             Attribute = args.attr,
-            FilePaths = queryFilePaths.ToArray(),
-            Text = null,
+            FileInfos = queryFilePaths.ToArray(),
             Namespace = args.@namespace,
             TypeName = args.typeName,
             IsPublic = false,
@@ -90,9 +165,46 @@ public sealed class BinaryResourceTemplate :
         return model;
     }
 
+    byte[] ReadAllBytes(string path)
+    {
+        if (IsDesignTimeBuild)
+        {
+            return [];
+        }
+        else
+        {
+            return File.ReadAllBytes(path);
+        }
+    }
+
+    void WriteFileAllBytes(Stream stream, BinaryResourceFileInfo fileInfo)
+    {
+        var bytes = ReadAllBytes(fileInfo.FilePath);
+        if (fileInfo.Reverse)
+        {
+            for (int i = bytes.Length - 1; i >= 0; i--)
+            {
+                WriteByte(i);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                WriteByte(i);
+            }
+        }
+        void WriteByte(int i)
+        {
+            stream.Write("0x"u8);
+            stream.WriteUtf16StrToUtf8OrCustom(bytes[i].ToString("X"));
+            stream.Write(", "u8);
+        }
+    }
+
     protected override void WriteFile(Stream stream, SourceModel m)
     {
-        if (m.FilePaths == null || m.FilePaths.Length == 0)
+        if (m.FileInfos == null || m.FileInfos.Length == 0)
             return;
 
         WriteFileHeader(stream);
@@ -123,37 +235,95 @@ partial class {0}
         stream.WriteNewLine();
         #endregion
 
-        foreach (var filePath in m.FilePaths)
+        foreach (var fileInfo in m.FileInfos)
         {
-            if (!File.Exists(filePath))
+            if (!File.Exists(fileInfo.FilePath))
                 continue;
-
-            var propertyName = Path.GetFileNameWithoutExtension(filePath);
-            var propertyNameCharArray = propertyName.ThrowIsNull().ToCharArray();
 
             stream.Write(
 """
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    static ReadOnlySpan<byte> 
+#if NET35 || NET40
+    [global::System.Runtime.CompilerServices.MethodImpl((MethodImplOptions)0x100)]
+#else
+    [global::System.Runtime.CompilerServices.MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+    static 
 """u8);
-            WriteVariableName(stream, propertyNameCharArray);
-            stream.Write(
-"""
- => [
-"""u8);
-            foreach (var b in File.ReadAllBytes(filePath))
+            switch (fileInfo.Type)
             {
-                stream.Write("0x"u8);
-                stream.WriteUtf16StrToUtf8OrCustom(b.ToString("X"));
-                stream.Write(", "u8);
+                case EGeneratedType.ByteArray:
+                    stream.Write(
+"""
+byte[] 
+"""u8);
+                    break;
+                case EGeneratedType.ReadOnlyMemoryStream:
+                    stream.Write(
+"""
+global::System.IO.ReadOnlyMemoryStream 
+"""u8);
+                    break;
             }
-            stream.Write(
+
+            var propertyName = fileInfo.Name;
+            if (string.IsNullOrWhiteSpace(propertyName))
+            {
+                propertyName = Path.GetFileNameWithoutExtension(fileInfo.FilePath);
+                var propertyNameCharArray = propertyName.ThrowIsNull().ToCharArray();
+                WriteVariableName(stream, propertyNameCharArray);
+            }
+            else
+            {
+                stream.WriteUtf16StrToUtf8OrCustom(propertyName!);
+            }
+
+            switch (fileInfo.Type)
+            {
+                case EGeneratedType.ByteArray:
+                    {
+                        stream.Write(
+"""
+() => [
+"""u8);
+                        WriteFileAllBytes(stream, fileInfo);
+                        stream.Write(
 """
 ];
 
 
 """u8);
+                    }
+                    break;
+                case EGeneratedType.ReadOnlyMemoryStream:
+                    {
+                        stream.Write(
+"""
+() => new([
+"""u8);
+                        WriteFileAllBytes(stream, fileInfo);
+                        if (fileInfo.Reverse)
+                        {
+                            stream.Write(
+"""
+], true);
+
+
+"""u8);
+                        }
+                        else
+                        {
+                            stream.Write(
+"""
+], false);
+
+
+"""u8);
+                        }
+                    }
+                    break;
+            }
         }
 
         #region }
