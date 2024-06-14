@@ -8650,6 +8650,26 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.BinaryResourceFileInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.BinaryResourceFileInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.EGeneratedType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.EGeneratedType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.Templates.BinaryResourceTemplate.SourceModel.yml",
       "output": {
         ".html": {
