@@ -8,6 +8,7 @@
 			BD.Common8.Bcl;
 			BD.Common8.Primitives.District;
 		</BeyondDimensionFeatures>
+		<ArtifactsPath>$(MSBuildThisFileDirectory)..\..\BenchmarkDotNet.Artifacts</ArtifactsPath>
 	</PropertyGroup>
 
 	<ItemGroup>
