@@ -27,7 +27,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.0-rc1">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Desktop" Version="11.1.0-beta2">
+		<PackageVersion Include="Avalonia.Desktop" Version="11.1.0-rc1">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Diagnostics" Version="11.1.0-beta2">
 		</PackageVersion>
