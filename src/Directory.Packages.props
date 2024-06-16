@@ -145,6 +145,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.6">
 		</PackageVersion>
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0">
+		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0">
@@ -156,6 +158,8 @@
 		<PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.2">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0">
+		</PackageVersion>
+		<PackageVersion Include="Microsoft.Extensions.Primitives" Version="8.0.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.6.0">
 		</PackageVersion>

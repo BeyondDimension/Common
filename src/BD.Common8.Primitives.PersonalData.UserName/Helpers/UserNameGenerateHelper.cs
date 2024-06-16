@@ -10,23 +10,24 @@ namespace BD.Common8.Helpers;
     "Path": "..\\..\\..\\res\\f4_known_name"
   }
 ]
-""")]
-public static partial class UserNameGenerateHelper
-{
+""",
+"""
     static readonly Lazy<string[]> f4_known_name = new(() =>
     {
-        Span<byte> bytes = F4KnownName();
+        Span<byte> bytes = {F4KnownName}();
         try
         {
-            var f4_known_name = Serializable.DMP2<string[]>(bytes);
-            return f4_known_name.ThrowIsNull();
+            var f4_known_name = MemoryPackSerializer.Deserialize<string[]>(bytes);
+            return f4_known_name!;
         }
         finally
         {
             bytes.Clear();
         }
     }, LazyThreadSafetyMode.ExecutionAndPublication);
-
+""")]
+public static partial class UserNameGenerateHelper
+{
     /// <summary>
     /// 生成一个英文用户名
     /// </summary>

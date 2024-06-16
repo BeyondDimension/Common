@@ -11,6 +11,21 @@ namespace BD.Common8.Models;
     "Path": "..\\..\\..\\res\\AMap_adcode_citycode_20210406"
   }
 ]
+""",
+"""
+    static readonly Lazy<District[]> all = new(() =>
+    {
+        Span<byte> bytes = {AMapAdcodeCitycode20210406}();
+        try
+        {
+            var districts = MemoryPackSerializer.Deserialize<District[]>(bytes);
+            return districts!;
+        }
+        finally
+        {
+            bytes.Clear();
+        }
+    }, LazyThreadSafetyMode.ExecutionAndPublication);
 """)]
 public sealed partial class District : IDistrict
 {
@@ -43,21 +58,6 @@ public sealed partial class District : IDistrict
 
     /// <inheritdoc/>
     public override string ToString() => IDistrict.ToString(this);
-
-    static readonly Lazy<District[]> all = new(() =>
-    {
-        Span<byte> bytes = AMapAdcodeCitycode20210406();
-        try
-        {
-            var districts = MemoryPackSerializer.Deserialize<District[]>(bytes);
-            ArgumentNullException.ThrowIfNull(districts);
-            return districts;
-        }
-        finally
-        {
-            bytes.Clear();
-        }
-    }, LazyThreadSafetyMode.ExecutionAndPublication);
 
     /// <summary>
     /// 获取所有行政区域数据

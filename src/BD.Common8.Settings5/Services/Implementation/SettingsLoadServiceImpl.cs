@@ -1,8 +1,3 @@
-using Microsoft.Extensions.FileProviders;
-#if !(ANDROID || IOS)
-using Microsoft.Extensions.Primitives;
-#endif
-
 namespace BD.Common8.Settings5.Services.Implementation;
 
 /// <summary>

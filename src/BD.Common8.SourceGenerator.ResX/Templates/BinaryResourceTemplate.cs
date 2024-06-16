@@ -21,9 +21,10 @@ public sealed class BinaryResourceTemplate :
     {
         var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
 
-        var args = attribute.ThrowIsNull().ConstructorArguments.First().Value?.ToString();
+        var args = attribute.ThrowIsNull().ConstructorArguments[0].Value?.ToString();
+        var appendTemplate = attribute.ConstructorArguments.Length >= 2 ? attribute.ConstructorArguments[1].Value?.ToString() : null;
 
-        return new(args!);
+        return new(args!, appendTemplate);
     }
 
     static bool TryGetValue<T>(NewtonsoftJsonObject obj, string propertyName, out T? value)
@@ -104,6 +105,21 @@ public sealed class BinaryResourceTemplate :
         {
             mFilePath = value;
             return this;
+        }
+    }
+
+    static void WritePropertyName(BinaryResourceFileInfo fileInfo, Stream stream)
+    {
+        var propertyName = fileInfo.Name;
+        if (string.IsNullOrWhiteSpace(propertyName))
+        {
+            propertyName = Path.GetFileNameWithoutExtension(fileInfo.FilePath);
+            var propertyNameCharArray = propertyName.ThrowIsNull().ToCharArray();
+            WriteVariableName(stream, propertyNameCharArray);
+        }
+        else
+        {
+            stream.WriteUtf16StrToUtf8OrCustom(propertyName!);
         }
     }
 
@@ -235,6 +251,39 @@ partial class {0}
         stream.WriteNewLine();
         #endregion
 
+        var hasAppendTemplate = !string.IsNullOrWhiteSpace(m.Attribute.AppendTemplate);
+        Dictionary<BinaryResourceFileInfo, string> propertyNameDict = null!;
+        if (hasAppendTemplate)
+        {
+            propertyNameDict = m.FileInfos.ToDictionary(static x => x, static x =>
+            {
+                const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+                var chars = new char[Random.Next(24, 48)];
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            chars[0] = 'g';
+                            break;
+                        case 1:
+                            chars[1] = 'e';
+                            break;
+                        case 2:
+                            chars[2] = 't';
+                            break;
+                        case 3:
+                            chars[3] = '_';
+                            break;
+                        default:
+                            chars[i] = random_chars[Random.Next(random_chars.Length)];
+                            break;
+                    }
+                }
+                return new string(chars);
+            });
+        }
+
         foreach (var fileInfo in m.FileInfos)
         {
             if (!File.Exists(fileInfo.FilePath))
@@ -267,16 +316,14 @@ global::System.IO.ReadOnlyMemoryStream
                     break;
             }
 
-            var propertyName = fileInfo.Name;
-            if (string.IsNullOrWhiteSpace(propertyName))
+            if (hasAppendTemplate)
             {
-                propertyName = Path.GetFileNameWithoutExtension(fileInfo.FilePath);
-                var propertyNameCharArray = propertyName.ThrowIsNull().ToCharArray();
-                WriteVariableName(stream, propertyNameCharArray);
+                var propertyName = propertyNameDict[fileInfo];
+                stream.WriteUtf16StrToUtf8OrCustom(propertyName!);
             }
             else
             {
-                stream.WriteUtf16StrToUtf8OrCustom(propertyName!);
+                WritePropertyName(fileInfo, stream);
             }
 
             switch (fileInfo.Type)
@@ -324,6 +371,25 @@ global::System.IO.ReadOnlyMemoryStream
                     }
                     break;
             }
+        }
+
+        if (hasAppendTemplate)
+        {
+            var appendTemplate = m.Attribute.AppendTemplate!;
+            using var propertyNameStream = new MemoryStream();
+
+            foreach (var item in propertyNameDict)
+            {
+                propertyNameStream.Position = 0;
+                WritePropertyName(item.Key, propertyNameStream);
+                propertyNameStream.SetLength(propertyNameStream.Position);
+
+                var propertyName = Encoding.UTF8.GetString(propertyNameStream.ToArray());
+                appendTemplate = appendTemplate.Replace($"{{{propertyName}}}", item.Value);
+            }
+
+            stream.WriteUtf16StrToUtf8OrCustom(appendTemplate);
+            stream.WriteNewLine();
         }
 
         #region }

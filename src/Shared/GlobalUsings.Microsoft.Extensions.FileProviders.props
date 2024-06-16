@@ -1,5 +1,5 @@
 <Project>
-	<ItemGroup Condition="@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App')) OR @(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.FileProviders'))" >
+	<ItemGroup Condition="@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App')) OR @(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.FileProviders')) OR @(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.FileProviders.Physical')) OR @(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.FileProviders.Abstractions'))" >
 		<Using Include="Microsoft.Extensions.FileProviders" />
 	</ItemGroup>
 </Project>

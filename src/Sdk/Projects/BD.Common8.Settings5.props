@@ -24,9 +24,11 @@
 		<!-- 👇 包引用 -->
 		<PackageReference Include="ReactiveUI" />
 		<PackageReference Include="ReactiveUI.Fody" />
+		<PackageReference Include="Microsoft.Extensions.Primitives" />
 		<PackageReference Include="Microsoft.Extensions.Options" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" />
 	</ItemGroup>
 </Project>
