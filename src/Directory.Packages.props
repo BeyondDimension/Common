@@ -41,7 +41,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Themes.Simple" Version="11.1.0-beta2">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Win32" Version="11.1.0-beta2">
+		<PackageVersion Include="Avalonia.Win32" Version="11.1.0-rc1">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.X11" Version="11.1.0-rc1">
 		</PackageVersion>
