@@ -12,14 +12,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{7650E9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Doc", "1.Doc", "{AF15C2D3-8211-4034-A085-5463410927FB}"
 	ProjectSection(SolutionItems) = preProject
-		articles\Code-Style.md = articles\Code-Style.md
-		articles\Compression-And-Packaging.md = articles\Compression-And-Packaging.md
-		articles\Copywriting-Guide.md = articles\Copywriting-Guide.md
-		articles\CSharp.md = articles\CSharp.md
-		articles\Entity-Framework-Core.md = articles\Entity-Framework-Core.md
-		articles\Git-Commit-Message-Standard.md = articles\Git-Commit-Message-Standard.md
-		articles\Redis.md = articles\Redis.md
-		articles\Serializable-And-Deserialize.md = articles\Serializable-And-Deserialize.md
+		doc\Code-Style.md = doc\Code-Style.md
+		doc\Compression-And-Packaging.md = doc\Compression-And-Packaging.md
+		doc\Copywriting-Guide.md = doc\Copywriting-Guide.md
+		doc\CSharp.md = doc\CSharp.md
+		doc\Entity-Framework-Core.md = doc\Entity-Framework-Core.md
+		doc\Git-Commit-Message-Standard.md = doc\Git-Commit-Message-Standard.md
+		doc\Redis.md = doc\Redis.md
+		doc\Serializable-And-Deserialize.md = doc\Serializable-And-Deserialize.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Src", "2.Src", "{1BFE50E2-E9BF-48F9-BE66-8EA353A8C401}"
