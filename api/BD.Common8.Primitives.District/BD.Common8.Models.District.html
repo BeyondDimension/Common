@@ -93,7 +93,7 @@ Class District  <a class="header-action link-secondary" title="View source" href
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[MessagePackObject(false)]
 [MemoryPackable(SerializeLayout.Explicit)]
-[BinaryResource(&quot;[\r\n  {\r\n    \&quot;Path\&quot;: \&quot;..\\\\..\\\\..\\\\res\\\\AMap_adcode_citycode_20210406\&quot;\r\n  }\r\n]&quot;)]
+[BinaryResource(&quot;[\r\n  {\r\n    \&quot;Path\&quot;: \&quot;..\\\\..\\\\..\\\\res\\\\AMap_adcode_citycode_20210406\&quot;\r\n  }\r\n]&quot;, &quot;    static readonly Lazy&lt;District[]&gt; all = new(() =&gt;\r\n    {\r\n        Span&lt;byte&gt; bytes = {AMapAdcodeCitycode20210406}();\r\n        try\r\n        {\r\n            var districts = MemoryPackSerializer.Deserialize&lt;District[]&gt;(bytes);\r\n            return districts!;\r\n        }\r\n        finally\r\n        {\r\n            bytes.Clear();\r\n        }\r\n    }, LazyThreadSafetyMode.ExecutionAndPublication);&quot;)]
 public sealed class District : IDistrict, IMemoryPackable&lt;District&gt;, IMemoryPackFormatterRegister</code></pre>
   </div>
 
