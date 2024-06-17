@@ -4,13 +4,5 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\*.cs">
 			<LinkBase>_SourceReference\ChnCharInfo</LinkBase>
 		</Compile>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\AssemblyResource.resx">
-			<Link>_SourceReference\ChnCharInfo\AssemblyResource.resx</Link>
-			<LogicalName>Microsoft.International.Converters.PinYinConverter.AssemblyResource.resources</LogicalName>
-		</EmbeddedResource>
-		<EmbeddedResource Include="$(MSBuildThisFileDirectory)..\..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\AssemblyResource.en.resx">
-			<Link>_SourceReference\ChnCharInfo\AssemblyResource.en.resx</Link>
-			<LogicalName>Microsoft.International.Converters.PinYinConverter.AssemblyResource.en.resources</LogicalName>
-		</EmbeddedResource>
 	</ItemGroup>
 </Project>

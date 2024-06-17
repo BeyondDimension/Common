@@ -7,7 +7,7 @@
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<UseArtifactsOutput Condition="!Exists('$(MSBuildThisFileDirectory)..\..\..\.nupkg.metadata')">true</UseArtifactsOutput>
 		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
 		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011</NoWarn>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
