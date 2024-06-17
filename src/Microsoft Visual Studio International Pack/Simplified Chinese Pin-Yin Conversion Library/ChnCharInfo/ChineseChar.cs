@@ -48,10 +48,16 @@ public sealed partial class ChineseChar
             var bytes = _PinyinDictionary();
             fixed (byte* ptr = bytes)
             {
-                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
-                using BinaryReader binaryReader = new BinaryReader(stream);
-                pinyinDictionary = PinyinDictionary.Deserialize(binaryReader);
-                new Span<byte>(ptr, bytes.Length).Clear();
+                try
+                {
+                    using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                    using BinaryReader binaryReader = new BinaryReader(stream);
+                    pinyinDictionary = PinyinDictionary.Deserialize(binaryReader);
+                }
+                finally
+                {
+                    new Span<byte>(ptr, bytes.Length).Clear();
+                }
             }
         }
         unsafe
@@ -59,10 +65,16 @@ public sealed partial class ChineseChar
             var bytes = _CharDictionary();
             fixed (byte* ptr = bytes)
             {
-                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
-                using BinaryReader binaryReader = new BinaryReader(stream);
-                charDictionary = CharDictionary.Deserialize(binaryReader);
-                new Span<byte>(ptr, bytes.Length).Clear();
+                try
+                {
+                    using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                    using BinaryReader binaryReader = new BinaryReader(stream);
+                    charDictionary = CharDictionary.Deserialize(binaryReader);
+                }
+                finally
+                {
+                    new Span<byte>(ptr, bytes.Length).Clear();
+                }
             }
         }
         unsafe
@@ -70,10 +82,16 @@ public sealed partial class ChineseChar
             var bytes = _HomophoneDictionary();
             fixed (byte* ptr = bytes)
             {
-                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
-                using BinaryReader binaryReader = new BinaryReader(stream);
-                homophoneDictionary = HomophoneDictionary.Deserialize(binaryReader);
-                new Span<byte>(ptr, bytes.Length).Clear();
+                try
+                {
+                    using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                    using BinaryReader binaryReader = new BinaryReader(stream);
+                    homophoneDictionary = HomophoneDictionary.Deserialize(binaryReader);
+                }
+                finally
+                {
+                    new Span<byte>(ptr, bytes.Length).Clear();
+                }
             }
         }
         unsafe
@@ -81,10 +99,16 @@ public sealed partial class ChineseChar
             var bytes = _StrokeDictionary();
             fixed (byte* ptr = bytes)
             {
-                using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
-                using BinaryReader binaryReader = new BinaryReader(stream);
-                strokeDictionary = StrokeDictionary.Deserialize(binaryReader);
-                new Span<byte>(ptr, bytes.Length).Clear();
+                try
+                {
+                    using UnmanagedMemoryStream stream = new(ptr, bytes.Length);
+                    using BinaryReader binaryReader = new BinaryReader(stream);
+                    strokeDictionary = StrokeDictionary.Deserialize(binaryReader);
+                }
+                finally
+                {
+                    new Span<byte>(ptr, bytes.Length).Clear();
+                }
             }
         }
     }

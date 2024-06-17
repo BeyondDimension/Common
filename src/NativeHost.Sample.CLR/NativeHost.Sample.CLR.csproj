@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<UseMicrosoftWindowsCsWin32>true</UseMicrosoftWindowsCsWin32>
+		<RootNamespace>BD.Common8.NativeHost</RootNamespace>
+		<PublishAot>true</PublishAot>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<AssemblyName>NativeHost</AssemblyName>
+		<PublishTrimmed>true</PublishTrimmed>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<TrimmerRootAssembly Include="$(AssemblyName)" />
+	</ItemGroup>
+
+</Project>
