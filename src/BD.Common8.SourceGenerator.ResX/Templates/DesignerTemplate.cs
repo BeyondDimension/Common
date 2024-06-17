@@ -2,6 +2,8 @@ using static BD.Common8.SourceGenerator.ResX.Constants;
 
 namespace BD.Common8.SourceGenerator.ResX.Templates;
 
+#pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+
 /// <summary>
 /// Designer.cs 源文件模板
 /// </summary>
@@ -25,7 +27,12 @@ public sealed class DesignerTemplate :
 
         var relativeFilePath = attribute.ThrowIsNull().ConstructorArguments.First().Value!.ToString();
 
-        return new(relativeFilePath);
+        if (!(attribute.ConstructorArguments.Length >= 2 && byte.TryParse(attribute.ConstructorArguments[1].Value?.ToString(), out var version)))
+        {
+            version = 0;
+        }
+
+        return new(relativeFilePath, version);
     }
 
     /// <summary>
@@ -63,6 +70,11 @@ public sealed class DesignerTemplate :
         /// 生成的类型是否为 <see langword="public"/>
         /// </summary>
         public required bool IsPublic { get; init; }
+
+        /// <summary>
+        /// 生成器是否使用 StringResourceManager 的代码模板
+        /// </summary>
+        public required bool IsSRM { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
@@ -83,6 +95,7 @@ public sealed class DesignerTemplate :
             TypeName = args.typeName,
             ResourceBaseName = GetDefaultResourceBaseName(path),
             IsPublic = false,
+            IsSRM = args.attr.Version == 1,
         };
         return model;
     }
@@ -133,7 +146,7 @@ public sealed class DesignerTemplate :
 """u8);
                     }
                     stream.WriteFormat(
-    """
+"""
     /// {0}
 """u8, item.Trim());
                     stream.WriteNewLine();
@@ -156,7 +169,7 @@ public sealed class DesignerTemplate :
     static IEnumerable<XElement> GetXmlElementsByResXFilePath(string path)
     {
         var elements = XDocument.Load(path).Root.Elements("data");
-        return elements ?? Array.Empty<XElement>();
+        return elements ?? [];
     }
 
     /// <summary>
@@ -185,6 +198,14 @@ public sealed class DesignerTemplate :
     protected override void WriteFile(Stream stream, SourceModel m)
     {
         WriteFileHeader(stream);
+        if (m.IsSRM)
+        {
+            stream.Write(
+"""
+#pragma warning disable RS1035 // 已将该符号标记为禁止在分析器中使用，并应改用备用符号
+
+"""u8);
+        }
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();
@@ -225,13 +246,201 @@ static partial class {0}
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft(); // {
         stream.WriteNewLine();
-        stream.WriteFormat("""
+
+        byte[]? typeNameSRM = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomClassName()) : null;
+        byte[]? bytesGetCultureName = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName()) : null;
+        byte[]? bytesSupportedUICultures = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomFieldName()) : null;
+        byte[]? bytesGetString = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName()) : null;
+
+        if (m.IsSRM)
+        {
+            stream.Write(
+"""
+    static global::System.Globalization.CultureInfo? resourceCulture;
+
+    /// <summary>
+    ///   返回此类使用的缓存的 ResourceManager 实例。
+    /// </summary>
+    [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+    public static 
+"""u8);
+            stream.Write(typeNameSRM!);
+            stream.Write(
+"""
+ ResourceManager => default;
+
+    /// <summary>
+    ///   重写当前线程的 CurrentUICulture 属性，对
+    ///   使用此强类型资源类的所有资源查找执行重写。
+    /// </summary>
+    [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+    public static global::System.Globalization.CultureInfo? Culture
+    {
+        get => resourceCulture;
+        set => resourceCulture = value;
+    }
+
+    static int 
+"""u8);
+            stream.Write(bytesGetCultureName!);
+            stream.Write(
+"""
+(CultureInfo? culture = null)
+    {
+        culture = GetCultureCore(culture);
+        while (true)
+        {
+            if (culture == null || culture.LCID == 127 || string.IsNullOrWhiteSpace(culture.Name))
+            {
+                // LCID = 127 =	Invariant Language (Invariant Country)
+                return -1;
+            }
+            else
+            {
+                var index = Array.IndexOf(
+"""u8);
+            stream.Write(bytesSupportedUICultures!);
+            stream.Write(
+"""
+, culture!.Name);
+                if (index != -1)
+                {
+                    return index;
+                }
+                else if (culture.Parent == null)
+                {
+                    return -1;
+                }
+                else
+                {
+                    culture = culture.Parent;
+                    continue;
+                }
+            }
+        }
+        static CultureInfo? GetCultureCore(CultureInfo? culture = null)
+        {
+            try
+            {
+                if (culture != null)
+                    return culture;
+                if (resourceCulture != null)
+                    return resourceCulture;
+                return CultureInfo.CurrentUICulture;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+    }
+
+    public readonly struct 
+"""u8);
+            stream.Write(typeNameSRM!);
+            stream.Write(
+"""
+
+    {
+"""u8);
+
+            #region StringResourceManager.GetString
+
+            stream.Write(
+"""
+
+        public string GetString(string name, CultureInfo? culture = null) => 
+"""u8);
+            stream.WriteUtf16StrToUtf8OrCustom(m.TypeName);
+            stream.Write(
+"""
+.
+"""u8);
+            stream.Write(bytesGetString!);
+            stream.Write(
+"""
+(name, culture);
+
+"""u8);
+
+            #endregion
+
+            #region StringResourceManager.SupportedUICultures
+
+            stream.Write(
+"""
+
+        public string[] SupportedUICultures => 
+"""u8);
+            stream.WriteUtf16StrToUtf8OrCustom(m.TypeName);
+            stream.Write(
+"""
+.
+"""u8);
+            stream.Write(bytesSupportedUICultures!);
+            stream.Write(
+"""
+;
+
+"""u8);
+
+            #endregion
+
+            #region StringResourceManager.GetCultureName
+
+            stream.Write(
+"""
+
+        public string? GetCultureName(CultureInfo? culture = null)
+        {
+            var index = 
+"""u8);
+            stream.WriteUtf16StrToUtf8OrCustom(m.TypeName);
+            stream.Write(
+"""
+.
+"""u8);
+            stream.Write(bytesGetCultureName!);
+            stream.Write(
+"""
+(culture);
+            if (index != -1)
+            {
+                return 
+"""u8);
+            stream.WriteUtf16StrToUtf8OrCustom(m.TypeName);
+            stream.Write(
+"""
+.
+"""u8);
+            stream.Write(bytesSupportedUICultures!);
+            stream.Write(
+"""
+[index];
+            }
+            return null;
+        }
+
+"""u8);
+
+            #endregion
+
+            stream.Write(
+"""
+    }
+
+"""u8);
+        }
+        else
+        {
+            stream.WriteFormat(
+"""
     const string baseName = "{0}";
 
     static global::System.Reflection.Assembly ResourceAssembly => typeof({1}).Assembly;
 """u8, m.ResourceBaseName, m.TypeName);
-        stream.WriteNewLine();
-        stream.Write(
+            stream.WriteNewLine();
+            stream.Write(
 """
     static global::System.Resources.ResourceManager? resourceMan;
 
@@ -265,23 +474,203 @@ static partial class {0}
         set => resourceCulture = value;
     }
 """u8);
+        }
         stream.WriteNewLine();
         stream.WriteNewLine();
 
         var elements = GetXmlElementsByResXFilePath(m.Path);
-        var items = DeserializeResXDataElements(elements);
+        var items = DeserializeResXDataElements(elements).ToArray();
+        Dictionary<string, string> getMethodNameDict = null!;
+        KeyValuePair<string, RootDataXmlElement[]>[] t_items = null!;
+
+        if (m.IsSRM)
+        {
+            var resxDir = Path.GetDirectoryName(m.Path);
+            var resxFileNameWithoutEx = Path.GetFileNameWithoutExtension(m.Path);
+            var t_items_query = from filePath in Directory.GetFiles(resxDir, $"{resxFileNameWithoutEx}.*.resx")
+                                let cultureName = Path.GetFileNameWithoutExtension(filePath).TrimStart($"{resxFileNameWithoutEx}.")
+                                where !cultureName.Contains('.') && IsCultureName(cultureName)
+                                let els = GetXmlElementsByResXFilePath(filePath)
+                                let els_class = DeserializeResXDataElements(els).ToArray()
+                                select new KeyValuePair<string, RootDataXmlElement[]>(cultureName, els_class);
+            t_items = t_items_query.ToArray();
+
+            getMethodNameDict = items.ToDictionary(static x => x.Name, static _ => GetRandomGetMethodName());
+            stream.Write(
+"""
+    static string 
+"""u8);
+            stream.Write(bytesGetString!);
+            stream.Write(
+"""
+(string name, CultureInfo? culture = null) => name switch
+    {
+
+"""u8);
+            foreach (var item in items)
+            {
+                stream.WriteFormat(
+"""
+        nameof({0}) => {1}(culture),
+
+"""u8, item.Name, getMethodNameDict[item.Name]);
+            }
+            stream.Write(
+"""
+        _ => "",
+    };
+
+
+"""u8);
+
+            foreach (var item in items)
+            {
+                stream.WriteFormat(
+"""
+    static string {0}(CultureInfo? culture = null) => {1}(culture) switch
+"""u8, getMethodNameDict[item.Name], bytesGetCultureName);
+                stream.Write(
+"""
+
+    {
+
+"""u8);
+                for (int i = 0; i < t_items.Length; i++)
+                {
+                    var t_item = t_items[i];
+                    var t_item_xml = t_item.Value.FirstOrDefault(x => x.Name == item.Name);
+                    if (t_item_xml != null && t_item_xml.Value != item.Value)
+                    {
+                        // 写入翻译的 resx 值
+                        stream.Write(
+"""
+        
+"""u8);
+                        stream.WriteUtf16StrToUtf8OrCustom(i.ToString());
+                        stream.Write(
+"""
+ => // 
+"""u8);
+                        stream.WriteUtf16StrToUtf8OrCustom(t_item.Key);
+                        string cultureDisplayName = null!;
+                        try
+                        {
+                            var culture = new CultureInfo(t_item.Key);
+                            if (culture.LCID != 127 && !string.IsNullOrWhiteSpace(culture.Name) && !string.IsNullOrWhiteSpace(culture.DisplayName))
+                            {
+                                cultureDisplayName = culture.DisplayName;
+                            }
+                        }
+                        catch { }
+                        if (cultureDisplayName != null)
+                        {
+                            stream.Write(" "u8);
+                            stream.WriteUtf16StrToUtf8OrCustom(cultureDisplayName);
+                        }
+                        stream.WriteNewLine();
+                        WriteResStringValue(stream, t_item_xml.Value);
+                        stream.Write(","u8);
+                        stream.WriteNewLine();
+                    }
+                }
+
+                stream.Write(
+"""
+        _ => 
+
+"""u8);
+                WriteResStringValue(stream, item.Value);
+                stream.Write(","u8);
+                stream.WriteFormat(
+"""
+
+    };
+
+
+"""u8);
+            }
+        }
+
+        if (m.IsSRM)
+        {
+            stream.WriteFormat(
+"""
+    static readonly string[] {0} = [
+"""u8, bytesSupportedUICultures);
+            foreach (var t_item in t_items)
+            {
+                stream.Write(
+"""
+"
+"""u8);
+                stream.WriteUtf16StrToUtf8OrCustom(t_item.Key);
+                stream.Write(
+"""
+", 
+"""u8);
+            }
+            stream.Write(
+"""
+];
+
+
+"""u8);
+        }
+
         foreach (var item in items)
         {
             item.WriteSummary(stream);
-            stream.WriteFormat(
+            if (m.IsSRM)
+            {
+                stream.WriteFormat(
+"""
+    public static string {0} => {1}(resourceCulture);
+"""u8, item.Name, getMethodNameDict[item.Name]);
+            }
+            else
+            {
+                stream.WriteFormat(
 """
     public static string {0} => ResourceManager.GetString("{0}", resourceCulture) ?? "";
 """u8, item.Name);
+            }
             stream.WriteNewLine();
             stream.WriteNewLine();
         }
 
         stream.WriteCurlyBracketRight(); // }
         stream.WriteNewLine();
+    }
+
+    static void WriteResStringValue(Stream stream, string value)
+    {
+        if (!string.IsNullOrEmpty(value))
+        {
+            if (value.Contains("\"\"\""))
+            {
+                stream.Write("\"\""u8);
+                var bytes = Encoding.Unicode.GetBytes(value);
+                for (var i = 0; i < bytes.Length; i += 2)
+                {
+                    stream.Write(@"\u"u8);
+                    stream.WriteUtf16StrToUtf8OrCustom(bytes[i + 1].ToString("x2"));
+                    stream.WriteUtf16StrToUtf8OrCustom(bytes[i].ToString("x2"));
+                }
+                stream.Write("\"\""u8);
+            }
+            else
+            {
+                var y3 = "\"\"\""u8;
+                stream.Write(y3);
+                stream.WriteNewLine();
+                stream.WriteUtf16StrToUtf8OrCustom(value);
+                stream.WriteNewLine();
+                stream.Write(y3);
+            }
+        }
+        else
+        {
+            stream.Write("\"\""u8);
+        }
     }
 }

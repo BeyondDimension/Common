@@ -255,33 +255,7 @@ partial class {0}
         Dictionary<BinaryResourceFileInfo, string> propertyNameDict = null!;
         if (hasAppendTemplate)
         {
-            propertyNameDict = m.FileInfos.ToDictionary(static x => x, static x =>
-            {
-                const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-                var chars = new char[Random.Next(24, 48)];
-                for (int i = 0; i < chars.Length; i++)
-                {
-                    switch (i)
-                    {
-                        case 0:
-                            chars[0] = 'g';
-                            break;
-                        case 1:
-                            chars[1] = 'e';
-                            break;
-                        case 2:
-                            chars[2] = 't';
-                            break;
-                        case 3:
-                            chars[3] = '_';
-                            break;
-                        default:
-                            chars[i] = random_chars[Random.Next(random_chars.Length)];
-                            break;
-                    }
-                }
-                return new string(chars);
-            });
+            propertyNameDict = m.FileInfos.ToDictionary(static x => x, static x => GetRandomGetMethodName());
         }
 
         foreach (var fileInfo in m.FileInfos)

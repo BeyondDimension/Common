@@ -12,5 +12,5 @@
 namespace BD.Common8.Primitives.Resources;
 #pragma warning restore IDE0079 // 请删除不必要的忽略
 
-[ResXGeneratedCode(@"..\..\..\res\i18n\BD.Common8.Primitives.resx")]
+[ResXGeneratedCode(@"..\..\..\res\i18n\BD.Common8.Primitives.resx", version: 1)]
 partial class SR { }

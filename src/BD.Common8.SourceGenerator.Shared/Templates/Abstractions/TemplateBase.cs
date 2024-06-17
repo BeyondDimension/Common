@@ -115,6 +115,23 @@ public abstract class TemplateBase
 
     const string random_chars = "_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
+    static string ToStringWithGuid(char[] chars)
+    {
+        var guid = Guid.NewGuid().ToString("N");
+        var chars_new = new char[chars.Length + guid.Length];
+        int i = 0;
+        for (; i < chars.Length; i++)
+        {
+            chars_new[i] = chars[i];
+        }
+        for (int j = 0; j < guid.Length; j++)
+        {
+            chars_new[i] = guid[j];
+            i++;
+        }
+        return new string(chars_new);
+    }
+
     /// <summary>
     /// 获取随机字段名
     /// </summary>
@@ -127,7 +144,62 @@ public abstract class TemplateBase
             var index = Random.Next(fieldName.Length);
             fieldName[index] = random_chars[Random.Next(random_chars.Length)];
         }
-        return new(fieldName);
+        return ToStringWithGuid(fieldName);
+    }
+
+    /// <summary>
+    /// 获取随机获取方法名
+    /// </summary>
+    /// <returns></returns>
+    protected static string GetRandomGetMethodName()
+    {
+        const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        var chars = new char[Random.Next(24, 48)];
+        for (int i = 0; i < chars.Length; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    chars[0] = 'g';
+                    break;
+                case 1:
+                    chars[1] = 'e';
+                    break;
+                case 2:
+                    chars[2] = 't';
+                    break;
+                case 3:
+                    chars[3] = '_';
+                    break;
+                default:
+                    chars[i] = random_chars[Random.Next(random_chars.Length)];
+                    break;
+            }
+        }
+        return ToStringWithGuid(chars);
+    }
+
+    /// <summary>
+    /// 获取随机获取类名
+    /// </summary>
+    /// <returns></returns>
+    protected static string GetRandomClassName()
+    {
+        const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_";
+        var chars = new char[Random.Next(24, 48)];
+        for (int i = 0; i < chars.Length; i++)
+        {
+            if (i == 0)
+            {
+                const string random_chars_0 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                chars[0] = random_chars_0[Random.Next(random_chars_0.Length)];
+            }
+            else
+            {
+                chars[i] = random_chars[Random.Next(random_chars.Length)];
+            }
+        }
+        return ToStringWithGuid(chars);
     }
 
     /// <summary>
@@ -199,6 +271,36 @@ public abstract class TemplateBase
             }
             stream.Write(Encoding.UTF8.GetBytes(chars, i, 1));
         }
+    }
+
+    /// <summary>
+    /// 获取字符串是否为有效的 <see cref="CultureInfo.Name"/>
+    /// </summary>
+    /// <param name="cultureName"></param>
+    /// <returns></returns>
+    protected static bool IsCultureName(string cultureName)
+    {
+        if (!string.IsNullOrWhiteSpace(cultureName))
+        {
+            try
+            {
+                var cultureInfo = new CultureInfo(cultureName);
+                if (cultureInfo.DisplayName == cultureName &&
+                    cultureInfo.EnglishName == cultureName &&
+                    cultureInfo.IetfLanguageTag == cultureName &&
+                    cultureInfo.Name == cultureName &&
+                    cultureInfo.NativeName == cultureName &&
+                    cultureInfo.TwoLetterISOLanguageName == cultureName)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+            }
+        }
+        return false;
     }
 }
 
