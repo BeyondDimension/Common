@@ -37,7 +37,6 @@
 		</ProjectReference>
 	</ItemGroup>
 
-	<Import Project="..\..\res\i18n\BD.Common8.Bcl.props" />
 	<Import Project="..\Shared\GlobalUsings.System.Extensions.props" />
 
 </Project>

@@ -22,8 +22,6 @@
 		</ProjectReference>
 	</ItemGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
-
 	<!-- 👇 NuGet 打包配置 -->
 	<ItemGroup>
 		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.Common8.Bcl.targets" Pack="true" PackagePath="buildTransitive" Visible="false" />
