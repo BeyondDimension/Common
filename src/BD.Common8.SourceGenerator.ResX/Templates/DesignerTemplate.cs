@@ -262,12 +262,12 @@ static partial class {0}
     ///   返回此类使用的缓存的 ResourceManager 实例。
     /// </summary>
     [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-    public static 
+    public static global::System.Resources.IStringResourceManager ResourceManager => (
 """u8);
             stream.Write(typeNameSRM!);
             stream.Write(
 """
- ResourceManager => default;
+)default;
 
     /// <summary>
     ///   重写当前线程的 CurrentUICulture 属性，对
@@ -335,12 +335,12 @@ static partial class {0}
         }
     }
 
-    public readonly struct 
+    readonly struct 
 """u8);
             stream.Write(typeNameSRM!);
             stream.Write(
 """
-
+ : global::System.Resources.IStringResourceManager
     {
 """u8);
 
