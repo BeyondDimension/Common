@@ -257,8 +257,8 @@ public sealed class ResXGeneratedCodeAttribute : Attribute</code></pre>
 
   <a id="System_CodeDom_Compiler_ResXGeneratedCodeAttribute__ctor_" data-uid="System.CodeDom.Compiler.ResXGeneratedCodeAttribute.#ctor*"></a>
 
-  <h3 id="System_CodeDom_Compiler_ResXGeneratedCodeAttribute__ctor_System_String_" data-uid="System.CodeDom.Compiler.ResXGeneratedCodeAttribute.#ctor(System.String)">
-  ResXGeneratedCodeAttribute(string)
+  <h3 id="System_CodeDom_Compiler_ResXGeneratedCodeAttribute__ctor_System_String_System_Byte_" data-uid="System.CodeDom.Compiler.ResXGeneratedCodeAttribute.#ctor(System.String,System.Byte)">
+  ResXGeneratedCodeAttribute(string, byte)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/CodeDom/Compiler/ResXGeneratedCodeAttribute.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -267,12 +267,14 @@ public sealed class ResXGeneratedCodeAttribute : Attribute</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResXGeneratedCodeAttribute(string relativeFilePath)</code></pre>
+    <pre><code class="lang-csharp hljs">public ResXGeneratedCodeAttribute(string relativeFilePath, byte version = 0)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>relativeFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
     <dd></dd>
   </dl>
 
@@ -313,6 +315,38 @@ public sealed class ResXGeneratedCodeAttribute : Attribute</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_CodeDom_Compiler_ResXGeneratedCodeAttribute_Version_" data-uid="System.CodeDom.Compiler.ResXGeneratedCodeAttribute.Version*"></a>
+
+  <h3 id="System_CodeDom_Compiler_ResXGeneratedCodeAttribute_Version" data-uid="System.CodeDom.Compiler.ResXGeneratedCodeAttribute.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/CodeDom/Compiler/ResXGeneratedCodeAttribute.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>生成的代码模板版本</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte Version { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
     <dd></dd>
   </dl>
 
