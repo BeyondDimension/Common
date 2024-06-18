@@ -287,6 +287,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.102.3">
 		</PackageVersion>
+		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.99">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>
