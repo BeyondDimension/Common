@@ -289,6 +289,8 @@
 		</PackageVersion>
 		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.99">
 		</PackageVersion>
+		<PackageVersion Include="WPF-UI" Version="3.0.4">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>
