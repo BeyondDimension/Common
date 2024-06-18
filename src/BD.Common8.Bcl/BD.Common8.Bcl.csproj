@@ -34,6 +34,7 @@
 		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.Sdk.Ref.Package.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
 		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
 		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.Reference.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.UnitTest.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
 		<None Include="$(MSBuildThisFileDirectory)..\Sdk\net35.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
 		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
 		<None Remove="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Tools*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />

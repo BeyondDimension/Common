@@ -30,9 +30,6 @@
 		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
-	<!-- 👇 全局 using | Global usings -->
-	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.props" />
-
 	<!-- 👇 源代码分析 | Code Style -->
 	<ItemGroup>
 		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />

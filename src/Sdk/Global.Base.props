@@ -15,4 +15,7 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104,NU1506</NoWarn>
 	</PropertyGroup>
+
+	<!-- 👇 全局 using | Global usings -->
+	<Import Condition="$(NoImplicitUsingBcl) != 'true'" Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.props" />
 </Project>
