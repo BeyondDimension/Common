@@ -1,2 +1,10 @@
 CLRCreateInstance
-LoadLibraryW
+ICLRMetaHost
+ICLRRuntimeInfo
+ICorRuntimeHost
+VARIANT
+SafeArrayCreate
+SafeArrayCreateVector
+SafeArrayPutElement
+SafeArrayAccessData
+SafeArrayUnaccessData

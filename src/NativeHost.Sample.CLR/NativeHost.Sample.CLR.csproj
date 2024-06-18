@@ -9,10 +9,27 @@
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 		<AssemblyName>NativeHost</AssemblyName>
 		<PublishTrimmed>true</PublishTrimmed>
+		<UseProjectUtils>true</UseProjectUtils>
+		<DefineConstants>$(DefineConstants);NO_REF_COMMON8_BCL</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<TrimmerRootAssembly Include="$(AssemblyName)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Windows.Win32" />
+		<Using Include="Windows.Win32.Foundation" />
+		<Using Include="Windows.Win32.System.ClrHosting" />
+		<Using Include="Windows.Win32.System.Variant" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\NativeHost.StaticLib.CLR\NativeHost.StaticLib.CLR.vcxproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<RuntimeHostConfigurationOption Include="System.Runtime.InteropServices.COM.LoadComponentInDefaultContext" Value="true" />
 	</ItemGroup>
 
 </Project>

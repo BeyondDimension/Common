@@ -1,4 +1,6 @@
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using BD.Common8.NativeHost;
 
-BD.Common8.NativeHost.NativeHost.ExecuteInDefaultAppDomain(null!, null!, null!);
+var dllPath = Path.Combine(ProjPath, "src", "artifacts", "bin", "AssemblyLoad.Sample.EntryPoint", "debug", "AssemblyLoad.Sample.EntryPoint.exe");
+var dllBytes = File.ReadAllBytes(dllPath);
+
+NativeHost.ExecuteInDefaultAppDomain(dllBytes);
