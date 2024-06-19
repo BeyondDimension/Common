@@ -277,7 +277,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.9">
 		</PackageVersion>
-		<PackageVersion Include="Xamarin.Google.Android.Material" Version="1.10.0.6">
+		<PackageVersion Include="Xamarin.Google.Android.Material" Version="1.11.0">
 		</PackageVersion>
 		<PackageVersion Include="xunit" Version="2.8.1">
 		</PackageVersion>
