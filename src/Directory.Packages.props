@@ -289,7 +289,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.103.0">
 		</PackageVersion>
-		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.99">
+		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.100">
 		</PackageVersion>
 		<PackageVersion Include="WPF-UI" Version="3.0.4">
 		</PackageVersion>
