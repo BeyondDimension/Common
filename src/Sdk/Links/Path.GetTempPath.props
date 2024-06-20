@@ -1,0 +1,8 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\IOPath\IOPath.Path.GetTempPath.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\IOPath</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

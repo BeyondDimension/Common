@@ -83,7 +83,9 @@
 		</PackageVersion>
 		<PackageVersion Include="fusillade" Version="2.6.30">
 		</PackageVersion>
-		<PackageVersion Include="gfoidl.Base64" Version="2.0.0">
+		<PackageVersion Condition="!$(TargetFramework.StartsWith('net4'))" Include="gfoidl.Base64" Version="2.0.0">
+		</PackageVersion>
+		<PackageVersion Condition="$(TargetFramework.StartsWith('net4'))" Include="gfoidl.Base64" Version="1.1.2">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf" Version="3.27.1">
 		</PackageVersion>
@@ -290,6 +292,8 @@
 		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.99">
 		</PackageVersion>
 		<PackageVersion Include="WPF-UI" Version="3.0.4">
+		</PackageVersion>
+		<PackageVersion Include="System.Diagnostics.EventLog" Version="8.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Common8 -->

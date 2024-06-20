@@ -1,0 +1,21 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\CodeDom\Compiler\BinaryResourceAttribute.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Resources\IStringResourceManager.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Resources</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

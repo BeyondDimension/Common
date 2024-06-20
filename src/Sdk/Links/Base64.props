@@ -1,0 +1,20 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Text\Base64Extensions.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Text</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Text\Base64Impl(gfoidl.Base64).cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Text</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Text\Base64UrlExtensions.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Text</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Extensions\ByteArrayExtensions.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Convert2.FromHexString.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

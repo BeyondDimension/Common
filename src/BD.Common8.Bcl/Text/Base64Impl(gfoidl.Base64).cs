@@ -1,10 +1,7 @@
-#if NET7_0_OR_GREATER
-using Base64 = gfoidl.Base64.Base64;
+#if !NO_GFOIDL_BASE64
+using Base64 = gfoidl.Base64.Base64; // 使用 https://github.com/gfoidl/Base64 实现
 #endif
 
-// 使用 https://github.com/gfoidl/Base64 实现
-
-// ReSharper disable once CheckNamespace
 namespace System.Text;
 
 partial class Base64Extensions
@@ -17,10 +14,15 @@ partial class Base64Extensions
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Base64Encode(this ReadOnlySpan<byte> inArray, Base64FormattingOptions options = Base64FormattingOptions.None)
-#if NET7_0_OR_GREATER
+#if !NO_GFOIDL_BASE64
         => options switch
         {
-            Base64FormattingOptions.InsertLineBreaks => Convert.ToBase64String(inArray, Base64FormattingOptions.InsertLineBreaks),
+            Base64FormattingOptions.InsertLineBreaks =>
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+                Convert.ToBase64String(inArray, Base64FormattingOptions.InsertLineBreaks),
+#else
+                Convert.ToBase64String(inArray.ToArray(), Base64FormattingOptions.InsertLineBreaks),
+#endif
             Base64FormattingOptions.None => Base64.Default.Encode(inArray),
             _ => throw new ArgumentOutOfRangeException(nameof(options)),
         };
@@ -37,7 +39,7 @@ partial class Base64Extensions
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] Base64DecodeToByteArray(this ReadOnlySpan<char> encoded)
-#if NET7_0_OR_GREATER
+#if !NO_GFOIDL_BASE64
         => Base64.Default.Decode(encoded);
 #else
     {
@@ -55,7 +57,7 @@ partial class Base64Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] Base64DecodeToByteArray(this string s, Base64FormattingOptions options = Base64FormattingOptions.None)
     {
-#if NET7_0_OR_GREATER
+#if !NO_GFOIDL_BASE64
         switch (options)
         {
             case Base64FormattingOptions.InsertLineBreaks:
@@ -81,7 +83,7 @@ partial class Base64UrlExtensions
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Base64UrlEncode(this ReadOnlySpan<byte> inArray)
-#if NET7_0_OR_GREATER
+#if !NO_GFOIDL_BASE64
         => Base64.Url.Encode(inArray);
 #else
         => Base64UrlEncode(inArray.ToArray());
@@ -94,10 +96,11 @@ partial class Base64UrlExtensions
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] Base64UrlDecodeToByteArray(this ReadOnlySpan<char> encoded)
-#if NET7_0_OR_GREATER
+#if !NO_GFOIDL_BASE64
         => Base64.Url.Decode(encoded);
 #else
-    { // Create array large enough for the Base64 characters, not just shorter Base64-URL-encoded form.
+    { 
+        // Create array large enough for the Base64 characters, not just shorter Base64-URL-encoded form.
         var buffer = new char[GetArraySizeRequiredToDecode(encoded.Length)];
         return Base64UrlDecode(encoded, 0, buffer, bufferOffset: 0, count: encoded.Length);
     }

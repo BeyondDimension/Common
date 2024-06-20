@@ -1,4 +1,4 @@
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
 namespace System.Extensions;
 
 /// <summary>

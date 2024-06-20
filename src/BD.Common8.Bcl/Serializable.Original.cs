@@ -5,6 +5,7 @@ namespace System
 {
     public static partial class Serializable // Original(使用原键名)
     {
+#if !NO_NEWTONSOFT_JSON
         static readonly Lazy<NewtonsoftJsonSerializerSettings> mIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings = new(GetIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
 
         static NewtonsoftJsonSerializerSettings GetIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings() => new()
@@ -41,9 +42,11 @@ namespace System
         [return: MaybeNull]
         public static T DJSON_Original<T>(string value)
             => NewtonsoftJsonConvert.DeserializeObject<T>(value, IgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
+#endif
     }
 }
 
+#if !NO_NEWTONSOFT_JSON
 namespace Newtonsoft.Json.Serialization
 {
     /// <summary>
@@ -56,7 +59,7 @@ namespace Newtonsoft.Json.Serialization
         /// <summary>
         /// 创建属性列表，并根据成员序列化方式忽略特定属性
         /// </summary>
-        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+        protected override IList<NewtonsoftJsonPropertyClass> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
             var result = base.CreateProperties(type, memberSerialization);
             foreach (var item in result)
@@ -66,7 +69,7 @@ namespace Newtonsoft.Json.Serialization
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
                         JsonNamingPolicy.CamelCase.ConvertName(item.UnderlyingName) :
 #else
-                    ToCamelCase(item.UnderlyingName) :
+                        ToCamelCase(item.UnderlyingName) :
 #endif
                         item.UnderlyingName);
             }
@@ -118,3 +121,4 @@ namespace Newtonsoft.Json.Serialization
 
     }
 }
+#endif

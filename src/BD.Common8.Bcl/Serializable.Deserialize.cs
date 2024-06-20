@@ -2,6 +2,7 @@ namespace System;
 
 public static partial class Serializable // Deserialize(反序列化)
 {
+#if !NO_SYSTEM_TEXT_JSON || !NO_NEWTONSOFT_JSON
     /// <summary>
     /// (Deserialize)JSON 反序列化
     /// </summary>
@@ -19,10 +20,14 @@ public static partial class Serializable // Deserialize(反序列化)
     {
         return implType switch
         {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
             JsonImplType.SystemTextJson => SystemTextJsonSerializer.Deserialize<T>(value),
 #endif
+#if !NO_NEWTONSOFT_JSON
             _ => NewtonsoftJsonConvert.DeserializeObject<T>(value),
+#else
+            _ => throw new NotSupportedException(),
+#endif
         };
     }
 
@@ -39,8 +44,9 @@ public static partial class Serializable // Deserialize(反序列化)
     [RequiresDynamicCode(SerializationRequiresDynamicCodeMessage)]
 #endif
     public static T DJSON<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string value) => DJSON<T>(DefaultJsonImplType, value);
+#endif
 
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK
 
     /// <summary>
     /// (Deserialize)MessagePack 反序列化
@@ -57,7 +63,7 @@ public static partial class Serializable // Deserialize(反序列化)
     /// <inheritdoc cref="DMP{T}(byte[], CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object? DMP([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, byte[] buffer, CancellationToken cancellationToken = default)
-     => MessagePackSerializer.Deserialize(type, buffer, options: Lz4Options(), cancellationToken: cancellationToken);
+        => MessagePackSerializer.Deserialize(type, buffer, options: Lz4Options(), cancellationToken: cancellationToken);
 
     /// <summary>
     /// (Deserialize)MessagePack 反序列化
@@ -122,22 +128,32 @@ public static partial class Serializable // Deserialize(反序列化)
 
 #endif
 
-#if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
     /// <summary>
     /// (Deserialize)MemoryPack 反序列化
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="buffer"></param>
     /// <returns></returns>
-    [return: MaybeNull]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static T DMP2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(ReadOnlySpan<byte> buffer)
+    public static T? DMP2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(ReadOnlySpan<byte> buffer)
         => MemoryPackSerializer.Deserialize<T>(buffer);
 
     /// <inheritdoc cref="DMP2{T}(ReadOnlySpan{byte})"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object? DMP2([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type, ReadOnlySpan<byte> buffer)
      => MemoryPackSerializer.Deserialize(type, buffer);
+
+    /// <inheritdoc cref="DMP2{T}(ReadOnlySpan{byte})"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T? DMP2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(ReadOnlySpan<byte> buffer, IMemoryPackFormatter<T> formatter, MemoryPackSerializerOptions? options = null)
+    {
+        using var memoryPackReaderOptionalState = MemoryPackReaderOptionalStatePool.Rent(options ?? MemoryPackSerializerOptions.Default);
+        var memoryPackReader = new MemoryPackReader(buffer, memoryPackReaderOptionalState);
+        T? value = default;
+        formatter.Deserialize(ref memoryPackReader, ref value);
+        return value;
+    }
 
     /// <summary>
     /// (Deserialize)MemoryPack 反序列化

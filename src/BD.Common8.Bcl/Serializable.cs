@@ -3,17 +3,15 @@ using static System.Serializable;
 #pragma warning disable IDE0161 // 转换为文件范围限定的 namespace
 namespace System
 {
-    [JsonSerializable(typeof(string))]
-    internal partial class MyJsonContext : JsonSerializerContext
-    {
-    }
-
     /// <summary>
     /// 序列化、反序列化 助手类
     /// </summary>
     [Serializable]
     public static partial class Serializable
     {
+#if !NO_SYSTEM_TEXT_JSON
+
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
         /// <summary>
         /// 根据已有 Json 设置项添加或重新创建带有预设的配置
         /// </summary>
@@ -44,6 +42,7 @@ namespace System
 
             return baseOptions;
         }
+#endif
 
         /// <summary>
         /// 用于组合多个源生成器
@@ -85,6 +84,7 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void CombineTypeInfoResolvers(this SystemTextJsonSerializerOptions options, params IJsonTypeInfoResolver[] resolvers)
             => options.CombineTypeInfoResolvers(resolvers.AsEnumerable());
+#endif
 
         /// <summary>
         /// 序列化程式实现种类
@@ -143,13 +143,15 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         static JsonImplType GetDefaultJsonImplType()
         {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
             return JsonImplType.SystemTextJson;
 #else
+#if !NO_NEWTONSOFT_JSON
             if (Environment.Version.Major <= 5)
             {
                 return JsonImplType.NewtonsoftJson;
             }
+#endif
             return JsonImplType.SystemTextJson;
 #endif
         }
@@ -168,7 +170,7 @@ namespace System
             if (EqualityComparer<T?>.Default.Equals(obj, default))
                 return default;
 
-#if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
             try
             {
                 var bytes = MemoryPackSerializer.Serialize(obj);
@@ -179,7 +181,7 @@ namespace System
             }
 #endif
 
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK
             try
             {
                 var bytes = MessagePackSerializer.Serialize(obj);

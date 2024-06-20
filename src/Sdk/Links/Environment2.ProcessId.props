@@ -1,0 +1,8 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl.Compat\Environment2.ProcessId.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl.Compat</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

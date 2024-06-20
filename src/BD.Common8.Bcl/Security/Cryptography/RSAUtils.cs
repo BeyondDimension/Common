@@ -16,7 +16,7 @@ public static partial class RSAUtils
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSAParameters GetRSAParametersFromJsonString(string jsonString)
     {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         var rsaParams = SystemTextJsonSerializer.Deserialize(jsonString, ParametersJsonSerializerContext.Default.Parameters);
 #else
         var rsaParams = Serializable.DJSON<Parameters>(jsonString);
@@ -24,6 +24,34 @@ public static partial class RSAUtils
         if (rsaParams == null) throw new NullReferenceException(nameof(rsaParams));
         return rsaParams.ToStruct();
     }
+
+#if !NO_SYSTEM_TEXT_JSON
+    /// <summary>
+    /// 从 JSON UTF8 流获取 RSA 参数
+    /// </summary>
+    /// <param name="utf8Json"></param>
+    /// <returns></returns>
+    /// <exception cref="NullReferenceException"></exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static RSAParameters GetRSAParametersFromUtf8Json(Stream utf8Json)
+    {
+        var rsaParams = SystemTextJsonSerializer.Deserialize(utf8Json, ParametersJsonSerializerContext.Default.Parameters);
+        if (rsaParams == null) throw new NullReferenceException(nameof(rsaParams));
+        return rsaParams.ToStruct();
+    }
+
+    /// <summary>
+    /// 通过 JSON UTF8 流中的密钥信息初始化 RSA 对象
+    /// </summary>
+    /// <param name="rsa"></param>
+    /// <param name="utf8Json"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void FromJsonString(RSA rsa, Stream utf8Json)
+    {
+        var rsaParams = GetRSAParametersFromUtf8Json(utf8Json);
+        rsa.ImportParameters(rsaParams);
+    }
+#endif
 
     /// <summary>
     /// 通过 JSON 字符串中的密钥信息初始化 RSA 对象
@@ -66,6 +94,19 @@ public static partial class RSAUtils
         return rsa;
     }
 
+    /// <summary>
+    /// 创建 <see cref="RSA" /> 对象
+    /// </summary>
+    /// <param name="utf8Json"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static RSA CreateFromJsonString(Stream utf8Json)
+    {
+        var rsaParams = GetRSAParametersFromUtf8Json(utf8Json);
+        var rsa = RSA.Create(rsaParams);
+        return rsa;
+    }
+
     #endregion
 
     #region 从 RSA 实例中获取密钥
@@ -80,7 +121,7 @@ public static partial class RSAUtils
     public static string ToJsonString(this RSA rsa, bool includePrivateParameters)
     {
         var rsaParams = rsa.ExportParameters(includePrivateParameters).ToObject();
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         var jsonString = SystemTextJsonSerializer.Serialize(rsaParams, ParametersJsonSerializerContext.Default.Parameters);
 #else
         var jsonString = Serializable.SJSON(rsaParams, ignoreNullValues: true);
@@ -160,8 +201,12 @@ public static partial class RSAUtils
     /// 获取在特定操作系统上使用的默认加密填充模式，如果操作系统是 Android，则返回 <see cref="RSAEncryptionPadding.OaepSHA1"/>；否则返回 <see cref="RSAEncryptionPadding.OaepSHA256"/>
     /// </summary>
     public static RSAEncryptionPadding DefaultPadding
+#if NET5_0_OR_GREATER
         => OperatingSystem.IsAndroid() ?
             RSAEncryptionPadding.OaepSHA1 :
+#else
+        =>
+#endif
             RSAEncryptionPadding.OaepSHA256;
 
     #endregion
@@ -430,86 +475,103 @@ public static partial class RSAUtils
     /// </summary>
     internal sealed class Parameters
     {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-
+#if !NO_SYSTEM_TEXT_JSON
         /// <summary>
         /// 初始化 <see cref="Parameters"/> 类的新实例
         /// </summary>
         [SystemTextJsonConstructor]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonConstructor]
+#endif
         public Parameters() { }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的D参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("z")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("z")]
+#endif
         public string? D { get; set; }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 DP 参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("x")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("x")]
+#endif
         public string? DP { get; set; }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 DQ 参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("c")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("c")]
+#endif
         public string? DQ { get; set; }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Exponent 参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("v")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("v")]
+#endif
         public string? Exponent { get; set; }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 InverseQ 参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("b")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("b")]
+#endif
         public string? InverseQ { get; set; }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Modulus 参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("n")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("n")]
+#endif
         public string? Modulus { get; set; }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 P 参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("m")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("m")]
+#endif
         public string? P { get; set; }
 
         /// <summary>
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Q 参数
         /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [SystemTextJsonProperty("a")]
 #endif
+#if !NO_NEWTONSOFT_JSON
         [NewtonsoftJsonProperty("a")]
+#endif
         public string? Q { get; set; }
 
         /// <summary>
@@ -532,10 +594,13 @@ public static partial class RSAUtils
     /// <summary>
     /// 用于序列化 <see cref="RSAUtils.Parameters"/> 类的 JSON 上下文类
     /// </summary>
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [JsonSourceGenerationOptions]
+#if !NO_SYSTEM_TEXT_JSON
+    [JsonSourceGenerationOptions(
+        DefaultIgnoreCondition = SystemTextJsonIgnoreCondition.WhenWritingDefault,
+        AllowTrailingCommas = true
+        )]
     [JsonSerializable(typeof(Parameters))]
-    internal sealed partial class ParametersJsonSerializerContext : JsonSerializerContext
+    internal sealed partial class ParametersJsonSerializerContext : SystemTextJsonSerializerContext
     {
     }
 #endif
@@ -557,6 +622,18 @@ public static partial class RSAUtils
         P = parms.P.Base64UrlDecodeToByteArray_Nullable(),
         Q = parms.Q.Base64UrlDecodeToByteArray_Nullable(),
     };
+
+    /// <summary>
+    /// 将 <see cref="RSAParameters"/> 结构体转换为 json 字符串
+    /// </summary>
+    /// <param name="rSAParameters"></param>
+    /// <returns></returns>
+    public static string ToJsonString(this RSAParameters rSAParameters)
+    {
+        var rsaParams = rSAParameters.ToObject();
+        var result = SystemTextJsonSerializer.Serialize(rsaParams, ParametersJsonSerializerContext.Default.Parameters);
+        return result;
+    }
 
     /// <summary>
     /// 将 <see cref="RSAParameters"/> 结构体转换为 <see cref="Parameters"/> 对象

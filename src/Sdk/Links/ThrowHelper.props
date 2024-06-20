@@ -1,0 +1,17 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\ThrowHelper.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Resources\SR.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Resources</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

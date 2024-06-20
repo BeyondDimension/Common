@@ -1,8 +1,12 @@
+#if !NO_JSON_GETINDENTED
+
 namespace System;
 
 public static partial class Serializable // GetIndented(格式化缩进)
 {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON || !NO_NEWTONSOFT_JSON
+
+#if !NO_SYSTEM_TEXT_JSON
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static string ToString(JsonDocument document, JsonWriterOptions options = default)
@@ -42,18 +46,20 @@ public static partial class Serializable // GetIndented(格式化缩进)
 
 #endif
 
+#if !NO_NEWTONSOFT_JSON
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static string? GetIndentedByNewtonsoftJson(string json)
     {
-        var jsonObj = JObject.Parse(json);
+        var jsonObj = NewtonsoftJsonObject.Parse(json);
         return NewtonsoftJsonConvert.SerializeObject(jsonObj, NewtonsoftJsonFormatting.Indented);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static JObject ParseJObject(Stream utf8Json, JsonLoadSettings? settings = null)
+    static NewtonsoftJsonObject ParseJObject(Stream utf8Json, JsonLoadSettings? settings = null)
     {
         using JsonReader reader = new JsonTextReader(new StreamReader(utf8Json, Encoding.UTF8));
-        JObject o = JObject.Load(reader, settings);
+        NewtonsoftJsonObject o = NewtonsoftJsonObject.Load(reader, settings);
 
         while (reader.Read())
         {
@@ -82,6 +88,8 @@ public static partial class Serializable // GetIndented(格式化缩进)
         return GetIndentedByNewtonsoftJson(utf8JsonStream);
     }
 
+#endif
+
     /// <summary>
     /// 将 Json 字符串格式化缩进
     /// </summary>
@@ -100,7 +108,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
                     {
                         try
                         {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
                             jsonIndented = GetIndentedBySystemTextJson(json!);
 #endif
                         }
@@ -114,7 +122,9 @@ public static partial class Serializable // GetIndented(格式化缩进)
             {
                 try
                 {
+#if !NO_NEWTONSOFT_JSON
                     jsonIndented = GetIndentedByNewtonsoftJson(json!);
+#endif
                 }
                 catch
                 {
@@ -143,7 +153,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
                     {
                         try
                         {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
                             jsonIndented = GetIndentedBySystemTextJson(utf8Json);
 #endif
                         }
@@ -157,7 +167,9 @@ public static partial class Serializable // GetIndented(格式化缩进)
             {
                 try
                 {
+#if !NO_NEWTONSOFT_JSON
                     jsonIndented = GetIndentedByNewtonsoftJson(utf8Json);
+#endif
                 }
                 catch
                 {
@@ -184,7 +196,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
                 {
                     try
                     {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
                         jsonIndented = GetIndentedBySystemTextJson(utf8Json);
 #endif
                     }
@@ -198,7 +210,9 @@ public static partial class Serializable // GetIndented(格式化缩进)
         {
             try
             {
+#if !NO_NEWTONSOFT_JSON
                 jsonIndented = GetIndentedByNewtonsoftJson(utf8Json);
+#endif
             }
             catch
             {
@@ -207,4 +221,8 @@ public static partial class Serializable // GetIndented(格式化缩进)
 
         return jsonIndented ?? string.Empty;
     }
+
+#endif
 }
+
+#endif

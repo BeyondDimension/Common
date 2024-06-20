@@ -15,10 +15,12 @@ public static partial class Serializable // Serialize(序列化)
     public const string SerializationRequiresDynamicCodeMessage = "JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.";
 #endif
 
+#if !NO_SYSTEM_TEXT_JSON || !NO_NEWTONSOFT_JSON
+
     [DebuggerDisplay("writeIndented={writeIndented}, ignoreNullValues={ignoreNullValues}")]
     readonly struct SharedJsonSerializerOptions(bool writeIndented, bool ignoreNullValues)
     {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public readonly SystemTextJsonSerializerOptions GetSystemTextJsonSerializerOptions()
         {
@@ -35,6 +37,7 @@ public static partial class Serializable // Serialize(序列化)
         }
 #endif
 
+#if !NO_NEWTONSOFT_JSON
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public readonly NewtonsoftJsonSerializerSettings? GetNewtonsoftJsonSerializerSettings()
         {
@@ -44,9 +47,10 @@ public static partial class Serializable // Serialize(序列化)
             } : null;
             return settings;
         }
+#endif
     }
 
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
     static readonly ConcurrentDictionary<SharedJsonSerializerOptions, SystemTextJsonSerializerOptions> SystemTextJsonSerializerOptionsDictionary = new();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -62,6 +66,8 @@ public static partial class Serializable // Serialize(序列化)
     }
 
 #endif
+
+#if !NO_NEWTONSOFT_JSON
     static readonly ConcurrentDictionary<SharedJsonSerializerOptions, NewtonsoftJsonSerializerSettings?> NewtonsoftJsonSerializerSettingsDictionary = new();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -75,6 +81,7 @@ public static partial class Serializable // Serialize(序列化)
         }
         return value;
     }
+#endif
 
     /// <summary>
     /// (Serialize)JSON 序列化
@@ -93,15 +100,20 @@ public static partial class Serializable // Serialize(序列化)
     {
         switch (implType)
         {
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_SYSTEM_TEXT_JSON
             case JsonImplType.SystemTextJson:
                 var options = GetSystemTextJsonSerializerOptions(writeIndented, ignoreNullValues);
                 return SystemTextJsonSerializer.Serialize(value, inputType ?? value?.GetType() ?? typeof(object), options);
 #endif
+#if !NO_NEWTONSOFT_JSON
             default:
                 var formatting = writeIndented ? NewtonsoftJsonFormatting.Indented : NewtonsoftJsonFormatting.None;
                 var settings = GetNewtonsoftJsonSerializerSettings(ignoreNullValues);
                 return NewtonsoftJsonConvert.SerializeObject(value, inputType, formatting, settings);
+#else
+            default:
+                throw new NotSupportedException();
+#endif
         }
     }
 
@@ -121,7 +133,9 @@ public static partial class Serializable // Serialize(序列化)
     public static string SJSON(object? value, Type? inputType = null, bool writeIndented = false, bool ignoreNullValues = false)
         => SJSON(DefaultJsonImplType, value, inputType, writeIndented, ignoreNullValues);
 
-#if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#endif
+
+#if !NO_MESSAGEPACK
 
     /// <inheritdoc cref="MessagePackCompression.Lz4BlockArray"/>
     public static MessagePackSerializerOptions Lz4Options() => MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4BlockArray);
@@ -179,7 +193,7 @@ public static partial class Serializable // Serialize(序列化)
 
 #endif
 
-#if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
 
     /// <summary>
     /// (Serialize)MemoryPack 序列化
@@ -218,6 +232,17 @@ public static partial class Serializable // Serialize(序列化)
         if (value == null) return null;
         var byteArray = SMP2(value);
         return byteArray.Base64UrlEncode_Nullable();
+    }
+
+    /// <inheritdoc cref="SMP2{T}(T)"/>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static byte[] SMP2<T>(T? value, IMemoryPackFormatter<T> formatter, MemoryPackSerializerOptions? options = null)
+    {
+        var arrayBufferWriter = new ArrayBufferWriter<byte>();
+        using var memoryPackWriterOptionalState = MemoryPackWriterOptionalStatePool.Rent(options ?? MemoryPackSerializerOptions.Default);
+        var memoryPackWriter = new MemoryPackWriter<ArrayBufferWriter<byte>>(ref arrayBufferWriter, memoryPackWriterOptionalState);
+        formatter.Serialize(ref memoryPackWriter, ref value);
+        return arrayBufferWriter.WrittenSpan.ToArray();
     }
 
 #endif
