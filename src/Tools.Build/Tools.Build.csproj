@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<UseProjectUtils>true</UseProjectUtils>
 		<BeyondDimensionFeatures>
 			BD.Common8.Bcl;

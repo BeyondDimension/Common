@@ -1,5 +1,6 @@
 try
 {
+    DotNetVersionInfo.GetOSFrameworkVersion();
     Console.OutputEncoding = Encoding.UTF8;
     const string rootCommandDesc = "BeyondDimension Build Tools";
     var rootCommand = new RootCommand(rootCommandDesc);

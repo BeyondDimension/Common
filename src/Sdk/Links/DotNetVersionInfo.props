@@ -1,0 +1,8 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\DotNetVersionInfo.cs">
+			<LinkBase>_SourceReference</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>
