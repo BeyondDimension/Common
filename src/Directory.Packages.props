@@ -83,13 +83,15 @@
 		</PackageVersion>
 		<PackageVersion Include="fusillade" Version="2.6.30">
 		</PackageVersion>
-		<PackageVersion Condition="!$(TargetFramework.StartsWith('net4'))" Include="gfoidl.Base64" Version="2.0.0">
-		</PackageVersion>
 		<PackageVersion Condition="$(TargetFramework.StartsWith('net4'))" Include="gfoidl.Base64" Version="1.1.2">
+		</PackageVersion>
+		<PackageVersion Condition="!$(TargetFramework.StartsWith('net4'))" Include="gfoidl.Base64" Version="2.0.0">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf" Version="3.27.1">
 		</PackageVersion>
 		<PackageVersion Include="HarfBuzzSharp" Version="7.3.0.2">
+		</PackageVersion>
+		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.100">
 		</PackageVersion>
 		<PackageVersion Include="Humanizer" Version="2.14.1">
 		</PackageVersion>
@@ -251,6 +253,8 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.0">
 		</PackageVersion>
+		<PackageVersion Include="System.Diagnostics.EventLog" Version="8.0.0">
+		</PackageVersion>
 		<PackageVersion Include="System.Drawing.Common" Version="8.0.6">
 		</PackageVersion>
 		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="7.6.1">
@@ -275,6 +279,8 @@
 		</PackageVersion>
 		<PackageVersion Include="TaskScheduler" Version="2.11.0">
 		</PackageVersion>
+		<PackageVersion Include="WPF-UI" Version="3.0.4">
+		</PackageVersion>
 		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.8.0.3">
 		</PackageVersion>
 		<PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.9">
@@ -289,30 +295,16 @@
 		</PackageVersion>
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.103.0">
 		</PackageVersion>
-		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.100">
-		</PackageVersion>
-		<PackageVersion Include="WPF-UI" Version="3.0.4">
-		</PackageVersion>
-		<PackageVersion Include="System.Diagnostics.EventLog" Version="8.0.0">
-		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>
-		<PackageVersion Include="BD.Common8.SourceGenerator.Bcl" Version="$(Version_SourceGenerator_Bcl)">
-		</PackageVersion>
-		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Client" Version="$(Version_SourceGenerator_Ipc_Client)">
-		</PackageVersion>
-		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Server" Version="$(Version_SourceGenerator_Ipc_Server)">
-		</PackageVersion>
-		<PackageVersion Include="BD.Common8.SourceGenerator.ResX" Version="$(Version_SourceGenerator_Resx)">
-		</PackageVersion>
-		<PackageVersion Include="BD.Common8.Bcl" Version="$(Version_Common8Bcl)">
-		</PackageVersion>
 		<PackageVersion Include="BD.Common8.AspNetCore" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.AspNetCore.Identity" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.AspNetCore.Identity.BackManage" Version="$(Version_Common8Bcl)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.Bcl" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Crawler" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
@@ -344,19 +336,19 @@
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Primitives" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
+		<PackageVersion Include="BD.Common8.Primitives.ApiResponse" Version="$(Version_Common8Bcl)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.Primitives.ApiRsp" Version="$(Version_Common8Bcl)">
+		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Primitives.District" Version="$(Version_Common8Bcl)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.Primitives.Essentials" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Primitives.PersonalData.BirthDate" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Primitives.PersonalData.PhoneNumber" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
-		<PackageVersion Include="BD.Common8.Primitives.Essentials" Version="$(Version_Common8Bcl)">
-		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Primitives.Toast" Version="$(Version_Common8Bcl)">
-		</PackageVersion>
-		<PackageVersion Include="BD.Common8.Primitives.ApiRsp" Version="$(Version_Common8Bcl)">
-		</PackageVersion>
-		<PackageVersion Include="BD.Common8.Primitives.ApiResponse" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Repositories" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
@@ -370,18 +362,26 @@
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.SmsSender" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
+		<PackageVersion Include="BD.Common8.SourceGenerator.Bcl" Version="$(Version_SourceGenerator_Bcl)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Client" Version="$(Version_SourceGenerator_Ipc_Client)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.SourceGenerator.Ipc.Server" Version="$(Version_SourceGenerator_Ipc_Server)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.SourceGenerator.Repositories" Version="$(Version_Common8Bcl)">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.SourceGenerator.ResX" Version="$(Version_SourceGenerator_Resx)">
+		</PackageVersion>
 		<PackageVersion Include="BD.Common8.Toast" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.UserInput.ModelValidator" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
-		<PackageVersion Include="BD.Common8.SourceGenerator.Repositories" Version="$(Version_Common8Bcl)">
-		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Avalonia8 -->
 	<ItemGroup>
-		<PackageVersion Include="BD.Avalonia8.Image2" Version="$(Version_Avalonia8_Pkg)">
-		</PackageVersion>
 		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.24.10527.11800">
+		</PackageVersion>
+		<PackageVersion Include="BD.Avalonia8.Image2" Version="$(Version_Avalonia8_Pkg)">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.SteamClient8 -->

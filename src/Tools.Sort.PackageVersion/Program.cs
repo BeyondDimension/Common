@@ -90,7 +90,7 @@ for (int i = 0; i < lines.Length; i++)
             pvig.Comments = line;
             if (slnFileNames.Contains(line))
             {
-                pvig.Pairs = new Dictionary<string, string>();
+                pvig.Pairs = new SortedDictionary<string, List<PackageVersionItem>>();
             }
             continue;
         }
@@ -115,7 +115,7 @@ for (int i = 0; i < lines.Length; i++)
             pvigs.Add(pvig);
             pvig = new();
         }
-        if (line.EndsWith(">") && !line.EndsWith("/>"))
+        if (line.EndsWith('>') && !line.EndsWith("/>"))
         {
             line += "</PackageVersion>";
         }
@@ -125,7 +125,26 @@ for (int i = 0; i < lines.Length; i++)
         {
             var include = element.Attribute("Include")!.Value;
             var version = element.Attribute("Version")!.Value;
-            pvig.Pairs.Add(include, version);
+            var condition = element.Attribute("Condition")?.Value;
+            if (pvig.Pairs.TryGetValue(include, out var list))
+            {
+                list.Add(new()
+                {
+                    Version = version,
+                    Condition = condition,
+                });
+            }
+            else
+            {
+                pvig.Pairs.Add(include, new()
+                {
+                    new()
+                    {
+                        Version = version,
+                        Condition = condition,
+                    },
+                });
+            }
             continue;
         }
     }
@@ -161,22 +180,42 @@ foreach (var pvig_item in pvigs)
 """u8);
     foreach (var pair in pvig_item.Pairs)
     {
-        stream.Write(
+        foreach (var item_pair in from m in pair.Value orderby m.Version select m)
+        {
+            stream.Write(
 """
-		<PackageVersion Include="
+		<PackageVersion 
 """u8);
-        stream.Write(Encoding.UTF8.GetBytes(pair.Key));
-        stream.Write(
+            if (!string.IsNullOrWhiteSpace(item_pair.Condition))
+            {
+                stream.Write(
 """
+Condition="
+"""u8);
+                stream.WriteUtf16StrToUtf8OrCustom(item_pair.Condition!);
+
+                stream.Write(
+"""
+" 
+"""u8);
+            }
+            stream.Write(
+"""
+Include="
+"""u8);
+            stream.Write(Encoding.UTF8.GetBytes(pair.Key));
+            stream.Write(
+    """
 " Version="
 """u8);
-        stream.Write(Encoding.UTF8.GetBytes(pair.Value));
-        stream.Write(
-"""
+            stream.Write(Encoding.UTF8.GetBytes(item_pair.Version));
+            stream.Write(
+    """
 ">
 		</PackageVersion>
 
 """u8);
+        }
     }
     stream.Write(
 """
@@ -195,9 +234,16 @@ await File.WriteAllBytesAsync(filePath, stream.ToArray());
 
 sealed record class PackageVersionItemGroup
 {
-    public IDictionary<string, string> Pairs { get; set; } = new SortedDictionary<string, string>();
+    public IDictionary<string, List<PackageVersionItem>> Pairs { get; set; } = new SortedDictionary<string, List<PackageVersionItem>>();
 
     public string? Comments { get; set; }
 
     public int LineNumber { get; set; } = -1;
+}
+
+sealed record class PackageVersionItem
+{
+    public required string Version { get; init; }
+
+    public string? Condition { get; init; }
 }
