@@ -69,7 +69,7 @@
 		</PackageVersion>
 		<PackageVersion Include="DnsClient" Version="1.7.0">
 		</PackageVersion>
-		<PackageVersion Include="DotNext" Version="5.3.1">
+		<PackageVersion Include="DotNext" Version="5.7.0">
 		</PackageVersion>
 		<PackageVersion Include="DotNext.Threading" Version="5.5.0">
 		</PackageVersion>
