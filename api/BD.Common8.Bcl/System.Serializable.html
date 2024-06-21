@@ -888,12 +888,58 @@ Class Serializable  <a class="header-action link-secondary" title="View source" 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T DMP2&lt;T&gt;(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T? DMP2&lt;T&gt;(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Serializable_DMP2_" data-uid="System.Serializable.DMP2*"></a>
+
+  <h3 id="System_Serializable_DMP2__1_System_ReadOnlySpan_System_Byte__MemoryPack_IMemoryPackFormatter___0__MemoryPack_MemoryPackSerializerOptions_" data-uid="System.Serializable.DMP2``1(System.ReadOnlySpan{System.Byte},MemoryPack.IMemoryPackFormatter{``0},MemoryPack.MemoryPackSerializerOptions)">
+  DMP2&lt;T&gt;(ReadOnlySpan&lt;byte&gt;, IMemoryPackFormatter&lt;T&gt;, MemoryPackSerializerOptions?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Serializable.Deserialize.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>(Deserialize)MemoryPack 反序列化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T? DMP2&lt;T&gt;(ReadOnlySpan&lt;byte&gt; buffer, IMemoryPackFormatter&lt;T&gt; formatter, MemoryPackSerializerOptions? options = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>formatter</code> <span class="xref">IMemoryPackFormatter</span>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>options</code> <span class="xref">MemoryPackSerializerOptions</span></dt>
     <dd></dd>
   </dl>
 
@@ -1803,6 +1849,52 @@ but the compression ratio is slightly sacrificed.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Serializable_SMP2_" data-uid="System.Serializable.SMP2*"></a>
+
+  <h3 id="System_Serializable_SMP2__1___0_MemoryPack_IMemoryPackFormatter___0__MemoryPack_MemoryPackSerializerOptions_" data-uid="System.Serializable.SMP2``1(``0,MemoryPack.IMemoryPackFormatter{``0},MemoryPack.MemoryPackSerializerOptions)">
+  SMP2&lt;T&gt;(T?, IMemoryPackFormatter&lt;T&gt;, MemoryPackSerializerOptions?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Serializable.Serialize.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>(Serialize)MemoryPack 序列化</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] SMP2&lt;T&gt;(T? value, IMemoryPackFormatter&lt;T&gt; formatter, MemoryPackSerializerOptions? options = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd></dd>
+    <dt><code>formatter</code> <span class="xref">IMemoryPackFormatter</span>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>options</code> <span class="xref">MemoryPackSerializerOptions</span></dt>
     <dd></dd>
   </dl>
 

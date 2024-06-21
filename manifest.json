@@ -1593,6 +1593,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Environment2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl.Compat/System.Environment2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl.Compat/System.Extensions.StreamExtensions.yml",
       "output": {
         ".html": {
@@ -8820,6 +8830,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Environment2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Environment2.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.SourceGenerator.ResX/System.Extensions.ObjectExtensions.yml",
       "output": {
         ".html": {
@@ -9067,6 +9087,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Templates.Abstractions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Environment2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.SourceGenerator.Shared/System.Environment2.html"
         }
       },
       "version": ""
