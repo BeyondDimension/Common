@@ -7,7 +7,7 @@ public static partial class IOPath
     public static string GetTempPath()
     {
         var result = Path.GetTempPath();
-#if WINDOWS
+#if WINDOWS || NETFRAMEWORK
         //if (OperatingSystem.IsWindows())
         {
             var windowsPath = Environment.GetFolderPath(Environment.SpecialFolder.Windows);

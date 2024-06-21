@@ -249,11 +249,27 @@ static partial class {0}
 
         byte[]? typeNameSRM = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomClassName()) : null;
         byte[]? bytesGetCultureName = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName()) : null;
-        byte[]? bytesSupportedUICultures = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomFieldName()) : null;
         byte[]? bytesGetString = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName()) : null;
+
+        var elements = GetXmlElementsByResXFilePath(m.Path);
+        var items = DeserializeResXDataElements(elements).ToArray();
+        Dictionary<string, string> getMethodNameDict = null!;
+        KeyValuePair<string, RootDataXmlElement[]>[] t_items = null!;
 
         if (m.IsSRM)
         {
+            var resxDir = Path.GetDirectoryName(m.Path);
+            var resxFileNameWithoutEx = Path.GetFileNameWithoutExtension(m.Path);
+            var t_items_query = from filePath in Directory.GetFiles(resxDir, $"{resxFileNameWithoutEx}.*.resx")
+                                let cultureName = Path.GetFileNameWithoutExtension(filePath).TrimStart($"{resxFileNameWithoutEx}.")
+                                where !cultureName.Contains('.') && IsCultureName(cultureName)
+                                let els = GetXmlElementsByResXFilePath(filePath)
+                                let els_class = DeserializeResXDataElements(els).ToArray()
+                                select new KeyValuePair<string, RootDataXmlElement[]>(cultureName, els_class);
+            t_items = t_items_query.ToArray();
+
+            getMethodNameDict = items.ToDictionary(static x => x.Name, static _ => GetRandomGetMethodName());
+
             stream.Write(
 """
     static global::System.Globalization.CultureInfo? resourceCulture;
@@ -297,12 +313,23 @@ static partial class {0}
             }
             else
             {
-                var index = Array.IndexOf(
+                var index = culture!.Name switch
+                {
+
 """u8);
-            stream.Write(bytesSupportedUICultures!);
+            for (int i = 0; i < t_items.Length; i++)
+            {
+                var t_item = t_items[i];
+                stream.WriteFormat(
+"""
+                    "{0}" => {1},
+
+"""u8, t_item.Key, i.ToString());
+            }
             stream.Write(
 """
-, culture!.Name);
+                    _ => -1,
+                };
                 if (index != -1)
                 {
                     return index;
@@ -340,7 +367,7 @@ static partial class {0}
             stream.Write(typeNameSRM!);
             stream.Write(
 """
- : global::System.Resources.IStringResourceManager
+ : global::System.Resources.IStringResourceManager, global::System.Collections.Generic.IReadOnlyList<global::System.String>
     {
 """u8);
 
@@ -370,17 +397,12 @@ static partial class {0}
             stream.Write(
 """
 
-        public string[] SupportedUICultures => 
+        public global::System.Collections.Generic.IReadOnlyList<global::System.String> SupportedUICultures => (
 """u8);
-            stream.WriteUtf16StrToUtf8OrCustom(m.TypeName);
+            stream.Write(typeNameSRM!);
             stream.Write(
 """
-.
-"""u8);
-            stream.Write(bytesSupportedUICultures!);
-            stream.Write(
-"""
-;
+)default;
 
 """u8);
 
@@ -406,19 +428,67 @@ static partial class {0}
 (culture);
             if (index != -1)
             {
-                return 
-"""u8);
-            stream.WriteUtf16StrToUtf8OrCustom(m.TypeName);
-            stream.Write(
-"""
-.
-"""u8);
-            stream.Write(bytesSupportedUICultures!);
-            stream.Write(
-"""
-[index];
+                return ((global::System.Collections.Generic.IReadOnlyList<global::System.String>)this)[index];
             }
             return null;
+        }
+
+"""u8);
+
+            #endregion
+
+            #region StringResourceManager.IReadOnlyList
+
+            stream.Write(
+"""
+
+        /// <inheritdoc/>
+        readonly global::System.Collections.Generic.IEnumerator<global::System.String> global::System.Collections.Generic.IEnumerable<global::System.String>.GetEnumerator() => GetEnumerator().GetEnumerator();
+
+        /// <inheritdoc/>
+        readonly global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator() => GetEnumerator().GetEnumerator();
+
+        /// <inheritdoc/>
+        readonly int global::System.Collections.Generic.IReadOnlyCollection<global::System.String>.Count => 
+"""u8);
+            stream.WriteUtf16StrToUtf8OrCustom(t_items.Length.ToString());
+            stream.Write(
+"""
+;
+
+        /// <inheritdoc/>
+        readonly string global::System.Collections.Generic.IReadOnlyList<global::System.String>.this[int index] => index switch
+        {
+"""u8);
+            for (int i = 0; i < t_items.Length; i++)
+            {
+                var t_item = t_items[i];
+                stream.WriteFormat(
+"""
+
+            {0} => "{1}",
+"""u8, i.ToString(), t_item.Key);
+            }
+            stream.Write(
+"""
+
+            _ => throw new ArgumentOutOfRangeException(nameof(index), index, null!),
+        };
+
+        static global::System.Collections.Generic.IEnumerable<global::System.String> GetEnumerator()
+        {
+"""u8);
+            foreach (var t_item in t_items)
+            {
+                stream.WriteFormat(
+"""
+
+            yield return "{0}";
+"""u8, t_item.Key);
+            }
+            stream.Write(
+"""
+
         }
 
 """u8);
@@ -478,24 +548,8 @@ static partial class {0}
         stream.WriteNewLine();
         stream.WriteNewLine();
 
-        var elements = GetXmlElementsByResXFilePath(m.Path);
-        var items = DeserializeResXDataElements(elements).ToArray();
-        Dictionary<string, string> getMethodNameDict = null!;
-        KeyValuePair<string, RootDataXmlElement[]>[] t_items = null!;
-
         if (m.IsSRM)
         {
-            var resxDir = Path.GetDirectoryName(m.Path);
-            var resxFileNameWithoutEx = Path.GetFileNameWithoutExtension(m.Path);
-            var t_items_query = from filePath in Directory.GetFiles(resxDir, $"{resxFileNameWithoutEx}.*.resx")
-                                let cultureName = Path.GetFileNameWithoutExtension(filePath).TrimStart($"{resxFileNameWithoutEx}.")
-                                where !cultureName.Contains('.') && IsCultureName(cultureName)
-                                let els = GetXmlElementsByResXFilePath(filePath)
-                                let els_class = DeserializeResXDataElements(els).ToArray()
-                                select new KeyValuePair<string, RootDataXmlElement[]>(cultureName, els_class);
-            t_items = t_items_query.ToArray();
-
-            getMethodNameDict = items.ToDictionary(static x => x.Name, static _ => GetRandomGetMethodName());
             stream.Write(
 """
     static string 
@@ -589,32 +643,6 @@ static partial class {0}
 
 """u8);
             }
-        }
-
-        if (m.IsSRM)
-        {
-            stream.WriteFormat(
-"""
-    static readonly string[] {0} = [
-"""u8, bytesSupportedUICultures);
-            foreach (var t_item in t_items)
-            {
-                stream.Write(
-"""
-"
-"""u8);
-                stream.WriteUtf16StrToUtf8OrCustom(t_item.Key);
-                stream.Write(
-"""
-", 
-"""u8);
-            }
-            stream.Write(
-"""
-];
-
-
-"""u8);
         }
 
         foreach (var item in items)
