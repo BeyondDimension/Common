@@ -302,6 +302,19 @@ static partial class {0}
             stream.Write(
 """
 (CultureInfo? culture = null)
+"""u8);
+            if (t_items.Length == 0)
+            {
+                stream.Write(
+"""
+ => -1; // t_items.Length == 0
+"""u8);
+            }
+            else
+            {
+                stream.Write(
+"""
+
     {
         culture = GetCultureCore(culture);
         while (true)
@@ -317,16 +330,16 @@ static partial class {0}
                 {
 
 """u8);
-            for (int i = 0; i < t_items.Length; i++)
-            {
-                var t_item = t_items[i];
-                stream.WriteFormat(
-"""
+                for (int i = 0; i < t_items.Length; i++)
+                {
+                    var t_item = t_items[i];
+                    stream.WriteFormat(
+    """
                     "{0}" => {1},
 
 """u8, t_item.Key, i.ToString());
-            }
-            stream.Write(
+                }
+                stream.Write(
 """
                     _ => -1,
                 };
@@ -361,6 +374,11 @@ static partial class {0}
             }
         }
     }
+"""u8);
+            }
+            stream.Write(
+"""
+
 
     readonly struct 
 """u8);
@@ -478,13 +496,24 @@ static partial class {0}
         static global::System.Collections.Generic.IEnumerable<global::System.String> GetEnumerator()
         {
 """u8);
-            foreach (var t_item in t_items)
+            if (t_items.Length == 0)
             {
-                stream.WriteFormat(
+                stream.Write(
+"""
+
+            return global::System.Linq.Enumerable.Empty<global::System.String>();
+"""u8);
+            }
+            else
+            {
+                foreach (var t_item in t_items)
+                {
+                    stream.WriteFormat(
 """
 
             yield return "{0}";
 """u8, t_item.Key);
+                }
             }
             stream.Write(
 """
@@ -581,7 +610,24 @@ static partial class {0}
             {
                 stream.WriteFormat(
 """
-    static string {0}(CultureInfo? culture = null) => {1}(culture) switch
+    static string {0}(CultureInfo? culture = null) => 
+"""u8, getMethodNameDict[item.Name]);
+                if (t_items.Length == 0)
+                {
+                    stream.WriteNewLine();
+                    WriteResStringValue(stream, item.Value);
+                    stream.Write(
+"""
+;
+
+
+"""u8);
+                    continue;
+                }
+                stream.Write(bytesGetCultureName!);
+                stream.WriteFormat(
+"""
+(culture) switch
 """u8, getMethodNameDict[item.Name], bytesGetCultureName);
                 stream.Write(
 """
