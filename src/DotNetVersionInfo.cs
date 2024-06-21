@@ -153,9 +153,8 @@ public static partial class DotNetVersionInfo
 #if WINDOWS || NETFRAMEWORK
         try
         {
-            var release = Registry.LocalMachine.OpenSubKey(
-                @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full")
-                ?.GetValue("Release");
+            using var ndpKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full");
+            var release = ndpKey?.GetValue("Release");
             if (release is int release_int)
             {
                 if (release_int >= (int)DotNetFrameworkVersionReleaseValue.Net481)

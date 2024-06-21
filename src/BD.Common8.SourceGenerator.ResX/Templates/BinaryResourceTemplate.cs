@@ -181,21 +181,17 @@ public sealed class BinaryResourceTemplate :
         return model;
     }
 
-    byte[] ReadAllBytes(string path)
+    void WriteFileAllBytes(Stream stream, BinaryResourceFileInfo fileInfo)
     {
         if (IsDesignTimeBuild)
         {
-            return [];
+            stream.Write(
+"""
+/* NotImplemented.ByDesign */
+"""u8);
+            return;
         }
-        else
-        {
-            return File.ReadAllBytes(path);
-        }
-    }
-
-    void WriteFileAllBytes(Stream stream, BinaryResourceFileInfo fileInfo)
-    {
-        var bytes = ReadAllBytes(fileInfo.FilePath);
+        var bytes = File.ReadAllBytes(fileInfo.FilePath);
         if (fileInfo.Reverse)
         {
             for (int i = bytes.Length - 1; i >= 0; i--)
