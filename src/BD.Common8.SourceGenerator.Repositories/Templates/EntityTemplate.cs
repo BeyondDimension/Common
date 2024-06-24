@@ -52,7 +52,7 @@ public sealed partial class {3}
 /// {0} - 表实体模型
 /// </summary>
 """;
-            args[1] = string.Format(summary, metadata.ClassName);
+            args[1] = string.Format(summary, metadata.TableName);
         }
         args[2] = metadata.ClassName.Pluralize();
 

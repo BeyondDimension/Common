@@ -41,7 +41,7 @@ namespace {0};
 /// </summary>
 public partial interface I{2}Repository : IRepository<{2}, {3}>, IEFRepository
 """u8;
-        args[0] = $"{args[0]!.ToString()}.Repositories.Abstractions";
+        args[0] = $"{args[0]!.ToString()}.Repositories.Abstractions.{metadata.GenerateRepositoriesAttribute.ModuleName}";
         args[3] = fields.Single(x => x.FixedProperty == FixedProperty.Id).PropertyType;
         stream.WriteFormat(format, args);
 
