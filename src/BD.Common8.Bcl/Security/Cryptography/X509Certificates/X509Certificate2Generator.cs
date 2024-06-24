@@ -133,9 +133,27 @@ public static partial class X509Certificate2Generator
         {
             builder.AddIpAddress(value.IPAddress);
         }
-        else if (value.DnsName != default)
+        else if (!string.IsNullOrWhiteSpace(value.DnsName))
         {
-            builder.AddDnsName(value.DnsName);
+            try
+            {
+                // DNS 域名格式
+                // 域名 (包括域、托管区域和记录的名称) 由一系列以点分隔的标签组成。每个标签最长可为 63 个字节。域名的总长度不能超过 255 字节，包括点。Amazon Route 53 支持任何有效的域名。
+                // 对于域名注册，域名只能包含字符 a-z、0-9 和 -（连字符）。不能在标签开头或结尾指定连字符。
+                // https://docs.aws.amazon.com/zh_cn/Route53/latest/DeveloperGuide/DomainNameFormat.html
+                builder.AddDnsName(value.DnsName);
+            }
+            catch
+            {
+                /* name = Environment.MachineName
+                 * System.ArgumentException: Decoded string is not a valid IDN name. (Parameter 'unicode')
+                 * at System.Globalization.IdnMapping.IcuGetAsciiCore(String unicodeString, Char* unicode, Int32 count)
+                 * at System.Globalization.IdnMapping.GetAscii(String unicode, Int32 index, Int32 count)
+                 * at System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder.AddDnsName(String dnsName)
+                 * at BD.WTTS.Services.Implementation.CertGenerator.Add(SubjectAlternativeNameBuilder builder, String name)
+                 * at BD.WTTS.Services.Implementation.CertGenerator.CreateEndCertificate(X509Certificate2 issuerCertificate, X500DistinguishedName subjectName, IEnumerable`1 extraDnsNames, Nullable`1 notBefore, Nullable`1 notAfter, Int32 rsaKeySizeInBits)
+                 */
+            }
         }
     }
 
