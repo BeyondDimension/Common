@@ -233,14 +233,14 @@ public sealed class DesignerTemplate :
         {
             stream.WriteFormat(
 """
-public static partial class {0}
+public partial class {0}
 """u8, m.TypeName);
         }
         else
         {
             stream.WriteFormat(
 """
-static partial class {0}
+partial class {0}
 """u8, m.TypeName);
         }
         stream.WriteNewLine();

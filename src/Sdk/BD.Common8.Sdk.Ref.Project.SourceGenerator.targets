@@ -1,0 +1,32 @@
+<Project>
+	<!-- 📄 SDK 源码引用 -->
+
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat'">
+		<!-- 👇 Resx 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.ResX'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Bcl 源生成器 -->
+		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Ipc.Client 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Client;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Ipc.Client'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Ipc.Server 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Ipc.Server;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Ipc.Server'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<!-- 👇 Repositories.EFCore 源生成器 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.Common8.Repositories.EFCore;')) AND $(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Repositories'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\BD.Common8.SourceGenerator.Repositories.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+</Project>

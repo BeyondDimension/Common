@@ -50,6 +50,15 @@ partial interface IBuildCommand : ICommand
             var path = Path.Combine(projPath, x);
             IOPath.DirTryDelete(path, true);
         });
+
+        // FodyWeavers.xsd 文件会导致编译错误
+        // MSBUILD : error : Fody: Failed to update schema for (src\BD.Common8.Essentials.Implementation.Avalonia\FodyWeavers.xml).
+        // Exception message: The process cannot access the file 'src\BD.Common8.Essentials.Implementation.Avalonia\FodyWeavers.xsd' because it is being used by another process.
+        var xsdFilePath = Path.Combine(projPath, "FodyWeavers.xsd");
+        if (File.Exists(xsdFilePath))
+        {
+            File.Delete(xsdFilePath);
+        }
     }
 
     /// <summary>
