@@ -77,7 +77,7 @@
 		</PackageVersion>
 		<PackageVersion Include="DynamicData" Version="8.4.1">
 		</PackageVersion>
-		<PackageVersion Include="FluentAvaloniaUI" Version="2.1.0-preview5">
+		<PackageVersion Include="FluentAvaloniaUI" Version="2.1.0-preview6">
 		</PackageVersion>
 		<PackageVersion Include="Fody" Version="6.8.1">
 		</PackageVersion>
