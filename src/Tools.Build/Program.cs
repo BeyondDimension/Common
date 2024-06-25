@@ -17,6 +17,22 @@ try
 }
 catch (Exception ex)
 {
+    Console.WriteLine("catch: ");
     Console.WriteLine(ex);
-    return 500;
+    return (int)ExitCode.Exception;
+}
+
+/// <summary>
+/// 进程退出状态码
+/// </summary>
+enum ExitCode
+{
+    // https://tldp.org/LDP/abs/html/exitcodes.html
+
+    Ok = 0,
+
+    /// <summary>
+    /// 出现 <see cref="System.Exception"/>
+    /// </summary>
+    Exception = 64,
 }

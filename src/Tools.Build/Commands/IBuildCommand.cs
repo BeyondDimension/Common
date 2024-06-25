@@ -68,7 +68,7 @@ partial interface IBuildCommand : ICommand
     {
         try
         {
-            bool hasError = false;
+            HashSet<string> errors = new();
             var repoPath = ProjPath;
 
             var projectNames = GetProjectNames();
@@ -92,17 +92,26 @@ partial interface IBuildCommand : ICommand
                 }
             }
 
-            if (hasError)
+            if (errors.Count != 0)
             {
+                Console.WriteLine("❌");
+                Console.WriteLine("HasError");
+                foreach (var err in errors)
+                {
+                    Console.Error.WriteLine(err);
+                }
                 if (no_err)
                 {
-                    return 0;
+                    return (int)ExitCode.Ok;
                 }
-                return 500;
+                return (int)ExitCode.Exception;
             }
-            Console.WriteLine("🆗");
-            Console.WriteLine("OK");
-            return 0;
+            else
+            {
+                Console.WriteLine("🆗");
+                Console.WriteLine("OK");
+                return (int)ExitCode.Ok;
+            }
 
             async ValueTask Handler(string projectName, string config, bool test, CancellationToken cancellationToken)
             {
@@ -161,9 +170,9 @@ partial interface IBuildCommand : ICommand
                     }
                     else
                     {
-                        if (hasError != true)
-                            hasError = true;
-                        Console.WriteLine($"构建失败({config})：{projectName}, exitCode:{exitCode}");
+                        var err = $"构建失败({config})：{projectName}, exitCode:{exitCode}";
+                        Console.WriteLine(err);
+                        errors.Add(err);
                     }
                 }
                 finally
@@ -175,7 +184,7 @@ partial interface IBuildCommand : ICommand
         catch (Exception ex)
         {
             Console.Error.WriteLine(ex);
-            return 500;
+            return (int)ExitCode.Exception;
         }
     }
 }

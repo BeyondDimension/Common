@@ -46,7 +46,7 @@ interface INuGetPushCommand : ICommand
     /// <returns></returns>
     internal static async Task<int> Handler(string token_github, string token_nuget)
     {
-        bool hasError = false;
+        HashSet<string> errors = new();
         var repoPath = ProjPath;
 
         using CancellationTokenSource cts = new();
@@ -72,11 +72,22 @@ interface INuGetPushCommand : ICommand
             .Concat(jobs.Select(static x => new JobItem(PushSource.GitHub, x))),
             cts.Token, Handler); // 并行化推送相关项目
 
-        if (hasError)
-            return 500;
-        Console.WriteLine("🆗");
-        Console.WriteLine("OK");
-        return 0;
+        if (errors.Count != 0)
+        {
+            Console.WriteLine("❌");
+            Console.WriteLine("HasError");
+            foreach (var err in errors)
+            {
+                Console.Error.WriteLine(err);
+            }
+            return (int)ExitCode.Exception;
+        }
+        else
+        {
+            Console.WriteLine("🆗");
+            Console.WriteLine("OK");
+            return (int)ExitCode.Ok;
+        }
 
         async ValueTask Handler(JobItem jobItem, CancellationToken cancellationToken)
         {
@@ -158,9 +169,9 @@ interface INuGetPushCommand : ICommand
                     }
                     else
                     {
-                        if (hasError != true)
-                            hasError = true;
-                        Console.WriteLine($"推送失败({jobItem.PushSource})：{pushFileName}");
+                        var err = $"推送失败({jobItem.PushSource})：{pushFileName}";
+                        Console.WriteLine(err);
+                        errors.Add(err);
                     }
                 }
                 finally

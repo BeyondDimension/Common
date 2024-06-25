@@ -22,3 +22,18 @@ public interface ICommand
         rootCommand.AddCommand(command);
     }
 }
+
+sealed class ExitApplicationException : Exception
+{
+    public ExitApplicationException(int exitCode)
+    {
+        ExitCode = exitCode;
+    }
+
+    public ExitApplicationException(int exitCode, string message) : base(message)
+    {
+        ExitCode = exitCode;
+    }
+
+    public int ExitCode { get; }
+}

@@ -24,9 +24,9 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
         return command;
     }
 
-    private static async Task Handler(string path)
+    private static async Task<int> Handler(string path)
     {
-        bool hasError = false;
+        HashSet<string> errors = new();
         using CancellationTokenSource cts = new();
         cts.CancelAfter(TimeSpan.FromMinutes(11.5D)); // 设置超时时间
         var cancellationToken = cts.Token;
@@ -59,8 +59,7 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
             WorkingDirectory = ROOT_ProjPath,
         };
         var process = Process.Start(psi);
-        if (process == null)
-            return;
+        process.ThrowIsNull();
 
         Console.WriteLine($"开始构建：{csprojFilePath}");
 
@@ -104,9 +103,9 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
             }
             else
             {
-                if (hasError != true)
-                    hasError = true;
-                Console.WriteLine($"构建失败{csprojFilePath}, exitCode:{exitCode}");
+                var err = $"构建失败{csprojFilePath}, exitCode:{exitCode}";
+                Console.WriteLine(err);
+                errors.Add(err);
             }
         }
         finally
@@ -117,6 +116,23 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
         var dllPath = Path.Combine(artifactsPath, "bin", fileNameWithoutEx, "release", $"{fileNameWithoutEx}.dll");
         Console.WriteLine("dllPath:");
         Console.WriteLine(dllPath);
+
+        if (errors.Count != 0)
+        {
+            Console.WriteLine("❌");
+            Console.WriteLine("HasError");
+            foreach (var err in errors)
+            {
+                Console.Error.WriteLine(err);
+            }
+            return (int)ExitCode.Exception;
+        }
+        else
+        {
+            Console.WriteLine("🆗");
+            Console.WriteLine("OK");
+            return (int)ExitCode.Ok;
+        }
     }
 
     private static void WriteDirectoryBuild(Stream stream, string path, string artifactsPath)

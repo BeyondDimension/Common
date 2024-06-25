@@ -29,10 +29,11 @@ public interface IServerPublishCommand : ICommand
 
     private const string fileNameServerPublishConfig = "server-publish.json";
 
-    private static bool hasError = false;
+    private static HashSet<string> errors = null!;
 
     static async Task<int> Handler(bool no_err, string push_name, string input, string push_domain, bool push_only, string tag_ver)
     {
+        errors = new();
         int exitCode = 0;
         try
         {
@@ -46,17 +47,34 @@ public interface IServerPublishCommand : ICommand
 
             await HandlerCore(push_name, input, push_domain, push_only, tag_ver, cts.Token);
         }
+        catch (ExitApplicationException ex)
+        {
+            exitCode = ex.ExitCode;
+        }
         finally
         {
-            if (hasError)
+            if (errors.Count != 0)
             {
                 if (!no_err)
                 {
-                    exitCode = 500;
+                    exitCode = (int)ExitCode.Exception;
                 }
             }
-            Console.WriteLine("🆗");
-            Console.WriteLine("OK");
+
+            if (exitCode == 0)
+            {
+                Console.WriteLine("🆗");
+                Console.WriteLine("OK");
+            }
+            else
+            {
+                Console.WriteLine("❌");
+                Console.WriteLine("HasError");
+                foreach (var err in errors)
+                {
+                    Console.Error.WriteLine(err);
+                }
+            }
         }
         return exitCode;
     }
@@ -359,9 +377,10 @@ public interface IServerPublishCommand : ICommand
                         }
                         else
                         {
-                            if (hasError != true)
-                                hasError = true;
-                            Console.WriteLine($"dotnet publish end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
+                            var err = $"dotnet publish end({configuration})：{proj.ProjectName}, exitCode:{exitCode}";
+                            Console.WriteLine(err);
+                            errors.Add(err);
+                            throw new ExitApplicationException(exitCode, err);
                         }
                     }
                     finally
@@ -433,9 +452,10 @@ public interface IServerPublishCommand : ICommand
                         }
                         else
                         {
-                            if (hasError != true)
-                                hasError = true;
-                            Console.WriteLine($"docker build end({configuration})：{proj.ProjectName}, exitCode:{exitCode}");
+                            var err = $"docker build end({configuration})：{proj.ProjectName}, exitCode:{exitCode}";
+                            Console.WriteLine(err);
+                            errors.Add(err);
+                            throw new ExitApplicationException(exitCode, err);
                         }
                     }
                     finally
