@@ -295,6 +295,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.103.0">
 		</PackageVersion>
+		<PackageVersion Include="Lib.Harmony" Version="2.3.3">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>

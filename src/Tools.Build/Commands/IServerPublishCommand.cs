@@ -587,6 +587,27 @@ ENV PLAYWRIGHT_BROWSERS_PATH "/usr/bin/google-chrome-stable"
 """u8);
         }
 
+        // 诊断工具安装
+        //        stream.Write(
+        //"""
+
+        //RUN apt-get update && apt-get install -y dotnet-sdk-
+        //"""u8);
+
+        //        stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Major.ToString());
+        //        stream.Write("."u8);
+        //        stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Minor.ToString());
+
+        //        stream.Write(
+        //"""
+
+        //RUN dotnet tool install --global dotnet-trace
+        //RUN dotnet tool install --global dotnet-gcdump
+        //RUN dotnet tool install --global dotnet-dump
+        //RUN dotnet tool install --global dotnet-counters
+        //ENV PATH="$PATH:/root/.dotnet/tools"
+        //"""u8);
+
         stream.Write(
 """
 
