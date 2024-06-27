@@ -192,6 +192,11 @@ public enum ApiRspCode
     /// <inheritdoc cref="SocketError.ConnectionRefused"/>
     ConnectionRefused = 5005,
 
+    /// <summary>
+    /// 空输入值
+    /// </summary>
+    EmptyInputValue,
+
     #endregion
 
     #region 业务常量定义 int 状态码，10000 ~ 99999

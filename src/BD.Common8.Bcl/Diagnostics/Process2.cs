@@ -182,6 +182,7 @@ public static partial class Process2
     /// <param name="onError">发生异常时执行的回调函数</param>
     /// <returns>命令执行后的输出结果</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Obsolete]
     public static string RunShell(string fileName, string value, Action<Exception>? onError = null)
     {
         try
@@ -220,6 +221,9 @@ public static partial class Process2
         if (process == null)
             return false;
 
+        if (process.Id == Environment.ProcessId)
+            return true;
+
         try
         {
             if (process.HasExited)
@@ -242,6 +246,9 @@ public static partial class Process2
     {
         if (pid <= 0)
             return false;
+
+        if (pid == Environment.ProcessId)
+            return true;
 
         Process? process = null;
         try
@@ -268,6 +275,12 @@ public static partial class Process2
         if (pid <= 0)
             return false;
 
+        if (pid == Environment.ProcessId)
+        {
+            process = Process.GetCurrentProcess();
+            return true;
+        }
+
         try
         {
             process = Process.GetProcessById(pid);
@@ -286,6 +299,11 @@ public static partial class Process2
     /// <returns></returns>
     public static unsafe string? GetPathByDwProcessId(uint dwProcessId)
     {
+        if (dwProcessId == Environment.ProcessId)
+        {
+            return Environment.ProcessPath;
+        }
+
         using var hProcess = CsWin32.PInvoke.OpenProcess_SafeHandle(
             CsWin32.System.Threading.PROCESS_ACCESS_RIGHTS.PROCESS_QUERY_LIMITED_INFORMATION,
             false,
@@ -314,6 +332,11 @@ public static partial class Process2
     /// <returns></returns>
     public static unsafe bool IsProcessElevated(Process process)
     {
+        if (process.Id == Environment.ProcessId)
+        {
+            return Environment.IsPrivilegedProcess;
+        }
+
         try
         {
             var handle = process.SafeHandle;

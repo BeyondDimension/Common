@@ -698,7 +698,7 @@ sealed record class ServerPublishProject
             projName += ".csproj";
 
         var csprojPath = Path.Combine(projPath, "src", projDirName, projName);
-        var dockerfileDirPath = Path.Combine(projPath, "src", "artifacts", "publish", projDirName);
+        var dockerfileDirPath = Path.Combine(projPath, "src", "artifacts", "publish", projName);
         var publishPath = Path.Combine(dockerfileDirPath, "output");
 
         var dockerfileTag = DockerfileTag;
