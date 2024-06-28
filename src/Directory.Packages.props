@@ -199,11 +199,11 @@
 		</PackageVersion>
 		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4">
 		</PackageVersion>
-		<PackageVersion Include="NuGet.Frameworks" Version="6.10.0">
+		<PackageVersion Include="NuGet.Frameworks" Version="6.10.1">
 		</PackageVersion>
-		<PackageVersion Include="NuGet.Protocol" Version="6.10.0">
+		<PackageVersion Include="NuGet.Protocol" Version="6.10.1">
 		</PackageVersion>
-		<PackageVersion Include="NuGet.Versioning" Version="6.10.0">
+		<PackageVersion Include="NuGet.Versioning" Version="6.10.1">
 		</PackageVersion>
 		<PackageVersion Include="NUnit" Version="4.1.0">
 		</PackageVersion>
