@@ -407,7 +407,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Aspire.Hosting.Testing" Version="8.0.2">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql" Version="8.0.1">
+		<PackageVersion Include="Aspire.Npgsql" Version="8.0.2">
 		</PackageVersion>
 		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.1">
 		</PackageVersion>
