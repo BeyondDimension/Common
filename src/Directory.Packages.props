@@ -419,7 +419,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="8.0.2">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="8.0.2">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="8.0.1">
 		</PackageVersion>
