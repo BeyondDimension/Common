@@ -35,6 +35,21 @@ public static class AttributeDataHelper
         return description?.ToString();
     }
 
+    public static string[]? GetStrings(this TypedConstant typedConstant)
+    {
+        if (typedConstant.IsNull)
+            return null;
+
+        var arr = typedConstant.Values.Select(x => x.GetObjectValue()?.ToString()!).Where(x => !string.IsNullOrEmpty(x))?.ToArray();
+        if (arr == null)
+            return null;
+
+        if (arr.Length == 0)
+            return null;
+
+        return arr;
+    }
+
     /// <summary>
     /// 获取对象值
     /// </summary>

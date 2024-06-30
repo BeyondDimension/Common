@@ -159,7 +159,6 @@
   </data>
   <data name="NotSupported_FixedSizeCollection" xml:space="preserve">
     <value>La colección era de un tamaño fijo.</value>
-    <comment>https://github.com/dotnet/runtime/blob/v8.0.0-rc.1.23419.4/src/libraries/System.Private.CoreLib/src/Resources/Strings.resx#L2996-L2998</comment>
   </data>
   <data name="OpenCoreByProcess_Win32Exception_" xml:space="preserve">
     <value>No se ha podido abrir el enlace web 0x{0}, por favor, configure el navegador por defecto del sistema e inténtelo de nuevo</value>

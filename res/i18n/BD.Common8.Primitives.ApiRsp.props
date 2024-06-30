@@ -1,0 +1,70 @@
+<Project>
+	<ItemGroup Condition="$(MSBuildProjectName) == 'BD.Common8.Primitives.ApiRsp'">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.resx">
+			<Link>Resources\Strings.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.en.resx">
+			<Link>Resources\Strings.en.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.en.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.es.resx">
+			<Link>Resources\Strings.es.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.es.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.it.resx">
+			<Link>Resources\Strings.it.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.it.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.ja.resx">
+			<Link>Resources\Strings.ja.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.ja.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.ko.resx">
+			<Link>Resources\Strings.ko.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.ko.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.ru.resx">
+			<Link>Resources\Strings.ru.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.ru.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.zh-Hant.resx">
+			<Link>Resources\Strings.zh-Hant.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.zh-Hant.resources</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup Condition="$(MSBuildProjectName) != 'BD.Common8.Primitives.ApiRsp'">
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.en.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.en.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.en.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.es.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.es.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.es.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.it.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.it.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.it.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.ja.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.ja.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.ja.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.ko.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.ko.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.ko.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.ru.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.ru.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.ru.resources</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="$(MSBuildThisFileDirectory)BD.Common8.Primitives.ApiRsp.zh-Hant.resx">
+			<Link>_SourceReference\BD.Common8.Primitives.ApiRsp\Resources\Strings.zh-Hant.resx</Link>
+			<LogicalName>FxResources.BD.Common8.Primitives.ApiRsp.zh-Hant.resources</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+</Project>

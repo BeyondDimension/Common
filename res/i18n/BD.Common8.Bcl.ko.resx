@@ -159,7 +159,6 @@
   </data>
   <data name="NotSupported_FixedSizeCollection" xml:space="preserve">
     <value>컬렉션은 고정 된 크기였습니다.</value>
-    <comment>https://github.com/dotnet/runtime/blob/v8.0.0-rc.1.23419.4/src/libraries/System.Private.CoreLib/src/Resources/Strings.resx#L2996-L2998</comment>
   </data>
   <data name="OpenCoreByProcess_Win32Exception_" xml:space="preserve">
     <value>웹 링크를 열 수 없습니다 0x{0}. 시스템 기본 브라우저를 설정한 다음 시도하십시오</value>

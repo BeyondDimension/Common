@@ -30,6 +30,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<CompilerVisibleItemMetadata Include="Using" MetadataName="Include" />
+		<CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="MyMetadata" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="BD.Common8.Resources" />
+		<Using Include="BD.Common8" />
+		<Using Include="BD" />
+		<AdditionalFiles Include="..\Shared\GlobalUsings.System.Extensions.props" SomeMetadata="@(Using)" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<!-- 👇 Bcl 源生成器 -->
 		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
