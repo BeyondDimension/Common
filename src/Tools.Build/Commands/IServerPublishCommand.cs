@@ -690,14 +690,15 @@ sealed record class ServerPublishProject
 
     internal (string csprojPath, string publishPath, string dockerfileTag, string dockerfileDirPath) GetData(string projPath)
     {
-        var projDirName = DirName ?? ProjectName;
+        var projName = ProjectName.ThrowIsNull().TrimEnd(".csproj", StringComparison.OrdinalIgnoreCase);
+
+        var projDirName = DirName ?? projName;
         projDirName.ThrowIsNull();
 
-        var projName = ProjectName.ThrowIsNull();
-        if (!projName.StartsWith(".csproj", StringComparison.OrdinalIgnoreCase))
-            projName += ".csproj";
-
         var csprojPath = Path.Combine(projPath, "src", projDirName, projName);
+        if (!csprojPath.StartsWith(".csproj", StringComparison.OrdinalIgnoreCase))
+            csprojPath += ".csproj";
+
         var dockerfileDirPath = Path.Combine(projPath, "src", "artifacts", "publish", projName);
         var publishPath = Path.Combine(dockerfileDirPath, "output");
 
