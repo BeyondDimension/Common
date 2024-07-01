@@ -2976,6 +2976,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.CopyPropertiesGeneratedAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.CopyPropertiesGeneratedAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute.yml",
       "output": {
         ".html": {
