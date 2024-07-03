@@ -73,7 +73,7 @@
 		</PackageVersion>
 		<PackageVersion Include="DotNext.Threading" Version="5.8.0">
 		</PackageVersion>
-		<PackageVersion Include="Downloader" Version="3.1.0-beta">
+		<PackageVersion Include="Downloader" Version="3.1.2">
 		</PackageVersion>
 		<PackageVersion Include="DynamicData" Version="8.4.1">
 		</PackageVersion>
