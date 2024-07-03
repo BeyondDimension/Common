@@ -443,7 +443,7 @@
 	</ItemGroup>
 	<!-- AWS SDK for .NET -->
 	<ItemGroup>
-		<PackageVersion Include="AWSSDK.Translate" Version="3.7.300.112">
+		<PackageVersion Include="AWSSDK.Translate" Version="3.7.300.113">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- Grpc -->
