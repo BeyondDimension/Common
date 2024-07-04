@@ -297,6 +297,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Lib.Harmony" Version="2.3.3">
 		</PackageVersion>
+		<PackageVersion Include="InitQ" Version="1.0.0.19">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>
