@@ -25,7 +25,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Controls.DataGrid" Version="11.1.0-rc2">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.0-rc1">
+		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.0-rc2">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Desktop" Version="11.1.0-rc1">
 		</PackageVersion>
