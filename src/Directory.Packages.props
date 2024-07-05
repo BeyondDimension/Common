@@ -19,7 +19,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia" Version="11.1.0-rc2">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Android" Version="11.1.0-rc1">
+		<PackageVersion Include="Avalonia.Android" Version="11.1.0-rc2">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.AvaloniaEdit" Version="11.0.6">
 		</PackageVersion>
