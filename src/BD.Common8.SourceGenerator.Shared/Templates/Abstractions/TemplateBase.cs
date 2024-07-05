@@ -351,6 +351,16 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
     /// <returns></returns>
     protected abstract TGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes);
 
+    /// <summary>
+    /// 根据 <see cref="AttributeData"/> 还原多个 TGeneratedAttribute 数据
+    /// </summary>
+    /// <param name="attributes"></param>
+    /// <returns></returns>
+    protected virtual IEnumerable<TGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
+    {
+        return default;
+    }
+
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 #pragma warning disable SA1604 // Element documentation should have summary
 
@@ -400,6 +410,12 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
     protected bool IgnoreExecute { get; set; }
 
     /// <summary>
+    /// 是否允许被多次使用
+    /// </summary>
+    //protected bool AllowMultiple => ((AttributeUsageAttribute)Attribute.GetCustomAttribute(typeof(TGeneratedAttribute), typeof(AttributeUsageAttribute))).AllowMultiple;
+    protected bool AllowMultiple => new[] { "CopyProperties" }.Any(x => Id.Equals(x));
+
+    /// <summary>
     /// 通用增量源生成器执行函数
     /// </summary>
     /// <param name="spc"></param>
@@ -420,23 +436,30 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
                 @namespace = string.Empty;
             var typeName = symbol.Name;
 
-            var attr = GetAttribute(symbol.GetAttributes());
+            var attributes = AllowMultiple
+                ? GetMultipleAttributes(symbol.GetAttributes())
+                : new[] { GetAttribute(symbol.GetAttributes()) };
 
-            if (IgnoreExecute)
+            if (attributes is null)
                 return;
 
-            var model = GetSourceModel(new()
+            foreach (var attr in attributes)
             {
-                spc = spc,
-                m = m,
-                symbol = symbol,
-                @namespace = @namespace,
-                typeName = typeName,
-                attr = attr,
-            });
-            if (IgnoreExecute || model is null)
-                return;
-            ExecuteCore(spc, model);
+                if (IgnoreExecute)
+                    return;
+                var model = GetSourceModel(new()
+                {
+                    spc = spc,
+                    m = m,
+                    symbol = symbol,
+                    @namespace = @namespace,
+                    typeName = typeName,
+                    attr = attr,
+                });
+                if (IgnoreExecute || model is null)
+                    return;
+                ExecuteCore(spc, model);
+            }
         }
 #pragma warning disable CS0168 // 声明了变量，但从未使用过
         catch (Exception ex)
@@ -459,6 +482,8 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
         switch (FileId) // 在 case 断点查看生成的源码字符串
         {
             case "ConstantsByPath":
+                break;
+            case "CopyProperties":
                 break;
             case "SettingsProperty":
                 break;
@@ -524,7 +549,8 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
             ConsoleWriteSourceText(sourceTextString);
 #endif
         }
-        spc.AddSource($"{(string.IsNullOrEmpty(m.Namespace) ? "global_namespace" : m.Namespace)}.{m.TypeName}.{FileId}.g.cs", sourceText);
+        var hintName = $"{(string.IsNullOrEmpty(m.Namespace) ? "global_namespace" : m.Namespace)}.{m.TypeName}.{FileId}{(AllowMultiple ? "." + GetRandomFieldName() : "")}.g.cs";
+        spc.AddSource(hintName, sourceText);
     }
 
     /// <summary>

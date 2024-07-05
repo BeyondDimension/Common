@@ -17,37 +17,48 @@ public sealed class CopyPropertiesTemplate :
 
     protected override CopyPropertiesGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
+        return GetMultipleAttributes(attributes).FirstOrDefault();
+    }
 
-        CopyPropertiesGeneratedAttribute result = new();
+    protected override IEnumerable<CopyPropertiesGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
+    {
+        var all = attributes.Where(x => x.ClassNameEquals(AttrName));
 
-        var destType = attribute.ThrowIsNull().ConstructorArguments.FirstOrDefault();
-        if (!destType.IsNull)
+        List<CopyPropertiesGeneratedAttribute> generatedAttributes = new();
+
+        foreach (var attribute in all)
         {
-            if (destType.Value is ITypeSymbol typeSymbol)
+            CopyPropertiesGeneratedAttribute result = new();
+
+            var destType = attribute.ThrowIsNull().ConstructorArguments.FirstOrDefault();
+            if (!destType.IsNull)
             {
-                result.DestType = new TypeStringImpl(typeSymbol);
+                if (destType.Value is ITypeSymbol typeSymbol)
+                {
+                    result.DestType = new TypeStringImpl(typeSymbol);
+                }
             }
+
+            foreach (var item in attribute.ThrowIsNull().NamedArguments)
+            {
+                var value = item.Value;
+                switch (item.Key)
+                {
+                    case nameof(CopyPropertiesGeneratedAttribute.IgnoreProperties):
+                        result.IgnoreProperties = value.GetStrings();
+                        break;
+                    case nameof(CopyPropertiesGeneratedAttribute.OnlyProperties):
+                        result.OnlyProperties = value.GetStrings();
+                        break;
+                    case nameof(CopyPropertiesGeneratedAttribute.MapProperties):
+                        result.MapProperties = value.Value?.ToString();
+                        break;
+                }
+            }
+            generatedAttributes.Add(result);
         }
 
-        foreach (var item in attribute.ThrowIsNull().NamedArguments)
-        {
-            var value = item.Value;
-            switch (item.Key)
-            {
-                case nameof(CopyPropertiesGeneratedAttribute.IgnoreProperties):
-                    result.IgnoreProperties = value.GetStrings();
-                    break;
-                case nameof(CopyPropertiesGeneratedAttribute.OnlyProperties):
-                    result.OnlyProperties = value.GetStrings();
-                    break;
-                case nameof(CopyPropertiesGeneratedAttribute.MapProperties):
-                    result.MapProperties = value.Value?.ToString();
-                    break;
-            }
-        }
-
-        return result;
+        return generatedAttributes;
     }
 
     /// <summary>
@@ -55,6 +66,9 @@ public sealed class CopyPropertiesTemplate :
     /// </summary>
     public readonly record struct SourceModel : ISourceModel
     {
+        /// <inheritdoc cref="INamedTypeSymbol"/>
+        public required INamedTypeSymbol Symbol { get; init; }
+
         /// <summary>
         /// 命名空间
         /// </summary>
@@ -73,6 +87,7 @@ public sealed class CopyPropertiesTemplate :
     {
         SourceModel model = new()
         {
+            Symbol = args.symbol,
             Namespace = args.@namespace,
             TypeName = args.typeName,
             Attribute = args.attr,
@@ -82,19 +97,59 @@ public sealed class CopyPropertiesTemplate :
 
     protected override void WriteFile(Stream stream, SourceModel m)
     {
+        var destSymbol = m.Attribute.DestType != null ?
+           TypeStringImpl.GetTypeSymbol(m.Attribute.DestType) : m.Symbol;
+
+        var destNamespace = destSymbol!.ContainingNamespace.ToDisplayString();
+
         WriteFileHeader(stream);
         stream.WriteNewLine();
-        WriteNamespace(stream, m.Namespace);
+        WriteNamespace(stream, destNamespace);
         stream.WriteNewLine();
 
-        // TODO
-        // GeneratedAttributeTemplateBase 基类是否支持？多个 attr 即 AllowMultiple = true
-        // attr 标注两个类型，可以是同一个类型
-        // 循环两个类型的属性，如果属性名相同，且类型相同，生成赋值代码
-        // attr 可以白名单指定仅生成的属性名数组，也可黑名单指定不生成的属性名数组
-        // 生成扩展函数，表达式数
+        stream.WriteFormat(
+"""
+public static partial class {0}
+"""u8, $"{destSymbol?.Name}Extensions");
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketLeft();
+        stream.WriteNewLine();
 
-        //IsGenerated(m.Attribute, "TODO");
+        stream.WriteFormat(
+"""
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Set{0}(this {0} context, {1} value)
+"""u8, destSymbol?.Name, m.TypeName);
+        stream.WriteNewLine();
+        stream.Write(
+"""
+    {
+"""u8);
+        stream.WriteNewLine();
+        var cProperties = m.Symbol.GetMembers().OfType<IPropertySymbol>();
+        var destProperties = destSymbol!.GetMembers().OfType<IPropertySymbol>();
+
+        foreach (var property in cProperties)
+        {
+            if (!IsGenerated(m.Attribute, property.Name))
+                continue;
+            var d_property = destProperties.FirstOrDefault(x => x.Name == property.Name);
+            if (d_property != null && d_property.Type.ToDisplayString() == property.Type.ToDisplayString())
+            {
+                stream.WriteFormat(
+"""
+        context.{0} = value.{0};
+"""u8, property.Name);
+                stream.WriteNewLine();
+            }
+        }
+        stream.Write(
+"""
+    }
+"""u8);
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketRight();
+        stream.WriteNewLine();
     }
 
     /// <summary>
