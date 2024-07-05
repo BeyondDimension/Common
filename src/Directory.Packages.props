@@ -43,7 +43,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Win32" Version="11.1.0-rc2">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.X11" Version="11.1.0-rc1">
+		<PackageVersion Include="Avalonia.X11" Version="11.1.0-rc2">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Xaml.Behaviors" Version="11.1.0-rc1">
 		</PackageVersion>
