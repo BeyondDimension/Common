@@ -227,6 +227,38 @@ Class GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;  <
 </h2>
 
 
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_AllowMultiple_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.AllowMultiple*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_AllowMultiple" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.AllowMultiple">
+  AllowMultiple
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否允许被多次使用</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool AllowMultiple { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_AttrName_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.AttrName*"></a>
 
   <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_AttrName" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.AttrName">
@@ -451,6 +483,43 @@ Class GeneratedAttributeTemplateBase&lt;TGeneratedAttribute, TSourceModel&gt;  <
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><span class="xref">TGeneratedAttribute</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_GetMultipleAttributes_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.GetMultipleAttributes*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_GeneratedAttributeTemplateBase_2_GetMultipleAttributes_System_Collections_Immutable_ImmutableArray_Microsoft_CodeAnalysis_AttributeData__" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.GeneratedAttributeTemplateBase`2.GetMultipleAttributes(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData})">
+  GetMultipleAttributes(ImmutableArray&lt;AttributeData&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据 <span class="xref">Microsoft.CodeAnalysis.AttributeData</span> 还原多个 TGeneratedAttribute 数据</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual IEnumerable&lt;TGeneratedAttribute&gt;? GetMultipleAttributes(ImmutableArray&lt;AttributeData&gt; attributes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>attributes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<span class="xref">AttributeData</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TGeneratedAttribute&gt;</dt>
     <dd></dd>
   </dl>
 
