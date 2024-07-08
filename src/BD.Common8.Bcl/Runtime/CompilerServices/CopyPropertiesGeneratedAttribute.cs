@@ -26,4 +26,9 @@ public sealed class CopyPropertiesGeneratedAttribute(Type? destType = null) : At
     /// 指定原属性名到目标属性名不同时的规则，格式为 Dictionary json
     /// </summary>
     public string? MapProperties { get; set; }
+
+    /// <summary>
+    /// 自定义方法名称
+    /// </summary>
+    public string? MethodName { get; set; }
 }

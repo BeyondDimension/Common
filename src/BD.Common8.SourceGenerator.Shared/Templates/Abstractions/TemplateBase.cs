@@ -412,8 +412,7 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
     /// <summary>
     /// 是否允许被多次使用
     /// </summary>
-    //protected bool AllowMultiple => ((AttributeUsageAttribute)Attribute.GetCustomAttribute(typeof(TGeneratedAttribute), typeof(AttributeUsageAttribute))).AllowMultiple;
-    protected bool AllowMultiple => new[] { "CopyProperties" }.Any(x => Id.Equals(x));
+    protected bool AllowMultiple => ((AttributeUsageAttribute)Attribute.GetCustomAttribute(Type.GetType(AttrName), typeof(AttributeUsageAttribute))).AllowMultiple;
 
     /// <summary>
     /// 通用增量源生成器执行函数

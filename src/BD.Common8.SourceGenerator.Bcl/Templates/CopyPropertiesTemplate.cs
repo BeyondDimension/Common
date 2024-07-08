@@ -53,6 +53,9 @@ public sealed class CopyPropertiesTemplate :
                     case nameof(CopyPropertiesGeneratedAttribute.MapProperties):
                         result.MapProperties = value.Value?.ToString();
                         break;
+                    case nameof(CopyPropertiesGeneratedAttribute.MethodName):
+                        result.MethodName = value.Value?.ToString();
+                        break;
                 }
             }
             generatedAttributes.Add(result);
@@ -118,8 +121,8 @@ public static partial class {0}
         stream.WriteFormat(
 """
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void Set{0}(this {0} context, {1} value)
-"""u8, destSymbol?.Name, m.TypeName);
+    public static void {0}(this {1} context, {2} value)
+"""u8, m.Attribute.MethodName ?? $"Set{destSymbol?.Name}", destSymbol?.Name, m.TypeName);
         stream.WriteNewLine();
         stream.Write(
 """
@@ -133,13 +136,21 @@ public static partial class {0}
         {
             if (!IsGenerated(m.Attribute, property.Name))
                 continue;
+
             var d_property = destProperties.FirstOrDefault(x => x.Name == property.Name);
+            if (d_property == null)
+            {
+                var mapname = GetMapProperties(m.Attribute, property.Name);
+                if (string.IsNullOrEmpty(mapname))
+                    continue;
+                d_property = destProperties.FirstOrDefault(x => x.Name == mapname);
+            }
             if (d_property != null && d_property.Type.ToDisplayString() == property.Type.ToDisplayString())
             {
                 stream.WriteFormat(
 """
-        context.{0} = value.{0};
-"""u8, property.Name);
+        context.{0} = value.{1};
+"""u8, d_property.Name, property.Name);
                 stream.WriteNewLine();
             }
         }
@@ -183,5 +194,16 @@ public static partial class {0}
             }
             return true;
         }
+    }
+
+    static string? GetMapProperties(CopyPropertiesGeneratedAttribute attr, string propertyName)
+    {
+        if (!string.IsNullOrWhiteSpace(attr.MapProperties))
+        {
+            var mapProperties = JsonConvert.DeserializeObject<Dictionary<string, string>>(attr.MapProperties!);
+            if (mapProperties != null && mapProperties.TryGetValue(propertyName, out string value))
+                return value;
+        }
+        return null;
     }
 }

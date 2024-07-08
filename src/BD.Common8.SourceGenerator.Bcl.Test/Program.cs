@@ -30,11 +30,39 @@ var vm = new TodoViewModel(m);
 
 var c = vm.C;
 
+var a1 = new C1Model();
+a1.SetC1Model();
+
+var a2 = new C2Model();
+a2.SetC2Model();
+a2.SetP2S();
+
 Console.WriteLine("Wait ReadLine Exit!");
 Console.ReadLine();
 
 namespace BD.Common8.SourceGenerator.Bcl.Test
 {
+    [CopyPropertiesGenerated]
+    [CopyPropertiesGenerated(destType: typeof(C2Model), MethodName = "SetP2S", MapProperties = "{\"UpdateTime\": \"UpdateTime2\"}")]
+    [CopyPropertiesGenerated(destType: typeof(C2Model), OnlyProperties = ["CreationTime"])]
+    public class C1Model
+    {
+        public DateTimeOffset UpdateTime { get; set; }
+
+        public DateTimeOffset CreationTime { get; set; }
+
+        public Guid? OperatorUserId { get; set; }
+
+        public Guid? CreateUserId { get; set; }
+    }
+
+    public class C2Model
+    {
+        public DateTimeOffset UpdateTime2 { get; set; }
+
+        public DateTimeOffset CreationTime { get; set; }
+    }
+
     [SingletonPartitionGenerated]
     partial class TodoService
     {
