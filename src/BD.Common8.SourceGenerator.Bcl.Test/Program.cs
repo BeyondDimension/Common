@@ -35,7 +35,6 @@ var c = vm.C;
 
 //var a2 = new C2Model();
 //a2.SetC2Model();
-//a2.SetP2S();
 
 Console.WriteLine("Wait ReadLine Exit!");
 Console.ReadLine();
@@ -43,24 +42,43 @@ Console.ReadLine();
 namespace BD.Common8.SourceGenerator.Bcl.Test
 {
     [CopyPropertiesGenerated]
-    [CopyPropertiesGenerated(destType: typeof(C2Model), MethodName = "SetP2S", MapProperties = "{\"UpdateTime\": \"UpdateTime2\"}")]
-    [CopyPropertiesGenerated(destType: typeof(C2Model), OnlyProperties = ["CreationTime"])]
+    [CopyPropertiesGenerated(destType: typeof(C2Model),
+        IsExpression = true,
+        IgnoreProperties = ["UsageSteamUserId"],
+        MethodName = "P2SExpression",
+        AppointProperties = "{\"UpdateTime\": \"UpdateTime ?? DateTimeOffset.Now\"}",
+        MapProperties = "{\"UpdateTime\": \"UpdateTime2\"}")]
+    [CopyPropertiesGenerated(destType: typeof(C2Model),
+        AppointProperties = "{\"CreationTime\": \"CreationTime ?? DateTimeOffset.Now\"}",
+        OnlyProperties = ["CreationTime"])]
     public class C1Model
     {
-        public DateTimeOffset UpdateTime { get; set; }
+        public Guid Id { get; set; }
 
-        public DateTimeOffset CreationTime { get; set; }
+        public DateTimeOffset? UpdateTime { get; set; }
+
+        public DateTimeOffset? CreationTime { get; set; }
 
         public Guid? OperatorUserId { get; set; }
 
         public Guid? CreateUserId { get; set; }
+
+        public Guid? UsageSteamUserId { get; set; }
     }
 
-    public class C2Model
+    public partial class C2Model
     {
-        public DateTimeOffset UpdateTime2 { get; set; }
+        public Guid Id { get; set; }
 
-        public DateTimeOffset CreationTime { get; set; }
+        public DateTimeOffset? UpdateTime2 { get; set; }
+
+        public DateTimeOffset? CreationTime { get; set; }
+
+        public Guid? OperatorUserId { get; set; }
+
+        public Guid? CreateUserId { get; set; }
+
+        public Guid? UsageSteamUserId { get; set; }
     }
 
     [SingletonPartitionGenerated]

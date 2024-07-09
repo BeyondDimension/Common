@@ -56,6 +56,12 @@ public sealed class CopyPropertiesTemplate :
                     case nameof(CopyPropertiesGeneratedAttribute.MethodName):
                         result.MethodName = value.Value?.ToString();
                         break;
+                    case nameof(CopyPropertiesGeneratedAttribute.IsExpression):
+                        result.IsExpression = bool.TryParse(value.Value?.ToString(), out bool isExpression) ? isExpression : false;
+                        break;
+                    case nameof(CopyPropertiesGeneratedAttribute.AppointProperties):
+                        result.AppointProperties = value.Value?.ToString();
+                        break;
                 }
             }
             generatedAttributes.Add(result);
@@ -109,11 +115,21 @@ public sealed class CopyPropertiesTemplate :
         stream.WriteNewLine();
         WriteNamespace(stream, destNamespace);
         stream.WriteNewLine();
+        if (m.Attribute.IsExpression)
+            WriteExpression(stream, destSymbol, m);
+        else
+            WriteExtensions(stream, destSymbol, m);
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketRight();
+        stream.WriteNewLine();
+    }
 
+    void WriteExtensions(Stream stream, ITypeSymbol destSymbol, SourceModel m)
+    {
         stream.WriteFormat(
 """
 public static partial class {0}
-"""u8, $"{destSymbol?.Name}Extensions");
+"""u8, $"{destSymbol.Name}Extensions");
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
@@ -122,35 +138,69 @@ public static partial class {0}
 """
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void {0}(this {1} context, {2} value)
-"""u8, m.Attribute.MethodName ?? $"Set{destSymbol?.Name}", destSymbol?.Name, m.TypeName);
+"""u8, m.Attribute.MethodName ?? $"Set{destSymbol.Name}", destSymbol.Name, m.TypeName);
+        WriteProperties(stream, destSymbol, m);
+    }
+
+    void WriteExpression(Stream stream, ITypeSymbol destSymbol, SourceModel m)
+    {
+        stream.WriteFormat(
+"""
+public partial class {0}
+"""u8, $"{destSymbol.Name}");
+        stream.WriteNewLine();
+        stream.WriteCurlyBracketLeft();
+        stream.WriteNewLine();
+
+        stream.WriteFormat(
+"""
+    public static readonly Expression<Func<{0}, {1}>> {2} = x => new()
+"""u8, m.TypeName, destSymbol.Name, m.Attribute.MethodName ?? $"Expression");
+        WriteProperties(stream, destSymbol, m);
+    }
+
+    void WriteProperties(Stream stream, ITypeSymbol destSymbol, SourceModel m)
+    {
+        var cProperties = m.Symbol.GetMembers().OfType<IPropertySymbol>();
+        var destProperties = destSymbol!.GetMembers().OfType<IPropertySymbol>();
         stream.WriteNewLine();
         stream.Write(
 """
     {
 """u8);
         stream.WriteNewLine();
-        var cProperties = m.Symbol.GetMembers().OfType<IPropertySymbol>();
-        var destProperties = destSymbol!.GetMembers().OfType<IPropertySymbol>();
-
         foreach (var property in cProperties)
         {
             if (!IsGenerated(m.Attribute, property.Name))
                 continue;
 
-            var d_property = destProperties.FirstOrDefault(x => x.Name == property.Name);
-            if (d_property == null)
+            var dest_property = destProperties.FirstOrDefault(x => x.Name == property.Name);
+            if (dest_property == null)
             {
-                var mapname = GetMapProperties(m.Attribute, property.Name);
+                var mapname = GetDictionaryJsonValue(m.Attribute.MapProperties, property.Name);
                 if (string.IsNullOrEmpty(mapname))
                     continue;
-                d_property = destProperties.FirstOrDefault(x => x.Name == mapname);
+                dest_property = destProperties.FirstOrDefault(x => x.Name == mapname);
             }
-            if (d_property != null && d_property.Type.ToDisplayString() == property.Type.ToDisplayString())
+            if (dest_property != null && dest_property.Type.ToDisplayString() == property.Type.ToDisplayString())
             {
-                stream.WriteFormat(
+                var assignvalue = GetDictionaryJsonValue(m.Attribute.AppointProperties, property.Name) ?? property.Name;
+
+                if (!m.Attribute.IsExpression)
+                {
+                    stream.WriteFormat(
 """
         context.{0} = value.{1};
-"""u8, d_property.Name, property.Name);
+"""u8, dest_property.Name, assignvalue);
+                }
+                else
+                {
+                    stream.WriteFormat(
+"""
+        {0} = x.{1},
+"""u8, dest_property.Name, assignvalue);
+                }
+
                 stream.WriteNewLine();
             }
         }
@@ -158,9 +208,13 @@ public static partial class {0}
 """
     }
 """u8);
-        stream.WriteNewLine();
-        stream.WriteCurlyBracketRight();
-        stream.WriteNewLine();
+        if (m.Attribute.IsExpression)
+        {
+            stream.Write(
+"""
+;
+"""u8);
+        }
     }
 
     /// <summary>
@@ -196,11 +250,11 @@ public static partial class {0}
         }
     }
 
-    static string? GetMapProperties(CopyPropertiesGeneratedAttribute attr, string propertyName)
+    static string? GetDictionaryJsonValue(string? dictionaryJson, string propertyName)
     {
-        if (!string.IsNullOrWhiteSpace(attr.MapProperties))
+        if (!string.IsNullOrWhiteSpace(dictionaryJson))
         {
-            var mapProperties = JsonConvert.DeserializeObject<Dictionary<string, string>>(attr.MapProperties!);
+            var mapProperties = JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionaryJson!);
             if (mapProperties != null && mapProperties.TryGetValue(propertyName, out string value))
                 return value;
         }

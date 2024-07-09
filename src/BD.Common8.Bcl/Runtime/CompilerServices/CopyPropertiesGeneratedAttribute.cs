@@ -31,4 +31,14 @@ public sealed class CopyPropertiesGeneratedAttribute(Type? destType = null) : At
     /// 自定义方法名称
     /// </summary>
     public string? MethodName { get; set; }
+
+    /// <summary>
+    /// 是否以表达树形式生成，默认生成扩展函数
+    /// </summary>
+    public bool IsExpression { get; set; }
+
+    /// <summary>
+    /// 指定原属性特定赋值，格式为 Dictionary json
+    /// </summary>
+    public string? AppointProperties { get; set; }
 }
