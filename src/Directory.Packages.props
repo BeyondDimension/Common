@@ -165,9 +165,9 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Primitives" Version="8.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.6.2">
+		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.6.3">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.6.2">
+		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="7.6.3">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Maui.Essentials" Version="8.0.70">
 		</PackageVersion>
@@ -257,7 +257,7 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Drawing.Common" Version="8.0.7">
 		</PackageVersion>
-		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="7.6.2">
+		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="7.6.3">
 		</PackageVersion>
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0">
 		</PackageVersion>
