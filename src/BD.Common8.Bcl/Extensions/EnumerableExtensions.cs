@@ -25,7 +25,22 @@ public static partial class EnumerableExtensions
     /// <param name="source">要检查是否为空的 <see cref="IEnumerable{T}"/></param>
     /// <returns>如果源序列包含任何元素，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Any_Nullable<TSource>([NotNullWhen(true)] this IEnumerable<TSource>? source) => source is not null && source.Any();
+    public static bool Any_Nullable<TSource>([NotNullWhen(true)] this IEnumerable<TSource>? source)
+    {
+        if (source is not null)
+        {
+            if (source is IReadOnlyCollection<TSource> ir)
+            {
+                return ir.Count != 0;
+            }
+            else if (source is ICollection<TSource> ic)
+            {
+                return ic.Count != 0;
+            }
+            return source.Any();
+        }
+        return false;
+    }
 
     /// <summary>
     /// 确定序列是否包含任何元素(带条件)

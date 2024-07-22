@@ -122,4 +122,14 @@ public static partial class StreamExtensions // Format
     /// <param name="stream"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void WriteCurlyBracketRight(this Stream stream) => stream.WriteByte(curlyBracketRight);
+
+    /// <summary>
+    /// 向 <see cref="Stream"/> 写入 UTF-8 BOM 头
+    /// </summary>
+    /// <param name="stream"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteU8Preamble(this Stream stream)
+    {
+        stream.Write([0xEF, 0xBB, 0xBF]); // https://github.com/dotnet/runtime/blob/v8.0.6/src/libraries/System.Private.CoreLib/src/System/Text/UTF8Encoding.cs#L866
+    }
 }

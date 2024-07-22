@@ -52,7 +52,7 @@ public static partial class Process2
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static void SetArguments(this ProcessStartInfo p, object? arguments = null)
+    public static void SetArguments(this ProcessStartInfo p, object? arguments = null)
     {
         if (arguments != null)
         {
@@ -83,7 +83,7 @@ public static partial class Process2
     /// <param name="environment">要传递给进程环境变量的键值对</param>
     /// <returns>用于启动进程的 ProcessStartInfo 对象</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static ProcessStartInfo GetProcessStartInfo(string fileName, object? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
+    public static ProcessStartInfo GetProcessStartInfo(string fileName, object? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
     {
         var p = new ProcessStartInfo(fileName);
 
@@ -93,7 +93,10 @@ public static partial class Process2
         {
             foreach (var item in environment)
             {
-                p.Environment.Add(item.Key, item.Value);
+                if (!p.Environment.TryAdd(item.Key, item.Value))
+                {
+                    p.Environment[item.Key] = item.Value;
+                }
             }
         }
         if (!string.IsNullOrEmpty(workingDirectory))

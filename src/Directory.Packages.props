@@ -301,6 +301,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Docker.DotNet" Version="3.125.15">
 		</PackageVersion>
+		<PackageVersion Include="Net.Codecrete.QrCodeGenerator" Version="2.0.5">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- BD.Common8 -->
 	<ItemGroup>
