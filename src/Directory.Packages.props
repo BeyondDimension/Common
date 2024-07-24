@@ -293,7 +293,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0">
 		</PackageVersion>
-		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.103.0">
+		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="8.103.1">
 		</PackageVersion>
 		<PackageVersion Include="Lib.Harmony" Version="2.3.3">
 		</PackageVersion>
