@@ -279,7 +279,7 @@
 		</PackageVersion>
 		<PackageVersion Include="TaskScheduler" Version="2.11.0">
 		</PackageVersion>
-		<PackageVersion Include="WPF-UI" Version="3.0.4">
+		<PackageVersion Include="WPF-UI" Version="3.0.5">
 		</PackageVersion>
 		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.8.0.4">
 		</PackageVersion>
