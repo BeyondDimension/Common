@@ -409,7 +409,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="8.1.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.Redis" Version="8.0.2">
+		<PackageVersion Include="Aspire.Hosting.Redis" Version="8.1.0">
 		</PackageVersion>
 		<PackageVersion Include="Aspire.Hosting.Testing" Version="8.0.2">
 		</PackageVersion>
