@@ -37,7 +37,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.ReactiveUI" Version="11.1.1">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Skia" Version="11.1.0">
+		<PackageVersion Include="Avalonia.Skia" Version="11.1.1">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Themes.Simple" Version="11.1.0">
 		</PackageVersion>
