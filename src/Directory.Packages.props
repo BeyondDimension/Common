@@ -421,7 +421,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.7.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.2">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.1.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="8.0.2">
 		</PackageVersion>
