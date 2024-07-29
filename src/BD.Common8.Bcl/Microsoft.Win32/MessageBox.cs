@@ -7,7 +7,6 @@
 namespace Microsoft.Win32;
 
 #if !NETFRAMEWORK && WINDOWS
-
 public static partial class MessageBox
 {
     const uint DEFAULT_BUTTON1 = 0x00000000;
@@ -20,7 +19,7 @@ public static partial class MessageBox
         /// 获取当前活动窗口的句柄
         /// </summary>
         [LibraryImport(nameof(User32), SetLastError = true)]
-        public static partial IntPtr GetActiveWindow();
+        internal static partial IntPtr GetActiveWindow();
 
         /// <summary>
         /// 显示带有指定文本、标题和按钮的消息框
@@ -30,7 +29,7 @@ public static partial class MessageBox
         /// <param name="caption">消息框的标题</param>
         /// <param name="options">指定要显示的按钮的选项</param>
         [LibraryImport(nameof(User32), EntryPoint = "MessageBoxW", StringMarshalling = StringMarshalling.Utf16)]
-        public static partial MessageBoxResult MessageBox(IntPtr hWnd, string text, string caption, uint options);
+        internal static partial MessageBoxResult MessageBox(IntPtr hWnd, string text, string caption, uint options);
     }
 
     /// <summary>
@@ -201,7 +200,166 @@ public static partial class MessageBox
 
         return result;
     }
+}
+#endif
 
+#if MACOS
+//public static partial class MessageBox
+//{
+//    /// <summary>
+//    /// 显示带有指定文本、标题、按钮、图标和行为的消息框，并且指定默认的用户响应
+//    /// </summary>
+//    /// <param name="messageBoxText">指定要在消息框中显示的文本</param>
+//    /// <param name="caption">指定消息框的标题</param>
+//    /// <param name="button">指定要在消息框中显示的按钮的类型</param>
+//    /// <param name="icon">指定要在消息框中显示的图标的类型</param>
+//    /// <param name="defaultResult">指定默认的用户响应</param>
+//    /// <param name="options">指定其他行为选项</param>
+//    /// <returns>用户对消息框的响应</returns>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static MessageBoxResult Show(
+//            string messageBoxText,
+//            string caption,
+//            MessageBoxButton button,
+//            MessageBoxImage icon,
+//            MessageBoxResult defaultResult,
+//            MessageBoxOptions options) => ShowCore(messageBoxText, caption, button, icon, defaultResult, options);
+
+//    /// <summary>
+//    /// 显示带有指定文本、标题、按钮、图标的消息框，并且指定默认的用户响应结果
+//    /// </summary>
+//    /// <param name="messageBoxText">指定要在消息框中显示的文本</param>
+//    /// <param name="caption">指定消息框的标题</param>
+//    /// <param name="button">指定要在消息框中显示的按钮的类型</param>
+//    /// <param name="icon">指定要在消息框中显示的图标的类型</param>
+//    /// <param name="defaultResult">指定默认的用户响应</param>
+//    /// <returns>用户对消息框的响应</returns>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static MessageBoxResult Show(
+//          string messageBoxText,
+//          string caption,
+//          MessageBoxButton button,
+//          MessageBoxImage icon,
+//          MessageBoxResult defaultResult) => ShowCore(messageBoxText, caption, button, icon, defaultResult, 0);
+
+//    /// <summary>
+//    /// 显示带有指定文本、标题、按钮、图标的消息框
+//    /// </summary>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static MessageBoxResult Show(
+//         string messageBoxText,
+//         string caption,
+//         MessageBoxButton button,
+//         MessageBoxImage icon) => ShowCore(messageBoxText, caption, button, icon, 0, 0);
+
+//    /// <summary>
+//    /// 显示带有指定文本、标题、按钮的消息框
+//    /// </summary>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static MessageBoxResult Show(
+//          string messageBoxText,
+//          string caption,
+//          MessageBoxButton button) => ShowCore(messageBoxText, caption, button, MessageBoxImage.None, 0, 0);
+
+//    /// <summary>
+//    /// 显示带有指定文本、标题的消息框
+//    /// </summary>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static MessageBoxResult Show(string messageBoxText, string caption) => ShowCore(messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.None, 0, 0);
+
+//    /// <summary>
+//    /// 显示带有指定文本消息框
+//    /// </summary>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static MessageBoxResult Show(string messageBoxText) => ShowCore(messageBoxText, string.Empty, MessageBoxButton.OK, MessageBoxImage.None, 0, 0);
+
+//    /// <summary>
+//    /// 显示消息框的核心方法
+//    /// </summary>
+//    /// <param name="messageBoxText">要显示的消息文本</param>
+//    /// <param name="caption">消息框的标题</param>
+//    /// <param name="button">消息框的按钮类型</param>
+//    /// <param name="icon">消息框的图标类型</param>
+//    /// <param name="defaultResult">消息框的结果</param>
+//    /// <param name="options">消息框的附加选项</param>
+//    /// <returns>用户在消息框上的操作结果</returns>
+//    /// <exception cref="InvalidEnumArgumentException"></exception>
+//    /// <exception cref="ArgumentException"></exception>
+//    internal static MessageBoxResult ShowCore(
+//           string messageBoxText,
+//           string caption,
+//           MessageBoxButton button,
+//           MessageBoxImage icon,
+//           MessageBoxResult defaultResult,
+//           MessageBoxOptions options)
+//    {
+//        if (!IsValidMessageBoxButton(button))
+//        {
+//            throw new InvalidEnumArgumentException("button", (int)button, typeof(MessageBoxButton));
+//        }
+//        if (!IsValidMessageBoxImage(icon))
+//        {
+//            throw new InvalidEnumArgumentException("icon", (int)icon, typeof(MessageBoxImage));
+//        }
+//        if (!IsValidMessageBoxResult(defaultResult))
+//        {
+//            throw new InvalidEnumArgumentException("defaultResult", (int)defaultResult, typeof(MessageBoxResult));
+//        }
+//        if (!IsValidMessageBoxOptions(options))
+//        {
+//            throw new InvalidEnumArgumentException("options", (int)options, typeof(MessageBoxOptions));
+//        }
+
+//        NSAlert alert = new()
+//        {
+//            MessageText = caption,
+//            InformativeText = messageBoxText,
+//        };
+
+//        switch (icon)
+//        {
+//            case MessageBoxImage.Error:
+//                alert.AlertStyle = NSAlertStyle.Critical;
+//                break;
+//            case MessageBoxImage.Warning:
+//                alert.AlertStyle = NSAlertStyle.Warning;
+//                break;
+//            case MessageBoxImage.Information:
+//                alert.AlertStyle = NSAlertStyle.Informational;
+//                break;
+//        }
+
+//        switch (button)
+//        {
+//            case MessageBoxButton.OK:
+//                break;
+//            case MessageBoxButton.OKCancel:
+//                break;
+//            case MessageBoxButton.YesNoCancel:
+//                break;
+//            case MessageBoxButton.YesNo:
+//                break;
+//        }
+
+//        var result = alert.RunModal();
+
+//        // TODO NSAlert
+
+//        return default;
+//    }
+//}
+#endif
+
+#if (!NETFRAMEWORK && WINDOWS) || MACOS
+/// <summary>
+/// 显示消息窗口（也称为对话框），向用户显示消息。 这是一个模式窗口，可阻止应用程序中的其他操作，直到用户将其关闭。 <see cref="MessageBox"/> 可包含通知并指示用户的文本、按钮和符号。
+/// <list type="bullet">
+/// <item>Windows 上使用 MessageBoxW 函数 (winuser.h) https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-messageboxw</item>
+/// <item>macOS 上使用 NSAlert https://developer.apple.com/documentation/appkit/nsalert</item>
+/// </list>
+/// </summary>
+partial class MessageBox
+{
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsValidMessageBoxButton(MessageBoxButton value) => value == MessageBoxButton.OK
            || value == MessageBoxButton.OKCancel
@@ -210,14 +368,10 @@ public static partial class MessageBox
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsValidMessageBoxImage(MessageBoxImage value) => value == MessageBoxImage.Asterisk
-           || value == MessageBoxImage.Error
            || value == MessageBoxImage.Exclamation
            || value == MessageBoxImage.Hand
-           || value == MessageBoxImage.Information
            || value == MessageBoxImage.None
-           || value == MessageBoxImage.Question
-           || value == MessageBoxImage.Stop
-           || value == MessageBoxImage.Warning;
+           || value == MessageBoxImage.Question;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static bool IsValidMessageBoxResult(MessageBoxResult value) => value == MessageBoxResult.Cancel
@@ -316,5 +470,4 @@ public enum MessageBoxButton : uint
 
     // NOTE: if you add or remove any values in this enum, be sure to update MessageBox.IsValidMessageBoxButton()
 }
-
 #endif
