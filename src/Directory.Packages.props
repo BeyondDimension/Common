@@ -87,7 +87,7 @@
 		</PackageVersion>
 		<PackageVersion Condition="!$(TargetFramework.StartsWith('net4'))" Include="gfoidl.Base64" Version="2.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Google.Protobuf" Version="3.27.2">
+		<PackageVersion Include="Google.Protobuf" Version="3.27.3">
 		</PackageVersion>
 		<PackageVersion Include="HarfBuzzSharp" Version="7.3.0.2">
 		</PackageVersion>
