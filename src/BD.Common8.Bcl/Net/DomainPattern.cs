@@ -45,7 +45,7 @@ public sealed class DomainPattern : IComparable<DomainPattern>
             else
             {
                 var regexPattern = Regex.Escape(s).Replace(@"\*", @"[^\.]*");
-                return new Regex(regexPattern, RegexOptions.IgnoreCase);
+                return new Regex($"^{regexPattern}", RegexOptions.IgnoreCase);
             }
         }).ToImmutableArray();
     }
