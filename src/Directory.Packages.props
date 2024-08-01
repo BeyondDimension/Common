@@ -91,7 +91,7 @@
 		</PackageVersion>
 		<PackageVersion Include="HarfBuzzSharp" Version="7.3.0.2">
 		</PackageVersion>
-		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.105">
+		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.106">
 		</PackageVersion>
 		<PackageVersion Include="Humanizer" Version="2.14.1">
 		</PackageVersion>
