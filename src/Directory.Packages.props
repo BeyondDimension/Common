@@ -109,7 +109,7 @@
 		</PackageVersion>
 		<PackageVersion Include="MemoryPack.Streaming" Version="1.21.1">
 		</PackageVersion>
-		<PackageVersion Include="MessagePack" Version="2.5.171">
+		<PackageVersion Include="MessagePack" Version="2.5.172">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7">
 		</PackageVersion>
