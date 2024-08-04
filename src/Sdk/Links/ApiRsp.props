@@ -1,0 +1,18 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Primitives.ApiRsp\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.Primitives.ApiRsp</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\..\BD.Common8.Primitives.ApiRsp\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\..\BD.Common8.Primitives.ApiRsp\obj\**\*.cs" />
+
+		<Using Include="BD.Common8" />
+		<Using Include="BD.Common8.Enums" />
+		<Using Include="BD.Common8.Helpers" />
+		<Using Include="BD.Common8.Extensions" />
+		<Using Include="BD.Common8.Models" />
+		<Using Include="BD.Common8.Models.Abstractions" />
+		<Using Include="BD.Common8.Models.Abstractions.Internals" />
+	</ItemGroup>
+</Project>

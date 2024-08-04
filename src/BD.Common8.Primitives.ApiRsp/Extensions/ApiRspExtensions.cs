@@ -1,3 +1,4 @@
+#pragma warning disable IDE0005 // 删除不必要的 using 指令
 using static BD.Common8.Primitives.ApiRsp.Resources.SR;
 
 namespace BD.Common8.Extensions;
@@ -58,9 +59,9 @@ public static partial class ApiRspExtensions
             else
                 errorFormat = IsClientExceptionOrServerException(code) ? ClientError__ : ServerError__;
         if (notErrorAppendText)
-            message = errorFormat.Format($"{(int)code}({code})");
+            message = errorFormat!.Format($"{(int)code}({code})");
         else
-            message = errorFormat.Format($"{(int)code}({code})", errorAppendText);
+            message = errorFormat!.Format($"{(int)code}({code})", errorAppendText);
         return message;
     }
 

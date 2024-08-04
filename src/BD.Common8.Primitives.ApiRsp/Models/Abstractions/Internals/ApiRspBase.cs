@@ -25,13 +25,15 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     public const string JsonPropertyName_Content = "🦓";
 
     /// <inheritdoc/>
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPKey(0)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Key(0)]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonProperty(JsonPropertyName_Code)]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonProperty(JsonPropertyName_Code)]
 #endif
@@ -51,13 +53,15 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     /// <summary>
     /// <see cref="IApiRspBase.Message"/> 的内部值
     /// </summary>
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPKey(LastMKeyIndex)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Key(LastMKeyIndex)]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonProperty(JsonPropertyName_Message)]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonProperty(JsonPropertyName_Message)]
 #endif
@@ -65,13 +69,15 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 
     /// <inheritdoc/>
     [IgnoreDataMember]
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Ignore]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonIgnore]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonIgnore]
 #endif
@@ -79,13 +85,15 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 
     /// <inheritdoc/>
     [IgnoreDataMember]
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Ignore]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonIgnore]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonIgnore]
 #endif
@@ -107,13 +115,15 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 
     /// <inheritdoc/>
     [IgnoreDataMember]
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Ignore]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonIgnore]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonIgnore]
 #endif
@@ -121,13 +131,15 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 
     /// <inheritdoc/>
     [IgnoreDataMember]
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Ignore]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonIgnore]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonIgnore]
 #endif
@@ -135,13 +147,15 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 
     /// <inheritdoc/>
     [IgnoreDataMember]
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPIgnore]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Ignore]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonIgnore]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonIgnore]
 #endif

@@ -4,7 +4,7 @@ namespace BD.Common8.Models;
 /// <see cref="IApiRsp{TContent}"/> 的默认实现类
 /// </summary>
 /// <typeparam name="TContent"></typeparam>
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
 [MPObj]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
@@ -13,13 +13,15 @@ namespace BD.Common8.Models;
 public sealed partial class ApiRspImpl<TContent> : ApiRspBase, IApiRsp<TContent?>
 {
     /// <inheritdoc/>
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [MPKey(LastMKeyIndex + 1)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
     [MP2Key(LastMKeyIndex + 1)]
 #endif
+#if !NO_NEWTONSOFT_JSON
     [NewtonsoftJsonProperty(JsonPropertyName_Content)]
+#endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [SystemTextJsonProperty(JsonPropertyName_Content)]
 #endif

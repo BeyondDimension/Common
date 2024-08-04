@@ -14,7 +14,7 @@ public static partial class ApiRspHelper
         return typeof(ApiRspImpl<T>);
     }
 
-#if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+#if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     /// <summary>
     /// 使用 MessagePack 反序列化
     /// </summary>
