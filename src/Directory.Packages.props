@@ -215,7 +215,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Portable.BouncyCastle" Version="1.9.0">
 		</PackageVersion>
-		<PackageVersion Include="Quartz.AspNetCore" Version="3.11.0">
+		<PackageVersion Include="Quartz.AspNetCore" Version="3.12.0">
 		</PackageVersion>
 		<PackageVersion Include="ReactiveUI" Version="20.1.1">
 		</PackageVersion>
