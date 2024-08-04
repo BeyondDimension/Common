@@ -109,11 +109,33 @@ public sealed class DomainPattern : IComparable<DomainPattern>
     }
 
     /// <summary>
+    /// 是否与指定字符串匹配
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public bool IsMatch(string value) => regexs.Any(s => s.IsMatch(value));
+
+    /// <summary>
     /// 是否与指定域名匹配
     /// </summary>
     /// <param name="domain"></param>
     /// <returns></returns>
-    public bool IsMatch(string domain) => regexs.Any(s => s.IsMatch(domain));
+    public bool IsMatchOnlyDomain(string domain)
+    {
+        try
+        {
+            if (domain.Contains('/'))
+            {
+                Uri uri = new(domain);
+                domain = uri.Host;
+            }
+        }
+        catch
+        {
+        }
+        var result = regexs.Any(s => s.IsMatch(domain));
+        return result;
+    }
 
     /// <inheritdoc/>
     public override string ToString() => domainPattern;

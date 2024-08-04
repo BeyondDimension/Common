@@ -130,18 +130,25 @@ public static partial class FileEx
     /// </summary>
     public const string LOG = ".log";
 
+    public const string TAR = ".tar";
+
     /// <summary>
-    /// 压缩文件扩展名（tar.gz格式）：.tgz
+    /// 压缩文件扩展名 .tgz
     /// </summary>
     public const string TAR_GZ = ".tgz";
 
     /// <summary>
-    /// 压缩文件扩展名（tar.br格式）：.tbr
+    /// 压缩文件扩展名长格式 .tar.gz
+    /// </summary>
+    public const string TAR_GZ_LONG = ".tar.gz";
+
+    /// <summary>
+    /// 压缩文件扩展名 .tbr
     /// </summary>
     public const string TAR_BR = ".tbr";
 
     /// <summary>
-    /// 压缩文件扩展名（tar.br，长格式）：.tar.br
+    /// 压缩文件扩展名长格式 .tar.br
     /// </summary>
     public const string TAR_BR_LONG = ".tar.br";
 
@@ -240,10 +247,14 @@ public static partial class FileEx
     /// </summary>
     public const string MSI = ".msi";
 
+    public const string ZIP = ".zip";
+
     /// <summary>
     /// 压缩文件扩展名（tar.xz格式）：.tar.xz
     /// </summary>
     public const string TAR_XZ = ".tar.xz";
+
+    public const string TAR_XZ_3 = ".txz";
 
     /// <summary>
     /// 压缩文件扩展名（tar.zst格式）：.tar.zst

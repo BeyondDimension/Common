@@ -296,6 +296,13 @@ public static partial class Process2
 
 #if WINDOWS
     /// <summary>
+    /// 根据进程获取进程文件路径
+    /// </summary>
+    /// <param name="process"></param>
+    /// <returns></returns>
+    public static string? GetPathByDwProcessId(Process process) => GetPathByDwProcessId(unchecked((uint)process.Id));
+
+    /// <summary>
     /// 根据进程 Id 获取进程文件路径
     /// </summary>
     /// <param name="dwProcessId"></param>

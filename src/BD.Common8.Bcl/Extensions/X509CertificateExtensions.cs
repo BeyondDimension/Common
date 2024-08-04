@@ -65,13 +65,24 @@ public static partial class X509CertificateExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string GetPublicPemCertificateString(this X509Certificate2 certificate)
     {
+        var builder = certificate.GetPublicPemCertificateStringBuilder();
+        var result = builder.ToString();
+        return result;
+    }
+
+    /// <summary>
+    /// 获取公钥证书的 PEM 格式字符串
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static StringBuilder GetPublicPemCertificateStringBuilder(this X509Certificate2 certificate)
+    {
         var value = certificate.Export(X509ContentType.Cert);
         var valueStr = Convert.ToBase64String(value, Base64FormattingOptions.InsertLineBreaks);
         StringBuilder builder = new();
         builder.AppendLine(BEGIN_CERTIFICATE_SIGIL);
         builder.AppendLine(valueStr);
         builder.AppendLine(END_CERTIFICATE_SIGIL);
-        return builder.ToString();
+        return builder;
     }
 
     /// <summary>
