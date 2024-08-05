@@ -449,7 +449,7 @@
 	</ItemGroup>
 	<!-- AWS SDK for .NET -->
 	<ItemGroup>
-		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.2">
+		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.3">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- Grpc -->
