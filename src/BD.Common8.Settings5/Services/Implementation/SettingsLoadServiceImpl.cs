@@ -45,7 +45,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         this.isWriteFile = isWriteFile;
         options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
         this.options = options;
-        Current = this;
+        _Current = this;
     }
 
     static SettingsLoadServiceImpl? _Current;
@@ -53,7 +53,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     /// <summary>
     /// 获取当前单例服务
     /// </summary>
-    public static SettingsLoadServiceImpl Current { get => _Current.ThrowIsNull(); private set => _Current = value; }
+    public static SettingsLoadServiceImpl Current => _Current.ThrowIsNull();
 
     /// <summary>
     /// 根据设置模型类型获取文件名不包含扩展名
