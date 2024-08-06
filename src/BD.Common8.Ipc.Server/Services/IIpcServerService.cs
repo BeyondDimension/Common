@@ -8,6 +8,7 @@ public partial interface IIpcServerService
     /// <summary>
     /// 启动服务，如果服务已启动则跳过
     /// </summary>
+    /// <returns></returns>
     ValueTask RunAsync();
 
     /// <summary>

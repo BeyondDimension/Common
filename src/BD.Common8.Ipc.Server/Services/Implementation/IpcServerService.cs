@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http.Connections;
-using Microsoft.Extensions.Primitives;
 using System.Security.AccessControl;
 using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
@@ -51,6 +50,26 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         !OperatingSystem.IsWindows();
 #endif
 
+    /// <summary>
+    /// 退出 <see cref="WebApplication"/>
+    /// </summary>
+    /// <returns></returns>
+    public async ValueTask WebApplicationExit()
+    {
+        if (app != null)
+        {
+            await app.DisposeAsync();
+        }
+        tcs_app.TrySetResult();
+    }
+
+    readonly TaskCompletionSource tcs_app = new();
+
+    /// <summary>
+    /// 等待 <see cref="WebApplication"/> 退出
+    /// </summary>
+    public Task WaitWebApplicationExit => tcs_app.Task;
+
     /// <inheritdoc/>
     public async ValueTask RunAsync()
     {
@@ -65,6 +84,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         Task2.InBackground(() =>
         {
             app.ThrowIsNull().Run();
+            tcs_app.TrySetResult();
         }, longRunning: true);
     }
 
