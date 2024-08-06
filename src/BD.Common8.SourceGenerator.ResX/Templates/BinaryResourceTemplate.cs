@@ -17,14 +17,16 @@ public sealed class BinaryResourceTemplate :
     protected override string AttrName =>
         "System.CodeDom.Compiler.BinaryResourceAttribute";
 
-    protected override BinaryResourceAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<BinaryResourceAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
+        {
+            var args = attribute.ThrowIsNull().ConstructorArguments[0].Value?.ToString();
+            var appendTemplate = attribute.ConstructorArguments.Length >= 2 ? attribute.ConstructorArguments[1].Value?.ToString() : null;
 
-        var args = attribute.ThrowIsNull().ConstructorArguments[0].Value?.ToString();
-        var appendTemplate = attribute.ConstructorArguments.Length >= 2 ? attribute.ConstructorArguments[1].Value?.ToString() : null;
-
-        return new(args!, appendTemplate);
+            yield return new(args!, appendTemplate);
+        }
     }
 
     static bool TryGetValue<T>(NewtonsoftJsonObject obj, string propertyName, out T? value)

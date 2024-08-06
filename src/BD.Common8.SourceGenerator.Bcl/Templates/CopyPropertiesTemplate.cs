@@ -15,21 +15,12 @@ public sealed class CopyPropertiesTemplate :
     protected override string AttrName =>
         "System.Runtime.CompilerServices.CopyPropertiesGeneratedAttribute";
 
-    protected override CopyPropertiesGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
-    {
-        return GetMultipleAttributes(attributes).FirstOrDefault();
-    }
-
     protected override IEnumerable<CopyPropertiesGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var all = attributes.Where(x => x.ClassNameEquals(AttrName));
-
-        List<CopyPropertiesGeneratedAttribute> generatedAttributes = new();
-
-        foreach (var attribute in all)
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
         {
             CopyPropertiesGeneratedAttribute result = new();
-
             var destType = attribute.ThrowIsNull().ConstructorArguments.FirstOrDefault();
             if (!destType.IsNull)
             {
@@ -38,7 +29,6 @@ public sealed class CopyPropertiesTemplate :
                     result.DestType = new TypeStringImpl(typeSymbol);
                 }
             }
-
             foreach (var item in attribute.ThrowIsNull().NamedArguments)
             {
                 var value = item.Value;
@@ -64,10 +54,8 @@ public sealed class CopyPropertiesTemplate :
                         break;
                 }
             }
-            generatedAttributes.Add(result);
+            yield return result;
         }
-
-        return generatedAttributes;
     }
 
     /// <summary>

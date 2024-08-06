@@ -21,18 +21,20 @@ public sealed class DesignerTemplate :
 
     protected override string FileId => "Designer";
 
-    protected override ResXGeneratedCodeAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<ResXGeneratedCodeAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
-
-        var relativeFilePath = attribute.ThrowIsNull().ConstructorArguments.First().Value!.ToString();
-
-        if (!(attribute.ConstructorArguments.Length >= 2 && byte.TryParse(attribute.ConstructorArguments[1].Value?.ToString(), out var version)))
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
         {
-            version = 0;
-        }
+            var relativeFilePath = attribute.ThrowIsNull().ConstructorArguments.First().Value!.ToString();
 
-        return new(relativeFilePath, version);
+            if (!(attribute.ConstructorArguments.Length >= 2 && byte.TryParse(attribute.ConstructorArguments[1].Value?.ToString(), out var version)))
+            {
+                version = 0;
+            }
+
+            yield return new(relativeFilePath, version);
+        }
     }
 
     /// <summary>

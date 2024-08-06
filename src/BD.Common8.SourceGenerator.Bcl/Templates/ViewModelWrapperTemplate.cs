@@ -29,61 +29,62 @@ public sealed class ViewModelWrapperTemplate :
         public required bool IsMemoryPack { get; init; }
     }
 
-    protected override AttributeModel GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<AttributeModel> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
-        attribute.ThrowIsNull();
-
-        var isMemoryPack = attributes.Any(x => x.ClassNameEquals("MemoryPack.MemoryPackableAttribute"));
-
-        if (attribute.ConstructorArguments.FirstOrDefault().GetObjectValue()
-            is not INamedTypeSymbol modelType)
-            throw new ArgumentOutOfRangeException(nameof(modelType));
-
-        Dictionary<string, Type>? dictProperties = null;
-        ViewModelWrapperGeneratedAttribute attr = new(new TypeStringImpl(modelType));
-        foreach (var item in attribute.ThrowIsNull().NamedArguments)
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
         {
-            var value = item.Value.GetObjectValue();
-            switch (item.Key)
+            var isMemoryPack = attributes.Any(x => x.ClassNameEquals("MemoryPack.MemoryPackableAttribute"));
+
+            if (attribute.ConstructorArguments.FirstOrDefault().GetObjectValue()
+                is not INamedTypeSymbol modelType)
+                throw new ArgumentOutOfRangeException(nameof(modelType));
+
+            Dictionary<string, Type>? dictProperties = null;
+            ViewModelWrapperGeneratedAttribute attr = new(new TypeStringImpl(modelType));
+            foreach (var item in attribute.ThrowIsNull().NamedArguments)
             {
-                case nameof(ViewModelWrapperGeneratedAttribute.Constructor):
-                    attr.Constructor = Convert.ToBoolean(value);
-                    break;
-                case nameof(ViewModelWrapperGeneratedAttribute.ImplicitOperator):
-                    attr.ImplicitOperator = Convert.ToBoolean(value);
-                    break;
-                case nameof(ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull):
-                    attr.ImplicitOperatorNotNull = Convert.ToBoolean(value);
-                    break;
-                case nameof(ViewModelWrapperGeneratedAttribute.IsSealed):
-                    attr.IsSealed = Convert.ToBoolean(value);
-                    break;
-                case nameof(ViewModelWrapperGeneratedAttribute.ViewModelBaseType):
-                    attr.ViewModelBaseType = TypeStringImpl.Parse(value?.ToString());
-                    break;
-                case nameof(ViewModelWrapperGeneratedAttribute.Properties):
-                    var properties = ((IEnumerable<object>?)value)?.OfType<string>().ToArray();
-                    if (properties != null)
-                    {
-                        attr.Properties = properties;
-                        var modelProperties = modelType.GetMembers().OfType<IPropertySymbol>();
-                        foreach (var p in properties)
+                var value = item.Value.GetObjectValue();
+                switch (item.Key)
+                {
+                    case nameof(ViewModelWrapperGeneratedAttribute.Constructor):
+                        attr.Constructor = Convert.ToBoolean(value);
+                        break;
+                    case nameof(ViewModelWrapperGeneratedAttribute.ImplicitOperator):
+                        attr.ImplicitOperator = Convert.ToBoolean(value);
+                        break;
+                    case nameof(ViewModelWrapperGeneratedAttribute.ImplicitOperatorNotNull):
+                        attr.ImplicitOperatorNotNull = Convert.ToBoolean(value);
+                        break;
+                    case nameof(ViewModelWrapperGeneratedAttribute.IsSealed):
+                        attr.IsSealed = Convert.ToBoolean(value);
+                        break;
+                    case nameof(ViewModelWrapperGeneratedAttribute.ViewModelBaseType):
+                        attr.ViewModelBaseType = TypeStringImpl.Parse(value?.ToString());
+                        break;
+                    case nameof(ViewModelWrapperGeneratedAttribute.Properties):
+                        var properties = ((IEnumerable<object>?)value)?.OfType<string>().ToArray();
+                        if (properties != null)
                         {
-                            var modelProperty = modelProperties.FirstOrDefault(x => x.Name == p);
-                            dictProperties ??= [];
-                            dictProperties.Add(p, TypeStringImpl.Parse(modelProperty.Type));
+                            attr.Properties = properties;
+                            var modelProperties = modelType.GetMembers().OfType<IPropertySymbol>();
+                            foreach (var p in properties)
+                            {
+                                var modelProperty = modelProperties.FirstOrDefault(x => x.Name == p);
+                                dictProperties ??= [];
+                                dictProperties.Add(p, TypeStringImpl.Parse(modelProperty.Type));
+                            }
                         }
-                    }
-                    break;
+                        break;
+                }
             }
+            yield return new AttributeModel
+            {
+                Attribute = attr,
+                DictProperties = dictProperties,
+                IsMemoryPack = isMemoryPack,
+            };
         }
-        return new AttributeModel
-        {
-            Attribute = attr,
-            DictProperties = dictProperties,
-            IsMemoryPack = isMemoryPack,
-        };
     }
 
     /// <summary>

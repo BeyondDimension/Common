@@ -9,19 +9,23 @@ public sealed class IpcServerTemplate : IpcTemplateBase
     /// <inheritdoc/>
     protected override string FileId => "IpcServer";
 
-    /// <inheritdoc/>
-    protected override ServiceContractImplAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<ServiceContractImplAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attr = base.GetAttribute(attributes);
-        switch (attr.GeneratorType)
+        var items = base.GetMultipleAttributes(attributes);
+        foreach (var attribute in items)
         {
-            case IpcGeneratorType.Server:
-                break;
-            default:
-                IgnoreExecute = true; // 非服务端生成类型直接跳过
-                return null!;
+            var isBreak = false;
+            switch (attribute.GeneratorType)
+            {
+                case IpcGeneratorType.Server:
+                    break;
+                default:
+                    isBreak = true; // 非服务端生成类型直接跳过
+                    break;
+            }
+            if (!isBreak)
+                yield return attribute;
         }
-        return attr;
     }
 
     /// <inheritdoc/>

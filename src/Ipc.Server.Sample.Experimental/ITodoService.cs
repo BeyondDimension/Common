@@ -159,6 +159,43 @@ public partial interface ITodoService4 : ITodoService2<Todo[]>
 {
 }
 
+partial interface IFileSystemElevatedService
+{
+}
+
+partial interface IFileSystemElevatedService
+{
+    /// <summary>
+    /// 根据文件路径读取所有文本匹配正则表达式
+    /// </summary>
+    /// <param name="filePath">文件路径</param>
+    /// <param name="pattern">正则表达式</param>
+    /// <param name="encoding">读取文件编码，默认使用 <see cref="Encoding.UTF8"/></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<string?>> RegexSearchFile(
+        string filePath,
+        string pattern,
+        int? encoding = null,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 遍历文件夹下的文件，使用正则表达式匹配出字符串
+    /// </summary>
+    /// <param name="dirPath">文件夹路径</param>
+    /// <param name="pattern">正则表达式</param>
+    /// <param name="searchPattern">搜索通配符</param>
+    /// <param name="encoding">读取文件编码，默认使用 <see cref="Encoding.UTF8"/></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<string?>> RegexSearchFolder(
+        string dirPath,
+        string pattern,
+        string searchPattern = "",
+        int? encoding = null,
+        CancellationToken cancellationToken = default);
+}
+
 /// <summary>
 /// 模拟的业务模型类
 /// </summary>

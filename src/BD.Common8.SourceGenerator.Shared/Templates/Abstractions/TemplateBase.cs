@@ -344,21 +344,27 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
     /// </summary>
     protected virtual string AttrName => typeof(TGeneratedAttribute).FullName;
 
+#if DEBUG
     /// <summary>
     /// 根据 <see cref="AttributeData"/> 还原 TGeneratedAttribute 数据
     /// </summary>
     /// <param name="attributes"></param>
     /// <returns></returns>
-    protected abstract TGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes);
+    [Obsolete("use GetMultipleAttributes", true)]
+    protected virtual TGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    {
+        return GetMultipleAttributes(attributes).FirstOrDefault();
+    }
+#endif
 
     /// <summary>
     /// 根据 <see cref="AttributeData"/> 还原多个 TGeneratedAttribute 数据
     /// </summary>
     /// <param name="attributes"></param>
     /// <returns></returns>
-    protected virtual IEnumerable<TGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
+    protected virtual IEnumerable<TGeneratedAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        return default;
+        return [];
     }
 
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
@@ -410,9 +416,9 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
     protected bool IgnoreExecute { get; set; }
 
     /// <summary>
-    /// 是否允许被多次使用
+    /// 能否为一个程序元素指定多个指示属性实例
     /// </summary>
-    protected bool AllowMultiple => ((AttributeUsageAttribute)Attribute.GetCustomAttribute(Type.GetType(AttrName), typeof(AttributeUsageAttribute))).AllowMultiple;
+    protected bool AllowMultiple { get; private set; } /*=> ((AttributeUsageAttribute)Attribute.GetCustomAttribute(Type.GetType(AttrName), typeof(AttributeUsageAttribute))).AllowMultiple;*/
 
     /// <summary>
     /// 通用增量源生成器执行函数
@@ -435,13 +441,9 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
                 @namespace = string.Empty;
             var typeName = symbol.Name;
 
-            var attributes = AllowMultiple
-                ? GetMultipleAttributes(symbol.GetAttributes())
-                : new[] { GetAttribute(symbol.GetAttributes()) };
+            var attributes = GetMultipleAttributes(symbol.GetAttributes());
 
-            if (attributes is null)
-                return;
-
+            int i = 0;
             foreach (var attr in attributes)
             {
                 if (IgnoreExecute)
@@ -458,6 +460,15 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
                 if (IgnoreExecute || model is null)
                     return;
                 ExecuteCore(spc, model);
+                if (i >= 1)
+                {
+                    AllowMultiple = true;
+                    i = -1;
+                }
+                else if (i >= 0)
+                {
+                    i++;
+                }
             }
         }
 #pragma warning disable CS0168 // 声明了变量，但从未使用过

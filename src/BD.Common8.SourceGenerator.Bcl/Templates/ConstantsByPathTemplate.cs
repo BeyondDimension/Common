@@ -1,3 +1,4 @@
+
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
@@ -17,31 +18,31 @@ public sealed class ConstantsByPathTemplate :
     protected override string AttrName =>
         "System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute";
 
-    protected override ConstantsByPathGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<ConstantsByPathGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
-        attribute.ThrowIsNull();
-
-        string? relativePath = null, valuePrefix = null, namePrefix = null;
-        for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
         {
-            var value = attribute.ConstructorArguments[i].GetObjectValue();
-            switch (i)
+            string? relativePath = null, valuePrefix = null, namePrefix = null;
+            for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
             {
-                case 0:
-                    relativePath = value?.ToString();
-                    break;
-                case 1:
-                    valuePrefix = value?.ToString();
-                    break;
-                case 2:
-                    namePrefix = value?.ToString();
-                    break;
+                var value = attribute.ConstructorArguments[i].GetObjectValue();
+                switch (i)
+                {
+                    case 0:
+                        relativePath = value?.ToString();
+                        break;
+                    case 1:
+                        valuePrefix = value?.ToString();
+                        break;
+                    case 2:
+                        namePrefix = value?.ToString();
+                        break;
+                }
             }
+            ConstantsByPathGeneratedAttribute result = new(relativePath.ThrowIsNull(), valuePrefix, namePrefix);
+            yield return result;
         }
-        ConstantsByPathGeneratedAttribute result = new(relativePath.ThrowIsNull(), valuePrefix, namePrefix);
-
-        return result;
     }
 
     /// <summary>

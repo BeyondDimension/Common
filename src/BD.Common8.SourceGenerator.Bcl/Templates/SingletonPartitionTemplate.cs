@@ -1,3 +1,4 @@
+
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 /// <summary>
@@ -15,32 +16,33 @@ public sealed class SingletonPartitionTemplate :
     protected override string AttrName =>
         "System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute";
 
-    protected override SingletonPartitionGeneratedAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<SingletonPartitionGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
-
-        SingletonPartitionGeneratedAttribute result = new();
-        foreach (var item in attribute.ThrowIsNull().NamedArguments)
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
         {
-            var value = item.Value.GetObjectValue();
-            switch (item.Key)
+            SingletonPartitionGeneratedAttribute result = new();
+            foreach (var item in attribute.ThrowIsNull().NamedArguments)
             {
-                case nameof(SingletonPartitionGeneratedAttribute.Constructor):
-                    result.Constructor = Convert.ToBoolean(value);
-                    break;
-                case nameof(SingletonPartitionGeneratedAttribute.Summary):
-                    result.Summary = value?.ToString();
-                    break;
-                case nameof(SingletonPartitionGeneratedAttribute.PropertyName):
-                    result.PropertyName = value?.ToString();
-                    break;
-                case nameof(SingletonPartitionGeneratedAttribute.IsSealed):
-                    result.IsSealed = Convert.ToBoolean(value);
-                    break;
+                var value = item.Value.GetObjectValue();
+                switch (item.Key)
+                {
+                    case nameof(SingletonPartitionGeneratedAttribute.Constructor):
+                        result.Constructor = Convert.ToBoolean(value);
+                        break;
+                    case nameof(SingletonPartitionGeneratedAttribute.Summary):
+                        result.Summary = value?.ToString();
+                        break;
+                    case nameof(SingletonPartitionGeneratedAttribute.PropertyName):
+                        result.PropertyName = value?.ToString();
+                        break;
+                    case nameof(SingletonPartitionGeneratedAttribute.IsSealed):
+                        result.IsSealed = Convert.ToBoolean(value);
+                        break;
+                }
             }
+            yield return result;
         }
-
-        return result;
     }
 
     /// <summary>

@@ -9,20 +9,24 @@ public sealed class IpcClientTemplate : IpcTemplateBase
     /// <inheritdoc/>
     protected override string FileId => "IpcClient";
 
-    /// <inheritdoc/>
-    protected override ServiceContractImplAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<ServiceContractImplAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attr = base.GetAttribute(attributes);
-        switch (attr.GeneratorType)
+        var items = base.GetMultipleAttributes(attributes);
+        foreach (var attribute in items)
         {
-            case IpcGeneratorType.ClientWebApi:
-            case IpcGeneratorType.ClientSignalR:
-                break;
-            default:
-                IgnoreExecute = true; // 非客户端生成类型直接跳过
-                return null!;
+            var isBreak = false;
+            switch (attribute.GeneratorType)
+            {
+                case IpcGeneratorType.ClientWebApi:
+                case IpcGeneratorType.ClientSignalR:
+                    break;
+                default:
+                    isBreak = true; // 非客户端生成类型直接跳过
+                    break;
+            }
+            if (!isBreak)
+                yield return attribute;
         }
-        return attr;
     }
 
     /// <summary>

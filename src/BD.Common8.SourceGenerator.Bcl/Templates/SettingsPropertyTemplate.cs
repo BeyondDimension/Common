@@ -23,20 +23,21 @@ public sealed class SettingsPropertyTemplate :
         public required SettingsPropertyGeneratedAttribute Attribute { get; init; }
     }
 
-    protected override AttributeModel GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<AttributeModel> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
-        attribute.ThrowIsNull();
-
-        if (attribute.ConstructorArguments.FirstOrDefault().GetObjectValue()
-            is not INamedTypeSymbol modelType)
-            throw new ArgumentOutOfRangeException(nameof(modelType));
-
-        SettingsPropertyGeneratedAttribute attr = new(new TypeStringImpl(modelType));
-        return new AttributeModel
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
         {
-            Attribute = attr,
-        };
+            if (attribute.ConstructorArguments.FirstOrDefault().GetObjectValue()
+           is not INamedTypeSymbol modelType)
+                throw new ArgumentOutOfRangeException(nameof(modelType));
+
+            SettingsPropertyGeneratedAttribute attr = new(new TypeStringImpl(modelType));
+            yield return new AttributeModel
+            {
+                Attribute = attr,
+            };
+        }
     }
 
     /// <summary>

@@ -1,3 +1,4 @@
+
 namespace BD.Common8.SourceGenerator.Ipc.Templates.Abstractions;
 
 /// <summary>
@@ -16,55 +17,55 @@ public abstract class IpcTemplateBase :
     protected sealed override string AttrName =>
         "BD.Common8.Ipc.Attributes.ServiceContractImplAttribute";
 
-    /// <inheritdoc/>
-    protected override ServiceContractImplAttribute GetAttribute(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<ServiceContractImplAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
-        var attribute = attributes.FirstOrDefault(x => x.ClassNameEquals(AttrName));
-        attribute.ThrowIsNull();
-
-        Type? serviceType = null;
-        IpcGeneratorType generatorType = default;
-        for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
+        var items = attributes.Where(x => x.ClassNameEquals(AttrName));
+        foreach (var attribute in items)
         {
-            var value = attribute.ConstructorArguments[i].GetObjectValue();
-            switch (i)
+            Type? serviceType = null;
+            IpcGeneratorType generatorType = default;
+            for (int i = 0; i < attribute.ConstructorArguments.Length; i++)
             {
-                case 0:
-                    serviceType = value is ITypeSymbol typeSymbolValue ?
-                        TypeStringImpl.Parse(typeSymbolValue) : null;
-                    break;
-                case 1:
-                    generatorType = (IpcGeneratorType)Enum.Parse(typeof(IpcGeneratorType),
-                        value?.ToString());
-                    break;
+                var value = attribute.ConstructorArguments[i].GetObjectValue();
+                switch (i)
+                {
+                    case 0:
+                        serviceType = value is ITypeSymbol typeSymbolValue ?
+                            TypeStringImpl.Parse(typeSymbolValue) : null;
+                        break;
+                    case 1:
+                        generatorType = (IpcGeneratorType)Enum.Parse(typeof(IpcGeneratorType),
+                            value?.ToString());
+                        break;
+                }
             }
-        }
 
-        if (serviceType == null)
-        {
-            IgnoreExecute = true;
-            return null!;
-        }
-
-        ServiceContractImplAttribute attr = new(serviceType, generatorType);
-
-        foreach (var item in attribute.NamedArguments)
-        {
-            var value = item.Value.GetObjectValue();
-            switch (item.Key)
+            if (serviceType == null)
             {
-                case nameof(ServiceContractImplAttribute.HubUrl):
-                    attr.HubUrl = value?.ToString();
-                    break;
-                case nameof(ServiceContractImplAttribute.HubTypeFullName):
-                    attr.HubTypeFullName = value?.ToString()!;
-                    if (string.IsNullOrWhiteSpace(attr.HubTypeFullName))
-                        attr.HubTypeFullName = ServiceContractImplAttribute.DefaultHubTypeFullName;
-                    break;
+                IgnoreExecute = true;
+                break;
             }
-        }
 
-        return attr;
+            ServiceContractImplAttribute attr = new(serviceType, generatorType);
+
+            foreach (var item in attribute.NamedArguments)
+            {
+                var value = item.Value.GetObjectValue();
+                switch (item.Key)
+                {
+                    case nameof(ServiceContractImplAttribute.HubUrl):
+                        attr.HubUrl = value?.ToString();
+                        break;
+                    case nameof(ServiceContractImplAttribute.HubTypeFullName):
+                        attr.HubTypeFullName = value?.ToString()!;
+                        if (string.IsNullOrWhiteSpace(attr.HubTypeFullName))
+                            attr.HubTypeFullName = ServiceContractImplAttribute.DefaultHubTypeFullName;
+                        break;
+                }
+            }
+
+            yield return attr;
+        }
     }
 
     /// <summary>
