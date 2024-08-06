@@ -51,7 +51,7 @@
 		</PackageVersion>
 		<PackageVersion Include="BD.Common.XmlnsDefinition.Avalonia" Version="0.0.0">
 		</PackageVersion>
-		<PackageVersion Include="BenchmarkDotNet" Version="0.13.12">
+		<PackageVersion Include="BenchmarkDotNet" Version="0.14.0">
 		</PackageVersion>
 		<PackageVersion Include="Certes" Version="3.0.4">
 		</PackageVersion>
