@@ -15,7 +15,7 @@ public sealed class CopyPropertiesTemplate :
     protected override string AttrName =>
         "System.Runtime.CompilerServices.CopyPropertiesGeneratedAttribute";
 
-    protected override IEnumerable<CopyPropertiesGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<CopyPropertiesGeneratedAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
         var items = attributes.Where(x => x.ClassNameEquals(AttrName));
         foreach (var attribute in items)

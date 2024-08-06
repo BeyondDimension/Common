@@ -1,4 +1,3 @@
-
 namespace BD.Common8.SourceGenerator.Ipc.Templates.Abstractions;
 
 /// <summary>

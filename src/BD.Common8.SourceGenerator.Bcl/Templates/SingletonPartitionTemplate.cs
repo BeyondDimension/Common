@@ -1,4 +1,3 @@
-
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 /// <summary>
@@ -16,7 +15,7 @@ public sealed class SingletonPartitionTemplate :
     protected override string AttrName =>
         "System.Runtime.CompilerServices.SingletonPartitionGeneratedAttribute";
 
-    protected override IEnumerable<SingletonPartitionGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<SingletonPartitionGeneratedAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
         var items = attributes.Where(x => x.ClassNameEquals(AttrName));
         foreach (var attribute in items)

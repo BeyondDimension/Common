@@ -1,4 +1,3 @@
-
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
@@ -18,7 +17,7 @@ public sealed class ConstantsByPathTemplate :
     protected override string AttrName =>
         "System.Runtime.CompilerServices.ConstantsByPathGeneratedAttribute";
 
-    protected override IEnumerable<ConstantsByPathGeneratedAttribute>? GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
+    protected override IEnumerable<ConstantsByPathGeneratedAttribute> GetMultipleAttributes(ImmutableArray<AttributeData> attributes)
     {
         var items = attributes.Where(x => x.ClassNameEquals(AttrName));
         foreach (var attribute in items)
