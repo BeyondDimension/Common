@@ -283,19 +283,19 @@ Class DesignerTemplate  <a class="header-action link-secondary" title="View sour
 </h2>
 
 
-  <a id="BD_Common8_SourceGenerator_ResX_Templates_DesignerTemplate_GetAttribute_" data-uid="BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.GetAttribute*"></a>
+  <a id="BD_Common8_SourceGenerator_ResX_Templates_DesignerTemplate_GetMultipleAttributes_" data-uid="BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.GetMultipleAttributes*"></a>
 
-  <h3 id="BD_Common8_SourceGenerator_ResX_Templates_DesignerTemplate_GetAttribute_System_Collections_Immutable_ImmutableArray_Microsoft_CodeAnalysis_AttributeData__" data-uid="BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.GetAttribute(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData})">
-  GetAttribute(ImmutableArray&lt;AttributeData&gt;)
+  <h3 id="BD_Common8_SourceGenerator_ResX_Templates_DesignerTemplate_GetMultipleAttributes_System_Collections_Immutable_ImmutableArray_Microsoft_CodeAnalysis_AttributeData__" data-uid="BD.Common8.SourceGenerator.ResX.Templates.DesignerTemplate.GetMultipleAttributes(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.AttributeData})">
+  GetMultipleAttributes(ImmutableArray&lt;AttributeData&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.ResX/Templates/DesignerTemplate.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据 <span class="xref">Microsoft.CodeAnalysis.AttributeData</span> 还原 TGeneratedAttribute 数据</p>
+  <div class="markdown level1 summary"><p>根据 <span class="xref">Microsoft.CodeAnalysis.AttributeData</span> 还原多个 TGeneratedAttribute 数据</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override ResXGeneratedCodeAttribute GetAttribute(ImmutableArray&lt;AttributeData&gt; attributes)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override IEnumerable&lt;ResXGeneratedCodeAttribute&gt; GetMultipleAttributes(ImmutableArray&lt;AttributeData&gt; attributes)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -306,7 +306,7 @@ Class DesignerTemplate  <a class="header-action link-secondary" title="View sour
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="../BD.Common8.Bcl/System.CodeDom.Compiler.ResXGeneratedCodeAttribute.html">ResXGeneratedCodeAttribute</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="System.CodeDom.Compiler.ResXGeneratedCodeAttribute.html">ResXGeneratedCodeAttribute</a>&gt;</dt>
     <dd></dd>
   </dl>
 
