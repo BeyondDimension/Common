@@ -61,12 +61,16 @@ public sealed class SingletonPartitionTemplate :
 
         /// <inheritdoc cref="SingletonPartitionGeneratedAttribute"/>
         public required SingletonPartitionGeneratedAttribute Attribute { get; init; }
+
+        /// <inheritdoc cref="I"/>
+        public required int I { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
     {
         SourceModel model = new()
         {
+            I = args.i,
             Namespace = args.@namespace,
             TypeName = args.typeName,
             Attribute = args.attr,

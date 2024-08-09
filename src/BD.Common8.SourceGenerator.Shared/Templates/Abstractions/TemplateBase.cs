@@ -332,6 +332,8 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
         /// 生成特性模型
         /// </summary>
         TGeneratedAttribute Attribute { get; }
+
+        int I { get; }
     }
 
     /// <summary>
@@ -398,6 +400,8 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
         /// 调用 <see cref="GetAttribute(ImmutableArray{AttributeData})"/> 的返回值
         /// </summary>
         public TGeneratedAttribute attr;
+
+        public int i;
     }
 
 #pragma warning restore SA1604 // Element documentation should have summary
@@ -456,19 +460,14 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
                     @namespace = @namespace,
                     typeName = typeName,
                     attr = attr,
+                    i = i,
                 });
                 if (IgnoreExecute || model is null)
                     return;
                 ExecuteCore(spc, model);
-                if (i >= 1)
-                {
+                if (!AllowMultiple && i >= 1)
                     AllowMultiple = true;
-                    i = -1;
-                }
-                else if (i >= 0)
-                {
-                    i++;
-                }
+                i++;
             }
         }
 #pragma warning disable CS0168 // 声明了变量，但从未使用过
@@ -559,7 +558,7 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
             ConsoleWriteSourceText(sourceTextString);
 #endif
         }
-        var hintName = $"{(string.IsNullOrEmpty(m.Namespace) ? "global_namespace" : m.Namespace)}.{m.TypeName}.{FileId}{(AllowMultiple ? "." + GetRandomFieldName() : "")}.g.cs";
+        var hintName = $"{(string.IsNullOrEmpty(m.Namespace) ? "global_namespace" : m.Namespace)}.{m.TypeName}.{FileId}{(AllowMultiple ? "." + m.I : "")}.g.cs";
         spc.AddSource(hintName, sourceText);
     }
 

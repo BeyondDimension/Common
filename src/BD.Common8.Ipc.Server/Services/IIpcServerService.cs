@@ -10,11 +10,4 @@ public partial interface IIpcServerService
     /// </summary>
     /// <returns></returns>
     ValueTask RunAsync();
-
-    /// <summary>
-    /// 获取用于客户端的连接字符串
-    /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
-    IpcAppConnectionString GetConnectionString(IpcAppConnectionStringType type);
 }

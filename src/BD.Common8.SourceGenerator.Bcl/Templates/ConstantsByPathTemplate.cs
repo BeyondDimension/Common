@@ -66,6 +66,9 @@ public sealed class ConstantsByPathTemplate :
 
         /// <inheritdoc cref="ConstantsByPathGeneratedAttribute"/>
         public required ConstantsByPathGeneratedAttribute Attribute { get; init; }
+
+        /// <inheritdoc cref="I"/>
+        public required int I { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
@@ -78,6 +81,7 @@ public sealed class ConstantsByPathTemplate :
 
         SourceModel model = new()
         {
+            I = args.i,
             Namespace = args.@namespace,
             TypeName = args.typeName,
             Attribute = args.attr,

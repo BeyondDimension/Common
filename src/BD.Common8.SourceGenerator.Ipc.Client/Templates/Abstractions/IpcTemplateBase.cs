@@ -92,6 +92,9 @@ public abstract class IpcTemplateBase :
 
         /// <inheritdoc cref="ServiceContractImplAttribute"/>
         public required ServiceContractImplAttribute Attribute { get; init; }
+
+        /// <inheritdoc cref="I"/>
+        public required int I { get; init; }
     }
 
     /// <inheritdoc/>
@@ -113,6 +116,7 @@ public abstract class IpcTemplateBase :
 
         SourceModel model = new()
         {
+            I = args.i,
             NamedTypeSymbol = args.symbol,
             Namespace = args.@namespace,
             TypeName = args.typeName,

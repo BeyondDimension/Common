@@ -113,12 +113,16 @@ public sealed class ViewModelWrapperTemplate :
 
         /// <inheritdoc/>
         AttributeModel ISourceModel.Attribute => AttrModel;
+
+        /// <inheritdoc cref="I"/>
+        public required int I { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
     {
         SourceModel model = new()
         {
+            I = args.i,
             NamedTypeSymbol = args.symbol,
             Namespace = args.@namespace,
             TypeName = args.typeName,

@@ -155,6 +155,9 @@ public sealed class BinaryResourceTemplate :
         /// 生成的类型是否为 <see langword="public"/>
         /// </summary>
         public required bool IsPublic { get; init; }
+
+        /// <inheritdoc cref="I"/>
+        public required int I { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
@@ -173,6 +176,7 @@ public sealed class BinaryResourceTemplate :
 
         SourceModel model = new()
         {
+            I = args.i,
             NamedTypeSymbol = args.symbol,
             Attribute = args.attr,
             FileInfos = queryFilePaths.ToArray(),

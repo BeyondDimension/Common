@@ -78,12 +78,16 @@ public sealed class CopyPropertiesTemplate :
 
         /// <inheritdoc cref="CopyPropertiesGeneratedAttribute"/>
         public required CopyPropertiesGeneratedAttribute Attribute { get; init; }
+
+        /// <inheritdoc cref="I"/>
+        public required int I { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
     {
         SourceModel model = new()
         {
+            I = args.i,
             Symbol = args.symbol,
             Namespace = args.@namespace,
             TypeName = args.typeName,

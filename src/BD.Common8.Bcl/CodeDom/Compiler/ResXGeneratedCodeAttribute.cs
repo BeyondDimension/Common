@@ -3,7 +3,7 @@ namespace System.CodeDom.Compiler;
 /// <summary>
 /// 用于标注 BD.Common8.SourceGenerator.ResX 源生成器的 <see cref="Attribute"/>
 /// </summary>
-[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
 public sealed class ResXGeneratedCodeAttribute(string relativeFilePath, byte version = 0) : Attribute
 {
     /// <summary>

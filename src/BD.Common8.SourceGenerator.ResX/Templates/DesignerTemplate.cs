@@ -77,6 +77,9 @@ public sealed class DesignerTemplate :
         /// 生成器是否使用 StringResourceManager 的代码模板
         /// </summary>
         public required bool IsSRM { get; init; }
+
+        /// <inheritdoc cref="I"/>
+        public required int I { get; init; }
     }
 
     protected override SourceModel GetSourceModel(GetSourceModelArgs args)
@@ -90,6 +93,7 @@ public sealed class DesignerTemplate :
 
         SourceModel model = new()
         {
+            I = args.i,
             NamedTypeSymbol = args.symbol,
             Attribute = args.attr,
             Path = path,

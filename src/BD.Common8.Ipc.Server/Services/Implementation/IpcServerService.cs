@@ -14,7 +14,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     protected static void OnMapGroup(IEndpointRouteBuilder builder) => OnMapGroupEvent?.Invoke(builder);
 
-    static readonly long tickCount64 = long.MaxValue / 2; // 不可修改！！！
+    //static readonly long tickCount64 = long.MaxValue / 2; // 不可修改！！！
 
     WebApplication? app;
 
@@ -204,53 +204,53 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     //    return IpcAppConnectionStringType.UnixSocket;
     //}
 
-    /// <inheritdoc/>
-    public IpcAppConnectionString GetConnectionString(IpcAppConnectionStringType/*?*/ type/* = null*/)
-    {
-        if (app == null)
-            throw new InvalidOperationException("The service has not been started yet.");
+    ///// <inheritdoc/>
+    //public IpcAppConnectionString GetConnectionString(IpcAppConnectionStringType/*?*/ type/* = null*/)
+    //{
+    //    if (app == null)
+    //        throw new InvalidOperationException("The service has not been started yet.");
 
-        //type ??= GetFirstIpcAppConnectionStringType();
+    //    //type ??= GetFirstIpcAppConnectionStringType();
 
-        switch (type/*.Value*/)
-        {
-            case IpcAppConnectionStringType.Https:
-                if (!ListenLocalhost)
-                    throw new NotSupportedException(
-                        "The current service does not support listening localhost.");
-                return new()
-                {
-                    Type = IpcAppConnectionStringType.Https,
-                    Int32Value = Http2Port,
-                    TickCount64 = tickCount64,
-                    ProcessId = Environment.ProcessId,
-                };
-            case IpcAppConnectionStringType.UnixSocket:
-                if (!ListenUnixSocket)
-                    throw new NotSupportedException(
-                        "The current service does not support listening unix socket.");
-                return new()
-                {
-                    Type = IpcAppConnectionStringType.UnixSocket,
-                    StringValue = UnixSocketPath,
-                    TickCount64 = tickCount64,
-                    ProcessId = Environment.ProcessId,
-                };
-            case IpcAppConnectionStringType.NamedPipe:
-                if (!ListenNamedPipe)
-                    throw new NotSupportedException(
-                        "The current service does not support listening named pipe.");
-                return new()
-                {
-                    Type = IpcAppConnectionStringType.NamedPipe,
-                    StringValue = PipeName,
-                    TickCount64 = tickCount64,
-                    ProcessId = Environment.ProcessId,
-                };
-            default:
-                throw ThrowHelper.GetArgumentOutOfRangeException(type);
-        }
-    }
+    //    switch (type/*.Value*/)
+    //    {
+    //        case IpcAppConnectionStringType.Https:
+    //            if (!ListenLocalhost)
+    //                throw new NotSupportedException(
+    //                    "The current service does not support listening localhost.");
+    //            return new()
+    //            {
+    //                Type = IpcAppConnectionStringType.Https,
+    //                Int32Value = Http2Port,
+    //                TickCount64 = tickCount64,
+    //                ProcessId = Environment.ProcessId,
+    //            };
+    //        case IpcAppConnectionStringType.UnixSocket:
+    //            if (!ListenUnixSocket)
+    //                throw new NotSupportedException(
+    //                    "The current service does not support listening unix socket.");
+    //            return new()
+    //            {
+    //                Type = IpcAppConnectionStringType.UnixSocket,
+    //                StringValue = UnixSocketPath,
+    //                TickCount64 = tickCount64,
+    //                ProcessId = Environment.ProcessId,
+    //            };
+    //        case IpcAppConnectionStringType.NamedPipe:
+    //            if (!ListenNamedPipe)
+    //                throw new NotSupportedException(
+    //                    "The current service does not support listening named pipe.");
+    //            return new()
+    //            {
+    //                Type = IpcAppConnectionStringType.NamedPipe,
+    //                StringValue = PipeName,
+    //                TickCount64 = tickCount64,
+    //                ProcessId = Environment.ProcessId,
+    //            };
+    //        default:
+    //            throw ThrowHelper.GetArgumentOutOfRangeException(type);
+    //    }
+    //}
 
     /// <summary>
     /// 走 Http2 传输协议默认端口号，如果端口占用将随机一个新的
@@ -465,20 +465,17 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     /// <para>https://learn.microsoft.com/zh-cn/aspnet/core/signalr/authn-and-authz?view=aspnetcore-8.0#bearer-token-authentication</para>
     /// </summary>
     /// <returns></returns>
-    protected virtual byte[] GetAccessToken()
-    {
-        if (_AccessToken == null)
-        {
-            using var stream = new MemoryStream();
-            IpcAppConnectionString.WriteAccessToken(stream, tickCount64, Environment.ProcessId);
-            _AccessToken = Hashs.ByteArray.SHA256(stream);
-            Console.WriteLine($"Server，GetAccessToken：{_AccessToken.ToHexString()}, tickCount64: {tickCount64}, pid: {Environment.ProcessId}");
-        }
-        return _AccessToken;
-    }
+    protected abstract byte[] GetAccessToken();
 
     /// <inheritdoc cref="GetAccessToken"/>
-    internal byte[] AccessToken => GetAccessToken();
+    internal byte[] AccessToken
+    {
+        get
+        {
+            _AccessToken ??= GetAccessToken();
+            return _AccessToken;
+        }
+    }
 
     #region 同时实现释放模式和异步释放模式 https://learn.microsoft.com/zh-cn/dotnet/standard/garbage-collection/implementing-disposeasync#implement-both-dispose-and-async-dispose-patterns
 

@@ -6,7 +6,7 @@ namespace BD.Common8.Ipc.Services.Implementation;
 /// Ipc 客户端连接服务实现
 /// </summary>
 /// <param name="connectionString"></param>
-public partial class IpcClientService(IpcAppConnectionString connectionString) :
+public abstract partial class IpcClientService(IpcAppConnectionString connectionString) :
     WebApiClientService(Log.Factory.CreateLogger<IpcClientService>(), null!),
     IIpcClientService, IAsyncDisposable
 {
@@ -45,15 +45,11 @@ public partial class IpcClientService(IpcAppConnectionString connectionString) :
     /// <para>https://learn.microsoft.com/zh-cn/aspnet/core/signalr/authn-and-authz?view=aspnetcore-8.0#bearer-token-authentication</para>
     /// </summary>
     /// <returns></returns>
-    protected virtual string GetAccessToken()
-    {
-        _AccessToken ??= connectionString.GetAccessToken();
-        return _AccessToken;
-    }
+    protected abstract string GetAccessToken();
 
     Task<string?> GetAccessTokenAsync()
     {
-        var accessToken = GetAccessToken();
+        var accessToken = _AccessToken ??= GetAccessToken();
         return Task.FromResult(accessToken)!;
     }
 

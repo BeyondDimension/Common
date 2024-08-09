@@ -22,7 +22,8 @@ public static partial class IpcAppConnectionStringHelper
         };
         IpcAppConnDelegatingHandler delegatingHandler = new(connectionString, innerHandler);
         if (ignoreRemoteCertificateValidation)
-            innerHandler.SslOptions.RemoteCertificateValidationCallback = (_, _, _, _) => true;
+            innerHandler.SslOptions.RemoteCertificateValidationCallback =
+                static (_, _, _, _) => true;
         return delegatingHandler;
     }
 
