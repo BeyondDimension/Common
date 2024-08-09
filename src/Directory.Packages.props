@@ -229,7 +229,7 @@
 		</PackageVersion>
 		<PackageVersion Include="sqlite-net-pcl" Version="1.9.172">
 		</PackageVersion>
-		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.8">
+		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.9">
 		</PackageVersion>
 		<PackageVersion Include="StackExchange.Redis" Version="2.8.0">
 		</PackageVersion>
