@@ -5,6 +5,64 @@ namespace System.Extensions;
 /// </summary>
 public static partial class StreamExtensions
 {
+    #region Read
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static char ReadChar(this Stream stream)
+    {
+        Span<byte> data = stackalloc byte[sizeof(char)];
+        stream.Read(data);
+        return BitConverter.ToChar(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static short ReadInt16(this Stream stream)
+    {
+        Span<byte> data = stackalloc byte[sizeof(short)];
+        stream.Read(data);
+        return BitConverter.ToInt16(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int ReadInt32(this Stream stream)
+    {
+        Span<byte> data = stackalloc byte[sizeof(int)];
+        stream.Read(data);
+        return BitConverter.ToInt32(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static long ReadInt64(this Stream stream)
+    {
+        Span<byte> data = stackalloc byte[sizeof(long)];
+        stream.Read(data);
+        return BitConverter.ToInt64(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ushort ReadUInt16(this Stream stream)
+    {
+        Span<byte> data = stackalloc byte[sizeof(ushort)];
+        stream.Read(data);
+        return BitConverter.ToUInt16(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static uint ReadUInt32(this Stream stream)
+    {
+        Span<byte> data = stackalloc byte[sizeof(uint)];
+        stream.Read(data);
+        return BitConverter.ToUInt32(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static ulong ReadUInt64(this Stream stream)
+    {
+        Span<byte> data = stackalloc byte[sizeof(ulong)];
+        stream.Read(data);
+        return BitConverter.ToUInt64(data);
+    }
+
     /// <summary>
     /// 从流中读取一个 <see cref="byte"/>
     /// </summary>
@@ -16,7 +74,7 @@ public static partial class StreamExtensions
         var readByte = stream.ReadByte();
         if (readByte == -1)
             ThrowHelper.ThrowArgumentOutOfRangeException(readByte);
-        return (byte)readByte;
+        return unchecked((byte)readByte);
     }
 
     /// <summary>
@@ -27,10 +85,9 @@ public static partial class StreamExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static int ReadValueS32(this Stream stream)
     {
-        var data = new byte[4];
-        int read = stream.Read(data, 0, 4);
-        Debug.Assert(read == 4);
-        return BitConverter.ToInt32(data, 0);
+        Span<byte> data = stackalloc byte[sizeof(int)];
+        stream.Read(data);
+        return BitConverter.ToInt32(data);
     }
 
     /// <summary>
@@ -41,10 +98,9 @@ public static partial class StreamExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static uint ReadValueU32(this Stream stream)
     {
-        var data = new byte[4];
-        int read = stream.Read(data, 0, 4);
-        Debug.Assert(read == 4);
-        return BitConverter.ToUInt32(data, 0);
+        Span<byte> data = stackalloc byte[sizeof(uint)];
+        stream.Read(data);
+        return BitConverter.ToUInt32(data);
     }
 
     /// <summary>
@@ -55,10 +111,9 @@ public static partial class StreamExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static ulong ReadValueU64(this Stream stream)
     {
-        var data = new byte[8];
-        int read = stream.Read(data, 0, 8);
-        Debug.Assert(read == 8);
-        return BitConverter.ToUInt64(data, 0);
+        Span<byte> data = stackalloc byte[sizeof(ulong)];
+        stream.Read(data);
+        return BitConverter.ToUInt64(data);
     }
 
     /// <summary>
@@ -69,10 +124,9 @@ public static partial class StreamExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float ReadValueF32(this Stream stream)
     {
-        var data = new byte[4];
-        int read = stream.Read(data, 0, 4);
-        Debug.Assert(read == 4);
-        return BitConverter.ToSingle(data, 0);
+        Span<byte> data = stackalloc byte[sizeof(float)];
+        stream.Read(data);
+        return BitConverter.ToSingle(data);
     }
 
     /// <summary>
@@ -98,8 +152,8 @@ public static partial class StreamExtensions
                 Array.Resize(ref data, data.Length + (128 * characterSize));
             }
 
-            int read = stream.Read(data, i, characterSize);
-            Debug.Assert(read == characterSize);
+            stream.Read(data, i, characterSize);
+            //Debug.Assert(read == characterSize);
 
             if (encoding.GetString(data, i, characterSize) == characterEnd)
             {
@@ -133,6 +187,8 @@ public static partial class StreamExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReadStringUnicode(this Stream stream) => stream.ReadStringInternalDynamic(Encoding.UTF8, '\0');
 
+    #endregion
+
     const int DefaultBufferSize = 1024;
 
     /// <summary>
@@ -162,4 +218,170 @@ public static partial class StreamExtensions
             return new(stream, encoding, bufferSize, leaveOpen);
         }
     }
+
+    #region Write
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteByte(this Stream stream, int position, byte value)
+    {
+        var prevPosition = stream.Position;
+
+        stream.Position = position;
+        stream.WriteByte(value);
+        stream.Position = prevPosition;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteBytes(this Stream stream, int position, ReadOnlySpan<byte> buffer)
+    {
+        var prevPosition = stream.Position;
+
+        stream.Position = position;
+        stream.Write(buffer);
+        stream.Position = prevPosition;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteInt16(this Stream stream, short value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(short)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.Write(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteInt16(this Stream stream, int position, short value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(short)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.WriteBytes(position, data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteInt32(this Stream stream, int value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(int)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.Write(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteInt32(this Stream stream, int position, int value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(int)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.WriteBytes(position, data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteInt64(this Stream stream, long value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(long)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.Write(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteInt64(this Stream stream, int position, long value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(long)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.WriteBytes(position, data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteUInt16(this Stream stream, ushort value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(ushort)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.Write(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteUInt16(this Stream stream, int position, ushort value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(ushort)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.WriteBytes(position, data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteUInt32(this Stream stream, uint value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(uint)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.Write(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteUInt32(this Stream stream, int position, uint value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(uint)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.WriteBytes(position, data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteUInt64(this Stream stream, ulong value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(ulong)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.Write(data);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteUInt64(this Stream stream, int position, ulong value)
+    {
+        Span<byte> data = stackalloc byte[sizeof(ulong)];
+        BitConverter.TryWriteBytes(data, value);
+        stream.WriteBytes(position, data);
+    }
+
+    #endregion
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IEnumerable<byte> ToEnumerable(this Stream stream)
+        => new StreamEnumerable(stream);
+}
+
+file sealed class StreamEnumerable : IEnumerable<byte>, IEnumerator<byte>
+{
+    readonly Stream stream;
+
+    public StreamEnumerable(Stream stream)
+    {
+        this.stream = stream;
+        stream.Position = 0;
+    }
+
+    public byte Current { get; private set; }
+
+    object IEnumerator.Current => Current;
+
+    public void Dispose()
+    {
+    }
+
+    public IEnumerator<byte> GetEnumerator() => this;
+
+    public bool MoveNext()
+    {
+        var result = stream.ReadByte();
+        if (result == -1)
+        {
+            return false;
+        }
+        else
+        {
+            Current = unchecked((byte)result);
+            return true;
+        }
+    }
+
+    public void Reset()
+    {
+        stream.Position = 0;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => this;
 }
