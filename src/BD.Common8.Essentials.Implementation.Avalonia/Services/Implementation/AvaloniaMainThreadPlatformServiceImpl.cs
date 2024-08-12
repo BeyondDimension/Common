@@ -22,6 +22,13 @@ sealed class AvaloniaMainThreadPlatformServiceImpl : IMainThreadPlatformService
     /// </summary>
     public void PlatformBeginInvokeOnMainThread(Action action, ThreadingDispatcherPriority priority = ThreadingDispatcherPriority.Normal)
     {
+#if PROJ_MOBIUS
+        if (!HostConstants.HasUI)
+        {
+            action?.Invoke();
+            return;
+        }
+#endif
         var priority_ = GetPriority(priority);
         Dispatcher.UIThread.Post(action, priority_);
     }

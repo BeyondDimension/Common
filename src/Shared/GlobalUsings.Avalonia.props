@@ -49,11 +49,13 @@
 		<Using Alias="AvaInputKey" Include="Avalonia.Input.Key" />
 		<Using Alias="AvaOrientation" Include="Avalonia.Layout.Orientation" />
 		<Using Alias="AvaBrushes" Include="Avalonia.Media.Brushes" />
+		<Using Alias="AvaPen" Include="Avalonia.Media.Pen" />
 		<Using Alias="AvaFontFamily" Include="Avalonia.Media.FontFamily" />
 		<Using Alias="AvaPixelFormat" Include="Avalonia.Platform.PixelFormat" />
 		<Using Alias="AvaMouseButton" Include="Avalonia.Input.MouseButton" />
 		<Using Alias="AvaProgressBar" Include="Avalonia.Controls.ProgressBar" />
 		<Using Alias="AvaButton" Include="Avalonia.Controls.Button" />
+		<Using Alias="AvaWindow" Include="Avalonia.Controls.Window" />
 		<Using Alias="AvaNotification" Include="Avalonia.Controls.Notifications.Notification" />
 		<Using Alias="AvaNotificationType" Include="Avalonia.Controls.Notifications.NotificationType" />
 		<Using Alias="AvaControls" Include="Avalonia.Controls.Controls" />

@@ -8,3 +8,8 @@ public interface IStringResourceManager
 
     string? GetCultureName(CultureInfo? culture = null);
 }
+
+public interface IEnumStringResourceManager
+{
+    string? ConvertToString(Enum value, CultureInfo? culture = null);
+}
