@@ -53,6 +53,7 @@
 		<Using Alias="AvaFontFamily" Include="Avalonia.Media.FontFamily" />
 		<Using Alias="AvaPixelFormat" Include="Avalonia.Platform.PixelFormat" />
 		<Using Alias="AvaMouseButton" Include="Avalonia.Input.MouseButton" />
+		<Using Alias="AvaCursor" Include="Avalonia.Input.Cursor" />
 		<Using Alias="AvaProgressBar" Include="Avalonia.Controls.ProgressBar" />
 		<Using Alias="AvaButton" Include="Avalonia.Controls.Button" />
 		<Using Alias="AvaWindow" Include="Avalonia.Controls.Window" />

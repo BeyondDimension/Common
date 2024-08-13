@@ -14,11 +14,17 @@ public static partial class CultureInfoExtensions
     public static bool IsMatch(this CultureInfo cultureInfo, string cultureName)
     {
         if (string.IsNullOrWhiteSpace(cultureInfo.Name))
+        {
             return false;
+        }
         if (string.Equals(cultureInfo.Name, cultureName, StringComparison.OrdinalIgnoreCase))
+        {
             return true;
+        }
         else
+        {
             return cultureInfo.Parent.IsMatch(cultureName);
+        }
     }
 
     /// <summary>
