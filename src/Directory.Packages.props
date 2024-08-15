@@ -330,7 +330,7 @@
 		<PackageVersion Include="Blazor.QRCode" Version="0.2.1">
 		</PackageVersion>
 		<!-- 👇 AntDesign -->
-		<PackageVersion Include="AntDesign" Version="0.20.0.2">
+		<PackageVersion Include="AntDesign" Version="0.20.1">
 		</PackageVersion>
 		<PackageVersion Include="AntDesign.Charts" Version="0.5.5">
 		</PackageVersion>
