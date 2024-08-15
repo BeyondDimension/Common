@@ -182,6 +182,8 @@ sealed class IpcClientService2(IpcAppConnectionString connectionString) : IpcCli
     }
 
     protected override bool UseMemoryPack => false;
+
+    protected override string GetAccessToken() => "abcd"u8.ToArray().ToHexString();
 }
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientWebApi)]

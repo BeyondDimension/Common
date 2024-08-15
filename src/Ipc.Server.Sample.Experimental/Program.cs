@@ -37,10 +37,10 @@ static partial class Program
             IpcServerService = new IpcServerService2(SamplePathHelper.ServerCertificate);
             await IpcServerService.RunAsync();
 
-            var connectionStrings = Enum.GetValues<IpcAppConnectionStringType>()
-                .Select(x => IpcServerService.GetConnectionString(x)).ToArray();
-            SamplePathHelper.SetConnectionStrings(connectionStrings);
-            Console.WriteLine($"已写入连接字符串，路径：{SamplePathHelper.ConnectionStringsFilePath}");
+            //var connectionStrings = Enum.GetValues<IpcAppConnectionStringType>()
+            //    .Select(x => IpcServerService.GetConnectionString(x)).ToArray();
+            //SamplePathHelper.SetConnectionStrings(connectionStrings);
+            //Console.WriteLine($"已写入连接字符串，路径：{SamplePathHelper.ConnectionStringsFilePath}");
 
             Console.WriteLine("【前】模拟 UI 线程阻塞");
             Console.CancelKeyPress += static (_, _) =>
@@ -138,6 +138,8 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
             .MapPost("Tuple",
                 (Delegate)(([FromBody] Tuple<int, string, string, string, string, string, string, Tuple<string, string, string, string, string, string, string, Tuple<string, string, string, string, string, string, string>>> body) => body));
     }
+
+    protected override byte[] GetAccessToken() => "abcd"u8.ToArray();
 }
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.Server)]

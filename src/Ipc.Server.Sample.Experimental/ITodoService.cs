@@ -235,32 +235,33 @@ public static class SamplePathHelper
 
     public static IpcAppConnectionString[]? GetConnectionStrings()
     {
-        try
-        {
-            var buffer = File.ReadAllBytes(ConnectionStringsFilePath);
-            var buffer2 = Serializable.DMP2<byte[][]>(buffer);
-            return buffer2.ThrowIsNull().Select(static x =>
-            {
-                IpcAppConnectionString? r = x;
-                return r;
-            }).Where(static x => x.HasValue).Select(static x => x!.Value).ToArray();
-        }
-        catch
-        {
-            return null;
-        }
+        throw new NotImplementedException();
+        //try
+        //{
+        //    var buffer = File.ReadAllBytes(ConnectionStringsFilePath);
+        //    var buffer2 = Serializable.DMP2<byte[][]>(buffer);
+        //    return buffer2.ThrowIsNull().Select(static x =>
+        //    {
+        //        IpcAppConnectionString? r = x;
+        //        return r;
+        //    }).Where(static x => x.HasValue).Select(static x => x!.Value).ToArray();
+        //}
+        //catch
+        //{
+        //    return null;
+        //}
     }
 
     public static void SetConnectionStrings(params IpcAppConnectionString[] connectionStrings)
     {
-        var buffer2 = connectionStrings.Select(static x =>
-        {
-            byte[] r = x;
-            return r;
-        }).ToArray();
-        byte[] buffer = Serializable.SMP2(buffer2);
-        IOPath.DirCreateByNotExists(TempDirPath);
-        File.WriteAllBytes(ConnectionStringsFilePath, buffer);
+        //var buffer2 = connectionStrings.Select(static x =>
+        //{
+        //    byte[] r = x;
+        //    return r;
+        //}).ToArray();
+        //byte[] buffer = Serializable.SMP2(buffer2);
+        //IOPath.DirCreateByNotExists(TempDirPath);
+        //File.WriteAllBytes(ConnectionStringsFilePath, buffer);
     }
 
     const string X500DistinguishedCNName = "BeyondDimension Console Test Certificate";

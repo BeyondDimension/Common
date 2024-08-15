@@ -1,7 +1,7 @@
 <Project>
 	<!-- 📄 SDK 源码引用 -->
 
-	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat'">
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat' AND $(MSBuildProjectName) != 'AssemblyLoad.Sample.EntryPoint' AND $(MSBuildProjectName) != 'AssemblyLoad.Sample.Library'">
 		<!-- 👇 Resx 源生成器 -->
 		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.ResX'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
 			<OutputItemType>Analyzer</OutputItemType>

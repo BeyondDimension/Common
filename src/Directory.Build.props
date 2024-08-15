@@ -1,5 +1,11 @@
 <Project>
+	<!-- 👇 配置 Sdk\Projects\$(MSBuildProjectName).props 替代 $(MSBuildProjectName).csproj 中的内容便于共享源码链接项目 -->
 	<Import Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName.StartsWith('BD.Common8.')) AND !$(MSBuildProjectName.StartsWith('BD.Common8.SourceGenerator.')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat' AND Exists('$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props')" Project="$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props" />
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName.StartsWith('BD.Common8.')) AND !$(MSBuildProjectName.StartsWith('BD.Common8.SourceGenerator.')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat' AND Exists('$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props')">
+		<None Include="$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props">
+			<LinkBase>Properties</LinkBase>
+		</None>
+	</ItemGroup>
 
 	<!-- 👇 全局属性配置 -->
 	<Import Project="$(MSBuildThisFileDirectory)Sdk\Global.props" />
