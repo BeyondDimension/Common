@@ -351,7 +351,7 @@
 	</ItemGroup>
 	<!-- 👇 Pay / Alipay / WeChat 💵 -->
 	<ItemGroup>
-		<PackageVersion Include="Essensoft.Paylink.Alipay" Version="4.1.2">
+		<PackageVersion Include="Essensoft.Paylink.Alipay" Version="4.1.4">
 		</PackageVersion>
 		<PackageVersion Include="Essensoft.Paylink.WeChatPay" Version="4.1.2">
 		</PackageVersion>
