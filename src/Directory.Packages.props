@@ -420,7 +420,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Costura.Fody" Version="5.7.0">
 		</PackageVersion>
-		<PackageVersion Include="DynamicData" Version="9.0.3">
+		<PackageVersion Include="DynamicData" Version="9.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 .NET Compat -->
