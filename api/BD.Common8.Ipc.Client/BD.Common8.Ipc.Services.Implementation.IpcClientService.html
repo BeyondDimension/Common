@@ -90,7 +90,7 @@ Class IpcClientService  <a class="header-action link-secondary" title="View sour
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class IpcClientService : WebApiClientService, Log.I, IIpcClientService, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class IpcClientService : WebApiClientService, Log.I, IIpcClientService, IAsyncDisposable</code></pre>
   </div>
 
 
@@ -304,7 +304,7 @@ Class IpcClientService  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IpcClientService(IpcAppConnectionString connectionString)</code></pre>
+    <pre><code class="lang-csharp hljs">protected IpcClientService(IpcAppConnectionString connectionString)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -635,7 +635,7 @@ to the logical name specified by <code class="paramref">name</code>.</p>
 
   <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_GetAccessToken" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.GetAccessToken">
   GetAccessToken()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.HubSend.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取持有者令牌身份验证</p>
@@ -644,7 +644,7 @@ to the logical name specified by <code class="paramref">name</code>.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual string GetAccessToken()</code></pre>
+    <pre><code class="lang-csharp hljs">protected abstract string GetAccessToken()</code></pre>
   </div>
 
 
