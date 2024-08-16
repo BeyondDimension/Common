@@ -173,7 +173,10 @@ public static class ClientPlatformExtensions
     const ClientPlatform Platform_Windows =
         ClientPlatform.Win32X86 |
         ClientPlatform.Win32X64 |
-        ClientPlatform.Win32Arm64 |
+        ClientPlatform.Win32Arm64;
+
+    const ClientPlatform Platform_WindowsStore =
+        Platform_Windows |
         ClientPlatform.Win32StoreX86 |
         ClientPlatform.Win32StoreX64 |
         ClientPlatform.Win32StoreArm64;
@@ -228,7 +231,10 @@ public static class ClientPlatformExtensions
         ClientPlatform.AndroidPhoneX86 |
         ClientPlatform.AndroidPadX86 |
         ClientPlatform.AndroidTVX86 |
-        ClientPlatform.UWPX86 |
+        ClientPlatform.UWPX86;
+
+    const ClientPlatform ArchitectureStoreFlags_X86 =
+        ArchitectureFlags_X86 |
         ClientPlatform.Win32StoreX86;
 
     // 32 位 ARM 处理器体系结构
@@ -249,6 +255,10 @@ public static class ClientPlatformExtensions
         ClientPlatform.UWPX64 |
         ClientPlatform.Win32StoreX64;
 
+    const ClientPlatform ArchitectureStoreFlags_X64 =
+        ArchitectureFlags_X64 |
+        ClientPlatform.Win32StoreX64;
+
     // 64 位 ARM 处理器体系结构
     const ClientPlatform ArchitectureFlags_Arm64 =
         ClientPlatform.Win32Arm64 |
@@ -261,7 +271,10 @@ public static class ClientPlatformExtensions
         ClientPlatform.tvOSArm64 |
         ClientPlatform.AndroidPadArm64 |
         ClientPlatform.AndroidWearArm64 |
-        ClientPlatform.AndroidTVArm64 |
+        ClientPlatform.AndroidTVArm64;
+
+    const ClientPlatform ArchitectureStoreFlags_Arm64 =
+        ArchitectureFlags_Arm64 |
         ClientPlatform.UWPArm64 |
         ClientPlatform.Win32StoreArm64;
 
@@ -299,9 +312,6 @@ public static class ClientPlatformExtensions
         ClientPlatform.Win32X86 |
         ClientPlatform.Win32X64 |
         ClientPlatform.Win32Arm64 |
-        ClientPlatform.Win32StoreX86 |
-        ClientPlatform.Win32StoreX64 |
-        ClientPlatform.Win32StoreArm64 |
         ClientPlatform.UWPX86 |
         ClientPlatform.UWPX64 |
         ClientPlatform.UWPArm64 |
@@ -310,6 +320,10 @@ public static class ClientPlatformExtensions
         ClientPlatform.LinuxX64 |
         ClientPlatform.LinuxArm64 |
         ClientPlatform.LinuxArm;
+
+    const ClientPlatform DeviceIdiom_DesktopStore =
+        DeviceIdiom_Desktop |
+        Platform_WindowsStore;
 
     // 电视
     const ClientPlatform DeviceIdiom_TV =
@@ -367,31 +381,31 @@ public static class ClientPlatformExtensions
         return result != default ? result : DeviceIdiom.Unknown;
     }
 
-    public static ClientPlatform ToClientPlatform(this ArchitectureFlags source)
+    public static ClientPlatform ToClientPlatform(this ArchitectureFlags source, bool isStore = true)
     {
         ClientPlatform result = default;
         foreach (var item in Enum2.FlagsSplit(source))
         {
             result |= item switch
             {
-                ArchitectureFlags.Arm64 => ArchitectureFlags_Arm64,
-                ArchitectureFlags.X86 => ArchitectureFlags_X86,
+                ArchitectureFlags.Arm64 => isStore ? ArchitectureStoreFlags_Arm64 : ArchitectureFlags_Arm64,
+                ArchitectureFlags.X86 => isStore ? ArchitectureStoreFlags_X86 : ArchitectureFlags_X86,
                 ArchitectureFlags.Arm => ArchitectureFlags_Arm,
-                ArchitectureFlags.X64 => ArchitectureFlags_X64,
+                ArchitectureFlags.X64 => isStore ? ArchitectureStoreFlags_X64 : ArchitectureFlags_X64,
                 _ => default,
             };
         }
         return result;
     }
 
-    public static ClientPlatform ToClientPlatform(this Platform source)
+    public static ClientPlatform ToClientPlatform(this Platform source, bool isStore = true)
     {
         ClientPlatform result = default;
         foreach (var item in Enum2.FlagsSplit(source))
         {
             result |= item switch
             {
-                Platform.Windows => Platform_Windows,
+                Platform.Windows => isStore ? Platform_WindowsStore : Platform_Windows,
                 Platform.Linux => Platform_Linux,
                 Platform.Android => Platform_Android,
                 Platform.Apple => Platform_Apple,
@@ -402,7 +416,7 @@ public static class ClientPlatformExtensions
         return result;
     }
 
-    public static ClientPlatform ToClientPlatform(this DeviceIdiom source)
+    public static ClientPlatform ToClientPlatform(this DeviceIdiom source, bool isStore = true)
     {
         ClientPlatform result = default;
         foreach (var item in Enum2.FlagsSplit(source))
@@ -412,7 +426,7 @@ public static class ClientPlatformExtensions
                 DeviceIdiom.TV => DeviceIdiom_TV,
                 DeviceIdiom.Phone => DeviceIdiom_Phone,
                 DeviceIdiom.Tablet => DeviceIdiom_Tablet,
-                DeviceIdiom.Desktop => DeviceIdiom_Desktop,
+                DeviceIdiom.Desktop => isStore ? DeviceIdiom_DesktopStore : DeviceIdiom_Desktop,
                 DeviceIdiom.Watch => DeviceIdiom_Watch,
                 _ => default
             };
