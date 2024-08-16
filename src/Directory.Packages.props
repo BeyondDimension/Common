@@ -257,7 +257,7 @@
 	</ItemGroup>
 	<!-- 👇 NLog（日志） -->
 	<ItemGroup>
-		<PackageVersion Include="NLog" Version="5.3.2">
+		<PackageVersion Include="NLog" Version="5.3.3">
 		</PackageVersion>
 		<PackageVersion Include="NLog.Extensions.Logging" Version="5.3.11">
 		</PackageVersion>
