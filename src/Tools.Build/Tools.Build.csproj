@@ -9,6 +9,29 @@
 		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" />
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="Exists('..\..\..\IAppSecretCommand.cs')">
+			<ItemGroup>
+				<Compile Remove="IAppSecretCommand.cs" />
+				<Compile Include="..\..\..\IAppSecretCommand.cs">
+					<LinkBase>Commands</LinkBase>
+				</Compile>
+			</ItemGroup>
+		</When>
+		<When Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\..\..\..\IAppSecretCommand.cs')">
+			<ItemGroup>
+				<Compile Remove="IAppSecretCommand.cs" />
+				<Compile Include="$(MSBuildThisFileDirectory)..\..\..\..\..\IAppSecretCommand.cs">
+					<LinkBase>Commands</LinkBase>
+				</Compile>
+			</ItemGroup>
+		</When>
+	</Choose>
+
 	<Import Project="..\Sdk\Tools\Tools.Build.props"/>
 
 </Project>

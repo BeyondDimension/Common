@@ -46,11 +46,21 @@
 			<LinkBase>_SourceReference\Helpers</LinkBase>
 		</Compile>
 	</ItemGroup>
-	
-	<ItemGroup Condition="Exists('..\..\..\Constants.Sms.cs')">
-		<Compile Remove="Constants.Sms.cs" />
-		<Compile Include="..\..\..\Constants.Sms.cs" />
-	</ItemGroup>
+
+	<Choose>
+		<When Condition="Exists('..\..\..\Constants.Sms.cs')">
+			<ItemGroup>
+				<Compile Remove="Constants.Sms.cs" />
+				<Compile Include="..\..\..\Constants.Sms.cs" />
+			</ItemGroup>
+		</When>
+		<When Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\..\..\..\Constants.Sms.cs')">
+			<ItemGroup>
+				<Compile Remove="Constants.Sms.cs" />
+				<Compile Include="$(MSBuildThisFileDirectory)..\..\..\..\..\Constants.Sms.cs" />
+			</ItemGroup>
+		</When>
+	</Choose>
 
 	<ItemGroup>
 		<PackageReference Include="MonoMac.NetStandard" />
