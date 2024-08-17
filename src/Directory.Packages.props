@@ -115,7 +115,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="8.1.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.7.0">
+		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.8.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.1.0">
 		</PackageVersion>
@@ -459,9 +459,9 @@
 	</ItemGroup>
 	<!-- 👇 Microsoft.Extensions.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.7">
+		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.8">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.7">
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.8">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0">
 		</PackageVersion>
@@ -471,7 +471,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.7">
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.8">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0">
 		</PackageVersion>
@@ -492,15 +492,15 @@
 	</ItemGroup>
 	<!-- 👇 Microsoft.AspNetCore.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7">
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.7">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.8">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7">
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.7">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.8">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.7">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.8">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 ASP.NET Core OpenId/OAuth -->
@@ -691,7 +691,7 @@
 	</ItemGroup>
 	<!-- 👇 Maui -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Maui.Essentials" Version="8.0.71">
+		<PackageVersion Include="Microsoft.Maui.Essentials" Version="8.0.80">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Humanizer（格式化和呈现数据） -->
