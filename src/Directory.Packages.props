@@ -291,7 +291,7 @@
 		</PackageVersion>
 		<PackageVersion Include="NUnit" Version="4.1.0">
 		</PackageVersion>
-		<PackageVersion Include="NUnit.Analyzers" Version="4.2.0">
+		<PackageVersion Include="NUnit.Analyzers" Version="4.3.0">
 		</PackageVersion>
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.6.0">
 		</PackageVersion>
