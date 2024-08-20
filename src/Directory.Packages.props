@@ -318,7 +318,7 @@
 		<!-- 👇 Html Parser（Html 解析） -->
 		<PackageVersion Include="AngleSharp" Version="1.1.2">
 		</PackageVersion>
-		<PackageVersion Include="HtmlAgilityPack" Version="1.11.63">
+		<PackageVersion Include="HtmlAgilityPack" Version="1.11.64">
 		</PackageVersion>
 		<!-- 👇 WebView2 -->
 		<PackageVersion Include="WebView2.NativeAssets.Win32" Version="1.0.1518.46">
