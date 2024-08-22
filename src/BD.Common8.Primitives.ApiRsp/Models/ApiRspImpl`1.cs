@@ -27,6 +27,8 @@ public sealed partial class ApiRspImpl<TContent> : ApiRspBase, IApiRsp<TContent?
 #endif
     public TContent? Content { get; set; }
 
+    protected override object? GetContent() => Content;
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator ApiRspImpl<TContent?>(TContent content) => ApiRspHelper.Ok(content);
 
