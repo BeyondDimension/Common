@@ -54,10 +54,23 @@ partial interface IBuildCommand : ICommand
         // FodyWeavers.xsd 文件会导致编译错误
         // MSBUILD : error : Fody: Failed to update schema for (src\BD.Common8.Essentials.Implementation.Avalonia\FodyWeavers.xml).
         // Exception message: The process cannot access the file 'src\BD.Common8.Essentials.Implementation.Avalonia\FodyWeavers.xsd' because it is being used by another process.
-        var xsdFilePath = Path.Combine(projPath, "FodyWeavers.xsd");
-        if (File.Exists(xsdFilePath))
+
+        var xsdFodyWeaversFilePath = Path.Combine(projPath, "FodyWeavers.xsd");
+        DeleteFileBySHA384(xsdFodyWeaversFilePath, "02CC67A4F405BF33DCEE0ABFB814B4AD0E2021CE39A4E03A617942FAC65438A6E3AFDA2EDE7E3F3EFA4C12DE59A0391A");
+
+        var xmlFodyWeaversFilePath = Path.Combine(projPath, "FodyWeavers.xml");
+        DeleteFileBySHA384(xmlFodyWeaversFilePath, "F0C3A3B59C6D423BB4CE71A7D4611825AB37D4780A872B9E996CB328084F25D6F8FFA8E0F9FF320BD6B804D3DA22921B");
+
+        static void DeleteFileBySHA384(string filePath, string sha384)
         {
-            File.Delete(xsdFilePath);
+            if (File.Exists(filePath))
+            {
+                var hashVal = Hashs.String.SHA384(File.ReadAllBytes(filePath), isLower: false);
+                if (hashVal == sha384)
+                {
+                    File.Delete(filePath);
+                }
+            }
         }
     }
 
@@ -74,7 +87,7 @@ partial interface IBuildCommand : ICommand
             var projectNames = GetProjectNames();
 
             using CancellationTokenSource cts = new();
-            cts.CancelAfter(TimeSpan.FromMinutes(11.5D * projectNames.Length)); // 设置超时时间
+            cts.CancelAfter(TimeSpan.FromMinutes(24.9D * projectNames.Length)); // 设置超时时间
 
             var pkgPath = Path.Combine(repoPath, "pkg");
             IOPath.DirTryDelete(pkgPath, true);
