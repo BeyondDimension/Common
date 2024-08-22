@@ -334,7 +334,7 @@
 		</PackageVersion>
 		<PackageVersion Include="AntDesign.Charts" Version="0.5.5">
 		</PackageVersion>
-		<PackageVersion Include="AntDesign.ProLayout" Version="0.20.1">
+		<PackageVersion Include="AntDesign.ProLayout" Version="0.20.2">
 		</PackageVersion>
 		<!-- 👇 反向代理 -->
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0">
