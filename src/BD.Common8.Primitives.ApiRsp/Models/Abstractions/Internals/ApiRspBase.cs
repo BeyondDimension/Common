@@ -3,7 +3,7 @@ namespace BD.Common8.Models.Abstractions.Internals;
 /// <summary>
 /// <see cref="IApiRsp"/> 的默认实现基类
 /// </summary>
-[DebuggerDisplay("Code={Code}, Message={Message}, Content={GetContent()}, Url={Url}")]
+[DebuggerDisplay("{Code}, M={Message}, C={GetContent()}, U={Url}, D={IsDisplayed}, E={ClientException}")]
 public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 {
     ApiRspCode mCode;
