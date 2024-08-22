@@ -23,7 +23,7 @@
 	<ItemGroup>
 		<!-- 👇 包引用 -->
 		<PackageReference Include="ReactiveUI" />
-		<PackageReference Include="ReactiveUI.Fody" />
+		<PackageReference Include="ReactiveUI.Fody" PrivateAssets="All" />
 		<PackageReference Include="Microsoft.Extensions.Primitives" />
 		<PackageReference Include="Microsoft.Extensions.Options" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />

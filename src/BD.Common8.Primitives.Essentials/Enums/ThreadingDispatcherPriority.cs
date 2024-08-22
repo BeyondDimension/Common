@@ -66,6 +66,7 @@ public enum ThreadingDispatcherPriority : sbyte
     /// <summary>
     ///     同时处理此优先级的操作优先级作为数据绑定
     /// </summary>
+    [Obsolete("WPF compatibility")]
     DataBind,
 
     /// <summary>

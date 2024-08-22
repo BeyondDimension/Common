@@ -131,10 +131,16 @@ partial interface IBuildCommand : ICommand
                 var projPath = Path.Combine(repoPath, "src", projectName);
                 Clean(projPath);
 
+                int maxcpucount = projectName switch // https://learn.microsoft.com/zh-cn/visualstudio/msbuild/building-multiple-projects-in-parallel-with-msbuild#-maxcpucount-switch
+                {
+                    "BD.Common8.Essentials.Implementation.Avalonia" => -1,
+                    _ => 0,
+                };
+
                 ProcessStartInfo psi = new()
                 {
                     FileName = "dotnet",
-                    Arguments = $"build -c {config} {projectName}.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")} /nowarn:MSB4011,NU5048,NU5104,NU1506 -maxcpucount",
+                    Arguments = $"build -c {config} {projectName}.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none{(test ? " -p:GeneratePackageOnBuild=false" : "")} /nowarn:MSB4011,NU5048,NU5104,NU1506{(maxcpucount == 0 ? " -maxcpucount" : (maxcpucount > 0 && maxcpucount <= Math.Max(Environment.ProcessorCount, 2) ? $"-maxcpucount:{maxcpucount}" : ""))}",
                     WorkingDirectory = projPath,
                 };
                 var process = Process.Start(psi);
@@ -183,7 +189,7 @@ partial interface IBuildCommand : ICommand
                     }
                     else
                     {
-                        var err = $"构建失败({config})：{projectName}, exitCode:{exitCode}";
+                        var err = $"构建失败({config})：{projectName}, exitCode: {exitCode}，args:{psi.FileName} {psi.Arguments}";
                         Console.WriteLine(err);
                         errors.Add(err);
                     }

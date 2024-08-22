@@ -27,6 +27,6 @@
 	<ItemGroup>
 		<!-- 👇 包引用 -->
 		<PackageReference Include="ReactiveUI" />
-		<PackageReference Include="ReactiveUI.Fody" />
+		<!--<PackageReference Include="ReactiveUI.Fody" PrivateAssets="All" />-->
 	</ItemGroup>
 </Project>
