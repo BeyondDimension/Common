@@ -65,7 +65,7 @@ partial class Hashs
         /// 计算字节数组的 MD5 哈希值并返回哈希结果
         /// </summary>
         /// <param name="buffer">要计算哈希值的字节数组</param>
-        /// <returns>计算得到的 MD5 哈希值</returns>
+        /// <returns>计算得到的哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] MD5(byte[] buffer) => Cryptography.MD5.HashData(buffer);
 
@@ -73,7 +73,7 @@ partial class Hashs
         /// 计算只读字节数组的 MD5 哈希值并返回哈希结果
         /// </summary>
         /// <param name="buffer">要计算哈希值的只读字节数组</param>
-        /// <returns>计算得到的 MD5 哈希值</returns>
+        /// <returns>计算得到的哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] MD5(ReadOnlySpan<byte> buffer) => Cryptography.MD5.HashData(buffer);
 
@@ -81,7 +81,7 @@ partial class Hashs
         /// 计算流的 MD5 哈希值并返回哈希结果
         /// </summary>
         /// <param name="inputStream">要计算哈希值的流</param>
-        /// <returns>计算得到的 MD5 哈希值</returns>
+        /// <returns>计算得到的哈希值</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] MD5(Stream inputStream) => Cryptography.MD5.HashData(inputStream);
 
@@ -90,7 +90,7 @@ partial class Hashs
         /// </summary>
         /// <param name="inputStream">要异步计算哈希值的流</param>
         /// <param name="cancellationToken">取消操作的令牌</param>
-        /// <returns>计算得到的 MD5 哈希值的异步任务</returns>
+        /// <returns>计算得到的哈希值的异步任务</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask<byte[]> MD5Async(Stream inputStream, CancellationToken cancellationToken = default) => Cryptography.MD5.HashDataAsync(inputStream, cancellationToken);
     }

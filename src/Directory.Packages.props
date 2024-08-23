@@ -438,6 +438,8 @@
 		</PackageVersion>
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0">
 		</PackageVersion>
+		<PackageVersion Include="System.IO.Hashing" Version="8.0.0">
+		</PackageVersion>
 		<PackageVersion Include="System.Linq.Async" Version="6.0.1">
 		</PackageVersion>
 		<PackageVersion Include="System.Management" Version="8.0.0">

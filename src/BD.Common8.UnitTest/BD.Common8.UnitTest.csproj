@@ -66,6 +66,8 @@
 		<PackageReference Include="MonoMac.NetStandard" />
 		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
 		<PackageReference Include="Google.Protobuf" />
+		<PackageReference Include="System.IO.Hashing" />
+		<PackageReference Include="Crc32.NET" />
 	</ItemGroup>
 
 	<ItemGroup>

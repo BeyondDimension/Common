@@ -25,7 +25,6 @@
 		<PackageReference Include="System.Net.Http.Json" />
 		<PackageReference Include="Polly" />
 		<PackageReference Include="Nito.Comparers" />
-		<PackageReference Include="Crc32.NET" />
 		<PackageReference Include="Newtonsoft.Json" />
 		<PackageReference Include="DotNext" />
 		<PackageReference Include="DotNext.Threading" />

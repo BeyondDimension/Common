@@ -175,5 +175,6 @@ public static partial class Hashs
 
     public static partial class ByteArray
     {
+        public static partial class Lengths { }
     }
 }
