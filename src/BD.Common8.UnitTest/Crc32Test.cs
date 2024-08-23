@@ -14,7 +14,7 @@ public sealed class Crc32Test
 
         var str_l = Hashs.ComputeHashString(text, new Crc32Algorithm(), isLower);
 
-        var bytes_r = Crc64.Hash(Encoding.UTF8.GetBytes(text));
+        var bytes_r = Crc32.Hash(Encoding.UTF8.GetBytes(text));
         bytes_r.AsSpan().Reverse();
         var str_r = bytes_r.ToHexString(isLower);
 
