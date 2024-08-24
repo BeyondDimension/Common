@@ -289,7 +289,7 @@
 	<ItemGroup>
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.0">
 		</PackageVersion>
-		<PackageVersion Include="NUnit" Version="4.1.0">
+		<PackageVersion Include="NUnit" Version="4.2.1">
 		</PackageVersion>
 		<PackageVersion Include="NUnit.Analyzers" Version="4.3.0">
 		</PackageVersion>
