@@ -165,7 +165,7 @@ Class Hashs.ByteArray  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>计算得到的 MD5 哈希值</p>
+    <dd><p>计算得到的哈希值</p>
 </dd>
   </dl>
 
@@ -204,7 +204,7 @@ Class Hashs.ByteArray  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>计算得到的 MD5 哈希值</p>
+    <dd><p>计算得到的哈希值</p>
 </dd>
   </dl>
 
@@ -257,6 +257,123 @@ Class Hashs.ByteArray  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <a id="System_Security_Cryptography_Hashs_ByteArray_Crc64_" data-uid="System.Security.Cryptography.Hashs.ByteArray.Crc64*"></a>
+
+  <h3 id="System_Security_Cryptography_Hashs_ByteArray_Crc64_System_Byte___" data-uid="System.Security.Cryptography.Hashs.ByteArray.Crc64(System.Byte[])">
+  Crc64(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Security/Cryptography/Hashs_Crc64.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算字节数组的 Crc64 哈希值并返回哈希结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Crc64(byte[] buffer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要计算哈希值的字节数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>计算得到的哈希值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_Hashs_ByteArray_Crc64_" data-uid="System.Security.Cryptography.Hashs.ByteArray.Crc64*"></a>
+
+  <h3 id="System_Security_Cryptography_Hashs_ByteArray_Crc64_System_IO_Stream_" data-uid="System.Security.Cryptography.Hashs.ByteArray.Crc64(System.IO.Stream)">
+  Crc64(Stream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Security/Cryptography/Hashs_Crc64.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算流的 Crc64 哈希值并返回哈希结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Crc64(Stream inputStream)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>inputStream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd><p>要计算哈希值的流</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>计算得到的哈希值</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Security_Cryptography_Hashs_ByteArray_Crc64_" data-uid="System.Security.Cryptography.Hashs.ByteArray.Crc64*"></a>
+
+  <h3 id="System_Security_Cryptography_Hashs_ByteArray_Crc64_System_ReadOnlySpan_System_Byte__" data-uid="System.Security.Cryptography.Hashs.ByteArray.Crc64(System.ReadOnlySpan{System.Byte})">
+  Crc64(ReadOnlySpan&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Security/Cryptography/Hashs_Crc64.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算只读字节数组的 Crc64 哈希值并返回哈希结果</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] Crc64(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>buffer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>要计算哈希值的字节数组的只读跨度</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>计算得到的哈希结果的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="System_Security_Cryptography_Hashs_ByteArray_MD5_" data-uid="System.Security.Cryptography.Hashs.ByteArray.MD5*"></a>
 
   <h3 id="System_Security_Cryptography_Hashs_ByteArray_MD5_System_Byte___" data-uid="System.Security.Cryptography.Hashs.ByteArray.MD5(System.Byte[])">
@@ -282,7 +399,7 @@ Class Hashs.ByteArray  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>计算得到的 MD5 哈希值</p>
+    <dd><p>计算得到的哈希值</p>
 </dd>
   </dl>
 
@@ -321,7 +438,7 @@ Class Hashs.ByteArray  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>计算得到的 MD5 哈希值</p>
+    <dd><p>计算得到的哈希值</p>
 </dd>
   </dl>
 
@@ -360,7 +477,7 @@ Class Hashs.ByteArray  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>计算得到的 MD5 哈希值</p>
+    <dd><p>计算得到的哈希值</p>
 </dd>
   </dl>
 
@@ -402,7 +519,7 @@ Class Hashs.ByteArray  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</dt>
-    <dd><p>计算得到的 MD5 哈希值的异步任务</p>
+    <dd><p>计算得到的哈希值的异步任务</p>
 </dd>
   </dl>
 

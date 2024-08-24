@@ -3566,6 +3566,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.Bcl/System.Security.Cryptography.Hashs.ByteArray.Lengths.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.Bcl/System.Security.Cryptography.Hashs.ByteArray.Lengths.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Security.Cryptography.Hashs.ByteArray.yml",
       "output": {
         ".html": {
