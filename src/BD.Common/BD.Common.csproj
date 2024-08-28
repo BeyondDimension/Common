@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BD.Common.XmlnsDefinition.Avalonia" />
+		<PackageReference Include="Avalonia" PrivateAssets="All" />
 		<PackageReference Include="Nito.Comparers" />
 		<PackageReference Include="gfoidl.Base64" />
 		<PackageReference Include="Crc32.NET" />
