@@ -5,9 +5,9 @@
 		<PackageTags>BeyondDimension Common CommonEssentialsMaui EssentialsMaui Essentials</PackageTags>
 		<Description>$(Product)</Description>
 		<DefineConstants>__NOT_IMPORT_COLUMNS__;MAUI;MAUI_RUNTIME;$(DefineConstants)</DefineConstants>
-		<!--<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-macos;net7.0-maccatalyst</TargetFrameworks>-->
-		<TargetFrameworks>net7.0-macos;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows$(WinSDK_Version)</TargetFrameworks>
+		<!--<TargetFrameworks>net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>-->
+		<TargetFrameworks>net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<UseMaui>false</UseMaui>
 		<UseMauiEssentials>false</UseMauiEssentials>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>

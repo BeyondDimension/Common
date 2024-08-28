@@ -17,7 +17,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="Exists('..\..\..\..\.gitmodules')">
-		<!--<TargetFramework>net7.0</TargetFramework>-->
 		<DefineConstants>REF_SUB_MODULE;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
