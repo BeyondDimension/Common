@@ -619,7 +619,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.11">
 		</PackageVersion>
-		<PackageVersion Include="Xamarin.Google.Android.Material" Version="1.11.0.1">
+		<PackageVersion Include="Xamarin.Google.Android.Material" Version="1.11.0.2">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Clipboard（剪贴板） -->
