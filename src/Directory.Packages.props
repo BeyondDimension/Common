@@ -337,7 +337,7 @@
 		<PackageVersion Include="AntDesign.ProLayout" Version="0.20.2.1">
 		</PackageVersion>
 		<!-- 👇 反向代理 -->
-		<PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0">
+		<PackageVersion Include="Yarp.ReverseProxy" Version="2.2.0">
 		</PackageVersion>
 		<!-- 👇 HTTPS 证书颁发 -->
 		<PackageVersion Include="Certes" Version="3.0.4">
