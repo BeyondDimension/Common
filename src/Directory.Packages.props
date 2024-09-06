@@ -287,7 +287,7 @@
 	</ItemGroup>
 	<!-- 👇 UnitTest（单元测试） -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.0">
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.1">
 		</PackageVersion>
 		<PackageVersion Include="NUnit" Version="4.2.2">
 		</PackageVersion>
