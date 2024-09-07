@@ -1,9 +1,9 @@
 namespace BD.Common8.AspNetCore.Models;
 
 /// <summary>
-/// 后台系统的 AppSettings 配置
+/// appsettings.json | appsettings.Development.json 文件的设置项的抽象基类
 /// </summary>
-public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders
+public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders, IViewsUrl
 {
     /// <inheritdoc/>
     public bool NotUseForwardedHeaders { get; set; }
@@ -36,7 +36,7 @@ public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders
     /// <summary>
     /// 配置允许跨域访问的 Web UI 地址
     /// </summary>
-    public virtual string ViewsUrl { get; set; } = "";
+    public virtual string? ViewsUrl { get; set; }
 
     /// <summary>
     /// 初始化后台系统的哈希盐值
@@ -49,18 +49,19 @@ public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders
     /// <returns></returns>
     public abstract string GetInitSystemSecuritySalt();
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [NewtonsoftJsonIgnore]
     [SystemTextJsonIgnore]
     public SigningCredentials? SigningCredentials { get; set; }
 
+    /// <inheritdoc/>
     public virtual TimeSpan AccessExpiration { get; set; } = TimeSpan.FromDays(31);
 
+    /// <inheritdoc/>
     public virtual TimeSpan RefreshExpiration { get; set; } = TimeSpan.FromDays(62);
 
-    /// <summary>
-    /// 是否使用跨域访问，调用了 AddCors
-    /// </summary>
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [NewtonsoftJsonIgnore]
     [SystemTextJsonIgnore]

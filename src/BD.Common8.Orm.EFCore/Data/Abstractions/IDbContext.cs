@@ -1,7 +1,10 @@
 namespace BD.Common8.Orm.EFCore.Data.Abstractions;
 
 /// <summary>
-/// 用于在数据库操作过程中跟踪和记录对象的最后更新时间
+/// 数据库上下文接口
+/// <list type="bullet">
+/// <item>用于在数据库操作过程中跟踪和记录对象的最后更新时间</item>
+/// </list>
 /// </summary>
 public interface IDbContext
 {

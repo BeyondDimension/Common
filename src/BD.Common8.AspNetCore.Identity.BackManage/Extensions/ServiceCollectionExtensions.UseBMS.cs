@@ -21,6 +21,7 @@ public static partial class ServiceCollectionExtensions
     /// </summary>
     /// <typeparam name="TBMAppSettings"></typeparam>
     /// <param name="app"></param>
+    /// <param name="isDevelopment"></param>
     /// <param name="appSettings"></param>
     /// <param name="useRouteRoot">是否注册根路由使用一些默认行为，开启 ApiDoc 时将跳转 /swagger/index.html，否则显示 WelcomePage</param>
     /// <param name="useDeveloperExceptionPage">是否使用开发人员异常页 https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/error-handling?view=aspnetcore-8.0#developer-exception-page</param>
@@ -28,6 +29,7 @@ public static partial class ServiceCollectionExtensions
     /// <param name="useExceptionHandler"></param>
     public static unsafe void UseBMS<TBMAppSettings>(
         this WebApplication app,
+        bool isDevelopment,
         TBMAppSettings appSettings,
         bool useRouteRoot = true,
         bool useDeveloperExceptionPage = false,
@@ -35,8 +37,7 @@ public static partial class ServiceCollectionExtensions
         bool useExceptionHandler = true)
         where TBMAppSettings : BMAppSettings
     {
-        var isDevelopment = app.Environment.IsDevelopment();
-
+        // 01. 启用异常处理
         if (useExceptionHandler)
         {
             if (useDeveloperExceptionPage)
@@ -52,13 +53,16 @@ public static partial class ServiceCollectionExtensions
             }
         }
 
+        // 02. 启用响应内容压缩 gzip/br/zstd
         if (!isDevelopment)
         {
             app.UseResponseCompression();
         }
 
+        // 03. 启用修复反向代理导致请求方 IP 地址不正确的问题
         app.UseForwardedHeaders(appSettings);
 
+        // 04. 启用 API 文档
         if (!appSettings.DisabledApiDoc)
         {
             if (useSwagger != default)
@@ -67,7 +71,7 @@ public static partial class ServiceCollectionExtensions
             }
             if (useRouteRoot)
             {
-                app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
+                app.MapGet("/", static () => Results.Redirect("/swagger/index.html"));
             }
         }
         else
@@ -78,13 +82,19 @@ public static partial class ServiceCollectionExtensions
             }
         }
 
+        // 05. 启用跨域
         if (appSettings.UseCors)
         {
             app.UseCors();
         }
 
-        app.UseAuthentication(); // 鉴权，检测有没有登录，登录的是谁，赋值给 User
-        app.UseAuthorization(); // 授权，检测权限
+        // 06. 鉴权，检测有没有登录，登录的是谁，赋值给 User
+        app.UseAuthentication();
+
+        // 07. 授权，检测权限
+        app.UseAuthorization();
+
+        // 08. 启用控制器
         app.MapControllers();
     }
 }

@@ -1,7 +1,7 @@
 namespace BD.Common8.AspNetCore.Models.Abstractions;
 
 /// <summary>
-/// 用于 AppSettings 中配置是否使用 Nginx 反向代理
+/// 用于 appsettings.json | appsettings.Development.json 文件的设置项中配置是否使用 Nginx 反向代理
 /// </summary>
 public partial interface INotUseForwardedHeaders
 {

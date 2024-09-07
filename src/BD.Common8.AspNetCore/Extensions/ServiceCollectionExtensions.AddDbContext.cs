@@ -7,7 +7,6 @@ public static partial class AddDbContext_ServiceCollectionExtensions
 {
     public const string DefaultValue_databaseProvider = SqlConstants.PostgreSQL;
     public const string DefaultValue_connectionStringKeyName = "DefaultConnection";
-    public const bool DefaultValue_addDbContext = true;
 
     /// <summary>
     /// 添加 DbContext 到应用程序
@@ -16,22 +15,20 @@ public static partial class AddDbContext_ServiceCollectionExtensions
     /// <param name="builder">WebApplicationBuilder 实例</param>
     /// <param name="o">配置 DbContextOptionsBuilder 的可选操作</param>
     /// <param name="databaseProvider">数据库提供程序名称</param>
-    /// <param name="connectionStringKeyName">连接字符串键的名称</param>
-    /// <param name="addDbContext"></param>
+    /// <param name="connectionStringKeyName">连接字符串键的名称，为 <see langword="null"/> 时不调用 GetConnectionString 与 AddDbContext</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddDbContext<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(
         this WebApplicationBuilder builder,
         Action<DbContextOptionsBuilder>? o = null,
         string databaseProvider = DefaultValue_databaseProvider,
-        string connectionStringKeyName = DefaultValue_connectionStringKeyName,
-        bool addDbContext = DefaultValue_addDbContext)
+        string? connectionStringKeyName = DefaultValue_connectionStringKeyName)
         where TContext : DbContext
     {
         SqlConstants.DatabaseProvider = databaseProvider;
         var isPostgreSQL = SqlConstants.DatabaseProvider == SqlConstants.PostgreSQL;
         if (isPostgreSQL)
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-        if (addDbContext)
+        if (connectionStringKeyName != null)
         {
             var connectionString = builder.Configuration.GetConnectionString(connectionStringKeyName);
             connectionString.ThrowIsNull();
@@ -63,18 +60,16 @@ public static partial class AddDbContext_ServiceCollectionExtensions
     /// <param name="builder">WebApplicationBuilder 实例</param>
     /// <param name="o">配置 DbContextOptionsBuilder 的可选操作</param>
     /// <param name="databaseProvider">数据库提供程序名称</param>
-    /// <param name="connectionStringKeyName">连接字符串键的名称</param>
-    /// <param name="addDbContext"></param>
+    /// <param name="connectionStringKeyName">连接字符串键的名称，为 <see langword="null"/> 时不调用 GetConnectionString 与 AddDbContext</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddDbContext<TService, [DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TContext>(this WebApplicationBuilder builder,
         Action<DbContextOptionsBuilder>? o = null,
         string databaseProvider = DefaultValue_databaseProvider,
-        string connectionStringKeyName = DefaultValue_connectionStringKeyName,
-        bool addDbContext = DefaultValue_addDbContext)
+        string? connectionStringKeyName = DefaultValue_connectionStringKeyName)
         where TContext : DbContext, TService
         where TService : class
     {
-        builder.AddDbContext<TContext>(o, databaseProvider, connectionStringKeyName, addDbContext);
+        builder.AddDbContext<TContext>(o, databaseProvider, connectionStringKeyName);
         builder.Services.AddScoped<TService>(s => s.GetRequiredService<TContext>());
     }
 }

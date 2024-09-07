@@ -1,7 +1,7 @@
 namespace BD.Common8.AspNetCore.Models.Abstractions;
 
 /// <summary>
-/// 提供 JWT 配置项的接口
+/// appsettings.json | appsettings.Development.json 文件的设置项中提供 JWT 配置项的接口
 /// </summary>
 public interface IJWTAppSettings
 {
