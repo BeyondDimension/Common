@@ -225,18 +225,17 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
   <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMS_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMS*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMS__2_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Byte_____0__System_Boolean_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMS``2(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Byte[],``0,,System.Boolean)">
-  AddBMS&lt;TBMAppSettings, TContext&gt;(WebApplicationBuilder, byte[], TBMAppSettings, delegate*&lt;ApplicationPartManager, void&gt;, bool)
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMS__2_Microsoft_AspNetCore_Builder_WebApplicationBuilder_System_Byte_____0__System_Action_Microsoft_EntityFrameworkCore_DbContextOptionsBuilder__System_String_System_String_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMS``2(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Byte[],``0,,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.String,System.String)">
+  AddBMS&lt;TBMAppSettings, TContext&gt;(WebApplicationBuilder, byte[], TBMAppSettings, delegate*&lt;ApplicationPartManager, void&gt;, Action&lt;DbContextOptionsBuilder&gt;?, string, string?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMS.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>添加后台管理系统</p>
-<ol><li>配置服务器安全密钥</li><li>添加 <a class="xref" href="BD.Common8.AspNetCore.Models.BMAppSettings.html">BMAppSettings</a> 的 <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions&lt;TOptions&gt;</a> 服务</li><li>配置 AutoMapper</li><li>AddDbContext</li><li>AddTenantIdentity</li><li>AddHttpContextRequestAbortedProvider</li><li>AddBMRepositories</li><li>AddBMIdentity</li><li>AddBMWebApi</li></ol>
+  <div class="markdown level1 summary"><p>添加后台管理系统配置</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AddBMS&lt;TBMAppSettings, TContext&gt;(this WebApplicationBuilder builder, byte[] privateKey, TBMAppSettings appSettings, delegate*&lt;ApplicationPartManager, void&gt; configureApplicationPartManager = default, bool addDbContext = true) where TBMAppSettings : BMAppSettings where TContext : BMDbContextBase</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AddBMS&lt;TBMAppSettings, TContext&gt;(this WebApplicationBuilder builder, byte[] privateKey, TBMAppSettings appSettings, delegate*&lt;ApplicationPartManager, void&gt; configureApplicationPartManager = default, Action&lt;DbContextOptionsBuilder&gt;? o = null, string databaseProvider = &quot;Npgsql.EntityFrameworkCore.PostgreSQL&quot;, string? connectionStringKeyName = &quot;DefaultConnection&quot;) where TBMAppSettings : BMAppSettings where TContext : BMDbContextBase</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -249,8 +248,15 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
     <dd></dd>
     <dt><code>configureApplicationPartManager</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager">ApplicationPartManager</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
     <dd></dd>
-    <dt><code>addDbContext</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
+    <dt><code>o</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder">DbContextOptionsBuilder</a>&gt;</dt>
+    <dd><p>配置 DbContextOptionsBuilder 的可选操作</p>
+</dd>
+    <dt><code>databaseProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>数据库提供程序名称</p>
+</dd>
+    <dt><code>connectionStringKeyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>连接字符串键的名称，为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 时不调用 GetConnectionString 与 AddDbContext</p>
+</dd>
   </dl>
 
 
@@ -271,37 +277,30 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
 
 
-  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMWebApi_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMWebApi*"></a>
+  <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddCorsByViewUrl_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddCorsByViewUrl*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddBMWebApi__1_Microsoft_Extensions_DependencyInjection_IServiceCollection___0__" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddBMWebApi``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,``0,)">
-  AddBMWebApi&lt;TBMAppSettings&gt;(IServiceCollection, TBMAppSettings, delegate*&lt;ApplicationPartManager, void&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddBMWebApi.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_AddCorsByViewUrl_Microsoft_Extensions_DependencyInjection_IServiceCollection_BD_Common8_AspNetCore_Models_Abstractions_IViewsUrl_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.AddCorsByViewUrl(Microsoft.Extensions.DependencyInjection.IServiceCollection,BD.Common8.AspNetCore.Models.Abstractions.IViewsUrl)">
+  AddCorsByViewUrl(IServiceCollection, IViewsUrl)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.AddCorsByViewUrl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>添加后台管理系统的 WebApi</p>
+  <div class="markdown level1 summary"><p>配置允许跨域访问的 Web UI 地址</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void AddBMWebApi&lt;TBMAppSettings&gt;(this IServiceCollection services, TBMAppSettings appSettings, delegate*&lt;ApplicationPartManager, void&gt; configureApplicationPartManager = default) where TBMAppSettings : BMAppSettings</code></pre>
+    <pre><code class="lang-csharp hljs">public static void AddCorsByViewUrl(this IServiceCollection services, IViewsUrl appSettings)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
     <dd></dd>
-    <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
-    <dd></dd>
-    <dt><code>configureApplicationPartManager</code> delegate*&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.applicationparts.applicationpartmanager">ApplicationPartManager</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>&gt;</dt>
+    <dt><code>appSettings</code> <a class="xref" href="../BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.IViewsUrl.html">IViewsUrl</a></dt>
     <dd></dd>
   </dl>
 
 
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TBMAppSettings</code></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -353,8 +352,8 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
 
   <a id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_UseBMS_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.UseBMS*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_UseBMS__1_Microsoft_AspNetCore_Builder_WebApplication___0_System_Boolean_System_Boolean__System_Boolean_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.UseBMS``1(Microsoft.AspNetCore.Builder.WebApplication,``0,System.Boolean,System.Boolean,,System.Boolean)">
-  UseBMS&lt;TBMAppSettings&gt;(WebApplication, TBMAppSettings, bool, bool, delegate*&lt;WebApplication, void&gt;, bool)
+  <h3 id="BD_Common8_AspNetCore_Extensions_ServiceCollectionExtensions_UseBMS__1_Microsoft_AspNetCore_Builder_WebApplication_System_Boolean___0_System_Boolean_System_Boolean__System_Boolean_" data-uid="BD.Common8.AspNetCore.Extensions.ServiceCollectionExtensions.UseBMS``1(Microsoft.AspNetCore.Builder.WebApplication,System.Boolean,``0,System.Boolean,System.Boolean,,System.Boolean)">
+  UseBMS&lt;TBMAppSettings&gt;(WebApplication, bool, TBMAppSettings, bool, bool, delegate*&lt;WebApplication, void&gt;, bool)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Extensions/ServiceCollectionExtensions.UseBMS.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -363,12 +362,14 @@ Class ServiceCollectionExtensions  <a class="header-action link-secondary" title
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void UseBMS&lt;TBMAppSettings&gt;(this WebApplication app, TBMAppSettings appSettings, bool useRouteRoot = true, bool useDeveloperExceptionPage = false, delegate*&lt;WebApplication, void&gt; useSwagger = default, bool useExceptionHandler = true) where TBMAppSettings : BMAppSettings</code></pre>
+    <pre><code class="lang-csharp hljs">public static void UseBMS&lt;TBMAppSettings&gt;(this WebApplication app, bool isDevelopment, TBMAppSettings appSettings, bool useRouteRoot = true, bool useDeveloperExceptionPage = false, delegate*&lt;WebApplication, void&gt; useSwagger = default, bool useExceptionHandler = true) where TBMAppSettings : BMAppSettings</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>app</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplication">WebApplication</a></dt>
+    <dd></dd>
+    <dt><code>isDevelopment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
     <dt><code>appSettings</code> <span class="xref">TBMAppSettings</span></dt>
     <dd></dd>

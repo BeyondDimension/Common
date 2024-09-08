@@ -85,12 +85,12 @@ Class BMAppSettings  <a class="header-action link-secondary" title="View source"
   <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>后台系统的 AppSettings 配置</p>
+  <div class="markdown summary"><p>appsettings.json | appsettings.Development.json 文件的设置项的抽象基类</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders, IViewsUrl</code></pre>
   </div>
 
 
@@ -109,6 +109,7 @@ Class BMAppSettings  <a class="header-action link-secondary" title="View source"
     <dd>
       <div><a class="xref" href="../BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Models.Abstractions.IJWTAppSettings.html">IJWTAppSettings</a></div>
       <div><a class="xref" href="../BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.INotUseForwardedHeaders.html">INotUseForwardedHeaders</a></div>
+      <div><a class="xref" href="../BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.IViewsUrl.html">IViewsUrl</a></div>
     </dd>
   </dl>
 
@@ -612,7 +613,7 @@ public bool UseCors { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual string ViewsUrl { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual string? ViewsUrl { get; set; }</code></pre>
   </div>
 
 

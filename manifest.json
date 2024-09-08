@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Resource",
       "source_relative_path": "README.md",
       "output": {
         "resource": {
           "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -1530,6 +1530,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.IViewsUrl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.IViewsUrl.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore/BD.Common8.AspNetCore.Models.Abstractions.yml",
       "output": {
         ".html": {
@@ -2260,16 +2270,6 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.Common8.Bcl/System.Extensions.ReflectionExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Bcl/System.Extensions.ServiceCollectionExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Bcl/System.Extensions.ServiceCollectionExtensions.html"
         }
       },
       "version": ""
