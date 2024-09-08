@@ -15,6 +15,7 @@
 #pragma warning disable SA1117 // Parameters should be on same line or separate lines
 #pragma warning disable SA1513 // Closing brace should be followed by blank line
 #pragma warning disable SA1123 // Do not place regions within elements
+#if WINDOWS
 namespace Tools.Build.Commands;
 
 /// <summary>
@@ -218,3 +219,4 @@ partial interface IAppSecretCommand : ICommand
         }
     }
 }
+#endif

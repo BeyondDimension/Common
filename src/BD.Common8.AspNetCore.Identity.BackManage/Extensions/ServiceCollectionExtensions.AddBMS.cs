@@ -55,9 +55,9 @@ public static partial class ServiceCollectionExtensions
         #region 4. 添加路由与控制器
 
         builder.Services.AddRouting();
-        builder.Services.AddControllers(options =>
+        builder.Services.AddControllers(opt =>
         {
-            options.Filters.Add<UserIsLockedOutFilterAttribute>();
+            opt.Filters.Add<UserIsLockedOutFilterAttribute>();
         }).ConfigureApplicationPartManager(apm =>
         {
             apm.ApplicationParts.Add(
