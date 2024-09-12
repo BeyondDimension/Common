@@ -400,7 +400,7 @@
 	<ItemGroup>
 		<PackageVersion Include="sqlite-net-pcl" Version="1.9.172">
 		</PackageVersion>
-		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.9">
+		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.10">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 ReactiveUI / RxUI（反应式编程 UI） -->
