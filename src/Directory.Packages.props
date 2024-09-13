@@ -145,7 +145,7 @@
 	</ItemGroup>
 	<!-- 👇 AWS SDK for .NET（亚马逊云） -->
 	<ItemGroup>
-		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.19">
+		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.20">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Azure SDK for .NET（微软云） -->
