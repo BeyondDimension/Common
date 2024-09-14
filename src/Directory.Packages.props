@@ -615,7 +615,7 @@
 	</ItemGroup>
 	<!-- 👇 Android Only 🤖 -->
 	<ItemGroup>
-		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.8.0.5">
+		<PackageVersion Include="Xamarin.AndroidX.Browser" Version="1.8.0.6">
 		</PackageVersion>
 		<PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.11">
 		</PackageVersion>
