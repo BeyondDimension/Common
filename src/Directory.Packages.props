@@ -513,7 +513,7 @@
 		</PackageVersion>
 		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="8.1.0">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="8.1.0">
+		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="8.2.0">
 		</PackageVersion>
 		<PackageVersion Include="OpenIddict.Core" Version="$(Version_OpenIddict)">
 		</PackageVersion>
