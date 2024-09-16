@@ -412,7 +412,7 @@
 		</PackageVersion>
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.41">
 		</PackageVersion>
-		<PackageVersion Include="ReactiveUI.AndroidX" Version="19.6.12">
+		<PackageVersion Include="ReactiveUI.AndroidX" Version="20.1.52">
 		</PackageVersion>
 		<PackageVersion Include="ReactiveUI.Maui" Version="$(Version_ReactiveUI)">
 		</PackageVersion>
