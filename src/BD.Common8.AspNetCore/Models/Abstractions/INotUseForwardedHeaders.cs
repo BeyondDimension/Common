@@ -29,7 +29,7 @@ public partial interface INotUseForwardedHeaders
         }
         else
         {
-            return new(knownProxies.Split(';', StringSplitOptions.RemoveEmptyEntries)
+            return new(knownProxies.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(static x => IPAddress2.TryParse(x, out var v) ? v : null!)
                 .Where(static x => x != null));
         }
