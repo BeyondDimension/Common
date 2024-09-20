@@ -160,9 +160,9 @@
 	</ItemGroup>
 	<!-- 👇 Grpc -->
 	<ItemGroup>
-		<PackageVersion Include="Grpc.AspNetCore" Version="2.65.0">
+		<PackageVersion Include="Grpc.AspNetCore" Version="2.66.0">
 		</PackageVersion>
-		<PackageVersion Include="Grpc.Net.Client" Version="2.65.0">
+		<PackageVersion Include="Grpc.Net.Client" Version="2.66.0">
 		</PackageVersion>
 		<PackageVersion Include="Grpc.Tools" Version="2.66.0">
 		</PackageVersion>
