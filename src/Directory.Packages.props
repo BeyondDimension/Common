@@ -295,7 +295,7 @@
 		</PackageVersion>
 		<PackageVersion Include="NUnit3TestAdapter" Version="4.6.0">
 		</PackageVersion>
-		<PackageVersion Include="xunit" Version="2.9.0">
+		<PackageVersion Include="xunit" Version="2.9.1">
 		</PackageVersion>
 		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2">
 		</PackageVersion>
