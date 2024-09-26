@@ -121,7 +121,9 @@ public static partial class IOPath
     /// <param name="sourceDirName"></param>
     /// <param name="destDirName"></param>
     /// <param name="timeoutMilliseconds"></param>
+#if !NETFRAMEWORK
     [SupportedOSPlatform("Windows")]
+#endif
     public static void XCopyDirectory(string sourceDirName, string destDirName, int timeoutMilliseconds = 60000)
     {
         var psi = new ProcessStartInfo
@@ -158,18 +160,22 @@ public static partial class IOPath
             }
             catch
             {
+#if !NETFRAMEWORK
 #if NET5_0_OR_GREATER
                 if (OperatingSystem.IsWindows())
 #else
                 if (OperatingSystem2.IsWindows())
 #endif
+#endif
                 {
                     XCopyDirectory(sourceDirName, destDirName);
                 }
+#if !NETFRAMEWORK
                 else
                 {
                     throw;
                 }
+#endif
             }
             try
             {
@@ -255,7 +261,11 @@ public static partial class IOPath
                             string targetFilePath = Path.Combine(destinationDir, file.Name);
                             destStream = new FileStream(targetFilePath, FileMode.OpenOrCreate, FileAccess.Write, FileShareReadWriteDelete);
 
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
                             await sourceStream.CopyToAsync(destStream, cancellationToken);
+#else
+                            await sourceStream.CopyToAsync(destStream);
+#endif
                             await destStream.FlushAsync(cancellationToken);
                             destStream.SetLength(destStream.Position);
                         }

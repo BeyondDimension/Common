@@ -1,3 +1,5 @@
+using Expression = System.Linq.Expressions.Expression;
+
 namespace System;
 
 /// <inheritdoc cref="System.Convert"/>

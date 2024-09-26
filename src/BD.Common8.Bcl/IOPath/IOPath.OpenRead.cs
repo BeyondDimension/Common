@@ -31,7 +31,12 @@ public static partial class IOPath
         {
             try
             {
-                t = func(filePath);
+                t =
+#if NETFRAMEWORK
+                    func(filePath!);
+#else
+                    func(filePath);
+#endif
                 return true;
             }
             catch (Exception e)
@@ -147,7 +152,13 @@ public static partial class IOPath
             {
                 T data;
 #pragma warning disable CA2208 // 正确实例化参数异常
-                data = await func(filePath, cancellationToken) ?? throw new ArgumentNullException(nameof(data));
+                data =
+#if NETFRAMEWORK
+                await func(filePath!, cancellationToken)
+#else
+                await func(filePath, cancellationToken)
+#endif
+                    ?? throw new ArgumentNullException(nameof(data));
 #pragma warning restore CA2208 // 正确实例化参数异常
                 return (true, data, null);
             }
@@ -158,6 +169,8 @@ public static partial class IOPath
         }
         return (false, null, null);
     }
+
+#if NETCOREAPP2_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
 
     /// <summary>
     /// 尝试读取所有字节
@@ -205,5 +218,8 @@ public static partial class IOPath
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task<(bool success, string? content, Exception? ex)> TryReadAllTextAsync(string? filePath, Encoding encoding, CancellationToken cancellationToken = default) => TryCallAsync(filePath, (p, tk) => File.ReadAllTextAsync(p, encoding, tk), cancellationToken);
+
+#endif
+
 #endif
 }

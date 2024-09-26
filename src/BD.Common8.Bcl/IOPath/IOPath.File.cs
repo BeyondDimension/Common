@@ -116,7 +116,16 @@ public static partial class IOPath
         if (string.IsNullOrEmpty(inputFolder))
             return;
 
-        outputFolder = outputFolder.EndsWith('\\') ? outputFolder : outputFolder + '\\';
+#pragma warning disable SA1114 // Parameter list should follow declaration
+        outputFolder = outputFolder.EndsWith(
+#if NETCOREAPP2_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+            '\\'
+#else
+            "\\"
+#endif
+            ) ? outputFolder : outputFolder + '\\';
+#pragma warning restore SA1114 // Parameter list should follow declaration
+
         //Now Create all of the directories
         foreach (var dirPath in Directory.GetDirectories(inputFolder, "*", SearchOption.AllDirectories))
             _ = Directory.CreateDirectory(dirPath.Replace(inputFolder, outputFolder));

@@ -125,8 +125,17 @@ public static partial class IOPath
 
         action?.Invoke(variables);
 
+#if NETFRAMEWORK
+        foreach (var it in variables)
+        {
+            var k = it.Key;
+            var v = it.Value;
+#else
         foreach (var (k, v) in variables)
+        {
+#endif
             path = path.Replace(k, v);
+        }
 
         if (!string.IsNullOrEmpty(platformFolder))
             path = path.Replace(EnvVarNames.PlatformFolder, platformFolder);

@@ -22,7 +22,7 @@ public static partial class IOPath
         new NullReferenceException("must call FileSystemXXX.InitFileSystem(..");
 
     /// <summary>
-    /// 获取可存储应用程序数据的位置
+    /// 获取应用程序数据的位置
     /// </summary>
     public static string AppDataDirectory
     {
@@ -35,7 +35,7 @@ public static partial class IOPath
     }
 
     /// <summary>
-    /// 获取可以存储临时数据的位置
+    /// 获取缓存数据的位置
     /// </summary>
     public static string CacheDirectory
     {
@@ -46,6 +46,8 @@ public static partial class IOPath
             throw MustCallFileSystemInitException;
         }
     }
+
+#if !NETFRAMEWORK
 
     static readonly object lock_GetCacheFilePath = new();
 
@@ -160,6 +162,8 @@ public static partial class IOPath
         FileTryDelete(filePath);
     }
 
+#endif
+
     /// <summary>
     /// 尝试根据缓存子文件夹名称删除整个缓存子文件夹
     /// </summary>
@@ -193,6 +197,7 @@ public static partial class IOPath
             IOPath.getCacheDirectory = getCacheDirectory;
         }
 
+#if !NETFRAMEWORK
         /// <summary>
         /// 带迁移的初始化文件系统，使用 <see cref="Directory.Move(string, string)"/> 或 xcopy 进行移动，如果迁移失败则回退源目录
         /// </summary>
@@ -292,6 +297,7 @@ public static partial class IOPath
             string GetAppDataDirectory() => paths[0];
             string GetCacheDirectory() => paths[1];
         }
+#endif
 
         /// <summary>
         /// 初始化文件系统，但优先使用旧目录上的文件夹，如果存在的话(允许空文件夹)，不会进行文件迁移

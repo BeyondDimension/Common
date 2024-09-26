@@ -1,0 +1,8 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Collections\Generic\EmptyAsyncEnumerable.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Collections\Generic</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

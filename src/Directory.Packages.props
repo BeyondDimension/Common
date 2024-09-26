@@ -458,6 +458,8 @@
 		</PackageVersion>
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0">
 		</PackageVersion>
+		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="8.0.0">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.Extensions.* -->
 	<ItemGroup>

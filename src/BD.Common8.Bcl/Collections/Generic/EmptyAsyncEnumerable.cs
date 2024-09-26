@@ -12,7 +12,11 @@ public readonly struct EmptyAsyncEnumerable<T> : IAsyncEnumerable<T>, IAsyncEnum
     /// <inheritdoc/>
     public readonly ValueTask DisposeAsync()
     {
+#if NET5_0_OR_GREATER
         return ValueTask.CompletedTask;
+#else
+        return default(ValueTask);
+#endif
     }
 
     /// <inheritdoc/>
@@ -35,7 +39,11 @@ public readonly struct EmptyAsyncEnumerable<T> : IAsyncEnumerable<T>, IAsyncEnum
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async IAsyncEnumerable<T> ToAsyncEnumerable(IEnumerable<T> values)
     {
+#if NET5_0_OR_GREATER
         await ValueTask.CompletedTask;
+#else
+        await default(ValueTask);
+#endif
         foreach (var item in values)
         {
             yield return item;
