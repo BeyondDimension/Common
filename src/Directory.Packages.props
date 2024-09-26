@@ -343,7 +343,9 @@
 		<PackageVersion Include="Certes" Version="3.0.4">
 		</PackageVersion>
 		<!-- 👇 HTTP 下载库 -->
-		<PackageVersion Include="Downloader" Version="3.2.0">
+		<PackageVersion Condition="$(TargetFramework.StartsWith('net4'))" Include="Downloader" Version="3.1.2">
+		</PackageVersion>
+		<PackageVersion Condition="!$(TargetFramework.StartsWith('net4'))" Include="Downloader" Version="3.2.0">
 		</PackageVersion>
 		<!-- 👇 客户端 HTTP 请求 -->
 		<PackageVersion Include="fusillade" Version="2.6.30">
