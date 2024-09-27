@@ -383,7 +383,7 @@
 	</ItemGroup>
 	<!-- 👇 Resilience & Transient Fault Handling（重试） -->
 	<ItemGroup>
-		<PackageVersion Include="Polly" Version="8.4.1">
+		<PackageVersion Include="Polly" Version="8.4.2">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 QrCode（二维码） -->
