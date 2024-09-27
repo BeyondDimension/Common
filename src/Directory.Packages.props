@@ -155,7 +155,7 @@
 	</ItemGroup>
 	<!-- 👇 HuaweiCloud SDK for .NET（华为云） -->
 	<ItemGroup>
-		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.113">
+		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.114">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Grpc -->
