@@ -115,7 +115,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="8.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.9.1">
+		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.10.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.1">
 		</PackageVersion>
@@ -372,7 +372,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.10">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
@@ -432,9 +432,9 @@
 	</ItemGroup>
 	<!-- 👇 .NET BCL -->
 	<ItemGroup>
-		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.0">
+		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="System.Diagnostics.EventLog" Version="8.0.0">
+		<PackageVersion Include="System.Diagnostics.EventLog" Version="8.0.1">
 		</PackageVersion>
 		<PackageVersion Include="System.Drawing.Common" Version="8.0.10">
 		</PackageVersion>
@@ -448,13 +448,13 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Memory" Version="4.5.5">
 		</PackageVersion>
-		<PackageVersion Include="System.Net.Http.Json" Version="8.0.0">
+		<PackageVersion Include="System.Net.Http.Json" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="8.0.0">
+		<PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="8.0.1">
 		</PackageVersion>
 		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="8.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Text.Json" Version="8.0.4">
+		<PackageVersion Include="System.Text.Json" Version="8.0.5">
 		</PackageVersion>
 		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4">
 		</PackageVersion>
@@ -465,29 +465,29 @@
 	</ItemGroup>
 	<!-- 👇 Microsoft.Extensions.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.8">
+		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.10">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.8">
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.10">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.8">
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.10">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.1">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.2">
 		</PackageVersion>
@@ -498,17 +498,17 @@
 	</ItemGroup>
 	<!-- 👇 Microsoft.AspNetCore.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8">
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.8">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.10">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8">
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.8">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.10">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.8">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.10">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="8.0.8">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="8.0.10">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 ASP.NET Core OpenId/OAuth -->
