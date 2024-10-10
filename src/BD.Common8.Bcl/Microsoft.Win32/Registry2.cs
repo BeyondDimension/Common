@@ -13,15 +13,48 @@ public static partial class Registry2
     /// <param name="hKey"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static RegistryHive? GetRegistryHive(string hKey) => hKey.ToUpperInvariant() switch
+    public static RegistryHive? GetRegistryHive(string hKey)
     {
-        "HKCR" => RegistryHive.ClassesRoot,
-        "HKCU" => RegistryHive.CurrentUser,
-        "HKLM" => RegistryHive.LocalMachine,
-        "HKCC" => RegistryHive.CurrentConfig,
-        "HKPD" => RegistryHive.PerformanceData,
-        _ => default,
-    };
+        if (hKey != null && hKey.Length >= 4)
+        {
+            if ((hKey[0] == 'h' || hKey[0] == 'H') && (hKey[1] == 'k' || hKey[1] == 'K'))
+            {
+                switch (hKey[2])
+                {
+                    case 'c':
+                    case 'C':
+                        if (hKey[3] == 'r' || hKey[3] == 'R')
+                        {
+                            return RegistryHive.ClassesRoot;
+                        }
+                        else if (hKey[3] == 'u' || hKey[3] == 'U')
+                        {
+                            return RegistryHive.CurrentUser;
+                        }
+                        else if (hKey[3] == 'c' || hKey[3] == 'C')
+                        {
+                            return RegistryHive.CurrentConfig;
+                        }
+                        break;
+                    case 'l':
+                    case 'L':
+                        if (hKey[3] == 'm' || hKey[3] == 'M')
+                        {
+                            return RegistryHive.LocalMachine;
+                        }
+                        break;
+                    case 'p':
+                    case 'P':
+                        if (hKey[3] == 'd' || hKey[3] == 'D')
+                        {
+                            return RegistryHive.PerformanceData;
+                        }
+                        break;
+                }
+            }
+        }
+        return default;
+    }
 #pragma warning restore CA1416 // 验证平台兼容性
 
 #if WINDOWS
