@@ -184,4 +184,78 @@ public static partial class IOPath
 #endif
         return result ?? string.Empty;
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void MoveFile(string sourceFileName, string destFileName, bool overwrite)
+    {
+#if NETCOREAPP3_0_OR_GREATER
+        File.Move(sourceFileName, destFileName, overwrite);
+#else
+        var moveOpt = overwrite
+           ? MoveFileExFlag.MOVEFILE_REPLACE_EXISTING | MoveFileExFlag.MOVEFILE_WRITE_THROUGH
+           : MoveFileExFlag.MOVEFILE_WRITE_THROUGH;
+
+        if (!MoveFileEx(sourceFileName, destFileName, moveOpt))
+        {
+            int errorCode = Marshal.GetLastWin32Error();
+            throw new Win32Exception(errorCode);
+        }
+#endif
+    }
+
+    [Flags]
+    private enum MoveFileExFlag : uint
+    {
+        /// <summary>
+        /// 如果存在名为 lpNewFileName 的文件，该函数会将其内容替换为 lpExistingFileName 文件的内容，前提是满足与访问控制列表（ACL）相关的安全要求。 有关详细信息，请参阅本主题的“备注”部分。
+        /// 如果 lpNewFileName 为现有目录命名，则报告错误。
+        /// </summary>
+        MOVEFILE_REPLACE_EXISTING = 0x1,
+
+        /// <summary>
+        /// 如果要将文件移动到其他卷，该函数将使用 CopyFile 和 DeleteFile 函数模拟移动。
+        /// 如果文件已成功复制到其他卷，并且无法删除原始文件，该函数会成功使源文件保持不变。
+        /// 此值不能与 MOVEFILE_DELAY_UNTIL_REBOOT一起使用。
+        /// </summary>
+        MOVEFILE_COPY_ALLOWED = 0x2,
+
+        /// <summary>
+        /// 在重新启动操作系统之前，系统不会移动该文件。 系统在执行 AUTOCHK 后立即移动文件，但在创建任何分页文件之前。 因此，此参数使函数能够从以前的启动中删除分页文件。
+        /// 仅当进程位于属于管理员组或 LocalSystem 帐户的用户的上下文中时，才能使用此值。
+        /// 此值不能与 MOVEFILE_COPY_ALLOWED一起使用。
+        /// </summary>
+        MOVEFILE_DELAY_UNTIL_REBOOT = 0x4,
+
+        /// <summary>
+        /// 保留以供将来使用。
+        /// </summary>
+        MOVEFILE_CREATE_HARDLINK = 0x10,
+
+        /// <summary>
+        /// 如果源文件是链接源，但移动后无法跟踪该文件，则函数将失败。 如果目标是使用 FAT 文件系统格式化的卷，则可能会出现这种情况。
+        /// </summary>
+        MOVEFILE_FAIL_IF_NOT_TRACKABLE = 0x20,
+
+        /// <summary>
+        /// 在磁盘上实际移动文件之前，该函数不会返回。
+        /// 设置此值可确保在函数返回之前将作为复制和删除操作执行的移动刷新到磁盘。 刷新发生在复制操作结束时。
+        /// 如果设置了 MOVEFILE_DELAY_UNTIL_REBOOT，则此值不起作用。
+        /// </summary>
+        MOVEFILE_WRITE_THROUGH = 0x8
+    }
+
+    /// <summary>
+    /// 移动文件/文件夹
+    /// </summary>
+    /// <param name="lpExistingFileName"></param>
+    /// <param name="lpNewFileName"></param>
+    /// <param name="dwFlags"></param>
+    /// <see ref="https://learn.microsoft.com/zh-cn/windows/win32/api/winbase/nf-winbase-movefileexa"/>
+    /// <returns></returns>
+    [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool MoveFileEx(
+        string lpExistingFileName,
+        string lpNewFileName,
+        MoveFileExFlag dwFlags);
 }
