@@ -134,11 +134,11 @@ public static partial class IOPath
         foreach (var (k, v) in variables)
         {
 #endif
-            path = path.Replace(k, v);
+            path = path!.Replace(k, v);
         }
 
         if (!string.IsNullOrEmpty(platformFolder))
-            path = path.Replace(EnvVarNames.PlatformFolder, platformFolder);
+            path = path!.Replace(EnvVarNames.PlatformFolder, platformFolder);
 
         return Environment.ExpandEnvironmentVariables(path);
     }

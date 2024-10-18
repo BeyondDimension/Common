@@ -264,7 +264,7 @@ public static partial class IOPath
 
                 while (l != leftEnd && r != rightEnd
                                     && (*l == *r || (ignoreCase &&
-                                                     char.ToUpperInvariant((*l)) == char.ToUpperInvariant((*r)))))
+                                                     char.ToUpperInvariant(*l) == char.ToUpperInvariant(*r))))
                 {
                     commonChars++;
                     l++;
