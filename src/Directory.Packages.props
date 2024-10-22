@@ -166,7 +166,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Grpc.Tools" Version="2.67.0">
 		</PackageVersion>
-		<PackageVersion Include="MagicOnion" Version="6.1.4">
+		<PackageVersion Include="MagicOnion" Version="6.1.5">
 		</PackageVersion>
 		<PackageVersion Include="MagicOnion.Client" Version="6.1.4">
 		</PackageVersion>
