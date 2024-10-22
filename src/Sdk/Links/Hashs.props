@@ -1,0 +1,14 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Security\Cryptography\Hashs.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Security\Cryptography</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Security\Cryptography\Hashs_Crc32.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Security\Cryptography</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Security\Cryptography\Hashs_Crc64.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Security\Cryptography</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>
