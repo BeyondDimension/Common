@@ -26,6 +26,7 @@ public static partial class RSAUtils
     }
 
 #if !NO_SYSTEM_TEXT_JSON
+
     /// <summary>
     /// 从 JSON UTF8 流获取 RSA 参数
     /// </summary>
@@ -51,6 +52,7 @@ public static partial class RSAUtils
         var rsaParams = GetRSAParametersFromUtf8Json(utf8Json);
         rsa.ImportParameters(rsaParams);
     }
+
 #endif
 
     /// <summary>
@@ -65,7 +67,7 @@ public static partial class RSAUtils
         rsa.ImportParameters(rsaParams);
     }
 
-    #endregion
+    #endregion FromJsonString
 
     #region 创建 RSA 实例
 
@@ -107,7 +109,7 @@ public static partial class RSAUtils
         return rsa;
     }
 
-    #endregion
+    #endregion 创建 RSA 实例
 
     #region 从 RSA 实例中获取密钥
 
@@ -129,7 +131,7 @@ public static partial class RSAUtils
         return jsonString;
     }
 
-    #endregion
+    #endregion 从 RSA 实例中获取密钥
 
     #region Padding
 
@@ -153,16 +155,21 @@ public static partial class RSAUtils
             {
                 case "0":
                     return RSAEncryptionPadding.Pkcs1;
+
                 case "1":
                     return RSAEncryptionPadding.OaepSHA1;
+
                 case "2" or "":
                     return RSAEncryptionPadding.OaepSHA256;
+
                 case "3":
                     return RSAEncryptionPadding.OaepSHA384;
+
                 case "5":
                     return RSAEncryptionPadding.OaepSHA512;
+
                 default:
-                    if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA1), StringComparison.OrdinalIgnoreCase))
+                    if (oaepHashAlgorithmName!.Equals(nameof(HashAlgorithmName.SHA1), StringComparison.OrdinalIgnoreCase))
                         return RSAEncryptionPadding.OaepSHA1;
                     if (oaepHashAlgorithmName.Equals(nameof(HashAlgorithmName.SHA256), StringComparison.OrdinalIgnoreCase))
                         return RSAEncryptionPadding.OaepSHA256;
@@ -209,7 +216,7 @@ public static partial class RSAUtils
 #endif
             RSAEncryptionPadding.OaepSHA256;
 
-    #endregion
+    #endregion Padding
 
     #region 加密(Encrypt)
 
@@ -338,7 +345,7 @@ public static partial class RSAUtils
         return EncryptToString(rsa, data, padding);
     }
 
-    #endregion
+    #endregion 加密(Encrypt)
 
     #region 解密(Decrypt)
 
@@ -467,7 +474,7 @@ public static partial class RSAUtils
         return Decrypt(rsa, text, padding);
     }
 
-    #endregion
+    #endregion 解密(Decrypt)
 
     /// <summary>
     /// <see cref="RSA"/> 密钥 模型类
@@ -476,6 +483,7 @@ public static partial class RSAUtils
     internal sealed class Parameters
     {
 #if !NO_SYSTEM_TEXT_JSON
+
         /// <summary>
         /// 初始化 <see cref="Parameters"/> 类的新实例
         /// </summary>
@@ -490,6 +498,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的D参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("z")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -501,6 +510,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 DP 参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("x")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -512,6 +522,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 DQ 参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("c")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -523,6 +534,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Exponent 参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("v")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -534,6 +546,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 InverseQ 参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("b")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -545,6 +558,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Modulus 参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("n")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -556,6 +570,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 P 参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("m")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -567,6 +582,7 @@ public static partial class RSAUtils
         /// 表示 <see cref="T:System.Security.Cryptography.RSA"/> 算法的 Q 参数
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
         [SystemTextJsonProperty("a")]
 #endif
 #if !NO_NEWTONSOFT_JSON
@@ -595,6 +611,7 @@ public static partial class RSAUtils
     /// 用于序列化 <see cref="RSAUtils.Parameters"/> 类的 JSON 上下文类
     /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
+
     [JsonSourceGenerationOptions(
         DefaultIgnoreCondition = SystemTextJsonIgnoreCondition.WhenWritingDefault,
         AllowTrailingCommas = true
@@ -603,6 +620,7 @@ public static partial class RSAUtils
     internal sealed partial class ParametersJsonSerializerContext : SystemTextJsonSerializerContext
     {
     }
+
 #endif
 
     /// <summary>

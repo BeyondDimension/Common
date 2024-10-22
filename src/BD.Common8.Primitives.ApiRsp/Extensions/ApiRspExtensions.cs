@@ -1,4 +1,5 @@
 #pragma warning disable IDE0005 // 删除不必要的 using 指令
+
 using static BD.Common8.Primitives.ApiRsp.Resources.SR;
 
 namespace BD.Common8.Extensions;
@@ -95,6 +96,6 @@ public static partial class ApiRspExtensions
         {
             message = CreateMessage(response, errorAppendText, errorFormat);
         }
-        return message;
+        return message!;
     }
 }
