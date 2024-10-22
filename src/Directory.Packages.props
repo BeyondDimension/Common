@@ -332,7 +332,7 @@
 		<!-- 👇 AntDesign -->
 		<PackageVersion Include="AntDesign" Version="0.20.4.2">
 		</PackageVersion>
-		<PackageVersion Include="AntDesign.Charts" Version="0.5.5">
+		<PackageVersion Include="AntDesign.Charts" Version="0.5.6">
 		</PackageVersion>
 		<PackageVersion Include="AntDesign.ProLayout" Version="0.20.3">
 		</PackageVersion>
