@@ -33,6 +33,11 @@ namespace System
                 baseOptions = new(baseOptions);
             }
 
+            // https://learn.microsoft.com/zh-cn/dotnet/standard/serialization/system-text-json/configure-options?pivots=dotnet-8-0#web-defaults-for-jsonserializeroptions
+            baseOptions.PropertyNameCaseInsensitive = true;
+            baseOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            baseOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+
             baseOptions.Converters.Add(new CookieConverter());
             baseOptions.Converters.Add(new CookieCollectionConverter());
             baseOptions.Converters.Add(new CookieContainerConverter());
