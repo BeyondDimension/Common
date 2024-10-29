@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Description>net8 OpenFolderDialog 相关的移植</Description>
+  </PropertyGroup>
+</Project>

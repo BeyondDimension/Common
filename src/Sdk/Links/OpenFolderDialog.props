@@ -1,0 +1,11 @@
+<Project>
+	<!-- 📄 源码引用 -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.OpenFolderDialog\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.OpenFolderDialog</LinkBase>
+		</Compile>
+        <Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.OpenFolderDialog\Presentation\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.OpenFolderDialog</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>
