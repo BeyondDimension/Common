@@ -677,7 +677,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Xaml.Behaviors" Version="$(Version_Avalonia_Xaml_Behaviors)">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Xaml.Interactivity" Version="11.1.0.4">
+		<PackageVersion Include="Avalonia.Xaml.Interactivity" Version="11.1.0.5">
 		</PackageVersion>
 		<PackageVersion Include="BD.Common.XmlnsDefinition.Avalonia" Version="0.0.0">
 		</PackageVersion>
