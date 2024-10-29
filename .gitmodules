@@ -1,0 +1,3 @@
+[submodule "ref/SteamKit"]
+	path = ref/SteamKit
+	url = https://github.com/BeyondDimension/SteamKit.git
