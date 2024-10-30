@@ -170,7 +170,7 @@
 		</PackageVersion>
 		<PackageVersion Include="MagicOnion.Client" Version="6.1.5">
 		</PackageVersion>
-		<PackageVersion Include="MagicOnion.Server" Version="6.1.4">
+		<PackageVersion Include="MagicOnion.Server" Version="6.1.5">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 PeachPie（PHP） -->
