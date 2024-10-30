@@ -6,6 +6,7 @@ partial interface IBuildCommand
     const string slnFileName_Avalonia8 = "BD.Avalonia8";
     const string slnFileName_SteamClient8 = "BD.SteamClient8";
     const string slnFileName_SPPSDK = "SPP.SDK";
+    const string slnFileName_SteamBot = "BD.SteamBot";
 
     const string jsonConfigFileName = "build-projects.json";
 
@@ -15,6 +16,7 @@ partial interface IBuildCommand
         slnFileName_Avalonia8,
         slnFileName_SteamClient8,
         slnFileName_SPPSDK,
+        slnFileName_SteamBot,
     ];
 
     static string[] GetProjectNamesCore(string slnFileName) => slnFileName switch
@@ -107,7 +109,6 @@ partial interface IBuildCommand
             ],
         slnFileName_SteamClient8 => [
                 "BD.SteamClient8",
-                "BD.SteamClient8",
                 "BD.SteamClient8.Impl",
                 "BD.SteamClient8.Models",
                 "BD.SteamClient8.Primitives",
@@ -116,7 +117,12 @@ partial interface IBuildCommand
                 "Mobius.Primitives",
                 "Mobius.Models",
                 "Mobius.SDK",
-        ],
+            ],
+        slnFileName_SteamBot => [
+                "BD.SteamBot",
+                "BD.SteamBot.Models",
+                "BD.SteamBot.Primitives",
+            ],
         _ => GetProjectNamesByJsonConfig(slnFileName),
     };
 
