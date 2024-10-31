@@ -166,8 +166,16 @@ public static class PackageReferenceTest
 {
     public static void Assemblies()
     {
-        Console.WriteLine(typeof(JsonSerializer));
-        Console.WriteLine(typeof(EnglishArticle));
-        Console.WriteLine("Sentence casing".Transform(To.LowerCase));
+#pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+        try
+        {
+            Console.WriteLine(typeof(JsonSerializer));
+            Console.WriteLine(typeof(EnglishArticle));
+            Console.WriteLine("Sentence casing".Transform(To.LowerCase));
+        }
+        catch
+        {
+        }
+#pragma warning restore RS1035 // 不要使用禁用于分析器的 API
     }
 }

@@ -114,8 +114,16 @@ public abstract class TemplateBase<TTemplate, TTemplateMetadata>
         var partialFileName = (Name ?? typeof(TTemplate).Name).TrimEnd("Template");
 
 #if DEBUG
-        var sourceString = Encoding.UTF8.GetString(memoryStream.ToArray());
-        Console.WriteLine(sourceString);
+#pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+        try
+        {
+            var sourceString = Encoding.UTF8.GetString(memoryStream.ToArray());
+            Console.WriteLine(sourceString);
+        }
+        catch
+        {
+        }
+#pragma warning restore RS1035 // 不要使用禁用于分析器的 API
 
         switch (typeof(TTemplate).Name)
         {

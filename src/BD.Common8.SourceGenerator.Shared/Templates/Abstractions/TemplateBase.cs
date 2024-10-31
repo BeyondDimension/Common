@@ -1,3 +1,5 @@
+#pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+
 namespace BD.Common8.SourceGenerator.Templates.Abstractions;
 
 /// <summary>
@@ -107,6 +109,8 @@ public abstract class TemplateBase
     /// 获取当前源生成器的文件版本
     /// </summary>
     protected static string FileVersion => mFileVersion.Value;
+
+    #region Random
 
     static Random? random;
 
@@ -233,6 +237,8 @@ public abstract class TemplateBase
             result[i] = temp;
         }
     }
+
+    #endregion
 
     /// <summary>
     /// 写入变量名

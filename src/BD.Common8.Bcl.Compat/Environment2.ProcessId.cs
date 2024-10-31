@@ -1,3 +1,5 @@
+#pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+
 namespace System;
 
 partial class Environment2
