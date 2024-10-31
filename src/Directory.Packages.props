@@ -291,7 +291,7 @@
 	<!-- 👇 The .NET Compiler Platform（Roslyn） -->
 	<ItemGroup>
 		<!-- 👇 源生成器与 Roslyn -->
-		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0">
 		</PackageVersion>
