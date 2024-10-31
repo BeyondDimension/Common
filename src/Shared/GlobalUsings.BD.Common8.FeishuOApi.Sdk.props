@@ -1,0 +1,7 @@
+<Project>
+	<ItemGroup>
+		<Using Include="BD.Common8.FeishuOApi.Sdk.Models" />
+		<Using Include="BD.Common8.FeishuOApi.Sdk.Services" />
+		<Using Include="BD.Common8.FeishuOApi.Sdk.Services.Abstractions" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<!--<TargetFrameworks>net$(DotNet_Version);net472</TargetFrameworks>-->
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<Description>飞书开放平台 .NET 服务端 SDK</Description>
+	</PropertyGroup>
+
+</Project>
