@@ -274,7 +274,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(Version_EFCore)">
 		</PackageVersion>
-		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8">
+		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10">
 		</PackageVersion>
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="$(Version_EFCore_ZPlus)">
 		</PackageVersion>
