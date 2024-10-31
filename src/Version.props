@@ -11,4 +11,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<SourceGenerator_TargetFramework>netstandard2.0</SourceGenerator_TargetFramework>
 	</PropertyGroup>
+	<PropertyGroup>
+		<Version_Downloader_DotNetFX>3.1.2</Version_Downloader_DotNetFX>
+	</PropertyGroup>
 </Project>
