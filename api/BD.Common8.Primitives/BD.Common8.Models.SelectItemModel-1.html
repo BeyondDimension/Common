@@ -92,7 +92,7 @@ Class SelectItemModel&lt;T&gt;  <a class="header-action link-secondary" title="V
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[MessagePackObject(false)]
 [MemoryPackable(SerializeLayout.Explicit)]
-public class SelectItemModel&lt;T&gt; : SelectItemModel, ITitle, IDisable, IMemoryPackable&lt;SelectItemModel&gt;, IMemoryPackFormatterRegister</code></pre>
+public class SelectItemModel&lt;T&gt; : SelectItemModel, ITitle, IDisable, IMemoryPackable&lt;SelectItemModel&gt;, IMemoryPackable&lt;SelectItemModel&lt;T&gt;&gt;, IMemoryPackFormatterRegister</code></pre>
   </div>
 
 
@@ -118,6 +118,7 @@ public class SelectItemModel&lt;T&gt; : SelectItemModel, ITitle, IDisable, IMemo
       <div><a class="xref" href="BD.Common8.Columns.ITitle.html">ITitle</a></div>
       <div><a class="xref" href="BD.Common8.Columns.IDisable.html">IDisable</a></div>
       <div><span class="xref">IMemoryPackable</span>&lt;<a class="xref" href="BD.Common8.Models.SelectItemModel.html">SelectItemModel</a>&gt;</div>
+      <div><span class="xref">IMemoryPackable</span>&lt;<a class="xref" href="BD.Common8.Models.SelectItemModel-1.html">SelectItemModel</a>&lt;T&gt;&gt;</div>
       <div><span class="xref">IMemoryPackFormatterRegister</span></div>
     </dd>
   </dl>
@@ -164,6 +165,9 @@ public class SelectItemModel&lt;T&gt; : SelectItemModel, ITitle, IDisable, IMemo
 
 
 
+  <h2 id="BD_Common8_Models_SelectItemModel_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>MemoryPack GenerateType: Object<br><pre><code class="lang-csharp">string Titlebool DisableT Id</code></pre>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
