@@ -45,7 +45,7 @@ Enter (dotnet user-secrets set "FeishuApiOptions:{name}" "value") on the current
 #if DEBUG
             //var reqJson = SystemTextJsonSerializer.Serialize(reqBody, FeishuApiClientJsonSerializerContext.Instance.Options);
 #endif
-            rsp = await httpClient.PostAsJsonAsync(reqUrl, reqBody, FeishuApiClientJsonSerializerContext.Default.Options, cancellationToken);
+            rsp = await httpClient.PostAsJsonAsync(reqUrl, reqBody, FeishuApiClientJsonSerializerContext.Instance.Options, cancellationToken);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 
