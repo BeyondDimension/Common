@@ -1,7 +1,7 @@
 <Project>
 	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Avalonia.Xaml.Behaviors'))" >
 		<Using Include="Avalonia.Xaml" />
-		<Using Include="Avalonia.Xaml.Interactions" />
-		<Using Include="Avalonia.Xaml.Interactivity" />
+		<!--<Using Include="Avalonia.Xaml.Interactions" />
+		<Using Include="Avalonia.Xaml.Interactivity" />-->
 	</ItemGroup>
 </Project>
