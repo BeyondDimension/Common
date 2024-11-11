@@ -395,7 +395,7 @@ public interface IServerPublishCommand : ICommand
                     var dockerfilePath = Path.Combine(dockerfileDirPath, "Dockerfile");
                     using (var stream = new FileStream(dockerfilePath, FileMode.OpenOrCreate, FileAccess.Write))
                     {
-                        await WriteDockerfile(stream, config, proj, csprojPath, useAlpineLinux, cancellationToken);
+                        await WriteDockerfile(stream, config, proj, csprojPath, useAlpineLinux, true, cancellationToken);
                     }
 
                     ProcessStartInfo psi = new()
@@ -540,37 +540,57 @@ public interface IServerPublishCommand : ICommand
         #endregion
     }
 
-    private static async Task WriteDockerfile(Stream stream, ServerPublishConfig config, ServerPublishProject project, string csprojPath, bool useAlpineLinux, CancellationToken cancellationToken)
+    private static async Task WriteDockerfile(
+        Stream stream,
+        ServerPublishConfig config,
+        ServerPublishProject project,
+        string csprojPath,
+        bool useAlpineLinux,
+        bool formMossimo,
+        CancellationToken cancellationToken)
     {
         var entryPoint = Path.GetFileName(csprojPath);
         entryPoint.ThrowIsNull();
         entryPoint = entryPoint.TrimEnd(".csproj", StringComparison.OrdinalIgnoreCase);
 
-        stream.Write(
+        if (formMossimo && project.InstallGoogleChrome)
+        {
+            stream.Write(
+"""
+# See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM docker.mossimo.net/template/google-chrome-template:
+"""u8);
+        }
+        else
+        {
+            stream.Write(
 """
 # See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:
 """u8);
-        stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Major.ToString());
-        stream.Write("."u8);
-        stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Minor.ToString());
 
-        if (useAlpineLinux)
-        {
-            stream.Write("-alpine"u8);
-        }
-        else
-        {
-            if (!string.IsNullOrWhiteSpace(config.DefaultBaseImageName))
+            stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Major.ToString());
+            stream.Write("."u8);
+            stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Minor.ToString());
+
+            if (useAlpineLinux)
             {
-                stream.Write("-"u8);
-                stream.WriteUtf16StrToUtf8OrCustom(config.DefaultBaseImageName.TrimStart("-"));
+                stream.Write("-alpine"u8);
             }
             else
             {
-                stream.Write("-noble"u8); // Ubuntu 24.04 LTS(Noble Numbat)
-                //stream.Write("-jammy"u8);
+                if (!string.IsNullOrWhiteSpace(config.DefaultBaseImageName))
+                {
+                    stream.Write("-"u8);
+                    stream.WriteUtf16StrToUtf8OrCustom(config.DefaultBaseImageName.TrimStart("-"));
+                }
+                else
+                {
+                    stream.Write("-noble"u8); // Ubuntu 24.04 LTS(Noble Numbat)
+                                              //stream.Write("-jammy"u8);
+                }
             }
         }
 
@@ -580,7 +600,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:
 WORKDIR /app
 """u8);
 
-        if (project.InstallGoogleChrome)
+        if (project.InstallGoogleChrome && !formMossimo)
         {
             stream.Write(
 """
