@@ -8,5 +8,6 @@
 		<Using Include="BD.Common8.Models" />
 		<Using Include="BD.Common8.Models.Abstractions" />
 		<Using Alias="IIPAddress" Include="BD.Common8.Columns.IPAddress"/>
+		<Using Alias="IOrderInt64" Include="BD.Common8.Columns.IOrder" />
 	</ItemGroup>
 </Project>
