@@ -14,7 +14,7 @@ namespace System.Net.Http.Client;
 /// A default <see cref="IClientHttpClientFactory"/> can be registered in an <see cref="IServiceCollection"/>
 /// The default <see cref="IClientHttpClientFactory"/> will be registered in the service collection as a singleton.
 /// </remarks>
-public interface IClientHttpClientFactory
+public partial interface IClientHttpClientFactory
 {
     /// <summary>
     /// Creates and configures an <see cref="HttpClient"/> instance using the configuration that corresponds
@@ -36,19 +36,7 @@ public interface IClientHttpClientFactory
     /// </remarks>
     HttpClient CreateClient(string name, HttpHandlerCategory category = default);
 
-    /// <summary>
-    /// 默认超时时间，25 秒
-    /// </summary>
-    static readonly TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(DefaultTimeoutMilliseconds);
-
-    /// <inheritdoc cref="DefaultTimeout"/>
-    const int DefaultTimeoutMilliseconds = 25000;
-
-    /// <summary>
-    /// 默认本地超时时间，单位秒
-    /// </summary>
-    public const double DefaultLocalTimeoutFromSeconds = 4.99;
-
+#if !PROJ_SETUP
     /// <inheritdoc cref="AddHttpClientDelegate"/>
     protected static AddHttpClientDelegate? AddHttpClientDelegateValue { private get; set; }
 
@@ -102,11 +90,40 @@ public interface IClientHttpClientFactory
         addHttpClientDelegateValue.ThrowIsNull();
         addHttpClientDelegateValue(services, typeof(TClient));
     }
+#endif
+}
+
+#if NETFRAMEWORK
+/// <summary>
+/// <see cref="IClientHttpClientFactory"/> 的 NETFRAMEWORK 接口默认实现部分
+/// </summary>
+public static class IClientHttpClientFactory_
+#else
+partial interface IClientHttpClientFactory
+#endif
+{
+    /// <summary>
+    /// 默认超时时间，25 秒
+    /// </summary>
+    static readonly TimeSpan DefaultTimeout = TimeSpan.FromMilliseconds(DefaultTimeoutMilliseconds);
+
+    /// <inheritdoc cref="DefaultTimeout"/>
+    const int DefaultTimeoutMilliseconds = 25000;
+
+    /// <summary>
+    /// 默认本地超时时间，单位秒
+    /// </summary>
+    public const double DefaultLocalTimeoutFromSeconds = 4.99;
 
     /// <summary>
     /// <see cref="HttpClientHandler.AutomaticDecompression"/> 的默认值
     /// </summary>
-    const DecompressionMethods DefaultAutomaticDecompression = DecompressionMethods.Brotli | DecompressionMethods.GZip | DecompressionMethods.Deflate;
+    const DecompressionMethods DefaultAutomaticDecompression =
+#if NETFRAMEWORK
+        DecompressionMethods.GZip | DecompressionMethods.Deflate;
+#else
+        DecompressionMethods.Brotli | DecompressionMethods.GZip | DecompressionMethods.Deflate;
+#endif
 
     /// <summary>
     /// 创建默认的处理程序

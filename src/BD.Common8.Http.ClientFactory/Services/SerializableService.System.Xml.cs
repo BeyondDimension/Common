@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // System.Xml
@@ -56,3 +57,4 @@ partial class SerializableService // System.Xml
         return result;
     }
 }
+#endif

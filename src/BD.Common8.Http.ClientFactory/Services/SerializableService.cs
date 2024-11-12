@@ -1,13 +1,23 @@
 namespace BD.Common8.Http.ClientFactory.Services;
 
-/// <summary>
-/// 序列化服务，提供统一的序列化处理
-/// </summary>
+#if !NETFRAMEWORK && !PROJ_SETUP
 /// <param name="logger"></param>
 /// <param name="newtonsoftJsonSerializer">如果需要使用 <see cref="Newtonsoft.Json"/> 则需要传递自定义实例或通过直接 new()，否则应保持为 <see langword="null"/></param>
 public abstract partial class SerializableService(
     ILogger logger,
     NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : Log.I
+{
+}
+#else
+public abstract partial class SerializableService
+{
+}
+#endif
+
+/// <summary>
+/// 序列化服务，提供统一的序列化处理
+/// </summary>
+partial class SerializableService
 {
     /// <summary>
     /// 无特殊情况下应使用 GetSJsonContent，即 System.Text.Json
@@ -24,11 +34,13 @@ public abstract partial class SerializableService(
     /// </summary>
     protected const string Obsolete_UseAsync = "无特殊情况下应使用 Async 异步的函数版本";
 
+#if !NETFRAMEWORK && !PROJ_SETUP
     /// <inheritdoc cref="ILogger"/>
     protected readonly ILogger logger = logger;
 
     /// <inheritdoc/>
     ILogger Log.I.Logger => logger;
+#endif
 
     /// <summary>
     /// 使用的默认文本编码，默认值为 <see cref="Encoding.UTF8"/>
@@ -37,11 +49,13 @@ public abstract partial class SerializableService(
 
     #region Json
 
+#if !NETFRAMEWORK && !PROJ_SETUP
     /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
     NewtonsoftJsonSerializer? newtonsoftJsonSerializer = newtonsoftJsonSerializer;
 
     /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
     protected NewtonsoftJsonSerializer NewtonsoftJsonSerializer => newtonsoftJsonSerializer ??= new();
+#endif
 
     /// <summary>
     /// 用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写
@@ -65,7 +79,11 @@ public abstract partial class SerializableService(
             if (_JsonSerializerOptions == null)
             {
                 var baseOptions = JsonSerializerOptions;
+#if PROJ_SETUP
+                _JsonSerializerOptions = new SystemTextJsonSerializerOptions(JsonSerializerDefaults.Web);
+#else
                 _JsonSerializerOptions = Serializable.CreateOptions(baseOptions);
+#endif
             }
             return _JsonSerializerOptions;
         }
@@ -168,7 +186,11 @@ public abstract partial class SerializableService(
 #pragma warning disable CA2254 // 模板应为静态表达式
             if (showLog)
             {
+#if PROJ_SETUP
+                Log.Error(nameof(SerializableService), ex, msg);
+#else
                 logger.LogError(ex, msg);
+#endif
             }
 #pragma warning restore CA2254 // 模板应为静态表达式
         }
@@ -319,16 +341,19 @@ public abstract partial class SerializableService(
                 switch (args.JsonImplType)
                 {
                     case Serializable.JsonImplType.NewtonsoftJson:
+#if !PROJ_SETUP
 #pragma warning disable CS0618 // 类型或成员已过时
                         result = GetNJsonContent<TResponseBody, TRequestBody>(requestBody);
 #pragma warning restore CS0618 // 类型或成员已过时
                         return result;
+#endif
                     case Serializable.JsonImplType.SystemTextJson:
                         result = GetSJsonContent<TResponseBody, TRequestBody>(requestBody);
                         return result;
                     default:
                         throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
                 }
+#if !PROJ_SETUP
             case MediaTypeNames.XML:
             case MediaTypeNames.XML_APP:
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
@@ -339,6 +364,7 @@ public abstract partial class SerializableService(
                     throw new NotSupportedException("requestBody is not IEnumerable<KeyValuePair<string?, string?>> nameValueCollection.");
                 result = new FormUrlEncodedContent(nameValueCollection);
                 return result;
+#endif
             case MediaTypeNames.Binary:
                 if (requestBody is not byte[] byteArray)
                 {
@@ -365,12 +391,14 @@ public abstract partial class SerializableService(
                 }
                 result = new ByteArrayContent(byteArray);
                 return result;
+#if !PROJ_SETUP
             case MediaTypeNames.MessagePack:
                 result = GetMessagePackContent<TResponseBody, TRequestBody>(requestBody, cancellationToken: cancellationToken);
                 return result;
             case MediaTypeNames.MemoryPack:
                 result = GetMemoryPackContent<TResponseBody, TRequestBody>(requestBody);
                 return result;
+#endif
             default:
                 throw ThrowHelper.GetArgumentOutOfRangeException(mime);
         }

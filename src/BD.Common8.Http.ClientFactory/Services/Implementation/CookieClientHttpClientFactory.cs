@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 using static BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory;
 
 namespace BD.Common8.Http.ClientFactory.Services.Implementation;
@@ -208,3 +209,4 @@ public partial class CookieClientHttpClientFactory : IDisposable
         GC.SuppressFinalize(this);
     }
 }
+#endif

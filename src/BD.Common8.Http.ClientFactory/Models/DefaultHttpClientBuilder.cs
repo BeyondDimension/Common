@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Models;
 
 /// <summary>
@@ -13,3 +14,4 @@ record class DefaultHttpClientBuilder(
     /// </summary>
     public Func<Func<HttpMessageHandler>, HttpMessageHandler>? ConfigureHandler { get; set; }
 }
+#endif

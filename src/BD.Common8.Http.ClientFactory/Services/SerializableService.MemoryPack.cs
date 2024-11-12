@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // MemoryPack
@@ -58,3 +59,4 @@ partial class SerializableService // MemoryPack
         }
     }
 }
+#endif

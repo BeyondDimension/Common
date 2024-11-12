@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Models;
 
 /// <summary>
@@ -49,3 +50,4 @@ public record struct GetImageArgs
     /// </summary>
     public string? HashValue { get; set; }
 }
+#endif

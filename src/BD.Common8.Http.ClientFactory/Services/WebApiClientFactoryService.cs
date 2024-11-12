@@ -1,19 +1,36 @@
 namespace BD.Common8.Http.ClientFactory.Services;
 
-/// <summary>
-/// 使用 <see cref="IClientHttpClientFactory"/> 工厂构建 <see cref="HttpClient"/> 的 WebApiClient 基类服务，继承自 <see cref="WebApiClientService"/>
-/// </summary>
+#if !NETFRAMEWORK && !PROJ_SETUP
 /// <param name="logger"></param>
 /// <param name="serviceProvider"></param>
 public abstract partial class WebApiClientFactoryService(
     ILogger logger,
     IServiceProvider serviceProvider) : WebApiClientService(logger, serviceProvider.GetRequiredService<IHttpPlatformHelperService>(), newtonsoftJsonSerializer: null)
 {
-    /// <inheritdoc cref="IClientHttpClientFactory"/>
-    protected readonly IClientHttpClientFactory? clientHttpClientFactory = serviceProvider.GetService<IClientHttpClientFactory>();
+}
+#else
+public abstract partial class WebApiClientFactoryService(IHttpPlatformHelperService? httpPlatformHelper, IClientHttpClientFactory? clientHttpClientFactory) : WebApiClientService(httpPlatformHelper)
+{
+}
+#endif
 
+/// <summary>
+/// 使用 <see cref="IClientHttpClientFactory"/> 工厂构建 <see cref="HttpClient"/> 的 WebApiClient 基类服务，继承自 <see cref="WebApiClientService"/>
+/// </summary>
+partial class WebApiClientFactoryService
+{
+    /// <inheritdoc cref="IClientHttpClientFactory"/>
+    protected readonly IClientHttpClientFactory? clientHttpClientFactory =
+#if !NETFRAMEWORK && !PROJ_SETUP
+        serviceProvider.GetService<IClientHttpClientFactory>();
+#else
+        clientHttpClientFactory;
+#endif
+
+#if !NETFRAMEWORK && !PROJ_SETUP
     /// <inheritdoc cref="CookieClientHttpClientFactory"/>
     protected readonly CookieClientHttpClientFactory? cookieClientHttpClientFactory = serviceProvider.GetService<CookieClientHttpClientFactory>();
+#endif
 
     /// <summary>
     /// 服务名称，通常使用 TAG，格式规范应为 typeName.TrimStart(I).TrimEnd(Impl).TrimEnd(Service)
@@ -37,6 +54,7 @@ public abstract partial class WebApiClientFactoryService(
         return httpClient ??= clientHttpClientFactory.ThrowIsNull().CreateClient(ClientName, Category);
     }
 
+#if !NETFRAMEWORK && !PROJ_SETUP
     /// <summary>
     /// 创建或获取【需要】使用 Cookie 的 <see cref="HttpClient"/>，状态由 id 对应字典保存
     /// </summary>
@@ -56,4 +74,5 @@ public abstract partial class WebApiClientFactoryService(
     {
         return cookieClientHttpClientFactory.ThrowIsNull().GetCookieContainer(ClientName, id);
     }
+#endif
 }

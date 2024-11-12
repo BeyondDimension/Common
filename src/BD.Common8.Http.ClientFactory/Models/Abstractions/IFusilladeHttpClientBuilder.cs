@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Models.Abstractions;
 
 /// <summary>
@@ -15,3 +16,4 @@ public interface IFusilladeHttpClientBuilder
     /// </summary>
     IServiceCollection Services { get; }
 }
+#endif

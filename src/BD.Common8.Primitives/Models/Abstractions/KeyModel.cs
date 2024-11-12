@@ -4,7 +4,9 @@ namespace BD.Common8.Models.Abstractions;
 /// 带有主键的键模型抽象类，实现了<see cref="IKeyModel{TPrimaryKey}"/> 接口
 /// </summary>
 /// <typeparam name="TPrimaryKey">主键的类型</typeparam>
+#if !NETFRAMEWORK
 [MPObj]
+#endif
 public abstract partial class KeyModel<TPrimaryKey> : IKeyModel<TPrimaryKey> where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
 {
     /// <summary>
@@ -13,8 +15,10 @@ public abstract partial class KeyModel<TPrimaryKey> : IKeyModel<TPrimaryKey> whe
     protected const int LastMKeyIndex = 0;
 
     /// <inheritdoc/>
+#if !NETFRAMEWORK
     [MPKey(LastMKeyIndex)]
     [MP2Key(LastMKeyIndex)]
+#endif
     public virtual TPrimaryKey Id { get; set; } = default!;
 }
 

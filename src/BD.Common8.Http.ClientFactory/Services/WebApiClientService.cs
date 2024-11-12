@@ -1,17 +1,29 @@
 namespace BD.Common8.Http.ClientFactory.Services;
 
+#if !NETFRAMEWORK && !PROJ_SETUP
+/// <param name="logger"></param>
+/// <param name="httpPlatformHelper"></param>
+/// <param name="newtonsoftJsonSerializer">如果需要使用 <see cref="Newtonsoft.Json"/> 则需要传递自定义实例或通过直接 new()，否则应保持为 <see langword="null"/></param>
+#pragma warning disable SA1605 // Partial element documentation should have summary
+public abstract partial class WebApiClientService(
+#pragma warning restore SA1605 // Partial element documentation should have summary
+    ILogger logger,
+    IHttpPlatformHelperService? httpPlatformHelper,
+    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : SerializableService(logger, newtonsoftJsonSerializer)
+{
+}
+#else
+public abstract partial class WebApiClientService(IHttpPlatformHelperService? httpPlatformHelper) : SerializableService
+{
+}
+#endif
+
 /// <summary>
 /// WebApiClient 基类服务
 /// <para>注意：继承此类需要实现 <see cref="CreateClient"/></para>
 /// <para>对于使用 <see cref="IClientHttpClientFactory"/> 工厂构建 <see cref="HttpClient"/> 的服务基类应使用 <see cref="WebApiClientFactoryService"/></para>
 /// </summary>
-/// <param name="logger"></param>
-/// <param name="httpPlatformHelper"></param>
-/// <param name="newtonsoftJsonSerializer">如果需要使用 <see cref="Newtonsoft.Json"/> 则需要传递自定义实例或通过直接 new()，否则应保持为 <see langword="null"/></param>
-public abstract partial class WebApiClientService(
-    ILogger logger,
-    IHttpPlatformHelperService? httpPlatformHelper,
-    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : SerializableService(logger, newtonsoftJsonSerializer)
+partial class WebApiClientService
 {
     /// <inheritdoc cref="IHttpPlatformHelperService"/>
     protected readonly IHttpPlatformHelperService? httpPlatformHelper = httpPlatformHelper;
@@ -50,6 +62,7 @@ public abstract partial class WebApiClientService(
         return result;
     }
 
+#if !NETFRAMEWORK
     /// <summary>
     /// 以同步操作发送 HTTP 请求，仅响应正文
     /// <para>响应正文泛型支持</para>
@@ -71,6 +84,7 @@ public abstract partial class WebApiClientService(
         var result = Send<TResponseBody, nil>(args, default, cancellationToken);
         return result;
     }
+#endif
 
     /// <summary>
     /// 以异步操作发送 HTTP 请求，响应正文与请求正文
@@ -112,6 +126,7 @@ public abstract partial class WebApiClientService(
         return result;
     }
 
+#if !NETFRAMEWORK
     /// <summary>
     /// 以异步操作发送 HTTP 请求，仅响应正文，返回异步迭代器
     /// </summary>
@@ -206,7 +221,9 @@ public abstract partial class WebApiClientService(
             }
         }
     }
+#endif
 
+#if !NETFRAMEWORK
     /// <summary>
     /// 以同步操作发送 HTTP 请求，响应正文与请求正文
     /// <list type="bullet">
@@ -245,6 +262,7 @@ public abstract partial class WebApiClientService(
         }
         return result;
     }
+#endif
 
     #endregion
 
@@ -366,20 +384,37 @@ public abstract partial class WebApiClientService(
             {
                 if (responseContentType == typeof(string))
                 {
+#if NET5_0_OR_GREATER
                     var result = await responseMessage.Content.ReadAsStringAsync(cancellationToken);
+#else
+                    var result = await responseMessage.Content.ReadAsStringAsync();
+#endif
                     return (TResponseBody)(object)result;
                 }
                 else if (responseContentType == typeof(byte[]))
                 {
+#if NET5_0_OR_GREATER
                     var result = await responseMessage.Content.ReadAsByteArrayAsync(cancellationToken);
+#else
+                    var result = await responseMessage.Content.ReadAsByteArrayAsync();
+#endif
                     return (TResponseBody)(object)result;
                 }
+#if NETFRAMEWORK
+                else if (responseContentType == typeof(Stream))
+                {
+                    disposeResponseMessage = false;
+                    var result = await responseMessage.Content.ReadAsStreamAsync();
+                    return (TResponseBody)(object)result;
+                }
+#else
                 else if (responseContentType == typeof(Stream) || responseContentType == typeof(HttpResponseMessageContentStream))
                 {
                     disposeResponseMessage = false;
                     var result = await HttpResponseMessageContentStream.ReadAsStreamAsync(responseMessage, cancellationToken);
                     return (TResponseBody)(object)result;
                 }
+#endif
                 else if (responseContentType == typeof(HttpResponseMessage))
                 {
                     disposeResponseMessage = false;
@@ -400,9 +435,11 @@ public abstract partial class WebApiClientService(
                             switch (args.JsonImplType)
                             {
                                 case Serializable.JsonImplType.NewtonsoftJson:
+#if !NETFRAMEWORK && !PROJ_SETUP
                                     deserializeResult = await ReadFromNJsonAsync<TResponseBody>(
                                         responseMessage.Content, cancellationToken: cancellationToken);
                                     return deserializeResult;
+#endif
                                 case Serializable.JsonImplType.SystemTextJson:
                                     deserializeResult = await ReadFromSJsonAsync<TResponseBody>(
                                         responseMessage.Content, cancellationToken);
@@ -410,6 +447,7 @@ public abstract partial class WebApiClientService(
                                 default:
                                     throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
                             }
+#if !NETFRAMEWORK && !PROJ_SETUP
                         case MediaTypeNames.XML:
                         case MediaTypeNames.XML_APP:
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
@@ -417,6 +455,8 @@ public abstract partial class WebApiClientService(
                                 responseMessage.Content, cancellationToken: cancellationToken);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
                             return deserializeResult;
+#endif
+#if !NETFRAMEWORK
                         case MediaTypeNames.MessagePack:
                             deserializeResult = await ReadFromMessagePackAsync<TResponseBody>(
                                 responseMessage.Content, cancellationToken: cancellationToken);
@@ -425,6 +465,7 @@ public abstract partial class WebApiClientService(
                             deserializeResult = await ReadFromMemoryPackAsync<TResponseBody>(
                                 responseMessage.Content, cancellationToken: cancellationToken);
                             return deserializeResult;
+#endif
                         default:
                             deserializeResult = await ReadFromCustomDeserializeAsync<TResponseBody>(
                                 args, responseMessage, mime, cancellationToken: cancellationToken);
@@ -460,6 +501,7 @@ public abstract partial class WebApiClientService(
         }
     }
 
+#if !NETFRAMEWORK
     /// <summary>
     /// 以异步操作发送 HTTP 请求，返回异步迭代器
     /// <list type="bullet">
@@ -560,7 +602,9 @@ public abstract partial class WebApiClientService(
             }
         }
     }
+#endif
 
+#if !NETFRAMEWORK
     /// <summary>
     /// 以同步操作发送 HTTP 请求
     /// <list type="bullet">
@@ -710,6 +754,7 @@ public abstract partial class WebApiClientService(
             }
         }
     }
+#endif
 
     #endregion
 

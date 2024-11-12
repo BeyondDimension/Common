@@ -15,6 +15,7 @@ public abstract partial class HttpPlatformHelperService : IHttpPlatformHelperSer
     /// <inheritdoc/>
     public virtual string AcceptLanguage => CultureInfo.CurrentUICulture.GetAcceptLanguage();
 
+#if !PROJ_SETUP
     /// <inheritdoc/>
     public virtual ImageFormat[] SupportedImageFormats => SupportedImageFormats_.V.Value;
 
@@ -31,6 +32,7 @@ public abstract partial class HttpPlatformHelperService : IHttpPlatformHelperSer
 
     /// <inheritdoc/>
     public virtual (string filePath, string mime)? TryHandleUploadFile(Stream fileStream) => null;
+#endif
 
     /// <summary>
     /// 是否有网络链接

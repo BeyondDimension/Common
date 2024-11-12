@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // Newtonsoft.Json
@@ -68,3 +69,4 @@ partial class SerializableService // Newtonsoft.Json
         return result;
     }
 }
+#endif

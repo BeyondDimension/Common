@@ -70,9 +70,14 @@ partial class SerializableService // System.Text.Json
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static Task<Stream> ReadHttpContentStreamAsync(HttpContent content, CancellationToken cancellationToken)
     {
+#if NET5_0_OR_GREATER
         return content.ReadAsStreamAsync(cancellationToken);
+#else
+        return content.ReadAsStreamAsync();
+#endif
     }
 
+#if NET5_0_OR_GREATER
     /// <summary>
     /// https://github.com/dotnet/runtime/blob/v8.0.0/src/libraries/System.Net.Http.Json/src/System/Net/Http/Json/HttpContentJsonExtensions.netcoreapp.cs#L18
     /// </summary>
@@ -104,6 +109,7 @@ partial class SerializableService // System.Text.Json
 
         return contentStream;
     }
+#endif
 
     /// <summary>
     /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
@@ -150,6 +156,7 @@ partial class SerializableService // System.Text.Json
         return result;
     }
 
+#if !NETFRAMEWORK
     /// <summary>
     /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
     /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="SystemTextJsonObject"/></para>
@@ -173,4 +180,5 @@ partial class SerializableService // System.Text.Json
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
     }
+#endif
 }

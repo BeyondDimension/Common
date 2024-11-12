@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Services.Implementation;
 
 /// <summary>
@@ -302,3 +303,4 @@ public sealed class ImageHttpClientServiceImpl(
 
     #endregion
 }
+#endif

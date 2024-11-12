@@ -143,7 +143,11 @@ public static partial class DevicePlatform2EnumExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsDefined(this DevicePlatform2 platform)
         => platform != default &&
+#if NET5_0_OR_GREATER
             Enum.IsDefined(platform);
+#else
+            Enum.IsDefined(typeof(DevicePlatform2), platform);
+#endif
 
     /// <summary>
     /// 将 <see cref="string"/> 转换为 <see cref="DevicePlatform2"/>

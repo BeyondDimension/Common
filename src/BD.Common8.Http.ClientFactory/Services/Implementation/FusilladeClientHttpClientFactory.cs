@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 using IClientHttpClientFactory = System.Net.Http.Client.IClientHttpClientFactory;
 
 namespace BD.Common8.Http.ClientFactory.Services.Implementation;
@@ -426,3 +427,4 @@ sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority
         return ret.Response.ToTask(cancellationToken);
     }
 }
+#endif

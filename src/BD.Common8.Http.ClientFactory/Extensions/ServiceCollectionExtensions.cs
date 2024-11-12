@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Extensions;
 
 public static partial class ServiceCollectionExtensions
@@ -48,3 +49,4 @@ public static partial class ServiceCollectionExtensions
         return builder;
     }
 }
+#endif

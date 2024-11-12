@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Services;
 
 /// <summary>
@@ -44,3 +45,4 @@ public interface IImageHttpClientService
     Task<MemoryStream?> GetImageMemoryStreamAsync(GetImageArgs args,
         CancellationToken cancellationToken = default);
 }
+#endif

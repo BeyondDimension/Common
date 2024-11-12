@@ -1,3 +1,4 @@
+#if !NETFRAMEWORK && !PROJ_SETUP
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // MessagePack
@@ -59,3 +60,4 @@ partial class SerializableService // MessagePack
         }
     }
 }
+#endif

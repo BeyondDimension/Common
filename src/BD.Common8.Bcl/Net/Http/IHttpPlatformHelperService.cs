@@ -29,6 +29,7 @@ public interface IHttpPlatformHelperService
     /// </summary>
     string AcceptLanguage { get; }
 
+#if !PROJ_SETUP
     /// <summary>
     /// 支持的图片格式
     /// </summary>
@@ -42,6 +43,7 @@ public interface IHttpPlatformHelperService
     /// <param name="fileStream"></param>
     /// <returns></returns>
     (string filePath, string mime)? TryHandleUploadFile(Stream fileStream);
+#endif
 
     /// <summary>
     /// 是否有网络链接
