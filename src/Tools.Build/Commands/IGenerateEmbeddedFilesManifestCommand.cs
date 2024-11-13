@@ -55,7 +55,7 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
         ProcessStartInfo psi = new()
         {
             FileName = "dotnet",
-            Arguments = $"build -c Release {csprojFilePath} --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false /nowarn:MSB4011,NU5048,NU5104,NU1506 -maxcpucount",
+            Arguments = $"build -c Release {csprojFilePath} --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false /nowarn:MSB4011,NU5048,NU5104 -maxcpucount",
             WorkingDirectory = ROOT_ProjPath,
         };
         var process = Process.Start(psi);

@@ -13,7 +13,7 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<ImplicitUsings Condition="!$(TargetFramework.StartsWith('net35'))">true</ImplicitUsings>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104,NU1506</NoWarn>
+		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104</NoWarn>
 	</PropertyGroup>
 
 	<!-- 👇 全局 using | Global usings -->
