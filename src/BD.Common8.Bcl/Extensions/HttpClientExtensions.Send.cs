@@ -13,7 +13,7 @@ public static partial class HttpClientExtensions
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_0_OR_GREATER
         System.Net.HttpVersion.Version20;
 #else
-        new Version(2, 0);
+        System.Net.HttpVersion.Version11;
 #endif
 #endif
 
