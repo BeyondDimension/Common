@@ -147,7 +147,7 @@ public sealed class AllModelSerializationTest
             modelTypes = modelTypes.Concat(modelTypes_1);
         }
 
-        if(modelTypes.Any())
+        if (modelTypes.Any())
         {
             var items = modelTypes.Select(static x =>
             {

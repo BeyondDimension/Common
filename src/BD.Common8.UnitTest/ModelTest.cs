@@ -146,8 +146,37 @@ public sealed class ModelTest
         }
     }
 
+    #region https://github.com/dotnet/runtime/issues/89113
+
+    static DefaultJsonTypeInfoResolver GetDefaultJsonTypeInfoResolver()
+    {
+        try
+        {
+            return GetDefaultJsonTypeInfoResolver_V9();
+        }
+        catch (MissingMethodException)
+        {
+        }
+        return GetDefaultJsonTypeInfoResolver_V8();
+    }
+
+    /// <summary>
+    /// https://github.com/dotnet/runtime/blob/v8.0.11/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/Metadata/DefaultJsonTypeInfoResolver.cs#L135
+    /// </summary>
+    /// <param name="thiz"></param>
+    /// <returns></returns>
     [UnsafeAccessor(UnsafeAccessorKind.StaticMethod, Name = "RootDefaultInstance")]
-    static extern DefaultJsonTypeInfoResolver GetDefaultJsonTypeInfoResolver(DefaultJsonTypeInfoResolver? @thiz = null);
+    static extern DefaultJsonTypeInfoResolver GetDefaultJsonTypeInfoResolver_V8(DefaultJsonTypeInfoResolver? @thiz = null);
+
+    /// <summary>
+    /// https://github.com/dotnet/runtime/blob/v9.0.0/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/Metadata/DefaultJsonTypeInfoResolver.cs#L127
+    /// </summary>
+    /// <param name="thiz"></param>
+    /// <returns></returns>
+    [UnsafeAccessor(UnsafeAccessorKind.StaticMethod, Name = "get_DefaultInstance")]
+    static extern DefaultJsonTypeInfoResolver GetDefaultJsonTypeInfoResolver_V9(DefaultJsonTypeInfoResolver? @thiz = null);
+
+    #endregion
 
     [Test]
     public void RootDefaultInstance()

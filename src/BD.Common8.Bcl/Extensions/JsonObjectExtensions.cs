@@ -44,126 +44,114 @@ public static partial class JsonObjectExtensions
             return null;
         }
     }
+}
 
-    static partial class InternalReflection
+file static partial class InternalReflection
+{
+    static readonly Lazy<MethodInfo> _GetUnderlyingRepresentation = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
     {
-        static readonly Lazy<MethodInfo> _GetUnderlyingRepresentation = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
-        {
-            var typeOfJObject = typeof(SystemTextJsonObject);
-            var methodGetUnderlyingRepresentation = typeOfJObject.GetMethod("GetUnderlyingRepresentation", BindingFlags.Instance | BindingFlags.NonPublic);
-            object?[] parameters = [null, null];
-            return methodGetUnderlyingRepresentation.ThrowIsNull();
-        });
+        var typeOfJObject = typeof(SystemTextJsonObject);
+        var methodGetUnderlyingRepresentation = typeOfJObject.GetMethod("GetUnderlyingRepresentation", BindingFlags.Instance | BindingFlags.NonPublic);
+        object?[] parameters = [null, null];
+        return methodGetUnderlyingRepresentation.ThrowIsNull();
+    });
 
-        static void GetUnderlyingRepresentation(SystemTextJsonObject? obj, out object? dictionary, out JsonElement? jsonElement)
-        {
-            object?[] parameters = [null, null];
-            _GetUnderlyingRepresentation.Value.Invoke(obj, parameters);
-            dictionary = parameters[0];
-            jsonElement = (JsonElement?)parameters[1];
-        }
+    static void GetUnderlyingRepresentation(SystemTextJsonObject? obj, out OrderedDictionary<string, JsonNode?>? dictionary, out JsonElement? jsonElement)
+    {
+        object?[] parameters = [null, null];
+        _GetUnderlyingRepresentation.Value.Invoke(obj, parameters);
+        dictionary = (OrderedDictionary<string, JsonNode?>?)parameters[0];
+        jsonElement = (JsonElement?)parameters[1];
+    }
 
-        const string typeName_JsonPropertyDictionary1 = "System.Text.Json.JsonPropertyDictionary`1";
-        const string assemblyName_SystemTextJson = "System.Text.Json";
+    /// <summary>
+    /// https://github.com/dotnet/runtime/blob/v9.0.0/src/libraries/System.Text.Json/src/System/Text/Json/Nodes/JsonObject.IDictionary.cs#L250
+    /// </summary>
+    /// <param name="options"></param>
+    /// <param name="capacity"></param>
+    /// <returns></returns>
+    static OrderedDictionary<string, JsonNode?> CreateDictionary(JsonNodeOptions? options, int capacity = 0)
+    {
+        StringComparer comparer = options?.PropertyNameCaseInsensitive ?? false
+            ? StringComparer.OrdinalIgnoreCase
+            : StringComparer.Ordinal;
 
-        static readonly Lazy<Type> _CreateJsonPropertyDictionaryJsonNode = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeName_JsonPropertyDictionary1, assemblyName_SystemTextJson)] () =>
-        {
-            var typeOfJObject = typeof(SystemTextJsonObject);
+        return new(capacity, comparer);
+    }
+
+    /// <summary>
+    /// https://github.com/dotnet/runtime/blob/v8.0.0-rc.2.23479.6/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/Converters/Node/JsonNodeConverter.cs#L59
+    /// </summary>
+    static readonly Lazy<MethodInfo> _JsonNodeConverterCreate = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
+    {
+        var typeOfJObject = typeof(SystemTextJsonObject);
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            var typeOfJsonPropertyDictionary = typeOfJObject.Assembly.GetType(typeName_JsonPropertyDictionary1, true);
+        var typeOfJsonNodeConverter = typeOfJObject.Assembly.GetType("System.Text.Json.Serialization.Converters.JsonNodeConverter", true);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            var typeOfJsonPropertyDictionaryMakeGeneric = typeOfJsonPropertyDictionary.ThrowIsNull().MakeGenericType(typeof(JsonNode));
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            return typeOfJsonPropertyDictionaryMakeGeneric.ThrowIsNull();
-        });
+#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+        var methodCreateJsonNode = typeOfJsonNodeConverter.ThrowIsNull().GetMethod("Create", BindingFlags.Static | BindingFlags.Public);
+#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+        return methodCreateJsonNode.ThrowIsNull();
+    });
 
-        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeName_JsonPropertyDictionary1, assemblyName_SystemTextJson)]
-#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
-        static object? CreateJsonPropertyDictionaryJsonNode(bool caseInsensitive) => Activator.CreateInstance(_CreateJsonPropertyDictionaryJsonNode.Value, [caseInsensitive]);
-#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+    static JsonNode? JsonNodeConverterCreate(JsonElement element, JsonNodeOptions? options) => (JsonNode?)_JsonNodeConverterCreate.Value.Invoke(null, [element, options]);
 
-        /// <summary>
-        /// https://github.com/dotnet/runtime/blob/v8.0.0-rc.2.23479.6/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/Converters/Node/JsonNodeConverter.cs#L59
-        /// </summary>
-        static readonly Lazy<MethodInfo> _JsonNodeConverterCreate = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
+    static readonly Lazy<PropertyInfo> _SetParent = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(JsonNode))] () =>
+    {
+        var propertyParent = typeof(JsonNode).GetProperty(nameof(JsonNode.Parent));
+        return propertyParent.ThrowIsNull();
+    });
+
+    static void SetPropertyParent(JsonNode jsonNode, JsonNode parent) => _SetParent.Value.SetValue(jsonNode, parent);
+
+    static readonly Lazy<FieldInfo> _SetFieldDictionary = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
+    {
+        var typeOfJObject = typeof(SystemTextJsonObject);
+        var fieldDictionary = typeOfJObject.GetField("_dictionary", BindingFlags.Instance | BindingFlags.NonPublic);
+        return fieldDictionary.ThrowIsNull();
+    });
+
+    static void SetFieldDictionary(SystemTextJsonObject obj, object? value) => _SetFieldDictionary.Value.SetValue(obj, value);
+
+    static readonly Lazy<FieldInfo> _SetFieldJsonElement = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
+    {
+        var typeOfJObject = typeof(SystemTextJsonObject);
+        var fieldDictionary = typeOfJObject.GetField("_jsonElement", BindingFlags.Instance | BindingFlags.NonPublic);
+        return fieldDictionary.ThrowIsNull();
+    });
+
+    static void SetFieldJsonElement(SystemTextJsonObject obj, object? value) => _SetFieldJsonElement.Value.SetValue(obj, value);
+
+    /// <summary>
+    /// fix https://github.com/dotnet/runtime/issues/71784
+    /// </summary>
+    /// <param name="obj"></param>
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))]
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(JsonNode))]
+    public static void InitializeDictionary(SystemTextJsonObject? obj)
+    {
+        if (obj == null) return;
+        // https://github.com/dotnet/runtime/blob/v8.0.0-rc.2.23479.6/src/libraries/System.Text.Json/src/System/Text/Json/Nodes/JsonObject.IDictionary.cs#L196-L225
+        GetUnderlyingRepresentation(obj, out var dictionary, out var jsonElement);
+        if (dictionary == null)
         {
-            var typeOfJObject = typeof(SystemTextJsonObject);
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            var typeOfJsonNodeConverter = typeOfJObject.Assembly.GetType("System.Text.Json.Serialization.Converters.JsonNodeConverter", true);
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            var methodCreateJsonNode = typeOfJsonNodeConverter.ThrowIsNull().GetMethod("Create", BindingFlags.Static | BindingFlags.Public);
-            return methodCreateJsonNode.ThrowIsNull();
-        });
-
-        static JsonNode? JsonNodeConverterCreate(JsonElement element, JsonNodeOptions? options) => (JsonNode?)_JsonNodeConverterCreate.Value.Invoke(null, [element, options]);
-
-        static readonly Lazy<PropertyInfo> _SetParent = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(JsonNode))] () =>
-        {
-            var propertyParent = typeof(JsonNode).GetProperty(nameof(JsonNode.Parent));
-            return propertyParent.ThrowIsNull();
-        });
-
-        static void SetPropertyParent(JsonNode jsonNode, JsonNode parent) => _SetParent.Value.SetValue(jsonNode, parent);
-
-        static readonly Lazy<FieldInfo> _SetFieldDictionary = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
-        {
-            var typeOfJObject = typeof(SystemTextJsonObject);
-            var fieldDictionary = typeOfJObject.GetField("_dictionary", BindingFlags.Instance | BindingFlags.NonPublic);
-            return fieldDictionary.ThrowIsNull();
-        });
-
-        static void SetFieldDictionary(SystemTextJsonObject obj, object? value) => _SetFieldDictionary.Value.SetValue(obj, value);
-
-        static readonly Lazy<FieldInfo> _SetFieldJsonElement = new([DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))] () =>
-        {
-            var typeOfJObject = typeof(SystemTextJsonObject);
-            var fieldDictionary = typeOfJObject.GetField("_jsonElement", BindingFlags.Instance | BindingFlags.NonPublic);
-            return fieldDictionary.ThrowIsNull();
-        });
-
-        static void SetFieldJsonElement(SystemTextJsonObject obj, object? value) => _SetFieldJsonElement.Value.SetValue(obj, value);
-
-        static readonly Lazy<MethodInfo> _JsonPropertyDictionaryJsonNodeTryAddValue = new(() =>
-        {
-            var methodTryAddValue = _CreateJsonPropertyDictionaryJsonNode.Value.GetMethod("TryAddValue", BindingFlags.Instance | BindingFlags.NonPublic);
-            return methodTryAddValue.ThrowIsNull();
-        });
-
-        static void JsonPropertyDictionaryJsonNodeTryAddValue(object? dictionary, string? propertyName, JsonNode? value) => _JsonPropertyDictionaryJsonNodeTryAddValue.Value.Invoke(dictionary, [propertyName, value]);
-
-        /// <summary>
-        /// fix https://github.com/dotnet/runtime/issues/71784
-        /// </summary>
-        /// <param name="obj"></param>
-        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(SystemTextJsonObject))]
-        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(JsonNode))]
-        public static void InitializeDictionary(SystemTextJsonObject? obj)
-        {
-            if (obj == null) return;
-            // https://github.com/dotnet/runtime/blob/v8.0.0-rc.2.23479.6/src/libraries/System.Text.Json/src/System/Text/Json/Nodes/JsonObject.IDictionary.cs#L196-L225
-            GetUnderlyingRepresentation(obj, out var dictionary, out var jsonElement);
-            if (dictionary == null)
+            dictionary = CreateDictionary(obj.Options);
+            if (jsonElement.HasValue)
             {
-                bool caseInsensitive = obj.Options.HasValue && obj.Options.Value.PropertyNameCaseInsensitive;
-                dictionary = CreateJsonPropertyDictionaryJsonNode(caseInsensitive);
-                if (jsonElement.HasValue)
+                IEnumerable<SystemTextJsonPropertyStruct> items = jsonElement.Value.EnumerateObject();
+                foreach (var item in items.Reverse()) // 倒序循环以重复时取最后一个的值
                 {
-                    IEnumerable<SystemTextJsonPropertyStruct> items = jsonElement.Value.EnumerateObject();
-                    foreach (var item in items.Reverse()) // 倒序循环以重复时取最后一个的值
+                    var jsonNode = JsonNodeConverterCreate(item.Value, obj.Options);
+                    if (jsonNode != null)
                     {
-                        var jsonNode = JsonNodeConverterCreate(item.Value, obj.Options);
-                        if (jsonNode != null)
-                        {
-                            SetPropertyParent(jsonNode, obj);
-                        }
-                        JsonPropertyDictionaryJsonNodeTryAddValue(dictionary, item.Name, jsonNode);
+                        SetPropertyParent(jsonNode, obj);
                     }
+                    dictionary.TryAdd(item.Name, jsonNode);
                 }
-                SetFieldDictionary(obj, dictionary);
-                Interlocked.MemoryBarrier();
-                SetFieldJsonElement(obj, null);
             }
+            SetFieldDictionary(obj, dictionary);
+            Interlocked.MemoryBarrier();
+            SetFieldJsonElement(obj, null);
         }
     }
 }

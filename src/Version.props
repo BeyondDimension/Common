@@ -1,7 +1,7 @@
 <Project>
 	<!-- 👇 当前项目依赖的【目标框架版本号】配置 -->
 	<PropertyGroup>
-		<DotNet_Version>8.0</DotNet_Version>
+		<DotNet_Version>9.0</DotNet_Version>
 		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>

@@ -44,16 +44,16 @@
 		<!-- 👇 Swagger OpenAPI Documentation -->
 		<Version_Swashbuckle>6.9.0</Version_Swashbuckle>
 		<!-- 👇 EFCore -->
-		<Version_EFCore>8.0.10</Version_EFCore>
-		<Version_EFCore_ZPlus>8.103.6</Version_EFCore_ZPlus>
-		<Version_EFCore_BulkEx>8.1.0</Version_EFCore_BulkEx>
+		<Version_EFCore>9.0.0</Version_EFCore>
+		<Version_EFCore_ZPlus>9.0.0-rc.2.24474.1-03</Version_EFCore_ZPlus>
+		<Version_EFCore_BulkEx>8.1.1</Version_EFCore_BulkEx>
 		<!-- 👇 Serialize -->
 		<Version_MessagePack>2.5.187</Version_MessagePack>
 		<Version_MemoryPack>1.21.3</Version_MemoryPack>
 		<Version_Google_Protobuf>3.28.3</Version_Google_Protobuf>
 		<!-- 👇 ASP.NET Core OpenId/OAuth -->
-		<Version_OpenIddict>5.7.0</Version_OpenIddict>
-		<Version_AspNetCore_Authentication>8.0.10</Version_AspNetCore_Authentication>
+		<Version_OpenIddict>5.8.0</Version_OpenIddict>
+		<Version_AspNetCore_Authentication>9.0.0</Version_AspNetCore_Authentication>
 	</PropertyGroup>
 	<!-- 👇 BD.Common8 -->
 	<ItemGroup>
@@ -156,33 +156,33 @@
 	</ItemGroup>
 	<!-- 👇 .NET Aspire（阿斯拜尔） -->
 	<ItemGroup>
-		<PackageVersion Include="Aspire.Hosting.AppHost" Version="8.2.2">
+		<PackageVersion Include="Aspire.Hosting.AppHost" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="8.2.2">
+		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.Redis" Version="8.2.2">
+		<PackageVersion Include="Aspire.Hosting.Redis" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.Testing" Version="8.2.2">
+		<PackageVersion Include="Aspire.Hosting.Testing" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql" Version="8.2.2">
+		<PackageVersion Include="Aspire.Npgsql" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.2.2">
+		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="8.2.2">
+		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.10.0">
+		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.2">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="8.2.2">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="8.2.2">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="8.2.2">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0">
+		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.10.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.9.0">
+		<PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.10.0">
 		</PackageVersion>
 		<PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0">
 		</PackageVersion>
@@ -195,7 +195,7 @@
 	<ItemGroup>
 		<PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.VisualStudio.Azure.Kubernetes.Tools.Targets" Version="1.20.1">
+		<PackageVersion Include="Microsoft.VisualStudio.Azure.Kubernetes.Tools.Targets" Version="1.1.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 AWS SDK for .NET（亚马逊云） -->
@@ -329,7 +329,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(Version_EFCore)">
 		</PackageVersion>
-		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10">
+		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0-rc.2">
 		</PackageVersion>
 		<PackageVersion Include="Z.EntityFramework.Plus.EFCore" Version="$(Version_EFCore_ZPlus)">
 		</PackageVersion>
@@ -489,92 +489,92 @@
 	</ItemGroup>
 	<!-- 👇 .NET BCL -->
 	<ItemGroup>
-		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="8.0.1">
+		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Diagnostics.EventLog" Version="8.0.1">
+		<PackageVersion Include="System.Diagnostics.EventLog" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Drawing.Common" Version="8.0.10">
+		<PackageVersion Include="System.Drawing.Common" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0">
+		<PackageVersion Include="System.IO.Pipelines" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.IO.Hashing" Version="8.0.0">
+		<PackageVersion Include="System.IO.Hashing" Version="9.0.0">
 		</PackageVersion>
 		<PackageVersion Include="System.Linq.Async" Version="6.0.1">
 		</PackageVersion>
-		<PackageVersion Include="System.Management" Version="8.0.0">
+		<PackageVersion Include="System.Management" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Memory" Version="4.5.5">
+		<PackageVersion Include="System.Memory" Version="4.6.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Net.Http.Json" Version="8.0.1">
+		<PackageVersion Include="System.Net.Http.Json" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="8.0.1">
+		<PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="8.0.0">
+		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Text.Json" Version="8.0.5">
+		<PackageVersion Include="System.Text.Json" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.5.4">
+		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.6.0">
 		</PackageVersion>
 		<PackageVersion Include="System.ValueTuple" Version="4.5.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="9.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.Extensions.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.10">
+		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.10">
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.10">
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Physical" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.Logging" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.1">
+		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.2">
+		<PackageVersion Include="Microsoft.Extensions.Options" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Primitives" Version="8.0.0">
+		<PackageVersion Include="Microsoft.Extensions.Primitives" Version="9.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.AspNetCore.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10">
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.10">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10">
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.10">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.10">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="8.0.10">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="9.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 ASP.NET Core OpenId/OAuth -->
 	<ItemGroup>
-		<PackageVersion Include="AspNet.Security.OpenId.Steam" Version="8.0.0">
+		<PackageVersion Include="AspNet.Security.OpenId.Steam" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="8.3.0">
+		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="8.3.0">
+		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="9.0.0">
 		</PackageVersion>
 		<PackageVersion Include="OpenIddict.Core" Version="$(Version_OpenIddict)">
 		</PackageVersion>
