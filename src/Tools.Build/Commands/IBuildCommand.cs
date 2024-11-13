@@ -131,11 +131,12 @@ partial interface IBuildCommand : ICommand
                 var projPath = Path.Combine(repoPath, "src", projectName);
                 Clean(projPath);
 
-                int maxcpucount = projectName switch // https://learn.microsoft.com/zh-cn/visualstudio/msbuild/building-multiple-projects-in-parallel-with-msbuild#-maxcpucount-switch
-                {
-                    "BD.Common8.Essentials.Implementation.Avalonia" => -1,
-                    _ => 0,
-                };
+                //int maxcpucount = projectName switch // https://learn.microsoft.com/zh-cn/visualstudio/msbuild/building-multiple-projects-in-parallel-with-msbuild#-maxcpucount-switch
+                //{
+                //    "BD.Common8.Essentials.Implementation.Avalonia" => -1,
+                //    _ => 0,
+                //};
+                const int maxcpucount = -1;
 
                 ProcessStartInfo psi = new()
                 {
