@@ -277,7 +277,7 @@ public static void Debug(string tag, EventId eventId, Exception? exception, stri
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -291,7 +291,7 @@ public static void Debug(string tag, EventId eventId, Exception? exception, stri
 
 
   <h4 class="section" id="System_Log_Debug_System_String_Microsoft_Extensions_Logging_EventId_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogDebug(0, exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogDebug(0, exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -322,7 +322,7 @@ public static void Debug(string tag, EventId eventId, string message, params obj
     <dd><p>The event id associated with the log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -336,7 +336,7 @@ public static void Debug(string tag, EventId eventId, string message, params obj
 
 
   <h4 class="section" id="System_Log_Debug_System_String_Microsoft_Extensions_Logging_EventId_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogDebug(0, &quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogDebug(0, "Processing request from {Address}", address)</code></pre>
 
 
 
@@ -367,7 +367,7 @@ public static void Debug(string tag, Exception? exception, string message)</code
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -378,7 +378,7 @@ public static void Debug(string tag, Exception? exception, string message)</code
 
 
   <h4 class="section" id="System_Log_Debug_System_String_System_Exception_System_String__examples">Examples</h4>
-  <p>logger.LogDebug(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogDebug(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -409,7 +409,7 @@ public static void Debug(string tag, Exception? exception, string message, param
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -423,7 +423,7 @@ public static void Debug(string tag, Exception? exception, string message, param
 
 
   <h4 class="section" id="System_Log_Debug_System_String_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogDebug(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogDebug(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -451,7 +451,7 @@ public static void Debug(string tag, string message)</code></pre>
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -462,7 +462,7 @@ public static void Debug(string tag, string message)</code></pre>
 
 
   <h4 class="section" id="System_Log_Debug_System_String_System_String__examples">Examples</h4>
-  <p>logger.LogDebug(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogDebug("Processing request from {Address}", address)</code></pre>
 
 
 
@@ -490,7 +490,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -504,7 +504,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Debug_System_String_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogDebug(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogDebug("Processing request from {Address}", address)</code></pre>
 
 
 
@@ -537,7 +537,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -551,7 +551,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Error_System_String_Microsoft_Extensions_Logging_EventId_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogError(0, exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogError(0, exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -581,7 +581,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The event id associated with the log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -595,7 +595,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Error_System_String_Microsoft_Extensions_Logging_EventId_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogError(0, &quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogError(0, "Processing request from {Address}", address)</code></pre>
 
 
 
@@ -625,7 +625,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -636,7 +636,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Error_System_String_System_Exception_System_String__examples">Examples</h4>
-  <p>logger.LogError(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogError(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -666,7 +666,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -680,7 +680,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Error_System_String_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogError(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogError(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -707,7 +707,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -718,7 +718,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Error_System_String_System_String__examples">Examples</h4>
-  <p>logger.LogError(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogError("Processing request from {Address}", address)</code></pre>
 
 
 
@@ -745,7 +745,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -759,7 +759,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Error_System_String_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogError(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogError("Processing request from {Address}", address)</code></pre>
 
 
 
@@ -792,7 +792,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -806,7 +806,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Info_System_String_Microsoft_Extensions_Logging_EventId_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogInformation(0, exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogInformation(0, exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -836,7 +836,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The event id associated with the log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -850,7 +850,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Info_System_String_Microsoft_Extensions_Logging_EventId_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogInformation(0, &quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogInformation(0, "Processing request from {Address}", address)</code></pre>
 
 
 
@@ -880,7 +880,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -891,7 +891,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Info_System_String_System_Exception_System_String__examples">Examples</h4>
-  <p>logger.LogInformation(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogInformation(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -921,7 +921,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -935,7 +935,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Info_System_String_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogInformation(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogInformation(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -962,7 +962,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -973,7 +973,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Info_System_String_System_String__examples">Examples</h4>
-  <p>logger.LogInformation(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogInformation("Processing request from {Address}", address)</code></pre>
 
 
 
@@ -1000,7 +1000,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -1014,7 +1014,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Info_System_String_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogInformation(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogInformation("Processing request from {Address}", address)</code></pre>
 
 
 
@@ -1047,7 +1047,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -1061,7 +1061,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Warn_System_String_Microsoft_Extensions_Logging_EventId_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogWarning(0, exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogWarning(0, exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -1091,7 +1091,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The event id associated with the log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -1105,7 +1105,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Warn_System_String_Microsoft_Extensions_Logging_EventId_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogWarning(0, &quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogWarning(0, "Processing request from {Address}", address)</code></pre>
 
 
 
@@ -1135,7 +1135,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -1146,7 +1146,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Warn_System_String_System_Exception_System_String__examples">Examples</h4>
-  <p>logger.LogWarning(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogWarning(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -1176,7 +1176,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dd><p>The exception to log.</p>
 </dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -1190,7 +1190,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Warn_System_String_System_Exception_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogWarning(exception, &quot;Error while processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogWarning(exception, "Error while processing request from {Address}", address)</code></pre>
 
 
 
@@ -1217,7 +1217,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
   </dl>
 
@@ -1228,7 +1228,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Warn_System_String_System_String__examples">Examples</h4>
-  <p>logger.LogWarning(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogWarning("Processing request from {Address}", address)</code></pre>
 
 
 
@@ -1255,7 +1255,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
     <dt><code>tag</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
     <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code></p>
+    <dd><p>Format string of the log message in message template format. Example: <code>&quot;User {User} logged in from {Address}&quot;</code>.</p>
 </dd>
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
     <dd><p>An object array that contains zero or more objects to format.</p>
@@ -1269,7 +1269,7 @@ public static void Debug(string tag, string message, params object?[] args)</cod
 
 
   <h4 class="section" id="System_Log_Warn_System_String_System_String_System_Object____examples">Examples</h4>
-  <p>logger.LogWarning(&quot;Processing request from {Address}&quot;, address)</p>
+  <pre><code class="lang-csharp">logger.LogWarning("Processing request from {Address}", address)</code></pre>
 
 
 
