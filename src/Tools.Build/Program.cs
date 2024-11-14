@@ -13,6 +13,8 @@ try
         ToArray();
     Array.ForEach(commands, m => m.Invoke(null, [rootCommand,]));
     var exitCode = await rootCommand.InvokeAsync(args);
+    Console.Write("exitCode: ");
+    Console.WriteLine(exitCode);
     return exitCode;
 }
 catch (Exception ex)

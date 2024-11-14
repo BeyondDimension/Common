@@ -287,8 +287,6 @@ public interface IServerPublishCommand : ICommand
                     psi.ArgumentList.Add("-p:DebugSymbols=false");
                     psi.ArgumentList.Add("-p:IsPackable=false");
                     psi.ArgumentList.Add("-p:GenerateDocumentationFile=false");
-                    psi.ArgumentList.Add("/nowarn:MSB4011,NU5048,NU5104");
-                    psi.ArgumentList.Add("-maxcpucount");
 
                     psi.ArgumentList.Add("-o");
                     psi.ArgumentList.Add(publishPath);

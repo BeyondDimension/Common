@@ -9,11 +9,10 @@
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 		<UseArtifactsOutput Condition="!Exists('$(MSBuildThisFileDirectory)..\..\..\.nupkg.metadata')">true</UseArtifactsOutput>
 		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
-		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011</NoWarn>
+		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011;NU5048;NU5104</NoWarn>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<ImplicitUsings Condition="!$(TargetFramework.StartsWith('net35'))">true</ImplicitUsings>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn),MSB4011,NU5048,NU5104</NoWarn>
 	</PropertyGroup>
 
 	<!-- 👇 全局 using | Global usings -->
