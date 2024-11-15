@@ -592,11 +592,11 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(Version_AspNetCore_Authentication)">
 		</PackageVersion>
-		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.2.0">
+		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.2.0">
+		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.2.0">
+		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.2.1">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Redis -->
