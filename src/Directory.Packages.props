@@ -166,7 +166,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Aspire.Npgsql" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0">
+		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0-rc.2.24551.3">
 		</PackageVersion>
 		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.0.0">
 		</PackageVersion>
