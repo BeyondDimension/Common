@@ -473,7 +473,7 @@
 		</PackageVersion>
 		<PackageVersion Include="ReactiveUI.Maui" Version="$(Version_ReactiveUI)">
 		</PackageVersion>
-		<PackageVersion Include="Fody" Version="6.8.2">
+		<PackageVersion Include="Fody" Version="6.9.0">
 		</PackageVersion>
 		<PackageVersion Include="Costura.Fody" Version="5.7.0">
 		</PackageVersion>
