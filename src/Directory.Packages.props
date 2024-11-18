@@ -427,13 +427,13 @@
 		</PackageVersion>
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.11">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.0">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf.Tools" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="8.0.0">
+		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="9.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Resilience & Transient Fault Handling（重试） -->
@@ -756,7 +756,7 @@
 	</ItemGroup>
 	<!-- 👇 Maui -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Maui.Essentials" Version="8.0.100">
+		<PackageVersion Include="Microsoft.Maui.Essentials" Version="9.0.10">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Humanizer（格式化和呈现数据） -->
@@ -788,7 +788,7 @@
 	</ItemGroup>
 	<!-- 👇 Composition（组件扩展业务插件） -->
 	<ItemGroup>
-		<PackageVersion Include="System.Composition" Version="8.0.0">
+		<PackageVersion Include="System.Composition" Version="9.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Markdown -->
