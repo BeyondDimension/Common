@@ -714,7 +714,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Controls.DataGrid" Version="$(Version_Avalonia)">
 		</PackageVersion>
-		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.4">
+		<PackageVersion Include="Avalonia.Controls.ItemsRepeater" Version="11.1.5">
 		</PackageVersion>
 		<PackageVersion Include="Avalonia.Desktop" Version="$(Version_Avalonia)">
 		</PackageVersion>
