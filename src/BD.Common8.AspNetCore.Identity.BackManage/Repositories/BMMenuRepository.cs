@@ -142,9 +142,9 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
                 Name = x.Name,
                 Type = x.Type,
             }).ToDictionaryAsync(x => x.Id);
-        var menuButtonRoles = from u in db.Users
-                              join bur in db.UserRoles on u.Id equals bur.UserId
-                              join br in db.Roles on bur.RoleId equals br.Id
+        var menuButtonRoles = from u in db.SysUsers
+                              join bur in db.SysUserRoles on u.Id equals bur.UserId
+                              join br in db.SysRoles on bur.RoleId equals br.Id
                               join bmbr in db.MenuButtonRoles on br.Id equals bmbr.RoleId
                               where u.Id == userId && bur.TenantId == tenantId
                               select bmbr;
@@ -214,9 +214,9 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
 
     //public async Task<SysMenuModel[]?> GetUserMenuAsync(Guid userId, Guid tenantId)
     //{
-    //    var menuButtonRoles = from u in db.Users
-    //                          join bur in db.UserRoles on u.Id equals bur.UserId
-    //                          join br in db.Roles on bur.RoleId equals br.Id
+    //    var menuButtonRoles = from u in db.SysUsers
+    //                          join bur in db.SysUserRoles on u.Id equals bur.UserId
+    //                          join br in db.SysRoles on bur.RoleId equals br.Id
     //                          join bmbr in db.MenuButtonRoles on br.Id equals bmbr.RoleId
     //                          where u.Id == userId &&
     //                          bur.TenantId == tenantId &&
@@ -243,9 +243,9 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
 
     //public async Task<SysMenuModel[]?> GetUserMenuAsync(Guid userId, Guid tenantId)
     //{
-    //    var menuButtonRoles = from u in db.Users
-    //                          join bur in db.UserRoles on u.Id equals bur.UserId
-    //                          join br in db.Roles on bur.RoleId equals br.Id
+    //    var menuButtonRoles = from u in db.SysUsers
+    //                          join bur in db.SysUserRoles on u.Id equals bur.UserId
+    //                          join br in db.SysRoles on bur.RoleId equals br.Id
     //                          join bmbr in db.MenuButtonRoles on br.Id equals bmbr.RoleId
     //                          where u.Id == userId &&
     //                          !u.SoftDeleted &&
@@ -529,7 +529,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
         if (menu.ParentId.HasValue)
         {
             // 判断是否父菜单下有其他子菜单
-            var isParentMenu = await (from r in db.Roles
+            var isParentMenu = await (from r in db.SysRoles
                                       join bmbr in db.MenuButtonRoles on r.Id equals bmbr.RoleId
                                       join menuDB in db.Menus on bmbr.MenuId equals menuDB.Id
                                       where menuDB.ParentId == menu.ParentId &&
@@ -556,7 +556,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
         else
         {
             // 是否有子菜单
-            var isParentMenu = await (from r in db.Roles
+            var isParentMenu = await (from r in db.SysRoles
                                       join bmbr in db.MenuButtonRoles on r.Id equals bmbr.RoleId
                                       join menuDB in db.Menus on bmbr.MenuId equals menuDB.Id
                                       where menuDB.ParentId == menu.Id
@@ -568,7 +568,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
             // 删除全部子菜单权限
             if (isParentMenu)
             {
-                await (from r in db.Roles
+                await (from r in db.SysRoles
                        join bmbr in db.MenuButtonRoles on r.Id equals bmbr.RoleId
                        join menuDB in db.Menus on bmbr.MenuId equals menuDB.Id
                        where menuDB.ParentId == menu.Id
@@ -640,7 +640,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
 
     public async Task<Guid[]> GetRoleMenus(Guid userId, Guid? tenantId)
     {
-        var role = await db.UserRoles.AsNoTrackingWithIdentityResolution()
+        var role = await db.SysUserRoles.AsNoTrackingWithIdentityResolution()
             .Where(x => x.UserId == userId).Select(x => x.RoleId).ToArrayAsync();
         if (role.Length > 0)
         {
@@ -669,7 +669,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
     //public async Task<Dictionary<Guid, SysButtonModel[]>> GetRoleButtons(Guid userId, Guid? tenantId)
     //{
     //    var buttons = await GetButtons(tenantId);
-    //    var role = await db.UserRoles.AsNoTrackingWithIdentityResolution()
+    //    var role = await db.SysUserRoles.AsNoTrackingWithIdentityResolution()
     //       .Where(x => x.UserId == userId).Select(x => x.RoleId).ToArrayAsync();
     //    if (role.Length > 0)
     //    {

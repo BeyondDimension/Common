@@ -1,26 +1,32 @@
 namespace BD.Common8.AspNetCore.Data;
 
 /// <summary>
-/// Initializes a new instance of the <see cref="BMDbContextBase"/> class.
+/// Initializes a new instance of the <see  cref="BMDbContextBase{TIdentityUser, TIdentityRole, TIdentityKey}" /> class.
 /// </summary>
+/// <typeparam name="TIdentityUser">The type of user objects.</typeparam>
+/// <typeparam name="TIdentityRole">The type of role objects.</typeparam>
+/// <typeparam name="TIdentityKey">The type of the primary key for users and roles.</typeparam>
 /// <param name="httpContextAccessor"></param>
 /// <param name="options"></param>
-public abstract class BMDbContextBase(
+public abstract class BMDbContextBase<TIdentityUser, TIdentityRole, TIdentityKey>(
     IHttpContextAccessor httpContextAccessor,
-    DbContextOptions options) : DbContext(options), IDbContext, IBMDbContext
+    DbContextOptions options) : IdentityDbContext<TIdentityUser, TIdentityRole, TIdentityKey>(options), IBMDbContextBase
+    where TIdentityUser : IdentityUser<TIdentityKey>
+    where TIdentityRole : IdentityRole<TIdentityKey>
+    where TIdentityKey : IEquatable<TIdentityKey>
 {
     DbContext IDbContext.Thiz => this;
 
     readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
 
     /// <inheritdoc cref="BMUser"/>
-    public DbSet<BMUser> Users { get; set; } = null!;
+    public DbSet<BMUser> SysUsers { get; set; } = null!;
 
     /// <inheritdoc cref="BMRole"/>
-    public DbSet<BMRole> Roles { get; set; } = null!;
+    public DbSet<BMRole> SysRoles { get; set; } = null!;
 
     /// <inheritdoc cref="BMUserRole"/>
-    public DbSet<BMUserRole> UserRoles { get; set; } = null!;
+    public DbSet<BMUserRole> SysUserRoles { get; set; } = null!;
 
     /// <inheritdoc cref="BMMenuButtonRole"/>
     public DbSet<BMMenuButtonRole> MenuButtonRoles { get; set; } = null!;

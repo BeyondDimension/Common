@@ -155,7 +155,7 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
         DateTimeOffset refresh_not_before,
         CancellationToken cancellationToken)
     {
-        var user = await db.Users.FindAsync(keyValues: new object[] { userId }, cancellationToken);
+        var user = await db.SysUsers.FindAsync(keyValues: new object[] { userId }, cancellationToken);
 
         user.ThrowIsNull();
 

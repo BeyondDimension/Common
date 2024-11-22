@@ -6,10 +6,10 @@ namespace BD.Common8.AspNetCore.Data.Abstractions;
 public interface IBMDbContext : IApplicationDbContext<BMUser>
 {
     /// <inheritdoc cref="BMRole"/>
-    DbSet<BMRole> Roles { get; }
+    DbSet<BMRole> SysRoles { get; }
 
     /// <inheritdoc cref="BMUserRole"/>
-    DbSet<BMUserRole> UserRoles { get; }
+    DbSet<BMUserRole> SysUserRoles { get; }
 
     /// <inheritdoc cref="BMMenuButtonRole"/>
     DbSet<BMMenuButtonRole> MenuButtonRoles { get; }

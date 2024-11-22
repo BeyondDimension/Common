@@ -38,7 +38,7 @@ public class RoleManagerImpl<TDbContext>(
     public async Task<BMRole?> FindByIdAsync(Guid roleId)
     {
         ThrowIfDisposed();
-        var role = await db.Roles.FindAsync(new object[] { roleId, }, CancellationToken);
+        var role = await db.SysRoles.FindAsync(new object[] { roleId, }, CancellationToken);
         return role;
     }
 
@@ -50,7 +50,7 @@ public class RoleManagerImpl<TDbContext>(
         if (!result.Succeeded)
             return result;
         await UpdateNormalizedRoleNameAsync(role);
-        await db.Roles.AddAsync(role, CancellationToken);
+        await db.SysRoles.AddAsync(role, CancellationToken);
         await db.SaveChangesAsync(CancellationToken);
         return IdentityResult.Success;
     }
@@ -61,7 +61,7 @@ public class RoleManagerImpl<TDbContext>(
         if (roleName == null) return null;
         ThrowIfDisposed();
         var normalizedName = NormalizeKey(roleName);
-        var role = await db.Roles.FirstOrDefaultAsync(x =>
+        var role = await db.SysRoles.FirstOrDefaultAsync(x =>
             x.NormalizedName == normalizedName && x.TenantId == tenantId, CancellationToken);
         return role;
     }
@@ -128,8 +128,8 @@ public class RoleManagerImpl<TDbContext>(
         if (!result.Succeeded)
             return result;
         await UpdateNormalizedRoleNameAsync(role);
-        db.Roles.Attach(role);
-        db.Roles.Update(role);
+        db.SysRoles.Attach(role);
+        db.SysRoles.Update(role);
         try
         {
             await db.SaveChangesAsync(CancellationToken);
@@ -176,7 +176,7 @@ public class RoleManagerImpl<TDbContext>(
 /// ASP.NET 应用程序中进行角色管理
 /// </summary>
 /// <typeparam name="TDbContext"></typeparam>
-public class AspNetRoleManager<TDbContext>(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer lookupNormalizer, IdentityErrorDescriber errors) : RoleManagerImpl<TDbContext>(db, lookupNormalizer, errors) where TDbContext : BMDbContextBase
+public class AspNetRoleManager<TDbContext>(IHttpContextAccessor contextAccessor, TDbContext db, ILookupNormalizer lookupNormalizer, IdentityErrorDescriber errors) : RoleManagerImpl<TDbContext>(db, lookupNormalizer, errors) where TDbContext : DbContext, IBMDbContextBase
 {
     /// <summary>
     /// 请求上下文的访问器

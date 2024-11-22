@@ -26,7 +26,7 @@ public static partial class ServiceCollectionExtensions
         string databaseProvider = DefaultValue_databaseProvider,
         string? connectionStringKeyName = DefaultValue_connectionStringKeyName)
         where TBMAppSettings : BMAppSettings
-        where TContext : BMDbContextBase
+        where TContext : DbContext, IBMDbContextBase
     {
         #region 1. 启用 Https 时的响应压缩
 
@@ -90,7 +90,7 @@ public static partial class ServiceCollectionExtensions
 
         #region 7. 配置基类的数据库上下文服务
 
-        builder.AddDbContext<BMDbContextBase, TContext>(o, databaseProvider, connectionStringKeyName);
+        builder.AddDbContext<IBMDbContextBase, TContext>(o, databaseProvider, connectionStringKeyName);
 
         #endregion
 

@@ -32,21 +32,21 @@ sealed class BMUserRepository<TDbContext>(
         //    .PagingAsync(current, pageSize, RequestAborted);
         //foreach (var item in r.DataSource)
         //{
-        //    var roles = from ur in db.UserRoles.AsNoTrackingWithIdentityResolution()
-        //                join rs in db.Roles.AsNoTrackingWithIdentityResolution() on ur.RoleId equals rs.Id
+        //    var roles = from ur in db.SysUserRoles.AsNoTrackingWithIdentityResolution()
+        //                join rs in db.SysRoles.AsNoTrackingWithIdentityResolution() on ur.RoleId equals rs.Id
         //                where ur.UserId == item.Id
         //                select rs.Name;
         //    item.Role = await roles.ToArrayAsync();
         //}
         //return r;
-        var role = from ur in db.UserRoles.AsNoTrackingWithIdentityResolution()
-                   join r in db.Roles.AsNoTrackingWithIdentityResolution() on ur.RoleId equals r.Id
+        var role = from ur in db.SysUserRoles.AsNoTrackingWithIdentityResolution()
+                   join r in db.SysRoles.AsNoTrackingWithIdentityResolution() on ur.RoleId equals r.Id
                    select new
                    {
                        ur.UserId,
                        r.Name,
                    };
-        var query = from user in db.Users.AsNoTrackingWithIdentityResolution()
+        var query = from user in db.SysUsers.AsNoTrackingWithIdentityResolution()
                     select new BMUserTableItem
                     {
                         Id = user.Id,

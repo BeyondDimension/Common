@@ -9,5 +9,5 @@ public interface IApplicationDbContext<[DynamicallyAccessedMembers(IEntity.Dynam
     /// <summary>
     /// 获取用户实体集合的属性
     /// </summary>
-    DbSet<TUser> Users { get; }
+    DbSet<TUser> SysUsers { get; }
 }

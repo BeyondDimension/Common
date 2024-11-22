@@ -16,14 +16,14 @@ namespace BD.Common8.AspNetCore.Controllers.Infrastructure;
 public sealed class BMLoginController(
     IUserManager userManager,
     IJWTValueProvider jwtValueProvider,
-    BMDbContextBase db,
+    IBMDbContextBase db,
     IOptions<IdentityOptions> optionsAccessor,
     IDistributedCache cache,
     ILogger<BMLoginController> logger) : AllowAnonymousApiController<BMLoginController>(logger)
 {
     readonly IUserManager userManager = userManager;
     readonly IJWTValueProvider jwtValueProvider = jwtValueProvider;
-    readonly BMDbContextBase db = db;
+    readonly IBMDbContextBase db = db;
     readonly IdentityOptions options = optionsAccessor?.Value ?? new();
     readonly IDistributedCache cache = cache;
     const string ResponseDataUserNameNotFoundOrPasswordInvalid = "错误：用户名不存在或密码错误";
@@ -95,7 +95,7 @@ public sealed class BMLoginController(
     [HttpPut("{refresh_token}")]
     public async Task<ActionResult<ApiResponse<JWTEntity?>>> Put([FromRoute] string refresh_token)
     {
-        var user = await ((IBMDbContext)db).Users.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.RefreshToken == refresh_token, HttpContext.RequestAborted);
+        var user = await ((IBMDbContext)db).SysUsers.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.RefreshToken == refresh_token, HttpContext.RequestAborted);
         if (user == null) return NotFound();
 
         var now = DateTimeOffset.Now;

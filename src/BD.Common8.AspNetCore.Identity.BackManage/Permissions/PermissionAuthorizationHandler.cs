@@ -25,8 +25,8 @@ public sealed class PermissionAuthorizationHandler<TDbContext>(TDbContext db, IU
     {
         if (userManager.TryGetUserId(context.User, out var userId))
         {
-            var result = await (from role in db.UserRoles
-                                join user in db.Users on role.UserId equals user.Id
+            var result = await (from role in db.SysUserRoles
+                                join user in db.SysUsers on role.UserId equals user.Id
                                 join buttonRole in db.MenuButtonRoles on role.RoleId equals buttonRole.RoleId
                                 join tenant in db.Tenants on user.TenantId equals tenant.Id
                                 where role.UserId == userId &&

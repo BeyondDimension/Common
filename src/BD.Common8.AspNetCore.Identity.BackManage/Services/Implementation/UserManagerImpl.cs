@@ -72,7 +72,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     public async Task<BMUser?> FindByIdAsync(Guid userId)
     {
         ThrowIfDisposed();
-        var user = await db.Users.FindAsync(new object[] { userId, }, CancellationToken);
+        var user = await db.SysUsers.FindAsync(new object[] { userId, }, CancellationToken);
         return user;
     }
 
@@ -80,8 +80,8 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     public async Task<IList<string>> GetRolesAsync(BMUser user)
     {
         ThrowIfDisposed();
-        var query = from userRole in db.UserRoles
-                    join role in db.Roles on userRole.RoleId equals role.Id
+        var query = from userRole in db.SysUserRoles
+                    join role in db.SysRoles on userRole.RoleId equals role.Id
                     where userRole.UserId == user.Id &&
                         userRole.TenantId == user.TenantId &&
                         role.TenantId == user.TenantId
@@ -95,7 +95,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         if (userName == null) return null;
         ThrowIfDisposed();
         var normalizedUserName = NormalizeName(userName);
-        var user = await db.Users.FirstOrDefaultAsync(x =>
+        var user = await db.SysUsers.FirstOrDefaultAsync(x =>
             x.NormalizedUserName == normalizedUserName, CancellationToken);
         return user;
     }
@@ -106,7 +106,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         if (userName == null) return null;
         ThrowIfDisposed();
         var normalizedUserName = NormalizeName(userName);
-        var user = await db.Users.FirstOrDefaultAsync(x =>
+        var user = await db.SysUsers.FirstOrDefaultAsync(x =>
             x.NormalizedUserName == normalizedUserName && x.TenantId == tenantId, CancellationToken);
         return user;
     }
@@ -124,7 +124,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         if (Options.Lockout.AllowedForNewUsers)
             user.LockoutEnabled = true;
         await UpdateNormalizedUserNameAsync(user);
-        await db.Users.AddAsync(user, CancellationToken);
+        await db.SysUsers.AddAsync(user, CancellationToken);
         await db.SaveChangesAsync(CancellationToken);
         return IdentityResult.Success;
     }
@@ -243,8 +243,8 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         if (!result.Succeeded)
             return result;
         await UpdateNormalizedUserNameAsync(user);
-        db.Users.Attach(user);
-        db.Users.Update(user);
+        db.SysUsers.Attach(user);
+        db.SysUsers.Update(user);
         try
         {
             await db.SaveChangesAsync(CancellationToken);
@@ -352,11 +352,11 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// </summary>
     protected virtual async Task<(bool isInRole, Guid roleId, BMUserRole? userRole)> IsInRoleCoreAsync(BMUser user, string normalizedRole)
     {
-        var role = await db.Roles.FirstOrDefaultAsync(x =>
+        var role = await db.SysRoles.FirstOrDefaultAsync(x =>
             x.NormalizedName == normalizedRole && x.TenantId == user.TenantId, CancellationToken);
         if (role != null)
         {
-            var userRole = await db.UserRoles.FindAsync(
+            var userRole = await db.SysUserRoles.FindAsync(
                 new object[] { user.Id, role.Id, user.TenantId }, CancellationToken);
             return (userRole != null, role.Id, userRole);
         }
@@ -369,7 +369,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     protected virtual async ValueTask AddToRoleAsync(BMUser user, Guid roleId)
     {
         var userRole = new BMUserRole { UserId = user.Id, RoleId = roleId, TenantId = user.TenantId };
-        await db.UserRoles.AddAsync(userRole, CancellationToken);
+        await db.SysUserRoles.AddAsync(userRole, CancellationToken);
     }
 
     /// <summary>
@@ -394,7 +394,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     /// </summary>
     protected virtual ValueTask RemoveFromRoleAsync(BMUserRole userRole)
     {
-        db.UserRoles.Remove(userRole);
+        db.SysUserRoles.Remove(userRole);
         return ValueTask.CompletedTask;
     }
 
@@ -471,7 +471,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
 ///  ASP.NET 应用程序中进行用户管理
 /// </summary>
 /// <typeparam name="TDbContext"></typeparam>
-public class AspNetUserManager<TDbContext> : UserManagerImpl<TDbContext> where TDbContext : BMDbContextBase
+public class AspNetUserManager<TDbContext> : UserManagerImpl<TDbContext> where TDbContext : DbContext, IBMDbContextBase
 {
     /// <summary>
     /// 请求上下文的访问器
