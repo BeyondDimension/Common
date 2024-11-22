@@ -6,7 +6,11 @@ public interface IBMDbContextBase : IDbContext, IBMDbContext
 
     ChangeTracker ChangeTracker { get; }
 
+    int SaveChanges();
+
     int SaveChanges(bool acceptAllChangesOnSuccess);
+
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
 
     Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
 }
