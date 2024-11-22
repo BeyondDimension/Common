@@ -59,8 +59,14 @@ public abstract class BMDbContextBase<TIdentityUser, TIdentityRole, TIdentityKey
     protected override void OnModelCreating(ModelBuilder b)
     {
         base.OnModelCreating(b);
+
+        ReNameAspNetIdentity(b);
         b.BuildEntities(AppendBuildEntities_);
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void ReNameAspNetIdentity(ModelBuilder b)
+    => b.ReNameAspNetIdentity<TIdentityUser, TIdentityRole, TIdentityKey>();
 
     Action<EntityTypeBuilder>? AppendBuildEntities_(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action<EntityTypeBuilder>? buildAction)
     {
