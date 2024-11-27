@@ -39,7 +39,7 @@ public abstract class SmsSenderBase : ISmsSender
         where TSmsSender : class, ISmsSender
         where TSmsSettings : class, ISmsSettings
     {
-        IClientHttpClientFactory.AddHttpClient<TSmsSender>(services);
+        services.AddHttpClient<TSmsSender>();
         services.AddScoped<DebugSmsSenderProvider>();
         services.AddScoped<ISmsSender, SmsSenderWrapper<TSmsSender, TSmsSettings>>();
         return services;
