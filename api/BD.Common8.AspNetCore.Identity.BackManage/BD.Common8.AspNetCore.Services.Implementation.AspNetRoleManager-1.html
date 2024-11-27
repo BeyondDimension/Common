@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -90,7 +90,7 @@ Class AspNetRoleManager&lt;TDbContext&gt;  <a class="header-action link-secondar
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AspNetRoleManager&lt;TDbContext&gt; : RoleManagerImpl&lt;TDbContext&gt;, IRoleManager, IDisposable where TDbContext : BMDbContextBase</code></pre>
+    <pre><code class="lang-csharp hljs">public class AspNetRoleManager&lt;TDbContext&gt; : RoleManagerImpl&lt;TDbContext&gt;, IRoleManager, IDisposable where TDbContext : DbContext, IBMDbContextBase</code></pre>
   </div>
 
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -681,8 +681,8 @@ public sealed class BMLoginController : AllowAnonymousApiController&lt;BMLoginCo
 
   <a id="BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController__ctor_" data-uid="BD.Common8.AspNetCore.Controllers.Infrastructure.BMLoginController.#ctor*"></a>
 
-  <h3 id="BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController__ctor_BD_Common8_AspNetCore_Services_IUserManager_BD_Common8_AspNetCore_Identity_Abstractions_IJWTValueProvider_BD_Common8_AspNetCore_Data_BMDbContextBase_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_Extensions_Caching_Distributed_IDistributedCache_Microsoft_Extensions_Logging_ILogger_BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController__" data-uid="BD.Common8.AspNetCore.Controllers.Infrastructure.BMLoginController.#ctor(BD.Common8.AspNetCore.Services.IUserManager,BD.Common8.AspNetCore.Identity.Abstractions.IJWTValueProvider,BD.Common8.AspNetCore.Data.BMDbContextBase,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Identity.IdentityOptions},Microsoft.Extensions.Caching.Distributed.IDistributedCache,Microsoft.Extensions.Logging.ILogger{BD.Common8.AspNetCore.Controllers.Infrastructure.BMLoginController})">
-  BMLoginController(IUserManager, IJWTValueProvider, BMDbContextBase, IOptions&lt;IdentityOptions&gt;, IDistributedCache, ILogger&lt;BMLoginController&gt;)
+  <h3 id="BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController__ctor_BD_Common8_AspNetCore_Services_IUserManager_BD_Common8_AspNetCore_Identity_Abstractions_IJWTValueProvider_BD_Common8_AspNetCore_Data_Abstractions_IBMDbContextBase_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_Extensions_Caching_Distributed_IDistributedCache_Microsoft_Extensions_Logging_ILogger_BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController__" data-uid="BD.Common8.AspNetCore.Controllers.Infrastructure.BMLoginController.#ctor(BD.Common8.AspNetCore.Services.IUserManager,BD.Common8.AspNetCore.Identity.Abstractions.IJWTValueProvider,BD.Common8.AspNetCore.Data.Abstractions.IBMDbContextBase,Microsoft.Extensions.Options.IOptions{Microsoft.AspNetCore.Identity.IdentityOptions},Microsoft.Extensions.Caching.Distributed.IDistributedCache,Microsoft.Extensions.Logging.ILogger{BD.Common8.AspNetCore.Controllers.Infrastructure.BMLoginController})">
+  BMLoginController(IUserManager, IJWTValueProvider, IBMDbContextBase, IOptions&lt;IdentityOptions&gt;, IDistributedCache, ILogger&lt;BMLoginController&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Controllers/Infrastructure/BMLoginController.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -691,7 +691,7 @@ public sealed class BMLoginController : AllowAnonymousApiController&lt;BMLoginCo
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BMLoginController(IUserManager userManager, IJWTValueProvider jwtValueProvider, BMDbContextBase db, IOptions&lt;IdentityOptions&gt; optionsAccessor, IDistributedCache cache, ILogger&lt;BMLoginController&gt; logger)</code></pre>
+    <pre><code class="lang-csharp hljs">public BMLoginController(IUserManager userManager, IJWTValueProvider jwtValueProvider, IBMDbContextBase db, IOptions&lt;IdentityOptions&gt; optionsAccessor, IDistributedCache cache, ILogger&lt;BMLoginController&gt; logger)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -700,7 +700,7 @@ public sealed class BMLoginController : AllowAnonymousApiController&lt;BMLoginCo
     <dd></dd>
     <dt><code>jwtValueProvider</code> <a class="xref" href="../BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Identity.Abstractions.IJWTValueProvider.html">IJWTValueProvider</a></dt>
     <dd></dd>
-    <dt><code>db</code> <a class="xref" href="BD.Common8.AspNetCore.Data.BMDbContextBase.html">BMDbContextBase</a></dt>
+    <dt><code>db</code> <a class="xref" href="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContextBase.html">IBMDbContextBase</a></dt>
     <dd></dd>
     <dt><code>optionsAccessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityoptions">IdentityOptions</a>&gt;</dt>
     <dd></dd>
@@ -717,7 +717,7 @@ public sealed class BMLoginController : AllowAnonymousApiController&lt;BMLoginCo
 
 
 
-  <h4 class="section" id="BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController__ctor_BD_Common8_AspNetCore_Services_IUserManager_BD_Common8_AspNetCore_Identity_Abstractions_IJWTValueProvider_BD_Common8_AspNetCore_Data_BMDbContextBase_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_Extensions_Caching_Distributed_IDistributedCache_Microsoft_Extensions_Logging_ILogger_BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController___remarks">Remarks</h4>
+  <h4 class="section" id="BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController__ctor_BD_Common8_AspNetCore_Services_IUserManager_BD_Common8_AspNetCore_Identity_Abstractions_IJWTValueProvider_BD_Common8_AspNetCore_Data_Abstractions_IBMDbContextBase_Microsoft_Extensions_Options_IOptions_Microsoft_AspNetCore_Identity_IdentityOptions__Microsoft_Extensions_Caching_Distributed_IDistributedCache_Microsoft_Extensions_Logging_ILogger_BD_Common8_AspNetCore_Controllers_Infrastructure_BMLoginController___remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Initializes a new instance of the <a class="xref" href="BD.Common8.AspNetCore.Controllers.Infrastructure.BMLoginController.html">BMLoginController</a> class.</p>
 </div>
 

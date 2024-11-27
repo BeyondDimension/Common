@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -103,7 +103,7 @@ Interface IBMDbContext  <a class="header-action link-secondary" title="View sour
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="../BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Data.Abstractions.IApplicationDbContext-1.html#BD_Common8_AspNetCore_Data_Abstractions_IApplicationDbContext_1_Users">IApplicationDbContext&lt;BMUser&gt;.Users</a>
+      <a class="xref" href="../BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Data.Abstractions.IApplicationDbContext-1.html#BD_Common8_AspNetCore_Data_Abstractions_IApplicationDbContext_1_SysUsers">IApplicationDbContext&lt;BMUser&gt;.SysUsers</a>
     </div>
   </dd></dl>
 
@@ -276,38 +276,6 @@ Interface IBMDbContext  <a class="header-action link-secondary" title="View sour
 
 
 
-  <a id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_Roles_" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.Roles*"></a>
-
-  <h3 id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_Roles" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.Roles">
-  Roles
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/Abstractions/IBMDbContext.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>系统角色(权限)实体类</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DbSet&lt;BMRole&gt; Roles { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_SysInfos_" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.SysInfos*"></a>
 
   <h3 id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_SysInfos" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.SysInfos">
@@ -330,6 +298,70 @@ Interface IBMDbContext  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMInfo.html">BMInfo</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_SysRoles_" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.SysRoles*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_SysRoles" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.SysRoles">
+  SysRoles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/Abstractions/IBMDbContext.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>系统角色(权限)实体类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DbSet&lt;BMRole&gt; SysRoles { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_SysUserRoles_" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.SysUserRoles*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_SysUserRoles" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.SysUserRoles">
+  SysUserRoles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/Abstractions/IBMDbContext.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>权限控制相关实体类 - 角色用户关系</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">DbSet&lt;BMUserRole&gt; SysUserRoles { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUserRole.html">BMUserRole</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -394,38 +426,6 @@ Interface IBMDbContext  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUserOrganization.html">BMUserOrganization</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_UserRoles_" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.UserRoles*"></a>
-
-  <h3 id="BD_Common8_AspNetCore_Data_Abstractions_IBMDbContext_UserRoles" data-uid="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.UserRoles">
-  UserRoles
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/Abstractions/IBMDbContext.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>权限控制相关实体类 - 角色用户关系</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DbSet&lt;BMUserRole&gt; UserRoles { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUserRole.html">BMUserRole</a>&gt;</dt>
     <dd></dd>
   </dl>
 

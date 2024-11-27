@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>文档 | BD.Common8</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BMDbContextBase&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt; | BD.Common8 文档 ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="Common8">
+            Common8
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <article data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3">
+
+
+
+  <h1 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3" class="text-break">
+Class BMDbContextBase&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.AspNetCore.html">AspNetCore</a>.<a class="xref" href="BD.Common8.AspNetCore.Data.html">Data</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.Common8.AspNetCore.Identity.BackManage.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Initializes a new instance of the <a class="xref" href="BD.Common8.AspNetCore.Data.BMDbContextBase-3.html">BMDbContextBase&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt;</a> class.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class BMDbContextBase&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt; : IdentityDbContext&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt;, IInfrastructure&lt;IServiceProvider&gt;, IDbContextDependencies, IDbSetCache, IDbContextPoolable, IResettableService, IDisposable, IAsyncDisposable, IBMDbContextBase, IDbContext, IBMDbContext, IApplicationDbContext&lt;BMUser&gt; where TIdentityUser : IdentityUser&lt;TIdentityKey&gt; where TIdentityRole : IdentityRole&lt;TIdentityKey&gt; where TIdentityKey : IEquatable&lt;TIdentityKey&gt;</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TIdentityUser</code></dt>
+    <dd><p>The type of user objects.</p>
+</dd>
+    <dt><code>TIdentityRole</code></dt>
+    <dd><p>The type of role objects.</p>
+</dd>
+    <dt><code>TIdentityKey</code></dt>
+    <dd><p>The type of the primary key for users and roles.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext">DbContext</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityusercontext-5">IdentityUserContext</a>&lt;TIdentityUser, TIdentityKey, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityuserclaim-1">IdentityUserClaim</a>&lt;TIdentityKey&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityuserlogin-1">IdentityUserLogin</a>&lt;TIdentityKey&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityusertoken-1">IdentityUserToken</a>&lt;TIdentityKey&gt;&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext-8">IdentityDbContext</a>&lt;TIdentityUser, TIdentityRole, TIdentityKey, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityuserclaim-1">IdentityUserClaim</a>&lt;TIdentityKey&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityuserrole-1">IdentityUserRole</a>&lt;TIdentityKey&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityuserlogin-1">IdentityUserLogin</a>&lt;TIdentityKey&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityroleclaim-1">IdentityRoleClaim</a>&lt;TIdentityKey&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.identityusertoken-1">IdentityUserToken</a>&lt;TIdentityKey&gt;&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext-3">IdentityDbContext</a>&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt;</div>
+      <div><span class="xref">BMDbContextBase&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.infrastructure.iinfrastructure-1">IInfrastructure</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.internal.idbcontextdependencies">IDbContextDependencies</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.internal.idbsetcache">IDbSetCache</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.internal.idbcontextpoolable">IDbContextPoolable</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.infrastructure.iresettableservice">IResettableService</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+      <div><a class="xref" href="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContextBase.html">IBMDbContextBase</a></div>
+      <div><a class="xref" href="../BD.Common8.Orm.EFCore/BD.Common8.Orm.EFCore.Data.Abstractions.IDbContext.html">IDbContext</a></div>
+      <div><a class="xref" href="BD.Common8.AspNetCore.Data.Abstractions.IBMDbContext.html">IBMDbContext</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity/Data/Abstractions/IApplicationDbContext.cs">IApplicationDbContext</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext-8.onmodelcreating">IdentityDbContext&lt;TIdentityUser, TIdentityRole, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserRole&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityRoleClaim&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.OnModelCreating(ModelBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext-8.userroles">IdentityDbContext&lt;TIdentityUser, TIdentityRole, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserRole&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityRoleClaim&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.UserRoles</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext-8.roles">IdentityDbContext&lt;TIdentityUser, TIdentityRole, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserRole&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityRoleClaim&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.Roles</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identitydbcontext-8.roleclaims">IdentityDbContext&lt;TIdentityUser, TIdentityRole, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserRole&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityRoleClaim&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.RoleClaims</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityusercontext-5.onmodelcreating">IdentityUserContext&lt;TIdentityUser, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.OnModelCreating(ModelBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityusercontext-5.users">IdentityUserContext&lt;TIdentityUser, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.Users</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityusercontext-5.userclaims">IdentityUserContext&lt;TIdentityUser, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.UserClaims</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityusercontext-5.userlogins">IdentityUserContext&lt;TIdentityUser, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.UserLogins</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityusercontext-5.usertokens">IdentityUserContext&lt;TIdentityUser, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.UserTokens</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.identityusercontext-5.schemaversion">IdentityUserContext&lt;TIdentityUser, TIdentityKey, IdentityUserClaim&lt;TIdentityKey&gt;, IdentityUserLogin&lt;TIdentityKey&gt;, IdentityUserToken&lt;TIdentityKey&gt;&gt;.SchemaVersion</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.set#microsoft-entityframeworkcore-dbcontext-set-1">DbContext.Set&lt;TEntity&gt;()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.set#microsoft-entityframeworkcore-dbcontext-set-1(system-string)">DbContext.Set&lt;TEntity&gt;(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.onconfiguring">DbContext.OnConfiguring(DbContextOptionsBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.configureconventions">DbContext.ConfigureConventions(ModelConfigurationBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges#microsoft-entityframeworkcore-dbcontext-savechanges">DbContext.SaveChanges()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#microsoft-entityframeworkcore-dbcontext-savechangesasync(system-threading-cancellationtoken)">DbContext.SaveChangesAsync(CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.dispose">DbContext.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.disposeasync">DbContext.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.entry#microsoft-entityframeworkcore-dbcontext-entry-1(-0)">DbContext.Entry&lt;TEntity&gt;(TEntity)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.entry#microsoft-entityframeworkcore-dbcontext-entry(system-object)">DbContext.Entry(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.add#microsoft-entityframeworkcore-dbcontext-add-1(-0)">DbContext.Add&lt;TEntity&gt;(TEntity)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync#microsoft-entityframeworkcore-dbcontext-addasync-1(-0-system-threading-cancellationtoken)">DbContext.AddAsync&lt;TEntity&gt;(TEntity, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.attach#microsoft-entityframeworkcore-dbcontext-attach-1(-0)">DbContext.Attach&lt;TEntity&gt;(TEntity)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.update#microsoft-entityframeworkcore-dbcontext-update-1(-0)">DbContext.Update&lt;TEntity&gt;(TEntity)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#microsoft-entityframeworkcore-dbcontext-remove-1(-0)">DbContext.Remove&lt;TEntity&gt;(TEntity)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.add#microsoft-entityframeworkcore-dbcontext-add(system-object)">DbContext.Add(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync#microsoft-entityframeworkcore-dbcontext-addasync(system-object-system-threading-cancellationtoken)">DbContext.AddAsync(object, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.attach#microsoft-entityframeworkcore-dbcontext-attach(system-object)">DbContext.Attach(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.update#microsoft-entityframeworkcore-dbcontext-update(system-object)">DbContext.Update(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#microsoft-entityframeworkcore-dbcontext-remove(system-object)">DbContext.Remove(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.addrange#microsoft-entityframeworkcore-dbcontext-addrange(system-object())">DbContext.AddRange(params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.addrangeasync#microsoft-entityframeworkcore-dbcontext-addrangeasync(system-object())">DbContext.AddRangeAsync(params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.attachrange#microsoft-entityframeworkcore-dbcontext-attachrange(system-object())">DbContext.AttachRange(params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.updaterange#microsoft-entityframeworkcore-dbcontext-updaterange(system-object())">DbContext.UpdateRange(params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.removerange#microsoft-entityframeworkcore-dbcontext-removerange(system-object())">DbContext.RemoveRange(params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.addrange#microsoft-entityframeworkcore-dbcontext-addrange(system-collections-generic-ienumerable((system-object)))">DbContext.AddRange(IEnumerable&lt;object&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.addrangeasync#microsoft-entityframeworkcore-dbcontext-addrangeasync(system-collections-generic-ienumerable((system-object))-system-threading-cancellationtoken)">DbContext.AddRangeAsync(IEnumerable&lt;object&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.attachrange#microsoft-entityframeworkcore-dbcontext-attachrange(system-collections-generic-ienumerable((system-object)))">DbContext.AttachRange(IEnumerable&lt;object&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.updaterange#microsoft-entityframeworkcore-dbcontext-updaterange(system-collections-generic-ienumerable((system-object)))">DbContext.UpdateRange(IEnumerable&lt;object&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.removerange#microsoft-entityframeworkcore-dbcontext-removerange(system-collections-generic-ienumerable((system-object)))">DbContext.RemoveRange(IEnumerable&lt;object&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.find#microsoft-entityframeworkcore-dbcontext-find(system-type-system-object())">DbContext.Find(Type, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#microsoft-entityframeworkcore-dbcontext-findasync(system-type-system-object())">DbContext.FindAsync(Type, params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#microsoft-entityframeworkcore-dbcontext-findasync(system-type-system-object()-system-threading-cancellationtoken)">DbContext.FindAsync(Type, object[], CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.find#microsoft-entityframeworkcore-dbcontext-find-1(system-object())">DbContext.Find&lt;TEntity&gt;(params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#microsoft-entityframeworkcore-dbcontext-findasync-1(system-object())">DbContext.FindAsync&lt;TEntity&gt;(params object[])</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#microsoft-entityframeworkcore-dbcontext-findasync-1(system-object()-system-threading-cancellationtoken)">DbContext.FindAsync&lt;TEntity&gt;(object[], CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.fromexpression">DbContext.FromExpression&lt;TResult&gt;(Expression&lt;Func&lt;IQueryable&lt;TResult&gt;&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.database">DbContext.Database</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.changetracker">DbContext.ChangeTracker</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.model">DbContext.Model</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.contextid">DbContext.ContextId</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savingchanges">DbContext.SavingChanges</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savedchanges">DbContext.SavedChanges</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesfailed">DbContext.SaveChangesFailed</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3__ctor_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.#ctor*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3__ctor_Microsoft_AspNetCore_Http_IHttpContextAccessor_Microsoft_EntityFrameworkCore_DbContextOptions_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.EntityFrameworkCore.DbContextOptions)">
+  BMDbContextBase(IHttpContextAccessor, DbContextOptions)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="BD.Common8.AspNetCore.Data.BMDbContextBase-3.html">BMDbContextBase&lt;TIdentityUser, TIdentityRole, TIdentityKey&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected BMDbContextBase(IHttpContextAccessor httpContextAccessor, DbContextOptions options)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>httpContextAccessor</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.ihttpcontextaccessor">IHttpContextAccessor</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions">DbContextOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_PCreateUser" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.PCreateUser">
+  PCreateUser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建实体的用户属性类型 <a class="xref" href="BD.Common8.AspNetCore.Columns.ICreateUser.html">ICreateUser</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Type PCreateUser</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_POperatorUser" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.POperatorUser">
+  POperatorUser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>操作实体的用户属性类型 <a class="xref" href="BD.Common8.AspNetCore.Columns.IOperatorUser.html">IOperatorUser</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Type POperatorUser</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Buttons_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Buttons*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Buttons" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Buttons">
+  Buttons
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>权限控制相关实体类 - 系统按钮</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMButton&gt; Buttons { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMButton.html">BMButton</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_IgnoreOnSaveChanges_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.IgnoreOnSaveChanges*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_IgnoreOnSaveChanges" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.IgnoreOnSaveChanges">
+  IgnoreOnSaveChanges
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IgnoreOnSaveChanges { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_MenuButtonRoles_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.MenuButtonRoles*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_MenuButtonRoles" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.MenuButtonRoles">
+  MenuButtonRoles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>权限控制相关实体类 - 角色菜单按钮关系</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMMenuButtonRole&gt; MenuButtonRoles { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMMenuButtonRole.html">BMMenuButtonRole</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_MenuButtons_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.MenuButtons*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_MenuButtons" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.MenuButtons">
+  MenuButtons
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>权限控制相关实体类 - 菜单按钮关系</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMMenuButton&gt; MenuButtons { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMMenuButton.html">BMMenuButton</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Menus_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Menus*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Menus" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Menus">
+  Menus
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>权限控制相关实体类 - 系统菜单</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMMenu&gt; Menus { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMMenu.html">BMMenu</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Organizations_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Organizations*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Organizations" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Organizations">
+  Organizations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>系统组织实体类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMOrganization&gt; Organizations { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMOrganization.html">BMOrganization</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysInfos_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysInfos*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysInfos" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysInfos">
+  SysInfos
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>后台系统信息实体类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMInfo&gt; SysInfos { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMInfo.html">BMInfo</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysRoles_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysRoles*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysRoles" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysRoles">
+  SysRoles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>系统角色(权限)实体类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMRole&gt; SysRoles { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMRole.html">BMRole</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysUserRoles_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysUserRoles*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysUserRoles" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysUserRoles">
+  SysUserRoles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>权限控制相关实体类 - 角色用户关系</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMUserRole&gt; SysUserRoles { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUserRole.html">BMUserRole</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysUsers_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysUsers*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SysUsers" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SysUsers">
+  SysUsers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>系统用户(多租户)实体类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMUser&gt; SysUsers { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUser.html">BMUser</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Tenants_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Tenants*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_Tenants" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.Tenants">
+  Tenants
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>租户信息实体类</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMTenant&gt; Tenants { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMTenant.html">BMTenant</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_UserOrganizations_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.UserOrganizations*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_UserOrganizations" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.UserOrganizations">
+  UserOrganizations
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>权限控制相关实体类 - 用户组织架构关系</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbSet&lt;BMUserOrganization&gt; UserOrganizations { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet</a>&lt;<a class="xref" href="BD.Common8.AspNetCore.Entities.BMUserOrganization.html">BMUserOrganization</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_AppendBuildEntities_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.AppendBuildEntities*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_AppendBuildEntities_Microsoft_EntityFrameworkCore_ModelBuilder_Microsoft_EntityFrameworkCore_Metadata_IMutableEntityType_System_Type_System_Action_Microsoft_EntityFrameworkCore_Metadata_Builders_EntityTypeBuilder__" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.AppendBuildEntities(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType,System.Type,System.Action{Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder})">
+  AppendBuildEntities(ModelBuilder, IMutableEntityType, Type, Action&lt;EntityTypeBuilder&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于追加构建实体的操作方法</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Action&lt;EntityTypeBuilder&gt;? AppendBuildEntities(ModelBuilder modelBuilder, IMutableEntityType entityType, Type type, Action&lt;EntityTypeBuilder&gt;? buildAction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>modelBuilder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a></dt>
+    <dd></dd>
+    <dt><code>entityType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.metadata.imutableentitytype">IMutableEntityType</a></dt>
+    <dd></dd>
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>buildAction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.metadata.builders.entitytypebuilder">EntityTypeBuilder</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.metadata.builders.entitytypebuilder">EntityTypeBuilder</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_GetCurrentlyLoggedInUserId_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.GetCurrentlyLoggedInUserId*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_GetCurrentlyLoggedInUserId" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.GetCurrentlyLoggedInUserId">
+  GetCurrentlyLoggedInUserId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Guid GetCurrentlyLoggedInUserId()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_OnModelCreating_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.OnModelCreating*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_OnModelCreating_Microsoft_EntityFrameworkCore_ModelBuilder_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+  OnModelCreating(ModelBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>配置实体的模型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnModelCreating(ModelBuilder b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>b</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a></dt>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a> 对象，用于构建模型</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_ReNameAspNetIdentity_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.ReNameAspNetIdentity*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_ReNameAspNetIdentity_Microsoft_EntityFrameworkCore_ModelBuilder_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.ReNameAspNetIdentity(Microsoft.EntityFrameworkCore.ModelBuilder)">
+  ReNameAspNetIdentity(ModelBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ReNameAspNetIdentity(ModelBuilder b)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>b</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChanges_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SaveChanges*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChanges_System_Boolean_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SaveChanges(System.Boolean)">
+  SaveChanges(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves all changes made in this context to the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override sealed int SaveChanges(bool acceptAllChangesOnSuccess)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>acceptAllChangesOnSuccess</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.acceptallchanges">AcceptAllChanges()</a>
+is called after the changes have been sent successfully to the database.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of state entries written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChanges_System_Boolean__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+                This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
+                to discover any changes to entity instances before saving to the underlying database. This can be disabled via
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
+            </p>
+<p>
+                Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more information
+                and examples.
+            </p>
+<p>
+                See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
+            </p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateexception">DbUpdateException</a></dt>
+    <dd><p>An error is encountered while saving to the database.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception">DbUpdateConcurrencyException</a></dt>
+    <dd><p>A concurrency violation is encountered while saving to the database.
+A concurrency violation occurs when an unexpected number of rows are affected during save.
+This is usually because the data in the database has been modified since it was loaded into memory.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChangesAsync_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SaveChangesAsync*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChangesAsync_System_Boolean_System_Threading_CancellationToken_" data-uid="BD.Common8.AspNetCore.Data.BMDbContextBase`3.SaveChangesAsync(System.Boolean,System.Threading.CancellationToken)">
+  SaveChangesAsync(bool, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Saves all changes made in this context to the database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override sealed Task&lt;int&gt; SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>acceptAllChangesOnSuccess</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Indicates whether <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.acceptallchanges">AcceptAllChanges()</a> is called after
+the changes have been sent successfully to the database.</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> to observe while waiting for the task to complete.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd><p>A task that represents the asynchronous save operation. The task result contains the
+number of state entries written to the database.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChangesAsync_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+                This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
+                to discover any changes to entity instances before saving to the underlying database. This can be disabled via
+                <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
+            </p>
+<p>
+                Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+                includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+                Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+                in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more
+                information and examples.
+            </p>
+<p>
+                See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
+            </p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateexception">DbUpdateException</a></dt>
+    <dd><p>An error is encountered while saving to the database.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception">DbUpdateConcurrencyException</a></dt>
+    <dd><p>A concurrency violation is encountered while saving to the database.
+A concurrency violation occurs when an unexpected number of rows are affected during save.
+This is usually because the data in the database has been modified since it was loaded into memory.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.operationcanceledexception">OperationCanceledException</a></dt>
+    <dd><p>If the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a> is canceled.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity.BackManage/Data/BMDbContextBase.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

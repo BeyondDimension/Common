@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -138,6 +138,48 @@ Class IdentityExtensions  <a class="header-action link-secondary" title="View so
 
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="BD_Common8_AspNetCore_Extensions_IdentityExtensions_ReNameAspNetIdentity_" data-uid="BD.Common8.AspNetCore.Extensions.IdentityExtensions.ReNameAspNetIdentity*"></a>
+
+  <h3 id="BD_Common8_AspNetCore_Extensions_IdentityExtensions_ReNameAspNetIdentity__3_Microsoft_EntityFrameworkCore_ModelBuilder_System_String_" data-uid="BD.Common8.AspNetCore.Extensions.IdentityExtensions.ReNameAspNetIdentity``3(Microsoft.EntityFrameworkCore.ModelBuilder,System.String)">
+  ReNameAspNetIdentity&lt;TUser, TRole, TKey&gt;(ModelBuilder, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.AspNetCore.Identity/Extensions/IdentityExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ReNameAspNetIdentity&lt;TUser, TRole, TKey&gt;(this ModelBuilder builder, string? tablePrefix = null) where TUser : IdentityUser&lt;TKey&gt; where TRole : IdentityRole&lt;TKey&gt; where TKey : IEquatable&lt;TKey&gt;</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a></dt>
+    <dd></dd>
+    <dt><code>tablePrefix</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TUser</code></dt>
+    <dd></dd>
+    <dt><code>TRole</code></dt>
+    <dd></dd>
+    <dt><code>TKey</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 
   <a id="BD_Common8_AspNetCore_Extensions_IdentityExtensions_TryGetUserId_" data-uid="BD.Common8.AspNetCore.Extensions.IdentityExtensions.TryGetUserId*"></a>

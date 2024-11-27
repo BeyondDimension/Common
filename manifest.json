@@ -214,6 +214,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Data.Abstractions.IBMDbContextBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Data.Abstractions.IBMDbContextBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Data.Abstractions.yml",
       "output": {
         ".html": {
@@ -224,10 +234,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Data.BMDbContextBase.yml",
+      "source_relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Data.BMDbContextBase-3.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Data.BMDbContextBase.html"
+          "relative_path": "api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Data.BMDbContextBase-3.html"
         }
       },
       "version": ""
