@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Diagnostics;
-
 namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
