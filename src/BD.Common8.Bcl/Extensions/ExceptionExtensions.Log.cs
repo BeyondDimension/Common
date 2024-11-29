@@ -81,7 +81,12 @@ public static partial class ExceptionExtensions
         }
         string GetShowMsg()
         {
-            if (has_e) return GetAllMessageCore(e!, has_message, has_args, message, args);
+            if (has_e)
+            {
+                StringBuilder sb = new();
+                GetAllMessageCore(sb, e!, has_message, has_args, message, args);
+                return sb.ToString();
+            }
             if (has_message)
             {
                 if (has_args)
