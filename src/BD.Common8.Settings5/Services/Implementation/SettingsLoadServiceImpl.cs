@@ -198,9 +198,11 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             {
             fileCreateStart: try
                 {
-                    using var fs = File.Create(settingsFilePath);
+                    using var ms = new MemoryStream();
                     settingsModel = new();
-                    Save(settingsModel, settingsModelType, settingsFileNameWithoutExtension, fs, this.options);
+                    Save(settingsModel, settingsModelType, settingsFileNameWithoutExtension, ms, this.options);
+                    var fileBytes = ms.ToArray();
+                    File.WriteAllBytes(settingsFilePath, fileBytes);
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -239,14 +241,19 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
 
                 if (isWriteFile)
                 {
-                    // 尝试将错误的配置保存为 .json.i.bak 防止启动软件当前配置被覆盖
-                    var settingsFilePath_i_bak = $"{settingsFilePath}.i.bak";
-                    try
+                    // 尝试将错误的配置保存为 .json.load.bak 防止启动软件当前配置被覆盖
+                    if (!IsZeroFile(settingsFilePath))
                     {
-                        File.Move(settingsFilePath, settingsFilePath_i_bak);
-                    }
-                    catch
-                    {
+                        var settingsFilePath_load_bak = $"{settingsFilePath}.load.bak";
+                        try
+                        {
+                            IOPath.FileIfExistsItDelete(settingsFilePath_load_bak);
+                            File.Move(settingsFilePath,
+                                settingsFilePath_load_bak, true);
+                        }
+                        catch
+                        {
+                        }
                     }
                 }
             }
@@ -264,6 +271,18 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         };
         options = monitor;
         return (isInvalid, exception, settingsFileNameWithoutExtension);
+    }
+
+    internal static bool IsZeroFile(string filePath, bool @catch = true)
+    {
+        try
+        {
+            return new FileInfo(filePath).Length == 0;
+        }
+        catch
+        {
+            return @catch;
+        }
     }
 
     /// <summary>
@@ -569,9 +588,12 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
 
             try
             {
-                var settingsFilePath2 = $"{settingsFilePath}.bak";
-                IOPath.FileTryDelete(settingsFilePath2);
-                File.Move(settingsFilePath, settingsFilePath2);
+                if (!IsZeroFile(settingsFilePath))
+                {
+                    var settingsFilePath2 = $"{settingsFilePath}.save.bak";
+                    IOPath.FileTryDelete(settingsFilePath2);
+                    File.Move(settingsFilePath, settingsFilePath2, true);
+                }
             }
 #pragma warning disable CS0168 // 声明了变量，但从未使用过
             catch (Exception ex)

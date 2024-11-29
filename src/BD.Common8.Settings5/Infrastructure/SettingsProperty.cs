@@ -32,5 +32,5 @@ public abstract class SettingsProperty(string propertyName,
     /// <summary>
     /// 重置值
     /// </summary>
-    public abstract void Reset();
+    public abstract void Reset(bool save = true);
 }

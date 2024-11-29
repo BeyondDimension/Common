@@ -24,7 +24,7 @@
 		<!-- 👇 Skia https://github.com/AvaloniaUI/Avalonia/blob/master/build/SkiaSharp.props -->
 		<Version_SkiaSharp>3.0.0-preview.4.1</Version_SkiaSharp>
 		<!-- 👇 Avalonia -->
-		<Version_Avalonia>11.1.4</Version_Avalonia>
+		<Version_Avalonia>11.1.5</Version_Avalonia>
 		<Version_Avalonia_Xaml_Behaviors>11.1.0.7</Version_Avalonia_Xaml_Behaviors>
 		<Version_Avalonia_Edit>11.1.0</Version_Avalonia_Edit>
 		<Version_AvaloniaEdit_TextMate>11.1.0</Version_AvaloniaEdit_TextMate>
@@ -813,5 +813,9 @@
 	<!-- 👇 二进制数据差异算法 -->
 	<ItemGroup>
 		<PackageVersion Include="BsDiff" Version="1.1.0" />
+	</ItemGroup>
+	<!-- 👇 NAT 网络类型测试库 -->
+	<ItemGroup>
+		<PackageVersion Include="Stun.Net" Version="8.0.2" />
 	</ItemGroup>
 </Project>

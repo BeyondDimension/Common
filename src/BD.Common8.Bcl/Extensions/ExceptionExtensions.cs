@@ -53,15 +53,34 @@ public static partial class ExceptionExtensions
     {
         var has_msg = !string.IsNullOrWhiteSpace(msg);
         var has_args = args != null && args.Length != 0;
-        return GetAllMessageCore(e, has_msg, has_args, msg, args!);
+        StringBuilder sb = new();
+        GetAllMessageCore(sb, e, has_msg, has_args, msg, args!);
+        var text = sb.ToString().Trim();
+        return text;
     }
 
-    static string GetAllMessageCore(Exception e,
+    /// <summary>
+    /// 追加异常中所有错误信息写入 <see cref="StringBuilder"/>
+    /// </summary>
+    /// <param name="e">当前捕获的异常</param>
+    /// <param name="sb"></param>
+    /// <param name="msg">可选的消息，将写在第一行</param>
+    /// <param name="args">可选的消息参数</param>
+    public static void AppendAllMessage(this Exception? e, StringBuilder sb, string? msg = null, params object?[] args)
+    {
+        if (e == null)
+            return;
+        var has_msg = !string.IsNullOrWhiteSpace(msg);
+        var has_args = args != null && args.Length != 0;
+        GetAllMessageCore(sb, e, has_msg, has_args, msg, args!);
+    }
+
+    static void GetAllMessageCore(
+        StringBuilder sb,
+        Exception e,
         bool has_msg, bool has_args,
         string? msg = null, params object?[] args)
     {
-        StringBuilder sb = new();
-
         if (has_msg)
         {
             if (has_args)
@@ -98,8 +117,5 @@ public static partial class ExceptionExtensions
             }
             exception = exception.InnerException;
         }
-
-        var text = sb.ToString().Trim();
-        return text;
     }
 }
