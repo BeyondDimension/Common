@@ -5,6 +5,7 @@ using Android.OS;
 using AndroidX.Core.App;
 using AndroidX.Core.Content;
 using Application = Android.App.Application;
+using BuildVersionCodes = Android.OS.BuildVersionCodes;
 #elif WINDOWS
 using Windows.ApplicationModel.Contacts;
 using Windows.Devices.Enumeration;
