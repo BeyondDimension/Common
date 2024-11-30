@@ -207,6 +207,47 @@ Class ExceptionExtensions  <a class="header-action link-secondary" title="View s
 </h2>
 
 
+  <a id="System_Extensions_ExceptionExtensions_AppendAllMessage_" data-uid="System.Extensions.ExceptionExtensions.AppendAllMessage*"></a>
+
+  <h3 id="System_Extensions_ExceptionExtensions_AppendAllMessage_System_Exception_System_Text_StringBuilder_System_String_System_Object___" data-uid="System.Extensions.ExceptionExtensions.AppendAllMessage(System.Exception,System.Text.StringBuilder,System.String,System.Object[])">
+  AppendAllMessage(Exception?, StringBuilder, string?, params object?[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Extensions/ExceptionExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>追加异常中所有错误信息写入 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AppendAllMessage(this Exception? e, StringBuilder sb, string? msg = null, params object?[] args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>e</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>当前捕获的异常</p>
+</dd>
+    <dt><code>sb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
+    <dd></dd>
+    <dt><code>msg</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>可选的消息，将写在第一行</p>
+</dd>
+    <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
+    <dd><p>可选的消息参数</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="System_Extensions_ExceptionExtensions_GetAllMessage_" data-uid="System.Extensions.ExceptionExtensions.GetAllMessage*"></a>
 
   <h3 id="System_Extensions_ExceptionExtensions_GetAllMessage_System_Exception_System_String_System_Object___" data-uid="System.Extensions.ExceptionExtensions.GetAllMessage(System.Exception,System.String,System.Object[])">
