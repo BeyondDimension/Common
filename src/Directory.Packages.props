@@ -291,7 +291,7 @@
 		<!-- 👇 源生成器与 Roslyn -->
 		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0">
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0">
 		</PackageVersion>
 		<!-- 👇 Code Style（代码样式） -->
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
