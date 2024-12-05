@@ -129,6 +129,27 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         utf8Json.Flush();
     }
 
+    static FileStream? OpenReadFile(string filePath)
+    {
+        try
+        {
+            var fileStream = new FileStream(
+                filePath,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.ReadWrite | FileShare.Delete);
+            return fileStream;
+        }
+        catch (FileNotFoundException)
+        {
+            return null;
+        }
+        catch (DirectoryNotFoundException)
+        {
+            return null;
+        }
+    }
+
     /// <summary>
     /// 根据设置文件保存路径反序列化实例
     /// </summary>
@@ -140,25 +161,24 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     protected static TSettingsModel? Deserialize<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(string settingsFilePath, string settingsFileNameWithoutExtension, SystemTextJsonSerializerOptions options)
     {
         SystemTextJsonObject? jobj;
-        using var readStream = new FileStream(
-            settingsFilePath,
-            FileMode.Open,
-            FileAccess.Read,
-            FileShare.ReadWrite | FileShare.Delete);
+        using var readStream = OpenReadFile(settingsFilePath);
+        if (readStream != null)
+        {
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        jobj = SystemTextJsonSerializer.Deserialize<SystemTextJsonObject>(readStream, options);
-        if (jobj != null)
-        {
-            var jnode = jobj[settingsFileNameWithoutExtension];
-            if (jnode != null)
+            jobj = SystemTextJsonSerializer.Deserialize<SystemTextJsonObject>(readStream, options);
+            if (jobj != null)
             {
-                var settingsByRead = jnode.Deserialize<TSettingsModel>(options);
-                return settingsByRead;
+                var jnode = jobj[settingsFileNameWithoutExtension];
+                if (jnode != null)
+                {
+                    var settingsByRead = jnode.Deserialize<TSettingsModel>(options);
+                    return settingsByRead;
+                }
             }
-        }
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        }
         return default;
     }
 
