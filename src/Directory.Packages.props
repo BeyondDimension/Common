@@ -188,7 +188,7 @@
 		</PackageVersion>
 		<PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.10.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.9.0">
+		<PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.10.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Containers（容器） -->
