@@ -443,7 +443,7 @@
 	</ItemGroup>
 	<!-- 👇 QrCode（二维码） -->
 	<ItemGroup>
-		<PackageVersion Include="Net.Codecrete.QrCodeGenerator" Version="2.0.5">
+		<PackageVersion Include="Net.Codecrete.QrCodeGenerator" Version="2.0.6">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Nito.* -->
