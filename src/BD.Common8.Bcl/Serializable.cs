@@ -17,10 +17,14 @@ namespace System
         /// </summary>
         /// <param name="baseOptions"></param>
         /// <param name="isReadOnly"></param>
+        /// <param name="caseInsensitive"></param>
+        /// <param name="camelCase"></param>
         /// <returns></returns>
         public static SystemTextJsonSerializerOptions CreateOptions(
             SystemTextJsonSerializerOptions? baseOptions = null,
-            bool isReadOnly = false)
+            bool isReadOnly = false,
+            bool? caseInsensitive = true,
+            bool camelCase = true)
         {
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
@@ -34,8 +38,14 @@ namespace System
             }
 
             // https://learn.microsoft.com/zh-cn/dotnet/standard/serialization/system-text-json/configure-options?pivots=dotnet-8-0#web-defaults-for-jsonserializeroptions
-            baseOptions.PropertyNameCaseInsensitive = true;
-            baseOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            if (caseInsensitive.HasValue)
+            {
+                baseOptions.PropertyNameCaseInsensitive = caseInsensitive.Value;
+            }
+            if (camelCase)
+            {
+                baseOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            }
             baseOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 
             baseOptions.Converters.Add(new CookieConverter());

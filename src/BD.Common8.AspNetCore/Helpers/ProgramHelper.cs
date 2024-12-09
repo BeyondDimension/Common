@@ -1,7 +1,30 @@
 namespace BD.Common8.AspNetCore.Helpers;
 
+using Http_JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
+using Mvc_JsonOptions = Microsoft.AspNetCore.Mvc.JsonOptions;
+
 public static partial class ProgramHelper
 {
+    /// <summary>
+    /// https://github.com/dotnet/aspnetcore/blob/v9.0.0/src/Http/Http.Extensions/src/JsonOptions.cs#L34
+    /// </summary>
+    /// <param name="this"></param>
+    /// <param name="value"></param>
+    static void SetSerializerOptions(Http_JsonOptions @this, SystemTextJsonSerializerOptions value)
+    {
+        @this.GetType().GetField("<SerializerOptions>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(@this, value);
+    }
+
+    /// <summary>
+    /// https://github.com/dotnet/aspnetcore/blob/v9.0.0/src/Mvc/Mvc.Core/src/JsonOptions.cs#L35
+    /// </summary>
+    /// <param name="this"></param>
+    /// <param name="value"></param>
+    static void SetSerializerOptions(Mvc_JsonOptions @this, SystemTextJsonSerializerOptions value)
+    {
+        @this.GetType().GetField("<JsonSerializerOptions>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(@this, value);
+    }
+
     /// <summary>
     /// 适用于 ASP.NET Core 6.0+ 中新的最小托管模型的代码
     /// </summary>
@@ -13,7 +36,8 @@ public static partial class ProgramHelper
        delegate* managed<WebApplication, void> configure = default,
        WebApplicationBuilder? builder = default,
        IJsonTypeInfoResolver? jsonTypeInfoResolver = default,
-       bool consoleWriteInfo = false)
+       bool consoleWriteInfo = false,
+       bool camelCase = false)
     {
         if (!string.IsNullOrWhiteSpace(projectName))
             ProjectName = projectName;
@@ -45,12 +69,33 @@ public static partial class ProgramHelper
             {
                 o.AddServerHeader = false;
             });
-            if (jsonTypeInfoResolver != default)
+            if (jsonTypeInfoResolver != null)
             {
-                builder.Services.ConfigureHttpJsonOptions(options =>
+                if (jsonTypeInfoResolver is SystemTextJsonSerializerContext jsc)
                 {
-                    options.SerializerOptions.TypeInfoResolverChain.Insert(0, jsonTypeInfoResolver);
-                });
+                    // camelCase 默认值为 false，将 JSON 属性名设置为大写开头与 C# 保持一致，历史问题，之前的前端 JS/TS 部分已经使用大写硬编码
+                    // 如果需按现在 Web 规范，将此值设置为 true，则 JSON 属性名将会使用小写开头驼峰命名法
+                    var jsonSerializerOptions = Serializable.CreateOptions(jsc.Options,
+                        camelCase: camelCase);
+                    builder.Services.ConfigureHttpJsonOptions(options =>
+                    {
+                        // 替换 WebApi 的 Json 序列化选项
+                        SetSerializerOptions(options, jsonSerializerOptions);
+                    });
+                    // https://github.com/dotnet/aspnetcore/blob/v9.0.0/src/Mvc/Mvc.Core/src/DependencyInjection/MvcCoreMvcBuilderExtensions.cs#L51
+                    builder.Services.Configure<Mvc_JsonOptions>(options =>
+                    {
+                        // 替换 Mvc 的 Json 序列化选项
+                        SetSerializerOptions(options, jsonSerializerOptions);
+                    });
+                }
+                else
+                {
+                    builder.Services.ConfigureHttpJsonOptions(options =>
+                    {
+                        options.SerializerOptions.TypeInfoResolverChain.Insert(0, jsonTypeInfoResolver);
+                    });
+                }
             }
             builder.Host.UseNLog();
             if (configureServices != default)
