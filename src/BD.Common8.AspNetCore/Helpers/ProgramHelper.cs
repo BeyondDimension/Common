@@ -12,7 +12,10 @@ public static partial class ProgramHelper
     /// <param name="value"></param>
     static void SetSerializerOptions(Http_JsonOptions @this, SystemTextJsonSerializerOptions value)
     {
-        @this.GetType().GetField("<SerializerOptions>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(@this, value);
+        ref var source = ref UnsafeAccessJsonSerializerOptions(@this);
+
+        source = value;
+        //@this.GetType().GetField("<SerializerOptions>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(@this, value);
     }
 
     /// <summary>
@@ -22,8 +25,18 @@ public static partial class ProgramHelper
     /// <param name="value"></param>
     static void SetSerializerOptions(Mvc_JsonOptions @this, SystemTextJsonSerializerOptions value)
     {
-        @this.GetType().GetField("<JsonSerializerOptions>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(@this, value);
+        ref var source = ref UnsafeAccessJsonSerializerOptions(@this);
+
+        source = value;
+
+        //@this.GetType().GetField("<JsonSerializerOptions>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(@this, value);
     }
+
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "<SerializerOptions>k__BackingField")]
+    static extern ref SystemTextJsonSerializerOptions UnsafeAccessJsonSerializerOptions(Http_JsonOptions opt);
+
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "<JsonSerializerOptions>k__BackingField")]
+    static extern ref SystemTextJsonSerializerOptions UnsafeAccessJsonSerializerOptions(Mvc_JsonOptions opt);
 
     /// <summary>
     /// 适用于 ASP.NET Core 6.0+ 中新的最小托管模型的代码
@@ -138,7 +151,7 @@ public static partial class ProgramHelper
     [SupportedOSPlatform("FreeBSD")]
     [SupportedOSPlatform("Linux")]
     [SupportedOSPlatform("MacOS")]
-    enum EUnixPermission : ushort
+    private enum EUnixPermission : ushort
     {
         OtherExecute = 0x1,
         OtherWrite = 0x2,
@@ -169,7 +182,7 @@ public static partial class ProgramHelper
     /// </summary>
     const int maxArchiveDays = 31;
 
-    #endregion
+    #endregion https://github.com/NLog/NLog/wiki/File-target
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void CreateDirectory(string dirPath)
