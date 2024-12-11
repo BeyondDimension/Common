@@ -1,5 +1,11 @@
 namespace System.Formats;
 
+#if PROJ_SETUP
+/// <summary>
+/// 图片格式
+/// </summary>
+public enum ImageFormat : byte
+#else
 /// <summary>
 /// 图片格式
 /// <para>添加新格式操作说明：</para>
@@ -9,6 +15,7 @@ namespace System.Formats;
 /// <para>在 <see cref="FormatsExtensions.GetMagicNumber(ImageFormat)"/> 添加新的 case</para>
 /// </summary>
 public enum ImageFormat : byte
+#endif
 {
     // ReSharper disable once InconsistentNaming
     // 此枚举中禁止出现值为 0 的

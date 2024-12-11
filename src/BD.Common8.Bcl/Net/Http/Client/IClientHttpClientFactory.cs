@@ -5,6 +5,14 @@
 
 namespace System.Net.Http.Client;
 
+#if PROJ_SETUP
+/// <summary>
+/// A factory abstraction for a component that can create <see cref="HttpClient"/> instances with custom
+/// configuration for a given logical name.
+/// <para>适用于客户端的 HttpClient 工厂接口</para>
+/// </summary>
+public partial interface IClientHttpClientFactory
+#else
 /// <summary>
 /// A factory abstraction for a component that can create <see cref="HttpClient"/> instances with custom
 /// configuration for a given logical name.
@@ -15,6 +23,7 @@ namespace System.Net.Http.Client;
 /// The default <see cref="IClientHttpClientFactory"/> will be registered in the service collection as a singleton.
 /// </remarks>
 public partial interface IClientHttpClientFactory
+#endif
 {
     /// <summary>
     /// Creates and configures an <see cref="HttpClient"/> instance using the configuration that corresponds
