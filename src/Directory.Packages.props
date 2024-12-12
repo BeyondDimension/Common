@@ -756,7 +756,7 @@
 	</ItemGroup>
 	<!-- 👇 Maui -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Maui.Essentials" Version="9.0.12">
+		<PackageVersion Include="Microsoft.Maui.Essentials" Version="9.0.14">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Humanizer（格式化和呈现数据） -->
