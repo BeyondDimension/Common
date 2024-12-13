@@ -283,6 +283,45 @@ Class OSHelper  <a class="header-action link-secondary" title="View source" href
 </h2>
 
 
+  <a id="System_OSHelper_GetShellAppsFolderPath_" data-uid="System.OSHelper.GetShellAppsFolderPath*"></a>
+
+  <h3 id="System_OSHelper_GetShellAppsFolderPath_System_String_" data-uid="System.OSHelper.GetShellAppsFolderPath(System.String)">
+  GetShellAppsFolderPath(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/OSHelper.windows.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 UWP 应用程序的 Shell:AppsFolder 路径，例如：Shell:AppsFolder\Microsoft.WindowsCalculator_8wekyb3d8bbwe!App</p>
+<p>返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 时表示获取当前应用程序的 AppUserModelId 失败，当前应用程序缺少表标识</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? GetShellAppsFolderPath(string? appUserModelId = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appUserModelId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>传递 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> 时将使用当前应用程序的 AppUserModelId</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="System_OSHelper_IsRunningOnWSA_" data-uid="System.OSHelper.IsRunningOnWSA*"></a>
 
   <h3 id="System_OSHelper_IsRunningOnWSA" data-uid="System.OSHelper.IsRunningOnWSA">
