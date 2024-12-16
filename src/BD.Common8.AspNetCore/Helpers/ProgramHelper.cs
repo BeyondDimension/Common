@@ -92,12 +92,16 @@ public static partial class ProgramHelper
                         camelCase: camelCase);
                     builder.Services.ConfigureHttpJsonOptions(options =>
                     {
+                        if (jsonSerializerOptions.IsReadOnly)
+                            jsonSerializerOptions = new SystemTextJsonSerializerOptions(jsonSerializerOptions);
                         // 替换 WebApi 的 Json 序列化选项
                         SetSerializerOptions(options, jsonSerializerOptions);
                     });
                     // https://github.com/dotnet/aspnetcore/blob/v9.0.0/src/Mvc/Mvc.Core/src/DependencyInjection/MvcCoreMvcBuilderExtensions.cs#L51
                     builder.Services.Configure<Mvc_JsonOptions>(options =>
                     {
+                        if (jsonSerializerOptions.IsReadOnly)
+                            jsonSerializerOptions = new SystemTextJsonSerializerOptions(jsonSerializerOptions);
                         // 替换 Mvc 的 Json 序列化选项
                         SetSerializerOptions(options, jsonSerializerOptions);
                     });
