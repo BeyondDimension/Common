@@ -795,7 +795,7 @@
 	</ItemGroup>
 	<!-- 👇 Markdown -->
 	<ItemGroup>
-		<PackageVersion Include="Markdig" Version="0.38.0">
+		<PackageVersion Include="Markdig" Version="0.39.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Docker 🐋 -->
