@@ -559,6 +559,10 @@ public interface IServerPublishCommand : ICommand
 
 FROM docker.mossimo.net/template/google-chrome-template:
 """u8);
+
+            stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Major.ToString());
+            stream.Write("."u8);
+            stream.WriteUtf16StrToUtf8OrCustom(Environment.Version.Minor.ToString());
         }
         else
         {
