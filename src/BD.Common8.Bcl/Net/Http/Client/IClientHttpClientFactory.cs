@@ -122,7 +122,7 @@ partial interface IClientHttpClientFactory
     /// <summary>
     /// 默认本地超时时间，单位秒
     /// </summary>
-    public const double DefaultLocalTimeoutFromSeconds = 4.99;
+    public const double DefaultLocalTimeoutFromSeconds = 100; // 有异步迭代器之类的接口情况，或者有长耗时的操作，所以改为 .NET 默认值 100 秒
 
     /// <summary>
     /// <see cref="HttpClientHandler.AutomaticDecompression"/> 的默认值

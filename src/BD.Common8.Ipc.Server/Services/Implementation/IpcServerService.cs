@@ -69,6 +69,11 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     /// </summary>
     public Task WaitWebApplicationExit => tcs_app.Task;
 
+    /// <summary>
+    /// Ipc 服务端退出事件
+    /// </summary>
+    public event Action? Exited;
+
     /// <inheritdoc/>
     public async ValueTask RunAsync()
     {
@@ -83,6 +88,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         Task2.InBackground(() =>
         {
             app.ThrowIsNull().Run();
+            Exited?.Invoke();
             tcs_app.TrySetResult();
         }, longRunning: true);
     }
