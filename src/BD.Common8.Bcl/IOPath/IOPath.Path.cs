@@ -5,22 +5,39 @@ public static partial class IOPath
     /// <summary>
     /// 删除路径中的非法字符
     /// </summary>
-    /// <param name="f"></param>
+    /// <param name="path"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static string? CleanPathIlegalCharacter(string? f)
+    public static string? CleanPathIlegalCharacter(string? path)
     {
-        if (string.IsNullOrEmpty(f))
-            return f;
+        if (string.IsNullOrEmpty(path))
+            return path;
 
-        var invalidFileNameChars = Path.GetInvalidFileNameChars();
-        var invalidPathChars = Path.GetInvalidPathChars();
-        var regexSearch = new string(invalidFileNameChars.Concat(invalidPathChars).ToArray());
+        var chars = CleanPathIlegalCharacterCore(path!).ToArray();
+        if (chars.Length > 0)
+            return new string(chars);
 
-        var r = new Regex($"[{Regex.Escape(regexSearch)}]");
-        return r.Replace(f, "");
+        return null;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static IEnumerable<char> CleanPathIlegalCharacterCore(string path)
+    {
+        var invalidFileNameChars = Path.GetInvalidFileNameChars();
+        var invalidPathChars = Path.GetInvalidPathChars();
+        var chars = invalidFileNameChars.Concat(invalidPathChars);
+        foreach (var it in path)
+        {
+            if (!chars.Contains(it))
+            {
+                yield return it;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 环境变量名称
+    /// </summary>
     public static partial class EnvVarNames
     {
         /// <summary>

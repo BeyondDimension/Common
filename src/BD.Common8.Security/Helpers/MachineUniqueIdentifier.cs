@@ -51,7 +51,7 @@ public static partial class MachineUniqueIdentifier
         }
         catch (Exception e)
         {
-            Log.Warn(nameof(MachineUniqueIdentifier), e, "GetMachineSecretKey fail.");
+            Log.Warn(nameof(MachineUniqueIdentifier), e, "GetMachineSecretKey fail");
         }
         return GetMachineSecretKey(value);
     });

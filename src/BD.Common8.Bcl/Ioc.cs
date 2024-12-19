@@ -263,7 +263,7 @@ public static partial class Ioc
     {
         if (value == null)
         {
-            var msg = "DI.CreateScope fail.";
+            var msg = "DI.CreateScope fail";
             Debug.WriteLine(msg);
             throw new Exception(msg);
         }

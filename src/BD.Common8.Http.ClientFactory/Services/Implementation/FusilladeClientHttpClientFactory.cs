@@ -44,6 +44,7 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
         NetCache.Speculative = new RateLimitedHttpMessageHandler2(handler, Priority.Speculative, 0, 5242880L, opQueue: operationQueue);
         NetCache.UserInitiated = new RateLimitedHttpMessageHandler2(handler, Priority.UserInitiated, opQueue: operationQueue);
         NetCache.Background = new RateLimitedHttpMessageHandler2(handler, Priority.Background, opQueue: operationQueue);
+        NetCache.Offline = new OfflineHttpMessageHandler2();
     }
 
     /// <summary>
@@ -202,7 +203,7 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
     }
 }
 
-sealed class InflightRequest(Action onFullyCancelled)
+file sealed class InflightRequest(Action onFullyCancelled)
 {
     int _refCount = 1;
 
@@ -232,7 +233,7 @@ sealed class InflightRequest(Action onFullyCancelled)
 /// <param name="maxBytesToRead">The maximum number of bytes we can read.</param>
 /// <param name="opQueue">The operation queue on which to run the operation.</param>
 /// <param name="cacheResultFunc">A method that is called if we need to get cached results.</param>
-sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority basePriority, int priority = 0, long? maxBytesToRead = null, OperationQueue? opQueue = null, Func<HttpRequestMessage, HttpResponseMessage, string, CancellationToken, Task>? cacheResultFunc = null) : LimitingHttpMessageHandler(handler)
+file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority basePriority, int priority = 0, long? maxBytesToRead = null, OperationQueue? opQueue = null, Func<HttpRequestMessage, HttpResponseMessage, string, CancellationToken, Task>? cacheResultFunc = null) : LimitingHttpMessageHandler(handler)
 {
     readonly int _priority = (int)basePriority + priority;
     readonly Dictionary<string, InflightRequest> _inflightResponses = new();
@@ -425,6 +426,41 @@ sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority
             realToken.Token).ToObservable().Subscribe(ret.Response);
 
         return ret.Response.ToTask(cancellationToken);
+    }
+}
+
+/// <summary>
+/// A http handler that will make a response even if the HttpClient is offline.
+/// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="OfflineHttpMessageHandler"/> class.
+/// </remarks>
+file sealed class OfflineHttpMessageHandler2() : HttpMessageHandler
+{
+    const HttpStatusCode OfflineCacheMiss = (HttpStatusCode)599;
+
+    /// <inheritdoc />
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        Func<HttpRequestMessage, string, CancellationToken, Task<byte[]>>? retrieveBody = null;
+        if (NetCache.RequestCache != null)
+        {
+            retrieveBody = NetCache.RequestCache.Fetch;
+        }
+
+        if (retrieveBody == null)
+        {
+            throw new Exception("Configure NetCache.RequestCache before calling this!");
+        }
+
+        var body = await retrieveBody(request, RateLimitedHttpMessageHandler2.UniqueKeyForRequest(request), cancellationToken).ConfigureAwait(false);
+        if (body == null)
+        {
+            return new HttpResponseMessage(OfflineCacheMiss);
+        }
+
+        var byteContent = new ByteArrayContent(body);
+        return new HttpResponseMessage(HttpStatusCode.OK) { Content = byteContent };
     }
 }
 #endif
