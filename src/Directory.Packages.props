@@ -603,7 +603,7 @@
 	</ItemGroup>
 	<!-- 👇 Redis -->
 	<ItemGroup>
-		<PackageVersion Include="StackExchange.Redis" Version="2.8.22">
+		<PackageVersion Include="StackExchange.Redis" Version="2.8.24">
 		</PackageVersion>
 		<PackageVersion Include="StackExchange.Redis.Extensions.AspNetCore" Version="10.2.0">
 		</PackageVersion>
