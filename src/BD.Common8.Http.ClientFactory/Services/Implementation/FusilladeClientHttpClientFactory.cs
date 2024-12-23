@@ -197,7 +197,7 @@ public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDispo
         services.AddSingleton(factory);
         services.AddSingleton<IClientHttpClientFactory>(factory);
 
-        services.AddSingleton<CookieClientHttpClientFactory>();
+        services.AddSingleton(new CookieClientHttpClientFactory(null));
 
         return services;
     }

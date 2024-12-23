@@ -7,9 +7,11 @@ namespace BD.Common8.Http.ClientFactory.Services.Implementation;
 /// 使用 Cookie 的 HttpClientFactory
 /// <para>对于需要使用 Cookie 的场景，定义一个唯一键 object id，由此工厂创建与复用 <see cref="HttpClient"/> 并且调用 <see cref="Dispose(string, object)"/> 进行释放</para>
 /// </summary>
-public partial class CookieClientHttpClientFactory : IDisposable
+public partial class CookieClientHttpClientFactory(Func<HttpMessageHandler>? handler) : IDisposable
 {
     bool disposedValue;
+
+    Func<HttpMessageHandler>? httpMessageHandler = handler;
 
     readonly ConcurrentDictionary<(string, object), (HttpClient, HttpMessageHandler)> activeClients = new();
 
@@ -75,9 +77,13 @@ public partial class CookieClientHttpClientFactory : IDisposable
             if (builder.ConfigureHandler != null)
                 handler = builder.ConfigureHandler(GetHandler);
 
-        static HttpMessageHandler GetHandler()
+        HttpMessageHandler GetHandler()
         {
-            HttpMessageHandler handler = IClientHttpClientFactory.CreateHandler(useCookies: true);
+            HttpMessageHandler? handler = default;
+            if (httpMessageHandler is not null)
+                handler = httpMessageHandler();
+
+            handler ??= IClientHttpClientFactory.CreateHandler(useCookies: true);
             return handler;
         }
 

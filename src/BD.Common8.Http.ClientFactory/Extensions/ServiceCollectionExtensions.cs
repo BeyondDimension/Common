@@ -48,5 +48,16 @@ public static partial class ServiceCollectionExtensions
             b.ConfigureHandler = configureHandler;
         return builder;
     }
+
+    /// <summary>
+    /// 将 <see cref="CookieClientHttpClientFactory"/> 添加到服务集合中
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection AddCookieClientHttpClientFactory(this IServiceCollection services, Func<HttpMessageHandler> configureHandler)
+    {
+        services.AddSingleton(new CookieClientHttpClientFactory(configureHandler));
+
+        return services;
+    }
 }
 #endif
