@@ -9,36 +9,49 @@ partial class OSHelper
 #if WINDOWS || NETFRAMEWORK
         _OSArchitecture.Value;
 
-    const Architecture X64 = (Architecture)1;
-    const Architecture Arm = (Architecture)2;
-    const Architecture Arm64 = (Architecture)3;
-
     static Architecture GetOSArchitecture()
     {
-        ushort imageFileMachine = 0;
-        try
+        static IEnumerable<string> GetSysExeNames()
         {
-            // 通过读取系统文件 PE 头来判断 Architecture，避免在兼容模式下获取到错误的值
-            var filePath = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.Windows),
-                "regedit.exe");
-            using var stream = new FileStream(filePath,
-                FileMode.Open,
-                FileAccess.Read,
-                FileShare.ReadWrite);
-            imageFileMachine = PEReader.GetImageFileMachine(stream);
+            yield return "regedit.exe";
+            yield return "explorer.exe";
+            yield return "notepad.exe";
+            yield return "hh.exe";
         }
-        catch
+
+        ushort imageFileMachine = 0;
+        foreach (var it in GetSysExeNames())
         {
+            try
+            {
+                // 通过读取系统文件 PE 头来判断 Architecture，避免在兼容模式下获取到错误的值
+                var filePath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Windows),
+                    it);
+                {
+                    using var stream = new FileStream(filePath,
+                        FileMode.Open,
+                        FileAccess.Read,
+                        FileShare.ReadWrite | FileShare.Delete);
+                    imageFileMachine = PEReader.GetImageFileMachine(stream);
+                }
+                if (imageFileMachine != 0)
+                {
+                    break;
+                }
+            }
+            catch
+            {
+            }
         }
         return imageFileMachine switch
         {
-            PEReader.IMAGE_FILE_MACHINE_I386 => default,
+            PEReader.IMAGE_FILE_MACHINE_I386 => Architecture.X86,
             PEReader.IMAGE_FILE_MACHINE_IA64 or
-            PEReader.IMAGE_FILE_MACHINE_AMD64 => X64,
+            PEReader.IMAGE_FILE_MACHINE_AMD64 => Architecture.X64,
             PEReader.IMAGE_FILE_MACHINE_ARM or
-            PEReader.IMAGE_FILE_MACHINE_ARMNT => Arm,
-            PEReader.IMAGE_FILE_MACHINE_ARM64 => Arm64,
+            PEReader.IMAGE_FILE_MACHINE_ARMNT => Architecture.Arm,
+            PEReader.IMAGE_FILE_MACHINE_ARM64 => Architecture.Arm64,
             _ => RuntimeInformation.OSArchitecture,
         };
     }
