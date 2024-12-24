@@ -150,18 +150,25 @@ Class CookieClientHttpClientFactory  <a class="header-action link-secondary" tit
 
   <a id="BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory__ctor_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.#ctor*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory__ctor" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.#ctor">
-  CookieClientHttpClientFactory()
+  <h3 id="BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory__ctor_System_Func_System_Net_Http_HttpMessageHandler__" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.#ctor(System.Func{System.Net.Http.HttpMessageHandler})">
+  CookieClientHttpClientFactory(Func&lt;HttpMessageHandler&gt;?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/Implementation/CookieClientHttpClientFactory.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>使用 Cookie 的 HttpClientFactory</p>
+<p>对于需要使用 Cookie 的场景，定义一个唯一键 object id，由此工厂创建与复用 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> 并且调用 <a class="xref" href="BD.Common8.Http.ClientFactory.Services.Implementation.CookieClientHttpClientFactory.html#BD_Common8_Http_ClientFactory_Services_Implementation_CookieClientHttpClientFactory_Dispose_System_String_System_Object_">Dispose(string, object)</a> 进行释放</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CookieClientHttpClientFactory()</code></pre>
+    <pre><code class="lang-csharp hljs">public CookieClientHttpClientFactory(Func&lt;HttpMessageHandler&gt;? handler)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>handler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpmessagehandler">HttpMessageHandler</a>&gt;</dt>
+    <dd></dd>
+  </dl>
 
 
 
