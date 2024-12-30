@@ -580,7 +580,7 @@
 		</PackageVersion>
 		<PackageVersion Include="BuknSS.AspNet.Security.OAuth.Alipay" Version="8.2.2-dev">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.Weixin" Version="7.0.4">
+		<PackageVersion Include="AspNet.Security.OAuth.Weixin" Version="9.0.0">
 		</PackageVersion>
 		<PackageVersion Include="OpenIddict.Core" Version="$(Version_OpenIddict)">
 		</PackageVersion>
