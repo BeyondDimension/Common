@@ -787,7 +787,7 @@
 		<PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.4.0">
 		</PackageVersion>
 		<!-- 👇 DotNext（一组功能强大的库，旨在提高开发效率并扩展具有独特功能的 .NET API） -->
-		<PackageVersion Include="DotNext" Version="5.17.0">
+		<PackageVersion Include="DotNext" Version="5.17.2">
 		</PackageVersion>
 		<PackageVersion Include="DotNext.Threading" Version="5.17.0">
 		</PackageVersion>
