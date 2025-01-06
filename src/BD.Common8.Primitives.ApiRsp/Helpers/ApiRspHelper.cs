@@ -15,6 +15,7 @@ public static partial class ApiRspHelper
     }
 
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+
     /// <summary>
     /// 使用 MessagePack 反序列化
     /// </summary>
@@ -48,9 +49,11 @@ public static partial class ApiRspHelper
         if (obj is IApiRsp<T?> rsp) return rsp;
         return ClientDeserializeFail<T>();
     }
+
 #endif
 
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
+
     /// <summary>
     /// 使用 MemoryPack 反序列化
     /// </summary>
@@ -81,9 +84,11 @@ public static partial class ApiRspHelper
             return ClientDeserializeFail<T>();
         }
     }
+
 #endif
 
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
+
     /// <summary>
     /// https://github.com/dotnet/runtime/blob/v8.0.0-rc.1.23419.4/src/libraries/System.Text.Json/src/System/Text/Json/Serialization/JsonSerializer.Helpers.cs#L13
     /// 映射序列化未引用的代码消息
@@ -114,6 +119,7 @@ public static partial class ApiRspHelper
         if (obj is IApiRsp<T?> rsp) return rsp;
         return ClientDeserializeFail<T>();
     }
+
 #endif
 
     /// <summary>
@@ -257,15 +263,13 @@ public static partial class ApiRspHelper
         ApiRspImpl<T?>? result = null;
         try
         {
-            if (rsp is ApiRspImpl<T?> apiRspImplT)
+            result = rsp switch
             {
-                result = apiRspImplT;
-            }
-            else if (rsp is IApiRsp<T?> apiRspT)
-            {
-                result = Code(rsp.Code, rsp.Message, apiRspT.Content);
-            }
-            result = Code<T>(rsp.Code, rsp.Message);
+                ApiRspImpl<T?> apiRspImplT => apiRspImplT,
+                IApiRsp<T?> apiRspT => Code(rsp.Code, rsp.Message, apiRspT.Content),
+                _ => Code<T>(rsp.Code, rsp.Message),
+            };
+
             return result;
         }
         finally
