@@ -26,6 +26,11 @@ public abstract class TemplateBase
     protected bool IsDesignTimeBuild => mIsDesignTimeBuild.Value;
 
     /// <summary>
+    /// 确定性编译
+    /// </summary>
+    protected static bool Deterministic { get; set; }
+
+    /// <summary>
     /// 写入文件头
     /// </summary>
     /// <param name="stream"></param>
@@ -140,14 +145,17 @@ public abstract class TemplateBase
     /// 获取随机字段名
     /// </summary>
     /// <returns></returns>
-    protected static string GetRandomFieldName()
+    protected static string GetRandomFieldName(string key)
     {
+        if (Deterministic)
+            return "k__" + ComputeSHA256(key);
         var fieldName = "k__BackingField".ToCharArray();
         for (int i = 0; i < fieldName.Length / 2; i++)
         {
             var index = Random.Next(fieldName.Length);
             fieldName[index] = random_chars[Random.Next(random_chars.Length)];
         }
+        var a = new string(fieldName);
         return ToStringWithGuid(fieldName);
     }
 
@@ -155,8 +163,11 @@ public abstract class TemplateBase
     /// 获取随机获取方法名
     /// </summary>
     /// <returns></returns>
-    protected static string GetRandomGetMethodName()
+    protected static string GetRandomGetMethodName(string key)
     {
+        GetRandomFieldName(key);
+        if (Deterministic)
+            return "get_" + ComputeSHA256(key);
         const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         var chars = new char[Random.Next(24, 48)];
         for (int i = 0; i < chars.Length; i++)
@@ -187,8 +198,10 @@ public abstract class TemplateBase
     /// 获取随机获取类名
     /// </summary>
     /// <returns></returns>
-    protected static string GetRandomClassName()
+    protected static string GetRandomClassName(string key)
     {
+        if (Deterministic)
+            return "C" + ComputeSHA256(key);
         const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_";
         var chars = new char[Random.Next(24, 48)];
         for (int i = 0; i < chars.Length; i++)
@@ -204,6 +217,20 @@ public abstract class TemplateBase
             }
         }
         return ToStringWithGuid(chars);
+    }
+
+    protected static string ComputeSHA256(string key)
+    {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(key));
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var item in hashBytes)
+            {
+                stringBuilder.Append(item.ToString("X2"));
+            }
+            return stringBuilder.ToString();
+        }
     }
 
     /// <summary>
@@ -470,9 +497,9 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
                 });
                 if (IgnoreExecute || model is null)
                     return;
-                ExecuteCore(spc, model);
                 if (!AllowMultiple && i >= 1)
                     AllowMultiple = true;
+                ExecuteCore(spc, model);
                 i++;
             }
         }
@@ -585,12 +612,23 @@ public abstract class GeneratedAttributeTemplateBase<TGeneratedAttribute, TSourc
     {
         try
         {
+            var option = context.AnalyzerConfigOptionsProvider
+                .Select((options, _) =>
+                {
+                    options.GlobalOptions.TryGetValue("build_property.Deterministic", out var value);
+                    return value;
+                });
             var fullyQualifiedMetadataName = AttrName;
-            var source = context.SyntaxProvider.ForAttributeWithMetadataName(
+            var attrsource = context.SyntaxProvider.ForAttributeWithMetadataName(
                 fullyQualifiedMetadataName,
                 static (_, _) => true,
                 static (content, _) => content);
-            context.RegisterSourceOutput(source, Execute);
+            var source = attrsource.Combine(option);
+            context.RegisterSourceOutput(source, (ctx, paris) =>
+            {
+                Deterministic = bool.TryParse(paris.Right, out var result) ? result : false;
+                Execute(ctx, paris.Left);
+            });
 #if DEBUG
             var thisTypeName = GetType().Name;
             Console.WriteLine($"{thisTypeName} Initialized, AttrName: {AttrName}, Id: {Id}, FileId: {FileId}.");

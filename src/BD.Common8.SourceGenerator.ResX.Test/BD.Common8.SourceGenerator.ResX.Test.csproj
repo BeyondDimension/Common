@@ -9,8 +9,11 @@
 		<BeyondDimensionFeatures>
 			<!-- ⚠️ 此项目不可引用任何 Features 中的库 -->
 		</BeyondDimensionFeatures>
+		<Deterministic>true</Deterministic>
 	</PropertyGroup>
-
+	<ItemGroup>
+		<CompilerVisibleProperty Include="Deterministic" />
+	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
 			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>

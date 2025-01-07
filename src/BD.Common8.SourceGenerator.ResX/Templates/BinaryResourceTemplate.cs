@@ -257,7 +257,7 @@ partial class {0}
         Dictionary<BinaryResourceFileInfo, string> propertyNameDict = null!;
         if (hasAppendTemplate)
         {
-            propertyNameDict = m.FileInfos.ToDictionary(static x => x, static x => GetRandomGetMethodName());
+            propertyNameDict = m.FileInfos.ToDictionary(static x => x, static x => GetRandomGetMethodName(x.FilePath));
         }
 
         foreach (var fileInfo in m.FileInfos)
