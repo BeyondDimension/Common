@@ -165,7 +165,6 @@ public abstract class TemplateBase
     /// <returns></returns>
     protected static string GetRandomGetMethodName(string key)
     {
-        GetRandomFieldName(key);
         if (Deterministic)
             return "get_" + ComputeSHA256(key);
         const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
