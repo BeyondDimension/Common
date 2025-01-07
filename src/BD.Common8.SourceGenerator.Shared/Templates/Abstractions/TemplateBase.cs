@@ -28,7 +28,7 @@ public abstract class TemplateBase
     /// <summary>
     /// 确定性编译
     /// </summary>
-    protected static bool Deterministic { get; set; }
+    protected bool Deterministic { get; set; }
 
     /// <summary>
     /// 写入文件头
@@ -145,10 +145,9 @@ public abstract class TemplateBase
     /// 获取随机字段名
     /// </summary>
     /// <returns></returns>
-    protected static string GetRandomFieldName(string key)
+    protected string GetRandomFieldName(string? key)
     {
-        if (Deterministic)
-            return "k__" + ComputeSHA256(key);
+        if (!string.IsNullOrWhiteSpace(key)) return "k__" + ComputeSHA256(key);
         var fieldName = "k__BackingField".ToCharArray();
         for (int i = 0; i < fieldName.Length / 2; i++)
         {
@@ -163,10 +162,9 @@ public abstract class TemplateBase
     /// 获取随机获取方法名
     /// </summary>
     /// <returns></returns>
-    protected static string GetRandomGetMethodName(string key)
+    protected string GetRandomGetMethodName(string? key)
     {
-        if (Deterministic)
-            return "get_" + ComputeSHA256(key);
+        if (!string.IsNullOrWhiteSpace(key)) return "get_" + ComputeSHA256(key);
         const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         var chars = new char[Random.Next(24, 48)];
         for (int i = 0; i < chars.Length; i++)
@@ -197,10 +195,9 @@ public abstract class TemplateBase
     /// 获取随机获取类名
     /// </summary>
     /// <returns></returns>
-    protected static string GetRandomClassName(string key)
+    protected string GetRandomClassName(string? key)
     {
-        if (Deterministic)
-            return "C" + ComputeSHA256(key);
+        if (!string.IsNullOrWhiteSpace(key)) return "C" + ComputeSHA256(key);
         const string random_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_";
         var chars = new char[Random.Next(24, 48)];
         for (int i = 0; i < chars.Length; i++)
@@ -218,7 +215,7 @@ public abstract class TemplateBase
         return ToStringWithGuid(chars);
     }
 
-    protected static string ComputeSHA256(string key)
+    protected string ComputeSHA256(string? key)
     {
         using (SHA256 sha256 = SHA256.Create())
         {

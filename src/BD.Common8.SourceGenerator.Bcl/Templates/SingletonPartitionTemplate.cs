@@ -114,7 +114,7 @@ partial class {0}
     /// {3}
     /// </summary>
     public static {0} {2} => {1}.Value;
-"""u8, m.TypeName, GetRandomFieldName(m.TypeName), currentPropertyName, summary);
+"""u8, m.TypeName, GetRandomFieldName(Deterministic ? m.TypeName : null), currentPropertyName, summary);
         stream.WriteNewLine();
 
         if (m.Attribute.Constructor)

@@ -253,9 +253,9 @@ partial class {0}
         stream.WriteCurlyBracketLeft(); // {
         stream.WriteNewLine();
 
-        byte[]? typeNameSRM = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomClassName($"{m.Attribute.RelativeFilePath}typenamesrm")) : null;
-        byte[]? bytesGetCultureName = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName($"{m.Attribute.RelativeFilePath}bytesculturename")) : null;
-        byte[]? bytesGetString = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName($"{m.Attribute.RelativeFilePath}bytesstring")) : null;
+        byte[]? typeNameSRM = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomClassName(Deterministic ? $"{m.Attribute.RelativeFilePath}typenamesrm" : null)) : null;
+        byte[]? bytesGetCultureName = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName(Deterministic ? $"{m.Attribute.RelativeFilePath}bytesculturename" : null)) : null;
+        byte[]? bytesGetString = m.IsSRM ? Encoding.UTF8.GetBytes(GetRandomGetMethodName(Deterministic ? $"{m.Attribute.RelativeFilePath}bytesstring" : null)) : null;
 
         var elements = GetXmlElementsByResXFilePath(m.Path);
         var items = DeserializeResXDataElements(elements).ToArray();
@@ -274,7 +274,7 @@ partial class {0}
                                 select new KeyValuePair<string, RootDataXmlElement[]>(cultureName, els_class);
             t_items = t_items_query.ToArray();
 
-            getMethodNameDict = items.ToDictionary(static x => x.Name, static x => GetRandomGetMethodName(x.Name));
+            getMethodNameDict = items.ToDictionary(static x => x.Name, x => GetRandomGetMethodName(Deterministic ? x.Name : null));
 
             stream.Write(
 """

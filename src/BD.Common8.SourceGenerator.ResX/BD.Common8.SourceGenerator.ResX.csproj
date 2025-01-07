@@ -9,7 +9,7 @@
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<Description>xyz.Designer.cs 源生成器</Description>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
 			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>

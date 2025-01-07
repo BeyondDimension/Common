@@ -7,11 +7,7 @@
 			BD.Common8.Bcl;
 			BD.Common8.Settings5;
 		</BeyondDimensionFeatures>
-	  <Deterministic>true</Deterministic>
 	</PropertyGroup>
-  <ItemGroup>
-    <CompilerVisibleProperty Include="Deterministic" />
-  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="ReactiveUI" />
 		<PackageReference Include="ReactiveUI.Fody" PrivateAssets="All" />

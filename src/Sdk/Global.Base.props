@@ -14,6 +14,9 @@
 		<ImplicitUsings Condition="!$(TargetFramework.StartsWith('net35'))">true</ImplicitUsings>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
+	<ItemGroup>
+		<CompilerVisibleProperty Include="Deterministic" />
+	</ItemGroup>
 
 	<!-- 👇 全局 using | Global usings -->
 	<Import Condition="$(NoImplicitUsingBcl) != 'true'" Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Bcl.props" />
