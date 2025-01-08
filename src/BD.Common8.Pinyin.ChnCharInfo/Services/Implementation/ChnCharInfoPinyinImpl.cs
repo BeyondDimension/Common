@@ -18,13 +18,16 @@ sealed class ChnCharInfoPinyinImpl : IPinyin
             string? r = null;
             try
             {
-                var cc = new ChineseChar(c);
-                var py = cc.Pinyins.FirstOrDefault();
-                if (py != null)
-                    if (py.Length > 1)
-                        r = py[0..^1];
-                    else
-                        r = py;
+                if (ChineseChar.IsValidChar(c))
+                {
+                    var cc = new ChineseChar(c);
+                    var py = cc.Pinyins.FirstOrDefault();
+                    if (py != null)
+                        if (py.Length > 1)
+                            r = py[0..^1];
+                        else
+                            r = py;
+                }
             }
             catch
             {

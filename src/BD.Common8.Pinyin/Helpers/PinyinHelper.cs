@@ -179,11 +179,9 @@ public static class PinyinHelper
     /// <returns></returns>
     public static string[] GetPinyin(string s, IDictionary<string, string[]> dict)
     {
-        string[] pinyinArray;
-        if (!dict.TryGetValue(s, out var value))
-            dict[s] = pinyinArray = GetPinyinArray(s);
-        else
-            pinyinArray = value;
-        return pinyinArray;
+        if (dict.TryGetValue(s, out var value))
+            return value;
+
+        return dict[s] = GetPinyinArray(s);
     }
 }
