@@ -160,6 +160,11 @@ public enum ClientPlatform : long
     /// Microsoft Store(Win32) ARM 64 位应用程序(ARM64)
     /// </summary>
     Win32StoreArm64 = 2147483648L,
+
+    /// <summary>
+    /// Linux LoongArch 64 位应用程序(LoongArch64)
+    /// </summary>
+    LinuxLoongArch64 = 4294967296L,
 }
 
 public static class ClientPlatformExtensions
@@ -185,7 +190,8 @@ public static class ClientPlatformExtensions
     const ClientPlatform Platform_Linux =
         ClientPlatform.LinuxX64 |
         ClientPlatform.LinuxArm64 |
-        ClientPlatform.LinuxArm;
+        ClientPlatform.LinuxArm |
+        ClientPlatform.LinuxLoongArch64;
 
     // Android Phone / Android Pad / WearOS(Android Wear) / Android TV
     const ClientPlatform Platform_Android =
@@ -252,8 +258,7 @@ public static class ClientPlatformExtensions
         ClientPlatform.AndroidPhoneX64 |
         ClientPlatform.AndroidPadX64 |
         ClientPlatform.AndroidTVX64 |
-        ClientPlatform.UWPX64 |
-        ClientPlatform.Win32StoreX64;
+        ClientPlatform.UWPX64;
 
     const ClientPlatform ArchitectureStoreFlags_X64 =
         ArchitectureFlags_X64 |
@@ -280,7 +285,11 @@ public static class ClientPlatformExtensions
 
     // const ClientPlatform ArchitectureFlags_Wasm =
     // const ClientPlatform ArchitectureFlags_S390x =
-    // const ClientPlatform ArchitectureFlags_LoongArch64 =
+
+    // Linux LoongArch 64 位应用程序(LoongArch64)
+    const ClientPlatform ArchitectureFlags_LoongArch64 =
+        ClientPlatform.LinuxLoongArch64;
+
     // const ClientPlatform ArchitectureFlags_Armv6 =
     // const ClientPlatform ArchitectureFlags_Ppc64le =
 
@@ -319,7 +328,8 @@ public static class ClientPlatformExtensions
         ClientPlatform.macOSArm64 |
         ClientPlatform.LinuxX64 |
         ClientPlatform.LinuxArm64 |
-        ClientPlatform.LinuxArm;
+        ClientPlatform.LinuxArm |
+        ClientPlatform.LinuxLoongArch64;
 
     const ClientPlatform DeviceIdiom_DesktopStore =
         DeviceIdiom_Desktop |
@@ -363,6 +373,7 @@ public static class ClientPlatformExtensions
             if (ArchitectureFlags_Arm.HasFlag(item)) result |= ArchitectureFlags.Arm;
             if (ArchitectureFlags_X64.HasFlag(item)) result |= ArchitectureFlags.X64;
             if (ArchitectureFlags_Arm64.HasFlag(item)) result |= ArchitectureFlags.Arm64;
+            if (ArchitectureFlags_LoongArch64.HasFlag(item)) result |= ArchitectureFlags.LoongArch64;
         }
         return result != default ? result : default;
     }
@@ -392,6 +403,7 @@ public static class ClientPlatformExtensions
                 ArchitectureFlags.X86 => isStore ? ArchitectureStoreFlags_X86 : ArchitectureFlags_X86,
                 ArchitectureFlags.Arm => ArchitectureFlags_Arm,
                 ArchitectureFlags.X64 => isStore ? ArchitectureStoreFlags_X64 : ArchitectureFlags_X64,
+                ArchitectureFlags.LoongArch64 => ArchitectureFlags_LoongArch64,
                 _ => default,
             };
         }
