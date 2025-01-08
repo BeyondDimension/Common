@@ -184,6 +184,38 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
 </h2>
 
 
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_Deterministic_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.Deterministic*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_Deterministic" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.Deterministic">
+  Deterministic
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>确定性编译</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool Deterministic { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_FileVersion_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.FileVersion*"></a>
 
   <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_FileVersion" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.FileVersion">
@@ -282,6 +314,42 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
 </h2>
 
 
+  <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_ComputeSHA256_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.ComputeSHA256*"></a>
+
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_ComputeSHA256_System_String_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.ComputeSHA256(System.String)">
+  ComputeSHA256(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string ComputeSHA256(string? key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GenerateRandomString_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GenerateRandomString*"></a>
 
   <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GenerateRandomString_System_Int32_System_String_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GenerateRandomString(System.Int32,System.String)">
@@ -325,8 +393,8 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
 
   <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomClassName_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomClassName*"></a>
 
-  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomClassName" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomClassName">
-  GetRandomClassName()
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomClassName_System_String_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomClassName(System.String)">
+  GetRandomClassName(string?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -335,9 +403,14 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static string GetRandomClassName()</code></pre>
+    <pre><code class="lang-csharp hljs">protected string GetRandomClassName(string? key)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
@@ -357,8 +430,8 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
 
   <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomFieldName_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomFieldName*"></a>
 
-  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomFieldName" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomFieldName">
-  GetRandomFieldName()
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomFieldName_System_String_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomFieldName(System.String)">
+  GetRandomFieldName(string?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -367,9 +440,14 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static string GetRandomFieldName()</code></pre>
+    <pre><code class="lang-csharp hljs">protected string GetRandomFieldName(string? key)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
@@ -389,8 +467,8 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
 
   <a id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomGetMethodName_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomGetMethodName*"></a>
 
-  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomGetMethodName" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomGetMethodName">
-  GetRandomGetMethodName()
+  <h3 id="BD_Common8_SourceGenerator_Templates_Abstractions_TemplateBase_GetRandomGetMethodName_System_String_" data-uid="BD.Common8.SourceGenerator.Templates.Abstractions.TemplateBase.GetRandomGetMethodName(System.String)">
+  GetRandomGetMethodName(string?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SourceGenerator.Shared/Templates/Abstractions/TemplateBase.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -399,9 +477,14 @@ Class TemplateBase  <a class="header-action link-secondary" title="View source" 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static string GetRandomGetMethodName()</code></pre>
+    <pre><code class="lang-csharp hljs">protected string GetRandomGetMethodName(string? key)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
