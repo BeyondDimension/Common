@@ -663,7 +663,7 @@
 	</ItemGroup>
 	<!-- 👇 GitHub REST API -->
 	<ItemGroup>
-		<PackageVersion Include="Octokit" Version="13.0.1">
+		<PackageVersion Include="Octokit" Version="14.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Windows Only 🪟 -->
