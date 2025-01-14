@@ -440,7 +440,7 @@
 	</ItemGroup>
 	<!-- 👇 Resilience & Transient Fault Handling（重试） -->
 	<ItemGroup>
-		<PackageVersion Include="Polly" Version="8.5.0">
+		<PackageVersion Include="Polly" Version="8.5.1">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 QrCode（二维码） -->
