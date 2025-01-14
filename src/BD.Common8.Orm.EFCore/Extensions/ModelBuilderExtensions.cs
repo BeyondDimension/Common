@@ -116,11 +116,11 @@ public static partial class ModelBuilderExtensions
 
             #region 继承自 禁用或启用(IDisable) 接口的要设置默认值为 false
 
-            //if (PDisable.IsAssignableFrom(type))
-            //    buildAction += p =>
-            //    {
-            //        p.Property(nameof(IDisable.Disable)).HasDefaultValue(false);
-            //    };
+            if (PDisable.IsAssignableFrom(type))
+                buildAction += p =>
+                {
+                    p.Property(nameof(IDisable.Disable)).HasDefaultValue(false);
+                };
 
             #endregion
 
