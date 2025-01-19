@@ -11,7 +11,7 @@ namespace System.Runtime.InteropServices;
 public enum ArchitectureFlags
 {
     /// <summary>
-    /// 基于 Intel 的 32 位处理器体系结构
+    /// 基于 Intel/AMD 的 32 位处理器体系结构
     /// https://developer.android.google.cn/ndk/guides/abis.html#x86
     /// </summary>
     X86 = 16,
@@ -23,7 +23,7 @@ public enum ArchitectureFlags
     Arm = 32,
 
     /// <summary>
-    /// 基于 Intel 的 64 位处理器体系结构(AMD64)
+    /// 基于 Intel/AMD 的 64 位处理器体系结构(AMD64)
     /// https://developer.android.google.cn/ndk/guides/abis.html#86-64
     /// </summary>
     X64 = 128,
@@ -44,10 +44,19 @@ public enum ArchitectureFlags
     /// </summary>
     S390x = 1024,
 
+    /// <summary>
+    /// LoongArch64 处理器体系结构
+    /// </summary>
     LoongArch64 = 2048,
 
+    /// <summary>
+    /// 32 位 ARMv6 处理器体系结构
+    /// </summary>
     Armv6 = 4096,
 
+    /// <summary>
+    /// RiscV 64 位处理器体系结构
+    /// </summary>
     Ppc64le = 8192,
 
     //_ = 16384,
@@ -59,26 +68,93 @@ public enum ArchitectureFlags
 
 public static partial class ArchitectureEnumExtensions
 {
-    const Architecture LoongArch64 =
-#if NET7_0_OR_GREATER
-        Architecture.LoongArch64;
-#else
-        (Architecture)6;
+#if !NET7_0_OR_GREATER || NETFRAMEWORK || NETSTANDARD
+    /// <summary>
+    /// S390x 平台体系结构
+    /// </summary>
+    public const Architecture S390x = (Architecture)5;
+
+    /// <summary>
+    /// LoongArch64 处理器体系结构
+    /// </summary>
+    public const Architecture LoongArch64 = (Architecture)6;
+
+    /// <summary>
+    /// 32 位 ARMv6 处理器体系结构
+    /// </summary>
+    public const Architecture Armv6 = (Architecture)7;
+
+    /// <summary>
+    /// PowerPC 64 位（little-endian）处理器体系结构
+    /// </summary>
+    public const Architecture Ppc64le = (Architecture)8;
+
+    /// <summary>
+    /// RiscV 64 位处理器体系结构
+    /// </summary>
+    public const Architecture RiscV64 = (Architecture)9;
 #endif
 
-    const Architecture Armv6 =
-#if NET7_0_OR_GREATER
-        Architecture.Armv6;
-#else
-        (Architecture)7;
-#endif
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetWindowsRID(this Architecture architecture, bool @throw = true)
+    {
+        var rid = architecture switch
+        {
+            Architecture.X86 => "win-x86",
+            Architecture.X64 => "win-x64",
+            Architecture.Arm64 => "win-arm64",
+            _ => @throw ?
+                throw ThrowHelper.GetArgumentOutOfRangeException(architecture) :
+                $"win-{architecture.ToString().ToLowerInvariant()}",
+        };
+        return rid;
+    }
 
-    const Architecture Ppc64le =
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetLinuxRID(this Architecture architecture, bool @throw = true)
+    {
+        var rid = architecture switch
+        {
+            Architecture.X86 => "linux-x86",
+            Architecture.X64 => "linux-x64",
+            Architecture.Arm64 => "linux-arm64",
+            Architecture.Arm => "linux-arm",
 #if NET7_0_OR_GREATER
-        Architecture.Ppc64le;
-#else
-        (Architecture)8;
+            Architecture.
 #endif
+            Armv6 => "linux-armv6",
+#if NET7_0_OR_GREATER
+            Architecture.
+#endif
+            S390x => "linux-s390x",
+#if NET7_0_OR_GREATER
+            Architecture.
+#endif
+            LoongArch64 => "linux-loongarch64",
+#if NET7_0_OR_GREATER
+            Architecture.
+#endif
+            RiscV64 => "linux-riscv64",
+            _ => @throw ?
+                throw ThrowHelper.GetArgumentOutOfRangeException(architecture) :
+                $"linux-{architecture.ToString().ToLowerInvariant()}",
+        };
+        return rid;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetOSXRID(this Architecture architecture, bool @throw = true)
+    {
+        var rid = architecture switch
+        {
+            Architecture.X64 => "osx-x64",
+            Architecture.Arm64 => "osx-arm64",
+            _ => @throw ?
+                throw ThrowHelper.GetArgumentOutOfRangeException(architecture) :
+                $"osx-{architecture.ToString().ToLowerInvariant()}",
+        };
+        return rid;
+    }
 
 #if DEBUG
     /// <inheritdoc cref="TryConvert(Architecture, bool)"/>
@@ -108,8 +184,17 @@ public static partial class ArchitectureEnumExtensions
         Architecture.Wasm => ArchitectureFlags.Wasm,
         Architecture.S390x => ArchitectureFlags.S390x,
 #endif
+#if NET7_0_OR_GREATER
+        Architecture.
+#endif
         LoongArch64 => ArchitectureFlags.LoongArch64,
+#if NET7_0_OR_GREATER
+        Architecture.
+#endif
         Armv6 => ArchitectureFlags.Armv6,
+#if NET7_0_OR_GREATER
+        Architecture.
+#endif
         Ppc64le => ArchitectureFlags.Ppc64le,
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable CS8619

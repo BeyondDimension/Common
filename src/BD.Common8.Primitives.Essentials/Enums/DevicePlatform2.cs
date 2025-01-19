@@ -1,7 +1,7 @@
 namespace BD.Common8.Enums;
 
 /// <summary>
-/// 应用程序正在运行的设备平台。
+/// 应用程序正在运行的设备平台
 /// <para>https://learn.microsoft.com/zh-cn/dotnet/api/microsoft.maui.devices.deviceplatform</para>
 /// </summary>
 public enum DevicePlatform2 : byte
@@ -182,5 +182,27 @@ public static partial class DevicePlatform2EnumExtensions
         DevicePlatform2.AndroidVirtual or
         DevicePlatform2.ChromeOS => true,
         _ => false,
+    };
+
+    /// <summary>
+    /// 根据【设备平台枚举】和【CPU 架构枚举】获取 RID 字符串
+    /// </summary>
+    /// <param name="platform"></param>
+    /// <param name="architecture"></param>
+    /// <param name="throw"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string GetRID(this DevicePlatform2 platform, Architecture architecture, bool @throw = true) => platform switch
+    {
+        DevicePlatform2.UWP or DevicePlatform2.WindowsDesktopBridge or
+        DevicePlatform2.Windows or DevicePlatform2.WinUI
+            => architecture.GetWindowsRID(@throw),
+        DevicePlatform2.Linux
+            => architecture.GetLinuxRID(@throw),
+        DevicePlatform2.macOS or DevicePlatform2.MacCatalyst
+            => architecture.GetOSXRID(@throw),
+        _
+            => @throw ? throw new ArgumentOutOfRangeException(nameof(platform), platform, null) : "",
     };
 }

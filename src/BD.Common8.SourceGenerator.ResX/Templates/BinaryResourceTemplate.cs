@@ -197,6 +197,16 @@ public sealed class BinaryResourceTemplate :
 """u8);
             return;
         }
+
+        if (!File.Exists(fileInfo.FilePath))
+        {
+            stream.Write(
+"""
+/* FileNotFound */
+"""u8);
+            return;
+        }
+
         var bytes = File.ReadAllBytes(fileInfo.FilePath);
         if (fileInfo.Reverse)
         {
@@ -262,9 +272,6 @@ partial class {0}
 
         foreach (var fileInfo in m.FileInfos)
         {
-            if (!File.Exists(fileInfo.FilePath))
-                continue;
-
             stream.Write(
 """
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

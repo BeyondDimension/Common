@@ -216,7 +216,7 @@ public class SettingsProperty<TValue,
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    void Save()
+    public void Save()
     {
         SettingsLoadServiceImpl.Current.ForceSave(monitor);
     }

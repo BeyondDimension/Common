@@ -193,17 +193,29 @@ public partial struct X509CertificatePackable : IDisposable
                         {
                             if (Password == null)
                             {
+#if NET9_0_OR_GREATER
+                                return X509CertificateLoader.LoadCertificate(Data);
+#else
                                 return new X509Certificate(Data);
+#endif
                             }
                             else
                             {
                                 if (KeyStorageFlags.HasValue)
                                 {
+#if NET9_0_OR_GREATER
+                                    return X509CertificateLoader.LoadPkcs12(Data, Password, KeyStorageFlags.Value);
+#else
                                     return new X509Certificate(Data, Password, KeyStorageFlags.Value);
+#endif
                                 }
                                 else
                                 {
+#if NET9_0_OR_GREATER
+                                    return X509CertificateLoader.LoadPkcs12(Data, Password);
+#else
                                     return new X509Certificate(Data, Password);
+#endif
                                 }
                             }
                         }
@@ -213,17 +225,29 @@ public partial struct X509CertificatePackable : IDisposable
                         {
                             if (Password == null)
                             {
+#if NET9_0_OR_GREATER
+                                return X509CertificateLoader.LoadCertificateFromFile(FileName);
+#else
                                 return new X509Certificate(FileName);
+#endif
                             }
                             else
                             {
                                 if (KeyStorageFlags.HasValue)
                                 {
+#if NET9_0_OR_GREATER
+                                    return X509CertificateLoader.LoadPkcs12FromFile(FileName, Password, KeyStorageFlags.Value);
+#else
                                     return new X509Certificate(FileName, Password, KeyStorageFlags.Value);
+#endif
                                 }
                                 else
                                 {
+#if NET9_0_OR_GREATER
+                                    return X509CertificateLoader.LoadPkcs12FromFile(FileName, Password);
+#else
                                     return new X509Certificate(FileName, Password);
+#endif
                                 }
                             }
                         }
@@ -246,17 +270,29 @@ public partial struct X509CertificatePackable : IDisposable
                 {
                     if (Password == null)
                     {
+#if NET9_0_OR_GREATER
+                        return X509CertificateLoader.LoadCertificate(Data);
+#else
                         return new X509Certificate2(Data);
+#endif
                     }
                     else
                     {
                         if (KeyStorageFlags.HasValue)
                         {
+#if NET9_0_OR_GREATER
+                            return X509CertificateLoader.LoadPkcs12(Data, Password, KeyStorageFlags.Value);
+#else
                             return new X509Certificate2(Data, Password, KeyStorageFlags.Value);
+#endif
                         }
                         else
                         {
+#if NET9_0_OR_GREATER
+                            return X509CertificateLoader.LoadPkcs12(Data, Password);
+#else
                             return new X509Certificate2(Data, Password);
+#endif
                         }
                     }
                 }
@@ -266,17 +302,29 @@ public partial struct X509CertificatePackable : IDisposable
                 {
                     if (Password == null)
                     {
+#if NET9_0_OR_GREATER
+                        return X509CertificateLoader.LoadCertificateFromFile(FileName);
+#else
                         return new X509Certificate2(FileName);
+#endif
                     }
                     else
                     {
                         if (KeyStorageFlags.HasValue)
                         {
+#if NET9_0_OR_GREATER
+                            return X509CertificateLoader.LoadPkcs12FromFile(FileName, Password, KeyStorageFlags.Value);
+#else
                             return new X509Certificate2(FileName, Password, KeyStorageFlags.Value);
+#endif
                         }
                         else
                         {
+#if NET9_0_OR_GREATER
+                            return X509CertificateLoader.LoadPkcs12FromFile(FileName, Password);
+#else
                             return new X509Certificate2(FileName, Password);
+#endif
                         }
                     }
                 }

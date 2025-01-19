@@ -148,13 +148,31 @@ public sealed class DesignerTemplate :
                     {
                         stream.Write(
 """
-    /// <para/> // comment
+    /// <para/>
+    /// comment: 
 """u8);
                     }
-                    stream.WriteFormat(
+                    var isFirstWriteComment = true;
+                    var comments = item.Trim().Split(["\r\n"], StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var it in comments)
+                    {
+                        var comments2 = it.Trim().Split(["\n"], StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var it2 in comments2)
+                        {
+                            if (isFirstWriteComment)
+                            {
+                                isFirstWriteComment = false;
+                            }
+                            else
+                            {
+                                stream.Write(
 """
-    /// {0}
-"""u8, item.Trim());
+    /// 
+"""u8);
+                            }
+                            stream.WriteUtf16StrToUtf8OrCustom(it2);
+                        }
+                    }
                     stream.WriteNewLine();
                 }
             }
