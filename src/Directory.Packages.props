@@ -200,7 +200,7 @@
 	</ItemGroup>
 	<!-- 👇 AWS SDK for .NET（亚马逊云） -->
 	<ItemGroup>
-		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.80">
+		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.82">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Azure SDK for .NET（微软云） -->
