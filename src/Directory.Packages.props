@@ -824,4 +824,12 @@
 	<ItemGroup>
 		<PackageVersion Include="Stun.Net" Version="8.0.2" />
 	</ItemGroup>
+	<!-- 👇 MediatR -->
+	<ItemGroup>
+		<PackageVersion Include="MediatR" Version="12.4.1" />
+	</ItemGroup>
+	<!-- 👇 FluentValidation -->
+	<ItemGroup>
+		<PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
+	</ItemGroup>
 </Project>
