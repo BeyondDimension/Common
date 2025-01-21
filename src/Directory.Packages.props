@@ -354,7 +354,7 @@
 		</PackageVersion>
 		<PackageVersion Include="xunit.runner.visualstudio" Version="3.0.1">
 		</PackageVersion>
-		<PackageVersion Include="coverlet.collector" Version="6.0.3">
+		<PackageVersion Include="coverlet.collector" Version="6.0.4">
 		</PackageVersion>
 		<PackageVersion Include="Moq" Version="4.20.71">
 		</PackageVersion>
