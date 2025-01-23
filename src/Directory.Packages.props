@@ -609,7 +609,7 @@
 	<ItemGroup>
 		<PackageVersion Include="StackExchange.Redis" Version="2.8.24">
 		</PackageVersion>
-		<PackageVersion Include="StackExchange.Redis.Extensions.AspNetCore" Version="10.2.0">
+		<PackageVersion Include="StackExchange.Redis.Extensions.AspNetCore" Version="11.0.0">
 		</PackageVersion>
 		<!-- 👇 Redis 消息队列中间件 -->
 		<PackageVersion Include="InitQ" Version="1.0.0.19">
