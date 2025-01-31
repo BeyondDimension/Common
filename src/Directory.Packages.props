@@ -414,7 +414,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Essensoft.Paylink.WeChatPay" Version="4.1.9">
 		</PackageVersion>
-		<PackageVersion Include="SKIT.FlurlHttpClient.Wechat.Api" Version="3.6.0">
+		<PackageVersion Include="SKIT.FlurlHttpClient.Wechat.Api" Version="3.7.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Serialize（序列化） -->
