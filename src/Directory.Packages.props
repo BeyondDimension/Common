@@ -193,7 +193,7 @@
 	</ItemGroup>
 	<!-- 👇 Containers（容器） -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0">
+		<PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.1">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.VisualStudio.Azure.Kubernetes.Tools.Targets" Version="1.1.0">
 		</PackageVersion>
