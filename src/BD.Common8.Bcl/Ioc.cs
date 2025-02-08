@@ -128,7 +128,46 @@ public static partial class Ioc
         }
     }
 
-    /// <inheritdoc cref="Get{T}"/>
+    /// <summary>
+    /// 获取键依赖注入服务
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static T Get<T>(object? serviceKey) where T : notnull
+    {
+        if (value == null)
+        {
+            if (Fallback != null)
+            {
+                if (Fallback(typeof(T), true) is T t)
+                {
+                    return t;
+                }
+            }
+            throw GetDIGetFailException(typeof(T));
+        }
+        try
+        {
+            return value.GetRequiredKeyedService<T>(serviceKey);
+        }
+        catch
+        {
+            if (Fallback != null)
+            {
+                if (Fallback(typeof(T), true) is T t)
+                {
+                    return t;
+                }
+            }
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// 尝试获取依赖注入服务，获取失败时返回 <see langword="null"/>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public static T? Get_Nullable<T>() where T : notnull
     {
         if (value == null)
@@ -175,7 +214,11 @@ public static partial class Ioc
         return r;
     }
 
-    /// <inheritdoc cref="Get{T}"/>
+    /// <summary>
+    /// 传递服务类型获取依赖注入服务
+    /// </summary>
+    /// <param name="serviceType"></param>
+    /// <returns></returns>
     public static object Get(Type serviceType)
     {
         if (value == null)
@@ -208,7 +251,49 @@ public static partial class Ioc
         }
     }
 
-    /// <inheritdoc cref="Get_Nullable{T}"/>
+    /// <summary>
+    /// 传递服务类型获取获取键依赖注入服务
+    /// </summary>
+    /// <param name="serviceType"></param>
+    /// <param name="serviceKey"></param>
+    /// <returns></returns>
+    public static object Get(Type serviceType, object? serviceKey)
+    {
+        if (value == null)
+        {
+            if (Fallback != null)
+            {
+                var t = Fallback(serviceType, true);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+            throw GetDIGetFailException(serviceType);
+        }
+        try
+        {
+            return value.GetRequiredKeyedService(serviceType, serviceKey);
+        }
+        catch
+        {
+            if (Fallback != null)
+            {
+                var t = Fallback(serviceType, true);
+                if (t != null)
+                {
+                    return t;
+                }
+            }
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// 尝试传递服务类型获取依赖注入服务，获取失败时返回 <see langword="null"/>
+    /// </summary>
+    /// <param name="serviceType"></param>
+    /// <returns></returns>
     public static object? Get_Nullable(Type serviceType)
     {
         if (value == null)

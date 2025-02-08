@@ -35,7 +35,11 @@ public static partial class IOPath
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string DirCreateByNotExists(string dirPath)
     {
-        if (!Directory.Exists(dirPath)) Directory.CreateDirectory(dirPath);
+        if (!Directory.Exists(dirPath))
+        {
+            FileTryDelete(dirPath); // 如果文件夹路径被文件占用会导致创建文件夹抛出 IOException
+            Directory.CreateDirectory(dirPath);
+        }
         return dirPath;
     }
 
