@@ -774,7 +774,7 @@
 	</ItemGroup>
 	<!-- 👇 Harmony（热补丁） -->
 	<ItemGroup>
-		<PackageVersion Include="Lib.Harmony" Version="2.3.3">
+		<PackageVersion Include="Lib.Harmony" Version="2.3.5">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Steam（蒸汽平台） -->
