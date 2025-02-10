@@ -1,7 +1,7 @@
 // https://www.cnblogs.com/lindexi/p/16706558.html
 // https://blog.lindexi.com/post/dotnet-6-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E4%B8%8D%E8%B7%9F%E9%9A%8F%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E5%8F%98%E5%8C%96%E8%80%8C%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2%E4%BB%A3%E7%90%86.html
 
-#if WINDOWS
+#if WINDOWS && !NET9_0_OR_GREATER
 using static System.String;
 using ErrorEventArgs = System.IO.ErrorEventArgs;
 
