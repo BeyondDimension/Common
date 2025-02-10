@@ -66,12 +66,16 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
                 ParentId = m.ParentId,
                 Name = m.Name,
                 Order = m.Order,
+                Key = m.Key,
+                Url = m.Url,
                 Children = m.Children!.Select(cm => new BMMenu
                 {
                     Id = cm.Id,
                     ParentId = cm.ParentId,
                     Name = cm.Name,
                     Order = cm.Order,
+                    Key = cm.Key,
+                    Url = cm.Url,
                 }).ToList(),
             })
             .ToListAsync(RequestAborted);

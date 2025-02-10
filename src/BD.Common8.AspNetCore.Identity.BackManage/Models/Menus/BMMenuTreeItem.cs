@@ -8,5 +8,9 @@ public sealed class BMMenuTreeItem
 
     public string Name { get; set; } = null!;
 
+    public string? Key { get; set; }
+
+    public string? Url { get; set; }
+
     public ICollection<BMMenuTreeItem>? Children { get; set; }
 }
