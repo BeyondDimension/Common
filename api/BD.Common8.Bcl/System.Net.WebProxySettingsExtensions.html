@@ -143,32 +143,67 @@ Class WebProxySettingsExtensions  <a class="header-action link-secondary" title=
 
   <a id="System_Net_WebProxySettingsExtensions_GetWebProxy_" data-uid="System.Net.WebProxySettingsExtensions.GetWebProxy*"></a>
 
-  <h3 id="System_Net_WebProxySettingsExtensions_GetWebProxy_System_Net_IWebProxySettings_System_Boolean_System_String___" data-uid="System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings,System.Boolean,System.String[])">
-  GetWebProxy(IWebProxySettings?, bool, string[]?)
+  <h3 id="System_Net_WebProxySettingsExtensions_GetWebProxy_System_Net_IWebProxySettings_" data-uid="System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings)">
+  GetWebProxy(IWebProxySettings?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Net/IWebProxySettings.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>根据配置参数创建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.iwebproxy">IWebProxy</a> 实例</p>
+  <div class="markdown level1 summary"><p>根据配置参数创建 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.iwebproxy">IWebProxy</a> 实例，返回类型可通过 <a class="xref" href="System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_IdEquals_System_Net_IWebProxy_System_Net_IWebProxy_">IdEquals(IWebProxy?, IWebProxy?)</a> 进行比较，当 <a class="xref" href="System.Net.IWebProxySettings.html">IWebProxySettings</a> 代理设置相同时，返回的不同实例比较将都相等</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IWebProxy? GetWebProxy(this IWebProxySettings? settings, bool bypassOnLocal = true, string[]? bypassList = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IWebProxy? GetWebProxy(this IWebProxySettings? settings)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>settings</code> <a class="xref" href="System.Net.IWebProxySettings.html">IWebProxySettings</a></dt>
     <dd></dd>
-    <dt><code>bypassOnLocal</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-    <dt><code>bypassList</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.iwebproxy">IWebProxy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Net_WebProxySettingsExtensions_IdEquals_" data-uid="System.Net.WebProxySettingsExtensions.IdEquals*"></a>
+
+  <h3 id="System_Net_WebProxySettingsExtensions_IdEquals_System_Net_IWebProxy_System_Net_IWebProxy_" data-uid="System.Net.WebProxySettingsExtensions.IdEquals(System.Net.IWebProxy,System.Net.IWebProxy)">
+  IdEquals(IWebProxy?, IWebProxy?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Net/IWebProxySettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>比较两个 <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.iwebproxy">IWebProxy</a> 实例是否相等</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IdEquals(this IWebProxy? l, IWebProxy? r)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>l</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.iwebproxy">IWebProxy</a></dt>
+    <dd></dd>
+    <dt><code>r</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.iwebproxy">IWebProxy</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 

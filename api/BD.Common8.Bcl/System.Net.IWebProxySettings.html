@@ -110,7 +110,7 @@ Interface IWebProxySettings  <a class="header-action link-secondary" title="View
       <a class="xref" href="System.Extensions.ObjectExtensions.html#System_Extensions_ObjectExtensions_ThrowIsNull__1___0_System_String_">ObjectExtensions.ThrowIsNull&lt;T&gt;(T?, string?)</a>
   </div>
   <div>
-      <a class="xref" href="System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_GetWebProxy_System_Net_IWebProxySettings_System_Boolean_System_String___">WebProxySettingsExtensions.GetWebProxy(IWebProxySettings?, bool, string[]?)</a>
+      <a class="xref" href="System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_GetWebProxy_System_Net_IWebProxySettings_">WebProxySettingsExtensions.GetWebProxy(IWebProxySettings?)</a>
   </div>
   </dd></dl>
 
@@ -129,12 +129,108 @@ Interface IWebProxySettings  <a class="header-action link-secondary" title="View
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Net/IWebProxySettings.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Web 代理地址</p>
+  <div class="markdown level1 summary"><p>Web 代理地址，与 <a class="xref" href="System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyHost">WebProxyHost</a> 和 <a class="xref" href="System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyPort">WebProxyPort</a> 互斥，优先级最高</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">string? WebProxyAddress { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Net_IWebProxySettings_WebProxyBypassProxyOnLocal_" data-uid="System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal*"></a>
+
+  <h3 id="System_Net_IWebProxySettings_WebProxyBypassProxyOnLocal" data-uid="System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal">
+  WebProxyBypassProxyOnLocal
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Net/IWebProxySettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否跳过代理服务器而使用本地地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool? WebProxyBypassProxyOnLocal { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Net_IWebProxySettings_WebProxyHost_" data-uid="System.Net.IWebProxySettings.WebProxyHost*"></a>
+
+  <h3 id="System_Net_IWebProxySettings_WebProxyHost" data-uid="System.Net.IWebProxySettings.WebProxyHost">
+  WebProxyHost
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Net/IWebProxySettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Web 代理 Host，当 <a class="xref" href="System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyAddress">WebProxyAddress</a> 无效时且 <a class="xref" href="System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyPort">WebProxyPort</a> 有效时使用&quot;/&gt;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? WebProxyHost { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="System_Net_IWebProxySettings_WebProxyNetworkCredentialDomain_" data-uid="System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain*"></a>
+
+  <h3 id="System_Net_IWebProxySettings_WebProxyNetworkCredentialDomain" data-uid="System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain">
+  WebProxyNetworkCredentialDomain
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Net/IWebProxySettings.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Web 代理的身份验证的域名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? WebProxyNetworkCredentialDomain { get; }</code></pre>
   </div>
 
 
@@ -193,7 +289,7 @@ Interface IWebProxySettings  <a class="header-action link-secondary" title="View
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Net/IWebProxySettings.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Web 代理端口</p>
+  <div class="markdown level1 summary"><p>Web 代理端口，当 <a class="xref" href="System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyAddress">WebProxyAddress</a> 无效时且 <a class="xref" href="System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyHost">WebProxyHost</a> 有效时使用</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

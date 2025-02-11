@@ -6593,6 +6593,18 @@ references:
   commentId: Overload:BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Id
   fullName: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Id
   nameWithType: BMMenuTreeItem.Id
+- uid: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Key
+  name: Key
+  href: api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.html#BD_Common8_AspNetCore_Models_Menus_BMMenuTreeItem_Key
+  commentId: P:BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Key
+  fullName: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Key
+  nameWithType: BMMenuTreeItem.Key
+- uid: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Key*
+  name: Key
+  href: api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.html#BD_Common8_AspNetCore_Models_Menus_BMMenuTreeItem_Key_
+  commentId: Overload:BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Key
+  fullName: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Key
+  nameWithType: BMMenuTreeItem.Key
 - uid: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Name
   name: Name
   href: api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.html#BD_Common8_AspNetCore_Models_Menus_BMMenuTreeItem_Name
@@ -6617,6 +6629,18 @@ references:
   commentId: Overload:BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.ParentId
   fullName: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.ParentId
   nameWithType: BMMenuTreeItem.ParentId
+- uid: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Url
+  name: Url
+  href: api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.html#BD_Common8_AspNetCore_Models_Menus_BMMenuTreeItem_Url
+  commentId: P:BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Url
+  fullName: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Url
+  nameWithType: BMMenuTreeItem.Url
+- uid: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Url*
+  name: Url
+  href: api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.html#BD_Common8_AspNetCore_Models_Menus_BMMenuTreeItem_Url_
+  commentId: Overload:BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Url
+  fullName: BD.Common8.AspNetCore.Models.Menus.BMMenuTreeItem.Url
+  nameWithType: BMMenuTreeItem.Url
 - uid: BD.Common8.AspNetCore.Models.ModelExtensions
   name: ModelExtensions
   href: api/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Models.ModelExtensions.html
@@ -42005,66 +42029,6 @@ references:
   commentId: Overload:System.Net.DomainPattern.ToString
   fullName: System.Net.DomainPattern.ToString
   nameWithType: DomainPattern.ToString
-- uid: System.Net.DynamicHttpWindowsProxy
-  name: DynamicHttpWindowsProxy
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html
-  commentId: T:System.Net.DynamicHttpWindowsProxy
-  fullName: System.Net.DynamicHttpWindowsProxy
-  nameWithType: DynamicHttpWindowsProxy
-- uid: System.Net.DynamicHttpWindowsProxy.Credentials
-  name: Credentials
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_Credentials
-  commentId: P:System.Net.DynamicHttpWindowsProxy.Credentials
-  fullName: System.Net.DynamicHttpWindowsProxy.Credentials
-  nameWithType: DynamicHttpWindowsProxy.Credentials
-- uid: System.Net.DynamicHttpWindowsProxy.Credentials*
-  name: Credentials
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_Credentials_
-  commentId: Overload:System.Net.DynamicHttpWindowsProxy.Credentials
-  fullName: System.Net.DynamicHttpWindowsProxy.Credentials
-  nameWithType: DynamicHttpWindowsProxy.Credentials
-- uid: System.Net.DynamicHttpWindowsProxy.Dispose
-  name: Dispose()
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_Dispose
-  commentId: M:System.Net.DynamicHttpWindowsProxy.Dispose
-  fullName: System.Net.DynamicHttpWindowsProxy.Dispose()
-  nameWithType: DynamicHttpWindowsProxy.Dispose()
-- uid: System.Net.DynamicHttpWindowsProxy.Dispose*
-  name: Dispose
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_Dispose_
-  commentId: Overload:System.Net.DynamicHttpWindowsProxy.Dispose
-  fullName: System.Net.DynamicHttpWindowsProxy.Dispose
-  nameWithType: DynamicHttpWindowsProxy.Dispose
-- uid: System.Net.DynamicHttpWindowsProxy.GetProxy(System.Uri)
-  name: GetProxy(Uri)
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_GetProxy_System_Uri_
-  commentId: M:System.Net.DynamicHttpWindowsProxy.GetProxy(System.Uri)
-  fullName: System.Net.DynamicHttpWindowsProxy.GetProxy(System.Uri)
-  nameWithType: DynamicHttpWindowsProxy.GetProxy(Uri)
-- uid: System.Net.DynamicHttpWindowsProxy.GetProxy*
-  name: GetProxy
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_GetProxy_
-  commentId: Overload:System.Net.DynamicHttpWindowsProxy.GetProxy
-  fullName: System.Net.DynamicHttpWindowsProxy.GetProxy
-  nameWithType: DynamicHttpWindowsProxy.GetProxy
-- uid: System.Net.DynamicHttpWindowsProxy.Instance
-  name: Instance
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_Instance
-  commentId: F:System.Net.DynamicHttpWindowsProxy.Instance
-  fullName: System.Net.DynamicHttpWindowsProxy.Instance
-  nameWithType: DynamicHttpWindowsProxy.Instance
-- uid: System.Net.DynamicHttpWindowsProxy.IsBypassed(System.Uri)
-  name: IsBypassed(Uri)
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_IsBypassed_System_Uri_
-  commentId: M:System.Net.DynamicHttpWindowsProxy.IsBypassed(System.Uri)
-  fullName: System.Net.DynamicHttpWindowsProxy.IsBypassed(System.Uri)
-  nameWithType: DynamicHttpWindowsProxy.IsBypassed(Uri)
-- uid: System.Net.DynamicHttpWindowsProxy.IsBypassed*
-  name: IsBypassed
-  href: api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html#System_Net_DynamicHttpWindowsProxy_IsBypassed_
-  commentId: Overload:System.Net.DynamicHttpWindowsProxy.IsBypassed
-  fullName: System.Net.DynamicHttpWindowsProxy.IsBypassed
-  nameWithType: DynamicHttpWindowsProxy.IsBypassed
 - uid: System.Net.DynamicWebProxy
   name: DynamicWebProxy
   href: api/BD.Common8.Bcl/System.Net.DynamicWebProxy.html
@@ -43191,6 +43155,42 @@ references:
   commentId: Overload:System.Net.IWebProxySettings.WebProxyAddress
   fullName: System.Net.IWebProxySettings.WebProxyAddress
   nameWithType: IWebProxySettings.WebProxyAddress
+- uid: System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal
+  name: WebProxyBypassProxyOnLocal
+  href: api/BD.Common8.Bcl/System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyBypassProxyOnLocal
+  commentId: P:System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal
+  fullName: System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal
+  nameWithType: IWebProxySettings.WebProxyBypassProxyOnLocal
+- uid: System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal*
+  name: WebProxyBypassProxyOnLocal
+  href: api/BD.Common8.Bcl/System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyBypassProxyOnLocal_
+  commentId: Overload:System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal
+  fullName: System.Net.IWebProxySettings.WebProxyBypassProxyOnLocal
+  nameWithType: IWebProxySettings.WebProxyBypassProxyOnLocal
+- uid: System.Net.IWebProxySettings.WebProxyHost
+  name: WebProxyHost
+  href: api/BD.Common8.Bcl/System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyHost
+  commentId: P:System.Net.IWebProxySettings.WebProxyHost
+  fullName: System.Net.IWebProxySettings.WebProxyHost
+  nameWithType: IWebProxySettings.WebProxyHost
+- uid: System.Net.IWebProxySettings.WebProxyHost*
+  name: WebProxyHost
+  href: api/BD.Common8.Bcl/System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyHost_
+  commentId: Overload:System.Net.IWebProxySettings.WebProxyHost
+  fullName: System.Net.IWebProxySettings.WebProxyHost
+  nameWithType: IWebProxySettings.WebProxyHost
+- uid: System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain
+  name: WebProxyNetworkCredentialDomain
+  href: api/BD.Common8.Bcl/System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyNetworkCredentialDomain
+  commentId: P:System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain
+  fullName: System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain
+  nameWithType: IWebProxySettings.WebProxyNetworkCredentialDomain
+- uid: System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain*
+  name: WebProxyNetworkCredentialDomain
+  href: api/BD.Common8.Bcl/System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyNetworkCredentialDomain_
+  commentId: Overload:System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain
+  fullName: System.Net.IWebProxySettings.WebProxyNetworkCredentialDomain
+  nameWithType: IWebProxySettings.WebProxyNetworkCredentialDomain
 - uid: System.Net.IWebProxySettings.WebProxyPassword
   name: WebProxyPassword
   href: api/BD.Common8.Bcl/System.Net.IWebProxySettings.html#System_Net_IWebProxySettings_WebProxyPassword
@@ -43818,6 +43818,42 @@ references:
   commentId: Overload:System.Net.WebProxySettings.WebProxyAddress
   fullName: System.Net.WebProxySettings.WebProxyAddress
   nameWithType: WebProxySettings.WebProxyAddress
+- uid: System.Net.WebProxySettings.WebProxyBypassProxyOnLocal
+  name: WebProxyBypassProxyOnLocal
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettings.html#System_Net_WebProxySettings_WebProxyBypassProxyOnLocal
+  commentId: P:System.Net.WebProxySettings.WebProxyBypassProxyOnLocal
+  fullName: System.Net.WebProxySettings.WebProxyBypassProxyOnLocal
+  nameWithType: WebProxySettings.WebProxyBypassProxyOnLocal
+- uid: System.Net.WebProxySettings.WebProxyBypassProxyOnLocal*
+  name: WebProxyBypassProxyOnLocal
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettings.html#System_Net_WebProxySettings_WebProxyBypassProxyOnLocal_
+  commentId: Overload:System.Net.WebProxySettings.WebProxyBypassProxyOnLocal
+  fullName: System.Net.WebProxySettings.WebProxyBypassProxyOnLocal
+  nameWithType: WebProxySettings.WebProxyBypassProxyOnLocal
+- uid: System.Net.WebProxySettings.WebProxyHost
+  name: WebProxyHost
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettings.html#System_Net_WebProxySettings_WebProxyHost
+  commentId: P:System.Net.WebProxySettings.WebProxyHost
+  fullName: System.Net.WebProxySettings.WebProxyHost
+  nameWithType: WebProxySettings.WebProxyHost
+- uid: System.Net.WebProxySettings.WebProxyHost*
+  name: WebProxyHost
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettings.html#System_Net_WebProxySettings_WebProxyHost_
+  commentId: Overload:System.Net.WebProxySettings.WebProxyHost
+  fullName: System.Net.WebProxySettings.WebProxyHost
+  nameWithType: WebProxySettings.WebProxyHost
+- uid: System.Net.WebProxySettings.WebProxyNetworkCredentialDomain
+  name: WebProxyNetworkCredentialDomain
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettings.html#System_Net_WebProxySettings_WebProxyNetworkCredentialDomain
+  commentId: P:System.Net.WebProxySettings.WebProxyNetworkCredentialDomain
+  fullName: System.Net.WebProxySettings.WebProxyNetworkCredentialDomain
+  nameWithType: WebProxySettings.WebProxyNetworkCredentialDomain
+- uid: System.Net.WebProxySettings.WebProxyNetworkCredentialDomain*
+  name: WebProxyNetworkCredentialDomain
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettings.html#System_Net_WebProxySettings_WebProxyNetworkCredentialDomain_
+  commentId: Overload:System.Net.WebProxySettings.WebProxyNetworkCredentialDomain
+  fullName: System.Net.WebProxySettings.WebProxyNetworkCredentialDomain
+  nameWithType: WebProxySettings.WebProxyNetworkCredentialDomain
 - uid: System.Net.WebProxySettings.WebProxyPassword
   name: WebProxyPassword
   href: api/BD.Common8.Bcl/System.Net.WebProxySettings.html#System_Net_WebProxySettings_WebProxyPassword
@@ -43896,21 +43932,36 @@ references:
   commentId: T:System.Net.WebProxySettingsExtensions
   fullName: System.Net.WebProxySettingsExtensions
   nameWithType: WebProxySettingsExtensions
-- uid: System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings,System.Boolean,System.String[])
-  name: GetWebProxy(IWebProxySettings?, bool, string[]?)
-  href: api/BD.Common8.Bcl/System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_GetWebProxy_System_Net_IWebProxySettings_System_Boolean_System_String___
-  commentId: M:System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings,System.Boolean,System.String[])
-  name.vb: GetWebProxy(IWebProxySettings, Boolean, String())
-  fullName: System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings?, bool, string[]?)
-  fullName.vb: System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings, Boolean, String())
-  nameWithType: WebProxySettingsExtensions.GetWebProxy(IWebProxySettings?, bool, string[]?)
-  nameWithType.vb: WebProxySettingsExtensions.GetWebProxy(IWebProxySettings, Boolean, String())
+- uid: System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings)
+  name: GetWebProxy(IWebProxySettings?)
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_GetWebProxy_System_Net_IWebProxySettings_
+  commentId: M:System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings)
+  name.vb: GetWebProxy(IWebProxySettings)
+  fullName: System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings?)
+  fullName.vb: System.Net.WebProxySettingsExtensions.GetWebProxy(System.Net.IWebProxySettings)
+  nameWithType: WebProxySettingsExtensions.GetWebProxy(IWebProxySettings?)
+  nameWithType.vb: WebProxySettingsExtensions.GetWebProxy(IWebProxySettings)
 - uid: System.Net.WebProxySettingsExtensions.GetWebProxy*
   name: GetWebProxy
   href: api/BD.Common8.Bcl/System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_GetWebProxy_
   commentId: Overload:System.Net.WebProxySettingsExtensions.GetWebProxy
   fullName: System.Net.WebProxySettingsExtensions.GetWebProxy
   nameWithType: WebProxySettingsExtensions.GetWebProxy
+- uid: System.Net.WebProxySettingsExtensions.IdEquals(System.Net.IWebProxy,System.Net.IWebProxy)
+  name: IdEquals(IWebProxy?, IWebProxy?)
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_IdEquals_System_Net_IWebProxy_System_Net_IWebProxy_
+  commentId: M:System.Net.WebProxySettingsExtensions.IdEquals(System.Net.IWebProxy,System.Net.IWebProxy)
+  name.vb: IdEquals(IWebProxy, IWebProxy)
+  fullName: System.Net.WebProxySettingsExtensions.IdEquals(System.Net.IWebProxy?, System.Net.IWebProxy?)
+  fullName.vb: System.Net.WebProxySettingsExtensions.IdEquals(System.Net.IWebProxy, System.Net.IWebProxy)
+  nameWithType: WebProxySettingsExtensions.IdEquals(IWebProxy?, IWebProxy?)
+  nameWithType.vb: WebProxySettingsExtensions.IdEquals(IWebProxy, IWebProxy)
+- uid: System.Net.WebProxySettingsExtensions.IdEquals*
+  name: IdEquals
+  href: api/BD.Common8.Bcl/System.Net.WebProxySettingsExtensions.html#System_Net_WebProxySettingsExtensions_IdEquals_
+  commentId: Overload:System.Net.WebProxySettingsExtensions.IdEquals
+  fullName: System.Net.WebProxySettingsExtensions.IdEquals
+  nameWithType: WebProxySettingsExtensions.IdEquals
 - uid: System.Num2IntFormat
   name: Num2IntFormat
   href: api/BD.Common8.Bcl/System.Num2IntFormat.html

@@ -2646,16 +2646,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.Common8.Bcl/System.Net.DynamicHttpWindowsProxy.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.Common8.Bcl/System.Net.DynamicWebProxy.yml",
       "output": {
         ".html": {
