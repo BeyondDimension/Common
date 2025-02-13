@@ -684,9 +684,9 @@ public static class AESUtils
         /// <returns>转换后的字节数组</returns>
         public byte[] ToByteArray()
         {
-            IVByteArray.ThrowIsNull();
-            KeyByteArray.ThrowIsNull();
-            return [.. BitConverter.GetBytes((ushort)ModeAndPadding), .. IVByteArray, .. KeyByteArray.Reverse()];
+            var iv = IVByteArray.ThrowIsNull();
+            var key = KeyByteArray.ThrowIsNull();
+            return [.. BitConverter.GetBytes((ushort)ModeAndPadding), .. iv, .. Enumerable.Reverse(key)];
         }
 
         /// <summary>

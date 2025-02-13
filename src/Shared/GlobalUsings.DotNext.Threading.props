@@ -1,6 +1,7 @@
 <Project>
+	<!-- DotNext 命名空间禁止全局引用 -->
 	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'DotNext.Threading'))" >
-		<Using Include="DotNext" />
+		<!--<Using Include="DotNext" />-->
 		<Using Include="DotNext.Threading" />
 	</ItemGroup>
 </Project>
