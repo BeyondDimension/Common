@@ -169,6 +169,16 @@ public enum ApiRspCode
     /// </summary>
     SaveAuthTokenToUserManagerFail = 1026,
 
+    /// <summary>
+    /// Info 级别的失败，原因见 Message 或无原因
+    /// </summary>
+    InfoFail = 1027,
+
+    /// <summary>
+    /// Warning 级别的失败，原因见 Message 或无原因
+    /// </summary>
+    WarningFail = 1028,
+
     #endregion
 
     #region 错误状态码 5000~5999
