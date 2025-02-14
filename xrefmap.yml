@@ -10370,6 +10370,12 @@ references:
   commentId: F:BD.Common8.Enums.ApiRspCode.Fail
   fullName: BD.Common8.Enums.ApiRspCode.Fail
   nameWithType: ApiRspCode.Fail
+- uid: BD.Common8.Enums.ApiRspCode.InfoFail
+  name: InfoFail
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_InfoFail
+  commentId: F:BD.Common8.Enums.ApiRspCode.InfoFail
+  fullName: BD.Common8.Enums.ApiRspCode.InfoFail
+  nameWithType: ApiRspCode.InfoFail
 - uid: BD.Common8.Enums.ApiRspCode.InternalServerError
   name: InternalServerError
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_InternalServerError
@@ -10532,6 +10538,12 @@ references:
   commentId: F:BD.Common8.Enums.ApiRspCode.UserNotFound
   fullName: BD.Common8.Enums.ApiRspCode.UserNotFound
   nameWithType: ApiRspCode.UserNotFound
+- uid: BD.Common8.Enums.ApiRspCode.WarningFail
+  name: WarningFail
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_WarningFail
+  commentId: F:BD.Common8.Enums.ApiRspCode.WarningFail
+  fullName: BD.Common8.Enums.ApiRspCode.WarningFail
+  nameWithType: ApiRspCode.WarningFail
 - uid: BD.Common8.Enums.BrowserLaunchFlags
   name: BrowserLaunchFlags
   href: api/BD.Common8.Primitives.Essentials/BD.Common8.Enums.BrowserLaunchFlags.html
