@@ -1002,20 +1002,20 @@ is called after the changes have been sent successfully to the database.</p>
 
   <h4 class="section" id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChanges_System_Boolean__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>
-                This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
-                to discover any changes to entity instances before saving to the underlying database. This can be disabled via
-                <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
-            </p>
+    This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
+    to discover any changes to entity instances before saving to the underlying database. This can be disabled via
+    <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
+</p>
 <p>
-                Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
-                includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
-                Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
-                in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more information
-                and examples.
-            </p>
+    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+    in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more information
+    and examples.
+</p>
 <p>
-                See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
-            </p>
+    See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
+</p>
 </div>
 
   <h4 class="section">Exceptions</h4>
@@ -1074,20 +1074,20 @@ number of state entries written to the database.</p>
 
   <h4 class="section" id="BD_Common8_AspNetCore_Data_BMDbContextBase_3_SaveChangesAsync_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>
-                This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
-                to discover any changes to entity instances before saving to the underlying database. This can be disabled via
-                <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
-            </p>
+    This method will automatically call <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.detectchanges">DetectChanges()</a>
+    to discover any changes to entity instances before saving to the underlying database. This can be disabled via
+    <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.changetracking.changetracker.autodetectchangesenabled">AutoDetectChangesEnabled</a>.
+</p>
 <p>
-                Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
-                includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
-                Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
-                in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more
-                information and examples.
-            </p>
+    Entity Framework Core does not support multiple parallel operations being run on the same DbContext instance. This
+    includes both parallel execution of async queries and any explicit concurrent use from multiple threads.
+    Therefore, always await async calls immediately, or use separate DbContext instances for operations that execute
+    in parallel. See <a href="https://aka.ms/efcore-docs-threading">Avoiding DbContext threading issues</a> for more
+    information and examples.
+</p>
 <p>
-                See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
-            </p>
+    See <a href="https://aka.ms/efcore-docs-saving-data">Saving data in EF Core</a> for more information and examples.
+</p>
 </div>
 
   <h4 class="section">Exceptions</h4>

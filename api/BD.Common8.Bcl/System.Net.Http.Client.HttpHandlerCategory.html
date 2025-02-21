@@ -143,21 +143,26 @@ Enum HttpHandlerCategory  <a class="header-action link-secondary" title="View so
 </h2>
   <dl class="parameters">
     <dt id="System_Net_Http_Client_HttpHandlerCategory_Background"><code>Background = 3</code></dt>
-    <dd><p>该调度器应该用于在后台发起的请求，并以较低的优先级调度。</p>
+  
+  <dd><p>该调度器应该用于在后台发起的请求，并以较低的优先级调度。</p>
 </dd>
     <dt id="System_Net_Http_Client_HttpHandlerCategory_Default"><code>Default = 0</code></dt>
-    <dd></dd>
+  
+  <dd></dd>
     <dt id="System_Net_Http_Client_HttpHandlerCategory_Offline"><code>Offline = 4</code></dt>
-    <dd><p>调度器只从 Fusillade.NetCache.RequestCache 中指定的缓存中获取结果。</p>
+  
+  <dd><p>调度器只从 Fusillade.NetCache.RequestCache 中指定的缓存中获取结果。</p>
 </dd>
     <dt id="System_Net_Http_Client_HttpHandlerCategory_Speculative"><code>Speculative = 1</code></dt>
-    <dd><p>。
+  
+  <dd><p>。
 这是为读取用户以后可能使用也可能不使用的数据而设计的，
 以便在用户以后请求该数据时提高响应速度。
 允许在取消所有未来请求之前读取一定数量的字节</p>
 </dd>
     <dt id="System_Net_Http_Client_HttpHandlerCategory_UserInitiated"><code>UserInitiated = 2</code></dt>
-    <dd><p>调度器应该用于由用户动作发起的请求，
+  
+  <dd><p>调度器应该用于由用户动作发起的请求，
 如点击一个项目，它们具有最高的优先级。</p>
 </dd>
   </dl>
