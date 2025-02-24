@@ -9,6 +9,8 @@
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<Description>仓储层源生成器</Description>
+		<LangVersion>latest</LangVersion>
+		<!-- 👆 preview LangVersion 与 Costura.Fody 疑似有兼容性问题导致编译失败 csc.exe 闪退 -->
 	</PropertyGroup>
 
 	<ItemGroup>
