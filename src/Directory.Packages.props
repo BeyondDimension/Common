@@ -20,20 +20,20 @@
 		<Version_System_Reactive>6.0.0</Version_System_Reactive>
 		<Version_ReactiveUI>20.1.63</Version_ReactiveUI>
 		<!-- 👇 HarfBuzz https://github.com/AvaloniaUI/Avalonia/blob/master/build/HarfBuzzSharp.props -->
-		<Version_HarfBuzzSharp>8.3.1-preview.2.3</Version_HarfBuzzSharp>
+		<Version_HarfBuzzSharp>7.3.0.3</Version_HarfBuzzSharp>
 		<!-- 👇 Skia https://github.com/AvaloniaUI/Avalonia/blob/master/build/SkiaSharp.props -->
-		<Version_SkiaSharp>3.118.0-preview.2.3</Version_SkiaSharp>
+		<Version_SkiaSharp>2.88.9</Version_SkiaSharp>
 		<!-- 👇 Avalonia -->
-		<Version_Avalonia>11.2.3</Version_Avalonia>
-		<Version_Avalonia_Xaml_Behaviors>11.2.0.6</Version_Avalonia_Xaml_Behaviors>
+		<Version_Avalonia>11.2.4</Version_Avalonia>
+		<Version_Avalonia_Xaml_Behaviors>11.2.0.9</Version_Avalonia_Xaml_Behaviors>
 		<Version_Avalonia_Edit>11.1.0</Version_Avalonia_Edit>
 		<Version_AvaloniaEdit_TextMate>11.1.0</Version_AvaloniaEdit_TextMate>
 		<!-- 👇 Avalonia Third Party -->
 		<Version_Avalonia_FluentUI>2.2.0</Version_Avalonia_FluentUI>
-		<Version_Avalonia_Markdown>11.0.2</Version_Avalonia_Markdown>
+		<Version_Avalonia_Markdown>11.0.3-a1</Version_Avalonia_Markdown>
 		<Version_Avalonia_CefNet>105.3.22248.142</Version_Avalonia_CefNet>
-		<Version_Avalonia_LibVLCSharp>3.7.0</Version_Avalonia_LibVLCSharp>
-		<Version_Avalonia_LiveChartsCore_SkiaSharpView>2.0.0-rc4.5</Version_Avalonia_LiveChartsCore_SkiaSharpView>
+		<Version_Avalonia_LibVLCSharp>3.9.2</Version_Avalonia_LibVLCSharp>
+		<Version_Avalonia_LiveChartsCore_SkiaSharpView>2.0.0-rc5.4</Version_Avalonia_LiveChartsCore_SkiaSharpView>
 		<!-- 👇 Console -->
 		<Version_CommandLine>2.0.0-beta4.22272.1</Version_CommandLine>
 		<!-- 👇 AppCenter -->
