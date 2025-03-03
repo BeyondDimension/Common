@@ -24,7 +24,7 @@
 		<!-- 👇 Skia https://github.com/AvaloniaUI/Avalonia/blob/master/build/SkiaSharp.props -->
 		<Version_SkiaSharp>2.88.9</Version_SkiaSharp>
 		<!-- 👇 Avalonia -->
-		<Version_Avalonia>11.2.4</Version_Avalonia>
+		<Version_Avalonia>11.2.5</Version_Avalonia>
 		<Version_Avalonia_Xaml_Behaviors>11.2.0.9</Version_Avalonia_Xaml_Behaviors>
 		<Version_Avalonia_Edit>11.1.0</Version_Avalonia_Edit>
 		<Version_AvaloniaEdit_TextMate>11.1.0</Version_AvaloniaEdit_TextMate>
