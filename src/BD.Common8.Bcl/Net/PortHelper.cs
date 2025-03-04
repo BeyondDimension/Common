@@ -44,20 +44,24 @@ public static partial class PortHelper
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsUsePort(int port)
     {
+#if ANDROID
+        return IsUsePort(IPAddress.Loopback, port);
+#else
         try
         {
-            return IPGlobalProperties.GetIPGlobalProperties()
-                .GetActiveTcpListeners()
-                .Any(x => x.Port == port);
+            var ipGlobalProps = IPGlobalProperties.GetIPGlobalProperties();
+            var tcp = ipGlobalProps.GetActiveTcpListeners();
+            return tcp.Any(x => x.Port == port);
         }
         catch
         {
             return IsUsePort(IPAddress.Loopback, port);
         }
+#endif
     }
 
     /// <summary>
-    /// 根据 TCP 端口号获取占用的进程
+    /// 根据 TCP 端口号获取占用的进程，当前仅支持 Windows 平台，其他平台将抛出 <see cref="PlatformNotSupportedException"/>，且会因目标进程为管理员权限时获取失败
     /// </summary>
     /// <param name="port"></param>
     /// <returns></returns>
