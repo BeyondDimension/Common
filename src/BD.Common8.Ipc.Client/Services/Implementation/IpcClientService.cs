@@ -246,7 +246,11 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
         ApiRspCode apiRspCode = default;
         if (hubConnection == null || hubConnection.State != HubConnectionState.Connected)
         {
-            apiRspCode = ApiRspCode.Timeout;
+            apiRspCode = GetApiRspCodeByClientException(ex);
+            if (apiRspCode == ApiRspCode.ClientException)
+            {
+                apiRspCode = ApiRspCode.Timeout;
+            }
         }
 
         var apiRspBase = GetApiRspBase<TResponseBody>(typeResponseBody);

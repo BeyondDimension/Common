@@ -65,6 +65,10 @@ public static partial class IOPath
             Directory.Delete(dirPath, !noRecursive);
             return true;
         }
+        catch (DirectoryNotFoundException)
+        {
+            return true;
+        }
 #if DEBUG
 #pragma warning disable CS0168 // 声明了变量，但从未使用过
         catch (Exception ex)

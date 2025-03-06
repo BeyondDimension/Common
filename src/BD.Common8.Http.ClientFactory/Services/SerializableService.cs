@@ -203,20 +203,33 @@ partial class SerializableService
     /// <returns></returns>
     protected virtual ApiRspCode GetApiRspCodeByClientException(Exception ex)
     {
-        if (ex is HttpRequestException && ex.InnerException is SocketException socketException)
+        if (ex is HttpRequestException reqEx)
         {
-            switch (socketException.SocketErrorCode)
+            if (ex.InnerException is SocketException socketException)
             {
-                case SocketError.TimedOut:
-                    return ApiRspCode.Timeout;
-                case SocketError.ConnectionRefused:
-                    {
-                        // System.Net.Http.HttpRequestException: 由于目标计算机积极拒绝，无法连接。 (localhost:443)
-                        // ---> System.Net.Sockets.SocketException (10061): 由于目标计算机积极拒绝，无法连接。
-                        // at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
-                        return ApiRspCode.ConnectionRefused;
-                    }
+                switch (socketException.SocketErrorCode)
+                {
+                    case SocketError.TimedOut:
+                        return ApiRspCode.Timeout;
+                    case SocketError.ConnectionRefused:
+                        {
+                            // System.Net.Http.HttpRequestException: 由于目标计算机积极拒绝，无法连接。 (localhost:443)
+                            // ---> System.Net.Sockets.SocketException (10061): 由于目标计算机积极拒绝，无法连接。
+                            // at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+                            return ApiRspCode.ConnectionRefused;
+                        }
+                }
             }
+#if !NETFRAMEWORK
+            else if (reqEx.StatusCode.HasValue)
+            {
+                var statusCode = reqEx.StatusCode.Value;
+                if (!(((int)statusCode >= 200) && ((int)statusCode <= 299)))
+                {
+                    return (ApiRspCode)statusCode;
+                }
+            }
+#endif
         }
 
         if (ex is TaskCanceledException && ex.InnerException is TimeoutException)

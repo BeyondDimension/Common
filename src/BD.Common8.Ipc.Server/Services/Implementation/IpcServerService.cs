@@ -99,6 +99,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     {
         var builder = WebApplication.CreateEmptyBuilder(new WebApplicationOptions());
         builder.WebHost.UseKestrelCore();
+        builder.WebHost.UseKestrelHttpsConfiguration();
         builder.WebHost.ConfigureKestrel(options =>
         {
             if (ListenLocalhost)
@@ -437,6 +438,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     public HubEndpointConventionBuilder MapHub<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicMethods)] THub>([StringSyntax("Route")] string hubUrl) where THub : Hub
     {
         hubTypes.Add(hubUrl, typeof(THub));
+        //Console.WriteLine($"hubUrl: {hubUrl}, THub: {typeof(THub)}");
         return app!.MapHub<THub>(hubUrl, ConfigureHub);
     }
 
@@ -457,8 +459,8 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     protected virtual void OnError(IExceptionHandlerFeature exceptionHandlerPathFeature)
     {
 #if DEBUG
-        Console.WriteLine("OnError: ");
-        Console.WriteLine(exceptionHandlerPathFeature?.Error);
+        Console.Error.WriteLine("OnError: ");
+        Console.Error.WriteLine(exceptionHandlerPathFeature?.Error);
 #endif
     }
 

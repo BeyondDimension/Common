@@ -49,7 +49,7 @@ public static partial class IOPath
 
 #if !NETFRAMEWORK
 
-    static readonly object lock_GetCacheFilePath = new();
+    static readonly System.Threading.Lock lock_GetCacheFilePath = new();
 
     /// <summary>
     /// 根据缓存子文件夹名称与文件扩展名获取一个缓存文件路径
@@ -87,50 +87,9 @@ public static partial class IOPath
     /// </summary>
     /// <param name="filePath">要删除的文件路径</param>
     /// <param name="millisecondsDelay">延时等待的毫秒数</param>
-    [Obsolete("use TryDeleteInDelayAsync")]
-    public static async void TryDeleteInDelay(string filePath, int millisecondsDelay = 9000)
-    {
-        await Task.Delay(millisecondsDelay);
-        FileTryDelete(filePath);
-    }
-
-    /// <summary>
-    /// 尝试延时一段时间后删除文件
-    /// </summary>
-    /// <param name="filePath">要删除的文件路径</param>
-    /// <param name="millisecondsDelay">延时等待的毫秒数</param>
     public static async Task TryDeleteInDelayAsync(string filePath, int millisecondsDelay = 9000)
     {
         await Task.Delay(millisecondsDelay);
-        FileTryDelete(filePath);
-    }
-
-    /// <summary>
-    /// 启动进程后尝试延时一段时间后删除文件
-    /// </summary>
-    /// <param name="process">启动的进程</param>
-    /// <param name="filePath">要删除的文件路径</param>
-    /// <param name="millisecondsDelay">延时等待的毫秒数</param>
-    /// <param name="processWaitMillisecondsDelay">启动的进程等待退出的毫秒数</param>
-    [Obsolete("use TryDeleteInDelayAsync")]
-    public static void TryDeleteInDelay(Process? process, string filePath, int millisecondsDelay = 9000, int processWaitMillisecondsDelay = 9000)
-    {
-        if (process != null)
-        {
-            var waitForExitResult = process.TryWaitForExit(processWaitMillisecondsDelay);
-            if (!waitForExitResult)
-            {
-                try
-                {
-                    process.KillEntireProcessTree();
-                }
-                catch
-                {
-                }
-                TryDeleteInDelay(filePath, millisecondsDelay);
-                return;
-            }
-        }
         FileTryDelete(filePath);
     }
 
@@ -195,140 +154,6 @@ public static partial class IOPath
         {
             IOPath.getAppDataDirectory = getAppDataDirectory;
             IOPath.getCacheDirectory = getCacheDirectory;
-        }
-
-#if !NETFRAMEWORK
-        /// <summary>
-        /// 带迁移的初始化文件系统，使用 <see cref="Directory.Move(string, string)"/> 或 xcopy 进行移动，如果迁移失败则回退源目录
-        /// </summary>
-        /// <param name="destAppDataPath">新的 AppData 文件夹路径</param>
-        /// <param name="destCachePath">新的 Cache 文件夹路径</param>
-        /// <param name="sourceAppDataPath">旧的 AppData 文件夹路径</param>
-        /// <param name="sourceCachePath">旧的 Cache 文件夹路径</param>
-        protected static void InitFileSystemWithMigrations(
-            string destAppDataPath, string destCachePath,
-            string sourceAppDataPath, string sourceCachePath)
-        {
-            bool ExistsNotEmptyDir(string path)
-            {
-                var exists = Directory.Exists(path);
-                if (OSHelper.IsPublishToStore)
-                {
-                    if (path == destCachePath || path == sourceCachePath)
-                    {
-                        return false;
-                    }
-                }
-                return exists && Directory.EnumerateFileSystemEntries(path).Any(); // 文件夹存在且不为空文件夹
-            }
-
-            var paths = new[] { destAppDataPath, destCachePath, };
-            var dict_paths = paths.ToDictionary(x => x, x => ExistsNotEmptyDir(x));
-
-            if (dict_paths.Values.All(x => !x))
-            {
-                var old_paths = new[] { sourceAppDataPath, sourceCachePath, };
-                if (old_paths.All(x => Directory.Exists(x) && Directory.EnumerateFileSystemEntries(x).Any())) // 迁移之前根目录上的文件夹
-                {
-                    var isNotFirst = false;
-                    for (int i = 0; i < old_paths.Length; i++)
-                    {
-                        var path = paths[i];
-                        var old_path = old_paths[i];
-                        try
-                        {
-                            if (!isNotFirst)
-                            {
-                                try
-                                {
-                                    // 尝试搜索之前版本的进程将其结束
-                                    var currentProcess = Process.GetCurrentProcess();
-                                    var query = from x in Process.GetProcessesByName(currentProcess.ProcessName)
-                                                where x != currentProcess
-                                                let m = x.TryGetMainModule()
-                                                where m != null && m.FileName != currentProcess.TryGetMainModule()?.FileName
-                                                select x;
-                                    var process = query.ToArray();
-                                    foreach (var proces in process)
-                                    {
-                                        try
-                                        {
-#if NETCOREAPP3_0_OR_GREATER
-                                            proces.Kill(true);
-#else
-                                            proces.Kill();
-#endif
-                                        }
-                                        catch
-                                        {
-                                        }
-                                    }
-                                }
-                                catch
-                                {
-                                }
-                                isNotFirst = true;
-                            }
-                            MoveDirectory(old_path, path);
-                            dict_paths[path] = true;
-                        }
-                        catch
-                        {
-                            if (!OSHelper.IsPublishToStore)
-                            {
-                                // 跨卷移动失败或其他原因失败，使用旧的目录，并尝试删除创建的空文件夹
-                                DirTryDelete(path);
-                            }
-                            paths[i] = old_path;
-                        }
-                    }
-                }
-            }
-
-            foreach (var item in dict_paths)
-            {
-                if (!item.Value)
-                {
-                    Directory.CreateDirectory(item.Key);
-                }
-            }
-
-            InitFileSystem(GetAppDataDirectory, GetCacheDirectory);
-            string GetAppDataDirectory() => paths[0];
-            string GetCacheDirectory() => paths[1];
-        }
-#endif
-
-        /// <summary>
-        /// 初始化文件系统，但优先使用旧目录上的文件夹，如果存在的话(允许空文件夹)，不会进行文件迁移
-        /// </summary>
-        /// <param name="destAppDataPath">新的 AppData 文件夹路径</param>
-        /// <param name="destCachePath">新的 Cache 文件夹路径</param>
-        /// <param name="sourceAppDataPath">旧的 AppData 文件夹路径</param>
-        /// <param name="sourceCachePath">旧的 Cache 文件夹路径</param>
-        protected static void InitFileSystemUseDestFirst(
-            string destAppDataPath, string destCachePath,
-            string sourceAppDataPath, string sourceCachePath)
-        {
-            var paths = new[] { destAppDataPath, destCachePath, };
-            var old_paths = new[] { sourceAppDataPath, sourceCachePath, };
-
-            for (int i = 0; i < old_paths.Length; i++)
-            {
-                var item = old_paths[i];
-                if (Directory.Exists(item))
-                {
-                    paths[i] = item;
-                }
-                else
-                {
-                    DirCreateByNotExists(paths[i]);
-                }
-            }
-
-            InitFileSystem(GetAppDataDirectory, GetCacheDirectory);
-            string GetAppDataDirectory() => paths[0];
-            string GetCacheDirectory() => paths[1];
         }
     }
 
