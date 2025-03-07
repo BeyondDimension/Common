@@ -40484,36 +40484,6 @@ references:
   commentId: Overload:System.IOPath.FileSystemBase.InitFileSystem
   fullName: System.IOPath.FileSystemBase.InitFileSystem
   nameWithType: IOPath.FileSystemBase.InitFileSystem
-- uid: System.IOPath.FileSystemBase.InitFileSystemUseDestFirst(System.String,System.String,System.String,System.String)
-  name: InitFileSystemUseDestFirst(string, string, string, string)
-  href: api/BD.Common8.Bcl/System.IOPath.FileSystemBase.html#System_IOPath_FileSystemBase_InitFileSystemUseDestFirst_System_String_System_String_System_String_System_String_
-  commentId: M:System.IOPath.FileSystemBase.InitFileSystemUseDestFirst(System.String,System.String,System.String,System.String)
-  name.vb: InitFileSystemUseDestFirst(String, String, String, String)
-  fullName: System.IOPath.FileSystemBase.InitFileSystemUseDestFirst(string, string, string, string)
-  fullName.vb: System.IOPath.FileSystemBase.InitFileSystemUseDestFirst(String, String, String, String)
-  nameWithType: IOPath.FileSystemBase.InitFileSystemUseDestFirst(string, string, string, string)
-  nameWithType.vb: IOPath.FileSystemBase.InitFileSystemUseDestFirst(String, String, String, String)
-- uid: System.IOPath.FileSystemBase.InitFileSystemUseDestFirst*
-  name: InitFileSystemUseDestFirst
-  href: api/BD.Common8.Bcl/System.IOPath.FileSystemBase.html#System_IOPath_FileSystemBase_InitFileSystemUseDestFirst_
-  commentId: Overload:System.IOPath.FileSystemBase.InitFileSystemUseDestFirst
-  fullName: System.IOPath.FileSystemBase.InitFileSystemUseDestFirst
-  nameWithType: IOPath.FileSystemBase.InitFileSystemUseDestFirst
-- uid: System.IOPath.FileSystemBase.InitFileSystemWithMigrations(System.String,System.String,System.String,System.String)
-  name: InitFileSystemWithMigrations(string, string, string, string)
-  href: api/BD.Common8.Bcl/System.IOPath.FileSystemBase.html#System_IOPath_FileSystemBase_InitFileSystemWithMigrations_System_String_System_String_System_String_System_String_
-  commentId: M:System.IOPath.FileSystemBase.InitFileSystemWithMigrations(System.String,System.String,System.String,System.String)
-  name.vb: InitFileSystemWithMigrations(String, String, String, String)
-  fullName: System.IOPath.FileSystemBase.InitFileSystemWithMigrations(string, string, string, string)
-  fullName.vb: System.IOPath.FileSystemBase.InitFileSystemWithMigrations(String, String, String, String)
-  nameWithType: IOPath.FileSystemBase.InitFileSystemWithMigrations(string, string, string, string)
-  nameWithType.vb: IOPath.FileSystemBase.InitFileSystemWithMigrations(String, String, String, String)
-- uid: System.IOPath.FileSystemBase.InitFileSystemWithMigrations*
-  name: InitFileSystemWithMigrations
-  href: api/BD.Common8.Bcl/System.IOPath.FileSystemBase.html#System_IOPath_FileSystemBase_InitFileSystemWithMigrations_
-  commentId: Overload:System.IOPath.FileSystemBase.InitFileSystemWithMigrations
-  fullName: System.IOPath.FileSystemBase.InitFileSystemWithMigrations
-  nameWithType: IOPath.FileSystemBase.InitFileSystemWithMigrations
 - uid: System.IOPath.FileTryDelete(System.String)
   name: FileTryDelete(string)
   href: api/BD.Common8.Bcl/System.IOPath.html#System_IOPath_FileTryDelete_System_String_
@@ -40826,30 +40796,6 @@ references:
   commentId: Overload:System.IOPath.TryDeleteCacheSubDir
   fullName: System.IOPath.TryDeleteCacheSubDir
   nameWithType: IOPath.TryDeleteCacheSubDir
-- uid: System.IOPath.TryDeleteInDelay(System.Diagnostics.Process,System.String,System.Int32,System.Int32)
-  name: TryDeleteInDelay(Process?, string, int, int)
-  href: api/BD.Common8.Bcl/System.IOPath.html#System_IOPath_TryDeleteInDelay_System_Diagnostics_Process_System_String_System_Int32_System_Int32_
-  commentId: M:System.IOPath.TryDeleteInDelay(System.Diagnostics.Process,System.String,System.Int32,System.Int32)
-  name.vb: TryDeleteInDelay(Process, String, Integer, Integer)
-  fullName: System.IOPath.TryDeleteInDelay(System.Diagnostics.Process?, string, int, int)
-  fullName.vb: System.IOPath.TryDeleteInDelay(System.Diagnostics.Process, String, Integer, Integer)
-  nameWithType: IOPath.TryDeleteInDelay(Process?, string, int, int)
-  nameWithType.vb: IOPath.TryDeleteInDelay(Process, String, Integer, Integer)
-- uid: System.IOPath.TryDeleteInDelay(System.String,System.Int32)
-  name: TryDeleteInDelay(string, int)
-  href: api/BD.Common8.Bcl/System.IOPath.html#System_IOPath_TryDeleteInDelay_System_String_System_Int32_
-  commentId: M:System.IOPath.TryDeleteInDelay(System.String,System.Int32)
-  name.vb: TryDeleteInDelay(String, Integer)
-  fullName: System.IOPath.TryDeleteInDelay(string, int)
-  fullName.vb: System.IOPath.TryDeleteInDelay(String, Integer)
-  nameWithType: IOPath.TryDeleteInDelay(string, int)
-  nameWithType.vb: IOPath.TryDeleteInDelay(String, Integer)
-- uid: System.IOPath.TryDeleteInDelay*
-  name: TryDeleteInDelay
-  href: api/BD.Common8.Bcl/System.IOPath.html#System_IOPath_TryDeleteInDelay_
-  commentId: Overload:System.IOPath.TryDeleteInDelay
-  fullName: System.IOPath.TryDeleteInDelay
-  nameWithType: IOPath.TryDeleteInDelay
 - uid: System.IOPath.TryDeleteInDelayAsync(System.Diagnostics.Process,System.String,System.Int32,System.Int32)
   name: TryDeleteInDelayAsync(Process?, string, int, int)
   href: api/BD.Common8.Bcl/System.IOPath.html#System_IOPath_TryDeleteInDelayAsync_System_Diagnostics_Process_System_String_System_Int32_System_Int32_
