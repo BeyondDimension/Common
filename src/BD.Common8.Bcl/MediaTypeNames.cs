@@ -19,6 +19,11 @@ public static partial class MediaTypeNames
     public const string JSONSecurity = "application/vnd.sapi+x-json";
 
     /// <summary>
+    /// application/vnd.sapi+x-json2
+    /// </summary>
+    public const string JSONSecurity2 = "application/vnd.sapi+x-json2";
+
+    /// <summary>
     /// text/javascript
     /// </summary>
     public const string JS = "text/javascript";
@@ -34,6 +39,11 @@ public static partial class MediaTypeNames
     public const string MessagePackSecurity = "application/vnd.sapi+x-msgpack";
 
     /// <summary>
+    /// application/vnd.sapi+x-msgpack2
+    /// </summary>
+    public const string MessagePackSecurity2 = "application/vnd.sapi+x-msgpack2";
+
+    /// <summary>
     /// application/x-memorypack
     /// </summary>
     public const string MemoryPack = "application/x-memorypack";
@@ -42,6 +52,11 @@ public static partial class MediaTypeNames
     /// application/vnd.sapi+x-memorypack
     /// </summary>
     public const string MemoryPackSecurity = "application/vnd.sapi+x-memorypack";
+
+    /// <summary>
+    /// application/vnd.sapi+x-memorypack2
+    /// </summary>
+    public const string MemoryPackSecurity2 = "application/vnd.sapi+x-memorypack2";
 
     /// <summary>
     /// image/bmp
