@@ -53,7 +53,7 @@ partial class FileFormat
             return FileEx.SQLite;
         }
 
-        Utf8StringComparerOrdinalIgnoreCase comparer = new();
+        var comparer = Utf8StringComparerOrdinalIgnoreCase.Instance;
         // 根据文件头识别一些文件类型使用正确的文件扩展名
         var magicNumber = "<html"u8;
         if (magicNumber.SequenceEqual(buffer.Span[..magicNumber.Length], comparer))

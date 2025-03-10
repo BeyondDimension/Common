@@ -8,7 +8,10 @@ public sealed class Utf8StringComparerOrdinalIgnoreCase : IEqualityComparer<byte
     /// <summary>
     /// Initializes a new instance of the <see cref="Utf8StringComparerOrdinalIgnoreCase"/> class.
     /// </summary>
-    public Utf8StringComparerOrdinalIgnoreCase() { }
+    Utf8StringComparerOrdinalIgnoreCase() { }
+
+    public static readonly IEqualityComparer<byte> Instance =
+        new Utf8StringComparerOrdinalIgnoreCase();
 
     // https://www.geeksforgeeks.org/lower-case-upper-case-interesting-fact/
 
