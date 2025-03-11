@@ -9,4 +9,9 @@ public sealed record class FeishuApiOptions
     /// 飞书 WebHook Id
     /// </summary>
     public string? HookId { get; set; }
+
+    /// <summary>
+    /// 服务标识
+    /// </summary>
+    public string? ServerTag { get; set; }
 }

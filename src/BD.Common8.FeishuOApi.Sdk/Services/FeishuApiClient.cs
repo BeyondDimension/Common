@@ -20,6 +20,8 @@ public sealed class FeishuApiClient(ILogger<FeishuApiClient> logger, HttpClient 
         }
     }
 
+    string? ServerTag => options.Value.ServerTag;
+
     static ApplicationException GetInvalidKeyException(string name) => throw new(
 $"""
 Enter (dotnet user-secrets set "FeishuApiOptions:{name}" "value") on the current csproj path to set the secret value see https://learn.microsoft.com/zh-cn/aspnet/core/security/app-secrets
@@ -36,6 +38,11 @@ Enter (dotnet user-secrets set "FeishuApiOptions:{name}" "value") on the current
         HttpResponseMessage? rsp = null;
         try
         {
+            if (!string.IsNullOrWhiteSpace(ServerTag))
+            {
+                text = $"{ServerTag}: {text}";
+            }
+
             var reqUrl = $"/open-apis/bot/v2/hook/{HookId}";
             var reqBody = SendMessage_RequestBody.CreateTextMessage(title, text);
 
