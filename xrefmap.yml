@@ -34100,24 +34100,12 @@ references:
   commentId: T:System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase
   fullName: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase
   nameWithType: Utf8StringComparerOrdinalIgnoreCase
-- uid: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.#ctor
-  name: Utf8StringComparerOrdinalIgnoreCase()
-  href: api/BD.Common8.Bcl/System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.html#System_Collections_Generic_Utf8StringComparerOrdinalIgnoreCase__ctor
-  commentId: M:System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.#ctor
-  name.vb: New()
-  fullName: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.Utf8StringComparerOrdinalIgnoreCase()
-  fullName.vb: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.New()
-  nameWithType: Utf8StringComparerOrdinalIgnoreCase.Utf8StringComparerOrdinalIgnoreCase()
-  nameWithType.vb: Utf8StringComparerOrdinalIgnoreCase.New()
-- uid: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.#ctor*
-  name: Utf8StringComparerOrdinalIgnoreCase
-  href: api/BD.Common8.Bcl/System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.html#System_Collections_Generic_Utf8StringComparerOrdinalIgnoreCase__ctor_
-  commentId: Overload:System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.#ctor
-  name.vb: New
-  fullName: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.Utf8StringComparerOrdinalIgnoreCase
-  fullName.vb: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.New
-  nameWithType: Utf8StringComparerOrdinalIgnoreCase.Utf8StringComparerOrdinalIgnoreCase
-  nameWithType.vb: Utf8StringComparerOrdinalIgnoreCase.New
+- uid: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.Instance
+  name: Instance
+  href: api/BD.Common8.Bcl/System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.html#System_Collections_Generic_Utf8StringComparerOrdinalIgnoreCase_Instance
+  commentId: F:System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.Instance
+  fullName: System.Collections.Generic.Utf8StringComparerOrdinalIgnoreCase.Instance
+  nameWithType: Utf8StringComparerOrdinalIgnoreCase.Instance
 - uid: System.ComponentModel
   name: System.ComponentModel
   href: api/BD.Common8.Bcl/System.ComponentModel.html
@@ -41750,6 +41738,12 @@ references:
   commentId: F:System.MediaTypeNames.JSONSecurity
   fullName: System.MediaTypeNames.JSONSecurity
   nameWithType: MediaTypeNames.JSONSecurity
+- uid: System.MediaTypeNames.JSONSecurity2
+  name: JSONSecurity2
+  href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_JSONSecurity2
+  commentId: F:System.MediaTypeNames.JSONSecurity2
+  fullName: System.MediaTypeNames.JSONSecurity2
+  nameWithType: MediaTypeNames.JSONSecurity2
 - uid: System.MediaTypeNames.MP3
   name: MP3
   href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MP3
@@ -41792,6 +41786,12 @@ references:
   commentId: F:System.MediaTypeNames.MemoryPackSecurity
   fullName: System.MediaTypeNames.MemoryPackSecurity
   nameWithType: MediaTypeNames.MemoryPackSecurity
+- uid: System.MediaTypeNames.MemoryPackSecurity2
+  name: MemoryPackSecurity2
+  href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MemoryPackSecurity2
+  commentId: F:System.MediaTypeNames.MemoryPackSecurity2
+  fullName: System.MediaTypeNames.MemoryPackSecurity2
+  nameWithType: MediaTypeNames.MemoryPackSecurity2
 - uid: System.MediaTypeNames.MessagePack
   name: MessagePack
   href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MessagePack
@@ -41804,6 +41804,12 @@ references:
   commentId: F:System.MediaTypeNames.MessagePackSecurity
   fullName: System.MediaTypeNames.MessagePackSecurity
   nameWithType: MediaTypeNames.MessagePackSecurity
+- uid: System.MediaTypeNames.MessagePackSecurity2
+  name: MessagePackSecurity2
+  href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_MessagePackSecurity2
+  commentId: F:System.MediaTypeNames.MessagePackSecurity2
+  fullName: System.MediaTypeNames.MessagePackSecurity2
+  nameWithType: MediaTypeNames.MessagePackSecurity2
 - uid: System.MediaTypeNames.PDF
   name: PDF
   href: api/BD.Common8.Bcl/System.MediaTypeNames.html#System_MediaTypeNames_PDF
