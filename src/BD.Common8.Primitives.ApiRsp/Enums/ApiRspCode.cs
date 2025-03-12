@@ -179,6 +179,10 @@ public enum ApiRspCode
     /// </summary>
     WarningFail = 1028,
 
+    /// <summary>
+    /// 加密类型和接口指定类型不一致
+    /// </summary>
+    SecurityTypeInconsistent = 1029,
     #endregion
 
     #region 错误状态码 5000~5999
