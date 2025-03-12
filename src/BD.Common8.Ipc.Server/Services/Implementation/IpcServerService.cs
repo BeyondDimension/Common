@@ -186,7 +186,11 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         builder.Services.AddRoutingCore();
         builder.Services.AddLogging(ConfigureLogging);
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
-        ConfigureSignalRProtocol(builder.Services.AddSignalR(ConfigureSignalR));
+        builder.Services.AddSingleton(
+            typeof(HubConnectionHandler<>),
+            typeof(FixHubConnectionHandler<>));
+        var signalRServerBuilder = builder.Services.AddSignalR(ConfigureSignalR);
+        ConfigureSignalRProtocol(signalRServerBuilder);
         builder.Services.AddHttpContextAccessor();
         ConfigureAuthentication(builder.Services.AddAuthentication(DefaultAuthenticationScheme));
 
@@ -421,6 +425,9 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     public IServiceProvider Services => app.ThrowIsNull().Services;
 
+    public abstract bool TryGetHubContext([NotNullWhen(true)] out IHubContext? hubContext);
+
+    [Obsolete("use TryGetHubContext", true)]
     public abstract IHubContext HubContext { get; }
 
     readonly Dictionary<string, Type> hubTypes = [];
@@ -635,5 +642,33 @@ file sealed class IpcAuthenticationHandler(IOptionsMonitor<IpcAuthenticationSche
     {
         var result = HandleAuthenticate();
         return Task.FromResult(result);
+    }
+}
+
+file sealed class FixHubConnectionHandler<
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] THub>(
+    HubLifetimeManager<THub> lifetimeManager,
+    IHubProtocolResolver protocolResolver,
+    IOptions<HubOptions> globalHubOptions,
+    IOptions<HubOptions<THub>> hubOptions,
+    ILoggerFactory loggerFactory,
+    IUserIdProvider userIdProvider,
+    IServiceScopeFactory serviceScopeFactory) :
+    HubConnectionHandler<THub>(lifetimeManager, protocolResolver, globalHubOptions,
+        hubOptions, loggerFactory, userIdProvider,
+        serviceScopeFactory)
+    where THub : Hub
+{
+    /// <inheritdoc/>
+    public sealed override async Task OnConnectedAsync(ConnectionContext connection)
+    {
+        try
+        {
+            await base.OnConnectedAsync(connection);
+        }
+        catch (ObjectDisposedException)
+        {
+            // 应用程序退出时引发 Ioc 被释放异常忽略
+        }
     }
 }

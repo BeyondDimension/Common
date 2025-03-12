@@ -169,32 +169,41 @@ public class DuplexPipeStream(IDuplexPipe duplexPipe, bool throwOnCancelled = fa
     {
         while (true)
         {
-            var result = await input.ReadAsync(cancellationToken);
-            var readableBuffer = result.Buffer;
             try
             {
-                if (throwOnCancelled && result.IsCanceled && cancelCalled)
+                var result = await input.ReadAsync(cancellationToken);
+                var readableBuffer = result.Buffer;
+                try
                 {
-                    // Reset the bool
-                    cancelCalled = false;
-                    throw new OperationCanceledException();
-                }
+                    if (throwOnCancelled && result.IsCanceled && cancelCalled)
+                    {
+                        // Reset the bool
+                        cancelCalled = false;
+                        throw new OperationCanceledException();
+                    }
 
-                if (!readableBuffer.IsEmpty)
+                    if (!readableBuffer.IsEmpty)
+                    {
+                        // buffer.Count is int
+                        var count = (int)Math.Min(readableBuffer.Length, destination.Length);
+                        readableBuffer = readableBuffer.Slice(0, count);
+                        readableBuffer.CopyTo(destination.Span);
+                        return count;
+                    }
+
+                    if (result.IsCompleted)
+                    {
+                        return 0;
+                    }
+                }
+                finally
                 {
-                    // buffer.Count is int
-                    var count = (int)Math.Min(readableBuffer.Length, destination.Length);
-                    readableBuffer = readableBuffer.Slice(0, count);
-                    readableBuffer.CopyTo(destination.Span);
-                    return count;
+                    input.AdvanceTo(readableBuffer.End, readableBuffer.End);
                 }
-
-                if (result.IsCompleted)
-                    return 0;
             }
-            finally
+            catch (OperationCanceledException)
             {
-                input.AdvanceTo(readableBuffer.End, readableBuffer.End);
+                return -1;
             }
         }
     }
