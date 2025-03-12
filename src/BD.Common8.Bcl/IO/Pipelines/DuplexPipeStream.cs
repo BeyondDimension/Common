@@ -165,45 +165,36 @@ public class DuplexPipeStream(IDuplexPipe duplexPipe, bool throwOnCancelled = fa
     }
 
     [AsyncMethodBuilder(typeof(PoolingAsyncValueTaskMethodBuilder<>))]
-    private async ValueTask<int> ReadAsyncInternal(Memory<byte> destination, CancellationToken cancellationToken)
+    async ValueTask<int> ReadAsyncInternal(Memory<byte> destination, CancellationToken cancellationToken)
     {
         while (true)
         {
+            var result = await input.ReadAsync(cancellationToken);
+            var readableBuffer = result.Buffer;
             try
             {
-                var result = await input.ReadAsync(cancellationToken);
-                var readableBuffer = result.Buffer;
-                try
+                if (throwOnCancelled && result.IsCanceled && cancelCalled)
                 {
-                    if (throwOnCancelled && result.IsCanceled && cancelCalled)
-                    {
-                        // Reset the bool
-                        cancelCalled = false;
-                        throw new OperationCanceledException();
-                    }
-
-                    if (!readableBuffer.IsEmpty)
-                    {
-                        // buffer.Count is int
-                        var count = (int)Math.Min(readableBuffer.Length, destination.Length);
-                        readableBuffer = readableBuffer.Slice(0, count);
-                        readableBuffer.CopyTo(destination.Span);
-                        return count;
-                    }
-
-                    if (result.IsCompleted)
-                    {
-                        return 0;
-                    }
+                    // Reset the bool
+                    cancelCalled = false;
+                    throw new OperationCanceledException();
                 }
-                finally
+
+                if (!readableBuffer.IsEmpty)
                 {
-                    input.AdvanceTo(readableBuffer.End, readableBuffer.End);
+                    // buffer.Count is int
+                    var count = (int)Math.Min(readableBuffer.Length, destination.Length);
+                    readableBuffer = readableBuffer.Slice(0, count);
+                    readableBuffer.CopyTo(destination.Span);
+                    return count;
                 }
+
+                if (result.IsCompleted)
+                    return 0;
             }
-            catch (OperationCanceledException)
+            finally
             {
-                return -1;
+                input.AdvanceTo(readableBuffer.End, readableBuffer.End);
             }
         }
     }
