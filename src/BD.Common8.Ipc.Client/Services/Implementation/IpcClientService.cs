@@ -93,9 +93,8 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
                         oldHandler.Dispose(); // 传过来的 Handler 丢弃，使用根据连接字符串解析的
                         if (hubConnHandler.Disposed)
                         {
-#if DEBUG
-                            Console.WriteLine("已重新创建 HubConnDelegatingHandler");
-#endif
+                            HubConnDelegatingHandlerDebugWriteLine();
+                            Task.WaitAll(OnHttpMessageHandlerFactoryAsync());
                             hubConnHandler = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
                             ConfigureSocketsHttpHandler(hubConnHandler.InnerHandler);
                         }
@@ -185,6 +184,11 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
         return Task.CompletedTask;
     }
 
+    protected virtual Task OnHttpMessageHandlerFactoryAsync()
+    {
+        return Task.CompletedTask;
+    }
+
     /// <inheritdoc/>
     public async ValueTask DisposeAsync()
     {
@@ -217,7 +221,10 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
         httpClient = null;
         hubConnections = null!;
     }
+}
 
+partial class IpcClientService // OnError
+{
     /// <summary>
     /// 当请求出现错误时
     /// </summary>
@@ -264,3 +271,22 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
         return default;
     }
 }
+
+#if DEBUG
+partial class IpcClientService
+{
+    const string f = """
+已重新创建 HubConnDelegatingHandler，如果后端进程未启动，使用管理员运行终端并输入以下命令：
+    cd {0}
+    {1} {2}
+""";
+
+    static void HubConnDelegatingHandlerDebugWriteLine()
+    {
+        Console.WriteLine(f,
+            Path.GetDirectoryName(Environment.ProcessPath),
+            Path.GetFileNameWithoutExtension(Environment.ProcessPath),
+            MobiusHost.GetBackendProcessArguments());
+    }
+}
+#endif

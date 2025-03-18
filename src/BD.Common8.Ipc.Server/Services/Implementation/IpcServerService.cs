@@ -55,11 +55,15 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     /// <returns></returns>
     public async ValueTask WebApplicationExit()
     {
+#if DEBUG
+        //Console.WriteLine("后端进程退出（WebApplicationExit）等待 StopAsync 与 DisposeAsync，StackTrace：" + Environment.NewLine + Environment.StackTrace);
+        Console.WriteLine("后端进程退出（WebApplicationExit）等待 StopAsync 与 DisposeAsync");
+#endif
         if (app != null)
         {
+            await app.StopAsync();
             await app.DisposeAsync();
         }
-        tcs_app.TrySetResult();
     }
 
     readonly TaskCompletionSource tcs_app = new();
@@ -87,9 +91,19 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
         Task2.InBackground(() =>
         {
-            app.ThrowIsNull().Run();
-            Exited?.Invoke();
-            tcs_app.TrySetResult();
+            try
+            {
+                app.ThrowIsNull().Run();
+#if DEBUG
+                Console.WriteLine("后端进程退出（Microsoft.AspNetCore.Builder.WebApplication.Run 完成）");
+#endif
+                Exited?.Invoke();
+                tcs_app.TrySetResult();
+            }
+            catch (Exception ex)
+            {
+                tcs_app.TrySetException(ex);
+            }
         }, longRunning: true);
     }
 
@@ -186,9 +200,9 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         builder.Services.AddRoutingCore();
         builder.Services.AddLogging(ConfigureLogging);
         builder.Services.ConfigureHttpJsonOptions(ConfigureHttpJsonOptions);
-        builder.Services.AddSingleton(
-            typeof(HubConnectionHandler<>),
-            typeof(FixHubConnectionHandler<>));
+        //builder.Services.AddSingleton(
+        //    typeof(HubConnectionHandler<>),
+        //    typeof(FixHubConnectionHandler<>));
         var signalRServerBuilder = builder.Services.AddSignalR(ConfigureSignalR);
         ConfigureSignalRProtocol(signalRServerBuilder);
         builder.Services.AddHttpContextAccessor();
@@ -514,11 +528,11 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     /// <inheritdoc cref="IAsyncDisposable.DisposeAsync"/>
     protected virtual async ValueTask DisposeAsyncCore()
     {
-        //if (app is not null)
-        //{
-        //    await app.StopAsync().ConfigureAwait(false);
-        //    await app.DisposeAsync().ConfigureAwait(false);
-        //}
+        if (app is not null)
+        {
+            await app.StopAsync().ConfigureAwait(false);
+            await app.DisposeAsync().ConfigureAwait(false);
+        }
         if (lock_RunAsync is not null)
         {
             await lock_RunAsync.DisposeAsync().ConfigureAwait(false);
@@ -542,16 +556,16 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         if (disposing)
         {
             // 释放托管状态(托管对象)
-            //if (app != null)
-            //{
-            //    app.StopAsync().GetAwaiter().GetResult();
+            if (app != null)
+            {
+                app.StopAsync().GetAwaiter().GetResult();
 
-            //    if (app is IDisposable disposable_app)
-            //    {
-            //        disposable_app.Dispose();
-            //        app = null;
-            //    }
-            //}
+                if (app is IDisposable disposable_app)
+                {
+                    disposable_app.Dispose();
+                    app = null;
+                }
+            }
 
             if (lock_RunAsync is not null)
             {
@@ -564,6 +578,8 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
                 serverCertificate.Dispose();
                 serverCertificate = null!;
             }
+
+            app = null;
 
             DeleteUnixSocketFile();
         }
@@ -645,30 +661,46 @@ file sealed class IpcAuthenticationHandler(IOptionsMonitor<IpcAuthenticationSche
     }
 }
 
-file sealed class FixHubConnectionHandler<
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] THub>(
-    HubLifetimeManager<THub> lifetimeManager,
-    IHubProtocolResolver protocolResolver,
-    IOptions<HubOptions> globalHubOptions,
-    IOptions<HubOptions<THub>> hubOptions,
-    ILoggerFactory loggerFactory,
-    IUserIdProvider userIdProvider,
-    IServiceScopeFactory serviceScopeFactory) :
-    HubConnectionHandler<THub>(lifetimeManager, protocolResolver, globalHubOptions,
-        hubOptions, loggerFactory, userIdProvider,
-        serviceScopeFactory)
-    where THub : Hub
-{
-    /// <inheritdoc/>
-    public sealed override async Task OnConnectedAsync(ConnectionContext connection)
-    {
-        try
-        {
-            await base.OnConnectedAsync(connection);
-        }
-        catch (ObjectDisposedException)
-        {
-            // 应用程序退出时引发 Ioc 被释放异常忽略
-        }
-    }
-}
+//file sealed class FixHubConnectionHandler<
+//    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] THub>(
+//    HubLifetimeManager<THub> lifetimeManager,
+//    IHubProtocolResolver protocolResolver,
+//    IOptions<HubOptions> globalHubOptions,
+//    IOptions<HubOptions<THub>> hubOptions,
+//    ILoggerFactory loggerFactory,
+//    IUserIdProvider userIdProvider,
+//    IServiceScopeFactory serviceScopeFactory) :
+//    HubConnectionHandler<THub>(lifetimeManager, protocolResolver, globalHubOptions,
+//        hubOptions, loggerFactory, userIdProvider,
+//        serviceScopeFactory)
+//    where THub : Hub
+//{
+//    /// <inheritdoc/>
+//    public sealed override async Task OnConnectedAsync(ConnectionContext connection)
+//    {
+//        using var scope = serviceScopeFactory.CreateScope();
+
+//        try
+//        {
+//            await base.OnConnectedAsync(connection);
+//        }
+//        catch (ObjectDisposedException)
+//        {
+//            var isExiting = HostConstants.IsExiting;
+//            if (!isExiting)
+//            {
+//                throw;
+//            }
+//            // https://github.com/dotnet/aspnetcore/blob/v9.0.3/src/SignalR/server/Core/src/HubConnectionHandler.cs#L234
+//            // fail: Microsoft.AspNetCore.SignalR.HubConnectionHandler[1]
+//            //      Error when dispatching 'OnDisconnectedAsync' on hub.
+//            //      System.ObjectDisposedException: Cannot access a disposed object.
+//            //      Object name: 'IServiceProvider'.
+//            //         at Microsoft.Extensions.DependencyInjection.ServiceLookup.ThrowHelper.ThrowObjectDisposedException()
+//            //         at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateScope()
+//            //         at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.CreateAsyncScope(IServiceScopeFactory serviceScopeFactory)
+//            //         at Microsoft.AspNetCore.SignalR.Internal.DefaultHubDispatcher`1.OnDisconnectedAsync(HubConnectionContext connection, Exception exception)
+//            //         at Microsoft.AspNetCore.SignalR.HubConnectionHandler`1.HubOnDisconnectedAsync(HubConnectionContext connection, Exception exception)
+//        }
+//    }
+//}

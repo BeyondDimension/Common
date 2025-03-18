@@ -5,15 +5,19 @@ partial class Process2
     /// <summary>
     /// 提权启动进程，如果 UAC 弹窗取消则返回 <see langword="null"/>
     /// </summary>
-    /// <param name="fileName"></param>
-    /// <param name="arguments"></param>
+    /// <param name="fileName">进程可执行文件路径</param>
+    /// <param name="arguments">参数</param>
+    /// <param name="forceRunas">是否强制用 runas 启动</param>
     /// <returns></returns>
-    public static Process? StartAsPrivileged(string fileName, object? arguments = null)
+    public static Process? StartAsPrivileged(
+        string fileName,
+        object? arguments = null,
+        bool forceRunas = false)
     {
         Process? process;
         try
         {
-            if (Environment.IsPrivilegedProcess)
+            if (!forceRunas && Environment.IsPrivilegedProcess)
             {
                 process = Start(fileName, arguments);
             }
