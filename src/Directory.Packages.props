@@ -29,7 +29,7 @@
 		<Version_Avalonia_Edit>11.1.0</Version_Avalonia_Edit>
 		<Version_AvaloniaEdit_TextMate>11.1.0</Version_AvaloniaEdit_TextMate>
 		<!-- 👇 Avalonia Third Party -->
-		<Version_Avalonia_FluentUI>2.2.0</Version_Avalonia_FluentUI>
+		<Version_Avalonia_FluentUI>2.3.0</Version_Avalonia_FluentUI>
 		<Version_Avalonia_Markdown>11.0.3-a1</Version_Avalonia_Markdown>
 		<Version_Avalonia_CefNet>105.3.22248.142</Version_Avalonia_CefNet>
 		<Version_Avalonia_LibVLCSharp>3.9.2</Version_Avalonia_LibVLCSharp>
