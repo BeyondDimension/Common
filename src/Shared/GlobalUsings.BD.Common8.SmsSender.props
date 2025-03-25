@@ -9,9 +9,11 @@
 		<Using Include="BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud" />
 		<Using Include="BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud" />
 		<Using Include="BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud" />
+		<Using Include="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud" />
 		<Using Include="BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud" />
 		<Using Include="BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.AlibabaCloud" />
 		<Using Include="BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEaseCloud" />
 		<Using Include="BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.HuaweiCloud" />
+		<Using Include="BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud" />
 	</ItemGroup>
 </Project>

@@ -26,6 +26,11 @@ public class SmsOptions
     public SmsHuaweiCloudOptions? HuaweiCloud { get; set; }
 
     /// <summary>
+    /// 腾讯云短信配置
+    /// </summary>
+    public SmsTencentCloudOptions? TencentCloud { get; set; }
+
+    /// <summary>
     /// 获取默认的短信提供商名称
     /// </summary>
     public static string? GetDefaultProviderName(SmsOptions? options)
