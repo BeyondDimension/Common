@@ -93,7 +93,9 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
                         oldHandler.Dispose(); // 传过来的 Handler 丢弃，使用根据连接字符串解析的
                         if (hubConnHandler.Disposed)
                         {
+#if DEBUG
                             HubConnDelegatingHandlerDebugWriteLine();
+#endif
                             Task.WaitAll(OnHttpMessageHandlerFactoryAsync());
                             hubConnHandler = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
                             ConfigureSocketsHttpHandler(hubConnHandler.InnerHandler);
