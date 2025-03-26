@@ -141,6 +141,48 @@ Class MatchExtensions  <a class="header-action link-secondary" title="View sourc
 </h2>
 
 
+  <a id="System_Extensions_MatchExtensions_GetJoinValue_" data-uid="System.Extensions.MatchExtensions.GetJoinValue*"></a>
+
+  <h3 id="System_Extensions_MatchExtensions_GetJoinValue_System_Text_RegularExpressions_Regex_System_ReadOnlySpan_System_Char__System_Char_System_String_" data-uid="System.Extensions.MatchExtensions.GetJoinValue(System.Text.RegularExpressions.Regex,System.ReadOnlySpan{System.Char},System.Char,System.String)">
+  GetJoinValue(Regex, ReadOnlySpan&lt;char&gt;, char, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Extensions/MatchExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? GetJoinValue(this Regex regex, ReadOnlySpan&lt;char&gt; input, char separator, string? defaultValue = &quot;&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>regex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.regex">Regex</a></dt>
+    <dd></dd>
+    <dt><code>input</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="System_Extensions_MatchExtensions_GetValue_" data-uid="System.Extensions.MatchExtensions.GetValue*"></a>
 
   <h3 id="System_Extensions_MatchExtensions_GetValue_System_Text_RegularExpressions_Match_System_Func_System_Text_RegularExpressions_Match_System_Boolean__" data-uid="System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Match,System.Func{System.Text.RegularExpressions.Match,System.Boolean})">
@@ -161,6 +203,47 @@ Class MatchExtensions  <a class="header-action link-secondary" title="View sourc
     <dt><code>match</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.match">Match</a></dt>
     <dd></dd>
     <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.match">Match</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_Extensions_MatchExtensions_GetValue_" data-uid="System.Extensions.MatchExtensions.GetValue*"></a>
+
+  <h3 id="System_Extensions_MatchExtensions_GetValue_System_Text_RegularExpressions_Regex_System_ReadOnlySpan_System_Char__System_String_" data-uid="System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Regex,System.ReadOnlySpan{System.Char},System.String)">
+  GetValue(Regex, ReadOnlySpan&lt;char&gt;, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Extensions/MatchExtensions.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取正则表达式匹配的单个字符串值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string? GetValue(this Regex regex, ReadOnlySpan&lt;char&gt; input, string? defaultValue = &quot;&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>regex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.regex">Regex</a></dt>
+    <dd></dd>
+    <dt><code>input</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>defaultValue</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 

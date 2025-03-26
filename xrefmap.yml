@@ -10472,6 +10472,12 @@ references:
   commentId: F:BD.Common8.Enums.ApiRspCode.SaveAuthTokenToUserManagerFail
   fullName: BD.Common8.Enums.ApiRspCode.SaveAuthTokenToUserManagerFail
   nameWithType: ApiRspCode.SaveAuthTokenToUserManagerFail
+- uid: BD.Common8.Enums.ApiRspCode.SecurityTypeInconsistent
+  name: SecurityTypeInconsistent
+  href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_SecurityTypeInconsistent
+  commentId: F:BD.Common8.Enums.ApiRspCode.SecurityTypeInconsistent
+  fullName: BD.Common8.Enums.ApiRspCode.SecurityTypeInconsistent
+  nameWithType: ApiRspCode.SecurityTypeInconsistent
 - uid: BD.Common8.Enums.ApiRspCode.ServiceUnavailable
   name: ServiceUnavailable
   href: api/BD.Common8.Primitives.ApiRsp/BD.Common8.Enums.ApiRspCode.html#BD_Common8_Enums_ApiRspCode_ServiceUnavailable
@@ -19912,6 +19918,18 @@ references:
   fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError(Of TResponseBody)(System.Exception, Microsoft.AspNetCore.SignalR.Client.HubConnection, String)
   nameWithType: IpcClientService.OnError<TResponseBody>(Exception, HubConnection?, string)
   nameWithType.vb: IpcClientService.OnError(Of TResponseBody)(Exception, HubConnection, String)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
+  name: OnHttpMessageHandlerFactoryAsync()
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactoryAsync
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync()
+  nameWithType: IpcClientService.OnHttpMessageHandlerFactoryAsync()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync*
+  name: OnHttpMessageHandlerFactoryAsync
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactoryAsync_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
+  nameWithType: IpcClientService.OnHttpMessageHandlerFactoryAsync
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.UseMemoryPack
   name: UseMemoryPack
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_UseMemoryPack
@@ -20353,6 +20371,21 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.Services
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.Services
   nameWithType: IpcServerService.Services
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext(Microsoft.AspNetCore.SignalR.IHubContext@)
+  name: TryGetHubContext(out IHubContext?)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_TryGetHubContext_Microsoft_AspNetCore_SignalR_IHubContext__
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext(Microsoft.AspNetCore.SignalR.IHubContext@)
+  name.vb: TryGetHubContext(IHubContext)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext(out Microsoft.AspNetCore.SignalR.IHubContext?)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext(Microsoft.AspNetCore.SignalR.IHubContext)
+  nameWithType: IpcServerService.TryGetHubContext(out IHubContext?)
+  nameWithType.vb: IpcServerService.TryGetHubContext(IHubContext)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext*
+  name: TryGetHubContext
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_TryGetHubContext_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext
+  nameWithType: IpcServerService.TryGetHubContext
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.UnixSocketPath
   name: UnixSocketPath
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_UnixSocketPath
@@ -28770,6 +28803,361 @@ references:
   commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud.SmsNetEaseCloudOptions.Templates
   fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud.SmsNetEaseCloudOptions.Templates
   nameWithType: SmsNetEaseCloudOptions.Templates
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud
+  name: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.html
+  commentId: N:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud
+  nameWithType: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud
+  name: ITencentCloud
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.html
+  commentId: T:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud
+  nameWithType: ITencentCloud
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.IsOk
+  name: IsOk()
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_ITencentCloud_IsOk
+  commentId: M:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.IsOk
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.IsOk()
+  nameWithType: ITencentCloud.IsOk()
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.IsOk*
+  name: IsOk
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_ITencentCloud_IsOk_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.IsOk
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.IsOk
+  nameWithType: ITencentCloud.IsOk
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.RequestId
+  name: RequestId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_ITencentCloud_RequestId
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.RequestId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.RequestId
+  nameWithType: ITencentCloud.RequestId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.RequestId*
+  name: RequestId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_ITencentCloud_RequestId_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.RequestId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.RequestId
+  nameWithType: ITencentCloud.RequestId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult
+  name: SendSmsTencentCloudResult
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html
+  commentId: T:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult
+  nameWithType: SendSmsTencentCloudResult
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.#ctor
+  name: SendSmsTencentCloudResult()
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult__ctor
+  commentId: M:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.#ctor
+  name.vb: New()
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendSmsTencentCloudResult()
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.New()
+  nameWithType: SendSmsTencentCloudResult.SendSmsTencentCloudResult()
+  nameWithType.vb: SendSmsTencentCloudResult.New()
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.#ctor*
+  name: SendSmsTencentCloudResult
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult__ctor_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.#ctor
+  name.vb: New
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendSmsTencentCloudResult
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.New
+  nameWithType: SendSmsTencentCloudResult.SendSmsTencentCloudResult
+  nameWithType.vb: SendSmsTencentCloudResult.New
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk
+  name: IsOk()
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_IsOk
+  commentId: M:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk()
+  nameWithType: SendSmsTencentCloudResult.IsOk()
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk*
+  name: IsOk
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_IsOk_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk
+  nameWithType: SendSmsTencentCloudResult.IsOk
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId
+  name: RequestId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_RequestId
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId
+  nameWithType: SendSmsTencentCloudResult.RequestId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId*
+  name: RequestId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_RequestId_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId
+  nameWithType: SendSmsTencentCloudResult.RequestId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet
+  name: SendStatusSet
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_SendStatusSet
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet
+  nameWithType: SendSmsTencentCloudResult.SendStatusSet
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet*
+  name: SendStatusSet
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_SendStatusSet_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet
+  nameWithType: SendSmsTencentCloudResult.SendStatusSet
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus
+  name: SendStatus
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html
+  commentId: T:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus
+  nameWithType: SendStatus
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.#ctor
+  name: SendStatus()
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus__ctor
+  commentId: M:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.#ctor
+  name.vb: New()
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SendStatus()
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.New()
+  nameWithType: SendStatus.SendStatus()
+  nameWithType.vb: SendStatus.New()
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.#ctor*
+  name: SendStatus
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus__ctor_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.#ctor
+  name.vb: New
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SendStatus
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.New
+  nameWithType: SendStatus.SendStatus
+  nameWithType.vb: SendStatus.New
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Code
+  name: Code
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_Code
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Code
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Code
+  nameWithType: SendStatus.Code
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Code*
+  name: Code
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_Code_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Code
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Code
+  nameWithType: SendStatus.Code
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Fee
+  name: Fee
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_Fee
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Fee
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Fee
+  nameWithType: SendStatus.Fee
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Fee*
+  name: Fee
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_Fee_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Fee
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Fee
+  nameWithType: SendStatus.Fee
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.IsoCode
+  name: IsoCode
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_IsoCode
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.IsoCode
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.IsoCode
+  nameWithType: SendStatus.IsoCode
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.IsoCode*
+  name: IsoCode
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_IsoCode_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.IsoCode
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.IsoCode
+  nameWithType: SendStatus.IsoCode
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Message
+  name: Message
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_Message
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Message
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Message
+  nameWithType: SendStatus.Message
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Message*
+  name: Message
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_Message_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Message
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.Message
+  nameWithType: SendStatus.Message
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.PhoneNumber
+  name: PhoneNumber
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_PhoneNumber
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.PhoneNumber
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.PhoneNumber
+  nameWithType: SendStatus.PhoneNumber
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.PhoneNumber*
+  name: PhoneNumber
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_PhoneNumber_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.PhoneNumber
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.PhoneNumber
+  nameWithType: SendStatus.PhoneNumber
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SerialNo
+  name: SerialNo
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_SerialNo
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SerialNo
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SerialNo
+  nameWithType: SendStatus.SerialNo
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SerialNo*
+  name: SerialNo
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_SerialNo_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SerialNo
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SerialNo
+  nameWithType: SendStatus.SerialNo
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SessionContext
+  name: SessionContext
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_SessionContext
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SessionContext
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SessionContext
+  nameWithType: SendStatus.SessionContext
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SessionContext*
+  name: SessionContext
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendStatus_SessionContext_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SessionContext
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.SessionContext
+  nameWithType: SendStatus.SessionContext
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions
+  name: SmsTencentCloudOptions
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html
+  commentId: T:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions
+  nameWithType: SmsTencentCloudOptions
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.#ctor
+  name: SmsTencentCloudOptions()
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions__ctor
+  commentId: M:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.#ctor
+  name.vb: New()
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsTencentCloudOptions()
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.New()
+  nameWithType: SmsTencentCloudOptions.SmsTencentCloudOptions()
+  nameWithType.vb: SmsTencentCloudOptions.New()
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.#ctor*
+  name: SmsTencentCloudOptions
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions__ctor_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.#ctor
+  name.vb: New
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsTencentCloudOptions
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.New
+  nameWithType: SmsTencentCloudOptions.SmsTencentCloudOptions
+  nameWithType.vb: SmsTencentCloudOptions.New
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.DefaultTemplate
+  name: DefaultTemplate
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_DefaultTemplate
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.DefaultTemplate
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.DefaultTemplate
+  nameWithType: SmsTencentCloudOptions.DefaultTemplate
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.DefaultTemplate*
+  name: DefaultTemplate
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_DefaultTemplate_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.DefaultTemplate
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.DefaultTemplate
+  nameWithType: SmsTencentCloudOptions.DefaultTemplate
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.IsValid
+  name: IsValid()
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_IsValid
+  commentId: M:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.IsValid
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.IsValid()
+  nameWithType: SmsTencentCloudOptions.IsValid()
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.IsValid*
+  name: IsValid
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_IsValid_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.IsValid
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.IsValid
+  nameWithType: SmsTencentCloudOptions.IsValid
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretId
+  name: SecretId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SecretId
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretId
+  nameWithType: SmsTencentCloudOptions.SecretId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretId*
+  name: SecretId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SecretId_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretId
+  nameWithType: SmsTencentCloudOptions.SecretId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretKey
+  name: SecretKey
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SecretKey
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretKey
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretKey
+  nameWithType: SmsTencentCloudOptions.SecretKey
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretKey*
+  name: SecretKey
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SecretKey_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretKey
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SecretKey
+  nameWithType: SmsTencentCloudOptions.SecretKey
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SignName
+  name: SignName
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SignName
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SignName
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SignName
+  nameWithType: SmsTencentCloudOptions.SignName
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SignName*
+  name: SignName
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SignName_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SignName
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SignName
+  nameWithType: SmsTencentCloudOptions.SignName
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsSdkAppId
+  name: SmsSdkAppId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SmsSdkAppId
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsSdkAppId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsSdkAppId
+  nameWithType: SmsTencentCloudOptions.SmsSdkAppId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsSdkAppId*
+  name: SmsSdkAppId
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_SmsSdkAppId_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsSdkAppId
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.SmsSdkAppId
+  nameWithType: SmsTencentCloudOptions.SmsSdkAppId
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.Templates
+  name: Templates
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_Templates
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.Templates
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.Templates
+  nameWithType: SmsTencentCloudOptions.Templates
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.Templates*
+  name: Templates
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_Templates_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.Templates
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.Templates
+  nameWithType: SmsTencentCloudOptions.Templates
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1
+  name: TencentCloudResult<T>
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult-1.html
+  commentId: T:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1
+  name.vb: TencentCloudResult(Of T)
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult<T>
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult(Of T)
+  nameWithType: TencentCloudResult<T>
+  nameWithType.vb: TencentCloudResult(Of T)
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.#ctor
+  name: TencentCloudResult()
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult-1.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_TencentCloudResult_1__ctor
+  commentId: M:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.#ctor
+  name.vb: New()
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult<T>.TencentCloudResult()
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult(Of T).New()
+  nameWithType: TencentCloudResult<T>.TencentCloudResult()
+  nameWithType.vb: TencentCloudResult(Of T).New()
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.#ctor*
+  name: TencentCloudResult
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult-1.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_TencentCloudResult_1__ctor_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.#ctor
+  name.vb: New
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult<T>.TencentCloudResult
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult(Of T).New
+  nameWithType: TencentCloudResult<T>.TencentCloudResult
+  nameWithType.vb: TencentCloudResult(Of T).New
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.Response
+  name: Response
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult-1.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_TencentCloudResult_1_Response
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.Response
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult<T>.Response
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult(Of T).Response
+  nameWithType: TencentCloudResult<T>.Response
+  nameWithType.vb: TencentCloudResult(Of T).Response
+- uid: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.Response*
+  name: Response
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult-1.html#BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_TencentCloudResult_1_Response_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult`1.Response
+  fullName: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult<T>.Response
+  fullName.vb: BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.TencentCloudResult(Of T).Response
+  nameWithType: TencentCloudResult<T>.Response
+  nameWithType.vb: TencentCloudResult(Of T).Response
 - uid: BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud
   name: BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud
   href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud.html
@@ -29149,6 +29537,18 @@ references:
   commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.SmsOptions.NetEaseCloud
   fullName: BD.Common8.SmsSender.Models.SmsSender.SmsOptions.NetEaseCloud
   nameWithType: SmsOptions.NetEaseCloud
+- uid: BD.Common8.SmsSender.Models.SmsSender.SmsOptions.TencentCloud
+  name: TencentCloud
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.SmsOptions.html#BD_Common8_SmsSender_Models_SmsSender_SmsOptions_TencentCloud
+  commentId: P:BD.Common8.SmsSender.Models.SmsSender.SmsOptions.TencentCloud
+  fullName: BD.Common8.SmsSender.Models.SmsSender.SmsOptions.TencentCloud
+  nameWithType: SmsOptions.TencentCloud
+- uid: BD.Common8.SmsSender.Models.SmsSender.SmsOptions.TencentCloud*
+  name: TencentCloud
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.SmsOptions.html#BD_Common8_SmsSender_Models_SmsSender_SmsOptions_TencentCloud_
+  commentId: Overload:BD.Common8.SmsSender.Models.SmsSender.SmsOptions.TencentCloud
+  fullName: BD.Common8.SmsSender.Models.SmsSender.SmsOptions.TencentCloud
+  nameWithType: SmsOptions.TencentCloud
 - uid: BD.Common8.SmsSender.Models.SmsSender.SmsOptions._21VianetBlueCloud
   name: _21VianetBlueCloud
   href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Models.SmsSender.SmsOptions.html#BD_Common8_SmsSender_Models_SmsSender_SmsOptions__21VianetBlueCloud
@@ -29576,6 +29976,96 @@ references:
   href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEaseCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_NetEaseCloud_SmsSenderProvider_SupportCheck_
   commentId: Overload:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEaseCloud.SmsSenderProvider.SupportCheck
   fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEaseCloud.SmsSenderProvider.SupportCheck
+  nameWithType: SmsSenderProvider.SupportCheck
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud
+  name: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.html
+  commentId: N:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud
+  nameWithType: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider
+  name: SmsSenderProvider
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html
+  commentId: T:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider
+  nameWithType: SmsSenderProvider
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.#ctor(Microsoft.Extensions.Logging.ILogger{BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider},BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions,System.Net.Http.HttpClient)
+  name: SmsSenderProvider(ILogger<SmsSenderProvider>, SmsTencentCloudOptions?, HttpClient)
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider__ctor_Microsoft_Extensions_Logging_ILogger_BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider__BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SmsTencentCloudOptions_System_Net_Http_HttpClient_
+  commentId: M:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.#ctor(Microsoft.Extensions.Logging.ILogger{BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider},BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions,System.Net.Http.HttpClient)
+  name.vb: New(ILogger(Of SmsSenderProvider), SmsTencentCloudOptions, HttpClient)
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SmsSenderProvider(Microsoft.Extensions.Logging.ILogger<BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider>, BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions?, System.Net.Http.HttpClient)
+  fullName.vb: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.New(Microsoft.Extensions.Logging.ILogger(Of BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider), BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions, System.Net.Http.HttpClient)
+  nameWithType: SmsSenderProvider.SmsSenderProvider(ILogger<SmsSenderProvider>, SmsTencentCloudOptions?, HttpClient)
+  nameWithType.vb: SmsSenderProvider.New(ILogger(Of SmsSenderProvider), SmsTencentCloudOptions, HttpClient)
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.#ctor*
+  name: SmsSenderProvider
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider__ctor_
+  commentId: Overload:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.#ctor
+  name.vb: New
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SmsSenderProvider
+  fullName.vb: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.New
+  nameWithType: SmsSenderProvider.SmsSenderProvider
+  nameWithType.vb: SmsSenderProvider.New
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Channel
+  name: Channel
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_Channel
+  commentId: P:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Channel
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Channel
+  nameWithType: SmsSenderProvider.Channel
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Channel*
+  name: Channel
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_Channel_
+  commentId: Overload:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Channel
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Channel
+  nameWithType: SmsSenderProvider.Channel
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.CheckSmsAsync(System.String,System.String,System.Threading.CancellationToken)
+  name: CheckSmsAsync(string, string, CancellationToken)
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_CheckSmsAsync_System_String_System_String_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.CheckSmsAsync(System.String,System.String,System.Threading.CancellationToken)
+  name.vb: CheckSmsAsync(String, String, CancellationToken)
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.CheckSmsAsync(string, string, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.CheckSmsAsync(String, String, System.Threading.CancellationToken)
+  nameWithType: SmsSenderProvider.CheckSmsAsync(string, string, CancellationToken)
+  nameWithType.vb: SmsSenderProvider.CheckSmsAsync(String, String, CancellationToken)
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.CheckSmsAsync*
+  name: CheckSmsAsync
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_CheckSmsAsync_
+  commentId: Overload:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.CheckSmsAsync
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.CheckSmsAsync
+  nameWithType: SmsSenderProvider.CheckSmsAsync
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Name
+  name: Name
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_Name
+  commentId: F:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Name
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.Name
+  nameWithType: SmsSenderProvider.Name
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SendSmsAsync(System.String,System.String,System.UInt16,System.Threading.CancellationToken)
+  name: SendSmsAsync(string, string, ushort, CancellationToken)
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_SendSmsAsync_System_String_System_String_System_UInt16_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SendSmsAsync(System.String,System.String,System.UInt16,System.Threading.CancellationToken)
+  name.vb: SendSmsAsync(String, String, UShort, CancellationToken)
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SendSmsAsync(string, string, ushort, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SendSmsAsync(String, String, UShort, System.Threading.CancellationToken)
+  nameWithType: SmsSenderProvider.SendSmsAsync(string, string, ushort, CancellationToken)
+  nameWithType.vb: SmsSenderProvider.SendSmsAsync(String, String, UShort, CancellationToken)
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SendSmsAsync*
+  name: SendSmsAsync
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_SendSmsAsync_
+  commentId: Overload:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SendSmsAsync
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SendSmsAsync
+  nameWithType: SmsSenderProvider.SendSmsAsync
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SupportCheck
+  name: SupportCheck
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_SupportCheck
+  commentId: P:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SupportCheck
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SupportCheck
+  nameWithType: SmsSenderProvider.SupportCheck
+- uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SupportCheck*
+  name: SupportCheck
+  href: api/BD.Common8.SmsSender/BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.html#BD_Common8_SmsSender_Services_Implementation_SmsSender_Channels_TencentCloud_SmsSenderProvider_SupportCheck_
+  commentId: Overload:BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SupportCheck
+  fullName: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud.SmsSenderProvider.SupportCheck
   nameWithType: SmsSenderProvider.SupportCheck
 - uid: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud
   name: BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud
@@ -34541,15 +35031,15 @@ references:
   commentId: Overload:System.Diagnostics.Process2.Start
   fullName: System.Diagnostics.Process2.Start
   nameWithType: Process2.Start
-- uid: System.Diagnostics.Process2.StartAsPrivileged(System.String,System.Object)
-  name: StartAsPrivileged(string, object?)
-  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_StartAsPrivileged_System_String_System_Object_
-  commentId: M:System.Diagnostics.Process2.StartAsPrivileged(System.String,System.Object)
-  name.vb: StartAsPrivileged(String, Object)
-  fullName: System.Diagnostics.Process2.StartAsPrivileged(string, object?)
-  fullName.vb: System.Diagnostics.Process2.StartAsPrivileged(String, Object)
-  nameWithType: Process2.StartAsPrivileged(string, object?)
-  nameWithType.vb: Process2.StartAsPrivileged(String, Object)
+- uid: System.Diagnostics.Process2.StartAsPrivileged(System.String,System.Object,System.Boolean)
+  name: StartAsPrivileged(string, object?, bool)
+  href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_StartAsPrivileged_System_String_System_Object_System_Boolean_
+  commentId: M:System.Diagnostics.Process2.StartAsPrivileged(System.String,System.Object,System.Boolean)
+  name.vb: StartAsPrivileged(String, Object, Boolean)
+  fullName: System.Diagnostics.Process2.StartAsPrivileged(string, object?, bool)
+  fullName.vb: System.Diagnostics.Process2.StartAsPrivileged(String, Object, Boolean)
+  nameWithType: Process2.StartAsPrivileged(string, object?, bool)
+  nameWithType.vb: Process2.StartAsPrivileged(String, Object, Boolean)
 - uid: System.Diagnostics.Process2.StartAsPrivileged*
   name: StartAsPrivileged
   href: api/BD.Common8.Bcl/System.Diagnostics.Process2.html#System_Diagnostics_Process2_StartAsPrivileged_
@@ -36399,6 +36889,21 @@ references:
   commentId: T:System.Extensions.MatchExtensions
   fullName: System.Extensions.MatchExtensions
   nameWithType: MatchExtensions
+- uid: System.Extensions.MatchExtensions.GetJoinValue(System.Text.RegularExpressions.Regex,System.ReadOnlySpan{System.Char},System.Char,System.String)
+  name: GetJoinValue(Regex, ReadOnlySpan<char>, char, string?)
+  href: api/BD.Common8.Bcl/System.Extensions.MatchExtensions.html#System_Extensions_MatchExtensions_GetJoinValue_System_Text_RegularExpressions_Regex_System_ReadOnlySpan_System_Char__System_Char_System_String_
+  commentId: M:System.Extensions.MatchExtensions.GetJoinValue(System.Text.RegularExpressions.Regex,System.ReadOnlySpan{System.Char},System.Char,System.String)
+  name.vb: GetJoinValue(Regex, ReadOnlySpan(Of Char), Char, String)
+  fullName: System.Extensions.MatchExtensions.GetJoinValue(System.Text.RegularExpressions.Regex, System.ReadOnlySpan<char>, char, string?)
+  fullName.vb: System.Extensions.MatchExtensions.GetJoinValue(System.Text.RegularExpressions.Regex, System.ReadOnlySpan(Of Char), Char, String)
+  nameWithType: MatchExtensions.GetJoinValue(Regex, ReadOnlySpan<char>, char, string?)
+  nameWithType.vb: MatchExtensions.GetJoinValue(Regex, ReadOnlySpan(Of Char), Char, String)
+- uid: System.Extensions.MatchExtensions.GetJoinValue*
+  name: GetJoinValue
+  href: api/BD.Common8.Bcl/System.Extensions.MatchExtensions.html#System_Extensions_MatchExtensions_GetJoinValue_
+  commentId: Overload:System.Extensions.MatchExtensions.GetJoinValue
+  fullName: System.Extensions.MatchExtensions.GetJoinValue
+  nameWithType: MatchExtensions.GetJoinValue
 - uid: System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Match,System.Func{System.Text.RegularExpressions.Match,System.Boolean})
   name: GetValue(Match, Func<Match, bool>)
   href: api/BD.Common8.Bcl/System.Extensions.MatchExtensions.html#System_Extensions_MatchExtensions_GetValue_System_Text_RegularExpressions_Match_System_Func_System_Text_RegularExpressions_Match_System_Boolean__
@@ -36408,6 +36913,15 @@ references:
   fullName.vb: System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Match, System.Func(Of System.Text.RegularExpressions.Match, Boolean))
   nameWithType: MatchExtensions.GetValue(Match, Func<Match, bool>)
   nameWithType.vb: MatchExtensions.GetValue(Match, Func(Of Match, Boolean))
+- uid: System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Regex,System.ReadOnlySpan{System.Char},System.String)
+  name: GetValue(Regex, ReadOnlySpan<char>, string?)
+  href: api/BD.Common8.Bcl/System.Extensions.MatchExtensions.html#System_Extensions_MatchExtensions_GetValue_System_Text_RegularExpressions_Regex_System_ReadOnlySpan_System_Char__System_String_
+  commentId: M:System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Regex,System.ReadOnlySpan{System.Char},System.String)
+  name.vb: GetValue(Regex, ReadOnlySpan(Of Char), String)
+  fullName: System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Regex, System.ReadOnlySpan<char>, string?)
+  fullName.vb: System.Extensions.MatchExtensions.GetValue(System.Text.RegularExpressions.Regex, System.ReadOnlySpan(Of Char), String)
+  nameWithType: MatchExtensions.GetValue(Regex, ReadOnlySpan<char>, string?)
+  nameWithType.vb: MatchExtensions.GetValue(Regex, ReadOnlySpan(Of Char), String)
 - uid: System.Extensions.MatchExtensions.GetValue*
   name: GetValue
   href: api/BD.Common8.Bcl/System.Extensions.MatchExtensions.html#System_Extensions_MatchExtensions_GetValue_
@@ -51742,6 +52256,21 @@ references:
   commentId: Overload:System.StringExtensions.Substring
   fullName: System.StringExtensions.Substring
   nameWithType: StringExtensions.Substring
+- uid: System.StringExtensions.SubstringAsSpan(System.String,System.String,System.String,System.Boolean)
+  name: SubstringAsSpan(string, string, string, bool)
+  href: api/BD.Common8.Bcl/System.StringExtensions.html#System_StringExtensions_SubstringAsSpan_System_String_System_String_System_String_System_Boolean_
+  commentId: M:System.StringExtensions.SubstringAsSpan(System.String,System.String,System.String,System.Boolean)
+  name.vb: SubstringAsSpan(String, String, String, Boolean)
+  fullName: System.StringExtensions.SubstringAsSpan(string, string, string, bool)
+  fullName.vb: System.StringExtensions.SubstringAsSpan(String, String, String, Boolean)
+  nameWithType: StringExtensions.SubstringAsSpan(string, string, string, bool)
+  nameWithType.vb: StringExtensions.SubstringAsSpan(String, String, String, Boolean)
+- uid: System.StringExtensions.SubstringAsSpan*
+  name: SubstringAsSpan
+  href: api/BD.Common8.Bcl/System.StringExtensions.html#System_StringExtensions_SubstringAsSpan_
+  commentId: Overload:System.StringExtensions.SubstringAsSpan
+  fullName: System.StringExtensions.SubstringAsSpan
+  nameWithType: StringExtensions.SubstringAsSpan
 - uid: System.StringExtensions.TrimEnd(System.String,System.String)
   name: TrimEnd(string, string)
   href: api/BD.Common8.Bcl/System.StringExtensions.html#System_StringExtensions_TrimEnd_System_String_System_String_

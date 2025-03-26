@@ -293,7 +293,8 @@ Class IpcServerService  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract IHubContext HubContext { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;use TryGetHubContext&quot;, true)]
+public abstract IHubContext HubContext { get; }</code></pre>
   </div>
 
 
@@ -1355,6 +1356,42 @@ Class IpcServerService  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_TryGetHubContext_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_TryGetHubContext_Microsoft_AspNetCore_SignalR_IHubContext__" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.TryGetHubContext(Microsoft.AspNetCore.SignalR.IHubContext@)">
+  TryGetHubContext(out IHubContext?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool TryGetHubContext(out IHubContext? hubContext)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hubContext</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.ihubcontext">IHubContext</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 

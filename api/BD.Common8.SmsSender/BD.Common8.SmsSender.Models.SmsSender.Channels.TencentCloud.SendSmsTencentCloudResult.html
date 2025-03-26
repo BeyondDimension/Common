@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <title>文档 | BD.Common8</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class ChannelSmsOptions | BD.Common8 文档 ">
+      <meta name="title" content="Class SendSmsTencentCloudResult | BD.Common8 文档 ">
       
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
@@ -72,25 +72,24 @@
 
       <div class="content">
 
-        <article data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions">
+        <article data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult">
 
 
 
-  <h1 id="BD_Common8_SmsSender_Models_SmsSender_Abstractions_ChannelSmsOptions" data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions" class="text-break">
-Class ChannelSmsOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Abstractions/ChannelSmsOptions.cs"><i class="bi bi-code-slash"></i></a>
+  <h1 id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult" class="text-break">
+Class SendSmsTencentCloudResult  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Channels/TencentCloud/SendSmsTencentCloudResult.cs"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.SmsSender.html">SmsSender</a>.<a class="xref" href="BD.Common8.SmsSender.Models.html">Models</a>.<a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.html">SmsSender</a>.<a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Abstractions.html">Abstractions</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.Common8.html">Common8</a>.<a class="xref" href="BD.Common8.SmsSender.html">SmsSender</a>.<a class="xref" href="BD.Common8.SmsSender.Models.html">Models</a>.<a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.html">SmsSender</a>.<a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.html">Channels</a>.<a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.html">TencentCloud</a></dd></dl>
   <dl><dt>Assembly</dt><dd>BD.Common8.SmsSender.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>提供帮助管理和判断短信渠道</p>
-</div>
+  <div class="markdown summary"></div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ChannelSmsOptions : JsonModel, IJsonModel, IDisable, IExplicitHasValue</code></pre>
+    <pre><code class="lang-csharp hljs">public class SendSmsTencentCloudResult : JsonModel, IJsonModel, ITencentCloud</code></pre>
   </div>
 
 
@@ -101,7 +100,7 @@ Class ChannelSmsOptions  <a class="header-action link-secondary" title="View sou
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="../BD.Common8.Primitives/BD.Common8.Models.Abstractions.JsonModel.html">JsonModel</a></div>
-      <div><span class="xref">ChannelSmsOptions</span></div>
+      <div><span class="xref">SendSmsTencentCloudResult</span></div>
     </dd>
   </dl>
 
@@ -109,21 +108,10 @@ Class ChannelSmsOptions  <a class="header-action link-secondary" title="View sou
     <dt>Implements</dt>
     <dd>
       <div><a class="xref" href="../BD.Common8.Primitives/BD.Common8.Models.Abstractions.IJsonModel.html">IJsonModel</a></div>
-      <div><a class="xref" href="../BD.Common8.Primitives/BD.Common8.Columns.IDisable.html">IDisable</a></div>
-      <div><a class="xref" href="../BD.Common8.Primitives/BD.Common8.Models.Abstractions.IExplicitHasValue.html">IExplicitHasValue</a></div>
+      <div><a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.ITencentCloud.html">ITencentCloud</a></div>
     </dd>
   </dl>
 
-  <dl class="typelist derived">
-    <dt>Derived</dt>
-    <dd>
-      <div><a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud.SmsAlibabaCloudOptions.html">SmsAlibabaCloudOptions</a></div>
-      <div><a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud.SmsHuaweiCloudOptions.html">SmsHuaweiCloudOptions</a></div>
-      <div><a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud.SmsNetEaseCloudOptions.html">SmsNetEaseCloudOptions</a></div>
-      <div><a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions.html">SmsTencentCloudOptions</a></div>
-      <div><a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud.Sms21VianetBlueCloudOptions.html">Sms21VianetBlueCloudOptions</a></div>
-    </dd>
-  </dl>
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
@@ -163,18 +151,18 @@ Class ChannelSmsOptions  <a class="header-action link-secondary" title="View sou
 </h2>
 
 
-  <a id="BD_Common8_SmsSender_Models_SmsSender_Abstractions_ChannelSmsOptions__ctor_" data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions.#ctor*"></a>
+  <a id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult__ctor_" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.#ctor*"></a>
 
-  <h3 id="BD_Common8_SmsSender_Models_SmsSender_Abstractions_ChannelSmsOptions__ctor" data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions.#ctor">
-  ChannelSmsOptions()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Abstractions/ChannelSmsOptions.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult__ctor" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.#ctor">
+  SendSmsTencentCloudResult()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Channels/TencentCloud/SendSmsTencentCloudResult.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ChannelSmsOptions()</code></pre>
+    <pre><code class="lang-csharp hljs">public SendSmsTencentCloudResult()</code></pre>
   </div>
 
 
@@ -193,19 +181,20 @@ Class ChannelSmsOptions  <a class="header-action link-secondary" title="View sou
 </h2>
 
 
-  <a id="BD_Common8_SmsSender_Models_SmsSender_Abstractions_ChannelSmsOptions_Disable_" data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions.Disable*"></a>
+  <a id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_RequestId_" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId*"></a>
 
-  <h3 id="BD_Common8_SmsSender_Models_SmsSender_Abstractions_ChannelSmsOptions_Disable" data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions.Disable">
-  Disable
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Abstractions/ChannelSmsOptions.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_RequestId" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.RequestId">
+  RequestId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Channels/TencentCloud/SendSmsTencentCloudResult.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取或设置是否禁用短信渠道</p>
+  <div class="markdown level1 summary"><p>唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Disable { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;RequestId&quot;)]
+public required string RequestId { get; set; }</code></pre>
   </div>
 
 
@@ -214,7 +203,41 @@ Class ChannelSmsOptions  <a class="header-action link-secondary" title="View sou
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_SendStatusSet_" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet*"></a>
+
+  <h3 id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_SendStatusSet" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.SendStatusSet">
+  SendStatusSet
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Channels/TencentCloud/SendSmsTencentCloudResult.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>短信发送状态。</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;SendStatusSet&quot;)]
+[JsonProperty(&quot;SendStatusSet&quot;)]
+public required SendStatus[] SendStatusSet { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendStatus.html">SendStatus</a>[]</dt>
     <dd></dd>
   </dl>
 
@@ -229,19 +252,18 @@ Class ChannelSmsOptions  <a class="header-action link-secondary" title="View sou
 </h2>
 
 
-  <a id="BD_Common8_SmsSender_Models_SmsSender_Abstractions_ChannelSmsOptions_IsValid_" data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions.IsValid*"></a>
+  <a id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_IsOk_" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk*"></a>
 
-  <h3 id="BD_Common8_SmsSender_Models_SmsSender_Abstractions_ChannelSmsOptions_IsValid" data-uid="BD.Common8.SmsSender.Models.SmsSender.Abstractions.ChannelSmsOptions.IsValid">
-  IsValid()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Abstractions/ChannelSmsOptions.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_Common8_SmsSender_Models_SmsSender_Channels_TencentCloud_SendSmsTencentCloudResult_IsOk" data-uid="BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SendSmsTencentCloudResult.IsOk">
+  IsOk()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Channels/TencentCloud/SendSmsTencentCloudResult.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>验证短信渠道选项是否有效</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool IsValid()</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsOk()</code></pre>
   </div>
 
 
@@ -265,7 +287,7 @@ Class ChannelSmsOptions  <a class="header-action link-secondary" title="View sou
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Abstractions/ChannelSmsOptions.cs" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.SmsSender/Models/SmsSender/Channels/TencentCloud/SendSmsTencentCloudResult.cs" class="edit-link">Edit this page</a>
         </div>
 
 

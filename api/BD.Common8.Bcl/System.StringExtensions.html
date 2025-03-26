@@ -619,10 +619,10 @@ Class StringExtensions  <a class="header-action link-secondary" title="View sour
     <dd><p>要处理的字符串，例 ABCD</p>
 </dd>
     <dt><code>left</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>第1个字符串，例 AB</p>
+    <dd><p>第 1 个字符串，例 AB</p>
 </dd>
     <dt><code>right</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>第2个字符串，例 D</p>
+    <dd><p>第 2 个字符串，例 D</p>
 </dd>
     <dt><code>isContains</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>是否包含标志字符串</p>
@@ -632,6 +632,54 @@ Class StringExtensions  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>例 返回C</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="System_StringExtensions_SubstringAsSpan_" data-uid="System.StringExtensions.SubstringAsSpan*"></a>
+
+  <h3 id="System_StringExtensions_SubstringAsSpan_System_String_System_String_System_String_System_Boolean_" data-uid="System.StringExtensions.SubstringAsSpan(System.String,System.String,System.String,System.Boolean)">
+  SubstringAsSpan(string, string, string, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Extensions/StringExtensions.Substring.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取两个字符串中间的 ReadOnlySpan</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ReadOnlySpan&lt;char&gt; SubstringAsSpan(this string s, string left, string right, bool isContains = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>s</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要处理的字符串，例 ABCD</p>
+</dd>
+    <dt><code>left</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>第 1 个字符串，例 AB</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>第 2 个字符串，例 D</p>
+</dd>
+    <dt><code>isContains</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否包含标志字符串</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a>&gt;</dt>
     <dd><p>例 返回C</p>
 </dd>
   </dl>
