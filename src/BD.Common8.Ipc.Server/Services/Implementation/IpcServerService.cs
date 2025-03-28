@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
 using System.Security.AccessControl;
 using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
@@ -172,19 +173,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
             OperatingSystem.IsWindows() &&
             Environment.IsPrivilegedProcess)
         {
-            builder.WebHost.UseNamedPipes(static options =>
-            {
-                // 在 Windows 上允许不同用户连接到命名管道
-#pragma warning disable CA1416 // 验证平台兼容性
-                SecurityIdentifier securityIdentifier = new(WellKnownSidType.AuthenticatedUserSid, null);
-                PipeSecurity pipeSecurity = new();
-                pipeSecurity.AddAccessRule(new PipeAccessRule(securityIdentifier,
-                    PipeAccessRights.ReadWrite | PipeAccessRights.CreateNewInstance,
-                    AccessControlType.Allow));
-                options.CurrentUserOnly = false;
-                options.PipeSecurity = pipeSecurity;
-#pragma warning restore CA1416 // 验证平台兼容性
-            });
+            builder.WebHost.UseNamedPipes(ConfigureNamedPipeTransportOptions);
         }
 
         builder.Services.Configure<KestrelServerOptions>(static options =>
@@ -212,6 +201,20 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
         app = builder.Build();
         Configure(app);
+    }
+
+    protected virtual void ConfigureNamedPipeTransportOptions(NamedPipeTransportOptions options)
+    {
+        // 在 Windows 上允许不同用户连接到命名管道
+#pragma warning disable CA1416 // 验证平台兼容性
+        SecurityIdentifier securityIdentifier = new(WellKnownSidType.AuthenticatedUserSid, null);
+        PipeSecurity pipeSecurity = new();
+        pipeSecurity.AddAccessRule(new PipeAccessRule(securityIdentifier,
+            PipeAccessRights.ReadWrite | PipeAccessRights.CreateNewInstance,
+            AccessControlType.Allow));
+        options.CurrentUserOnly = false;
+        options.PipeSecurity = pipeSecurity;
+#pragma warning restore CA1416 // 验证平台兼容性
     }
 
     ///// <summary>
