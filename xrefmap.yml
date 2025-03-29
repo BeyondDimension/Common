@@ -20056,6 +20056,18 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureLogging
   nameWithType: IpcServerService.ConfigureLogging
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureNamedPipeTransportOptions(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions)
+  name: ConfigureNamedPipeTransportOptions(NamedPipeTransportOptions)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureNamedPipeTransportOptions_Microsoft_AspNetCore_Server_Kestrel_Transport_NamedPipes_NamedPipeTransportOptions_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureNamedPipeTransportOptions(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureNamedPipeTransportOptions(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions)
+  nameWithType: IpcServerService.ConfigureNamedPipeTransportOptions(NamedPipeTransportOptions)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureNamedPipeTransportOptions*
+  name: ConfigureNamedPipeTransportOptions
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureNamedPipeTransportOptions_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureNamedPipeTransportOptions
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureNamedPipeTransportOptions
+  nameWithType: IpcServerService.ConfigureNamedPipeTransportOptions
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
   name: ConfigureServices(IServiceCollection)
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_ConfigureServices_Microsoft_Extensions_DependencyInjection_IServiceCollection_
