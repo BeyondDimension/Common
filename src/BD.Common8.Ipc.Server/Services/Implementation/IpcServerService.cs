@@ -62,6 +62,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         //Console.WriteLine("后端进程退出（WebApplicationExit）等待 StopAsync 与 DisposeAsync，StackTrace：" + Environment.NewLine + Environment.StackTrace);
         Console.WriteLine("后端进程退出（WebApplicationExit）等待 StopAsync 与 DisposeAsync");
 #endif
+        Exiting();
         if (app != null)
         {
 #pragma warning restore VSTHRD103 // Call async methods when in an async method
@@ -79,8 +80,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
                 await app.DisposeAsync();
             }
         }
-
-        OnExited();
+        OnExit();
     }
 
     readonly TaskCompletionSource tcs_app = new();
@@ -117,11 +117,11 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 #if DEBUG
                 Console.WriteLine("后端进程退出（Microsoft.AspNetCore.Builder.WebApplication.Run 完成）");
 #endif
-                OnExited();
+                OnExit();
             }
             catch (Exception ex)
             {
-                OnExited(ex);
+                OnExit(ex);
             }
         }, longRunning: true);
     }
@@ -130,7 +130,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     bool isExited = false;
 
-    void OnExited(Exception? ex = null)
+    void OnExit(Exception? ex = null)
     {
         lock (lockExited)
         {
@@ -139,6 +139,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 #if DEBUG
                 Console.WriteLine("OnExited");
 #endif
+                Exiting();
                 Exited?.Invoke();
             }
             else
@@ -154,6 +155,25 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
                 tcs_app.TrySetException(ex);
             }
         }
+    }
+
+    bool isExiting = false;
+
+    void Exiting()
+    {
+        if (isExiting)
+        {
+            return;
+        }
+        else
+        {
+            isExiting = true;
+            OnExiting();
+        }
+    }
+
+    protected virtual void OnExiting()
+    {
     }
 
     const HttpProtocols protocols = HttpProtocols.Http2; // 必须使用 Http2 协议
@@ -271,9 +291,9 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         ArgumentNullException.ThrowIfNull(context);
 
         var s = CreateDefaultNamedPipeServerStream(context);
-#if DEBUG
-        Console.WriteLine($"已创建 NamedPipeServerStream，pipeName：{context.NamedPipeEndPoint.PipeName}");
-#endif
+        //#if DEBUG
+        //        Console.WriteLine($"已创建 NamedPipeServerStream，pipeName：{context.NamedPipeEndPoint.PipeName}");
+        //#endif
         return s;
     }
 
