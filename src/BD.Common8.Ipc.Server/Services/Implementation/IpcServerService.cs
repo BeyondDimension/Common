@@ -50,11 +50,13 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         !OperatingSystem.IsWindows();
 #endif
 
+    static readonly bool CallStopAsync = true;
+
     /// <summary>
     /// 退出 <see cref="WebApplication"/>
     /// </summary>
     /// <returns></returns>
-    public async ValueTask WebApplicationExit()
+    public async ValueTask WebAppExitAsync()
     {
 #if DEBUG
         //Console.WriteLine("后端进程退出（WebApplicationExit）等待 StopAsync 与 DisposeAsync，StackTrace：" + Environment.NewLine + Environment.StackTrace);
@@ -62,9 +64,23 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 #endif
         if (app != null)
         {
-            await app.StopAsync();
-            await app.DisposeAsync();
+#pragma warning restore VSTHRD103 // Call async methods when in an async method
+            if (CallStopAsync)
+            {
+#if APP_STOPWATCH || DEBUG
+                using AppStopwatch sw_it = new("耗时：{0}ms，WebApplication.StopAsync 正常停止主机");
+#endif
+                await app.StopAsync(new(true));
+            }
+            {
+#if APP_STOPWATCH || DEBUG
+                using AppStopwatch sw_it = new("耗时：{0}ms，WebApplication.DisposeAsync 释放主机资源");
+#endif
+                await app.DisposeAsync();
+            }
         }
+
+        OnExited();
     }
 
     readonly TaskCompletionSource tcs_app = new();
@@ -94,18 +110,50 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         {
             try
             {
+#if DEBUG
+                Console.WriteLine("后端 app.Run");
+#endif
                 app.ThrowIsNull().Run();
 #if DEBUG
                 Console.WriteLine("后端进程退出（Microsoft.AspNetCore.Builder.WebApplication.Run 完成）");
 #endif
-                Exited?.Invoke();
-                tcs_app.TrySetResult();
+                OnExited();
             }
             catch (Exception ex)
             {
-                tcs_app.TrySetException(ex);
+                OnExited(ex);
             }
         }, longRunning: true);
+    }
+
+    readonly global::System.Threading.Lock lockExited = new();
+
+    bool isExited = false;
+
+    void OnExited(Exception? ex = null)
+    {
+        lock (lockExited)
+        {
+            if (!isExited)
+            {
+#if DEBUG
+                Console.WriteLine("OnExited");
+#endif
+                Exited?.Invoke();
+            }
+            else
+            {
+                isExited = true;
+            }
+            if (ex == null)
+            {
+                tcs_app.TrySetResult();
+            }
+            else
+            {
+                tcs_app.TrySetException(ex);
+            }
+        }
     }
 
     const HttpProtocols protocols = HttpProtocols.Http2; // 必须使用 Http2 协议
@@ -215,6 +263,57 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         options.CurrentUserOnly = false;
         options.PipeSecurity = pipeSecurity;
 #pragma warning restore CA1416 // 验证平台兼容性
+        options.CreateNamedPipeServerStream = CreateNamedPipeServerStream;
+    }
+
+    protected virtual NamedPipeServerStream CreateNamedPipeServerStream(CreateNamedPipeServerStreamContext context)
+    {
+        ArgumentNullException.ThrowIfNull(context);
+
+        var s = CreateDefaultNamedPipeServerStream(context);
+#if DEBUG
+        Console.WriteLine($"已创建 NamedPipeServerStream，pipeName：{context.NamedPipeEndPoint.PipeName}");
+#endif
+        return s;
+    }
+
+    /// <summary>
+    /// Creates a default instance of <see cref="NamedPipeServerStream"/> for the given
+    /// <see cref="CreateNamedPipeServerStreamContext"/> that can be used by a connection listener
+    /// to listen for inbound requests.
+    /// </summary>
+    /// <param name="context">A <see cref="CreateNamedPipeServerStreamContext"/>.</param>
+    /// <returns>
+    /// A <see cref="NamedPipeServerStream"/> instance.
+    /// </returns>
+    protected static NamedPipeServerStream CreateDefaultNamedPipeServerStream(CreateNamedPipeServerStreamContext context)
+    {
+        // https://github.com/dotnet/aspnetcore/blob/v9.0.3/src/Servers/Kestrel/Transport.NamedPipes/src/NamedPipeTransportOptions.cs#L90
+        if (context.PipeSecurity != null)
+        {
+#pragma warning disable CA1416 // 验证平台兼容性
+            return NamedPipeServerStreamAcl.Create(
+                context.NamedPipeEndPoint.PipeName,
+                PipeDirection.InOut,
+                NamedPipeServerStream.MaxAllowedServerInstances,
+                PipeTransmissionMode.Byte,
+                context.PipeOptions,
+                inBufferSize: 0, // Buffer in System.IO.Pipelines
+                outBufferSize: 0, // Buffer in System.IO.Pipelines
+                context.PipeSecurity);
+#pragma warning restore CA1416 // 验证平台兼容性
+        }
+        else
+        {
+            return new NamedPipeServerStream(
+                context.NamedPipeEndPoint.PipeName,
+                PipeDirection.InOut,
+                NamedPipeServerStream.MaxAllowedServerInstances,
+                PipeTransmissionMode.Byte,
+                context.PipeOptions,
+                inBufferSize: 0,
+                outBufferSize: 0);
+        }
     }
 
     ///// <summary>
