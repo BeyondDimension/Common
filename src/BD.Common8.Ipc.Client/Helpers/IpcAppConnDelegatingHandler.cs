@@ -106,7 +106,7 @@ public sealed class IpcAppConnDelegatingHandler : DelegatingHandler
         {
             disposables.ThrowIsNull().TryAdd(clientStream.GetHashCode(), clientStream);
 #if DEBUG
-            Console.WriteLine($"正在连接到 NamedPipeClientStream，pipeName：{pipeName}");
+            Console.WriteLine($"正在连接到 NamedPipeClientStream，threadId: {Environment.CurrentManagedThreadId}，pipeName：{pipeName}");
 #endif
             await clientStream.ConnectAsync(cancellationToken).ConfigureAwait(false);
             return clientStream;

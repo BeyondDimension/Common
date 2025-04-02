@@ -16,7 +16,7 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
     ConcurrentDictionary<string, HubConnection> hubConnections = [];
 
     /// <inheritdoc cref="IpcAppConnectionString"/>
-    protected readonly IpcAppConnectionString connectionString = connectionString;
+    protected IpcAppConnectionString connectionString = connectionString;
 
     /// <inheritdoc/>
     protected sealed override HttpClient CreateClient()
@@ -93,10 +93,7 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
                         oldHandler.Dispose(); // 传过来的 Handler 丢弃，使用根据连接字符串解析的
                         if (hubConnHandler.Disposed)
                         {
-#if DEBUG
-                            HubConnDelegatingHandlerDebugWriteLine();
-#endif
-                            Task.WaitAll(OnHttpMessageHandlerFactoryAsync());
+                            OnHttpMessageHandlerFactory();
                             hubConnHandler = IpcAppConnectionStringHelper.GetHttpMessageHandler(connectionString);
                             ConfigureSocketsHttpHandler(hubConnHandler.InnerHandler);
                         }
@@ -186,9 +183,8 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
         return Task.CompletedTask;
     }
 
-    protected virtual Task OnHttpMessageHandlerFactoryAsync()
+    protected virtual void OnHttpMessageHandlerFactory()
     {
-        return Task.CompletedTask;
     }
 
     /// <inheritdoc/>
@@ -273,22 +269,3 @@ partial class IpcClientService // OnError
         return default;
     }
 }
-
-#if DEBUG
-partial class IpcClientService
-{
-    const string f = """
-已重新创建 HubConnDelegatingHandler，如果后端进程未启动，使用管理员运行终端并输入以下命令：
-    cd {0}
-    {1} {2}
-""";
-
-    static void HubConnDelegatingHandlerDebugWriteLine()
-    {
-        Console.WriteLine(f,
-            Path.GetDirectoryName(Environment.ProcessPath),
-            Path.GetFileNameWithoutExtension(Environment.ProcessPath),
-            MobiusHost.GetBackendProcessArguments());
-    }
-}
-#endif
