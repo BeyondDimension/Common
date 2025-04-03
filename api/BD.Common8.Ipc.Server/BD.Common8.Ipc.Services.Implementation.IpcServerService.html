@@ -977,6 +977,83 @@ public abstract IHubContext HubContext { get; }</code></pre>
 
 
 
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateDefaultNamedPipeServerStream_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateDefaultNamedPipeServerStream_Microsoft_AspNetCore_Server_Kestrel_Transport_NamedPipes_CreateNamedPipeServerStreamContext_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)">
+  CreateDefaultNamedPipeServerStream(CreateNamedPipeServerStreamContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a default instance of <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.pipes.namedpipeserverstream">NamedPipeServerStream</a> for the given
+<span class="xref">Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext</span> that can be used by a connection listener
+to listen for inbound requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static NamedPipeServerStream CreateDefaultNamedPipeServerStream(CreateNamedPipeServerStreamContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <span class="xref">CreateNamedPipeServerStreamContext</span></dt>
+    <dd><p>A <span class="xref">Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext</span>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.pipes.namedpipeserverstream">NamedPipeServerStream</a></dt>
+    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.pipes.namedpipeserverstream">NamedPipeServerStream</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateNamedPipeServerStream_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateNamedPipeServerStream_Microsoft_AspNetCore_Server_Kestrel_Transport_NamedPipes_CreateNamedPipeServerStreamContext_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)">
+  CreateNamedPipeServerStream(CreateNamedPipeServerStreamContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual NamedPipeServerStream CreateNamedPipeServerStream(CreateNamedPipeServerStreamContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <span class="xref">CreateNamedPipeServerStreamContext</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.pipes.namedpipeserverstream">NamedPipeServerStream</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_Dispose_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose*"></a>
 
   <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_Dispose" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.Dispose">
@@ -1337,6 +1414,32 @@ public abstract IHubContext HubContext { get; }</code></pre>
 
 
 
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_OnExiting_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting*"></a>
+
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_OnExiting" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting">
+  OnExiting()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnExiting()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_OnMapGroup_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.OnMapGroup*"></a>
 
   <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_OnMapGroup_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.OnMapGroup(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
@@ -1436,10 +1539,10 @@ public abstract IHubContext HubContext { get; }</code></pre>
 
 
 
-  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_WebApplicationExit_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit*"></a>
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService_WebAppExitAsync_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync*"></a>
 
-  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_WebApplicationExit" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit">
-  WebApplicationExit()
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService_WebAppExitAsync" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync">
+  WebAppExitAsync()
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1448,7 +1551,7 @@ public abstract IHubContext HubContext { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ValueTask WebApplicationExit()</code></pre>
+    <pre><code class="lang-csharp hljs">public ValueTask WebAppExitAsync()</code></pre>
   </div>
 
 

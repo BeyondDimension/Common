@@ -19918,18 +19918,18 @@ references:
   fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnError(Of TResponseBody)(System.Exception, Microsoft.AspNetCore.SignalR.Client.HubConnection, String)
   nameWithType: IpcClientService.OnError<TResponseBody>(Exception, HubConnection?, string)
   nameWithType.vb: IpcClientService.OnError(Of TResponseBody)(Exception, HubConnection, String)
-- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
-  name: OnHttpMessageHandlerFactoryAsync()
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactoryAsync
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync()
-  nameWithType: IpcClientService.OnHttpMessageHandlerFactoryAsync()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync*
-  name: OnHttpMessageHandlerFactoryAsync
-  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactoryAsync_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync
-  nameWithType: IpcClientService.OnHttpMessageHandlerFactoryAsync
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory
+  name: OnHttpMessageHandlerFactory()
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactory
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory()
+  nameWithType: IpcClientService.OnHttpMessageHandlerFactory()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory*
+  name: OnHttpMessageHandlerFactory
+  href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactory_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory
+  nameWithType: IpcClientService.OnHttpMessageHandlerFactory
 - uid: BD.Common8.Ipc.Services.Implementation.IpcClientService.UseMemoryPack
   name: UseMemoryPack
   href: api/BD.Common8.Ipc.Client/BD.Common8.Ipc.Services.Implementation.IpcClientService.html#BD_Common8_Ipc_Services_Implementation_IpcClientService_UseMemoryPack
@@ -20104,6 +20104,30 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalRProtocol
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.ConfigureSignalRProtocol
   nameWithType: IpcServerService.ConfigureSignalRProtocol
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)
+  name: CreateDefaultNamedPipeServerStream(CreateNamedPipeServerStreamContext)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateDefaultNamedPipeServerStream_Microsoft_AspNetCore_Server_Kestrel_Transport_NamedPipes_CreateNamedPipeServerStreamContext_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)
+  nameWithType: IpcServerService.CreateDefaultNamedPipeServerStream(CreateNamedPipeServerStreamContext)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream*
+  name: CreateDefaultNamedPipeServerStream
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateDefaultNamedPipeServerStream_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateDefaultNamedPipeServerStream
+  nameWithType: IpcServerService.CreateDefaultNamedPipeServerStream
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)
+  name: CreateNamedPipeServerStream(CreateNamedPipeServerStreamContext)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateNamedPipeServerStream_Microsoft_AspNetCore_Server_Kestrel_Transport_NamedPipes_CreateNamedPipeServerStreamContext_
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream(Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.CreateNamedPipeServerStreamContext)
+  nameWithType: IpcServerService.CreateNamedPipeServerStream(CreateNamedPipeServerStreamContext)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream*
+  name: CreateNamedPipeServerStream
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_CreateNamedPipeServerStream_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.CreateNamedPipeServerStream
+  nameWithType: IpcServerService.CreateNamedPipeServerStream
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.DefaultAuthenticationScheme
   name: DefaultAuthenticationScheme
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_DefaultAuthenticationScheme
@@ -20335,6 +20359,18 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnError
   nameWithType: IpcServerService.OnError
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting
+  name: OnExiting()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_OnExiting
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting()
+  nameWithType: IpcServerService.OnExiting()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting*
+  name: OnExiting
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_OnExiting_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnExiting
+  nameWithType: IpcServerService.OnExiting
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.OnMapGroup(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)
   name: OnMapGroup(IEndpointRouteBuilder)
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_OnMapGroup_Microsoft_AspNetCore_Routing_IEndpointRouteBuilder_
@@ -20434,18 +20470,18 @@ references:
   commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.WaitWebApplicationExit
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.WaitWebApplicationExit
   nameWithType: IpcServerService.WaitWebApplicationExit
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit
-  name: WebApplicationExit()
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_WebApplicationExit
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit()
-  nameWithType: IpcServerService.WebApplicationExit()
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit*
-  name: WebApplicationExit
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_WebApplicationExit_
-  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebApplicationExit
-  nameWithType: IpcServerService.WebApplicationExit
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync
+  name: WebAppExitAsync()
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_WebAppExitAsync
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync()
+  nameWithType: IpcServerService.WebAppExitAsync()
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync*
+  name: WebAppExitAsync
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService_WebAppExitAsync_
+  commentId: Overload:BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.WebAppExitAsync
+  nameWithType: IpcServerService.WebAppExitAsync
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService._AccessToken
   name: _AccessToken
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__AccessToken

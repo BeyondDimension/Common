@@ -339,7 +339,7 @@ Class IpcClientService  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly IpcAppConnectionString connectionString</code></pre>
+    <pre><code class="lang-csharp hljs">protected IpcAppConnectionString connectionString</code></pre>
   </div>
 
 
@@ -968,10 +968,10 @@ as desired.
 
 
 
-  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactoryAsync_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync*"></a>
+  <a id="BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactory_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory*"></a>
 
-  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactoryAsync" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactoryAsync">
-  OnHttpMessageHandlerFactoryAsync()
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcClientService_OnHttpMessageHandlerFactory" data-uid="BD.Common8.Ipc.Services.Implementation.IpcClientService.OnHttpMessageHandlerFactory">
+  OnHttpMessageHandlerFactory()
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Client/Services/Implementation/IpcClientService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -979,15 +979,10 @@ as desired.
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Task OnHttpMessageHandlerFactoryAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void OnHttpMessageHandlerFactory()</code></pre>
   </div>
 
 
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
