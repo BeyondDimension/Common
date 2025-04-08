@@ -147,6 +147,7 @@ public static partial class ArchitectureEnumExtensions
     {
         var rid = architecture switch
         {
+            unchecked((Architecture)(-1)) => "osx-any",
             Architecture.X64 => "osx-x64",
             Architecture.Arm64 => "osx-arm64",
             _ => @throw ?
