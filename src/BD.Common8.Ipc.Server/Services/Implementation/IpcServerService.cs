@@ -180,6 +180,9 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 
     void Build()
     {
+        var listenNamedPipe = ListenNamedPipe &&
+            OperatingSystem.IsWindows(); // 虽然命名管道在 Unix 使用 UnixSocket 兼容实现，但是在 ASP.NET Core 中会抛出平台不支持异常
+
         var builder = WebApplication.CreateEmptyBuilder(new WebApplicationOptions());
         builder.WebHost.UseKestrelCore();
         builder.WebHost.UseKestrelHttpsConfiguration();
@@ -215,7 +218,7 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
                     listenOptions.UseHttps(serverCertificate);
                 });
             }
-            if (ListenNamedPipe)
+            if (listenNamedPipe)
             {
                 options.ListenNamedPipe(PipeName, listenOptions =>
                 {
@@ -237,11 +240,11 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
             }
         });
 
-        if (ListenNamedPipe &&
-            OperatingSystem.IsWindows() &&
-            Environment.IsPrivilegedProcess)
+        if (listenNamedPipe)
         {
+#pragma warning disable CA1416 // 验证平台兼容性
             builder.WebHost.UseNamedPipes(ConfigureNamedPipeTransportOptions);
+#pragma warning restore CA1416 // 验证平台兼容性
         }
 
         builder.Services.Configure<KestrelServerOptions>(static options =>
@@ -453,7 +456,6 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
         var dirPath = GetUnixSocketDirPath();
         IOPath.DirCreateByNotExists(dirPath);
         var filePath = Path.Combine(dirPath, $"{Hashs.String.Crc32(PipeName)}.uds"); // Unix Domain Socket
-        IOPath.FileTryDelete(filePath);
         return filePath;
     }
 
