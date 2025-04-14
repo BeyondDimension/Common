@@ -13,6 +13,21 @@ using System.Reactive.Threading.Tasks;
 /// </summary>
 public class FusilladeClientHttpClientFactory : IClientHttpClientFactory, IDisposable
 {
+    internal static readonly global::Microsoft.IO.RecyclableMemoryStreamManager MemoryStreamManager = new();
+
+    internal static async Task<global::Microsoft.IO.RecyclableMemoryStream> ReadAsStreamAsync(HttpContent content, CancellationToken cancellationToken = default)
+    {
+        if (content is RecyclableMemoryStreamContent streamContent)
+        {
+            return streamContent.Stream;
+        }
+
+        var stream = await content.ReadAsStreamAsync(cancellationToken);
+        var memoryStream = MemoryStreamManager.GetStream();
+        await stream.CopyToAsync(memoryStream, cancellationToken);
+        return memoryStream;
+    }
+
     bool disposedValue;
 
     readonly HttpMessageHandler handler;
@@ -301,7 +316,7 @@ file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Pri
     /// <returns>The unique key.</returns>
     public static string UniqueKeyForRequest(HttpRequestMessage request)
     {
-        var requestUriString = ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(request);
+        var requestUriString = ImageHttpClientServiceImpl.GetOriginalRequestUri(request);
         return UniqueKeyForRequest(requestUriString, request);
     }
 
@@ -385,32 +400,58 @@ file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Pri
 
                     if (cacheResult != null && resp.Content != null)
                     {
-                        var ms = new MemoryStream();
+                        using var ms = FusilladeClientHttpClientFactory.MemoryStreamManager.GetStream();
 #if NET5_0_OR_GREATER
                         var stream = await resp.Content.ReadAsStreamAsync(realToken.Token).ConfigureAwait(false);
 #else
                         var stream = await resp.Content.ReadAsStreamAsync().ConfigureAwait(false);
 #endif
-                        await stream.CopyToAsync(ms, 32 * 1024, realToken.Token).ConfigureAwait(false);
+                        await stream.CopyToAsync(ms, realToken.Token).ConfigureAwait(false);
 
                         realToken.Token.ThrowIfCancellationRequested();
 
-                        var newResp = new HttpResponseMessage();
+                        var newResp = new HttpResponseMessage()
+                        {
+                            RequestMessage = request,
+                        };
                         foreach (var kvp in resp.Headers)
                         {
                             newResp.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
                         }
 
-                        var newContent = new ByteArrayContent(ms.ToArray());
-                        foreach (var kvp in resp.Content.Headers)
+                        if (request.RequestUri?.ToString() == "https://picsum.photos/360/202?image=883")
                         {
-                            newContent.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+                            //TODO
                         }
 
-                        newResp.Content = newContent;
-
+                        {
+                            var newContent = new RecyclableMemoryStreamContent(ms);
+                            foreach (var kvp in resp.Content.Headers)
+                            {
+                                newContent.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+                            }
+                            newResp.Content = newContent;
+                        }
                         resp = newResp;
                         await cacheResult(request, resp, key, realToken.Token).ConfigureAwait(false);
+                        if (request.Options.TryGetValue(IImageHttpClientService.KeyFilePath, out var filePath))
+                        {
+                            var newContent = new FileContent(filePath);
+                            foreach (var kvp in resp.Content.Headers)
+                            {
+                                newContent.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+                            }
+                            newResp.Content = newContent;
+                        }
+                        else
+                        {
+                            var newContent = new ByteArrayContent(ms.GetBuffer());
+                            foreach (var kvp in resp.Content.Headers)
+                            {
+                                newContent.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
+                            }
+                            newResp.Content = newContent;
+                        }
                     }
 
                     return resp;
@@ -429,6 +470,53 @@ file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Pri
     }
 }
 
+file sealed class FileContent(string filePath) : HttpContent
+{
+    protected override async Task SerializeToStreamAsync(Stream stream, TransportContext? context)
+    {
+        try
+        {
+            using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+            await fileStream.CopyToAsync(stream);
+        }
+        catch (DirectoryNotFoundException)
+        {
+        }
+        catch (FileNotFoundException)
+        {
+        }
+    }
+
+    protected override bool TryComputeLength(out long length)
+    {
+        try
+        {
+            length = new FileInfo(filePath).Length;
+            return true;
+        }
+        catch (DirectoryNotFoundException)
+        {
+        }
+        catch (FileNotFoundException)
+        {
+        }
+        length = 0;
+        return false;
+    }
+}
+
+file sealed class RecyclableMemoryStreamContent : StreamContent
+{
+    readonly global::Microsoft.IO.RecyclableMemoryStream stream;
+
+    internal global::Microsoft.IO.RecyclableMemoryStream Stream => stream;
+
+    internal RecyclableMemoryStreamContent(global::Microsoft.IO.RecyclableMemoryStream stream) : base(stream)
+    {
+        this.stream = stream;
+    }
+}
+
 /// <summary>
 /// A http handler that will make a response even if the HttpClient is offline.
 /// </summary>
@@ -438,6 +526,8 @@ file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Pri
 file sealed class OfflineHttpMessageHandler2() : HttpMessageHandler
 {
     const HttpStatusCode OfflineCacheMiss = (HttpStatusCode)599;
+
+    HttpResponseMessage ResponseOfflineCacheMiss() => new(OfflineCacheMiss);
 
     /// <inheritdoc />
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -453,14 +543,40 @@ file sealed class OfflineHttpMessageHandler2() : HttpMessageHandler
             throw new Exception("Configure NetCache.RequestCache before calling this!");
         }
 
-        var body = await retrieveBody(request, RateLimitedHttpMessageHandler2.UniqueKeyForRequest(request), cancellationToken).ConfigureAwait(false);
+        var uniqueKey = RateLimitedHttpMessageHandler2.UniqueKeyForRequest(request);
+        var body = await retrieveBody(request, uniqueKey, cancellationToken).ConfigureAwait(false);
         if (body == null)
         {
-            return new HttpResponseMessage(OfflineCacheMiss);
+            if (request.Options.TryGetValue(IImageHttpClientService.KeyFilePath, out var filePath))
+            {
+                if (File.Exists(filePath))
+                {
+                    return new HttpResponseMessage(HttpStatusCode.OK)
+                    {
+                        Content = new FileContent(filePath),
+                    };
+                }
+                else
+                {
+                    return ResponseOfflineCacheMiss();
+                }
+            }
+            //else if (request.Options.TryGetValue(IImageHttpClientService.KeyStream, out var stream))
+            //{
+            //    return new HttpResponseMessage(HttpStatusCode.OK)
+            //    {
+            //        Content = new StreamContent(stream),
+            //    };
+            //}
+            else
+            {
+                return ResponseOfflineCacheMiss();
+            }
         }
-
-        var byteContent = new ByteArrayContent(body);
-        return new HttpResponseMessage(HttpStatusCode.OK) { Content = byteContent };
+        return new HttpResponseMessage(HttpStatusCode.OK)
+        {
+            Content = new ByteArrayContent(body),
+        };
     }
 }
 #endif

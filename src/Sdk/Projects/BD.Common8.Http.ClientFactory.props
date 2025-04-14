@@ -21,5 +21,6 @@
 	<ItemGroup>
 		<!-- 👇 包引用 -->
 		<PackageReference Include="fusillade" />
+		<PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
 	</ItemGroup>
 </Project>

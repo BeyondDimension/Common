@@ -7,16 +7,223 @@ namespace BD.Common8.Http.ClientFactory.Services.Implementation;
 /// <param name="loggerFactory"></param>
 /// <param name="httpPlatformHelper"></param>
 /// <param name="clientFactory"></param>
-public sealed class ImageHttpClientServiceImpl(
+public sealed partial class ImageHttpClientServiceImpl(
     ILoggerFactory loggerFactory,
     IHttpPlatformHelperService httpPlatformHelper,
     IClientHttpClientFactory clientFactory) : IImageHttpClientService
 {
     const string TAG = "ImageHttpClient";
+    const string SchemeFile = "file:///";
 
     readonly ILogger logger = loggerFactory.CreateLogger(TAG);
     readonly IHttpPlatformHelperService httpPlatformHelper = httpPlatformHelper;
     readonly IClientHttpClientFactory clientFactory = clientFactory;
+
+    public async Task<T?> GetImageAsync<T>(GetImageArgs args, Func<string, T?> filePathConvert, Func<HttpResponseImageContent, T?> responseConvert, CancellationToken cancellationToken) where T : notnull
+    {
+        (string requestUri, int isPollyNum, bool cache, bool cacheFirst, HttpHandlerCategory category) = args;
+
+        if (requestUri == "https://picsum.photos/360/202?image=883")
+        {
+            //TODO
+        }
+
+        if (!String2.IsHttpUrl(requestUri, httpsOnly: true))
+        {
+            if (requestUri.StartsWith(SchemeFile, StringComparison.OrdinalIgnoreCase))
+            {
+                var filePath = requestUri[SchemeFile.Length..];
+                try
+                {
+                    return filePathConvert(filePath);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    return default;
+                }
+                catch (FileNotFoundException)
+                {
+                    return default;
+                }
+            }
+            // 仅支持 HTTPS 协议
+            return default;
+        }
+
+        HttpResponseImageContent? response = default;
+        if (cacheFirst && category != HttpHandlerCategory.Offline && cache)
+        {
+            // 如果缓存优先，则先从缓存中取
+            response = await SendAsync(requestUri, args.HashValue, HttpHandlerCategory.Offline, cancellationToken);
+            var result = responseConvert(response);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        if (requestUri == "https://picsum.photos/360/202?image=883")
+        {
+            //TODO
+        }
+
+        try
+        {
+            if (isPollyNum > 0 && category != HttpHandlerCategory.Offline)
+            {
+                // 使用 Polly 尝试 numRetries 次进行网络请求，如果强行指定离线缓存，则不进行多次尝试
+                response = await Policy.HandleResult<HttpResponseImageContent>(
+                        static x => (x.Stream == null && x.FilePath == null) && !x.IsStopped) // 流为空时并且没有取消请求的情况下重试
+                    .WaitAndRetryAsync(isPollyNum, i => PollyRetryAttempt(i, isPollyNum))
+                    .ExecuteAsync(cancellationToken => SendAsync(requestUri, args.HashValue, category, cancellationToken), cancellationToken);
+            }
+            else
+            {
+                // 不进行多次尝试，仅一次获取
+                response = await SendAsync(requestUri, args.HashValue, category, cancellationToken);
+            }
+        }
+        catch (Exception e)
+        {
+            if (e.GetKnownType().IsCanceledException())
+            {
+                return default;
+            }
+            const string logMsg = $"{nameof(GetImageAsync)} fail, category: {{category}}";
+            logger.LogWarning(e, logMsg, category);
+        }
+
+        if (response != null)
+        {
+            var result = responseConvert(response);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        if (!cacheFirst && category != HttpHandlerCategory.Offline && cache)
+        {
+            // 非缓存优先的情况下，从网络中加载失败，再去缓存中尝试加载
+            response = await SendAsync(requestUri, args.HashValue, HttpHandlerCategory.Offline, cancellationToken);
+        }
+
+        if (response != null)
+        {
+            var result = responseConvert(response);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        return default;
+    }
+
+    static FileStream? GetStream(string filePath)
+    {
+        try
+        {
+            var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+            return fileStream;
+        }
+        catch (DirectoryNotFoundException)
+        {
+            return null;
+        }
+        catch (FileNotFoundException)
+        {
+            return null;
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<Stream?> GetImageMemoryStreamAsync(GetImageArgs args,
+        CancellationToken cancellationToken)
+    {
+        var result = await GetImageAsync<Stream>(args,
+            static filePath => GetStream(filePath),
+            static response =>
+            {
+                if (response.Stream != null)
+                {
+                    return response.Stream;
+                }
+                else if (response.FilePath != null)
+                {
+                    return GetStream(response.FilePath);
+                }
+                return default;
+            },
+            cancellationToken);
+        return result;
+    }
+
+    /// <inheritdoc/>
+    public async Task<string?> GetImageFilePathAsync(GetImageArgs args,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await GetImageAsync<string>(args,
+            static filePath => filePath,
+            static response =>
+            {
+                if (response.Stream is FileStream fileStream)
+                {
+                    return fileStream.Name;
+                }
+                else if (response.FilePath != null)
+                {
+                    return response.FilePath;
+                }
+                return default;
+            },
+            cancellationToken);
+        return result;
+    }
+
+    HttpRequestMessage GetRequestMessage(string requestUri, string? hashValue, HttpHandlerCategory category)
+    {
+        var originalRequestUri = requestUri;
+        var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+        if (category == HttpHandlerCategory.Offline)
+        {
+            if (!string.IsNullOrWhiteSpace(hashValue))
+            {
+                const string hashsBaseUrl = "https://local.steampp.net/bd.common8.http.clientfactory/hashs/";
+                originalRequestUri = hashValue.Length switch
+                {
+                    Hashs.String.Lengths.MD5 => $"{hashsBaseUrl}md5/{hashValue}",
+                    Hashs.String.Lengths.SHA1 => $"{hashsBaseUrl}sha1/{hashValue}",
+                    Hashs.String.Lengths.SHA256 => $"{hashsBaseUrl}sha256/{hashValue}",
+                    Hashs.String.Lengths.SHA384 => $"{hashsBaseUrl}sha384/{hashValue}",
+                    Hashs.String.Lengths.SHA512 => $"{hashsBaseUrl}sha512/{hashValue}",
+                    _ => $"{hashsBaseUrl}{hashValue.Length}/{hashValue}",
+                };
+            }
+        }
+        SetOriginalRequestUri(request, originalRequestUri);
+        return request;
+    }
+
+    async Task<HttpResponseImageContent> SendAsync(string requestUri, string? hashValue, HttpHandlerCategory category, CancellationToken cancellationToken)
+    {
+        try
+        {
+            using var req = GetRequestMessage(requestUri, hashValue, category);
+            var rsp = await SendAsync(req, category, cancellationToken);
+            return rsp;
+        }
+        catch (Exception e)
+        {
+            if (e.GetKnownType().IsCanceledException())
+            {
+                return true;
+            }
+            const string logMsg = $"{nameof(SendAsync)} fail, category: {{category}}";
+            logger.LogWarning(e, logMsg, category);
+            return false; // 可重试
+        }
+    }
 
     /// <summary>
     /// 判断流中的数据是否为图片流
@@ -51,248 +258,128 @@ public sealed class ImageHttpClientServiceImpl(
         return true;
     }
 
-    /// <inheritdoc/>
-    public async Task<MemoryStream?> GetImageMemoryStreamAsync(GetImageArgs args,
-        CancellationToken cancellationToken)
-    {
-        string requestUri = args.RequestUri;
-        bool isPolly = args.IsPolly;
-        bool cache = args.UseCache;
-        bool cacheFirst = args.CacheFirst;
-        HttpHandlerCategory category = args.Category;
-
-        if (!String2.IsHttpUrl(requestUri))
-            return default;
-
-        if (!cache)
-        {
-            category = HttpHandlerCategory.Default;
-        }
-        else
-        {
-            isPolly = false;
-        }
-
-        ImageMemoryStreamWrapper response = default;
-        if (cacheFirst && category != HttpHandlerCategory.Offline && cache)
-        {
-            // 如果缓存优先，则先从缓存中取
-            response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
-            if (IsImageStream(response.Stream))
-                return response.Stream;
-
-            try
-            {
-                response.Stream?.Dispose();
-            }
-            catch
-            {
-            }
-        }
-
-        try
-        {
-            if (isPolly && category != HttpHandlerCategory.Offline)
-            {
-                // 使用 Polly 尝试 numRetries 次进行网络请求，如果强行指定离线缓存，则不进行多次尝试
-                response = await Policy.HandleResult<ImageMemoryStreamWrapper>(
-                        static x => x.Stream == null && !x.IsStopped) // 流为空时并且没有取消请求的情况下重试
-                    .WaitAndRetryAsync(numRetries, PollyRetryAttempt)
-                    .ExecuteAsync(_GetImageMemoryStreamCoreAsync, cancellationToken);
-            }
-            else
-            {
-                // 不进行多次尝试，仅一次获取
-                response = await _GetImageMemoryStreamCoreAsync(cancellationToken);
-            }
-        }
-        catch (Exception e)
-        {
-            if (e.GetKnownType().IsCanceledException())
-                return null;
-            logger.LogWarning(e,
-                $"{nameof(GetImageMemoryStreamAsync)} fail, category: {{category}}.", category);
-        }
-
-        if (!cacheFirst && response.Stream == null && category != HttpHandlerCategory.Offline && cache)
-        {
-            // 非缓存优先的情况下，从网络中加载失败，再去缓存中尝试加载
-            response = await _GetImageMemoryStreamCoreByOfflineAsync(cancellationToken);
-        }
-
-        if (IsImageStream(response.Stream))
-            return response.Stream;
-
-        try
-        {
-            response.Stream?.Dispose();
-        }
-        catch
-        {
-        }
-
-        return null;
-
-        ImageHttpRequestMessage GetImageHttpRequestMessage(HttpHandlerCategory category)
-        {
-            var request = new ImageHttpRequestMessage(HttpMethod.Get, requestUri);
-            if (category == HttpHandlerCategory.Offline)
-            {
-                if (!string.IsNullOrWhiteSpace(args.HashValue))
-                {
-                    const string hashsBaseUrl = "https://local.steampp.net/bd.common8.http.clientfactory/hashs/";
-                    request.OriginalRequestUri = args.HashValue.Length switch
-                    {
-                        Hashs.String.Lengths.MD5 => $"{hashsBaseUrl}md5/{args.HashValue}",
-                        Hashs.String.Lengths.SHA1 => $"{hashsBaseUrl}sha1/{args.HashValue}",
-                        Hashs.String.Lengths.SHA256 => $"{hashsBaseUrl}sha256/{args.HashValue}",
-                        Hashs.String.Lengths.SHA384 => $"{hashsBaseUrl}sha384/{args.HashValue}",
-                        Hashs.String.Lengths.SHA512 => $"{hashsBaseUrl}sha512/{args.HashValue}",
-                        _ => $"{hashsBaseUrl}{args.HashValue.Length}/{args.HashValue}",
-                    };
-                }
-            }
-            return request;
-        }
-
-        async Task<ImageMemoryStreamWrapper> _GetImageMemoryStreamCoreAsync(CancellationToken cancellationToken)
-        {
-            try
-            {
-                var r = await GetImageMemoryStreamCoreAsync(
-                    GetImageHttpRequestMessage(category),
-                    category,
-                    cancellationToken);
-                return r;
-            }
-            catch (Exception e)
-            {
-                if (e.GetKnownType().IsCanceledException())
-                    return true;
-                logger.LogWarning(e,
-                    $"{nameof(_GetImageMemoryStreamCoreAsync)} fail, category: {{category}}.", category);
-                return false; // 可重试
-            }
-        }
-
-        async Task<ImageMemoryStreamWrapper> _GetImageMemoryStreamCoreByOfflineAsync(CancellationToken cancellationToken)
-        {
-            try
-            {
-                var r = await GetImageMemoryStreamCoreAsync(
-                    GetImageHttpRequestMessage(HttpHandlerCategory.Offline),
-                    HttpHandlerCategory.Offline,
-                    cancellationToken);
-                return r;
-            }
-            catch (Exception e)
-            {
-                if (e.GetKnownType().IsCanceledException())
-                    return true;
-                logger.LogWarning(e,
-                    $"{nameof(_GetImageMemoryStreamCoreByOfflineAsync)} fail, category: {{category}}(Offline).", category);
-                return false; // 可重试
-            }
-        }
-    }
-
-    /// <summary>
-    /// 图片内存流包装类型
-    /// </summary>
-    readonly record struct ImageMemoryStreamWrapper
-    {
-        /// <summary>
-        /// 图片内存流
-        /// </summary>
-        public MemoryStream? Stream { get; init; }
-
-        /// <summary>
-        /// 请求是否中止，比如取消，停止重试等
-        /// </summary>
-        public required bool IsStopped { get; init; }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator ImageMemoryStreamWrapper(bool isStopped) => isStopped ? new()
-        {
-            IsStopped = true,
-        } : default;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator ImageMemoryStreamWrapper(MemoryStream? stream) => new()
-        {
-            IsStopped = true,
-            Stream = stream,
-        };
-    }
-
-    /// <summary>
-    /// 用于 Http 图片客户端的请求
-    /// </summary>
-    /// <param name="method"></param>
-    /// <param name="requestUri"></param>
-    public sealed class ImageHttpRequestMessage(HttpMethod method, [StringSyntax(StringSyntaxAttribute.Uri)] string requestUri) : HttpRequestMessage(method, requestUri)
-    {
-        /// <summary>
-        /// 原始请求地址，因某些请求 301/302 跳转会改变地址
-        /// </summary>
-        public string OriginalRequestUri { get; internal set; } = requestUri;
-
-        /// <summary>
-        /// 默认请求地址
-        /// </summary>
-        public const string DefaultRequestUri = "/";
-
-        /// <summary>
-        /// 从请求消息中获取原始请求地址
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="defaultRequestUri"></param>
-        /// <returns></returns>
-        public static string GetOriginalRequestUri(HttpRequestMessage request, string defaultRequestUri = DefaultRequestUri)
-        {
-            string? originalRequestUri;
-            if (request is ImageHttpClientServiceImpl.ImageHttpRequestMessage request2)
-            {
-                // 对于一些重定向的 Url 使用原始 Url 进行唯一性的计算
-                originalRequestUri = request2.OriginalRequestUri;
-            }
-            else
-            {
-                originalRequestUri = request.RequestUri?.ToString()!;
-            }
-            if (string.IsNullOrEmpty(originalRequestUri))
-                originalRequestUri = defaultRequestUri;
-            return originalRequestUri;
-        }
-    }
-
-    async Task<ImageMemoryStreamWrapper> GetImageMemoryStreamCoreAsync(
-        ImageHttpRequestMessage request,
+    async Task<HttpResponseImageContent> SendAsync(
+        HttpRequestMessage request,
         HttpHandlerCategory category,
         CancellationToken cancellationToken = default)
     {
+        if (request.RequestUri?.ToString() == "https://picsum.photos/360/202?image=883")
+        {
+            //TODO
+        }
+
         request.Headers.Accept.ParseAdd(httpPlatformHelper.AcceptImages);
         request.Headers.UserAgent.ParseAdd(httpPlatformHelper.UserAgent);
+
         var client = clientFactory.CreateClient(TAG, category);
-        var response = await client.SendAsync(request,
+
+        using var response = await client.SendAsync(request,
             HttpCompletionOption.ResponseHeadersRead,
             cancellationToken)
             .ConfigureAwait(false);
-        if (response.IsSuccessStatusCode)
+
+        if (request.RequestUri?.ToString() == "https://picsum.photos/360/202?image=883")
         {
-            var imageBytes = await response.Content.ReadAsByteArrayAsync(cancellationToken);
-            var memoryStream = new MemoryStream(imageBytes, false);
-            return memoryStream;
+            //TODO
         }
 
-        return true; // 请求结束，状态码不为 2xx 则判定失败且不进行重试
+        if (response.IsSuccessStatusCode)
+        {
+            if (request.Options.TryGetValue(IImageHttpClientService.KeyFilePath, out var filePath))
+            {
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(filePath))
+                    {
+                        using var fileStream = GetStream(filePath);
+                        if (IsImageStream(fileStream))
+                        {
+                            return filePath;
+                        }
+                    }
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    return false;
+                }
+                catch (FileNotFoundException)
+                {
+                    return false;
+                }
+            }
+            //else if (request.Options.TryGetValue(IImageHttpClientService.KeyByteArray, out var bytes))
+            //{
+            //    var stream = new MemoryStream(bytes, false);
+            //    if (IsImageStream(stream))
+            //    {
+            //        return stream;
+            //    }
+            //}
+            else
+            {
+                var content = await response.Content.ReadAsStreamAsync(cancellationToken);
+                var memoryStream = FusilladeClientHttpClientFactory.MemoryStreamManager.GetStream();
+                await content.CopyToAsync(memoryStream, cancellationToken);
+                if (IsImageStream(memoryStream))
+                {
+                    return memoryStream;
+                }
+            }
+        }
+        else
+        {
+            return true; // 请求结束，状态码不为 2xx 则判定失败且不进行重试
+        }
+        return false;
+    }
+}
+
+partial class ImageHttpClientServiceImpl // OriginalRequestUri
+{
+    /// <summary>
+    /// 默认请求地址
+    /// </summary>
+    public const string DefaultRequestUri = "/";
+
+    /// <summary>
+    /// 从请求消息中获取原始请求地址
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="defaultRequestUri"></param>
+    /// <returns></returns>
+    public static string GetOriginalRequestUri(
+        HttpRequestMessage request,
+        string defaultRequestUri = DefaultRequestUri)
+    {
+        string? originalRequestUri;
+        if (request.Options.TryGetValue(IImageHttpClientService.KeyOriginalRequestUri, out var originalRequestUri_))
+        {
+            originalRequestUri = originalRequestUri_;
+        }
+        else
+        {
+            originalRequestUri = request.RequestUri?.ToString()!;
+        }
+        if (string.IsNullOrEmpty(originalRequestUri))
+        {
+            originalRequestUri = defaultRequestUri;
+        }
+        return originalRequestUri;
     }
 
-    #region Polly
+    static void SetOriginalRequestUri(HttpRequestMessage request, string? originalRequestUri = null)
+    {
+        originalRequestUri ??= request.RequestUri?.ToString();
+        if (!string.IsNullOrWhiteSpace(originalRequestUri))
+        {
+            request.Options.Set(IImageHttpClientService.KeyOriginalRequestUri, originalRequestUri);
+        }
+    }
+}
 
-    const int numRetries = 2; // 尝试次数
-
-    static TimeSpan PollyRetryAttempt(int attemptNumber)
+partial class ImageHttpClientServiceImpl // Polly
+{
+    static TimeSpan PollyRetryAttempt(int attemptNumber, int numRetries)
     {
         var powY = attemptNumber % numRetries;
         var timeSpan = TimeSpan.FromMilliseconds(Math.Pow(2, powY));
@@ -300,7 +387,44 @@ public sealed class ImageHttpClientServiceImpl(
         if (addS > 0) timeSpan = timeSpan.Add(TimeSpan.FromSeconds(addS));
         return timeSpan;
     }
+}
 
-    #endregion
+public sealed class HttpResponseImageContent
+{
+    HttpResponseImageContent()
+    {
+    }
+
+    /// <summary>
+    /// 图片的内存流
+    /// </summary>
+    public Stream? Stream { get; init; }
+
+    /// <summary>
+    /// 图片保存的本地路径
+    /// </summary>
+    public string? FilePath { get; init; }
+
+    /// <summary>
+    /// 请求是否中止重试，比如取消，停止重试等
+    /// </summary>
+    internal bool IsStopped { get; init; }
+
+    public static implicit operator HttpResponseImageContent(bool isStopped) => new()
+    {
+        IsStopped = isStopped,
+    };
+
+    public static implicit operator HttpResponseImageContent(Stream stream) => new()
+    {
+        IsStopped = true,
+        Stream = stream,
+    };
+
+    public static implicit operator HttpResponseImageContent(string filePath) => new()
+    {
+        IsStopped = true,
+        FilePath = filePath,
+    };
 }
 #endif

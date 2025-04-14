@@ -8,7 +8,7 @@ namespace BD.Common8.Http.ClientFactory.Models;
 /// <item><para>设置 <see cref="HashValue"/> + <see cref="UseCache"/> 与 <see cref="CacheFirst"/> 为 <see langword="true"/> 时，优先从本地根据哈希值加载缓存</para></item>
 /// </list>
 /// </summary>
-public record struct GetImageArgs
+public readonly record struct GetImageArgs
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="GetImageArgs"/> struct.
@@ -23,31 +23,49 @@ public record struct GetImageArgs
     public required string RequestUri { get; init; }
 
     /// <summary>
-    /// 是否使用 <see cref="Polly"/> 重试
+    /// 是否使用 <see cref="Polly"/> 重试次数，为 0 时不重试
     /// </summary>
-    public bool IsPolly { get; set; }
+    public int IsPollyNum { get; init; } = 3;
 
     /// <summary>
     /// 是否进行缓存
     /// </summary>
-    public bool UseCache { get; set; }
+    public bool UseCache { get; init; } = true;
 
     /// <summary>
     /// 是否优先使用缓存加载
     /// </summary>
-    public bool CacheFirst { get; set; }
+    public bool CacheFirst { get; init; } = true;
 
     /// <summary>
     /// <see cref="HttpHandlerCategory"/> 的默认值
     /// </summary>
-    public const HttpHandlerCategory DefaultHttpHandlerCategory = HttpHandlerCategory.UserInitiated;
+    public const HttpHandlerCategory DefaultHttpHandlerCategory = IImageHttpClientService.DefaultHttpHandlerCategory;
 
     /// <inheritdoc cref="HttpHandlerCategory"/>
-    public HttpHandlerCategory Category { get; set; } = DefaultHttpHandlerCategory;
+    public HttpHandlerCategory Category { get; init; } = DefaultHttpHandlerCategory;
 
     /// <summary>
     /// 哈希值
     /// </summary>
-    public string? HashValue { get; set; }
+    public string? HashValue { get; init; }
+
+    public void Deconstruct(out string requestUri, out int isPollyNum, out bool cache, out bool cacheFirst, out HttpHandlerCategory category)
+    {
+        requestUri = RequestUri;
+        isPollyNum = IsPollyNum;
+        cache = UseCache;
+        cacheFirst = CacheFirst;
+        category = Category;
+
+        if (!cache)
+        {
+            category = HttpHandlerCategory.Default;
+        }
+        else
+        {
+            isPollyNum = 0;
+        }
+    }
 }
 #endif
