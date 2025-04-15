@@ -17364,6 +17364,21 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category
   fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Category
   nameWithType: GetImageArgs.Category
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct(System.String@,System.Int32@,System.Boolean@,System.Boolean@,System.Net.Http.Client.HttpHandlerCategory@)
+  name: Deconstruct(out string, out int, out bool, out bool, out HttpHandlerCategory)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_Deconstruct_System_String__System_Int32__System_Boolean__System_Boolean__System_Net_Http_Client_HttpHandlerCategory__
+  commentId: M:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct(System.String@,System.Int32@,System.Boolean@,System.Boolean@,System.Net.Http.Client.HttpHandlerCategory@)
+  name.vb: Deconstruct(String, Integer, Boolean, Boolean, HttpHandlerCategory)
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct(out string, out int, out bool, out bool, out System.Net.Http.Client.HttpHandlerCategory)
+  fullName.vb: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct(String, Integer, Boolean, Boolean, System.Net.Http.Client.HttpHandlerCategory)
+  nameWithType: GetImageArgs.Deconstruct(out string, out int, out bool, out bool, out HttpHandlerCategory)
+  nameWithType.vb: GetImageArgs.Deconstruct(String, Integer, Boolean, Boolean, HttpHandlerCategory)
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct*
+  name: Deconstruct
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_Deconstruct_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct
+  nameWithType: GetImageArgs.Deconstruct
 - uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.DefaultHttpHandlerCategory
   name: DefaultHttpHandlerCategory
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_DefaultHttpHandlerCategory
@@ -17415,18 +17430,18 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue
   fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.HashValue
   nameWithType: GetImageArgs.HashValue
-- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
-  name: IsPolly
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPolly
-  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
-  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
-  nameWithType: GetImageArgs.IsPolly
-- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly*
-  name: IsPolly
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPolly_
-  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
-  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly
-  nameWithType: GetImageArgs.IsPolly
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum
+  name: IsPollyNum
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPollyNum
+  commentId: P:BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum
+  nameWithType: GetImageArgs.IsPollyNum
+- uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum*
+  name: IsPollyNum
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPollyNum_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum
+  fullName: BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum
+  nameWithType: GetImageArgs.IsPollyNum
 - uid: BD.Common8.Http.ClientFactory.Models.GetImageArgs.RequestUri
   name: RequestUri
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Models.GetImageArgs.html#BD_Common8_Http_ClientFactory_Models_GetImageArgs_RequestUri
@@ -17880,6 +17895,33 @@ references:
   commentId: F:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.DefaultHttpHandlerCategory
   fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.DefaultHttpHandlerCategory
   nameWithType: IImageHttpClientService.DefaultHttpHandlerCategory
+- uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageAsync*
+  name: GetImageAsync
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_GetImageAsync_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageAsync
+  fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageAsync
+  nameWithType: IImageHttpClientService.GetImageAsync
+- uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageAsync``1(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Func{System.String,``0},System.Func{BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent,``0},System.Threading.CancellationToken)
+  name: GetImageAsync<T>(GetImageArgs, Func<string, T?>, Func<HttpResponseImageContent, T?>, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_GetImageAsync__1_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Func_System_String___0__System_Func_BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent___0__System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageAsync``1(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Func{System.String,``0},System.Func{BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent,``0},System.Threading.CancellationToken)
+  name.vb: GetImageAsync(Of T)(GetImageArgs, Func(Of String, T), Func(Of HttpResponseImageContent, T), CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageAsync<T>(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Func<string, T?>, System.Func<BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent, T?>, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageAsync(Of T)(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Func(Of String, T), System.Func(Of BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent, T), System.Threading.CancellationToken)
+  nameWithType: IImageHttpClientService.GetImageAsync<T>(GetImageArgs, Func<string, T?>, Func<HttpResponseImageContent, T?>, CancellationToken)
+  nameWithType.vb: IImageHttpClientService.GetImageAsync(Of T)(GetImageArgs, Func(Of String, T), Func(Of HttpResponseImageContent, T), CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageFilePathAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  name: GetImageFilePathAsync(GetImageArgs, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_GetImageFilePathAsync_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageFilePathAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageFilePathAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Threading.CancellationToken)
+  nameWithType: IImageHttpClientService.GetImageFilePathAsync(GetImageArgs, CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageFilePathAsync*
+  name: GetImageFilePathAsync
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_GetImageFilePathAsync_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageFilePathAsync
+  fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageFilePathAsync
+  nameWithType: IImageHttpClientService.GetImageFilePathAsync
 - uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
   name: GetImageMemoryStreamAsync(GetImageArgs, CancellationToken)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_GetImageMemoryStreamAsync_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Threading_CancellationToken_
@@ -17901,6 +17943,18 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageMemoryStreamAsync
   fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.GetImageMemoryStreamAsync
   nameWithType: IImageHttpClientService.GetImageMemoryStreamAsync
+- uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.KeyFilePath
+  name: KeyFilePath
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_KeyFilePath
+  commentId: F:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.KeyFilePath
+  fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.KeyFilePath
+  nameWithType: IImageHttpClientService.KeyFilePath
+- uid: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.KeyOriginalRequestUri
+  name: KeyOriginalRequestUri
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.html#BD_Common8_Http_ClientFactory_Services_IImageHttpClientService_KeyOriginalRequestUri
+  commentId: F:BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.KeyOriginalRequestUri
+  fullName: BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.KeyOriginalRequestUri
+  nameWithType: IImageHttpClientService.KeyOriginalRequestUri
 - uid: BD.Common8.Http.ClientFactory.Services.Implementation
   name: BD.Common8.Http.ClientFactory.Services.Implementation
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.html
@@ -18102,6 +18156,73 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.Dispose
   fullName: BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory.Dispose
   nameWithType: FusilladeClientHttpClientFactory.Dispose
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  name: HttpResponseImageContent
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html
+  commentId: T:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  nameWithType: HttpResponseImageContent
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.FilePath
+  name: FilePath
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_FilePath
+  commentId: P:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.FilePath
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.FilePath
+  nameWithType: HttpResponseImageContent.FilePath
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.FilePath*
+  name: FilePath
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_FilePath_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.FilePath
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.FilePath
+  nameWithType: HttpResponseImageContent.FilePath
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.Stream
+  name: Stream
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_Stream
+  commentId: P:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.Stream
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.Stream
+  nameWithType: HttpResponseImageContent.Stream
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.Stream*
+  name: Stream
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_Stream_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.Stream
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.Stream
+  nameWithType: HttpResponseImageContent.Stream
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit(System.Boolean)~BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  name: implicit operator HttpResponseImageContent(bool)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_op_Implicit_System_Boolean__BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit(System.Boolean)~BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  name.vb: CType(Boolean)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.implicit operator BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent(bool)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.CType(Boolean)
+  nameWithType: HttpResponseImageContent.implicit operator HttpResponseImageContent(bool)
+  nameWithType.vb: HttpResponseImageContent.CType(Boolean)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit(System.IO.Stream)~BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  name: implicit operator HttpResponseImageContent(Stream)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_op_Implicit_System_IO_Stream__BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit(System.IO.Stream)~BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  name.vb: CType(Stream)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.implicit operator BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent(System.IO.Stream)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.CType(System.IO.Stream)
+  nameWithType: HttpResponseImageContent.implicit operator HttpResponseImageContent(Stream)
+  nameWithType.vb: HttpResponseImageContent.CType(Stream)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit(System.String)~BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  name: implicit operator HttpResponseImageContent(string)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_op_Implicit_System_String__BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit(System.String)~BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent
+  name.vb: CType(String)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.implicit operator BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent(string)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.CType(String)
+  nameWithType: HttpResponseImageContent.implicit operator HttpResponseImageContent(string)
+  nameWithType.vb: HttpResponseImageContent.CType(String)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit*
+  name: implicit operator
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html#BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent_op_Implicit_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.implicit operator
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.CType
+  nameWithType: HttpResponseImageContent.implicit operator
+  nameWithType.vb: HttpResponseImageContent.CType
 - uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl
   name: ImageHttpClientServiceImpl
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html
@@ -18126,6 +18247,39 @@ references:
   fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.New
   nameWithType: ImageHttpClientServiceImpl.ImageHttpClientServiceImpl
   nameWithType.vb: ImageHttpClientServiceImpl.New
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.DefaultRequestUri
+  name: DefaultRequestUri
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_DefaultRequestUri
+  commentId: F:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.DefaultRequestUri
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.DefaultRequestUri
+  nameWithType: ImageHttpClientServiceImpl.DefaultRequestUri
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync*
+  name: GetImageAsync
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageAsync_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync
+  nameWithType: ImageHttpClientServiceImpl.GetImageAsync
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync``1(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Func{System.String,``0},System.Func{BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent,``0},System.Threading.CancellationToken)
+  name: GetImageAsync<T>(GetImageArgs, Func<string, T?>, Func<HttpResponseImageContent, T?>, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageAsync__1_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Func_System_String___0__System_Func_BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent___0__System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync``1(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Func{System.String,``0},System.Func{BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent,``0},System.Threading.CancellationToken)
+  name.vb: GetImageAsync(Of T)(GetImageArgs, Func(Of String, T), Func(Of HttpResponseImageContent, T), CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync<T>(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Func<string, T?>, System.Func<BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent, T?>, System.Threading.CancellationToken)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync(Of T)(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Func(Of String, T), System.Func(Of BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent, T), System.Threading.CancellationToken)
+  nameWithType: ImageHttpClientServiceImpl.GetImageAsync<T>(GetImageArgs, Func<string, T?>, Func<HttpResponseImageContent, T?>, CancellationToken)
+  nameWithType.vb: ImageHttpClientServiceImpl.GetImageAsync(Of T)(GetImageArgs, Func(Of String, T), Func(Of HttpResponseImageContent, T), CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  name: GetImageFilePathAsync(GetImageArgs, CancellationToken)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageFilePathAsync_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Threading_CancellationToken_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs, System.Threading.CancellationToken)
+  nameWithType: ImageHttpClientServiceImpl.GetImageFilePathAsync(GetImageArgs, CancellationToken)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync*
+  name: GetImageFilePathAsync
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageFilePathAsync_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync
+  nameWithType: ImageHttpClientServiceImpl.GetImageFilePathAsync
 - uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)
   name: GetImageMemoryStreamAsync(GetImageArgs, CancellationToken)
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageMemoryStreamAsync_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Threading_CancellationToken_
@@ -18138,63 +18292,21 @@ references:
   commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync
   fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync
   nameWithType: ImageHttpClientServiceImpl.GetImageMemoryStreamAsync
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage
-  name: ImageHttpClientServiceImpl.ImageHttpRequestMessage
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html
-  commentId: T:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.#ctor(System.Net.Http.HttpMethod,System.String)
-  name: ImageHttpRequestMessage(HttpMethod, string)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage__ctor_System_Net_Http_HttpMethod_System_String_
-  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.#ctor(System.Net.Http.HttpMethod,System.String)
-  name.vb: New(HttpMethod, String)
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.ImageHttpRequestMessage(System.Net.Http.HttpMethod, string)
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.New(System.Net.Http.HttpMethod, String)
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.ImageHttpRequestMessage(HttpMethod, string)
-  nameWithType.vb: ImageHttpClientServiceImpl.ImageHttpRequestMessage.New(HttpMethod, String)
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.#ctor*
-  name: ImageHttpRequestMessage
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage__ctor_
-  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.#ctor
-  name.vb: New
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.ImageHttpRequestMessage
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.New
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.ImageHttpRequestMessage
-  nameWithType.vb: ImageHttpClientServiceImpl.ImageHttpRequestMessage.New
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
-  name: DefaultRequestUri
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_DefaultRequestUri
-  commentId: F:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.DefaultRequestUri
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage,System.String)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage,System.String)
   name: GetOriginalRequestUri(HttpRequestMessage, string)
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_GetOriginalRequestUri_System_Net_Http_HttpRequestMessage_System_String_
-  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage,System.String)
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetOriginalRequestUri_System_Net_Http_HttpRequestMessage_System_String_
+  commentId: M:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage,System.String)
   name.vb: GetOriginalRequestUri(HttpRequestMessage, String)
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage, string)
-  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage, String)
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(HttpRequestMessage, string)
-  nameWithType.vb: ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri(HttpRequestMessage, String)
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri*
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage, string)
+  fullName.vb: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage, String)
+  nameWithType: ImageHttpClientServiceImpl.GetOriginalRequestUri(HttpRequestMessage, string)
+  nameWithType.vb: ImageHttpClientServiceImpl.GetOriginalRequestUri(HttpRequestMessage, String)
+- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri*
   name: GetOriginalRequestUri
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_GetOriginalRequestUri_
-  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.GetOriginalRequestUri
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
-  name: OriginalRequestUri
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_OriginalRequestUri
-  commentId: P:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
-- uid: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri*
-  name: OriginalRequestUri
-  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_ImageHttpRequestMessage_OriginalRequestUri_
-  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
-  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
-  nameWithType: ImageHttpClientServiceImpl.ImageHttpRequestMessage.OriginalRequestUri
+  href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.html#BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetOriginalRequestUri_
+  commentId: Overload:BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri
+  fullName: BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri
+  nameWithType: ImageHttpClientServiceImpl.GetOriginalRequestUri
 - uid: BD.Common8.Http.ClientFactory.Services.SerializableService
   name: SerializableService
   href: api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.SerializableService.html

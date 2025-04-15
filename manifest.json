@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Resource",
-      "source_relative_path": "README.md",
-      "output": {
-        "resource": {
-          "relative_path": "README.md"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "README.md",
+      "output": {
+        "resource": {
+          "relative_path": "README.md"
         }
       },
       "version": ""
@@ -7626,7 +7626,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "BD.Common8.Http.ClientFactory.Services.IImageHttpClientService",
-      "Summary": "<p sourcefile=\"api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.yml\" sourcestartlinenumber=\"1\">Http 图片客户端请求服务</p>\n"
+      "Summary": "<p sourcefile=\"api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.IImageHttpClientService.yml\" sourcestartlinenumber=\"1\">图片的 HTTP 请求服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -7658,17 +7658,17 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.yml",
+      "source_relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.html"
+          "relative_path": "api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html"
         }
       },
       "version": "",
       "Uid": null,
       "IsMRef": true,
-      "Title": "BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage",
-      "Summary": "<p sourcefile=\"api/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.ImageHttpRequestMessage.yml\" sourcestartlinenumber=\"1\">用于 Http 图片客户端的请求</p>\n"
+      "Title": "BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent",
+      "Summary": null
     },
     {
       "type": "ManagedReference",

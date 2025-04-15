@@ -92,7 +92,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct GetImageArgs : IEquatable&lt;GetImageArgs&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly struct GetImageArgs : IEquatable&lt;GetImageArgs&gt;</code></pre>
   </div>
 
 
@@ -208,7 +208,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool CacheFirst { readonly get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool CacheFirst { get; init; }</code></pre>
   </div>
 
 
@@ -240,7 +240,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HttpHandlerCategory Category { readonly get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public HttpHandlerCategory Category { get; init; }</code></pre>
   </div>
 
 
@@ -272,7 +272,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? HashValue { readonly get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string? HashValue { get; init; }</code></pre>
   </div>
 
 
@@ -292,19 +292,19 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
 
 
 
-  <a id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPolly_" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly*"></a>
+  <a id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPollyNum_" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum*"></a>
 
-  <h3 id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPolly" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPolly">
-  IsPolly
+  <h3 id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_IsPollyNum" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.IsPollyNum">
+  IsPollyNum
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Models/GetImageArgs.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>是否使用 <span class="xref">Polly</span> 重试</p>
+  <div class="markdown level1 summary"><p>是否使用 <span class="xref">Polly</span> 重试次数，为 0 时不重试</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsPolly { readonly get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int IsPollyNum { get; init; }</code></pre>
   </div>
 
 
@@ -313,7 +313,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd></dd>
   </dl>
 
@@ -336,7 +336,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required string RequestUri { readonly get; init; }</code></pre>
+    <pre><code class="lang-csharp hljs">public required string RequestUri { get; init; }</code></pre>
   </div>
 
 
@@ -368,7 +368,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool UseCache { readonly get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool UseCache { get; init; }</code></pre>
   </div>
 
 
@@ -392,6 +392,45 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
 </h2>
 
 
+  <a id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_Deconstruct_" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_Deconstruct_System_String__System_Int32__System_Boolean__System_Boolean__System_Net_Http_Client_HttpHandlerCategory__" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.Deconstruct(System.String@,System.Int32@,System.Boolean@,System.Boolean@,System.Net.Http.Client.HttpHandlerCategory@)">
+  Deconstruct(out string, out int, out bool, out bool, out HttpHandlerCategory)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Models/GetImageArgs.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Deconstruct(out string requestUri, out int isPollyNum, out bool cache, out bool cacheFirst, out HttpHandlerCategory category)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>requestUri</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>isPollyNum</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>cache</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>cacheFirst</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>category</code> <a class="xref" href="../BD.Common8.Bcl/System.Net.Http.Client.HttpHandlerCategory.html">HttpHandlerCategory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_Equals_" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals*"></a>
 
   <h3 id="BD_Common8_Http_ClientFactory_Models_GetImageArgs_Equals_BD_Common8_Http_ClientFactory_Models_GetImageArgs_" data-uid="BD.Common8.Http.ClientFactory.Models.GetImageArgs.Equals(BD.Common8.Http.ClientFactory.Models.GetImageArgs)">
@@ -403,7 +442,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly bool Equals(GetImageArgs other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(GetImageArgs other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -439,7 +478,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override readonly bool Equals(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -475,7 +514,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override readonly int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
   </div>
 
 
@@ -506,7 +545,7 @@ Struct GetImageArgs  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
   </div>
 
 

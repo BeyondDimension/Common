@@ -180,8 +180,130 @@ Class ImageHttpClientServiceImpl  <a class="header-action link-secondary" title=
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_DefaultRequestUri" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.DefaultRequestUri">
+  DefaultRequestUri
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/Implementation/ImageHttpClientServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>默认请求地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string DefaultRequestUri = &quot;/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageAsync__1_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Func_System_String___0__System_Func_BD_Common8_Http_ClientFactory_Services_Implementation_HttpResponseImageContent___0__System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageAsync``1(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Func{System.String,``0},System.Func{BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent,``0},System.Threading.CancellationToken)">
+  GetImageAsync&lt;T&gt;(GetImageArgs, Func&lt;string, T?&gt;, Func&lt;HttpResponseImageContent, T?&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/Implementation/ImageHttpClientServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过 Get 请求获取网络图片并保存到本地返回路径或流泛型自定义类型转换返回</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;T?&gt; GetImageAsync&lt;T&gt;(GetImageArgs args, Func&lt;string, T?&gt; filePathConvert, Func&lt;HttpResponseImageContent, T?&gt; responseConvert, CancellationToken cancellationToken) where T : notnull</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="BD.Common8.Http.ClientFactory.Models.GetImageArgs.html">GetImageArgs</a></dt>
+    <dd></dd>
+    <dt><code>filePathConvert</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, T&gt;</dt>
+    <dd></dd>
+    <dt><code>responseConvert</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="BD.Common8.Http.ClientFactory.Services.Implementation.HttpResponseImageContent.html">HttpResponseImageContent</a>, T&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageFilePathAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageFilePathAsync_BD_Common8_Http_ClientFactory_Models_GetImageArgs_System_Threading_CancellationToken_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageFilePathAsync(BD.Common8.Http.ClientFactory.Models.GetImageArgs,System.Threading.CancellationToken)">
+  GetImageFilePathAsync(GetImageArgs, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/Implementation/ImageHttpClientServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过 Get 请求获取网络图片并保存到本地返回路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string?&gt; GetImageFilePathAsync(GetImageArgs args, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="BD.Common8.Http.ClientFactory.Models.GetImageArgs.html">GetImageArgs</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
 
 
   <a id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetImageMemoryStreamAsync_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetImageMemoryStreamAsync*"></a>
@@ -196,7 +318,7 @@ Class ImageHttpClientServiceImpl  <a class="header-action link-secondary" title=
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;MemoryStream?&gt; GetImageMemoryStreamAsync(GetImageArgs args, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;Stream?&gt; GetImageMemoryStreamAsync(GetImageArgs args, CancellationToken cancellationToken)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -210,7 +332,46 @@ Class ImageHttpClientServiceImpl  <a class="header-action link-secondary" title=
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.memorystream">MemoryStream</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetOriginalRequestUri_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri*"></a>
+
+  <h3 id="BD_Common8_Http_ClientFactory_Services_Implementation_ImageHttpClientServiceImpl_GetOriginalRequestUri_System_Net_Http_HttpRequestMessage_System_String_" data-uid="BD.Common8.Http.ClientFactory.Services.Implementation.ImageHttpClientServiceImpl.GetOriginalRequestUri(System.Net.Http.HttpRequestMessage,System.String)">
+  GetOriginalRequestUri(HttpRequestMessage, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/Implementation/ImageHttpClientServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从请求消息中获取原始请求地址</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetOriginalRequestUri(HttpRequestMessage request, string defaultRequestUri = &quot;/&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>request</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestmessage">HttpRequestMessage</a></dt>
+    <dd></dd>
+    <dt><code>defaultRequestUri</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
 
