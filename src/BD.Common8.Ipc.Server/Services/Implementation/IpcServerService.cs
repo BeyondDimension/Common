@@ -68,13 +68,13 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
 #pragma warning restore VSTHRD103 // Call async methods when in an async method
             if (CallStopAsync)
             {
-#if APP_STOPWATCH || DEBUG
+#if PROJ_MOBIUS_BACKEND && (APP_STOPWATCH || DEBUG)
                 using AppStopwatch sw_it = new("耗时：{0}ms，WebApplication.StopAsync 正常停止主机");
 #endif
                 await app.StopAsync(new(true));
             }
             {
-#if APP_STOPWATCH || DEBUG
+#if PROJ_MOBIUS_BACKEND && (APP_STOPWATCH || DEBUG)
                 using AppStopwatch sw_it = new("耗时：{0}ms，WebApplication.DisposeAsync 释放主机资源");
 #endif
                 await app.DisposeAsync();
