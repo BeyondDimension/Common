@@ -5,7 +5,7 @@ namespace BD.Common8.UnitTest;
 /// </summary>
 public sealed class WebProxyTest
 {
-#if WINDOWS7_0_OR_GREATER
+#if WINDOWS7_0_OR_GREATER && !NET9_0_OR_GREATER
     /// <summary>
     /// <see cref="DynamicHttpWindowsProxy"/>
     /// </summary>
