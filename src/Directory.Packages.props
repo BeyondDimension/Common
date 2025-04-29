@@ -230,7 +230,7 @@
 	</ItemGroup>
 	<!-- 👇 PeachPie（PHP） -->
 	<ItemGroup>
-		<PackageVersion Include="Peachpie.AspNetCore.Web" Version="1.1.10">
+		<PackageVersion Include="Peachpie.AspNetCore.Web" Version="1.1.11">
 		</PackageVersion>
 		<PackageVersion Include="Peachpie.Library" Version="1.1.10">
 		</PackageVersion>
