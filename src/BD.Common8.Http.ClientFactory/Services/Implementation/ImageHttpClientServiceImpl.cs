@@ -28,7 +28,7 @@ public sealed partial class ImageHttpClientServiceImpl(
             //TODO
         }
 
-        if (!String2.IsHttpUrl(requestUri, httpsOnly: true))
+        if (!String2.IsHttpUrl(requestUri, httpsOnly: false))
         {
             if (requestUri.StartsWith(SchemeFile, StringComparison.OrdinalIgnoreCase))
             {
