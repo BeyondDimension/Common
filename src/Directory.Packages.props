@@ -223,7 +223,7 @@
 		</PackageVersion>
 		<PackageVersion Include="MagicOnion" Version="7.0.1">
 		</PackageVersion>
-		<PackageVersion Include="MagicOnion.Client" Version="7.0.1">
+		<PackageVersion Include="MagicOnion.Client" Version="7.0.3">
 		</PackageVersion>
 		<PackageVersion Include="MagicOnion.Server" Version="7.0.1">
 		</PackageVersion>
