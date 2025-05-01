@@ -234,7 +234,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Peachpie.Library" Version="1.1.10">
 		</PackageVersion>
-		<PackageVersion Include="Peachpie.Library.PDO.PgSQL" Version="1.1.10">
+		<PackageVersion Include="Peachpie.Library.PDO.PgSQL" Version="1.1.11">
 		</PackageVersion>
 		<PackageVersion Include="Peachpie.Runtime" Version="1.1.11">
 		</PackageVersion>
