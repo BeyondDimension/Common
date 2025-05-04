@@ -225,7 +225,7 @@
 		</PackageVersion>
 		<PackageVersion Include="MagicOnion.Client" Version="7.0.3">
 		</PackageVersion>
-		<PackageVersion Include="MagicOnion.Server" Version="7.0.1">
+		<PackageVersion Include="MagicOnion.Server" Version="7.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 PeachPie（PHP） -->
