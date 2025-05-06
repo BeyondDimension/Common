@@ -20066,15 +20066,15 @@ references:
   commentId: T:BD.Common8.Ipc.Services.Implementation.IpcServerService
   fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService
   nameWithType: IpcServerService
-- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  name: IpcServerService(X509Certificate2)
-  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_System_Security_Cryptography_X509Certificates_X509Certificate2_
-  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  name.vb: New(X509Certificate2)
-  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.IpcServerService(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.New(System.Security.Cryptography.X509Certificates.X509Certificate2)
-  nameWithType: IpcServerService.IpcServerService(X509Certificate2)
-  nameWithType.vb: IpcServerService.New(X509Certificate2)
+- uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Func{Microsoft.AspNetCore.Connections.ConnectionContext,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2})
+  name: IpcServerService(Func<ConnectionContext?, string?, X509Certificate2?>?)
+  href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_System_Func_Microsoft_AspNetCore_Connections_ConnectionContext_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2__
+  commentId: M:BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Func{Microsoft.AspNetCore.Connections.ConnectionContext,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2})
+  name.vb: New(Func(Of ConnectionContext, String, X509Certificate2))
+  fullName: BD.Common8.Ipc.Services.Implementation.IpcServerService.IpcServerService(System.Func<Microsoft.AspNetCore.Connections.ConnectionContext?, string?, System.Security.Cryptography.X509Certificates.X509Certificate2?>?)
+  fullName.vb: BD.Common8.Ipc.Services.Implementation.IpcServerService.New(System.Func(Of Microsoft.AspNetCore.Connections.ConnectionContext, String, System.Security.Cryptography.X509Certificates.X509Certificate2))
+  nameWithType: IpcServerService.IpcServerService(Func<ConnectionContext?, string?, X509Certificate2?>?)
+  nameWithType.vb: IpcServerService.New(Func(Of ConnectionContext, String, X509Certificate2))
 - uid: BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor*
   name: IpcServerService
   href: api/BD.Common8.Ipc.Server/BD.Common8.Ipc.Services.Implementation.IpcServerService.html#BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_

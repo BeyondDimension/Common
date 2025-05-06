@@ -150,8 +150,8 @@ Class IpcServerService  <a class="header-action link-secondary" title="View sour
 
   <a id="BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor*"></a>
 
-  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_System_Security_Cryptography_X509Certificates_X509Certificate2_" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)">
-  IpcServerService(X509Certificate2)
+  <h3 id="BD_Common8_Ipc_Services_Implementation_IpcServerService__ctor_System_Func_Microsoft_AspNetCore_Connections_ConnectionContext_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2__" data-uid="BD.Common8.Ipc.Services.Implementation.IpcServerService.#ctor(System.Func{Microsoft.AspNetCore.Connections.ConnectionContext,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2})">
+  IpcServerService(Func&lt;ConnectionContext?, string?, X509Certificate2?&gt;?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Ipc.Server/Services/Implementation/IpcServerService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -159,12 +159,12 @@ Class IpcServerService  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected IpcServerService(X509Certificate2 serverCertificate)</code></pre>
+    <pre><code class="lang-csharp hljs">protected IpcServerService(Func&lt;ConnectionContext?, string?, X509Certificate2?&gt;? serverCertificateSelector)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>serverCertificate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.x509certificate2">X509Certificate2</a></dt>
+    <dt><code>serverCertificateSelector</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.connections.connectioncontext">ConnectionContext</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.x509certificate2">X509Certificate2</a>&gt;</dt>
     <dd></dd>
   </dl>
 
