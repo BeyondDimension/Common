@@ -24,10 +24,10 @@
 		<!-- 👇 Skia https://github.com/AvaloniaUI/Avalonia/blob/master/build/SkiaSharp.props -->
 		<Version_SkiaSharp>3.119.0-preview.1.2</Version_SkiaSharp>
 		<!-- 👇 Avalonia -->
-		<Version_Avalonia>11.3.0-rc1</Version_Avalonia>
-		<Version_Avalonia_Xaml_Behaviors>11.3.0-rc1</Version_Avalonia_Xaml_Behaviors>
-		<Version_Avalonia_Edit>11.2.0</Version_Avalonia_Edit>
-		<Version_AvaloniaEdit_TextMate>11.2.0</Version_AvaloniaEdit_TextMate>
+		<Version_Avalonia>11.3.0</Version_Avalonia>
+		<Version_Avalonia_Xaml_Behaviors>11.3.0</Version_Avalonia_Xaml_Behaviors>
+		<Version_Avalonia_Edit>11.3.0</Version_Avalonia_Edit>
+		<Version_AvaloniaEdit_TextMate>11.3.0</Version_AvaloniaEdit_TextMate>
 		<!-- 👇 Avalonia Third Party -->
 		<Version_Avalonia_FluentUI>2.4.0-preview1</Version_Avalonia_FluentUI>
 		<Version_Avalonia_Markdown>11.0.3-a1</Version_Avalonia_Markdown>
