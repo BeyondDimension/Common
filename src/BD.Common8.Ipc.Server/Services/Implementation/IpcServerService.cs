@@ -5,7 +5,7 @@ using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 namespace BD.Common8.Ipc.Services.Implementation;
 
-public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIpcServerService, IDisposable, IAsyncDisposable
+public abstract class IpcServerService(Func<ConnectionContext?, string?, X509Certificate2?>? serverCertificateSelector) : IIpcServerService, IDisposable, IAsyncDisposable
 {
     /// <summary>
     /// <see cref="IEndpointRouteMapGroup.OnMapGroup"/> 的事件
@@ -215,7 +215,10 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
                 options.ListenLocalhost(Http2Port, listenOptions =>
                 {
                     listenOptions.Protocols = protocols;
-                    listenOptions.UseHttps(serverCertificate);
+                    listenOptions.UseHttps(o =>
+                    {
+                        o.ServerCertificateSelector = serverCertificateSelector;
+                    });
                 });
             }
             if (listenNamedPipe)
@@ -223,7 +226,10 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
                 options.ListenNamedPipe(PipeName, listenOptions =>
                 {
                     listenOptions.Protocols = protocols;
-                    listenOptions.UseHttps(serverCertificate);
+                    listenOptions.UseHttps(o =>
+                    {
+                        o.ServerCertificateSelector = serverCertificateSelector;
+                    });
                 });
             }
             if (ListenUnixSocket)
@@ -235,7 +241,10 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
                 options.ListenUnixSocket(UnixSocketPath, listenOptions =>
                 {
                     listenOptions.Protocols = protocols; // 必须使用 Http2 协议
-                    listenOptions.UseHttps(serverCertificate);
+                    listenOptions.UseHttps(o =>
+                    {
+                        o.ServerCertificateSelector = serverCertificateSelector;
+                    });
                 });
             }
         });
@@ -460,11 +469,6 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
     }
 
     /// <summary>
-    /// Http2 数据协议的服务器证书
-    /// </summary>
-    X509Certificate2 serverCertificate = serverCertificate;
-
-    /// <summary>
     /// 配置日志
     /// </summary>
     /// <param name="builder"></param>
@@ -663,12 +667,6 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
             lock_RunAsync = null!;
         }
 
-        if (serverCertificate != null)
-        {
-            serverCertificate.Dispose();
-            serverCertificate = null!;
-        }
-
         app = null;
 
         DeleteUnixSocketFile();
@@ -695,12 +693,6 @@ public abstract class IpcServerService(X509Certificate2 serverCertificate) : IIp
             {
                 lock_RunAsync.Dispose();
                 lock_RunAsync = null!;
-            }
-
-            if (serverCertificate != null)
-            {
-                serverCertificate.Dispose();
-                serverCertificate = null!;
             }
 
             app = null;
