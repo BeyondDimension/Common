@@ -80,7 +80,7 @@ public static partial class MatchExtensions
             {
                 break;
             }
-            list.Add(new(input.Slice(it.Index, it.Length)));
+            list.Add(new(input.Slice(it.Index, it.Length).Trim()));
         }
         if (list.Count != 0)
         {

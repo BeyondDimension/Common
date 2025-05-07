@@ -419,11 +419,6 @@ file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Pri
                             newResp.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
                         }
 
-                        if (request.RequestUri?.ToString() == "https://picsum.photos/360/202?image=883")
-                        {
-                            //TODO
-                        }
-
                         {
                             var newContent = new RecyclableMemoryStreamContent(ms);
                             foreach (var kvp in resp.Content.Headers)

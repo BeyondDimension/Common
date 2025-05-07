@@ -23,11 +23,6 @@ public sealed partial class ImageHttpClientServiceImpl(
     {
         (string requestUri, int isPollyNum, bool cache, bool cacheFirst, HttpHandlerCategory category) = args;
 
-        if (requestUri == "https://picsum.photos/360/202?image=883")
-        {
-            //TODO
-        }
-
         if (!String2.IsHttpUrl(requestUri, httpsOnly: false))
         {
             if (requestUri.StartsWith(SchemeFile, StringComparison.OrdinalIgnoreCase))
@@ -60,11 +55,6 @@ public sealed partial class ImageHttpClientServiceImpl(
             {
                 return result;
             }
-        }
-
-        if (requestUri == "https://picsum.photos/360/202?image=883")
-        {
-            //TODO
         }
 
         try
@@ -263,10 +253,6 @@ public sealed partial class ImageHttpClientServiceImpl(
         HttpHandlerCategory category,
         CancellationToken cancellationToken = default)
     {
-        if (request.RequestUri?.ToString() == "https://picsum.photos/360/202?image=883")
-        {
-            //TODO
-        }
 
         request.Headers.Accept.ParseAdd(httpPlatformHelper.AcceptImages);
         request.Headers.UserAgent.ParseAdd(httpPlatformHelper.UserAgent);
@@ -277,11 +263,6 @@ public sealed partial class ImageHttpClientServiceImpl(
             HttpCompletionOption.ResponseHeadersRead,
             cancellationToken)
             .ConfigureAwait(false);
-
-        if (request.RequestUri?.ToString() == "https://picsum.photos/360/202?image=883")
-        {
-            //TODO
-        }
 
         if (response.IsSuccessStatusCode)
         {
