@@ -495,44 +495,45 @@ public interface IServerPublishCommand : ICommand
             var tag_with_push_array = domains.SelectMany(domain => proj_datas.ToArray().Select(y => KeyValuePair.Create(y.Key, (y.Value, domain)))).ToArray();
 
             await ForEachAsync(
-                tag_with_push_array,
-                cancellationToken,
-                async (item, cancellationToken) =>
+                  tag_with_push_array,
+                  cancellationToken,
+                  async (item, cancellationToken) =>
             {
                 var proj = item.Key;
                 (_, _, var dockerfileTag, _) = item.Value.Value;
                 var domain = item.Value.domain;
+                var targetTag = $"{domain}/{push_name}/{dockerfileTag}";
 
-                var tagProcess = Process.Start(new ProcessStartInfo
-                {
-                    FileName = "docker",
-                    Arguments = $"tag {dockerfileTag} {domain}/{push_name}/{dockerfileTag}:{tag_ver}",
-                });
-                tagProcess.ThrowIsNull();
-                try
-                {
-                    await tagProcess.WaitForExitAsync(cancellationToken);
-                }
-                finally
-                {
-                    tagProcess.KillEntireProcessTree();
-                }
+                // 推送指定版本
+                await RunDockerCommandAsync($"tag {dockerfileTag} {targetTag}:{tag_ver}", cancellationToken);
+                await RunDockerCommandAsync($"push {targetTag}:{tag_ver}", cancellationToken);
 
-                var pushProcess = Process.Start(new ProcessStartInfo
+                // 如果不是latest，额外推送latest
+                if (tag_ver != "latest")
                 {
-                    FileName = "docker",
-                    Arguments = $"push {domain}/{push_name}/{dockerfileTag}:{tag_ver}",
-                });
-                pushProcess.ThrowIsNull();
-                try
-                {
-                    await pushProcess.WaitForExitAsync(cancellationToken);
-                }
-                finally
-                {
-                    pushProcess.KillEntireProcessTree();
+                    await RunDockerCommandAsync($"tag {dockerfileTag} {targetTag}:latest", cancellationToken);
+                    await RunDockerCommandAsync($"push {targetTag}:latest", cancellationToken);
                 }
             });
+
+            // 提取的公共方法
+            async Task RunDockerCommandAsync(string arguments, CancellationToken cancellationToken)
+            {
+                var process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = "docker",
+                    Arguments = arguments,
+                }).ThrowIsNull();
+
+                try
+                {
+                    await process.WaitForExitAsync(cancellationToken);
+                }
+                finally
+                {
+                    process.KillEntireProcessTree();
+                }
+            }
         }
 
         #endregion
