@@ -253,7 +253,6 @@ public sealed partial class ImageHttpClientServiceImpl(
         HttpHandlerCategory category,
         CancellationToken cancellationToken = default)
     {
-
         request.Headers.Accept.ParseAdd(httpPlatformHelper.AcceptImages);
         request.Headers.UserAgent.ParseAdd(httpPlatformHelper.UserAgent);
 
