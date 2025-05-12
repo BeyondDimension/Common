@@ -365,7 +365,7 @@
 	<ItemGroup>
 		<PackageVersion Include="CsvHelper" Version="33.0.1">
 		</PackageVersion>
-		<PackageVersion Include="NPOI" Version="2.7.2">
+		<PackageVersion Include="NPOI" Version="2.7.3">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Web -->
