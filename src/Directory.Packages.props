@@ -170,7 +170,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.1.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.2.0">
+		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.4.0">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.1.0">
 		</PackageVersion>
@@ -291,7 +291,7 @@
 		<!-- 👇 源生成器与 Roslyn -->
 		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0">
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0">
 		</PackageVersion>
 		<!-- 👇 Code Style（代码样式） -->
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
@@ -429,13 +429,13 @@
 		</PackageVersion>
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.0">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.4">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf.Tools" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="9.0.0">
+		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="9.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Resilience & Transient Fault Handling（重试） -->
@@ -491,7 +491,7 @@
 	</ItemGroup>
 	<!-- 👇 .NET BCL -->
 	<ItemGroup>
-		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="9.0.0">
+		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="9.0.4">
 		</PackageVersion>
 		<PackageVersion Include="System.Diagnostics.EventLog" Version="9.0.4">
 		</PackageVersion>
@@ -503,7 +503,7 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Linq.Async" Version="6.0.1">
 		</PackageVersion>
-		<PackageVersion Include="System.Management" Version="9.0.0">
+		<PackageVersion Include="System.Management" Version="9.0.4">
 		</PackageVersion>
 		<PackageVersion Include="System.Memory" Version="4.6.3">
 		</PackageVersion>
@@ -519,7 +519,7 @@
 		</PackageVersion>
 		<PackageVersion Include="System.ValueTuple" Version="4.6.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="9.0.0">
+		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="9.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.Extensions.* -->
@@ -794,7 +794,7 @@
 	</ItemGroup>
 	<!-- 👇 Composition（组件扩展业务插件） -->
 	<ItemGroup>
-		<PackageVersion Include="System.Composition" Version="9.0.0">
+		<PackageVersion Include="System.Composition" Version="9.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Markdown -->
