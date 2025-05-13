@@ -156,29 +156,29 @@
 	</ItemGroup>
 	<!-- 👇 .NET Aspire（阿斯拜尔） -->
 	<ItemGroup>
-		<PackageVersion Include="Aspire.Hosting.AppHost" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.AppHost" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.Redis" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.Redis" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.Testing" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.Testing" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql" Version="9.1.0">
+		<PackageVersion Include="Aspire.Npgsql" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0">
+		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.1.0">
+		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.2.1">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.4.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="9.2.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.2.1">
 		</PackageVersion>
 		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.1">
 		</PackageVersion>
