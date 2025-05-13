@@ -507,7 +507,7 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Memory" Version="4.6.3">
 		</PackageVersion>
-		<PackageVersion Include="System.Net.Http.Json" Version="9.0.4">
+		<PackageVersion Include="System.Net.Http.Json" Version="9.0.5">
 		</PackageVersion>
 		<PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="9.0.4">
 		</PackageVersion>
