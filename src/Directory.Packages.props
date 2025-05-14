@@ -834,7 +834,7 @@
 	</ItemGroup>
 	<!-- 👇 TencentCloudSDK -->
 	<ItemGroup>
-		<PackageVersion Include="TencentCloudSDK.Dnspod" Version="3.0.1232" />
+		<PackageVersion Include="TencentCloudSDK.Dnspod" Version="3.0.1238" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageVersion Include="Tmds.DBus" Version="0.21.2" />
