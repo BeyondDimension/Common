@@ -243,7 +243,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Peachpie.Runtime" Version="1.1.11">
 		</PackageVersion>
-		<PackageVersion Include="PeachPied.WordPress.AspNetCore" Version="6.6.2">
+		<PackageVersion Include="PeachPied.WordPress.AspNetCore" Version="6.7.1">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 HashAlgorithm（哈希算法） -->
