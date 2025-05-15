@@ -213,6 +213,11 @@
 		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.145">
 		</PackageVersion>
 	</ItemGroup>
+	<!-- 👇 MinIO SDK -->
+	<ItemGroup>
+		<PackageVersion Include="Minio" Version="6.0.4">
+		</PackageVersion>
+	</ItemGroup>
 	<!-- 👇 Grpc -->
 	<ItemGroup>
 		<PackageVersion Include="Grpc.AspNetCore" Version="2.67.0">
