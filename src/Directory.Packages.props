@@ -381,7 +381,7 @@
 		<PackageVersion Include="HtmlAgilityPack" Version="1.12.1">
 		</PackageVersion>
 		<!-- 👇 WebView2 -->
-		<PackageVersion Include="WebView2.NativeAssets.Win32" Version="1.0.1518.46">
+		<PackageVersion Include="WebView2.NativeAssets.Win32" Version="1.0.3240.44">
 		</PackageVersion>
 		<!-- 👇 浏览器测试框架 -->
 		<PackageVersion Include="Microsoft.Playwright" Version="1.52.0">
