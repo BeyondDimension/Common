@@ -11,11 +11,8 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using System;
-using System.IO;
 using OBS.Internal.Log;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography;
@@ -24,17 +21,30 @@ using OBS.Model;
 
 namespace OBS.Internal
 {
-    internal static class CommonUtil
+    internal static partial class CommonUtil
     {
 
         private static readonly IDictionary<Type, MethodInfo> TransMethodsHolder = new Dictionary<Type, MethodInfo>();
-        private static readonly object TransMethodsHolderLock = new object();
+#if NET9_0_OR_GREATER
+        private static readonly global::System.Threading.Lock TransMethodsHolderLock = new();
+#else
+        private static readonly object TransMethodsHolderLock = new();
+#endif
 
         private static readonly IDictionary<Type, MethodInfo> ParseMethodsHolder = new Dictionary<Type, MethodInfo>();
-        private static readonly object ParseMethodsHolderLock = new object();
+#if NET9_0_OR_GREATER
+        private static readonly global::System.Threading.Lock ParseMethodsHolderLock = new();
+#else
+        private static readonly object ParseMethodsHolderLock = new();
+#endif
 
-        private static readonly Regex ChinesePattern = new Regex("[\u4e00-\u9fa5]");
-        private static readonly Regex IPPattern = new Regex(@"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$");
+#if NETFRAMEWORK
+        private static readonly Regex ChinesePattern = new(MyRegexPattern);
+        private static readonly Regex IPPattern = new(MyRegex1Pattern);
+#else
+        private static readonly Regex ChinesePattern = MyRegex();
+        private static readonly Regex IPPattern = MyRegex1();
+#endif
 
         public static void CloseIDisposable(IDisposable? disposable)
         {
@@ -60,7 +70,7 @@ namespace OBS.Internal
             TransMethodsHolder.TryGetValue(requestType, out info);
             if (info == null)
             {
-                lock(TransMethodsHolderLock)
+                lock (TransMethodsHolderLock)
                 {
                     TransMethodsHolder.TryGetValue(requestType, out info);
                     if (info == null)
@@ -118,7 +128,7 @@ namespace OBS.Internal
 
                 if (isValid)
                 {
-                    if(key.StartsWith(headerMetaPrefix, StringComparison.OrdinalIgnoreCase))
+                    if (key.StartsWith(headerMetaPrefix, StringComparison.OrdinalIgnoreCase))
                     {
                         key = CommonUtil.UrlEncode(key, true);
                     }
@@ -157,7 +167,7 @@ namespace OBS.Internal
             {
                 throw new ArgumentNullException("Endpoint is null");
             }
-            UriBuilder ub = new UriBuilder(endpoint);
+            UriBuilder ub = new(endpoint);
 
             return IPPattern.IsMatch(ub.Host);
         }
@@ -218,7 +228,7 @@ namespace OBS.Internal
 
         public static string ConvertHeadersToString(IDictionary<String, String> headers)
         {
-            StringBuilder headerString = new StringBuilder();
+            StringBuilder headerString = new();
             headerString.Append('{');
             if (headers != null)
             {
@@ -237,14 +247,14 @@ namespace OBS.Internal
         {
             byte[] byteToSign = Encoding.UTF8.GetBytes(toSign);
             byte[] byteKey = Encoding.UTF8.GetBytes(key);
-            HMACSHA1 hmac = new HMACSHA1(byteKey);
+            HMACSHA1 hmac = new(byteKey);
             return hmac.ComputeHash(byteToSign);
         }
 
         public static byte[] HmacSha256(byte[] key, string toSign)
         {
             byte[] byteToSign = Encoding.UTF8.GetBytes(toSign);
-            HMACSHA256 hmac = new HMACSHA256(key);
+            HMACSHA256 hmac = new(key);
             return hmac.ComputeHash(byteToSign);
         }
 
@@ -252,13 +262,13 @@ namespace OBS.Internal
         {
             byte[] byteToSign = Encoding.UTF8.GetBytes(toSign);
             byte[] byteKey = Encoding.UTF8.GetBytes(key);
-            HMACSHA256 hmac = new HMACSHA256(byteKey);
+            HMACSHA256 hmac = new(byteKey);
             return hmac.ComputeHash(byteToSign);
         }
 
         public static string ToHex(byte[] data)
         {
-            StringBuilder sbBytes = new StringBuilder(data.Length * 2);
+            StringBuilder sbBytes = new(data.Length * 2);
             foreach (byte b in data)
             {
                 sbBytes.AppendFormat("{0:x2}", b);
@@ -294,16 +304,16 @@ namespace OBS.Internal
 
         public static string Base64Md5(Stream stream)
         {
-            if(stream == null)
+            if (stream == null)
             {
                 return Base64Md5(Encoding.UTF8.GetBytes(""));
             }
-            return Convert.ToBase64String(Md5(stream)); 
+            return Convert.ToBase64String(Md5(stream));
         }
 
         public static string ConvertParamsToCanonicalQueryString(List<KeyValuePair<string, string>> kvlist)
         {
-            StringBuilder queryString = new StringBuilder();
+            StringBuilder queryString = new();
             if (kvlist != null && kvlist.Count > 0)
             {
                 int cnt = kvlist.Count;
@@ -311,7 +321,7 @@ namespace OBS.Internal
                 foreach (KeyValuePair<string, string> p in kvlist)
                 {
                     queryString.Append(UrlEncode(p.Key, Constants.DefaultEncoding, "/")).Append('=').Append(UrlEncode(p.Value ?? "", Constants.DefaultEncoding));
-                    if(index++ != cnt - 1)
+                    if (index++ != cnt - 1)
                     {
                         queryString.Append('&');
                     }
@@ -323,7 +333,7 @@ namespace OBS.Internal
 
         public static string ConvertParamsToString(IDictionary<string, string> parameters)
         {
-            StringBuilder queryString = new StringBuilder();
+            StringBuilder queryString = new();
             if (parameters != null && parameters.Count > 0)
             {
 
@@ -358,7 +368,7 @@ namespace OBS.Internal
         {
             if (chineseOnly)
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 foreach (char c in uriToEncode)
                 {
                     if (ChinesePattern.IsMatch(c.ToString()))
@@ -401,7 +411,7 @@ namespace OBS.Internal
             }
 
             const char escapeFlag = '%';
-            StringBuilder encodedUri = new StringBuilder(uriToEncode.Length * 2);
+            StringBuilder encodedUri = new(uriToEncode.Length * 2);
             byte[] bytes = Encoding.GetEncoding(charset).GetBytes(uriToEncode);
             foreach (byte b in bytes)
             {
@@ -409,7 +419,8 @@ namespace OBS.Internal
                 if (Constants.AllowedInUrl.IndexOf(ch) != -1)
                 {
                     encodedUri.Append(ch);
-                }else if(safe != null && safe.IndexOf(ch) != -1)
+                }
+                else if (safe != null && safe.IndexOf(ch) != -1)
                 {
                     encodedUri.Append(ch);
                 }
@@ -439,7 +450,8 @@ namespace OBS.Internal
             try
             {
                 return string.IsNullOrEmpty(value) ? (int?)null : Convert.ToInt32(value);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 if (LoggerMgr.IsWarnEnabled)
                 {
@@ -493,5 +505,15 @@ namespace OBS.Internal
             return ParseToDateTime(value, Constants.ISO8601DateFormat, Constants.ISO8601DateFormatNoMS);
         }
 
+        const string MyRegexPattern = "[\u4e00-\u9fa5]";
+        const string MyRegex1Pattern = @"^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$";
+
+#if !NETFRAMEWORK
+        [GeneratedRegex(MyRegexPattern)]
+        private static partial Regex MyRegex();
+
+        [GeneratedRegex(MyRegex1Pattern)]
+        private static partial Regex MyRegex1();
+#endif
     }
 }

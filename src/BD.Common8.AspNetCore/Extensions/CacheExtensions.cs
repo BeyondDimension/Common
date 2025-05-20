@@ -1,3 +1,7 @@
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>
@@ -5,8 +9,10 @@ namespace BD.Common8.AspNetCore.Extensions;
 /// </summary>
 public static partial class CacheExtensions
 {
-    #region IMemoryCache
+}
 
+partial class CacheExtensions // IMemoryCache 内存中缓存
+{
     /// <summary>
     /// 从缓存中获取指定键的值
     /// </summary>
@@ -20,11 +26,10 @@ public static partial class CacheExtensions
     /// <typeparam name="T"></typeparam>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Set<T>(this IMemoryCache cache, object key, T value, int minutes) where T : notnull => cache.Set(key, value, TimeSpan.FromMinutes(minutes));
+}
 
-    #endregion
-
-    #region IDistributedCache & MessagePack
-
+partial class CacheExtensions // 分布式缓存 IDistributedCache & MessagePack
+{
     [Obsolete("仅用于旧业务中需要兼容的部分，对于新的功能需要使用 MemoryPack 实现的 V2 版本")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<T?> GetAsync<T>(this IDistributedCache cache, string key, CancellationToken cancellationToken = default) where T : notnull
@@ -52,11 +57,10 @@ public static partial class CacheExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task SetAsync<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
         => cache.SetAsync(key, value, TimeSpan.FromMinutes(minutes), cancellationToken);
+}
 
-    #endregion
-
-    #region IDistributedCache & MemoryPack
-
+partial class CacheExtensions // 分布式缓存 IDistributedCache & MemoryPack
+{
     /// <summary>
     /// 异步从缓存中获取指定键的值
     /// </summary>
@@ -118,6 +122,4 @@ public static partial class CacheExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Task SetV2Async<T>(this IDistributedCache cache, string key, T value, int minutes, CancellationToken cancellationToken = default) where T : notnull
         => cache.SetV2Async(key, value, TimeSpan.FromMinutes(minutes), cancellationToken);
-
-    #endregion
 }

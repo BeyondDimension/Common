@@ -1,3 +1,7 @@
+using BD.Common8.Pinyin.Enums;
+using BD.Common8.Pinyin.Helpers;
+using Microsoft.International.Converters.PinYinConverter;
+
 namespace BD.Common8.Pinyin.Services.Implementation;
 
 /// <summary>
@@ -49,5 +53,5 @@ sealed class ChnCharInfoPinyinImpl : IPinyin
     }
 
     /// <inheritdoc/>
-    string[] IPinyin.GetPinyinArray(string s) => GetPinyins(s).ToArray();
+    string[] IPinyin.GetPinyinArray(string s) => [.. GetPinyins(s)];
 }

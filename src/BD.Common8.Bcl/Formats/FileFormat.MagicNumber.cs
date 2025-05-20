@@ -86,13 +86,13 @@ partial class FileFormat
             if (stream.Length < length)
             {
                 var buffer = new byte[stream.Length];
-                stream.Read(buffer, 0, buffer.Length);
+                stream.ReadExactly(buffer, 0, buffer.Length);
                 result = buffer;
             }
             else
             {
                 var buffer = new byte[length];
-                stream.Read(buffer, 0, buffer.Length);
+                stream.ReadExactly(buffer, 0, buffer.Length);
                 result = buffer;
             }
             if (resetPosition) stream.Position = currentPosition;

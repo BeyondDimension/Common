@@ -1,3 +1,7 @@
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace System;
 
 /// <inheritdoc cref="Enum"/>
@@ -43,7 +47,7 @@ public static partial class Enum2
 #endif
     public static string[] GetAllStrings(Type enumType)
     {
-        return GetAllStringsCore(enumType).ToArray();
+        return [.. GetAllStringsCore(enumType)];
         static IEnumerable<string> GetAllStringsCore(Type enumType)
         {
             var array = Enum.GetValues(enumType);

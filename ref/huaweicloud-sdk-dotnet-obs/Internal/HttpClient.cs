@@ -15,13 +15,9 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using OBS.Internal.Log;
-using System;
-using System.Threading;
-using System.IO;
 using OBS.Internal.Auth;
 using System.Reflection;
 using OBS.Model;
-using System.Collections.Generic;
 
 namespace OBS.Internal
 {
@@ -40,7 +36,7 @@ namespace OBS.Internal
         }
 
 
-        internal Signer GetSigner(HttpContext context)
+        internal static Signer GetSigner(HttpContext context)
         {
             switch (context.ChooseAuthType)
             {
@@ -53,7 +49,7 @@ namespace OBS.Internal
             }
         }
 
-        internal IHeaders GetIHeaders(HttpContext context)
+        internal static IHeaders GetIHeaders(HttpContext context)
         {
             switch (context.ChooseAuthType)
             {
@@ -65,11 +61,11 @@ namespace OBS.Internal
             }
         }
 
-        internal HttpResponse DoRequest(HttpRequest httpRequest, HttpContext context)
+        internal static HttpResponse DoRequest(HttpRequest httpRequest, HttpContext context)
         {
             if (!context.SkipAuth)
             {
-                GetSigner(context).DoAuth(httpRequest, context, GetIHeaders(context));
+                HttpClient.GetSigner(context).DoAuth(httpRequest, context, HttpClient.GetIHeaders(context));
             }
 
             if (!context.ObsConfig.KeepAlive && !httpRequest.Headers.ContainsKey(Constants.CommonHeaders.Connection))
@@ -93,8 +89,7 @@ namespace OBS.Internal
             }
             catch (WebException ex)
             {
-                HttpWebResponse? response = ex.Response as HttpWebResponse;
-                if (response == null)
+                if (ex.Response is not HttpWebResponse response)
                 {
                     request.Abort();
                     throw ex;
@@ -118,9 +113,9 @@ namespace OBS.Internal
             }
         }
 
-        internal void PrepareRequestAndContext(HttpRequest request, HttpContext context)
+        internal static void PrepareRequestAndContext(HttpRequest request, HttpContext context)
         {
-            IHeaders iheaders = GetIHeaders(context);
+            IHeaders iheaders = HttpClient.GetIHeaders(context);
             CommonUtil.RenameHeaders(request, iheaders.HeaderPrefix(), iheaders.HeaderMetaPrefix());
 
             if (LoggerMgr.IsDebugEnabled)
@@ -132,7 +127,7 @@ namespace OBS.Internal
 
         internal HttpResponse PerformRequest(HttpRequest request, HttpContext context)
         {
-            PrepareRequestAndContext(request, context);
+            HttpClient.PrepareRequestAndContext(request, context);
             HttpResponse response = PerformRequest(request, context, 0);
             foreach (HttpResponseHandler handler in context.Handlers)
             {
@@ -151,9 +146,9 @@ namespace OBS.Internal
                 {
                     originPos = request.Content.Position;
                 }
-                response = DoRequest(request, context);
+                response = HttpClient.DoRequest(request, context);
 
-                new MergeResponseHeaderHandler(GetIHeaders(context)).Handle(response);
+                new MergeResponseHeaderHandler(HttpClient.GetIHeaders(context)).Handle(response);
 
                 int statusCode = Convert.ToInt32(response.StatusCode);
 
@@ -166,9 +161,8 @@ namespace OBS.Internal
 
                 if (statusCode >= 300 && statusCode < 400 && statusCode != 304)
                 {
-                    if (response.Headers.ContainsKey(Constants.CommonHeaders.Location))
+                    if (response.Headers.TryGetValue(Constants.CommonHeaders.Location, out string? location))
                     {
-                        string location = response.Headers[Constants.CommonHeaders.Location];
                         if (!string.IsNullOrEmpty(location))
                         {
                             if (location.IndexOf("?") < 0)
@@ -181,31 +175,31 @@ namespace OBS.Internal
                             }
                             context.RedirectLocation = location;
                             retryCount--;
-                            if (ShouldRetry(request, null, retryCount, maxErrorRetry))
+                            if (HttpClient.ShouldRetry(request, null, retryCount, maxErrorRetry))
                             {
-                                PrepareRetry(request, response, retryCount, originPos, false);
+                                HttpClient.PrepareRetry(request, response, retryCount, originPos, false);
                                 return PerformRequest(request, context, ++retryCount);
                             }
                             else if (retryCount > maxErrorRetry)
                             {
-                                throw ParseObsException(response, "Exceeded 3xx redirect limit", context);
+                                throw HttpClient.ParseObsException(response, "Exceeded 3xx redirect limit", context);
                             }
                         }
                     }
-                    throw ParseObsException(response, "Try to redirect, but location is null!", context);
+                    throw HttpClient.ParseObsException(response, "Try to redirect, but location is null!", context);
                 }
                 else if ((statusCode >= 400 && statusCode < 500) || statusCode == 304)
                 {
-                    ObsException exception = ParseObsException(response, "Request error", context);
+                    ObsException exception = HttpClient.ParseObsException(response, "Request error", context);
                     if (Constants.RequestTimeout.Equals(exception.ErrorCode))
                     {
-                        if (ShouldRetry(request, null, retryCount, maxErrorRetry))
+                        if (HttpClient.ShouldRetry(request, null, retryCount, maxErrorRetry))
                         {
                             if (LoggerMgr.IsWarnEnabled)
                             {
                                 LoggerMgr.Warn("Retrying connection that failed with RequestTimeout error");
                             }
-                            PrepareRetry(request, response, retryCount, originPos, false);
+                            HttpClient.PrepareRetry(request, response, retryCount, originPos, false);
                             return PerformRequest(request, context, ++retryCount);
                         }
                         else if (retryCount > maxErrorRetry && LoggerMgr.IsErrorEnabled)
@@ -217,16 +211,16 @@ namespace OBS.Internal
                 }
                 else if (statusCode >= 500)
                 {
-                    if (ShouldRetry(request, null, retryCount, maxErrorRetry))
+                    if (HttpClient.ShouldRetry(request, null, retryCount, maxErrorRetry))
                     {
-                        PrepareRetry(request, response, retryCount, originPos, true);
+                        HttpClient.PrepareRetry(request, response, retryCount, originPos, true);
                         return PerformRequest(request, context, ++retryCount);
                     }
                     else if (retryCount > maxErrorRetry && LoggerMgr.IsErrorEnabled)
                     {
                         LoggerMgr.Error("Encountered too many 5xx errors");
                     }
-                    throw ParseObsException(response, "Request error", context);
+                    throw HttpClient.ParseObsException(response, "Request error", context);
                 }
                 return response;
             }
@@ -244,9 +238,9 @@ namespace OBS.Internal
                     }
                     else
                     {
-                        if (ShouldRetry(request, ex, retryCount, context.ObsConfig.MaxErrorRetry))
+                        if (HttpClient.ShouldRetry(request, ex, retryCount, context.ObsConfig.MaxErrorRetry))
                         {
-                            PrepareRetry(request, response, retryCount, originPos, true);
+                            HttpClient.PrepareRetry(request, response, retryCount, originPos, true);
                             return PerformRequest(request, context, ++retryCount);
                         }
                         else if (retryCount > context.ObsConfig.MaxErrorRetry && LoggerMgr.IsWarnEnabled)
@@ -257,7 +251,7 @@ namespace OBS.Internal
                         {
                             LoggerMgr.Error("Rethrowing as a ObsException error in PerformRequest", ex);
                         }
-                        throw ParseObsException(response, ex.Message, ex, context);
+                        throw HttpClient.ParseObsException(response, ex.Message, ex, context);
                     }
                 }
                 finally
@@ -267,7 +261,7 @@ namespace OBS.Internal
             }
         }
 
-        private void PrepareRetry(HttpRequest request, HttpResponse response, int retryCount, long originPos, bool sleep)
+        private static void PrepareRetry(HttpRequest request, HttpResponse response, int retryCount, long originPos, bool sleep)
         {
             CommonUtil.CloseIDisposable(response);
 
@@ -289,14 +283,14 @@ namespace OBS.Internal
                 Thread.Sleep(delay);
             }
         }
-        private ObsException ParseObsException(HttpResponse response, string message, HttpContext context)
+        private static ObsException ParseObsException(HttpResponse response, string message, HttpContext context)
         {
-            return ParseObsException(response, message, null, context);
+            return HttpClient.ParseObsException(response, message, null, context);
         }
 
-        private ObsException ParseObsException(HttpResponse response, string message, Exception ex, HttpContext context)
+        private static ObsException ParseObsException(HttpResponse response, string message, Exception ex, HttpContext context)
         {
-            ObsException exception = new ObsException(message, ex);
+            ObsException exception = new(message, ex);
             if (response != null)
             {
                 exception.StatusCode = response.StatusCode;
@@ -329,11 +323,11 @@ namespace OBS.Internal
                     }
                 }
 
-                if (response.Headers.TryGetValue(GetIHeaders(context).RequestId2Header(), out temp))
+                if (response.Headers.TryGetValue(HttpClient.GetIHeaders(context).RequestId2Header(), out temp))
                 {
                     exception.ObsId2 = temp;
                 }
-                if (string.IsNullOrEmpty(exception.RequestId) && response.Headers.TryGetValue(GetIHeaders(context).RequestIdHeader(), out temp))
+                if (string.IsNullOrEmpty(exception.RequestId) && response.Headers.TryGetValue(HttpClient.GetIHeaders(context).RequestIdHeader(), out temp))
                 {
                     exception.RequestId = temp;
                 }
@@ -344,7 +338,7 @@ namespace OBS.Internal
         }
 
 
-        private bool ShouldRetry(HttpRequest request, Exception ex, int retryCount, int maxErrorRetry)
+        private static bool ShouldRetry(HttpRequest request, Exception ex, int retryCount, int maxErrorRetry)
         {
             if (retryCount >= maxErrorRetry || !request.IsRepeatable)
             {
@@ -366,9 +360,9 @@ namespace OBS.Internal
             data ??= new MemoryStream();
 
             long userSetContentLength = -1;
-            if (httpRequest.Headers.ContainsKey(Constants.CommonHeaders.ContentLength))
+            if (httpRequest.Headers.TryGetValue(Constants.CommonHeaders.ContentLength, out string? value))
             {
-                userSetContentLength = long.Parse(httpRequest.Headers[Constants.CommonHeaders.ContentLength]);
+                userSetContentLength = long.Parse(value);
             }
 
             if (userSetContentLength >= 0)
@@ -400,9 +394,9 @@ namespace OBS.Internal
 
     internal static class HttpWebRequestFactory
     {
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
         private static volatile MethodInfo _addHeaderPublic;
-        private static string AddHeaderPublicMethodName = "Add";
+        private static readonly string AddHeaderPublicMethodName = "Add";
 
 
         public static bool ValidateCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)

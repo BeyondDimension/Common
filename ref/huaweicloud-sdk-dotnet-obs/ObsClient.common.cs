@@ -15,12 +15,14 @@ using OBS.Internal;
 using OBS.Internal.Log;
 using OBS.Internal.Negotiation;
 using OBS.Model;
+using System.Net;
+using System.Reflection;
+using System.Text;
 using OBSHttpClient = OBS.Internal.HttpClient;
 
 namespace OBS;
 
 #pragma warning disable CS0612 // 类型或成员已过时
-#pragma warning disable SA1312 // Variable names should begin with lower-case letter
 
 /// <summary>
 /// Access an instance of ObsClient.
@@ -75,7 +77,7 @@ public partial class ObsClient
     /// <param name="endpoint">OBS endpoint</param>
     public ObsClient(string accessKeyId, string secretAccessKey, string securityToken, string endpoint)
     {
-        ObsConfig obsConfig = new ObsConfig()
+        ObsConfig obsConfig = new()
         {
             Endpoint = endpoint,
         };
@@ -84,21 +86,21 @@ public partial class ObsClient
 
     internal ObsConfig ObsConfig { get; set; } = null!;
 
-    internal IParser GetIParser(HttpContext context)
+    internal static IParser GetIParser(HttpContext context)
     {
         return context.ChooseAuthType switch
         {
-            AuthTypeEnum.V2 or AuthTypeEnum.V4 => V2Parser.GetInstance(httpClient.GetIHeaders(context)),
-            _ => ObsParser.GetInstance(httpClient.GetIHeaders(context)),
+            AuthTypeEnum.V2 or AuthTypeEnum.V4 => V2Parser.GetInstance(OBSHttpClient.GetIHeaders(context)),
+            _ => ObsParser.GetInstance(OBSHttpClient.GetIHeaders(context)),
         };
     }
 
-    internal IConvertor GetIConvertor(HttpContext context)
+    internal static IConvertor GetIConvertor(HttpContext context)
     {
         return context.ChooseAuthType switch
         {
-            AuthTypeEnum.V2 or AuthTypeEnum.V4 => V2Convertor.GetInstance(httpClient.GetIHeaders(context)),
-            _ => ObsConvertor.GetInstance(httpClient.GetIHeaders(context)),
+            AuthTypeEnum.V2 or AuthTypeEnum.V4 => V2Convertor.GetInstance(OBSHttpClient.GetIHeaders(context)),
+            _ => ObsConvertor.GetInstance(OBSHttpClient.GetIHeaders(context)),
         };
     }
 
@@ -109,7 +111,7 @@ public partial class ObsClient
             throw new ObsException(Constants.InvalidEndpointMessage, ErrorType.Sender, Constants.InvalidEndpoint, "");
         }
 
-        SecurityProvider sp = new SecurityProvider
+        SecurityProvider sp = new()
         {
             Ak = accessKeyId,
             Sk = secretAccessKey,
@@ -178,7 +180,7 @@ public partial class ObsClient
     internal AuthTypeEnum? NegotiateAuthType(string? bucketName, bool async)
     {
         AuthTypeEnum? authType = AuthTypeEnum.V2;
-        GetApiVersionRequest request = new GetApiVersionRequest
+        GetApiVersionRequest request = new()
         {
             BucketName = bucketName,
         };
@@ -220,7 +222,7 @@ public partial class ObsClient
             throw new ObsException(Constants.NullRequestMessage, ErrorType.Sender, Constants.NullRequest, "");
         }
 
-        HttpContext context = new HttpContext(sp, ObsConfig);
+        HttpContext context = new(sp, ObsConfig);
 
         if (request is GetApiVersionRequest)
         {
@@ -286,10 +288,9 @@ public partial class ObsClient
 
     private HttpRequest PrepareHttpRequest<T>(T request, HttpContext context) where T : ObsWebServiceRequest
     {
-        IConvertor iconvertor = GetIConvertor(context);
+        IConvertor iconvertor = ObsClient.GetIConvertor(context);
         MethodInfo info = CommonUtil.GetTransMethodInfo(request.GetType(), iconvertor);
-        HttpRequest? httpRequest = info.Invoke(iconvertor, [request]) as HttpRequest;
-        if (httpRequest == null)
+        if (info.Invoke(iconvertor, [request]) is not HttpRequest httpRequest)
         {
             throw new ObsException(string.Format("Cannot trans request:{0} to HttpRequest", request.GetType()), ErrorType.Sender, "Trans error", "");
         }
@@ -298,13 +299,13 @@ public partial class ObsClient
         return httpRequest;
     }
 
-    private K PrepareResponse<T, K>(T request, HttpContext context, HttpRequest httpRequest, HttpResponse httpResponse)
+    private static K PrepareResponse<T, K>(T request, HttpContext context, HttpRequest httpRequest, HttpResponse httpResponse)
         where T : ObsWebServiceRequest
         where K : ObsWebServiceResponse
     {
         K? response;
         httpResponse.RequestUrl = httpRequest.GetUrlWithoutQuerys();
-        IParser iparser = GetIParser(context);
+        IParser iparser = ObsClient.GetIParser(context);
         Type responseType = typeof(K);
         MethodInfo info = CommonUtil.GetParseMethodInfo(responseType, iparser);
         if (info != null)
@@ -320,7 +321,7 @@ public partial class ObsClient
         {
             throw new ObsException(string.Format("Cannot parse HttpResponse to {0}", responseType), ErrorType.Sender, "Parse error", "");
         }
-        CommonParser.ParseObsWebServiceResponse(httpResponse, response, httpClient.GetIHeaders(context));
+        CommonParser.ParseObsWebServiceResponse(httpResponse, response, OBSHttpClient.GetIHeaders(context));
         response.HandleObsWebServiceRequest(request);
         response.OriginalResponse = httpResponse;
         return response;
@@ -337,7 +338,7 @@ public partial class ObsClient
         {
             httpRequest = PrepareHttpRequest(request, context);
             HttpResponse httpResponse = httpClient.PerformRequest(httpRequest, context);
-            return PrepareResponse<T, K>(request, context, httpRequest, httpResponse);
+            return ObsClient.PrepareResponse<T, K>(request, context, httpRequest, httpResponse);
         }
         catch (ObsException ex)
         {
@@ -354,7 +355,7 @@ public partial class ObsClient
                         httpRequest.Content.Seek(0, SeekOrigin.Begin);
                     }
                     context.AuthType = AuthTypeEnum.V2;
-                    return PrepareResponse<T, K>(request, context, httpRequest, httpClient.PerformRequest(httpRequest, context));
+                    return ObsClient.PrepareResponse<T, K>(request, context, httpRequest, httpClient.PerformRequest(httpRequest, context));
                 }
                 catch (ObsException _ex)
                 {
@@ -390,10 +391,7 @@ public partial class ObsClient
         }
         finally
         {
-            if (request != null)
-            {
-                request.Sender = null!;
-            }
+            request?.Sender = null!;
 
             CommonUtil.CloseIDisposable(httpRequest);
 

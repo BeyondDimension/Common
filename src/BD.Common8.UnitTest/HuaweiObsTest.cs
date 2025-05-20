@@ -1,6 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using OBS;
 using OBS.Model;
+using System.Extensions;
+using System.Net;
+using System.Security.Cryptography;
 
 namespace BD.Common8.UnitTest;
 
@@ -27,7 +30,7 @@ public sealed class HuaweiObsTest
         location ??= new Uri(_obsClient.ObsConfig.Endpoint!).Host?.Replace("obs.", string.Empty).Split('.')[0] ?? string.Empty;
     }
 
-    [Ignore("Bucket_Test ignore")]
+    [global::NUnit.Framework.Ignore("Bucket_Test ignore")]
     public void Bucket_Test()
     {
         // check is exists
@@ -49,7 +52,7 @@ public sealed class HuaweiObsTest
         Assert.That(exists, Is.EqualTo(false));
     }
 
-    [Ignore("UpLoad_Test ignore")]
+    [global::NUnit.Framework.Ignore("UpLoad_Test ignore")]
     public void UpLoad_Test()
     {
         var filePath = @"C:\xxx\xxx\hello.png";
@@ -97,7 +100,7 @@ public sealed class HuaweiObsTest
         Assert.That(exists, Is.EqualTo(false));
     }
 
-    private void CreateBucket()
+    void CreateBucket()
     {
         var createBucketRequest = new CreateBucketRequest()
         {

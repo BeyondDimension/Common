@@ -11,17 +11,14 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
 using OBS.Model;
 using System.Xml;
-using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
 
 namespace OBS.Internal
 {
-    internal class V2Parser : IParser
+    internal partial class V2Parser : IParser
     {
 
         protected IHeaders iheaders;
@@ -38,47 +35,47 @@ namespace OBS.Internal
 
         protected virtual StorageClassEnum? ParseStorageClass(string value)
         {
-            return EnumAdaptor.V2StorageClassEnumDict.ContainsKey(value) ? EnumAdaptor.V2StorageClassEnumDict[value] : (StorageClassEnum?)null;
+            return EnumAdaptor.V2StorageClassEnumDict.TryGetValue(value, out StorageClassEnum value2) ? value2 : (StorageClassEnum?)null;
         }
 
-        protected PermissionEnum? ParsePermission(string value)
+        protected static PermissionEnum? ParsePermission(string value)
         {
-            return EnumAdaptor.PermissionEnumDict.ContainsKey(value) ? EnumAdaptor.PermissionEnumDict[value] : (PermissionEnum?)null;
+            return EnumAdaptor.PermissionEnumDict.TryGetValue(value, out PermissionEnum value2) ? value2 : (PermissionEnum?)null;
         }
 
         protected virtual GroupGranteeEnum? ParseGroupGrantee(string value)
         {
-            return EnumAdaptor.V2GroupGranteeEnumDict.ContainsKey(value) ? EnumAdaptor.V2GroupGranteeEnumDict[value] : (GroupGranteeEnum?)null;
+            return EnumAdaptor.V2GroupGranteeEnumDict.TryGetValue(value, out GroupGranteeEnum value2) ? value2 : (GroupGranteeEnum?)null;
         }
 
-        protected HttpVerb? ParseHttpVerb(string value)
+        protected static HttpVerb? ParseHttpVerb(string value)
         {
-            return EnumAdaptor.HttpVerbEnumDict.ContainsKey(value) ? EnumAdaptor.HttpVerbEnumDict[value] : (HttpVerb?)null;
+            return EnumAdaptor.HttpVerbEnumDict.TryGetValue(value, out HttpVerb value2) ? value2 : (HttpVerb?)null;
         }
 
-        protected RuleStatusEnum? ParseRuleStatus(string value)
+        protected static RuleStatusEnum? ParseRuleStatus(string value)
         {
-            return EnumAdaptor.RuleStatusEnumDict.ContainsKey(value) ? EnumAdaptor.RuleStatusEnumDict[value] : (RuleStatusEnum?)null;
+            return EnumAdaptor.RuleStatusEnumDict.TryGetValue(value, out RuleStatusEnum value2) ? value2 : (RuleStatusEnum?)null;
         }
 
-        protected VersionStatusEnum? ParseVersionStatusEnum(string value)
+        protected static VersionStatusEnum? ParseVersionStatusEnum(string value)
         {
-            return EnumAdaptor.VersionStatusEnumDict.ContainsKey(value) ? EnumAdaptor.VersionStatusEnumDict[value] : (VersionStatusEnum?)null;
+            return EnumAdaptor.VersionStatusEnumDict.TryGetValue(value, out VersionStatusEnum value2) ? value2 : (VersionStatusEnum?)null;
         }
 
-        protected ProtocolEnum? ParseProtocol(string value)
+        protected static ProtocolEnum? ParseProtocol(string value)
         {
-            return EnumAdaptor.ProtocolEnumDict.ContainsKey(value) ? EnumAdaptor.ProtocolEnumDict[value] : (ProtocolEnum?)null;
+            return EnumAdaptor.ProtocolEnumDict.TryGetValue(value, out ProtocolEnum value2) ? value2 : (ProtocolEnum?)null;
         }
 
-        protected FilterNameEnum? ParseFilterName(string value)
+        protected static FilterNameEnum? ParseFilterName(string value)
         {
-            return EnumAdaptor.FilterNameEnumDict.ContainsKey(value) ? EnumAdaptor.FilterNameEnumDict[value] : (FilterNameEnum?)null;
+            return EnumAdaptor.FilterNameEnumDict.TryGetValue(value, out FilterNameEnum value2) ? value2 : (FilterNameEnum?)null;
         }
 
         protected virtual EventTypeEnum? ParseEventTypeEnum(string value)
         {
-            return EnumAdaptor.V2EventTypeEnumDict.ContainsKey(value) ? EnumAdaptor.V2EventTypeEnumDict[value] : (EventTypeEnum?)null;
+            return EnumAdaptor.V2EventTypeEnumDict.TryGetValue(value, out EventTypeEnum value2) ? value2 : (EventTypeEnum?)null;
         }
 
         protected virtual string BucketLocationTag
@@ -99,7 +96,7 @@ namespace OBS.Internal
 
         public ListBucketsResponse ParseListBucketsResponse(HttpResponse httpResponse)
         {
-            ListBucketsResponse response = new ListBucketsResponse();
+            ListBucketsResponse response = new();
 
             using (XmlReader reader = XmlReader.Create(httpResponse.Content))
             {
@@ -117,17 +114,11 @@ namespace OBS.Internal
                     }
                     else if ("ID".Equals(reader.Name))
                     {
-                        if (owner != null)
-                        {
-                            owner.Id = reader.ReadString();
-                        }
+                        owner?.Id = reader.ReadString();
                     }
                     else if ("DisplayName".Equals(reader.Name))
                     {
-                        if (owner != null)
-                        {
-                            owner.DisplayName = reader.ReadString();
-                        }
+                        owner?.DisplayName = reader.ReadString();
                     }
                     else if ("Bucket".Equals(reader.Name))
                     {
@@ -157,7 +148,7 @@ namespace OBS.Internal
 
         public GetBucketStoragePolicyResponse ParseGetBucketStoragePolicyResponse(HttpResponse httpResponse)
         {
-            GetBucketStoragePolicyResponse response = new GetBucketStoragePolicyResponse();
+            GetBucketStoragePolicyResponse response = new();
 
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
@@ -175,7 +166,7 @@ namespace OBS.Internal
 
         public GetBucketMetadataResponse ParseGetBucketMetadataResponse(HttpResponse httpResponse)
         {
-            GetBucketMetadataResponse response = new GetBucketMetadataResponse();
+            GetBucketMetadataResponse response = new();
 
             string storageClass;
             httpResponse.Headers.TryGetValue(iheaders.DefaultStorageClassHeader(), out storageClass);
@@ -207,7 +198,7 @@ namespace OBS.Internal
 
         public GetBucketLocationResponse ParseGetBucketLocationResponse(HttpResponse httpResponse)
         {
-            GetBucketLocationResponse response = new GetBucketLocationResponse();
+            GetBucketLocationResponse response = new();
 
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
@@ -226,7 +217,7 @@ namespace OBS.Internal
 
         public GetBucketStorageInfoResponse ParseGetBucketStorageInfoResponse(HttpResponse httpResponse)
         {
-            GetBucketStorageInfoResponse response = new GetBucketStorageInfoResponse();
+            GetBucketStorageInfoResponse response = new();
 
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
@@ -248,7 +239,7 @@ namespace OBS.Internal
 
         public ListObjectsResponse ParseListObjectsResponse(HttpResponse httpResponse)
         {
-            ListObjectsResponse response = new ListObjectsResponse();
+            ListObjectsResponse response = new();
 
             if (httpResponse.Headers.ContainsKey(iheaders.BucketRegionHeader()))
             {
@@ -355,7 +346,7 @@ namespace OBS.Internal
 
         public ListVersionsResponse ParseListVersionsResponse(HttpResponse httpResponse)
         {
-            ListVersionsResponse response = new ListVersionsResponse();
+            ListVersionsResponse response = new();
 
             if (httpResponse.Headers.ContainsKey(iheaders.BucketRegionHeader()))
             {
@@ -489,7 +480,7 @@ namespace OBS.Internal
 
         public GetBucketQuotaResponse ParseGetBucketQuotaResponse(HttpResponse httpResponse)
         {
-            GetBucketQuotaResponse response = new GetBucketQuotaResponse();
+            GetBucketQuotaResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 while (xmlReader.Read())
@@ -505,7 +496,7 @@ namespace OBS.Internal
 
         public virtual GetBucketAclResponse ParseGetBucketAclResponse(HttpResponse httpResponse)
         {
-            GetBucketAclResponse response = new GetBucketAclResponse
+            GetBucketAclResponse response = new()
             {
                 AccessControlList = ParseAccessControlList(httpResponse),
             };
@@ -514,7 +505,7 @@ namespace OBS.Internal
 
         public ListMultipartUploadsResponse ParseListMultipartUploadsResponse(HttpResponse httpResponse)
         {
-            ListMultipartUploadsResponse response = new ListMultipartUploadsResponse();
+            ListMultipartUploadsResponse response = new();
 
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
@@ -632,7 +623,7 @@ namespace OBS.Internal
 
         public virtual GetBucketLoggingResponse ParseGetBucketLoggingResponse(HttpResponse httpResponse)
         {
-            GetBucketLoggingResponse response = new GetBucketLoggingResponse();
+            GetBucketLoggingResponse response = new();
 
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
@@ -680,9 +671,7 @@ namespace OBS.Internal
                     }
                     else if ("ID".Equals(xmlReader.Name))
                     {
-
-                        CanonicalGrantee? grantee = currentGrant.Grantee as CanonicalGrantee;
-                        if (grantee != null)
+                        if (currentGrant.Grantee is CanonicalGrantee grantee)
                         {
                             grantee.Id = xmlReader.ReadString();
                         }
@@ -690,24 +679,21 @@ namespace OBS.Internal
                     }
                     else if ("DisplayName".Equals(xmlReader.Name))
                     {
-
-                        CanonicalGrantee? grantee = currentGrant.Grantee as CanonicalGrantee;
-                        if (grantee != null)
+                        if (currentGrant.Grantee is CanonicalGrantee grantee)
                         {
                             grantee.DisplayName = xmlReader.ReadString();
                         }
                     }
                     else if ("URI".Equals(xmlReader.Name))
                     {
-                        GroupGrantee? grantee = currentGrant.Grantee as GroupGrantee;
-                        if (grantee != null)
+                        if (currentGrant.Grantee is GroupGrantee grantee)
                         {
                             grantee.GroupGranteeType = ParseGroupGrantee(xmlReader.ReadString());
                         }
                     }
                     else if ("Permission".Equals(xmlReader.Name))
                     {
-                        currentGrant.Permission = ParsePermission(xmlReader.ReadString());
+                        currentGrant.Permission = V2Parser.ParsePermission(xmlReader.ReadString());
                     }
                 }
             }
@@ -716,9 +702,9 @@ namespace OBS.Internal
 
         public GetBucketPolicyResponse ParseGetBucketPolicyResponse(HttpResponse httpResponse)
         {
-            GetBucketPolicyResponse response = new GetBucketPolicyResponse();
+            GetBucketPolicyResponse response = new();
 
-            using (StreamReader streamReader = new StreamReader(httpResponse.Content, Encoding.UTF8))
+            using (StreamReader streamReader = new(httpResponse.Content, Encoding.UTF8))
             {
                 response.Policy = streamReader.ReadToEnd();
             }
@@ -727,7 +713,7 @@ namespace OBS.Internal
 
         public GetBucketCorsResponse ParseGetBucketCorsResponse(HttpResponse httpResponse)
         {
-            GetBucketCorsResponse response = new GetBucketCorsResponse();
+            GetBucketCorsResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 CorsRule? currentCorsRule = null;
@@ -750,7 +736,7 @@ namespace OBS.Internal
                     }
                     else if ("AllowedMethod".Equals(xmlReader.Name))
                     {
-                        HttpVerb? temp = ParseHttpVerb(xmlReader.ReadString());
+                        HttpVerb? temp = V2Parser.ParseHttpVerb(xmlReader.ReadString());
                         if (temp.HasValue)
                         {
                             currentCorsRule.AllowedMethods.Add(temp.Value);
@@ -779,7 +765,7 @@ namespace OBS.Internal
 
         public GetBucketLifecycleResponse ParseGetBucketLifecycleResponse(HttpResponse httpResponse)
         {
-            GetBucketLifecycleResponse response = new GetBucketLifecycleResponse();
+            GetBucketLifecycleResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 LifecycleRule? currentRule = null;
@@ -816,7 +802,7 @@ namespace OBS.Internal
                     }
                     else if ("Status".Equals(xmlReader.Name))
                     {
-                        RuleStatusEnum? temp = ParseRuleStatus(xmlReader.ReadString());
+                        RuleStatusEnum? temp = V2Parser.ParseRuleStatus(xmlReader.ReadString());
                         if (temp.HasValue)
                         {
                             currentRule.Status = temp.Value;
@@ -909,7 +895,7 @@ namespace OBS.Internal
 
         public GetBucketWebsiteResponse ParseGetBucketWebsiteResponse(HttpResponse httpResponse)
         {
-            GetBucketWebsiteResponse response = new GetBucketWebsiteResponse();
+            GetBucketWebsiteResponse response = new();
 
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
@@ -948,11 +934,11 @@ namespace OBS.Internal
                     {
                         if (innerRedirectAllRequestsTo)
                         {
-                            response.Configuration.RedirectAllRequestsTo.Protocol = ParseProtocol(xmlReader.ReadString());
+                            response.Configuration.RedirectAllRequestsTo.Protocol = V2Parser.ParseProtocol(xmlReader.ReadString());
                         }
                         else
                         {
-                            currentRoutingRule.Redirect.Protocol = ParseProtocol(xmlReader.ReadString());
+                            currentRoutingRule.Redirect.Protocol = V2Parser.ParseProtocol(xmlReader.ReadString());
                         }
                     }
                     else if ("Suffix".Equals(xmlReader.Name))
@@ -1013,7 +999,7 @@ namespace OBS.Internal
 
         public GetBucketVersioningResponse ParseGetBucketVersioningResponse(HttpResponse httpResponse)
         {
-            GetBucketVersioningResponse response = new GetBucketVersioningResponse();
+            GetBucketVersioningResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 while (xmlReader.Read())
@@ -1027,7 +1013,7 @@ namespace OBS.Internal
                     }
                     else if ("Status".Equals(xmlReader.Name))
                     {
-                        response.Configuration.Status = ParseVersionStatusEnum(xmlReader.ReadString());
+                        response.Configuration.Status = V2Parser.ParseVersionStatusEnum(xmlReader.ReadString());
                     }
                 }
             }
@@ -1036,7 +1022,7 @@ namespace OBS.Internal
 
         public GetBucketTaggingResponse ParseGetBucketTaggingResponse(HttpResponse httpResponse)
         {
-            GetBucketTaggingResponse response = new GetBucketTaggingResponse();
+            GetBucketTaggingResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 Tag? currentTag = null;
@@ -1066,7 +1052,7 @@ namespace OBS.Internal
 
         public GetBucketNotificationReponse ParseGetBucketNotificationReponse(HttpResponse httpResponse)
         {
-            GetBucketNotificationReponse response = new GetBucketNotificationReponse();
+            GetBucketNotificationReponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 TopicConfiguration? currentTc = null;
@@ -1106,9 +1092,10 @@ namespace OBS.Internal
                         if (innerTopicConfiguration)
                         {
                             currentTc.Id = xmlReader.ReadString();
-                        }else if (innerFunctionGraphConfiguration)
+                        }
+                        else if (innerFunctionGraphConfiguration)
                         {
-                            currentFc.Id = xmlReader.ReadString(); 
+                            currentFc.Id = xmlReader.ReadString();
                         }
                     }
                     else if ("FilterRule".Equals(xmlReader.Name))
@@ -1119,7 +1106,8 @@ namespace OBS.Internal
                             {
                                 currentFr = new FilterRule();
                                 currentTc.FilterRules.Add(currentFr);
-                            }else if (innerFunctionGraphConfiguration)
+                            }
+                            else if (innerFunctionGraphConfiguration)
                             {
                                 currentFc.FilterRules.Add(currentFr);
                             }
@@ -1128,7 +1116,7 @@ namespace OBS.Internal
                     }
                     else if ("Name".Equals(xmlReader.Name))
                     {
-                        currentFr.Name = ParseFilterName(xmlReader.ReadString());
+                        currentFr.Name = V2Parser.ParseFilterName(xmlReader.ReadString());
                     }
                     else if ("Value".Equals(xmlReader.Value))
                     {
@@ -1151,7 +1139,8 @@ namespace OBS.Internal
                             {
                                 currentTc.Events.Add(temp.Value);
                             }
-                        }else if (innerFunctionGraphConfiguration)
+                        }
+                        else if (innerFunctionGraphConfiguration)
                         {
                             EventTypeEnum? temp = ParseEventTypeEnum(xmlReader.ReadString());
                             if (temp.HasValue)
@@ -1167,7 +1156,7 @@ namespace OBS.Internal
 
         public DeleteObjectResponse ParseDeleteObjectResponse(HttpResponse httpResponse)
         {
-            DeleteObjectResponse response = new DeleteObjectResponse();
+            DeleteObjectResponse response = new();
 
             if (httpResponse.Headers.ContainsKey(iheaders.VersionIdHeader()))
             {
@@ -1183,7 +1172,7 @@ namespace OBS.Internal
 
         public DeleteObjectsResponse ParseDeleteObjectsResponse(HttpResponse httpResponse)
         {
-            DeleteObjectsResponse response = new DeleteObjectsResponse();
+            DeleteObjectsResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 DeletedObject? currentObj = null;
@@ -1221,7 +1210,8 @@ namespace OBS.Internal
                             currentErr.ObjectKey = xmlReader.ReadString();
                         }
 
-                    }else if ("VersionId".Equals(xmlReader.Name))
+                    }
+                    else if ("VersionId".Equals(xmlReader.Name))
                     {
                         if (innerDeleted)
                         {
@@ -1235,13 +1225,16 @@ namespace OBS.Internal
                     else if ("Code".Equals(xmlReader.Name))
                     {
                         currentErr.Code = xmlReader.ReadString();
-                    }else if ("Message".Equals(xmlReader.Name))
+                    }
+                    else if ("Message".Equals(xmlReader.Name))
                     {
                         currentErr.Message = xmlReader.ReadString();
-                    }else if ("DeleteMarker".Equals(xmlReader.Name))
+                    }
+                    else if ("DeleteMarker".Equals(xmlReader.Name))
                     {
                         currentObj.DeleteMarker = Convert.ToBoolean(xmlReader.ReadString());
-                    }else if ("DeleteMarkerVersionId".Equals(xmlReader.Name))
+                    }
+                    else if ("DeleteMarkerVersionId".Equals(xmlReader.Name))
                     {
                         currentObj.DeleteMarkerVersionId = xmlReader.ReadString();
                     }
@@ -1253,7 +1246,7 @@ namespace OBS.Internal
 
         public ListPartsResponse ParseListPartsResponse(HttpResponse httpResponse)
         {
-            ListPartsResponse response = new ListPartsResponse();
+            ListPartsResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 PartDetail? currentPart = null;
@@ -1264,13 +1257,16 @@ namespace OBS.Internal
                     if ("Bucket".Equals(xmlReader.Name))
                     {
                         response.BucketName = xmlReader.ReadString();
-                    } else if ("Key".Equals(xmlReader.Name))
+                    }
+                    else if ("Key".Equals(xmlReader.Name))
                     {
                         response.ObjectKey = xmlReader.ReadString();
-                    } else if ("UploadId".Equals(xmlReader.Name))
+                    }
+                    else if ("UploadId".Equals(xmlReader.Name))
                     {
                         response.UploadId = xmlReader.ReadString();
-                    }else if ("Initiator".Equals(xmlReader.Name))
+                    }
+                    else if ("Initiator".Equals(xmlReader.Name))
                     {
                         if (xmlReader.IsStartElement())
                         {
@@ -1291,7 +1287,8 @@ namespace OBS.Internal
                         if (innerInitiator)
                         {
                             response.Initiator.Id = xmlReader.ReadString();
-                        }else if (innerOwner)
+                        }
+                        else if (innerOwner)
                         {
                             response.Owner.Id = xmlReader.ReadString();
                         }
@@ -1310,35 +1307,44 @@ namespace OBS.Internal
                     else if ("StorageClass".Equals(xmlReader.Name))
                     {
                         response.StorageClass = ParseStorageClass(xmlReader.ReadString());
-                    } else if ("PartNumberMarker".Equals(xmlReader.Name))
+                    }
+                    else if ("PartNumberMarker".Equals(xmlReader.Name))
                     {
                         response.PartNumberMarker = CommonUtil.ParseToInt32(xmlReader.ReadString());
-                    } else if ("NextPartNumberMarker".Equals(xmlReader.Name))
+                    }
+                    else if ("NextPartNumberMarker".Equals(xmlReader.Name))
                     {
                         response.NextPartNumberMarker = CommonUtil.ParseToInt32(xmlReader.ReadString());
-                    } else if ("MaxParts".Equals(xmlReader.Name))
+                    }
+                    else if ("MaxParts".Equals(xmlReader.Name))
                     {
                         response.MaxParts = CommonUtil.ParseToInt32(xmlReader.ReadString());
-                    } else if ("IsTruncated".Equals(xmlReader.Name))
+                    }
+                    else if ("IsTruncated".Equals(xmlReader.Name))
                     {
                         response.IsTruncated = Convert.ToBoolean(xmlReader.ReadString());
-                    } else if ("Part".Equals(xmlReader.Name))
+                    }
+                    else if ("Part".Equals(xmlReader.Name))
                     {
                         if (xmlReader.IsStartElement())
                         {
                             currentPart = new PartDetail();
                             response.Parts.Add(currentPart);
                         }
-                    } else if ("PartNumber".Equals(xmlReader.Name))
+                    }
+                    else if ("PartNumber".Equals(xmlReader.Name))
                     {
                         currentPart.PartNumber = Convert.ToInt32(xmlReader.ReadString());
-                    }else if ("LastModified".Equals(xmlReader.Name))
+                    }
+                    else if ("LastModified".Equals(xmlReader.Name))
                     {
                         currentPart.LastModified = CommonUtil.ParseToDateTime(xmlReader.ReadString());
-                    }else if ("ETag".Equals(xmlReader.Name))
+                    }
+                    else if ("ETag".Equals(xmlReader.Name))
                     {
                         currentPart.ETag = xmlReader.ReadString();
-                    }else if ("Size".Equals(xmlReader.Name))
+                    }
+                    else if ("Size".Equals(xmlReader.Name))
                     {
                         currentPart.Size = Convert.ToInt64(xmlReader.ReadString());
                     }
@@ -1349,7 +1355,7 @@ namespace OBS.Internal
 
         public CompleteMultipartUploadResponse ParseCompleteMultipartUploadResponse(HttpResponse httpResponse)
         {
-            CompleteMultipartUploadResponse response = new CompleteMultipartUploadResponse();
+            CompleteMultipartUploadResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 while (xmlReader.Read())
@@ -1357,13 +1363,16 @@ namespace OBS.Internal
                     if ("Location".Equals(xmlReader.Name))
                     {
                         response.Location = xmlReader.ReadString();
-                    }else if ("Bucket".Equals(xmlReader.Name))
+                    }
+                    else if ("Bucket".Equals(xmlReader.Name))
                     {
                         response.BucketName = xmlReader.ReadString();
-                    }else if ("Key".Equals(xmlReader.Name))
+                    }
+                    else if ("Key".Equals(xmlReader.Name))
                     {
                         response.ObjectKey = xmlReader.ReadString();
-                    }else if ("ETag".Equals(xmlReader.Name))
+                    }
+                    else if ("ETag".Equals(xmlReader.Name))
                     {
                         response.ETag = xmlReader.ReadString();
                     }
@@ -1383,7 +1392,7 @@ namespace OBS.Internal
         private AccessControlList ParseAccessControlList(HttpResponse httpResponse)
         {
             using XmlReader xmlReader = XmlReader.Create(httpResponse.Content);
-            AccessControlList acl = new AccessControlList();
+            AccessControlList acl = new();
             bool innerOwner = false;
             Grant? currentGrant = null;
             while (xmlReader.Read())
@@ -1404,8 +1413,7 @@ namespace OBS.Internal
                     }
                     else
                     {
-                        CanonicalGrantee? grantee = currentGrant.Grantee as CanonicalGrantee;
-                        if (grantee != null)
+                        if (currentGrant.Grantee is CanonicalGrantee grantee)
                         {
                             grantee.Id = xmlReader.ReadString();
                         }
@@ -1419,8 +1427,7 @@ namespace OBS.Internal
                     }
                     else
                     {
-                        CanonicalGrantee? grantee = currentGrant.Grantee as CanonicalGrantee;
-                        if (grantee != null)
+                        if (currentGrant.Grantee is CanonicalGrantee grantee)
                         {
                             grantee.DisplayName = xmlReader.ReadString();
                         }
@@ -1452,15 +1459,14 @@ namespace OBS.Internal
                 }
                 else if ("URI".Equals(xmlReader.Name))
                 {
-                    GroupGrantee? grantee = currentGrant.Grantee as GroupGrantee;
-                    if (grantee != null)
+                    if (currentGrant.Grantee is GroupGrantee grantee)
                     {
                         grantee.GroupGranteeType = ParseGroupGrantee(xmlReader.ReadString());
                     }
                 }
                 else if ("Permission".Equals(xmlReader.Name))
                 {
-                    currentGrant.Permission = ParsePermission(xmlReader.ReadString());
+                    currentGrant.Permission = V2Parser.ParsePermission(xmlReader.ReadString());
                 }
             }
             return acl;
@@ -1468,7 +1474,7 @@ namespace OBS.Internal
 
         public virtual GetObjectAclResponse ParseGetObjectAclResponse(HttpResponse httpResponse)
         {
-            GetObjectAclResponse response = new GetObjectAclResponse
+            GetObjectAclResponse response = new()
             {
                 AccessControlList = ParseAccessControlList(httpResponse),
             };
@@ -1477,7 +1483,7 @@ namespace OBS.Internal
 
         public PutObjectResponse ParsePutObjectResponse(HttpResponse httpResponse)
         {
-            PutObjectResponse response = new PutObjectResponse();
+            PutObjectResponse response = new();
 
             if (httpResponse.Headers.ContainsKey(iheaders.VersionIdHeader()))
             {
@@ -1489,9 +1495,9 @@ namespace OBS.Internal
                 response.StorageClass = ParseStorageClass(httpResponse.Headers[iheaders.StorageClassHeader()]);
             }
 
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.ETag))
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.ETag, out string? value))
             {
-                response.ETag = httpResponse.Headers[Constants.CommonHeaders.ETag];
+                response.ETag = value;
             }
 
             response.ObjectUrl = httpResponse.RequestUrl;
@@ -1501,7 +1507,7 @@ namespace OBS.Internal
 
         public CopyObjectResponse ParseCopyObjectResponse(HttpResponse httpResponse)
         {
-            CopyObjectResponse response = new CopyObjectResponse();
+            CopyObjectResponse response = new();
             if (httpResponse.Headers.ContainsKey(iheaders.VersionIdHeader()))
             {
                 response.VersionId = httpResponse.Headers[iheaders.VersionIdHeader()];
@@ -1524,7 +1530,8 @@ namespace OBS.Internal
                     if ("LastModified".Equals(xmlReader.Name))
                     {
                         response.LastModified = CommonUtil.ParseToDateTime(xmlReader.ReadString());
-                    }else if ("ETag".Equals(xmlReader.Name))
+                    }
+                    else if ("ETag".Equals(xmlReader.Name))
                     {
                         response.ETag = xmlReader.ReadString();
                     }
@@ -1536,14 +1543,14 @@ namespace OBS.Internal
 
         public InitiateMultipartUploadResponse ParseInitiateMultipartUploadResponse(HttpResponse httpResponse)
         {
-            InitiateMultipartUploadResponse response = new InitiateMultipartUploadResponse();
+            InitiateMultipartUploadResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 while (xmlReader.Read())
                 {
                     if ("Bucket".Equals(xmlReader.Name))
                     {
-                        response.BucketName = xmlReader.ReadString(); 
+                        response.BucketName = xmlReader.ReadString();
                     }
                     else if ("Key".Equals(xmlReader.Name))
                     {
@@ -1560,7 +1567,7 @@ namespace OBS.Internal
 
         public CopyPartResponse ParseCopyPartResponse(HttpResponse httpResponse)
         {
-            CopyPartResponse response = new CopyPartResponse();
+            CopyPartResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 while (xmlReader.Read())
@@ -1581,17 +1588,17 @@ namespace OBS.Internal
 
         public UploadPartResponse ParseUploadPartResponse(HttpResponse httpResponse)
         {
-            UploadPartResponse response = new UploadPartResponse();
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.ETag))
+            UploadPartResponse response = new();
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.ETag, out string? value))
             {
-                response.ETag = httpResponse.Headers[Constants.CommonHeaders.ETag];
+                response.ETag = value;
             }
             return response;
         }
 
         public GetBucketReplicationResponse ParseGetBucketReplicationResponse(HttpResponse httpResponse)
         {
-            GetBucketReplicationResponse response = new GetBucketReplicationResponse();
+            GetBucketReplicationResponse response = new();
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
                 ReplicationRule? currentRule = null;
@@ -1615,7 +1622,8 @@ namespace OBS.Internal
                             currentRule = new ReplicationRule();
                             response.Configuration.Rules.Add(currentRule);
                         }
-                    }else if ("ID".Equals(xmlReader.Name))
+                    }
+                    else if ("ID".Equals(xmlReader.Name))
                     {
                         currentRule.Id = xmlReader.ReadString();
                     }
@@ -1625,7 +1633,7 @@ namespace OBS.Internal
                     }
                     else if ("Status".Equals(xmlReader.Name))
                     {
-                        RuleStatusEnum? temp = ParseRuleStatus(xmlReader.ReadString());
+                        RuleStatusEnum? temp = V2Parser.ParseRuleStatus(xmlReader.ReadString());
                         if (temp.HasValue)
                         {
                             currentRule.Status = temp.Value;
@@ -1646,19 +1654,19 @@ namespace OBS.Internal
 
         protected void ParseGetObjectMetadataResponse(HttpResponse httpResponse, GetObjectMetadataResponse response)
         {
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.ETag))
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.ETag, out string? valueETag))
             {
-                response.ETag = httpResponse.Headers[Constants.CommonHeaders.ETag];
+                response.ETag = valueETag;
             }
 
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.ContentLength))
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.ContentLength, out string? valueContentLength))
             {
-                response.ContentLength = Convert.ToInt64(httpResponse.Headers[Constants.CommonHeaders.ContentLength]);
+                response.ContentLength = Convert.ToInt64(valueContentLength);
             }
 
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.ContentType))
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.ContentType, out string? valueContentType))
             {
-                response.ContentType = httpResponse.Headers[Constants.CommonHeaders.ContentType];
+                response.ContentType = valueContentType;
             }
             if (httpResponse.Headers.ContainsKey(iheaders.VersionIdHeader()))
             {
@@ -1669,9 +1677,9 @@ namespace OBS.Internal
                 response.WebsiteRedirectLocation = httpResponse.Headers[iheaders.WebsiteRedirectLocationHeader()];
             }
 
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.LastModified))
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.LastModified, out string? valueLastModified))
             {
-                response.LastModified = CommonUtil.ParseToDateTime(httpResponse.Headers[Constants.CommonHeaders.LastModified], Constants.RFC822DateFormat, Constants.ISO8601DateFormat);
+                response.LastModified = CommonUtil.ParseToDateTime(valueLastModified, Constants.RFC822DateFormat, Constants.ISO8601DateFormat);
             }
 
             if (httpResponse.Headers.ContainsKey(iheaders.StorageClassHeader()))
@@ -1683,11 +1691,11 @@ namespace OBS.Internal
                 response.DeleteMarker = Convert.ToBoolean(httpResponse.Headers[iheaders.DeleteMarkerHeader()]);
             }
 
-            foreach (KeyValuePair<string,string> entry in httpResponse.Headers)
+            foreach (KeyValuePair<string, string> entry in httpResponse.Headers)
             {
                 if (entry.Key != null && entry.Key.StartsWith(iheaders.HeaderMetaPrefix()))
                 {
-                    response.Metadata.Add(entry.Key.Substring(iheaders.HeaderMetaPrefix().Length), entry.Value);
+                    response.Metadata.Add(entry.Key[iheaders.HeaderMetaPrefix().Length..], entry.Value);
                 }
             }
             if (httpResponse.Headers.ContainsKey(iheaders.RestoreHeader()))
@@ -1696,7 +1704,11 @@ namespace OBS.Internal
                 string restore = httpResponse.Headers[iheaders.RestoreHeader()];
                 if (restore.Contains("expiry-date"))
                 {
-                    Match m = Regex.Match(restore, @"ongoing-request=""(?<ongoing>.+)"",\s*expiry-date=""(?<date>.+)""");
+#if NETFRAMEWORK
+                    Match m = Regex.Match(restore, MyRegexPattern);
+#else
+                    Match m = MyRegex().Match(restore);
+#endif
                     if (m.Success)
                     {
                         response.RestoreStatus.Restored = !Convert.ToBoolean(m.Groups["ongoing"].Value);
@@ -1705,7 +1717,11 @@ namespace OBS.Internal
                 }
                 else
                 {
-                    Match m = Regex.Match(restore, @"ongoing-request=""(?<ongoing>.+)""");
+#if NETFRAMEWORK
+                    Match m = Regex.Match(restore, MyRegex1Pattern);
+#else
+                    Match m = MyRegex1().Match(restore);
+#endif
                     if (m.Success)
                     {
                         response.RestoreStatus.Restored = !Convert.ToBoolean(m.Groups["ongoing"].Value);
@@ -1740,14 +1756,14 @@ namespace OBS.Internal
 
         public GetObjectMetadataResponse ParseGetObjectMetadataResponse(HttpResponse httpResponse)
         {
-            GetObjectMetadataResponse response = new GetObjectMetadataResponse();
+            GetObjectMetadataResponse response = new();
             ParseGetObjectMetadataResponse(httpResponse, response);
             return response;
         }
 
         public GetObjectResponse ParseGetObjectResponse(HttpResponse httpResponse)
         {
-            GetObjectResponse response = new GetObjectResponse();
+            GetObjectResponse response = new();
             ParseGetObjectMetadataResponse(httpResponse, response);
             response.OutputStream = httpResponse.Content;
             return response;
@@ -1755,15 +1771,15 @@ namespace OBS.Internal
 
         public AppendObjectResponse ParseAppendObjectResponse(HttpResponse httpResponse)
         {
-            AppendObjectResponse response = new AppendObjectResponse();
+            AppendObjectResponse response = new();
             if (httpResponse.Headers.ContainsKey(iheaders.StorageClassHeader()))
             {
                 response.StorageClass = ParseStorageClass(httpResponse.Headers[iheaders.StorageClassHeader()]);
             }
 
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.ETag))
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.ETag, out string? value))
             {
-                response.ETag = httpResponse.Headers[Constants.CommonHeaders.ETag];
+                response.ETag = value;
             }
 
             if (httpResponse.Headers.ContainsKey(iheaders.NextPositionHeader()))
@@ -1775,5 +1791,16 @@ namespace OBS.Internal
 
             return response;
         }
+
+        const string MyRegexPattern = @"ongoing-request=""(?<ongoing>.+)"",\s*expiry-date=""(?<date>.+)""";
+        const string MyRegex1Pattern = @"ongoing-request=""(?<ongoing>.+)""";
+
+#if !NETFRAMEWORK
+        [GeneratedRegex(MyRegexPattern)]
+        private static partial Regex MyRegex();
+
+        [GeneratedRegex(MyRegex1Pattern)]
+        private static partial Regex MyRegex1();
+#endif
     }
 }

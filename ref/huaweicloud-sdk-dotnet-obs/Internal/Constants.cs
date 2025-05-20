@@ -11,8 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace OBS.Internal
@@ -170,10 +168,14 @@ namespace OBS.Internal
         public const string RequestTimeout = "RequestTimeout";
 
         public const string AllowedInUrl = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~:'()!*";
-        
-        private static readonly object _lock = new object();
 
-        private static volatile IList<string> _AllowedResponseHttpHeaders;
+#if NET9_0_OR_GREATER
+        private static readonly global::System.Threading.Lock _lock = new();
+#else
+        private static readonly object _lock = new();
+#endif
+
+        private static volatile IList<string>? _AllowedResponseHttpHeaders;
 
         public const string ThreeAz = "3az";
 
@@ -191,30 +193,32 @@ namespace OBS.Internal
                     {
                         if (_AllowedResponseHttpHeaders == null)
                         {
-                            IList<string> tempAllowedResponseHttpHeaders = new List<string>();
-                            tempAllowedResponseHttpHeaders.Add("content-type");
-                            tempAllowedResponseHttpHeaders.Add("content-md5");
-                            tempAllowedResponseHttpHeaders.Add("content-length");
-                            tempAllowedResponseHttpHeaders.Add("content-language");
-                            tempAllowedResponseHttpHeaders.Add("expires");
-                            tempAllowedResponseHttpHeaders.Add("origin");
-                            tempAllowedResponseHttpHeaders.Add("cache-control");
-                            tempAllowedResponseHttpHeaders.Add("content-disposition");
-                            tempAllowedResponseHttpHeaders.Add("content-encoding");
-                            tempAllowedResponseHttpHeaders.Add("x-default-storage-class");
-                            tempAllowedResponseHttpHeaders.Add("location");
-                            tempAllowedResponseHttpHeaders.Add("date");
-                            tempAllowedResponseHttpHeaders.Add("etag");
-                            tempAllowedResponseHttpHeaders.Add("host");
-                            tempAllowedResponseHttpHeaders.Add("last-modified");
-                            tempAllowedResponseHttpHeaders.Add("content-range");
-                            tempAllowedResponseHttpHeaders.Add("x-reserved");
-                            tempAllowedResponseHttpHeaders.Add("access-control-allow-origin");
-                            tempAllowedResponseHttpHeaders.Add("access-control-allow-headers");
-                            tempAllowedResponseHttpHeaders.Add("access-control-max-age");
-                            tempAllowedResponseHttpHeaders.Add("access-control-allow-methods");
-                            tempAllowedResponseHttpHeaders.Add("access-control-expose-headers");
-                            tempAllowedResponseHttpHeaders.Add("connection");
+                            IList<string> tempAllowedResponseHttpHeaders =
+                            [
+                                "content-type",
+                                "content-md5",
+                                "content-length",
+                                "content-language",
+                                "expires",
+                                "origin",
+                                "cache-control",
+                                "content-disposition",
+                                "content-encoding",
+                                "x-default-storage-class",
+                                "location",
+                                "date",
+                                "etag",
+                                "host",
+                                "last-modified",
+                                "content-range",
+                                "x-reserved",
+                                "access-control-allow-origin",
+                                "access-control-allow-headers",
+                                "access-control-max-age",
+                                "access-control-allow-methods",
+                                "access-control-expose-headers",
+                                "connection",
+                            ];
                             _AllowedResponseHttpHeaders = tempAllowedResponseHttpHeaders;
                         }
                     }
@@ -224,7 +228,7 @@ namespace OBS.Internal
 
         }
 
-        private static volatile IList<string> _AllowedRequestHttpHeaders;
+        private static volatile IList<string>? _AllowedRequestHttpHeaders;
 
         public static IList<string> AllowedRequestHttpHeaders
         {
@@ -236,31 +240,33 @@ namespace OBS.Internal
                     {
                         if (_AllowedRequestHttpHeaders == null)
                         {
-                            IList<string> tempAllowedRequestHttpHeaders = new List<string>();
-                            tempAllowedRequestHttpHeaders.Add("content-type");
-                            tempAllowedRequestHttpHeaders.Add("content-md5");
-                            tempAllowedRequestHttpHeaders.Add("content-length");
-                            tempAllowedRequestHttpHeaders.Add("content-language");
-                            tempAllowedRequestHttpHeaders.Add("expires");
-                            tempAllowedRequestHttpHeaders.Add("origin");
-                            tempAllowedRequestHttpHeaders.Add("cache-control");
-                            tempAllowedRequestHttpHeaders.Add("content-disposition");
-                            tempAllowedRequestHttpHeaders.Add("content-encoding");
-                            tempAllowedRequestHttpHeaders.Add("access-control-request-method");
-                            tempAllowedRequestHttpHeaders.Add("access-control-request-headers");
-                            tempAllowedRequestHttpHeaders.Add("success-action-redirect");
-                            tempAllowedRequestHttpHeaders.Add("x-default-storage-class");
-                            tempAllowedRequestHttpHeaders.Add("location");
-                            tempAllowedRequestHttpHeaders.Add("date");
-                            tempAllowedRequestHttpHeaders.Add("etag");
-                            tempAllowedRequestHttpHeaders.Add("range");
-                            tempAllowedRequestHttpHeaders.Add("host");
-                            tempAllowedRequestHttpHeaders.Add("if-modified-since");
-                            tempAllowedRequestHttpHeaders.Add("if-unmodified-since");
-                            tempAllowedRequestHttpHeaders.Add("if-match");
-                            tempAllowedRequestHttpHeaders.Add("if-none-match");
-                            tempAllowedRequestHttpHeaders.Add("last-modified");
-                            tempAllowedRequestHttpHeaders.Add("content-range");
+                            IList<string> tempAllowedRequestHttpHeaders =
+                            [
+                                "content-type",
+                                "content-md5",
+                                "content-length",
+                                "content-language",
+                                "expires",
+                                "origin",
+                                "cache-control",
+                                "content-disposition",
+                                "content-encoding",
+                                "access-control-request-method",
+                                "access-control-request-headers",
+                                "success-action-redirect",
+                                "x-default-storage-class",
+                                "location",
+                                "date",
+                                "etag",
+                                "range",
+                                "host",
+                                "if-modified-since",
+                                "if-unmodified-since",
+                                "if-match",
+                                "if-none-match",
+                                "last-modified",
+                                "content-range",
+                            ];
                             _AllowedRequestHttpHeaders = tempAllowedRequestHttpHeaders;
                         }
                     }
@@ -270,7 +276,7 @@ namespace OBS.Internal
 
         }
 
-        private static volatile IList<string> _AllowedResourceParameters;
+        private static volatile IList<string>? _AllowedResourceParameters;
 
         public static IList<string> AllowedResourceParameters
         {
@@ -283,42 +289,44 @@ namespace OBS.Internal
                     {
                         if (_AllowedResourceParameters == null)
                         {
-                            IList<string> tempAllowedResourceParameters = new List<string>();
-                            tempAllowedResourceParameters.Add("acl");
-                            tempAllowedResourceParameters.Add("backtosource");
-                            tempAllowedResourceParameters.Add("policy");
-                            tempAllowedResourceParameters.Add("torrent");
-                            tempAllowedResourceParameters.Add("logging");
-                            tempAllowedResourceParameters.Add("location");
-                            tempAllowedResourceParameters.Add("storageinfo");
-                            tempAllowedResourceParameters.Add("quota");
-                            tempAllowedResourceParameters.Add("storagepolicy");
-                            tempAllowedResourceParameters.Add("storageclass");
-                            tempAllowedResourceParameters.Add("requestpayment");
-                            tempAllowedResourceParameters.Add("versions");
-                            tempAllowedResourceParameters.Add("versioning");
-                            tempAllowedResourceParameters.Add("versionid");
-                            tempAllowedResourceParameters.Add("uploads");
-                            tempAllowedResourceParameters.Add("uploadid");
-                            tempAllowedResourceParameters.Add("partnumber");
-                            tempAllowedResourceParameters.Add("website");
-                            tempAllowedResourceParameters.Add("notification");
-                            tempAllowedResourceParameters.Add("lifecycle");
-                            tempAllowedResourceParameters.Add("delete");
-                            tempAllowedResourceParameters.Add("cors");
-                            tempAllowedResourceParameters.Add("restore");
-                            tempAllowedResourceParameters.Add("tagging");
-                            tempAllowedResourceParameters.Add("append");
-                            tempAllowedResourceParameters.Add("position");
-                            tempAllowedResourceParameters.Add("replication");
-                            tempAllowedResourceParameters.Add("response-content-type");
-                            tempAllowedResourceParameters.Add("response-content-language");
-                            tempAllowedResourceParameters.Add("response-expires");
-                            tempAllowedResourceParameters.Add("response-cache-control");
-                            tempAllowedResourceParameters.Add("response-content-disposition");
-                            tempAllowedResourceParameters.Add("response-content-encoding");
-                            tempAllowedResourceParameters.Add("x-image-process");
-                            tempAllowedResourceParameters.Add("x-oss-process");
+                            IList<string> tempAllowedResourceParameters =
+                            [
+                                "acl",
+                                "backtosource",
+                                "policy",
+                                "torrent",
+                                "logging",
+                                "location",
+                                "storageinfo",
+                                "quota",
+                                "storagepolicy",
+                                "storageclass",
+                                "requestpayment",
+                                "versions",
+                                "versioning",
+                                "versionid",
+                                "uploads",
+                                "uploadid",
+                                "partnumber",
+                                "website",
+                                "notification",
+                                "lifecycle",
+                                "delete",
+                                "cors",
+                                "restore",
+                                "tagging",
+                                "append",
+                                "position",
+                                "replication",
+                                "response-content-type",
+                                "response-content-language",
+                                "response-expires",
+                                "response-cache-control",
+                                "response-content-disposition",
+                                "response-content-encoding",
+                                "x-image-process",
+                                "x-oss-process",
+                            ];
                             _AllowedResourceParameters = tempAllowedResourceParameters;
                         }
                     }
@@ -328,7 +336,7 @@ namespace OBS.Internal
 
         }
 
-        public static volatile IDictionary<string, string> _MimeTypes;
+        public static volatile IDictionary<string, string>? _MimeTypes;
 
 
         public static IDictionary<string, string> MimeTypes
@@ -341,105 +349,107 @@ namespace OBS.Internal
                     {
                         if (_MimeTypes == null)
                         {
-                            IDictionary<string, string> tempMimeTypes = new Dictionary<string, string>();
-                            tempMimeTypes.Add("7z", "application/x-7z-compressed");
-                            tempMimeTypes.Add("aac", "audio/x-aac");
-                            tempMimeTypes.Add("ai", "application/postscript");
-                            tempMimeTypes.Add("aif", "audio/x-aiff");
-                            tempMimeTypes.Add("asc", "text/plain");
-                            tempMimeTypes.Add("asf", "video/x-ms-asf");
-                            tempMimeTypes.Add("atom", "application/atom+xml");
-                            tempMimeTypes.Add("avi", "video/x-msvideo");
-                            tempMimeTypes.Add("bmp", "image/bmp");
-                            tempMimeTypes.Add("bz2", "application/x-bzip2");
-                            tempMimeTypes.Add("cer", "application/pkix-cert");
-                            tempMimeTypes.Add("crl", "application/pkix-crl");
-                            tempMimeTypes.Add("crt", "application/x-x509-ca-cert");
-                            tempMimeTypes.Add("css", "text/css");
-                            tempMimeTypes.Add("csv", "text/csv");
-                            tempMimeTypes.Add("cu", "application/cu-seeme");
-                            tempMimeTypes.Add("deb", "application/x-debian-package");
-                            tempMimeTypes.Add("doc", "application/msword");
-                            tempMimeTypes.Add("docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-                            tempMimeTypes.Add("dvi", "application/x-dvi");
-                            tempMimeTypes.Add("eot", "application/vnd.ms-fontobject");
-                            tempMimeTypes.Add("eps", "application/postscript");
-                            tempMimeTypes.Add("epub", "application/epub+zip");
-                            tempMimeTypes.Add("etx", "text/x-setext");
-                            tempMimeTypes.Add("flac", "audio/flac");
-                            tempMimeTypes.Add("flv", "video/x-flv");
-                            tempMimeTypes.Add("gif", "image/gif");
-                            tempMimeTypes.Add("gz", "application/gzip");
-                            tempMimeTypes.Add("htm", "text/html");
-                            tempMimeTypes.Add("html", "text/html");
-                            tempMimeTypes.Add("ico", "image/x-icon");
-                            tempMimeTypes.Add("ics", "text/calendar");
-                            tempMimeTypes.Add("ini", "text/plain");
-                            tempMimeTypes.Add("iso", "application/x-iso9660-image");
-                            tempMimeTypes.Add("jar", "application/java-archive");
-                            tempMimeTypes.Add("jpe", "image/jpeg");
-                            tempMimeTypes.Add("jpeg", "image/jpeg");
-                            tempMimeTypes.Add("jpg", "image/jpeg");
-                            tempMimeTypes.Add("js", "text/javascript");
-                            tempMimeTypes.Add("json", "application/json");
-                            tempMimeTypes.Add("latex", "application/x-latex");
-                            tempMimeTypes.Add("log", "text/plain");
-                            tempMimeTypes.Add("m4a", "audio/mp4");
-                            tempMimeTypes.Add("m4v", "video/mp4");
-                            tempMimeTypes.Add("mid", "audio/midi");
-                            tempMimeTypes.Add("midi", "audio/midi");
-                            tempMimeTypes.Add("mov", "video/quicktime");
-                            tempMimeTypes.Add("mp3", "audio/mpeg");
-                            tempMimeTypes.Add("mp4", "video/mp4");
-                            tempMimeTypes.Add("mp4a", "audio/mp4");
-                            tempMimeTypes.Add("mp4v", "video/mp4");
-                            tempMimeTypes.Add("mpe", "video/mpeg");
-                            tempMimeTypes.Add("mpeg", "video/mpeg");
-                            tempMimeTypes.Add("mpg", "video/mpeg");
-                            tempMimeTypes.Add("mpg4", "video/mp4");
-                            tempMimeTypes.Add("oga", "audio/ogg");
-                            tempMimeTypes.Add("ogg", "audio/ogg");
-                            tempMimeTypes.Add("ogv", "video/ogg");
-                            tempMimeTypes.Add("ogx", "application/ogg");
-                            tempMimeTypes.Add("pbm", "image/x-portable-bitmap");
-                            tempMimeTypes.Add("pdf", "application/pdf");
-                            tempMimeTypes.Add("pgm", "image/x-portable-graymap");
-                            tempMimeTypes.Add("png", "image/png");
-                            tempMimeTypes.Add("pnm", "image/x-portable-anymap");
-                            tempMimeTypes.Add("ppm", "image/x-portable-pixmap");
-                            tempMimeTypes.Add("ppt", "application/vnd.ms-powerpoint");
-                            tempMimeTypes.Add("pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation");
-                            tempMimeTypes.Add("ps", "application/postscript");
-                            tempMimeTypes.Add("qt", "video/quicktime");
-                            tempMimeTypes.Add("rar", "application/x-rar-compressed");
-                            tempMimeTypes.Add("ras", "image/x-cmu-raster");
-                            tempMimeTypes.Add("rss", "application/rss+xml");
-                            tempMimeTypes.Add("rtf", "application/rtf");
-                            tempMimeTypes.Add("sgm", "text/sgml");
-                            tempMimeTypes.Add("sgml", "text/sgml");
-                            tempMimeTypes.Add("svg", "image/svg+xml");
-                            tempMimeTypes.Add("swf", "application/x-shockwave-flash");
-                            tempMimeTypes.Add("tar", "application/x-tar");
-                            tempMimeTypes.Add("tif", "image/tiff");
-                            tempMimeTypes.Add("tiff", "image/tiff");
-                            tempMimeTypes.Add("torrent", "application/x-bittorrent");
-                            tempMimeTypes.Add("ttf", "application/x-font-ttf");
-                            tempMimeTypes.Add("txt", "text/plain");
-                            tempMimeTypes.Add("wav", "audio/x-wav");
-                            tempMimeTypes.Add("webm", "video/webm");
-                            tempMimeTypes.Add("wma", "audio/x-ms-wma");
-                            tempMimeTypes.Add("wmv", "video/x-ms-wmv");
-                            tempMimeTypes.Add("woff", "application/x-font-woff");
-                            tempMimeTypes.Add("wsdl", "application/wsdl+xml");
-                            tempMimeTypes.Add("xbm", "image/x-xbitmap");
-                            tempMimeTypes.Add("xls", "application/vnd.ms-excel");
-                            tempMimeTypes.Add("xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                            tempMimeTypes.Add("xml", "application/xml");
-                            tempMimeTypes.Add("xpm", "image/x-xpixmap");
-                            tempMimeTypes.Add("xwd", "image/x-xwindowdump");
-                            tempMimeTypes.Add("yaml", "text/yaml");
-                            tempMimeTypes.Add("yml", "text/yaml");
-                            tempMimeTypes.Add("zip", "application/zip");
+                            IDictionary<string, string> tempMimeTypes = new Dictionary<string, string>
+                            {
+                                { "7z", "application/x-7z-compressed" },
+                                { "aac", "audio/x-aac" },
+                                { "ai", "application/postscript" },
+                                { "aif", "audio/x-aiff" },
+                                { "asc", "text/plain" },
+                                { "asf", "video/x-ms-asf" },
+                                { "atom", "application/atom+xml" },
+                                { "avi", "video/x-msvideo" },
+                                { "bmp", "image/bmp" },
+                                { "bz2", "application/x-bzip2" },
+                                { "cer", "application/pkix-cert" },
+                                { "crl", "application/pkix-crl" },
+                                { "crt", "application/x-x509-ca-cert" },
+                                { "css", "text/css" },
+                                { "csv", "text/csv" },
+                                { "cu", "application/cu-seeme" },
+                                { "deb", "application/x-debian-package" },
+                                { "doc", "application/msword" },
+                                { "docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
+                                { "dvi", "application/x-dvi" },
+                                { "eot", "application/vnd.ms-fontobject" },
+                                { "eps", "application/postscript" },
+                                { "epub", "application/epub+zip" },
+                                { "etx", "text/x-setext" },
+                                { "flac", "audio/flac" },
+                                { "flv", "video/x-flv" },
+                                { "gif", "image/gif" },
+                                { "gz", "application/gzip" },
+                                { "htm", "text/html" },
+                                { "html", "text/html" },
+                                { "ico", "image/x-icon" },
+                                { "ics", "text/calendar" },
+                                { "ini", "text/plain" },
+                                { "iso", "application/x-iso9660-image" },
+                                { "jar", "application/java-archive" },
+                                { "jpe", "image/jpeg" },
+                                { "jpeg", "image/jpeg" },
+                                { "jpg", "image/jpeg" },
+                                { "js", "text/javascript" },
+                                { "json", "application/json" },
+                                { "latex", "application/x-latex" },
+                                { "log", "text/plain" },
+                                { "m4a", "audio/mp4" },
+                                { "m4v", "video/mp4" },
+                                { "mid", "audio/midi" },
+                                { "midi", "audio/midi" },
+                                { "mov", "video/quicktime" },
+                                { "mp3", "audio/mpeg" },
+                                { "mp4", "video/mp4" },
+                                { "mp4a", "audio/mp4" },
+                                { "mp4v", "video/mp4" },
+                                { "mpe", "video/mpeg" },
+                                { "mpeg", "video/mpeg" },
+                                { "mpg", "video/mpeg" },
+                                { "mpg4", "video/mp4" },
+                                { "oga", "audio/ogg" },
+                                { "ogg", "audio/ogg" },
+                                { "ogv", "video/ogg" },
+                                { "ogx", "application/ogg" },
+                                { "pbm", "image/x-portable-bitmap" },
+                                { "pdf", "application/pdf" },
+                                { "pgm", "image/x-portable-graymap" },
+                                { "png", "image/png" },
+                                { "pnm", "image/x-portable-anymap" },
+                                { "ppm", "image/x-portable-pixmap" },
+                                { "ppt", "application/vnd.ms-powerpoint" },
+                                { "pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation" },
+                                { "ps", "application/postscript" },
+                                { "qt", "video/quicktime" },
+                                { "rar", "application/x-rar-compressed" },
+                                { "ras", "image/x-cmu-raster" },
+                                { "rss", "application/rss+xml" },
+                                { "rtf", "application/rtf" },
+                                { "sgm", "text/sgml" },
+                                { "sgml", "text/sgml" },
+                                { "svg", "image/svg+xml" },
+                                { "swf", "application/x-shockwave-flash" },
+                                { "tar", "application/x-tar" },
+                                { "tif", "image/tiff" },
+                                { "tiff", "image/tiff" },
+                                { "torrent", "application/x-bittorrent" },
+                                { "ttf", "application/x-font-ttf" },
+                                { "txt", "text/plain" },
+                                { "wav", "audio/x-wav" },
+                                { "webm", "video/webm" },
+                                { "wma", "audio/x-ms-wma" },
+                                { "wmv", "video/x-ms-wmv" },
+                                { "woff", "application/x-font-woff" },
+                                { "wsdl", "application/wsdl+xml" },
+                                { "xbm", "image/x-xbitmap" },
+                                { "xls", "application/vnd.ms-excel" },
+                                { "xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
+                                { "xml", "application/xml" },
+                                { "xpm", "image/x-xpixmap" },
+                                { "xwd", "image/x-xwindowdump" },
+                                { "yaml", "text/yaml" },
+                                { "yml", "text/yaml" },
+                                { "zip", "application/zip" }
+                            };
                             _MimeTypes = tempMimeTypes;
                         }
                     }

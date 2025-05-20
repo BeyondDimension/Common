@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace System;
 
 partial class OSHelper

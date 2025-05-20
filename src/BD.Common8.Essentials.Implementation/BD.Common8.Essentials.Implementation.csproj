@@ -3,10 +3,21 @@
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8.Essentials</RootNamespace>
-		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<!--<AllowUnsafeBlocks>true</AllowUnsafeBlocks>-->
 		<Description>具体平台的 Essentials 实现服务库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<!-- 👇 引用 NuGet 包 #if !LINUX -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != ''">
+		<PackageReference Include="Microsoft.Maui.Essentials" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
+		<ProjectReference Include="..\BD.Common8.Repositories.SQLitePCL\BD.Common8.Repositories.SQLitePCL.csproj" />
+	</ItemGroup>
 
 </Project>

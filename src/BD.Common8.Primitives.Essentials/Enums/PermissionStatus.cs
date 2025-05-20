@@ -1,4 +1,4 @@
-namespace BD.Common8.Enums;
+namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
 /// 权限的可能状态

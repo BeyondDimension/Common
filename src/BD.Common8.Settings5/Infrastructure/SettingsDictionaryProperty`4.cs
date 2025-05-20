@@ -1,3 +1,7 @@
+using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Settings5.Infrastructure;
 
 /// <summary>
@@ -13,10 +17,9 @@ namespace BD.Common8.Settings5.Infrastructure;
 /// <param name="default"></param>
 /// <param name="autoSave"></param>
 /// <param name="propertyName"></param>
-[method: RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
-public class SettingsDictionaryProperty<TKey,
-    TValue,
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TDictionary,
+public class SettingsDictionaryProperty<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TKey,
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TValue,
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TDictionary,
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TDictionary? @default = default, bool autoSave = true, [CallerMemberName] string? propertyName = null)
     : SettingsCollectionProperty<KeyValuePair<TKey, TValue>, TDictionary, TSettingsModel>(@default, autoSave, propertyName),
     IDictionary<TKey, TValue>

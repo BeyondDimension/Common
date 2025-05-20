@@ -3,6 +3,11 @@
 // https://github.com/dotnet/runtime/issues/66863
 // https://devblogs.microsoft.com/dotnet/performance-improvements-in-dotnet-maui/#remove-microsoft-extensions-http-usage
 
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace System.Net.Http.Client;
 
 #if PROJ_SETUP

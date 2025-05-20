@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace Tools.Build.Commands;
 
 partial interface IBuildCommand
@@ -135,7 +137,7 @@ partial interface IBuildCommand
             if (File.Exists(jsonConfigPath))
             {
                 using var stream = new FileStream(jsonConfigPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
-                var value = SystemTextJsonSerializer.Deserialize<string[]>(stream);
+                var value = JsonSerializer.Deserialize<string[]>(stream);
                 if (value != null)
                 {
                     return value;

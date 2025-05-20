@@ -1,3 +1,13 @@
+#if WINDOWS
+using Microsoft.Win32.SafeHandles;
+using System.Runtime.InteropServices;
+#endif
+#if NET5_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using SR = BD.Common8.Resources.SR;
 
 namespace System.Diagnostics;
@@ -25,6 +35,11 @@ public static partial class Process2
     /// <para>或 参数的长度与该进程的完整路径的长度的总和超过了 2080。 与此异常关联的错误消息可能为以下消息之一：“传递到系统调用的数据区域太小。” 或“拒绝访问。”</para>
     /// </exception>
     /// <exception cref="PlatformNotSupportedException">不支持 shell 的操作系统（如，仅适用于.NET Core 的 Nano Server）不支持此方法</exception>
+#if NET5_0_OR_GREATER
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Process? StartPath(string fileName, string path)
     {
@@ -132,6 +147,11 @@ public static partial class Process2
     /// <para>或 参数的长度与该进程的完整路径的长度的总和超过了 2080。 与此异常关联的错误消息可能为以下消息之一：“传递到系统调用的数据区域太小。” 或“拒绝访问。”</para>
     /// </exception>
     /// <exception cref="PlatformNotSupportedException">不支持 shell 的操作系统（如，仅适用于.NET Core 的 Nano Server）不支持此方法</exception>
+#if NET5_0_OR_GREATER
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Process? Start(string fileName, object? arguments = null, bool useShellExecute = false, string? workingDirectory = null, IReadOnlyDictionary<string, string>? environment = null)
     {
@@ -160,6 +180,11 @@ public static partial class Process2
     /// <param name="url">要打开的 URL </param>
     /// <param name="onError">错误回调函数</param>
     /// <returns>如果成功打开 URL，则返回 <see langword="true"/>；否则为 <see langword="false"/> </returns>
+#if NET5_0_OR_GREATER
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+#endif
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool OpenCoreByProcess(string url, Action<string>? onError = null)
     {
@@ -177,41 +202,41 @@ public static partial class Process2
         }
     }
 
-    /// <summary>
-    /// 执行 Shell 命令并返回结果
-    /// </summary>
-    /// <param name="fileName">要执行的命令</param>
-    /// <param name="value">传递给命令的参数</param>
-    /// <param name="onError">发生异常时执行的回调函数</param>
-    /// <returns>命令执行后的输出结果</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Obsolete]
-    public static string RunShell(string fileName, string value, Action<Exception>? onError = null)
-    {
-        try
-        {
-            using var p = new Process();
-            p.StartInfo.FileName = fileName;
-            p.StartInfo.Arguments = "";
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.UseShellExecute = false;
-            p.Start();
-            p.StandardInput.WriteLine(value);
-            p.StandardInput.Close();
-            string result = p.StandardOutput.ReadToEnd();
-            p.StandardOutput.Close();
-            p.WaitForExit();
-            p.Close();
-            p.Dispose();
-            return result;
-        }
-        catch (Exception e)
-        {
-            onError?.Invoke(e);
-        }
-        return string.Empty;
-    }
+    ///// <summary>
+    ///// 执行 Shell 命令并返回结果
+    ///// </summary>
+    ///// <param name="fileName">要执行的命令</param>
+    ///// <param name="value">传递给命令的参数</param>
+    ///// <param name="onError">发生异常时执行的回调函数</param>
+    ///// <returns>命令执行后的输出结果</returns>
+    //[MethodImpl(MethodImplOptions.AggressiveInlining)]
+    //[Obsolete]
+    //public static string RunShell(string fileName, string value, Action<Exception>? onError = null)
+    //{
+    //    try
+    //    {
+    //        using var p = new Process();
+    //        p.StartInfo.FileName = fileName;
+    //        p.StartInfo.Arguments = "";
+    //        p.StartInfo.RedirectStandardOutput = true;
+    //        p.StartInfo.RedirectStandardInput = true;
+    //        p.StartInfo.UseShellExecute = false;
+    //        p.Start();
+    //        p.StandardInput.WriteLine(value);
+    //        p.StandardInput.Close();
+    //        string result = p.StandardOutput.ReadToEnd();
+    //        p.StandardOutput.Close();
+    //        p.WaitForExit();
+    //        p.Close();
+    //        p.Dispose();
+    //        return result;
+    //    }
+    //    catch (Exception e)
+    //    {
+    //        onError?.Invoke(e);
+    //    }
+    //    return string.Empty;
+    //}
 
     /// <summary>
     /// 进程是否活着

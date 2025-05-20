@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace BD.Common8.AspNetCore.Models.Users;
 
 /// <summary>

@@ -1,3 +1,8 @@
+using BD.Common8.AspNetCore.Models.Abstractions;
+using Microsoft.IdentityModel.Tokens;
+using System.Net;
+using System.Runtime.Serialization;
+
 namespace BD.Common8.AspNetCore.Models;
 
 /// <summary>
@@ -51,8 +56,8 @@ public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders, 
 
     /// <inheritdoc/>
     [IgnoreDataMember]
-    [NewtonsoftJsonIgnore]
-    [SystemTextJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public SigningCredentials? SigningCredentials { get; set; }
 
     /// <inheritdoc/>
@@ -63,8 +68,8 @@ public abstract class BMAppSettings : IJWTAppSettings, INotUseForwardedHeaders, 
 
     /// <inheritdoc/>
     [IgnoreDataMember]
-    [NewtonsoftJsonIgnore]
-    [SystemTextJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public bool UseCors { get; set; }
 
     /// <summary>

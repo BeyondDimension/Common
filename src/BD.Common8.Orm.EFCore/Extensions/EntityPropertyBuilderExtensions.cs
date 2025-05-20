@@ -1,3 +1,8 @@
+using BD.Common8.Orm.EFCore.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Orm.EFCore.Extensions;
 
 public static partial class EntityPropertyBuilderExtensions

@@ -11,8 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System.Collections.Generic;
-
 namespace OBS.Model
 {
     public partial class DeleteObjectsRequest : ObsBucketWebServiceRequest
@@ -25,7 +23,7 @@ namespace OBS.Model
 
         public void AddKey(string key, string versionId)
         {
-            KeyVersion kv = new KeyVersion
+            KeyVersion kv = new()
             {
                 Key = key,
                 VersionId = versionId,

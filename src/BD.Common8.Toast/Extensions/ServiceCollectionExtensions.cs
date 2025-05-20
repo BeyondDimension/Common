@@ -1,3 +1,10 @@
+using BD.Common8.Toast.Services;
+using BD.Common8.Toast.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Toast.Extensions;
 
 public static partial class ServiceCollectionExtensions

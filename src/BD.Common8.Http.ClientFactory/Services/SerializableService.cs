@@ -1,3 +1,17 @@
+using BD.Common8.Enums;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions.Internals;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.Common8.Http.ClientFactory.Services;
 
 #if !NETFRAMEWORK && !PROJ_SETUP
@@ -5,7 +19,7 @@ namespace BD.Common8.Http.ClientFactory.Services;
 /// <param name="newtonsoftJsonSerializer">如果需要使用 <see cref="Newtonsoft.Json"/> 则需要传递自定义实例或通过直接 new()，否则应保持为 <see langword="null"/></param>
 public abstract partial class SerializableService(
     ILogger logger,
-    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : Log.I
+    global::Newtonsoft.Json.JsonSerializer? newtonsoftJsonSerializer = null) : Log.I
 {
 }
 #else
@@ -46,50 +60,6 @@ partial class SerializableService
     /// 使用的默认文本编码，默认值为 <see cref="Encoding.UTF8"/>
     /// </summary>
     protected virtual Encoding DefaultEncoding => Encoding.UTF8;
-
-    #region Json
-
-#if !NETFRAMEWORK && !PROJ_SETUP
-    /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
-    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = newtonsoftJsonSerializer;
-
-    /// <inheritdoc cref="Newtonsoft.Json.JsonSerializer"/>
-    protected NewtonsoftJsonSerializer NewtonsoftJsonSerializer => newtonsoftJsonSerializer ??= new();
-#endif
-
-    /// <summary>
-    /// 用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写
-    /// </summary>
-    protected virtual SystemTextJsonSerializerOptions JsonSerializerOptions
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        => SystemTextJsonSerializerOptions.Default;
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-
-    SystemTextJsonSerializerOptions? _JsonSerializerOptions;
-
-    /// <summary>
-    /// 使用的 <see cref="SystemTextJsonSerializerOptions"/>
-    /// </summary>
-    public virtual SystemTextJsonSerializerOptions UseJsonSerializerOptions
-    {
-        get
-        {
-            if (_JsonSerializerOptions == null)
-            {
-                var baseOptions = JsonSerializerOptions;
-#if PROJ_SETUP
-                _JsonSerializerOptions = new SystemTextJsonSerializerOptions(JsonSerializerDefaults.Web);
-#else
-                _JsonSerializerOptions = Serializable.CreateOptions(baseOptions);
-#endif
-            }
-            return _JsonSerializerOptions;
-        }
-    }
-
-    #endregion
 
     /// <summary>
     /// 将响应正文泛型转换为 <see cref="ApiRspBase"/>
@@ -475,4 +445,67 @@ partial class SerializableService
     }
 
     #endregion
+}
+
+#if !NETFRAMEWORK && !PROJ_SETUP
+partial class SerializableService // Newtonsoft.Json
+{
+    /// <inheritdoc cref="global::Newtonsoft.Json.JsonSerializer"/>
+    global::Newtonsoft.Json.JsonSerializer? newtonsoftJsonSerializer = newtonsoftJsonSerializer;
+
+    /// <inheritdoc cref="global::Newtonsoft.Json.JsonSerializer"/>
+    protected global::Newtonsoft.Json.JsonSerializer NewtonsoftJsonSerializer => newtonsoftJsonSerializer ??= new();
+}
+#endif
+
+partial class SerializableService // System.Text.Json
+{
+    /// <summary>
+    /// 用于序列化的类型信息，由 Json 源生成，值指向 JsonSerializerOptions.Web，由实现类重写
+    /// <para>当使用 AOT 时，应重写 GetJsonSerializerOptions 函数返回源生成的 JsonSerializerContext.Options</para>
+    /// </summary>
+    protected virtual JsonSerializerOptions GetJsonSerializerOptions()
+#pragma warning disable CS0618 // 类型或成员已过时
+        => JsonSerializerOptions;
+#pragma warning restore CS0618 // 类型或成员已过时
+
+    /// <summary>
+    /// 由序列化或反序列化时使用的 <see cref="JsonSerializerOptions"/>
+    /// </summary>
+    public virtual JsonSerializerOptions Options
+    {
+        get
+        {
+            if (field == null)
+            {
+                var baseOptions = GetJsonSerializerOptions();
+#if PROJ_SETUP
+                field = new SystemTextJsonSerializerOptions(JsonSerializerDefaults.Web);
+#else
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+                field = Serializable.CreateOptions(baseOptions);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#endif
+            }
+            return field;
+        }
+    }
+
+    /// <inheritdoc cref="Options"/>
+    [Obsolete("use Options")]
+    public virtual JsonSerializerOptions UseJsonSerializerOptions => Options;
+}
+
+partial class SerializableService // System.Text.Json(Obsolete)
+{
+    /// <inheritdoc cref="GetJsonSerializerOptions"/>
+    [Obsolete("use GetJsonSerializerOptions()")]
+    protected virtual JsonSerializerOptions JsonSerializerOptions
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        => JsonSerializerOptions.Web;
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 }

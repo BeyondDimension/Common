@@ -1,4 +1,6 @@
-namespace BD.Common8.Models.Abstractions;
+using BD.Common8.District.Enums;
+
+namespace BD.Common8.District.Models.Abstractions;
 
 /// <summary>
 /// 行政区域

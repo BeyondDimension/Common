@@ -11,8 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System.Collections.Generic;
-
 namespace OBS.Model
 {
     /// <summary>
@@ -38,7 +36,7 @@ namespace OBS.Model
             get
             {
                 
-                return topicConfigurations ??= new List<TopicConfiguration>();
+                return topicConfigurations ??= [];
             }
             set { topicConfigurations = value; }
         }
@@ -49,7 +47,7 @@ namespace OBS.Model
             get
             {
 
-                return functionGraphConfigurations ??= new List<FunctionGraphConfiguration>();
+                return functionGraphConfigurations ??= [];
             }
             set { functionGraphConfigurations = value; }
         }

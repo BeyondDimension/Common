@@ -1,6 +1,6 @@
-// https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub.FlowAnalyze/DelegatingDuplexPipe.cs
-
 #if NET6_0_OR_GREATER
+using System.Extensions;
+
 namespace System.IO.Pipelines;
 
 /// <summary>

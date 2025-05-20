@@ -2,19 +2,26 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
-		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
-		<Version>$(Version_SourceGenerator_Repositories)</Version>
+		<!--8.yy.1MMdd.1hhmm-->
+		<Version>8.25.10520.12000</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
-		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<Description>仓储层源生成器</Description>
-		<LangVersion>latest</LangVersion>
-		<!-- 👆 preview LangVersion 与 Costura.Fody 疑似有兼容性问题导致编译失败 csc.exe 闪退 -->
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<!-- 👇 LangVersion = preview 会导致编译失败 csc.exe 闪退 -->
+		<!-- Roslyn\Microsoft.CSharp.Core.targets(84,5): error : Process terminated. System.NullReferenceException: Object reference not set to an instance of an object. -->
+		<!-- Microsoft.CSharp.Core.targets(84,5): error :    at Microsoft.CodeAnalysis.CodeGen.ReferenceDependencyWalker.VisitSignature(ISignature signature, EmitContext context) -->
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<!-- 👇 引用 NuGet 包 -->
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Humanizer.Core">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 		<PackageReference Include="Humanizer.Core.zh-CN">
@@ -24,5 +31,7 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\SharedProject\SourceGenerator.props" />
 
 </Project>

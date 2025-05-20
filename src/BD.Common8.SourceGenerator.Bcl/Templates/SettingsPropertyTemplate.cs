@@ -1,4 +1,8 @@
 using BD.Common8.Settings5.Infrastructure;
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
 
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
@@ -71,7 +75,7 @@ public sealed class SettingsPropertyTemplate :
         public required int I { get; init; }
     }
 
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
         SourceModel model = new()
         {
@@ -102,12 +106,12 @@ public sealed class SettingsPropertyTemplate :
         return PropertyInterfaceType.None;
     }
 
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
         var modelTypeSymbol = TypeStringImpl.GetTypeSymbol(m.AttrModel.Attribute.ModelType);
         modelTypeSymbol.ThrowIsNull();
 
-        WriteFileHeader(stream);
+        WriteFileHeader(stream, GetType());
         stream.Write(
 """
 #pragma warning disable IDE0028 // 使用集合初始值设定项
@@ -119,7 +123,7 @@ public sealed class SettingsPropertyTemplate :
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();
-        var modelType = m.Attribute.ModelType?.Name;
+        var modelType = m.Attribute.ModelType is TypeStringImpl modelTypeStringImpl ? modelTypeStringImpl.ToString() : m.Attribute.ModelType?.Name;
         modelType.ThrowIsNull();
         stream.WriteFormat(
 """
@@ -161,7 +165,7 @@ static partial class {0}
                     stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}.{1}"/>
-    public static SettingsProperty<{2}, {0}> {1}
+    public static global::BD.Common8.Settings5.Infrastructure.SettingsProperty<{2}, {0}> {1}
 """u8, modelType, property.Name, propertyType);
                     stream.Write(" { get; }"u8);
                     stream.WriteNewLine();
@@ -175,7 +179,7 @@ static partial class {0}
                     stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}.{1}"/>
-    public static SettingsDictionaryProperty<{3}, {4}, {2}, {0}> {1}
+    public static global::BD.Common8.Settings5.Infrastructure.SettingsDictionaryProperty<{3}, {4}, {2}, {0}> {1}
 """u8, modelType, property.Name, propertyType,
 propertyType.DictionaryKey, propertyType.DictionaryValue.TrimEnd('?'));
                     stream.Write(" { get; }"u8);
@@ -190,7 +194,7 @@ propertyType.DictionaryKey, propertyType.DictionaryValue.TrimEnd('?'));
                     stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}.{1}"/>
-    public static SettingsCollectionProperty<{3}, {2}, {0}> {1}
+    public static global::BD.Common8.Settings5.Infrastructure.SettingsCollectionProperty<{3}, {2}, {0}> {1}
 """u8, modelType, property.Name, propertyType,
 propertyType.GenericT.TrimEnd('?'));
                     stream.Write(" { get; }"u8);

@@ -1,4 +1,7 @@
 #if DEBUG
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Helpers;
 
 partial class Browser2

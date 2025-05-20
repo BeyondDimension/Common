@@ -1,3 +1,13 @@
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Orm.EFCore.Data;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>

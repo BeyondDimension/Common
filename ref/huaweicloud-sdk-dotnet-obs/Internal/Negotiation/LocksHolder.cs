@@ -11,16 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace OBS.Internal.Negotiation
 {
     internal class LocksHolder
     {
-        private object[] locks;
-        private int lockNum;
+        private readonly object[] locks;
+        private readonly int lockNum;
 
         public LocksHolder() : this(16)
         {

@@ -5,7 +5,7 @@ namespace BD.Common8.Models.Abstractions;
 /// </summary>
 /// <typeparam name="TPrimaryKey">主键的类型</typeparam>
 #if !NETFRAMEWORK
-[MPObj]
+[global::MessagePack.MessagePackObject]
 #endif
 public abstract partial class KeyModel<TPrimaryKey> : IKeyModel<TPrimaryKey> where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
 {
@@ -16,8 +16,8 @@ public abstract partial class KeyModel<TPrimaryKey> : IKeyModel<TPrimaryKey> whe
 
     /// <inheritdoc/>
 #if !NETFRAMEWORK
-    [MPKey(LastMKeyIndex)]
-    [MP2Key(LastMKeyIndex)]
+    [global::MessagePack.Key(LastMKeyIndex)]
+    [global::MemoryPack.MemoryPackOrder(LastMKeyIndex)]
 #endif
     public virtual TPrimaryKey Id { get; set; } = default!;
 }

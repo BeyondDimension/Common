@@ -1,6 +1,7 @@
 // https://github.com/dahall/Vanara/blob/v3.4.17/PInvoke/Shared/Handles/IHandle.cs
-
 #if WINDOWS7_0_OR_GREATER
+using Microsoft.Win32.SafeHandles;
+
 namespace Microsoft.Win32.SafeHandles
 {
     ///// <summary>Signals that a structure or class holds a handle to a graphics object.</summary>
@@ -33,7 +34,7 @@ namespace Microsoft.Win32.SafeHandles
 namespace Windows.Win32.Networking.WinHttp
 {
     /// <summary>
-    /// Provides a <see cref="SafeHandle"/> for <see cref="nint"/> that is disposed using <see cref="PInvoke.WinHttpCloseHandle(void*)"/>.
+    /// Provides a <see cref="SafeHANDLE"/> for <see cref="nint"/> that is disposed using <see cref="PInvoke.WinHttpCloseHandle(void*)"/>.
     /// <para>https://github.com/dahall/Vanara/blob/v3.4.17/PInvoke/WinHTTP/WinHTTP.Structs.cs#L1527-L1547</para>
     /// </summary>
     /// <remarks>Initializes a new instance of the <see cref="SafeHINTERNET"/> class and assigns an existing handle.</remarks>

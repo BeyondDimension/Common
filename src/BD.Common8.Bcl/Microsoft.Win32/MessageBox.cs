@@ -4,6 +4,10 @@
 // https://github.com/dotnet/wpf/blob/v6.0.6/src/Microsoft.DotNet.Wpf/src/PresentationFramework/System/Windows/MessageBox.cs
 // MessageBox 在 NETFRAMEWORK 中直接引用 Wpf 的 PresentationFramework 库而不使用下面的代码
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
 namespace Microsoft.Win32;
 
 #if !NETFRAMEWORK && WINDOWS

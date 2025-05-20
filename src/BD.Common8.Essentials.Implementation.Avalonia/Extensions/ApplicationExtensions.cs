@@ -1,3 +1,7 @@
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Extensions;
 
 public static partial class ApplicationExtensions
@@ -6,7 +10,7 @@ public static partial class ApplicationExtensions
     /// 获取主窗口、活动窗口或主视图
     /// </summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static TopLevel? GetMainWindowOrActiveWindowOrMainView(this AvaApplication? avaloniaApp)
+    public static TopLevel? GetMainWindowOrActiveWindowOrMainView(this global::Avalonia.Application? avaloniaApp)
     {
         if (avaloniaApp != null)
         {

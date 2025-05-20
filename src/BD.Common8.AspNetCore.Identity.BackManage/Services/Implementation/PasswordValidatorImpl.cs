@@ -1,3 +1,6 @@
+using BD.Common8.AspNetCore.Entities;
+using Microsoft.AspNetCore.Identity;
+
 namespace BD.Common8.AspNetCore.Services.Implementation;
 
 /// <summary>

@@ -1,3 +1,11 @@
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Models.Abstractions.Internals;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Net;
+using System.Net.Http.Client;
+
 namespace BD.Common8.Http.ClientFactory.Services;
 
 #if !NETFRAMEWORK && !PROJ_SETUP
@@ -9,7 +17,7 @@ public abstract partial class WebApiClientService(
 #pragma warning restore SA1605 // Partial element documentation should have summary
     ILogger logger,
     IHttpPlatformHelperService? httpPlatformHelper,
-    NewtonsoftJsonSerializer? newtonsoftJsonSerializer = null) : SerializableService(logger, newtonsoftJsonSerializer)
+    global::Newtonsoft.Json.JsonSerializer? newtonsoftJsonSerializer = null) : SerializableService(logger, newtonsoftJsonSerializer)
 {
 }
 #else
@@ -21,7 +29,7 @@ public abstract partial class WebApiClientService(IHttpPlatformHelperService? ht
 /// <summary>
 /// WebApiClient 基类服务
 /// <para>注意：继承此类需要实现 <see cref="CreateClient"/></para>
-/// <para>对于使用 <see cref="IClientHttpClientFactory"/> 工厂构建 <see cref="HttpClient"/> 的服务基类应使用 <see cref="WebApiClientFactoryService"/></para>
+/// <para>对于使用 <see cref="global::System.Net.Http.Client.IClientHttpClientFactory"/> 工厂构建 <see cref="HttpClient"/> 的服务基类应使用 <see cref="WebApiClientFactoryService"/></para>
 /// </summary>
 partial class WebApiClientService
 {
@@ -31,7 +39,7 @@ partial class WebApiClientService
     /// <inheritdoc cref="IHttpPlatformHelperService.UserAgent"/>
     internal virtual string? UserAgent => httpPlatformHelper?.UserAgent;
 
-    /// <inheritdoc cref="WebApiClientSendArgs.Accept"/>
+    /// <inheritdoc cref="global::BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs.Accept"/>
     protected virtual string Accept => MediaTypeNames.JSON;
 
     #region Send
@@ -699,22 +707,18 @@ partial class WebApiClientService
                     switch (mime)
                     {
                         case MediaTypeNames.JSON:
-                            switch (args.JsonImplType)
+                            deserializeResult = args.JsonImplType switch
                             {
-                                case Serializable.JsonImplType.NewtonsoftJson:
-                                    deserializeResult = ReadFromNJson<TResponseBody>(
-                                        responseMessage.Content, cancellationToken: cancellationToken);
-                                    break;
-                                case Serializable.JsonImplType.SystemTextJson:
-                                    deserializeResult = ReadFromSJson<TResponseBody>(
-                                        responseMessage.Content, cancellationToken);
-                                    break;
-                                default:
-                                    throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType);
-                            }
+                                Serializable.JsonImplType.NewtonsoftJson => ReadFromNJson<TResponseBody>(
+                                                                        responseMessage.Content, cancellationToken: cancellationToken),
+                                Serializable.JsonImplType.SystemTextJson => ReadFromSJson<TResponseBody>(
+                                                                        responseMessage.Content, cancellationToken),
+                                _ => throw ThrowHelper.GetArgumentOutOfRangeException(args.JsonImplType),
+                            };
                             break;
                         case MediaTypeNames.XML:
                         case MediaTypeNames.XML_APP:
+                            // 当使用 AOT 时候，不支持 XML 序列化
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
                             deserializeResult = ReadFromXml<TResponseBody>(
                                 responseMessage.Content, cancellationToken: cancellationToken);

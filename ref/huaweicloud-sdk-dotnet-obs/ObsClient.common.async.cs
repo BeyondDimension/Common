@@ -79,13 +79,24 @@ public partial class ObsClient
 
         T? request = additionalState == null ? null : additionalState[0] as T;
         HttpContext? context = additionalState == null ? null : additionalState[1] as HttpContext;
+#if NET7_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(request);
         ArgumentNullException.ThrowIfNull(context);
+#else
+        if (request == null)
+        {
+            throw new ArgumentNullException(nameof(request));
+        }
+        if (context == null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
+#endif
 
         try
         {
             var httpResponse = httpClient.EndPerformRequest(result);
-            return PrepareResponse<T, K>(request, context, result.HttpRequest, httpResponse);
+            return ObsClient.PrepareResponse<T, K>(request, context, result.HttpRequest, httpResponse);
         }
         catch (ObsException ex)
         {
@@ -108,10 +119,7 @@ public partial class ObsClient
         {
             if (autoClose)
             {
-                if (request != null)
-                {
-                    request.Sender = null;
-                }
+                request?.Sender = null;
 
                 CommonUtil.CloseIDisposable(result.HttpRequest);
             }

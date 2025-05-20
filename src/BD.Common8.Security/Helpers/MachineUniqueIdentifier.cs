@@ -1,3 +1,12 @@
+#if ANDROID || IOS || MACCATALYST
+using SecureStorage = global::Microsoft.Maui.Storage.SecureStorage;
+#else
+using System.Extensions;
+#endif
+using System.Runtime.CompilerServices;
+using System.Security;
+using System.Security.Cryptography;
+
 namespace BD.Common8.Security.Helpers;
 
 /// <summary>
@@ -63,10 +72,10 @@ public static partial class MachineUniqueIdentifier
         var guid = GetMachineSecretKeyGuid();
         static Guid GetMachineSecretKeyGuid()
         {
-#if ANDROID || IOS
+#if ANDROID || IOS || MACCATALYST
             // https://github.com/xamarin/Essentials/blob/1.8.1/Xamarin.Essentials/SecureStorage/SecureStorage.android.cs
             // https://github.com/xamarin/Essentials/blob/1.8.1/Xamarin.Essentials/SecureStorage/SecureStorage.ios.tvos.watchos.macos.cs
-            var secureStorage = Microsoft.Maui.Storage.SecureStorage.Default;
+            var secureStorage = SecureStorage.Default;
             var guidStr = secureStorage.GetAsync(KEY_MACHINE_SECRET).GetAwaiter().GetResult();
             if (Guid.TryParse(guidStr, out var guid))
                 return guid;

@@ -1,3 +1,7 @@
+using BD.Common8.Http.ClientFactory.Services;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+
 namespace BD.Common8.Http.ClientFactory.Models;
 
 /// <summary>
@@ -144,7 +148,7 @@ public record class WebApiClientSendArgs : IDisposable
     bool disposedValue;
 
     /// <summary>
-    /// 获取 <see cref="HttpClient"/>, 如果返回 <see langword="null"/> 将使用服务上的 <see cref="IClientHttpClientFactory.CreateClient(string, HttpHandlerCategory)"/>
+    /// 获取 <see cref="HttpClient"/>, 如果返回 <see langword="null"/> 将使用服务上的 <see cref="global::System.Net.Http.Client.IClientHttpClientFactory.CreateClient(string, global::System.Net.Http.Client.HttpHandlerCategory)"/>
     /// </summary>
     /// <returns></returns>
     public virtual HttpClient? GetHttpClient()

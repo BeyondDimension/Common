@@ -4,15 +4,25 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<BeyondDimensionFeatures>
-			BD.Common8.Bcl;
-			BD.Common8.Primitives.District;
-		</BeyondDimensionFeatures>
 		<ArtifactsPath>$(MSBuildThisFileDirectory)..\..\BenchmarkDotNet.Artifacts</ArtifactsPath>
 	</PropertyGroup>
+	<!-- 👇 Benchmark 无需 AOT & Trimmable -->
+	<PropertyGroup>
+		<IsTrimmable>false</IsTrimmable>
+		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>false</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>false</EnableAotAnalyzer>
+		<IsAotCompatible>false</IsAotCompatible>
+	</PropertyGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="BenchmarkDotNet" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -37,6 +47,14 @@
 	  </EmbeddedResource>
 	</ItemGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\Links\ChnCharInfo.props" />
+	<ItemGroup>
+		<!-- 👇 Resx 源生成器 -->
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\SharedProject\ChnCharInfo.props" />
 
 </Project>

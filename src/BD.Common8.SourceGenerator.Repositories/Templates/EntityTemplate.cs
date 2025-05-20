@@ -1,3 +1,13 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Repositories.Enums;
+using BD.Common8.SourceGenerator.Repositories.Models;
+using BD.Common8.SourceGenerator.Repositories.Models.Attributes;
+using BD.Common8.SourceGenerator.Repositories.Templates.Abstractions;
+using Humanizer;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+using System.Text.RegularExpressions;
+
 namespace BD.Common8.SourceGenerator.Repositories.Templates;
 
 /// <summary>
@@ -41,9 +51,12 @@ namespace {0};
 [Table("{2}")]
 public sealed partial class {3}
 """u8;
-        args[0] = $"{args[0]!.ToString()}.Entities.{metadata.GenerateRepositoriesAttribute.ModuleName}";
-        if (args[1] != null)
-            args[1] = Regex.Replace(args[1]!.ToString(), @"[ ]*///", "///");
+        args[0] = $"{args[0]}.Entities.{metadata.GenerateRepositoriesAttribute.ModuleName}";
+        var args1 = args[1]?.ToString();
+        if (args1 != null)
+        {
+            args[1] = Regex.Replace(args1, @"[ ]*///", "///");
+        }
         else
         {
             var summary =

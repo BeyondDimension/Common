@@ -11,12 +11,9 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using System.IO;
 using OBS.Model;
 
 namespace OBS.Internal
@@ -83,7 +80,7 @@ namespace OBS.Internal
 
         //同步锁
         [XmlIgnore]
-        internal readonly object downloadlock = new object();
+        internal readonly object downloadlock = new();
 
         /// <summary>
         /// 加载序列化记录文件
@@ -93,9 +90,9 @@ namespace OBS.Internal
             try
             {
                 DownloadCheckPoint? temp = null;
-                XmlSerializer serializer = new XmlSerializer(GetType());
+                XmlSerializer serializer = new(GetType());
 
-                using (XmlTextReader fs = new XmlTextReader(checkPointFile))
+                using (XmlTextReader fs = new(checkPointFile))
                 {
                     temp = (DownloadCheckPoint)serializer.Deserialize(fs);
                 }
@@ -135,7 +132,7 @@ namespace OBS.Internal
             if (Md5 != ComputeHash.HashCode(this))
                 return false;
 
-            FileInfo fileInfo = new FileInfo(tmpFilePath);
+            FileInfo fileInfo = new(tmpFilePath);
             if (!TmpFileStatus.TmpFilePath.Equals(tmpFilePath) || TmpFileStatus.Size != fileInfo.Length)
                 return false;
 
@@ -167,9 +164,9 @@ namespace OBS.Internal
 
             try
             {
-                XmlSerializer serializer = new XmlSerializer(GetType());
+                XmlSerializer serializer = new(GetType());
 
-                using XmlTextWriter fs = new XmlTextWriter(checkPointFile, Encoding.UTF8);
+                using XmlTextWriter fs = new(checkPointFile, Encoding.UTF8);
                 serializer.Serialize(fs, this);
             }
             catch (Exception ex)

@@ -1,4 +1,13 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using BD.Common8.Http.ClientFactory.Models;
+using Microsoft.Extensions.Logging;
+using Polly;
+using System.Extensions;
+using System.Formats;
+using System.Net.Http.Client;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+
 namespace BD.Common8.Http.ClientFactory.Services.Implementation;
 
 /// <summary>

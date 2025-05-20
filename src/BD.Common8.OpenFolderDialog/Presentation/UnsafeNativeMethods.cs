@@ -1,3 +1,9 @@
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using System.Text;
+
 namespace MS.Win32;
 
 internal static class ExternDll

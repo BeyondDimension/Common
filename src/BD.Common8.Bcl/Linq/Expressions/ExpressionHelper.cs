@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System.Linq.Expressions;
 
 public static partial class ExpressionHelper

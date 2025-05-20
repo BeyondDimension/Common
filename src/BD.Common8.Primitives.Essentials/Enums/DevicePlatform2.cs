@@ -1,4 +1,7 @@
-namespace BD.Common8.Enums;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
 /// 应用程序正在运行的设备平台

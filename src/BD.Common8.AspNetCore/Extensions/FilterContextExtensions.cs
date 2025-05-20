@@ -1,3 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class FilterContextExtensions

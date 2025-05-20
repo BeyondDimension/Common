@@ -2,8 +2,15 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>进程间通信 (IPC) 库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<!-- 👇 引用 NuGet 包 -->
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+	</ItemGroup>
 
 </Project>

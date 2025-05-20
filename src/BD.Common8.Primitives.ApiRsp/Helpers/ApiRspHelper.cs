@@ -1,3 +1,13 @@
+using BD.Common8.Enums;
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+using BD.Common8.Models.Abstractions.Internals;
+using MemoryPack;
+using MessagePack;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+
 namespace BD.Common8.Helpers;
 
 public static partial class ApiRspHelper
@@ -114,7 +124,7 @@ public static partial class ApiRspHelper
         CancellationToken cancellationToken = default)
     {
         var type = GetDeserializeType<T>();
-        var obj = await SystemTextJsonSerializer.DeserializeAsync(
+        var obj = await JsonSerializer.DeserializeAsync(
             stream, type, cancellationToken: cancellationToken);
         if (obj is IApiRsp<T?> rsp) return rsp;
         return ClientDeserializeFail<T>();

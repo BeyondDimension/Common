@@ -1,4 +1,8 @@
 // https://github.com/aspnet/AspNetIdentity/blob/master/src/Microsoft.AspNet.Identity.Core/AsyncHelper.cs
+using System.Diagnostics;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+
 namespace System.Extensions;
 
 public static partial class TaskExtensions

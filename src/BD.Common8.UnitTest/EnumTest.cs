@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace BD.Common8.UnitTest;
 
 /// <summary>
@@ -55,13 +57,13 @@ public sealed class EnumTest
 
     enum GetDescriptionE
     {
-        [Description("AAA")]
+        [global::System.ComponentModel.Description("AAA")]
         A,
 
-        [Description("BBB")]
+        [global::System.ComponentModel.Description("BBB")]
         B,
 
-        [Description("CCC")]
+        [global::System.ComponentModel.Description("CCC")]
         C,
     }
 }

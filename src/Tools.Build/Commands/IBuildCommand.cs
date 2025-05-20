@@ -1,3 +1,7 @@
+using System.Diagnostics;
+using System.Extensions;
+using System.Security.Cryptography;
+
 namespace Tools.Build.Commands;
 
 /// <summary>
@@ -30,7 +34,7 @@ partial interface IBuildCommand : ICommand
     /// <returns></returns>
     static string[] GetProjectNames()
     {
-        var slnFileName = Directory.GetFiles(ProjPath, "*.sln").FirstOrDefault();
+        var slnFileName = Directory.GetFiles(ProjPath, "*.sln").Concat(Directory.GetFiles(ProjPath, "*.slnx")).FirstOrDefault();
         slnFileName.ThrowIsNull();
         slnFileName = Path.GetFileNameWithoutExtension(slnFileName);
 
@@ -79,6 +83,7 @@ partial interface IBuildCommand : ICommand
     /// </summary>
     internal static async Task<int> Handler(bool test, bool no_err)
     {
+        var sw = Stopwatch.StartNew();
         try
         {
             HashSet<string> errors = new();
@@ -205,6 +210,12 @@ partial interface IBuildCommand : ICommand
         {
             Console.Error.WriteLine(ex);
             return (int)ExitCode.Exception;
+        }
+        finally
+        {
+            sw.Stop();
+            var timeSpan = sw.Elapsed;
+            Console.WriteLine($"执行 build 命令完成，耗时：{Math.Floor(timeSpan.TotalHours):00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}");
         }
     }
 }

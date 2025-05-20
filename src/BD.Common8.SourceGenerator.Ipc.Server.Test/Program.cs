@@ -1,3 +1,8 @@
+using BD.Common8.Ipc.Attributes;
+using BD.Common8.Ipc.Enums;
+using BD.Common8.Models;
+using System.Reflection;
+
 Console.WriteLine("Hello, World!");
 
 [ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.Server)]

@@ -7,4 +7,25 @@
 		<Description>ASP.NET Core 的通用封装库</Description>
 	</PropertyGroup>
 
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="NLog" />
+		<PackageReference Include="NLog.Extensions.Logging" />
+		<PackageReference Include="NLog.Web.AspNetCore" />
+		<PackageReference Include="StackExchange.Redis" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" />
+		<PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
+		<ProjectReference Include="..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
+	</ItemGroup>
+
 </Project>

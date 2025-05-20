@@ -1,4 +1,3 @@
-// https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub.FlowAnalyze/DelegatingStream.cs
 // https://referencesource.microsoft.com/#System.ServiceModel/System/ServiceModel/Channels/DelegatingStream.cs
 
 namespace System.IO;

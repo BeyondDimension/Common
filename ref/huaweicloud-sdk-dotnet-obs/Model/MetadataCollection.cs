@@ -11,10 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using OBS.Internal;
-using System;
-using System.Collections.Generic;
-
 namespace OBS.Model
 {
     /// <summary>
@@ -23,7 +19,7 @@ namespace OBS.Model
     public sealed class MetadataCollection
     {
         
-        private IDictionary<string, string> values = new Dictionary<string, string>();
+        private readonly IDictionary<string, string> values = new Dictionary<string, string>();
 
         /// <summary>
         /// Customized metadata
@@ -87,7 +83,7 @@ namespace OBS.Model
         /// </summary>
         public IList<KeyValuePair<string, string>> KeyValuePairs
         {
-            get { return new List<KeyValuePair<string, string>>(values); }
+            get { return [.. values]; }
         }
     }
 }

@@ -1,3 +1,8 @@
+using BD.Common8.SourceGenerator.Repositories.Enums;
+using BD.Common8.SourceGenerator.Repositories.Handlers.Attributes.Abstractions;
+using BD.Common8.SourceGenerator.Repositories.Models;
+using Microsoft.CodeAnalysis;
+
 namespace BD.Common8.SourceGenerator.Repositories.Handlers.Attributes;
 
 sealed class GeneralAttributeHandle : IAttributeHandle

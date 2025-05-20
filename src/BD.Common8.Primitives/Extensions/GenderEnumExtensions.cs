@@ -1,3 +1,5 @@
+using BD.Common8.Enums;
+using System.Runtime.CompilerServices;
 using SR = BD.Common8.Primitives.Resources.SR;
 
 namespace BD.Common8.Extensions;

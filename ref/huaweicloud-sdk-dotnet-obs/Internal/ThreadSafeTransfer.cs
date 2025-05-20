@@ -12,9 +12,6 @@
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
 using OBS.Model;
-using System;
-using System.Collections.Generic;
-using System.Threading;
 
 namespace OBS.Internal
 {
@@ -22,7 +19,7 @@ namespace OBS.Internal
     internal class ThreadSafeTransferStreamByBytes : TransferStreamManager
     {
 
-        protected readonly object _lock = new object();
+        protected readonly object _lock = new();
         protected bool flag = false;
 
         public ThreadSafeTransferStreamByBytes(object sender, EventHandler<TransferStatus> handler, long totalBytes,
@@ -69,7 +66,7 @@ namespace OBS.Internal
             {
                 if (Interlocked.CompareExchange(ref newlyTransferredBytes, 0, _newlyTransferredBytes) == _newlyTransferredBytes)
                 {
-                    TransferStatus status = new TransferStatus(_newlyTransferredBytes,
+                    TransferStatus status = new(_newlyTransferredBytes,
                        _transferredBytes, totalBytes, (now - lastCheckpoint).TotalSeconds, (now - startCheckpoint).TotalSeconds);
                     status.SetInstantaneousBytes(currentInstantaneousBytes);
                     handler(sender, status);
@@ -98,7 +95,7 @@ namespace OBS.Internal
             if (_transferredBytes < totalBytes)
             {
                 long _newlyTransferredBytes = Interlocked.Read(ref newlyTransferredBytes);
-                TransferStatus status = new TransferStatus(_newlyTransferredBytes,
+                TransferStatus status = new(_newlyTransferredBytes,
                     _transferredBytes, totalBytes, interval, (now - startCheckpoint).TotalSeconds);
                 handler(sender, status);
                 // Reset
@@ -127,7 +124,7 @@ namespace OBS.Internal
             {
                 timer?.Dispose();
                 DateTime now = DateTime.Now;
-                TransferStatus status = new TransferStatus(Interlocked.Read(ref newlyTransferredBytes),
+                TransferStatus status = new(Interlocked.Read(ref newlyTransferredBytes),
                               Interlocked.Read(ref transferredBytes), totalBytes, (now - lastCheckpoint).TotalSeconds, (now - startCheckpoint).TotalSeconds);
                 handler(sender, status);
             }

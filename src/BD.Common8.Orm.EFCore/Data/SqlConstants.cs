@@ -1,3 +1,6 @@
+using BD.Common8.Columns;
+using BD.Common8.Orm.EFCore.Columns;
+
 namespace BD.Common8.Orm.EFCore.Data;
 
 /// <summary>

@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
 using DAMT = System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 
 namespace BD.Common8.Entities.Abstractions;
@@ -27,7 +29,7 @@ public interface IEntity
 /// (数据库表)实体模型接口
 /// </summary>
 /// <typeparam name="TPrimaryKey"></typeparam>
-public interface IEntity<TPrimaryKey> : IEntity where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
+public interface IEntity<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes)] TPrimaryKey> : IEntity where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
 {
     /// <inheritdoc cref="IEntity.Id"/>
     new TPrimaryKey Id { get; set; }
@@ -54,10 +56,11 @@ public interface IEntity<TPrimaryKey> : IEntity where TPrimaryKey : notnull, IEq
     /// <typeparam name="TEntity">实体类型</typeparam>
     /// <param name="primaryKey">主键</param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     static Expression<Func<TEntity, bool>> LambdaEqualId<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes)] TEntity>(TPrimaryKey primaryKey)
     {
         var parameter = Expression.Parameter(typeof(TEntity));
-        var left = Expression.PropertyOrField(parameter, nameof(IEntity<TPrimaryKey>.Id));
+        var left = Expression.PropertyOrField(parameter, nameof(IEntity<>.Id));
         var right = Expression.Constant(primaryKey, typeof(TPrimaryKey));
         var body = Expression.Equal(left, right);
         return Expression.Lambda<Func<TEntity, bool>>(body, parameter);

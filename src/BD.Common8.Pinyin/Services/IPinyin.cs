@@ -1,9 +1,12 @@
+using BD.Common8.Pinyin.Enums;
+using BD.Common8.Pinyin.Helpers;
+
 namespace BD.Common8.Pinyin.Services;
 
 /// <summary>
 /// 汉语拼音
 /// </summary>
-interface IPinyin
+public interface IPinyin
 {
     /// <summary>
     /// 字符是否为中文

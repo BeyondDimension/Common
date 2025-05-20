@@ -2,8 +2,15 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>Essentials 提供单个跨平台 API，适用于任何 .NET 应用程序 (Win32、WinRT、Android、iOS、macOS、MacCatalyst)</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
+		<ProjectReference Include="..\BD.Common8.Toast\BD.Common8.Toast.csproj" />
+	</ItemGroup>
 
 </Project>

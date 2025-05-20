@@ -2,49 +2,53 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<RootNamespace>System</RootNamespace>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Description>提供对基类库的扩展</Description>
 	</PropertyGroup>
 
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<!-- 👇 引用 NuGet 包 -->
 	<ItemGroup>
-		<!-- 👇 Resx 源生成器 -->
-		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.ResX'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-		<!-- 👇 Bcl 源生成器 -->
-		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
-			<OutputItemType>Analyzer</OutputItemType>
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
+		<PackageReference Include="System.Drawing.Common" />
+		<PackageReference Include="System.Text.Json" />
+		<PackageReference Include="System.Net.Http.Json" />
+		<PackageReference Include="Polly" />
+		<PackageReference Include="Nito.Comparers" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="DotNext" />
+		<PackageReference Include="DotNext.Threading" />
+		<PackageReference Include="MemoryPack" />
+		<PackageReference Include="MemoryPack.Streaming" />
+		<PackageReference Include="MessagePack" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+		<PackageReference Include="Microsoft.Extensions.Logging" />
+		<PackageReference Include="System.IO.Pipelines" />
+		<PackageReference Include="CommunityToolkit.HighPerformance" />
+		<PackageReference Include="gfoidl.Base64" />
 	</ItemGroup>
 
-	<!-- 👇 NuGet 打包配置 -->
+	<!-- 👇 CsWin32 源生成的 Win32 P/Invoke 函数 -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<PackageReference Include="Microsoft.Windows.CsWin32">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<AdditionalFiles Condition="Exists('$(MSBuildProjectDirectory)\NativeMethods.txt')" Include="$(MSBuildProjectDirectory)\NativeMethods.txt" />
+		<Using Alias="CsWin32" Include="Windows.Win32" />
+	</ItemGroup>
+
+	<!-- 👇 项目引用源生成器 -->
 	<ItemGroup>
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.Common8.Bcl.targets" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.Common8.Bcl.props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\Projects\BD.Common8.*.props" Pack="true" PackagePath="buildTransitive\src\Sdk\Projects" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\Global.Base.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\GlobalUsings.MSBuildProjectName.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.Sdk.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.Sdk.Lib.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.Sdk.Ref.Package.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.SourceGenerator.Reference.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.Common8.UnitTest.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\net35.props" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
-		<None Remove="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Tools*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs" Pack="true" PackagePath="buildTransitive\src\BD.Common8.Bcl.Compat" Visible="false" />
-		<None Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\bin\**" Pack="true" PackagePath="buildTransitive\src\BD.Common8.Bcl.Compat" Visible="false" />
-		<None Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" Pack="true" PackagePath="buildTransitive\src\BD.Common8.Bcl.Compat" Visible="false" />
-		<!-- 👇 放置 _._ 表示此包可用于的 TFM，定位最低版本可供任何版本使用 -->
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\net35\_._" Pack="true" PackagePath="lib\net35" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\net40\_._" Pack="true" PackagePath="lib\net40" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\netstandard1.0\_._" Pack="true" PackagePath="lib\netstandard1.0" Visible="false" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
 	</ItemGroup>
 
 </Project>

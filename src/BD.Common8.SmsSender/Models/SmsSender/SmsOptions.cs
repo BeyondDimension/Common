@@ -1,3 +1,10 @@
+using BD.Common8.Extensions;
+using BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud;
+
 namespace BD.Common8.SmsSender.Models.SmsSender;
 
 /// <summary>

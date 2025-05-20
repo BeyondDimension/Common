@@ -11,7 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System.Collections.Generic;
 namespace OBS.Model
 {
     /// <summary>
@@ -92,7 +91,7 @@ namespace OBS.Model
         public IList<Transition> Transitions
         {
             get {
-                return transitions ??= new List<Transition>(); }
+                return transitions ??= []; }
             set { transitions = value; }
         }
 
@@ -121,7 +120,7 @@ namespace OBS.Model
         public IList<NoncurrentVersionTransition> NoncurrentVersionTransitions
         {
             get {
-                return noncurrentVersionTransitions ??= new List<NoncurrentVersionTransition>(); }
+                return noncurrentVersionTransitions ??= []; }
             set { noncurrentVersionTransitions = value; }
         }
 

@@ -3,8 +3,21 @@
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8</RootNamespace>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>提供个人资料（手机号码）格式</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+	</ItemGroup>
+
+	<!-- 👇 项目引用源生成器 -->
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
 
 </Project>

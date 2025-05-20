@@ -1,3 +1,19 @@
+using BD.Common8.Enums;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Ipc.Helpers;
+using BD.Common8.Ipc.Models;
+using DotNext.Threading;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using System.Net.Http.Client;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
 using HttpTransportType = Microsoft.AspNetCore.Http.Connections.HttpTransportType;
 
 namespace BD.Common8.Ipc.Services.Implementation;
@@ -159,7 +175,7 @@ public abstract partial class IpcClientService(IpcAppConnectionString connection
 
     protected virtual void ConfigureJsonHubProtocolOptions(JsonHubProtocolOptions options)
     {
-        JsonSerializerOptions.CopyTypeInfoResolverChainTo(options.PayloadSerializerOptions);
+        GetJsonSerializerOptions().CopyTypeInfoResolverChainTo(options.PayloadSerializerOptions);
         options.PayloadSerializerOptions = Serializable.CreateOptions(options.PayloadSerializerOptions);
     }
 

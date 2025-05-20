@@ -11,15 +11,13 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-
 
 namespace OBS.Internal
 {
     internal class V2Headers : IHeaders
     {
 
-        private static V2Headers instance = new V2Headers();
+        private static readonly V2Headers instance = new();
 
         private V2Headers()
         {

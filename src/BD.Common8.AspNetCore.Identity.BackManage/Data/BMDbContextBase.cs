@@ -1,3 +1,19 @@
+using BD.Common8.AspNetCore.Columns;
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.AspNetCore.Extensions;
+using BD.Common8.AspNetCore.Filters;
+using BD.Common8.Columns;
+using BD.Common8.Orm.EFCore.Extensions;
+using BD.Common8.Orm.EFCore.Data.Abstractions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.AspNetCore.Data;
 
 /// <summary>

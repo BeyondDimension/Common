@@ -1,3 +1,8 @@
+using BD.Common8.SourceGenerator.Repositories.Enums;
+using BD.Common8.SourceGenerator.Repositories.Handlers.Properties.Abstractions;
+using BD.Common8.SourceGenerator.Repositories.Models;
+using System.Text.RegularExpressions;
+
 namespace BD.Common8.SourceGenerator.Repositories.Handlers.Properties;
 
 /// <summary>

@@ -1,4 +1,6 @@
 #if LINUX
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Security.Helpers;
 
 static partial class SecurityPlatformHelper
@@ -10,7 +12,7 @@ static partial class SecurityPlatformHelper
     /// <exception cref="InvalidOperationException"></exception>
     [MethodImpl(MethodImplOptions.NoInlining)]
 #if !LINUX
-    [SupportedOSPlatform("linux")]
+    [global::System.Runtime.Versioning.SupportedOSPlatform("linux")]
 #endif
     public static string GetEtcMachineId()
     {

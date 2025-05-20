@@ -11,9 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using OBS.Model;
 
@@ -34,17 +31,17 @@ namespace OBS.Internal
 
         protected override StorageClassEnum? ParseStorageClass(string value)
         {
-            return EnumAdaptor.ObsStorageClassEnumDict.ContainsKey(value) ? EnumAdaptor.ObsStorageClassEnumDict[value] : (StorageClassEnum?)null;
+            return EnumAdaptor.ObsStorageClassEnumDict.TryGetValue(value, out StorageClassEnum value2) ? value2 : (StorageClassEnum?)null;
         }
 
         protected override GroupGranteeEnum? ParseGroupGrantee(string value)
         {
-            return EnumAdaptor.ObsGroupGranteeEnumDict.ContainsKey(value) ? EnumAdaptor.ObsGroupGranteeEnumDict[value] : (GroupGranteeEnum?)null;
+            return EnumAdaptor.ObsGroupGranteeEnumDict.TryGetValue(value, out GroupGranteeEnum value2) ? value2 : (GroupGranteeEnum?)null;
         }
 
         protected override EventTypeEnum? ParseEventTypeEnum(string value)
         {
-            return EnumAdaptor.ObsEventTypeEnumDict.ContainsKey(value) ? EnumAdaptor.ObsEventTypeEnumDict[value] : (EventTypeEnum?)null;
+            return EnumAdaptor.ObsEventTypeEnumDict.TryGetValue(value, out EventTypeEnum value2) ? value2 : (EventTypeEnum?)null;
         }
 
         protected override string BucketLocationTag
@@ -66,7 +63,7 @@ namespace OBS.Internal
         private AccessControlList ParseAccessControlList(HttpResponse httpResponse, bool isBucket)
         {
             using XmlReader xmlReader = XmlReader.Create(httpResponse.Content);
-            AccessControlList acl = new AccessControlList();
+            AccessControlList acl = new();
             bool innerOwner = false;
             Grant? currentGrant = null;
             while (xmlReader.Read())
@@ -87,7 +84,7 @@ namespace OBS.Internal
                     }
                     else
                     {
-                        CanonicalGrantee grantee = new CanonicalGrantee
+                        CanonicalGrantee grantee = new()
                         {
                             Id = xmlReader.ReadString(),
                         };
@@ -104,7 +101,7 @@ namespace OBS.Internal
                 }
                 else if ("Canned".Equals(xmlReader.Name))
                 {
-                    GroupGrantee grantee = new GroupGrantee
+                    GroupGrantee grantee = new()
                     {
                         GroupGranteeType = ParseGroupGrantee(xmlReader.ReadString()),
                     };
@@ -112,7 +109,7 @@ namespace OBS.Internal
                 }
                 else if ("Permission".Equals(xmlReader.Name))
                 {
-                    currentGrant.Permission = ParsePermission(xmlReader.ReadString());
+                    currentGrant.Permission = V2Parser.ParsePermission(xmlReader.ReadString());
                 }
                 else if ("Delivered".Equals(xmlReader.Name))
                 {
@@ -131,7 +128,7 @@ namespace OBS.Internal
 
         public override GetBucketAclResponse ParseGetBucketAclResponse(HttpResponse httpResponse)
         {
-            GetBucketAclResponse response = new GetBucketAclResponse
+            GetBucketAclResponse response = new()
             {
                 AccessControlList = ParseAccessControlList(httpResponse, true),
             };
@@ -140,7 +137,7 @@ namespace OBS.Internal
 
         public override GetObjectAclResponse ParseGetObjectAclResponse(HttpResponse httpResponse)
         {
-            GetObjectAclResponse response = new GetObjectAclResponse
+            GetObjectAclResponse response = new()
             {
                 AccessControlList = ParseAccessControlList(httpResponse, false),
             };
@@ -149,7 +146,7 @@ namespace OBS.Internal
 
         public override GetBucketLoggingResponse ParseGetBucketLoggingResponse(HttpResponse httpResponse)
         {
-            GetBucketLoggingResponse response = new GetBucketLoggingResponse();
+            GetBucketLoggingResponse response = new();
 
             using (XmlReader xmlReader = XmlReader.Create(httpResponse.Content))
             {
@@ -185,7 +182,7 @@ namespace OBS.Internal
                     }
                     else if ("ID".Equals(xmlReader.Name))
                     {
-                        CanonicalGrantee grantee = new CanonicalGrantee
+                        CanonicalGrantee grantee = new()
                         {
                             Id = xmlReader.ReadString(),
                         };
@@ -193,7 +190,7 @@ namespace OBS.Internal
                     }
                     else if ("Canned".Equals(xmlReader.Name))
                     {
-                        GroupGrantee grantee = new GroupGrantee
+                        GroupGrantee grantee = new()
                         {
                             GroupGranteeType = ParseGroupGrantee(xmlReader.ReadString()),
                         };
@@ -201,7 +198,7 @@ namespace OBS.Internal
                     }
                     else if ("Permission".Equals(xmlReader.Name))
                     {
-                        currentGrant.Permission = ParsePermission(xmlReader.ReadString());
+                        currentGrant.Permission = V2Parser.ParsePermission(xmlReader.ReadString());
                     }
                 }
             }

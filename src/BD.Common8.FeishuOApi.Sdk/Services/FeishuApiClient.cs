@@ -1,3 +1,12 @@
+using BD.Common8.FeishuOApi.Sdk.Models;
+using BD.Common8.FeishuOApi.Sdk.Services.Abstractions;
+using BD.Common8.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Http.Json;
+
 namespace BD.Common8.FeishuOApi.Sdk.Services;
 
 /// <summary>
@@ -6,8 +15,11 @@ namespace BD.Common8.FeishuOApi.Sdk.Services;
 /// <param name="logger"></param>
 /// <param name="httpClient"></param>
 /// <param name="options"></param>
+[DebuggerDisplay("{DebuggerDisplay(),nq}")]
 public sealed class FeishuApiClient(ILogger<FeishuApiClient> logger, HttpClient httpClient, IOptions<FeishuApiOptions> options) : IFeishuApiClient
 {
+    string DebuggerDisplay() => $"FeishuApiClient, HookId: {HookId}, ServerTag: {ServerTag}";
+
     /// <inheritdoc cref="FeishuApiOptions.HookId"/>
     string HookId
     {
@@ -20,6 +32,7 @@ public sealed class FeishuApiClient(ILogger<FeishuApiClient> logger, HttpClient 
         }
     }
 
+    /// <inheritdoc cref="FeishuApiOptions.ServerTag"/>
     string? ServerTag => options.Value.ServerTag;
 
     static ApplicationException GetInvalidKeyException(string name) => throw new(
@@ -49,10 +62,7 @@ Enter (dotnet user-secrets set "FeishuApiOptions:{name}" "value") on the current
             // 👇 IL2026/IL3050 已使用源生成器（FeishuApiClientJsonSerializerContext），但因使用的是 JsonSerializerOptions 而不是 JsonTypeInfo<T> 引发分析器警告，可忽略
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#if DEBUG
-            //var reqJson = SystemTextJsonSerializer.Serialize(reqBody, FeishuApiClientJsonSerializerContext.Instance.Options);
-#endif
-            rsp = await httpClient.PostAsJsonAsync(reqUrl, reqBody, FeishuApiClientJsonSerializerContext.Instance.Options, cancellationToken);
+            rsp = await httpClient.PostAsJsonAsync(reqUrl, reqBody, FeishuApiClientJsonSerializerContext.Default.Options, cancellationToken);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 

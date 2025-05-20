@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Connections;
+using Microsoft.AspNetCore.Http;
+using System.Net;
+
 namespace BD.Common8.AspNetCore.Middleware;
 
 // https://github.com/dotnet/efcore/issues/19526#issuecomment-989036617

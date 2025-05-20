@@ -1,3 +1,7 @@
+using Avalonia.Threading;
+using BD.Common8.Essentials.Enums;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Services.Implementation;
 
 /// <summary>
@@ -27,6 +31,16 @@ sealed class AvaloniaMainThreadPlatformServiceImpl : IMainThreadPlatformService
         {
             action?.Invoke();
             return;
+        }
+#else
+        var userInteractive = Ioc.Get_Nullable<IApplicationVersionService>()?.UserInteractive;
+        if (userInteractive.HasValue)
+        {
+            if (!userInteractive.Value)
+            {
+                action?.Invoke();
+                return;
+            }
         }
 #endif
         var priority_ = GetPriority(priority);

@@ -1,7 +1,10 @@
+using BD.Common8.Models.Abstractions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Models;
 
 /// <summary>
-/// <see cref="IApiResponse"/> 的默认实现类
+/// <see cref="IApiResponse"/> 的默认实现类，用于后台管理 WebUI 中的 <see cref="IApiRsp"/>
 /// </summary>
 public partial class ApiResponse : IApiResponse, IApiRsp<object?>
 {

@@ -2,8 +2,23 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>统一短信发送服务库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Options" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Extensions.Http" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -2,10 +2,19 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Description>安全相关封装库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+	</ItemGroup>
+
+	<!-- 👇 引用 NuGet 包 #if ANDROID || IOS || MACCATALYST -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+		<PackageReference Include="Microsoft.Maui.Essentials" />
+	</ItemGroup>
 
 </Project>

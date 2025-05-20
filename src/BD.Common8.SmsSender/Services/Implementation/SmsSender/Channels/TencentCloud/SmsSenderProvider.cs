@@ -1,3 +1,14 @@
+using BD.Common8.Extensions;
+using BD.Common8.Helpers;
+using BD.Common8.SmsSender.Models.SmsSender;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
 using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions;
 
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud;
@@ -5,7 +16,7 @@ namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.Tencen
 /// <summary>
 /// 短信服务提供商 - 腾讯云
 /// </summary>
-public class SmsSenderProvider : SmsSenderBase, ISmsSender
+public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
 {
     /// <summary>
     /// 阿里云的名称
@@ -22,9 +33,9 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
     readonly SmsOptions options;
     readonly ILogger logger;
 
-    static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
-        PropertyNamingPolicy = null
+        PropertyNamingPolicy = null,
     };
 
     /// <summary>
@@ -50,6 +61,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
     private const string Action = "SendSms";
     private const string Method = "POST";
     private const string ContentType = "application/json";
+
     #endregion
 
     private Dictionary<string, string> BuildHeaders(byte[] requestPayload)
@@ -98,7 +110,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         byte[] secretService = HMACSHA256.HashData(secretDate, Encoding.UTF8.GetBytes(service));
         byte[] secretSigning = HMACSHA256.HashData(secretService, Encoding.UTF8.GetBytes("tc3_request"));
         byte[] signatureBytes = HMACSHA256.HashData(secretSigning, Encoding.UTF8.GetBytes(stringToSign));
-        string signature = BitConverter.ToString(signatureBytes).Replace("-", "").ToLower();
+        string signature = Convert.ToHexStringLower(signatureBytes);
 
         string authorization = algorithm + " "
                                          + "Credential=" + options.SecretId + "/" + credentialScope + ", "
@@ -133,7 +145,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         params_dic.Add("PhoneNumberSet", new string[] { number });
         params_dic.Add("TemplateParamSet", new string[] { message });
 
-        var requestPayload = Encoding.UTF8.GetBytes(SystemTextJsonSerializer.Serialize(params_dic, JsonSerializerOptions));
+        var requestPayload = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(params_dic, JsonSerializerOptions));
 
         var headers = BuildHeaders(requestPayload);
 
@@ -167,6 +179,7 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         return requestMessage;
     }
 
+    /// <inheritdoc/>
     public override async Task<ISendSmsResult> SendSmsAsync(string number, string message, ushort type, CancellationToken cancellationToken)
     {
         var template_code = options.Templates?.FirstOrDefault(x => x.Type == type)?.Template ?? options.DefaultTemplate;
@@ -179,8 +192,8 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
         if (response.IsSuccessStatusCode)
         {
-            using var stream = await response.Content.ReadAsStreamAsync();
-            tencentCloudResult = await SystemTextJsonSerializer.DeserializeAsync<TencentCloudResult<SendSmsTencentCloudResult>>(stream, JsonSerializerOptions);
+            using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+            tencentCloudResult = await JsonSerializer.DeserializeAsync<TencentCloudResult<SendSmsTencentCloudResult>>(stream, JsonSerializerOptions, cancellationToken);
 
             isSuccess =
                 tencentCloudResult != null &&
@@ -196,15 +209,20 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         };
 
         if (!result.IsSuccess)
-            logger.LogError(
-                $"调用腾讯云短信接口失败，" +
-                $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
-                $"短信内容：{message}，" +
-                $"短信类型：{type}，" +
-                $"HTTP状态码：{result.HttpStatusCode}");
+        {
+            SendSmsError(logger, PhoneNumberHelper.ToStringHideMiddleFour(number), message, type, result.HttpStatusCode);
+        }
 
         return result;
     }
+
+    [LoggerMessage(
+        Level = LogLevel.Error,
+        Message =
+"""
+调用腾讯云短信接口失败，手机号码：{phoneNumber}，短信内容：{message}，短信类型：{type}，HTTP 响应状态码：{httpStatusCode}
+""")]
+    private static partial void SendSmsError(ILogger logger, string phoneNumber, string? message, ushort type, int httpStatusCode);
 
     /// <inheritdoc/>
     public override Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)

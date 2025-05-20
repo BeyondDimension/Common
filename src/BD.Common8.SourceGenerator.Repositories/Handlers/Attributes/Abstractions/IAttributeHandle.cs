@@ -1,3 +1,5 @@
+using BD.Common8.SourceGenerator.Repositories.Models;
+
 namespace BD.Common8.SourceGenerator.Repositories.Handlers.Attributes.Abstractions;
 
 /// <summary>

@@ -6,6 +6,10 @@
 #pragma warning disable CA1512 // 使用 ArgumentOutOfRangeException 引发帮助程序
 #pragma warning restore IDE0079 // 请删除不必要的忽略
 
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+
 namespace System.Runtime.Versioning;
 
 /// <summary>

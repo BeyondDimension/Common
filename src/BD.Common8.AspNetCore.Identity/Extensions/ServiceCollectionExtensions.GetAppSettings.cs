@@ -1,3 +1,9 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
@@ -8,14 +14,12 @@ public static partial class ServiceCollectionExtensions
     /// <typeparam name="TAppSettings"></typeparam>
     /// <param name="builder"></param>
     /// <returns></returns>
-    public static TAppSettings GetAppSettings<TAppSettings>(this WebApplicationBuilder builder) where TAppSettings : class
+    public static TAppSettings GetAppSettings<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TAppSettings>(this WebApplicationBuilder builder) where TAppSettings : class
     {
         var appSettings_ = builder.Configuration.GetSection("AppSettings");
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         builder.Services.Configure<TAppSettings>(appSettings_);
         var appSettings = appSettings_.Get<TAppSettings>();
         appSettings.ThrowIsNull();
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return appSettings;
     }
 }

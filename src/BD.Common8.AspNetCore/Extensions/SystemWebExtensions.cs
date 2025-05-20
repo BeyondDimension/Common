@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Text;
 using MediaTypeHeaderValue = Microsoft.Net.Http.Headers.MediaTypeHeaderValue;
 
 namespace BD.Common8.AspNetCore.Extensions;

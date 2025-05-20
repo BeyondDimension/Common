@@ -1,14 +1,30 @@
+#pragma warning disable IDE1006 // 命名样式
+using System.Diagnostics;
+
 namespace BD.Common8.FeishuOApi.Sdk.Models;
 
-#pragma warning disable IDE1006 // 命名样式
+[DebuggerDisplay("{DebuggerDisplay(),nq}")]
 sealed class SendMessage_RequestBody
 {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+    string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, FeishuApiClientJsonSerializerContext.Default.Options);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+
     public string msg_type { get; set; } = "post";
 
     public required Content content { get; set; }
 
+    [DebuggerDisplay("{DebuggerDisplay(),nq}")]
     public sealed class Content
     {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, FeishuApiClientJsonSerializerContext.Default.Options);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+
         public required Post post { get; set; }
 
         public sealed class Post

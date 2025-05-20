@@ -1,4 +1,9 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using Newtonsoft.Json;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Headers;
+using System.Text;
+
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // Newtonsoft.Json
@@ -30,8 +35,8 @@ partial class SerializableService // Newtonsoft.Json
     }
 
     /// <summary>
-    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
-    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="NewtonsoftJsonObject"/></para>
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 <see cref="global::Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
+    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="global::Newtonsoft.Json.Linq.JObject"/></para>
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
     /// <param name="content"></param>
@@ -51,7 +56,7 @@ partial class SerializableService // Newtonsoft.Json
 
     /// <summary>
     /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），使用 <see cref="Newtonsoft.Json"/>，需要 <see cref="newtonsoftJsonSerializer"/>
-    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="NewtonsoftJsonObject"/></para>
+    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="global::Newtonsoft.Json.Linq.JObject"/></para>
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
     /// <param name="content"></param>

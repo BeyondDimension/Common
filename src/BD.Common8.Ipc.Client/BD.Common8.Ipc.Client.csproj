@@ -3,12 +3,25 @@
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8.Ipc</RootNamespace>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>进程间通信 (IPC) 客户端库</Description>
 	</PropertyGroup>
 
 	<!--<ItemGroup>
 		<Protobuf Include="..\BD.Common8.Ipc.Server\Protos\ipc.proto" Access="Internal" />
 	</ItemGroup>-->
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" />
+		<!--<PackageReference Include="Microsoft.AspNetCore.WebUtilities" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
+		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+	</ItemGroup>
 
 </Project>

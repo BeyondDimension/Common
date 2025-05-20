@@ -1,3 +1,6 @@
+using BD.Common8.Models;
+using System.Net;
+
 namespace BD.Common8.FeishuOApi.Sdk.Services.Abstractions;
 
 /// <summary>

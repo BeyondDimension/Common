@@ -1,0 +1,10 @@
+<Project>
+  <ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl.Compat</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" />
+  </ItemGroup>
+</Project>

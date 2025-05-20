@@ -1,3 +1,7 @@
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using BD.Common8.SmsSender.Services.Implementation.SmsSender;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace BD.Common8.SmsSender.Extensions;
 
 public static partial class ServiceCollectionExtensions

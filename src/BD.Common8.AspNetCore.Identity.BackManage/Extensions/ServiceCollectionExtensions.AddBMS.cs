@@ -1,4 +1,24 @@
+using BD.Common8.AspNetCore.Controllers.Infrastructure;
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.AspNetCore.Filters;
+using BD.Common8.AspNetCore.Models;
+using BD.Common8.AspNetCore.Models.Menus;
+using BD.Common8.AspNetCore.Profiles;
+using BD.Common8.Entities.Abstractions;
+using MemoryPack;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.WebEncoders;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using System.Runtime.Serialization.Formatters;
+using System.Security.Cryptography;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using static BD.Common8.AspNetCore.Extensions.AddDbContext_ServiceCollectionExtensions;
 
 namespace BD.Common8.AspNetCore.Extensions;
@@ -76,7 +96,7 @@ public static partial class ServiceCollectionExtensions
 
         builder.Services.AddAutoMapper((serviceProvider, cfg) =>
         {
-            cfg.AddCollectionMappers();
+            global::AutoMapper.EquivalencyExpression.EquivalentExpressions.AddCollectionMappers(cfg);
             cfg.AddProfile<BMMenuProfile>();
         }, assembliesAutoMapper.ToArray());
 

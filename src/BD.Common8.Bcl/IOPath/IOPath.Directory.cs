@@ -1,3 +1,8 @@
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
+
 namespace System;
 
 public static partial class IOPath

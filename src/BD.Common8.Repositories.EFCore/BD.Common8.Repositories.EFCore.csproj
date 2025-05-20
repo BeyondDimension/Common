@@ -2,8 +2,15 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>仓储层 EFCore 实现库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
+		<ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+	</ItemGroup>
 
 </Project>

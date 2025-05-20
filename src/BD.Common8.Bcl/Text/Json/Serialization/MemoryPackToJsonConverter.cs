@@ -1,3 +1,6 @@
+using MemoryPack;
+using System.Buffers;
+
 namespace System.Text.Json.Serialization;
 
 /// <summary>
@@ -10,7 +13,7 @@ public abstract class MemoryPackToJsonConverter<T> : JsonConverter<T> where T : 
     protected abstract IMemoryPackFormatter<T?> MemoryPackFormatter { get; }
 
     /// <inheritdoc/>
-    public sealed override T? Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
+    public sealed override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         switch (reader.TokenType)
         {
@@ -28,7 +31,7 @@ public abstract class MemoryPackToJsonConverter<T> : JsonConverter<T> where T : 
     }
 
     /// <inheritdoc/>
-    public sealed override void Write(Utf8JsonWriter writer, T? value, SystemTextJsonSerializerOptions options)
+    public sealed override void Write(Utf8JsonWriter writer, T? value, JsonSerializerOptions options)
     {
         if (value is null)
         {

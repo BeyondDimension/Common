@@ -1,3 +1,6 @@
+using BD.Common8.Models.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+
 namespace BD.Common8.SmsSender.Models.SmsSender;
 
 /// <summary>

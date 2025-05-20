@@ -1,6 +1,33 @@
+using BD.Common8.Ipc.Models;
+using DotNext.Threading;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Connections;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Primitives;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.IO.Pipes;
+using System.Net;
+using System.Net.Sockets;
 using System.Security.AccessControl;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using AspNetCoreHttpJsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 namespace BD.Common8.Ipc.Services.Implementation;
@@ -480,8 +507,8 @@ public abstract class IpcServerService(Func<ConnectionContext?, string?, X509Cer
     /// <summary>
     /// 用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写
     /// </summary>
-    protected virtual SystemTextJsonSerializerOptions JsonSerializerOptions
-        => SystemTextJsonSerializerOptions.Default;
+    protected virtual JsonSerializerOptions JsonSerializerOptions
+        => JsonSerializerOptions.Default;
 
     protected virtual void ConfigureHttpJsonOptions(AspNetCoreHttpJsonOptions options)
     {

@@ -1,8 +1,12 @@
+using BD.Common8.Essentials.Enums;
+using BD.Common8.Essentials.Services;
+
 namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
 /// 提供了检查和授予权限
 /// </summary>
+[Obsolete("运行时权限改用 Maui.Essentials https://learn.microsoft.com/zh-cn/dotnet/maui/platform-integration/appmodel/permissions", true)]
 public static partial class Permissions2
 {
     /// <summary>

@@ -1,3 +1,8 @@
+using BD.Common8.Repositories.SQLitePCL.Repositories;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Security;
+
 namespace BD.Common8.Repositories.SQLitePCL.Extensions;
 
 public static partial class ServiceCollectionExtensions

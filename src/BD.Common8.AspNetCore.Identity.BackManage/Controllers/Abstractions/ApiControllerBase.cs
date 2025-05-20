@@ -1,3 +1,10 @@
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
 namespace BD.Common8.AspNetCore.Controllers.Abstractions;
 
 /// <summary>
@@ -45,7 +52,7 @@ public abstract class ApiControllerBase<T>(ILogger<T> logger) : ControllerBase w
             throw new ArgumentOutOfRangeException(nameof(identityResult));
         var errorMessages = GetErrors(identityResult).ToArray();
         if (errorMessages.Length == 0)
-            errorMessages = new[] { "Identity Error", };
+            errorMessages = ["Identity Error",];
         return Fail(errorMessages);
     }
 

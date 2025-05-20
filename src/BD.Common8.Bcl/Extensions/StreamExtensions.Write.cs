@@ -1,3 +1,6 @@
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace System.Extensions;
 
 public static partial class StreamExtensions // Write
@@ -24,10 +27,13 @@ public static partial class StreamExtensions // Write
     /// <param name="s"></param>
     /// <param name="encoding"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void WriteUtf16StrToUtf8OrCustom(this Stream stream, string s, Encoding? encoding = null)
+    public static void WriteUtf16StrToUtf8OrCustom(this Stream stream, string? s, Encoding? encoding = null)
     {
-        encoding ??= Encoding.UTF8;
-        stream.Write(encoding.GetBytes(s));
+        if (!string.IsNullOrEmpty(s))
+        {
+            encoding ??= Encoding.UTF8;
+            stream.Write(encoding.GetBytes(s));
+        }
     }
 
     /// <summary>

@@ -1,3 +1,5 @@
+using DistrictM = BD.Common8.District.Models.District;
+
 namespace BD.Common8.UnitTest;
 
 /// <summary>
@@ -6,12 +8,12 @@ namespace BD.Common8.UnitTest;
 public sealed class DistrictTest
 {
     /// <summary>
-    /// 测试获取所有的 <see cref="District"/> 数据
+    /// 测试获取所有的 <see cref="DistrictM"/> 数据
     /// </summary>
     [Test]
     public void GetAll()
     {
-        var all = District.All;
+        var all = DistrictM.All;
 
         TestContext.WriteLine(all.GetRandomItem());
         TestContext.WriteLine(all.GetRandomItem());

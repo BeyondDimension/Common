@@ -28,7 +28,7 @@ public abstract class AbstractAccessControlList
     /// </remarks>
     public IList<Grant> Grants
     {
-        get => grants ??= new List<Grant>();
+        get => grants ??= [];
         set => grants = value;
     }
 
@@ -39,7 +39,7 @@ public abstract class AbstractAccessControlList
     /// <param name="permission">Permission information</param>
     public void AddGrant(Grantee grantee, PermissionEnum permission)
     {
-        Grant grant = new Grant
+        Grant grant = new()
         {
             Grantee = grantee,
             Permission = permission,
@@ -70,7 +70,7 @@ public abstract class AbstractAccessControlList
     /// <param name="grantee"> Grantee name </param>
     public void RemoveGrant(Grantee grantee)
     {
-        IList<Grant> removeList = new List<Grant>();
+        IList<Grant> removeList = [];
         foreach (Grant grant in Grants)
         {
             if (grant.Grantee.Equals(grantee))

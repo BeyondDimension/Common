@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 /// <summary>
@@ -14,9 +19,9 @@ public static partial class HttpContextExtensions
     {
         var schemes = context.RequestServices.GetRequiredService<IAuthenticationSchemeProvider>();
 
-        return (from scheme in await schemes.GetAllSchemesAsync()
+        return [.. (from scheme in await schemes.GetAllSchemesAsync()
                 where !string.IsNullOrEmpty(scheme.DisplayName)
-                select scheme).ToArray();
+                select scheme)];
     }
 
     /// <summary>

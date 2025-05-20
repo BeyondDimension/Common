@@ -1,32 +1,34 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.Common8.Models;
 
 /// <summary>
 /// JWT 值
 /// </summary>
-[MPObj]
-[MP2Obj(MP2SerializeLayout.Explicit)]
+[global::MessagePack.MessagePackObject]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
 [Serializable]
 public sealed partial class JWTEntity : IExplicitHasValue
 {
     /// <summary>
     /// 凭证有效期
     /// </summary>
-    [MPKey(0)]
-    [MP2Key(0)]
+    [global::MessagePack.Key(0)]
+    [global::MemoryPack.MemoryPackOrder(0)]
     public DateTimeOffset ExpiresIn { get; set; }
 
     /// <summary>
     /// 当前凭证
     /// </summary>
-    [MPKey(1)]
-    [MP2Key(1)]
+    [global::MessagePack.Key(1)]
+    [global::MemoryPack.MemoryPackOrder(1)]
     public string? AccessToken { get; set; }
 
     /// <summary>
     /// 刷新凭证
     /// </summary>
-    [MPKey(2)]
-    [MP2Key(2)]
+    [global::MessagePack.Key(2)]
+    [global::MemoryPack.MemoryPackOrder(2)]
     public string? RefreshToken { get; set; }
 
     /// <inheritdoc/>

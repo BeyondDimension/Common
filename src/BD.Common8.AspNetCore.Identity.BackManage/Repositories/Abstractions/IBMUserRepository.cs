@@ -1,3 +1,7 @@
+using BD.Common8.AspNetCore.Models.Users;
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+
 namespace BD.Common8.AspNetCore.Repositories.Abstractions;
 
 public interface IBMUserRepository

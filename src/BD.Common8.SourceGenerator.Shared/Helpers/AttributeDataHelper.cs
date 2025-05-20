@@ -1,3 +1,6 @@
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Helpers;
 
 /// <summary>

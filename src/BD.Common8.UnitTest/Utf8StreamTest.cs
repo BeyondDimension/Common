@@ -1,3 +1,6 @@
+using System.Extensions;
+using System.Text;
+
 namespace BD.Common8.UnitTest;
 
 /// <summary>

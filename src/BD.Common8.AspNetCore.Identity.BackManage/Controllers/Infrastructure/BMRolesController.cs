@@ -1,3 +1,12 @@
+using BD.Common8.AspNetCore.Controllers.Abstractions;
+using BD.Common8.AspNetCore.Enums;
+using BD.Common8.AspNetCore.Permissions;
+using BD.Common8.AspNetCore.Repositories.Abstractions;
+using BD.Common8.AspNetCore.Services;
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using AddOrEditM = BD.Common8.AspNetCore.Models.BMRoleModel;
 using TableItemM = BD.Common8.AspNetCore.Models.BMRoleModel;
 

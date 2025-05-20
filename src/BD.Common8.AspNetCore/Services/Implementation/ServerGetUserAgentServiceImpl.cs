@@ -1,3 +1,8 @@
+using BD.Common8.AspNetCore.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.Headers;
+
 namespace BD.Common8.AspNetCore.Services.Implementation;
 
 /// <summary>

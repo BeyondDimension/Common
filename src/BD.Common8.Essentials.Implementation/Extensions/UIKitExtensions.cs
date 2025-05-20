@@ -1,4 +1,8 @@
 #if IOS || MACCATALYST
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
+
 namespace BD.Common8.Essentials;
 
 /// <summary>
@@ -10,21 +14,21 @@ namespace BD.Common8.Essentials;
 public static partial class UIKitExtensions
 {
     /// <summary>
-    /// 将 <see cref="SDColor"/> 转换为 <see cref="UIColor"/>
+    /// 将 <see cref="Color"/> 转换为 <see cref="UIColor"/>
     /// </summary>
-    /// <param name="color">要转换的 <see cref="SDColor"/> 对象</param>
+    /// <param name="color">要转换的 <see cref="Color"/> 对象</param>
     /// <returns>转换后的 <see cref="UIColor"/> 对象</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static UIColor AsUIColor(this SDColor color)
+    public static UIColor AsUIColor(this Color color)
         => UIColor.FromRGBA(color.R, color.G, color.B, color.A);
 
     /// <summary>
-    /// 将可空的 <see cref="SDColor"/> 转换为 <see cref="UIColor"/>
+    /// 将可空的 <see cref="Color"/> 转换为 <see cref="UIColor"/>
     /// </summary>
     /// <param name="color">要转换的可空 SDColor 对象</param>
     /// <returns>转换后的 <see cref="UIColor"/> 对象</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static UIColor AsUIColor(this SDColor? color)
+    public static UIColor AsUIColor(this Color? color)
         => color.HasValue ?
         color.Value.AsUIColor() :
         UIColor.White;

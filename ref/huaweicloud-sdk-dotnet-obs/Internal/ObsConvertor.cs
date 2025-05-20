@@ -11,10 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using System.Xml;
 using OBS.Model;
 
@@ -101,7 +97,7 @@ namespace OBS.Internal
             xmlWriter.WriteElementString("StorageClass", TransStorageClass(storageClass));
         }
 
-        private void TransGrants(XmlWriter xmlWriter, IList<Grant> grants, bool isBucket, string startElementName)
+        private static void TransGrants(XmlWriter xmlWriter, IList<Grant> grants, bool isBucket, string startElementName)
         {
             xmlWriter.WriteStartElement(startElementName);
             foreach (Grant grant in grants)
@@ -140,7 +136,7 @@ namespace OBS.Internal
 
         protected override void TransAccessControlList(HttpRequest httpRequest, AccessControlList acl, bool isBucket)
         {
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("AccessControlPolicy");
                 if (acl.Owner != null && !string.IsNullOrEmpty(acl.Owner.Id))
@@ -155,7 +151,7 @@ namespace OBS.Internal
                 }
                 if (acl.Grants.Count > 0)
                 {
-                    TransGrants(xmlWriter, acl.Grants, isBucket, "AccessControlList");
+                    ObsConvertor.TransGrants(xmlWriter, acl.Grants, isBucket, "AccessControlList");
                 }
                 xmlWriter.WriteEndElement();
             });
@@ -163,7 +159,7 @@ namespace OBS.Internal
 
         protected override void TransLoggingConfiguration(HttpRequest httpRequest, LoggingConfiguration configuration)
         {
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("BucketLoggingStatus");
 
@@ -187,7 +183,7 @@ namespace OBS.Internal
 
                     if (configuration.Grants.Count > 0)
                     {
-                        TransGrants(xmlWriter, configuration.Grants, false, "TargetGrants");
+                        ObsConvertor.TransGrants(xmlWriter, configuration.Grants, false, "TargetGrants");
                     }
 
                     xmlWriter.WriteEndElement();
@@ -198,7 +194,9 @@ namespace OBS.Internal
 
         protected override void TransTier(RestoreTierEnum? tier, XmlWriter xmlWriter)
         {
+#pragma warning disable CS0612 // 类型或成员已过时
             if (tier.HasValue && tier.Value != RestoreTierEnum.Bulk)
+#pragma warning restore CS0612 // 类型或成员已过时
             {
                 xmlWriter.WriteStartElement("RestoreJob");
 

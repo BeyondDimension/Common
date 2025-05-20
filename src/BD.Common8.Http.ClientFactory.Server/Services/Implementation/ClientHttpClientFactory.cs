@@ -1,3 +1,10 @@
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Net.Http.Client;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Http.ClientFactory.Server.Services.Implementation;
 
 /// <summary>
@@ -20,7 +27,9 @@ sealed partial class ClientHttpClientFactory(IHttpClientFactory factory) : IClie
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static IServiceCollection AddClientHttpClientFactory(IServiceCollection services)
     {
+#pragma warning disable IL2111 // Method with parameters or return value with `DynamicallyAccessedMembersAttribute` is accessed via reflection. Trimmer can't guarantee availability of the requirements of the method.
         IClientHttpClientFactory.AddHttpClientDelegateValue = AddHttpClientByReflection;
+#pragma warning restore IL2111 // Method with parameters or return value with `DynamicallyAccessedMembersAttribute` is accessed via reflection. Trimmer can't guarantee availability of the requirements of the method.
         return services.AddSingleton<IClientHttpClientFactory, ClientHttpClientFactory>();
     }
 
@@ -38,10 +47,10 @@ sealed partial class ClientHttpClientFactory(IHttpClientFactory factory) : IClie
     /// 存储了延迟加载的 AddHttpClient
     /// </summary>
     static readonly Lazy<MethodInfo> _AddHttpClient = new(() =>
-        {
-            var methodAddHttpClient = typeof(ClientHttpClientFactory).GetMethod(nameof(AddHttpClient), BindingFlags.Static | BindingFlags.NonPublic);
-            return methodAddHttpClient.ThrowIsNull();
-        });
+    {
+        var methodAddHttpClient = typeof(ClientHttpClientFactory).GetMethod(nameof(AddHttpClient), BindingFlags.Static | BindingFlags.NonPublic);
+        return methodAddHttpClient.ThrowIsNull();
+    });
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     static void AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(IServiceCollection services) where TClient : class

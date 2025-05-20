@@ -1,0 +1,24 @@
+<Project>
+	<!-- 👇 默认 TFM 为 netX.Y -->
+	<PropertyGroup>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<TargetFrameworks Condition="$([System.OperatingSystem]::IsLinux())">net$(DotNet_Version)</TargetFrameworks>
+	</PropertyGroup>
+	<!-- 👇 在 Windows 上开发 TFM + netX.Y-windows，当未禁用移动端时（通过文件存在切换禁用启用），+ netX.Y-android、netX.Y-ios、netX.Y-maccatalyst、netX.Y-macos -->
+	<PropertyGroup Condition="$([System.OperatingSystem]::IsWindows())">
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
+		<TargetFrameworks Condition="!Exists('C:\BD.Common8.ExcludeMobile.msbuild.prop')">net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-maccatalyst;net$(DotNet_Version)-macos</TargetFrameworks>
+	</PropertyGroup>
+	<!-- 👇 在 macOS 上开发 TFM + netX.Y-ios、netX.Y-maccatalyst、netX.Y-macos -->
+	<PropertyGroup Condition="$([System.OperatingSystem]::IsMacOS())">
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-ios;net$(DotNet_Version)-maccatalyst;net$(DotNet_Version)-macos</TargetFrameworks>
+	</PropertyGroup>
+	<!-- 👇 在 Linux 上开发 TFM 为 netX.Y -->
+	<PropertyGroup Condition="$([System.OperatingSystem]::IsLinux())">
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+	</PropertyGroup>
+	<!-- 👇 将无-后缀的 TFM 视作 Linux 平台，设置 DefineConstants -->
+	<PropertyGroup>
+		<DefineConstants Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">LINUX;$(DefineConstants)</DefineConstants>
+	</PropertyGroup>
+</Project>

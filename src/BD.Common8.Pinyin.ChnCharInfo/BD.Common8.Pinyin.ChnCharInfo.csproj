@@ -3,11 +3,25 @@
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8.Pinyin</RootNamespace>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Description>使用 ChnCharInfo 实现的汉语拼音库</Description>
 	</PropertyGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\Links\ChnCharInfo.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Pinyin\BD.Common8.Pinyin.csproj" />
+	</ItemGroup>
+
+	<!-- 👇 项目引用源生成器 -->
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\SharedProject\ChnCharInfo.props" />
 
 </Project>

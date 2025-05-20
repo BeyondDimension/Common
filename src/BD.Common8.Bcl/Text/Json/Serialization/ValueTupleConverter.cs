@@ -1,10 +1,24 @@
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
 namespace System.Text.Json.Serialization;
 
 /// <summary>
 /// <see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7, TRest}"/> Json 转换器，与 <see cref="Tuple{T1, T2, T3, T4, T5, T6, T7, TRest}"/> 行为一致
 /// </summary>
+#if NET7_0_OR_GREATER
+[RequiresDynamicCode(RequiresXCodeMessage)]
+[RequiresUnreferencedCode(RequiresXCodeMessage)]
+#endif
 public sealed class ValueTupleConverter : JsonConverter<ITuple>
 {
+#if NET7_0_OR_GREATER
+    internal const string RequiresXCodeMessage =
+        "值元组转换器包含动态创建值元组类型与泛型类型的序列化，与 AOT 和裁剪不兼容";
+#endif
+
     static readonly ImmutableDictionary<Type, int> lengthCache;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -77,7 +91,7 @@ public sealed class ValueTupleConverter : JsonConverter<ITuple>
     }
 
     /// <inheritdoc/>
-    public sealed override void Write(Utf8JsonWriter writer, ITuple value, SystemTextJsonSerializerOptions options)
+    public sealed override void Write(Utf8JsonWriter writer, ITuple value, JsonSerializerOptions options)
     {
         if (value is null || value is ValueTuple)
         {
@@ -130,11 +144,7 @@ public sealed class ValueTupleConverter : JsonConverter<ITuple>
                     propertyName = options.PropertyNamingPolicy?.ConvertName(propertyName) ?? propertyName;
                     writer.WritePropertyName(propertyName);
                 }
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-                SystemTextJsonSerializer.Serialize(writer, item, itemType, options);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                JsonSerializer.Serialize(writer, item, itemType, options);
             }
         }
         writer.WriteEndObject();
@@ -145,7 +155,7 @@ public sealed class ValueTupleConverter : JsonConverter<ITuple>
     }
 
     /// <inheritdoc/>
-    public sealed override ITuple Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
+    public sealed override ITuple Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (!reader.Read())
         {
@@ -233,18 +243,14 @@ public sealed class ValueTupleConverter : JsonConverter<ITuple>
                 continue;
             }
 
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
             if (isRest)
             {
                 items[index] = Read(ref reader, itemType!, options);
             }
             else
             {
-                items[index] = SystemTextJsonSerializer.Deserialize(ref reader, itemType!, options);
+                items[index] = JsonSerializer.Deserialize(ref reader, itemType!, options);
             }
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
             reader.Read();
         }
 
@@ -252,9 +258,6 @@ public sealed class ValueTupleConverter : JsonConverter<ITuple>
         {
             goto return_default;
         }
-
-#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
-#pragma warning disable IL2067 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The parameter of method does not have matching annotations.
         if (length <= 8)
         {
             return (ITuple)Activator.CreateInstance(typeToConvert, items)!;
@@ -279,7 +282,5 @@ public sealed class ValueTupleConverter : JsonConverter<ITuple>
 
     return_default:
         return typeToConvert.IsValueType ? (ITuple)Activator.CreateInstance(typeToConvert)! : null!;
-#pragma warning restore IL2067 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The parameter of method does not have matching annotations.
-#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
     }
 }

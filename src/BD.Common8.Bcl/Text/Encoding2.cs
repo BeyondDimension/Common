@@ -1,3 +1,9 @@
+using System.Runtime.CompilerServices;
+#if WINDOWS7_0_OR_GREATER
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+#endif
+
 namespace System.Text;
 
 /// <inheritdoc cref="Encoding"/>

@@ -1,3 +1,9 @@
+using BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;
+using Polly;
+using SQLite;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Services.Implementation;
 
 partial class PreferencesPlatformServiceImpl

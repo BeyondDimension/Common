@@ -1,3 +1,8 @@
+using BD.Common8.Columns;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BD.Common8.AspNetCore.Entities;
 
 /// <summary>

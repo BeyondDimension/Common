@@ -1,3 +1,6 @@
+using System.Net;
+using System.Net.Sockets;
+
 namespace BD.Common8.UnitTest;
 
 /// <summary>

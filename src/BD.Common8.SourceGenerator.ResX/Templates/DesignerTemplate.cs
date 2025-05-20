@@ -1,3 +1,11 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.CodeDom.Compiler;
+using System.Collections.Immutable;
+using System.Globalization;
+using System.Text;
+using System.Xml.Linq;
 using static BD.Common8.SourceGenerator.ResX.Constants;
 
 namespace BD.Common8.SourceGenerator.ResX.Templates;
@@ -33,7 +41,7 @@ public sealed class DesignerTemplate :
                 version = 0;
             }
 
-            yield return new(relativeFilePath, version);
+            yield return new(relativeFilePath!, version);
         }
     }
 
@@ -82,11 +90,12 @@ public sealed class DesignerTemplate :
         public required int I { get; init; }
     }
 
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
+        var codeDirPath = Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath)!;
         var path = Path.GetFullPath(Path.Combine(
             [
-                Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath),
+                codeDirPath,
                 ..
                 args.attr.RelativeFilePath.Split('\\')
             ]));
@@ -192,7 +201,7 @@ public sealed class DesignerTemplate :
     /// <returns></returns>
     static IEnumerable<XElement> GetXmlElementsByResXFilePath(string path)
     {
-        var elements = XDocument.Load(path).Root.Elements("data");
+        var elements = XDocument.Load(path).Root?.Elements("data");
         return elements ?? [];
     }
 
@@ -219,9 +228,9 @@ public sealed class DesignerTemplate :
         }
     }
 
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
-        WriteFileHeader(stream);
+        WriteFileHeader(stream, GetType());
         if (m.IsSRM)
         {
             stream.Write(
@@ -282,7 +291,7 @@ partial class {0}
 
         if (m.IsSRM)
         {
-            var resxDir = Path.GetDirectoryName(m.Path);
+            var resxDir = Path.GetDirectoryName(m.Path)!;
             var resxFileNameWithoutEx = Path.GetFileNameWithoutExtension(m.Path);
             var t_items_query = from filePath in Directory.GetFiles(resxDir, $"{resxFileNameWithoutEx}.*.resx")
                                 let cultureName = Path.GetFileNameWithoutExtension(filePath).TrimStart($"{resxFileNameWithoutEx}.")
@@ -290,7 +299,7 @@ partial class {0}
                                 let els = GetXmlElementsByResXFilePath(filePath)
                                 let els_class = DeserializeResXDataElements(els).ToArray()
                                 select new KeyValuePair<string, RootDataXmlElement[]>(cultureName, els_class);
-            t_items = t_items_query.ToArray();
+            t_items = [.. t_items_query];
 
             getMethodNameDict = items.ToDictionary(static x => x.Name, x => GetRandomGetMethodName(Deterministic ? x.Name : null));
 
@@ -325,7 +334,7 @@ partial class {0}
             stream.Write(bytesGetCultureName!);
             stream.Write(
 """
-(CultureInfo? culture = null)
+(global::System.Globalization.CultureInfo? culture = null)
 """u8);
             if (t_items.Length == 0)
             {
@@ -382,7 +391,7 @@ partial class {0}
                 }
             }
         }
-        static CultureInfo? GetCultureCore(CultureInfo? culture = null)
+        static global::System.Globalization.CultureInfo? GetCultureCore(global::System.Globalization.CultureInfo? culture = null)
         {
             try
             {
@@ -390,7 +399,7 @@ partial class {0}
                     return culture;
                 if (resourceCulture != null)
                     return resourceCulture;
-                return CultureInfo.CurrentUICulture;
+                return global::System.Globalization.CultureInfo.CurrentUICulture;
             }
             catch
             {
@@ -409,7 +418,7 @@ partial class {0}
             stream.Write(typeNameSRM!);
             stream.Write(
 """
- : global::System.Resources.IStringResourceManager, global::System.Collections.Generic.IReadOnlyList<global::System.String>
+ : global::System.Resources.IStringResourceManager, global::System.Collections.Generic.IReadOnlyList<string>
     {
 """u8);
 
@@ -418,7 +427,7 @@ partial class {0}
             stream.Write(
 """
 
-        public string GetString(string name, CultureInfo? culture = null) => 
+        public string GetString(string name, global::System.Globalization.CultureInfo? culture = null) => 
 """u8);
             stream.WriteUtf16StrToUtf8OrCustom(m.TypeName);
             stream.Write(
@@ -439,7 +448,7 @@ partial class {0}
             stream.Write(
 """
 
-        public global::System.Collections.Generic.IReadOnlyList<global::System.String> SupportedUICultures => (
+        public global::System.Collections.Generic.IReadOnlyList<string> SupportedUICultures => (
 """u8);
             stream.Write(typeNameSRM!);
             stream.Write(
@@ -455,7 +464,7 @@ partial class {0}
             stream.Write(
 """
 
-        public string? GetCultureName(CultureInfo? culture = null)
+        public string? GetCultureName(global::System.Globalization.CultureInfo? culture = null)
         {
             var index = 
 """u8);
@@ -470,7 +479,7 @@ partial class {0}
 (culture);
             if (index != -1)
             {
-                return ((global::System.Collections.Generic.IReadOnlyList<global::System.String>)this)[index];
+                return ((global::System.Collections.Generic.IReadOnlyList<string>)this)[index];
             }
             return null;
         }
@@ -485,13 +494,13 @@ partial class {0}
 """
 
         /// <inheritdoc/>
-        readonly global::System.Collections.Generic.IEnumerator<global::System.String> global::System.Collections.Generic.IEnumerable<global::System.String>.GetEnumerator() => GetEnumerator().GetEnumerator();
+        readonly global::System.Collections.Generic.IEnumerator<string> global::System.Collections.Generic.IEnumerable<string>.GetEnumerator() => GetEnumerator().GetEnumerator();
 
         /// <inheritdoc/>
         readonly global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator() => GetEnumerator().GetEnumerator();
 
         /// <inheritdoc/>
-        readonly int global::System.Collections.Generic.IReadOnlyCollection<global::System.String>.Count => 
+        readonly int global::System.Collections.Generic.IReadOnlyCollection<string>.Count => 
 """u8);
             stream.WriteUtf16StrToUtf8OrCustom(t_items.Length.ToString());
             stream.Write(
@@ -499,7 +508,7 @@ partial class {0}
 ;
 
         /// <inheritdoc/>
-        readonly string global::System.Collections.Generic.IReadOnlyList<global::System.String>.this[int index] => index switch
+        readonly string global::System.Collections.Generic.IReadOnlyList<string>.this[int index] => index switch
         {
 """u8);
             for (int i = 0; i < t_items.Length; i++)
@@ -517,7 +526,7 @@ partial class {0}
             _ => throw new ArgumentOutOfRangeException(nameof(index), index, null!),
         };
 
-        static global::System.Collections.Generic.IEnumerable<global::System.String> GetEnumerator()
+        static global::System.Collections.Generic.IEnumerable<string> GetEnumerator()
         {
 """u8);
             if (t_items.Length == 0)
@@ -525,7 +534,7 @@ partial class {0}
                 stream.Write(
 """
 
-            return global::System.Linq.Enumerable.Empty<global::System.String>();
+            return global::System.Linq.Enumerable.Empty<string>();
 """u8);
             }
             else
@@ -610,7 +619,7 @@ partial class {0}
             stream.Write(bytesGetString!);
             stream.Write(
 """
-(string name, CultureInfo? culture = null) => name switch
+(string name, global::System.Globalization.CultureInfo? culture = null) => name switch
     {
 
 """u8);
@@ -634,7 +643,7 @@ partial class {0}
             {
                 stream.WriteFormat(
 """
-    static string {0}(CultureInfo? culture = null) => 
+    static string {0}(global::System.Globalization.CultureInfo? culture = null) => 
 """u8, getMethodNameDict[item.Name]);
                 if (t_items.Length == 0)
                 {
@@ -663,7 +672,7 @@ partial class {0}
                 {
                     var t_item = t_items[i];
                     var t_item_xml = t_item.Value.FirstOrDefault(x => x.Name == item.Name);
-                    if (t_item_xml != null && t_item_xml.Value != item.Value)
+                    if (t_item_xml != default && t_item_xml.Value != item.Value)
                     {
                         // 写入翻译的 resx 值
                         stream.Write(

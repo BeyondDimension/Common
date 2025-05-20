@@ -1,3 +1,12 @@
+using Avalonia.Platform.Storage;
+using BD.Common8.Essentials.Enums;
+using BD.Common8.Essentials.Extensions;
+using BD.Common8.Essentials.Helpers;
+using BD.Common8.Essentials.Models;
+using BD.Common8.Essentials.Models.Abstractions;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Services.Implementation;
 
 /// <summary>
@@ -51,15 +60,15 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
     /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Images { get; } = new FilePickerFileTypeWrapper
     {
-        Values = new[]
-        {
+        Values =
+        [
             new FilePickerFileType("All Images")
             {
-                Patterns = new[] { "*.webp", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp" },
-                AppleUniformTypeIdentifiers = new[] { "public.png", "public.jpeg", "public.jpeg-2000", "com.compuserve.gif", "com.microsoft.bmp", },
-                MimeTypes = new[] { "image/webp", "image/png", "image/jpeg", "image/gif", "image/bmp", },
+                Patterns = ["*.webp", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"],
+                AppleUniformTypeIdentifiers = ["public.png", "public.jpeg", "public.jpeg-2000", "com.compuserve.gif", "com.microsoft.bmp",],
+                MimeTypes = ["image/webp", "image/png", "image/jpeg", "image/gif", "image/bmp",],
             },
-        },
+        ],
     };
 
     /// <summary>
@@ -67,15 +76,15 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
     /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Png { get; } = new FilePickerFileTypeWrapper
     {
-        Values = new[]
-        {
+        Values =
+        [
             new FilePickerFileType("PNG image")
             {
-                Patterns = new[] { "*.png", },
-                AppleUniformTypeIdentifiers = new[] { "public.png", },
-                MimeTypes = new[] { "image/png", },
+                Patterns = ["*.png",],
+                AppleUniformTypeIdentifiers = ["public.png",],
+                MimeTypes = ["image/png",],
             },
-        },
+        ],
     };
 
     /// <summary>
@@ -83,15 +92,15 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
     /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Jpeg { get; } = new FilePickerFileTypeWrapper
     {
-        Values = new[]
-        {
+        Values =
+        [
             new FilePickerFileType("JPEG image")
             {
-                Patterns = new[] { "*.jpg", "*.jpeg", },
-                AppleUniformTypeIdentifiers = new[] { "public.jpeg", "public.jpeg-2000", },
-                MimeTypes = new[] { "image/jpeg", },
+                Patterns = ["*.jpg", "*.jpeg",],
+                AppleUniformTypeIdentifiers = ["public.jpeg", "public.jpeg-2000",],
+                MimeTypes = ["image/jpeg",],
             },
-        },
+        ],
     };
 
     /// <summary>
@@ -104,15 +113,15 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
     /// </summary>
     IFilePickerFileType IPresetFilePickerPlatformService.Pdf { get; } = new FilePickerFileTypeWrapper
     {
-        Values = new[]
-        {
+        Values =
+        [
             new FilePickerFileType("PDF document")
             {
-                Patterns = new[] { "*.pdf", },
-                AppleUniformTypeIdentifiers = new[] { "com.adobe.pdf", },
-                MimeTypes = new[] { "application/pdf", },
+                Patterns = ["*.pdf",],
+                AppleUniformTypeIdentifiers = ["com.adobe.pdf",],
+                MimeTypes = ["application/pdf",],
             },
-        },
+        ],
     };
 
     /// <summary>
@@ -210,12 +219,12 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
 #if !WINDOWS
             if (mimeTypes.Count != 0)
             {
-                result.MimeTypes = mimeTypes.ToArray();
+                result.MimeTypes = [.. mimeTypes];
             }
 #endif
             if (patterns.Count != 0)
             {
-                result.Patterns = patterns.ToArray();
+                result.Patterns = [.. patterns];
             }
 #endif
         }
@@ -238,7 +247,7 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
                                 AppleUniformTypeIdentifiers = m.AppleUniformTypeIdentifiers,
                                 MimeTypes = m.MimeTypes,
                             };
-                return query.ToArray();
+                return [.. query];
             }
             return null;
         }
@@ -251,10 +260,10 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
             var extensions = fileTypes?.GetPlatformFileType(DeviceInfo2.Platform());
             if (extensions.Any_Nullable())
             {
-                return new FilePickerFileType[]
-                {
+                return
+                [
                     Convert(string.Empty, extensions),
-                };
+                ];
             }
         }
         return null;
@@ -274,10 +283,10 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
     /// <inheritdoc/>
     async Task<IEnumerable<IFileResult>> IFilePickerPlatformService.IOpenFileDialogService.PlatformPickAsync(PickOptions? options, bool allowMultiple)
     {
-        var topLevel = AvaApplication.Current.GetMainWindowOrActiveWindowOrMainView();
+        var topLevel = global::Avalonia.Application.Current.GetMainWindowOrActiveWindowOrMainView();
         var storageProvider = topLevel?.StorageProvider;
         if (storageProvider == null || !storageProvider.CanOpen)
-            return Array.Empty<IFileResult>();
+            return [];
 
         FilePickerOpenOptions options_ = new()
         {
@@ -305,13 +314,13 @@ sealed class AvaloniaFilePickerPlatformServiceImpl :
         {
             return Convert(fileResults);
         }
-        return Array.Empty<FileResult>();
+        return [];
     }
 
     /// <inheritdoc/>
     async Task<SaveFileResult?> IFilePickerPlatformService.ISaveFileDialogService.PlatformSaveAsync(PickOptions? options)
     {
-        var topLevel = AvaApplication.Current.GetMainWindowOrActiveWindowOrMainView();
+        var topLevel = global::Avalonia.Application.Current.GetMainWindowOrActiveWindowOrMainView();
         var storageProvider = topLevel?.StorageProvider;
         if (storageProvider == null || !storageProvider.CanSave)
             return null;

@@ -1,3 +1,9 @@
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+using SQLite;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Repositories.SQLitePCL.Extensions;
 
 /// <summary>
@@ -30,7 +36,7 @@ public static partial class AsyncTableQueryExtensions
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static AsyncTableQuery<T> WhereOr<T>(this AsyncTableQuery<T> source, IEnumerable<Expression<Func<T, bool>>> predicates) where T : new()
-        => source.WhereOr(predicates.ToArray());
+        => source.WhereOr([.. predicates]);
 
     /// <summary>
     /// 将多个表达式的逻辑条件通过逻辑或的方式进行合并，并执行查询筛选操作

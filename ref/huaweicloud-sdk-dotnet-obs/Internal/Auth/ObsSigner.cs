@@ -11,16 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace OBS.Internal.Auth
 {
     internal class ObsSigner : AbstractSigner
     {
 
-        private static ObsSigner instance = new ObsSigner();
+        private static readonly ObsSigner instance = new();
 
         private ObsSigner()
         {

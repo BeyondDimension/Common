@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using System.Net;
+
 namespace BD.Common8.AspNetCore.Models.Abstractions;
 
 /// <summary>
@@ -29,9 +32,9 @@ public partial interface INotUseForwardedHeaders
         }
         else
         {
-            return new(knownProxies.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+            return [.. knownProxies.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries)
                 .Select(static x => IPAddress2.TryParse(x, out var v) ? v : null!)
-                .Where(static x => x != null));
+                .Where(static x => x != null)];
         }
     }
 }

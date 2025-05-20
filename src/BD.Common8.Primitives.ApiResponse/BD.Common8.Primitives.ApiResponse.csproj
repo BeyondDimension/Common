@@ -3,8 +3,14 @@
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8</RootNamespace>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>提供 Api 响应 (后台管理) 类型的封装库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+	</ItemGroup>
 
 </Project>

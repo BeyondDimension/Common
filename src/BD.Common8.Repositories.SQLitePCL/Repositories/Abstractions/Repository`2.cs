@@ -1,3 +1,8 @@
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Repositories.Enums;
+using BD.Common8.Repositories.Repositories.Abstractions;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;
 
 /// <inheritdoc cref="IRepository"/>

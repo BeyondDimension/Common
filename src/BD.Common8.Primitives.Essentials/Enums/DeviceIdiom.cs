@@ -1,4 +1,6 @@
-namespace BD.Common8.Enums;
+using System.Runtime.CompilerServices;
+
+namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
 /// 设备种类，例如手机，平板，电视，手表

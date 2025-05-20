@@ -1,4 +1,4 @@
-namespace BD.Common8.Enums;
+namespace BD.Common8.District.Enums;
 
 /// <summary>
 /// 行政区域等级

@@ -11,9 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Net;
 
 namespace OBS.Internal
@@ -26,7 +23,7 @@ namespace OBS.Internal
     internal class MergeResponseHeaderHandler : HttpResponseHandler
     {
 
-        private IHeaders iheaders;
+        private readonly IHeaders iheaders;
 
         public MergeResponseHeaderHandler(IHeaders iheaders)
         {
@@ -56,9 +53,9 @@ namespace OBS.Internal
 
                     value = CommonUtil.UrlDecode(value);
 
-                    if (result.ContainsKey(key))
+                    if (result.TryGetValue(key, out string? value2))
                     {
-                        string _value = result[key] + "," + value;
+                        string _value = value2 + "," + value;
                         result[key] = _value;
                     }else
                     {

@@ -1,4 +1,7 @@
 #if WINDOWS7_0_OR_GREATER
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
 namespace System.Extensions;
 
 /// <summary>
@@ -21,7 +24,7 @@ internal static partial class FreeMemoryExtensions
     }
 
     /// <summary>
-    /// 释放当前用户IE代理配置内存
+    /// 释放当前用户 IE 代理配置内存
     /// </summary>
     /// <param name="proxyConfig">代理配置信息</param>
     internal static unsafe void FreeMemory(

@@ -1,3 +1,15 @@
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Json;
+using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender;
 
 /// <summary>
@@ -103,7 +115,7 @@ public abstract class SmsSenderBase : ISmsSender
 /// <summary>
 /// 修改这些默认选项，可以控制相关类型序列化
 /// </summary>
-[JsonSerializable(typeof(Channels._21VianetBlueCloud.SmsSenderProvider.RequestData))]
+[JsonSerializable(typeof(global::BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud.SmsSenderProvider.RequestData))]
 [JsonSerializable(typeof(SendSms21VianetBlueCloudResult))]
 [JsonSerializable(typeof(SendSmsAlibabaCloudResult))]
 [JsonSerializable(typeof(SendSmsNetEaseCloudResult))]
@@ -113,7 +125,11 @@ sealed partial class SmsSenderJsonSerializerContext : JsonSerializerContext
 {
     static SmsSenderJsonSerializerContext()
     {
-        s_defaultOptions.AllowTrailingCommas = true;
-        s_defaultOptions.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+        s_defaultOptions = new()
+        {
+            AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+        };
+        Default = new SmsSenderJsonSerializerContext(new global::System.Text.Json.JsonSerializerOptions(s_defaultOptions));
     }
 }

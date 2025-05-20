@@ -1,3 +1,12 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using System.Buffers;
+using System.CodeDom.Compiler;
+using System.Collections.Immutable;
+using System.Text;
+
 namespace BD.Common8.SourceGenerator.ResX.Templates;
 
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
@@ -29,7 +38,7 @@ public sealed class BinaryResourceTemplate :
         }
     }
 
-    static bool TryGetValue<T>(NewtonsoftJsonObject obj, string propertyName, out T? value)
+    static bool TryGetValue<T>(JObject obj, string propertyName, out T? value)
     {
         value = default;
 
@@ -57,7 +66,7 @@ public sealed class BinaryResourceTemplate :
 
     static IEnumerable<BinaryResourceFileInfo> Deserialize(string json)
     {
-        var array = JArray.Parse(json).OfType<NewtonsoftJsonObject>();
+        var array = JArray.Parse(json).OfType<JObject>();
         foreach (var item in array)
         {
             if (TryGetValue<string>(item, nameof(BinaryResourceFileInfo.Path), out var path))
@@ -160,15 +169,16 @@ public sealed class BinaryResourceTemplate :
         public required int I { get; init; }
     }
 
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
         if (string.IsNullOrEmpty(args.attr.Arguments))
             return default;
 
+        var codeDirPath = Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath)!;
         var queryFilePaths = from x in Deserialize(args.attr.Arguments)
                              let filePath = Path.GetFullPath(Path.Combine(
                                  [
-                                     Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath),
+                                     codeDirPath,
                                      ..
                                      x.Path.Split('\\')
                                  ]))
@@ -179,7 +189,7 @@ public sealed class BinaryResourceTemplate :
             I = args.i,
             NamedTypeSymbol = args.symbol,
             Attribute = args.attr,
-            FileInfos = queryFilePaths.ToArray(),
+            FileInfos = [.. queryFilePaths],
             Namespace = args.@namespace,
             TypeName = args.typeName,
             IsPublic = false,
@@ -198,7 +208,54 @@ public sealed class BinaryResourceTemplate :
             return;
         }
 
-        if (!File.Exists(fileInfo.FilePath))
+        bool fileExists = true;
+        try
+        {
+            using var fileStream = new FileStream(fileInfo.FilePath, FileMode.Open, FileAccess.Read);
+            var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)fileStream.Length));
+            try
+            {
+                var count = fileStream.Read(buffer, 0, buffer.Length);
+                if (count > 0)
+                {
+                    if (fileInfo.Reverse)
+                    {
+                        for (int i = count - 1; i >= 0; i--)
+                        {
+                            WriteByte(i);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            WriteByte(i);
+                        }
+                    }
+
+                    void WriteByte(int i)
+                    {
+                        stream.Write("0x"u8);
+                        stream.WriteUtf16StrToUtf8OrCustom(buffer[i].ToString("X"));
+                        stream.Write(", "u8);
+                    }
+                }
+            }
+            finally
+            {
+                ArrayPool<byte>.Shared.Return(buffer);
+            }
+        }
+        catch (DirectoryNotFoundException)
+        {
+            fileExists = false;
+        }
+        catch (FileNotFoundException)
+        {
+            fileExists = false;
+        }
+
+        if (!fileExists)
         {
             stream.Write(
 """
@@ -206,36 +263,14 @@ public sealed class BinaryResourceTemplate :
 """u8);
             return;
         }
-
-        var bytes = File.ReadAllBytes(fileInfo.FilePath);
-        if (fileInfo.Reverse)
-        {
-            for (int i = bytes.Length - 1; i >= 0; i--)
-            {
-                WriteByte(i);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                WriteByte(i);
-            }
-        }
-        void WriteByte(int i)
-        {
-            stream.Write("0x"u8);
-            stream.WriteUtf16StrToUtf8OrCustom(bytes[i].ToString("X"));
-            stream.Write(", "u8);
-        }
     }
 
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
         if (m.FileInfos == null || m.FileInfos.Length == 0)
             return;
 
-        WriteFileHeader(stream);
+        WriteFileHeader(stream, GetType());
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();
@@ -269,7 +304,6 @@ partial class {0}
         {
             propertyNameDict = m.FileInfos.ToDictionary(static x => x, x => GetRandomGetMethodName(Deterministic ? x.FilePath : null));
         }
-
         foreach (var fileInfo in m.FileInfos)
         {
             stream.Write(
@@ -277,9 +311,9 @@ partial class {0}
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
 #if NET35 || NET40
-    [global::System.Runtime.CompilerServices.MethodImpl((MethodImplOptions)0x100)]
+    [global::System.Runtime.CompilerServices.MethodImpl((global::System.Runtime.CompilerServices.MethodImplOptions)0x100)]
 #else
-    [global::System.Runtime.CompilerServices.MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 #endif
     static 
 """u8);

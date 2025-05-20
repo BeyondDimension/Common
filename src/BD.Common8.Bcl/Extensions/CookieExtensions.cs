@@ -1,3 +1,8 @@
+using MemoryPack;
+using System.Buffers;
+using System.Net;
+using System.Runtime.Serialization.Formatters;
+
 namespace System.Extensions;
 
 public static partial class CookieExtensions

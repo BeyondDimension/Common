@@ -1,4 +1,8 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Headers;
+using System.Text;
+
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // System.Xml
@@ -46,7 +50,7 @@ partial class SerializableService // System.Xml
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
+    [RequiresUnreferencedCode("Members from deserialized types may be trimmed if not referenced directly")]
     [Obsolete(Obsolete_UseAsync)]
     protected virtual TResponseBody? ReadFromXml<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody>(HttpContent content, Encoding? encoding = null, CancellationToken cancellationToken = default) where TResponseBody : notnull
     {

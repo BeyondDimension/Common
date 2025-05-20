@@ -1,4 +1,8 @@
 #if WINDOWS
+using Microsoft.Win32;
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
+
 namespace BD.Common8.Security.Helpers;
 
 static partial class SecurityPlatformHelper

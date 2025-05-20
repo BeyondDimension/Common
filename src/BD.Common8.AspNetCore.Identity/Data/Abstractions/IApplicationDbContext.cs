@@ -1,3 +1,8 @@
+using BD.Common8.AspNetCore.Entities.Abstractions;
+using BD.Common8.Entities.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.AspNetCore.Data.Abstractions;
 
 /// <summary>

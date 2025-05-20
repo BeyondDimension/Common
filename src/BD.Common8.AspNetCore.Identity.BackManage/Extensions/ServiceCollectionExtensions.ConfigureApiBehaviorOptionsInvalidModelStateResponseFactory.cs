@@ -1,3 +1,7 @@
+using BD.Common8.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions
@@ -5,10 +9,10 @@ public static partial class ServiceCollectionExtensions
     static OkObjectResult InvalidModelStateResponseFactory(ActionContext ctx) => new(new ApiResponse
     {
         IsSuccess = false,
-        Messages = (from x in ctx.ModelState
+        Messages = [.. (from x in ctx.ModelState
                     let errorMessage = x.Value?.Errors.Select(x => x.ErrorMessage).FirstOrDefault()
                     where !string.IsNullOrEmpty(errorMessage)
-                    select errorMessage).ToArray(),
+                    select errorMessage)],
     });
 
     /// <summary>

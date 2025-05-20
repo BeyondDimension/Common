@@ -1,3 +1,7 @@
+using BD.Common8.Entities.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.Repositories.EFCore.Repositories.Abstractions;
 
 /// <inheritdoc cref="IEFRepository"/>

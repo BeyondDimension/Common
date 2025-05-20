@@ -1,3 +1,8 @@
+using BD.Common8.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
+
 namespace BD.Common8.AspNetCore.Identity.Abstractions;
 
 /// <summary>
@@ -25,7 +30,7 @@ public interface IJWTValueProvider
         if (temp < 0) // 低于最低值，补位，填充 1
         {
             temp = Math.Abs(temp);
-            data = data.Concat(new byte[temp].Select(x => (byte)'1')).ToArray();
+            data = [.. data, .. new byte[temp].Select(x => (byte)'1')];
         }
         var signingKey = new SymmetricSecurityKey(data);
         return signingKey;

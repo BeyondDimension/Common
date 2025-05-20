@@ -1,4 +1,7 @@
+using BD.Common8.Security.Helpers;
 using MonoMac.Foundation;
+using System.Extensions;
+using System.Runtime.InteropServices;
 
 namespace BD.Common8.UnitTest;
 
@@ -73,7 +76,7 @@ public sealed partial class MachineUniqueIdentifierTest
 
 #pragma warning disable SYSLIB1054 // 使用 “LibraryImportAttribute” 而不是 “DllImportAttribute” 在编译时生成 P/Invoke 封送代码
 #pragma warning disable CA2101 // 指定对 P/Invoke 字符串参数进行封送处理
-    static partial class MacCatalystPlatformServiceImpl
+    private static partial class MacCatalystPlatformServiceImpl
     {
         [LibraryImport("/System/Library/Frameworks/IOKit.framework/IOKit")]
         private static partial uint IOServiceGetMatchingService(uint masterPort, IntPtr matching);

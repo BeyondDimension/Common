@@ -1,3 +1,5 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
 
 /// <summary>

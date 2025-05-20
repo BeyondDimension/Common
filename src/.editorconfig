@@ -528,7 +528,7 @@ dotnet_diagnostic.IDE0057.severity = error
 csharp_style_prefer_method_group_conversion = true:silent
 
 # IDE0005: Using 指令是不需要的。
-dotnet_diagnostic.IDE0005.severity = error
+dotnet_diagnostic.IDE0005.severity = none
 
 # CA1707: 标识符不应包含下划线
 dotnet_diagnostic.CA1707.severity = silent

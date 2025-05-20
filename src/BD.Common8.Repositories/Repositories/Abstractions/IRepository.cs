@@ -1,3 +1,6 @@
+using BD.Common8.Repositories.Enums;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Repositories.Repositories.Abstractions;
 
 /// <summary>

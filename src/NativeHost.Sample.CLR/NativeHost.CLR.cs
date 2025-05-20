@@ -1,3 +1,6 @@
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+
 namespace BD.Common8.NativeHost;
 
 #pragma warning disable IDE1006 // 命名样式
@@ -60,7 +63,7 @@ static unsafe partial class NativeHost
             // 通过 ICLRRuntimeHost 获取 AppDomain 接口指针
             runtimeHost.GetDefaultDomain(out var pAppDomain);
 
-            //  然后通过 AppDomain 接口的 QueryInterface 方法来查询默认应用程序域的实例指针
+            // 然后通过 AppDomain 接口的 QueryInterface 方法来查询默认应用程序域的实例指针
             var pAppDomainPtr = Marshal.GetIUnknownForObject(pAppDomain);
             Guid iid_IUnknown = IID_IUnknown;
             hr = new(Marshal.QueryInterface(pAppDomainPtr, ref iid_IUnknown, out var pDefaultAppDomain));

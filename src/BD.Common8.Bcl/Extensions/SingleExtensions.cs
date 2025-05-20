@@ -1,6 +1,7 @@
 #if !(NETCOREAPP2_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER)
 using MathF = System.Math;
 #endif
+using System.Runtime.CompilerServices;
 
 namespace System.Extensions;
 

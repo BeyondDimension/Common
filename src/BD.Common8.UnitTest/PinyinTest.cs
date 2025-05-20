@@ -1,3 +1,7 @@
+using BD.Common8.Pinyin.Extensions;
+using BD.Common8.Pinyin.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.International.Converters.PinYinConverter;
 using ChnCharInfoAssemblyResource = Microsoft.International.Converters.PinYinConverter.AssemblyResource;
 using Common8SR = BD.Common8.Resources.SR;
 

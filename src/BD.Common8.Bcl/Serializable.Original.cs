@@ -1,17 +1,23 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0005 // 删除不必要的 using 指令
 #pragma warning disable IDE0161 // 转换为文件范围限定的 namespace
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace System
 {
     public static partial class Serializable // Original(使用原键名)
     {
 #if !NO_NEWTONSOFT_JSON
-        static readonly Lazy<NewtonsoftJsonSerializerSettings> mIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings = new(GetIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
+        static readonly Lazy<JsonSerializerSettings> mIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings = new(GetIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
 
-        static NewtonsoftJsonSerializerSettings GetIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings() => new()
+        static JsonSerializerSettings GetIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings() => new()
         {
             ContractResolver = new IgnoreJsonPropertyContractResolver(),
-            Converters = new List<NewtonsoftJsonConverter>
+            Converters = new List<JsonConverter>
             {
                 new StringEnumConverter(),
             },
@@ -20,7 +26,7 @@ namespace System
         /// <summary>
         /// 使用原键名的序列化设置
         /// </summary>
-        public static NewtonsoftJsonSerializerSettings IgnoreJsonPropertyContractResolverWithStringEnumConverterSettings => mIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings.Value;
+        public static JsonSerializerSettings IgnoreJsonPropertyContractResolverWithStringEnumConverterSettings => mIgnoreJsonPropertyContractResolverWithStringEnumConverterSettings.Value;
 
         /// <summary>
         /// 序列化 JSON 模型，使用原键名
@@ -29,8 +35,8 @@ namespace System
         /// <param name="formatting"></param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static string SJSON_Original(object? value, NewtonsoftJsonFormatting formatting = NewtonsoftJsonFormatting.Indented)
-            => NewtonsoftJsonConvert.SerializeObject(value, formatting, IgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
+        public static string SJSON_Original(object? value, Formatting formatting = Formatting.Indented)
+            => JsonConvert.SerializeObject(value, formatting, IgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
 
         /// <summary>
         /// 反序列化 JSON 模型，使用原键名
@@ -41,7 +47,7 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [return: MaybeNull]
         public static T DJSON_Original<T>(string value)
-            => NewtonsoftJsonConvert.DeserializeObject<T>(value, IgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
+            => JsonConvert.DeserializeObject<T>(value, IgnoreJsonPropertyContractResolverWithStringEnumConverterSettings);
 #endif
     }
 }
@@ -50,7 +56,7 @@ namespace System
 namespace Newtonsoft.Json.Serialization
 {
     /// <summary>
-    /// 将忽略 <see cref="NewtonsoftJsonProperty"/> 属性
+    /// 将忽略 <see cref="JsonProperty"/> 属性
     /// </summary>
     public sealed class IgnoreJsonPropertyContractResolver(bool useCamelCase = false) : DefaultContractResolver
     {
@@ -59,7 +65,7 @@ namespace Newtonsoft.Json.Serialization
         /// <summary>
         /// 创建属性列表，并根据成员序列化方式忽略特定属性
         /// </summary>
-        protected override IList<NewtonsoftJsonPropertyClass> CreateProperties(Type type, MemberSerialization memberSerialization)
+        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
             var result = base.CreateProperties(type, memberSerialization);
             foreach (var item in result)
@@ -67,7 +73,7 @@ namespace Newtonsoft.Json.Serialization
                 item.PropertyName = item.UnderlyingName == null ? null :
                     (useCamelCase ?
 #if !(NETFRAMEWORK && !NET461_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-                        JsonNamingPolicy.CamelCase.ConvertName(item.UnderlyingName) :
+                        global::System.Text.Json.JsonNamingPolicy.CamelCase.ConvertName(item.UnderlyingName) :
 #else
                         ToCamelCase(item.UnderlyingName) :
 #endif

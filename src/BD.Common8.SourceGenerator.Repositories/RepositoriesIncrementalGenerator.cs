@@ -1,4 +1,15 @@
 //using ReactUI = BD.Common8.SourceGenerator.Repositories.Templates.ReactUI;
+using BD.Common8.SourceGenerator.Repositories.Helpers;
+using BD.Common8.SourceGenerator.Repositories.Models;
+using BD.Common8.SourceGenerator.Repositories.Models.Attributes;
+using BD.Common8.SourceGenerator.Repositories.Templates;
+using Humanizer;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
+using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Reflection;
+using System.Text;
 
 namespace BD.Common8.SourceGenerator.Repositories;
 
@@ -155,7 +166,7 @@ public sealed class RepositoriesIncrementalGenerator : IIncrementalGenerator
                 } while (ex != null);
                 var errorString = builder.ToString();
                 Debug.WriteLine(errorString);
-                errorString = string.Join("\r\n", errorString.Split(new string[] { "\r\n" }, StringSplitOptions.None).Select(x => $"// {x}"));
+                errorString = string.Join("\r\n", errorString.Split(["\r\n"], StringSplitOptions.None).Select(x => $"// {x}"));
                 sourceProductionContext.AddSource(hintName, SourceText.From(errorString, Encoding.UTF8));
             }
         });

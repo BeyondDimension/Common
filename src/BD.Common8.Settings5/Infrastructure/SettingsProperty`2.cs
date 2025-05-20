@@ -1,3 +1,14 @@
+using BD.Common8.Essentials.Helpers;
+using BD.Common8.Settings5.Services;
+using BD.Common8.Settings5.Services.Implementation;
+using Microsoft.Extensions.Options;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Settings5.Infrastructure;
 
 /// <summary>
@@ -6,7 +17,7 @@ namespace BD.Common8.Settings5.Infrastructure;
 /// <typeparam name="TValue"></typeparam>
 /// <typeparam name="TSettingsModel"></typeparam>
 [DebuggerDisplay("Value={value}, ModelValue={ModelValue}, ModelValueIsNull={ModelValueIsNull}, Default={Default}, PropertyName={PropertyName}, AutoSave={AutoSave}")]
-public class SettingsProperty<TValue,
+public class SettingsProperty<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TValue,
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>
     : SettingsProperty, INotifyPropertyChanged, IDisposable
     where TSettingsModel : class, new()
@@ -77,7 +88,6 @@ public class SettingsProperty<TValue,
     /// <param name="default"></param>
     /// <param name="autoSave"></param>
     /// <param name="propertyName"></param>
-    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     public SettingsProperty(TValue? @default = default,
          bool autoSave = DefaultAutoSave,
          [CallerMemberName] string? propertyName = null) : base(propertyName.ThrowIsNull(), autoSave)
@@ -85,7 +95,10 @@ public class SettingsProperty<TValue,
         var settingsType = typeof(TSettingsModel);
         Default = @default;
         ParameterExpression parameter = Expression.Parameter(settingsType, "obj");
+        // TSettingsModel 已标注 DynamicallyAccessedMembersAttribute
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         MemberExpression property = Expression.Property(parameter, PropertyName);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         ParameterExpression value = Expression.Parameter(typeof(TValue), "value");
         BinaryExpression assign = Expression.Assign(property, value);
         setter = Expression.Lambda<Action<TSettingsModel, TValue?>>(assign, parameter, value).Compile();

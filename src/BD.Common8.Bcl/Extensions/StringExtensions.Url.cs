@@ -1,3 +1,6 @@
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
+
 namespace System;
 
 public static partial class StringExtensions // Url

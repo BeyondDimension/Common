@@ -1,6 +1,9 @@
 // https://github.com/dahall/Vanara/blob/v3.4.17/PInvoke/Shared/Handles/SafeHANDLE.cs
-
 #if WINDOWS7_0_OR_GREATER
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
 namespace Microsoft.Win32.SafeHandles;
 
 /// <summary>Base class for all native handles.</summary>

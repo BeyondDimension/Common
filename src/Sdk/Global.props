@@ -32,6 +32,6 @@
 
 	<!-- 👇 源代码分析 | Code Style -->
 	<ItemGroup>
-		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
+		<!--<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />-->
 	</ItemGroup>
 </Project>

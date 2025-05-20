@@ -1,3 +1,7 @@
+using BD.Common8.SourceGenerator.Helpers;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Ipc.Enums;
 
 /// <summary>

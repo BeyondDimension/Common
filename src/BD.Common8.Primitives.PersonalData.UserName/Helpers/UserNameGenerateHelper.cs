@@ -1,3 +1,5 @@
+using System.CodeDom.Compiler;
+
 namespace BD.Common8.Helpers;
 
 /// <summary>
@@ -17,7 +19,7 @@ namespace BD.Common8.Helpers;
         Span<byte> bytes = {F4KnownName}();
         try
         {
-            var f4_known_name = MemoryPackSerializer.Deserialize<string[]>(bytes);
+            var f4_known_name = global::MemoryPack.MemoryPackSerializer.Deserialize<string[]>(bytes);
             return f4_known_name!;
         }
         finally

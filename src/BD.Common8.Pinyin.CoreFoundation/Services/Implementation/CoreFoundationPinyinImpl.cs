@@ -1,3 +1,8 @@
+using BD.Common8.Pinyin.Enums;
+using BD.Common8.Pinyin.Helpers;
+using CoreFoundation;
+using System.Runtime.Versioning;
+
 namespace BD.Common8.Pinyin.Services.Implementation;
 
 /// <summary>

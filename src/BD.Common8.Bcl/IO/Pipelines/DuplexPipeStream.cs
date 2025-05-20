@@ -1,6 +1,9 @@
 // https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub.FlowAnalyze/DuplexPipeStreamExtensions.cs
 
 #if NET6_0_OR_GREATER
+using System.Buffers;
+using System.Runtime.CompilerServices;
+
 namespace System.IO.Pipelines;
 
 /// <summary>
@@ -183,7 +186,7 @@ public class DuplexPipeStream(IDuplexPipe duplexPipe, bool throwOnCancelled = fa
                 if (!readableBuffer.IsEmpty)
                 {
                     // buffer.Count is int
-                    var count = (int)Math.Min(readableBuffer.Length, destination.Length);
+                    var count = unchecked((int)Math.Min(readableBuffer.Length, destination.Length));
                     readableBuffer = readableBuffer.Slice(0, count);
                     readableBuffer.CopyTo(destination.Span);
                     return count;

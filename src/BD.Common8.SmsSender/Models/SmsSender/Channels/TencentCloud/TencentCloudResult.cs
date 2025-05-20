@@ -1,9 +1,12 @@
+using BD.Common8.Models.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud;
 
 public class TencentCloudResult<T> : JsonModel, ISmsSubResult where T : JsonModel, ITencentCloud
 {
-    [SystemTextJsonProperty("Response")]
-    [NewtonsoftJsonProperty("Response")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("Response")]
+    [global::Newtonsoft.Json.JsonProperty("Response")]
     public required T Response { get; set; }
 
     /// <summary>

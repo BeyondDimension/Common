@@ -1,3 +1,8 @@
+using BD.Common8.AspNetCore.Filters;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
 namespace BD.Common8.AspNetCore.Controllers.Abstractions;
 
 [Authorize(AuthenticationSchemes = "Bearer")]

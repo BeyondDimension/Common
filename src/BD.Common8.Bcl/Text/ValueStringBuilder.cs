@@ -2,6 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // https://github.com/dotnet/runtime/blob/v8.0.0/src/libraries/Common/src/System/Text/ValueStringBuilder.cs
 
+using System.Buffers;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
 namespace System.Text;
 
 public ref partial struct ValueStringBuilder

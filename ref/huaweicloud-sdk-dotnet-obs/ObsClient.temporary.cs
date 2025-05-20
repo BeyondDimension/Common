@@ -18,7 +18,6 @@ using OBS.Model;
 namespace OBS;
 
 #pragma warning disable CS0612 // 类型或成员已过时
-#pragma warning disable SA1312 // Variable names should begin with lower-case letter
 
 public partial class ObsClient
 {
@@ -37,7 +36,7 @@ public partial class ObsClient
             Method = request.Method,
         };
 
-        IHeaders iheaders = httpClient.GetIHeaders(new HttpContext(sp, ObsConfig));
+        IHeaders iheaders = Internal.HttpClient.GetIHeaders(new HttpContext(sp, ObsConfig));
 
         if (!string.IsNullOrEmpty(sp.Token) && !request.Parameters.ContainsKey(iheaders.SecurityTokenHeader()))
         {
@@ -118,10 +117,10 @@ public partial class ObsClient
         CommonUtil.AddParam(httpRequest, "X-Amz-Expires", expires.ToString());
         CommonUtil.AddParam(httpRequest, "X-Amz-SignedHeaders", signedHeaders);
 
-        HttpContext context = new HttpContext(sp, ObsConfig);
+        HttpContext context = new(sp, ObsConfig);
         string signature = CommonUtil.UrlEncode(V4Signer.GetTemporarySignature(httpRequest, context, iheaders, dateDict, signedHeaders, tempDict, signedHeadersList, null));
 
-        CreateTemporarySignatureResponse response = new CreateTemporarySignatureResponse
+        CreateTemporarySignatureResponse response = new()
         {
             SignUrl = ObsConfig.Endpoint.StartsWith("https", StringComparison.OrdinalIgnoreCase) ?
             "https://" : "http://",
@@ -175,17 +174,17 @@ public partial class ObsClient
 
     private CreateTemporarySignatureResponse CreateTemporarySignature(HttpRequest httpRequest, long expires, IHeaders iheaders)
     {
-        DateTime dt1970 = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        DateTime dt1970 = new(1970, 1, 1, 0, 0, 0, 0);
         string expiresValue = (((DateTime.UtcNow.Ticks - dt1970.Ticks) / 10000000) + expires).ToString();
         httpRequest.Headers[Constants.CommonHeaders.Date] = expiresValue;
 
-        HttpContext context = new HttpContext(sp, ObsConfig);
+        HttpContext context = new(sp, ObsConfig);
 
-        IDictionary<string, string> SinerReturn = httpClient.GetSigner(new HttpContext(sp, ObsConfig)).GetSignature(httpRequest, context, iheaders);
+        IDictionary<string, string> SinerReturn = Internal.HttpClient.GetSigner(new HttpContext(sp, ObsConfig)).GetSignature(httpRequest, context, iheaders);
 
         string signature = CommonUtil.UrlEncode(SinerReturn["Signature"]);
 
-        CreateTemporarySignatureResponse response = new CreateTemporarySignatureResponse
+        CreateTemporarySignatureResponse response = new()
         {
             SignUrl = ObsConfig.Endpoint.StartsWith("https", StringComparison.OrdinalIgnoreCase) ?
             "https://" : "http://",

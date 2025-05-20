@@ -1,9 +1,10 @@
-namespace System;
-
+using System.Runtime.Versioning;
 #if ANDROID
 using Build = Android.OS.Build;
 using JavaSystem = Java.Lang.JavaSystem;
 #endif
+
+namespace System;
 
 /// <summary>
 /// 操作系统相关助手类

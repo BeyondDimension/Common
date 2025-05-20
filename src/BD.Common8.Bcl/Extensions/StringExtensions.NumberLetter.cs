@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System;
 
 public static partial class StringExtensions // NumberLetter

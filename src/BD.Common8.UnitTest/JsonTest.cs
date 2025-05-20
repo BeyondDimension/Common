@@ -1,3 +1,8 @@
+using Newtonsoft.Json.Linq;
+using System.Extensions;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+
 namespace BD.Common8.UnitTest;
 
 /// <summary>
@@ -22,13 +27,13 @@ public sealed class JsonTest
 }
 """;
 
-    SystemTextJsonSerializerOptions allowTrailingCommasOptions = null!;
+    JsonSerializerOptions allowTrailingCommasOptions = null!;
 
     /// <inheritdoc cref="SetUpAttribute"/>
     [SetUp]
     public void Setup()
     {
-        allowTrailingCommasOptions = new(SystemTextJsonSerializerOptions.Default)
+        allowTrailingCommasOptions = new(JsonSerializerOptions.Default)
         {
             AllowTrailingCommas = true,
         };
@@ -40,7 +45,7 @@ public sealed class JsonTest
     [Test]
     public void DuplicateKey_NJson()
     {
-        var obj = Serializable.DJSON<NewtonsoftJsonObject>(Serializable.JsonImplType.NewtonsoftJson, json0);
+        var obj = Serializable.DJSON<JObject>(Serializable.JsonImplType.NewtonsoftJson, json0);
         TestContext.WriteLine(obj);
         var value = obj?["test1"]?.ToString();
         Assert.That(value, Is.EqualTo("😋"));
@@ -54,7 +59,7 @@ public sealed class JsonTest
     [Test]
     public void DuplicateKey_SJson()
     {
-        var obj = SystemTextJsonSerializer.Deserialize<SystemTextJsonObject>(json0, allowTrailingCommasOptions);
+        var obj = JsonSerializer.Deserialize<JsonObject>(json0, allowTrailingCommasOptions);
         TestContext.WriteLine(obj);
         var value = obj.GetItem("test1")?.ToString();
         Assert.That(value, Is.EqualTo("😋"));

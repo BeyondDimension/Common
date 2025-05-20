@@ -1,3 +1,24 @@
+#if !NO_SYSTEM_TEXT_JSON
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+#endif
+#if !NO_NEWTONSOFT_JSON
+using Newtonsoft.Json;
+#endif
+#if !NO_MESSAGEPACK
+using MessagePack;
+#endif
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
+using MemoryPack;
+using System.Buffers;
+#endif
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace System;
 
 public static partial class Serializable // Serialize(序列化)
@@ -22,16 +43,16 @@ public static partial class Serializable // Serialize(序列化)
     {
 #if !NO_SYSTEM_TEXT_JSON
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly SystemTextJsonSerializerOptions GetSystemTextJsonSerializerOptions()
+        public readonly JsonSerializerOptions GetSystemTextJsonSerializerOptions()
         {
-            var options = new SystemTextJsonSerializerOptions
+            var options = new JsonSerializerOptions
             {
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 WriteIndented = writeIndented,
             };
             if (ignoreNullValues)
             {
-                options.DefaultIgnoreCondition = SystemTextJsonIgnoreCondition.WhenWritingNull;
+                options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             }
             return options;
         }
@@ -39,9 +60,9 @@ public static partial class Serializable // Serialize(序列化)
 
 #if !NO_NEWTONSOFT_JSON
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public readonly NewtonsoftJsonSerializerSettings? GetNewtonsoftJsonSerializerSettings()
+        public readonly JsonSerializerSettings? GetNewtonsoftJsonSerializerSettings()
         {
-            var settings = ignoreNullValues ? new NewtonsoftJsonSerializerSettings
+            var settings = ignoreNullValues ? new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
             } : null;
@@ -51,10 +72,10 @@ public static partial class Serializable // Serialize(序列化)
     }
 
 #if !NO_SYSTEM_TEXT_JSON
-    static readonly ConcurrentDictionary<SharedJsonSerializerOptions, SystemTextJsonSerializerOptions> SystemTextJsonSerializerOptionsDictionary = new();
+    static readonly ConcurrentDictionary<SharedJsonSerializerOptions, JsonSerializerOptions> SystemTextJsonSerializerOptionsDictionary = new();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static SystemTextJsonSerializerOptions GetSystemTextJsonSerializerOptions(bool writeIndented, bool ignoreNullValues)
+    static JsonSerializerOptions GetSystemTextJsonSerializerOptions(bool writeIndented, bool ignoreNullValues)
     {
         SharedJsonSerializerOptions o = new(writeIndented, ignoreNullValues);
         if (!SystemTextJsonSerializerOptionsDictionary.TryGetValue(o, out var value))
@@ -68,10 +89,10 @@ public static partial class Serializable // Serialize(序列化)
 #endif
 
 #if !NO_NEWTONSOFT_JSON
-    static readonly ConcurrentDictionary<SharedJsonSerializerOptions, NewtonsoftJsonSerializerSettings?> NewtonsoftJsonSerializerSettingsDictionary = new();
+    static readonly ConcurrentDictionary<SharedJsonSerializerOptions, JsonSerializerSettings?> NewtonsoftJsonSerializerSettingsDictionary = new();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static NewtonsoftJsonSerializerSettings? GetNewtonsoftJsonSerializerSettings(bool ignoreNullValues)
+    static JsonSerializerSettings? GetNewtonsoftJsonSerializerSettings(bool ignoreNullValues)
     {
         SharedJsonSerializerOptions o = new(default, ignoreNullValues);
         if (!NewtonsoftJsonSerializerSettingsDictionary.TryGetValue(o, out var value))
@@ -103,13 +124,13 @@ public static partial class Serializable // Serialize(序列化)
 #if !NO_SYSTEM_TEXT_JSON
             case JsonImplType.SystemTextJson:
                 var options = GetSystemTextJsonSerializerOptions(writeIndented, ignoreNullValues);
-                return SystemTextJsonSerializer.Serialize(value, inputType ?? value?.GetType() ?? typeof(object), options);
+                return global::System.Text.Json.JsonSerializer.Serialize(value, inputType ?? value?.GetType() ?? typeof(object), options);
 #endif
 #if !NO_NEWTONSOFT_JSON
             default:
-                var formatting = writeIndented ? NewtonsoftJsonFormatting.Indented : NewtonsoftJsonFormatting.None;
+                var formatting = writeIndented ? Formatting.Indented : Formatting.None;
                 var settings = GetNewtonsoftJsonSerializerSettings(ignoreNullValues);
-                return NewtonsoftJsonConvert.SerializeObject(value, inputType, formatting, settings);
+                return JsonConvert.SerializeObject(value, inputType, formatting, settings);
 #else
             default:
                 throw new NotSupportedException();
@@ -136,7 +157,6 @@ public static partial class Serializable // Serialize(序列化)
 #endif
 
 #if !NO_MESSAGEPACK
-
     /// <inheritdoc cref="MessagePackCompression.Lz4BlockArray"/>
     public static MessagePackSerializerOptions Lz4Options() => MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4BlockArray);
 
@@ -179,6 +199,7 @@ public static partial class Serializable // Serialize(序列化)
     /// <summary>
     /// (Serialize)MessagePack 序列化 + Base64Url Encode
     /// </summary>
+    /// 
     /// <typeparam name="T"></typeparam>
     /// <param name="value"></param>
     /// <param name="cancellationToken"></param>
@@ -194,7 +215,6 @@ public static partial class Serializable // Serialize(序列化)
 #endif
 
 #if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
-
     /// <summary>
     /// (Serialize)MemoryPack 序列化
     /// </summary>

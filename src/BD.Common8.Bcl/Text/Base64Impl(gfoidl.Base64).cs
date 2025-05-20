@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 #if !NO_GFOIDL_BASE64
 using Base64 = gfoidl.Base64.Base64; // 使用 https://github.com/gfoidl/Base64 实现
 #endif

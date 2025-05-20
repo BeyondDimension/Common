@@ -1,3 +1,9 @@
+using System.Extensions;
+using System.Globalization;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace BD.Common8.AspNetCore;
 
 public static partial class ServerSecurity
@@ -37,7 +43,7 @@ public static partial class ServerSecurity
     /// <returns></returns>
     public static string Decrypt(string text)
     {
-        var strArray = text.Split(new[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        var strArray = text.Split([' ', '\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
 
         for (var i = 0; i < strArray.Length; i++)
         {

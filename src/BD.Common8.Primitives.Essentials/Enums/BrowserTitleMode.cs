@@ -1,4 +1,4 @@
-namespace BD.Common8.Enums;
+namespace BD.Common8.Essentials.Enums;
 
 /// <summary>
 /// 标题模式

@@ -1,4 +1,12 @@
 #if !NETSTANDARD
+#if WINDOWS
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Text;
+#endif
+using System.Runtime.CompilerServices;
+
 namespace Microsoft.Win32;
 
 public static partial class Registry2

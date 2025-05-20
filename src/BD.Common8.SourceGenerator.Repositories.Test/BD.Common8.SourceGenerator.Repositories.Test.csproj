@@ -1,19 +1,29 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
-		<UseProjectUtils>true</UseProjectUtils>
-		<BeyondDimensionFeatures>
-			BD.Common8.Bcl;
-			BD.Common8.AspNetCore;
-			BD.Common8.AspNetCore.Identity;
-			BD.Common8.AspNetCore.Identity.BackManage;
-			BD.Common8.Repositories;
-			BD.Common8.Repositories.EFCore;
-			BD.Common8.Orm.EFCore;
-		</BeyondDimensionFeatures>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\ProjectUtils.cs" />
+	</ItemGroup>
+
+	<!-- 👇 项目引用源生成器 -->
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\BD.Common8.SourceGenerator.Repositories.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BD.Common8.AspNetCore.Identity.BackManage\BD.Common8.AspNetCore.Identity.BackManage.csproj" />
+	  <ProjectReference Include="..\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj" />
+	  <ProjectReference Include="..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
+	  <ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+	  <ProjectReference Include="..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
+	  <ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -1,3 +1,10 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
@@ -71,11 +78,12 @@ public sealed class ConstantsByPathTemplate :
         public required int I { get; init; }
     }
 
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
+        var codeDirPath = Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath)!;
         var dirPath = Path.GetFullPath(
             Path.Combine(
-                [Path.GetDirectoryName(args.m.SemanticModel.SyntaxTree.FilePath),
+                [codeDirPath,
                     ..
                 args.attr.RelativePath.Split('\\')]));
 
@@ -90,9 +98,9 @@ public sealed class ConstantsByPathTemplate :
         return model;
     }
 
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
-        WriteFileHeader(stream);
+        WriteFileHeader(stream, GetType());
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();
@@ -106,9 +114,9 @@ partial class {0}
 
         #region Body
 
-        EachDirectories(m.DirPath);
+        EachDirectories(m, m.DirPath);
 
-        void EachFiles(params string[] files)
+        void EachFiles(in SourceModel m, params string[] files)
         {
             foreach (var file in files)
             {
@@ -155,12 +163,12 @@ partial class {0}
                 stream.WriteNewLine();
             }
         }
-        void EachDirectories(params string[] directories)
+        void EachDirectories(in SourceModel m, params string[] directories)
         {
             foreach (var dir in directories)
             {
-                EachFiles(Directory.GetFiles(dir));
-                EachDirectories(Directory.GetDirectories(dir));
+                EachFiles(m, Directory.GetFiles(dir));
+                EachDirectories(m, Directory.GetDirectories(dir));
             }
         }
 

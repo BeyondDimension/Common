@@ -1,3 +1,7 @@
+using BD.Common8.Pinyin.Services;
+using BD.Common8.Pinyin.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace BD.Common8.Pinyin.Extensions;
 
 public static partial class ServiceCollectionExtensions

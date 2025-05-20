@@ -1,21 +1,25 @@
+using BD.Common8.Models;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.Common8.FeishuOApi.Sdk.Models;
 
 [JsonSerializable(typeof(SendMessage_RequestBody))]
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true,
     PropertyNameCaseInsensitive = true)]
-sealed partial class FeishuApiClientJsonSerializerContext : SystemTextJsonSerializerContext
+sealed partial class FeishuApiClientJsonSerializerContext : JsonSerializerContext
 {
-    static readonly Lazy<FeishuApiClientJsonSerializerContext> _Instance = new(() =>
+    static FeishuApiClientJsonSerializerContext()
     {
-        SystemTextJsonSerializerOptions o = new()
+        // https://github.com/dotnet/runtime/issues/94135
+        s_defaultOptions = new()
         {
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 不转义字符！！！
             AllowTrailingCommas = true,
             PropertyNameCaseInsensitive = true,
         };
-        return new FeishuApiClientJsonSerializerContext(o);
-    }, LazyThreadSafetyMode.ExecutionAndPublication);
-
-    public static FeishuApiClientJsonSerializerContext Instance => _Instance.Value;
+        Default = new FeishuApiClientJsonSerializerContext(new JsonSerializerOptions(s_defaultOptions));
+    }
 }

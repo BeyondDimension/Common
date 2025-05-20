@@ -6,7 +6,7 @@ namespace System.Text.Json.Serialization;
 public sealed class StringToDecimalConverter : JsonConverter<decimal>
 {
     /// <inheritdoc/>
-    public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
+    public override decimal Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var valueString = Encoding.UTF8.GetString(reader.ValueSpan);
         var result = decimal.TryParse(valueString, out var valueDecimal) ? valueDecimal : 0m;
@@ -14,7 +14,7 @@ public sealed class StringToDecimalConverter : JsonConverter<decimal>
     }
 
     /// <inheritdoc/>
-    public override void Write(Utf8JsonWriter writer, decimal value, SystemTextJsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)
     {
         var valueString = value.ToString();
         writer.WriteStringValue(valueString);

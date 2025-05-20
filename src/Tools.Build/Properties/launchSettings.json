@@ -16,7 +16,7 @@
       "commandName": "Project",
       "commandLineArgs": "gefm --path C:\\inetpub\\wwwroot"
     },
-    "Tools.Build(Test projects)": {
+    "Tools.Build(TestProjects)": {
       "commandName": "Project",
       "commandLineArgs": "build --test"
     }

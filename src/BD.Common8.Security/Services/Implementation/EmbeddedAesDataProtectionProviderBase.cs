@@ -1,3 +1,6 @@
+using System.Security.Cryptography;
+using System.Text;
+
 namespace BD.Common8.Security.Services.Implementation;
 
 /// <inheritdoc cref="IEmbeddedAesDataProtectionProvider"/>

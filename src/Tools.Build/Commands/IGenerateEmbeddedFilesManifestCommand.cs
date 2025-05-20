@@ -1,3 +1,7 @@
+using System.Diagnostics;
+using System.Extensions;
+using System.Reflection;
+using System.Security.Cryptography;
 using ManifestEmbeddedFileProvider = Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider;
 
 namespace Tools.Build.Commands;
@@ -230,7 +234,7 @@ interface IGenerateEmbeddedFilesManifestCommand : ICommand
                 }
                 dirss.Add(Directory.GetDirectories(dir));
             }
-            dirs = dirss.SelectMany(static x => x).ToArray();
+            dirs = [.. dirss.SelectMany(static x => x)];
         }
 
         stream.Write(

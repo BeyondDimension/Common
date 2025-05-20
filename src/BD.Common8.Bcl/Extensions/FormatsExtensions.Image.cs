@@ -1,5 +1,6 @@
 namespace System.Extensions;
 
+using System.Formats;
 using static System.Formats.Internals.ImageFileFormat;
 
 public static partial class FormatsExtensions

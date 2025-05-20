@@ -1,3 +1,6 @@
+using System.Extensions;
+using System.Security.Cryptography;
+
 namespace BD.Common8.UnitTest;
 
 /// <summary>

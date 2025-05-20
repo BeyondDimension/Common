@@ -1,3 +1,8 @@
+using BD.Common8.Essentials.Enums;
+using BD.Common8.Essentials.Models.Abstractions;
+using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
+
 namespace BD.Common8.Essentials.Models;
 
 /// <summary>
@@ -13,7 +18,7 @@ public sealed class EssentialsFilePickerFileType : IFilePickerFileType
     /// <summary>
     /// 接受一个 Item 对象集合作为参数
     /// </summary>
-    [SystemTextJsonConstructor]
+    [JsonConstructor]
     public EssentialsFilePickerFileType(
         IEnumerable<Item> values)
     {

@@ -1,3 +1,6 @@
+using BD.Common8.Repositories.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+
 namespace BD.Common8.Repositories.EFCore.Repositories.Abstractions;
 
 /// <summary>

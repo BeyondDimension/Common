@@ -1,3 +1,7 @@
+using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
+using System.Xml.Serialization;
+
 namespace System;
 
 partial class Serializable
@@ -10,7 +14,7 @@ partial class Serializable
     /// <param name="type"></param>
     /// <returns></returns>
     [RequiresUnreferencedCode("Members from serialized types may be trimmed if not referenced directly")]
-    public static XmlSerializer GetXmlSerializer(Type type)
+    public static XmlSerializer GetXmlSerializer([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         if (!xmlSerializers.TryGetValue(type, out var value))
         {

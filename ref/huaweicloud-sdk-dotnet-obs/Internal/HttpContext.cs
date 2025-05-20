@@ -11,17 +11,12 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using OBS.Internal.Auth;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace OBS.Internal
 {
     internal class HttpContext
     {
 
-        private readonly IList<HttpResponseHandler> _handlers = new List<HttpResponseHandler>();
+        private readonly IList<HttpResponseHandler> _handlers = [];
         public HttpContext(SecurityProvider sp, ObsConfig obsConfig)
         {
             SecurityProvider = sp;

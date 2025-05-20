@@ -1,5 +1,4 @@
 #pragma warning disable SA1309 // Field names should not begin with underscore
-
 namespace System;
 
 /// <summary>

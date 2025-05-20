@@ -11,9 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.IO;
 using OBS.Model;
 
 namespace OBS.Internal
@@ -47,8 +44,8 @@ namespace OBS.Internal
                 else
                 {
                     int index = url.IndexOf("//");
-                    string prefix = url.Substring(0, index + 2);
-                    string suffix = url.Substring(index + 2);
+                    string prefix = url[..(index + 2)];
+                    string suffix = url[(index + 2)..];
 
                     url = prefix + BucketName + "." + suffix;
                 }
@@ -83,8 +80,8 @@ namespace OBS.Internal
                 else
                 {
                     int index = url.IndexOf("//");
-                    string prefix = url.Substring(0, index + 2);
-                    string suffix = url.Substring(index + 2);
+                    string prefix = url[..(index + 2)];
+                    string suffix = url[(index + 2)..];
 
                     url = prefix + BucketName + "." + suffix;
                 }
@@ -146,7 +143,7 @@ namespace OBS.Internal
 
         public string GetHost(string endpoint)
         {
-            UriBuilder ub = new UriBuilder(endpoint);
+            UriBuilder ub = new(endpoint);
             string host = ub.Host;
             if(ub.Port != 443 && ub.Port != 80)
             {

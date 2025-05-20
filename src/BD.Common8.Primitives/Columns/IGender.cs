@@ -1,3 +1,5 @@
+using BD.Common8.Enums;
+
 namespace BD.Common8.Columns;
 
 /// <inheritdoc cref="Enums.Gender"/>

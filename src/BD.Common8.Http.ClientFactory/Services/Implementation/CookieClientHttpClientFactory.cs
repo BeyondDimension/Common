@@ -1,4 +1,7 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using System.Collections.Concurrent;
+using System.Net;
+using System.Net.Http.Client;
 using static BD.Common8.Http.ClientFactory.Services.Implementation.FusilladeClientHttpClientFactory;
 
 namespace BD.Common8.Http.ClientFactory.Services.Implementation;

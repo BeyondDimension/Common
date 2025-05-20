@@ -1,3 +1,13 @@
+using BD.Common8.SourceGenerator.Repositories.Enums;
+using BD.Common8.SourceGenerator.Repositories.Handlers.Attributes;
+using BD.Common8.SourceGenerator.Repositories.Helpers;
+using BD.Common8.SourceGenerator.Repositories.Models.Attributes;
+using Humanizer;
+using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.RegularExpressions;
+
 namespace BD.Common8.SourceGenerator.Repositories.Models;
 
 /// <summary>

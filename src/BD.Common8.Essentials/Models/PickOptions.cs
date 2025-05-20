@@ -1,3 +1,5 @@
+using BD.Common8.Essentials.Models.Abstractions;
+
 namespace BD.Common8.Essentials.Models;
 
 /// <summary>

@@ -2,8 +2,21 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>仓储层 sqlite-net-pcl 实现库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<PackageReference Include="sqlite-net-pcl" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
+	</ItemGroup>
 
 </Project>

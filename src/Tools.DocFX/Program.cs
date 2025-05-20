@@ -2,6 +2,8 @@
 // https://dotnet.github.io/docfx/docs/template.html?tabs=modern
 // https://blog.markvincze.com/build-and-publish-documentation-and-api-reference-with-docfx-for-net-core-projects/
 
+using System.Diagnostics;
+
 Process? process = null;
 try
 {

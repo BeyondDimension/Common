@@ -1,3 +1,5 @@
+using AngleSharp.Dom;
+
 namespace BD.Common8.Crawler.Helpers;
 
 /// <summary>

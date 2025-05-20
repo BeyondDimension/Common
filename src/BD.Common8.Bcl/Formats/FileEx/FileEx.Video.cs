@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System.Formats;
 
 public static partial class FileEx

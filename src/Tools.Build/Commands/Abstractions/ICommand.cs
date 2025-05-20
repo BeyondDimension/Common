@@ -1,3 +1,5 @@
+using System.CommandLine;
+
 namespace Tools.Build.Commands.Abstractions;
 
 /// <summary>

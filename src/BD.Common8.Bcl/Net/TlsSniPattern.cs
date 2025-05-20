@@ -1,5 +1,3 @@
-// https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub.Configuration/TlsSniPattern.cs
-
 #if NETCOREAPP2_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
 namespace System.Net;
 

@@ -13,6 +13,7 @@
 //----------------------------------------------------------------------------------*/
 using OBS.Internal;
 using OBS.Model;
+using System.Net;
 
 namespace OBS;
 
@@ -204,7 +205,7 @@ public partial class ObsClient
     /// <returns>Response to a request for obtaining object properties</returns>
     public GetObjectMetadataResponse GetObjectMetadata(string bucketName, string objectKey)
     {
-        GetObjectMetadataRequest request = new GetObjectMetadataRequest
+        GetObjectMetadataRequest request = new()
         {
             BucketName = bucketName,
             ObjectKey = objectKey,
@@ -221,7 +222,7 @@ public partial class ObsClient
     /// <returns>Response to a request for obtaining object properties</returns>
     public GetObjectMetadataResponse GetObjectMetadata(string bucketName, string objectKey, string versionId)
     {
-        GetObjectMetadataRequest request = new GetObjectMetadataRequest
+        GetObjectMetadataRequest request = new()
         {
             BucketName = bucketName,
             ObjectKey = objectKey,

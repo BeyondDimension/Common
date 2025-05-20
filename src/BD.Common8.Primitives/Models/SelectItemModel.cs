@@ -1,24 +1,27 @@
+using BD.Common8.Columns;
+
 namespace BD.Common8.Models;
 
 /// <summary>
 /// 用于 Select/ComboBox 的数据源模型
 /// </summary>
-[MPObj]
-[MP2Obj(MP2SerializeLayout.Explicit)]
+[global::MessagePack.MessagePackObject]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
+[Serializable]
 public partial class SelectItemModel : ITitle, IDisable
 {
     /// <summary>
     /// 标题
     /// </summary>
-    [MPKey(0)]
-    [MP2Key(0)]
+    [global::MessagePack.Key(0)]
+    [global::MemoryPack.MemoryPackOrder(0)]
     public string Title { get; set; } = "";
 
     /// <summary>
     /// 是否禁用
     /// </summary>
-    [MPKey(LastMKeyIndex)]
-    [MP2Key(LastMKeyIndex)]
+    [global::MessagePack.Key(LastMKeyIndex)]
+    [global::MemoryPack.MemoryPackOrder(LastMKeyIndex)]
     public bool Disable { get; set; }
 
     /// <summary>
@@ -36,15 +39,16 @@ public partial class SelectItemModel : ITitle, IDisable
 /// 用于 Select/ComboBox 的数据源模型
 /// </summary>
 /// <typeparam name="T"></typeparam>
-[MPObj]
-[MP2Obj(MP2SerializeLayout.Explicit)]
+[global::MessagePack.MessagePackObject]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
+[Serializable]
 public partial class SelectItemModel<T> : SelectItemModel
 {
     /// <summary>
     /// 数据源项的 Id
     /// </summary>
-    [MPKey(LastMKeyIndex + 1)]
-    [MP2Key(LastMKeyIndex + 1)]
+    [global::MessagePack.Key(LastMKeyIndex + 1)]
+    [global::MemoryPack.MemoryPackOrder(LastMKeyIndex + 1)]
     public T? Id { get; set; }
 
     //public static readonly SelectItemDTO<T> Null = new()

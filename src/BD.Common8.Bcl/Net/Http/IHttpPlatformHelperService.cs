@@ -1,3 +1,7 @@
+#if !PROJ_SETUP
+using System.Formats;
+#endif
+
 namespace System.Net.Http;
 
 /// <summary>

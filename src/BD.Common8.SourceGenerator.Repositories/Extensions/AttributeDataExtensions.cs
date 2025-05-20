@@ -1,3 +1,8 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Repositories.Models.Attributes;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Repositories.Extensions;
 
 static partial class AttributeDataExtensions

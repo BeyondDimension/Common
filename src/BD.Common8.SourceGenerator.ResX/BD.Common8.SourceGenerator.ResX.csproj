@@ -2,23 +2,24 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
-		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
-		<Version>$(Version_SourceGenerator_Resx)</Version>
+		<!--8.yy.1MMdd.1hhmm-->
+		<Version>8.25.10520.12000</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<Description>xyz.Designer.cs 源生成器</Description>
 	</PropertyGroup>
-	
+
+	<!-- 👇 基于 Attribute 生成的 Attribute 类型源码引用 -->
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
-			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\BinaryResourceAttribute.cs">
-			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
 		</Compile>
 	</ItemGroup>
 
+	<!-- 👇 引用 NuGet 包 -->
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json">
 			<PrivateAssets>all</PrivateAssets>
@@ -27,5 +28,7 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\SharedProject\SourceGenerator.props" />
 
 </Project>

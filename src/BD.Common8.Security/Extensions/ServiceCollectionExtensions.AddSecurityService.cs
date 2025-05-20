@@ -1,3 +1,8 @@
+using BD.Common8.Security.Services;
+using BD.Common8.Security.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Diagnostics.CodeAnalysis;
 using static BD.Common8.Security.Services.ILocalDataProtectionProvider;
 using static BD.Common8.Security.Services.Implementation.LocalDataProtectionProviderBase;
 

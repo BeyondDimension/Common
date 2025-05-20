@@ -1,3 +1,6 @@
+using BD.Common8.Security.Helpers;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using static BD.Common8.Security.Services.ILocalDataProtectionProvider;
 
 namespace BD.Common8.Security.Services.Implementation;

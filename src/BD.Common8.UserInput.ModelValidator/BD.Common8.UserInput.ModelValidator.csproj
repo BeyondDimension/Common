@@ -2,8 +2,23 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<Description>模型验证封装库</Description>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+	</ItemGroup>
+
+	<!-- 👇 项目引用源生成器 -->
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
 
 </Project>

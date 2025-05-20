@@ -1,4 +1,4 @@
-using ComparerBuilder_ = Nito.Comparers.ComparerBuilder;
+using Nito.Comparers;
 
 namespace System.Collections.Generic;
 
@@ -11,7 +11,7 @@ public partial class SortedList<T> : IEnumerable, IEnumerable<T> where T : notnu
     /// <summary>
     /// 获取用于构建比较器的静态属性
     /// </summary>
-    public static ComparerBuilderFor<T> ComparerBuilder => ComparerBuilder_.For<T>();
+    public static ComparerBuilderFor<T> ComparerBuilder => global::Nito.Comparers.ComparerBuilder.For<T>();
 
     SortedList<T, T> implement;
 

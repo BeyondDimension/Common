@@ -1,3 +1,8 @@
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.Models.Abstractions;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+
 namespace BD.Common8.AspNetCore.Models;
 
 /// <summary>
@@ -34,6 +39,6 @@ public sealed class AddOrEditSysRoleModel : IValidatableObject
     IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
     {
         if (string.IsNullOrWhiteSpace(Name))
-            yield return new ValidationResult("角色名称不能为空或空白字符", new[] { nameof(Name) });
+            yield return new ValidationResult("角色名称不能为空或空白字符", [nameof(Name)]);
     }
 }

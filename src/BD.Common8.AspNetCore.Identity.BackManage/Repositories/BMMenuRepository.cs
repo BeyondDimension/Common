@@ -1,3 +1,13 @@
+using AutoMapper;
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.AspNetCore.Enums;
+using BD.Common8.AspNetCore.Models;
+using BD.Common8.AspNetCore.Models.Menus;
+using BD.Common8.AspNetCore.Repositories.Abstractions;
+using BD.Common8.Repositories.EFCore.Repositories.Abstractions;
+using BD.Common8.Repositories.Enums;
+using Microsoft.EntityFrameworkCore;
 using EditModel = BD.Common8.AspNetCore.Models.Menus.BMMenuEdit;
 
 namespace BD.Common8.AspNetCore.Repositories;
@@ -137,7 +147,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
 
     public async Task<BMMenuModel[]?> GetUserMenuAsync(Guid userId, Guid tenantId)
     {
-        //按钮 字典
+        // 按钮字典
         var sysButtonDis = await db.Buttons
             .Where(x => x.TenantId == tenantId)
             .Select(x => new BMButtonModel
@@ -484,10 +494,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
                    && x.TenantId == tenantId
 #endif
             )
-            .UpdateAsync(x => new BMMenu
-            {
-                Name = name,
-            });
+            .ExecuteUpdateAsync(s => s.SetProperty(x => x.Name, name));
 
         // 删除此角色全部菜单按钮重新添加
         await (from mbr in db.MenuButtonRoles

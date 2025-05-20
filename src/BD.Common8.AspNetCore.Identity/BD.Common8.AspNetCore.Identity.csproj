@@ -7,4 +7,14 @@
 		<Description>ASP.NET Core 的管理用户、密码、配置文件数据、角色、声明、令牌、电子邮件确认等封装库</Description>
 	</PropertyGroup>
 
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
+	</ItemGroup>
+
 </Project>

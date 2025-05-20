@@ -1,3 +1,5 @@
+using Microsoft.IdentityModel.Tokens;
+
 namespace BD.Common8.AspNetCore.Models.Abstractions;
 
 /// <summary>

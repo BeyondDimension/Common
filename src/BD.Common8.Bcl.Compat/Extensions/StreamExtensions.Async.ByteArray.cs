@@ -1,4 +1,6 @@
 #if NETSTANDARD2_0 || NETFRAMEWORK
+using System.Runtime.CompilerServices;
+
 namespace System.Extensions;
 
 static partial class StreamExtensions // Async | byte[] | ReadOnlyMemory<byte>

@@ -1,9 +1,28 @@
+#if !(ANDROID || IOS || MACCATALYST)
+using System.Reactive.Disposables;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Primitives;
+#endif
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Polly;
+using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Formats;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+
 namespace BD.Common8.Settings5.Services.Implementation;
 
 /// <summary>
 /// <see cref="ISettingsLoadService"/> 的实现
 /// </summary>
-public class SettingsLoadServiceImpl : ISettingsLoadService
+public partial class SettingsLoadServiceImpl : ISettingsLoadService
 {
     /// <summary>
     /// 设置项文件存放文件夹名
@@ -18,7 +37,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     /// <summary>
     /// Json 序列化选项
     /// </summary>
-    protected readonly SystemTextJsonSerializerOptions options;
+    protected volatile JsonSerializerOptions options;
 
     /// <summary>
     /// 设置模型类型哈希集合
@@ -38,13 +57,13 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     /// <summary>
     /// Initializes a new instance of the <see cref="SettingsLoadServiceImpl"/> class.
     /// </summary>
-    /// <param name="options"></param>
+    /// <param name="converters">当使用不使用 AOT 时，传入 <see langword="null"/>，否则应传入模型类中包含枚举的 <see cref="JsonStringEnumConverter{TEnum}"/>，在初始化完成后则调用 <see cref="AddConverters(IEnumerable{JsonConverter})"/> 追加新的模型类配置</param>
+    /// <param name="resolvers">当使用不使用 AOT 时，传入 <see langword="null"/>，否则应传入源生成模型类的 <see cref="JsonSerializerContext"/>，在初始化完成后则调用 <see cref="AddResolvers(IEnumerable{IJsonTypeInfoResolver})"/> 追加新的模型类配置</param>
     /// <param name="isWriteFile"></param>
-    public SettingsLoadServiceImpl(SystemTextJsonSerializerOptions options, bool isWriteFile = true)
+    public SettingsLoadServiceImpl(IEnumerable<JsonConverter>? converters = null, IEnumerable<IJsonTypeInfoResolver>? resolvers = null, bool isWriteFile = true)
     {
         this.isWriteFile = isWriteFile;
-        options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-        this.options = options;
+        options = GetOptions(converters, resolvers);
         _Current = this;
     }
 
@@ -61,7 +80,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     /// <param name="settingsModelType"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected static string GetSettingsFileNameWithoutExtensionByType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType)
+    protected static string GetSettingsFileNameWithoutExtensionByType(Type settingsModelType)
         => settingsModelType.Name.TrimEnd("Model");
 
     /// <summary>
@@ -73,9 +92,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     {
         foreach (var type in SettingsModelTypes)
         {
-#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
             var value = GetSettingsFileNameWithoutExtensionByType(type);
-#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
             if (value == settingsFileNameWithoutExtension)
                 return type;
         }
@@ -113,17 +130,13 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     /// <param name="settingsFileNameWithoutExtension"></param>
     /// <param name="utf8Json"></param>
     /// <param name="options"></param>
-    protected static void Save(object settingsModel, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType, string settingsFileNameWithoutExtension, Stream utf8Json, SystemTextJsonSerializerOptions options)
+    public void Save(object settingsModel, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type settingsModelType, string settingsFileNameWithoutExtension, Stream utf8Json)
     {
         utf8Json.Position = 0;
         utf8Json.Write("{\""u8);
         utf8Json.Write(Encoding.UTF8.GetBytes(settingsFileNameWithoutExtension));
         utf8Json.Write("\":"u8);
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        SystemTextJsonSerializer.Serialize(utf8Json, settingsModel, settingsModelType, options);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        Serialize(utf8Json, settingsModel, settingsModelType);
         utf8Json.Write("}"u8);
         utf8Json.SetLength(utf8Json.Position);
         utf8Json.Flush();
@@ -158,26 +171,22 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
     /// <param name="settingsFileNameWithoutExtension"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    protected static TSettingsModel? Deserialize<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(string settingsFilePath, string settingsFileNameWithoutExtension, SystemTextJsonSerializerOptions options)
+    public TSettingsModel? Deserialize<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(string settingsFilePath, string settingsFileNameWithoutExtension)
     {
-        SystemTextJsonObject? jobj;
+        JsonObject? jobj;
         using var readStream = OpenReadFile(settingsFilePath);
         if (readStream != null)
         {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            jobj = SystemTextJsonSerializer.Deserialize<SystemTextJsonObject>(readStream, options);
+            jobj = Deserialize<JsonObject>(readStream);
             if (jobj != null)
             {
-                var jnode = jobj[settingsFileNameWithoutExtension];
+                JsonNode? jnode = jobj[settingsFileNameWithoutExtension];
                 if (jnode != null)
                 {
-                    var settingsByRead = jnode.Deserialize<TSettingsModel>(options);
+                    var settingsByRead = Deserialize<TSettingsModel>(jnode);
                     return settingsByRead;
                 }
             }
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         }
         return default;
     }
@@ -220,7 +229,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                 {
                     using var ms = new MemoryStream();
                     settingsModel = new();
-                    Save(settingsModel, settingsModelType, settingsFileNameWithoutExtension, ms, this.options);
+                    Save(settingsModel, settingsModelType, settingsFileNameWithoutExtension, ms);
                     var fileBytes = ms.ToArray();
                     File.WriteAllBytes(settingsFilePath, fileBytes);
                 }
@@ -251,7 +260,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         {
             try
             {
-                settingsModel = Deserialize<TSettingsModel>(settingsFilePath, settingsFileNameWithoutExtension, this.options) ?? new();
+                settingsModel = Deserialize<TSettingsModel>(settingsFilePath, settingsFileNameWithoutExtension) ?? new();
             }
             catch (Exception ex)
             {
@@ -335,7 +344,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         return Ioc.Get<T>();
     }
 
-    object? Get([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type typeOptionsMonitor)
+    object? Get(Type typeOptionsMonitor)
     {
         if (optionsMonitors.TryGetValue(typeOptionsMonitor, out var value))
         {
@@ -354,11 +363,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
         if (settingsModelType != null)
         {
-#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            var typeOptionsMonitor = typeof(IOptionsMonitor<>).MakeGenericType(settingsModelType);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
+            var typeOptionsMonitor = GetIOptionsMonitorTSettingsModelType(settingsModelType);
             var monitor = Get(typeOptionsMonitor);
             if (monitor is IInternalOptionsMonitor monitor2)
             {
@@ -377,11 +382,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         var settingsModelType = SettingsModelTypes.FirstOrDefault(x => x.FullName == typeFullName);
         if (settingsModelType != null)
         {
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
-            var typeOptionsMonitor = typeof(IOptionsMonitor<>).MakeGenericType(settingsModelType);
-#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+            var typeOptionsMonitor = GetIOptionsMonitorTSettingsModelType(settingsModelType);
             var monitor = Get(typeOptionsMonitor);
             if (monitor is IInternalOptionsMonitor monitor2)
             {
@@ -453,7 +454,8 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         /// 设置项保存文件路径
         /// </summary>
         protected readonly string settingsFilePath;
-#if !(ANDROID || IOS)
+
+#if !(ANDROID || IOS || MACCATALYST)
         /// <summary>
         /// 设置项保存文件提供者
         /// </summary>
@@ -498,7 +500,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
             var settingsDirPath = Path.GetDirectoryName(settingsFilePath);
             settingsDirPath.ThrowIsNull();
             SettingsModel = settingsModel;
-#if !(ANDROID || IOS)
+#if !(ANDROID || IOS || MACCATALYST)
             fileProvider = !settingsLoadService.isWriteFile ? null! : new(settingsDirPath);
 #endif
             settingsFileName = Path.GetFileName(settingsFilePath);
@@ -563,7 +565,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         }
 
         /// <summary>
-        /// 打开或创建文件流
+        /// 打开或创建文件流，catch 时候返回 <see langword="null"/>
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -578,9 +580,11 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                                 FileAccess.Write,
                                 FileShare.ReadWrite | FileShare.Delete);
             }
-#pragma warning disable CS0168 // 声明了变量，但从未使用过
+#if DEBUG
             catch (Exception ex)
-#pragma warning restore CS0168 // 声明了变量，但从未使用过
+#else
+            catch
+#endif
             {
 #if DEBUG
                 Console.WriteLine(ex);
@@ -640,12 +644,12 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
                     if (writeStream == null)
                     {
                         using var memoryStream = new MemoryStream();
-                        SettingsLoadServiceImpl.Save(savingSettingsModel, typeof(TSettingsModel), settingsFileNameWithoutExtension, memoryStream, settingsLoadService.options);
+                        settingsLoadService.Save(savingSettingsModel, typeof(TSettingsModel), settingsFileNameWithoutExtension, memoryStream);
                         var bytes = memoryStream.ToByteArray();
                         File.WriteAllBytes(settingsFilePath, bytes);
                     }
                     else
-                        SettingsLoadServiceImpl.Save(savingSettingsModel, typeof(TSettingsModel), settingsFileNameWithoutExtension, writeStream, settingsLoadService.options);
+                        settingsLoadService.Save(savingSettingsModel, typeof(TSettingsModel), settingsFileNameWithoutExtension, writeStream);
                 });
             }
             finally
@@ -686,7 +690,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         {
             try
             {
-                var settings = Deserialize<TSettingsModel>(settingsFilePath, settingsFileNameWithoutExtension, settingsLoadService.options);
+                var settings = settingsLoadService.Deserialize<TSettingsModel>(settingsFilePath, settingsFileNameWithoutExtension);
                 return settings;
             }
             catch
@@ -696,7 +700,6 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         }
 
         event Action<TSettingsModel, string?>? ChangeListener;
-
         /// <summary>
         /// 变更设置项时监听
         /// </summary>
@@ -704,7 +707,7 @@ public class SettingsLoadServiceImpl : ISettingsLoadService
         /// <returns></returns>
         public virtual IDisposable? OnChange(Action<TSettingsModel, string?> listener)
         {
-#if ANDROID || IOS
+#if ANDROID || IOS || MACCATALYST
             return null;
 #else
             if (fileProvider == null)

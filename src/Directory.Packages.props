@@ -1,18 +1,15 @@
 <!-- 👇 NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
 <Project>
-	<!-- 👇 当前项目的【版本号】配置 -->
+	<!-- 👇 引用的包版本号配置 -->
 	<PropertyGroup>
-		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version_Common8Bcl>8.24.10815.11937</Version_Common8Bcl>
-		<Version_SourceGenerator_Bcl>8.24.10815.11937</Version_SourceGenerator_Bcl>
-		<Version_SourceGenerator_Ipc_Client>8.24.10815.11937</Version_SourceGenerator_Ipc_Client>
-		<Version_SourceGenerator_Ipc_Server>8.24.10815.11937</Version_SourceGenerator_Ipc_Server>
-		<Version_SourceGenerator_Resx>8.24.10815.11937</Version_SourceGenerator_Resx>
-		<Version_SourceGenerator_Repositories>8.24.10815.11937</Version_SourceGenerator_Repositories>
+		<!-- 👇 BD.Common8* -->
+		<Version_Common8Bcl>8.24.10815.12937</Version_Common8Bcl>
+		<Version_SourceGenerator_Bcl>8.24.10815.12937</Version_SourceGenerator_Bcl>
+		<Version_SourceGenerator_Ipc_Client>8.24.10815.12937</Version_SourceGenerator_Ipc_Client>
+		<Version_SourceGenerator_Ipc_Server>8.24.10815.12937</Version_SourceGenerator_Ipc_Server>
+		<Version_SourceGenerator_Resx>8.24.10815.12937</Version_SourceGenerator_Resx>
+		<Version_SourceGenerator_Repositories>8.24.10815.12937</Version_SourceGenerator_Repositories>
 		<Version_HuaweiCloud_SDK_Obs>8.24.10611.11400</Version_HuaweiCloud_SDK_Obs>
-	</PropertyGroup>
-	<!-- 👇 当前项目的【引用的包版本号】配置 -->
-	<PropertyGroup>
 		<!-- 👇 BD.* -->
 		<Version_Avalonia8_Pkg>8.24.10521.11500</Version_Avalonia8_Pkg>
 		<Version_SteamClient8_Pkg>8.24.10521.11500</Version_SteamClient8_Pkg>
@@ -54,6 +51,7 @@
 		<!-- 👇 ASP.NET Core OpenId/OAuth -->
 		<Version_OpenIddict>6.2.0</Version_OpenIddict>
 		<Version_AspNetCore_Authentication>9.0.4</Version_AspNetCore_Authentication>
+		<Version_Downloader_DotNetFX Condition="$(TargetFramework.StartsWith('net4'))">3.1.2</Version_Downloader_DotNetFX>
 	</PropertyGroup>
 	<!-- 👇 BD.Common8 -->
 	<ItemGroup>
@@ -569,6 +567,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="9.0.4">
 		</PackageVersion>
+		<PackageVersion Include="Microsoft.AspNetCore.WebUtilities" Version="9.0.5">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 ASP.NET Core OpenId/OAuth -->
 	<ItemGroup>
@@ -769,6 +769,8 @@
 	<ItemGroup>
 		<PackageVersion Include="Humanizer" Version="$(Version_Humanizer)">
 		</PackageVersion>
+		<PackageVersion Include="Humanizer.Core" Version="$(Version_Humanizer)">
+		</PackageVersion>
 		<PackageVersion Include="Humanizer.Core.zh-CN" Version="$(Version_Humanizer)">
 		</PackageVersion>
 	</ItemGroup>
@@ -839,6 +841,7 @@
 	<ItemGroup>
 		<PackageVersion Include="Tmds.DBus" Version="0.21.2" />
 	</ItemGroup>
+	<!-- 👇 MemoryStream -->
 	<ItemGroup>
 		<PackageVersion Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
 	</ItemGroup>

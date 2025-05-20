@@ -1,3 +1,11 @@
+using BD.Common8.SourceGenerator.Repositories.Enums;
+using BD.Common8.SourceGenerator.Repositories.Models;
+using BD.Common8.SourceGenerator.Repositories.Models.Attributes;
+using BD.Common8.SourceGenerator.Repositories.Templates.Abstractions;
+using Humanizer;
+using System.Collections.Immutable;
+using System.Text;
+
 namespace BD.Common8.SourceGenerator.Repositories.Templates;
 
 /// <summary>

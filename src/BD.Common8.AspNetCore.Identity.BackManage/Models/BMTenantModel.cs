@@ -1,3 +1,14 @@
+using BD.Common8.AspNetCore.Columns;
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.AspNetCore.Entities.Abstractions;
+using BD.Common8.AspNetCore.Enums;
+using BD.Common8.Columns;
+using BD.Common8.Models.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.AspNetCore.Models;
 
 /// <summary>
@@ -96,7 +107,7 @@ public abstract partial class AddOrEditSysTenantModelBase : IKeyModel<Guid>, IVa
     public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (string.IsNullOrWhiteSpace(TenantName))
-            yield return new ValidationResult("请输入租户名称", new[] { nameof(TenantName) });
+            yield return new ValidationResult("请输入租户名称", [nameof(TenantName)]);
     }
 }
 
@@ -126,13 +137,13 @@ public sealed partial class AddSysTenantModel : AddOrEditSysTenantModelBase
     IEnumerable<ValidationResult> ValidateCore()
     {
         if (string.IsNullOrWhiteSpace(AdminUserName))
-            yield return new ValidationResult("请输入租户管理员用户名", new[] { nameof(AdminUserName) });
+            yield return new ValidationResult("请输入租户管理员用户名", [nameof(AdminUserName)]);
         if (string.IsNullOrWhiteSpace(AdminPassword1))
-            yield return new ValidationResult("请输入租户管理员密码", new[] { nameof(AdminPassword1) });
+            yield return new ValidationResult("请输入租户管理员密码", [nameof(AdminPassword1)]);
         if (string.IsNullOrWhiteSpace(AdminPassword2))
-            yield return new ValidationResult("请输入租户管理员密码", new[] { nameof(AdminPassword2) });
+            yield return new ValidationResult("请输入租户管理员密码", [nameof(AdminPassword2)]);
         if (AdminPassword1 != AdminPassword2)
-            yield return new ValidationResult("两次输入的租户管理员密码不一致", new[] { nameof(AdminPassword2) });
+            yield return new ValidationResult("两次输入的租户管理员密码不一致", [nameof(AdminPassword2)]);
     }
 
     /// <summary>
@@ -218,7 +229,7 @@ public sealed class AddOrEditSysTenantModel : KeyModel<Guid>, IValidatableObject
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (string.IsNullOrWhiteSpace(Name))
-            yield return new ValidationResult("请输入租户名称", new[] { nameof(Name) });
+            yield return new ValidationResult("请输入租户名称", [nameof(Name)]);
     }
 }
 

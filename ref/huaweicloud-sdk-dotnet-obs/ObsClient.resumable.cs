@@ -14,6 +14,7 @@
 using OBS.Internal;
 using OBS.Internal.Log;
 using OBS.Model;
+using System.Net;
 
 namespace OBS;
 
@@ -28,7 +29,7 @@ public partial class ObsClient
     /// <returns>Response to the request for combining parts</returns>
     public CompleteMultipartUploadResponse UploadFile(UploadFileRequest request)
     {
-        ParameterJudgment(request);
+        ObsClient.ParameterJudgment(request);
         if (request.EnableCheckpoint)
         {
             if (string.IsNullOrEmpty(request.CheckpointFile))
@@ -55,7 +56,7 @@ public partial class ObsClient
     /// <returns>Response to the request for combining parts</returns>
     public CompleteMultipartUploadResponse UploadStream(UploadStreamRequest request)
     {
-        ParameterJudgment(request);
+        ObsClient.ParameterJudgment(request);
         if (request.UploadStream == null)
         {
             throw new ObsException("The UploadStream is null.", ErrorType.Sender, "NullUploadStream", "");
@@ -81,7 +82,7 @@ public partial class ObsClient
     /// Verify parameters.
     /// </summary>
     /// <param name="request"></param>
-    private void ParameterJudgment(ResumableUploadRequest request)
+    private static void ParameterJudgment(ResumableUploadRequest request)
     {
         if (request == null)
         {
@@ -104,7 +105,7 @@ public partial class ObsClient
     /// <returns></returns>
     private CompleteMultipartUploadResponse ResumableUploadExcute(ResumableUploadRequest resumableUploadRequest)
     {
-        UploadCheckPoint uploadCheckPoint = new UploadCheckPoint();
+        UploadCheckPoint uploadCheckPoint = new();
 
         ResumableUploadTypeEnum uploadType;
         if (resumableUploadRequest is UploadFileRequest)
@@ -229,7 +230,7 @@ public partial class ObsClient
             }
         }
 
-        CompleteMultipartUploadRequest completeMultipartUploadRequest = new CompleteMultipartUploadRequest
+        CompleteMultipartUploadRequest completeMultipartUploadRequest = new()
         {
             BucketName = resumableUploadRequest.BucketName,
             ObjectKey = resumableUploadRequest.ObjectKey,
@@ -241,7 +242,7 @@ public partial class ObsClient
             CompleteMultipartUploadResponse completeMultipartUploadResponse = CompleteMultipartUpload(completeMultipartUploadRequest);
             if (resumableUploadRequest.UploadEventHandler != null)
             {
-                ResumableUploadEvent e = new ResumableUploadEvent
+                ResumableUploadEvent e = new()
                 {
                     EventType = ResumableUploadEventTypeEnum.CompleteMultipartUploadSucceed,
                     UploadId = uploadCheckPoint.UploadId,
@@ -279,7 +280,7 @@ public partial class ObsClient
 
             if (resumableUploadRequest.UploadEventHandler != null)
             {
-                ResumableUploadEvent e = new ResumableUploadEvent
+                ResumableUploadEvent e = new()
                 {
                     EventType = ResumableUploadEventTypeEnum.CompleteMultipartUploadFailed,
                     UploadId = uploadCheckPoint.UploadId,
@@ -315,8 +316,8 @@ public partial class ObsClient
             originPosition = uploadCheckPoint.UploadStream.Position;
         }
 
-        uploadCheckPoint.UploadParts = SplitUploadFile(uploadCheckPoint.FileStatus.Size, resumableUploadRequest.UploadPartSize, originPosition);
-        uploadCheckPoint.PartEtags = new List<PartETag>();
+        uploadCheckPoint.UploadParts = ObsClient.SplitUploadFile(uploadCheckPoint.FileStatus.Size, resumableUploadRequest.UploadPartSize, originPosition);
+        uploadCheckPoint.PartEtags = [];
 
         var initiateRequest = new InitiateMultipartUploadRequest()
         {
@@ -346,7 +347,7 @@ public partial class ObsClient
         {
             if (resumableUploadRequest.UploadEventHandler != null)
             {
-                ResumableUploadEvent e = new ResumableUploadEvent
+                ResumableUploadEvent e = new()
                 {
                     EventType = ResumableUploadEventTypeEnum.InitiateMultipartUploadFailed,
                 };
@@ -367,7 +368,7 @@ public partial class ObsClient
             {
                 AbortMultipartUpload(uploadCheckPoint);
 
-                ObsException exception = new ObsException(ex.Message, ex)
+                ObsException exception = new(ex.Message, ex)
                 {
                     ErrorType = ErrorType.Sender,
                 };
@@ -376,7 +377,7 @@ public partial class ObsClient
         }
         if (resumableUploadRequest.UploadEventHandler != null)
         {
-            ResumableUploadEvent e = new ResumableUploadEvent
+            ResumableUploadEvent e = new()
             {
                 UploadId = uploadCheckPoint.UploadId,
                 EventType = ResumableUploadEventTypeEnum.InitiateMultipartUploadSucceed,
@@ -392,9 +393,9 @@ public partial class ObsClient
     /// <param name="partSize"></param>
     /// <param name="originPosition"></param>
     /// <returns></returns>
-    private List<UploadPart> SplitUploadFile(long fileLength, long partSize, long originPosition)
+    private static List<UploadPart> SplitUploadFile(long fileLength, long partSize, long originPosition)
     {
-        List<UploadPart> parts = new List<UploadPart>();
+        List<UploadPart> parts = [];
 
         int partNumber = Convert.ToInt32(fileLength / partSize);
 
@@ -465,7 +466,7 @@ public partial class ObsClient
 
         var uploadPart = param.uploadPart;
 
-        PartResultUpload partResultUpload = new PartResultUpload();
+        PartResultUpload partResultUpload = new();
 
         var uploadCheckPoint = param.uploadCheckPoint;
 
@@ -473,7 +474,7 @@ public partial class ObsClient
         {
             if (!uploadCheckPoint!.IsUploadAbort)
             {
-                UploadPartRequest uploadPartRequest = new UploadPartRequest()
+                UploadPartRequest uploadPartRequest = new()
                 {
                     BucketName = uploadCheckPoint.BucketName,
                     ObjectKey = uploadCheckPoint.ObjectKey,
@@ -489,7 +490,7 @@ public partial class ObsClient
                 {
                     if (param.mgr != null)
                     {
-                        using TransferStream stream = new TransferStream(new FileStream(uploadCheckPoint.UploadFile, FileMode.Open, FileAccess.Read));
+                        using TransferStream stream = new(new FileStream(uploadCheckPoint.UploadFile, FileMode.Open, FileAccess.Read));
                         stream.Seek(uploadPart.Offset, SeekOrigin.Begin);
                         stream.BytesReaded += param.mgr.BytesTransfered;
                         stream.StartRead += param.mgr.TransferStart;
@@ -508,7 +509,7 @@ public partial class ObsClient
                 {
                     if (param.mgr != null)
                     {
-                        TransferStream stream = new TransferStream(uploadCheckPoint.UploadStream);
+                        TransferStream stream = new(uploadCheckPoint.UploadStream);
                         stream.Seek(uploadPart.Offset, SeekOrigin.Begin);
                         stream.BytesReaded += param.mgr.BytesTransfered;
                         stream.StartRead += param.mgr.TransferStart;
@@ -524,7 +525,7 @@ public partial class ObsClient
                     }
                 }
 
-                PartETag partEtag = new PartETag(uploadPartResponse.PartNumber, uploadPartResponse.ETag);
+                PartETag partEtag = new(uploadPartResponse.PartNumber, uploadPartResponse.ETag);
 
                 partResultUpload.IsFailed = false;
                 uploadPart.IsCompleted = true;
@@ -539,7 +540,7 @@ public partial class ObsClient
 
                 if (param.eventHandler != null)
                 {
-                    ResumableUploadEvent e = new ResumableUploadEvent
+                    ResumableUploadEvent e = new()
                     {
                         EventType = ResumableUploadEventTypeEnum.UploadPartSucceed,
                         UploadId = uploadCheckPoint.UploadId,
@@ -571,7 +572,7 @@ public partial class ObsClient
 
             if (param.eventHandler != null)
             {
-                ResumableUploadEvent e = new ResumableUploadEvent
+                ResumableUploadEvent e = new()
                 {
                     EventType = ResumableUploadEventTypeEnum.UploadPartFailed,
                     UploadId = uploadCheckPoint!.UploadId,
@@ -583,14 +584,14 @@ public partial class ObsClient
         catch (Exception ex)
         {
             partResultUpload.IsFailed = true;
-            ObsException exception = new ObsException(ex.Message, ex)
+            ObsException exception = new(ex.Message, ex)
             {
                 ErrorType = ErrorType.Sender,
             };
             partResultUpload.Exception = exception;
             if (param.eventHandler != null)
             {
-                ResumableUploadEvent e = new ResumableUploadEvent
+                ResumableUploadEvent e = new()
                 {
                     EventType = ResumableUploadEventTypeEnum.UploadPartFailed,
                     UploadId = uploadCheckPoint!.UploadId,
@@ -611,15 +612,15 @@ public partial class ObsClient
     /// </summary>
     private IList<PartResultUpload> ResumableUploadBegin(ResumableUploadRequest resumableUploadRequest, UploadCheckPoint uploadCheckPoint, out TransferStreamManager? mgr, ResumableUploadTypeEnum uploadType)
     {
-        IList<PartResultUpload> partResultsUpload = new List<PartResultUpload>();
-        IList<UploadPart> uploadParts = new List<UploadPart>();
+        IList<PartResultUpload> partResultsUpload = [];
+        IList<UploadPart> uploadParts = [];
         long transferredBytes = 0;
         foreach (var uploadPart in uploadCheckPoint.UploadParts)
         {
             if (uploadPart.IsCompleted)
             {
                 transferredBytes += uploadPart.Size;
-                PartResultUpload result = new PartResultUpload
+                PartResultUpload result = new()
                 {
                     IsFailed = false,
                 };
@@ -681,7 +682,7 @@ public partial class ObsClient
         UploadPartExcuteParam[] executeParams = new UploadPartExcuteParam[taskNum];
         for (int i = 0; i < taskNum; i++)
         {
-            UploadPartExcuteParam param = new UploadPartExcuteParam
+            UploadPartExcuteParam param = new()
             {
                 uploadType = uploadType,
                 uploadPart = uploadParts[i],
@@ -734,7 +735,7 @@ public partial class ObsClient
     {
         try
         {
-            AbortMultipartUploadRequest abortRequest = new AbortMultipartUploadRequest
+            AbortMultipartUploadRequest abortRequest = new()
             {
                 BucketName = uploadCheckPoint.BucketName,
                 ObjectKey = uploadCheckPoint.ObjectKey,
@@ -759,7 +760,7 @@ public partial class ObsClient
     /// <returns>Response to a request for obtaining object metadata</returns>
     public GetObjectMetadataResponse DownloadFile(DownloadFileRequest request)
     {
-        ParameterJudgement(request);
+        ObsClient.ParameterJudgement(request);
         return DownloadFileExcute(request);
     }
 
@@ -767,7 +768,7 @@ public partial class ObsClient
     /// Verify the parameters of the to-be-downloaded file.
     /// </summary>
     /// <param name="request"></param>
-    private void ParameterJudgement(DownloadFileRequest request)
+    private static void ParameterJudgement(DownloadFileRequest request)
     {
         if (request == null)
         {
@@ -799,7 +800,7 @@ public partial class ObsClient
     /// </summary>
     private GetObjectMetadataResponse DownloadFileExcute(DownloadFileRequest downloadFileRequest)
     {
-        DownloadCheckPoint downloadCheckPoint = new DownloadCheckPoint();
+        DownloadCheckPoint downloadCheckPoint = new();
 
         GetObjectMetadataResponse? response = null;
 
@@ -892,7 +893,7 @@ public partial class ObsClient
         TransferStreamManager? mgr = null;
         try
         {
-            IList<PartResultDown> partResultsDowns = DownloadFileBegin(downloadFileRequest, downloadCheckPoint, out mgr);
+            var partResultsDowns = DownloadFileBegin(downloadFileRequest, downloadCheckPoint, out mgr);
 
             foreach (PartResultDown result in partResultsDowns)
             {
@@ -928,7 +929,7 @@ public partial class ObsClient
 
         try
         {
-            Rename(downloadFileRequest.TempDownloadFile, downloadFileRequest.DownloadFile);
+            ObsClient.Rename(downloadFileRequest.TempDownloadFile, downloadFileRequest.DownloadFile);
         }
         catch (Exception ex)
         {
@@ -936,7 +937,7 @@ public partial class ObsClient
             {
                 File.Delete(downloadFileRequest.CheckpointFile);
             }
-            ObsException exception = new ObsException(ex.Message, ex)
+            ObsException exception = new(ex.Message, ex)
             {
                 ErrorType = ErrorType.Sender,
             };
@@ -956,7 +957,7 @@ public partial class ObsClient
 
     private GetObjectMetadataResponse GetObjectMetadata(DownloadFileRequest downloadFileRequest, DownloadCheckPoint downloadCheckPoint)
     {
-        GetObjectMetadataRequest request = new GetObjectMetadataRequest
+        GetObjectMetadataRequest request = new()
         {
             BucketName = downloadCheckPoint.BucketName,
             ObjectKey = downloadCheckPoint.ObjectKey,
@@ -984,16 +985,16 @@ public partial class ObsClient
             LastModified = response.LastModified,
             Etag = response.ETag,
         };
-        downloadCheckPoint.DownloadParts = SplitObject(downloadCheckPoint.ObjectStatus.Size, downloadFileRequest.DownloadPartSize);
+        downloadCheckPoint.DownloadParts = ObsClient.SplitObject(downloadCheckPoint.ObjectStatus.Size, downloadFileRequest.DownloadPartSize);
 
         try
         {
-            using FileStream fs = new FileStream(downloadFileRequest.TempDownloadFile, FileMode.Create);
+            using FileStream fs = new(downloadFileRequest.TempDownloadFile, FileMode.Create);
             fs.SetLength(downloadCheckPoint.ObjectStatus.Size);
         }
         catch (Exception ex)
         {
-            ObsException exception = new ObsException(ex.Message, ex)
+            ObsException exception = new(ex.Message, ex)
             {
                 ErrorType = ErrorType.Sender,
             };
@@ -1023,7 +1024,7 @@ public partial class ObsClient
                     }
                 }
 
-                ObsException exception = new ObsException(ex.Message, ex)
+                ObsException exception = new(ex.Message, ex)
                 {
                     ErrorType = ErrorType.Sender,
                 };
@@ -1036,9 +1037,9 @@ public partial class ObsClient
     /// <summary>
     /// Calculate the part list based on the file size and part size.
     /// </summary>
-    private List<DownloadPart> SplitObject(long objectSize, long partSize)
+    private static List<DownloadPart> SplitObject(long objectSize, long partSize)
     {
-        List<DownloadPart> parts = new List<DownloadPart>();
+        List<DownloadPart> parts = [];
 
         int partNumber = Convert.ToInt32(objectSize / partSize);
 
@@ -1104,13 +1105,13 @@ public partial class ObsClient
         var downloadPart = param.downloadPart;
         var downloadFileRequest = param.downloadFileRequest;
 
-        PartResultDown partResultDown = new PartResultDown();
+        PartResultDown partResultDown = new();
 
         try
         {
             if (!downloadCheckPoint!.IsDownloadAbort)
             {
-                GetObjectRequest getObjectRequest = new GetObjectRequest
+                GetObjectRequest getObjectRequest = new()
                 {
                     BucketName = downloadCheckPoint.BucketName,
                     ObjectKey = downloadCheckPoint.ObjectKey,
@@ -1137,7 +1138,7 @@ public partial class ObsClient
                     {
                         if (param.mgr != null)
                         {
-                            TransferStream stream = new TransferStream(getObjectResponse.OutputStream);
+                            TransferStream stream = new(getObjectResponse.OutputStream);
                             stream.BytesReaded += param.mgr.BytesTransfered;
                             stream.StartRead += param.mgr.TransferStart;
                             stream.BytesReset += param.mgr.TransferReset;
@@ -1153,7 +1154,7 @@ public partial class ObsClient
                             throw new ObsException("The length of the response returned is not the same as expected.");
                         }
 
-                        using FileStream output = new FileStream(downloadFileRequest.TempDownloadFile, FileMode.Open, FileAccess.Write, FileShare.ReadWrite,
+                        using FileStream output = new(downloadFileRequest.TempDownloadFile, FileMode.Open, FileAccess.Write, FileShare.ReadWrite,
                             Constants.DefaultBufferSize);
                         output.Seek(downloadPart.Start, SeekOrigin.Begin);
 
@@ -1188,7 +1189,7 @@ public partial class ObsClient
 
                 if (param.eventHandler != null)
                 {
-                    ResumableDownloadEvent e = new ResumableDownloadEvent
+                    ResumableDownloadEvent e = new()
                     {
                         EventType = ResumableDownloadEventTypeEnum.DownloadPartSucceed,
                         PartNumber = downloadPart.PartNumber,
@@ -1216,7 +1217,7 @@ public partial class ObsClient
             partResultDown.Exception = ex;
             if (param.eventHandler != null)
             {
-                ResumableDownloadEvent e = new ResumableDownloadEvent
+                ResumableDownloadEvent e = new()
                 {
                     EventType = ResumableDownloadEventTypeEnum.DownloadPartFailed,
                     PartNumber = downloadPart!.PartNumber,
@@ -1232,14 +1233,14 @@ public partial class ObsClient
             }
 
             partResultDown.IsFailed = true;
-            ObsException exception = new ObsException(ex.Message, ex)
+            ObsException exception = new(ex.Message, ex)
             {
                 ErrorType = ErrorType.Sender,
             };
             partResultDown.Exception = exception;
             if (param.eventHandler != null)
             {
-                ResumableDownloadEvent e = new ResumableDownloadEvent
+                ResumableDownloadEvent e = new()
                 {
                     EventType = ResumableDownloadEventTypeEnum.DownloadPartFailed,
                     PartNumber = downloadPart!.PartNumber,
@@ -1262,7 +1263,7 @@ public partial class ObsClient
     /// <summary>
     /// Concurrently download parts in multi-thread mode.
     /// </summary>
-    private IList<PartResultDown> DownloadFileBegin(DownloadFileRequest downloadFileRequest, DownloadCheckPoint downloadCheckPoint,
+    private List<PartResultDown> DownloadFileBegin(DownloadFileRequest downloadFileRequest, DownloadCheckPoint downloadCheckPoint,
         out TransferStreamManager? mgr)
     {
         var partResultsDowns = new List<PartResultDown>();
@@ -1272,7 +1273,7 @@ public partial class ObsClient
         {
             if (partResultDown.IsCompleted)
             {
-                PartResultDown result = new PartResultDown
+                PartResultDown result = new()
                 {
                     IsFailed = false,
                 };
@@ -1314,7 +1315,7 @@ public partial class ObsClient
         DownloadPartExcuteParam[] executeParams = new DownloadPartExcuteParam[taskNum];
         for (int i = 0; i < taskNum; i++)
         {
-            DownloadPartExcuteParam param = new DownloadPartExcuteParam
+            DownloadPartExcuteParam param = new()
             {
                 downloadPart = downloadParts[i],
                 downloadCheckPoint = downloadCheckPoint,
@@ -1364,7 +1365,7 @@ public partial class ObsClient
     /// </summary>
     /// <param name="tempDownloadFilePath"></param>
     /// <param name="downloadFilePath"></param>
-    private void Rename(string tempDownloadFilePath, string downloadFilePath)
+    private static void Rename(string tempDownloadFilePath, string downloadFilePath)
     {
         if (File.Exists(downloadFilePath))
         {
@@ -1385,16 +1386,16 @@ public partial class ObsClient
 
             try
             {
-                using FileStream tempDownloadStream = new FileStream(tempDownloadFilePath, FileMode.Open);
+                using FileStream tempDownloadStream = new(tempDownloadFilePath, FileMode.Open);
                 while ((bytesRead = tempDownloadStream.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    using FileStream downloadStream = new FileStream(downloadFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite, Constants.DefaultBufferSize);
+                    using FileStream downloadStream = new(downloadFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite, Constants.DefaultBufferSize);
                     downloadStream.Write(buffer, 0, bytesRead);
                 }
             }
             catch (Exception ex)
             {
-                ObsException exception = new ObsException(ex.Message, ex)
+                ObsException exception = new(ex.Message, ex)
                 {
                     ErrorType = ErrorType.Sender,
                 };

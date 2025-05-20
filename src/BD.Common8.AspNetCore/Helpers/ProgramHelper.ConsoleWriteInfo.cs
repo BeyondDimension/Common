@@ -1,3 +1,9 @@
+using Microsoft.Win32;
+using System.Diagnostics;
+using System.Globalization;
+using System.Reflection;
+using System.Runtime.InteropServices;
+
 namespace BD.Common8.AspNetCore.Helpers;
 
 static partial class ProgramHelper
@@ -163,7 +169,7 @@ static partial class ProgramHelper
         Console.Write(Environment.Is64BitProcess);
         Console.Write('\n');
 
-#endregion
+        #endregion
 
         Console.Write('\n');
     }

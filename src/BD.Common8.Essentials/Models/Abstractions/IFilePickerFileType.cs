@@ -1,3 +1,7 @@
+using BD.Common8.Essentials.Enums;
+using BD.Common8.Essentials.Services;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Models.Abstractions;
 
 /// <summary>

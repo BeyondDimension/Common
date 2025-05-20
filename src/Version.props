@@ -1,5 +1,5 @@
 <Project>
-	<!-- 👇 当前项目依赖的【目标框架版本号】配置 -->
+	<!-- 👇 当前项目依赖的版本号配置 -->
 	<PropertyGroup>
 		<DotNet_Version>9.0</DotNet_Version>
 		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
@@ -8,10 +8,5 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<SourceGenerator_TargetFramework>netstandard2.0</SourceGenerator_TargetFramework>
-	</PropertyGroup>
-	<PropertyGroup>
-		<Version_Downloader_DotNetFX>3.1.2</Version_Downloader_DotNetFX>
 	</PropertyGroup>
 </Project>

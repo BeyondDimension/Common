@@ -8,4 +8,19 @@
 		<Description>ASP.NET Core 实现的多租户后台管理系统通用封装库</Description>
 	</PropertyGroup>
 
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="AutoMapper.Collection" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.AspNetCore\BD.Common8.AspNetCore.csproj" />
+		<ProjectReference Include="..\BD.Common8.AspNetCore.Identity\BD.Common8.AspNetCore.Identity.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+	</ItemGroup>
+
 </Project>

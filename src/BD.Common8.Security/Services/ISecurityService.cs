@@ -1,3 +1,6 @@
+using BD.Common8.Security.Enums;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Security.Services;
 
 /// <summary>

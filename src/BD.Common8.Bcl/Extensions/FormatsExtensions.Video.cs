@@ -1,6 +1,7 @@
-namespace System.Extensions;
-
+using System.Formats;
 using static System.Extensions.FormatsExtensions.VideoDict;
+
+namespace System.Extensions;
 
 public static partial class FormatsExtensions
 {

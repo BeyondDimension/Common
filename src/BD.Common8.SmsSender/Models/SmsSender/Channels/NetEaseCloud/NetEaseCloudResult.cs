@@ -1,3 +1,8 @@
+using BD.Common8.Models.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using BD.Common8.SmsSender.Services.Implementation.SmsSender;
+using System.Diagnostics;
+
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
 
 /// <summary>
@@ -9,7 +14,7 @@ public class NetEaseCloudResult<T> : JsonModel<T>, ISmsSubResult where T : NetEa
     /// <summary>
     /// 网易云发送 Sms 响应代码
     /// </summary>
-    [SystemTextJsonProperty(code)]
+    [global::System.Text.Json.Serialization.JsonPropertyName(code)]
     public SendSmsNetEaseCloudResponseCode Code { get; set; }
 
     /// <summary>
@@ -50,6 +55,12 @@ public class NetEaseCloudResult<T> : JsonModel<T>, ISmsSubResult where T : NetEa
 /// <summary>
 /// 继承 <see cref="NetEaseCloudResult{T}"/>
 /// </summary>
+[DebuggerDisplay("{DebuggerDisplay(),nq}")]
 public sealed class NetEaseCloudResult : NetEaseCloudResult<NetEaseCloudResult>
 {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+    string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, SmsSenderJsonSerializerContext.Default.Options);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 }

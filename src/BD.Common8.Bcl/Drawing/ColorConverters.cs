@@ -1,5 +1,7 @@
 // https://github.com/xamarin/Essentials/blob/1.7.3/Xamarin.Essentials/Types/ColorConverters.shared.cs
 
+using System.Runtime.CompilerServices;
+
 namespace System.Drawing;
 
 /// <summary>
@@ -14,7 +16,7 @@ public static partial class ColorConverters
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static SDColor FromHex(string hexStringColor)
+    public static Color FromHex(string hexStringColor)
     {
         // Undefined
         if (hexStringColor.Length < 3)

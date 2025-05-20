@@ -3,20 +3,20 @@
 
 	<!-- 👇 .NET Standard，引用 Compat 兼容 CoreCLR/.NET 5+ 提供的 BCL API -->
 	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
+		<!--<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\**\*.cs">
 			<LinkBase>_SourceReference\Compat</LinkBase>
 		</Compile>
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\bin\**" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl.Compat\obj\**" />-->
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
+		<!--<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
-		</Compile>
+		</Compile>-->
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Trim.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
@@ -29,12 +29,12 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
 			<LinkBase>_SourceReference\Extensions</LinkBase>
 		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\ThrowHelper*.cs">
+		<!--<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\ThrowHelper*.cs">
 			<LinkBase>_SourceReference</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Resources\SR.cs">
+		</Compile>-->
+		<!--<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Resources\SR.cs">
 			<LinkBase>_SourceReference\Resources</LinkBase>
-		</Compile>
+		</Compile>-->
 	</ItemGroup>
 
 	<!-- 👇 .NET Compiler Platform (Roslyn) 分析器 -->

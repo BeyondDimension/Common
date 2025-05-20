@@ -1,3 +1,19 @@
+using BD.Common8.Helpers;
+using BD.Common8.Ipc.Attributes;
+using BD.Common8.Ipc.Enums;
+using BD.Common8.Ipc.Extensions;
+using BD.Common8.Ipc.Services.Implementation;
+using BD.Common8.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
+
 namespace Ipc.Sample;
 
 /// <summary>
@@ -68,7 +84,7 @@ static partial class Program
     }
 }
 
-sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerService(serverCertificate)
+sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerService((_, _) => serverCertificate)
 {
     protected override bool ListenLocalhost => true;
 
@@ -76,48 +92,55 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
 
     protected override bool ListenUnixSocket => true;
 
-    static readonly Lazy<SystemTextJsonSerializerOptions> _JsonSerializerOptions = new(() => SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver());
+    static readonly Lazy<JsonSerializerOptions> _JsonSerializerOptions = new(() => SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver());
 
-    protected override SystemTextJsonSerializerOptions JsonSerializerOptions
+    protected override JsonSerializerOptions JsonSerializerOptions
         => _JsonSerializerOptions.Value;
 
-    static bool UseSwagger => true;
+    //static bool UseSwagger => true;
 
+    public override bool TryGetHubContext([NotNullWhen(true)] out IHubContext? hubContext)
+    {
+        hubContext = GetHubContextByHubUrl();
+        return hubContext != null;
+    }
+
+    [Obsolete("use TryGetHubContext", true)]
     public override IHubContext HubContext => GetHubContextByHubUrl()!;
 
     protected override void ConfigureServices(IServiceCollection services)
     {
         base.ConfigureServices(services);
 
-        if (UseSwagger)
-        {
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(options =>
-            {
-                var scheme = new OpenApiSecurityScheme
-                {
-                    Description = $"{IpcAppConnectionString.AuthenticationScheme} {GetAccessToken().ToHexString()}",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = IpcAppConnectionString.AuthenticationScheme,
-                };
-                options.AddSecurityDefinition(IpcAppConnectionString.AuthenticationScheme, scheme);
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = IpcAppConnectionString.AuthenticationScheme,
-                            },
-                        },
-                        Array.Empty<string>()
-                    },
-                });
-            });
-        }
+        //if (UseSwagger)
+        //{
+        //    services.AddEndpointsApiExplorer();
+        //    //services.AddSwaggerGen(options =>
+        //    //{
+        //    //    var scheme = new OpenApiSecurityScheme
+        //    //    {
+        //    //        Description = $"{IpcAppConnectionString.AuthenticationScheme} {GetAccessToken().ToHexString()}",
+        //    //        Name = "Authorization",
+        //    //        In = ParameterLocation.Header,
+        //    //        Type = SecuritySchemeType.ApiKey,
+        //    //        Scheme = IpcAppConnectionString.AuthenticationScheme,
+        //    //    };
+        //    //    options.AddSecurityDefinition(IpcAppConnectionString.AuthenticationScheme, scheme);
+        //    //    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        //    //    {
+        //    //        {
+        //    //            new OpenApiSecurityScheme
+        //    //            {
+        //    //                Reference = new OpenApiReference {
+        //    //                    Type = ReferenceType.SecurityScheme,
+        //    //                    Id = IpcAppConnectionString.AuthenticationScheme,
+        //    //                },
+        //    //            },
+        //    //            Array.Empty<string>()
+        //    //        },
+        //    //    });
+        //    //});
+        //}
     }
 
     protected override void Configure(WebApplication app)
@@ -126,11 +149,11 @@ sealed class IpcServerService2(X509Certificate2 serverCertificate) : IpcServerSe
         MapHub<IpcHub>(HubUrl);
         MapHub<IpcHub2>(IpcHub2.HubUrl);
 
-        if (UseSwagger)
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+        //if (UseSwagger)
+        //{
+        //    app.UseSwagger();
+        //    app.UseSwaggerUI();
+        //}
 
         // 测试元组 Tuple，System.Text.Json 不支持 ValueTuple
         //var a = System.TupleExtensions.ToTuple((1, 2, 3));
@@ -196,21 +219,15 @@ sealed partial class TodoServiceImpl : ITodoService
         new(5, "Clean the car", DateOnly.FromDateTime(DateTime.Now.AddDays(2))),
     ];
 
-    IHubContext HubContext
+    IHubContext? HubContext
     {
         get
         {
-            var hubContext = Program.IpcServerService.HubContext;
-            return hubContext;
-        }
-    }
-
-    IHubClients Clients
-    {
-        get
-        {
-            var hubContext = HubContext;
-            return hubContext.Clients;
+            if (Program.IpcServerService.TryGetHubContext(out var hubContext))
+            {
+                return hubContext;
+            }
+            return null;
         }
     }
 
@@ -222,7 +239,11 @@ sealed partial class TodoServiceImpl : ITodoService
             var connId = httpContextAccessor.HttpContext?.Connection.Id;
             if (connId != null)
             {
-                return Clients.Client(connId);
+                var hubContext = HubContext;
+                if (hubContext != null)
+                {
+                    return hubContext.Clients.Client(connId);
+                }
             }
             return null;
         }
@@ -239,7 +260,11 @@ sealed partial class TodoServiceImpl : ITodoService
 
     public async Task<ApiRspImpl<Todo[]?>> All(CancellationToken cancellationToken = default)
     {
-        await Clients.All.SendAsync(nameof(ITodoService), nameof(All), RequestAborted());
+        var hubContext = HubContext;
+        if (hubContext != null)
+        {
+            await hubContext.Clients.All.SendAsync(nameof(ITodoService), nameof(All), RequestAborted());
+        }
         await Task.Delay(1, cancellationToken);
         var result = todos.Concat([
             new Todo(6, DateTimeOffset.Now.ToString()),
@@ -249,7 +274,11 @@ sealed partial class TodoServiceImpl : ITodoService
 
     public async Task<ApiRspImpl<Todo?>> GetById(int id, CancellationToken cancellationToken = default)
     {
-        await Clients.All.SendAsync(nameof(ITodoService), nameof(GetById), RequestAborted());
+        var hubContext = HubContext;
+        if (hubContext != null)
+        {
+            await hubContext.Clients.All.SendAsync(nameof(ITodoService), nameof(GetById), RequestAborted());
+        }
         await Task.Delay(1, cancellationToken);
         return todos.FirstOrDefault(x => x.Id == id);
     }
@@ -263,7 +292,11 @@ sealed partial class TodoServiceImpl : ITodoService
         uint p18, ulong p19, Uri p20,
         Version p21, CancellationToken cancellationToken = default)
     {
-        await Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
+        var hubContext = HubContext;
+        if (hubContext != null)
+        {
+            await hubContext.Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
+        }
         var result = ApiRspHelper.Ok();
         result.InternalMessage = $"{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{p9}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{p19}/{p20}/{p21}";
         return result;
@@ -272,7 +305,11 @@ sealed partial class TodoServiceImpl : ITodoService
     public async Task<ApiRspImpl> BodyTest(Todo? todo, CancellationToken cancellationToken = default)
     {
         Console.WriteLine("BodyTest");
-        await Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
+        var hubContext = HubContext;
+        if (hubContext != null)
+        {
+            await hubContext.Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
+        }
         var result = ApiRspHelper.Ok();
         result.InternalMessage = todo == null ? "todo is null!" : todo.Title;
         var a = Serializable.SMP2(result);
@@ -282,7 +319,11 @@ sealed partial class TodoServiceImpl : ITodoService
 
     public async IAsyncEnumerable<Todo> AsyncEnumerable(int len, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        await Clients.All.SendAsync(nameof(ITodoService), nameof(AsyncEnumerable), RequestAborted());
+        var hubContext = HubContext;
+        if (hubContext != null)
+        {
+            await hubContext.Clients.All.SendAsync(nameof(ITodoService), nameof(AsyncEnumerable), RequestAborted());
+        }
         for (int i = 0; i < len; i++)
         {
             var millisecondsDelay = Random.Shared.Next(199, 419);
@@ -304,7 +345,11 @@ sealed partial class TodoServiceImpl : ITodoService
         TimeOnly p15, TimeSpan p16, ushort p17,
         uint p18, ulong[] p19, Uri p20, CancellationToken cancellationToken = default)
     {
-        await Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
+        var hubContext = HubContext;
+        if (hubContext != null)
+        {
+            await hubContext.Clients.All.SendAsync(nameof(ITodoService), nameof(SimpleTypes), RequestAborted());
+        }
         var result = ApiRspHelper.Ok();
         result.InternalMessage = $"{p0}/{p1}/{p2}/{p3}/{p4}/{p5}/{p6}/{p7}/{p8}/{string.Join(", ", p9 ?? [])}/{p10}/{p11}/{p12}/{p13}/{p14}/{p15}/{p16}/{p17}/{p18}/{string.Join(", ", p19 ?? [])}/{p20}";
         return result;

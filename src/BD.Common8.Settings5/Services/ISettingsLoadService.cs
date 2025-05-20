@@ -1,3 +1,10 @@
+using BD.Common8.Settings5.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+
 namespace BD.Common8.Settings5.Services;
 
 /// <summary>
@@ -43,4 +50,16 @@ public interface ISettingsLoadService
     /// </summary>
     /// <typeparam name="TSettingsModel"></typeparam>
     void ForceSave<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>() where TSettingsModel : class, new();
+
+    /// <summary>
+    /// 像当前 Json 序列化选项中添加转换器，例如 <see cref="JsonStringEnumConverter{TEnum}"/>
+    /// </summary>
+    /// <param name="converters"></param>
+    void AddConverters(params IEnumerable<JsonConverter> converters);
+
+    /// <summary>
+    /// 添加 Json 源生成的解析器
+    /// </summary>
+    /// <param name="resolvers"></param>
+    void AddResolvers(params IEnumerable<IJsonTypeInfoResolver> resolvers);
 }

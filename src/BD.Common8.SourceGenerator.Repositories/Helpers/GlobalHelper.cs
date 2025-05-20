@@ -1,4 +1,6 @@
 global using static BD.Common8.SourceGenerator.Repositories.Helpers.GlobalHelper;
+using BD.Common8.SourceGenerator.Repositories.Handlers.Properties.Abstractions;
+using System.Collections.Immutable;
 
 namespace BD.Common8.SourceGenerator.Repositories.Helpers;
 
@@ -51,7 +53,7 @@ static class GlobalHelper
         {
             nameChars = nameChars[1..];
         }
-        nameChars[0] = char.ToLower(nameChars[0], CultureInfo.InvariantCulture);
+        nameChars[0] = char.ToLowerInvariant(nameChars[0]);
         if (argumentType.EndsWith("Repository"))
         {
             nameChars = nameChars[..^"sitory".Length];

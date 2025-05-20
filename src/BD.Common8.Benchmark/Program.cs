@@ -1,6 +1,10 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using MemoryPack;
 using Microsoft.International.Converters.PinYinConverter;
+using System.CodeDom.Compiler;
+using System.Reflection;
+using DistrictM = BD.Common8.District.Models.District;
 
 // https://benchmarkdotnet.org/articles/guides/getting-started.html
 
@@ -70,9 +74,9 @@ public partial class BinaryResourceStreamTest
 """)]
 public partial class BinaryResourceMemoryPackTest
 {
-    District[]? all1;
-    District[]? all2;
-    District[]? all3;
+    DistrictM[]? all1;
+    DistrictM[]? all2;
+    DistrictM[]? all3;
 
     [Benchmark(Baseline = true)]
     public void BinaryResource_MemoryPack_SourceGenerator()
@@ -80,7 +84,7 @@ public partial class BinaryResourceMemoryPackTest
         Span<byte> bytes = AMapAdcodeCitycode20210406();
         try
         {
-            all1 = MemoryPackSerializer.Deserialize<District[]>(bytes);
+            all1 = MemoryPackSerializer.Deserialize<DistrictM[]>(bytes);
             ArgumentNullException.ThrowIfNull(all1);
         }
         finally
@@ -92,7 +96,7 @@ public partial class BinaryResourceMemoryPackTest
     [Benchmark]
     public void BinaryResource_MemoryPack_ManifestResource()
     {
-        var all2 = MemoryPackSerializer.Deserialize<District[]>(Properties.Resources.AMap_adcode_citycode_20210406);
+        var all2 = MemoryPackSerializer.Deserialize<DistrictM[]>(Properties.Resources.AMap_adcode_citycode_20210406);
         ArgumentNullException.ThrowIfNull(all2);
     }
 
@@ -103,7 +107,7 @@ public partial class BinaryResourceMemoryPackTest
         bytes.Reverse();
         try
         {
-            all3 = MemoryPackSerializer.Deserialize<District[]>(bytes);
+            all3 = MemoryPackSerializer.Deserialize<DistrictM[]>(bytes);
             ArgumentNullException.ThrowIfNull(all3);
         }
         finally
@@ -135,9 +139,9 @@ static partial class ReverseBinaryResource
     internal static byte[] _CharDictionary() => _CharDictionary_Reverse();
 }
 
-public class Program
+static class Program
 {
-    public static void Main(string[] args)
+    static void Main(string[] args)
     {
         BenchmarkRunner.Run<BinaryResourceStreamTest>();
         BenchmarkRunner.Run<BinaryResourceMemoryPackTest>();

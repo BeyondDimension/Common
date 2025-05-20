@@ -1,3 +1,6 @@
+using Microsoft.CodeAnalysis;
+using Newtonsoft.Json;
+using System.Text;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace BD.Common8.SourceGenerator.Repositories.Models;
@@ -16,7 +19,7 @@ public static class GeneratorConfigExtensions
         if (generatorConfig == null)
             throw new ArgumentNullException(nameof(generatorConfig));
 
-        var moduleFolder = Path.GetDirectoryName(additional.Path);
+        var moduleFolder = Path.GetDirectoryName(additional.Path)!;
         var configPath = Path.Combine(moduleFolder, ModuleLevelConfig.ModuleConfigName);
 
         if (!File.Exists(configPath))

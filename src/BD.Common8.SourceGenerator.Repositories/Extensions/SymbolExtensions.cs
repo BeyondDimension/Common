@@ -1,3 +1,9 @@
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
+using System.Collections.Immutable;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace BD.Common8.SourceGenerator.Repositories.Extensions;
 
 static class SymbolExtensions
@@ -25,7 +31,7 @@ static class SymbolExtensions
     internal static string GetSourceFileName(this ISymbol symbol, string partialFileName)
     {
         using var hashAlgorithm = SHA384.Create();
-        var sourceFileName = $"{symbol.Name}.{partialFileName}.{string.Join(null, hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(symbol.ToDisplayString())).Select(x => x.ToString("x2")).ToArray())}.g.cs";
+        var sourceFileName = $"{symbol.Name}.{partialFileName}.{string.Join(null, [.. hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(symbol.ToDisplayString())).Select(x => x.ToString("x2"))])}.g.cs";
         return sourceFileName;
     }
 

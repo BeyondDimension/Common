@@ -1,3 +1,9 @@
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Models.Abstractions;
+using BD.Common8.Repositories.Enums;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
+
 namespace BD.Common8.Repositories.Repositories.Abstractions;
 
 /// <inheritdoc cref="IRepository"/>

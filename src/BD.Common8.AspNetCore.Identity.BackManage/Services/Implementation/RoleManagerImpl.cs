@@ -1,3 +1,10 @@
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.AspNetCore.Services.Implementation;
 
 /// <summary>
@@ -38,7 +45,7 @@ public class RoleManagerImpl<TDbContext>(
     public async Task<BMRole?> FindByIdAsync(Guid roleId)
     {
         ThrowIfDisposed();
-        var role = await db.SysRoles.FindAsync(new object[] { roleId, }, CancellationToken);
+        var role = await db.SysRoles.FindAsync([roleId,], CancellationToken);
         return role;
     }
 
@@ -76,21 +83,21 @@ public class RoleManagerImpl<TDbContext>(
     protected virtual ValueTask<IdentityResult> ValidateRoleAsync(BMRole role)
     {
         if (role.TenantId == default)
-            return new(IdentityResult.Failed(new IdentityError[]
-            {
+            return new(IdentityResult.Failed(
+            [
                 new IdentityError
                 {
                     Description = "租户 Id 不能为空",
                 },
-            }));
+            ]));
         if (string.IsNullOrWhiteSpace(role.Name))
-            return new(IdentityResult.Failed(new IdentityError[]
-            {
+            return new(IdentityResult.Failed(
+            [
                 new IdentityError
                 {
                     Description = "角色名称不能为空或空白字符",
                 },
-            }));
+            ]));
 
         return new(IdentityResult.Success);
     }

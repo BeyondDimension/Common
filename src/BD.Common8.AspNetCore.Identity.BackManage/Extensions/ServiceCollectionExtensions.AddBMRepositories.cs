@@ -1,3 +1,9 @@
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Repositories;
+using BD.Common8.AspNetCore.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class ServiceCollectionExtensions

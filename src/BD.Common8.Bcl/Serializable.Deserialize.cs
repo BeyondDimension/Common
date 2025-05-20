@@ -1,3 +1,16 @@
+#if !NO_NEWTONSOFT_JSON
+using MemoryPack;
+using MessagePack;
+using Newtonsoft.Json;
+#endif
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+#if !NO_SYSTEM_TEXT_JSON
+using JsonSerializer = System.Text.Json.JsonSerializer;
+#endif
+
 namespace System;
 
 public static partial class Serializable // Deserialize(反序列化)
@@ -21,10 +34,10 @@ public static partial class Serializable // Deserialize(反序列化)
         return implType switch
         {
 #if !NO_SYSTEM_TEXT_JSON
-            JsonImplType.SystemTextJson => SystemTextJsonSerializer.Deserialize<T>(value),
+            JsonImplType.SystemTextJson => JsonSerializer.Deserialize<T>(value),
 #endif
 #if !NO_NEWTONSOFT_JSON
-            _ => NewtonsoftJsonConvert.DeserializeObject<T>(value),
+            _ => JsonConvert.DeserializeObject<T>(value),
 #else
             _ => throw new NotSupportedException(),
 #endif

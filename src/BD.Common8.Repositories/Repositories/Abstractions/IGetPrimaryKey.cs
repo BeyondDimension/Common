@@ -1,3 +1,6 @@
+using BD.Common8.Entities.Abstractions;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.Repositories.Repositories.Abstractions;
 
 /// <summary>

@@ -9,3 +9,4 @@ QueryFullProcessImageName
 OpenProcess
 OpenProcessToken
 GetTokenInformation
+MoveFileEx

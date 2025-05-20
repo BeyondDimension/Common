@@ -1,3 +1,11 @@
+using BD.Common8.Essentials.Enums;
+using BD.Common8.Essentials.Models;
+using BD.Common8.Essentials.Services;
+using BD.Common8.Toast.Helpers;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
+
 namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
@@ -45,12 +53,17 @@ public static class Email2
                 HandlerException(e);
             }
         }
+#if !(IOS || MACCATALYST)
         await ComposeByProcessAsync(message);
+#endif
     }
 
     /// <summary>
     /// 通过进程异步发送电子邮件
     /// </summary>
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
     static ValueTask ComposeByProcessAsync(EmailMessage? message)
     {
         try

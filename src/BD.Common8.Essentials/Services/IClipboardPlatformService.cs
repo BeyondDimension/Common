@@ -13,17 +13,17 @@ public interface IClipboardPlatformService
     /// <summary>
     /// 将文本设置到剪贴板中
     /// </summary>
-    ValueTask PlatformSetTextAsync(string text);
+    Task PlatformSetTextAsync(string text);
 
     /// <summary>
     /// 从剪贴板中获取文本
     /// </summary>
-    ValueTask<string> PlatformGetTextAsync();
+    Task<string?> PlatformGetTextAsync();
 
     /// <summary>
     /// 判断剪贴板是否包含文本
     /// </summary>
-    ValueTask<bool> PlatformHasTextAsync();
+    bool PlatformHasText();
 
     /// <summary>
     /// 剪贴板内容变化时触发的事件

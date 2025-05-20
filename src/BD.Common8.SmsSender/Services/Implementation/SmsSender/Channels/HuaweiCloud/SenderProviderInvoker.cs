@@ -1,3 +1,8 @@
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.HuaweiCloud;
 
 /// <summary>

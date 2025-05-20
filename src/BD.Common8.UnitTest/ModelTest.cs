@@ -1,3 +1,8 @@
+using System.Runtime.CompilerServices;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using PB = Google.Protobuf;
 
 namespace BD.Common8.UnitTest;
@@ -20,21 +25,21 @@ public sealed class ModelTest
         TestContext.WriteLine(byteString.ToBase64());
     }
 
-    readonly SystemTextJsonSerializerOptions o = new(SystemTextJsonSerializerOptions.Default)
+    readonly JsonSerializerOptions o = new(JsonSerializerOptions.Default)
     {
         AllowTrailingCommas = true,
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         WriteIndented = true,
     };
 
-    readonly SystemTextJsonSerializerOptions o_ValueTuple_I = new(SystemTextJsonSerializerOptions.Default)
+    readonly JsonSerializerOptions o_ValueTuple_I = new(JsonSerializerOptions.Default)
     {
         AllowTrailingCommas = true,
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         Converters = { new ValueTupleConverter() },
     };
 
-    readonly SystemTextJsonSerializerOptions o_ValueTuple = new(SystemTextJsonSerializerOptions.Default)
+    readonly JsonSerializerOptions o_ValueTuple = new(JsonSerializerOptions.Default)
     {
         AllowTrailingCommas = true,
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
@@ -42,7 +47,7 @@ public sealed class ModelTest
         Converters = { new ValueTupleConverter() },
     };
 
-    readonly SystemTextJsonSerializerOptions o_ValueTuple_CamelCase = new(SystemTextJsonSerializerOptions.Default)
+    readonly JsonSerializerOptions o_ValueTuple_CamelCase = new(JsonSerializerOptions.Default)
     {
         AllowTrailingCommas = true,
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
@@ -66,7 +71,7 @@ public sealed class ModelTest
 
     static KeyValuePair<string, (Type, JsonSerializerOptions)> Serialize(object? value, Type inputType, JsonSerializerOptions options)
     {
-        var json = SystemTextJsonSerializer.Serialize(value, inputType, options);
+        var json = JsonSerializer.Serialize(value, inputType, options);
         return new KeyValuePair<string, (Type, JsonSerializerOptions)>(json, (inputType, options));
     }
 
@@ -126,7 +131,7 @@ public sealed class ModelTest
                     bool equals = false;
                     try
                     {
-                        var obj = SystemTextJsonSerializer.Deserialize(item.Key, item.Value.Item1, item.Value.Item2);
+                        var obj = JsonSerializer.Deserialize(item.Key, item.Value.Item1, item.Value.Item2);
                         equals = tuple.Equals(obj);
                     }
                     catch (Exception ex)

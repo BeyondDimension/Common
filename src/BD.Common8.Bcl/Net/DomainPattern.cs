@@ -1,6 +1,7 @@
-// https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub.Configuration/DomainPattern.cs
-
 #if NETCOREAPP
+using System.Collections.Immutable;
+using System.Text.RegularExpressions;
+
 namespace System.Net;
 
 /// <summary>
@@ -35,7 +36,7 @@ public sealed class DomainPattern : IComparable<DomainPattern>
 
         var items = domainPattern.Split(GeneralSeparator, StringSplitOptions.RemoveEmptyEntries);
 
-        regexs = items.Select(s =>
+        regexs = [.. items.Select(s =>
         {
             var isRegex = s.StartsWith('/');
             if (isRegex)
@@ -47,7 +48,7 @@ public sealed class DomainPattern : IComparable<DomainPattern>
                 var regexPattern = Regex.Escape(s).Replace(@"\*", @"[^\.]*");
                 return new Regex($"^{regexPattern}", RegexOptions.IgnoreCase);
             }
-        }).ToImmutableArray();
+        })];
     }
 
     /// <summary>

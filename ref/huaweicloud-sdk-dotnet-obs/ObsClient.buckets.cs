@@ -12,6 +12,7 @@
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
 using OBS.Model;
+using System.Net;
 
 namespace OBS;
 

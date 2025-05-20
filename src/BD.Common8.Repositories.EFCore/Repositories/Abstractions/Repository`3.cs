@@ -1,3 +1,15 @@
+using BD.Common8.Columns;
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Models.Abstractions;
+using BD.Common8.Repositories.EFCore.Extensions;
+using BD.Common8.Repositories.Enums;
+using BD.Common8.Repositories.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+
 namespace BD.Common8.Repositories.EFCore.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository{TDbContext}"/>
@@ -120,7 +132,7 @@ public abstract class Repository<TDbContext, [DynamicallyAccessedMembers(IEntity
     public virtual async ValueTask<TEntity?> FindAsync(TPrimaryKey primaryKey, CancellationToken cancellationToken)
     {
         if (IRepository<TEntity, TPrimaryKey>.IsDefault(primaryKey)) return default;
-        return await Entity.FindAsync(keyValues: new object[] { primaryKey }, cancellationToken: CreateLinkedTokenSource(cancellationToken));
+        return await Entity.FindAsync(keyValues: [primaryKey], cancellationToken: CreateLinkedTokenSource(cancellationToken));
     }
 
     /// <inheritdoc/>

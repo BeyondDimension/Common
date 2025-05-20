@@ -1,3 +1,7 @@
+using BD.Common8.AspNetCore.Entities;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+
 namespace BD.Common8.AspNetCore.Services;
 
 /// <summary>

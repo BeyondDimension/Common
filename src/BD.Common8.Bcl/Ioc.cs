@@ -1,6 +1,9 @@
 #if !NETFRAMEWORK || (NETSTANDARD && NETSTANDARD2_0_OR_GREATER)
 // https://github.com/CommunityToolkit/dotnet/blob/v8.2.1/src/CommunityToolkit.Mvvm/DependencyInjection/Ioc.cs
 
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
+
 namespace System;
 
 /// <summary>

@@ -1,3 +1,7 @@
+using BD.Common8.Ipc.Models;
+using System.Net;
+using System.Net.Http.Client;
+
 namespace BD.Common8.Ipc.Helpers;
 
 /// <summary>

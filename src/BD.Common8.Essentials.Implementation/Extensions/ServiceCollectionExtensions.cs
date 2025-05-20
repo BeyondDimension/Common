@@ -1,3 +1,10 @@
+using BD.Common8.Essentials.Services;
+using BD.Common8.Essentials.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Extensions;
 
 public static partial class ServiceCollectionExtensions
@@ -26,11 +33,11 @@ public static partial class ServiceCollectionExtensions
         services.TryAddSingleton<IConnectivityPlatformService, ConnectivityPlatformServiceImpl>();
         services.TryAddSingleton<IDeviceInfoPlatformService, DeviceInfoPlatformServiceImpl>();
         //services.TryAddSingleton<IEmailPlatformService, EmailPlatformServiceImpl>();
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable CA1416 // 验证平台兼容性
-        services.AddSingleton<IPermissionsPlatformService, PermissionsPlatformServiceImpl>();
-#pragma warning restore CA1416 // 验证平台兼容性
-#pragma warning restore IDE0079 // 请删除不必要的忽略
+        //#pragma warning disable IDE0079 // 请删除不必要的忽略
+        //#pragma warning disable CA1416 // 验证平台兼容性
+        //        services.AddSingleton<IPermissionsPlatformService, PermissionsPlatformServiceImpl>();
+        //#pragma warning restore CA1416 // 验证平台兼容性
+        //#pragma warning restore IDE0079 // 请删除不必要的忽略
         services.TryAddSingleton<IPreferencesPlatformService, PreferencesPlatformServiceImpl>();
         services.TryAddSingleton<IFilePickerPlatformService, TFilePickerPlatformServiceImpl>();
         services.TryAddSingleton(s => s.GetRequiredService<IFilePickerPlatformService>().OpenFileDialogService);

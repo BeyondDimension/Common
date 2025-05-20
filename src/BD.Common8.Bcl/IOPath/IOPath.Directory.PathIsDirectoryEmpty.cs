@@ -1,3 +1,9 @@
+#if NETFRAMEWORK || NET7_0_OR_GREATER && WINDOWS
+using System.Runtime.InteropServices;
+#else
+using System.Runtime.CompilerServices;
+#endif
+
 namespace System;
 
 public static partial class IOPath

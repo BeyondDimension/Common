@@ -5,6 +5,10 @@
 // Assembly location: Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo.dll
 // XML documentation location: Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo.xml
 
+using System.CodeDom.Compiler;
+using System.Collections.ObjectModel;
+using System.Globalization;
+
 namespace Microsoft.International.Converters.PinYinConverter;
 
 /// <summary>封装了简体中文的读音和笔画等基本信息。</summary>

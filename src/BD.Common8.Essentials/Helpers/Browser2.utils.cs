@@ -1,3 +1,8 @@
+using BD.Common8.Essentials.Enums;
+using BD.Common8.Essentials.Models;
+using BD.Common8.Essentials.Services;
+using BD.Common8.Toast.Helpers;
+
 namespace BD.Common8.Essentials.Helpers;
 
 partial class Browser2
@@ -15,7 +20,7 @@ partial class Browser2
         StartedByProcess2 = 1,
 
         /// <summary>
-        /// 出现异常，已由 <see cref="OnError"/> 或 <see cref="Toast"/> 处理
+        /// 出现异常，已由 <see cref="OnError"/> 或 <see cref="ToastHelper"/> 处理
         /// </summary>
         Exception = -1,
 
@@ -51,7 +56,11 @@ partial class Browser2
             String2.IsEmailUrl(url) ||
             String2.IsFileUrl(url))
         {
+#if !(IOS || MACCATALYST)
             var r = IBrowserPlatformService.OpenCoreByProcess(url);
+#else
+            var r = false;
+#endif
             return r ? OpenResultCode.StartedByProcess2 : OpenResultCode.Exception;
         }
         else if (String2.IsHttpUrl(url, HttpsOnly))
@@ -68,7 +77,11 @@ partial class Browser2
             var browserPlatformService = IBrowserPlatformService.Instance;
             if (browserPlatformService == null)
             {
+#if !(IOS || MACCATALYST)
                 return IBrowserPlatformService.OpenCoreByProcess(uri.AbsoluteUri);
+#else
+                return false;
+#endif
             }
             else
             {
@@ -89,7 +102,11 @@ partial class Browser2
             var browserPlatformService = IBrowserPlatformService.Instance;
             if (browserPlatformService == null)
             {
+#if !(IOS || MACCATALYST)
                 return IBrowserPlatformService.OpenCoreByProcess(uri);
+#else
+                return false;
+#endif
             }
             else
             {
@@ -110,7 +127,12 @@ partial class Browser2
             var browserPlatformService = IBrowserPlatformService.Instance;
             if (browserPlatformService == null)
             {
+#if !(IOS || MACCATALYST)
                 return IBrowserPlatformService.OpenCoreByProcess(uri.AbsoluteUri);
+#else
+                return false;
+#endif
+
             }
             else
             {
@@ -131,7 +153,11 @@ partial class Browser2
             var browserPlatformService = IBrowserPlatformService.Instance;
             if (browserPlatformService == null)
             {
+#if !(IOS || MACCATALYST)
                 return IBrowserPlatformService.OpenCoreByProcess(uri);
+#else
+                return false;
+#endif
             }
             else
             {

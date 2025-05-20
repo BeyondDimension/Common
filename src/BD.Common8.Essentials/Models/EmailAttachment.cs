@@ -1,3 +1,6 @@
+using BD.Common8.Essentials.Models.Abstractions;
+using System.Text.Json.Serialization;
+
 namespace BD.Common8.Essentials.Models;
 
 /// <summary>
@@ -8,7 +11,7 @@ public sealed class EmailAttachment : FileBase, IEmailAttachment
     /// <summary>
     /// 使用指定的完整路径初始化 <see cref="EmailAttachment"/> 类的新实例
     /// </summary>
-    [SystemTextJsonConstructor]
+    [JsonConstructor]
     public EmailAttachment(string fullPath) : base(fullPath)
     {
     }

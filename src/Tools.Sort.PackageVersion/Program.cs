@@ -1,3 +1,6 @@
+using System.Extensions;
+using System.Text;
+using System.Xml.Linq;
 using Tools.Build.Commands;
 
 switch (args.FirstOrDefault())

@@ -1,8 +1,10 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using Microsoft.Extensions.DependencyInjection;
+
 namespace BD.Common8.Http.ClientFactory.Models.Abstractions;
 
 /// <summary>
-/// A builder for configuring named <see cref="HttpClient"/> instances returned by <see cref="IClientHttpClientFactory"/>.
+/// A builder for configuring named <see cref="HttpClient"/> instances returned by <see cref="global::System.Net.Http.Client.IClientHttpClientFactory"/>.
 /// </summary>
 public interface IFusilladeHttpClientBuilder
 {

@@ -1,3 +1,10 @@
+using BD.Common8.Http.ClientFactory.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using System.Net;
+using System.Net.Http.Client;
+
 namespace BD.Common8.Http.ClientFactory.Services;
 
 #if !NETFRAMEWORK && !PROJ_SETUP

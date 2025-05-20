@@ -11,11 +11,8 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Xml;
-using System.IO;
 using OBS.Model;
 using OBS.Internal.Log;
 using OBS.Internal.Negotiation;
@@ -106,9 +103,9 @@ namespace OBS.Internal
             }
         }
 
-        protected void TransContent(HttpRequest httpRequest, TransContentDelegate transContentDelegate, bool md5)
+        protected static void TransContent(HttpRequest httpRequest, TransContentDelegate transContentDelegate, bool md5)
         {
-            StringWriter stringWriter = new StringWriter();
+            StringWriter stringWriter = new();
             using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings { Encoding = Encoding.UTF8, OmitXmlDeclaration = true }))
             {
                 transContentDelegate(xmlWriter);
@@ -122,9 +119,9 @@ namespace OBS.Internal
             CommonUtil.AddHeader(httpRequest, Constants.CommonHeaders.ContentLength, httpRequest.Content.Length.ToString());
         }
 
-        protected void TransContent(HttpRequest httpRequest, TransContentDelegate transContentDelegate)
+        protected static void TransContent(HttpRequest httpRequest, TransContentDelegate transContentDelegate)
         {
-            TransContent(httpRequest, transContentDelegate, false);
+            V2Convertor.TransContent(httpRequest, transContentDelegate, false);
         }
 
         protected void TransSseCHeader(HttpRequest httpRequest, SseCHeader ssec)
@@ -166,7 +163,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(ListBucketsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
             };
@@ -179,7 +176,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(CreateBucketRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.PUT,
                 BucketName = request.BucketName,
@@ -230,7 +227,7 @@ namespace OBS.Internal
 
             if (!string.IsNullOrEmpty(request.Location))
             {
-                TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+                V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
                 {
                     xmlWriter.WriteStartElement("CreateBucketConfiguration");
                     xmlWriter.WriteElementString(BucketLocationTag, request.Location);
@@ -243,7 +240,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(HeadBucketRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.HEAD,
                 BucketName = request.BucketName,
@@ -253,7 +250,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketMetadataRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.HEAD,
                 BucketName = request.BucketName,
@@ -284,7 +281,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketStoragePolicyRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.PUT,
                 BucketName = request.BucketName,
@@ -294,7 +291,7 @@ namespace OBS.Internal
 
             if (request.StorageClass.HasValue)
             {
-                TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+                V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
                 {
                     TransSetBucketStoragePolicyContent(xmlWriter, request.StorageClass.Value);
                 });
@@ -312,7 +309,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketStoragePolicyRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
                 BucketName = request.BucketName,
@@ -325,7 +322,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteBucketRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.DELETE,
                 BucketName = request.BucketName,
@@ -336,7 +333,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketLocationRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
                 BucketName = request.BucketName,
@@ -348,7 +345,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketStorageInfoRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
                 BucketName = request.BucketName,
@@ -361,7 +358,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(ListObjectsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
                 BucketName = request.BucketName,
@@ -390,7 +387,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(ListVersionsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
                 BucketName = request.BucketName,
@@ -424,14 +421,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketQuotaRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.PUT,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Quota), null);
             httpRequest.BucketName = request.BucketName;
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("Quota");
                 xmlWriter.WriteElementString("StorageQuota", request.StorageQuota.ToString());
@@ -443,7 +440,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketQuotaRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
             };
@@ -452,7 +449,7 @@ namespace OBS.Internal
             return httpRequest;
         }
 
-        private void TransGrants(XmlWriter xmlWriter, IList<Grant> grants, string startElementName)
+        private static void TransGrants(XmlWriter xmlWriter, IList<Grant> grants, string startElementName)
         {
             xmlWriter.WriteStartElement(startElementName);
             foreach (Grant grant in grants)
@@ -491,7 +488,7 @@ namespace OBS.Internal
 
         protected virtual void TransAccessControlList(HttpRequest httpRequest, AccessControlList acl, bool isBucket)
         {
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("AccessControlPolicy");
                 if (acl.Owner != null && !string.IsNullOrEmpty(acl.Owner.Id))
@@ -506,7 +503,7 @@ namespace OBS.Internal
                 }
                 if (acl.Grants.Count > 0)
                 {
-                    TransGrants(xmlWriter, acl.Grants, "AccessControlList");
+                    V2Convertor.TransGrants(xmlWriter, acl.Grants, "AccessControlList");
                 }
                 xmlWriter.WriteEndElement();
             });
@@ -514,7 +511,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketAclRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.PUT,
             };
@@ -533,7 +530,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketAclRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
             };
@@ -544,7 +541,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(ListMultipartUploadsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
             };
@@ -578,7 +575,7 @@ namespace OBS.Internal
 
         protected virtual void TransLoggingConfiguration(HttpRequest httpRequest, LoggingConfiguration configuration)
         {
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("BucketLoggingStatus");
 
@@ -597,7 +594,7 @@ namespace OBS.Internal
 
                     if (configuration.Grants.Count > 0)
                     {
-                        TransGrants(xmlWriter, configuration.Grants, "TargetGrants");
+                        V2Convertor.TransGrants(xmlWriter, configuration.Grants, "TargetGrants");
                     }
 
                     xmlWriter.WriteEndElement();
@@ -608,7 +605,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketLoggingRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
@@ -621,7 +618,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketLoggingRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -633,7 +630,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketPolicyRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
@@ -657,7 +654,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketPolicyRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -668,7 +665,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteBucketPolicyRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.DELETE,
@@ -679,14 +676,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketCorsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Cors), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("CORSConfiguration");
                 if (request.Configuration != null)
@@ -746,7 +743,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketCorsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -757,7 +754,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteBucketCorsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.DELETE,
@@ -768,14 +765,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketLifecycleRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Lifecyle), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("LifecycleConfiguration");
 
@@ -868,7 +865,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketLifecycleRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -879,7 +876,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteBucketLifecycleRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.DELETE,
@@ -890,14 +887,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketWebsiteRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Website), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("WebsiteConfiguration");
 
@@ -1012,7 +1009,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketWebsiteRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -1023,7 +1020,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteBucketWebsiteRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.DELETE,
@@ -1034,14 +1031,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketVersioningRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Versioning), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("VersioningConfiguration");
                 if (request.Configuration != null && request.Configuration.Status.HasValue)
@@ -1056,7 +1053,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketVersioningRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -1067,14 +1064,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketTaggingRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Tagging), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("Tagging");
 
@@ -1102,7 +1099,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketTaggingRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -1113,7 +1110,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteBucketTaggingRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.DELETE,
@@ -1150,14 +1147,14 @@ namespace OBS.Internal
         public HttpRequest Trans(SetBucketNotificationRequest request)
         {
 
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.PUT,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Notification), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {   
                 xmlWriter.WriteStartElement("NotificationConfiguration");
                 if (request.Configuration != null)
@@ -1228,7 +1225,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketNotificationRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.GET,
@@ -1239,7 +1236,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(AbortMultipartUploadRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 ObjectKey = request.ObjectKey,
@@ -1251,7 +1248,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteObjectRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 ObjectKey = request.ObjectKey,
@@ -1266,14 +1263,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteObjectsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 Method = HttpVerb.POST,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Delete), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("Delete");
                 if (request.Quiet.HasValue)
@@ -1321,7 +1318,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(RestoreObjectRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 ObjectKey = request.ObjectKey,
@@ -1334,7 +1331,7 @@ namespace OBS.Internal
                 httpRequest.Params.Add(Constants.ObsRequestParams.VersionId, request.VersionId);
             }
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("RestoreRequest");
                 xmlWriter.WriteElementString("Days", request.Days.ToString());
@@ -1349,7 +1346,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(ListPartsRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 ObjectKey = request.ObjectKey,
@@ -1371,7 +1368,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(CompleteMultipartUploadRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 ObjectKey = request.ObjectKey,
@@ -1384,11 +1381,7 @@ namespace OBS.Internal
 
             if (temp == null)
             {
-                temp = new List<PartETag>();
-                foreach (PartETag part in request.PartETags)
-                {
-                    temp.Add(part);
-                }
+                temp = [.. request.PartETags];
             }
 
             temp.Sort(delegate (PartETag part1, PartETag part2)
@@ -1396,7 +1389,7 @@ namespace OBS.Internal
                 return part1.PartNumber.CompareTo(part2.PartNumber);
             });
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("CompleteMultipartUpload");
                 foreach (PartETag part in temp)
@@ -1417,7 +1410,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetObjectAclRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 ObjectKey = request.ObjectKey,
@@ -1443,7 +1436,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetObjectAclRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 BucketName = request.BucketName,
                 ObjectKey = request.ObjectKey,
@@ -1519,8 +1512,7 @@ namespace OBS.Internal
 
             if (request.SseHeader != null)
             {
-                SseCHeader? ssec = request.SseHeader as SseCHeader;
-                if (ssec != null)
+                if (request.SseHeader is SseCHeader ssec)
                 {
                     CommonUtil.AddHeader(httpRequest, iheaders.SseCHeader(), TransSseCAlgorithmEnum(ssec.Algorithm));
                     if (ssec.Key != null)
@@ -1536,8 +1528,7 @@ namespace OBS.Internal
                 }
                 else
                 {
-                    SseKmsHeader? sseKms = request.SseHeader as SseKmsHeader;
-                    if (sseKms != null)
+                    if (request.SseHeader is SseKmsHeader sseKms)
                     {
                         CommonUtil.AddHeader(httpRequest, iheaders.SseKmsHeader(), TransSseKmsAlgorithm(sseKms.Algorithm));
                         if (!string.IsNullOrEmpty(sseKms.Key))
@@ -1552,7 +1543,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(PutObjectRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest();
+            HttpRequest httpRequest = new();
 
             TransPutObjectBasicRequest(request, httpRequest);
 
@@ -1561,10 +1552,10 @@ namespace OBS.Internal
 
             if (string.IsNullOrEmpty(request.ContentType))
             {
-                string suffix = request.ObjectKey.Substring(request.ObjectKey.LastIndexOf(".") + 1);
-                if (Constants.MimeTypes.ContainsKey(suffix))
+                string suffix = request.ObjectKey[(request.ObjectKey.LastIndexOf(".") + 1)..];
+                if (Constants.MimeTypes.TryGetValue(suffix, out string? value))
                 {
-                    request.ContentType = Constants.MimeTypes[suffix];
+                    request.ContentType = value;
                 }
             }
 
@@ -1582,10 +1573,10 @@ namespace OBS.Internal
             {
                 if (string.IsNullOrEmpty(request.ContentType))
                 {
-                    string suffix = request.FilePath.Substring(request.FilePath.LastIndexOf(".") + 1);
-                    if (Constants.MimeTypes.ContainsKey(suffix))
+                    string suffix = request.FilePath[(request.FilePath.LastIndexOf(".") + 1)..];
+                    if (Constants.MimeTypes.TryGetValue(suffix, out string? value))
                     {
-                        request.ContentType = Constants.MimeTypes[suffix];
+                        request.ContentType = value;
                     }
                 }
 
@@ -1611,7 +1602,7 @@ namespace OBS.Internal
 
             if(request.UploadProgress != null && httpRequest.Content != null)
             {
-                TransferStream stream = new TransferStream(httpRequest.Content);
+                TransferStream stream = new(httpRequest.Content);
                 if (contentLength < 0)
                 {
                     try
@@ -1672,7 +1663,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(CopyObjectRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest();
+            HttpRequest httpRequest = new();
 
             TransPutObjectBasicRequest(request, httpRequest);
 
@@ -1726,7 +1717,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(InitiateMultipartUploadRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest();
+            HttpRequest httpRequest = new();
 
             TransPutObjectBasicRequest(request, httpRequest);
 
@@ -1735,10 +1726,10 @@ namespace OBS.Internal
 
             if (string.IsNullOrEmpty(request.ContentType))
             {
-                string suffix = request.ObjectKey.Substring(request.ObjectKey.LastIndexOf(".") + 1);
-                if (Constants.MimeTypes.ContainsKey(suffix))
+                string suffix = request.ObjectKey[(request.ObjectKey.LastIndexOf(".") + 1)..];
+                if (Constants.MimeTypes.TryGetValue(suffix, out string? value))
                 {
-                    request.ContentType = Constants.MimeTypes[suffix];
+                    request.ContentType = value;
                 }
             }
 
@@ -1764,7 +1755,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(CopyPartRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.PUT,
                 BucketName = request.BucketName,
@@ -1797,7 +1788,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(UploadPartRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.PUT,
                 AutoClose = request.AutoClose,
@@ -1844,7 +1835,7 @@ namespace OBS.Internal
 
             if (request.UploadProgress != null && httpRequest.Content != null)
             {
-                TransferStream stream = new TransferStream(httpRequest.Content);
+                TransferStream stream = new(httpRequest.Content);
                 if (contentLength < 0)
                 {
                     try
@@ -1879,14 +1870,14 @@ namespace OBS.Internal
 
         public HttpRequest Trans(SetBucketReplicationRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.PUT,
                 BucketName = request.BucketName,
             };
             httpRequest.Params.Add(EnumAdaptor.GetStringValue(SubResourceEnum.Replication), null);
 
-            TransContent(httpRequest, delegate (XmlWriter xmlWriter)
+            V2Convertor.TransContent(httpRequest, delegate (XmlWriter xmlWriter)
             {
                 xmlWriter.WriteStartElement("ReplicationConfiguration");
                 if(request.Configuration != null)
@@ -1935,7 +1926,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetBucketReplicationRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.GET,
                 BucketName = request.BucketName,
@@ -1946,7 +1937,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(DeleteBucketReplicationRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.DELETE,
                 BucketName = request.BucketName,
@@ -1957,7 +1948,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetObjectMetadataRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.HEAD,
                 BucketName = request.BucketName,
@@ -2043,7 +2034,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(GetApiVersionRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.HEAD,
                 BucketName = request.BucketName,
@@ -2054,7 +2045,7 @@ namespace OBS.Internal
 
         public HttpRequest Trans(HeadObjectRequest request)
         {
-            HttpRequest httpRequest = new HttpRequest
+            HttpRequest httpRequest = new()
             {
                 Method = HttpVerb.HEAD,
                 BucketName = request.BucketName,

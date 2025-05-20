@@ -1,0 +1,112 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="ARM64EC" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/1.Root/">
+    <File Path=".github/ISSUE_TEMPLATE/bug-report.en.md" />
+    <File Path=".github/ISSUE_TEMPLATE/bug-report.md" />
+    <File Path=".github/ISSUE_TEMPLATE/question.en.md" />
+    <File Path=".github/ISSUE_TEMPLATE/question.md" />
+    <File Path=".github/workflows/CI.yml" />
+    <File Path=".gitignore" />
+    <File Path="crowdin.yml" />
+    <File Path="README.md" />
+    <File Path="src/.editorconfig" />
+    <File Path="src/Directory.Build.props" />
+    <File Path="src/Directory.Build.targets" />
+    <File Path="src/Directory.Packages.props" />
+    <File Path="src/GeneratePackage.props" />
+    <File Path="src/SharedProject/BD.Common8.Bcl.Compat.props" />
+    <File Path="src/SharedProject/ChnCharInfo.props" />
+    <File Path="src/SharedProject/SourceGenerator.props" />
+    <File Path="src/Version.props" />
+  </Folder>
+  <Folder Name="/2.Document/">
+    <File Path="doc/Code-Style.md" />
+    <File Path="doc/Compression-And-Packaging.md" />
+    <File Path="doc/Copywriting-Guide.md" />
+    <File Path="doc/CSharp.md" />
+    <File Path="doc/Entity-Framework-Core.md" />
+    <File Path="doc/Git-Commit-Message-Standard.md" />
+    <File Path="doc/Redis.md" />
+    <File Path="doc/Serializable-And-Deserialize.md" />
+  </Folder>
+  <Folder Name="/2.Document/Html/">
+    <File Path="src/WebRoot/aes.html" />
+    <File Path="src/WebRoot/rsa.html" />
+  </Folder>
+  <Folder Name="/3.SharedLibrary/">
+    <Project Path="src/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Identity.BackManage.csproj" />
+    <Project Path="src/BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Identity.csproj" />
+    <Project Path="src/BD.Common8.AspNetCore/BD.Common8.AspNetCore.csproj" />
+    <Project Path="src/BD.Common8.Bcl.Compat/BD.Common8.Bcl.Compat.csproj" />
+    <Project Path="src/BD.Common8.Bcl/BD.Common8.Bcl.csproj" />
+    <Project Path="src/BD.Common8.Crawler/BD.Common8.Crawler.csproj" />
+    <Project Path="src/BD.Common8.Essentials.Implementation.Avalonia/BD.Common8.Essentials.Implementation.Avalonia.csproj" />
+    <Project Path="src/BD.Common8.Essentials.Implementation/BD.Common8.Essentials.Implementation.csproj" />
+    <Project Path="src/BD.Common8.Essentials/BD.Common8.Essentials.csproj" />
+    <Project Path="src/BD.Common8.FeishuOApi.Sdk/BD.Common8.FeishuOApi.Sdk.csproj" />
+    <Project Path="src/BD.Common8.Http.ClientFactory.Server/BD.Common8.Http.ClientFactory.Server.csproj" />
+    <Project Path="src/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.csproj" />
+    <Project Path="src/BD.Common8.HuaweiCloud.SDK.Obs/BD.Common8.HuaweiCloud.SDK.Obs.csproj" />
+    <Project Path="src/BD.Common8.Ipc.Client/BD.Common8.Ipc.Client.csproj" />
+    <Project Path="src/BD.Common8.Ipc.Server/BD.Common8.Ipc.Server.csproj" />
+    <Project Path="src/BD.Common8.Ipc/BD.Common8.Ipc.csproj" />
+    <Project Path="src/BD.Common8.OpenFolderDialog/BD.Common8.OpenFolderDialog.csproj" />
+    <Project Path="src/BD.Common8.Orm.EFCore/BD.Common8.Orm.EFCore.csproj" />
+    <Project Path="src/BD.Common8.Pinyin.ChnCharInfo/BD.Common8.Pinyin.ChnCharInfo.csproj" />
+    <Project Path="src/BD.Common8.Pinyin.CoreFoundation/BD.Common8.Pinyin.CoreFoundation.csproj" />
+    <Project Path="src/BD.Common8.Pinyin/BD.Common8.Pinyin.csproj" />
+    <Project Path="src/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.csproj" />
+    <Project Path="src/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.csproj" />
+    <Project Path="src/BD.Common8.Primitives.District/BD.Common8.Primitives.District.csproj" />
+    <Project Path="src/BD.Common8.Primitives.Essentials/BD.Common8.Primitives.Essentials.csproj" />
+    <Project Path="src/BD.Common8.Primitives.PersonalData.BirthDate/BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
+    <Project Path="src/BD.Common8.Primitives.PersonalData.PhoneNumber/BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+    <Project Path="src/BD.Common8.Primitives.PersonalData.UserName/BD.Common8.Primitives.PersonalData.UserName.csproj" />
+    <Project Path="src/BD.Common8.Primitives.Toast/BD.Common8.Primitives.Toast.csproj" />
+    <Project Path="src/BD.Common8.Primitives/BD.Common8.Primitives.csproj" />
+    <Project Path="src/BD.Common8.Repositories.EFCore/BD.Common8.Repositories.EFCore.csproj" />
+    <Project Path="src/BD.Common8.Repositories.SQLitePCL/BD.Common8.Repositories.SQLitePCL.csproj" />
+    <Project Path="src/BD.Common8.Repositories/BD.Common8.Repositories.csproj" />
+    <Project Path="src/BD.Common8.Security/BD.Common8.Security.csproj" />
+    <Project Path="src/BD.Common8.Settings5/BD.Common8.Settings5.csproj" />
+    <Project Path="src/BD.Common8.SmsSender/BD.Common8.SmsSender.csproj" />
+    <Project Path="src/BD.Common8.Toast/BD.Common8.Toast.csproj" />
+    <Project Path="src/BD.Common8.UserInput.ModelValidator/BD.Common8.UserInput.ModelValidator.csproj" />
+  </Folder>
+  <Folder Name="/4.SourceGenerator/">
+    <Project Path="src/BD.Common8.SourceGenerator.Bcl.Test/BD.Common8.SourceGenerator.Bcl.Test.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Ipc.Client.Test/BD.Common8.SourceGenerator.Ipc.Client.Test.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Ipc.Client/BD.Common8.SourceGenerator.Ipc.Client.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Ipc.Server.Test/BD.Common8.SourceGenerator.Ipc.Server.Test.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Ipc.Server/BD.Common8.SourceGenerator.Ipc.Server.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Repositories.Test/BD.Common8.SourceGenerator.Repositories.Test.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Repositories/BD.Common8.SourceGenerator.Repositories.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.ResX.Test/BD.Common8.SourceGenerator.ResX.Test.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.csproj" />
+    <Project Path="src/BD.Common8.SourceGenerator.Shared/BD.Common8.SourceGenerator.Shared.csproj" />
+  </Folder>
+  <Folder Name="/5.Tools/">
+    <Project Path="src/Tools.Build/Tools.Build.csproj" />
+    <Project Path="src/Tools.DocFX/Tools.DocFX.csproj" />
+    <Project Path="src/Tools.Downloader/Tools.Downloader.csproj" />
+    <Project Path="src/Tools.Sort.PackageVersion/Tools.Sort.PackageVersion.csproj" />
+  </Folder>
+  <Folder Name="/6.Sample/">
+    <Project Path="src/AssemblyLoad.Sample.EntryPoint/AssemblyLoad.Sample.EntryPoint.csproj" />
+    <Project Path="src/AssemblyLoad.Sample.Library/AssemblyLoad.Sample.Library.csproj" />
+    <Project Path="src/Ipc.Client.Sample.Experimental/Ipc.Client.Sample.Experimental.csproj" />
+    <Project Path="src/Ipc.Server.Sample.Experimental/Ipc.Server.Sample.Experimental.csproj" />
+    <Project Path="src/NativeHost.Sample.CLR/NativeHost.Sample.CLR.csproj" />
+    <Project Path="src/NativeHost.Sample.Cpp/NativeHost.Sample.Cpp.vcxproj" Id="351b4190-6d7a-47a6-821a-f2896b152e73" />
+  </Folder>
+  <Folder Name="/7.UnitTest/">
+    <Project Path="src/BD.Common8.Benchmark/BD.Common8.Benchmark.csproj" />
+    <Project Path="src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj" />
+  </Folder>
+</Solution>

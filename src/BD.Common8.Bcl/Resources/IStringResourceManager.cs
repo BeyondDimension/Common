@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace System.Resources;
 
 public interface IStringResourceManager

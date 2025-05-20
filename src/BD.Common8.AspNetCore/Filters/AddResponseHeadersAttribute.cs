@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
+
 namespace BD.Common8.AspNetCore.Filters;
 
 /// <summary>

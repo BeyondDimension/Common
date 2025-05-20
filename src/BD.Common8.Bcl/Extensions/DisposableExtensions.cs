@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System.Extensions;
 
 public static partial class DisposableExtensions

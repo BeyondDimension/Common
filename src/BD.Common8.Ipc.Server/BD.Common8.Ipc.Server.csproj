@@ -8,8 +8,14 @@
 		<Description>进程间通信 (IPC) 服务端库</Description>
 	</PropertyGroup>
 
-	<!--<ItemGroup>
-		<Protobuf Include="Protos\ipc.proto" Access="Internal" GrpcServices="Server" />
-	</ItemGroup>-->
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+	</ItemGroup>
 
 </Project>

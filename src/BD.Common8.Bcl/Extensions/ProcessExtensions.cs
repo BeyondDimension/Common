@@ -1,3 +1,9 @@
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+#if NET5_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+
 namespace System.Extensions;
 
 /// <summary>

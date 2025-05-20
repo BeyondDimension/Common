@@ -1,3 +1,11 @@
+using BD.Common8.Ipc.Attributes;
+using BD.Common8.Ipc.Enums;
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Ipc.Enums;
+using BD.Common8.SourceGenerator.Ipc.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Ipc.Templates;
 
 /// <summary>
@@ -28,8 +36,18 @@ public sealed class IpcServerTemplate : IpcTemplateBase
         }
     }
 
+    static void WriteUsings(Stream stream)
+    {
+        stream.Write(
+"""
+using global::Microsoft.AspNetCore.Builder;
+
+
+"""u8);
+    }
+
     /// <inheritdoc/>
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
         WriteFileHeader(stream);
         stream.Write(
@@ -39,31 +57,38 @@ public sealed class IpcServerTemplate : IpcTemplateBase
 
 """u8);
         stream.WriteNewLine();
+        WriteUsings(stream);
         WriteNamespace(stream, m.Namespace, isFileNamespace: false);
         if (!string.IsNullOrWhiteSpace(m.Namespace))
         {
             stream.WriteCurlyBracketLeft();
             stream.WriteNewLine();
         }
+        // https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/minimal-apis
         stream.WriteFormat(
 """
-partial class {0} : IEndpointRouteMapGroup
+partial class {0} : global::BD.Common8.Ipc.Services.IEndpointRouteMapGroup
 """u8, m.TypeName);
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
         stream.Write(
 """
-    /// <inheritdoc cref="IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static void IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder endpoints)
+    /// <inheritdoc cref="global::BD.Common8.Ipc.Services.IEndpointRouteMapGroup.OnMapGroup(IEndpointRouteBuilder)"/>
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+    static void global::BD.Common8.Ipc.Services.IEndpointRouteMapGroup.OnMapGroup(global::Microsoft.AspNetCore.Routing.IEndpointRouteBuilder endpoints)
     {
 
 """u8);
-        stream.WriteFormat(
+        stream.Write(
 """
-        var builder = endpoints.MapGroup("/{0}").RequireAuthorization();
-"""u8, m.Attribute.ServiceType);
+        var builder = endpoints.MapGroup("
+"""u8);
+        WriteServiceTypeAndMethodName(stream, m.Attribute.ServiceType, null!, isMap: true);
+        stream.Write(
+"""
+").RequireAuthorization();
+"""u8);
         stream.WriteNewLine();
 
         var methodDatas = m.Methods.ToDictionary(static k => k, method =>
@@ -125,14 +150,14 @@ partial class {0} : IEndpointRouteMapGroup
             {
                 stream.Write(
 """
-", (Delegate)(static (HttpContext ctx
+", (Delegate)(static (global::Microsoft.AspNetCore.Http.HttpContext ctx
 """u8);
             }
             else
             {
                 stream.Write(
 """
-", (Delegate)(static async (HttpContext ctx
+", (Delegate)(static async (global::Microsoft.AspNetCore.Http.HttpContext ctx
 """u8);
             }
 
@@ -150,7 +175,7 @@ partial class {0} : IEndpointRouteMapGroup
                             }
                             stream.WriteFormat(
 """
-, [FromRoute] {0} {1}
+, [global::Microsoft.AspNetCore.Mvc.FromRoute] {0} {1}
 """u8, paraType, paraName);
                         }
                     }
@@ -165,14 +190,14 @@ partial class {0} : IEndpointRouteMapGroup
                         {
                             stream.WriteFormat(
 """
-, [FromBody] {0} {1}
+, [global::Microsoft.AspNetCore.Mvc.FromBody] {0} {1}
 """u8, paraType, paraName);
                         }
                         else
                         {
                             stream.WriteFormat(
 """
-, [FromBody] {0}? {1}
+, [global::Microsoft.AspNetCore.Mvc.FromBody] {0}? {1}
 """u8, paraType, paraName);
                         }
                     }
@@ -181,7 +206,7 @@ partial class {0} : IEndpointRouteMapGroup
                     {
                         stream.Write(
 """
-, [FromBody] 
+, [global::Microsoft.AspNetCore.Mvc.FromBody] 
 """u8);
                         WriteTuple(stream, methodParas);
                         stream.Write(
@@ -196,7 +221,7 @@ partial class {0} : IEndpointRouteMapGroup
             {
                 stream.WriteFormat(
 """
-) => Ioc.Get<{0}>().{1}(
+) => global::System.Ioc.Get<{0}>().{1}(
 """u8, m.Attribute.ServiceType, method.Name);
             }
             else
@@ -211,7 +236,7 @@ partial class {0} : IEndpointRouteMapGroup
                 {
                     stream.Write(
 """
-            ApiRspImpl result;
+            global::BD.Common8.Models.ApiRspImpl result;
 
 """u8);
                 }
@@ -219,7 +244,7 @@ partial class {0} : IEndpointRouteMapGroup
                 {
                     stream.WriteFormat(
 """
-            ApiRspImpl<{0}> result;
+            global::BD.Common8.Models.ApiRspImpl<{0}> result;
 
 """u8, returnType);
                 }
@@ -231,7 +256,7 @@ partial class {0} : IEndpointRouteMapGroup
 """u8);
                 stream.WriteFormat(
 """
-                result = await Ioc.Get<{0}>().{1}(
+                result = await global::System.Ioc.Get<{0}>().{1}(
 """u8, m.Attribute.ServiceType, method.Name);
             }
 
@@ -395,15 +420,16 @@ ctx.RequestAborted)));
         //        stream.WriteFormat(
         //"""
         //[Authorize]
-        //file sealed class {0} : Hub
+        //file sealed class {0} : global::Microsoft.AspNetCore.SignalR.Hub
         //"""u8, hubTypeName);
         //        stream.WriteFormat(
         //"""
-        //sealed partial class {0} : Hub
+        //sealed partial class {0} : global::Microsoft.AspNetCore.SignalR.Hub
         //"""u8, hubTypeName);
+        // https://learn.microsoft.com/zh-cn/aspnet/core/signalr/hubs
         stream.WriteFormat(
 """
-partial class {0} : Hub
+partial class {0} : global::Microsoft.AspNetCore.SignalR.Hub
 """u8, hubTypeName);
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
@@ -417,15 +443,16 @@ partial class {0} : Hub
                 var returnType,
                 var isApiRspImplByReturnType,
                 var isAsyncEnumerableByReturnType) = methodData.Value;
-            var hubMethodName = $"{m.Attribute.ServiceType}_{method.Name}";
 
             if (isAsyncEnumerableByReturnType)
             {
                 stream.WriteFormat(
 """
-    public IAsyncEnumerable<{0}> {1}(
-"""u8, returnType.GenericT, hubMethodName);
-                WriteParameters();
+    public global::System.Collections.Generic.IAsyncEnumerable<{0}> 
+"""u8, returnType.GenericT);
+                WriteServiceTypeAndMethodName(stream, m.Attribute.ServiceType, method, separatorIs_: true, isString: false);
+                stream.Write("("u8);
+                WriteParameters(m);
                 stream.Write(
 """
 )
@@ -433,11 +460,13 @@ partial class {0} : Hub
             }
             else if (isApiRspImplByReturnType)
             {
-                stream.WriteFormat(
+                stream.Write(
 """
-    public async Task<ApiRspImpl> {0}(
-"""u8, hubMethodName);
-                WriteParameters();
+    public async Task<global::BD.Common8.Models.ApiRspImpl> 
+"""u8);
+                WriteServiceTypeAndMethodName(stream, m.Attribute.ServiceType, method, separatorIs_: true, isString: false);
+                stream.Write("("u8);
+                WriteParameters(m);
                 stream.Write(
 """
 )
@@ -447,17 +476,19 @@ partial class {0} : Hub
             {
                 stream.WriteFormat(
 """
-    public async Task<ApiRspImpl<{0}>> {1}(
-"""u8, returnType, hubMethodName);
+    public async Task<global::BD.Common8.Models.ApiRspImpl<{0}>> 
+"""u8, returnType);
+                WriteServiceTypeAndMethodName(stream, m.Attribute.ServiceType, method, separatorIs_: true, isString: false);
+                stream.Write("("u8);
 
-                WriteParameters();
+                WriteParameters(m);
                 stream.Write(
 """
 )
 """u8);
             }
 
-            void WriteParameters()
+            void WriteParameters(in SourceModel m)
             {
                 for (int i = 0; i < methodParas.Length; i++)
                 {
@@ -488,13 +519,13 @@ partial class {0} : Hub
 """u8);
             stream.WriteNewLine();
 
-            void WriteMethodBody()
+            void WriteMethodBody(in SourceModel m)
             {
                 if (isAsyncEnumerableByReturnType)
                 {
                     stream.WriteFormat(
 """
-        var result = Ioc.Get<{0}>().
+        var result = global::System.Ioc.Get<{0}>().
 """u8, m.Attribute.ServiceType);
                 }
                 else
@@ -503,7 +534,7 @@ partial class {0} : Hub
                     {
                         stream.Write(
 """
-        ApiRspImpl result;
+        global::BD.Common8.Models.ApiRspImpl result;
 
 """u8);
                     }
@@ -511,7 +542,7 @@ partial class {0} : Hub
                     {
                         stream.WriteFormat(
 """
-        ApiRspImpl<{0}> result;
+        global::BD.Common8.Models.ApiRspImpl<{0}> result;
 
 """u8, returnType);
                     }
@@ -523,7 +554,7 @@ partial class {0} : Hub
 """u8);
                     stream.WriteFormat(
 """
-            result = await Ioc.Get<{0}>().
+            result = await global::System.Ioc.Get<{0}>().
 """u8, m.Attribute.ServiceType);
                 }
 
@@ -563,7 +594,7 @@ partial class {0} : Hub
                 {
                     stream.Write(
 """
-this.RequestAborted());
+global::BD.Common8.Ipc.Extensions.HubExtensions.RequestAborted(this));
         return result!;
 
 """u8);
@@ -572,7 +603,7 @@ this.RequestAborted());
                 {
                     stream.Write(
 """
-this.RequestAborted());
+global::BD.Common8.Ipc.Extensions.HubExtensions.RequestAborted(this));
         }
         catch (Exception ex)
         {
@@ -584,7 +615,7 @@ this.RequestAborted());
                 }
             }
 
-            WriteMethodBody();
+            WriteMethodBody(m);
 
             stream.Write(
 """

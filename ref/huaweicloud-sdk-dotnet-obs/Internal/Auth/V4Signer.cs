@@ -11,8 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
 using System.Text;
 using OBS.Internal.Log;
 
@@ -21,7 +19,7 @@ namespace OBS.Internal.Auth
     internal class V4Signer : Signer
     {
 
-        private static V4Signer instance = new V4Signer();
+        private static readonly V4Signer instance = new();
         private const string ContentSha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
         private const string UnsignedPayload = "UNSIGNED-PAYLOAD";
         private const string RegionKey = "region";
@@ -71,10 +69,10 @@ namespace OBS.Internal.Auth
             {
                 longDate = request.Headers[iheaders.DateHeader()];
             }
-            else if (request.Headers.ContainsKey(Constants.CommonHeaders.Date))
+            else if (request.Headers.TryGetValue(Constants.CommonHeaders.Date, out string? value))
             {
                 longDate =
-                    DateTime.ParseExact(request.Headers[Constants.CommonHeaders.Date], Constants.RFC822DateFormat, Constants.CultureInfo)
+                    DateTime.ParseExact(value, Constants.RFC822DateFormat, Constants.CultureInfo)
                     .ToString(Constants.LongDateFormat, Constants.CultureInfo);
             }
             else
@@ -82,16 +80,18 @@ namespace OBS.Internal.Auth
                 longDate = DateTime.UtcNow.ToString(Constants.LongDateFormat, Constants.CultureInfo);
             }
 
-            string shortDate = longDate.Substring(0, longDate.IndexOf("T"));
-            IDictionary<string, string> tempDict = new Dictionary<string, string>();
-            tempDict.Add("LongDate", longDate);
-            tempDict.Add("ShortDate", shortDate);
+            string shortDate = longDate[..longDate.IndexOf("T")];
+            IDictionary<string, string> tempDict = new Dictionary<string, string>
+            {
+                { "LongDate", longDate },
+                { "ShortDate", shortDate }
+            };
             return tempDict;
         }
 
         internal static List<string> GetSignedHeaderList(IDictionary<string, string> tempDict)
         {
-            List<string> klist = new List<string>(tempDict.Keys);
+            List<string> klist = [.. tempDict.Keys];
 
             klist.Sort(delegate (string x, string y)
             {
@@ -102,7 +102,7 @@ namespace OBS.Internal.Auth
 
         internal static string GetSignedHeaders(List<string> klist)
         {
-            StringBuilder signedHeaders = new StringBuilder();
+            StringBuilder signedHeaders = new();
             int index = 0;
             int cnt = klist.Count;
             foreach (string k in klist)
@@ -119,7 +119,7 @@ namespace OBS.Internal.Auth
         internal static string GetTemporarySignature(HttpRequest request, HttpContext context, IHeaders iheaders, IDictionary<string, string> dateDict, string signedHeaders,
             IDictionary<string, string> headerDict, List<string> signedHeaderList, string? payload)
         {
-            StringBuilder canonicalRequest = new StringBuilder();
+            StringBuilder canonicalRequest = new();
             canonicalRequest.Append(request.Method).Append('\n');
 
             // Canonical URI
@@ -155,7 +155,7 @@ namespace OBS.Internal.Auth
                 tempDict.Add(entry.Key, entry.Value);
             }
 
-            List<KeyValuePair<string, string>> kvlist = new List<KeyValuePair<string, string>>(tempDict);
+            List<KeyValuePair<string, string>> kvlist = [.. tempDict];
 
             tempDict.Clear();
 
@@ -236,10 +236,12 @@ namespace OBS.Internal.Auth
 
             string signature = GetTemporarySignature(request, context, iheaders, dateDict, signedHeaders, tempDict, signedHeadersList, ContentSha256);
 
-            IDictionary<string, string> ret = new Dictionary<string, string>();
-            ret.Add("Signature", signature);
-            ret.Add("ShortDate", dateDict["ShortDate"]);
-            ret.Add("SignedHeaders", signedHeaders);
+            IDictionary<string, string> ret = new Dictionary<string, string>
+            {
+                { "Signature", signature },
+                { "ShortDate", dateDict["ShortDate"] },
+                { "SignedHeaders", signedHeaders }
+            };
             return ret;
         }
     }

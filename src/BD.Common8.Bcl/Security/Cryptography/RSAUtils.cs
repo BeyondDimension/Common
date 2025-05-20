@@ -1,3 +1,8 @@
+using System.Extensions;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Json.Serialization;
+
 namespace System.Security.Cryptography;
 
 /// <summary>
@@ -17,7 +22,7 @@ public static partial class RSAUtils
     public static RSAParameters GetRSAParametersFromJsonString(string jsonString)
     {
 #if !NO_SYSTEM_TEXT_JSON
-        var rsaParams = SystemTextJsonSerializer.Deserialize(jsonString, ParametersJsonSerializerContext.Default.Parameters);
+        var rsaParams = global::System.Text.Json.JsonSerializer.Deserialize(jsonString, ParametersJsonSerializerContext.Default.Parameters);
 #else
         var rsaParams = Serializable.DJSON<Parameters>(jsonString);
 #endif
@@ -36,7 +41,7 @@ public static partial class RSAUtils
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static RSAParameters GetRSAParametersFromUtf8Json(Stream utf8Json)
     {
-        var rsaParams = SystemTextJsonSerializer.Deserialize(utf8Json, ParametersJsonSerializerContext.Default.Parameters);
+        var rsaParams = global::System.Text.Json.JsonSerializer.Deserialize(utf8Json, ParametersJsonSerializerContext.Default.Parameters);
         if (rsaParams == null) throw new NullReferenceException(nameof(rsaParams));
         return rsaParams.ToStruct();
     }
@@ -124,7 +129,7 @@ public static partial class RSAUtils
     {
         var rsaParams = rsa.ExportParameters(includePrivateParameters).ToObject();
 #if !NO_SYSTEM_TEXT_JSON
-        var jsonString = SystemTextJsonSerializer.Serialize(rsaParams, ParametersJsonSerializerContext.Default.Parameters);
+        var jsonString = global::System.Text.Json.JsonSerializer.Serialize(rsaParams, ParametersJsonSerializerContext.Default.Parameters);
 #else
         var jsonString = Serializable.SJSON(rsaParams, ignoreNullValues: true);
 #endif
@@ -487,10 +492,10 @@ public static partial class RSAUtils
         /// <summary>
         /// 初始化 <see cref="Parameters"/> 类的新实例
         /// </summary>
-        [SystemTextJsonConstructor]
+        [global::System.Text.Json.Serialization.JsonConstructor]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonConstructor]
+        [global::Newtonsoft.Json.JsonConstructor]
 #endif
         public Parameters() { }
 
@@ -499,10 +504,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("z")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("z")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("z")]
+        [global::Newtonsoft.Json.JsonProperty("z")]
 #endif
         public string? D { get; set; }
 
@@ -511,10 +516,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("x")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("x")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("x")]
+        [global::Newtonsoft.Json.JsonProperty("x")]
 #endif
         public string? DP { get; set; }
 
@@ -523,10 +528,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("c")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("c")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("c")]
+        [global::Newtonsoft.Json.JsonProperty("c")]
 #endif
         public string? DQ { get; set; }
 
@@ -535,10 +540,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("v")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("v")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("v")]
+        [global::Newtonsoft.Json.JsonProperty("v")]
 #endif
         public string? Exponent { get; set; }
 
@@ -547,10 +552,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("b")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("b")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("b")]
+        [global::Newtonsoft.Json.JsonProperty("b")]
 #endif
         public string? InverseQ { get; set; }
 
@@ -559,10 +564,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("n")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("n")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("n")]
+        [global::Newtonsoft.Json.JsonProperty("n")]
 #endif
         public string? Modulus { get; set; }
 
@@ -571,10 +576,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("m")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("m")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("m")]
+        [global::Newtonsoft.Json.JsonProperty("m")]
 #endif
         public string? P { get; set; }
 
@@ -583,10 +588,10 @@ public static partial class RSAUtils
         /// </summary>
 #if !NO_SYSTEM_TEXT_JSON
 
-        [SystemTextJsonProperty("a")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("a")]
 #endif
 #if !NO_NEWTONSOFT_JSON
-        [NewtonsoftJsonProperty("a")]
+        [global::Newtonsoft.Json.JsonProperty("a")]
 #endif
         public string? Q { get; set; }
 
@@ -613,11 +618,11 @@ public static partial class RSAUtils
 #if !NO_SYSTEM_TEXT_JSON
 
     [JsonSourceGenerationOptions(
-        DefaultIgnoreCondition = SystemTextJsonIgnoreCondition.WhenWritingDefault,
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault,
         AllowTrailingCommas = true
         )]
     [JsonSerializable(typeof(Parameters))]
-    internal sealed partial class ParametersJsonSerializerContext : SystemTextJsonSerializerContext
+    internal sealed partial class ParametersJsonSerializerContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
 
@@ -649,7 +654,7 @@ public static partial class RSAUtils
     public static string ToJsonString(this RSAParameters rSAParameters)
     {
         var rsaParams = rSAParameters.ToObject();
-        var result = SystemTextJsonSerializer.Serialize(rsaParams, ParametersJsonSerializerContext.Default.Parameters);
+        var result = global::System.Text.Json.JsonSerializer.Serialize(rsaParams, ParametersJsonSerializerContext.Default.Parameters);
         return result;
     }
 

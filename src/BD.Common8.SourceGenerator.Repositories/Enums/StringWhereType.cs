@@ -1,7 +1,7 @@
 namespace BD.Common8.SourceGenerator.Repositories.Enums;
 
 /// <summary>
-/// <see cref="string"/> 类型用于 <see cref="Queryable.Where{TSource}(IQueryable{TSource}, Expression{Func{TSource, bool}})"/>
+/// <see cref="string"/> 类型用于 <see cref="Queryable.Where{TSource}(IQueryable{TSource}, System.Linq.Expressions.Expression{Func{TSource, bool}})"/>
 /// </summary>
 public enum StringWhereType : byte
 {

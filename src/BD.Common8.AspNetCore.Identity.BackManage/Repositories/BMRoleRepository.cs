@@ -1,3 +1,13 @@
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.AspNetCore.Models;
+using BD.Common8.AspNetCore.Repositories.Abstractions;
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+using BD.Common8.Repositories.EFCore.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.Extensions;
+
 namespace BD.Common8.AspNetCore.Repositories;
 
 /// <summary>

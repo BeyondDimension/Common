@@ -1,4 +1,9 @@
 #if !NO_JSON_GETINDENTED
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Json;
 
 namespace System;
 
@@ -24,7 +29,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
     static string? GetIndentedBySystemTextJson(string json)
     {
         var jsonDoc = JsonDocument.Parse(json);
-        var newJsonStr = ToString(jsonDoc, JsonSerializerCompatOptions.Writer.WriteIndented);
+        var newJsonStr = ToString(jsonDoc, JsonWriterCompatOptions.WriteIndented);
         return newJsonStr;
     }
 
@@ -32,7 +37,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
     static string? GetIndentedBySystemTextJson(Stream utf8Json)
     {
         var jsonDoc = JsonDocument.Parse(utf8Json);
-        var newJsonStr = ToString(jsonDoc, JsonSerializerCompatOptions.Writer.WriteIndented);
+        var newJsonStr = ToString(jsonDoc, JsonWriterCompatOptions.WriteIndented);
         return newJsonStr;
     }
 
@@ -40,7 +45,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
     static string? GetIndentedBySystemTextJson(ReadOnlyMemory<byte> utf8Json)
     {
         var jsonDoc = JsonDocument.Parse(utf8Json);
-        var newJsonStr = ToString(jsonDoc, JsonSerializerCompatOptions.Writer.WriteIndented);
+        var newJsonStr = ToString(jsonDoc, JsonWriterCompatOptions.WriteIndented);
         return newJsonStr;
     }
 
@@ -51,15 +56,15 @@ public static partial class Serializable // GetIndented(格式化缩进)
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static string? GetIndentedByNewtonsoftJson(string json)
     {
-        var jsonObj = NewtonsoftJsonObject.Parse(json);
-        return NewtonsoftJsonConvert.SerializeObject(jsonObj, NewtonsoftJsonFormatting.Indented);
+        var jsonObj = JObject.Parse(json);
+        return JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static NewtonsoftJsonObject ParseJObject(Stream utf8Json, JsonLoadSettings? settings = null)
+    static JObject ParseJObject(Stream utf8Json, JsonLoadSettings? settings = null)
     {
         using JsonReader reader = new JsonTextReader(new StreamReader(utf8Json, Encoding.UTF8));
-        NewtonsoftJsonObject o = NewtonsoftJsonObject.Load(reader, settings);
+        JObject o = JObject.Load(reader, settings);
 
         while (reader.Read())
         {
@@ -73,7 +78,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
     static string? GetIndentedByNewtonsoftJson(Stream utf8Json)
     {
         var jsonObj = ParseJObject(utf8Json);
-        return NewtonsoftJsonConvert.SerializeObject(jsonObj, NewtonsoftJsonFormatting.Indented);
+        return JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -81,7 +86,7 @@ public static partial class Serializable // GetIndented(格式化缩进)
     {
 #if NET461_OR_GREATER || NETSTANDARD2_0_OR_GREATER || NETCOREAPP2_0_OR_GREATER
         using var utf8JsonStream =
-           CommunityToolkit.HighPerformance.ReadOnlyMemoryExtensions.AsStream(utf8Json);
+           global::CommunityToolkit.HighPerformance.ReadOnlyMemoryExtensions.AsStream(utf8Json);
 #else
         using var utf8JsonStream = new MemoryStream(utf8Json.ToArray());
 #endif

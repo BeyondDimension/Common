@@ -30,7 +30,7 @@ public class CanonicalGrantee : Grantee
     /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="id">ID of the domain to which the grantee belongs</param></param>
+    /// <param name="id">ID of the domain to which the grantee belongs</param>
     public CanonicalGrantee(string id)
     {
         Id = id;

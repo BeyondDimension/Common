@@ -66,7 +66,7 @@ public static partial class RoleEnumHelper
             }
             else
             {
-                roles = roles.Where(x => !RoleEquals(roleName, x)).ToList();
+                roles = [.. roles.Where(x => !RoleEquals(roleName, x))];
             }
         }
         return roles;
@@ -143,15 +143,21 @@ public static partial class RoleEnumHelper<TRoleEnum> where TRoleEnum : struct, 
     private static IList<string>? Parse(IEnumerable<string>? roles)
     {
         if (roles == null || !roles.Any()) return null;
-        return ParseEnum(roles).Select(x => x.ToString()).ToList();
+        return [.. ParseEnum(roles).Select(x => x.ToString())];
     }
 
     static IEnumerable<TRoleEnum> ParseEnum(IEnumerable<string> roles)
     {
         foreach (var role in roles)
         {
-            if (Enum.TryParse<TRoleEnum>(role, out var value)) yield return value;
-            if (cons_map.Contains(role)) yield return cons_map[role].First();
+            if (Enum.TryParse<TRoleEnum>(role, out var value))
+            {
+                yield return value;
+            }
+            if (cons_map.Contains(role))
+            {
+                yield return cons_map[role].First();
+            }
         }
     }
 }

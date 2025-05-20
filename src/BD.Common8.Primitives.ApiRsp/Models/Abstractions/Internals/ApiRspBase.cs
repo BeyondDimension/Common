@@ -1,3 +1,8 @@
+using BD.Common8.Enums;
+using BD.Common8.Extensions;
+using System.Diagnostics;
+using System.Runtime.Serialization;
+
 namespace BD.Common8.Models.Abstractions.Internals;
 
 /// <summary>
@@ -26,16 +31,16 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
 
     /// <inheritdoc/>
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(0)]
+    [global::MessagePack.Key(0)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(0)]
+    [global::MemoryPack.MemoryPackOrder(0)]
 #endif
 #if !NO_NEWTONSOFT_JSON
-    [NewtonsoftJsonProperty(JsonPropertyName_Code)]
+    [global::Newtonsoft.Json.JsonProperty(JsonPropertyName_Code)]
 #endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonProperty(JsonPropertyName_Code)]
+    [global::System.Text.Json.Serialization.JsonPropertyName(JsonPropertyName_Code)]
 #endif
     public ApiRspCode Code
     {
@@ -54,48 +59,48 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     /// <see cref="IApiRspBase.Message"/> 的内部值
     /// </summary>
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(LastMKeyIndex)]
+    [global::MessagePack.Key(LastMKeyIndex)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(LastMKeyIndex)]
+    [global::MemoryPack.MemoryPackOrder(LastMKeyIndex)]
 #endif
 #if !NO_NEWTONSOFT_JSON
-    [NewtonsoftJsonProperty(JsonPropertyName_Message)]
+    [global::Newtonsoft.Json.JsonProperty(JsonPropertyName_Message)]
 #endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonProperty(JsonPropertyName_Message)]
+    [global::System.Text.Json.Serialization.JsonPropertyName(JsonPropertyName_Message)]
 #endif
     public string? InternalMessage { get => internalMessage ??= this.CreateMessage(); set => internalMessage = value; }
 
     /// <inheritdoc/>
     [IgnoreDataMember]
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
 #if !NO_NEWTONSOFT_JSON
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public string Message => InternalMessage ?? string.Empty;
 
     /// <inheritdoc/>
     [IgnoreDataMember]
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
 #if !NO_NEWTONSOFT_JSON
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public bool IsSuccess => mIsSuccess;
 
@@ -116,48 +121,48 @@ public abstract partial class ApiRspBase : IApiRspBase, IApiRsp
     /// <inheritdoc/>
     [IgnoreDataMember]
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
 #if !NO_NEWTONSOFT_JSON
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public Exception? ClientException { get; set; }
 
     /// <inheritdoc/>
     [IgnoreDataMember]
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
 #if !NO_NEWTONSOFT_JSON
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public string? Url { get; set; }
 
     /// <inheritdoc/>
     [IgnoreDataMember]
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
 #if !NO_NEWTONSOFT_JSON
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #endif
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public bool IsDisplayed { get; set; }
 }

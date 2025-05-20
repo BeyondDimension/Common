@@ -1,3 +1,10 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using Newtonsoft.Json;
+using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 /// <summary>
@@ -83,8 +90,13 @@ public sealed class CopyPropertiesTemplate :
         public required int I { get; init; }
     }
 
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
+        if (args.attr.DestType == null)
+        {
+            args.attr.DestType = new TypeStringImpl(args.symbol);
+        }
+
         SourceModel model = new()
         {
             I = args.i,
@@ -96,27 +108,29 @@ public sealed class CopyPropertiesTemplate :
         return model;
     }
 
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
         var destSymbol = m.Attribute.DestType != null ?
            TypeStringImpl.GetTypeSymbol(m.Attribute.DestType) : m.Symbol;
 
+        var destType = (TypeStringImpl)m.Attribute.DestType!;
+
         var destNamespace = destSymbol!.ContainingNamespace.ToDisplayString();
 
-        WriteFileHeader(stream);
+        WriteFileHeader(stream, GetType());
         stream.WriteNewLine();
         WriteNamespace(stream, destNamespace);
         stream.WriteNewLine();
         if (m.Attribute.IsExpression)
-            WriteExpression(stream, destSymbol, m);
+            WriteExpression(stream, destType, destSymbol, m);
         else
-            WriteExtensions(stream, destSymbol, m);
+            WriteExtensions(stream, destType, destSymbol, m);
         stream.WriteNewLine();
         stream.WriteCurlyBracketRight();
         stream.WriteNewLine();
     }
 
-    void WriteExtensions(Stream stream, ITypeSymbol destSymbol, SourceModel m)
+    void WriteExtensions(Stream stream, TypeStringImpl destType, ITypeSymbol destSymbol, SourceModel m)
     {
         stream.WriteFormat(
 """
@@ -128,13 +142,13 @@ public static partial class {0}
 
         stream.WriteFormat(
 """
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     public static void {0}(this {1} context, {2} value)
-"""u8, m.Attribute.MethodName ?? $"Set{destSymbol.Name}", destSymbol.Name, m.TypeName);
-        WriteProperties(stream, destSymbol, m);
+"""u8, m.Attribute.MethodName ?? $"Set{destSymbol.Name}", destType.ToString(), m.Symbol);
+        WriteProperties(stream, destType, destSymbol, m);
     }
 
-    void WriteExpression(Stream stream, ITypeSymbol destSymbol, SourceModel m)
+    void WriteExpression(Stream stream, TypeStringImpl destType, ITypeSymbol destSymbol, SourceModel m)
     {
         stream.WriteFormat(
 """
@@ -146,12 +160,12 @@ public partial class {0}
 
         stream.WriteFormat(
 """
-    public static readonly Expression<Func<{0}, {1}>> {2} = x => new()
-"""u8, m.TypeName, destSymbol.Name, m.Attribute.MethodName ?? $"Expression");
-        WriteProperties(stream, destSymbol, m);
+    public static readonly global::System.Linq.Expressions.Expression<Func<{0}, {1}>> {2} = x => new()
+"""u8, m.TypeName, destType.ToString(), m.Attribute.MethodName ?? "Expression");
+        WriteProperties(stream, destType, destSymbol, m);
     }
 
-    void WriteProperties(Stream stream, ITypeSymbol destSymbol, SourceModel m)
+    void WriteProperties(Stream stream, TypeStringImpl destType, ITypeSymbol destSymbol, SourceModel m)
     {
         var cProperties = m.Symbol.GetMembers().OfType<IPropertySymbol>();
         var destProperties = destSymbol!.GetMembers().OfType<IPropertySymbol>();
@@ -247,7 +261,7 @@ public partial class {0}
         if (!string.IsNullOrWhiteSpace(dictionaryJson))
         {
             var mapProperties = JsonConvert.DeserializeObject<Dictionary<string, string>>(dictionaryJson!);
-            if (mapProperties != null && mapProperties.TryGetValue(propertyName, out string value))
+            if (mapProperties != null && mapProperties.TryGetValue(propertyName, out string? value))
                 return value;
         }
         return null;

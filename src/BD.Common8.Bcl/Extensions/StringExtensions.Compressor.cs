@@ -1,3 +1,7 @@
+using System.IO.Compression;
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace System.Extensions;
 
 /// <summary>

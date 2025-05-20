@@ -1,4 +1,19 @@
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities.Abstractions;
+using BD.Common8.AspNetCore.Identity.Abstractions;
+using BD.Common8.AspNetCore.Models.Abstractions;
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Models;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BD.Common8.AspNetCore.Identity;
 
@@ -62,8 +77,8 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
 
         var claims = new List<Claim>
         {
-            new Claim(Options?.ClaimsIdentity?.UserIdClaimType ?? ClaimTypes.Name, idString),
-            new Claim(JwtRegisteredClaimNames.Iat, now.ToUnixTimeMilliseconds().ToString(), ClaimValueTypes.Integer64),
+            new(Options?.ClaimsIdentity?.UserIdClaimType ?? ClaimTypes.Name, idString),
+            new(JwtRegisteredClaimNames.Iat, now.ToUnixTimeMilliseconds().ToString(), ClaimValueTypes.Integer64),
         };
 
         if (roles != null)
@@ -155,7 +170,7 @@ public class JWTValueProvider<[DynamicallyAccessedMembers(IEntity.DynamicallyAcc
         DateTimeOffset refresh_not_before,
         CancellationToken cancellationToken)
     {
-        var user = await db.SysUsers.FindAsync(keyValues: new object[] { userId }, cancellationToken);
+        var user = await db.SysUsers.FindAsync(keyValues: [userId], cancellationToken);
 
         user.ThrowIsNull();
 

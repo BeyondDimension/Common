@@ -1,3 +1,6 @@
+using BD.Common8.Entities.Abstractions;
+using System.Diagnostics;
+
 namespace BD.Common8.Essentials.Services.Implementation;
 
 /// <summary>
@@ -28,30 +31,30 @@ sealed partial class PreferencesPlatformServiceImpl : IPreferencesGenericPlatfor
     /// <summary>
     /// 表示一个实体的类，用于映射到数据库表
     /// </summary>
-    [SQLiteTable(TableName)]
+    [global::SQLite.Table(TableName)]
     [DebuggerDisplay("{DebuggerDisplay(),nq}")]
     public sealed class Entity : IEntity<string>
     {
         /// <summary>
         /// 唯一标识符
         /// </summary>
-        [SQLiteColumn(ColumnName_Id)]
-        [SQLitePrimaryKey]
-        [SQLiteNotNull]
+        [global::SQLite.Column(ColumnName_Id)]
+        [global::SQLite.PrimaryKey]
+        [global::SQLite.NotNull]
         public string Id { get; set; } = string.Empty;
 
         /// <summary>
         /// 值
         /// </summary>
-        [SQLiteColumn(ColumnName_Value)]
-        [SQLiteNotNull]
+        [global::SQLite.Column(ColumnName_Value)]
+        [global::SQLite.NotNull]
         public string Value { get; set; } = string.Empty;
 
         /// <summary>
         /// 共享名称
         /// </summary>
-        [SQLiteColumn(ColumnName_SharedName)]
-        [SQLiteNotNull]
+        [global::SQLite.Column(ColumnName_SharedName)]
+        [global::SQLite.NotNull]
         public string SharedName { get; set; } = string.Empty;
 
         /// <summary>

@@ -12,7 +12,6 @@
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
 using OBS.Model;
-using OBS.Internal.Negotiation;
 
 namespace OBS.Internal
 {

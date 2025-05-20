@@ -1,3 +1,6 @@
+using System.Collections.Immutable;
+using System.Reflection;
+using System.Text.Json;
 using Tools.Build.Commands;
 
 namespace BD.Common8.UnitTest;
@@ -73,7 +76,7 @@ public sealed class AllModelSerializationTest
         {
             try
             {
-                var result = SystemTextJsonSerializer.Deserialize("{}"u8, type);
+                var result = JsonSerializer.Deserialize("{}"u8, type);
                 return result;
             }
             catch
@@ -162,7 +165,7 @@ public sealed class AllModelSerializationTest
             {
                 try
                 {
-                    item.ModelString = SystemTextJsonSerializer.Serialize(item.ModelInstance, item.ModelType, options: JsonSerializerCompatOptions.WriteIndented);
+                    item.ModelString = JsonSerializer.Serialize(item.ModelInstance, item.ModelType, options: JsonSerializerCompatOptions.WriteIndented);
                 }
                 catch (Exception ex)
                 {
@@ -171,7 +174,7 @@ public sealed class AllModelSerializationTest
 
                 try
                 {
-                    item.ModelInstance = SystemTextJsonSerializer.Deserialize(item.ModelString!, item.ModelType, options: JsonSerializerCompatOptions.WriteIndented);
+                    item.ModelInstance = JsonSerializer.Deserialize(item.ModelString!, item.ModelType, options: JsonSerializerCompatOptions.WriteIndented);
                 }
                 catch (Exception ex)
                 {

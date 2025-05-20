@@ -1,3 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using System.IO.Compression;
+using System.Runtime.CompilerServices;
+
 namespace System.Extensions;
 
 public static partial class ByteArrayExtensions // Compression
@@ -149,7 +153,7 @@ public static partial class ByteArrayExtensions // Compression
 
         memoryStream.Position = 0;
         using (var compressStream = func(memoryStream))
-            compressStream.Read(buffer, 0, buffer.Length);
+            compressStream.ReadExactly(buffer, 0, buffer.Length);
 
         return buffer;
     }
@@ -175,7 +179,7 @@ public static partial class ByteArrayExtensions // Compression
 
         memoryStream.Position = 0;
         using (var compressStream = func(memoryStream))
-            await compressStream.ReadAsync(buffer, cancellationToken);
+            await compressStream.ReadExactlyAsync(buffer, cancellationToken);
 
         return buffer;
     }

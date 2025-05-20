@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Repositories.Enums;
 
 public enum EntityBaseClassType : byte
@@ -15,39 +17,39 @@ public static partial class EntityBaseClassTypeEnumExtensions
         {
             {
                 EntityBaseClassType.TenantBaseEntity, new FixedProperty[]
-            {
-                FixedProperty.TenantId,
-                FixedProperty.SoftDeleted,
-                FixedProperty.UpdateTime,
-                FixedProperty.OperatorUserId,
-                FixedProperty.CreationTime,
-                FixedProperty.CreateUserId,
-                FixedProperty.Id,
-            }.ToImmutableArray()
+                {
+                    FixedProperty.TenantId,
+                    FixedProperty.SoftDeleted,
+                    FixedProperty.UpdateTime,
+                    FixedProperty.OperatorUserId,
+                    FixedProperty.CreationTime,
+                    FixedProperty.CreateUserId,
+                    FixedProperty.Id,
+                }.ToImmutableArray()
             },
             {
                 EntityBaseClassType.OperatorBaseEntity, new FixedProperty[]
-            {
-                FixedProperty.UpdateTime,
-                FixedProperty.OperatorUserId,
-                FixedProperty.CreationTime,
-                FixedProperty.CreateUserId,
-                FixedProperty.Id,
-            }.ToImmutableArray()
+                {
+                    FixedProperty.UpdateTime,
+                    FixedProperty.OperatorUserId,
+                    FixedProperty.CreationTime,
+                    FixedProperty.CreateUserId,
+                    FixedProperty.Id,
+                }.ToImmutableArray()
             },
             {
                 EntityBaseClassType.CreationBaseEntity, new FixedProperty[]
-            {
-                FixedProperty.CreationTime,
-                FixedProperty.CreateUserId,
-                FixedProperty.Id,
-            }.ToImmutableArray()
+                {
+                    FixedProperty.CreationTime,
+                    FixedProperty.CreateUserId,
+                    FixedProperty.Id,
+                }.ToImmutableArray()
             },
             {
                 EntityBaseClassType.Entity, new FixedProperty[]
-            {
-                FixedProperty.Id,
-            }.ToImmutableArray()
+                {
+                    FixedProperty.Id,
+                }.ToImmutableArray()
             },
         }.ToImmutableDictionary();
 

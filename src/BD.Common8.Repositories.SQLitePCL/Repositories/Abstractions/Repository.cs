@@ -1,3 +1,8 @@
+using BD.Common8.Repositories.Repositories.Abstractions;
+using Polly;
+using SQLite;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;
 
 /// <summary>

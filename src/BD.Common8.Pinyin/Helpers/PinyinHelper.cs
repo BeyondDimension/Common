@@ -1,3 +1,8 @@
+using BD.Common8.Pinyin.Enums;
+using BD.Common8.Pinyin.Services;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Pinyin.Helpers;
 
 /// <summary>

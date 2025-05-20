@@ -1,4 +1,8 @@
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+using BD.Common8.Http.ClientFactory.Server.Services.Implementation;
+using System.Net.Http.Client;
+using System.Runtime.CompilerServices;
+
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions

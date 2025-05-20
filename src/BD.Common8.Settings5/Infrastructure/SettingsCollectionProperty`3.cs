@@ -1,3 +1,8 @@
+using DynamicData;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Settings5.Infrastructure;
 
 /// <summary>
@@ -12,9 +17,7 @@ namespace BD.Common8.Settings5.Infrastructure;
 /// <param name="default"></param>
 /// <param name="autoSave"></param>
 /// <param name="propertyName"></param>
-[method: RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
-public class SettingsCollectionProperty<TValue,
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TEnumerable,
+public class SettingsCollectionProperty<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TValue, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TEnumerable,
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TSettingsModel>(TEnumerable? @default = default,
      bool autoSave = SettingsProperty.DefaultAutoSave,
      [CallerMemberName] string? propertyName = null)
@@ -181,7 +184,7 @@ public class SettingsCollectionProperty<TValue,
     }
 
     /// <inheritdoc/>
-    IEnumerator IEnumerable.GetEnumerator()
+    global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator()
     {
         if (value == null)
             return Array.Empty<TValue>().GetEnumerator();

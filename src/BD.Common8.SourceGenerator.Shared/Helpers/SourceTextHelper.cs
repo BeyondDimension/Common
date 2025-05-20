@@ -1,3 +1,7 @@
+using Microsoft.CodeAnalysis.Text;
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace BD.Common8.SourceGenerator.Helpers;
 
 /// <summary>

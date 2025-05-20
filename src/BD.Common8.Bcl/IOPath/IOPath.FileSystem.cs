@@ -1,3 +1,9 @@
+using System.Diagnostics;
+using System.Extensions;
+#if NET5_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+
 namespace System;
 
 public static partial class IOPath
@@ -49,7 +55,7 @@ public static partial class IOPath
 
 #if !NETFRAMEWORK
 
-    static readonly System.Threading.Lock lock_GetCacheFilePath = new();
+    static readonly global::System.Threading.Lock lock_GetCacheFilePath = new();
 
     /// <summary>
     /// 根据缓存子文件夹名称与文件扩展名获取一个缓存文件路径
@@ -100,6 +106,10 @@ public static partial class IOPath
     /// <param name="filePath">要删除的文件路径</param>
     /// <param name="millisecondsDelay">延时等待的毫秒数</param>
     /// <param name="processWaitMillisecondsDelay">启动的进程等待退出的毫秒数</param>
+#if NET5_0_OR_GREATER
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+#endif
     public static async Task TryDeleteInDelayAsync(Process? process, string filePath, int millisecondsDelay = 9000, int processWaitMillisecondsDelay = 9000)
     {
         if (process != null)

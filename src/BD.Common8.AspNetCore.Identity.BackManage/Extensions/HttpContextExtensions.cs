@@ -1,3 +1,7 @@
+using BD.Common8.Columns;
+using Microsoft.AspNetCore.Http;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.AspNetCore.Extensions;
 
 public static partial class HttpContextExtensions

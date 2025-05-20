@@ -1,3 +1,6 @@
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace System.Extensions;
 
 public static partial class StreamExtensions // Format

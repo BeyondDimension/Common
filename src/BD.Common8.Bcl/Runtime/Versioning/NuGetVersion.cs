@@ -7,6 +7,10 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 #pragma warning disable IDE0290 // 使用主构造函数
 
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Text;
+
 namespace System.Runtime.Versioning;
 
 /// <summary>

@@ -1,3 +1,6 @@
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace System.Formats;
 
 partial class FileFormat

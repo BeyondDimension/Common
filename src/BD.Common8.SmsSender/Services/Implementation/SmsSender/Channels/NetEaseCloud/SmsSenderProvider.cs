@@ -1,3 +1,11 @@
+using BD.Common8.Extensions;
+using BD.Common8.Helpers;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using System.Security.Cryptography;
+using System.Text.Json.Serialization.Metadata;
 using CSR = BD.Common8.SmsSender.Models.SmsSender.CheckSmsResult<BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud.NetEaseCloudResult>;
 using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud.SmsNetEaseCloudOptions;
 using SSR = BD.Common8.SmsSender.Models.SmsSender.SendSmsResult<BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud.SendSmsNetEaseCloudResult>;
@@ -31,7 +39,7 @@ namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.NetEas
 /// <para>http://dev.netease.im/docs/product/%E7%9F%AD%E4%BF%A1/%E7%9F%AD%E4%BF%A1%E6%8E%A5%E5%8F%A3%E6%8C%87%E5%8D%97</para>
 /// <para>http://dev.netease.im/docs/product/IM%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/%E6%9C%8D%E5%8A%A1%E7%AB%AFAPI%E6%96%87%E6%A1%A3?#接口概述</para>
 /// </summary>
-public class SmsSenderProvider : SmsSenderBase, ISmsSender
+public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
 {
     /// <summary>
     /// 网易云的名称
@@ -162,15 +170,20 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
         var result = await PostAsync<SSR, SSRR>(SmsSendApiUrl, dictionary, SmsSenderJsonSerializerContext.Default.SendSmsNetEaseCloudResult, cancellationToken);
         if (!result.IsSuccess)
-            logger.LogError(
-                $"调用网易云短信接口失败，" +
-                $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
-                $"短信内容：{message}，" +
-                $"短信类型：{type}，" +
-                $"HTTP状态码：{result.HttpStatusCode}");
+        {
+            SendSmsError(logger, PhoneNumberHelper.ToStringHideMiddleFour(number), message, type, result.HttpStatusCode);
+        }
 
         return result;
     }
+
+    [LoggerMessage(
+        Level = LogLevel.Error,
+        Message =
+"""
+调用网易云短信接口失败，手机号码：{phoneNumber}，短信内容：{message}，短信类型：{type}，HTTP 响应状态码：{httpStatusCode}
+""")]
+    private static partial void SendSmsError(ILogger logger, string phoneNumber, string? message, ushort type, int httpStatusCode);
 
     /// <inheritdoc/>
     public override async Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)
@@ -180,15 +193,25 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         var result = await PostAsync<CSR, NetEaseCloudResult>(SmsCheckApiUrl, dictionary, SmsSenderJsonSerializerContext.Default.NetEaseCloudResult, cancellationToken);
 
         if (!result.IsSuccess)
+        {
             if (result.Result != default && result.Result.IsCheckSmsFail())
+            {
                 result.IsCheckSuccess = true;
+            }
             else
-                logger.LogError(
-                    $"调用网易云短信验证接口失败，" +
-                    $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
-                    $"短信内容：{message}，" +
-                    $"HTTP状态码：{result.HttpStatusCode}");
+            {
+                CheckSmsError(logger, PhoneNumberHelper.ToStringHideMiddleFour(number), message, result.HttpStatusCode);
+            }
+        }
 
         return result;
     }
+
+    [LoggerMessage(
+        Level = LogLevel.Error,
+        Message =
+"""
+调用网易云短信验证接口失败，手机号码：{phoneNumber}，短信内容：{message}，HTTP 响应状态码：{httpStatusCode}
+""")]
+    private static partial void CheckSmsError(ILogger logger, string phoneNumber, string? message, int httpStatusCode);
 }

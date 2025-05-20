@@ -1,13 +1,19 @@
+using BD.Common8.Enums;
+using BD.Common8.Helpers;
+using BD.Common8.Models.Abstractions;
+using BD.Common8.Models.Abstractions.Internals;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Models;
 
 /// <summary>
 /// <see cref="IApiRsp"/> 的默认实现类
 /// </summary>
 #if !NO_MESSAGEPACK && !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-[MPObj]
+[global::MessagePack.MessagePackObject]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-[MP2Obj(MP2SerializeLayout.Explicit)]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
 #endif
 public sealed partial class ApiRspImpl : ApiRspBase, IApiRsp<object?>
 {

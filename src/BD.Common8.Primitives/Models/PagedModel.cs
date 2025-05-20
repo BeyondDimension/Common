@@ -1,8 +1,11 @@
+using BD.Common8.Models.Abstractions;
+using System.Diagnostics;
+
 namespace BD.Common8.Models;
 
 /// <inheritdoc cref="IPagedModel"/>
-[MPObj]
-[MP2Obj(MP2SerializeLayout.Explicit)]
+[global::MessagePack.MessagePackObject]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
 [Serializable]
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
 public partial class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
@@ -17,8 +20,8 @@ public partial class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
     /// <summary>
     /// 获取或设置数据源数组
     /// </summary>
-    [MPKey(0)]
-    [MP2Key(0)]
+    [global::MessagePack.Key(0)]
+    [global::MemoryPack.MemoryPackOrder(0)]
     public T[] DataSource
     {
         get
@@ -33,22 +36,22 @@ public partial class PagedModel<T> : IPagedModel<T>, IReadOnlyPagedModel<T>
     /// <summary>
     /// 获取或设置当前页数
     /// </summary>
-    [MPKey(1)]
-    [MP2Key(1)]
+    [global::MessagePack.Key(1)]
+    [global::MemoryPack.MemoryPackOrder(1)]
     public int Current { get; set; } = IPagedModel.DefaultCurrent;
 
     /// <summary>
     /// 获取或设置分页大小
     /// </summary>
-    [MPKey(2)]
-    [MP2Key(2)]
+    [global::MessagePack.Key(2)]
+    [global::MemoryPack.MemoryPackOrder(2)]
     public int PageSize { get; set; } = IPagedModel.DefaultPageSize;
 
     /// <summary>
     /// 获取或设置总记录数
     /// </summary>
-    [MPKey(3)]
-    [MP2Key(3)]
+    [global::MessagePack.Key(3)]
+    [global::MemoryPack.MemoryPackOrder(3)]
     public int Total { get; set; }
 
     /// <summary>

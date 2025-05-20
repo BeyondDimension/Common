@@ -1,4 +1,10 @@
-using static System.Serializable;
+using MemoryPack;
+using MessagePack;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 #pragma warning disable IDE0161 // 转换为文件范围限定的 namespace
 namespace System
@@ -12,6 +18,11 @@ namespace System
 #if !NO_SYSTEM_TEXT_JSON
 
 #if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
+
+#if NET7_0_OR_GREATER
+        internal const string CreateOptions_RequiresXCodeMessage = "创建的 JsonSerializerOptions 默认配置包含 System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver 与 ValueTupleConverter 与 AOT 和裁剪不兼容";
+#endif
+
         /// <summary>
         /// 根据已有 Json 设置项添加或重新创建带有预设的配置
         /// </summary>
@@ -20,18 +31,18 @@ namespace System
         /// <param name="caseInsensitive"></param>
         /// <param name="camelCase"></param>
         /// <returns></returns>
-        public static SystemTextJsonSerializerOptions CreateOptions(
-            SystemTextJsonSerializerOptions? baseOptions = null,
+#if NET7_0_OR_GREATER
+        [RequiresDynamicCode(CreateOptions_RequiresXCodeMessage)]
+        [RequiresUnreferencedCode(CreateOptions_RequiresXCodeMessage)]
+#endif
+        public static JsonSerializerOptions CreateOptions(
+            JsonSerializerOptions? baseOptions = null,
             bool isReadOnly = false,
             bool? caseInsensitive = true,
             bool camelCase = true)
         {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            baseOptions ??= SystemTextJsonSerializerOptions.Default;
+            baseOptions ??= JsonSerializerOptions.Default;
             baseOptions = baseOptions.AddDefaultJsonTypeInfoResolver(isReadOnly);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
             if (!isReadOnly && baseOptions.IsReadOnly)
             {
                 baseOptions = new(baseOptions);
@@ -66,7 +77,7 @@ namespace System
         /// <param name="left"></param>
         /// <param name="right"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void CombineTypeInfoResolvers(this SystemTextJsonSerializerOptions left, SystemTextJsonSerializerOptions right)
+        public static void CombineTypeInfoResolvers(this JsonSerializerOptions left, JsonSerializerOptions right)
             => left.CombineTypeInfoResolvers(right.TypeInfoResolverChain);
 
         /// <summary>
@@ -76,7 +87,7 @@ namespace System
         /// <param name="options"></param>
         /// <param name="resolvers"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void CombineTypeInfoResolvers(this SystemTextJsonSerializerOptions options, IEnumerable<IJsonTypeInfoResolver> resolvers)
+        public static void CombineTypeInfoResolvers(this JsonSerializerOptions options, IEnumerable<IJsonTypeInfoResolver> resolvers)
         {
             foreach (var resolver in resolvers)
             {
@@ -97,7 +108,7 @@ namespace System
         /// <param name="options"></param>
         /// <param name="resolvers"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void CombineTypeInfoResolvers(this SystemTextJsonSerializerOptions options, params IJsonTypeInfoResolver[] resolvers)
+        public static void CombineTypeInfoResolvers(this JsonSerializerOptions options, params IJsonTypeInfoResolver[] resolvers)
             => options.CombineTypeInfoResolvers(resolvers.AsEnumerable());
 #endif
 
@@ -173,6 +184,29 @@ namespace System
 
         #endregion
 
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
+        public static T? CloneByMemoryPack<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(T? obj) where T : notnull, IMemoryPackFormatterRegister
+        {
+            if (obj is null)
+            {
+                return default;
+            }
+
+            if (EqualityComparer<T?>.Default.Equals(obj, default))
+            {
+                return default;
+            }
+
+            var bytes = MemoryPackSerializer.Serialize(obj);
+            var result = MemoryPackSerializer.Deserialize<T>(bytes);
+            return result;
+        }
+#endif
+
+#if NET7_0_OR_GREATER
+        internal const string Clone_RequiresXCodeMessage = "如果泛型类型在首选方案 MemoryPack 中序列化失败，则回退到 MessagePack 或 Json 则会与 AOT 和裁剪不兼容，如果泛型类型确定支持 MemoryPack 则应使用 CloneByMemoryPack 函数";
+#endif
+
         /// <summary>
         /// 使用序列化将对象克隆一份新的对象
         /// </summary>
@@ -180,16 +214,23 @@ namespace System
         /// <param name="obj"></param>
         /// <returns></returns>
         [return: NotNullIfNotNull(nameof(obj))]
+#if NET7_0_OR_GREATER
+        [RequiresDynamicCode(Clone_RequiresXCodeMessage)]
+        [RequiresUnreferencedCode(Clone_RequiresXCodeMessage)]
+#endif
         public static T? Clone<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(T? obj) where T : notnull
         {
             if (EqualityComparer<T?>.Default.Equals(obj, default))
+            {
                 return default;
+            }
 
 #if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
             try
             {
                 var bytes = MemoryPackSerializer.Serialize(obj);
-                return MemoryPackSerializer.Deserialize<T>(bytes);
+                var result = MemoryPackSerializer.Deserialize<T>(bytes);
+                return result;
             }
             catch
             {
@@ -200,58 +241,57 @@ namespace System
             try
             {
                 var bytes = MessagePackSerializer.Serialize(obj);
-                return MessagePackSerializer.Deserialize<T>(bytes);
+                var result = MessagePackSerializer.Deserialize<T>(bytes);
+                return result;
             }
             catch
             {
             }
 #endif
-
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            var json = SJSON(obj);
-            return DJSON<T>(json);
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        }
-    }
-
-    /// <summary>
-    /// 用于序列化克隆对象，使用扩展函数 <see cref="SerializableExtensions.Clone{T}(T)"/>
-    /// </summary>
-    public interface ICloneableSerializable
-    {
-    }
-
-    public static partial class SerializableExtensions
-    {
-        /// <inheritdoc cref="Serializable.Clone{T}(T)"/>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T Clone<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(this T obj) where T : ICloneableSerializable => Serializable.Clone(obj);
-
-        /// <summary>
-        /// 将 [序列化程式实现种类] 转换为 [JSON 序列化程式实现种类]
-        /// </summary>
-        /// <param name="enum"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryConvert(this ImplType @enum, out JsonImplType value)
-        {
-            switch (@enum)
             {
-                case ImplType.NewtonsoftJson:
-                    value = JsonImplType.NewtonsoftJson;
-                    return true;
-
-                case ImplType.SystemTextJson:
-                    value = JsonImplType.SystemTextJson;
-                    return true;
-
-                default:
-                    value = default;
-                    return false;
+                var json = SJSON(obj);
+                var result = DJSON<T>(json);
+                return result;
             }
         }
     }
+
+    ///// <summary>
+    ///// 用于序列化克隆对象，使用扩展函数 <see cref="SerializableExtensions.Clone{T}(T)"/>
+    ///// </summary>
+    //public interface ICloneableSerializable
+    //{
+    //}
+
+    //public static partial class SerializableExtensions
+    //{
+    //    /// <inheritdoc cref="Serializable.Clone{T}(T)"/>
+    //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    //    public static T Clone<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(this T obj) where T : ICloneableSerializable => Serializable.Clone(obj);
+
+    //    /// <summary>
+    //    /// 将 [序列化程式实现种类] 转换为 [JSON 序列化程式实现种类]
+    //    /// </summary>
+    //    /// <param name="enum"></param>
+    //    /// <param name="value"></param>
+    //    /// <returns></returns>
+    //    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    //    public static bool TryConvert(this ImplType @enum, out JsonImplType value)
+    //    {
+    //        switch (@enum)
+    //        {
+    //            case ImplType.NewtonsoftJson:
+    //                value = JsonImplType.NewtonsoftJson;
+    //                return true;
+
+    //            case ImplType.SystemTextJson:
+    //                value = JsonImplType.SystemTextJson;
+    //                return true;
+
+    //            default:
+    //                value = default;
+    //                return false;
+    //        }
+    //    }
+    //}
 }

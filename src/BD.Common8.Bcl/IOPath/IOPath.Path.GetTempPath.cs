@@ -1,3 +1,6 @@
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace System;
 
 public static partial class IOPath

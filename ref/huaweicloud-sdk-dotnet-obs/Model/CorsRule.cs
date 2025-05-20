@@ -11,8 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System.Collections.Generic;
-
 namespace OBS.Model
 {
     /// <summary>
@@ -37,7 +35,7 @@ namespace OBS.Model
         {
             get {
                 
-                return allowedMethods ??= new List<HttpVerb>(); }
+                return allowedMethods ??= []; }
             set { allowedMethods = value; }
         }
 
@@ -53,7 +51,7 @@ namespace OBS.Model
         {
             get {
                 
-                return allowedOrigins ??= new List<string>(); }
+                return allowedOrigins ??= []; }
             set { allowedOrigins = value; }
         }
 
@@ -84,7 +82,7 @@ namespace OBS.Model
         {
             get {
                 
-                return exposeHeaders ??= new List<string>(); }
+                return exposeHeaders ??= []; }
             set { exposeHeaders = value; }
         }
 
@@ -115,7 +113,7 @@ namespace OBS.Model
         {
             get {
                
-                return allowedHeaders ??= new List<string>(); }
+                return allowedHeaders ??= []; }
             set { allowedHeaders = value; }
         }
 

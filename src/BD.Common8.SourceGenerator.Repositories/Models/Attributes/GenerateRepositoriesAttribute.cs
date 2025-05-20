@@ -1,3 +1,6 @@
+using BD.Common8.SourceGenerator.Repositories.Enums;
+using Newtonsoft.Json;
+
 namespace BD.Common8.SourceGenerator.Repositories.Models.Attributes;
 
 /// <summary>

@@ -1,3 +1,7 @@
+using BD.Common8.AspNetCore.Controllers.Abstractions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+
 namespace BD.Common8.AspNetCore.Controllers;
 
 /// <summary>

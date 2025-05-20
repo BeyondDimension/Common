@@ -1,3 +1,9 @@
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Repositories.Repositories.Abstractions;
+using SQLite;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
+
 namespace BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository"/>

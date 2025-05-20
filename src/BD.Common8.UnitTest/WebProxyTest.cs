@@ -1,7 +1,7 @@
 namespace BD.Common8.UnitTest;
 
 /// <summary>
-/// <see cref="IWebProxy"/> 测试
+/// <see cref="global::System.Net.IWebProxy"/> 测试
 /// </summary>
 public sealed class WebProxyTest
 {

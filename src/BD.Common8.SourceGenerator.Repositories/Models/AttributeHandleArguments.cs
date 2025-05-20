@@ -1,3 +1,5 @@
+using BD.Common8.SourceGenerator.Repositories.Enums;
+
 namespace BD.Common8.SourceGenerator.Repositories.Models;
 
 public readonly record struct AttributeHandleArguments(

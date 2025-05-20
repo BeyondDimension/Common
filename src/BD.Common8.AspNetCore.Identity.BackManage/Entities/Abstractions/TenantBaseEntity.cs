@@ -1,3 +1,6 @@
+using BD.Common8.Columns;
+using Microsoft.EntityFrameworkCore;
+
 namespace BD.Common8.AspNetCore.Entities.Abstractions;
 
 /// <summary>

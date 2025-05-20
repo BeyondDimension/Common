@@ -1,3 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace System.Extensions;
 
 /// <summary>
@@ -19,6 +22,6 @@ public static partial class ObjectExtensions
         // https://github.com/CommunityToolkit/dotnet/blob/v8.0.0-preview3/CommunityToolkit.Diagnostics/Guard.cs#L63
         if (argument is null)
             ThrowHelper.ThrowArgumentNullException(paramName);
-        return argument;
+        return argument!;
     }
 }

@@ -14,6 +14,11 @@ public sealed class ViewModelWrapperGeneratedAttribute(Type modelType) : Attribu
 
     /// <summary>
     /// 是否生成构造函数，默认值为 <see langword="true"/>
+    /// <para>生成示例：</para>
+    /// <list type="bullet">
+    /// <item>class TViewModel(TModel model)</item>
+    /// <item>public TViewModel Model { get; } = model;</item>
+    /// </list>
     /// </summary>
     public bool Constructor { get; set; } = true;
 

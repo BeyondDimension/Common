@@ -1,3 +1,8 @@
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.Models.Abstractions;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+
 namespace BD.Common8.AspNetCore.Models.Users;
 
 /// <summary>

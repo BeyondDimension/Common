@@ -1,3 +1,8 @@
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+
 namespace System.Extensions;
 
 public static partial class X509CertificateExtensions
@@ -13,6 +18,7 @@ public static partial class X509CertificateExtensions
     {
         // https://github.com/dotnet/runtime/blob/v6.0.4/src/libraries/System.Security.Cryptography.X509Certificates/src/System/Security/Cryptography/X509Certificates/X509Certificate.cs#L362
         using IncrementalHash hasher = IncrementalHash.CreateHash(hashAlgorithm);
+        hasher.AppendData(certificate.GetRawCertData());
         hasher.AppendData(certificate.GetRawCertData());
         return hasher.GetHashAndReset();
     }
@@ -96,12 +102,12 @@ public static partial class X509CertificateExtensions
             if (string.Equals(extension.Oid?.FriendlyName, "Subject Alternative Name"))
             {
                 var asndata = new AsnEncodedData(extension.Oid, extension.RawData);
-                return asndata.Format(true).Split(new string[] {
+                return asndata.Format(true).Split([
                     Environment.NewLine,
                     "DNS Name=",
-                }, StringSplitOptions.RemoveEmptyEntries);
+                ], StringSplitOptions.RemoveEmptyEntries);
             }
-        return Array.Empty<string>();
+        return [];
     }
 
     /// <summary>

@@ -5,6 +5,8 @@
 // Assembly location: Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo.dll
 // XML documentation location: Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo.xml
 
+using System.Globalization;
+
 namespace Microsoft.International.Converters.PinYinConverter;
 
 /// <summary>

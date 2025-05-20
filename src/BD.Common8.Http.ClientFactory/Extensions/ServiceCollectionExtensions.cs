@@ -1,4 +1,11 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Models.Abstractions;
+using BD.Common8.Http.ClientFactory.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.Client;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Http.ClientFactory.Extensions;
 
 public static partial class ServiceCollectionExtensions

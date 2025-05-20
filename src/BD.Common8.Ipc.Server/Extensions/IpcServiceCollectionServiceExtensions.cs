@@ -1,3 +1,9 @@
+using BD.Common8.Ipc.Services;
+using BD.Common8.Ipc.Services.Implementation;
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Ipc.Extensions;
 
 public static partial class IpcServiceCollectionServiceExtensions

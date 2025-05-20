@@ -1,5 +1,7 @@
 // https://learn.microsoft.com/zh-cn/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-6.0&tabs=visual-studio#timed-background-tasks
 
+using Microsoft.Extensions.Hosting;
+
 namespace BD.Common8.AspNetCore.Hosting;
 
 /// <summary>

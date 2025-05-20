@@ -1,4 +1,8 @@
 #if MACOS
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+
 namespace BD.Common8.Security.Helpers;
 
 static partial class SecurityPlatformHelper

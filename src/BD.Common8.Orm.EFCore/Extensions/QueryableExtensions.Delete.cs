@@ -1,3 +1,9 @@
+using BD.Common8.Columns;
+using BD.Common8.Entities.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace System.Extensions;
 
 public static partial class QueryableExtensions
@@ -57,6 +63,7 @@ public static partial class QueryableExtensions
     /// <param name="primaryKey"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<int> GeneralDeleteByIdAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(
         this IQueryable<TEntity> query,
@@ -79,6 +86,7 @@ public static partial class QueryableExtensions
     /// <param name="primaryKey"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<int> SoftDeleteByIdAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(
         this IQueryable<TEntity> query,
@@ -101,6 +109,7 @@ public static partial class QueryableExtensions
     /// <param name="primaryKey"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<int> HardDeleteByIdAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(
         this IQueryable<TEntity> query,
@@ -197,6 +206,7 @@ public static partial class QueryableExtensions
     /// <param name="entity"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<int> GeneralDeleteAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(
         this IQueryable<TEntity> query,
@@ -218,6 +228,7 @@ public static partial class QueryableExtensions
     /// <param name="entity"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<int> SoftDeleteAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(
         this IQueryable<TEntity> query,
@@ -239,6 +250,7 @@ public static partial class QueryableExtensions
     /// <param name="entity"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static async Task<int> HardDeleteAsync<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey>(
         this IQueryable<TEntity> query,

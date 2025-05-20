@@ -1,3 +1,15 @@
+using System.Diagnostics;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
+#if WINDOWS7_0_OR_GREATER
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+#endif
+#if !ANDROID
+using System.Net.NetworkInformation;
+#endif
+
 namespace System.Net;
 
 /// <summary>

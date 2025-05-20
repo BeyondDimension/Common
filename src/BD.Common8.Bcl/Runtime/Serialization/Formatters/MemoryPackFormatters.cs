@@ -1,3 +1,6 @@
+using MemoryPack;
+using System.Runtime.CompilerServices;
+
 namespace System.Runtime.Serialization.Formatters;
 
 /// <summary>

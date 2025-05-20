@@ -1,3 +1,7 @@
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Text;
 #if ANDROID
 using ALog = global::Android.Util.Log;
 using ALogPriority = global::Android.Util.LogPriority;
@@ -430,7 +434,7 @@ static partial class Log
 
     static string CutDroidTag(string name)
     {
-        var array = name.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+        var array = name.Split(['.'], StringSplitOptions.RemoveEmptyEntries);
         var lastItem = array.LastOrDefault(x => !string.IsNullOrWhiteSpace(x));
         if (lastItem != null)
         {

@@ -1,3 +1,5 @@
+using System.Extensions;
+
 namespace Tools.Build.Commands;
 
 /// <summary>

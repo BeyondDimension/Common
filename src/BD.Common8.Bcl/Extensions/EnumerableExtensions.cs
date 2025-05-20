@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using SR = BD.Common8.Resources.SR;
 
 namespace System.Extensions;

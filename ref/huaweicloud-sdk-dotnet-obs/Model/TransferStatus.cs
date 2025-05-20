@@ -12,9 +12,6 @@
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
 using OBS.Internal;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OBS.Model
 {
@@ -23,11 +20,11 @@ namespace OBS.Model
     /// </summary>
     public class TransferStatus : EventArgs
     {
-        private long _newlyTransferredBytes;
-        private long _transferredBytes;
-        private long _totalBytes;
-        private double _intervalSeconds;
-        private double _totalSeconds;
+        private readonly long _newlyTransferredBytes;
+        private readonly long _transferredBytes;
+        private readonly long _totalBytes;
+        private readonly double _intervalSeconds;
+        private readonly double _totalSeconds;
         private IList<BytesUnit> _instantaneousBytes;
 
         internal TransferStatus(long newlyTransferredBytes, long transferredBytes, long totalBytes,

@@ -2,28 +2,37 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<IsSourceGeneratorProject>true</IsSourceGeneratorProject>
 		<RootNamespace>BD.Common8.SourceGenerator.Ipc</RootNamespace>
-		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
-		<Version>$(Version_SourceGenerator_Ipc_Server)</Version>
+		<!--8.yy.1MMdd.1hhmm-->
+		<Version>8.25.10520.12000</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<Description>进程间通信 (IPC) 服务端源生成器</Description>
 	</PropertyGroup>
 
+	<!-- 👇 基于 Attribute 生成的 Attribute 类型源码引用 -->
 	<ItemGroup>
 		<Compile Include="..\BD.Common8.Ipc\Attributes\*.cs">
 			<LinkBase>_SourceReference\Attributes</LinkBase>
 		</Compile>
+		<Compile Include="..\BD.Common8.Ipc\Enums\IpcGeneratorType.cs">
+			<LinkBase>_SourceReference\BD.Common8.Ipc\Enums</LinkBase>
+		</Compile>
 		<Compile Include="..\BD.Common8.SourceGenerator.Ipc.Client\Enums\MethodParametersCategory.cs">
 			<LinkBase>Enums</LinkBase>
-		</Compile>
-		<Compile Include="..\BD.Common8.Ipc\Enums\IpcGeneratorType.cs">
-			<LinkBase>_SourceReference\Enums</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common8.SourceGenerator.Ipc.Client\Templates\Abstractions\IpcTemplateBase.cs">
 			<LinkBase>Templates\Abstractions</LinkBase>
 		</Compile>
 	</ItemGroup>
+
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<PackageReference Include="Costura.Fody">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\SharedProject\SourceGenerator.props" />
 
 </Project>

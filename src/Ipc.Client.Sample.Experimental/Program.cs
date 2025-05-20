@@ -1,3 +1,16 @@
+using BD.Common8.Ipc.Attributes;
+using BD.Common8.Ipc.Enums;
+using BD.Common8.Ipc.Models;
+using BD.Common8.Ipc.Services;
+using BD.Common8.Ipc.Services.Implementation;
+using BD.Common8.Models;
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Extensions;
+using System.Text.Json;
+
 namespace Ipc.Client.Sample.Experimental;
 
 /// <summary>
@@ -81,19 +94,19 @@ static partial class Program
                 {
                     //var resultAll = await todoService.All();
                     //Console.WriteLine($"{nameof(ITodoService.All)}: ");
-                    //Console.WriteLine(Serializable.SJSON_Original(resultAll, NewtonsoftJsonFormatting.Indented));
+                    //Console.WriteLine(Serializable.SJSON_Original(resultAll, Formatting.Indented));
 
                     //var resultGetById = await todoService.GetById(Random.Shared.Next(int.MaxValue));
                     //Console.WriteLine($"{nameof(ITodoService.GetById)}: ");
-                    //Console.WriteLine(Serializable.SJSON_Original(resultGetById, NewtonsoftJsonFormatting.Indented));
+                    //Console.WriteLine(Serializable.SJSON_Original(resultGetById, Formatting.Indented));
 
                     //var resultSimpleTypes = await todoService.SimpleTypes(true, 2, 3, '4', DateOnly.FromDateTime(DateTime.Today), DateTime.UtcNow, DateTimeOffset.Now, 7.1m, 8.2d, ProcessorArchitecture.MSIL, Guid.NewGuid(), 11, 12, long.MaxValue, 14.5f, TimeOnly.FromDateTime(DateTime.Now), TimeSpan.FromHours(3), 17, 18, 19, new Uri("http://github.com/BeyondDimension"), new Version(9, 12));
                     //Console.WriteLine($"{nameof(ITodoService.SimpleTypes)}: ");
-                    //Console.WriteLine(Serializable.SJSON_Original(resultSimpleTypes, NewtonsoftJsonFormatting.Indented));
+                    //Console.WriteLine(Serializable.SJSON_Original(resultSimpleTypes, Formatting.Indented));
 
                     //var resultBodyTest = await todoService.BodyTest(new(9, Random2.GenerateRandomString(64)));
                     //Console.WriteLine($"{nameof(ITodoService.BodyTest)}: ");
-                    //Console.WriteLine(Serializable.SJSON_Original(resultBodyTest, NewtonsoftJsonFormatting.Indented));
+                    //Console.WriteLine(Serializable.SJSON_Original(resultBodyTest, Formatting.Indented));
 
                     foreach (var method in methods)
                     {
@@ -105,28 +118,28 @@ static partial class Program
                         //Console.WriteLine($"{method.Name}: ");
                         //var resultValue = resultMethod.GetType().GetProperty(nameof(Task<object>.Result))?.GetValue(resultMethod);
                         //Console.WriteLine(Serializable.SJSON_Original(
-                        //    resultValue, NewtonsoftJsonFormatting.Indented));
+                        //    resultValue, Formatting.Indented));
                     }
 
                     Console.WriteLine($"{nameof(ITodoService.AsyncEnumerable)}: ");
                     await foreach (var item in todoService.AsyncEnumerable(5))
                     {
                         Console.WriteLine(Serializable.SJSON_Original(
-                            item, NewtonsoftJsonFormatting.Indented));
+                            item, Formatting.Indented));
                     }
 
                     Console.WriteLine($"{nameof(ITodoService.Exception2)}: ");
                     await foreach (var item in todoService.Exception2())
                     {
                         Console.WriteLine(Serializable.SJSON_Original(
-                            item, NewtonsoftJsonFormatting.Indented));
+                            item, Formatting.Indented));
                     }
 
                     Console.WriteLine($"{nameof(ITodoService.Exception3)}: ");
                     await foreach (var item in todoService.Exception3())
                     {
                         Console.WriteLine(Serializable.SJSON_Original(
-                            item, NewtonsoftJsonFormatting.Indented));
+                            item, Formatting.Indented));
                     }
                 }
             }
@@ -139,7 +152,7 @@ static partial class Program
                 {
                     Console.WriteLine($"{TodoService_SignalR2.HubUrl} All: ");
                     Console.WriteLine(Serializable.SJSON_Original(
-                        resultValue, NewtonsoftJsonFormatting.Indented));
+                        resultValue, Formatting.Indented));
                 }
             }
 
@@ -167,11 +180,14 @@ sealed class IpcClientService2(IpcAppConnectionString connectionString) : IpcCli
         handler.SslOptions.ClientCertificates.Add(SamplePathHelper.ServerCertificate);
     }
 
-    static readonly Lazy<SystemTextJsonSerializerOptions> _JsonSerializerOptions =
-        new(() => SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver());
+    static readonly Lazy<JsonSerializerOptions> _JsonSerializerOptions =
+        new(() => SampleJsonSerializerContext.Default.Options.AddDefaultJsonTypeInfoResolver(), true);
 
     /// <inheritdoc/>
-    protected override SystemTextJsonSerializerOptions JsonSerializerOptions => _JsonSerializerOptions.Value;
+    protected override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        return _JsonSerializerOptions.Value;
+    }
 
     protected override void OnBuildHubConnection(HubConnection connection)
     {

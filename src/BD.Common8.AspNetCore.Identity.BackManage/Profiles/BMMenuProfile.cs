@@ -1,3 +1,7 @@
+using AutoMapper;
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.AspNetCore.Models.Menus;
+
 namespace BD.Common8.AspNetCore.Profiles;
 
 /// <summary>

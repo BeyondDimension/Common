@@ -1,7 +1,10 @@
+using Microsoft.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.SourceGenerator.Helpers;
 
 /// <summary>
-/// 提供类型判断
+/// 提供 C# 源码字符串中定义的类型判断
 /// </summary>
 public static partial class TypeHelper
 {
@@ -70,7 +73,7 @@ public static partial class TypeHelper
         {
             typeString = typeString.Split(['.'], StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
         }
-        return typeString;
+        return typeString!;
     }
 
     /// <summary>

@@ -1,8 +1,13 @@
-namespace BD.Common8.Models;
+using BD.Common8.District.Enums;
+using BD.Common8.District.Models.Abstractions;
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+
+namespace BD.Common8.District.Models;
 
 /// <inheritdoc cref="IDistrict"/>
-[MPObj]
-[MP2Obj(MP2SerializeLayout.Explicit)]
+[global::MessagePack.MessagePackObject]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
 [BinaryResource(
 """
@@ -18,7 +23,7 @@ namespace BD.Common8.Models;
         Span<byte> bytes = {AMapAdcodeCitycode20210406}();
         try
         {
-            var districts = MemoryPackSerializer.Deserialize<District[]>(bytes);
+            var districts = global::MemoryPack.MemoryPackSerializer.Deserialize<District[]>(bytes);
             return districts!;
         }
         finally
@@ -32,28 +37,28 @@ public sealed partial class District : IDistrict
     string DebuggerDisplay() => $"{Name}, {Id}";
 
     /// <inheritdoc/>
-    [MPKey(0)]
-    [MP2Key(0)]
+    [global::MessagePack.Key(0)]
+    [global::MemoryPack.MemoryPackOrder(0)]
     public int Id { get; set; }
 
     /// <inheritdoc/>
-    [MPKey(1)]
-    [MP2Key(1)]
+    [global::MessagePack.Key(1)]
+    [global::MemoryPack.MemoryPackOrder(1)]
     public string? Name { get; set; }
 
     /// <inheritdoc/>
-    [MPKey(2)]
-    [MP2Key(2)]
+    [global::MessagePack.Key(2)]
+    [global::MemoryPack.MemoryPackOrder(2)]
     public DistrictLevel Level { get; set; }
 
     /// <inheritdoc/>
-    [MPKey(3)]
-    [MP2Key(3)]
+    [global::MessagePack.Key(3)]
+    [global::MemoryPack.MemoryPackOrder(3)]
     public int? Up { get; set; }
 
     /// <inheritdoc/>
-    [MPKey(4)]
-    [MP2Key(4)]
+    [global::MessagePack.Key(4)]
+    [global::MemoryPack.MemoryPackOrder(4)]
     public string? ShortName { get; set; }
 
     /// <inheritdoc/>

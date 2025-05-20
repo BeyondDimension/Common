@@ -1,3 +1,9 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 /// <summary>
@@ -71,6 +77,8 @@ public sealed class ViewModelWrapperTemplate :
                             foreach (var p in properties)
                             {
                                 var modelProperty = modelProperties.FirstOrDefault(x => x.Name == p);
+                                if (modelProperty == null)
+                                    continue;
                                 dictProperties ??= [];
                                 dictProperties.Add(p, TypeStringImpl.Parse(modelProperty.Type));
                             }
@@ -118,7 +126,7 @@ public sealed class ViewModelWrapperTemplate :
         public required int I { get; init; }
     }
 
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
         SourceModel model = new()
         {
@@ -157,7 +165,17 @@ public sealed class ViewModelWrapperTemplate :
         //return true;
     }
 
-    protected override void WriteFile(Stream stream, SourceModel m)
+    static void WriteUsings(Stream stream)
+    {
+        stream.Write(
+"""
+using global::ReactiveUI;
+
+
+"""u8);
+    }
+
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
         var modelTypeSymbol = TypeStringImpl.GetTypeSymbol(m.AttrModel.Attribute.ModelType);
         modelTypeSymbol.ThrowIsNull();
@@ -175,12 +193,13 @@ public sealed class ViewModelWrapperTemplate :
             .Where(x => x.DeclaredAccessibility == Accessibility.Public &&
                 (x.Name == "DebuggerDisplay" || x.Name == "GetDebuggerDisplay") && TypeStringImpl.Parse(x.ReturnType).IsSystemString).FirstOrDefault() : null;
 
-        WriteFileHeader(stream);
+        WriteFileHeader(stream, GetType());
         stream.WriteNewLine();
+        WriteUsings(stream);
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();
-        var vmBaseType = m.Attribute.ViewModelBaseType?.Name ?? (m.AttrModel.IsMemoryPack ? "ReactiveSerializationObject" : "ReactiveObject");
-        var modelType = m.Attribute.ModelType?.Name;
+        var vmBaseType = m.Attribute.ViewModelBaseType?.Name ?? (m.AttrModel.IsMemoryPack ? "global::Mobius.Models.ReactiveSerializationObject" : "global::ReactiveUI.ReactiveObject");
+        var modelType = m.Attribute.ModelType is TypeStringImpl modelTypeStringImpl ? modelTypeStringImpl.ToString() : m.Attribute.ModelType?.FullName;
         modelType.ThrowIsNull();
 
         stream.WriteFormat(
@@ -195,7 +214,7 @@ public sealed class ViewModelWrapperTemplate :
         {
             stream.Write(
 """
-[DebuggerDisplay("{DebuggerDisplay,nq}")]
+[global::System.Diagnostics.DebuggerDisplayAttribute("{DebuggerDisplay,nq}")]
 
 """u8);
         }
@@ -203,7 +222,7 @@ public sealed class ViewModelWrapperTemplate :
         {
             stream.Write(
 """
-[DebuggerDisplay("{
+[global::System.Diagnostics.DebuggerDisplayAttribute("{
 """u8);
             stream.WriteUtf16StrToUtf8OrCustom(debuggerDisplayMethod.Name);
             stream.Write(
@@ -276,7 +295,20 @@ partial class {0} : {1}
             stream.Write(
 """
     /// <inheritdoc cref="DebuggerDisplayAttribute"/>
-    [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
+    [global::System.Xml.Serialization.XmlIgnoreAttribute]
+    [global::System.Runtime.Serialization.IgnoreDataMemberAttribute]
+#if !NO_SYSTEM_TEXT_JSON
+    [global::System.Text.Json.Serialization.JsonIgnoreAttribute]
+#endif
+#if !NO_NEWTONSOFT_JSON
+    [global::Newtonsoft.Json.JsonIgnoreAttribute]
+#endif
+#if !NO_MESSAGEPACK
+    [global::MessagePack.IgnoreMemberAttribute]
+#endif
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
+    [global::MemoryPack.MemoryPackIgnoreAttribute]
+#endif
     public string DebuggerDisplay => Model.DebuggerDisplay!;
 
 
@@ -326,14 +358,14 @@ partial class {0} : {1}
     /// ViewModel => Model
     /// </summary>
     /// <param name="vm"></param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     public static implicit operator {0}({1} vm) => vm.Model;
 
     /// <summary>
     /// Model => ViewModel
     /// </summary>
     /// <param name="model"></param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 """u8, modelType, m.TypeName);
             stream.WriteNewLine();
             if (m.Attribute.ImplicitOperatorNotNull)
@@ -383,10 +415,10 @@ partial class {0} : {1}
                 {
                     stream.WriteFormat(
 """
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     {1} _{0}() => Model.{0};
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
     void _{0}({1} value)
 """u8, p.Key, p.Value);
                     stream.Write(
@@ -399,7 +431,7 @@ partial class {0} : {1}
                     {
                         stream.WriteFormat(
 """
-        if (!EqualityComparer<{0}>.Default.Equals(Model.{1}, value))
+        if (!global::System.Collections.Generic.EqualityComparer<{0}>.Default.Equals(Model.{1}, value))
 """u8, p.Value, p.Key);
                     }
                     else
@@ -442,7 +474,20 @@ partial class {0} : {1}
                     stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}.{1}"/>
-    [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
+    [global::System.Xml.Serialization.XmlIgnoreAttribute]
+    [global::System.Runtime.Serialization.IgnoreDataMemberAttribute]
+#if !NO_SYSTEM_TEXT_JSON
+    [global::System.Text.Json.Serialization.JsonIgnoreAttribute]
+#endif
+#if !NO_NEWTONSOFT_JSON
+    [global::Newtonsoft.Json.JsonIgnoreAttribute]
+#endif
+#if !NO_MESSAGEPACK
+    [global::MessagePack.IgnoreMemberAttribute]
+#endif
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
+    [global::MemoryPack.MemoryPackIgnoreAttribute]
+#endif
     public {2} {1}
 """u8, modelType, p.Key, p.Value);
                     stream.Write(
@@ -466,7 +511,7 @@ partial class {0} : {1}
                     {
                         stream.WriteFormat(
 """
-            if (!EqualityComparer<{0}>.Default.Equals(Model.{1}, value))
+            if (!global::System.Collections.Generic.EqualityComparer<{0}>.Default.Equals(Model.{1}, value))
 """u8, p.Value, p.Key);
                     }
                     else
@@ -506,7 +551,20 @@ partial class {0} : {1}
                 stream.WriteFormat(
 """
     /// <inheritdoc cref="{0}.{1}"/>
-    [XmlIgnore, IgnoreDataMember, SystemTextJsonIgnore, NewtonsoftJsonIgnore, MPIgnore, MP2Ignore]
+    [global::System.Xml.Serialization.XmlIgnoreAttribute]
+    [global::System.Runtime.Serialization.IgnoreDataMemberAttribute]
+#if !NO_SYSTEM_TEXT_JSON
+    [global::System.Text.Json.Serialization.JsonIgnoreAttribute]
+#endif
+#if !NO_NEWTONSOFT_JSON
+    [global::Newtonsoft.Json.JsonIgnoreAttribute]
+#endif
+#if !NO_MESSAGEPACK
+    [global::MessagePack.IgnoreMemberAttribute]
+#endif
+#if !NO_MEMORYPACK && (!NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER))
+    [global::MemoryPack.MemoryPackIgnoreAttribute]
+#endif
     public {2} {1} 
 """u8, modelType, p.Key, p.Value);
                 stream.Write("{"u8);

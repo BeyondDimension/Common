@@ -4,7 +4,19 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
 global using System.Reflection;
-using static BD.Common8.SourceGenerator.ResX.Test.Helpers.ResXHelper;
+using BD.Common8.Resources;
+using System.Buffers;
+using System.Globalization;
+//using static BD.Common8.SourceGenerator.ResX.Test.Helpers.ResXHelper;
+
+var str =
+"""
+
+"'''"
+aa
+
+""";
+
 
 SR.Culture = new CultureInfo("en");
 Console.WriteLine(SR.DayOfWeek_S1);
@@ -19,9 +31,9 @@ Console.WriteLine(SR.DayOfWeek_S1);
 SR.Culture = new CultureInfo("zh-HK");
 Console.WriteLine(SR.DayOfWeek_S1);
 
-var i18nPath = Path.Combine(ProjPath, "res", "i18n");
-var values = RemoveResXCommentSatelliteAssemblies(i18nPath);
-WriteProps(i18nPath, values);
+//var i18nPath = Path.Combine(ProjPath, "res", "i18n");
+//var values = RemoveResXCommentSatelliteAssemblies(i18nPath);
+//WriteProps(i18nPath, values);
 
 Console.WriteLine("OK");
 Console.ReadLine();

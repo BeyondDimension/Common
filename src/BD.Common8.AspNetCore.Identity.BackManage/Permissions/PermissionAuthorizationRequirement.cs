@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+
 namespace BD.Common8.AspNetCore.Permissions;
 
 /// <summary>

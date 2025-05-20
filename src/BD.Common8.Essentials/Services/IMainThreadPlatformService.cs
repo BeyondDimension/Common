@@ -1,3 +1,5 @@
+using BD.Common8.Essentials.Enums;
+
 namespace BD.Common8.Essentials.Services;
 
 /// <summary>

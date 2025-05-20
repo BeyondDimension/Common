@@ -1,0 +1,94 @@
+<Project>
+	<!-- 👇 全局属性配置 -->
+	<PropertyGroup>
+		<!--<TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>-->
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<!-- 源生成器程序集由 IDE 或 SDK 运行时加载，已知 Host 进程如下： -->
+		<!-- build C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Current\Bin\Roslyn\csc.exe .NET Framework 4.7.2 -->
+		<!-- design C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\ServiceHub\Hosts\ServiceHub.Host.dotnet.x64\ServiceHub.RoslynCodeAnalysisService.exe .NET 8.0 -->
+		<!--<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies> 已使用 Costura.Fody 将依赖程序集嵌入资源 -->
+	</PropertyGroup>
+
+	<!-- 👇 源生成器项目不需要兼容 AOT -->
+	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
+		<IsTrimmable>false</IsTrimmable>
+		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>false</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>false</EnableAotAnalyzer>
+		<IsAotCompatible>false</IsAotCompatible>
+	</PropertyGroup>
+
+	<!-- 👇 源码引用 -->
+	<ItemGroup>
+		<Using Include="System.Extensions" />
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Format.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.Trim.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.OICEquals.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\StringExtensions.NumberLetter.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Extensions\ObjectExtensions.ThrowIsNull.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\ThrowHelper.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Resources\SR.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Resources</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<!-- 👇 .NET Compiler Platform (Roslyn) 分析器 -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
+	</ItemGroup>
+
+	<Import Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))" Project="$(MSBuildThisFileDirectory)BD.Common8.Bcl.Compat.props" />
+
+	<!-- 👇 全局属性配置 -->
+	<PropertyGroup Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Shared'">
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<IsRoslynComponent>true</IsRoslynComponent>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<IncludeSymbols>false</IncludeSymbols>
+		<ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+	<!-- 👇 共享代码引用 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Shared'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Shared</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Shared\obj\**" />
+	</ItemGroup>
+
+	<!-- 👇 NuGet 打包配置 -->
+	<ItemGroup Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Shared'">
+		<!-- 👇 源生成器的程序集需要放在 analyzers 文件夹内 -->
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<!-- 👇 放置 _._ 表示此包可用于的 TFM，定位最低版本可供任何版本使用 -->
+		<None Include="$(MSBuildThisFileDirectory)nuget\net35\_._" Pack="true" PackagePath="lib\net35" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)nuget\net40\_._" Pack="true" PackagePath="lib\net40" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)nuget\netstandard1.0\_._" Pack="true" PackagePath="lib\netstandard1.0" Visible="false" />
+	</ItemGroup>
+</Project>

@@ -1,4 +1,7 @@
 #if WINDOWS || NETFRAMEWORK
+using Microsoft.Win32;
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
 
 namespace System.Extensions;
 

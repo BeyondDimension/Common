@@ -1,3 +1,11 @@
+using BD.Common8.Columns;
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Orm.EFCore.Data;
+using BD.Common8.Repositories.EFCore.Repositories.Abstractions;
+using BD.Common8.Repositories.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.Repositories.EFCore.Extensions;
 
 public static partial class EFRepositoryExtensions
@@ -38,7 +46,7 @@ public static partial class EFRepositoryExtensions
     }
 
     /// <summary>
-    /// 允许将显式值插入到表的标识列中的 <see cref="DbContext.SaveChanges(bool)"/>，仅支持 SqlServer
+    /// 允许将显式值插入到表的标识列中的 <see cref="global::Microsoft.EntityFrameworkCore.DbContext.SaveChanges(bool)"/>，仅支持 SqlServer
     /// </summary>
     /// <param name="repository"></param>
     /// <returns></returns>
@@ -60,7 +68,7 @@ public static partial class EFRepositoryExtensions
     }
 
     /// <summary>
-    /// 允许将显式值插入到表的标识列中的 <see cref="DbContext.SaveChangesAsync(CancellationToken)"/>，仅支持 SqlServer
+    /// 允许将显式值插入到表的标识列中的 <see cref="global::Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(CancellationToken)"/>，仅支持 SqlServer
     /// </summary>
     /// <param name="repository"></param>
     /// <param name="cancellationToken"></param>

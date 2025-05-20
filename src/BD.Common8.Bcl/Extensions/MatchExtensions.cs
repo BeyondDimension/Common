@@ -1,7 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
+
 namespace System.Extensions;
 
 /// <summary>
-/// 提供对 <see cref="System.Text.RegularExpressions.Match"/> 类型的扩展函数
+/// 提供对 <see cref="Match"/> 类型的扩展函数
 /// </summary>
 public static partial class MatchExtensions
 {
@@ -25,8 +29,12 @@ public static partial class MatchExtensions
     public static IEnumerable<string> GetValues(this MatchCollection match, Func<Match, bool> action)
     {
         foreach (Match item in match.Cast<Match>())
+        {
             if (action.Invoke(item))
+            {
                 yield return item.Value.Trim();
+            }
+        }
     }
 
     /// <summary>

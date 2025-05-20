@@ -1,3 +1,11 @@
+using BD.Common8.Columns;
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+using BD.Common8.Orm.EFCore.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
+using Z.EntityFramework.Plus;
+
 namespace System.Extensions;
 
 public static partial class QueryableExtensions

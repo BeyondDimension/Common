@@ -1,3 +1,14 @@
+using BD.Common8.Columns;
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Orm.EFCore.Data;
+using BD.Common8.Orm.EFCore.Extensions;
+using BD.Common8.Repositories.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Linq.Expressions;
+
 namespace BD.Common8.Repositories.EFCore.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository{TDbContext}"/>

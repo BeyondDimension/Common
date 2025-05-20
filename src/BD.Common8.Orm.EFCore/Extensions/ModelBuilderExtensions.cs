@@ -1,3 +1,13 @@
+using BD.Common8.Columns;
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Helpers;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using static BD.Common8.Orm.EFCore.Data.SqlConstants;
 
 namespace BD.Common8.Orm.EFCore.Extensions;
@@ -10,6 +20,8 @@ public static partial class ModelBuilderExtensions
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
+    [RequiresDynamicCode("Delegate creation requires dynamic code generation.")]
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static LambdaExpression SoftDeletedQueryFilter([DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] Type type)
     {
@@ -25,6 +37,8 @@ public static partial class ModelBuilderExtensions
     /// </summary>
     /// <param name="modelBuilder"></param>
     /// <param name="action"></param>
+    [RequiresDynamicCode("Delegate creation requires dynamic code generation.")]
+    [RequiresUnreferencedCode("Creating Expressions requires unreferenced code because the members being referenced by the Expression may be trimmed.")]
     public static IEnumerable<IMutableEntityType> BuildEntities(this ModelBuilder modelBuilder, Func<ModelBuilder, IMutableEntityType, Type, Action<EntityTypeBuilder>?, Action<EntityTypeBuilder>?>? action = null)
     {
         var entityTypes = modelBuilder.Model.GetEntityTypes();
@@ -42,9 +56,7 @@ public static partial class ModelBuilderExtensions
             {
                 // https://docs.microsoft.com/zh-cn/ef/core/modeling/sequences
                 var sequenceOrderNumbers = $"{entityType.GetTableName() ?? type.Name}_OrderNumbers";
-#pragma warning disable IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
                 if (entityType.ClrType.GetProperty(IOrder.SequenceStartsAt, BindingFlags.Static | BindingFlags.Public)?.GetValue(null) is not long startValue) startValue = 1L;
-#pragma warning restore IL2075 // 'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
                 modelBuilder.HasSequence(sequenceOrderNumbers)
                     .StartsAt(startValue)
                     .IncrementsBy(1);
@@ -109,7 +121,7 @@ public static partial class ModelBuilderExtensions
             if (PNEWSEQUENTIALID.IsAssignableFrom(type))
                 buildAction += p =>
                 {
-                    p.Property(nameof(IEntity<Guid>.Id)).HasDefaultValueSql(GuidDefaultValueSql);
+                    p.Property(nameof(IEntity<>.Id)).HasDefaultValueSql(GuidDefaultValueSql);
                 };
 
             #endregion

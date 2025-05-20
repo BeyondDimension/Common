@@ -1,3 +1,12 @@
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.Claims;
+
 namespace BD.Common8.AspNetCore.Services.Implementation;
 
 /// <summary>
@@ -72,7 +81,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     public async Task<BMUser?> FindByIdAsync(Guid userId)
     {
         ThrowIfDisposed();
-        var user = await db.SysUsers.FindAsync(new object[] { userId, }, CancellationToken);
+        var user = await db.SysUsers.FindAsync([userId,], CancellationToken);
         return user;
     }
 
@@ -187,25 +196,25 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
     protected ValueTask<IdentityResult> ValidateUserAsync(BMUser user)
     {
         if (user.TenantId == default)
-            return new(IdentityResult.Failed(new IdentityError[]
-            {
+            return new(IdentityResult.Failed(
+            [
                 new IdentityError
                 {
                     Description = "租户 Id 不能为空",
                 },
-            }));
+            ]));
         if (string.IsNullOrWhiteSpace(user.UserName))
             return new(UserNameIsNullOrWhiteSpace());
         return new(IdentityResult.Success);
     }
 
-    static IdentityResult UserNameIsNullOrWhiteSpace() => IdentityResult.Failed(new IdentityError[]
-    {
+    static IdentityResult UserNameIsNullOrWhiteSpace() => IdentityResult.Failed(
+    [
         new IdentityError
         {
             Description = "用户名不能为空或空白字符",
         },
-    });
+    ]);
 
     /// <inheritdoc/>
     public bool TryGetUserId(ClaimsPrincipal principal, out Guid userId)
@@ -357,7 +366,7 @@ public class UserManagerImpl<TDbContext> : IUserManager, IDisposable where TDbCo
         if (role != null)
         {
             var userRole = await db.SysUserRoles.FindAsync(
-                new object[] { user.Id, role.Id, user.TenantId }, CancellationToken);
+                [user.Id, role.Id, user.TenantId], CancellationToken);
             return (userRole != null, role.Id, userRole);
         }
         return (false, default, default);

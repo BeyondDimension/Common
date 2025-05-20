@@ -1,5 +1,10 @@
 using Downloader;
 using ShellProgressBar;
+using System.Collections.Concurrent;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Http.Headers;
 using DownloadProgressChangedEventArgs = Downloader.DownloadProgressChangedEventArgs;
 
 // https://github.com/bezzad/Downloader/tree/v3.1.0-beta/src/Samples/Downloader.Sample

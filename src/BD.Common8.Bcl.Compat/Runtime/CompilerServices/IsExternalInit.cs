@@ -6,6 +6,8 @@
 // https://github.com/dotnet/roslyn/issues/45510
 // https://docs.microsoft.com/zh-cn/dotnet/api/system.runtime.compilerservices.isexternalinit?view=net-6.0
 #if !NETCOREAPP
+using System.ComponentModel;
+
 namespace System.Runtime.CompilerServices;
 
 /// <summary>

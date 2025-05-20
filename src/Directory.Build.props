@@ -1,21 +1,58 @@
 <Project>
-	<!-- 👇 配置 Sdk\Projects\$(MSBuildProjectName).props 替代 $(MSBuildProjectName).csproj 中的内容便于共享源码链接项目 -->
-	<Import Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName.StartsWith('BD.Common8.')) AND !$(MSBuildProjectName.StartsWith('BD.Common8.SourceGenerator.')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat' AND Exists('$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props')" Project="$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props" />
-	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName.StartsWith('BD.Common8.')) AND !$(MSBuildProjectName.StartsWith('BD.Common8.SourceGenerator.')) AND $(MSBuildProjectName) != 'BD.Common8.Bcl.Compat' AND Exists('$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props')">
-		<None Include="$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props">
-			<LinkBase>Properties</LinkBase>
-		</None>
-	</ItemGroup>
+	<Import Project="$(MSBuildThisFileDirectory)Version.props" />
 
-	<!-- 👇 全局属性配置 -->
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\Global.props" />
+	<!-- 👇 全局 Property 配置 -->
+	<PropertyGroup>
+		<Deterministic>true</Deterministic>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+		<NoWarn>$(NoWarn);NU1504;NU1507;MSB4011;NU5048;NU5104;RS1041</NoWarn>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NeutralLanguage>zh-Hans</NeutralLanguage>
+		<!-- 👇 源生成器生成的 C# 临时源码文件在生成结束后是否不删除文件，用于生成错误代码时查文件内容纠正生成器，启用时会导致 VS 的 Android 热重载在生成时出错 -->
+		<!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>-->
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<EnableMsixTooling>true</EnableMsixTooling>
+	</PropertyGroup>
+
+	<!-- 👇 TFM != .NET Framework 3.5 -->
+	<PropertyGroup Condition="!$(TargetFramework.StartsWith('net35'))">
+		<ImplicitUsings>true</ImplicitUsings>
+	</PropertyGroup>
+
+	<!-- 👇 程序集信息 -->
+	<PropertyGroup>
+		<!--8.yy.1MMdd.1hhmm-->
+		<Version>8.25.10520.12000</Version>
+		<Copyright>©️ $(Company). All rights reserved.</Copyright>
+		<Authors>$(Company)</Authors>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+	</PropertyGroup>
+
+	<!-- 👇 静态本机编译 & 剪裁 | AOT & Trimmable -->
+	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
+		<IsTrimmable>true</IsTrimmable>
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>true</EnableAotAnalyzer>
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
+
+	<!-- 👇 CompilerVisibleProperty 配置源生成器中 MSBuild Property 可见性 -->
+	<ItemGroup>
+		<CompilerVisibleProperty Include="Deterministic" />
+	</ItemGroup>
 
 	<!-- 👇 InternalsVisibleToAttribute -->
 	<ItemGroup>
-		<Compile Condition="$(MSBuildProjectName) != 'BD.Common8.UnitTest' AND $(IsTestProject) != 'true'" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs">
-			<LinkBase>Properties\InternalsVisibleTo</LinkBase>
-		</Compile>
-		<Compile Condition="$(MSBuildProjectName) != 'BD.Common8.UnitTest' AND $(IsTestProject) != 'true' AND Exists('$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.$(MSBuildProjectName).cs')" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.$(MSBuildProjectName).cs">
+		<Compile Condition="$(MSBuildProjectName) != 'BD.Common8.UnitTest' AND $(IsTestProject) != 'true'" Include="$(MSBuildThisFileDirectory)InternalsVisibleTo.BD.Common8.UnitTest.cs">
 			<LinkBase>Properties\InternalsVisibleTo</LinkBase>
 		</Compile>
 	</ItemGroup>

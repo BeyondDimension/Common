@@ -1,3 +1,7 @@
+using BD.Common8.Ipc.Attributes;
+using BD.Common8.Ipc.Enums;
+using Ipc.Sample;
+
 Console.WriteLine("Hello, World!");
 
 //[ServiceContractImpl(typeof(ITodoService), IpcGeneratorType.ClientWebApi)]

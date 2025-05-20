@@ -1,5 +1,17 @@
 // https://bcssstorage.blob.core.chinacloudapi.cn/docs/CCS/DEMO.zip
 
+using BD.Common8.Extensions;
+using BD.Common8.Helpers;
+using BD.Common8.SmsSender.Models.SmsSender;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.Extensions;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web;
 using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud.Sms21VianetBlueCloudOptions;
 
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud;
@@ -7,7 +19,7 @@ namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21Via
 /// <summary>
 /// 短信服务提供商 - 世纪互联蓝云
 /// </summary>
-public class SmsSenderProvider : SmsSenderBase, ISmsSender
+public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
 {
     /// <summary>
     /// 蓝云的名称
@@ -128,21 +140,17 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         SendSms21VianetBlueCloudResult? jsonObject = null;
 
         if (isSuccess)
+        {
             jsonObject = await ReadFromJsonAsync(response.Content, SmsSenderJsonSerializerContext.Default.SendSms21VianetBlueCloudResult, cancellationToken);
+        }
         else
-            logger.LogError(
-                $"调用世纪互联蓝云短信接口接口失败，" +
-                $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
-                $"短信内容：{message}，" +
-                //$"Content：{jsonPayload}，" +
-                //$"Account：{options.Account}，" +
-                //$"SASToken：{token}，" +
-                $"TemplateName：{template_name}，" +
-                $"HTTP状态码：{(int)response.StatusCode}");
+        {
+            SendSmsError(logger, PhoneNumberHelper.ToStringHideMiddleFour(number), message, template_name, unchecked((int)response.StatusCode));
+        }
 
         var result = new SendSmsResult<SendSms21VianetBlueCloudResult>
         {
-            HttpStatusCode = (int)response.StatusCode,
+            HttpStatusCode = unchecked((int)response.StatusCode),
             IsSuccess = isSuccess,
             Result = jsonObject,
             ResultObject = jsonObject,
@@ -150,6 +158,14 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
 
         return result;
     }
+
+    [LoggerMessage(
+        Level = LogLevel.Error,
+        Message =
+"""
+调用世纪互联蓝云短信接口接口失败，手机号码：{phoneNumber}，短信内容：{message}，TemplateName：{template_name}，HTTP 响应状态码：{httpStatusCode}
+""")]
+    private static partial void SendSmsError(ILogger logger, string phoneNumber, string? message, string? template_name, int httpStatusCode);
 
     /// <inheritdoc/>
     public override Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)
@@ -160,42 +176,56 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
     /// <summary>
     /// 请求数据
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay(),nq}")]
     internal sealed class RequestData
     {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, SmsSenderJsonSerializerContext.Default.Options);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+
         /// <summary>
         /// 接收手机号
         /// </summary>
-        [SystemTextJsonProperty("phoneNumber")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("phoneNumber")]
         public string[]? PhoneNumber { get; set; }
 
         /// <summary>
         /// 下发扩展码，两位纯数字
         /// </summary>
-        [SystemTextJsonProperty("extend")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("extend")]
         public string? ExtendCode { get; set; }
 
         /// <summary>
         /// 消息正文
         /// </summary>
-        [SystemTextJsonProperty("messageBody")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("messageBody")]
         public MessageBody? MessageBody { get; set; }
     }
 
     /// <summary>
     /// 消息正文
     /// </summary>
+    [DebuggerDisplay("{DebuggerDisplay(),nq}")]
     internal sealed class MessageBody
     {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, SmsSenderJsonSerializerContext.Default.Options);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+
         /// <summary>
         /// 短信模板名称
         /// </summary>
-        [SystemTextJsonProperty("templateName")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("templateName")]
         public string? TemplateName { get; set; }
 
         /// <summary>
         /// 短信模板参数，和模板中变量一一对应,没有变量则不需要
         /// </summary>
-        [SystemTextJsonProperty("templateParam")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("templateParam")]
         public Dictionary<string, string> TemplateParam { get; set; } = new();
     }
 }

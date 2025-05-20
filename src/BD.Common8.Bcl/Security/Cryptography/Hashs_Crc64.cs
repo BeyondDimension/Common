@@ -1,3 +1,6 @@
+using System.Extensions;
+using System.Runtime.CompilerServices;
+using System.Text;
 using HashAlg_ = System.IO.Hashing.Crc64;
 
 namespace System.Security.Cryptography;

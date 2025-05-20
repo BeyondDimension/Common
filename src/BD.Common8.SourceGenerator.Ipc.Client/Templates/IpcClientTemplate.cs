@@ -1,3 +1,11 @@
+using BD.Common8.Ipc.Attributes;
+using BD.Common8.Ipc.Enums;
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Ipc.Enums;
+using BD.Common8.SourceGenerator.Ipc.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Ipc.Templates;
 
 /// <summary>
@@ -34,23 +42,34 @@ public sealed class IpcClientTemplate : IpcTemplateBase
     /// </summary>
     bool EnableBoolToLowerString => true;
 
+    //    static void WriteUsings(Stream stream)
+    //    {
+    //        stream.Write(
+    //"""
+    //using global::System.Extensions;
+
+
+    //"""u8);
+    //    }
+
     /// <inheritdoc/>
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
         WriteFileHeader(stream);
         stream.WriteNewLine();
+        //WriteUsings(stream);
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();
         stream.WriteFormat(
 """
-sealed partial class {0}(IIpcClientService ipcClientService) : {1}
+sealed partial class {0}(global::BD.Common8.Ipc.Services.IIpcClientService ipcClientService) : {1}
 """u8, m.TypeName, m.Attribute.ServiceType);
         stream.WriteNewLine();
         stream.WriteCurlyBracketLeft();
         stream.WriteNewLine();
         stream.Write(
 """
-    readonly IIpcClientService ipcClientService = ipcClientService;
+    readonly global::BD.Common8.Ipc.Services.IIpcClientService ipcClientService = ipcClientService;
 """u8);
         stream.WriteNewLine();
         stream.WriteNewLine();
@@ -78,7 +97,7 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
             {
                 stream.WriteFormat(
 """
-    public IAsyncEnumerable<{0}> {1}(
+    public global::System.Collections.Generic.IAsyncEnumerable<{0}> {1}(
 """u8, returnType.GenericT, method.Name);
                 WriteParameters();
                 stream.Write(
@@ -90,7 +109,7 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
             {
                 stream.WriteFormat(
 """
-    public async Task<ApiRspImpl> {0}(
+    public async Task<global::BD.Common8.Models.ApiRspImpl> {0}(
 """u8, method.Name);
                 WriteParameters();
                 stream.Write(
@@ -102,7 +121,7 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
             {
                 stream.WriteFormat(
 """
-    public async Task<ApiRspImpl<{0}>> {1}(
+    public async Task<global::BD.Common8.Models.ApiRspImpl<{0}>> {1}(
 """u8, returnType, method.Name);
 
                 WriteParameters();
@@ -141,95 +160,171 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
 """u8);
             stream.WriteNewLine();
 
-            void WriteMethodBodyWithWebApi()
+            void WriteMethodBodyWithWebApiBySimpleTypesImplFormattableString(in SourceModel m)
             {
-                if (category == MethodParametersCategory.SimpleTypes)
-                {
-                    stream.WriteFormat(
+                stream.Write(
 """
-        string requestUri = $"/{0}/{1}
-"""u8, m.Attribute.ServiceType, method.Name);
-                    for (int i = 0; i < methodParas.Length; i++)
+        string requestUri = 
+"""u8);
+                WriteServiceTypeAndMethodName(stream, m.Attribute.ServiceType, method);
+                for (int i = 0; i < methodParas.Length; i++)
+                {
+                    var (paraType, paraName, _) = methodParas[i];
+                    if (i == methodParas.Length - 1)
                     {
-                        var (paraType, paraName, _) = methodParas[i];
-                        if (i == methodParas.Length - 1)
+                        if (paraType.IsSystemThreadingCancellationToken)
                         {
-                            if (paraType.IsSystemThreadingCancellationToken)
-                            {
-                                continue;
-                            }
+                            continue;
                         }
-                        stream.Write("/{WebUtility.UrlEncode("u8);
-                        if (paraType.TypeSymbol != null && paraType.TypeSymbol.IsEnum())
+                    }
+
+                    if (paraType.TypeSymbol != null && paraType.TypeSymbol.IsEnum())
+                    {
+                        stream.Write("/{("u8); // 枚举类型使用数值的值而非名称，所以也不需要 UrlEncode
+                        string? enumUnderlyingType = null;
+                        if (paraType.TypeSymbol is INamedTypeSymbol paraNamedType)
                         {
-                            string? enumUnderlyingType = null;
-                            if (paraType.TypeSymbol is INamedTypeSymbol paraNamedType)
-                            {
-                                enumUnderlyingType = paraNamedType.EnumUnderlyingType?.ToDisplayString();
-                            }
-                            stream.WriteFormat(
+                            enumUnderlyingType = paraNamedType.EnumUnderlyingType?.ToDisplayString();
+                        }
+                        stream.WriteFormat(
 """
 (({1}){0}).ToString()
 """u8, paraName, enumUnderlyingType ?? "int");
-                        }
-                        else if (EnableBoolToLowerString && paraType.IsSystemBoolean)
-                        {
-                            stream.WriteFormat(
+                    }
+                    else if (EnableBoolToLowerString && paraType.IsSystemBoolean)
+                    {
+                        stream.Write("/{("u8); // bool 值固定小写字符串硬编码，不需要 UrlEncode
+                        stream.WriteFormat(
 """
-{0}.ToLowerString()
+{0} ? "true" : "false"
 """u8, paraName);
-                        }
-                        else if (paraType.IsSystemString)
-                        {
-                            stream.WriteFormat(
+                    }
+                    else if (paraType.IsSystemString)
+                    {
+                        stream.Write("/{System.Net.WebUtility.UrlEncode("u8);
+                        stream.WriteFormat(
 """
 {0}
 """u8, paraName);
-                        }
-                        else if (paraType.IsSystemDateOnly || paraType.IsSystemDateTime || paraType.IsSystemDateTimeOffset)
-                        {
-                            // 日期时间类型需要使用往返（“O”、“o”）格式
-                            // https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/standard-date-and-time-format-strings#the-round-trip-o-o-format-specifier
-                            // “O”或“o”标准格式说明符表示使用保留时区信息的模式的自定义日期和时间格式字符串，并发出符合 ISO8601 的结果字符串。
-                            // 对于 DateTime 值，“O”或“o”标准格式说明符对应于“yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK”自定义格式字符串，对于 DateTimeOffset 值，“O”或“o”标准格式说明符则对应于“yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffzzz”自定义格式字符串。 在此字符串中，分隔各个字符（例如连字符、冒号和字母“T”）的单引号标记对指示各个字符是不能更改的文本。 撇号不会出现在输出字符串中。
-                            stream.WriteFormat(
+                    }
+                    else if (paraType.IsSystemDateOnly || paraType.IsSystemDateTime || paraType.IsSystemDateTimeOffset)
+                    {
+                        stream.Write("/{System.Net.WebUtility.UrlEncode("u8);
+                        // 日期时间类型需要使用往返（“O”、“o”）格式
+                        // https://learn.microsoft.com/zh-cn/dotnet/standard/base-types/standard-date-and-time-format-strings#the-round-trip-o-o-format-specifier
+                        // “O”或“o”标准格式说明符表示使用保留时区信息的模式的自定义日期和时间格式字符串，并发出符合 ISO8601 的结果字符串。
+                        // 对于 DateTime 值，“O”或“o”标准格式说明符对应于“yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK”自定义格式字符串，对于 DateTimeOffset 值，“O”或“o”标准格式说明符则对应于“yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffzzz”自定义格式字符串。 在此字符串中，分隔各个字符（例如连字符、冒号和字母“T”）的单引号标记对指示各个字符是不能更改的文本。 撇号不会出现在输出字符串中。
+                        stream.WriteFormat(
 """
 {0}.ToString("O")
 """u8, paraName);
-                        }
-                        else
+                    }
+                    else
+                    {
+                        switch (paraType.GetTypeCode())
                         {
-                            stream.WriteFormat(
+                            case TypeCode.Boolean:
+                            case TypeCode.Byte:
+                            case TypeCode.Decimal:
+                            case TypeCode.Double:
+                            case TypeCode.Int16:
+                            case TypeCode.Int32:
+                            case TypeCode.Int64:
+                            case TypeCode.SByte:
+                            case TypeCode.Single:
+                            case TypeCode.UInt16:
+                            case TypeCode.UInt32:
+                            case TypeCode.UInt64:
+                                stream.Write("/{("u8); // 数值类型不需要 UrlEncode
+                                break;
+                            default:
+                                stream.Write("/{System.Net.WebUtility.UrlEncode("u8);
+                                break;
+                        }
+                        stream.WriteFormat(
 """
 {0}.ToString()
 """u8, paraName);
-                        }
-                        stream.Write(")}"u8);
                     }
+                    stream.Write(")}"u8);
+                }
+            }
+
+            //            void WriteMethodBodyWithWebApiBySimpleTypesImplAddQueryString(in SourceModel m, ref bool isWritedRequestUriStringEnd)
+            //            {
+            //                stream.Write(
+            //"""
+            //        global::System.Collections.Generic.KeyValuePair<string, string>[] queryString = [
+
+            //"""u8);
+            //                for (int i = 0; i < methodParas.Length; i++)
+            //                {
+            //                    var (paraType, paraName, _) = methodParas[i];
+            //                    if (i == methodParas.Length - 1)
+            //                    {
+            //                        if (paraType.IsSystemThreadingCancellationToken)
+            //                        {
+            //                            continue;
+            //                        }
+            //                        if (paraType.TypeSymbol != null && paraType.TypeSymbol.IsEnum())
+            //                        {
+            //                            string? enumUnderlyingType = null;
+            //                            if (paraType.TypeSymbol is INamedTypeSymbol paraNamedType)
+            //                            {
+            //                                enumUnderlyingType = paraNamedType.EnumUnderlyingType?.ToDisplayString();
+            //                            }
+            //                            stream.WriteFormat(
+            //"""
+            //(({1}){0}).ToString()
+            //"""u8, paraName, enumUnderlyingType ?? "int");
+            //                        }
+            //                    }
+            //                }
+            //                stream.Write(
+            //"""
+            //            new("", ""),
+            //        ];
+            //        var requestUri = global::System.String2.AddQueryString("", queryString);
+
+            //"""u8);
+            //                isWritedRequestUriStringEnd = true;
+            //            }
+
+            void WriteMethodBodyWithWebApi(in SourceModel m)
+            {
+                bool isWritedRequestUriStringEnd = false;
+                if (category == MethodParametersCategory.SimpleTypes)
+                {
+                    WriteMethodBodyWithWebApiBySimpleTypesImplFormattableString(m);
+                    //WriteMethodBodyWithWebApiBySimpleTypesImplAddQueryString(m, ref isWritedRequestUriStringEnd);
                 }
                 else
                 {
                     stream.WriteFormat(
 """
-        const string requestUri = "/{0}/{1}
-"""u8, m.Attribute.ServiceType, method.Name);
+        const string requestUri = 
+"""u8);
+                    WriteServiceTypeAndMethodName(stream, m.Attribute.ServiceType, method);
                 }
 
-                stream.Write(
+                if (!isWritedRequestUriStringEnd)
+                {
+                    stream.Write(
 """
 ";
 
 """u8);
+                }
                 var requestMethod = GetRequestMethod(category);
                 stream.WriteFormat(
 """
-        var requestMethod = HttpMethod.{0};
+        var requestMethod = global::System.Net.Http.HttpMethod.{0};
 
 """u8, requestMethod);
 
                 stream.Write(
 """
-        WebApiClientSendArgs args = new(requestUri)
+        global::BD.Common8.Http.ClientFactory.Models.WebApiClientSendArgs args = new(requestUri)
         {
             Method = requestMethod,
         };
@@ -240,7 +335,7 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
                 {
                     stream.Write(
 """
-        var result = await ipcClientService.SendAsync<ApiRspImpl
+        var result = await ipcClientService.SendAsync<global::BD.Common8.Models.ApiRspImpl
 """u8);
                 }
                 else if (isAsyncEnumerableByReturnType)
@@ -254,7 +349,7 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
                 {
                     stream.WriteFormat(
 """
-        var result = await ipcClientService.SendAsync<ApiRspImpl<{0}>
+        var result = await ipcClientService.SendAsync<global::BD.Common8.Models.ApiRspImpl<{0}>
 """u8, returnType);
                 }
 
@@ -379,12 +474,13 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
 """u8);
             }
 
-            void WriteMethodBodyWithSignalR()
+            void WriteMethodBodyWithSignalR(in SourceModel m)
             {
                 stream.WriteFormat(
 """
-        const string methodName = "{0}_{1}
+        const string methodName = 
 """u8, m.Attribute.ServiceType, method.Name);
+                WriteServiceTypeAndMethodName(stream, m.Attribute.ServiceType, method, separatorIs_: true);
 
                 stream.Write(
 """
@@ -396,7 +492,7 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
                 {
                     stream.Write(
 """
-        var result = await ipcClientService.HubSendAsync<ApiRspImpl
+        var result = await ipcClientService.HubSendAsync<global::BD.Common8.Models.ApiRspImpl
 """u8);
                 }
                 else if (isAsyncEnumerableByReturnType)
@@ -410,7 +506,7 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
                 {
                     stream.WriteFormat(
 """
-        var result = await ipcClientService.HubSendAsync<ApiRspImpl<{0}>
+        var result = await ipcClientService.HubSendAsync<global::BD.Common8.Models.ApiRspImpl<{0}>
 """u8, returnType);
                 }
 
@@ -447,10 +543,10 @@ sealed partial class {0}(IIpcClientService ipcClientService) : {1}
             switch (m.Attribute.GeneratorType)
             {
                 case IpcGeneratorType.ClientWebApi:
-                    WriteMethodBodyWithWebApi();
+                    WriteMethodBodyWithWebApi(m);
                     break;
                 case IpcGeneratorType.ClientSignalR:
-                    WriteMethodBodyWithSignalR();
+                    WriteMethodBodyWithSignalR(m);
                     break;
                 default:
                     throw ThrowHelper.GetArgumentOutOfRangeException(m.Attribute.GeneratorType);

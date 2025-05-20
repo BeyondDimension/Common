@@ -1,3 +1,6 @@
+using BD.Common8.Essentials.Services;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Essentials.Helpers;
 
 /// <summary>
@@ -36,7 +39,7 @@ public static class Clipboard2
     /// </summary>
     /// <returns>返回剪贴板上的文本内容，如果没有则返回 <see cref="string.Empty"/></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static async ValueTask<string> GetTextAsync()
+    public static async ValueTask<string?> GetTextAsync()
     {
         var clipboardPlatformService = IClipboardPlatformService.Instance;
         if (clipboardPlatformService != null)
@@ -46,39 +49,17 @@ public static class Clipboard2
         return string.Empty;
     }
 
-#if DEBUG
     /// <summary>
-    /// 检查剪贴板中是否包含文本
+    /// 获取一个值，该值指示剪贴板上是否有任何文本
     /// </summary>
-    [Obsolete("use HasTextAsync", true)]
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasText()
     {
         var clipboardPlatformService = IClipboardPlatformService.Instance;
         if (clipboardPlatformService != null)
         {
-#pragma warning disable CA2012 // 正确使用 ValueTask
-            var task = clipboardPlatformService.PlatformHasTextAsync();
-            if (task.IsCompleted)
-                return task.Result;
-            return task.GetAwaiter().GetResult();
-#pragma warning restore CA2012 // 正确使用 ValueTask
-        }
-        return default;
-    }
-#endif
-
-    /// <summary>
-    /// 获取一个值，该值指示剪贴板上是否有任何文本
-    /// </summary>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static async ValueTask<bool> HasTextAsync()
-    {
-        var clipboardPlatformService = IClipboardPlatformService.Instance;
-        if (clipboardPlatformService != null)
-        {
-            return await clipboardPlatformService.PlatformHasTextAsync();
+            return clipboardPlatformService.PlatformHasText();
         }
         return default;
     }

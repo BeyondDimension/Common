@@ -1,4 +1,6 @@
 #if DEBUG
+using System.Net;
+
 namespace BD.Common8.AspNetCore.Models;
 
 /// <summary>

@@ -1,3 +1,9 @@
+using BD.Common8.Repositories.EFCore.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Security;
+
 namespace BD.Common8.Repositories.EFCore.Extensions;
 
 public static partial class ServiceCollectionExtensions

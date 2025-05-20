@@ -1,5 +1,8 @@
 using Force.Crc32;
+using System.Extensions;
 using System.IO.Hashing;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BD.Common8.UnitTest;
 

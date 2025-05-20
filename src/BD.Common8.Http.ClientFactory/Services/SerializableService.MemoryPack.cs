@@ -1,4 +1,11 @@
 #if !NETFRAMEWORK
+using BD.Common8.Helpers;
+using BD.Common8.Models;
+using MemoryPack;
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
+
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // MemoryPack

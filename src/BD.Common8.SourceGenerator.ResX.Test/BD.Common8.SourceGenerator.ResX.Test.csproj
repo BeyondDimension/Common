@@ -3,50 +3,34 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
-		<UseProjectUtils>true</UseProjectUtils>
-		<DefineConstants>$(DefineConstants);NO_REF_COMMON8_BCL</DefineConstants>
-		<BeyondDimensionFeatures>
-			<!-- ⚠️ 此项目不可引用任何 Features 中的库 -->
-		</BeyondDimensionFeatures>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Include="..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
-			<LinkBase>_SourceReference\CodeDom\Compiler</LinkBase>
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Bcl\CodeDom\Compiler\BinaryResourceAttribute.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common8.Bcl\Extensions\StreamExtensions.Write.cs">
-			<LinkBase>_SourceReference\Extensions</LinkBase>
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common8.Bcl\Extensions\StreamExtensions.Format.cs">
-			<LinkBase>_SourceReference\Extensions</LinkBase>
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Extensions</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common8.SourceGenerator.ResX\Helpers\ResxSatelliteAssemblyHelper.cs">
-			<LinkBase>_SourceReference\Helpers</LinkBase>
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Helpers</LinkBase>
 		</Compile>
 		<Compile Include="..\BD.Common8.SourceGenerator.ResX\Constants.GetDefaultNamespaceByProjectName.cs">
-			<LinkBase>_SourceReference</LinkBase>
+			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.ResX</LinkBase>
 		</Compile>
 	</ItemGroup>
-	
-	<ItemGroup>
-		<CompilerVisibleItemMetadata Include="Using" MetadataName="Include" />
-		<CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="MyMetadata" />
-	</ItemGroup>
 
 	<ItemGroup>
-		<Using Include="BD.Common8.Resources" />
-		<Using Include="BD.Common8" />
-		<Using Include="BD" />
-		<AdditionalFiles Include="..\Shared\GlobalUsings.System.Extensions.props" SomeMetadata="@(Using)" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<!-- 👇 Bcl 源生成器 -->
-		<ProjectReference Condition="$(MSBuildProjectName) != 'BD.Common8.SourceGenerator.Bcl'" Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+		<!-- 👇 Resx 源生成器 -->
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
-
-	<Import Project="..\Shared\GlobalUsings.System.Extensions.props" />
 </Project>

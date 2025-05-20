@@ -6,7 +6,7 @@ namespace System.Text.Json.Serialization;
 public sealed class IntPtrConverter : JsonConverter<nint>
 {
     /// <inheritdoc/>
-    public override nint Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
+    public override nint Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var valueString = Encoding.UTF8.GetString(reader.ValueSpan);
         if (long.TryParse(valueString, out var valueInt64))
@@ -18,7 +18,7 @@ public sealed class IntPtrConverter : JsonConverter<nint>
     }
 
     /// <inheritdoc/>
-    public override void Write(Utf8JsonWriter writer, nint value, SystemTextJsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, nint value, JsonSerializerOptions options)
     {
         var valueInt64 = value.ToInt64();
         var valueString = valueInt64.ToString();
@@ -32,7 +32,7 @@ public sealed class IntPtrConverter : JsonConverter<nint>
 public sealed class UIntPtrConverter : JsonConverter<nuint>
 {
     /// <inheritdoc/>
-    public override nuint Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
+    public override nuint Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var valueString = Encoding.UTF8.GetString(reader.ValueSpan);
         if (ulong.TryParse(valueString, out var valueUInt64))
@@ -44,7 +44,7 @@ public sealed class UIntPtrConverter : JsonConverter<nuint>
     }
 
     /// <inheritdoc/>
-    public override void Write(Utf8JsonWriter writer, nuint value, SystemTextJsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, nuint value, JsonSerializerOptions options)
     {
         var valueUInt64 = value.ToUInt64();
         var valueString = valueUInt64.ToString();

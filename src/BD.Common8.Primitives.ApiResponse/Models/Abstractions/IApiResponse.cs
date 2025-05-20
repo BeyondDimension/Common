@@ -1,7 +1,10 @@
+using BD.Common8.Enums;
+using BD.Common8.Extensions;
+
 namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
-/// Api 返回接口 (BackManage 后台管理)
+/// Api 返回接口 (后台管理 WebUI)
 /// </summary>
 public partial interface IApiResponse : IApiRsp
 {

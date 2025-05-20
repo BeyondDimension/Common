@@ -13,6 +13,9 @@
 // https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub.FlowAnalyze/TaskToApm.cs
 // https://github.com/dotnet/runtime/blob/v7.0.4/src/libraries/Common/src/System/Threading/Tasks/TaskToApm.cs
 
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+
 namespace System.Threading.Tasks;
 
 /// <summary>

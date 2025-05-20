@@ -1,3 +1,12 @@
+using BD.Common8.Essentials.Enums;
+using BD.Common8.Essentials.Models;
+using BD.Common8.Toast.Enums;
+using BD.Common8.Toast.Helpers;
+using System.Diagnostics;
+#if NET5_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+
 namespace BD.Common8.Essentials.Services;
 
 /// <summary>
@@ -13,38 +22,43 @@ public interface IBrowserPlatformService
     /// <summary>
     /// 打开指定的 URI
     /// </summary>
-    ValueTask<bool> OpenAsync(string uri);
+    Task<bool> OpenAsync(string uri);
 
     /// <summary>
     /// 打开指定的 URI 对象
     /// </summary>
-    ValueTask<bool> OpenAsync(Uri uri);
+    Task<bool> OpenAsync(Uri uri);
 
     /// <summary>
     /// 按指定的浏览器启动模式打开 URI
     /// </summary>
-    ValueTask<bool> OpenAsync(string uri, BrowserLaunchMode launchMode);
+    Task<bool> OpenAsync(string uri, BrowserLaunchMode launchMode);
 
     /// <summary>
     /// 按指定的浏览器启动模式打开 URI 对象
     /// </summary>
-    ValueTask<bool> OpenAsync(Uri uri, BrowserLaunchMode launchMode);
+    Task<bool> OpenAsync(Uri uri, BrowserLaunchMode launchMode);
 
     /// <summary>
     /// 按指定的浏览器选项打开 URI
     /// </summary>
-    ValueTask<bool> OpenAsync(string uri, BrowserLaunchOptions options);
+    Task<bool> OpenAsync(string uri, BrowserLaunchOptions options);
 
     /// <summary>
     /// 按指定的浏览器选项打开 URI 对象
     /// </summary>
-    ValueTask<bool> OpenAsync(Uri uri, BrowserLaunchOptions options);
+    Task<bool> OpenAsync(Uri uri, BrowserLaunchOptions options);
 
     /// <summary>
     /// 使用进程打开指定的 URL
     /// </summary>
     /// <param name="url"></param>
     /// <returns></returns>
+#if NET5_0_OR_GREATER
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+#endif
     static bool OpenCoreByProcess(string url)
     {
         var r = Process2.OpenCoreByProcess(url,

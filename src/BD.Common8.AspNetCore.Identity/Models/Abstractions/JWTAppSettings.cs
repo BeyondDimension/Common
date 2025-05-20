@@ -1,3 +1,6 @@
+using Microsoft.IdentityModel.Tokens;
+using System.Runtime.Serialization;
+
 namespace BD.Common8.AspNetCore.Models.Abstractions;
 
 /// <summary>
@@ -34,7 +37,7 @@ public abstract class JWTAppSettings
     /// 签名凭证，用于生成令牌的签名，忽略此属性以避免序列化时暴露敏感信息
     /// </summary>
     [IgnoreDataMember]
-    [NewtonsoftJsonIgnore]
-    [SystemTextJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public SigningCredentials? SigningCredentials { get; set; }
 }

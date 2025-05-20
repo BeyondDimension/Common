@@ -1,10 +1,96 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>$(SourceGenerator_TargetFramework)</TargetFramework>
 		<RootNamespace>BD.Common8.SourceGenerator</RootNamespace>
 	</PropertyGroup>
 
-	<Import Project="..\Sdk\BD.Common8.SourceGenerator.Reference.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\SharedProject\SourceGenerator.props" />
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!-- 👇 LangVersion = preview 会导致编译失败 csc.exe 闪退 -->
+		<!-- Roslyn\Microsoft.CSharp.Core.targets(84,5): error : Process terminated. System.NullReferenceException: Object reference not set to an instance of an object. -->
+		<!-- Microsoft.CSharp.Core.targets(84,5): error :    at Microsoft.CodeAnalysis.CodeGen.ReferenceDependencyWalker.VisitSignature(ISignature signature, EmitContext context) -->
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Humanizer.Core">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Humanizer.Core.zh-CN">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<!-- 👇 BD.Common8.SourceGenerator.Bcl -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\Runtime\CompilerServices\*GeneratedAttribute.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\Runtime</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Settings5\Infrastructure\*GeneratedAttribute.cs">
+			<LinkBase>_SourceReference\BD.Common8.Settings5\Infrastructure</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Bcl</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\obj\**\*.cs" />
+	</ItemGroup>
+
+	<!-- 👇 BD.Common8.SourceGenerator.Ipc.Client -->
+	<ItemGroup>
+		<Compile Include="..\BD.Common8.Ipc\Attributes\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.Ipc\Attributes</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.Common8.Ipc\Enums\IpcGeneratorType.cs">
+			<LinkBase>_SourceReference\BD.Common8.Ipc\Enums</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Ipc.Client</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\obj\**\*.cs" />
+	</ItemGroup>
+
+	<!-- 👇 BD.Common8.SourceGenerator.Ipc.Server -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Ipc.Server</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\obj\**\*.cs" />
+	</ItemGroup>
+
+	<!-- 👇 BD.Common8.SourceGenerator.Repositories -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Repositories</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\obj\**\*.cs" />
+	</ItemGroup>
+
+	<!-- 👇 BD.Common8.SourceGenerator.ResX -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\ResXGeneratedCodeAttribute.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\CodeDom\Compiler\BinaryResourceAttribute.cs">
+			<LinkBase>_SourceReference\BD.Common8.Bcl\CodeDom\Compiler</LinkBase>
+		</Compile>
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\**\*.cs">
+			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.ResX</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\obj\**\*.cs" />
+	</ItemGroup>
 
 </Project>

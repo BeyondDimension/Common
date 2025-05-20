@@ -1,3 +1,6 @@
+using System.Diagnostics;
+using System.Security.Cryptography;
+
 namespace System.Net;
 
 /// <summary>
@@ -44,73 +47,73 @@ public interface IWebProxySettings
 /// <inheritdoc cref="IWebProxySettings"/>
 [DebuggerDisplay("{WebProxyAddress}:{WebProxyPort}")]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-[MPObj]
+[global::MessagePack.MessagePackObject]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-[MP2Obj(MP2SerializeLayout.Explicit)]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.GenerateType.VersionTolerant, global::MemoryPack.SerializeLayout.Explicit)]
 #endif
 public partial record WebProxySettings : IWebProxySettings
 {
     /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(0)]
+    [global::MessagePack.Key(0)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(0)]
+    [global::MemoryPack.MemoryPackOrder(0)]
 #endif
     public string? WebProxyAddress { get; set; }
 
     /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(1)]
+    [global::MessagePack.Key(1)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(1)]
+    [global::MemoryPack.MemoryPackOrder(1)]
 #endif
     public int? WebProxyPort { get; set; }
 
     /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(2)]
+    [global::MessagePack.Key(2)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(2)]
+    [global::MemoryPack.MemoryPackOrder(2)]
 #endif
     public string? WebProxyUserName { get; set; }
 
     /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(3)]
+    [global::MessagePack.Key(3)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(3)]
+    [global::MemoryPack.MemoryPackOrder(3)]
 #endif
     public string? WebProxyPassword { get; set; }
 
     /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(4)]
+    [global::MessagePack.Key(4)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(4)]
+    [global::MemoryPack.MemoryPackOrder(4)]
 #endif
     public string? WebProxyHost { get; set; }
 
     /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(5)]
+    [global::MessagePack.Key(5)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(5)]
+    [global::MemoryPack.MemoryPackOrder(5)]
 #endif
     public string? WebProxyNetworkCredentialDomain { get; }
 
     /// <inheritdoc/>
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPKey(6)]
+    [global::MessagePack.Key(6)]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Key(6)]
+    [global::MemoryPack.MemoryPackOrder(6)]
 #endif
     public bool? WebProxyBypassProxyOnLocal { get; }
 }

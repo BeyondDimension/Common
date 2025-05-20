@@ -1,3 +1,6 @@
+using BD.Common8.SourceGenerator.Repositories.Templates.Abstractions;
+using System.Reflection;
+
 namespace BD.Common8.SourceGenerator.Repositories.Extensions;
 
 static class TemplateExtensions
@@ -8,7 +11,7 @@ static class TemplateExtensions
     /// <typeparam name="TTemplateMetadata"></typeparam>
     /// <param name="templateMetadata"></param>
     /// <returns></returns>
-    public static object[] GetArgs<TTemplateMetadata>(this TTemplateMetadata templateMetadata) where TTemplateMetadata : ITemplateMetadata
+    public static object?[] GetArgs<TTemplateMetadata>(this TTemplateMetadata templateMetadata) where TTemplateMetadata : ITemplateMetadata
     {
         var args = typeof(TTemplateMetadata).
             GetProperties(BindingFlags.Public | BindingFlags.Instance).

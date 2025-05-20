@@ -1,3 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+
 namespace BD.Common8.Models.Abstractions;
 
 /// <summary>
@@ -10,6 +13,8 @@ public interface IJsonModel
     /// </summary>
     /// <param name="writeIndented"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
+    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     string GetJsonString(bool writeIndented = false);
 }
 
@@ -19,9 +24,11 @@ public interface IJsonModel
 public abstract class JsonModel : IJsonModel
 {
     /// <inheritdoc/>
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
+    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     public virtual string GetJsonString(bool writeIndented = false)
     {
-        var result = SystemTextJsonSerializer.Serialize(this, GetType(), options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+        var result = JsonSerializer.Serialize(this, GetType(), options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
         return result;
     }
 
@@ -30,7 +37,11 @@ public abstract class JsonModel : IJsonModel
     {
         try
         {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
             return GetJsonString(true);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         }
         catch
         {
@@ -46,9 +57,11 @@ public abstract class JsonModel : IJsonModel
 public abstract class JsonModel<T> : JsonModel, IJsonModel where T : JsonModel<T>
 {
     /// <inheritdoc/>
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
+    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     public override string GetJsonString(bool writeIndented = false)
     {
-        var result = SystemTextJsonSerializer.Serialize((T)this, options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+        var result = JsonSerializer.Serialize((T)this, options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
         return result;
     }
 }
@@ -59,9 +72,11 @@ public abstract class JsonModel<T> : JsonModel, IJsonModel where T : JsonModel<T
 public abstract record class JsonRecordModel : IJsonModel
 {
     /// <inheritdoc/>
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
+    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     public virtual string GetJsonString(bool writeIndented = false)
     {
-        var result = SystemTextJsonSerializer.Serialize(this, GetType(), options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+        var result = JsonSerializer.Serialize(this, GetType(), options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
         return result;
     }
 
@@ -70,7 +85,11 @@ public abstract record class JsonRecordModel : IJsonModel
     {
         try
         {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
             return GetJsonString(true);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         }
         catch
         {
@@ -86,9 +105,11 @@ public abstract record class JsonRecordModel : IJsonModel
 public abstract record class JsonRecordModel<T> : JsonRecordModel, IJsonModel where T : JsonRecordModel<T>
 {
     /// <inheritdoc/>
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
+    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     public override string GetJsonString(bool writeIndented = false)
     {
-        var result = SystemTextJsonSerializer.Serialize((T)this, options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+        var result = JsonSerializer.Serialize((T)this, options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
         return result;
     }
 }

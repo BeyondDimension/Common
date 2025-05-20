@@ -1,16 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<BeyondDimensionFeatures>
-			BD.Common8.Bcl;
-			BD.Common8.Settings5;
-		</BeyondDimensionFeatures>
 	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="ReactiveUI" />
-		<PackageReference Include="ReactiveUI.Fody" PrivateAssets="All" />
+	</ItemGroup>
+
+	<!-- 👇 项目引用源生成器 -->
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Settings5\BD.Common8.Settings5.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -12,19 +12,12 @@
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
 
+using System.Runtime.CompilerServices;
+
 namespace OBS.Internal.Log;
 
-public interface ILoggerMgr
+public partial interface ILoggerMgr
 {
-    private static ILoggerMgr? loggerMgr;
-
-    internal static ILoggerMgr Instance => loggerMgr ??= EmptyLoggerMgr.Instance;
-
-    static void Initialize(ILoggerMgr loggerMgr)
-    {
-        ILoggerMgr.loggerMgr = loggerMgr;
-    }
-
     bool IsDebugEnabled { get; }
 
     bool IsInfoEnabled { get; }
@@ -40,6 +33,26 @@ public interface ILoggerMgr
     void Info(string param, Exception? exception);
 
     void Warn(string param, Exception? exception);
+}
+
+#if NETFRAMEWORK
+public static partial class ILoggerMgr2 // fix CS8701 目标运行时不支持默认接口实现
+#else
+partial interface ILoggerMgr
+#endif
+{
+    private static ILoggerMgr? loggerMgr;
+
+    internal static ILoggerMgr Instance => loggerMgr ??= EmptyLoggerMgr.Instance;
+
+    public static void Initialize(ILoggerMgr loggerMgr)
+    {
+#if NETFRAMEWORK
+        ILoggerMgr2.loggerMgr = loggerMgr;
+#else
+        ILoggerMgr.loggerMgr = loggerMgr;
+#endif
+    }
 }
 
 sealed class EmptyLoggerMgr : ILoggerMgr
@@ -75,13 +88,21 @@ sealed class EmptyLoggerMgr : ILoggerMgr
 
 static class LoggerMgr
 {
-    internal static bool IsDebugEnabled => ILoggerMgr.Instance.IsDebugEnabled;
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static ILoggerMgr GetInstance() =>
+#if NETFRAMEWORK
+        ILoggerMgr2.Instance;
+#else
+        ILoggerMgr.Instance;
+#endif
 
-    internal static bool IsInfoEnabled => ILoggerMgr.Instance.IsInfoEnabled;
+    internal static bool IsDebugEnabled => GetInstance().IsDebugEnabled;
 
-    internal static bool IsWarnEnabled => ILoggerMgr.Instance.IsWarnEnabled;
+    internal static bool IsInfoEnabled => GetInstance().IsInfoEnabled;
 
-    internal static bool IsErrorEnabled => ILoggerMgr.Instance.IsErrorEnabled;
+    internal static bool IsWarnEnabled => GetInstance().IsWarnEnabled;
+
+    internal static bool IsErrorEnabled => GetInstance().IsErrorEnabled;
 
     internal static void Debug(string param)
     {
@@ -107,11 +128,11 @@ static class LoggerMgr
         Warn(param, null);
     }
 
-    internal static void Debug(string param, Exception? exception) => ILoggerMgr.Instance.Debug(param, exception);
+    internal static void Debug(string param, Exception? exception) => GetInstance().Debug(param, exception);
 
-    internal static void Error(string param, Exception? exception) => ILoggerMgr.Instance.Error(param, exception);
+    internal static void Error(string param, Exception? exception) => GetInstance().Error(param, exception);
 
-    internal static void Info(string param, Exception? exception) => ILoggerMgr.Instance.Info(param, exception);
+    internal static void Info(string param, Exception? exception) => GetInstance().Info(param, exception);
 
-    internal static void Warn(string param, Exception? exception) => ILoggerMgr.Instance.Warn(param, exception);
+    internal static void Warn(string param, Exception? exception) => GetInstance().Warn(param, exception);
 }

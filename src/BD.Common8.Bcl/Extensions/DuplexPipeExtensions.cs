@@ -1,5 +1,6 @@
 #if NET6_0_OR_GREATER
 using System.IO.Pipelines;
+using System.Runtime.CompilerServices;
 
 namespace System.Extensions;
 

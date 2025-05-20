@@ -1,3 +1,9 @@
+using MemoryPack;
+using MessagePack;
+using MessagePack.Formatters;
+using System.Net;
+using System.Runtime.CompilerServices;
+
 namespace System.Runtime.Serialization.Formatters;
 
 /// <summary>
@@ -274,7 +280,7 @@ public sealed class CookieFormatter :
 /// 表示 Cookie 消息包装对象
 /// </summary>
 [MessagePackObject]
-public sealed class CookieMessagePackObject
+public sealed partial class CookieMessagePackObject
 {
     /// <summary>
     /// 初始化 <see cref="CookieMessagePackObject"/> 类的新实例
@@ -340,55 +346,55 @@ public sealed class CookieMessagePackObject
         => new(cookie);
 
     /// <inheritdoc cref="Cookie.Comment"/>
-    [MPKey(0)]
+    [global::MessagePack.Key(0)]
     public string Comment { get; set; } = "";
 
     /// <inheritdoc cref="Cookie.CommentUri"/>
-    [MPKey(1)]
+    [global::MessagePack.Key(1)]
     public Uri? CommentUri { get; set; }
 
     /// <inheritdoc cref="Cookie.Discard"/>
-    [MPKey(2)]
+    [global::MessagePack.Key(2)]
     public bool Discard { get; set; }
 
     /// <inheritdoc cref="Cookie.Domain"/>
-    [MPKey(3)]
+    [global::MessagePack.Key(3)]
     public string Domain { get; set; } = null!;
 
     /// <inheritdoc cref="Cookie.Expires"/>
-    [MPKey(5)]
+    [global::MessagePack.Key(5)]
     public DateTime Expires { get; set; }
 
     /// <inheritdoc cref="Cookie.HttpOnly"/>
-    [MPKey(6)]
+    [global::MessagePack.Key(6)]
     public bool HttpOnly { get; set; }
 
     /// <inheritdoc cref="Cookie.Name"/>
-    [MPKey(7)]
+    [global::MessagePack.Key(7)]
     public string Name { get; set; } = null!;
 
     /// <inheritdoc cref="Cookie.Path"/>
-    [MPKey(8)]
+    [global::MessagePack.Key(8)]
     public string Path { get; set; } = "/";
 
     /// <inheritdoc cref="Cookie.Port"/>
-    [MPKey(9)]
+    [global::MessagePack.Key(9)]
     public string Port { get; set; } = "";
 
     /// <inheritdoc cref="Cookie.Secure"/>
-    [MPKey(10)]
+    [global::MessagePack.Key(10)]
     public bool Secure { get; set; }
 
     /// <inheritdoc cref="Cookie.Value"/>
-    [MPKey(11)]
+    [global::MessagePack.Key(11)]
     public string Value { get; set; } = null!;
 
     /// <inheritdoc cref="Cookie.Version"/>
-    [MPKey(12)]
+    [global::MessagePack.Key(12)]
     public int Version { get; set; }
 }
 
-[MemoryPackable]
+[global::MemoryPack.MemoryPackable(global::MemoryPack.GenerateType.VersionTolerant, global::MemoryPack.SerializeLayout.Sequential)]
 public readonly partial struct CookieMemoryPackable
 {
     /// <inheritdoc cref="Cookie"/>

@@ -1,4 +1,7 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using BD.Common8.Http.ClientFactory.Services;
+using System.Net.Http.Client;
+
 namespace BD.Common8.Http.ClientFactory.Models;
 
 /// <summary>

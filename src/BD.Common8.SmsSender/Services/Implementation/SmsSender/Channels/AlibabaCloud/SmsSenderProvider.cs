@@ -1,3 +1,13 @@
+using BD.Common8.Extensions;
+using BD.Common8.Helpers;
+using BD.Common8.SmsSender.Models.SmsSender;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
 using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud.SmsAlibabaCloudOptions;
 
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.AlibabaCloud;
@@ -5,7 +15,7 @@ namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.Alibab
 /// <summary>
 /// 短信服务提供商 - 阿里云
 /// </summary>
-public class SmsSenderProvider : SmsSenderBase, ISmsSender
+public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
 {
     /// <summary>
     /// 阿里云的名称
@@ -172,15 +182,20 @@ public class SmsSenderProvider : SmsSenderBase, ISmsSender
         };
 
         if (!result.IsSuccess)
-            logger.LogError(
-                $"调用阿里云短信接口失败，" +
-                $"手机号码：{PhoneNumberHelper.ToStringHideMiddleFour(number)}，" +
-                $"短信内容：{message}，" +
-                $"短信类型：{type}，" +
-                $"HTTP状态码：{result.HttpStatusCode}");
+        {
+            SendSmsError(logger, PhoneNumberHelper.ToStringHideMiddleFour(number), message, type, result.HttpStatusCode);
+        }
 
         return result;
     }
+
+    [LoggerMessage(
+        Level = LogLevel.Error,
+        Message =
+"""
+调用阿里云短信接口失败，手机号码：{phoneNumber}，短信内容：{message}，短信类型：{type}，HTTP 响应状态码：{httpStatusCode}
+""")]
+    private static partial void SendSmsError(ILogger logger, string phoneNumber, string? message, ushort type, int httpStatusCode);
 
     /// <inheritdoc/>
     public override Task<ICheckSmsResult> CheckSmsAsync(string number, string message, CancellationToken cancellationToken)

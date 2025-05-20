@@ -1,4 +1,7 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
+using BD.Common8.Http.ClientFactory.Models.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace BD.Common8.Http.ClientFactory.Models;
 
 /// <summary>

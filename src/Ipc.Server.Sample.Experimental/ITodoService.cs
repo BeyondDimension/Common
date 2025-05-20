@@ -1,3 +1,11 @@
+using BD.Common8.Ipc.Models;
+using BD.Common8.Models;
+using System.Net;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Text.Json.Serialization;
+
 namespace Ipc.Sample;
 
 /// <summary>
@@ -203,11 +211,11 @@ partial interface IFileSystemElevatedService
 /// <param name="Title"></param>
 /// <param name="DueBy"></param>
 /// <param name="IsComplete"></param>
-[MP2Obj]
+[global::MemoryPack.MemoryPackable]
 public partial record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
 
 public record class NativeWindowModel(
-    [property: SystemTextJsonConverter(typeof(IntPtrConverter))]
+    [property: JsonConverter(typeof(IntPtrConverter))]
     nint Handle,
     string? Title,
     string? ClassName,
@@ -372,6 +380,6 @@ public static class SamplePathHelper
     AllowTrailingCommas = true, // 忽略最后的逗号
     PropertyNameCaseInsensitive = true // 忽略大小写键名
     )]
-internal sealed partial class SampleJsonSerializerContext : SystemTextJsonSerializerContext
+internal sealed partial class SampleJsonSerializerContext : JsonSerializerContext
 {
 }

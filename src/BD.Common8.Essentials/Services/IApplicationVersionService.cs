@@ -19,4 +19,6 @@ public interface IApplicationVersionService
     /// 定义程序集清单的商标自定义属性
     /// </summary>
     string AssemblyTrademark { get; }
+
+    bool? UserInteractive { get; }
 }

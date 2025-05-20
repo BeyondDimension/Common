@@ -1,4 +1,9 @@
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
+using BD.Common8.SourceGenerator.Repositories.Helpers;
+using Newtonsoft.Json;
+using System.Collections.Immutable;
+using System.Reflection;
+using System.Text;
 
 namespace BD.Common8.SourceGenerator.Repositories.Models;
 

@@ -12,6 +12,9 @@
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
 
+using System.Net;
+using System.Text;
+
 namespace OBS;
 
 /// <summary>
@@ -147,7 +150,9 @@ public class ObsException : ServiceException
     /// <summary>
     /// Special symbol returned by the OBS server, used for locating faults
     /// </summary>
+#pragma warning disable CA1041 // 提供 ObsoleteAttribute 消息
     [Obsolete]
+#pragma warning restore CA1041 // 提供 ObsoleteAttribute 消息
     public string? ObsId2 { get; set; }
 
     /// <summary>

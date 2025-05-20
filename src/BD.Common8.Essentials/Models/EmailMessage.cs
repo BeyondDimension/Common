@@ -1,3 +1,6 @@
+using BD.Common8.Essentials.Enums;
+using System.Text.Json.Serialization;
+
 namespace BD.Common8.Essentials.Models;
 
 /// <summary>
@@ -8,6 +11,7 @@ public sealed class EmailMessage
     /// <summary>
     /// 用于创建空的邮件消息对象
     /// </summary>
+    [JsonConstructor]
     public EmailMessage()
     {
     }

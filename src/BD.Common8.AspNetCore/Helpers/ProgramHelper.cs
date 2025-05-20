@@ -1,7 +1,24 @@
-namespace BD.Common8.AspNetCore.Helpers;
-
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using NLog;
+using NLog.Common;
+using NLog.Config;
+using NLog.Targets;
+using NLog.Web;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using Http_JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 using Mvc_JsonOptions = Microsoft.AspNetCore.Mvc.JsonOptions;
+using NLogLevel = NLog.LogLevel;
+
+namespace BD.Common8.AspNetCore.Helpers;
 
 public static partial class ProgramHelper
 {
@@ -10,7 +27,7 @@ public static partial class ProgramHelper
     /// </summary>
     /// <param name="this"></param>
     /// <param name="value"></param>
-    static void SetSerializerOptions(Http_JsonOptions @this, SystemTextJsonSerializerOptions value)
+    static void SetSerializerOptions(Http_JsonOptions @this, JsonSerializerOptions value)
     {
         ref var source = ref UnsafeAccessJsonSerializerOptions(@this);
 
@@ -23,7 +40,7 @@ public static partial class ProgramHelper
     /// </summary>
     /// <param name="this"></param>
     /// <param name="value"></param>
-    static void SetSerializerOptions(Mvc_JsonOptions @this, SystemTextJsonSerializerOptions value)
+    static void SetSerializerOptions(Mvc_JsonOptions @this, JsonSerializerOptions value)
     {
         ref var source = ref UnsafeAccessJsonSerializerOptions(@this);
 
@@ -33,10 +50,10 @@ public static partial class ProgramHelper
     }
 
     [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "<SerializerOptions>k__BackingField")]
-    static extern ref SystemTextJsonSerializerOptions UnsafeAccessJsonSerializerOptions(Http_JsonOptions opt);
+    static extern ref JsonSerializerOptions UnsafeAccessJsonSerializerOptions(Http_JsonOptions opt);
 
     [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "<JsonSerializerOptions>k__BackingField")]
-    static extern ref SystemTextJsonSerializerOptions UnsafeAccessJsonSerializerOptions(Mvc_JsonOptions opt);
+    static extern ref JsonSerializerOptions UnsafeAccessJsonSerializerOptions(Mvc_JsonOptions opt);
 
     /// <summary>
     /// 适用于 ASP.NET Core 6.0+ 中新的最小托管模型的代码
@@ -64,7 +81,7 @@ public static partial class ProgramHelper
         {
         }
 
-        var logger = NLogManager.Setup()
+        var logger = LogManager.Setup()
                                 .RegisterNLogWeb()
                                 .LoadConfiguration(InitNLogConfig())
                                 .GetCurrentClassLogger();
@@ -84,7 +101,7 @@ public static partial class ProgramHelper
             });
             if (jsonTypeInfoResolver != null)
             {
-                if (jsonTypeInfoResolver is SystemTextJsonSerializerContext jsc)
+                if (jsonTypeInfoResolver is JsonSerializerContext jsc)
                 {
                     // camelCase 默认值为 false，将 JSON 属性名设置为大写开头与 C# 保持一致，历史问题，之前的前端 JS/TS 部分已经使用大写硬编码
                     // 如果需按现在 Web 规范，将此值设置为 true，则 JSON 属性名将会使用小写开头驼峰命名法
@@ -93,7 +110,7 @@ public static partial class ProgramHelper
                     builder.Services.ConfigureHttpJsonOptions(options =>
                     {
                         if (jsonSerializerOptions.IsReadOnly)
-                            jsonSerializerOptions = new SystemTextJsonSerializerOptions(jsonSerializerOptions);
+                            jsonSerializerOptions = new JsonSerializerOptions(jsonSerializerOptions);
                         // 替换 WebApi 的 Json 序列化选项
                         SetSerializerOptions(options, jsonSerializerOptions);
                     });
@@ -101,7 +118,7 @@ public static partial class ProgramHelper
                     builder.Services.Configure<Mvc_JsonOptions>(options =>
                     {
                         if (jsonSerializerOptions.IsReadOnly)
-                            jsonSerializerOptions = new SystemTextJsonSerializerOptions(jsonSerializerOptions);
+                            jsonSerializerOptions = new JsonSerializerOptions(jsonSerializerOptions);
                         // 替换 Mvc 的 Json 序列化选项
                         SetSerializerOptions(options, jsonSerializerOptions);
                     });
@@ -140,7 +157,7 @@ public static partial class ProgramHelper
         finally
         {
             // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-            NLogManager.Shutdown();
+            LogManager.Shutdown();
         }
     }
 
@@ -211,15 +228,15 @@ public static partial class ProgramHelper
         var logsPath = Path.Combine(AppContext.BaseDirectory, "logs");
         CreateDirectory(logsPath);
 
-        NInternalLogger.LogFile = $"logs{Path.DirectorySeparatorChar}internal-nlog.txt";
-        NInternalLogger.LogLevel =
+        InternalLogger.LogFile = $"logs{Path.DirectorySeparatorChar}internal-nlog.txt";
+        InternalLogger.LogLevel =
 #if DEBUG
             NLogLevel.Info;
 #else
             NLogLevel.Error;
 #endif
         // enable asp.net core layout renderers
-        NLogManager.Setup().SetupExtensions(s => s.RegisterAssembly("NLog.Web.AspNetCore"));
+        LogManager.Setup().SetupExtensions(s => s.RegisterAssembly("NLog.Web.AspNetCore"));
 
         var objConfig = new LoggingConfiguration();
         // File Target for all log messages with basic details

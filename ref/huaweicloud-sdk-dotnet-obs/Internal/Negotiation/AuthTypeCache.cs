@@ -11,10 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace OBS.Internal.Negotiation
 {
     internal class AuthTypeCache
@@ -36,8 +32,8 @@ namespace OBS.Internal.Negotiation
         }
 
         private const int basicExipreMinutes = 15;
-        private IDictionary<string, AuthTypeCacheItem> dict;
-        private Random rd;
+        private readonly IDictionary<string, AuthTypeCacheItem> dict;
+        private readonly Random rd;
 
         public AuthTypeCache()
         {
@@ -51,9 +47,8 @@ namespace OBS.Internal.Negotiation
             {
                 throw new ArgumentNullException("key");
             }
-            if (dict.ContainsKey(key))
+            if (dict.TryGetValue(key, out AuthTypeCacheItem? item))
             {
-                AuthTypeCacheItem item = dict[key];
                 if (item.ExpireDateTime.CompareTo(DateTime.Now) > 0)
                 {
                     return item.AuthTypeEnum;
@@ -69,7 +64,7 @@ namespace OBS.Internal.Negotiation
                 throw new ArgumentNullException("key");
             }
             dict.Remove(key);
-            AuthTypeCacheItem item = new AuthTypeCacheItem
+            AuthTypeCacheItem item = new()
             {
                 AuthTypeEnum = authType,
                 ExpireDateTime = DateTime.Now.AddMinutes(basicExipreMinutes + rd.Next(-5, 5)),

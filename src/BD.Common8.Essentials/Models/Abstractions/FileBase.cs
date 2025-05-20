@@ -1,3 +1,5 @@
+using System.Extensions;
+
 namespace BD.Common8.Essentials.Models.Abstractions;
 
 /// <inheritdoc cref="IFileBase"/>

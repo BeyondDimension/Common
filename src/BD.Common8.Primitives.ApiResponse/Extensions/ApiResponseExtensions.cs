@@ -1,3 +1,6 @@
+using BD.Common8.Models.Abstractions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Extensions;
 
 public static partial class ApiResponseExtensions

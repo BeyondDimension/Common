@@ -1,8 +1,4 @@
 <Project>
 	<!-- 👇 配置 NuGet 包生成 -->
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\GeneratePackage.props" />
-
-	<!-- 👇 SDK 配置 -->
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\BD.Common8.Sdk.Ref.Project.targets" />
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\BD.Common8.Sdk.targets" />
+	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)Sdk\GeneratePackage.props" />
 </Project>

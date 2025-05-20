@@ -1,3 +1,11 @@
+using BD.Common8.Ipc.Attributes;
+using BD.Common8.Ipc.Enums;
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Ipc.Enums;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Ipc.Templates.Abstractions;
 
 /// <summary>
@@ -33,13 +41,14 @@ public abstract class IpcTemplateBase :
                             TypeStringImpl.Parse(typeSymbolValue) : null;
                         break;
                     case 1:
-                        generatorType = (IpcGeneratorType)Enum.Parse(typeof(IpcGeneratorType),
-                            value?.ToString());
+                        var generatorTypeString = value?.ToString();
+                        generatorType = string.IsNullOrWhiteSpace(generatorTypeString) ? default : (IpcGeneratorType)Enum.Parse(typeof(IpcGeneratorType),
+                            generatorTypeString);
                         break;
                 }
             }
 
-            if (serviceType == null)
+            if (serviceType == null || generatorType == default)
             {
                 IgnoreExecute = true;
                 break;
@@ -98,7 +107,7 @@ public abstract class IpcTemplateBase :
     }
 
     /// <inheritdoc/>
-    protected sealed override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected sealed override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
         var serviceType = TypeStringImpl.GetTypeSymbol(args.attr.ServiceType);
         serviceType.ThrowIsNull();
@@ -183,10 +192,7 @@ public abstract class IpcTemplateBase :
             var parameter = method.Parameters[i];
             var paraTypeString = category.GetParameterTypeString(parameter);
             var paraName = parameter.Name;
-            var paraType = new TypeStringImpl(paraTypeString)
-            {
-                TypeSymbol = parameter.Type,
-            };
+            var paraType = new TypeStringImpl(paraTypeString, parameter.Type);
             var paraNameWithDefaultValue = paraName;
             switch (paraTypeString)
             {
@@ -248,6 +254,52 @@ public abstract class IpcTemplateBase :
         for (int i = 0; i < endLen; i++)
         {
             stream.Write(">"u8);
+        }
+    }
+
+
+
+    /// <summary>
+    /// 写入服务类型名和方法名称
+    /// </summary>
+    protected static void WriteServiceTypeAndMethodName(Stream stream, Type serviceType, IMethodSymbol method, bool writeEnd = false, bool separatorIs_ = false, bool isMap = false, bool isString = true)
+    {
+        // ? 将命名空间哈希转换为固定 {hash_namespace}/{serviceTypeName}/{methodName} ???
+        // 当前格式：WebApi {serviceTypeName}/{methodName}
+        // // SignalR {serviceTypeName}_{methodName}
+
+        var serviceTypeName = serviceType.Name; // 类型名称，不包含命名空间，仅类名
+        if (isMap)
+        {
+            // IEndpointRouteBuilder.MapGroup
+            stream.Write("/"u8);
+            stream.WriteUtf16StrToUtf8OrCustom(serviceTypeName);
+            return;
+        }
+
+        if (isString)
+        {
+            // 是否是字符串类型，前面加双引号
+            stream.Write("$\""u8);
+        }
+        stream.WriteUtf16StrToUtf8OrCustom(serviceTypeName);
+        if (separatorIs_)
+        {
+            // SignalR 格式
+            stream.Write("_"u8);
+        }
+        else
+        {
+            // WebApi 格式
+            stream.Write("/"u8);
+        }
+        stream.WriteUtf16StrToUtf8OrCustom(method.Name); // 方法名称、函数名
+        if (writeEnd)
+        {
+            if (isString)
+            {
+                stream.Write("\""u8);
+            }
         }
     }
 }

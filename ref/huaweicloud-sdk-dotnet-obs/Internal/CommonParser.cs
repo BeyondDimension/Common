@@ -11,9 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Xml;
 
 namespace OBS.Internal
@@ -28,9 +25,9 @@ namespace OBS.Internal
             {
                 response.RequestId = httpResponse.Headers[iheaders.RequestIdHeader()];
             }
-            if (httpResponse.Headers.ContainsKey(Constants.CommonHeaders.ContentLength))
+            if (httpResponse.Headers.TryGetValue(Constants.CommonHeaders.ContentLength, out string? value))
             {
-                response.ContentLength = Convert.ToInt64(httpResponse.Headers[Constants.CommonHeaders.ContentLength]);
+                response.ContentLength = Convert.ToInt64(value);
             }
 
             foreach (KeyValuePair<string, string> header in httpResponse.Headers)
@@ -38,19 +35,19 @@ namespace OBS.Internal
                 string key = header.Key;
                 if (key.StartsWith(iheaders.HeaderMetaPrefix()))
                 {
-                    key = key.Substring(iheaders.HeaderMetaPrefix().Length);
+                    key = key[iheaders.HeaderMetaPrefix().Length..];
                 }
                 else if (key.StartsWith(iheaders.HeaderPrefix()))
                 {
-                    key = key.Substring(iheaders.HeaderPrefix().Length);
+                    key = key[iheaders.HeaderPrefix().Length..];
                 }
                 else if (key.StartsWith(Constants.ObsHeaderMetaPrefix))
                 {
-                    key = key.Substring(Constants.ObsHeaderMetaPrefix.Length);
+                    key = key[Constants.ObsHeaderMetaPrefix.Length..];
                 }
                 else if (key.StartsWith(Constants.ObsHeaderPrefix))
                 {
-                    key = key.Substring(Constants.ObsHeaderPrefix.Length);
+                    key = key[Constants.ObsHeaderPrefix.Length..];
                 }
                 response.Headers.Add(key, header.Value);
             }

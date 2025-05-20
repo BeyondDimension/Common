@@ -5,11 +5,13 @@
 #pragma warning disable CS8618 // 在退出构造函数时，不可为 null 的字段必须包含非 null 值。请考虑添加 "required" 修饰符或声明为可为 null。
 #pragma warning disable CS8625 // 无法将 null 字面量转换为非 null 的引用类型。
 #pragma warning disable CS8600 // 将 null 文本或可能的 null 值转换为不可为 null 类型。
-
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 namespace MS.Win32;
 
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
+using System.Text;
 
 /// <summary>
 /// ShellItem enum.  SIGDN_*.
@@ -721,22 +723,22 @@ internal struct PKEY
     }
 
     /// <summary>PKEY_Title</summary>
-    public static readonly PKEY Title = new PKEY(new Guid("F29F85E0-4FF9-1068-AB91-08002B27B3D9"), 2);
+    public static readonly PKEY Title = new(new Guid("F29F85E0-4FF9-1068-AB91-08002B27B3D9"), 2);
 
     /// <summary>PKEY_AppUserModel_ID</summary>
-    public static readonly PKEY AppUserModel_ID = new PKEY(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 5);
+    public static readonly PKEY AppUserModel_ID = new(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 5);
 
     /// <summary>PKEY_AppUserModel_IsDestListSeparator</summary>
-    public static readonly PKEY AppUserModel_IsDestListSeparator = new PKEY(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 6);
+    public static readonly PKEY AppUserModel_IsDestListSeparator = new(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 6);
 
     /// <summary>PKEY_AppUserModel_RelaunchCommand</summary>
-    public static readonly PKEY AppUserModel_RelaunchCommand = new PKEY(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 2);
+    public static readonly PKEY AppUserModel_RelaunchCommand = new(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 2);
 
     /// <summary>PKEY_AppUserModel_RelaunchDisplayNameResource</summary>
-    public static readonly PKEY AppUserModel_RelaunchDisplayNameResource = new PKEY(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 4);
+    public static readonly PKEY AppUserModel_RelaunchDisplayNameResource = new(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 4);
 
     /// <summary>PKEY_AppUserModel_RelaunchIconResource</summary>
-    public static readonly PKEY AppUserModel_RelaunchIconResource = new PKEY(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 3);
+    public static readonly PKEY AppUserModel_RelaunchIconResource = new(new Guid("9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3"), 3);
 }
 
 [

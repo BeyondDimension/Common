@@ -1,3 +1,12 @@
+using BD.Common8.Entities.Abstractions;
+using BD.Common8.Orm.EFCore.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Orm.EFCore.Extensions;
 
 public static partial class DbContextExtensions

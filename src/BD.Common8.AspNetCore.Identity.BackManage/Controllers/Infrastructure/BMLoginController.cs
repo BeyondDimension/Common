@@ -1,3 +1,20 @@
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.AspNetCore.Extensions;
+using BD.Common8.AspNetCore.Identity.Abstractions;
+using BD.Common8.AspNetCore.Services;
+using BD.Common8.Columns;
+using BD.Common8.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System.Net;
+using System.Security.Claims;
+
 namespace BD.Common8.AspNetCore.Controllers.Infrastructure;
 
 /// <summary>
@@ -46,7 +63,7 @@ public sealed class BMLoginController(
         var ipCacheKey = $"WTTS_BM_Login_Ip_[{ip}]";
         var ipAccessFailedCount = await cache.GetV2Async<int>(ipCacheKey, HttpContext.RequestAborted);
         if (ipAccessFailedCount >= MaxIpAccessFailedCount)
-            return StatusCode((int)HttpStatusCode.TooManyRequests);
+            return StatusCode(unchecked((int)HttpStatusCode.TooManyRequests));
 
         var userName = ServerSecurity.Decrypt(args[0]);
         var user = await userManager.FindByNameAsync(userName);
@@ -95,7 +112,7 @@ public sealed class BMLoginController(
     [HttpPut("{refresh_token}")]
     public async Task<ActionResult<ApiResponse<JWTEntity?>>> Put([FromRoute] string refresh_token)
     {
-        var user = await ((IBMDbContext)db).SysUsers.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.RefreshToken == refresh_token, HttpContext.RequestAborted);
+        var user = await db.SysUsers.IgnoreQueryFilters().SingleOrDefaultAsync(x => x.RefreshToken == refresh_token, HttpContext.RequestAborted);
         if (user == null) return NotFound();
 
         var now = DateTimeOffset.Now;

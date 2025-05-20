@@ -5,6 +5,7 @@
 #if NET7_0_OR_GREATER
 using gfoidl.Base64;
 #endif
+using System.Diagnostics;
 
 namespace System;
 

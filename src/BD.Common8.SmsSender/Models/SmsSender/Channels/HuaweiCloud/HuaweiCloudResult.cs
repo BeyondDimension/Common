@@ -1,3 +1,6 @@
+using BD.Common8.Models.Abstractions;
+using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
 
 /// <summary>
@@ -9,13 +12,13 @@ public class HuaweiCloudResult<T> : JsonModel<T>, ISmsSubResult where T : Huawei
     /// <summary>
     /// 状态码
     /// </summary>
-    [SystemTextJsonProperty("code")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("code")]
     public string? Code { get; set; }
 
     /// <summary>
     /// 状态描述
     /// </summary>
-    [SystemTextJsonProperty("description")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("description")]
     public string? Description { get; set; }
 
     /// <summary>

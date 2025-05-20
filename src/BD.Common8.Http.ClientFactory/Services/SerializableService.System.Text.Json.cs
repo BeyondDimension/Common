@@ -1,3 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Json;
+
 namespace BD.Common8.Http.ClientFactory.Services;
 
 partial class SerializableService // System.Text.Json
@@ -19,10 +26,10 @@ partial class SerializableService // System.Text.Json
         if (inputValue == null)
             return default;
         JsonContent content;
+        // 当使用 AOT 时，应重写 GetJsonSerializerOptions 函数返回源生成的 JsonSerializerContext.Options
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        content = JsonContent.Create(inputValue, mediaType, UseJsonSerializerOptions);
+        content = JsonContent.Create(inputValue, mediaType, Options);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return content;
@@ -112,8 +119,8 @@ partial class SerializableService // System.Text.Json
 #endif
 
     /// <summary>
-    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
-    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="SystemTextJsonObject"/></para>
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="global::System.Text.Json.Serialization.Metadata.JsonTypeInfo"/> 对象
+    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="global::System.Text.Json.Nodes.JsonObject"/></para>
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
     /// <param name="content"></param>
@@ -125,18 +132,18 @@ partial class SerializableService // System.Text.Json
     {
         var modelType = typeof(TResponseBody);
         TResponseBody? result;
+        // 当使用 AOT 时，应重写 GetJsonSerializerOptions 函数返回源生成的 JsonSerializerContext.Options
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        result = await content.ReadFromJsonAsync<TResponseBody>(UseJsonSerializerOptions, cancellationToken);
+        result = await content.ReadFromJsonAsync<TResponseBody>(Options, cancellationToken);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
     }
 
     /// <summary>
-    /// 将响应内容读取并反序列化成异步迭代器（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
-    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="SystemTextJsonObject"/></para>
+    /// 将响应内容读取并反序列化成异步迭代器（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="global::System.Text.Json.Serialization.Metadata.JsonTypeInfo"/> 对象
+    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="global::System.Text.Json.Nodes.JsonObject"/></para>
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
     /// <param name="content"></param>
@@ -147,10 +154,10 @@ partial class SerializableService // System.Text.Json
         CancellationToken cancellationToken = default) where TResponseBody : notnull
     {
         IAsyncEnumerable<TResponseBody?> result;
+        // 当使用 AOT 时，应重写 GetJsonSerializerOptions 函数返回源生成的 JsonSerializerContext.Options
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        result = content.ReadFromJsonAsAsyncEnumerable<TResponseBody>(UseJsonSerializerOptions, cancellationToken);
+        result = content.ReadFromJsonAsAsyncEnumerable<TResponseBody>(Options, cancellationToken);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
@@ -158,8 +165,8 @@ partial class SerializableService // System.Text.Json
 
 #if !NETFRAMEWORK
     /// <summary>
-    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="JsonTypeInfo"/> 对象
-    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="SystemTextJsonObject"/></para>
+    /// 将响应内容读取并反序列化成实例（catch 时将返回 <see langword="null"/> ），推荐使用 Json 源生成，即传递 <see cref="global::System.Text.Json.Serialization.Metadata.JsonTypeInfo"/> 对象
+    /// <para>如果需要使用 Linq to Json 操作，则将泛型定义为 <see cref="global::System.Text.Json.Nodes.JsonObject"/></para>
     /// </summary>
     /// <typeparam name="TResponseBody"></typeparam>
     /// <param name="content"></param>
@@ -172,10 +179,10 @@ partial class SerializableService // System.Text.Json
     {
         TResponseBody? result;
         using var contentStream = content.ReadAsStream(cancellationToken); // 使用流，避免 byte[] 块，与字符串 utf16 开销
+        // 当使用 AOT 时，应重写 GetJsonSerializerOptions 函数返回源生成的 JsonSerializerContext.Options
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        // JsonSerializerOptions 应使用 源生成 的 类型解析器
-        result = SystemTextJsonSerializer.Deserialize<TResponseBody>(contentStream, UseJsonSerializerOptions);
+        result = JsonSerializer.Deserialize<TResponseBody>(contentStream, Options);
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;

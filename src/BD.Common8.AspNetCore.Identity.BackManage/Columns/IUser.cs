@@ -1,3 +1,6 @@
+using BD.Common8.AspNetCore.Entities;
+using BD.Common8.Columns;
+
 namespace BD.Common8.AspNetCore.Columns;
 
 /// <inheritdoc cref="IOperatorUserId.OperatorUserId"/>

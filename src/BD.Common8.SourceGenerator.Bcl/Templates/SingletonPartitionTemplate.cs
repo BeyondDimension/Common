@@ -1,3 +1,9 @@
+using BD.Common8.SourceGenerator.Helpers;
+using BD.Common8.SourceGenerator.Templates.Abstractions;
+using Microsoft.CodeAnalysis;
+using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.SourceGenerator.Bcl.Templates;
 
 /// <summary>
@@ -66,7 +72,7 @@ public sealed class SingletonPartitionTemplate :
         public required int I { get; init; }
     }
 
-    protected override SourceModel GetSourceModel(GetSourceModelArgs args)
+    protected override SourceModel GetSourceModel(in GetSourceModelArgs args)
     {
         SourceModel model = new()
         {
@@ -78,9 +84,9 @@ public sealed class SingletonPartitionTemplate :
         return model;
     }
 
-    protected override void WriteFile(Stream stream, SourceModel m)
+    protected override void WriteFile(Stream stream, in SourceModel m)
     {
-        WriteFileHeader(stream);
+        WriteFileHeader(stream, GetType());
         stream.WriteNewLine();
         WriteNamespace(stream, m.Namespace);
         stream.WriteNewLine();

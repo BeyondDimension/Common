@@ -1,3 +1,9 @@
+using MemoryPack;
+using System.Extensions;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters;
+using System.Text.Json.Serialization;
+
 namespace System.Net.Http.Client;
 
 /// <summary>
@@ -44,7 +50,7 @@ public sealed record class IsolatedCookieContainer : IDisposable
     /// <summary>
     /// Cookie 容器，可使用 <see cref="CookieExtensions.WriteTo(CookieContainer?, Stream)"/> 将数据保存到流中
     /// </summary>
-    [SystemTextJsonConverter(typeof(CookieContainerConverter))]
+    [JsonConverter(typeof(CookieContainerConverter))]
     public CookieContainer Container { get; set; } = new();
 
     /// <summary>
@@ -52,14 +58,14 @@ public sealed record class IsolatedCookieContainer : IDisposable
     /// </summary>
     [IgnoreDataMember]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public byte[] BinaryContainer
     {
@@ -84,14 +90,14 @@ public sealed record class IsolatedCookieContainer : IDisposable
     /// <inheritdoc cref="HttpMessageHandler"/>
     [IgnoreDataMember]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public HttpMessageHandler Handler
     {
@@ -109,23 +115,20 @@ public sealed record class IsolatedCookieContainer : IDisposable
     /// <inheritdoc cref="HttpClient"/>
     [IgnoreDataMember]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [MPIgnore]
+    [global::MessagePack.IgnoreMember]
 #endif
 #if !NETFRAMEWORK && !(NETSTANDARD && !NETSTANDARD2_1_OR_GREATER)
-    [MP2Ignore]
+    [global::MemoryPack.MemoryPackIgnore]
 #endif
-    [NewtonsoftJsonIgnore]
+    [global::Newtonsoft.Json.JsonIgnore]
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public HttpClient Client
     {
         get
         {
-            if (httpClient == null)
-            {
-                httpClient = IClientHttpClientFactory.CreateClient(Handler);
-            }
+            httpClient ??= IClientHttpClientFactory.CreateClient(Handler);
             return httpClient;
         }
         set => httpClient = value;

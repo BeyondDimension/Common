@@ -1,0 +1,8 @@
+<Project>
+	<!-- 📄 源码引用 ChnCharInfo -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo\*.cs">
+			<LinkBase>_SourceReference\Microsoft Visual Studio International Pack\Simplified Chinese Pin-Yin Conversion Library\ChnCharInfo</LinkBase>
+		</Compile>
+	</ItemGroup>
+</Project>

@@ -1,3 +1,7 @@
+#if NET5_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+
 namespace System.Diagnostics;
 
 partial class Process2
@@ -9,6 +13,11 @@ partial class Process2
     /// <param name="arguments">参数</param>
     /// <param name="forceRunas">是否强制用 runas 启动</param>
     /// <returns></returns>
+#if NET5_0_OR_GREATER
+    [UnsupportedOSPlatform("ios")]
+    [UnsupportedOSPlatform("tvos")]
+    [SupportedOSPlatform("maccatalyst")]
+#endif
     public static Process? StartAsPrivileged(
         string fileName,
         object? arguments = null,

@@ -1,3 +1,5 @@
+using System.Formats;
+
 namespace System.Extensions;
 
 public static partial class FormatsExtensions

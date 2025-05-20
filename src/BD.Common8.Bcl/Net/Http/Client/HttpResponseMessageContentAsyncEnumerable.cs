@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System.Net.Http.Client;
 
 public sealed class HttpResponseMessageContentAsyncEnumerable<T>(IAsyncEnumerable<T> enumerable, HttpResponseMessage httpResponseMessage) : IAsyncEnumerable<T>

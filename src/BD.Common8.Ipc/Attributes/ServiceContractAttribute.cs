@@ -1,3 +1,5 @@
+using BD.Common8.Ipc.Enums;
+
 namespace BD.Common8.Ipc.Attributes;
 
 /// <summary>

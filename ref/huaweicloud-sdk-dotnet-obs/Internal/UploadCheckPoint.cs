@@ -11,10 +11,7 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using OBS.Model;
@@ -88,7 +85,7 @@ namespace OBS.Internal
         public volatile bool IsUploadAbort = false;
 
         [XmlIgnore]
-        internal readonly object uploadlock = new object();
+        internal readonly object uploadlock = new();
 
         /// <summary>
         /// 加载序列化文件CheckPointFile
@@ -97,9 +94,9 @@ namespace OBS.Internal
         {
             UploadCheckPoint? temp = null;
 
-            XmlSerializer serializer = new XmlSerializer(GetType());
+            XmlSerializer serializer = new(GetType());
 
-            using (XmlTextReader fs = new XmlTextReader(checkPointFile))
+            using (XmlTextReader fs = new(checkPointFile))
             {
                 temp = (UploadCheckPoint)serializer.Deserialize(fs);
             }
@@ -129,9 +126,9 @@ namespace OBS.Internal
         public void Record(string checkPointFile)
         {
             Md5 = ComputeHash.HashCode(this);
-            XmlSerializer serializer = new XmlSerializer(GetType());
+            XmlSerializer serializer = new(GetType());
 
-            using XmlTextWriter fs = new XmlTextWriter(checkPointFile, Encoding.UTF8);
+            using XmlTextWriter fs = new(checkPointFile, Encoding.UTF8);
             fs.Formatting = System.Xml.Formatting.Indented;
             serializer.Serialize(fs, this);
         }
@@ -151,7 +148,7 @@ namespace OBS.Internal
 
             if (uploadType == ResumableUploadTypeEnum.UploadFile)
             {
-                FileInfo upload = new FileInfo(uploadFile);
+                FileInfo upload = new(uploadFile);
                 if (FileStatus.Size != upload.Length || FileStatus.LastModified != upload.LastWriteTime)
                     return false;
             }
@@ -168,7 +165,7 @@ namespace OBS.Internal
                     {
                         if (uploadType == ResumableUploadTypeEnum.UploadFile)
                         {
-                            using FileStream fileStream = new FileStream(uploadFile, FileMode.Open);
+                            using FileStream fileStream = new(uploadFile, FileMode.Open);
                             //校验CheckSum值--UploadFile文件的一致性
                             return FileStatus.CheckSum.Equals(CommonUtil.Base64Md5(fileStream));
                         }
@@ -183,7 +180,7 @@ namespace OBS.Internal
                     }
                     catch (Exception ex)
                     {
-                        ObsException e = new ObsException(ex.Message, ex.InnerException)
+                        ObsException e = new(ex.Message, ex.InnerException)
                         {
                             ErrorType = ErrorType.Sender,
                         };
@@ -232,17 +229,15 @@ namespace OBS.Internal
         /// <summary>
         /// 获取待上传文件/数据流的状态信息
         /// </summary>
-        /// <param name="uploadFile"></param>
-        /// <param name="uploadStream"></param>
-        /// <param name="checkSum"></param>
-        /// <returns></returns>
+#pragma warning disable IDE1006 // 命名样式
         public static FileStatus getFileStatus(string? uploadFile, Stream? uploadStream, bool checkSum, ResumableUploadTypeEnum uploadType)
+#pragma warning restore IDE1006 // 命名样式
         {
-            FileStatus fileStatus = new FileStatus();
+            FileStatus fileStatus = new();
 
             if (uploadType == ResumableUploadTypeEnum.UploadFile)
             {
-                FileInfo fileInfo = new FileInfo(uploadFile);
+                FileInfo fileInfo = new(uploadFile);
                 fileStatus.Size = fileInfo.Length;
                 fileStatus.LastModified = fileInfo.LastWriteTime;
             }
@@ -260,7 +255,7 @@ namespace OBS.Internal
                 {
                     if (uploadType == ResumableUploadTypeEnum.UploadFile)
                     {
-                        using FileStream fileStream = new FileStream(uploadFile, FileMode.Open);
+                        using FileStream fileStream = new(uploadFile, FileMode.Open);
                         //计算UploadFile的hash值
                         fileStatus.CheckSum = CommonUtil.Base64Md5(fileStream);
                     }
@@ -274,7 +269,7 @@ namespace OBS.Internal
                 }
                 catch (Exception ex)
                 {
-                    ObsException e = new ObsException(ex.Message, ex.InnerException)
+                    ObsException e = new(ex.Message, ex.InnerException)
                     {
                         ErrorType = ErrorType.Sender,
                     };
@@ -326,7 +321,7 @@ namespace OBS.Internal
     {
         public static string HashCode<T>(T obj)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             Type type = obj.GetType();
 

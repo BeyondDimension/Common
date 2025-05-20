@@ -9,8 +9,10 @@
 
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
-namespace BD.Common8.Primitives.ApiRsp.Resources;
 #pragma warning restore IDE0079 // 请删除不必要的忽略
+using System.CodeDom.Compiler;
+
+namespace BD.Common8.Primitives.ApiRsp.Resources;
 
 [ResXGeneratedCode(@"..\..\..\res\i18n\BD.Common8.Primitives.ApiRsp.resx", version: 1)]
 partial class SR { }

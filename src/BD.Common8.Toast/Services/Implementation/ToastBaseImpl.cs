@@ -1,3 +1,9 @@
+using BD.Common8.Toast.Enums;
+using BD.Common8.Toast.Helpers;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using ToastLength = BD.Common8.Toast.Enums.ToastLength;
+
 namespace BD.Common8.Toast.Services.Implementation;
 
 /// <summary>

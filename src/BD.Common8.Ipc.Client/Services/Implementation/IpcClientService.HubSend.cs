@@ -1,3 +1,8 @@
+using BD.Common8.Models.Abstractions.Internals;
+using Microsoft.AspNetCore.SignalR.Client;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Ipc.Services.Implementation;
 
 partial class IpcClientService

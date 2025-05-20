@@ -1,3 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Reflection;
+
 namespace BD.Common8.UserInput.ModelValidator.Services.Implementation;
 
 /// <inheritdoc cref="IModelValidator"/>
@@ -49,6 +53,8 @@ public sealed class ModelValidatorImpl : IModelValidator
     /// <summary>
     /// 验证
     /// </summary>
+    [RequiresDynamicCode("The native code for this instantiation might not be available at runtime.")]
+    [RequiresUnreferencedCode("If some of the generic arguments are annotated (either with DynamicallyAccessedMembersAttribute, or generic constraints), trimming can't validate that the requirements of those annotations are met.")]
     public bool Validate(object model, [NotNullWhen(false)] out string? errorMessage, params Type[] ignores)
     {
         string[]? ignoreNames_ = null;

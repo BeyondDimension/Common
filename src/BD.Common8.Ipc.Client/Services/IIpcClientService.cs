@@ -1,3 +1,6 @@
+using BD.Common8.Http.ClientFactory.Models;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BD.Common8.Ipc.Services;
 
 /// <summary>

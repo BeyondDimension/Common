@@ -1,3 +1,8 @@
+using BD.Common8.SourceGenerator.Repositories.Models;
+using BD.Common8.SourceGenerator.Repositories.Models.Attributes;
+using BD.Common8.SourceGenerator.Repositories.Templates.Abstractions;
+using System.Collections.Immutable;
+
 namespace BD.Common8.SourceGenerator.Repositories.Templates.ReactUI;
 
 /// <summary>

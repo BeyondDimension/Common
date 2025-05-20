@@ -1,3 +1,11 @@
+using MemoryPack;
+using Microsoft.IdentityModel.Tokens;
+using System.Runtime.Serialization.Formatters;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.Common8.UnitTest;
 
 /// <summary>
@@ -72,12 +80,14 @@ public sealed class RSATest
 
         var jsonWebKey = JsonWebKeyConverter.ConvertFromRSASecurityKey(
             new RsaSecurityKey(parameters));
-        var json = SystemTextJsonSerializer.Serialize(jsonWebKey, jsonWebKey.GetType(), new SystemTextJsonSerializerOptions
+#pragma warning disable CA1869 // 缓存并重用“JsonSerializerOptions”实例
+        var json = JsonSerializer.Serialize(jsonWebKey, jsonWebKey.GetType(), new JsonSerializerOptions
         {
             WriteIndented = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = SystemTextJsonIgnoreCondition.WhenWritingNull,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         });
+#pragma warning restore CA1869 // 缓存并重用“JsonSerializerOptions”实例
         TestContext.WriteLine(json);
     }
 

@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Http;
+using System.Runtime.CompilerServices;
+
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions

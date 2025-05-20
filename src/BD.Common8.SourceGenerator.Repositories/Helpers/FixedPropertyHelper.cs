@@ -1,3 +1,6 @@
+using BD.Common8.SourceGenerator.Repositories.Enums;
+using Humanizer;
+
 namespace BD.Common8.SourceGenerator.Repositories.Helpers;
 
 /// <summary>

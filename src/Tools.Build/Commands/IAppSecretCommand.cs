@@ -16,6 +16,11 @@
 #pragma warning disable SA1513 // Closing brace should be followed by blank line
 #pragma warning disable SA1123 // Do not place regions within elements
 #if WINDOWS
+using System.Formats;
+using System.IO.Compression;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace Tools.Build.Commands;
 
 /// <summary>

@@ -1,3 +1,7 @@
+using BD.Common8.Columns;
+using BD.Common8.Entities.Abstractions;
+using Microsoft.EntityFrameworkCore;
+
 namespace BD.Common8.Repositories.EFCore.Extensions;
 
 public static partial class DbContextExtensions

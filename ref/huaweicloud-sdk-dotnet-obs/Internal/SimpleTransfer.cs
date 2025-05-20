@@ -12,10 +12,6 @@
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
 using OBS.Model;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace OBS.Internal
 {
@@ -192,21 +188,21 @@ namespace OBS.Internal
         {
             startCheckpoint = DateTime.Now;
             lastCheckpoint = DateTime.Now;
-            lastInstantaneousBytes = new List<BytesUnit>();
+            lastInstantaneousBytes = [];
         }
 
         public virtual void TransferReset(long resetBytes)
         {
             startCheckpoint = DateTime.Now;
             lastCheckpoint = DateTime.Now;
-            lastInstantaneousBytes = new List<BytesUnit>();
+            lastInstantaneousBytes = [];
             newlyTransferredBytes = 0;
             transferredBytes -= resetBytes;
         }
 
         protected IList<BytesUnit> CreateCurrentInstantaneousBytes(long bytes, DateTime now)
         {
-            IList<BytesUnit> currentInstantaneousBytes = new List<BytesUnit>();
+            IList<BytesUnit> currentInstantaneousBytes = [];
             IList<BytesUnit> _lastInstantaneousBytes = lastInstantaneousBytes;
             if (_lastInstantaneousBytes != null)
             {
@@ -218,7 +214,7 @@ namespace OBS.Internal
                     }
                 }
             }
-            BytesUnit unit = new BytesUnit
+            BytesUnit unit = new()
             {
                 DateTime = now,
                 Bytes = bytes,
@@ -234,7 +230,7 @@ namespace OBS.Internal
                 return;
             }
             DateTime now = DateTime.Now;
-            TransferStatus status = new TransferStatus(newlyTransferredBytes,
+            TransferStatus status = new(newlyTransferredBytes,
                           transferredBytes, totalBytes, (now - lastCheckpoint).TotalSeconds, (now - startCheckpoint).TotalSeconds);
             status.SetInstantaneousBytes(CreateCurrentInstantaneousBytes(newlyTransferredBytes, now));
             handler(sender, status);
@@ -274,7 +270,7 @@ namespace OBS.Internal
             lastInstantaneousBytes = currentInstantaneousBytes;
             if (newlyTransferredBytes >= interval || transferredBytes == totalBytes)
             {
-                TransferStatus status = new TransferStatus(newlyTransferredBytes,
+                TransferStatus status = new(newlyTransferredBytes,
                    transferredBytes, totalBytes, (now - lastCheckpoint).TotalSeconds, (now - startCheckpoint).TotalSeconds);
                 status.SetInstantaneousBytes(currentInstantaneousBytes);
                 handler(sender, status);

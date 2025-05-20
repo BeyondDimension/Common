@@ -13,8 +13,6 @@
 //----------------------------------------------------------------------------------*/
 using OBS.Internal;
 using OBS.Internal.Log;
-using System;
-using System.IO;
 
 
 
@@ -26,16 +24,14 @@ namespace OBS.Model
     public class GetObjectResponse : GetObjectMetadataResponse
     {
 
-        private bool _disposed = false;
+        private readonly bool _disposed = false;
         private Stream _outputStream;
 
         internal override void HandleObsWebServiceRequest(ObsWebServiceRequest req)
         {
-            GetObjectRequest? request = req as GetObjectRequest;
-
-            if (request != null && request.DownloadProgress != null && OutputStream != null && ContentLength > 0)
+            if (req is GetObjectRequest request && request.DownloadProgress != null && OutputStream != null && ContentLength > 0)
             {
-                TransferStream stream = new TransferStream(OutputStream);
+                TransferStream stream = new(OutputStream);
 
                 TransferStreamManager mgr;
                 if (request.ProgressType == ProgressTypeEnum.ByBytes)
@@ -95,7 +91,7 @@ namespace OBS.Model
             try
             {
                 filePath = System.IO.Path.GetFullPath(filePath);
-                FileInfo fi = new FileInfo(filePath);
+                FileInfo fi = new(filePath);
                 Directory.CreateDirectory(fi.DirectoryName);
 
                 FileMode fm = FileMode.Create;
@@ -132,7 +128,7 @@ namespace OBS.Model
                 {
                     LoggerMgr.Error(ex.Message, ex);
                 }
-                ObsException exception = new ObsException(ex.Message, ex)
+                ObsException exception = new(ex.Message, ex)
                 {
                     ErrorType = ErrorType.Receiver,
                 };

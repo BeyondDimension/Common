@@ -1,3 +1,10 @@
+using BD.Common8.Columns;
+using BD.Common8.Entities.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
+
 namespace BD.Common8.Repositories.EFCore.Entities;
 
 /// <summary>

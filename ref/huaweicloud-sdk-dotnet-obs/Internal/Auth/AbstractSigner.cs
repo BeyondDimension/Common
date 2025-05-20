@@ -11,10 +11,8 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
 using System.Text;
 using OBS.Internal.Log;
-using System.Collections.Generic;
 
 
 namespace OBS.Internal.Auth
@@ -32,7 +30,7 @@ namespace OBS.Internal.Auth
 
         internal override IDictionary<string, string> GetSignature(HttpRequest request, HttpContext context, IHeaders iheaders)
         {
-            StringBuilder stringToSign = new StringBuilder();
+            StringBuilder stringToSign = new();
 
             stringToSign.Append(request.Method.ToString()).Append('\n');
 
@@ -42,7 +40,7 @@ namespace OBS.Internal.Auth
             string headerPrefix = iheaders.HeaderPrefix();
             string headerMetaPrefix = iheaders.HeaderMetaPrefix();
 
-            IDictionary<string, string> tempDict = new Dictionary<string, string>();
+            var tempDict = new Dictionary<string, string>();
 
             if (request.Headers.Count > 0)
             {
@@ -61,26 +59,29 @@ namespace OBS.Internal.Auth
                 }
             }
 
-            if (request.Headers.ContainsKey(dateHeader))
+            if (request.Headers.TryGetValue(dateHeader, out string? value))
             {
-                tempDict.Add(dateHeader, request.Headers[dateHeader]);
+                tempDict.Add(dateHeader, value);
             }
             else
             {
                 tempDict.Add(dateHeader, "");
             }
 
+#if NETFRAMEWORK
             if (!tempDict.ContainsKey(contentMd5Header))
             {
                 tempDict.Add(contentMd5Header, "");
             }
-
             if (!tempDict.ContainsKey(contentTypeHeader))
             {
                 tempDict.Add(contentTypeHeader, "");
             }
-
-            List<KeyValuePair<string, string>> kvlist = new List<KeyValuePair<string, string>>(tempDict);
+#else
+            tempDict.TryAdd(contentMd5Header, "");
+            tempDict.TryAdd(contentTypeHeader, "");
+#endif
+            List<KeyValuePair<string, string>> kvlist = [.. tempDict];
 
             tempDict.Clear();
 
@@ -136,14 +137,14 @@ namespace OBS.Internal.Auth
                     {
                         continue;
                     }
-                    if (Constants.AllowedResourceParameters.Contains(entry.Key.ToLower()) || entry.Key.ToLower().StartsWith(iheaders.HeaderPrefix()))
+                    if (Constants.AllowedResourceParameters.Contains(entry.Key,StringComparer.OrdinalIgnoreCase) || entry.Key.StartsWith(iheaders.HeaderPrefix(), StringComparison.OrdinalIgnoreCase))
                     {
                         tempDict.Add(entry.Key, entry.Value);
                     }
                 }
             }
 
-            kvlist = new List<KeyValuePair<string, string>>(tempDict);
+            kvlist = [.. tempDict];
 
             tempDict.Clear();
 
@@ -178,8 +179,10 @@ namespace OBS.Internal.Auth
                 LoggerMgr.Debug("StringToSign: ******");
             }
 
-            IDictionary<string, string> ret = new Dictionary<string, string>();
-            ret.Add("Signature", Convert.ToBase64String(CommonUtil.HmacSha1(context.SecurityProvider.Sk, stringToSign.ToString())));
+            IDictionary<string, string> ret = new Dictionary<string, string>
+            {
+                { "Signature", Convert.ToBase64String(CommonUtil.HmacSha1(context.SecurityProvider.Sk, stringToSign.ToString())) }
+            };
 
             return ret;
         }

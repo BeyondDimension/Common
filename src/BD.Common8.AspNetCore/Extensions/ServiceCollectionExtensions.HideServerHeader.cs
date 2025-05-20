@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Runtime.CompilerServices;
+
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions

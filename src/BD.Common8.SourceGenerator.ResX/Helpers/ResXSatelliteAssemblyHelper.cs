@@ -1,3 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+
 namespace BD.Common8.SourceGenerator.ResX.Helpers;
 
 /// <summary>

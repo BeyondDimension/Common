@@ -1,4 +1,6 @@
 #if !NET5_0_OR_GREATER
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
 
 namespace System;
 

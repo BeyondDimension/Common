@@ -11,8 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System.Collections.Generic;
-
 namespace OBS.Model
 {
 
@@ -34,7 +32,7 @@ namespace OBS.Model
         { 
             get
             {
-                return _events ??= new List<EventTypeEnum>();
+                return _events ??= [];
             }
             set { _events = value; } 
         }
@@ -45,7 +43,7 @@ namespace OBS.Model
         {
             get
             {
-                return _filterRules ??= new List<FilterRule>();
+                return _filterRules ??= [];
             }
             set { _filterRules = value; }
         }

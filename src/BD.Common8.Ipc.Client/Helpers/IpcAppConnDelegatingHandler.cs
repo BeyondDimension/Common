@@ -1,3 +1,11 @@
+using BD.Common8.Ipc.Enums;
+using BD.Common8.Ipc.Models;
+using System.Collections.Concurrent;
+using System.Extensions;
+using System.IO.Pipes;
+using System.Net.Sockets;
+using System.Security.Principal;
+
 namespace BD.Common8.Ipc.Helpers;
 
 public sealed class IpcAppConnDelegatingHandler : DelegatingHandler

@@ -1,3 +1,6 @@
+using BD.Common8.Columns;
+using System.Runtime.CompilerServices;
+
 namespace BD.Common8.Repositories.Data;
 
 /// <summary>

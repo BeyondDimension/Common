@@ -1,3 +1,6 @@
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+using System.Runtime.InteropServices;
+
 namespace MS.Win32;
 
 /// <summary>
@@ -13,64 +16,64 @@ internal struct Win32Error
     // picked up by (HRESULT's) ToString through reflection.
 
     /// <summary>The operation completed successfully.</summary>
-    public static readonly Win32Error ERROR_SUCCESS = new Win32Error(0);
+    public static readonly Win32Error ERROR_SUCCESS = new(0);
 
     /// <summary>Incorrect function.</summary>
-    public static readonly Win32Error ERROR_INVALID_FUNCTION = new Win32Error(1);
+    public static readonly Win32Error ERROR_INVALID_FUNCTION = new(1);
 
     /// <summary>The system cannot find the file specified.</summary>
-    public static readonly Win32Error ERROR_FILE_NOT_FOUND = new Win32Error(2);
+    public static readonly Win32Error ERROR_FILE_NOT_FOUND = new(2);
 
     /// <summary>The system cannot find the path specified.</summary>
-    public static readonly Win32Error ERROR_PATH_NOT_FOUND = new Win32Error(3);
+    public static readonly Win32Error ERROR_PATH_NOT_FOUND = new(3);
 
     /// <summary>The system cannot open the file.</summary>
-    public static readonly Win32Error ERROR_TOO_MANY_OPEN_FILES = new Win32Error(4);
+    public static readonly Win32Error ERROR_TOO_MANY_OPEN_FILES = new(4);
 
     /// <summary>Access is denied.</summary>
-    public static readonly Win32Error ERROR_ACCESS_DENIED = new Win32Error(5);
+    public static readonly Win32Error ERROR_ACCESS_DENIED = new(5);
 
     /// <summary>The handle is invalid.</summary>
-    public static readonly Win32Error ERROR_INVALID_HANDLE = new Win32Error(6);
+    public static readonly Win32Error ERROR_INVALID_HANDLE = new(6);
 
     /// <summary>Not enough storage is available to complete this operation.</summary>
-    public static readonly Win32Error ERROR_OUTOFMEMORY = new Win32Error(14);
+    public static readonly Win32Error ERROR_OUTOFMEMORY = new(14);
 
     /// <summary>There are no more files.</summary>
-    public static readonly Win32Error ERROR_NO_MORE_FILES = new Win32Error(18);
+    public static readonly Win32Error ERROR_NO_MORE_FILES = new(18);
 
     /// <summary>The process cannot access the file because it is being used by another process.</summary>
-    public static readonly Win32Error ERROR_SHARING_VIOLATION = new Win32Error(32);
+    public static readonly Win32Error ERROR_SHARING_VIOLATION = new(32);
 
     /// <summary>The parameter is incorrect.</summary>
-    public static readonly Win32Error ERROR_INVALID_PARAMETER = new Win32Error(87);
+    public static readonly Win32Error ERROR_INVALID_PARAMETER = new(87);
 
     /// <summary>The data area passed to a system call is too small.</summary>
-    public static readonly Win32Error ERROR_INSUFFICIENT_BUFFER = new Win32Error(122);
+    public static readonly Win32Error ERROR_INSUFFICIENT_BUFFER = new(122);
 
     /// <summary>Cannot nest calls to LoadModule.</summary>
-    public static readonly Win32Error ERROR_NESTING_NOT_ALLOWED = new Win32Error(215);
+    public static readonly Win32Error ERROR_NESTING_NOT_ALLOWED = new(215);
 
     /// <summary>Illegal operation attempted on a registry key that has been marked for deletion.</summary>
-    public static readonly Win32Error ERROR_KEY_DELETED = new Win32Error(1018);
+    public static readonly Win32Error ERROR_KEY_DELETED = new(1018);
 
     /// <summary>Element not found.</summary>
-    public static readonly Win32Error ERROR_NOT_FOUND = new Win32Error(1168);
+    public static readonly Win32Error ERROR_NOT_FOUND = new(1168);
 
     /// <summary>There was no match for the specified key in the index.</summary>
-    public static readonly Win32Error ERROR_NO_MATCH = new Win32Error(1169);
+    public static readonly Win32Error ERROR_NO_MATCH = new(1169);
 
     /// <summary>An invalid device was specified.</summary>
-    public static readonly Win32Error ERROR_BAD_DEVICE = new Win32Error(1200);
+    public static readonly Win32Error ERROR_BAD_DEVICE = new(1200);
 
     /// <summary>The operation was canceled by the user.</summary>
-    public static readonly Win32Error ERROR_CANCELLED = new Win32Error(1223);
+    public static readonly Win32Error ERROR_CANCELLED = new(1223);
 
     /// <summary>The window class was already registered.</summary>
-    public static readonly Win32Error ERROR_CLASS_ALREADY_EXISTS = new Win32Error(1410);
+    public static readonly Win32Error ERROR_CLASS_ALREADY_EXISTS = new(1410);
 
     /// <summary>The specified datatype is invalid.</summary>
-    public static readonly Win32Error ERROR_INVALID_DATATYPE = new Win32Error(1804);
+    public static readonly Win32Error ERROR_INVALID_DATATYPE = new(1804);
 
     /// <summary>
     /// Create a new Win32 error.

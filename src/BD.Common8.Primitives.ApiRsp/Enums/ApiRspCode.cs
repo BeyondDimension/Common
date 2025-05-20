@@ -203,7 +203,7 @@ public enum ApiRspCode
     /// </summary>
     Timeout = 5004,
 
-    /// <inheritdoc cref="SocketError.ConnectionRefused"/>
+    /// <inheritdoc cref="global::System.Net.Sockets.SocketError.ConnectionRefused"/>
     ConnectionRefused = 5005,
 
     /// <summary>

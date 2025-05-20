@@ -1,3 +1,6 @@
+using BD.Common8.Security.Enums;
+using System.Runtime.CompilerServices;
+using System.Text;
 using static BD.Common8.Security.Services.ISecurityService;
 
 namespace BD.Common8.Security.Services.Implementation;

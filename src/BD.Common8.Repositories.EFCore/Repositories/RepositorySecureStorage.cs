@@ -1,3 +1,8 @@
+using BD.Common8.Repositories.EFCore.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using System.Security;
+using Z.EntityFramework.Plus;
 using KeyValuePair = BD.Common8.Repositories.EFCore.Entities.KeyValuePair;
 
 namespace BD.Common8.Repositories.EFCore.Repositories;
@@ -32,21 +37,17 @@ internal sealed class RepositorySecureStorage<TDbContext>(TDbContext dbContext, 
     IQueryable<KeyValuePair> GetSetQuery(string key)
         => Entity.IgnoreQueryFilters().Where(x => x.Id == key);
 
-    /// <summary>
-    /// 获取更新值的表达式
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    static Expression<Func<KeyValuePair, KeyValuePair>> GetSetValueUpdateExpression(string value)
-           => x => new KeyValuePair { SoftDeleted = false, Value = value };
-
     /// <inheritdoc/>
     Task ISecureStorage.SetAsync(string key, string? value)
     {
         if (string.IsNullOrEmpty(value))
+        {
             return DeleteAsync(key);
+        }
         else
-            return GetSetQuery(key).UpdateAsync(GetSetValueUpdateExpression(value));
+        {
+            return GetSetQuery(key).ExecuteUpdateAsync(s => s.SetProperty(b => b.SoftDeleted, false).SetProperty(b => b.Value, value));
+        }
     }
 
     /// <inheritdoc/>

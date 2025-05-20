@@ -1,3 +1,6 @@
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+
 namespace BD.Common8.Security.Services.Implementation;
 
 /// <inheritdoc cref="ISecondaryPasswordDataProtectionProvider"/>

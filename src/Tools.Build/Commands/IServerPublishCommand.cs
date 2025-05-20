@@ -1,3 +1,8 @@
+using System.Diagnostics;
+using System.Extensions;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace Tools.Build.Commands;
 
 /// <summary>
@@ -91,7 +96,7 @@ public interface IServerPublishCommand : ICommand
             using var configStream = new FileStream(Path.Combine(projPath, "src", fileNameServerPublishConfig), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
             try
             {
-                config = await SystemTextJsonSerializer.DeserializeAsync(configStream, AppJsonSerializerContext.Default.ServerPublishConfig, cancellationToken);
+                config = await JsonSerializer.DeserializeAsync(configStream, AppJsonSerializerContext.Default.ServerPublishConfig, cancellationToken);
                 configStream.Position = 0;
                 await configStream.CopyToAsync(configMemoryStream = new(), cancellationToken);
             }
@@ -118,7 +123,7 @@ public interface IServerPublishCommand : ICommand
                         configStream.Position = 0;
                         serializeStream = configStream;
                     }
-                    await SystemTextJsonSerializer.SerializeAsync(serializeStream, config, AppJsonSerializerContext.Default.ServerPublishConfig, CancellationToken.None);
+                    await JsonSerializer.SerializeAsync(serializeStream, config, AppJsonSerializerContext.Default.ServerPublishConfig, CancellationToken.None);
                     await serializeStream.FlushAsync(CancellationToken.None);
                     if (configMemoryStream != null)
                     {
@@ -236,7 +241,7 @@ public interface IServerPublishCommand : ICommand
                     }
                     if (list.Count != 0)
                     {
-                        projects = list.ToArray();
+                        projects = [.. list];
                     }
                 }
             }
@@ -774,6 +779,6 @@ sealed record class ServerPublishConfig
     AllowTrailingCommas = true,
     PropertyNameCaseInsensitive = true,
     WriteIndented = true)]
-sealed partial class AppJsonSerializerContext : SystemTextJsonSerializerContext
+sealed partial class AppJsonSerializerContext : JsonSerializerContext
 {
 }

@@ -4,25 +4,33 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<RootNamespace>Ipc.Sample</RootNamespace>
-		<UseProjectUtils>true</UseProjectUtils>
-		<BeyondDimensionFeatures>
-			BD.Common8.Bcl;
-			BD.Common8.Ipc;
-			BD.Common8.Ipc.Client;
-			BD.Common8.Primitives;
-			BD.Common8.Primitives.ApiRsp;
-			BD.Common8.Http.ClientFactory;
-		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ProjectUtils.cs" />
 		<Compile Include="..\Ipc.Server.Sample.Experimental\ITodoService.cs">
 			<LinkBase>Services</LinkBase>
 		</Compile>
 	</ItemGroup>
 
+	<!-- 👇 项目引用源生成器 -->
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\BD.Common8.SourceGenerator.Ipc.Client.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="..\BD.Common8.Ipc.Client\BD.Common8.Ipc.Client.csproj" />
+		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

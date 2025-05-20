@@ -13,6 +13,7 @@
 //----------------------------------------------------------------------------------*/
 using OBS.Internal;
 using OBS.Model;
+using System.Net;
 
 namespace OBS;
 

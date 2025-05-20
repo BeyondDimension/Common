@@ -1,3 +1,8 @@
+using BD.Common8.AspNetCore.Data.Abstractions;
+using BD.Common8.AspNetCore.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+
 namespace BD.Common8.AspNetCore.Permissions;
 
 /// <summary>

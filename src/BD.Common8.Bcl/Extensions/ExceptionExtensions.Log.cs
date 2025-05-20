@@ -1,4 +1,8 @@
 #if !NETFRAMEWORK || (NETSTANDARD && NETSTANDARD2_0_OR_GREATER)
+using Microsoft.Extensions.Logging;
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace System.Extensions;
 
 public static partial class ExceptionExtensions

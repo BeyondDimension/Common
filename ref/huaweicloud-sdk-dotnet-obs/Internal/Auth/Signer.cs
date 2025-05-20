@@ -11,10 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-
 namespace OBS.Internal.Auth
 {
     internal abstract class Signer
@@ -22,15 +18,9 @@ namespace OBS.Internal.Auth
 
         internal void DoAuth(HttpRequest request, HttpContext context, IHeaders iheaders)
         {
-            if (request.Headers.ContainsKey(Constants.CommonHeaders.Authorization))
-            {
-                request.Headers.Remove(Constants.CommonHeaders.Authorization);
-            }
+            request.Headers.Remove(Constants.CommonHeaders.Authorization);
 
-            if (request.Headers.ContainsKey(Constants.CommonHeaders.Date))
-            {
-                request.Headers.Remove(Constants.CommonHeaders.Date);
-            }
+            request.Headers.Remove(Constants.CommonHeaders.Date);
 
             //date
             if (!request.Headers.ContainsKey(iheaders.DateHeader()))
@@ -57,6 +47,8 @@ namespace OBS.Internal.Auth
 
         internal abstract IDictionary<string,string> GetSignature(HttpRequest request, HttpContext context, IHeaders iheaders);
 
+#pragma warning disable IDE1006 // 命名样式
         protected abstract void _DoAuth(HttpRequest request, HttpContext context, IHeaders iheaders);
+#pragma warning restore IDE1006 // 命名样式
     }
 }

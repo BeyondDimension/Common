@@ -1,11 +1,20 @@
 #if !NETFRAMEWORK && !PROJ_SETUP
-using IClientHttpClientFactory = System.Net.Http.Client.IClientHttpClientFactory;
-
-namespace BD.Common8.Http.ClientFactory.Services.Implementation;
-
+using BD.Common8.Http.ClientFactory.Extensions;
+using BD.Common8.Http.ClientFactory.Models;
+using Fusillade;
+using Microsoft.Extensions.DependencyInjection;
 using Punchclock;
+using System.Collections.Concurrent;
+using System.Extensions;
+using System.Net;
+using System.Net.Http.Client;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace BD.Common8.Http.ClientFactory.Services.Implementation;
 
 /// <summary>
 /// 使用 Fusillade 实现的 <see cref="IClientHttpClientFactory"/>
@@ -267,7 +276,7 @@ file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Pri
     {
         // https://github.com/reactiveui/Fusillade/blob/2.4.67/src/Fusillade/RateLimitedHttpMessageHandler.cs#L54-L89
 
-        using var s = new MemoryStream();
+        using var s = FusilladeClientHttpClientFactory.MemoryStreamManager.GetStream();
         s.Write(Encoding.UTF8.GetBytes(originalRequestUri));
         s.Write("\r\n"u8);
         s.Write(Encoding.UTF8.GetBytes(request.Method.Method));
@@ -303,6 +312,7 @@ file sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Pri
             s.Write("\r\n"u8);
         }
         s.Position = 0;
+
         var bytes = SHA384.HashData(s);
         var str = bytes.ToHexString();
         return str;

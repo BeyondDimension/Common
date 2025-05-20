@@ -1,3 +1,9 @@
+using System.Collections;
+using System.Diagnostics;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace System.Extensions;
 
 /// <summary>
@@ -11,7 +17,7 @@ public static partial class StreamExtensions
     public static char ReadChar(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(char)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToChar(data);
     }
 
@@ -19,7 +25,7 @@ public static partial class StreamExtensions
     public static short ReadInt16(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(short)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToInt16(data);
     }
 
@@ -27,7 +33,7 @@ public static partial class StreamExtensions
     public static int ReadInt32(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(int)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToInt32(data);
     }
 
@@ -35,7 +41,7 @@ public static partial class StreamExtensions
     public static long ReadInt64(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(long)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToInt64(data);
     }
 
@@ -43,7 +49,7 @@ public static partial class StreamExtensions
     public static ushort ReadUInt16(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(ushort)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToUInt16(data);
     }
 
@@ -51,7 +57,7 @@ public static partial class StreamExtensions
     public static uint ReadUInt32(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(uint)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToUInt32(data);
     }
 
@@ -59,7 +65,7 @@ public static partial class StreamExtensions
     public static ulong ReadUInt64(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(ulong)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToUInt64(data);
     }
 
@@ -86,7 +92,7 @@ public static partial class StreamExtensions
     public static int ReadValueS32(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(int)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToInt32(data);
     }
 
@@ -99,7 +105,7 @@ public static partial class StreamExtensions
     public static uint ReadValueU32(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(uint)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToUInt32(data);
     }
 
@@ -112,7 +118,7 @@ public static partial class StreamExtensions
     public static ulong ReadValueU64(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(ulong)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToUInt64(data);
     }
 
@@ -125,7 +131,7 @@ public static partial class StreamExtensions
     public static float ReadValueF32(this Stream stream)
     {
         Span<byte> data = stackalloc byte[sizeof(float)];
-        stream.Read(data);
+        stream.ReadExactly(data);
         return BitConverter.ToSingle(data);
     }
 
@@ -152,7 +158,7 @@ public static partial class StreamExtensions
                 Array.Resize(ref data, data.Length + (128 * characterSize));
             }
 
-            stream.Read(data, i, characterSize);
+            stream.ReadExactly(data, i, characterSize);
             //Debug.Assert(read == characterSize);
 
             if (encoding.GetString(data, i, characterSize) == characterEnd)

@@ -11,8 +11,7 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System;
-using System.Collections.Generic;
+
 using OBS.Model;
 using System.Reflection;
 
@@ -24,7 +23,7 @@ namespace OBS.Internal
 
         public static IDictionary<Enum, string> EnumValueDict = new Dictionary<Enum, string>();
 
-        private static readonly object _lock = new object();
+        private static readonly object _lock = new();
 
         public static string GetStringValue(Enum value)
         {
@@ -66,10 +65,12 @@ namespace OBS.Internal
                     {
                         if (_V2StorageClassEnumDict == null)
                         {
-                            IDictionary<string, StorageClassEnum>  tempV2StorageClassEnumDict = new Dictionary<string, StorageClassEnum>();
-                            tempV2StorageClassEnumDict.Add("STANDARD", StorageClassEnum.Standard);
-                            tempV2StorageClassEnumDict.Add("STANDARD_IA", StorageClassEnum.Warm);
-                            tempV2StorageClassEnumDict.Add("GLACIER", StorageClassEnum.Cold);
+                            IDictionary<string, StorageClassEnum>  tempV2StorageClassEnumDict = new Dictionary<string, StorageClassEnum>
+                            {
+                                { "STANDARD", StorageClassEnum.Standard },
+                                { "STANDARD_IA", StorageClassEnum.Warm },
+                                { "GLACIER", StorageClassEnum.Cold }
+                            };
                             _V2StorageClassEnumDict = tempV2StorageClassEnumDict;
                         }
                     }
@@ -92,10 +93,12 @@ namespace OBS.Internal
                     {
                         if (_ObsStorageClassEnumDict == null)
                         {
-                            IDictionary<string, StorageClassEnum>  tempObsStorageClassEnumDict = new Dictionary<string, StorageClassEnum>();
-                            tempObsStorageClassEnumDict.Add("STANDARD", StorageClassEnum.Standard);
-                            tempObsStorageClassEnumDict.Add("WARM", StorageClassEnum.Warm);
-                            tempObsStorageClassEnumDict.Add("COLD", StorageClassEnum.Cold);
+                            IDictionary<string, StorageClassEnum>  tempObsStorageClassEnumDict = new Dictionary<string, StorageClassEnum>
+                            {
+                                { "STANDARD", StorageClassEnum.Standard },
+                                { "WARM", StorageClassEnum.Warm },
+                                { "COLD", StorageClassEnum.Cold }
+                            };
                             _ObsStorageClassEnumDict = tempObsStorageClassEnumDict;
                         }
                     }
@@ -117,10 +120,12 @@ namespace OBS.Internal
                     {
                         if (_V2GroupGranteeEnumDict == null)
                         {
-                            IDictionary<string, GroupGranteeEnum> tempV2GroupGranteeEnumDict = new Dictionary<string, GroupGranteeEnum>();
-                            tempV2GroupGranteeEnumDict.Add("http://acs.amazonaws.com/groups/global/AllUsers", GroupGranteeEnum.AllUsers);
-                            tempV2GroupGranteeEnumDict.Add("http://acs.amazonaws.com/groups/global/AuthenticatedUsers", GroupGranteeEnum.AuthenticatedUsers);
-                            tempV2GroupGranteeEnumDict.Add("http://acs.amazonaws.com/groups/s3/LogDelivery", GroupGranteeEnum.LogDelivery);
+                            IDictionary<string, GroupGranteeEnum> tempV2GroupGranteeEnumDict = new Dictionary<string, GroupGranteeEnum>
+                            {
+                                { "http://acs.amazonaws.com/groups/global/AllUsers", GroupGranteeEnum.AllUsers },
+                                { "http://acs.amazonaws.com/groups/global/AuthenticatedUsers", GroupGranteeEnum.AuthenticatedUsers },
+                                { "http://acs.amazonaws.com/groups/s3/LogDelivery", GroupGranteeEnum.LogDelivery }
+                            };
                             _V2GroupGranteeEnumDict = tempV2GroupGranteeEnumDict;
                         }
                     }
@@ -142,8 +147,10 @@ namespace OBS.Internal
                     {
                         if (_ObsGroupGranteeEnumDict == null)
                         {
-                            IDictionary<string, GroupGranteeEnum> tempObsGroupGranteeEnumDict = new Dictionary<string, GroupGranteeEnum>();
-                            tempObsGroupGranteeEnumDict.Add("Everyone", GroupGranteeEnum.AllUsers);
+                            IDictionary<string, GroupGranteeEnum> tempObsGroupGranteeEnumDict = new Dictionary<string, GroupGranteeEnum>
+                            {
+                                { "Everyone", GroupGranteeEnum.AllUsers }
+                            };
                             _ObsGroupGranteeEnumDict = tempObsGroupGranteeEnumDict;
                         }
                     }
@@ -164,12 +171,14 @@ namespace OBS.Internal
                     {
                         if (_PermissionEnumDict == null)
                         {
-                            IDictionary<string, PermissionEnum> tempPermissionEnumDict = new Dictionary<string, PermissionEnum>();
-                            tempPermissionEnumDict.Add("READ", PermissionEnum.Read);
-                            tempPermissionEnumDict.Add("WRITE", PermissionEnum.Write);
-                            tempPermissionEnumDict.Add("READ_ACP", PermissionEnum.ReadAcp);
-                            tempPermissionEnumDict.Add("WRITE_ACP", PermissionEnum.WriteAcp);
-                            tempPermissionEnumDict.Add("FULL_CONTROL", PermissionEnum.FullControl);
+                            IDictionary<string, PermissionEnum> tempPermissionEnumDict = new Dictionary<string, PermissionEnum>
+                            {
+                                { "READ", PermissionEnum.Read },
+                                { "WRITE", PermissionEnum.Write },
+                                { "READ_ACP", PermissionEnum.ReadAcp },
+                                { "WRITE_ACP", PermissionEnum.WriteAcp },
+                                { "FULL_CONTROL", PermissionEnum.FullControl }
+                            };
                             _PermissionEnumDict = tempPermissionEnumDict;
                         }
                     }
@@ -191,12 +200,14 @@ namespace OBS.Internal
                     {
                         if (_HttpVerbEnumDict == null)
                         {
-                            IDictionary<string, HttpVerb>  tempHttpVerbEnumDict = new Dictionary<string, HttpVerb>();
-                            tempHttpVerbEnumDict.Add("GET", HttpVerb.GET);
-                            tempHttpVerbEnumDict.Add("POST", HttpVerb.POST);
-                            tempHttpVerbEnumDict.Add("PUT", HttpVerb.PUT);
-                            tempHttpVerbEnumDict.Add("DELETE", HttpVerb.DELETE);
-                            tempHttpVerbEnumDict.Add("HEAD", HttpVerb.HEAD);
+                            IDictionary<string, HttpVerb>  tempHttpVerbEnumDict = new Dictionary<string, HttpVerb>
+                            {
+                                { "GET", HttpVerb.GET },
+                                { "POST", HttpVerb.POST },
+                                { "PUT", HttpVerb.PUT },
+                                { "DELETE", HttpVerb.DELETE },
+                                { "HEAD", HttpVerb.HEAD }
+                            };
                             _HttpVerbEnumDict = tempHttpVerbEnumDict;
                         }
                     }
@@ -217,9 +228,11 @@ namespace OBS.Internal
                     {
                         if (_RuleStatusEnumDict == null)
                         {
-                            IDictionary<string, RuleStatusEnum> tempRuleStatusEnumDict = new Dictionary<string, RuleStatusEnum>();
-                            tempRuleStatusEnumDict.Add("Enabled", RuleStatusEnum.Enabled);
-                            tempRuleStatusEnumDict.Add("Disabled", RuleStatusEnum.Disabled);
+                            IDictionary<string, RuleStatusEnum> tempRuleStatusEnumDict = new Dictionary<string, RuleStatusEnum>
+                            {
+                                { "Enabled", RuleStatusEnum.Enabled },
+                                { "Disabled", RuleStatusEnum.Disabled }
+                            };
                             _RuleStatusEnumDict = tempRuleStatusEnumDict;
                         }
                     }
@@ -240,9 +253,11 @@ namespace OBS.Internal
                     {
                         if (_VersionStatusEnumDict == null)
                         {
-                            IDictionary<string, VersionStatusEnum> tempVersionStatusEnumDict = new Dictionary<string, VersionStatusEnum>();
-                            tempVersionStatusEnumDict.Add("Enabled", VersionStatusEnum.Enabled);
-                            tempVersionStatusEnumDict.Add("Suspended", VersionStatusEnum.Suspended);
+                            IDictionary<string, VersionStatusEnum> tempVersionStatusEnumDict = new Dictionary<string, VersionStatusEnum>
+                            {
+                                { "Enabled", VersionStatusEnum.Enabled },
+                                { "Suspended", VersionStatusEnum.Suspended }
+                            };
                             _VersionStatusEnumDict = tempVersionStatusEnumDict;
                         }
                     }
@@ -263,9 +278,11 @@ namespace OBS.Internal
                     {
                         if (_ProtocolEnumDict == null)
                         {
-                            IDictionary<string, ProtocolEnum> tempProtocolEnumDict = new Dictionary<string, ProtocolEnum>();
-                            tempProtocolEnumDict.Add("http", ProtocolEnum.Http);
-                            tempProtocolEnumDict.Add("https", ProtocolEnum.Https);
+                            IDictionary<string, ProtocolEnum> tempProtocolEnumDict = new Dictionary<string, ProtocolEnum>
+                            {
+                                { "http", ProtocolEnum.Http },
+                                { "https", ProtocolEnum.Https }
+                            };
                             _ProtocolEnumDict = tempProtocolEnumDict;
                         }
                     }
@@ -286,9 +303,11 @@ namespace OBS.Internal
                     {
                         if (_FilterNameEnumDict == null)
                         {
-                            IDictionary<string, FilterNameEnum> tempFilterNameEnumDict = new Dictionary<string, FilterNameEnum>();
-                            tempFilterNameEnumDict.Add("prefix", FilterNameEnum.Prefix);
-                            tempFilterNameEnumDict.Add("suffix", FilterNameEnum.Suffix);
+                            IDictionary<string, FilterNameEnum> tempFilterNameEnumDict = new Dictionary<string, FilterNameEnum>
+                            {
+                                { "prefix", FilterNameEnum.Prefix },
+                                { "suffix", FilterNameEnum.Suffix }
+                            };
                             _FilterNameEnumDict = tempFilterNameEnumDict;
                         }
                     }
@@ -309,15 +328,17 @@ namespace OBS.Internal
                     {
                         if (_V2EventTypeEnumDict == null)
                         {
-                            IDictionary<string, EventTypeEnum> tempV2EventTypeEnumDict = new Dictionary<string, EventTypeEnum>();
-                            tempV2EventTypeEnumDict.Add("s3:ObjectCreated:*", EventTypeEnum.ObjectCreatedAll);
-                            tempV2EventTypeEnumDict.Add("s3:ObjectCreated:Put", EventTypeEnum.ObjectCreatedPut);
-                            tempV2EventTypeEnumDict.Add("s3:ObjectCreated:Post", EventTypeEnum.ObjectCreatedPost);
-                            tempV2EventTypeEnumDict.Add("s3:ObjectCreated:Copy", EventTypeEnum.ObjectCreatedCopy);
-                            tempV2EventTypeEnumDict.Add("s3:ObjectCreated:CompleteMultipartUpload", EventTypeEnum.ObjectCreatedCompleteMultipartUpload);
-                            tempV2EventTypeEnumDict.Add("s3:ObjectRemoved:*", EventTypeEnum.ObjectRemovedAll);
-                            tempV2EventTypeEnumDict.Add("s3:ObjectRemoved:Delete", EventTypeEnum.ObjectRemovedDelete);
-                            tempV2EventTypeEnumDict.Add("s3:ObjectRemoved:DeleteMarkerCreated", EventTypeEnum.ObjectRemovedDeleteMarkerCreated);
+                            IDictionary<string, EventTypeEnum> tempV2EventTypeEnumDict = new Dictionary<string, EventTypeEnum>
+                            {
+                                { "s3:ObjectCreated:*", EventTypeEnum.ObjectCreatedAll },
+                                { "s3:ObjectCreated:Put", EventTypeEnum.ObjectCreatedPut },
+                                { "s3:ObjectCreated:Post", EventTypeEnum.ObjectCreatedPost },
+                                { "s3:ObjectCreated:Copy", EventTypeEnum.ObjectCreatedCopy },
+                                { "s3:ObjectCreated:CompleteMultipartUpload", EventTypeEnum.ObjectCreatedCompleteMultipartUpload },
+                                { "s3:ObjectRemoved:*", EventTypeEnum.ObjectRemovedAll },
+                                { "s3:ObjectRemoved:Delete", EventTypeEnum.ObjectRemovedDelete },
+                                { "s3:ObjectRemoved:DeleteMarkerCreated", EventTypeEnum.ObjectRemovedDeleteMarkerCreated }
+                            };
                             _V2EventTypeEnumDict = tempV2EventTypeEnumDict;
                         }
                     }
@@ -338,15 +359,17 @@ namespace OBS.Internal
                     {
                         if (_ObsEventTypeEnumDict == null)
                         {
-                            IDictionary<string, EventTypeEnum> tempObsEventTypeEnumDict = new Dictionary<string, EventTypeEnum>();
-                            tempObsEventTypeEnumDict.Add("ObjectCreated:*", EventTypeEnum.ObjectCreatedAll);
-                            tempObsEventTypeEnumDict.Add("ObjectCreated:Put", EventTypeEnum.ObjectCreatedPut);
-                            tempObsEventTypeEnumDict.Add("ObjectCreated:Post", EventTypeEnum.ObjectCreatedPost);
-                            tempObsEventTypeEnumDict.Add("ObjectCreated:Copy", EventTypeEnum.ObjectCreatedCopy);
-                            tempObsEventTypeEnumDict.Add("ObjectCreated:CompleteMultipartUpload", EventTypeEnum.ObjectCreatedCompleteMultipartUpload);
-                            tempObsEventTypeEnumDict.Add("ObjectRemoved:*", EventTypeEnum.ObjectRemovedAll);
-                            tempObsEventTypeEnumDict.Add("ObjectRemoved:Delete", EventTypeEnum.ObjectRemovedDelete);
-                            tempObsEventTypeEnumDict.Add("ObjectRemoved:DeleteMarkerCreated", EventTypeEnum.ObjectRemovedDeleteMarkerCreated);
+                            IDictionary<string, EventTypeEnum> tempObsEventTypeEnumDict = new Dictionary<string, EventTypeEnum>
+                            {
+                                { "ObjectCreated:*", EventTypeEnum.ObjectCreatedAll },
+                                { "ObjectCreated:Put", EventTypeEnum.ObjectCreatedPut },
+                                { "ObjectCreated:Post", EventTypeEnum.ObjectCreatedPost },
+                                { "ObjectCreated:Copy", EventTypeEnum.ObjectCreatedCopy },
+                                { "ObjectCreated:CompleteMultipartUpload", EventTypeEnum.ObjectCreatedCompleteMultipartUpload },
+                                { "ObjectRemoved:*", EventTypeEnum.ObjectRemovedAll },
+                                { "ObjectRemoved:Delete", EventTypeEnum.ObjectRemovedDelete },
+                                { "ObjectRemoved:DeleteMarkerCreated", EventTypeEnum.ObjectRemovedDeleteMarkerCreated }
+                            };
                             _ObsEventTypeEnumDict = tempObsEventTypeEnumDict;
                         }
                     }
@@ -359,7 +382,7 @@ namespace OBS.Internal
 
     internal class StringValueAttribute : Attribute
     {
-        private string _value;
+        private readonly string _value;
 
         public StringValueAttribute(string value)
         {

@@ -11,8 +11,6 @@
 // CONDITIONS OF ANY KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations under the License.
 //----------------------------------------------------------------------------------*/
-using System.Collections.Generic;
-
 namespace OBS.Model
 {
     /// <summary>
@@ -30,7 +28,7 @@ namespace OBS.Model
         {
             get {
                
-                return deleted ??= new List<DeletedObject>();
+                return deleted ??= [];
             }
             internal set { deleted = value; }
         }
@@ -42,7 +40,7 @@ namespace OBS.Model
         {
             get {
                
-                return errors ??= new List<DeleteError>();
+                return errors ??= [];
             }
             internal set { errors = value; }
         }
