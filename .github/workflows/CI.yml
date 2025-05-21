@@ -69,15 +69,18 @@ jobs:
         run: dotnet --info
 
       - name: Build tools
+        shell: cmd
         run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false
 
       - name: Test projects
+        shell: cmd
         run: .\src\artifacts\bin\Tools.Build\release_net9.0-windows10.0.19041.0\Tools.Build.exe build --test
 
       # - name: UnitTest(Debug)
       #   run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Debug -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
 
       - name: UnitTest(Release)
+        shell: cmd
         run: dotnet test src/BD.Common8.UnitTest/BD.Common8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
 
   build:
@@ -141,12 +144,15 @@ jobs:
         run: dotnet --info
 
       - name: Build tools
+        shell: cmd
         run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none -p:GeneratePackageOnBuild=false
 
       - name: Build projects
+        shell: cmd
         run: .\src\artifacts\bin\Tools.Build\release_net9.0-windows10.0.19041.0\Tools.Build.exe build
 
       - name: Push NuGet packages
+        shell: cmd
         run: .\src\artifacts\bin\Tools.Build\release_net9.0-windows10.0.19041.0\Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}
 
       - name: Delete nuget packages
