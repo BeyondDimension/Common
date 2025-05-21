@@ -3,7 +3,7 @@
 
 	<!-- 👇 生成包的全局属性 -->
 	<PropertyGroup>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseExpression Condition="$(PackageLicenseExpression) == ''">MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/BeyondDimension/Common</PackageProjectUrl>
 		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
 		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
