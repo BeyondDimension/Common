@@ -19,6 +19,21 @@
 		<Compile Include="..\ProjectUtils.cs" />
 	</ItemGroup>
 
+	<Choose>
+		<When Condition="Exists('..\..\..\Constants.Secret.NuGet.Push.cs')">
+			<ItemGroup>
+				<Compile Remove="Constants.Secret.NuGet.Push.cs" />
+				<Compile Include="..\..\..\Constants.Secret.NuGet.Push.cs" />
+			</ItemGroup>
+		</When>
+		<When Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\..\..\..\Constants.Secret.NuGet.Push.cs')">
+			<ItemGroup>
+				<Compile Remove="Constants.Secret.NuGet.Push.cs" />
+				<Compile Include="$(MSBuildThisFileDirectory)..\..\..\..\..\Constants.Secret.NuGet.Push.cs" />
+			</ItemGroup>
+		</When>
+	</Choose>
+
 	<ItemGroup>
 		<Using Include="System.CommandLine" />
 		<Using Include="Tools.Build.Commands.Abstractions" />

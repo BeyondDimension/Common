@@ -83,7 +83,7 @@ partial interface IBuildCommand : ICommand
     /// </summary>
     internal static async Task<int> Handler(bool test, bool no_err)
     {
-        var sw = Stopwatch.StartNew();
+        using CommandStopwatch sw = new(CommandName);
         try
         {
             HashSet<string> errors = new();
@@ -126,6 +126,7 @@ partial interface IBuildCommand : ICommand
             }
             else
             {
+                sw.IsSuccess = true;
                 Console.WriteLine("🆗");
                 Console.WriteLine("OK");
                 return (int)ExitCode.Ok;
@@ -208,14 +209,9 @@ partial interface IBuildCommand : ICommand
         }
         catch (Exception ex)
         {
+            sw.Exception = ex;
             Console.Error.WriteLine(ex);
             return (int)ExitCode.Exception;
-        }
-        finally
-        {
-            sw.Stop();
-            var timeSpan = sw.Elapsed;
-            Console.WriteLine($"执行 build 命令完成，耗时：{Math.Floor(timeSpan.TotalHours):00}:{timeSpan.Minutes:00}:{timeSpan.Seconds:00}");
         }
     }
 }

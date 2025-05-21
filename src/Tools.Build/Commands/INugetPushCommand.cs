@@ -18,13 +18,15 @@ interface INuGetPushCommand : ICommand
     {
         var token_github = new Option<string>("--token_github", "secrets.RMBADMIN_TOKEN");
         var token_nuget = new Option<string>("--token_nuget", "secrets.NUGET_API_KEY");
+        var token_local = new Option<string>("--token_local", "secrets.LOCAL_NUGET_API_KEY");
+        var url_nuget_push_local = new Option<string>("--url_nuget_push_local", "secrets.LOCAL_NUGET_PUSH_URL");
         var command = new Command(CommandName, "推送 NuGet 包命令")
         {
             // 之后可以添加一些参数，例如单独推送 NuGet 源和 GitHub 源或者其他的源
-            token_github, token_nuget,
+            token_github, token_nuget, token_local, url_nuget_push_local,
         };
         command.AddAlias("p"); // 单个字母的命令名简写
-        command.SetHandler(Handler, token_github, token_nuget);
+        command.SetHandler(Handler, token_github, token_nuget, token_local, url_nuget_push_local);
         return command;
     }
 
@@ -35,6 +37,7 @@ interface INuGetPushCommand : ICommand
     {
         NuGet,
         GitHub,
+        Local,
     }
 
     private record struct JobItem(PushSource PushSource, (string nupkg, string? snupkg) PushFileName);
@@ -42,11 +45,10 @@ interface INuGetPushCommand : ICommand
     /// <summary>
     /// 命令的逻辑实现
     /// </summary>
-    /// <param name="token_github"></param>
-    /// <param name="token_nuget"></param>
-    /// <returns></returns>
-    internal static async Task<int> Handler(string token_github, string token_nuget)
+    internal static async Task<int> Handler(string token_github, string token_nuget, string token_local, string url_nuget_push_local)
     {
+        using CommandStopwatch sw = new(CommandName);
+
         HashSet<string> errors = new();
         var repoPath = ProjPath;
 
@@ -68,9 +70,9 @@ interface INuGetPushCommand : ICommand
         }
         var projectNames = GetProjectNames();
         var jobs = projectNames.Select(GetPushFileNames).SelectMany(static x => x).ToArray();
-        await Parallel.ForEachAsync(
-            jobs.Select(static x => new JobItem(PushSource.NuGet, x))
-            .Concat(jobs.Select(static x => new JobItem(PushSource.GitHub, x))),
+        var tasks = Enum.GetValues<PushSource>().Select(x => jobs.Select(y => new JobItem(x, y))).SelectMany(static x => x).ToArray();
+
+        await Parallel.ForEachAsync(tasks,
             cts.Token, Handler); // 并行化推送相关项目
 
         if (errors.Count != 0)
@@ -85,32 +87,77 @@ interface INuGetPushCommand : ICommand
         }
         else
         {
+            sw.IsSuccess = true;
             Console.WriteLine("🆗");
             Console.WriteLine("OK");
             return (int)ExitCode.Ok;
         }
 
+        static (string? url_nuget_push, string? token) GetPushUrlAndToken(PushSource pushSource, string token_github, string token_nuget, string token_local, string url_nuget_push_local)
+        {
+            string? url_nuget_push = null, token = null;
+            switch (pushSource)
+            {
+                case PushSource.NuGet:
+                    url_nuget_push = Constants.url_nuget_push_nuget;
+                    token = token_github;
+                    if (!string.IsNullOrWhiteSpace(Constants.token_nuget))
+                    {
+                        if (Constants.token_nuget_expire.HasValue)
+                        {
+                            if (DateTimeOffset.Now <= Constants.token_nuget_expire.Value)
+                            {
+                                // 使用常量值替换传参
+                                token = Constants.token_nuget;
+                            }
+                        }
+                    }
+                    break;
+                case PushSource.GitHub:
+                    url_nuget_push = Constants.url_nuget_push_github;
+                    token = token_github;
+                    if (!string.IsNullOrWhiteSpace(Constants.token_github))
+                    {
+                        if (Constants.token_github_expire.HasValue)
+                        {
+                            if (DateTimeOffset.Now <= Constants.token_github_expire.Value)
+                            {
+                                // 使用常量值替换传参
+                                token = Constants.token_github;
+                            }
+                        }
+                    }
+                    break;
+                case PushSource.Local:
+                    url_nuget_push = Constants.url_nuget_push_local;
+                    if (string.IsNullOrWhiteSpace(url_nuget_push))
+                    {
+                        url_nuget_push = url_nuget_push_local;
+                    }
+                    token = token_github;
+                    if (!string.IsNullOrWhiteSpace(Constants.token_local))
+                    {
+                        if (Constants.token_local_expire.HasValue)
+                        {
+                            if (DateTimeOffset.Now <= Constants.token_local_expire.Value)
+                            {
+                                // 使用常量值替换传参
+                                token = Constants.token_local;
+                            }
+                        }
+                    }
+                    break;
+            }
+            return (url_nuget_push, token);
+        }
+
         async ValueTask Handler(JobItem jobItem, CancellationToken cancellationToken)
         {
-            const string url_nuget_push_github = "https://nuget.pkg.github.com/BeyondDimension";
-            const string url_nuget_push_nuget = "https://api.nuget.org/v3/index.json";
-
-            string url_nuget_push, token;
-            switch (jobItem.PushSource)
+            (var url_nuget_push, var token) = GetPushUrlAndToken(jobItem.PushSource, token_github, token_nuget, token_local, url_nuget_push_local);
+            if (string.IsNullOrWhiteSpace(url_nuget_push) || string.IsNullOrWhiteSpace(token))
             {
-                case PushSource.GitHub:
-                    url_nuget_push = url_nuget_push_github;
-                    token = token_github;
-                    break;
-                case PushSource.NuGet:
-                    url_nuget_push = url_nuget_push_nuget;
-                    token = token_nuget;
-                    break;
-                default:
-                    return;
-            }
-            if (string.IsNullOrWhiteSpace(token))
                 return;
+            }
 
             string[] pushFileNames = string.IsNullOrWhiteSpace(jobItem.PushFileName.snupkg)
                 ? [jobItem.PushFileName.nupkg]

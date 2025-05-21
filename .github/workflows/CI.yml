@@ -153,7 +153,7 @@ jobs:
 
       - name: Push NuGet packages
         shell: cmd
-        run: .\src\artifacts\bin\Tools.Build\release_net9.0-windows10.0.19041.0\Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}
+        run: .\src\artifacts\bin\Tools.Build\release_net9.0-windows10.0.19041.0\Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }} --token_local ${{ secrets.LOCAL_NUGET_API_KEY }}
 
       - name: Delete nuget packages
         if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}

@@ -5,7 +5,7 @@
 		<RootNamespace>OBS</RootNamespace>
 		<TargetFrameworks>net$(DotNet_Version);net8.0;net7.0;net45</TargetFrameworks>
 		<Description>华为云 OBS SDK</Description>
-		<Version>8.25.10521.11311</Version>
+		<Version>8.25.10521.11500</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
