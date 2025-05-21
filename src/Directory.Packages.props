@@ -200,7 +200,7 @@
 	</ItemGroup>
 	<!-- 👇 AWS SDK for .NET（亚马逊云） -->
 	<ItemGroup>
-		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.151">
+		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.154">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Azure SDK for .NET（微软云） -->
@@ -394,7 +394,7 @@
 		<!-- 👇 AntDesign -->
 		<PackageVersion Include="AntDesign" Version="1.4.0">
 		</PackageVersion>
-		<PackageVersion Include="AntDesign.Charts" Version="0.7.0">
+		<PackageVersion Include="AntDesign.Charts" Version="0.7.1">
 		</PackageVersion>
 		<PackageVersion Include="AntDesign.ProLayout" Version="1.4.0">
 		</PackageVersion>
