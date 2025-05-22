@@ -64,8 +64,16 @@ interface INuGetPushCommand : ICommand
             nupkg = Directory.GetFiles(pkgPath, nupkg).FirstOrDefault();
             if (nupkg != null)
             {
-                snupkg = Directory.GetFiles(pkgPath, snupkg).FirstOrDefault();
-                yield return (nupkg, snupkg);
+                if (projectName.Contains("BD.Common8.SourceGenerator"))
+                {
+                    // 源生成器项目不需要符号包
+                    yield return (nupkg, null);
+                }
+                else
+                {
+                    snupkg = Directory.GetFiles(pkgPath, snupkg).FirstOrDefault();
+                    yield return (nupkg, snupkg);
+                }
             }
         }
         var projectNames = GetProjectNames();
@@ -134,7 +142,7 @@ interface INuGetPushCommand : ICommand
                     {
                         url_nuget_push = url_nuget_push_local;
                     }
-                    token = token_github;
+                    token = token_local;
                     if (!string.IsNullOrWhiteSpace(Constants.token_local))
                     {
                         if (Constants.token_local_expire.HasValue)

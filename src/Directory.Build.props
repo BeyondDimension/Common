@@ -29,7 +29,7 @@
 	<!-- 👇 程序集信息 -->
 	<PropertyGroup>
 		<!--8.yy.1MMdd.1hhmm-->
-		<Version>8.25.10521.11500</Version>
+		<Version>8.25.10522.11551</Version>
 		<Copyright>©️ $(Company). All rights reserved.</Copyright>
 		<Authors>$(Company)</Authors>
 		<FileVersion>$(Version)</FileVersion>

@@ -4,7 +4,7 @@
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.Common8.SourceGenerator.Ipc</RootNamespace>
 		<!--8.yy.1MMdd.1hhmm-->
-		<Version>8.25.10521.11500</Version>
+		<Version>8.25.10522.11551</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<Description>进程间通信 (IPC) 客户端源生成器</Description>
