@@ -5,7 +5,7 @@
 	<PropertyGroup>
 		<PackageLicenseExpression Condition="$(PackageLicenseExpression) == ''">MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/BeyondDimension/Common</PackageProjectUrl>
-		<PackageIconUrl>https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
+		<PackageIconUrl Condition="$(PackageIcon) == '' AND $(PackageIconUrl) == ''">https://avatars.githubusercontent.com/u/79355691</PackageIconUrl>
 		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
 		<RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -19,7 +19,7 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile Condition="$(PackageReadmeFile) == ''">README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<!-- 👇 引用 SourceLink 包与 LICENSE/README 文件放置包内容内 -->

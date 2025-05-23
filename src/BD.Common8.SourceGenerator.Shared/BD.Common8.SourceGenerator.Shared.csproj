@@ -40,6 +40,7 @@
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\**\*.cs">
 			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Bcl</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
 		</Compile>
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\bin\**\*.cs" />
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Bcl\obj\**\*.cs" />
@@ -55,6 +56,7 @@
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\**\*.cs">
 			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Ipc.Client</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
 		</Compile>
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\bin\**\*.cs" />
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Client\obj\**\*.cs" />
@@ -64,6 +66,7 @@
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\**\*.cs">
 			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Ipc.Server</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
 		</Compile>
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\bin\**\*.cs" />
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\obj\**\*.cs" />
@@ -73,6 +76,7 @@
 	<ItemGroup>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\**\*.cs">
 			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.Repositories</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
 		</Compile>
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\bin\**\*.cs" />
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Repositories\obj\**\*.cs" />
@@ -88,6 +92,7 @@
 		</Compile>
 		<Compile Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\**\*.cs">
 			<LinkBase>_SourceReference\BD.Common8.SourceGenerator.ResX</LinkBase>
+			<Exclude>bin\**;obj\**</Exclude>
 		</Compile>
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\bin\**\*.cs" />
 		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\obj\**\*.cs" />

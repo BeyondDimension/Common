@@ -19,7 +19,14 @@
 		<None Update="README_CN.md" Pack="true" PackagePath="" Visible="false" />
 		<None Update="Notice.md" Pack="true" PackagePath="" Visible="false" />
 		<None Update="Help on License" Pack="true" PackagePath="" Visible="false" />
-		<Compile Include="..\..\ref\huaweicloud-sdk-dotnet-obs\**\*.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\ref\huaweicloud-sdk-dotnet-obs\**\*.cs">
+			<Exclude>bin\**;obj\**</Exclude>
+		</Compile>
+		<Compile Remove="..\..\ref\huaweicloud-sdk-dotnet-obs\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\huaweicloud-sdk-dotnet-obs\obj\**\*.cs" />
 	</ItemGroup>
 
 </Project>
