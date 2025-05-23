@@ -9,15 +9,6 @@
 		<UserSecretsId>3ca41323-7e26-4b3e-8730-2e839c58c39c</UserSecretsId>
 	</PropertyGroup>
 
-	<!-- 👇 单元测试无需 AOT & Trimmable -->
-	<PropertyGroup>
-		<IsTrimmable>false</IsTrimmable>
-		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>
-		<EnableSingleFileAnalyzer>false</EnableSingleFileAnalyzer>
-		<EnableAotAnalyzer>false</EnableAotAnalyzer>
-		<IsAotCompatible>false</IsAotCompatible>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<!--<Compile Include="..\ProjectUtils.cs" />-->
 		<Compile Include="..\BD.Common8.Security\Helpers\SecurityPlatformHelper.MacOS.cs">

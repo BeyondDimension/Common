@@ -6,15 +6,6 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ArtifactsPath>$(MSBuildThisFileDirectory)..\..\BenchmarkDotNet.Artifacts</ArtifactsPath>
 	</PropertyGroup>
-	<!-- 👇 Benchmark 无需 AOT & Trimmable -->
-	<PropertyGroup>
-		<IsTrimmable>false</IsTrimmable>
-		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>
-		<EnableSingleFileAnalyzer>false</EnableSingleFileAnalyzer>
-		<EnableAotAnalyzer>false</EnableAotAnalyzer>
-		<IsAotCompatible>false</IsAotCompatible>
-	</PropertyGroup>
-
 
 	<ItemGroup>
 		<PackageReference Include="BenchmarkDotNet" />
