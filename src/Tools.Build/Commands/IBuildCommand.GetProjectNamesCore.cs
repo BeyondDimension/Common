@@ -147,7 +147,9 @@ partial interface IBuildCommand
     static string[] GetProjectNamesByJsonConfig(string slnFileName)
     {
         var projPath = ROOT_ProjPath;
-        if (File.Exists(Path.Combine(projPath, $"{slnFileName}.sln")))
+        var slnPath = Path.Combine(projPath, $"{slnFileName}.sln");
+        var slnxPath = Path.Combine(projPath, $"{slnFileName}.slnx");
+        if (File.Exists(slnPath) || File.Exists(slnxPath))
         {
             var jsonConfigPath = Path.Combine(projPath, "src", jsonConfigFileName);
             if (File.Exists(jsonConfigPath))
