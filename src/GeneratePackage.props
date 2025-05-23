@@ -28,7 +28,6 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="!$(MSBuildProjectName.StartsWith('BD.Common8.3rdParty'))">
-		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
 		<!-- 👇 优先取项目 csproj 目录上的文件 -->
 		<None Condition="Exists('$(MSBuildProjectDirectory)\LICENSE')" Include="$(MSBuildProjectDirectory)\LICENSE" Pack="true" PackagePath="" />
 		<None Condition="Exists('$(MSBuildProjectDirectory)\README.md')" Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath="" />

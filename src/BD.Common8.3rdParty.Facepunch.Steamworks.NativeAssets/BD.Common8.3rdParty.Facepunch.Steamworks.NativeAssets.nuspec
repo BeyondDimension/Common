@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata minClientVersion="2.12">
+		<id>BD.Common8.3rdParty.Facepunch.Steamworks.NativeAssets</id>
+		<title>BD.Common8.3rdParty.Facepunch.Steamworks.NativeAssets</title>
+		<version>1.62.250314.02</version><!-- 来自 steamworks_sdk_162\sdk\Readme.txt 中有 changelog 的版本号 -->
+		<authors>https://github.com/AigioL</authors>
+		<copyright>Copyright © 1996-2024, Valve Corporation, All rights reserved.</copyright>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<!--<license type="file">LICENSE.txt</license> Not found-->
+		<repository type="git" url="https://github.com/BeyondDimension/Common" />
+    	<tags>Steamworks SteamworksSdk NativeAssets</tags>
+		<description>Steamworks SDK 提供了一系列功能，旨在帮助您高效地在 Steam 上发布应用程序或游戏。</description>
+		<readme>README.md</readme>
+	</metadata>
+	<files>
+		<!--<file src=".\LICENSE.txt" target="LICENSE.txt" />-->
+		<file src=".\README.md" target="README.md" />
+		<file src="..\SharedProject\nuget\net35\_._" target="lib\net35\_._" />
+		<file src="..\SharedProject\nuget\net40\_._" target="lib\net40\_._" />
+		<file src="..\SharedProject\nuget\netstandard1.0\_._" target="lib\netstandard1.0\_._" />
+		<file src="..\..\ref\steamworks_sdk_162\sdk\redistributable_bin\steam_api.dll" target="runtimes\win-x86\native\steam_api.dll" />
+		<file src="..\..\ref\steamworks_sdk_162\sdk\redistributable_bin\win64\steam_api64.dll" target="runtimes\win-x64\native\steam_api64.dll" />
+		<file src="..\..\ref\steamworks_sdk_162\sdk\redistributable_bin\osx\libsteam_api.dylib" target="runtimes\osx\native\libsteam_api.dylib" />
+		<file src="..\..\ref\steamworks_sdk_162\sdk\redistributable_bin\linux32\libsteam_api.so" target="runtimes\linux-x86\native\libsteam_api.so" />
+		<file src="..\..\ref\steamworks_sdk_162\sdk\redistributable_bin\linux64\libsteam_api.so" target="runtimes\linux-x64\native\libsteam_api.so" />
+	</files>
+</package>

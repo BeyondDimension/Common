@@ -39,6 +39,7 @@
     <File Path="src/WebRoot/rsa.html" />
   </Folder>
   <Folder Name="/3.SharedLibrary/">
+    <Project Path="src/BD.Common8.3rdParty.Facepunch.Steamworks/BD.Common8.3rdParty.Facepunch.Steamworks.csproj" Id="d948dfaa-8ef2-4d1b-b8ea-9c00310853bf" />
     <Project Path="src/BD.Common8.3rdParty.SteamKit2/BD.Common8.3rdParty.SteamKit2.csproj" Id="2b9482e2-f08c-49b8-bae9-cb754935e005" />
     <Project Path="src/BD.Common8.AspNetCore.Identity.BackManage/BD.Common8.AspNetCore.Identity.BackManage.csproj" />
     <Project Path="src/BD.Common8.AspNetCore.Identity/BD.Common8.AspNetCore.Identity.csproj" />

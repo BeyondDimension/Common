@@ -1,0 +1,1 @@
+C:\nuget.exe pack BD.Common8.3rdParty.Facepunch.Steamworks.NativeAssets.nuspec -OutputDirectory ..\..\pkg

@@ -15,12 +15,20 @@
 		<PackageTags>steamkit;sk2;steam;valve;dota;dota2;csgo</PackageTags>
 		<ProjectGuid>{4B2B0365-DE37-4B65-B614-3E4E7C05147D}</ProjectGuid>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<!-- 👇 版本号值位于 Common\ref\SteamKit\Directory.Build.props -->
+	<PropertyGroup>
 		<SteamKitBaseVersion>3.0.0</SteamKitBaseVersion>
 		<SteamKitVersion Condition=" '$(GITHUB_RUN_NUMBER)' != ''">$(SteamKitBaseVersion)-Alpha.$(GITHUB_RUN_NUMBER)</SteamKitVersion>
 		<SteamKitVersion Condition=" '$(GITHUB_RUN_NUMBER)' == ''">$(SteamKitBaseVersion)</SteamKitVersion>
 		<AssemblyVersion>$(SteamKitBaseVersion)</AssemblyVersion>
 		<FileVersion>$(SteamKitBaseVersion)</FileVersion>
 		<Version>$(SteamKitVersion)</Version>
+	</PropertyGroup>
+
+	<!-- 👇 在 Common\ref\SteamKit\SteamKit2\SteamKit2\Properties\AssemblyInfo.cs 中已声明部分 attr，所以关闭 msbuild 的生成 -->
+	<PropertyGroup>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
 		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
@@ -28,6 +36,11 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+	</PropertyGroup>
+
+	<!-- 👇 将无-后缀的 TFM 视作 Linux 平台，设置 DefineConstants -->
+	<PropertyGroup>
+		<DefineConstants Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">LINUX;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

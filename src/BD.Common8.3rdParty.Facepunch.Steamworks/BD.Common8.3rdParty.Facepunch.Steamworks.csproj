@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows;net$(DotNet_Version)-macos;netstandard2.0;net46</TargetFrameworks>
+		<RootNamespace>Facepunch.Steamworks</RootNamespace>
+		<AssemblyName>Facepunch.Steamworks</AssemblyName>
+		<PackageId>$(MSBuildProjectName)</PackageId>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<!-- 👇 版本号值位于 Common\ref\SteamKit\Directory.Build.props -->
+	<PropertyGroup>
+		<PackageVersion>2.3.4</PackageVersion>
+		<FileVersion>$(PackageVersion)</FileVersion>
+		<Version>$(PackageVersion)</Version>
+		<AssemblyVersion>$(PackageVersion)</AssemblyVersion>
+	</PropertyGroup>
+
+	<Choose>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $(TargetFramework.StartsWith('net4')) OR $(TargetFramework.StartsWith('netstandard'))">
+			<PropertyGroup>
+				<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+				<TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
+			</PropertyGroup>
+			<Choose>
+				<When Condition="$(Platform) == 'x86'">
+					<PropertyGroup>
+						<DefineConstants>PLATFORM_WIN32;$(DefineConstants)</DefineConstants>
+					</PropertyGroup>
+				</When>
+				<Otherwise>
+					<PropertyGroup>
+						<!-- 👇 注意：Windows x86 32 位由调用方配置 global::System.Runtime.InteropServices.NativeLibrary.SetDllImportResolver 将 libraryName 为 steam_api64 改为 steam_api，值位于 global::Steamworks.Platform.LibraryName -->
+						<DefineConstants>PLATFORM_WIN64;$(DefineConstants)</DefineConstants>
+					</PropertyGroup>
+				</Otherwise>
+			</Choose>
+		</When>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">
+			<PropertyGroup>
+				<DefineConstants>PLATFORM_POSIX;$(DefineConstants)</DefineConstants>
+			</PropertyGroup>
+		</When>
+		<!-- 👇 将无-后缀的 TFM 视作 Linux 平台，设置 DefineConstants -->
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
+			<PropertyGroup>
+				<DefineConstants>LINUX;PLATFORM_POSIX;$(DefineConstants)</DefineConstants>
+			</PropertyGroup>
+		</When>
+	</Choose>
+
+	<ItemGroup>
+		<None Include="..\..\ref\Facepunch.Steamworks\README.md" Pack="true" PackagePath="" />
+		<Compile Include="..\..\ref\Facepunch.Steamworks\Facepunch.Steamworks\**\*.cs">
+			<Exclude>bin\**;obj\**</Exclude>
+		</Compile>
+		<Compile Remove="..\..\ref\Facepunch.Steamworks\Facepunch.Steamworks\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\Facepunch.Steamworks\Facepunch.Steamworks\obj\**\*.cs" />
+	</ItemGroup>
+
+</Project>
