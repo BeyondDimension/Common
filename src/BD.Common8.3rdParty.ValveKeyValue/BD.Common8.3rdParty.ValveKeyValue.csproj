@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<TargetFrameworks>net$(DotNet_Version);netstandard2.1</TargetFrameworks>
+		<RootNamespace>ValveKeyValue</RootNamespace>
+		<AssemblyName>ValveKeyValue</AssemblyName>
+		<PackageId>$(MSBuildProjectName)</PackageId>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\ValveKeyValue.snk</AssemblyOriginatorKeyFile>
+		<Description>Library to parse and write Valve KeyValue formats</Description>
+		<Authors>SteamDB</Authors>
+		<Copyright>Copyright © SteamDB</Copyright>
+		<PackageIcon>logo.png</PackageIcon>
+		<PackageTags>steam valve keyvalues keyvalue kv kv3 csgo dota2 tf2</PackageTags>
+		<Product>Valve KeyValue Library</Product>
+	</PropertyGroup>
+
+	<!-- 👇 版本号值位于 Common\ref\ValveKeyValue\Directory.Build.props -->
+	<PropertyGroup>
+		<ProjectBaseVersion>0.9.0</ProjectBaseVersion>
+		<ProjectVersion Condition="'$(GITHUB_RUN_NUMBER)' != ''">$(ProjectBaseVersion).$(GITHUB_RUN_NUMBER)</ProjectVersion>
+		<ProjectVersion Condition="'$(GITHUB_RUN_NUMBER)' == ''">$(ProjectBaseVersion).0</ProjectVersion>
+		<AssemblyVersion>$(ProjectBaseVersion)</AssemblyVersion>
+		<FileVersion>$(ProjectVersion)</FileVersion>
+		<Version>$(ProjectVersion)</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="..\InternalsVisibleTo.BD.Common8.UnitTest.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\ref\ValveKeyValue\Misc\logo.png" Pack="true" PackagePath="\" />
+		<None Include="..\..\ref\ValveKeyValue\README.md" Pack="true" PackagePath="" />
+		<Compile Include="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\**\*.cs">
+			<Exclude>bin\**;obj\**</Exclude>
+		</Compile>
+		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\obj\**\*.cs" />
+	</ItemGroup>
+
+
+</Project>
