@@ -433,6 +433,8 @@
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf.Tools" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
+		<PackageVersion Include="protobuf-net" Version="3.2.52">
+		</PackageVersion>
 		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="9.0.0">
 		</PackageVersion>
 	</ItemGroup>
@@ -486,6 +488,8 @@
 		</PackageVersion>
 		<PackageVersion Include="IndexRange" Version="1.0.3">
 		</PackageVersion>
+		<PackageVersion Include="Microsoft.Win32.Registry" Version="5.0.0">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 .NET BCL -->
 	<ItemGroup>
@@ -497,7 +501,7 @@
 		</PackageVersion>
 		<PackageVersion Include="System.IO.Pipelines" Version="9.0.4">
 		</PackageVersion>
-		<PackageVersion Include="System.IO.Hashing" Version="9.0.4">
+		<PackageVersion Include="System.IO.Hashing" Version="9.0.5">
 		</PackageVersion>
 		<PackageVersion Include="System.Linq.Async" Version="6.0.1">
 		</PackageVersion>

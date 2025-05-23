@@ -1,6 +1,6 @@
 <Project>
 	<!-- 👇 配置 NuGet 包生成 -->
-	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)Sdk\GeneratePackage.props" />
+	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)\GeneratePackage.props" />
 
 	<!-- 👇 静态本机编译 & 剪裁 | AOT & Trimmable -->
 	<PropertyGroup Condition="!$(MSBuildProjectName.StartsWith('BD.Common8.Benchmark')) AND !$(MSBuildProjectName.StartsWith('BD.Common8.UnitTest')) AND !$(MSBuildProjectName.StartsWith('BD.Common8.SourceGenerator')) AND !$(MSBuildProjectName.StartsWith('Tools.')) AND !$(MSBuildProjectName.StartsWith('BD.Common8.HuaweiCloud'))  AND $([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">

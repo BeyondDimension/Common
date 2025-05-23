@@ -23,7 +23,11 @@
 	</PropertyGroup>
 
 	<!-- 👇 引用 SourceLink 包与 LICENSE/README 文件放置包内容内 -->
-	<ItemGroup>
+	<ItemGroup >
+		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+	</ItemGroup>
+
+	<ItemGroup Condition="!$(MSBuildProjectName.StartsWith('BD.Common8.3rdParty'))">
 		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
 		<!-- 👇 优先取项目 csproj 目录上的文件 -->
 		<None Condition="Exists('$(MSBuildProjectDirectory)\LICENSE')" Include="$(MSBuildProjectDirectory)\LICENSE" Pack="true" PackagePath="" />
