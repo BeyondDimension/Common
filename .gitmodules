@@ -1,3 +1,6 @@
 [submodule "ref/SteamKit"]
 	path = ref/SteamKit
 	url = https://github.com/BeyondDimension/SteamKit.git
+[submodule "ref/Facepunch.Steamworks"]
+	path = ref/Facepunch.Steamworks
+	url = https://github.com/BeyondDimension/Facepunch.Steamworks/
