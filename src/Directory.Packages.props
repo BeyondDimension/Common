@@ -138,7 +138,7 @@
 	</ItemGroup>
 	<!-- 👇 BD.Avalonia8 -->
 	<ItemGroup>
-		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.24.10527.11800">
+		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.25.10522.11700">
 		</PackageVersion>
 		<PackageVersion Include="BD.Avalonia8.Image2" Version="$(Version_Avalonia8_Pkg)">
 		</PackageVersion>
