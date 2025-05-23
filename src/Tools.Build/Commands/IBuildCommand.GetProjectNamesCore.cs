@@ -9,6 +9,7 @@ partial interface IBuildCommand
     const string slnFileName_SteamClient8 = "BD.SteamClient8";
     const string slnFileName_SPPSDK = "SPP.SDK";
     const string slnFileName_SteamBot = "BD.SteamBot";
+    const string slnFileName_AvaloniaWebView2 = "Avalonia.WebView2";
 
     const string jsonConfigFileName = "build-projects.json";
 
@@ -105,8 +106,20 @@ partial interface IBuildCommand
 
                 // UserInput
                 "BD.Common8.UserInput.ModelValidator",
+
+                // WPF
+                "BD.Common8.OpenFolderDialog",
+
+                // 3rdParty
+                "BD.Common8.3rdParty.Facepunch.Steamworks",
+                "BD.Common8.3rdParty.SteamKit2",
+                "BD.Common8.3rdParty.ValveKeyValue",
             ],
         slnFileName_Avalonia8 => [
+                // 字体嵌入资源程序集
+                "BD.Avalonia8.Fonts.HarmonyOS_Sans_SC",
+                "BD.Avalonia8.Fonts.MiSans",
+
                 "BD.Avalonia8.Image2",
             ],
         slnFileName_SteamClient8 => [
@@ -124,6 +137,9 @@ partial interface IBuildCommand
                 "BD.SteamBot",
                 "BD.SteamBot.Models",
                 "BD.SteamBot.Primitives",
+            ],
+        slnFileName_AvaloniaWebView2 => [
+                "Avalonia.WebView2",
             ],
         _ => GetProjectNamesByJsonConfig(slnFileName),
     };
