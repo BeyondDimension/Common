@@ -1,8 +1,0 @@
-<Project>
-	<ItemGroup>
-		<Using Include="BD.Common8.Repositories.SQLitePCL.Extensions" />
-		<Using Include="BD.Common8.Repositories.SQLitePCL.Entities" />
-		<Using Include="BD.Common8.Repositories.SQLitePCL.Repositories" />
-		<Using Include="BD.Common8.Repositories.SQLitePCL.Repositories.Abstractions" />
-	</ItemGroup>
-</Project>

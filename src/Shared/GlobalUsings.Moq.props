@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Moq'))" >
-		<Using Include="Moq" />
-	</ItemGroup>
-</Project>

@@ -1,6 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'AutoMapper'))" >
-		<Using Include="AutoMapper" />
-		<Using Include="AutoMapper.QueryableExtensions" />
-	</ItemGroup>
-</Project>

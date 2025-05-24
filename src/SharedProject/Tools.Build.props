@@ -1,0 +1,76 @@
+<Project>
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\ProjectUtils.cs" />
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="Exists('..\..\..\Constants.Secret.NuGet.Push.cs')">
+			<ItemGroup>
+				<Compile Remove="Constants.Secret.NuGet.Push.cs" />
+				<Compile Include="..\..\..\Constants.Secret.NuGet.Push.cs" />
+			</ItemGroup>
+		</When>
+		<When Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\..\..\..\Constants.Secret.NuGet.Push.cs')">
+			<ItemGroup>
+				<Compile Remove="Constants.Secret.NuGet.Push.cs" />
+				<Compile Include="$(MSBuildThisFileDirectory)..\..\..\..\..\Constants.Secret.NuGet.Push.cs" />
+			</ItemGroup>
+		</When>
+		<When Condition="$(Path_Submodule) != '' AND Exists('$(Path_Submodule)..\..\Constants.Secret.NuGet.Push.cs')">
+			<ItemGroup>
+				<Compile Remove="Constants.Secret.NuGet.Push.cs" />
+				<Compile Include="$(Path_Submodule)..\..\Constants.Secret.NuGet.Push.cs" />
+			</ItemGroup>
+		</When>
+	</Choose>
+
+	<ItemGroup>
+		<Using Include="System.CommandLine" />
+		<Using Include="Tools.Build.Commands.Abstractions" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.CommandLine" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" />
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="Exists('..\..\..\IAppSecretCommand.cs')">
+			<ItemGroup>
+				<Compile Remove="IAppSecretCommand.cs" />
+				<Compile Include="..\..\..\IAppSecretCommand.cs">
+					<LinkBase>Commands</LinkBase>
+				</Compile>
+			</ItemGroup>
+		</When>
+		<When Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\..\..\..\IAppSecretCommand.cs')">
+			<ItemGroup>
+				<Compile Remove="IAppSecretCommand.cs" />
+				<Compile Include="$(MSBuildThisFileDirectory)..\..\..\..\..\IAppSecretCommand.cs">
+					<LinkBase>Commands</LinkBase>
+				</Compile>
+			</ItemGroup>
+		</When>
+		<When Condition="$(Path_Submodule) != '' AND Exists('$(Path_Submodule)..\..\IAppSecretCommand.cs')">
+			<ItemGroup>
+				<Compile Remove="IAppSecretCommand.cs" />
+				<Compile Include="$(Path_Submodule)..\..\IAppSecretCommand.cs">
+					<LinkBase>Commands</LinkBase>
+				</Compile>
+			</ItemGroup>
+		</When>
+	</Choose>
+
+	<ItemGroup>
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+	</ItemGroup>
+
+</Project>

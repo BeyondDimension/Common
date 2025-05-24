@@ -1,8 +1,0 @@
-<Project>
-	<!-- 📄 源码引用 -->
-	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Formats\FileEx\**\*.cs">
-			<LinkBase>_SourceReference\BD.Common8.Bcl\Formats\FileEx</LinkBase>
-		</Compile>
-	</ItemGroup>
-</Project>

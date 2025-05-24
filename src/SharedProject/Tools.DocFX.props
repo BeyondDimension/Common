@@ -1,0 +1,16 @@
+<Project>
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\ProjectUtils.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+	</ItemGroup>
+
+</Project>

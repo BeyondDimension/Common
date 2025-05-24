@@ -1,8 +1,0 @@
-<Project>
-	<ItemGroup>
-		<Using Include="BD.Common8.Essentials.Helpers" />
-		<Using Include="BD.Common8.Essentials.Models" />
-		<Using Include="BD.Common8.Essentials.Models.Abstractions" />
-		<Using Include="BD.Common8.Essentials.Services" />
-	</ItemGroup>
-</Project>

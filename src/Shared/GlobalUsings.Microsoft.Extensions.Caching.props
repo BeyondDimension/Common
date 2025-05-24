@@ -1,7 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(FrameworkReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.App')) OR @(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.Caching'))">
-		<Using Include="Microsoft.Extensions.Caching" />
-		<Using Include="Microsoft.Extensions.Caching.Memory" />
-		<Using Include="Microsoft.Extensions.Caching.Distributed" />
-	</ItemGroup>
-</Project>

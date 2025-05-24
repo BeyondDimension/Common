@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.Extensions.Logging.Console'))" >
-		<Using Include="Microsoft.Extensions.Logging.Console" />
-	</ItemGroup>
-</Project>

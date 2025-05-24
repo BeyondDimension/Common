@@ -1,6 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'AutoMapper.Collection'))" >
-		<Using Include="AutoMapper" />
-		<Using Include="AutoMapper.EquivalencyExpression" />
-	</ItemGroup>
-</Project>

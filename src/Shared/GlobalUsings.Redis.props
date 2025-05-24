@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'StackExchange.Redis'))" >
-		<Using Include="StackExchange.Redis" />
-	</ItemGroup>
-</Project>

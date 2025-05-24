@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup>
-		<Using Include="Microsoft.AspNetCore.SignalR" />
-	</ItemGroup>
-</Project>

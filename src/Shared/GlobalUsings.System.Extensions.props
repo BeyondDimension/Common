@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup>
-		<Using Include="System.Extensions" />
-	</ItemGroup>
-</Project>

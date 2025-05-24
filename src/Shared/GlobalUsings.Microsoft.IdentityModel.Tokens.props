@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.IdentityModel.Tokens'))" >
-		<Using Include="Microsoft.IdentityModel.Tokens" />
-	</ItemGroup>
-</Project>

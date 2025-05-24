@@ -1,8 +1,0 @@
-<Project>
-	<!-- 📄 源码引用 -->
-	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\..\BD.Common8.Bcl\Security\Cryptography\RSAUtils.cs">
-			<LinkBase>_SourceReference\BD.Common8.Bcl\Security\Cryptography</LinkBase>
-		</Compile>
-	</ItemGroup>
-</Project>

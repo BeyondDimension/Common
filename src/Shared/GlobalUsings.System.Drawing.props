@@ -1,7 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'System.Drawing.Common'))" >
-		<Using Include="System.Drawing" />
-		<Using Include="System.Drawing.Imaging" />
-		<Using Alias="SDColor" Include="System.Drawing.Color" />
-	</ItemGroup>
-</Project>

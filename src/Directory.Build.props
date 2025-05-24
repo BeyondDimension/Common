@@ -1,6 +1,11 @@
 <Project>
 	<Import Project="$(MSBuildThisFileDirectory)Version.props" />
 
+	<PropertyGroup>
+		<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
+		<Path_Submodule_Common>$(MSBuildThisFileDirectory)..\</Path_Submodule_Common>
+	</PropertyGroup>
+
 	<!-- 👇 全局 Property 配置 -->
 	<PropertyGroup>
 		<Deterministic>true</Deterministic>

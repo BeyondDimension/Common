@@ -1,16 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Exe</OutputType>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\ProjectUtils.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-	</ItemGroup>
+	<Import Project="$(MSBuildThisFileDirectory)..\SharedProject\Tools.DocFX.props" />
 
 </Project>

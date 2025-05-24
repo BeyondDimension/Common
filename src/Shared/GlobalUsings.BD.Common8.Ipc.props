@@ -1,8 +1,0 @@
-<Project>
-	<ItemGroup>
-		<Using Include="BD.Common8.Ipc" />
-		<Using Include="BD.Common8.Ipc.Attributes" />
-		<Using Include="BD.Common8.Ipc.Enums" />
-		<Using Include="BD.Common8.Ipc.Models" />
-	</ItemGroup>
-</Project>

@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Nito.Comparers'))" >
-		<Using Include="Nito.Comparers" />
-	</ItemGroup>
-</Project>

@@ -1,5 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Polly'))" >
-		<Using Include="Polly" />
-	</ItemGroup>
-</Project>

@@ -1,6 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Microsoft.AspNetCore.SignalR.Client'))" >
-		<Using Include="Microsoft.AspNetCore.SignalR" />
-		<Using Include="Microsoft.AspNetCore.SignalR.Client" />
-	</ItemGroup>
-</Project>

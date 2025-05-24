@@ -17,6 +17,15 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<Choose>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $(TargetFramework.StartsWith('net4')) OR $(TargetFramework.StartsWith('netstandard'))">
+			<PropertyGroup>
+				<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+				<TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
+			</PropertyGroup>
+		</When>
+	</Choose>
+
 	<!-- 👇 版本号值位于 Common\ref\SteamKit\Directory.Build.props -->
 	<PropertyGroup>
 		<SteamKitBaseVersion>3.0.0</SteamKitBaseVersion>

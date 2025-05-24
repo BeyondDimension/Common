@@ -1,9 +1,0 @@
-<Project>
-	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'sqlite-net-pcl'))" >
-		<Using Include="SQLite" />
-		<Using Alias="SQLiteColumn" Include="SQLite.ColumnAttribute" />
-		<Using Alias="SQLiteNotNull" Include="SQLite.NotNullAttribute" />
-		<Using Alias="SQLiteTable" Include="SQLite.TableAttribute" />
-		<Using Alias="SQLitePrimaryKey" Include="SQLite.PrimaryKeyAttribute" />
-	</ItemGroup>
-</Project>
