@@ -61,6 +61,8 @@ public static partial class ByteArrayExtensions
     {
 #if HEXMATE
         return HexMate.Convert.ToHexString(inArray, isLower ? HexMate.HexFormattingOptions.Lowercase : HexMate.HexFormattingOptions.None);
+#elif NET9_0_OR_GREATER
+        return isLower ? Convert.ToHexStringLower(inArray) : Convert.ToHexString(inArray);
 #elif NET5_0_OR_GREATER
         return isLower ? Convert.ToHexString(inArray).ToLowerInvariant() : Convert.ToHexString(inArray);
 #else
@@ -81,7 +83,9 @@ public static partial class ByteArrayExtensions
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToHexString(this ReadOnlySpan<byte> bytes, bool isLower = false)
-#if NET5_0_OR_GREATER
+#if NET9_0_OR_GREATER
+        => isLower ? Convert.ToHexStringLower(bytes) : Convert.ToHexString(bytes);
+#elif NET5_0_OR_GREATER
         => isLower ? Convert.ToHexString(bytes).ToLowerInvariant() : Convert.ToHexString(bytes);
 #else
     {
