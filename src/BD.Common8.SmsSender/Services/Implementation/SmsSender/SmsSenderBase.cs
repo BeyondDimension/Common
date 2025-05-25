@@ -1,12 +1,15 @@
+using BD.Common8.SmsSender.Models.SmsSender;
 using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud;
 using BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
 using BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
 using BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
+using BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Json;
 using System.Text.Encodings.Web;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 
@@ -115,12 +118,19 @@ public abstract class SmsSenderBase : ISmsSender
 /// <summary>
 /// 修改这些默认选项，可以控制相关类型序列化
 /// </summary>
+[JsonSerializable(typeof(JsonObject))]
+[JsonSerializable(typeof(SendSmsResult))]
+[JsonSerializable(typeof(SendSmsResult<SendSmsNetEaseCloudResult>))]
+[JsonSerializable(typeof(CheckSmsResult))]
+[JsonSerializable(typeof(CheckSmsResult<NetEaseCloudResult>))]
 [JsonSerializable(typeof(global::BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels._21VianetBlueCloud.SmsSenderProvider.RequestData))]
 [JsonSerializable(typeof(SendSms21VianetBlueCloudResult))]
 [JsonSerializable(typeof(SendSmsAlibabaCloudResult))]
 [JsonSerializable(typeof(SendSmsNetEaseCloudResult))]
 [JsonSerializable(typeof(NetEaseCloudResult))]
 [JsonSerializable(typeof(SendHuaweiCloudResult))]
+[JsonSerializable(typeof(SendSmsTencentCloudResult))]
+[JsonSerializable(typeof(TencentCloudResult<SendSmsTencentCloudResult>))]
 sealed partial class SmsSenderJsonSerializerContext : JsonSerializerContext
 {
     static SmsSenderJsonSerializerContext()

@@ -1,5 +1,6 @@
 using BD.Common8.Extensions;
 using BD.Common8.Helpers;
+using BD.Common8.Models.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
 using Microsoft.Extensions.Logging;
@@ -106,7 +107,7 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
         Dictionary<string, string?> args,
         JsonTypeInfo<TResult> jsonTypeInfo,
         CancellationToken cancellationToken)
-        where T : SmsResult<TResult, T>, new()
+        where T : SmsResult<TResult, T>, IJsonSerializerContext, new()
         where TResult : NetEaseCloudResult<TResult>
     {
         var nonce = Nonce();

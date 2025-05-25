@@ -2,6 +2,7 @@
 
 using BD.Common8.Extensions;
 using BD.Common8.Helpers;
+using BD.Common8.Models.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender;
 using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud;
@@ -11,6 +12,7 @@ using System.Extensions;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Web;
 using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels._21VianetBlueCloud.Sms21VianetBlueCloudOptions;
 
@@ -176,14 +178,9 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
     /// <summary>
     /// 请求数据
     /// </summary>
-    [DebuggerDisplay("{DebuggerDisplay(),nq}")]
-    internal sealed class RequestData
+    internal sealed class RequestData : JsonModel<RequestData>, IJsonSerializerContext
     {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, SmsSenderJsonSerializerContext.Default.Options);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
 
         /// <summary>
         /// 接收手机号
@@ -207,14 +204,9 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
     /// <summary>
     /// 消息正文
     /// </summary>
-    [DebuggerDisplay("{DebuggerDisplay(),nq}")]
-    internal sealed class MessageBody
+    internal sealed class MessageBody : JsonModel<MessageBody>, IJsonSerializerContext
     {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, SmsSenderJsonSerializerContext.Default.Options);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
 
         /// <summary>
         /// 短信模板名称

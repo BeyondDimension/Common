@@ -1,9 +1,12 @@
 using BD.Common8.Models.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud;
 
-public class SendSmsTencentCloudResult : JsonModel, ITencentCloud
+public class SendSmsTencentCloudResult : JsonModel<SendSmsTencentCloudResult>, ITencentCloud, IJsonSerializerContext
 {
+    static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
+
     /// <summary>
     /// 短信发送状态。
     /// </summary>

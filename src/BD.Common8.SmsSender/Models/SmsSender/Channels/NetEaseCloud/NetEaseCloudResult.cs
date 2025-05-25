@@ -2,6 +2,7 @@ using BD.Common8.Models.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 using BD.Common8.SmsSender.Services.Implementation.SmsSender;
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
 
@@ -9,8 +10,10 @@ namespace BD.Common8.SmsSender.Models.SmsSender.Channels.NetEaseCloud;
 /// 提供网易云 API 请求的返回结果
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class NetEaseCloudResult<T> : JsonModel<T>, ISmsSubResult where T : NetEaseCloudResult<T>
+public class NetEaseCloudResult<T> : JsonModel<T>, ISmsSubResult, IJsonSerializerContext where T : NetEaseCloudResult<T>
 {
+    static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
+
     /// <summary>
     /// 网易云发送 Sms 响应代码
     /// </summary>
@@ -55,12 +58,6 @@ public class NetEaseCloudResult<T> : JsonModel<T>, ISmsSubResult where T : NetEa
 /// <summary>
 /// 继承 <see cref="NetEaseCloudResult{T}"/>
 /// </summary>
-[DebuggerDisplay("{DebuggerDisplay(),nq}")]
 public sealed class NetEaseCloudResult : NetEaseCloudResult<NetEaseCloudResult>
 {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-    string DebuggerDisplay() => global::System.Text.Json.JsonSerializer.Serialize(this, SmsSenderJsonSerializerContext.Default.Options);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 }

@@ -8,7 +8,7 @@ namespace BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 /// </summary>
 /// <typeparam name="TImplement">实现类的类型，必须是 <see cref="SmsResult{TImplement}"/> 或其派生类</typeparam>
 public abstract class SmsResult<TImplement> : JsonModel<TImplement>, IResult<ISmsSubResult?>
-    where TImplement : SmsResult<TImplement>
+    where TImplement : SmsResult<TImplement>, IJsonSerializerContext
 {
     /// <summary>
     /// 获取或设置短信操作是否成功
@@ -33,7 +33,7 @@ public abstract class SmsResult<TImplement> : JsonModel<TImplement>, IResult<ISm
 /// <typeparam name="TImplement">实现类的类型，必须是 <see cref="SmsResult{TResult, TImplement}"/> 或其派生类</typeparam>
 public abstract class SmsResult<TResult, TImplement> : SmsResult<TImplement>, ISmsResult, IResult<TResult?>
    where TResult : IJsonModel
-   where TImplement : SmsResult<TResult, TImplement>
+   where TImplement : SmsResult<TResult, TImplement>, IJsonSerializerContext
 {
     /// <summary>
     /// 获取或设置短信操作的具体结果

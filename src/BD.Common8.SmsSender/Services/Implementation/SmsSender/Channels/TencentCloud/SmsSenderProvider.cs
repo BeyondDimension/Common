@@ -4,11 +4,13 @@ using BD.Common8.SmsSender.Models.SmsSender;
 using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using System.Extensions;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using SmsOptions = BD.Common8.SmsSender.Models.SmsSender.Channels.TencentCloud.SmsTencentCloudOptions;
 
 namespace BD.Common8.SmsSender.Services.Implementation.SmsSender.Channels.TencentCloud;
@@ -32,11 +34,6 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
     readonly HttpClient httpClient;
     readonly SmsOptions options;
     readonly ILogger logger;
-
-    static readonly JsonSerializerOptions JsonSerializerOptions = new()
-    {
-        PropertyNamingPolicy = null,
-    };
 
     /// <summary>
     /// 初始化 <see cref="SmsSenderProvider"/> 类的实例，设置所需的日志记录器、配置选项和 HttpClient
@@ -64,7 +61,7 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
 
     #endregion
 
-    private Dictionary<string, string> BuildHeaders(byte[] requestPayload)
+    private Dictionary<string, string> BuildHeaders(Stream requestPayload)
     {
         // https://github.com/TencentCloud/tencentcloud-sdk-dotnet/blob/8a2d9b3e0247eb258058d8a557e5f2e08cdb6b34/TencentCloud/Common/AbstractClient.cs#L302
 
@@ -135,17 +132,22 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
     {
         // https://cloud.tencent.com/document/api/382/55981
 
-        var params_dic = new Dictionary<string, object>();
+        var params_dic = new JsonObject();
         params_dic.Add("Action", Action);
         params_dic.Add("Version", Version);
         params_dic.Add("Region", "");
         params_dic.Add("SmsSdkAppId", options.SmsSdkAppId!);
         params_dic.Add("TemplateId", templateId);
         params_dic.Add("SignName", options.SignName!);
-        params_dic.Add("PhoneNumberSet", new string[] { number });
-        params_dic.Add("TemplateParamSet", new string[] { message });
+        params_dic.Add("PhoneNumberSet", new JsonArray(JsonValue.Create(number)));
+        params_dic.Add("TemplateParamSet", new JsonArray(JsonValue.Create(message)));
 
-        var requestPayload = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(params_dic, JsonSerializerOptions));
+        MemoryStream requestPayload = new();
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        JsonSerializer.Serialize(requestPayload, params_dic, SmsSenderJsonSerializerContext.Default.Options);
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 
         var headers = BuildHeaders(requestPayload);
 
@@ -156,7 +158,8 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
         {
             if (kvp.Key.Equals("Content-Type"))
             {
-                ByteArrayContent content = new ByteArrayContent(requestPayload);
+                requestPayload.Position = 0; // 重置流位置，以便读取内容
+                var content = new StreamContent(requestPayload);
                 content.Headers.Remove("Content-Type");
                 content.Headers.Add("Content-Type", kvp.Value);
                 requestMessage.Content = content;
@@ -172,7 +175,7 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
             }
             else
             {
-                requestMessage.Headers.Add(kvp.Key, kvp.Value);
+                requestMessage.Headers.TryAddWithoutValidation(kvp.Key, kvp.Value);
             }
         }
 
@@ -193,7 +196,7 @@ public partial class SmsSenderProvider : SmsSenderBase, ISmsSender
         if (response.IsSuccessStatusCode)
         {
             using var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
-            tencentCloudResult = await JsonSerializer.DeserializeAsync<TencentCloudResult<SendSmsTencentCloudResult>>(stream, JsonSerializerOptions, cancellationToken);
+            tencentCloudResult = await JsonSerializer.DeserializeAsync(stream, SmsSenderJsonSerializerContext.Default.TencentCloudResultSendSmsTencentCloudResult, cancellationToken);
 
             isSuccess =
                 tencentCloudResult != null &&

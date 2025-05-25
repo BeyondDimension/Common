@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace BD.Common8.Models.Abstractions;
 
@@ -13,22 +14,97 @@ public interface IJsonModel
     /// </summary>
     /// <param name="writeIndented"></param>
     /// <returns></returns>
-    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     string GetJsonString(bool writeIndented = false);
 }
 
+/// <inheritdoc cref="IJsonModel"/>
+public interface IJsonModel<T> : IJsonModel
+{
+    string IJsonModel.GetJsonString(bool writeIndented) => GetJsonString(writeIndented);
+
+    new string GetJsonString(bool writeIndented = false)
+    {
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        var result = JsonSerializer.Serialize(this, GetType(), options: IJsonSerializerContext.GetJsonSerializerOptions(writeIndented));
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+        return result;
+    }
+}
+
+/// <inheritdoc cref="IJsonSerializerContext"/>
+public interface IJsonSerializerContext
+{
+    /// <summary>
+    /// 返回 Json 源生成的 <see cref="JsonSerializerContext"/> 默认实例
+    /// </summary>
+    static abstract JsonSerializerContext Default { get; }
+
+    internal static JsonSerializerOptions GetJsonSerializerOptions(bool writeIndented = false)
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        => writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default;
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+
+    public static JsonSerializerOptions GetJsonSerializerOptions<T>(bool writeIndented = false) where T : IJsonSerializerContext
+    {
+        try
+        {
+            var opt = T.Default.Options;
+            if (writeIndented)
+            {
+                if (opt.WriteIndented)
+                {
+                    return opt;
+                }
+                else
+                {
+                    opt = new(opt) // 重新创建一份，不修改原值
+                    {
+                        WriteIndented = true,
+                    };
+                    return opt;
+                }
+            }
+            else
+            {
+                if (opt.WriteIndented)
+                {
+                    opt = new(opt) // 重新创建一份，不修改原值
+                    {
+                        WriteIndented = false,
+                    };
+                    return opt;
+                }
+                else
+                {
+                    return opt;
+                }
+            }
+        }
+        catch
+        {
+            return GetJsonSerializerOptions(writeIndented);
+        }
+    }
+}
+
 /// <summary>
 /// 抽象的 JSON 模型类，实现了 <see cref="IJsonModel"/> 接口
 /// </summary>
+[Obsolete("use JsonModel<T>", true)]
 public abstract class JsonModel : IJsonModel
 {
     /// <inheritdoc/>
-    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     public virtual string GetJsonString(bool writeIndented = false)
     {
-        var result = JsonSerializer.Serialize(this, GetType(), options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        var result = JsonSerializer.Serialize(this, GetType(), options: IJsonSerializerContext.GetJsonSerializerOptions(writeIndented));
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
     }
 
@@ -37,46 +113,64 @@ public abstract class JsonModel : IJsonModel
     {
         try
         {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            return GetJsonString(true);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+            var json = GetJsonString(true);
+            return json;
         }
         catch
         {
-            return base.ToString();
+            var str = base.ToString();
+            return str;
         }
     }
 }
 
 /// <summary>
-/// 泛型的 JSON 模型类
+/// 泛型的 JSON 模型类，继承此类并将泛型 T 设为子类型，且实现 <see cref="IJsonSerializerContext"/> 接口，已提供 <see cref="IJsonModel.GetJsonString(bool)"/> 函数与 <see cref="object.ToString"/> 重写为输出 Json 字符串
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class JsonModel<T> : JsonModel, IJsonModel where T : JsonModel<T>
+public abstract class JsonModel<T> : IJsonModel, IJsonModel<T> where T : JsonModel<T>, IJsonSerializerContext
 {
     /// <inheritdoc/>
-    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-    public override string GetJsonString(bool writeIndented = false)
+    public virtual string GetJsonString(bool writeIndented = false)
     {
-        var result = JsonSerializer.Serialize((T)this, options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        var result = JsonSerializer.Serialize((T)this, options: IJsonSerializerContext.GetJsonSerializerOptions<T>(writeIndented));
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
+    }
+
+    /// <inheritdoc/>
+    public override string? ToString()
+    {
+        try
+        {
+            var json = GetJsonString(true);
+            return json;
+        }
+        catch
+        {
+            var str = base.ToString();
+            return str;
+        }
     }
 }
 
 /// <summary>
 /// 抽象的 JSON 模型类，实现了 <see cref="IJsonModel"/> 接口
 /// </summary>
+[Obsolete("use JsonRecordModel<T>", true)]
 public abstract record class JsonRecordModel : IJsonModel
 {
     /// <inheritdoc/>
-    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
     public virtual string GetJsonString(bool writeIndented = false)
     {
-        var result = JsonSerializer.Serialize(this, GetType(), options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        var result = JsonSerializer.Serialize(this, GetType(), options: IJsonSerializerContext.GetJsonSerializerOptions(writeIndented));
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
     }
 
@@ -85,31 +179,46 @@ public abstract record class JsonRecordModel : IJsonModel
     {
         try
         {
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-            return GetJsonString(true);
-#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+            var json = GetJsonString(true);
+            return json;
         }
         catch
         {
-            return base.ToString();
+            var str = base.ToString();
+            return str;
         }
     }
 }
 
 /// <summary>
-/// 泛型的 JSON 模型类
+/// 泛型的 JSON 模型类，继承此类并将泛型 T 设为子类型，且实现 <see cref="IJsonSerializerContext"/> 接口，已提供 <see cref="IJsonModel.GetJsonString(bool)"/> 函数与 <see cref="object.ToString"/> 重写为输出 Json 字符串
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract record class JsonRecordModel<T> : JsonRecordModel, IJsonModel where T : JsonRecordModel<T>
+public abstract record class JsonRecordModel<T> : IJsonModel, IJsonModel<T> where T : JsonRecordModel<T>, IJsonSerializerContext
 {
     /// <inheritdoc/>
-    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-    [RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-    public override string GetJsonString(bool writeIndented = false)
+    public virtual string GetJsonString(bool writeIndented = false)
     {
-        var result = JsonSerializer.Serialize((T)this, options: writeIndented ? JsonSerializerCompatOptions.WriteIndented : JsonSerializerCompatOptions.Default);
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+        var result = JsonSerializer.Serialize((T)this, options: IJsonSerializerContext.GetJsonSerializerOptions<T>(writeIndented));
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;
+    }
+
+    /// <inheritdoc/>
+    public override string? ToString()
+    {
+        try
+        {
+            var json = GetJsonString(true);
+            return json;
+        }
+        catch
+        {
+            var str = base.ToString();
+            return str;
+        }
     }
 }

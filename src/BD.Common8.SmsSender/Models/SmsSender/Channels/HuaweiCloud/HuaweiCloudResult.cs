@@ -1,5 +1,6 @@
 using BD.Common8.Models.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
 
@@ -7,8 +8,10 @@ namespace BD.Common8.SmsSender.Models.SmsSender.Channels.HuaweiCloud;
 /// 提供华为云 API 请求的返回结果
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class HuaweiCloudResult<T> : JsonModel<T>, ISmsSubResult where T : HuaweiCloudResult<T>
+public class HuaweiCloudResult<T> : JsonModel<T>, IJsonSerializerContext, ISmsSubResult where T : HuaweiCloudResult<T>
 {
+    static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
+
     /// <summary>
     /// 状态码
     /// </summary>

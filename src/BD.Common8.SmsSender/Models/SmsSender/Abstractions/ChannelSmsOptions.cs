@@ -6,7 +6,7 @@ namespace BD.Common8.SmsSender.Models.SmsSender.Abstractions;
 /// <summary>
 /// 提供帮助管理和判断短信渠道
 /// </summary>
-public abstract class ChannelSmsOptions : JsonModel, IDisable, IExplicitHasValue
+public abstract class ChannelSmsOptions : IDisable, IExplicitHasValue
 {
     /// <summary>
     /// 获取或设置是否禁用短信渠道

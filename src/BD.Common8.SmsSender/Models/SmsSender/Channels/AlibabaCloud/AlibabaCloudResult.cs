@@ -1,4 +1,5 @@
 using BD.Common8.Models.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
 
@@ -6,8 +7,10 @@ namespace BD.Common8.SmsSender.Models.SmsSender.Channels.AlibabaCloud;
 /// 提供阿里云 API 请求的返回结果
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class AlibabaCloudResult<T> : JsonModel<T> where T : AlibabaCloudResult<T>
+public class AlibabaCloudResult<T> : JsonModel<T>, IJsonSerializerContext where T : AlibabaCloudResult<T>
 {
+    static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
+
     /// <summary>
     /// 状态码
     /// https://help.aliyun.com/document_detail/55323.html

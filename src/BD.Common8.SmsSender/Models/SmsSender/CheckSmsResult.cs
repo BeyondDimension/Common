@@ -1,13 +1,16 @@
 using BD.Common8.Models.Abstractions;
 using BD.Common8.SmsSender.Models.SmsSender.Abstractions;
+using System.Text.Json.Serialization;
 
 namespace BD.Common8.SmsSender.Models.SmsSender;
 
 /// <summary>
 /// 验证短信结果的类
 /// </summary>
-public sealed class CheckSmsResult : SmsResult<CheckSmsResult>, ICheckSmsResult
+public sealed class CheckSmsResult : SmsResult<CheckSmsResult>, ICheckSmsResult, IJsonSerializerContext
 {
+    static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
+
     /// <inheritdoc/>
     public bool IsCheckSuccess { get; set; }
 }
@@ -16,9 +19,11 @@ public sealed class CheckSmsResult : SmsResult<CheckSmsResult>, ICheckSmsResult
 /// 验证短信结果的类，带有泛型参数
 /// </summary>
 /// <typeparam name="TResult">结果的泛型参数类型，必须实现 <see cref="IJsonModel"/> 接口 </typeparam>
-public class CheckSmsResult<TResult> : SmsResult<TResult, CheckSmsResult<TResult>>, ICheckSmsResult
-  where TResult : IJsonModel
+public class CheckSmsResult<TResult> : SmsResult<TResult, CheckSmsResult<TResult>>, ICheckSmsResult, IJsonSerializerContext
+  where TResult : IJsonModel, IJsonSerializerContext
 {
+    static JsonSerializerContext IJsonSerializerContext.Default => global::BD.Common8.SmsSender.Services.Implementation.SmsSender.SmsSenderJsonSerializerContext.Default;
+
     /// <inheritdoc/>
     public bool IsCheckSuccess { get; set; }
 }
