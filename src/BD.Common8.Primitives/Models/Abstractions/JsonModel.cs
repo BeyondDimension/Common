@@ -18,7 +18,8 @@ public interface IJsonModel
 }
 
 /// <inheritdoc cref="IJsonModel"/>
-public interface IJsonModel<T> : IJsonModel
+public interface IJsonModel<T> : IJsonModel, IJsonSerializerContext
+    where T : IJsonModel<T>, IJsonSerializerContext
 {
     string IJsonModel.GetJsonString(bool writeIndented) => GetJsonString(writeIndented);
 
@@ -26,7 +27,7 @@ public interface IJsonModel<T> : IJsonModel
     {
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 #pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
-        var result = JsonSerializer.Serialize(this, GetType(), options: IJsonSerializerContext.GetJsonSerializerOptions(writeIndented));
+        var result = JsonSerializer.Serialize(this, GetType(), options: IJsonSerializerContext.GetJsonSerializerOptions<T>(writeIndented));
 #pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
         return result;

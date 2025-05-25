@@ -119,6 +119,8 @@ public abstract class SmsSenderBase : ISmsSender
 /// 修改这些默认选项，可以控制相关类型序列化
 /// </summary>
 [JsonSerializable(typeof(JsonObject))]
+[JsonSerializable(typeof(JsonValue))]
+[JsonSerializable(typeof(JsonArray))]
 [JsonSerializable(typeof(SendSmsResult))]
 [JsonSerializable(typeof(SendSmsResult<SendSmsNetEaseCloudResult>))]
 [JsonSerializable(typeof(CheckSmsResult))]

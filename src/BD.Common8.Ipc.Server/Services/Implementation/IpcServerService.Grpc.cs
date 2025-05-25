@@ -368,7 +368,7 @@
 
 //    public IServiceProvider Services => app.ThrowIsNull().Services;
 
-//    protected virtual async Task OnError(HttpContext ctx)
+//    protected virtual Task OnError(HttpContext ctx)
 //    {
 //        ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 //        ctx.Response.ContentType = MediaTypeNames.JSON;
@@ -379,7 +379,7 @@
 //            OnError(exceptionHandlerPathFeature);
 //        }
 
-//        await Task.CompletedTask;
+//        return Task.CompletedTask;
 //    }
 
 //    protected virtual void OnError(IExceptionHandlerFeature exceptionHandlerPathFeature)

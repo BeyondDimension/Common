@@ -702,9 +702,8 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
     //    }
     //}
 
-    public async Task<BMMenuModel[]?> GetUserMenu2Async(Guid userId, Guid tenantId)
+    public /*async*/ Task<BMMenuModel[]?> GetUserMenu2Async(Guid userId, Guid tenantId)
     {
-        await Task.CompletedTask;
         //var menuIds = await GetRoleMenus(userId, tenantId);
         //if (menuIds.Length > 0)
         //{
@@ -748,7 +747,7 @@ sealed class BMMenuRepository<TDbContext>(IMapper mapper, TDbContext dbContext, 
         //}
         //else
         //{
-        return null;
+        return Task.FromResult((BMMenuModel[]?)null);
         //}
     }
     #endregion

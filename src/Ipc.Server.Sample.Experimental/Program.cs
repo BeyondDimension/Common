@@ -419,7 +419,7 @@ class IpcHub2Base : Hub
     public async IAsyncEnumerable<ApiRspImpl<NativeWindowModel?>> INativeWindowServices_GetMoveMouseDownWindow()
     {
         Console.WriteLine("IpcHub2Base");
-        await Task.CompletedTask;
+        await Task.Yield();
         ApiRspImpl<NativeWindowModel> result;
         try
         {

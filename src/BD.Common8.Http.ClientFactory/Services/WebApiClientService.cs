@@ -317,7 +317,7 @@ partial class WebApiClientService
     /// <param name="requestBody"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    protected virtual async Task<(bool isIntercept, TResponseBody? responseBody)> HandleHttpResponseMessage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(
+    protected virtual Task<(bool isIntercept, TResponseBody? responseBody)> HandleHttpResponseMessage<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TResponseBody, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TRequestBody>(
         HttpResponseMessage response,
         WebApiClientSendArgs args,
         TRequestBody requestBody,
@@ -325,8 +325,7 @@ partial class WebApiClientService
         where TRequestBody : notnull
         where TResponseBody : notnull
     {
-        await Task.CompletedTask;
-        return (false, default);
+        return Task.FromResult<(bool isIntercept, TResponseBody? responseBody)>((false, default));
     }
 
     /// <summary>
