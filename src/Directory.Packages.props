@@ -284,11 +284,11 @@
 	</ItemGroup>
 	<!-- 👇 NuGet -->
 	<ItemGroup>
-		<PackageVersion Include="NuGet.Versioning" Version="6.12.1">
+		<PackageVersion Include="NuGet.Versioning" Version="6.14.0">
 		</PackageVersion>
-		<PackageVersion Include="NuGet.Frameworks" Version="6.12.1">
+		<PackageVersion Include="NuGet.Frameworks" Version="6.14.0">
 		</PackageVersion>
-		<PackageVersion Include="NuGet.Protocol" Version="6.12.1">
+		<PackageVersion Include="NuGet.Protocol" Version="6.14.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 The .NET Compiler Platform（Roslyn） -->
