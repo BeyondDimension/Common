@@ -18,7 +18,7 @@ public interface IJsonModel
 }
 
 /// <inheritdoc cref="IJsonModel"/>
-public interface IJsonModel<T> : IJsonModel, IJsonSerializerContext
+public interface IJsonModel<T> : IJsonModel
     where T : IJsonModel<T>, IJsonSerializerContext
 {
     string IJsonModel.GetJsonString(bool writeIndented) => GetJsonString(writeIndented);
