@@ -839,7 +839,7 @@
 	</ItemGroup>
 	<!-- 👇 TencentCloudSDK -->
 	<ItemGroup>
-		<PackageVersion Include="TencentCloudSDK.Dnspod" Version="3.0.1247" />
+		<PackageVersion Include="TencentCloudSDK.Dnspod" Version="3.0.1248" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageVersion Include="Tmds.DBus" Version="0.21.2" />
