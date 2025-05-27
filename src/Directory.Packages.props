@@ -383,6 +383,8 @@
 		<!-- 👇 WebView2 -->
 		<PackageVersion Include="WebView2.NativeAssets.Win32" Version="1.0.1518.46">
 		</PackageVersion>
+		<PackageVersion Include="WebView2.Avalonia" Version="1.0.3240.44-preview.250526.1">
+		</PackageVersion>
 		<!-- 👇 浏览器测试框架 -->
 		<PackageVersion Include="Microsoft.Playwright" Version="1.52.0">
 		</PackageVersion>
