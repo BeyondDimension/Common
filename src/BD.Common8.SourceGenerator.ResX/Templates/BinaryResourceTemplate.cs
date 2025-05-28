@@ -197,6 +197,95 @@ public sealed class BinaryResourceTemplate :
         return model;
     }
 
+    static void WriteByte(Stream stream, byte b)
+    {
+        stream.Write("0x"u8);
+        stream.WriteUtf16StrToUtf8OrCustom(b.ToString("X"));
+        stream.Write(", "u8);
+    }
+
+    internal static bool WriteFile(Stream stream, string filePath, bool reverse)
+    {
+        bool fileExists = true;
+        try
+        {
+            // 使用池化内存缓冲区分片读取文件流
+            const int bufferSize = 4096; // 缓冲区大小
+            using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            if (reverse) // 如果需要反转字节顺序
+            {
+                // len = 10, bufferSize = 4, forCount = 3
+                var forCount = fileStream.Length / bufferSize;
+                if (fileStream.Length % bufferSize != 0)
+                {
+                    // 除法余数进一
+                    forCount++;
+                }
+                var buffer = ArrayPool<byte>.Shared.Rent(bufferSize);
+                try
+                {
+                    while (forCount != 0) // 循环缓冲区计数
+                    {
+                        fileStream.Position = (forCount - 1) * bufferSize; // 计算当前读取的起始位置
+                        // 反转时必须限定缓冲区长度与设定长度一致，如果缓冲区申请长度大于预设值，则忽略末尾部分
+                        var count = fileStream.Read(buffer, 0, bufferSize);
+                        if (count <= 0)
+                        {
+                            // 读取到文件末尾，跳出循环
+                            break;
+                        }
+
+                        var bufferSpan = buffer.AsSpan(0, count);
+                        for (int i = bufferSpan.Length - 1; i >= 0; i--)
+                        {
+                            WriteByte(stream, bufferSpan[i]);
+                        }
+                        forCount--; // 减少计数器
+                    }
+                }
+                finally
+                {
+                    ArrayPool<byte>.Shared.Return(buffer);
+                }
+            }
+            else
+            {
+                var buffer = ArrayPool<byte>.Shared.Rent(bufferSize);
+                try
+                {
+                    while (true)
+                    {
+                        var count = fileStream.Read(buffer, 0, buffer.Length);
+                        if (count <= 0)
+                        {
+                            // 读取到文件末尾，跳出循环
+                            break;
+                        }
+
+                        var bufferSpan = buffer.AsSpan(0, count);
+                        for (int i = 0; i < bufferSpan.Length; i++)
+                        {
+                            WriteByte(stream, bufferSpan[i]);
+                        }
+                    }
+                }
+                finally
+                {
+                    ArrayPool<byte>.Shared.Return(buffer);
+                }
+            }
+        }
+        catch (DirectoryNotFoundException)
+        {
+            fileExists = false;
+        }
+        catch (FileNotFoundException)
+        {
+            fileExists = false;
+        }
+        return fileExists;
+    }
+
     void WriteFileAllBytes(Stream stream, BinaryResourceFileInfo fileInfo)
     {
         if (IsDesignTimeBuild)
@@ -208,53 +297,7 @@ public sealed class BinaryResourceTemplate :
             return;
         }
 
-        bool fileExists = true;
-        try
-        {
-            using var fileStream = new FileStream(fileInfo.FilePath, FileMode.Open, FileAccess.Read);
-            var buffer = ArrayPool<byte>.Shared.Rent(unchecked((int)fileStream.Length));
-            try
-            {
-                var count = fileStream.Read(buffer, 0, buffer.Length);
-                if (count > 0)
-                {
-                    if (fileInfo.Reverse)
-                    {
-                        for (int i = count - 1; i >= 0; i--)
-                        {
-                            WriteByte(i);
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < count; i++)
-                        {
-                            WriteByte(i);
-                        }
-                    }
-
-                    void WriteByte(int i)
-                    {
-                        stream.Write("0x"u8);
-                        stream.WriteUtf16StrToUtf8OrCustom(buffer[i].ToString("X"));
-                        stream.Write(", "u8);
-                    }
-                }
-            }
-            finally
-            {
-                ArrayPool<byte>.Shared.Return(buffer);
-            }
-        }
-        catch (DirectoryNotFoundException)
-        {
-            fileExists = false;
-        }
-        catch (FileNotFoundException)
-        {
-            fileExists = false;
-        }
-
+        bool fileExists = WriteFile(stream, fileInfo.FilePath, fileInfo.Reverse);
         if (!fileExists)
         {
             stream.Write(
