@@ -18,7 +18,8 @@
 
 	<!-- 👇 版本号值位于 Common\ref\ValveKeyValue\Directory.Build.props -->
 	<PropertyGroup>
-		<ProjectBaseVersion>0.9.0</ProjectBaseVersion>
+		<!--o.o.yyMMi.{GITHUB_RUN_NUMBER}-->
+		<ProjectBaseVersion>0.9.25061</ProjectBaseVersion>
 		<ProjectVersion Condition="'$(GITHUB_RUN_NUMBER)' != ''">$(ProjectBaseVersion).$(GITHUB_RUN_NUMBER)</ProjectVersion>
 		<ProjectVersion Condition="'$(GITHUB_RUN_NUMBER)' == ''">$(ProjectBaseVersion).0</ProjectVersion>
 		<AssemblyVersion>$(ProjectBaseVersion)</AssemblyVersion>

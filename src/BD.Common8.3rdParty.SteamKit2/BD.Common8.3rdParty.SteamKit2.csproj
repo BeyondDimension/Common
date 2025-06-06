@@ -28,7 +28,8 @@
 
 	<!-- 👇 版本号值位于 Common\ref\SteamKit\Directory.Build.props -->
 	<PropertyGroup>
-		<SteamKitBaseVersion>3.0.0</SteamKitBaseVersion>
+		<!--o.o.o.yyMMi-->
+		<SteamKitBaseVersion>3.0.0.25061</SteamKitBaseVersion>
 		<SteamKitVersion Condition=" '$(GITHUB_RUN_NUMBER)' != ''">$(SteamKitBaseVersion)-Alpha.$(GITHUB_RUN_NUMBER)</SteamKitVersion>
 		<SteamKitVersion Condition=" '$(GITHUB_RUN_NUMBER)' == ''">$(SteamKitBaseVersion)</SteamKitVersion>
 		<AssemblyVersion>$(SteamKitBaseVersion)</AssemblyVersion>

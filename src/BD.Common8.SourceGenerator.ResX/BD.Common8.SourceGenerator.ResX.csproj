@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<!--8.yy.1MMdd.1hhmm-->
-		<Version>8.25.10522.11551</Version>
+		<Version>8.25.10606.11900</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<Description>xyz.Designer.cs 源生成器</Description>
