@@ -2,7 +2,6 @@
 	<!-- 👇 默认 TFM 为 netX.Y -->
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
-		<TargetFrameworks Condition="$([System.OperatingSystem]::IsLinux())">net$(DotNet_Version)</TargetFrameworks>
 	</PropertyGroup>
 	<!-- 👇 在 Windows 上开发 TFM + netX.Y-windows，当未禁用移动端时（通过文件存在切换禁用启用），+ netX.Y-android、netX.Y-ios、netX.Y-maccatalyst、netX.Y-macos -->
 	<PropertyGroup Condition="$([System.OperatingSystem]::IsWindows())">
