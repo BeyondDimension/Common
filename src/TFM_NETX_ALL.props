@@ -5,8 +5,8 @@
 	</PropertyGroup>
 	<!-- 👇 在 Windows 上开发 TFM + netX.Y-windows，当未禁用移动端时（通过文件存在切换禁用启用），+ netX.Y-android、netX.Y-ios、netX.Y-maccatalyst、netX.Y-macos -->
 	<PropertyGroup Condition="$([System.OperatingSystem]::IsWindows())">
-		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
-		<TargetFrameworks Condition="!Exists('C:\BD.Common8.ExcludeMobile.msbuild.prop')">net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-maccatalyst;net$(DotNet_Version)-macos</TargetFrameworks>
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version);net$(DotNet_Version)-windows7.0</TargetFrameworks>
+		<TargetFrameworks Condition="!Exists('C:\BD.Common8.ExcludeMobile.msbuild.prop')">net$(DotNet_Version);net$(DotNet_Version)-windows$(WinSDK_Version);net$(DotNet_Version)-windows7.0;net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-maccatalyst;net$(DotNet_Version)-macos</TargetFrameworks>
 	</PropertyGroup>
 	<!-- 👇 在 macOS 上开发 TFM + netX.Y-ios、netX.Y-maccatalyst、netX.Y-macos -->
 	<PropertyGroup Condition="$([System.OperatingSystem]::IsMacOS())">

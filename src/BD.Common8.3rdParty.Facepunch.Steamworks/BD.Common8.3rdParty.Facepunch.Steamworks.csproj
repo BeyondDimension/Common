@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
-		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows;net$(DotNet_Version)-macos;netstandard2.0;net46</TargetFrameworks>
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows7.0;net$(DotNet_Version)-macos;netstandard2.0;net46</TargetFrameworks>
 		<RootNamespace>Facepunch.Steamworks</RootNamespace>
 		<AssemblyName>Facepunch.Steamworks</AssemblyName>
 		<PackageId>$(MSBuildProjectName)</PackageId>
@@ -20,10 +20,6 @@
 
 	<Choose>
 		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $(TargetFramework.StartsWith('net4')) OR $(TargetFramework.StartsWith('netstandard'))">
-			<PropertyGroup>
-				<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
-				<TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
-			</PropertyGroup>
 			<Choose>
 				<When Condition="$(Platform) == 'x86'">
 					<PropertyGroup>

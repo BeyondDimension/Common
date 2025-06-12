@@ -1,12 +1,41 @@
 <Project>
 	<!-- 👇 当前项目依赖的版本号配置 -->
 	<PropertyGroup>
+		<!--👇 首选 .NET 版本号 -->
 		<DotNet_Version>9.0</DotNet_Version>
+		<!--👇 Win10/11 SDK 版本，值不可小于 10.0.x -->
 		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
+	<Choose>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+			<PropertyGroup>
+				<!--👇 https://github.com/dotnet/maui/blob/main/src/Templates/src/templates/maui-mobile/MauiApp.1.csproj#L41-->
+				<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+			</PropertyGroup>
+		</When>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tvos'">
+			<PropertyGroup>
+				<!--👇 https://github.com/dotnet/maui/blob/main/Directory.Build.targets#L39-L40-->
+				<SupportedOSPlatformVersion>10.0</SupportedOSPlatformVersion>
+			</PropertyGroup>
+		</When>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+			<PropertyGroup>
+				<!--👇 https://github.com/dotnet/maui/blob/main/src/Templates/src/templates/maui-mobile/MauiApp.1.csproj#L42-->
+				<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+			</PropertyGroup>
+		</When>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos'">
+			<PropertyGroup>
+				<!--👇 https://github.com/dotnet/maui/blob/main/src/Graphics/samples/GraphicsTester.Skia.Mac/GraphicsTester.Skia.Mac.csproj#L5-L7-->
+				<SupportedOSPlatformVersion>10.14</SupportedOSPlatformVersion>
+			</PropertyGroup>
+		</When>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+			<PropertyGroup>
+				<!--👇 https://github.com/dotnet/maui/blob/main/src/Templates/src/templates/maui-mobile/MauiApp.1.csproj#L43-->
+				<SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+			</PropertyGroup>
+		</When>
+	</Choose>
 </Project>

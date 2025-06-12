@@ -20,13 +20,31 @@ public sealed class AllModelSerializationTest
             .Where(static x => !string.IsNullOrWhiteSpace(x) &&
                 !x.Contains("SourceGenerator") && // 不测试源生成器
                 !x.Contains("AspNetCore") && // 不依赖 ASP.NET Core 保证测试跨平台兼容性
+                !x.Contains("3rdParty") && // 排除第三方包
                 x != "BD.Common8.Bcl.Compat" &&
                 x != "BD.Common8.Http.ClientFactory.Server" &&
                 x != "BD.Common8.Pinyin.CoreFoundation" &&
                 true
                 )
-            .Select(static x => Assembly.Load(x).GetTypes())
-            .SelectMany(static x => x)
+            .Select(static x =>
+            {
+                try
+                {
+                    var types = Assembly.Load(x).GetTypes();
+                    return types;
+                }
+                catch (FileNotFoundException)
+                {
+                    // 可能 TFM 不支持或未在单元测试项目中引用
+                    return null;
+                }
+                catch (DllNotFoundException)
+                {
+                    return null;
+                }
+            })
+            .Where(static x => x != null)
+            .SelectMany(static x => x!)
             .Where(x => !x.IsAbstract && // 不能是抽象类
                 x.IsClass && // 必须是类
                 !string.IsNullOrWhiteSpace(x.Namespace) && x.Namespace.Contains("Models") && // 命名空间必须存在 Models
@@ -67,23 +85,8 @@ public sealed class AllModelSerializationTest
     /// <inheritdoc cref="Activator.CreateInstance(Type)"/>
     static object? CreateInstance(Type type)
     {
-        try
-        {
-            var result = Activator.CreateInstance(type);
-            return result;
-        }
-        catch
-        {
-            try
-            {
-                var result = JsonSerializer.Deserialize("{}"u8, type);
-                return result;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+        var r = SerializationTestHelper.CreateInstance(type, null!);
+        return r;
     }
 
     /// <summary>

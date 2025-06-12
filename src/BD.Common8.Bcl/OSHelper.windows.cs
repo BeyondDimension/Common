@@ -1,4 +1,4 @@
-#if WINDOWS
+#if WINDOWS10_0_17763_0_OR_GREATER
 using Windows.ApplicationModel;
 #endif
 using System.Runtime.CompilerServices;
@@ -22,7 +22,7 @@ partial class OSHelper
     static readonly Lazy<bool> _IsWindows11AtLeast = new(() => OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000));
 #endif
 
-#if WINDOWS
+#if WINDOWS10_0_17763_0_OR_GREATER
     static string? GetAppUserModelId()
     {
         try

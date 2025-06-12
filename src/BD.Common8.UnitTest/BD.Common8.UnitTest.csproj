@@ -54,6 +54,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\BD.Common8.3rdParty.Facepunch.Steamworks\BD.Common8.3rdParty.Facepunch.Steamworks.csproj" />
+	  <ProjectReference Include="..\BD.Common8.3rdParty.SteamKit2\BD.Common8.3rdParty.SteamKit2.csproj" />
 	  <ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
 	  <ProjectReference Include="..\BD.Common8.Crawler\BD.Common8.Crawler.csproj" />
 	  <ProjectReference Include="..\BD.Common8.Essentials.Implementation.Avalonia\BD.Common8.Essentials.Implementation.Avalonia.csproj" />

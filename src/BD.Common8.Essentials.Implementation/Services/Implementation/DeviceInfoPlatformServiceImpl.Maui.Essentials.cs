@@ -58,7 +58,7 @@ partial class DeviceInfoPlatformServiceImpl
 #if ANDROID
             var value = global::Android.OS.Build.VERSION.Release;
             return value ?? string.Empty;
-#elif WINDOWS
+#elif WINDOWS10_0_17763_0_OR_GREATER
             var version = global::Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
             if (ulong.TryParse(version, out var v))
             {
