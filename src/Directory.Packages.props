@@ -3,19 +3,19 @@
 	<!-- 👇 当前项目的【版本号】配置 -->
 	<PropertyGroup>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version_Common8Bcl>8.24.10815.11937</Version_Common8Bcl>
-		<Version_SourceGenerator_Bcl>8.24.10815.11937</Version_SourceGenerator_Bcl>
-		<Version_SourceGenerator_Ipc_Client>8.24.10815.11937</Version_SourceGenerator_Ipc_Client>
-		<Version_SourceGenerator_Ipc_Server>8.24.10815.11937</Version_SourceGenerator_Ipc_Server>
-		<Version_SourceGenerator_Resx>8.24.10815.11937</Version_SourceGenerator_Resx>
-		<Version_SourceGenerator_Repositories>8.24.10815.11937</Version_SourceGenerator_Repositories>
-		<Version_HuaweiCloud_SDK_Obs>8.25.10522.11551</Version_HuaweiCloud_SDK_Obs>
+		<Version_Common8Bcl>8.25.10618.11900</Version_Common8Bcl>
+		<Version_SourceGenerator_Bcl>8.25.10618.11900</Version_SourceGenerator_Bcl>
+		<Version_SourceGenerator_Ipc_Client>8.25.10618.11900</Version_SourceGenerator_Ipc_Client>
+		<Version_SourceGenerator_Ipc_Server>8.25.10618.11900</Version_SourceGenerator_Ipc_Server>
+		<Version_SourceGenerator_Resx>8.25.10618.11900</Version_SourceGenerator_Resx>
+		<Version_SourceGenerator_Repositories>8.25.10618.11900</Version_SourceGenerator_Repositories>
+		<Version_HuaweiCloud_SDK_Obs>8.25.10618.11900</Version_HuaweiCloud_SDK_Obs>
 	</PropertyGroup>
 	<!-- 👇 当前项目的【引用的包版本号】配置 -->
 	<PropertyGroup>
 		<!-- 👇 BD.* -->
-		<Version_Avalonia8_Pkg>8.24.10521.11500</Version_Avalonia8_Pkg>
-		<Version_SteamClient8_Pkg>8.24.10521.11500</Version_SteamClient8_Pkg>
+		<Version_Avalonia8_Pkg>8.25.10618.11900</Version_Avalonia8_Pkg>
+		<Version_SteamClient8_Pkg>8.25.10618.11900</Version_SteamClient8_Pkg>
 		<!-- 👇 RxUI -->
 		<Version_System_Reactive>6.0.0</Version_System_Reactive>
 		<Version_ReactiveUI>20.1.63</Version_ReactiveUI>
@@ -135,12 +135,22 @@
 		</PackageVersion>
 		<PackageVersion Include="BD.Common8.UserInput.ModelValidator" Version="$(Version_Common8Bcl)">
 		</PackageVersion>
+		<PackageVersion Include="BD.Common8.3rdParty.Facepunch.Steamworks" Version="2.3.4.25062">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.3rdParty.SteamKit2" Version="3.0.0.25062">
+		</PackageVersion>
+		<PackageVersion Include="BD.Common8.3rdParty.ValveKeyValue" Version="0.9.25062.0">
+		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 BD.Avalonia8 -->
 	<ItemGroup>
-		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.25.10522.11700">
+		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.25.10618.11900">
 		</PackageVersion>
-		<PackageVersion Include="BD.Avalonia8.Image2" Version="$(Version_Avalonia8_Pkg)">
+		<PackageVersion Include="BD.Avalonia8.Fonts.MiSans" Version="8.25.10618.11900">
+		</PackageVersion>
+		<PackageVersion Include="BD.Avalonia8.Image2" Version="8.25.10618.11900">
+		</PackageVersion>
+		<PackageVersion Include="BD.Avalonia8.Media.ColorF" Version="8.25.10618.11900">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 BD.SteamClient8 -->
@@ -152,6 +162,12 @@
 		<PackageVersion Include="BD.SteamClient8.Models" Version="$(Version_SteamClient8_Pkg)">
 		</PackageVersion>
 		<PackageVersion Include="BD.SteamClient8.Primitives" Version="$(Version_SteamClient8_Pkg)">
+		</PackageVersion>
+		<PackageVersion Include="BD.SteamClient8.3rdParty.WinAuth" Version="8.25.10618.11900">
+		</PackageVersion>
+		<PackageVersion Include="BD.SteamClient8.3rdParty.WinAuth.Abstractions" Version="8.25.10618.11900">
+		</PackageVersion>
+		<PackageVersion Include="BD.SteamClient8.3rdParty.SAM.API" Version="8.25.10618.11900">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 .NET Aspire（阿斯拜尔） -->

@@ -12,7 +12,7 @@
 	<!-- 👇 版本号值位于 Common\ref\SteamKit\Directory.Build.props -->
 	<PropertyGroup>
 		<!--o.o.o.yyMMi-->
-		<PackageVersion>2.3.4.25061</PackageVersion>
+		<PackageVersion>2.3.4.25062</PackageVersion>
 		<FileVersion>$(PackageVersion)</FileVersion>
 		<Version>$(PackageVersion)</Version>
 		<AssemblyVersion>$(PackageVersion)</AssemblyVersion>
