@@ -19,6 +19,7 @@
     <File Path="src/Directory.Build.targets" />
     <File Path="src/Directory.Packages.props" />
     <File Path="src/GeneratePackage.props" />
+    <File Path="src/Path.Submodule.props" />
     <File Path="src/ProjectUtils.cs" />
     <File Path="src/SharedProject/BD.Common8.Bcl.Compat.props" />
     <File Path="src/SharedProject/ChnCharInfo.props" />
