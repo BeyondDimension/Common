@@ -14,9 +14,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-		<ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
-		<ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Security\BD.Common8.Security.csproj" />
 	</ItemGroup>
 
 </Project>

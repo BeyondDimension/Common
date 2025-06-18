@@ -9,8 +9,8 @@
 	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
 	</ItemGroup>
 
 </Project>

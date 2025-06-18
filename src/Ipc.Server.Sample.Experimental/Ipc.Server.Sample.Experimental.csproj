@@ -17,18 +17,18 @@
 
 	<!-- 👇 项目引用源生成器 -->
 	<ItemGroup>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.SourceGenerator.Ipc.Server\BD.Common8.SourceGenerator.Ipc.Server.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-		<ProjectReference Include="..\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
-		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
 	</ItemGroup>
 
 </Project>

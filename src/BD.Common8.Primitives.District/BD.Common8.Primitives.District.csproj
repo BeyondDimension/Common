@@ -9,12 +9,12 @@
 	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
 	</ItemGroup>
 
 	<!-- 👇 项目引用源生成器 -->
 	<ItemGroup>
-		<ProjectReference Include="$(MSBuildThisFileDirectory)..\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
 			<OutputItemType>Analyzer</OutputItemType>
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>

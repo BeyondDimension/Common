@@ -1,18 +1,21 @@
 <!-- 👇 NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
 <Project>
-	<!-- 👇 引用的包版本号配置 -->
+	<!-- 👇 当前项目的【版本号】配置 -->
 	<PropertyGroup>
-		<!-- 👇 BD.Common8* -->
-		<Version_Common8Bcl>8.25.10606.11900</Version_Common8Bcl>
-		<Version_SourceGenerator_Bcl>8.25.10606.11900</Version_SourceGenerator_Bcl>
-		<Version_SourceGenerator_Ipc_Client>8.25.10606.11900</Version_SourceGenerator_Ipc_Client>
-		<Version_SourceGenerator_Ipc_Server>8.25.10606.11900</Version_SourceGenerator_Ipc_Server>
-		<Version_SourceGenerator_Resx>8.25.10606.11900</Version_SourceGenerator_Resx>
-		<Version_SourceGenerator_Repositories>8.25.10606.11900</Version_SourceGenerator_Repositories>
+		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
+		<Version_Common8Bcl>8.24.10815.11937</Version_Common8Bcl>
+		<Version_SourceGenerator_Bcl>8.24.10815.11937</Version_SourceGenerator_Bcl>
+		<Version_SourceGenerator_Ipc_Client>8.24.10815.11937</Version_SourceGenerator_Ipc_Client>
+		<Version_SourceGenerator_Ipc_Server>8.24.10815.11937</Version_SourceGenerator_Ipc_Server>
+		<Version_SourceGenerator_Resx>8.24.10815.11937</Version_SourceGenerator_Resx>
+		<Version_SourceGenerator_Repositories>8.24.10815.11937</Version_SourceGenerator_Repositories>
 		<Version_HuaweiCloud_SDK_Obs>8.25.10522.11551</Version_HuaweiCloud_SDK_Obs>
+	</PropertyGroup>
+	<!-- 👇 当前项目的【引用的包版本号】配置 -->
+	<PropertyGroup>
 		<!-- 👇 BD.* -->
-		<Version_Avalonia8_Pkg>8.25.10606.11900</Version_Avalonia8_Pkg>
-		<Version_SteamClient8_Pkg>8.25.10606.11900</Version_SteamClient8_Pkg>
+		<Version_Avalonia8_Pkg>8.24.10521.11500</Version_Avalonia8_Pkg>
+		<Version_SteamClient8_Pkg>8.24.10521.11500</Version_SteamClient8_Pkg>
 		<!-- 👇 RxUI -->
 		<Version_System_Reactive>6.0.0</Version_System_Reactive>
 		<Version_ReactiveUI>20.1.63</Version_ReactiveUI>
@@ -51,7 +54,6 @@
 		<!-- 👇 ASP.NET Core OpenId/OAuth -->
 		<Version_OpenIddict>6.2.0</Version_OpenIddict>
 		<Version_AspNetCore_Authentication>9.0.4</Version_AspNetCore_Authentication>
-		<Version_Downloader_DotNetFX Condition="$(TargetFramework.StartsWith('net4'))">3.1.2</Version_Downloader_DotNetFX>
 	</PropertyGroup>
 	<!-- 👇 BD.Common8 -->
 	<ItemGroup>
@@ -136,7 +138,7 @@
 	</ItemGroup>
 	<!-- 👇 BD.Avalonia8 -->
 	<ItemGroup>
-		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.24.10527.11800">
+		<PackageVersion Include="BD.Avalonia8.Fonts.HarmonyOS_Sans_SC" Version="8.25.10522.11700">
 		</PackageVersion>
 		<PackageVersion Include="BD.Avalonia8.Image2" Version="$(Version_Avalonia8_Pkg)">
 		</PackageVersion>
@@ -154,39 +156,39 @@
 	</ItemGroup>
 	<!-- 👇 .NET Aspire（阿斯拜尔） -->
 	<ItemGroup>
-		<PackageVersion Include="Aspire.Hosting.AppHost" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.AppHost" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.Redis" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.Redis" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.Testing" Version="9.1.0">
+		<PackageVersion Include="Aspire.Hosting.Testing" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql" Version="9.1.0">
+		<PackageVersion Include="Aspire.Npgsql" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0">
+		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.1.0">
+		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.2.0">
+		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.4.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.1.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.1">
+		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.11.1">
+		<PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.11.0">
+		<PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.11.0">
+		<PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0">
 		</PackageVersion>
-		<PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.11.0">
+		<PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.12.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Containers（容器） -->
@@ -198,7 +200,7 @@
 	</ItemGroup>
 	<!-- 👇 AWS SDK for .NET（亚马逊云） -->
 	<ItemGroup>
-		<PackageVersion Include="AWSSDK.Translate" Version="3.7.400.145">
+		<PackageVersion Include="AWSSDK.Translate" Version="4.0.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Azure SDK for .NET（微软云） -->
@@ -208,14 +210,19 @@
 	</ItemGroup>
 	<!-- 👇 HuaweiCloud SDK for .NET（华为云） -->
 	<ItemGroup>
-		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.145">
+		<PackageVersion Include="HuaweiCloud.SDK.Cdn" Version="3.1.148">
+		</PackageVersion>
+	</ItemGroup>
+	<!-- 👇 MinIO SDK -->
+	<ItemGroup>
+		<PackageVersion Include="Minio" Version="6.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Grpc -->
 	<ItemGroup>
-		<PackageVersion Include="Grpc.AspNetCore" Version="2.67.0">
+		<PackageVersion Include="Grpc.AspNetCore" Version="2.71.0">
 		</PackageVersion>
-		<PackageVersion Include="Grpc.Net.Client" Version="2.67.0">
+		<PackageVersion Include="Grpc.Net.Client" Version="2.71.0">
 		</PackageVersion>
 		<PackageVersion Include="Grpc.Tools" Version="2.72.0">
 		</PackageVersion>
@@ -236,7 +243,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Peachpie.Runtime" Version="1.1.11">
 		</PackageVersion>
-		<PackageVersion Include="PeachPied.WordPress.AspNetCore" Version="6.6.2">
+		<PackageVersion Include="PeachPied.WordPress.AspNetCore" Version="6.7.1">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 HashAlgorithm（哈希算法） -->
@@ -263,33 +270,33 @@
 	</ItemGroup>
 	<!-- 👇 AutoMapper（对象映射） -->
 	<ItemGroup>
-		<PackageVersion Include="AutoMapper" Version="13.0.1">
+		<PackageVersion Include="AutoMapper" Version="14.0.0">
 		</PackageVersion>
-		<PackageVersion Include="AutoMapper.Collection" Version="10.0.0">
+		<PackageVersion Include="AutoMapper.Collection" Version="11.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Quartz JobSchedule（作业调度） -->
 	<ItemGroup>
-		<PackageVersion Include="Quartz.AspNetCore" Version="3.13.1">
+		<PackageVersion Include="Quartz.AspNetCore" Version="3.14.0">
 		</PackageVersion>
 		<PackageVersion Include="CrystalQuartz.AspNetCore" Version="7.1.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 NuGet -->
 	<ItemGroup>
-		<PackageVersion Include="NuGet.Versioning" Version="6.12.1">
+		<PackageVersion Include="NuGet.Versioning" Version="6.14.0">
 		</PackageVersion>
-		<PackageVersion Include="NuGet.Frameworks" Version="6.12.1">
+		<PackageVersion Include="NuGet.Frameworks" Version="6.14.0">
 		</PackageVersion>
-		<PackageVersion Include="NuGet.Protocol" Version="6.12.1">
+		<PackageVersion Include="NuGet.Protocol" Version="6.14.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 The .NET Compiler Platform（Roslyn） -->
 	<ItemGroup>
 		<!-- 👇 源生成器与 Roslyn -->
-		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0">
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0">
 		</PackageVersion>
 		<!-- 👇 Code Style（代码样式） -->
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
@@ -297,7 +304,7 @@
 	</ItemGroup>
 	<!-- 👇 Swagger OpenAPI Documentation（Swagger 文档） -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.OpenApi" Version="1.6.20">
+		<PackageVersion Include="Microsoft.OpenApi" Version="1.6.24">
 		</PackageVersion>
 		<PackageVersion Include="Swashbuckle.AspNetCore" Version="$(Version_Swashbuckle)">
 		</PackageVersion>
@@ -310,11 +317,11 @@
 	</ItemGroup>
 	<!-- 👇 NLog（日志） -->
 	<ItemGroup>
-		<PackageVersion Include="NLog" Version="5.4.0">
+		<PackageVersion Include="NLog" Version="5.5.0">
 		</PackageVersion>
-		<PackageVersion Include="NLog.Extensions.Logging" Version="5.4.0">
+		<PackageVersion Include="NLog.Extensions.Logging" Version="5.5.0">
 		</PackageVersion>
-		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.4.0">
+		<PackageVersion Include="NLog.Web.AspNetCore" Version="5.5.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 EFCore（ORM） -->
@@ -340,21 +347,21 @@
 	</ItemGroup>
 	<!-- 👇 UnitTest（单元测试） -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0">
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.0">
 		</PackageVersion>
 		<PackageVersion Include="NUnit" Version="4.3.2">
 		</PackageVersion>
-		<PackageVersion Include="NUnit.Analyzers" Version="4.6.0">
+		<PackageVersion Include="NUnit.Analyzers" Version="4.8.1">
 		</PackageVersion>
 		<PackageVersion Include="NUnit3TestAdapter" Version="5.0.0">
 		</PackageVersion>
 		<PackageVersion Include="xunit" Version="2.9.3">
 		</PackageVersion>
-		<PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2">
+		<PackageVersion Include="xunit.runner.visualstudio" Version="3.1.0">
 		</PackageVersion>
 		<PackageVersion Include="coverlet.collector" Version="6.0.4">
 		</PackageVersion>
-		<PackageVersion Include="Moq" Version="4.20.71">
+		<PackageVersion Include="Moq" Version="4.20.72">
 		</PackageVersion>
 		<PackageVersion Include="ApprovalTests" Version="6.0.0">
 		</PackageVersion>
@@ -363,7 +370,7 @@
 	<ItemGroup>
 		<PackageVersion Include="CsvHelper" Version="33.0.1">
 		</PackageVersion>
-		<PackageVersion Include="NPOI" Version="2.7.2">
+		<PackageVersion Include="NPOI" Version="2.7.3">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Web -->
@@ -371,13 +378,15 @@
 		<!-- 👇 Html Parser（Html 解析） -->
 		<PackageVersion Include="AngleSharp" Version="1.3.0">
 		</PackageVersion>
-		<PackageVersion Include="HtmlAgilityPack" Version="1.11.72">
+		<PackageVersion Include="HtmlAgilityPack" Version="1.12.1">
 		</PackageVersion>
 		<!-- 👇 WebView2 -->
 		<PackageVersion Include="WebView2.NativeAssets.Win32" Version="1.0.1518.46">
 		</PackageVersion>
+		<PackageVersion Include="WebView2.Avalonia" Version="1.0.3240.44-preview.250526.1">
+		</PackageVersion>
 		<!-- 👇 浏览器测试框架 -->
-		<PackageVersion Include="Microsoft.Playwright" Version="1.50.0">
+		<PackageVersion Include="Microsoft.Playwright" Version="1.52.0">
 		</PackageVersion>
 		<PackageVersion Include="PuppeteerSharp" Version="20.1.3">
 		</PackageVersion>
@@ -387,9 +396,9 @@
 		<!-- 👇 AntDesign -->
 		<PackageVersion Include="AntDesign" Version="1.4.0">
 		</PackageVersion>
-		<PackageVersion Include="AntDesign.Charts" Version="0.6.5">
+		<PackageVersion Include="AntDesign.Charts" Version="0.7.2">
 		</PackageVersion>
-		<PackageVersion Include="AntDesign.ProLayout" Version="1.3.1">
+		<PackageVersion Include="AntDesign.ProLayout" Version="1.4.0">
 		</PackageVersion>
 		<!-- 👇 反向代理 -->
 		<PackageVersion Include="Yarp.ReverseProxy" Version="2.3.0">
@@ -412,7 +421,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Essensoft.Paylink.WeChatPay" Version="4.1.9">
 		</PackageVersion>
-		<PackageVersion Include="SKIT.FlurlHttpClient.Wechat.Api" Version="3.8.0">
+		<PackageVersion Include="SKIT.FlurlHttpClient.Wechat.Api" Version="3.9.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Serialize（序列化） -->
@@ -427,7 +436,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.0">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.4">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
@@ -435,7 +444,7 @@
 		</PackageVersion>
 		<PackageVersion Include="protobuf-net" Version="3.2.52">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="9.0.0">
+		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="9.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Resilience & Transient Fault Handling（重试） -->
@@ -471,7 +480,7 @@
 		</PackageVersion>
 		<PackageVersion Include="ReactiveUI.Fody" Version="19.5.41">
 		</PackageVersion>
-		<PackageVersion Include="ReactiveUI.AndroidX" Version="20.1.63">
+		<PackageVersion Include="ReactiveUI.AndroidX" Version="20.2.45">
 		</PackageVersion>
 		<PackageVersion Include="ReactiveUI.Maui" Version="$(Version_ReactiveUI)">
 		</PackageVersion>
@@ -479,7 +488,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Costura.Fody" Version="6.0.0">
 		</PackageVersion>
-		<PackageVersion Include="DynamicData" Version="9.1.1">
+		<PackageVersion Include="DynamicData" Version="9.3.2">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 .NET Compat -->
@@ -493,7 +502,7 @@
 	</ItemGroup>
 	<!-- 👇 .NET BCL -->
 	<ItemGroup>
-		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="9.0.0">
+		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="9.0.4">
 		</PackageVersion>
 		<PackageVersion Include="System.Diagnostics.EventLog" Version="9.0.4">
 		</PackageVersion>
@@ -501,11 +510,11 @@
 		</PackageVersion>
 		<PackageVersion Include="System.IO.Pipelines" Version="9.0.4">
 		</PackageVersion>
-		<PackageVersion Include="System.IO.Hashing" Version="9.0.5">
+		<PackageVersion Include="System.IO.Hashing" Version="9.0.4">
 		</PackageVersion>
 		<PackageVersion Include="System.Linq.Async" Version="6.0.1">
 		</PackageVersion>
-		<PackageVersion Include="System.Management" Version="9.0.0">
+		<PackageVersion Include="System.Management" Version="9.0.4">
 		</PackageVersion>
 		<PackageVersion Include="System.Memory" Version="4.6.3">
 		</PackageVersion>
@@ -517,11 +526,11 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Text.Json" Version="9.0.4">
 		</PackageVersion>
-		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.6.0">
+		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.6.3">
 		</PackageVersion>
-		<PackageVersion Include="System.ValueTuple" Version="4.5.0">
+		<PackageVersion Include="System.ValueTuple" Version="4.6.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="9.0.0">
+		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="9.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.Extensions.* -->
@@ -578,13 +587,13 @@
 	<ItemGroup>
 		<PackageVersion Include="AspNet.Security.OpenId.Steam" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="9.3.0">
+		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="9.4.0">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="9.3.0">
+		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="9.4.0">
 		</PackageVersion>
 		<PackageVersion Include="BuknSS.AspNet.Security.OAuth.Alipay" Version="8.2.2-dev">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.Weixin" Version="9.3.0">
+		<PackageVersion Include="AspNet.Security.OAuth.Weixin" Version="9.4.0">
 		</PackageVersion>
 		<PackageVersion Include="OpenIddict.Core" Version="$(Version_OpenIddict)">
 		</PackageVersion>
@@ -602,16 +611,16 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(Version_AspNetCore_Authentication)">
 		</PackageVersion>
-		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.4.0">
+		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.11.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.4.0">
+		<PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.11.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.4.0">
+		<PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.11.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Redis -->
 	<ItemGroup>
-		<PackageVersion Include="StackExchange.Redis" Version="2.8.31">
+		<PackageVersion Include="StackExchange.Redis" Version="2.8.37">
 		</PackageVersion>
 		<PackageVersion Include="StackExchange.Redis.Extensions.AspNetCore" Version="11.0.0">
 		</PackageVersion>
@@ -621,7 +630,7 @@
 	</ItemGroup>
 	<!-- 👇 Mail（邮箱 📫） -->
 	<ItemGroup>
-		<PackageVersion Include="MailKit" Version="4.10.0">
+		<PackageVersion Include="MailKit" Version="4.12.1">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 SourceLink -->
@@ -672,7 +681,7 @@
 	</ItemGroup>
 	<!-- 👇 Windows Only 🪟 -->
 	<ItemGroup>
-		<PackageVersion Include="TaskScheduler" Version="2.11.0">
+		<PackageVersion Include="TaskScheduler" Version="2.12.1">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3">
 		</PackageVersion>
@@ -785,7 +794,7 @@
 	</ItemGroup>
 	<!-- 👇 Steam（蒸汽平台） -->
 	<ItemGroup>
-		<PackageVersion Include="SteamKit2" Version="3.0.2">
+		<PackageVersion Include="SteamKit2" Version="3.2.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 HighPerformance（高性能） -->
@@ -793,19 +802,19 @@
 		<PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.4.0">
 		</PackageVersion>
 		<!-- 👇 DotNext（一组功能强大的库，旨在提高开发效率并扩展具有独特功能的 .NET API） -->
-		<PackageVersion Include="DotNext" Version="5.21.0">
+		<PackageVersion Include="DotNext" Version="5.22.0">
 		</PackageVersion>
-		<PackageVersion Include="DotNext.Threading" Version="5.21.0">
+		<PackageVersion Include="DotNext.Threading" Version="5.22.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Composition（组件扩展业务插件） -->
 	<ItemGroup>
-		<PackageVersion Include="System.Composition" Version="9.0.0">
+		<PackageVersion Include="System.Composition" Version="9.0.4">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Markdown -->
 	<ItemGroup>
-		<PackageVersion Include="Markdig" Version="0.40.0">
+		<PackageVersion Include="Markdig" Version="0.41.1">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Docker 🐋 -->
@@ -815,7 +824,7 @@
 	</ItemGroup>
 	<!-- 👇 Benchmark（基准测试） -->
 	<ItemGroup>
-		<PackageVersion Include="BenchmarkDotNet" Version="0.14.0">
+		<PackageVersion Include="BenchmarkDotNet" Version="0.15.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 UTF-8 -->
@@ -832,7 +841,7 @@
 	</ItemGroup>
 	<!-- 👇 MediatR -->
 	<ItemGroup>
-		<PackageVersion Include="MediatR" Version="12.4.1" />
+		<PackageVersion Include="MediatR" Version="12.5.0" />
 	</ItemGroup>
 	<!-- 👇 FluentValidation -->
 	<ItemGroup>
@@ -840,7 +849,7 @@
 	</ItemGroup>
 	<!-- 👇 TencentCloudSDK -->
 	<ItemGroup>
-		<PackageVersion Include="TencentCloudSDK.Dnspod" Version="3.0.1232" />
+		<PackageVersion Include="TencentCloudSDK.Dnspod" Version="3.0.1251" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageVersion Include="Tmds.DBus" Version="0.21.2" />

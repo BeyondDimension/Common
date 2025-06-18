@@ -19,9 +19,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-		<ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
-		<ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
@@ -54,39 +54,39 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.Common8.3rdParty.Facepunch.Steamworks\BD.Common8.3rdParty.Facepunch.Steamworks.csproj" />
-	  <ProjectReference Include="..\BD.Common8.3rdParty.SteamKit2\BD.Common8.3rdParty.SteamKit2.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Crawler\BD.Common8.Crawler.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Essentials.Implementation.Avalonia\BD.Common8.Essentials.Implementation.Avalonia.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Essentials.Implementation\BD.Common8.Essentials.Implementation.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
-	  <ProjectReference Include="..\BD.Common8.HuaweiCloud.SDK.Obs\BD.Common8.HuaweiCloud.SDK.Obs.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Ipc.Client\BD.Common8.Ipc.Client.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Pinyin.ChnCharInfo\BD.Common8.Pinyin.ChnCharInfo.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Pinyin\BD.Common8.Pinyin.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.PersonalData.UserName\BD.Common8.Primitives.PersonalData.UserName.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives.Toast\BD.Common8.Primitives.Toast.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Repositories.SQLitePCL\BD.Common8.Repositories.SQLitePCL.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Security\BD.Common8.Security.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Settings5\BD.Common8.Settings5.csproj" />
-	  <ProjectReference Include="..\BD.Common8.SmsSender\BD.Common8.SmsSender.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.3rdParty.Facepunch.Steamworks\BD.Common8.3rdParty.Facepunch.Steamworks.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.3rdParty.SteamKit2\BD.Common8.3rdParty.SteamKit2.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Crawler\BD.Common8.Crawler.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Essentials.Implementation.Avalonia\BD.Common8.Essentials.Implementation.Avalonia.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Essentials.Implementation\BD.Common8.Essentials.Implementation.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Essentials\BD.Common8.Essentials.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.HuaweiCloud.SDK.Obs\BD.Common8.HuaweiCloud.SDK.Obs.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Ipc.Client\BD.Common8.Ipc.Client.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Ipc.Server\BD.Common8.Ipc.Server.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Ipc\BD.Common8.Ipc.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Orm.EFCore\BD.Common8.Orm.EFCore.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Pinyin.ChnCharInfo\BD.Common8.Pinyin.ChnCharInfo.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Pinyin\BD.Common8.Pinyin.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.ApiResponse\BD.Common8.Primitives.ApiResponse.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.District\BD.Common8.Primitives.District.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.PersonalData.BirthDate\BD.Common8.Primitives.PersonalData.BirthDate.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.PersonalData.PhoneNumber\BD.Common8.Primitives.PersonalData.PhoneNumber.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.PersonalData.UserName\BD.Common8.Primitives.PersonalData.UserName.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.Toast\BD.Common8.Primitives.Toast.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Repositories.EFCore\BD.Common8.Repositories.EFCore.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Repositories.SQLitePCL\BD.Common8.Repositories.SQLitePCL.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Repositories\BD.Common8.Repositories.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Security\BD.Common8.Security.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Settings5\BD.Common8.Settings5.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.SmsSender\BD.Common8.SmsSender.csproj" />
 	  <ProjectReference Aliases="SG_Repo" Include="..\BD.Common8.SourceGenerator.Repositories\BD.Common8.SourceGenerator.Repositories.csproj" />
-	  <ProjectReference Include="..\BD.Common8.Toast\BD.Common8.Toast.csproj" />
-	  <ProjectReference Include="..\BD.Common8.UserInput.ModelValidator\BD.Common8.UserInput.ModelValidator.csproj" />
-	  <ProjectReference Include="..\Tools.Build\Tools.Build.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Toast\BD.Common8.Toast.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.UserInput.ModelValidator\BD.Common8.UserInput.ModelValidator.csproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)Tools.Build\Tools.Build.csproj" />
 	</ItemGroup>
 
 </Project>

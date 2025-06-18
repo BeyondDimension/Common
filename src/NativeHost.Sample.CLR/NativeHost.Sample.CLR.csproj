@@ -33,7 +33,7 @@
 	</ItemGroup>
 
 	<!--<ItemGroup>
-	  <ProjectReference Include="..\NativeHost.StaticLib.CLR\NativeHost.StaticLib.CLR.vcxproj" />
+	  <ProjectReference Include="$(Path_Submodule_Common)src\NativeHost.StaticLib.CLR\NativeHost.StaticLib.CLR.vcxproj" />
 	</ItemGroup>-->
 
 	<ItemGroup>

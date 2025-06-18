@@ -8,9 +8,9 @@
 	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-		<ProjectReference Include="..\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
-		<ProjectReference Include="..\BD.Common8.Toast\BD.Common8.Toast.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Toast\BD.Common8.Toast.csproj" />
 	</ItemGroup>
 
 </Project>
