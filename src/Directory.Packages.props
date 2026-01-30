@@ -215,7 +215,7 @@
 	</ItemGroup>
 	<!-- 👇 MinIO SDK -->
 	<ItemGroup>
-		<PackageVersion Include="Minio" Version="6.0.4">
+		<PackageVersion Include="Minio" Version="7.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Grpc -->
