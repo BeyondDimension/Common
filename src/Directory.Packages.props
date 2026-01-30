@@ -829,7 +829,7 @@
 	</ItemGroup>
 	<!-- 👇 NAT 网络类型测试库 -->
 	<ItemGroup>
-		<PackageVersion Include="Stun.Net" Version="8.0.2" />
+		<PackageVersion Include="Stun.Net" Version="9.0.1" />
 	</ItemGroup>
 	<!-- 👇 MediatR -->
 	<ItemGroup>
