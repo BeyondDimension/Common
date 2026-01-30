@@ -837,7 +837,7 @@
 	</ItemGroup>
 	<!-- 👇 FluentValidation -->
 	<ItemGroup>
-		<PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.1" />
 	</ItemGroup>
 	<!-- 👇 TencentCloudSDK -->
 	<ItemGroup>
