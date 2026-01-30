@@ -640,10 +640,17 @@ public static class AESUtils
         {
             if (IVByteArray == null) throw new NullReferenceException(nameof(IVByteArray));
             if (KeyByteArray == null) throw new NullReferenceException(nameof(KeyByteArray));
-            return BitConverter.GetBytes((ushort)ModeAndPadding)
-                .Concat(IVByteArray)
-                .Concat(KeyByteArray.Reverse())
-                .ToArray();
+
+            Span<byte> span = stackalloc byte[IVByteArray.Length + KeyByteArray.Length + sizeof(ushort)];
+            BitConverter.TryWriteBytes(span, (ushort)ModeAndPadding);
+
+            var tmp = span[sizeof(ushort)..];
+            IVByteArray.CopyTo(tmp);
+            tmp = tmp[IVByteArray.Length..];
+            KeyByteArray.CopyTo(tmp);
+            tmp.Reverse();
+
+            return span.ToArray();
         }
 
         public new string ToString() => ToByteArray().Base64UrlEncode();

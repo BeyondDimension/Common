@@ -55,7 +55,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\BD.Common.AspNetCore\BD.Common.AspNetCore.csproj" />
 		<ProjectReference Include="..\BD.Common.EFCore\BD.Common.EFCore.csproj" />
 		<ProjectReference Include="..\BD.Common.PhoneNumber\BD.Common.PhoneNumber.csproj" />
 		<ProjectReference Include="..\BD.Common.Primitives.ApiResponse\BD.Common.Primitives.ApiResponse.csproj" />

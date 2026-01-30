@@ -16,14 +16,15 @@ try
 
     static string Unprotect(byte[] encryptedData)
     {
-#if WINDOWS
-        var bytes = ProtectedData.Unprotect(encryptedData, Resources.hash2, DataProtectionScope.LocalMachine);
-        var str = Encoding.UTF8.GetString(bytes);
-        return str;
-#else
-        var str = Encoding.UTF8.GetString(encryptedData);
-        return str;
-#endif
+        throw new NotImplementedException("TODO: fix");
+        //#if WINDOWS
+        //        var bytes = ProtectedData.Unprotect(encryptedData, Resources.hash2, DataProtectionScope.LocalMachine);
+        //        var str = Encoding.UTF8.GetString(bytes);
+        //        return str;
+        //#else
+        //        var str = Encoding.UTF8.GetString(encryptedData);
+        //        return str;
+        //#endif
     }
 
     ProcessStartInfo psi;

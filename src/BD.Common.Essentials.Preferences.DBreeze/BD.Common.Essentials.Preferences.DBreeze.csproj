@@ -43,7 +43,6 @@
 		<ProjectReference Include="..\BD.Common.Essentials.Primitives\BD.Common.Essentials.Primitives.csproj" />
 		<ProjectReference Include="..\BD.Common.Essentials\BD.Common.Essentials.csproj" />
 		<ProjectReference Include="..\BD.Common.Repositories.SQLitePCL\BD.Common.Repositories.SQLitePCL.csproj" />
-		<ProjectReference Include="..\BD.Common.Settings.V3\BD.Common.Settings.V3.csproj" />
 		<ProjectReference Include="..\BD.Common.Toast\BD.Common.Toast.csproj" />
 		<ProjectReference Include="..\BD.Common\BD.Common.csproj" />
 	</ItemGroup>

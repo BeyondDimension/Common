@@ -4,7 +4,7 @@ namespace BD.Common.Models.Abstractions;
 #if !BLAZOR
 [MPObj]
 #endif
-public abstract partial class KeyModel<TPrimaryKey> : IKeyModel<TPrimaryKey> where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
+public partial class KeyModel<TPrimaryKey> : IKeyModel<TPrimaryKey> where TPrimaryKey : notnull, IEquatable<TPrimaryKey>
 {
 #if !BLAZOR
     /// <summary>

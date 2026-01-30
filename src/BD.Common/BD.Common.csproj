@@ -48,7 +48,6 @@
 		<PackageReference Include="OperatingSystem2" />
 		<PackageReference Include="Polly" />
 		<PackageReference Include="Nito.AsyncEx.Coordination" />
-		<PackageReference Include="System.IO.Pipelines" />
 		<PackageReference Include="Splat.Drawing" />
 	</ItemGroup>
 
