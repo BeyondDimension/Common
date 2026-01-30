@@ -305,7 +305,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
                         {
                             if (proxyInfo.lpszProxy != IntPtr.Zero)
                             {
-                                string proxyStr = proxyInfo.lpszProxy;
+                                var proxyStr = proxyInfo.lpszProxy;
                                 return MultiProxy.CreateLazy(_failedProxies, proxyStr, IsSecureUri(uri));
                             }
                             else
@@ -491,7 +491,7 @@ public sealed class DynamicHttpWindowsProxy : IWebProxy, IDisposable
         /// <param name="failedProxyCache">The cache of failed proxy requests to employ.</param>
         /// <param name="proxyConfig">The WinHTTP proxy config to parse.</param>
         /// <param name="secure">If true, return proxies suitable for use with a secure connection. If false, return proxies suitable for an insecure connection.</param>
-        public static MultiProxy CreateLazy(FailedProxyCache failedProxyCache, string proxyConfig, bool secure)
+        public static MultiProxy CreateLazy(FailedProxyCache failedProxyCache, string? proxyConfig, bool secure)
         {
             Debug.Assert(failedProxyCache != null);
 
