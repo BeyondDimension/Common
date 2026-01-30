@@ -241,7 +241,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Peachpie.Library.PDO.PgSQL" Version="1.1.11">
 		</PackageVersion>
-		<PackageVersion Include="Peachpie.Runtime" Version="1.1.11">
+		<PackageVersion Include="Peachpie.Runtime" Version="1.1.13">
 		</PackageVersion>
 		<PackageVersion Include="PeachPied.WordPress.AspNetCore" Version="6.7.1">
 		</PackageVersion>
