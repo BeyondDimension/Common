@@ -816,7 +816,7 @@
 	</ItemGroup>
 	<!-- 👇 Benchmark（基准测试） -->
 	<ItemGroup>
-		<PackageVersion Include="BenchmarkDotNet" Version="0.15.0">
+		<PackageVersion Include="BenchmarkDotNet" Version="0.15.8">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 UTF-8 -->
