@@ -396,7 +396,7 @@
 		<!-- 👇 AntDesign -->
 		<PackageVersion Include="AntDesign" Version="1.4.0">
 		</PackageVersion>
-		<PackageVersion Include="AntDesign.Charts" Version="0.7.2">
+		<PackageVersion Include="AntDesign.Charts" Version="0.9.0">
 		</PackageVersion>
 		<PackageVersion Include="AntDesign.ProLayout" Version="1.4.0">
 		</PackageVersion>
