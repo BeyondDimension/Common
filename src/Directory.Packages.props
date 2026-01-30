@@ -279,7 +279,7 @@
 	<ItemGroup>
 		<PackageVersion Include="Quartz.AspNetCore" Version="3.14.0">
 		</PackageVersion>
-		<PackageVersion Include="CrystalQuartz.AspNetCore" Version="7.1.0">
+		<PackageVersion Include="CrystalQuartz.AspNetCore" Version="7.3.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 NuGet -->
