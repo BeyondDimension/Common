@@ -272,7 +272,7 @@
 	<ItemGroup>
 		<PackageVersion Include="AutoMapper" Version="14.0.0">
 		</PackageVersion>
-		<PackageVersion Include="AutoMapper.Collection" Version="11.0.0">
+		<PackageVersion Include="AutoMapper.Collection" Version="12.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Quartz JobSchedule（作业调度） -->
