@@ -407,7 +407,7 @@
 		<PackageVersion Include="Certes" Version="3.0.4">
 		</PackageVersion>
 		<!-- 👇 HTTP 下载库 -->
-		<PackageVersion Condition="!$(TargetFramework.StartsWith('net4'))" Include="Downloader" Version="3.3.4">
+		<PackageVersion Condition="!$(TargetFramework.StartsWith('net4'))" Include="Downloader" Version="4.1.1">
 		</PackageVersion>
 		<PackageVersion Condition="$(TargetFramework.StartsWith('net4'))" Include="Downloader" Version="$(Version_Downloader_DotNetFX)">
 		</PackageVersion>
