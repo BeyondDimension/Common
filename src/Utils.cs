@@ -20,7 +20,9 @@ static partial class Utils
     {
         path ??= AppContext.BaseDirectory;
 #pragma warning disable RS1035 // 不要使用禁用于分析器的 API
-        if (!Directory.EnumerateFiles(path, "*.sln").Any())
+        var slnfiles = Directory.EnumerateFiles(path, "*.sln")
+            .Concat(Directory.EnumerateFiles(path, "*.slnx"));
+        if (!slnfiles.Any())
         {
             var parent = Directory.GetParent(path);
             if (parent == null) return string.Empty;
