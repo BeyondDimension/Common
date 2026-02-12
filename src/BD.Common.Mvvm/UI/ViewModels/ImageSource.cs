@@ -212,14 +212,14 @@ public static class ImageSource
         return clipStream;
     }
 
-    public static async Task<ClipStream?> GetAsync(
+    public static async Task<MemoryStream?> GetAsync(
         string requestUri,
         bool isPolly = true,
         bool cache = false,
         bool cacheFirst = false,
         HttpHandlerCategory category = HttpHandlerCategory.UserInitiated,
         bool isCircle = false,
-        Action<ClipStream>? config = null,
+        Action<MemoryStream>? config = null,
         CancellationToken cancellationToken = default)
     {
         var imageHttpClientService = Ioc.Get_Nullable<IImageHttpClientService>();
@@ -230,12 +230,12 @@ public static class ImageSource
         if (imageMemoryStream == default)
             return default;
 
-        ClipStream? clipStream = imageMemoryStream;
-        if (clipStream != null)
-        {
-            clipStream.Circle = isCircle;
-            config?.Invoke(clipStream);
-        }
-        return clipStream;
+        //ClipStream? clipStream = imageMemoryStream;
+        //if (clipStream != null)
+        //{
+        //    clipStream.Circle = isCircle;
+        //    config?.Invoke(clipStream);
+        //}
+        return imageMemoryStream;
     }
 }
