@@ -447,7 +447,7 @@
 	</ItemGroup>
 	<!-- 👇 Resilience & Transient Fault Handling（重试） -->
 	<ItemGroup>
-		<PackageVersion Include="Polly" Version="8.5.2">
+		<PackageVersion Include="Polly" Version="8.6.6">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 QrCode（二维码） -->
