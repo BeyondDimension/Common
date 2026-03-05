@@ -18,7 +18,22 @@ public sealed partial class JWTEntity : IExplicitHasValue
     [MPKey(0)]
     [MP2Key(0)]
 #endif
-    public DateTimeOffset ExpiresIn { get; set; }
+    public DateTimeOffset ExpiresIn
+    {
+        get => field;
+        set
+        {
+            // fix MemoryPack Deserialize Offset error
+            if (value.Offset > TimeSpan.FromDays(1))
+            {
+                field = value.UtcDateTime;
+            }
+            else
+            {
+                field = value;
+            }
+        }
+    }
 
     /// <summary>
     /// 当前凭证
