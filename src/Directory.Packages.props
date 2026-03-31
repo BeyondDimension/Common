@@ -158,7 +158,7 @@
 	<ItemGroup>
 		<PackageVersion Include="Aspire.Hosting.AppHost" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.3.0">
+		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="9.5.2">
 		</PackageVersion>
 		<PackageVersion Include="Aspire.Hosting.Redis" Version="9.3.0">
 		</PackageVersion>
