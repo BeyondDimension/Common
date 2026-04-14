@@ -304,7 +304,7 @@
 	</ItemGroup>
 	<!-- 👇 Swagger OpenAPI Documentation（Swagger 文档） -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.OpenApi" Version="1.6.24">
+		<PackageVersion Include="Microsoft.OpenApi" Version="1.6.29">
 		</PackageVersion>
 		<PackageVersion Include="Swashbuckle.AspNetCore" Version="$(Version_Swashbuckle)">
 		</PackageVersion>
