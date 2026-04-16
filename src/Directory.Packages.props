@@ -679,7 +679,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.162">
+		<PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.275">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 macOS Only 🍎 -->
