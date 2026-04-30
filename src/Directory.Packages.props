@@ -220,9 +220,9 @@
 	</ItemGroup>
 	<!-- 👇 Grpc -->
 	<ItemGroup>
-		<PackageVersion Include="Grpc.AspNetCore" Version="2.71.0">
+		<PackageVersion Include="Grpc.AspNetCore" Version="2.80.0">
 		</PackageVersion>
-		<PackageVersion Include="Grpc.Net.Client" Version="2.71.0">
+		<PackageVersion Include="Grpc.Net.Client" Version="2.80.0">
 		</PackageVersion>
 		<PackageVersion Include="Grpc.Tools" Version="2.72.0">
 		</PackageVersion>
