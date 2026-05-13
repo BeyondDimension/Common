@@ -205,7 +205,7 @@
 	</ItemGroup>
 	<!-- 👇 Azure SDK for .NET（微软云） -->
 	<ItemGroup>
-		<PackageVersion Include="Azure.Storage.Blobs" Version="12.24.0">
+		<PackageVersion Include="Azure.Storage.Blobs" Version="12.28.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 HuaweiCloud SDK for .NET（华为云） -->
