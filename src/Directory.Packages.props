@@ -386,7 +386,7 @@
 		<PackageVersion Include="WebView2.Avalonia" Version="1.0.3240.44-preview.250526.1">
 		</PackageVersion>
 		<!-- 👇 浏览器测试框架 -->
-		<PackageVersion Include="Microsoft.Playwright" Version="1.52.0">
+		<PackageVersion Include="Microsoft.Playwright" Version="1.60.0">
 		</PackageVersion>
 		<PackageVersion Include="PuppeteerSharp" Version="20.1.3">
 		</PackageVersion>
