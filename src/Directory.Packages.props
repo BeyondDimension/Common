@@ -452,7 +452,7 @@
 	</ItemGroup>
 	<!-- 👇 QrCode（二维码） -->
 	<ItemGroup>
-		<PackageVersion Include="Net.Codecrete.QrCodeGenerator" Version="2.0.6">
+		<PackageVersion Include="Net.Codecrete.QrCodeGenerator" Version="3.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Nito.* -->
