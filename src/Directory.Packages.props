@@ -624,7 +624,7 @@
 	</ItemGroup>
 	<!-- 👇 Mail（邮箱 📫） -->
 	<ItemGroup>
-		<PackageVersion Include="MailKit" Version="4.12.1">
+		<PackageVersion Include="MailKit" Version="4.17.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 SourceLink -->
