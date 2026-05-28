@@ -844,7 +844,7 @@
 		<PackageVersion Include="TencentCloudSDK.Dnspod" Version="3.0.1251" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageVersion Include="Tmds.DBus" Version="0.21.2" />
+		<PackageVersion Include="Tmds.DBus" Version="0.94.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageVersion Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
