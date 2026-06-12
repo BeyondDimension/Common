@@ -368,7 +368,7 @@
 	</ItemGroup>
 	<!-- 👇 CSV / Excel / Office -->
 	<ItemGroup>
-		<PackageVersion Include="CsvHelper" Version="33.0.1">
+		<PackageVersion Include="CsvHelper" Version="33.1.0">
 		</PackageVersion>
 		<PackageVersion Include="NPOI" Version="2.7.3">
 		</PackageVersion>
