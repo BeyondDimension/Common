@@ -484,7 +484,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Fody" Version="6.9.2">
 		</PackageVersion>
-		<PackageVersion Include="Costura.Fody" Version="6.0.0">
+		<PackageVersion Include="Costura.Fody" Version="6.2.0">
 		</PackageVersion>
 		<PackageVersion Include="DynamicData" Version="9.3.2">
 		</PackageVersion>
