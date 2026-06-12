@@ -581,13 +581,13 @@
 	<ItemGroup>
 		<PackageVersion Include="AspNet.Security.OpenId.Steam" Version="9.0.0">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="9.4.0">
+		<PackageVersion Include="AspNet.Security.OAuth.QQ" Version="9.4.1">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="9.4.0">
+		<PackageVersion Include="AspNet.Security.OAuth.Apple" Version="9.4.1">
 		</PackageVersion>
 		<PackageVersion Include="BuknSS.AspNet.Security.OAuth.Alipay" Version="8.2.2-dev">
 		</PackageVersion>
-		<PackageVersion Include="AspNet.Security.OAuth.Weixin" Version="9.4.0">
+		<PackageVersion Include="AspNet.Security.OAuth.Weixin" Version="9.4.1">
 		</PackageVersion>
 		<PackageVersion Include="OpenIddict.Core" Version="$(Version_OpenIddict)">
 		</PackageVersion>
