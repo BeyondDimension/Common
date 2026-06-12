@@ -656,7 +656,7 @@
 	<ItemGroup>
 		<PackageVersion Include="SharpZipLib" Version="1.4.2">
 		</PackageVersion>
-		<PackageVersion Include="7-Zip.NativeAssets.Win32" Version="24.5.0">
+		<PackageVersion Include="7-Zip.NativeAssets.Win32" Version="25.1.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Console（控制台程序） -->
