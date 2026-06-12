@@ -388,7 +388,7 @@
 		<!-- 👇 浏览器测试框架 -->
 		<PackageVersion Include="Microsoft.Playwright" Version="1.52.0">
 		</PackageVersion>
-		<PackageVersion Include="PuppeteerSharp" Version="20.1.3">
+		<PackageVersion Include="PuppeteerSharp" Version="20.2.6">
 		</PackageVersion>
 		<!-- 👇 Blazor Components（WebUI） -->
 		<PackageVersion Include="Blazor.QRCode" Version="0.2.1">
