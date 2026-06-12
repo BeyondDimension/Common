@@ -524,7 +524,7 @@
 		</PackageVersion>
 		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.6.3">
 		</PackageVersion>
-		<PackageVersion Include="System.ValueTuple" Version="4.6.1">
+		<PackageVersion Include="System.ValueTuple" Version="4.6.2">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="9.0.4">
 		</PackageVersion>
