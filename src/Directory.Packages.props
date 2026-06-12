@@ -764,7 +764,7 @@
 	</ItemGroup>
 	<!-- 👇 WPF -->
 	<ItemGroup>
-		<PackageVersion Include="WPF-UI" Version="4.0.2">
+		<PackageVersion Include="WPF-UI" Version="4.3.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Maui -->
