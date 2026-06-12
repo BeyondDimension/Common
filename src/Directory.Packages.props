@@ -493,7 +493,7 @@
 	<ItemGroup>
 		<PackageVersion Include="JustArchiNET.Madness" Version="3.17.0">
 		</PackageVersion>
-		<PackageVersion Include="IndexRange" Version="1.0.3">
+		<PackageVersion Include="IndexRange" Version="1.1.1">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 .NET BCL -->
