@@ -3,7 +3,7 @@
 	<!-- 👇 当前项目的【版本号】配置 -->
 	<PropertyGroup>
 		<!--<Version>8.yy.1MMdd.1hhmm</Version>-->
-		<Version_Common8Bcl>8.24.10815.11937</Version_Common8Bcl>
+		<Version_Common8Bcl>8.25.10606.11900</Version_Common8Bcl>
 		<Version_SourceGenerator_Bcl>8.24.10815.11937</Version_SourceGenerator_Bcl>
 		<Version_SourceGenerator_Ipc_Client>8.24.10815.11937</Version_SourceGenerator_Ipc_Client>
 		<Version_SourceGenerator_Ipc_Server>8.24.10815.11937</Version_SourceGenerator_Ipc_Server>
