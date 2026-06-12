@@ -434,7 +434,7 @@
 		</PackageVersion>
 		<PackageVersion Include="MemoryPack.Streaming" Version="$(Version_MemoryPack)">
 		</PackageVersion>
-		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3">
+		<PackageVersion Include="Newtonsoft.Json" Version="13.0.4">
 		</PackageVersion>
 		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.4">
 		</PackageVersion>
