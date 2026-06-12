@@ -704,7 +704,7 @@
 	<ItemGroup>
 		<PackageVersion Include="Ae.Dns.Client" Version="3.0.0">
 		</PackageVersion>
-		<PackageVersion Include="Ae.Dns.Protocol" Version="3.0.0">
+		<PackageVersion Include="Ae.Dns.Protocol" Version="3.1.0">
 		</PackageVersion>
 		<PackageVersion Include="DNS" Version="7.0.0">
 		</PackageVersion>
