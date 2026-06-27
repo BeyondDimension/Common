@@ -412,7 +412,7 @@
 		<PackageVersion Condition="$(TargetFramework.StartsWith('net4'))" Include="Downloader" Version="$(Version_Downloader_DotNetFX)">
 		</PackageVersion>
 		<!-- 👇 客户端 HTTP 请求 -->
-		<PackageVersion Include="fusillade" Version="2.6.30">
+		<PackageVersion Include="fusillade" Version="6.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Pay / Alipay / WeChat 💵 -->
