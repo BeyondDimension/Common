@@ -486,7 +486,7 @@
 		</PackageVersion>
 		<PackageVersion Include="Costura.Fody" Version="6.0.0">
 		</PackageVersion>
-		<PackageVersion Include="DynamicData" Version="9.3.2">
+		<PackageVersion Include="DynamicData" Version="9.4.33">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 .NET Compat -->
