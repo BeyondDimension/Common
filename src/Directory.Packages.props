@@ -270,7 +270,7 @@
 	</ItemGroup>
 	<!-- 👇 AutoMapper（对象映射） -->
 	<ItemGroup>
-		<PackageVersion Include="AutoMapper" Version="14.0.0">
+		<PackageVersion Include="AutoMapper" Version="16.2.0">
 		</PackageVersion>
 		<PackageVersion Include="AutoMapper.Collection" Version="11.0.0">
 		</PackageVersion>
