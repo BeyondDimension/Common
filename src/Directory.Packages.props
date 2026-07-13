@@ -464,7 +464,7 @@
 	</ItemGroup>
 	<!-- 👇 SQLite -->
 	<ItemGroup>
-		<PackageVersion Include="sqlite-net-pcl" Version="1.9.172">
+		<PackageVersion Include="sqlite-net-pcl" Version="1.11.285">
 		</PackageVersion>
 		<PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.11">
 		</PackageVersion>
