@@ -1,3 +1,5 @@
+using NetworkAccess = BD.Common.Enums.NetworkAccess;
+
 namespace BD.Common.Services;
 
 public interface IConnectivityPlatformService

@@ -31,7 +31,7 @@ public static class RxUIExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IDisposable SubscribeInMainThread<T>(this IObservable<T> source, Action<T> onNext) => source.ObserveOn(RxApp.MainThreadScheduler).Subscribe(onNext);
+    public static IDisposable SubscribeInMainThread<T>(this IObservable<T> source, Action<T> onNext) => source.ObserveOn(RxSchedulers.MainThreadScheduler).Subscribe(onNext);
 
     //public static IDisposable WhenAnyValue2SubscribeInMainThread<TSender, TRet>(this TSender sender, Expression<Func<TSender, TRet>> property1, Action<TRet> onNext) where TSender : INotifyPropertyChanged
     //{

@@ -7,7 +7,9 @@
 		<DefineConstants>__NOT_IMPORT_COLUMNS__;MAUI;MAUI_RUNTIME;$(DefineConstants)</DefineConstants>
 		<!--<TargetFrameworks>net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>-->
 		<TargetFrameworks>net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
+		<!-- Set BuildAllTargetFrameworks=true for Windows cross-platform builds. -->
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) AND '$(BuildAllTargetFrameworks)' != 'true'">net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) AND '$(BuildAllTargetFrameworks)' == 'true'">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<UseMaui>false</UseMaui>
 		<UseMauiEssentials>false</UseMauiEssentials>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
