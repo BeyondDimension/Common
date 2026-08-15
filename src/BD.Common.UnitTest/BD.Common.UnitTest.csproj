@@ -4,6 +4,7 @@
 		<Product>次元超越通用库单元测试</Product>
 		<RootNamespace>BD.Common.UnitTest</RootNamespace>
 		<IsPackable>false</IsPackable>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -1,28 +1,25 @@
 using Splat;
+using System.Buffers;
 using System.Drawing;
+using static System.Runtime.Serialization.Formatters.H;
 
 namespace System.Runtime.Serialization.Formatters;
 
 /// <summary>
 /// 对类型 <see cref="Color"/>, <see cref="SplatColor"/> 的序列化与反序列化实现
 /// </summary>
-public sealed class ColorFormatter :
-    IMessagePackFormatter<Color>,
-    IMessagePackFormatter<SplatColor>,
-    IMemoryPackFormatter<Color>,
-    IMemoryPackFormatter<SplatColor>,
-    IMessagePackFormatter<Color?>,
-    IMessagePackFormatter<SplatColor?>,
-    IMemoryPackFormatter<Color?>,
-    IMemoryPackFormatter<SplatColor?>
+[Obsolete("use ColorFormatter2", true)]
+public sealed class ColorFormatter
 {
-    public static readonly ColorFormatter Default = new();
+}
+
+file static class H
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static uint ToUInt32(int value) => (uint)(value < 0 ? 0 : value);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static uint ToUInt32(int value) => (uint)(value < 0 ? 0 : value);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static Color FromArgb(uint value)
+    internal static Color FromArgb(uint value)
     {
         if (value > int.MaxValue)
         {
@@ -34,19 +31,43 @@ public sealed class ColorFormatter :
             return Color.FromArgb((int)value);
         }
     }
+}
 
-    void IMessagePackFormatter<Color>.Serialize(ref MessagePackWriter writer, Color value, MessagePackSerializerOptions options)
+public sealed class ColorFormatter2 : IMessagePackFormatter<Color>, IMemoryPackFormatter<Color>
+{
+    public static readonly ColorFormatter2 Default = new();
+
+    public void Serialize(ref MessagePackWriter writer, Color value, MessagePackSerializerOptions options)
     {
         MessagePackSerializer.Serialize(ref writer, ToUInt32(value.ToArgb()), options);
     }
 
-    Color IMessagePackFormatter<Color>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+    public Color Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         var argb = MessagePackSerializer.Deserialize<uint>(ref reader, options);
         return FromArgb(argb);
     }
 
-    void IMessagePackFormatter<Color?>.Serialize(ref MessagePackWriter writer, Color? value, MessagePackSerializerOptions options)
+    public void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Color value)
+        where TBufferWriter : IBufferWriter<byte>
+    {
+        writer.WriteVarInt(ToUInt32(value.ToArgb()));
+    }
+
+    public void Deserialize(ref MemoryPackReader reader, scoped ref Color value)
+    {
+        var argb = reader.ReadVarIntUInt32();
+        value = FromArgb(argb);
+    }
+}
+
+#pragma warning disable MsgPack009 // Colliding formatters
+public sealed class NullableColorFormatter : IMessagePackFormatter<Color?>, IMemoryPackFormatter<Color?>
+#pragma warning restore MsgPack009 // Colliding formatters
+{
+    public static readonly NullableColorFormatter Default = new();
+
+    public void Serialize(ref MessagePackWriter writer, Color? value, MessagePackSerializerOptions options)
     {
         if (value.HasValue)
         {
@@ -58,7 +79,7 @@ public sealed class ColorFormatter :
         }
     }
 
-    Color? IMessagePackFormatter<Color?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+    public Color? Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
         {
@@ -71,18 +92,68 @@ public sealed class ColorFormatter :
         }
     }
 
-    void IMessagePackFormatter<SplatColor>.Serialize(ref MessagePackWriter writer, SplatColor value, MessagePackSerializerOptions options)
+    public void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Color? value)
+        where TBufferWriter : IBufferWriter<byte>
+    {
+        if (value.HasValue)
+        {
+            writer.WriteVarInt(ToUInt32(value.Value.ToArgb()));
+        }
+        else
+        {
+            writer.WriteNullObjectHeader();
+        }
+    }
+
+    public void Deserialize(ref MemoryPackReader reader, scoped ref Color? value)
+    {
+        if (reader.PeekIsNull())
+        {
+            value = default;
+        }
+        else
+        {
+            var argb = reader.ReadVarIntUInt32();
+            value = FromArgb(argb);
+        }
+    }
+}
+
+public sealed class SplatColorFormatter : IMessagePackFormatter<SplatColor>, IMemoryPackFormatter<SplatColor>
+{
+    public static readonly SplatColorFormatter Default = new();
+
+    public void Serialize(ref MessagePackWriter writer, SplatColor value, MessagePackSerializerOptions options)
     {
         MessagePackSerializer.Serialize(ref writer, value.ToArgb(), options);
     }
 
-    SplatColor IMessagePackFormatter<SplatColor>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+    public SplatColor Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         var argb = MessagePackSerializer.Deserialize<uint>(ref reader, options);
         return SplatColor.FromArgb(argb);
     }
 
-    void IMessagePackFormatter<SplatColor?>.Serialize(ref MessagePackWriter writer, SplatColor? value, MessagePackSerializerOptions options)
+    public void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SplatColor value)
+        where TBufferWriter : IBufferWriter<byte>
+    {
+        writer.WriteVarInt(value.ToArgb());
+    }
+
+    public void Deserialize(ref MemoryPackReader reader, scoped ref SplatColor value)
+    {
+        var argb = reader.ReadVarIntUInt32();
+        value = SplatColor.FromArgb(argb);
+    }
+}
+
+#pragma warning disable MsgPack009 // Colliding formatters
+public sealed class NullableSplatColorFormatter : IMessagePackFormatter<SplatColor?>, IMemoryPackFormatter<SplatColor?>
+#pragma warning restore MsgPack009 // Colliding formatters
+{
+    public static readonly NullableSplatColorFormatter Default = new();
+
+    public void Serialize(ref MessagePackWriter writer, SplatColor? value, MessagePackSerializerOptions options)
     {
         if (value.HasValue)
         {
@@ -94,7 +165,7 @@ public sealed class ColorFormatter :
         }
     }
 
-    SplatColor? IMessagePackFormatter<SplatColor?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+    public SplatColor? Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
         {
@@ -107,54 +178,8 @@ public sealed class ColorFormatter :
         }
     }
 
-    void IMemoryPackFormatter<Color>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Color value)
-    {
-        writer.WriteVarInt(ToUInt32(value.ToArgb()));
-    }
-
-    void IMemoryPackFormatter<Color>.Deserialize(ref MemoryPackReader reader, scoped ref Color value)
-    {
-        var argb = reader.ReadVarIntUInt32();
-        value = FromArgb(argb);
-    }
-
-    void IMemoryPackFormatter<SplatColor>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SplatColor value)
-    {
-        writer.WriteVarInt(value.ToArgb());
-    }
-
-    void IMemoryPackFormatter<SplatColor>.Deserialize(ref MemoryPackReader reader, scoped ref SplatColor value)
-    {
-        var argb = reader.ReadVarIntUInt32();
-        value = SplatColor.FromArgb(argb);
-    }
-
-    void IMemoryPackFormatter<Color?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Color? value)
-    {
-        if (value.HasValue)
-        {
-            writer.WriteVarInt(ToUInt32(value.Value.ToArgb()));
-        }
-        else
-        {
-            writer.WriteNullObjectHeader();
-        }
-    }
-
-    void IMemoryPackFormatter<Color?>.Deserialize(ref MemoryPackReader reader, scoped ref Color? value)
-    {
-        if (reader.PeekIsNull())
-        {
-            value = default;
-        }
-        else
-        {
-            var argb = reader.ReadVarIntUInt32();
-            value = FromArgb(argb);
-        }
-    }
-
-    void IMemoryPackFormatter<SplatColor?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SplatColor? value)
+    public void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SplatColor? value)
+        where TBufferWriter : IBufferWriter<byte>
     {
         if (value.HasValue)
         {
@@ -166,7 +191,7 @@ public sealed class ColorFormatter :
         }
     }
 
-    void IMemoryPackFormatter<SplatColor?>.Deserialize(ref MemoryPackReader reader, scoped ref SplatColor? value)
+    public void Deserialize(ref MemoryPackReader reader, scoped ref SplatColor? value)
     {
         if (reader.PeekIsNull())
         {
@@ -180,9 +205,9 @@ public sealed class ColorFormatter :
     }
 }
 
-public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter, Color>
+public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter2, Color>
 {
-    public sealed override ColorFormatter GetFormatter() => ColorFormatter.Default;
+    public sealed override ColorFormatter2 GetFormatter() => ColorFormatter2.Default;
 
     public sealed class Formatter : MemoryPackFormatter<Color>
     {
@@ -190,21 +215,21 @@ public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute
 
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Color value)
         {
-            IMemoryPackFormatter<Color> f = ColorFormatter.Default;
+            IMemoryPackFormatter<Color> f = ColorFormatter2.Default;
             f.Serialize(ref writer, ref value);
         }
 
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref Color value)
         {
-            IMemoryPackFormatter<Color> f = ColorFormatter.Default;
+            IMemoryPackFormatter<Color> f = ColorFormatter2.Default;
             f.Deserialize(ref reader, ref value);
         }
     }
 }
 
-public sealed class SplatColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter, SplatColor>
+public sealed class SplatColorFormatterAttribute : MemoryPackCustomFormatterAttribute<SplatColorFormatter, SplatColor>
 {
-    public sealed override ColorFormatter GetFormatter() => ColorFormatter.Default;
+    public sealed override SplatColorFormatter GetFormatter() => SplatColorFormatter.Default;
 
     public sealed class Formatter : MemoryPackFormatter<SplatColor>
     {
@@ -212,21 +237,21 @@ public sealed class SplatColorFormatterAttribute : MemoryPackCustomFormatterAttr
 
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SplatColor value)
         {
-            IMemoryPackFormatter<SplatColor> f = ColorFormatter.Default;
+            IMemoryPackFormatter<SplatColor> f = SplatColorFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref SplatColor value)
         {
-            IMemoryPackFormatter<SplatColor> f = ColorFormatter.Default;
+            IMemoryPackFormatter<SplatColor> f = SplatColorFormatter.Default;
             f.Deserialize(ref reader, ref value);
         }
     }
 }
 
-public sealed class NullableColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter, Color?>
+public sealed class NullableColorFormatterAttribute : MemoryPackCustomFormatterAttribute<NullableColorFormatter, Color?>
 {
-    public sealed override ColorFormatter GetFormatter() => ColorFormatter.Default;
+    public sealed override NullableColorFormatter GetFormatter() => NullableColorFormatter.Default;
 
     public sealed class Formatter : MemoryPackFormatter<Color?>
     {
@@ -234,21 +259,21 @@ public sealed class NullableColorFormatterAttribute : MemoryPackCustomFormatterA
 
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Color? value)
         {
-            IMemoryPackFormatter<Color?> f = ColorFormatter.Default;
+            IMemoryPackFormatter<Color?> f = NullableColorFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref Color? value)
         {
-            IMemoryPackFormatter<Color?> f = ColorFormatter.Default;
+            IMemoryPackFormatter<Color?> f = NullableColorFormatter.Default;
             f.Deserialize(ref reader, ref value);
         }
     }
 }
 
-public sealed class NullableSplatColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter, SplatColor?>
+public sealed class NullableSplatColorFormatterAttribute : MemoryPackCustomFormatterAttribute<NullableSplatColorFormatter, SplatColor?>
 {
-    public sealed override ColorFormatter GetFormatter() => ColorFormatter.Default;
+    public sealed override NullableSplatColorFormatter GetFormatter() => NullableSplatColorFormatter.Default;
 
     public sealed class Formatter : MemoryPackFormatter<SplatColor?>
     {
@@ -256,13 +281,13 @@ public sealed class NullableSplatColorFormatterAttribute : MemoryPackCustomForma
 
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref SplatColor? value)
         {
-            IMemoryPackFormatter<SplatColor?> f = ColorFormatter.Default;
+            IMemoryPackFormatter<SplatColor?> f = NullableSplatColorFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref SplatColor? value)
         {
-            IMemoryPackFormatter<SplatColor?> f = ColorFormatter.Default;
+            IMemoryPackFormatter<SplatColor?> f = NullableSplatColorFormatter.Default;
             f.Deserialize(ref reader, ref value);
         }
     }

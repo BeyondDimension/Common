@@ -5,7 +5,9 @@ using System.Text;
 namespace BD.Common.Settings.SourceGenerator;
 
 [Generator]
+#pragma warning disable RS1042 // Implementations of this interface are not allowed
 public sealed class SourceGenerator : ISourceGenerator
+#pragma warning restore RS1042 // Implementations of this interface are not allowed
 {
     const string k__BackingField = "k__BackingField";
     const string SettingsProperty = "BD.Common.Settings.SettingsProperty";
@@ -138,28 +140,36 @@ public sealed class SourceGenerator : ISourceGenerator
 
     public void Execute(GeneratorExecutionContext context)
     {
+#pragma warning disable RS1035 // Do not use APIs banned for analyzers
         if (context.SyntaxReceiver is not SyntaxReceiver receiver)
             return;
+#pragma warning restore RS1035 // Do not use APIs banned for analyzers
 
+#pragma warning disable RS1035 // Do not use APIs banned for analyzers
         var compilation = context.Compilation;
+#pragma warning restore RS1035 // Do not use APIs banned for analyzers
 
         // loop over the candidate fields, and keep the ones that are actually annotated
         //var symbols = new List<ITypeSymbol>();
         foreach (var decl in receiver.Candidates)
         {
             var model = compilation.GetSemanticModel(decl.SyntaxTree);
+#pragma warning disable RS1035 // Do not use APIs banned for analyzers
             if (model.GetDeclaredSymbol(decl, context.CancellationToken) is ITypeSymbol symbol)
             {
                 Write(symbol);
                 //symbols.Add(symbol);
             }
+#pragma warning restore RS1035 // Do not use APIs banned for analyzers
         }
 
         orders.Clear();
         foreach (var item in modelClassFile)
         {
             Write(item.Value, "}\r\n\r\n");
+#pragma warning disable RS1035 // Do not use APIs banned for analyzers
             context.AddSource($"{item.Key}.class.g.cs", SourceText.From(item.Value, Encoding.UTF8, canBeEmbedded: true));
+#pragma warning restore RS1035 // Do not use APIs banned for analyzers
         }
         modelClassFile.Clear();
 
@@ -186,6 +196,8 @@ public sealed class SourceGenerator : ISourceGenerator
 
     public void Initialize(GeneratorInitializationContext context)
     {
+#pragma warning disable RS1035 // Do not use APIs banned for analyzers
         context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
+#pragma warning restore RS1035 // Do not use APIs banned for analyzers
     }
 }

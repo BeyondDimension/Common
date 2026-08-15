@@ -19,7 +19,7 @@ public sealed class HexStringTest
         var bytes = Hashs.ByteArray.SHA384("TEST"u8.ToArray());
         var hexStr1 = bytes.ToHexString();
         var hexStr2 = ByteArrayToString(bytes);
-        Assert.IsTrue(hexStr1 == hexStr2);
+        Assert.That(hexStr1 == hexStr2);
     }
 
     [Test]
@@ -30,6 +30,6 @@ public sealed class HexStringTest
 
         var bytes1 = Convert2.FromHexString(hexStr1);
         var bytes2 = StringToByteArray(hexStr1);
-        Assert.IsTrue(bytes1.SequenceEqual(bytes2));
+        Assert.That(bytes1.SequenceEqual(bytes2));
     }
 }

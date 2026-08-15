@@ -16,7 +16,7 @@ public sealed class EnumTest
 
         // GetAll 结果应当一致
         TestContext.WriteLine(a1);
-        Assert.IsTrue(a1 == a2);
+        Assert.That(a1 == a2);
 
         string[] alls = Enum2.GetAllStrings<TypeLibFuncFlags>();
         a1 = string.Join(", ", alls);
@@ -26,7 +26,7 @@ public sealed class EnumTest
 
         // GetAllStrings 结果应当一致
         TestContext.WriteLine(a1);
-        Assert.IsTrue(a1 == a2);
+        Assert.That(a1 == a2);
 
         TypeLibFuncFlags enumFlags = TypeLibFuncFlags.FBindable | TypeLibFuncFlags.FDefaultCollelem | TypeLibFuncFlags.FUiDefault;
         IEnumerable<TypeLibFuncFlags> split1 = Enum2.FlagsSplit(enumFlags);
@@ -47,7 +47,7 @@ public sealed class EnumTest
 
         // GetDescription 结果应当一致
         TestContext.WriteLine(desc2);
-        Assert.IsTrue(desc1 == desc2);
+        Assert.That(desc1 == desc2);
     }
 
     enum GetDescriptionE

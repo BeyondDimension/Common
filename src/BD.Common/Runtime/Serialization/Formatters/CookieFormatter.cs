@@ -1,15 +1,13 @@
+using System.Buffers;
+using static System.Runtime.Serialization.Formatters.CookieFormatter2;
+
 namespace System.Runtime.Serialization.Formatters;
 
 /// <summary>
 /// 对类型 <see cref="Cookie"/>, <see cref="CookieCollection"/>, <see cref="CookieContainer"/> 的序列化与反序列化实现
 /// </summary>
-public sealed class CookieFormatter :
-    IMessagePackFormatter<Cookie?>,
-    IMessagePackFormatter<CookieCollection?>,
-    IMessagePackFormatter<CookieContainer?>,
-    IMemoryPackFormatter<Cookie?>,
-    IMemoryPackFormatter<CookieCollection?>,
-    IMemoryPackFormatter<CookieContainer?>
+[Obsolete("use CookieFormatter2", true)]
+public sealed class CookieFormatter
 {
     // https://github.com/neuecc/MessagePack-CSharp/blob/v2.4.59/src/MessagePack.UnityClient/Assets/Scripts/MessagePack/Formatters/CollectionFormatter.cs
     // https://github.com/Cysharp/MemoryPack/blob/1.9.12/src/MemoryPack.Core/Formatters/CollectionFormatters.cs
@@ -17,8 +15,11 @@ public sealed class CookieFormatter :
     // https://www.coderbusy.com/archives/2002.html
 
     public static readonly CookieFormatter Default = new();
+}
 
-    void IMessagePackFormatter<Cookie?>.Serialize(ref MessagePackWriter writer, Cookie? value, MessagePackSerializerOptions options)
+public abstract class CookieFormatterBase
+{
+    public void Serialize(ref MessagePackWriter writer, Cookie? value, MessagePackSerializerOptions options)
     {
         if (value == null)
         {
@@ -31,7 +32,7 @@ public sealed class CookieFormatter :
         }
     }
 
-    Cookie? IMessagePackFormatter<Cookie?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+    public Cookie? Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
         {
@@ -44,7 +45,42 @@ public sealed class CookieFormatter :
         }
     }
 
-    void IMessagePackFormatter<CookieCollection?>.Serialize(ref MessagePackWriter writer, CookieCollection? value, MessagePackSerializerOptions options)
+    public void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Cookie? value)
+        where TBufferWriter : IBufferWriter<byte>
+    {
+        if (value == null)
+        {
+            writer.WriteNullObjectHeader();
+        }
+        else
+        {
+            CookieMemoryPackable packable = value;
+            writer.WritePackable(packable);
+        }
+    }
+
+    public void Deserialize(ref MemoryPackReader reader, scoped ref Cookie? value)
+    {
+        if (reader.PeekIsNull())
+        {
+            value = null;
+        }
+        else
+        {
+            var wrapped = reader.ReadPackable<CookieMemoryPackable>();
+            value = wrapped.Cookie;
+        }
+    }
+}
+
+public sealed class CookieFormatter2 : CookieFormatterBase, IMessagePackFormatter<Cookie?>, IMemoryPackFormatter<Cookie?>
+{
+    public static readonly CookieFormatter2 Default = new();
+}
+
+public abstract class CookieCollectionFormatterBase : CookieFormatterBase
+{
+    public void Serialize(ref MessagePackWriter writer, CookieCollection? value, MessagePackSerializerOptions options)
     {
         if (value == null)
         {
@@ -52,7 +88,7 @@ public sealed class CookieFormatter :
         }
         else
         {
-            IMessagePackFormatter<Cookie?> formatter = this;
+            CookieFormatterBase formatter = this;
             IReadOnlyCollection<Cookie> cookies = value;
             writer.WriteArrayHeader(cookies.Count);
             foreach (Cookie cookie in cookies)
@@ -63,7 +99,7 @@ public sealed class CookieFormatter :
         }
     }
 
-    CookieCollection? IMessagePackFormatter<CookieCollection?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+    public new CookieCollection? Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
         {
@@ -71,7 +107,7 @@ public sealed class CookieFormatter :
         }
         else
         {
-            IMessagePackFormatter<Cookie?> formatter = this;
+            CookieFormatterBase formatter = this;
             var len = reader.ReadArrayHeader();
             var cookieCollection = new CookieCollection();
             options.Security.DepthStep(ref reader);
@@ -92,14 +128,71 @@ public sealed class CookieFormatter :
         }
     }
 
-    void IMessagePackFormatter<CookieContainer?>.Serialize(ref MessagePackWriter writer, CookieContainer? value, MessagePackSerializerOptions options)
+    public void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieCollection? value)
+         where TBufferWriter : IBufferWriter<byte>
+    {
+        if (value == null)
+        {
+            writer.WriteNullCollectionHeader();
+        }
+        else
+        {
+            CookieFormatterBase formatter = this;
+            IReadOnlyCollection<Cookie> cookies = value;
+            writer.WriteCollectionHeader(cookies.Count);
+            foreach (Cookie cookie in cookies)
+            {
+                var v = cookie;
+                formatter.Serialize(ref writer, ref v);
+            }
+        }
+    }
+
+    public void Deserialize(ref MemoryPackReader reader, scoped ref CookieCollection? value)
+    {
+        if (!reader.TryReadCollectionHeader(out var length))
+        {
+            value = null;
+        }
+        else
+        {
+            if (value == null)
+            {
+                value = new CookieCollection();
+            }
+            else
+            {
+                value.Clear();
+            }
+
+            CookieFormatterBase formatter = this;
+            for (int i = 0; i < length; i++)
+            {
+                Cookie? v = default;
+                formatter.Deserialize(ref reader, ref v);
+                if (v != default) value.Add(v);
+            }
+        }
+    }
+}
+
+public sealed class CookieCollectionFormatter : CookieCollectionFormatterBase, IMessagePackFormatter<CookieCollection?>, IMemoryPackFormatter<CookieCollection?>
+{
+    public static readonly CookieCollectionFormatter Default = new();
+}
+
+public sealed class CookieContainerFormatter : CookieCollectionFormatterBase, IMessagePackFormatter<CookieContainer?>, IMemoryPackFormatter<CookieContainer?>
+{
+    public static readonly CookieContainerFormatter Default = new();
+
+    public void Serialize(ref MessagePackWriter writer, CookieContainer? value, MessagePackSerializerOptions options)
     {
         CookieCollection? cookies = value?.GetAllCookies();
-        IMessagePackFormatter<CookieCollection?> formatter = this;
+        CookieCollectionFormatterBase formatter = this;
         formatter.Serialize(ref writer, cookies, options);
     }
 
-    CookieContainer? IMessagePackFormatter<CookieContainer?>.Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+    public new CookieContainer? Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
     {
         if (reader.TryReadNil())
         {
@@ -107,7 +200,7 @@ public sealed class CookieFormatter :
         }
         else
         {
-            IMessagePackFormatter<Cookie?> formatter = this;
+            CookieFormatterBase formatter = this;
             var len = reader.ReadArrayHeader();
             var container = new CookieContainer();
             options.Security.DepthStep(ref reader);
@@ -128,86 +221,15 @@ public sealed class CookieFormatter :
         }
     }
 
-    void IMemoryPackFormatter<Cookie?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Cookie? value)
-    {
-        if (value == null)
-        {
-            writer.WriteNullObjectHeader();
-        }
-        else
-        {
-            CookieMemoryPackable packable = value;
-            writer.WritePackable(packable);
-        }
-    }
-
-    void IMemoryPackFormatter<Cookie?>.Deserialize(ref MemoryPackReader reader, scoped ref Cookie? value)
-    {
-        if (reader.PeekIsNull())
-        {
-            value = null;
-        }
-        else
-        {
-            var wrapped = reader.ReadPackable<CookieMemoryPackable>();
-            value = wrapped.Cookie;
-        }
-    }
-
-    void IMemoryPackFormatter<CookieCollection?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieCollection? value)
-    {
-        if (value == null)
-        {
-            writer.WriteNullCollectionHeader();
-        }
-        else
-        {
-            IMemoryPackFormatter<Cookie?> formatter = this;
-            IReadOnlyCollection<Cookie> cookies = value;
-            writer.WriteCollectionHeader(cookies.Count);
-            foreach (Cookie cookie in cookies)
-            {
-                var v = cookie;
-                formatter.Serialize(ref writer, ref v);
-            }
-        }
-    }
-
-    void IMemoryPackFormatter<CookieCollection?>.Deserialize(ref MemoryPackReader reader, scoped ref CookieCollection? value)
-    {
-        if (!reader.TryReadCollectionHeader(out var length))
-        {
-            value = null;
-        }
-        else
-        {
-            if (value == null)
-            {
-                value = new CookieCollection();
-            }
-            else
-            {
-                value.Clear();
-            }
-
-            IMemoryPackFormatter<Cookie?> formatter = this;
-            for (int i = 0; i < length; i++)
-            {
-                Cookie? v = default;
-                formatter.Deserialize(ref reader, ref v);
-                if (v != default) value.Add(v);
-            }
-        }
-    }
-
-    void IMemoryPackFormatter<CookieContainer?>.Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieContainer? value)
+    public void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieContainer? value)
+        where TBufferWriter : IBufferWriter<byte>
     {
         CookieCollection? cookies = value?.GetAllCookies();
-        IMemoryPackFormatter<CookieCollection?> formatter = this;
+        CookieCollectionFormatterBase formatter = this;
         formatter.Serialize(ref writer, ref cookies);
     }
 
-    void IMemoryPackFormatter<CookieContainer?>.Deserialize(ref MemoryPackReader reader, scoped ref CookieContainer? value)
+    public void Deserialize(ref MemoryPackReader reader, scoped ref CookieContainer? value)
     {
         if (!reader.TryReadCollectionHeader(out var length))
         {
@@ -217,7 +239,7 @@ public sealed class CookieFormatter :
         {
             value ??= new CookieContainer();
 
-            IMemoryPackFormatter<Cookie?> formatter = this;
+            CookieCollectionFormatterBase formatter = this;
             for (int i = 0; i < length; i++)
             {
                 Cookie? v = default;
@@ -405,9 +427,9 @@ public readonly partial struct CookieMemoryPackable
     public static implicit operator CookieMemoryPackable(Cookie value) => new(value);
 }
 
-public sealed class CookieFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieFormatter, Cookie?>
+public sealed class CookieFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieFormatter2, Cookie?>
 {
-    public sealed override CookieFormatter GetFormatter() => CookieFormatter.Default;
+    public sealed override CookieFormatter2 GetFormatter() => CookieFormatter2.Default;
 
     public sealed class Formatter : MemoryPackFormatter<Cookie?>
     {
@@ -415,21 +437,21 @@ public sealed class CookieFormatterAttribute : MemoryPackCustomFormatterAttribut
 
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref Cookie? value)
         {
-            IMemoryPackFormatter<Cookie?> f = CookieFormatter.Default;
+            IMemoryPackFormatter<Cookie?> f = CookieFormatter2.Default;
             f.Serialize(ref writer, ref value);
         }
 
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref Cookie? value)
         {
-            IMemoryPackFormatter<Cookie?> f = CookieFormatter.Default;
+            IMemoryPackFormatter<Cookie?> f = CookieFormatter2.Default;
             f.Deserialize(ref reader, ref value);
         }
     }
 }
 
-public sealed class CookieCollectionFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieFormatter, CookieCollection?>
+public sealed class CookieCollectionFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieCollectionFormatter, CookieCollection?>
 {
-    public sealed override CookieFormatter GetFormatter() => CookieFormatter.Default;
+    public sealed override CookieCollectionFormatter GetFormatter() => CookieCollectionFormatter.Default;
 
     public sealed class Formatter : MemoryPackFormatter<CookieCollection?>
     {
@@ -437,21 +459,21 @@ public sealed class CookieCollectionFormatterAttribute : MemoryPackCustomFormatt
 
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieCollection? value)
         {
-            IMemoryPackFormatter<CookieCollection?> f = CookieFormatter.Default;
+            IMemoryPackFormatter<CookieCollection?> f = CookieCollectionFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref CookieCollection? value)
         {
-            IMemoryPackFormatter<CookieCollection?> f = CookieFormatter.Default;
+            IMemoryPackFormatter<CookieCollection?> f = CookieCollectionFormatter.Default;
             f.Deserialize(ref reader, ref value);
         }
     }
 }
 
-public sealed class CookieContainerFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieFormatter, CookieContainer?>
+public sealed class CookieContainerFormatterAttribute : MemoryPackCustomFormatterAttribute<CookieContainerFormatter, CookieContainer?>
 {
-    public sealed override CookieFormatter GetFormatter() => CookieFormatter.Default;
+    public sealed override CookieContainerFormatter GetFormatter() => CookieContainerFormatter.Default;
 
     public sealed class Formatter : MemoryPackFormatter<CookieContainer?>
     {
@@ -459,13 +481,13 @@ public sealed class CookieContainerFormatterAttribute : MemoryPackCustomFormatte
 
         public sealed override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref CookieContainer? value)
         {
-            IMemoryPackFormatter<CookieContainer?> f = CookieFormatter.Default;
+            IMemoryPackFormatter<CookieContainer?> f = CookieContainerFormatter.Default;
             f.Serialize(ref writer, ref value);
         }
 
         public sealed override void Deserialize(ref MemoryPackReader reader, scoped ref CookieContainer? value)
         {
-            IMemoryPackFormatter<CookieContainer?> f = CookieFormatter.Default;
+            IMemoryPackFormatter<CookieContainer?> f = CookieContainerFormatter.Default;
             f.Deserialize(ref reader, ref value);
         }
     }

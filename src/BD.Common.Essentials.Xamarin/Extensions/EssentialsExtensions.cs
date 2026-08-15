@@ -184,11 +184,14 @@ public static partial class EssentialsExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IEnumerable<IFileResult> Convert(this IEnumerable<XEFileResult> value)
+    public static IEnumerable<IFileResult> Convert(this IEnumerable<XEFileResult>? value)
     {
-        foreach (var item in value)
+        if (value != null)
         {
-            yield return item.Convert();
+            foreach (var item in value)
+            {
+                yield return item.Convert();
+            }
         }
     }
 

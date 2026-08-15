@@ -37,7 +37,7 @@ public sealed class SerializationTest
         var cookie = new CookieContainer();
         cookie.Add(cookies);
         var cookieHeader = cookie.GetCookieHeader(new("https://steampp.net"));
-        Assert.IsTrue(cookieHeader.Contains("c1") && cookieHeader.Contains("c3"));
+        Assert.That(cookieHeader.Contains("c1") && cookieHeader.Contains("c3"));
         TestContext.WriteLine(cookieHeader);
     }
 
@@ -56,7 +56,7 @@ public sealed class SerializationTest
         var options = MessagePackSerializerOptions.Standard
             .WithCompression(MessagePackCompression.Lz4BlockArray)
             .WithResolver(CompositeResolver.Create(
-                new IMessagePackFormatter[] { new CookieFormatter() },
+                new IMessagePackFormatter[] { new CookieFormatter2(), new CookieCollectionFormatter(), new CookieContainerFormatter() },
                 new IFormatterResolver[] { StandardResolver.Instance }));
         bytes = MessagePackSerializer.Serialize(GetCookieCollection(), options);
         m.Cookies = MessagePackSerializer.Deserialize<CookieCollection>(bytes, options);
