@@ -6,13 +6,13 @@ namespace System;
 /// <para>在类中定义 const string TAG = 类名(长度小于等于23)</para>
 /// <para>使用 Log.Debug(TAG,... / Log.Info(TAG,... / Log.Warn(TAG,... / Log.Error(TAG,...</para>
 /// </summary>
-public static class Log
+public static partial class Log
 {
     public static Func<ILoggerFactory>? LoggerFactory { private get; set; }
 
     static ILoggerFactory? factory;
 
-    public static ILoggerFactory Factory => factory ??= (Ioc.IsConfigured ? Ioc.Get<ILoggerFactory>() : null) ?? LoggerFactory?.Invoke() ?? throw new ArgumentNullException(nameof(LoggerFactory));
+    public static ILoggerFactory Factory => factory ??= (Ioc.IsConfigured ? Ioc.Get<ILoggerFactory>() : null) ?? LoggerFactory?.Invoke() ?? default(EmptyLoggerFactory);
 
     public static ILogger CreateLogger(string tag) => Factory.CreateLogger(tag);
 
@@ -181,6 +181,42 @@ public static class Log
     }
 
     #endregion
+}
+
+partial class Log // Empty
+{
+    readonly struct EmptyLogger : ILogger
+    {
+        IDisposable? ILogger.BeginScope<TState>(TState state)
+        {
+            return null;
+        }
+
+        bool ILogger.IsEnabled(LogLevel logLevel)
+        {
+            return false;
+        }
+
+        void ILogger.Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+        {
+        }
+    }
+
+    readonly struct EmptyLoggerFactory : ILoggerFactory
+    {
+        void ILoggerFactory.AddProvider(ILoggerProvider provider)
+        {
+        }
+
+        ILogger ILoggerFactory.CreateLogger(string categoryName)
+        {
+            return new EmptyLogger();
+        }
+
+        void IDisposable.Dispose()
+        {
+        }
+    }
 }
 
 public static partial class ExceptionExtensions
