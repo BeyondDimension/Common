@@ -9,7 +9,7 @@
     "start": "npm run dev"
   },
   "dependencies": {
-    "@microsoft/signalr": "^8.0.0",
+    "@microsoft/signalr": "^10.0.0",
     "umi": "^4.0.88"
   },
   "devDependencies": {
