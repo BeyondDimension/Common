@@ -170,15 +170,15 @@
 		</PackageVersion>
 		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="9.3.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.4.0">
+		<PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.9.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="9.3.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.9.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="9.3.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Abstractions" Version="10.9.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="9.3.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Dns" Version="10.9.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.3.0">
+		<PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="10.9.0">
 		</PackageVersion>
 		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0">
 		</PackageVersion>
@@ -296,7 +296,7 @@
 		<!-- 👇 源生成器与 Roslyn -->
 		<PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0">
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0">
 		</PackageVersion>
 		<!-- 👇 Code Style（代码样式） -->
 		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
@@ -436,13 +436,13 @@
 		</PackageVersion>
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.4">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.11">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
 		<PackageVersion Include="Google.Protobuf.Tools" Version="$(Version_Google_Protobuf)">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="9.0.4">
+		<PackageVersion Include="Microsoft.XmlSerializer.Generator" Version="10.0.11">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Resilience & Transient Fault Handling（重试） -->
@@ -498,83 +498,83 @@
 	</ItemGroup>
 	<!-- 👇 .NET BCL -->
 	<ItemGroup>
-		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="9.0.4">
+		<PackageVersion Include="System.Configuration.ConfigurationManager" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="System.Diagnostics.EventLog" Version="9.0.4">
+		<PackageVersion Include="System.Diagnostics.EventLog" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="System.Drawing.Common" Version="9.0.4">
+		<PackageVersion Include="System.Drawing.Common" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="System.IO.Pipelines" Version="9.0.4">
+		<PackageVersion Include="System.IO.Pipelines" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="System.IO.Hashing" Version="9.0.4">
+		<PackageVersion Include="System.IO.Hashing" Version="10.0.11">
 		</PackageVersion>
 		<PackageVersion Include="System.Linq.Async" Version="6.0.1">
 		</PackageVersion>
-		<PackageVersion Include="System.Management" Version="9.0.4">
+		<PackageVersion Include="System.Management" Version="10.0.11">
 		</PackageVersion>
 		<PackageVersion Include="System.Memory" Version="4.6.3">
 		</PackageVersion>
-		<PackageVersion Include="System.Net.Http.Json" Version="9.0.4">
+		<PackageVersion Include="System.Net.Http.Json" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="9.0.4">
+		<PackageVersion Include="System.Diagnostics.PerformanceCounter" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="9.0.4">
+		<PackageVersion Include="System.Security.Cryptography.ProtectedData" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="System.Text.Json" Version="9.0.4">
+		<PackageVersion Include="System.Text.Json" Version="10.0.11">
 		</PackageVersion>
 		<PackageVersion Include="System.Threading.Tasks.Extensions" Version="4.6.3">
 		</PackageVersion>
 		<PackageVersion Include="System.ValueTuple" Version="4.6.1">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Bcl.Numerics" Version="10.0.11">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.Extensions.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.ApiDescription.Server" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.FileProviders.Physical" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Physical" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Logging" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Logging" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Options" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.Extensions.Primitives" Version="9.0.4">
+		<PackageVersion Include="Microsoft.Extensions.Primitives" Version="10.0.11">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.AspNetCore.* -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.4">
+		<PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.4">
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4">
+		<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.4">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="9.0.4">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.Common" Version="10.0.11">
 		</PackageVersion>
-		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="9.0.4">
+		<PackageVersion Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="10.0.11">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 ASP.NET Core OpenId/OAuth -->
@@ -629,7 +629,7 @@
 	</ItemGroup>
 	<!-- 👇 SourceLink -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.400">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Microsoft.AppCenter -->
@@ -769,7 +769,7 @@
 	</ItemGroup>
 	<!-- 👇 Maui -->
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.Maui.Essentials" Version="9.0.60">
+		<PackageVersion Include="Microsoft.Maui.Essentials" Version="10.0.100">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Humanizer（格式化和呈现数据） -->
@@ -801,7 +801,7 @@
 	</ItemGroup>
 	<!-- 👇 Composition（组件扩展业务插件） -->
 	<ItemGroup>
-		<PackageVersion Include="System.Composition" Version="9.0.4">
+		<PackageVersion Include="System.Composition" Version="10.0.11">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Markdown -->
