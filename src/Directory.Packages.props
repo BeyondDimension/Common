@@ -277,7 +277,7 @@
 	</ItemGroup>
 	<!-- 👇 Quartz JobSchedule（作业调度） -->
 	<ItemGroup>
-		<PackageVersion Include="Quartz.AspNetCore" Version="3.14.0">
+		<PackageVersion Include="Quartz.AspNetCore" Version="3.20.1">
 		</PackageVersion>
 		<PackageVersion Include="CrystalQuartz.AspNetCore" Version="7.1.0">
 		</PackageVersion>
