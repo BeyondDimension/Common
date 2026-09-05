@@ -833,7 +833,7 @@
 	</ItemGroup>
 	<!-- 👇 MediatR -->
 	<ItemGroup>
-		<PackageVersion Include="MediatR" Version="12.5.0" />
+		<PackageVersion Include="MediatR" Version="14.2.0" />
 	</ItemGroup>
 	<!-- 👇 FluentValidation -->
 	<ItemGroup>
