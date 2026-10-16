@@ -248,7 +248,7 @@
 	</ItemGroup>
 	<!-- 👇 HashAlgorithm（哈希算法） -->
 	<ItemGroup>
-		<PackageVersion Include="Crc32.NET" Version="1.2.0">
+		<PackageVersion Include="Crc32.NET" Version="2.0.0">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 EncodeAlgorithm（编码算法） -->
