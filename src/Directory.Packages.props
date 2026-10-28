@@ -847,6 +847,6 @@
 		<PackageVersion Include="Tmds.DBus" Version="0.21.2" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageVersion Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
+		<PackageVersion Include="Microsoft.IO.RecyclableMemoryStream" Version="4.0.1" />
 	</ItemGroup>
 </Project>
