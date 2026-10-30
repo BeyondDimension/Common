@@ -26,7 +26,14 @@ public sealed partial class JWTEntity : IExplicitHasValue
             // fix MemoryPack Deserialize Offset error
             if (value.Offset > TimeSpan.FromDays(1))
             {
-                field = value.UtcDateTime;
+                try
+                {
+                    field = value.UtcDateTime;
+                }
+                catch
+                {
+                    field = value;
+                }
             }
             else
             {
