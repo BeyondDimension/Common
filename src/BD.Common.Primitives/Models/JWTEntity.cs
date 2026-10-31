@@ -18,6 +18,7 @@ public sealed partial class JWTEntity : IExplicitHasValue
     [MPKey(0)]
     [MP2Key(0)]
 #endif
+    [PortableDateTimeOffsetFormatter]
     public DateTimeOffset ExpiresIn
     {
         get => field;
