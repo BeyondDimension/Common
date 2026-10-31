@@ -10,13 +10,13 @@ public sealed class PortableDateTimeOffsetFormatter : MemoryPackFormatter<DateTi
     public override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref DateTimeOffset value)
     {
         writer.WriteUnmanaged(value.Ticks);
-        writer.WriteUnmanaged((int)value.Offset.TotalMinutes);
+        writer.WriteUnmanaged((short)value.Offset.TotalMinutes);
     }
 
     public override void Deserialize(ref MemoryPackReader reader, scoped ref DateTimeOffset value)
     {
         var ticks = reader.ReadUnmanaged<long>();
-        var offsetMinutes = reader.ReadUnmanaged<int>();
+        var offsetMinutes = reader.ReadUnmanaged<short>();
         value = new DateTimeOffset(ticks, TimeSpan.FromMinutes(offsetMinutes));
     }
 }
