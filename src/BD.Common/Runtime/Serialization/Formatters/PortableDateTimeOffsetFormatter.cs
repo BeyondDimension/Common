@@ -9,16 +9,27 @@ public sealed class PortableDateTimeOffsetFormatter : MemoryPackFormatter<DateTi
 
     public override void Serialize<TBufferWriter>(ref MemoryPackWriter<TBufferWriter> writer, scoped ref DateTimeOffset value)
     {
-        writer.WriteUnmanaged(value.Ticks);
-        writer.WriteUnmanaged((short)value.Offset.TotalMinutes);
+        var raw = default(LegacyDateTimeOffsetLayout);
+        raw.OffsetMinutes = (short)(int)value.Offset.TotalMinutes;
+        raw.UtcTicks = value.UtcTicks;
+        writer.WriteUnmanaged(raw);
     }
 
     public override void Deserialize(ref MemoryPackReader reader, scoped ref DateTimeOffset value)
     {
-        var ticks = reader.ReadUnmanaged<long>();
-        var offsetMinutes = reader.ReadUnmanaged<short>();
-        value = new DateTimeOffset(ticks, TimeSpan.FromMinutes(offsetMinutes));
+        var raw = reader.ReadUnmanaged<LegacyDateTimeOffsetLayout>();
+        value = new DateTimeOffset(raw.UtcTicks, TimeSpan.Zero).ToOffset(TimeSpan.FromMinutes(raw.OffsetMinutes));
     }
+}
+
+[StructLayout(LayoutKind.Explicit, Size = 16)]
+internal struct LegacyDateTimeOffsetLayout
+{
+    [FieldOffset(0)]
+    public short OffsetMinutes;
+
+    [FieldOffset(8)]
+    public long UtcTicks;
 }
 
 public sealed class PortableDateTimeOffsetFormatterAttribute : MemoryPackCustomFormatterAttribute<PortableDateTimeOffsetFormatter, DateTimeOffset>
