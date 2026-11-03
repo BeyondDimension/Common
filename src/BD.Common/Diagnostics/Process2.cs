@@ -14,6 +14,7 @@ public static class Process2
     /// </summary>
     /// <param name="fileName">要在进程中运行的应用程序文件的名称</param>
     /// <param name="path">要传递的路径</param>
+    /// <param name="arguments">要传递给应用程序的命令行参数</param>
     /// <returns></returns>
     /// <exception cref="ObjectDisposedException">已释放此进程对象</exception>
     /// <exception cref="Win32Exception">
@@ -23,12 +24,16 @@ public static class Process2
     /// </exception>
     /// <exception cref="PlatformNotSupportedException">不支持 shell 的操作系统（如，仅适用于.NET Core 的 Nano Server）不支持此方法</exception>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Process? StartPath(string fileName, string path)
+    public static Process? StartPath(string fileName, string path, string? arguments = null)
     {
         if (OperatingSystem.IsMacOS())
         {
-            var arguments = $"-a \"{fileName}\" \"{path}\"";
-            using var process = Start("open", arguments, true);
+            var openArguments = $"-a \"{fileName}\" \"{path}\"";
+            if (!string.IsNullOrWhiteSpace(arguments))
+            {
+                openArguments += $" --args {arguments}";
+            }
+            using var process = Start("open", openArguments, true);
             if (process == null)
             {
                 Log.Error(TAG, "StartPath(macOS) return null, fileName:{0}, path: {1}",
@@ -40,7 +45,12 @@ public static class Process2
         }
         else
         {
-            return Start(fileName, $"\"{path}\"", false);
+            var processArguments = $"\"{path}\"";
+            if (!string.IsNullOrWhiteSpace(arguments))
+            {
+                processArguments += $" {arguments}";
+            }
+            return Start(fileName, processArguments, false);
         }
     }
 
