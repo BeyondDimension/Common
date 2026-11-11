@@ -299,7 +299,7 @@
 		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0">
 		</PackageVersion>
 		<!-- 👇 Code Style（代码样式） -->
-		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+		<PackageVersion Include="StyleCop.Analyzers" Version="1.3.180">
 		</PackageVersion>
 	</ItemGroup>
 	<!-- 👇 Swagger OpenAPI Documentation（Swagger 文档） -->
