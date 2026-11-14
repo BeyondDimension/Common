@@ -3,60 +3,30 @@ namespace BD.Common.Services.Implementation;
 /// <inheritdoc cref="IModelValidator"/>
 public sealed class ModelValidator : IModelValidator
 {
-    static readonly MethodInfo matchValidateMethod = typeof(ModelValidator).GetMethod(nameof(MatchValidate), BindingFlags.NonPublic | BindingFlags.Static)!;
-    static readonly IDictionary<Type, object> validators = new Dictionary<Type, object>();
+    static readonly IDictionary<Type, Func<object, string?>> validators = new Dictionary<Type, Func<object, string?>>();
 
     public static void AddColumnValidate<T>(Func<T, string?> validate)
-        => validators.TryAdd(typeof(T), validate);
+        => validators.TryAdd(typeof(T), model => model is T value ? validate(value) : null);
 
     const string I = "I";
     const string IReadOnly = "IReadOnly";
     const string IReadOnlyNullable = "IReadOnlyNullable";
     static readonly string[] StartsWithSubstrings = new[] { IReadOnlyNullable, IReadOnly, I };
 
-    static string GetColumnName(Type type)
+    static ReadOnlySpan<char> GetColumnName(Type type)
     {
         foreach (var item in StartsWithSubstrings)
         {
             if (type.Name.StartsWith(item))
             {
-                return type.Name[item.Length..];
+                return type.Name.AsSpan(item.Length);
             }
         }
         return type.Name;
     }
 
-    static string? MatchValidate<T>(
-        Func<T, string?> validate,
-        object model,
-        bool hasIgnores,
-        Type[] ignores,
-        Func<string[]> ignoreNames)
-    {
-        if (hasIgnores)
-        {
-            var type = typeof(T);
-            if (ignores.Contains(type) || ignoreNames().Contains(GetColumnName(type)))
-            {
-                return null;
-            }
-        }
-        if (model is T t)
-        {
-            return validate(t);
-        }
-        return null;
-    }
-
     public bool Validate(object model, [NotNullWhen(false)] out string? errorMessage, params Type[] ignores)
     {
-        string[]? ignoreNames_ = null;
-        Func<string[]> ignoreNames = GetIgnoreNames;
-        string[] GetIgnoreNames()
-        {
-            ignoreNames_ ??= ignores.Select(GetColumnName).ToArray();
-            return ignoreNames_;
-        }
         var hasIgnores = ignores.Any_Nullable();
         if (!validators.Any())
         {
@@ -65,8 +35,20 @@ public sealed class ModelValidator : IModelValidator
         }
         foreach (var item in validators)
         {
-            var parameters = new object?[] { item.Value, model, hasIgnores, ignores, ignoreNames };
-            errorMessage = (string?)matchValidateMethod.MakeGenericMethod(item.Key).Invoke(null, parameters);
+            if (hasIgnores)
+            {
+                var ignored = false;
+                foreach (var ignore in ignores)
+                {
+                    if (ignore == item.Key || GetColumnName(ignore).SequenceEqual(GetColumnName(item.Key)))
+                    {
+                        ignored = true;
+                        break;
+                    }
+                }
+                if (ignored) continue;
+            }
+            errorMessage = item.Value(model);
             if (errorMessage != null) return false;
         }
 

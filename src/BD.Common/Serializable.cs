@@ -211,6 +211,55 @@ namespace System
 
 #endif
 
+#if WTTS_NATIVE_AOT
+        [ThreadStatic]
+        static System.Buffers.ArrayBufferWriter<byte>? nativeMemoryPackWriter;
+
+        static System.Buffers.ArrayBufferWriter<byte> RentNativeMemoryPackWriter()
+        {
+            var writer = nativeMemoryPackWriter;
+            nativeMemoryPackWriter = null; // Nested serialization must rent a different writer.
+            return writer ?? new System.Buffers.ArrayBufferWriter<byte>();
+        }
+
+        static void ReturnNativeMemoryPackWriter(System.Buffers.ArrayBufferWriter<byte> writer)
+        {
+            if (writer.Capacity > 64 * 1024)
+                return;
+            writer.Clear();
+            nativeMemoryPackWriter = writer;
+        }
+
+        static async ValueTask SerializeNativeAsync<T>(Stream stream, T value, CancellationToken cancellationToken)
+        {
+            var buffer = RentNativeMemoryPackWriter();
+            try
+            {
+                MemoryPackSerializer.Serialize(buffer, value);
+                await stream.WriteAsync(buffer.WrittenMemory, cancellationToken).ConfigureAwait(false);
+                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
+            }
+            finally
+            {
+                ReturnNativeMemoryPackWriter(buffer);
+            }
+        }
+
+        static async ValueTask SerializeNativeAsync(Type type, Stream stream, object value, CancellationToken cancellationToken)
+        {
+            var buffer = RentNativeMemoryPackWriter();
+            try
+            {
+                MemoryPackSerializer.Serialize(type, buffer, value);
+                await stream.WriteAsync(buffer.WrittenMemory, cancellationToken).ConfigureAwait(false);
+            }
+            finally
+            {
+                ReturnNativeMemoryPackWriter(buffer);
+            }
+        }
+#endif
+
         /// <summary>
         /// (Serialize)MemoryPack 序列化
         /// </summary>
@@ -219,22 +268,70 @@ namespace System
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SMP2<T>(T value)
-            => MemoryPackSerializer.Serialize(value);
+        {
+#if WTTS_NATIVE_AOT
+            // Unmanaged values bypass MemoryPack's internal writer entirely.
+            if (!RuntimeHelpers.IsReferenceOrContainsReferences<T>())
+                return MemoryPackSerializer.Serialize(value);
+
+            // MemoryPack's internal linked writer fails for native custom-formatter serialization.
+            // The BCL writer is verified for this path and preserves the wire format.
+            var buffer = RentNativeMemoryPackWriter();
+            try
+            {
+                MemoryPackSerializer.Serialize(buffer, value);
+                return buffer.WrittenSpan.ToArray();
+            }
+            finally
+            {
+                ReturnNativeMemoryPackWriter(buffer);
+            }
+#else
+            return MemoryPackSerializer.Serialize(value);
+#endif
+        }
 
         /// <inheritdoc cref="SMP2{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] SMP2(Type type, object value)
-            => MemoryPackSerializer.Serialize(type, value);
+        {
+#if WTTS_NATIVE_AOT
+            var buffer = RentNativeMemoryPackWriter();
+            try
+            {
+                MemoryPackSerializer.Serialize(type, buffer, value);
+                return buffer.WrittenSpan.ToArray();
+            }
+            finally
+            {
+                ReturnNativeMemoryPackWriter(buffer);
+            }
+#else
+            return MemoryPackSerializer.Serialize(type, value);
+#endif
+        }
 
         /// <inheritdoc cref="SMP2{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask SMP2Async<T>(Stream stream, T value, CancellationToken cancellationToken = default)
-            => MemoryPackSerializer.SerializeAsync(stream, value, cancellationToken: cancellationToken);
+        {
+#if WTTS_NATIVE_AOT
+            return SerializeNativeAsync(stream, value, cancellationToken);
+#else
+            return MemoryPackSerializer.SerializeAsync(stream, value, cancellationToken: cancellationToken);
+#endif
+        }
 
         /// <inheritdoc cref="SMP2{T}(T)"/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ValueTask SMP2Async(Type type, Stream stream, object value, CancellationToken cancellationToken = default)
-            => MemoryPackSerializer.SerializeAsync(type, stream, value, cancellationToken: cancellationToken);
+        {
+#if WTTS_NATIVE_AOT
+            return SerializeNativeAsync(type, stream, value, cancellationToken);
+#else
+            return MemoryPackSerializer.SerializeAsync(type, stream, value, cancellationToken: cancellationToken);
+#endif
+        }
 
         /// <summary>
         /// (Serialize)MemoryPack 序列化 + Base64Url Encode
@@ -379,7 +476,7 @@ namespace System
         /// <returns></returns>
         [return: MaybeNull]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T DMP2<T>(byte[] buffer)
+        public static T DMP2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(byte[] buffer)
             => MemoryPackSerializer.Deserialize<T>(buffer);
 
         /// <inheritdoc cref="DMP2{T}(byte[])"/>
@@ -395,7 +492,7 @@ namespace System
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static async ValueTask<T?> DMP2Async<T>(Stream buffer, CancellationToken cancellationToken = default)
+        public static async ValueTask<T?> DMP2Async<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(Stream buffer, CancellationToken cancellationToken = default)
         {
             T? r = await MemoryPackSerializer.DeserializeAsync<T>(buffer, cancellationToken: cancellationToken);
             return r;
@@ -414,7 +511,7 @@ namespace System
         /// <returns></returns>
         [return: MaybeNull]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T DMP2B64U<T>(string? value)
+        public static T DMP2B64U<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string? value)
         {
             if (!string.IsNullOrWhiteSpace(value))
             {
@@ -498,7 +595,7 @@ namespace System
             {
                 try
                 {
-                    var bytes = MemoryPackSerializer.Serialize(obj);
+                    var bytes = SMP2(obj);
                     return MemoryPackSerializer.Deserialize<T>(bytes);
                 }
                 catch

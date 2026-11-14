@@ -62,7 +62,7 @@ public abstract class Repository : IRepository
     static SQLiteAsyncConnection DbConnection => dbConnection.Value;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected static async ValueTask<SQLiteAsyncConnection> GetDbConnection<T>()
+    protected static async ValueTask<SQLiteAsyncConnection> GetDbConnection<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>()
     {
         var connection = DbConnection;
         await GetDbConnection<T>(connection);
@@ -70,7 +70,7 @@ public abstract class Repository : IRepository
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected static async ValueTask GetDbConnection<T>(SQLiteAsyncConnection connection)
+    protected static async ValueTask GetDbConnection<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(SQLiteAsyncConnection connection)
     {
         if (!connection.TableMappings.Any(x => x.MappedType == typeof(T)))
         {
@@ -81,7 +81,7 @@ public abstract class Repository : IRepository
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static SQLiteConnection GetDbConnectionSync<T>()
+    public static SQLiteConnection GetDbConnectionSync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>()
     {
         var conn = ConnectionSync;
         if (!conn.TableMappings.Any(x => x.MappedType == typeof(T)))

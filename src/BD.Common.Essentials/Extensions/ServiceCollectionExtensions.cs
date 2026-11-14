@@ -12,7 +12,7 @@ public static partial class ServiceCollectionExtensions
     /// <param name="services"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IServiceCollection AddSaveFileDialogService<T>(
+    public static IServiceCollection AddSaveFileDialogService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(
         this IServiceCollection services)
         where T : class, IFilePickerPlatformService.ISaveFileDialogService
     {

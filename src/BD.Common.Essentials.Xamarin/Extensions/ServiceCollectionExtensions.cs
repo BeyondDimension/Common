@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
     /// <typeparam name="TApplicationVersionServiceImpl"></typeparam>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection TryAddEssentials<TApplicationVersionServiceImpl>(this IServiceCollection services) where TApplicationVersionServiceImpl : class, IApplicationVersionService
+    public static IServiceCollection TryAddEssentials<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TApplicationVersionServiceImpl>(this IServiceCollection services) where TApplicationVersionServiceImpl : class, IApplicationVersionService
     {
         CommonEssentials.IsSupported = true;
         services.TryAddSingleton<IApplicationVersionService, TApplicationVersionServiceImpl>();
@@ -38,13 +38,13 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddDeviceInfoPlatformService<TService>(this IServiceCollection services) where TService : DeviceInfoPlatformServiceImpl
+    public static IServiceCollection AddDeviceInfoPlatformService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this IServiceCollection services) where TService : DeviceInfoPlatformServiceImpl
     {
         services.AddSingleton<IDeviceInfoPlatformService, TService>();
         return services;
     }
 
-    public static IServiceCollection AddPermissionsPlatformServiceImpl<TService>(this IServiceCollection services) where TService : PermissionsPlatformServiceImpl
+    public static IServiceCollection AddPermissionsPlatformServiceImpl<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this IServiceCollection services) where TService : PermissionsPlatformServiceImpl
     {
         services.AddSingleton<IPermissionsPlatformService, TService>();
         return services;

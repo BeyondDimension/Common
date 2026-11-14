@@ -301,8 +301,8 @@ internal static class SettingsExtensions
                                     var settingsByRead = JsonSerializer.Deserialize<TSettings>(jnode, options);
 
                                     // 使用 MemoryPack 序列化两者比较相等
-                                    var right = MemoryPackSerializer.Serialize(settingsByRead);
-                                    var left = MemoryPackSerializer.Serialize(settings);
+                                    var right = Serializable.SMP2(settingsByRead);
+                                    var left = Serializable.SMP2(settings);
                                     if (left.SequenceEqual(right))
                                         return;
                                 }
