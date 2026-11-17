@@ -13,7 +13,9 @@ public static class ServiceCollectionExtensions
     /// <typeparam name="TLocal"></typeparam>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection AddSecurityService<TEmbeddedAes, TLocal>(this IServiceCollection services)
+    public static IServiceCollection AddSecurityService<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TEmbeddedAes,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TLocal>(this IServiceCollection services)
         where TEmbeddedAes : EmbeddedAesDataProtectionProviderBase
         where TLocal : class, ILocalDataProtectionProvider
     {

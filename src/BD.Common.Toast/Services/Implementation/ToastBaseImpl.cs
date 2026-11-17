@@ -67,7 +67,7 @@ public abstract class ToastBaseImpl : IToast
     /// <returns></returns>
     protected virtual int ToDuration(ToastLength toastLength) => (int)toastLength;
 
-    protected static IServiceCollection TryAddToast<TToastImpl>(IServiceCollection services) where TToastImpl : class, IToast
+    protected static IServiceCollection TryAddToast<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TToastImpl>(IServiceCollection services) where TToastImpl : class, IToast
     {
         services.TryAddSingleton<IToastIntercept, NoneToastIntercept>();
         services.TryAddSingleton<IToast, TToastImpl>();

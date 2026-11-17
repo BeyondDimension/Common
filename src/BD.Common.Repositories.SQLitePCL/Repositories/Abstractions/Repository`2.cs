@@ -1,7 +1,7 @@
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="IRepository"/>
-public abstract class Repository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity, TPrimaryKey> : Repository<TEntity>, IRepository<TEntity, TPrimaryKey>
+public abstract class Repository<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TEntity, TPrimaryKey> : Repository<TEntity>, IRepository<TEntity, TPrimaryKey>
     where TEntity : class, IEntity<TPrimaryKey>, new()
     where TPrimaryKey : IEquatable<TPrimaryKey>
 {

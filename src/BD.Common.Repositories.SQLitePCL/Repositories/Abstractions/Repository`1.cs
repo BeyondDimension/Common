@@ -1,7 +1,7 @@
 namespace BD.Common.Repositories.Abstractions;
 
 /// <inheritdoc cref="Repository"/>
-public abstract class Repository<[DynamicallyAccessedMembers(IEntity.DynamicallyAccessedMemberTypes)] TEntity> : Repository, IRepository<TEntity> where TEntity : class, new()
+public abstract class Repository<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TEntity> : Repository, IRepository<TEntity> where TEntity : class, new()
 {
     protected virtual ValueTask<SQLiteAsyncConnection> GetDbConnection() => GetDbConnection<TEntity>();
 
