@@ -16,4 +16,6 @@ public enum DeploymentMode : byte
     /// <para>如果将应用发布为依赖于框架的应用，会以 dll 文件的形式生成一个跨平台二进制文件，还会生成面向当前平台的特定于平台的可执行文件。 dll 是跨平台的，而可执行文件不是。 </para>
     /// </summary>
     FDE,
+
+    AOT,
 }
