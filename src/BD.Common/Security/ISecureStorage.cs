@@ -85,7 +85,11 @@ public partial interface ISecureStorage
     Task<bool> RemoveAsync(string key);
 
     /// <inheritdoc cref="GetAsync(string)"/>
-    async Task<TValue?> GetAsync<TValue>(string key)
+    Task<TValue?> GetAsync<TValue>(string key)
+        => GetAsync<TValue>(key, Serializable.lz4Options);
+
+    /// <summary>Reads a stored value using the supplied MessagePack options.</summary>
+    async Task<TValue?> GetAsync<TValue>(string key, MessagePackSerializerOptions options)
     {
         try
         {
@@ -93,15 +97,13 @@ public partial interface ISecureStorage
             {
                 var bytesValue = await GetBytesAsync(key);
                 if (bytesValue == null) return default;
-                var value = Serializable.DMP<TValue?>(bytesValue);
-                return value;
+                return MessagePackSerializer.Deserialize<TValue?>(bytesValue, options);
             }
             else
             {
                 var strValue = await GetAsync(key);
-                if (strValue == null) return default;
-                var value = Serializable.DMPB64U<TValue?>(strValue);
-                return value;
+                if (string.IsNullOrWhiteSpace(strValue)) return default;
+                return MessagePackSerializer.Deserialize<TValue?>(strValue.Base64UrlDecodeToByteArray(), options);
             }
         }
         catch (Exception e)
@@ -113,15 +115,19 @@ public partial interface ISecureStorage
 
     /// <inheritdoc cref="SetAsync(string, string?)"/>
     Task SetAsync<TValue>(string key, TValue value)
+        => SetAsync(key, value, Serializable.lz4Options);
+
+    /// <summary>Writes a stored value using the supplied MessagePack options.</summary>
+    Task SetAsync<TValue>(string key, TValue value, MessagePackSerializerOptions options)
     {
         if (IsNativeSupportedBytes)
         {
-            var bytesValue = Serializable.SMP(value);
+            var bytesValue = MessagePackSerializer.Serialize(value, options);
             return SetAsync(key, bytesValue);
         }
         else
         {
-            var strValue = Serializable.SMPB64U(value);
+            var strValue = value is null ? null : MessagePackSerializer.Serialize(value, options).Base64UrlEncode();
             return SetAsync(key, strValue);
         }
     }
