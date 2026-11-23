@@ -1,6 +1,8 @@
 // https://github.com/xamarin/Essentials/blob/1.7.3/Xamarin.Essentials/Types/ColorConverters.shared.cs
 
+#if !COMMON_NO_SPLAT_DRAWING
 using Splat;
+#endif
 
 namespace System.Drawing;
 
@@ -112,6 +114,7 @@ public static class ColorConverters
         }
     }
 
+#if !COMMON_NO_SPLAT_DRAWING
     /// <summary>
     /// 尝试将 HexStringColor 转换为 <see cref="SplatColor"/>
     /// </summary>
@@ -218,6 +221,8 @@ public static class ColorConverters
                 throw new ArgumentException(nameof(hexStringColor));
         }
     }
+
+#endif
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static uint ToHexD(char c)

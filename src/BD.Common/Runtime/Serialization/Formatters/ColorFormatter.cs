@@ -1,4 +1,6 @@
+#if !COMMON_NO_SPLAT_DRAWING
 using Splat;
+#endif
 using System.Buffers;
 using System.Drawing;
 using static System.Runtime.Serialization.Formatters.H;
@@ -6,7 +8,7 @@ using static System.Runtime.Serialization.Formatters.H;
 namespace System.Runtime.Serialization.Formatters;
 
 /// <summary>
-/// 对类型 <see cref="Color"/>, <see cref="SplatColor"/> 的序列化与反序列化实现
+/// 对类型 <see cref="Color"/> 的序列化与反序列化实现
 /// </summary>
 [Obsolete("use ColorFormatter2", true)]
 public sealed class ColorFormatter
@@ -19,18 +21,7 @@ file static class H
     internal static uint ToUInt32(int value) => (uint)(value < 0 ? 0 : value);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static Color FromArgb(uint value)
-    {
-        if (value > int.MaxValue)
-        {
-            var color = SplatColor.FromArgb(value);
-            return Color.FromArgb(color.A, color.R, color.G, color.B);
-        }
-        else
-        {
-            return Color.FromArgb((int)value);
-        }
-    }
+    internal static Color FromArgb(uint value) => Color.FromArgb(unchecked((int)value));
 }
 
 public sealed class ColorFormatter2 : IMessagePackFormatter<Color>, IMemoryPackFormatter<Color>
@@ -119,6 +110,7 @@ public sealed class NullableColorFormatter : IMessagePackFormatter<Color?>, IMem
     }
 }
 
+#if !COMMON_NO_SPLAT_DRAWING
 public sealed class SplatColorFormatter : IMessagePackFormatter<SplatColor>, IMemoryPackFormatter<SplatColor>
 {
     public static readonly SplatColorFormatter Default = new();
@@ -205,6 +197,8 @@ public sealed class NullableSplatColorFormatter : IMessagePackFormatter<SplatCol
     }
 }
 
+#endif
+
 public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute<ColorFormatter2, Color>
 {
     public sealed override ColorFormatter2 GetFormatter() => ColorFormatter2.Default;
@@ -227,6 +221,7 @@ public sealed class ColorFormatterAttribute : MemoryPackCustomFormatterAttribute
     }
 }
 
+#if !COMMON_NO_SPLAT_DRAWING
 public sealed class SplatColorFormatterAttribute : MemoryPackCustomFormatterAttribute<SplatColorFormatter, SplatColor>
 {
     public sealed override SplatColorFormatter GetFormatter() => SplatColorFormatter.Default;
@@ -248,6 +243,8 @@ public sealed class SplatColorFormatterAttribute : MemoryPackCustomFormatterAttr
         }
     }
 }
+
+#endif
 
 public sealed class NullableColorFormatterAttribute : MemoryPackCustomFormatterAttribute<NullableColorFormatter, Color?>
 {
@@ -271,6 +268,7 @@ public sealed class NullableColorFormatterAttribute : MemoryPackCustomFormatterA
     }
 }
 
+#if !COMMON_NO_SPLAT_DRAWING
 public sealed class NullableSplatColorFormatterAttribute : MemoryPackCustomFormatterAttribute<NullableSplatColorFormatter, SplatColor?>
 {
     public sealed override NullableSplatColorFormatter GetFormatter() => NullableSplatColorFormatter.Default;
@@ -292,3 +290,4 @@ public sealed class NullableSplatColorFormatterAttribute : MemoryPackCustomForma
         }
     }
 }
+#endif

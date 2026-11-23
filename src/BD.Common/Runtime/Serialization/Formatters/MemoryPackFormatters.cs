@@ -22,9 +22,13 @@ public sealed class MemoryPackFormatters : IMemoryPackFormatterRegister
         Register(RSAParametersFormatterAttribute.Formatter.Default);
 
         Register(ColorFormatterAttribute.Formatter.Default);
+#if !COMMON_NO_SPLAT_DRAWING
         Register(SplatColorFormatterAttribute.Formatter.Default);
+#endif
         Register(NullableColorFormatterAttribute.Formatter.Default);
+#if !COMMON_NO_SPLAT_DRAWING
         Register(NullableSplatColorFormatterAttribute.Formatter.Default);
+#endif
 
         Register(X509CertificateFormatterAttribute.Formatter.Default);
         Register(X509Certificate2FormatterAttribute.Formatter.Default);
