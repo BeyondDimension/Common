@@ -310,7 +310,7 @@ sealed class RateLimitedHttpMessageHandler2(HttpMessageHandler handler, Priority
         var cacheResult = cacheResultFunc;
         if (cacheResult == null && NetCache.RequestCache != null)
         {
-            cacheResult = NetCache.RequestCache.Save;
+            cacheResult = NetCache.RequestCache.SaveAsync;
         }
 
         if (_maxBytesToRead < 0)

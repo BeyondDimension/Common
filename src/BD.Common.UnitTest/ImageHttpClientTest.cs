@@ -24,7 +24,7 @@ public sealed class ImageHttpClientTest
 
     sealed class RequestCache : IRequestCache
     {
-        async Task<byte[]> IRequestCache.Fetch(HttpRequestMessage request, string key, CancellationToken ct)
+        async Task<byte[]?> IRequestCache.FetchAsync(HttpRequestMessage request, string key, CancellationToken ct)
         {
             TestContext.WriteLine($"key: {key}");
             TestContext.WriteLine($"key2: {UniqueKeyForRequest(request)}");
@@ -78,7 +78,7 @@ public sealed class ImageHttpClientTest
             //return "HttpSchedulerCache_" + ret_.GetHashCode().ToString("x", CultureInfo.InvariantCulture);
         }
 
-        Task IRequestCache.Save(HttpRequestMessage request, HttpResponseMessage response, string key, CancellationToken ct)
+        Task IRequestCache.SaveAsync(HttpRequestMessage request, HttpResponseMessage response, string key, CancellationToken ct)
         {
             return Task.CompletedTask;
         }

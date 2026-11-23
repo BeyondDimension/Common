@@ -24,9 +24,9 @@ public static class RxUIExtensions
             return true; // value Equals
         }
 
-        reactiveObject.RaisingPropertyChanging(propertyName);
+        reactiveObject.RaisePropertyChanging(propertyName);
         backingField = newValue;
-        reactiveObject.RaisingPropertyChanged(propertyName);
+        reactiveObject.RaisePropertyChanged(propertyName);
         return false; // value Changed
     }
 
